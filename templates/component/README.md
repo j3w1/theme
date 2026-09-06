@@ -59,6 +59,7 @@ to the root; `open` opens `details`/`dialog`. Everything else is CSS.
   motion removes it.
 - Heights come from `--density-control-height` / `--density-row-height` with
   a fallback (`var(--density-control-height, 32px)`).
+- Give every flex or grid item that holds an input `min-width: 0`; otherwise it refuses to shrink at 320px or 200% zoom.
 - Use native elements where the frontmatter says `native: true`; custom
   widgets cite an APG pattern and implement its keyboard contract in the
   `keyboard` list.

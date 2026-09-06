@@ -48,8 +48,12 @@ test.describe("the specification page", () => {
 
   test("axe finds no WCAG 2.x A/AA violations (a scan, not a conformance claim)", async ({ page }, testInfo) => {
     test.skip(!only(testInfo, "desktop"), "one scan is enough");
+    test.setTimeout(600_000);
     await openSpec(page);
-    const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
+    /* Non-default matrix cells are aria-hidden inert clones of the default
+       cell; scanning every one of them multiplies the run time by the number
+       of states without adding findings. The live cells are scanned. */
+    const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).exclude('.matrix [aria-hidden="true"]').analyze();
     await fs.mkdir("test-results", { recursive: true });
     await fs.writeFile("test-results/axe.json", JSON.stringify(results, null, 2));
     expect(results.violations.map((v) => `${v.id}: ${v.nodes.length} × ${v.help}`)).toEqual([]);

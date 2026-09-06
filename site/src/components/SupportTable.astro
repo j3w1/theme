@@ -11,7 +11,7 @@ const { ports } = Astro.props;
   {ports.length === 0 ? (
     <p>No native ports are published yet. Historical implementations are catalogued under References and are not supported downloads.</p>
   ) : (
-    <div class="table-scroll">
+    <div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table">
       <table>
         <thead>
           <tr><th scope="col">Port</th><th scope="col">Format</th><th scope="col">Status</th><th scope="col">Theme</th><th scope="col">Tested on</th><th scope="col">Supported / inherited / unsupported</th></tr>

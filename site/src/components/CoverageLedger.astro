@@ -13,7 +13,7 @@ const defs = coverageLedger.definitions as Record<string, string>;
   {rows.length === 0 ? (
     <p>No components are specified yet.</p>
   ) : (
-    <div class="table-scroll">
+    <div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table">
       <table class="ledger">
         <thead>
           <tr><th scope="col">Family</th><th scope="col">Total</th><th scope="col">Specified</th><th scope="col">Demonstrated</th><th scope="col">Tested</th></tr>

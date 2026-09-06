@@ -11,6 +11,8 @@ import FamilySection from "../components/FamilySection.astro";
 import TokenTable from "../components/TokenTable.astro";
 import FoundationSpecimens from "../components/FoundationSpecimens.astro";
 import ContrastReport from "../components/ContrastReport.astro";
+import NonExamples from "../components/NonExamples.astro";
+import StressFixtures from "../components/StressFixtures.astro";
 import SupportTable from "../components/SupportTable.astro";
 import CoverageLedger from "../components/CoverageLedger.astro";
 import { withBase } from "../lib/base";
@@ -39,6 +41,7 @@ const title = theme.displayName;
 const description = `${theme.description} One page: foundations, every component with its states, composed specimens, accessibility and portability rules, and exports for agents.`;
 const tocDocs = [{ id: "identity", title: "Identity" }, { id: "foundations", title: "Foundations" }];
 const tocExtra = [
+  { id: "stress-and-non-examples", title: "Stress fixtures and non-examples" },
   { id: anchors.doc("accessibility"), title: "Accessibility" },
   { id: anchors.doc("portability"), title: "Portability" },
   { id: "references", title: "References" },
@@ -126,6 +129,12 @@ const tocExtra = [
         </section>
       )}
 
+      <section class="doc" id="stress-and-non-examples">
+        <h2>Stress fixtures and non-examples</h2>
+        <StressFixtures />
+        <NonExamples />
+      </section>
+
       <DocSection entry={doc("accessibility")}>
         <ContrastReport />
       </DocSection>
@@ -138,7 +147,7 @@ const tocExtra = [
       <section class="doc prose" id="references">
         <h2>References</h2>
         <p class="family-description">Where the values came from and what each reference does not prove. Nothing here is a supported download.</p>
-        <div class="table-scroll">
+        <div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table">
           <table>
             <thead><tr><th scope="col">Reference</th><th scope="col">Kind</th><th scope="col">Where</th><th scope="col">What it does not prove</th></tr></thead>
             <tbody>

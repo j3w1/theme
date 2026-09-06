@@ -1,0 +1,90 @@
+---
+/* Sixteen wrong interpretations, rendered on purpose so nobody has to guess
+   what "not that" means. Each card shows the wrong thing (marked as a
+   picture: SVG or aria-hidden decoration, never readable text in a failing
+   colour) and states the rule it breaks. Token variables style the cards;
+   the wrong samples deliberately use literal values, which is the point. */
+import { anchors, hexOf } from "../lib/theme";
+
+const canvas = hexOf("color.surface.canvas")!;
+const raised = hexOf("color.surface.raised")!;
+const text = hexOf("color.text.default")!;
+const bright = hexOf("color.text.bright")!;
+const focus = hexOf("color.interaction.focus.ring")!;
+const selection = hexOf("color.interaction.selection.bg")!;
+const inactive = hexOf("color.border.disabled")!;
+const control = hexOf("color.border.control")!;
+const primary = hexOf("color.action.primary.bg")!;
+const ansi4 = hexOf("color.terminal.ansi.4")!;
+
+const items = [
+  { id: "pills", title: "Pills", rule: "Radius is 0 everywhere; buttons, chips, inputs and badges are square.", svg: `<rect x="8" y="14" width="120" height="32" rx="16" fill="${primary}"/><text x="68" y="35" text-anchor="middle" fill="#f4eeee" font-size="12">Save</text>` },
+  { id: "glass", title: "Glass and blur", rule: "Surfaces are opaque warm blacks; no backdrop-filter, no translucent cards over content.", svg: `<rect x="0" y="0" width="140" height="60" fill="${canvas}"/><text x="10" y="24" fill="${text}" font-size="11">content behind</text><rect x="20" y="10" width="110" height="44" fill="rgba(255,255,255,0.14)" stroke="rgba(255,255,255,0.4)"/>` },
+  { id: "gradients", title: "Gradients", rule: "Fills are flat tokens; no red-to-black buttons, gradient headers or gradient borders.", svg: `<defs><linearGradient id="g1"><stop offset="0" stop-color="#ff5a4f"/><stop offset="1" stop-color="#2a0000"/></linearGradient></defs><rect x="8" y="14" width="124" height="32" fill="url(#g1)"/><text x="70" y="35" text-anchor="middle" fill="#fff" font-size="12">Continue</text>` },
+  { id: "glow", title: "Glow instead of the ring", rule: "Focus is a 1px dashed ring at −2px; never a box-shadow halo, and elevation is a border, not a drop shadow.", svg: `<defs><filter id="f1"><feGaussianBlur stdDeviation="4"/></filter></defs><rect x="14" y="16" width="112" height="28" fill="${focus}" opacity="0.6" filter="url(#f1)"/><rect x="14" y="16" width="112" height="28" fill="${canvas}" stroke="${focus}"/><text x="70" y="35" text-anchor="middle" fill="${text}" font-size="12">focused</text>` },
+  { id: "everything-red", title: "Red on everything", rule: "Red marks interaction only: focus, selection, active borders, primary actions. Panels, body text and sidebars stay warm black and rose.", svg: `<rect x="0" y="0" width="140" height="60" fill="#8c1212"/><rect x="8" y="8" width="60" height="44" fill="#c81a1a"/><text x="76" y="24" fill="#ff8a80" font-size="10">red panel</text><text x="76" y="40" fill="#ff8a80" font-size="10">red text</text>` },
+  { id: "material", title: "Material redesign", rule: "No floating action buttons, ripples, floating labels or tonal elevation stacks. Modern means precise, not Material.", svg: `<rect x="8" y="8" width="90" height="30" fill="${raised}" stroke="${control}"/><text x="14" y="18" fill="${bright}" font-size="8">Label floating up</text><circle cx="118" cy="40" r="16" fill="${primary}"/><text x="118" y="45" text-anchor="middle" fill="#fff" font-size="16">+</text>` },
+  { id: "light", title: "Light mode", rule: "There is no light profile. White panels with dark text are a different theme.", svg: `<rect x="0" y="0" width="140" height="60" fill="#ffffff"/><rect x="8" y="8" width="124" height="20" fill="#f2f2f2" stroke="#ccc"/><text x="14" y="22" fill="#222" font-size="10">Settings</text><text x="14" y="46" fill="#444" font-size="10">dark on white</text>` },
+  { id: "rainbow", title: "Rainbow syntax in default", rule: "Syntax stays monochrome rose/red in the default profile; only the proposed extended overlay adds three hues, and never purple, cyan or magenta.", svg: `<rect x="0" y="0" width="140" height="60" fill="${canvas}"/><text x="8" y="22" font-size="11"><tspan fill="#c792ea">const</tspan> <tspan fill="#82aaff">x</tspan> <tspan fill="#89ddff">=</tspan> <tspan fill="#c3e88d">"s"</tspan><tspan fill="#89ddff">;</tspan></text><text x="8" y="44" font-size="11"><tspan fill="#ffcb6b">fn</tspan><tspan fill="#89ddff">(</tspan><tspan fill="#f78c6c">42</tspan><tspan fill="#89ddff">)</tspan></text>` },
+  { id: "traffic-light", title: "Colour-only status", rule: "Every status carries a glyph (✕ ! ✓ i ·) and a pattern; a coloured dot alone tells a colour-blind reader nothing.", svg: `<rect x="0" y="0" width="140" height="60" fill="${canvas}"/><circle cx="24" cy="30" r="8" fill="#e53935"/><circle cx="56" cy="30" r="8" fill="#c9973f"/><circle cx="88" cy="30" r="8" fill="#86a46f"/><circle cx="120" cy="30" r="8" fill="#7e9ebb"/>` },
+  { id: "sans", title: "Sans-serif chrome", rule: "One monospace family for chrome, reading and code; Inter or system-ui is another identity.", svg: `<rect x="0" y="0" width="140" height="60" fill="${canvas}"/><text x="8" y="26" fill="${bright}" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="600">Dashboard</text><text x="8" y="46" fill="${text}" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11">Overview and settings</text>` },
+  { id: "inactive-text", title: `${inactive} as text`, rule: `The site's --inactive measures 1.86:1 on the canvas. It is a disabled border and rendered whitespace, never line numbers, comments or any text.`, svg: `<rect x="0" y="0" width="140" height="60" fill="${canvas}"/><text x="8" y="22" fill="${inactive}" font-size="11">12  // a comment</text><text x="8" y="42" fill="${inactive}" font-size="11">13  return x;</text>` },
+  { id: "focus-as-selection", title: "Focus drawn as selection", rule: `Focus is a ring and selection is a fill. A focused row painted ${selection}, or a ${focus} ring on a ${selection} row (2.15:1), hides where the keyboard is.`, svg: `<rect x="0" y="0" width="140" height="60" fill="${canvas}"/><rect x="8" y="10" width="124" height="18" fill="${selection}"/><text x="14" y="23" fill="#f4eeee" font-size="10">"focused" row</text><rect x="8" y="34" width="124" height="18" fill="${selection}" stroke="${focus}" stroke-dasharray="2 2"/><text x="14" y="47" fill="#f4eeee" font-size="10">selected + invisible ring</text>` },
+  { id: "heritage-ui", title: "Heritage ANSI as UI text", rule: `Slot 4 (${ansi4}) is a terminal colour at 2.09:1. Directory names in a file browser use the text roles, not the historical slots.`, svg: `<rect x="0" y="0" width="140" height="60" fill="${canvas}"/><text x="8" y="22" fill="${ansi4}" font-size="11">assets/</text><text x="8" y="42" fill="${ansi4}" font-size="11">config/</text>` },
+  { id: "circles", title: "Circular avatars and spinners", rule: "A zero-radius system has square avatars and no circular spinner; loading is a static ⋯ glyph.", svg: `<rect x="0" y="0" width="140" height="60" fill="${canvas}"/><circle cx="34" cy="30" r="18" fill="${raised}" stroke="${control}"/><text x="34" y="35" text-anchor="middle" fill="${bright}" font-size="12">JW</text><circle cx="100" cy="30" r="14" fill="none" stroke="${focus}" stroke-width="3" stroke-dasharray="40 30"/>` },
+  { id: "hairline-edge", title: "Hairline as the only edge", rule: `${hexOf("color.border.default")} is decorative (1.39:1). A form control needs color.border.control (${control}, 4.45:1) as its boundary.`, svg: `<rect x="0" y="0" width="140" height="60" fill="${canvas}"/><rect x="8" y="16" width="124" height="28" fill="${canvas}" stroke="${hexOf("color.border.default")}"/><text x="14" y="34" fill="${hexOf("color.text.placeholder")}" font-size="11" font-style="italic">where is the box?</text>` },
+  { id: "opacity-disabled", title: "Disabled by opacity", rule: "opacity: .5 leaks the background and breaks contrast accounting; disabled uses text.disabled, border.disabled and the disabled fill.", svg: `<rect x="0" y="0" width="140" height="60" fill="${canvas}"/><g opacity="0.45"><rect x="8" y="14" width="124" height="32" fill="${primary}"/><text x="70" y="35" text-anchor="middle" fill="#f4eeee" font-size="12">Submit</text></g>` },
+];
+---
+
+<section class="block" id={anchors.specimen("non-examples")}>
+  <h3>Non-examples</h3>
+  <p class="family-description">Sixteen misreadings of the theme, drawn on purpose. The pictures are decorative; the rule under each one is normative.</p>
+  <div class="non-examples">
+    {items.map((item) => (
+      <div class="non-example" id={anchors.nonExample(item.id)}>
+        <svg class="non-example-picture" viewBox="0 0 140 60" width="140" height="60" role="img" aria-label={`Wrong: ${item.title}`} set:html={item.svg} />
+        <div class="non-example-text">
+          <h4><span class="status-fail">{item.title}</span></h4>
+          <p>{item.rule}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .non-examples {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
+    gap: var(--space-12);
+  }
+  .non-example {
+    display: grid;
+    grid-template-columns: 140px minmax(0, 1fr);
+    gap: var(--space-12);
+    padding: var(--space-12);
+    border: var(--border-width-default) solid var(--color-border-divider);
+    background: var(--color-surface-default);
+  }
+  .non-example-picture {
+    border: var(--border-width-default) solid var(--color-status-danger-border);
+    font-family: var(--font-family-mono);
+    max-width: 100%;
+    height: auto;
+  }
+  .non-example-text h4 {
+    margin: 0 0 var(--space-4);
+  }
+  .non-example-text p {
+    margin: 0;
+    font-size: var(--font-size-ui-sm);
+    line-height: var(--font-line-height-ui-sm);
+    color: var(--color-text-default);
+  }
+  @media (max-width: 400px) {
+    .non-example {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

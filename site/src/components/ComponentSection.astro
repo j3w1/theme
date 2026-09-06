@@ -36,7 +36,7 @@ const statusTags = [coverage?.specified && "specified", coverage?.demonstrated &
 
   <div class="block">
     <h4>Tokens</h4>
-    <div class="table-scroll">
+    <div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table">
       <table class="token-table">
         <thead><tr><th scope="col">Part</th><th scope="col">Role</th><th scope="col">Value</th><th scope="col">Use</th></tr></thead>
         <tbody>
@@ -66,7 +66,7 @@ const statusTags = [coverage?.specified && "specified", coverage?.demonstrated &
   {c.keyboard.length > 0 && (
     <div class="block">
       <h4>Keys</h4>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table">
         <table>
           <thead><tr><th scope="col">Key</th><th scope="col">Action</th></tr></thead>
           <tbody>{c.keyboard.map((k: { key: string; action: string }) => <tr><td><kbd>{k.key}</kbd></td><td>{k.action}</td></tr>)}</tbody>

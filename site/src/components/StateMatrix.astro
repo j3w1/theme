@@ -61,7 +61,7 @@ const nativeState = (html: string, state: string) => {
 <div class="block" id={`${id}-states`}>
   <h4>State matrix</h4>
   <p class="family-description">Every declared state and combination, statically rendered; the default cell is live. Sizes: {sizes.join(", ")}<span class="js-only"> (switch with the density control above)</span>.</p>
-  <div class="table-scroll">
+  <div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table">
     <table class="matrix">
       <thead>
         <tr>

@@ -1,0 +1,142 @@
+---
+/* Stress fixtures: the same controls under long text, narrow frames, four
+   languages including right-to-left, reduced motion, forced colours, touch
+   and both densities. They exist to expose clipping and fragile sizing, not
+   to translate the site. Uses the text-field and page classes only. */
+import { anchors } from "../lib/theme";
+
+const strings = [
+  { lang: "en", dir: "ltr", label: "Notification settings", action: "Save changes", help: "Choose how the workstation notifies you." },
+  { lang: "es", dir: "ltr", label: "Configuración de notificaciones del sistema", action: "Guardar los cambios", help: "Elige cómo te avisa la estación de trabajo." },
+  { lang: "zh", dir: "ltr", label: "系统通知设置", action: "保存更改", help: "选择工作站如何通知您。" },
+  { lang: "ar", dir: "rtl", label: "إعدادات إشعارات النظام", action: "حفظ التغييرات", help: "اختر كيف تنبّهك محطة العمل." },
+];
+
+const field = (id: string, label: string, help: string, value = "j3w1") => `
+<div class="text-field">
+  <label class="text-field-label" for="${id}">${label}</label>
+  <div class="text-field-root">
+    <input class="text-field-input" id="${id}" type="text" value="${value}" aria-describedby="${id}-help">
+  </div>
+  <p class="text-field-help" id="${id}-help">${help}</p>
+</div>`;
+
+const fixtures = [
+  { id: "FX-LONG", title: "Long text", note: "A 120-character label, a 40-character unbroken token, three lines of help. Labels wrap; the box never grows past its container; nothing is clipped." },
+  { id: "FX-320", title: "320 and 360 pixel frames", note: "The reflow floor (WCAG 1.4.10). No horizontal scrolling inside the frame; the label stacks above; help and message wrap." },
+  { id: "FX-I18N", title: "English, Spanish, Chinese, Arabic", note: "Not translations of the site: fixtures for width, CJK fallback faces and mirrored affixes. The Arabic block sets dir=\"rtl\"." },
+  { id: "FX-RTL", title: "Right-to-left", note: "Logical properties mirror prefixes, suffixes, indicators and stepper order without a second stylesheet." },
+  { id: "FX-RM", title: "Reduced motion", note: "Under prefers-reduced-motion every duration is 0.01ms; toasts and dialogs appear in place, loading glyphs are static. The page's own browser test emulates it." },
+  { id: "FX-HC", title: "Forced colours", note: "Under forced-colors: active the rings use Highlight and borders survive because they are real borders. Emulate it in the browser's rendering settings." },
+  { id: "FX-TOUCH", title: "Coarse pointer", note: "No hover styles; targets at least 24×24 CSS pixels with 4px between them in compact density." },
+  { id: "FX-DENSITY", title: "Compact and comfortable", note: "The same control at both densities, side by side. Both meet the 24×24 target minimum." },
+  { id: "FX-OVERFLOW", title: "Overflow", note: "Fifty rows and twelve columns scroll inside their own container; the page never scrolls horizontally." },
+];
+const longLabel = "Preferred display name shown in the window title, the file manager places sidebar, the greeter and every notification that mentions you";
+const longToken = "Benachrichtigungseinstellungen_v2_final_final";
+const rows = Array.from({ length: 50 }, (_, i) => i + 1);
+const cols = Array.from({ length: 12 }, (_, i) => `col${i + 1}`);
+---
+
+<section class="block" id={anchors.specimen("stress")}>
+  <h3>Stress fixtures</h3>
+  <p class="family-description">Every fixture id below is referenced from component specifications; a component that lists a fixture must survive it.</p>
+
+  {fixtures.map((f) => (
+    <div class="fixture" id={anchors.fixture(f.id)}>
+      <h4><code>{f.id}</code> {f.title}</h4>
+      <p class="family-description">{f.note}</p>
+      {f.id === "FX-LONG" && (
+        <div class="fixture-body" set:html={field("fx-long", longLabel, `The value ${longToken} must not widen the box. Help text runs to three lines on a narrow frame and stays readable; it wraps at the container edge rather than clipping.`, longToken)} />
+      )}
+      {f.id === "FX-320" && (
+        <div class="fixture-frames">
+          <div class="fixture-frame" style="width: 320px"><span class="fixture-frame-label">320px</span><div set:html={field("fx-320", "Display name", "Shown on your profile.")} /></div>
+          <div class="fixture-frame" style="width: 360px"><span class="fixture-frame-label">360px</span><div set:html={field("fx-360", "Display name", "Shown on your profile.")} /></div>
+        </div>
+      )}
+      {f.id === "FX-I18N" && (
+        <div class="fixture-grid">
+          {strings.map((s) => (
+            <div lang={s.lang} dir={s.dir} class="fixture-cell">
+              <div set:html={field(`fx-i18n-${s.lang}`, s.label, s.help, s.action)} />
+              <button type="button" class="btn">{s.action}</button>
+            </div>
+          ))}
+        </div>
+      )}
+      {f.id === "FX-RTL" && (
+        <div dir="rtl" lang="ar" class="fixture-cell fixture-rtl">
+          <div class="text-field">
+            <label class="text-field-label" for="fx-rtl">الموقع</label>
+            <div class="text-field-root">
+              <span class="text-field-affix" aria-hidden="true">https://</span>
+              <input class="text-field-input" id="fx-rtl" type="text" value="j3w1.github.io" dir="ltr">
+              <span class="text-field-affix" aria-hidden="true">/theme/</span>
+            </div>
+            <p class="text-field-help">المضيف فقط؛ المسار ثابت.</p>
+          </div>
+        </div>
+      )}
+      {f.id === "FX-DENSITY" && (
+        <div class="fixture-grid">
+          <div class="fixture-cell" data-density="compact"><span class="fixture-frame-label">compact</span><div set:html={field("fx-compact", "Inner gap", "24px control.", "14")} /><button type="button" class="btn">Apply</button></div>
+          <div class="fixture-cell" data-density="comfortable"><span class="fixture-frame-label">comfortable</span><div set:html={field("fx-comfortable", "Inner gap", "32px control.", "14")} /><button type="button" class="btn">Apply</button></div>
+        </div>
+      )}
+      {f.id === "FX-OVERFLOW" && (
+        <div class="table-scroll fixture-overflow" tabindex="0" role="region" aria-label="Overflow fixture table">
+          <table>
+            <thead><tr><th scope="col">#</th>{cols.map((c) => <th scope="col">{c}</th>)}</tr></thead>
+            <tbody>{rows.map((r) => <tr><td>{r}</td>{cols.map((c, i) => <td>{r * (i + 1)}</td>)}</tr>)}</tbody>
+          </table>
+        </div>
+      )}
+    </div>
+  ))}
+</section>
+
+<style>
+  .fixture {
+    margin: 0 0 var(--space-24);
+    padding: var(--space-12);
+    border: var(--border-width-default) solid var(--color-border-divider);
+  }
+  .fixture-body {
+    max-width: 28rem;
+  }
+  .fixture-frames,
+  .fixture-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-12);
+    align-items: start;
+  }
+  .fixture-frame {
+    max-width: 100%;
+    padding: var(--space-8);
+    border: var(--border-width-default) solid var(--color-border-control);
+    overflow: hidden;
+  }
+  .fixture-frame-label {
+    display: block;
+    margin-bottom: var(--space-8);
+    font-size: var(--font-size-caption);
+    color: var(--color-text-muted);
+  }
+  .fixture-cell {
+    flex: 1 1 16rem;
+    min-width: 0;
+    display: grid;
+    gap: var(--space-8);
+    padding: var(--space-8);
+    border: var(--border-width-default) solid var(--color-border-divider);
+  }
+  .fixture-rtl {
+    max-width: 28rem;
+  }
+  .fixture-overflow {
+    max-height: 18rem;
+    overflow: auto;
+  }
+</style>
