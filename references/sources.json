@@ -1,0 +1,52 @@
+{
+  "observedOn": "2026-09-06",
+  "repositories": {
+    "j3w1-web": {
+      "repo": "j3w1/j3w1.github.io",
+      "revision": "ffa81225149e6b6e26d0b4a850223a1781c3b973",
+      "branch": "main",
+      "revisionDate": "2026-09-05T14:05:55+08:00",
+      "role": "reference-implementation",
+      "files": [
+        "assets/css/site.css",
+        "assets/css/desktop.css",
+        "docs/wm-accessibility.md",
+        "docs/wm-architecture.md",
+        "README.md"
+      ]
+    },
+    "legacy-i3": {
+      "repo": "j3w1/1w3j",
+      "revision": "98413159d17e7e77e301b21fb688262e8b16d676",
+      "branch": "master",
+      "revisionDate": "2026-08-24T05:19:04Z",
+      "role": "historical-source",
+      "files": [
+        "config/Xresources",
+        "config/i3/config",
+        "config/i3/i3status.conf",
+        "config/config/dunst/dunstrc",
+        "config/dmenurc",
+        "config/config/gedit/styles/1w3j.xml",
+        "config/intellij/config/colors/1w3j-theme.icls",
+        "config/tmux.conf.local",
+        "config/cvim/1w3j.css",
+        "config/config/surfingkeys.js",
+        "config/config/stylish/github.css",
+        "config/config/gtk-3.0/settings.ini",
+        "scripts/colors.sh"
+      ]
+    }
+  },
+  "external": {
+    "dtcg-format": { "title": "Design Tokens Format Module 2025.10", "url": "https://www.designtokens.org/tr/2025.10/format/", "kind": "community-group-report" },
+    "dtcg-color": { "title": "Design Tokens Color Module 2025.10", "url": "https://www.designtokens.org/TR/2025.10/color/", "kind": "community-group-report" },
+    "wcag22": { "title": "WCAG 2.2", "url": "https://www.w3.org/TR/WCAG22/", "kind": "w3c-recommendation" },
+    "apg": { "title": "ARIA Authoring Practices Guide patterns", "url": "https://www.w3.org/WAI/ARIA/apg/patterns/", "kind": "w3c-guidance" },
+    "llms-txt": { "title": "llms.txt proposal", "url": "https://llmstxt.org/", "kind": "proposal" },
+    "github-pages": { "title": "About GitHub Pages", "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages", "kind": "vendor-documentation" },
+    "astro-github": { "title": "Deploy your Astro site to GitHub Pages", "url": "https://docs.astro.build/en/guides/deploy/github/", "kind": "vendor-documentation" },
+    "claude-memory": { "title": "Claude Code memory and imports", "url": "https://code.claude.com/docs/en/memory", "kind": "vendor-documentation" },
+    "nerd-fonts": { "title": "Nerd Fonts v3.5.1 (SauceCodePro)", "url": "https://github.com/ryanoasis/nerd-fonts/releases/tag/v3.5.1", "kind": "font-source" }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "application-slug",
+  "displayName": "Application name (format)",
+  "status": "experimental",
+  "themeVersion": "0.1.0",
+  "tokenDigest": "sha256-REPLACE-WITH-exports/digests.json-entry-for-tokens.resolved.json",
+  "profile": "default",
+  "format": "native format identifier, e.g. icls, xml, json",
+  "targetVersions": ["the versions this port is written for"],
+  "testedVersions": [],
+  "os": ["windows"],
+  "surfaces": {
+    "supported": ["surfaces the artifact themes"],
+    "inherited": ["surfaces the host keeps from its own defaults"],
+    "unsupported": ["roles the format cannot express, with the reason in README.md"]
+  },
+  "files": [{ "path": "dist/j3w1-theme.ext", "install": "how to import the file in the application" }],
+  "mappingPath": "mapping.json",
+  "evidence": []
+}

@@ -1,0 +1,298 @@
+{
+  "color": {
+    "$type": "color",
+    "$description": "extended overlay (proposed): semantic hues for syntax, a sixteen-slot terminal palette that all reaches 4.5:1, and coloured chart series.",
+    "$extensions": {
+      "io.github.j3w1.theme": {
+        "status": "proposed",
+        "overlay": "default"
+      }
+    },
+    "code": {
+      "syntax": {
+        "string": {
+          "$value": "{color.primitive.green.500}",
+          "$description": "Strings in green.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "proposed",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "number": {
+          "$value": "{color.primitive.amber.500}",
+          "$description": "Numbers in amber.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "proposed",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "constant": {
+          "$value": "{color.primitive.amber.500}",
+          "$description": "Constants in amber.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "proposed",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "type": {
+          "$value": "{color.primitive.blue.500}",
+          "$description": "Types in blue.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "proposed",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        }
+      }
+    },
+    "terminal": {
+      "ansi": {
+        "0": {
+          "$value": "{color.primitive.ink.20}",
+          "$description": "Semantic ANSI slot 0.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "proposed",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "1": {
+          "$value": "{color.primitive.red.800}",
+          "$description": "Semantic ANSI slot 1.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "proposed",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "2": {
+          "$value": "{color.primitive.green.500}",
+          "$description": "Semantic ANSI slot 2.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "proposed",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "3": {
+          "$value": "{color.primitive.amber.500}",
+          "$description": "Semantic ANSI slot 3.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "proposed",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "4": {
+          "$value": "{color.primitive.blue.500}",
+          "$description": "Semantic ANSI slot 4.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "proposed",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "5": {
+          "$value": "{color.primitive.rose.550}",
+          "$description": "Semantic ANSI slot 5.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "proposed",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "6": {
+          "$value": "{color.primitive.rose.600}",
+          "$description": "Semantic ANSI slot 6.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "proposed",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "7": {
+          "$value": "{color.primitive.rose.700}",
+          "$description": "Semantic ANSI slot 7.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "proposed",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "8": {
+          "$value": "{color.primitive.rose.450}",
+          "$description": "Semantic ANSI slot 8.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "proposed",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "9": {
+          "$value": "{color.primitive.red.850}",
+          "$description": "Semantic ANSI slot 9.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "proposed",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "10": {
+          "$value": "{color.primitive.green.600}",
+          "$description": "Semantic ANSI slot 10.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "proposed",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "11": {
+          "$value": "{color.primitive.amber.600}",
+          "$description": "Semantic ANSI slot 11.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "proposed",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "12": {
+          "$value": "{color.primitive.blue.600}",
+          "$description": "Semantic ANSI slot 12.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "proposed",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "13": {
+          "$value": "{color.primitive.rose.650}",
+          "$description": "Semantic ANSI slot 13.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "proposed",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "14": {
+          "$value": "{color.primitive.rose.800}",
+          "$description": "Semantic ANSI slot 14.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "proposed",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "15": {
+          "$value": "{color.primitive.paper.90}",
+          "$description": "Semantic ANSI slot 15.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "proposed",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        }
+      }
+    },
+    "chart": {
+      "series-2": {
+        "$value": "{color.primitive.green.500}",
+        "$description": "Second series in green.",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "proposed",
+            "approval": {
+              "decision": "D-001"
+            }
+          }
+        }
+      },
+      "series-3": {
+        "$value": "{color.primitive.amber.500}",
+        "$description": "Third series in amber.",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "proposed",
+            "approval": {
+              "decision": "D-001"
+            }
+          }
+        }
+      },
+      "series-4": {
+        "$value": "{color.primitive.blue.500}",
+        "$description": "Fourth series in blue.",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "proposed",
+            "approval": {
+              "decision": "D-001"
+            }
+          }
+        }
+      }
+    }
+  }
+}

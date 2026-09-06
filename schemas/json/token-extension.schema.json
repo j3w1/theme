@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "observed",
+        "proposed",
+        "approved",
+        "site-specific",
+        "heritage"
+      ]
+    },
+    "origin": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "xresources",
+            "i3",
+            "i3status",
+            "dunst",
+            "dmenu",
+            "site",
+            "gedit",
+            "intellij",
+            "proposed",
+            "derived"
+          ]
+        },
+        "ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "key": {
+          "type": "string",
+          "minLength": 1
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "ref"
+      ],
+      "additionalProperties": false
+    },
+    "approval": {
+      "type": "object",
+      "properties": {
+        "decision": {
+          "type": "string",
+          "pattern": "^D-\\d{3}$"
+        }
+      },
+      "required": [
+        "decision"
+      ],
+      "additionalProperties": false
+    },
+    "textSafe": {
+      "type": "string",
+      "enum": [
+        "canvas",
+        "default",
+        "raised",
+        "none"
+      ]
+    },
+    "contrast": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "number"
+      }
+    },
+    "forbiddenGroups": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "overlay": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "status"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,356 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "family": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "maturity": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "stable",
+        "deprecated"
+      ]
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "R1",
+        "R2",
+        "L"
+      ]
+    },
+    "since": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+(?:-[0-9A-Za-z.-]+)?$"
+    },
+    "order": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "native": {
+      "type": "boolean"
+    },
+    "aria": {
+      "type": "object",
+      "properties": {
+        "pattern": {
+          "type": "string",
+          "minLength": 1
+        },
+        "apg": {
+          "type": "string",
+          "format": "uri"
+        },
+        "role": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "pattern"
+      ],
+      "additionalProperties": false
+    },
+    "variants": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "sizes": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "compact",
+          "comfortable"
+        ]
+      }
+    },
+    "states": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tokens": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]*(?:\\.[a-z][a-z0-9-]*)+$"
+      },
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[a-z0-9][a-z0-9.-]*$"
+      }
+    },
+    "stateTokens": {
+      "default": {},
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "fg": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9.-]*$"
+          },
+          "bg": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9.-]*$"
+          },
+          "border": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9.-]*$"
+          },
+          "outline": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9.-]*$"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "contrast": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "fg": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9.-]*$"
+          },
+          "bg": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9.-]*$"
+          },
+          "min": {
+            "default": 4.5,
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "kind": {
+            "default": "text",
+            "type": "string",
+            "enum": [
+              "text",
+              "ui"
+            ]
+          },
+          "state": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "waiver": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "fg",
+          "bg",
+          "min",
+          "kind"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "anatomy": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "part": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "part",
+          "description"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "keyboard": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "minLength": 1
+          },
+          "action": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "key",
+          "action"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "responsive": {
+      "type": "string",
+      "minLength": 1
+    },
+    "portability": {
+      "type": "object",
+      "properties": {
+        "web": {
+          "type": "string",
+          "minLength": 1
+        },
+        "nativeFallbacks": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "web",
+        "nativeFallbacks"
+      ],
+      "additionalProperties": false
+    },
+    "fixtures": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "FX-LONG",
+          "FX-320",
+          "FX-360",
+          "FX-ZOOM-200",
+          "FX-I18N",
+          "FX-RTL",
+          "FX-RM",
+          "FX-HC",
+          "FX-TOUCH",
+          "FX-DENSITY",
+          "FX-OVERFLOW",
+          "FX-STATE-MATRIX"
+        ]
+      }
+    },
+    "related": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]*$"
+      }
+    },
+    "specimens": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]*$"
+      }
+    },
+    "keywords": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "sources": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "compact": {
+      "default": false,
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "family",
+    "maturity",
+    "priority",
+    "since",
+    "order",
+    "summary",
+    "native",
+    "aria",
+    "variants",
+    "sizes",
+    "states",
+    "tokens",
+    "stateTokens",
+    "contrast",
+    "anatomy",
+    "keyboard",
+    "responsive",
+    "portability",
+    "fixtures",
+    "related",
+    "specimens",
+    "keywords",
+    "sources",
+    "compact"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,11 @@
+[
+  { "id": "foundations", "title": "Foundations", "order": 0, "description": "Color roles, text ladder, type scale, spacing and density, borders and radii, elevation, icons, motion, layout." },
+  { "id": "actions", "title": "Actions", "order": 1, "description": "Buttons, links, icon buttons, button groups, segmented controls, destructive treatment." },
+  { "id": "forms-basic", "title": "Basic forms", "order": 2, "description": "Text, password, number, search, textarea, select, checkbox, radio, switch, range, fieldsets, labels, help text, validation." },
+  { "id": "forms-advanced", "title": "Advanced forms", "order": 3, "description": "Combobox, multiselect, date and time, file selection, repeaters, wizard, bounded form-builder specimen." },
+  { "id": "navigation", "title": "Navigation", "order": 4, "description": "Tabs, breadcrumbs, pagination, sidebar, toolbar, menus, command palette, tree." },
+  { "id": "display", "title": "Information display", "order": 5, "description": "Cards, lists, badges, chips, avatars, descriptions, tables, timelines, simple charts." },
+  { "id": "feedback", "title": "Feedback and overlays", "order": 6, "description": "Alerts, toasts, progress, loading, skeletons, tooltips, popovers, dialogs, drawers, empty and error states." },
+  { "id": "developer", "title": "Developer interfaces", "order": 7, "description": "Editor syntax, gutters, caret, selections, search, diagnostics, diffs, terminal text and the historical ANSI slots." },
+  { "id": "composed", "title": "Composed specimens", "order": 8, "description": "Settings panel, administrative form, filterable table, i3-inspired window frame; file browser, compact dashboard and form builder later." }
+]

@@ -1,0 +1,1289 @@
+{
+  "color": {
+    "$type": "color",
+    "$description": "Exact values. Every hex the theme may use lives here with its provenance; roles in semantic.tokens.json alias these.",
+    "primitive": {
+      "ink": {
+        "0": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0,
+              0,
+              0
+            ],
+            "alpha": 1,
+            "hex": "#000000"
+          },
+          "$description": "The desktop behind every window.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "site",
+                "ref": "j3w1/j3w1.github.io@ffa81225149e6b6e26d0b4a850223a1781c3b973 assets/css/site.css",
+                "key": "--desktop"
+              }
+            }
+          }
+        },
+        "15": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0392,
+              0.0275,
+              0.0275
+            ],
+            "alpha": 1,
+            "hex": "#0a0707"
+          },
+          "$description": "Sunken reading and detail panes.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "site",
+                "ref": "j3w1/j3w1.github.io@ffa81225149e6b6e26d0b4a850223a1781c3b973 assets/css/site.css",
+                "key": "reader/detail pane background (hardcoded)"
+              },
+              "approval": {
+                "decision": "D-008"
+              }
+            }
+          }
+        },
+        "20": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0471,
+              0.0353,
+              0.0353
+            ],
+            "alpha": 1,
+            "hex": "#0c0909"
+          },
+          "$description": "Terminal and canvas background; Xresources color0 and *background.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "xresources",
+                "ref": "j3w1/1w3j@98413159d17e7e77e301b21fb688262e8b16d676 config/Xresources",
+                "key": "*background / color0"
+              }
+            }
+          }
+        },
+        "25": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0627,
+              0.0353,
+              0.0353
+            ],
+            "alpha": 1,
+            "hex": "#100909"
+          },
+          "$description": "Window chrome and title bars.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "site",
+                "ref": "j3w1/j3w1.github.io@ffa81225149e6b6e26d0b4a850223a1781c3b973 assets/css/site.css",
+                "key": "--chrome"
+              }
+            }
+          }
+        },
+        "30": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0863,
+              0.0431,
+              0.0431
+            ],
+            "alpha": 1,
+            "hex": "#160b0b"
+          },
+          "$description": "Default panel surface.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "site",
+                "ref": "j3w1/j3w1.github.io@ffa81225149e6b6e26d0b4a850223a1781c3b973 assets/css/site.css",
+                "key": "--surface"
+              }
+            }
+          }
+        },
+        "40": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1098,
+              0.0392,
+              0.0353
+            ],
+            "alpha": 1,
+            "hex": "#1c0a09"
+          },
+          "$description": "Alternate chrome; hover rows; current line.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "site",
+                "ref": "j3w1/j3w1.github.io@ffa81225149e6b6e26d0b4a850223a1781c3b973 assets/css/site.css",
+                "key": "--chrome-alt"
+              }
+            }
+          }
+        },
+        "52": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1412,
+              0.0627,
+              0.0627
+            ],
+            "alpha": 1,
+            "hex": "#241010"
+          },
+          "$description": "Raised surface: sticky headers, menus, popovers.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "site",
+                "ref": "j3w1/j3w1.github.io@ffa81225149e6b6e26d0b4a850223a1781c3b973 assets/css/site.css",
+                "key": "--surface-raised"
+              }
+            }
+          }
+        },
+        "60": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1686,
+              0.0549,
+              0.051
+            ],
+            "alpha": 1,
+            "hex": "#2b0e0d"
+          },
+          "$description": "Hairline divider; folds the site's six near-identical hairlines.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "site",
+                "ref": "j3w1/j3w1.github.io@ffa81225149e6b6e26d0b4a850223a1781c3b973 assets/css/site.css",
+                "key": "chip border (hardcoded)"
+              },
+              "approval": {
+                "decision": "D-008"
+              }
+            }
+          }
+        },
+        "$description": "Near-black surfaces with a faint red cast. Steps rise with luminance."
+      },
+      "red": {
+        "50": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2588,
+              0.0588,
+              0.0471
+            ],
+            "alpha": 1,
+            "hex": "#420f0c"
+          },
+          "$description": "Soft selection; inactive selection; scrollbar thumb.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "site",
+                "ref": "j3w1/j3w1.github.io@ffa81225149e6b6e26d0b4a850223a1781c3b973 assets/css/site.css",
+                "key": "--selection-soft"
+              }
+            }
+          }
+        },
+        "100": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3255,
+              0.0745,
+              0.0627
+            ],
+            "alpha": 1,
+            "hex": "#531310"
+          },
+          "$description": "Decorative hairline border.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "site",
+                "ref": "j3w1/j3w1.github.io@ffa81225149e6b6e26d0b4a850223a1781c3b973 assets/css/site.css",
+                "key": "--border"
+              }
+            }
+          }
+        },
+        "150": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3882,
+              0.0588,
+              0.051
+            ],
+            "alpha": 1,
+            "hex": "#630f0d"
+          },
+          "$description": "Dark selection; dmenu selected background.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "dmenu",
+                "ref": "j3w1/1w3j@98413159d17e7e77e301b21fb688262e8b16d676 config/dmenurc",
+                "key": "DMENU_SB"
+              }
+            }
+          }
+        },
+        "200": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4902,
+              0.0745,
+              0.0627
+            ],
+            "alpha": 1,
+            "hex": "#7d1310"
+          },
+          "$description": "Xresources color8. Never text.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "xresources",
+                "ref": "j3w1/1w3j@98413159d17e7e77e301b21fb688262e8b16d676 config/Xresources",
+                "key": "color8"
+              }
+            }
+          }
+        },
+        "250": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.549,
+              0.0706,
+              0.0706
+            ],
+            "alpha": 1,
+            "hex": "#8c1212"
+          },
+          "$description": "Xresources color4; i3 focused child border.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "xresources",
+                "ref": "j3w1/1w3j@98413159d17e7e77e301b21fb688262e8b16d676 config/Xresources",
+                "key": "color4"
+              }
+            }
+          }
+        },
+        "300": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5294,
+              0.1216,
+              0.098
+            ],
+            "alpha": 1,
+            "hex": "#871f19"
+          },
+          "$description": "Xresources color12; the button fill.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "xresources",
+                "ref": "j3w1/1w3j@98413159d17e7e77e301b21fb688262e8b16d676 config/Xresources",
+                "key": "color12"
+              }
+            }
+          }
+        },
+        "350": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5686,
+              0.0784,
+              0.0627
+            ],
+            "alpha": 1,
+            "hex": "#911410"
+          },
+          "$description": "Selection fill.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "site",
+                "ref": "j3w1/j3w1.github.io@ffa81225149e6b6e26d0b4a850223a1781c3b973 assets/css/site.css",
+                "key": "--selection"
+              }
+            }
+          }
+        },
+        "400": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6196,
+              0.1373,
+              0.1216
+            ],
+            "alpha": 1,
+            "hex": "#9e231f"
+          },
+          "$description": "Strong border; sticky header rule.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "site",
+                "ref": "j3w1/j3w1.github.io@ffa81225149e6b6e26d0b4a850223a1781c3b973 assets/css/site.css",
+                "key": "--border-strong"
+              }
+            }
+          }
+        },
+        "450": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6706,
+              0.0863,
+              0.0706
+            ],
+            "alpha": 1,
+            "hex": "#ab1612"
+          },
+          "$description": "Xresources color9.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "xresources",
+                "ref": "j3w1/1w3j@98413159d17e7e77e301b21fb688262e8b16d676 config/Xresources",
+                "key": "color9"
+              }
+            }
+          }
+        },
+        "500": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6784,
+              0.1529,
+              0.1294
+            ],
+            "alpha": 1,
+            "hex": "#ad2721"
+          },
+          "$description": "Xresources color10.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "xresources",
+                "ref": "j3w1/1w3j@98413159d17e7e77e301b21fb688262e8b16d676 config/Xresources",
+                "key": "color10"
+              }
+            }
+          }
+        },
+        "550": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6824,
+              0.098,
+              0.0784
+            ],
+            "alpha": 1,
+            "hex": "#ae1914"
+          },
+          "$description": "dunst frame and conky accent.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "dunst",
+                "ref": "j3w1/1w3j@98413159d17e7e77e301b21fb688262e8b16d676 config/config/dunst/dunstrc",
+                "key": "frame_color"
+              }
+            }
+          }
+        },
+        "650": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7843,
+              0.102,
+              0.102
+            ],
+            "alpha": 1,
+            "hex": "#c81a1a"
+          },
+          "$description": "Xresources color1; i3 focused workspace background.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "xresources",
+                "ref": "j3w1/1w3j@98413159d17e7e77e301b21fb688262e8b16d676 config/Xresources",
+                "key": "color1"
+              }
+            }
+          }
+        },
+        "750": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8627,
+              0.1569,
+              0.1804
+            ],
+            "alpha": 1,
+            "hex": "#dc282e"
+          },
+          "$description": "dunst critical background; link underline.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "dunst",
+                "ref": "j3w1/1w3j@98413159d17e7e77e301b21fb688262e8b16d676 config/config/dunst/dunstrc",
+                "key": "urgency_critical.background"
+              }
+            }
+          }
+        },
+        "760": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8784,
+              0.1608,
+              0.1843
+            ],
+            "alpha": 1,
+            "hex": "#e0292f"
+          },
+          "$description": "Xresources color14; i3 focused border.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "xresources",
+                "ref": "j3w1/1w3j@98413159d17e7e77e301b21fb688262e8b16d676 config/Xresources",
+                "key": "color14"
+              }
+            }
+          }
+        },
+        "770": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9098,
+              0.1294,
+              0.1961
+            ],
+            "alpha": 1,
+            "hex": "#e82132"
+          },
+          "$description": "Xresources color13.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "xresources",
+                "ref": "j3w1/1w3j@98413159d17e7e77e301b21fb688262e8b16d676 config/Xresources",
+                "key": "color13"
+              }
+            }
+          }
+        },
+        "800": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.898,
+              0.2235,
+              0.2078
+            ],
+            "alpha": 1,
+            "hex": "#e53935"
+          },
+          "$description": "Focus ring; active border; accent text on dark surfaces.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "site",
+                "ref": "j3w1/j3w1.github.io@ffa81225149e6b6e26d0b4a850223a1781c3b973 assets/css/site.css",
+                "key": "--focus"
+              }
+            }
+          }
+        },
+        "850": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9686,
+              0.2471,
+              0.2078
+            ],
+            "alpha": 1,
+            "hex": "#f73f35"
+          },
+          "$description": "Xresources color5; strong accent; danger text.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "xresources",
+                "ref": "j3w1/1w3j@98413159d17e7e77e301b21fb688262e8b16d676 config/Xresources",
+                "key": "color5"
+              }
+            }
+          }
+        },
+        "$description": "Saturated reds: selections, borders, focus, accents."
+      },
+      "rose": {
+        "300": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5412,
+              0.3333,
+              0.349
+            ],
+            "alpha": 1,
+            "hex": "#8a5559"
+          },
+          "$description": "Disabled text (3.33:1 on canvas; exempt, at least 3:1 by policy).",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "origin": {
+                "kind": "proposed",
+                "ref": "spec/decisions.md#D-003"
+              },
+              "approval": {
+                "decision": "D-003"
+              },
+              "textSafe": "none"
+            }
+          }
+        },
+        "320": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6196,
+              0.2784,
+              0.2902
+            ],
+            "alpha": 1,
+            "hex": "#9e474a"
+          },
+          "$description": "Xresources color6.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "xresources",
+                "ref": "j3w1/1w3j@98413159d17e7e77e301b21fb688262e8b16d676 config/Xresources",
+                "key": "color6"
+              },
+              "textSafe": "none"
+            }
+          }
+        },
+        "350": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6392,
+              0.4039,
+              0.4196
+            ],
+            "alpha": 1,
+            "hex": "#a3676b"
+          },
+          "$description": "Xresources color15; 4.45:1 on canvas, so not ordinary text.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "xresources",
+                "ref": "j3w1/1w3j@98413159d17e7e77e301b21fb688262e8b16d676 config/Xresources",
+                "key": "color15"
+              },
+              "textSafe": "none"
+            }
+          }
+        },
+        "450": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6784,
+              0.4431,
+              0.4588
+            ],
+            "alpha": 1,
+            "hex": "#ad7175"
+          },
+          "$description": "Subtle text: metadata, comments, line numbers (5.10:1).",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "origin": {
+                "kind": "proposed",
+                "ref": "spec/decisions.md#D-003"
+              },
+              "approval": {
+                "decision": "D-003"
+              },
+              "textSafe": "raised"
+            }
+          }
+        },
+        "550": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.702,
+              0.4431,
+              0.4588
+            ],
+            "alpha": 1,
+            "hex": "#b37175"
+          },
+          "$description": "Xresources color11.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "xresources",
+                "ref": "j3w1/1w3j@98413159d17e7e77e301b21fb688262e8b16d676 config/Xresources",
+                "key": "color11"
+              },
+              "textSafe": "raised"
+            }
+          }
+        },
+        "600": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7412,
+              0.4706,
+              0.4902
+            ],
+            "alpha": 1,
+            "hex": "#bd787d"
+          },
+          "$description": "Xresources color2; muted text, the floor for chrome text (5.81:1).",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "xresources",
+                "ref": "j3w1/1w3j@98413159d17e7e77e301b21fb688262e8b16d676 config/Xresources",
+                "key": "color2"
+              },
+              "textSafe": "raised"
+            }
+          }
+        },
+        "650": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8314,
+              0.5255,
+              0.5451
+            ],
+            "alpha": 1,
+            "hex": "#d4868b"
+          },
+          "$description": "Xresources color3.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "xresources",
+                "ref": "j3w1/1w3j@98413159d17e7e77e301b21fb688262e8b16d676 config/Xresources",
+                "key": "color3"
+              },
+              "textSafe": "raised"
+            }
+          }
+        },
+        "700": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9137,
+              0.5804,
+              0.6
+            ],
+            "alpha": 1,
+            "hex": "#e99499"
+          },
+          "$description": "Xresources *foreground; interface text.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "xresources",
+                "ref": "j3w1/1w3j@98413159d17e7e77e301b21fb688262e8b16d676 config/Xresources",
+                "key": "*foreground"
+              },
+              "textSafe": "raised"
+            }
+          }
+        },
+        "800": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.6353,
+              0.6549
+            ],
+            "alpha": 1,
+            "hex": "#ffa2a7"
+          },
+          "$description": "Xresources color7; bright text, links, headings.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "xresources",
+                "ref": "j3w1/1w3j@98413159d17e7e77e301b21fb688262e8b16d676 config/Xresources",
+                "key": "color7"
+              },
+              "textSafe": "raised"
+            }
+          }
+        },
+        "$description": "Desaturated rose: the text family."
+      },
+      "paper": {
+        "90": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9569,
+              0.9333,
+              0.9333
+            ],
+            "alpha": 1,
+            "hex": "#f4eeee"
+          },
+          "$description": "Prose and on-fill text.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "site",
+                "ref": "j3w1/j3w1.github.io@ffa81225149e6b6e26d0b4a850223a1781c3b973 assets/css/site.css",
+                "key": "--prose"
+              },
+              "textSafe": "raised"
+            }
+          }
+        },
+        "100": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9765,
+              0.9804,
+              0.9765
+            ],
+            "alpha": 1,
+            "hex": "#f9faf9"
+          },
+          "$description": "Text on the critical toast.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "dunst",
+                "ref": "j3w1/1w3j@98413159d17e7e77e301b21fb688262e8b16d676 config/config/dunst/dunstrc",
+                "key": "urgency_critical.foreground"
+              },
+              "textSafe": "raised"
+            }
+          }
+        },
+        "$description": "Near-white reading text."
+      },
+      "amber": {
+        "500": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7882,
+              0.5922,
+              0.2471
+            ],
+            "alpha": 1,
+            "hex": "#c9973f"
+          },
+          "$description": "Warning text, border and fill (7.54:1 on canvas).",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "origin": {
+                "kind": "proposed",
+                "ref": "spec/decisions.md#D-001"
+              },
+              "approval": {
+                "decision": "D-001"
+              },
+              "textSafe": "raised"
+            }
+          }
+        },
+        "600": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8392,
+              0.6353,
+              0.2941
+            ],
+            "alpha": 1,
+            "hex": "#d6a24b"
+          },
+          "$description": "Bright yellow slot in the extended terminal palette.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "proposed",
+              "origin": {
+                "kind": "proposed",
+                "ref": "spec/decisions.md#D-001"
+              },
+              "textSafe": "raised"
+            }
+          }
+        },
+        "$description": "Warning and modified. D-001 extension hue; status, diagnostic, diff, code, terminal and chart groups only.",
+        "tint": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1216,
+              0.102,
+              0.0471
+            ],
+            "alpha": 1,
+            "hex": "#1f1a0c"
+          },
+          "$description": "Warning and modified backgrounds.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "origin": {
+                "kind": "proposed",
+                "ref": "spec/decisions.md#D-001"
+              },
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        }
+      },
+      "green": {
+        "500": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5255,
+              0.6431,
+              0.4353
+            ],
+            "alpha": 1,
+            "hex": "#86a46f"
+          },
+          "$description": "Success text, border and fill (7.13:1 on canvas).",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "origin": {
+                "kind": "proposed",
+                "ref": "spec/decisions.md#D-001"
+              },
+              "approval": {
+                "decision": "D-001"
+              },
+              "textSafe": "raised"
+            }
+          }
+        },
+        "600": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.498,
+              0.749,
+              0.4784
+            ],
+            "alpha": 1,
+            "hex": "#7fbf7a"
+          },
+          "$description": "The greeter's systemd OK; bright green slot in the extended terminal palette.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "site",
+                "ref": "j3w1/j3w1.github.io@ffa81225149e6b6e26d0b4a850223a1781c3b973 assets/css/desktop.css",
+                "key": "greeter systemd OK (hardcoded)"
+              },
+              "textSafe": "raised"
+            }
+          }
+        },
+        "$description": "Success and added. D-001 extension hue.",
+        "tint": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0588,
+              0.102,
+              0.0549
+            ],
+            "alpha": 1,
+            "hex": "#0f1a0e"
+          },
+          "$description": "Added-line background.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "origin": {
+                "kind": "proposed",
+                "ref": "spec/decisions.md#D-001"
+              },
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        }
+      },
+      "blue": {
+        "500": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4941,
+              0.6196,
+              0.7333
+            ],
+            "alpha": 1,
+            "hex": "#7e9ebb"
+          },
+          "$description": "Info text, border and fill (7.08:1 on canvas).",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "origin": {
+                "kind": "proposed",
+                "ref": "spec/decisions.md#D-001"
+              },
+              "approval": {
+                "decision": "D-001"
+              },
+              "textSafe": "raised"
+            }
+          }
+        },
+        "600": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6039,
+              0.702,
+              0.7882
+            ],
+            "alpha": 1,
+            "hex": "#9ab3c9"
+          },
+          "$description": "Bright blue slot in the extended terminal palette.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "proposed",
+              "origin": {
+                "kind": "proposed",
+                "ref": "spec/decisions.md#D-001"
+              },
+              "textSafe": "raised"
+            }
+          }
+        },
+        "$description": "Information. D-001 extension hue.",
+        "tint": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0588,
+              0.0784,
+              0.1098
+            ],
+            "alpha": 1,
+            "hex": "#0f141c"
+          },
+          "$description": "Info background.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "origin": {
+                "kind": "proposed",
+                "ref": "spec/decisions.md#D-001"
+              },
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        }
+      },
+      "alpha": {
+        "$description": "Translucent values, composited over their surface before contrast is measured.",
+        "transparent": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0,
+              0,
+              0
+            ],
+            "alpha": 0,
+            "hex": "#000000"
+          },
+          "$description": "No fill.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "site",
+                "ref": "j3w1/j3w1.github.io@ffa81225149e6b6e26d0b4a850223a1781c3b973 assets/css/site.css",
+                "key": "transparent"
+              }
+            }
+          }
+        },
+        "black-55": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0,
+              0,
+              0
+            ],
+            "alpha": 0.55,
+            "hex": "#000000"
+          },
+          "$description": "Floating-window shadow.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "site",
+                "ref": "j3w1/j3w1.github.io@ffa81225149e6b6e26d0b4a850223a1781c3b973 assets/css/site.css",
+                "key": ".window.is-floating box-shadow"
+              }
+            }
+          }
+        },
+        "black-65": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0,
+              0,
+              0
+            ],
+            "alpha": 0.65,
+            "hex": "#000000"
+          },
+          "$description": "Modal backdrop; unifies the site's 62–72% backdrops.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "site",
+                "ref": "j3w1/j3w1.github.io@ffa81225149e6b6e26d0b4a850223a1781c3b973 assets/css/site.css",
+                "key": "dialog ::backdrop"
+              },
+              "approval": {
+                "decision": "D-008"
+              }
+            }
+          }
+        },
+        "red-6": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5686,
+              0.0784,
+              0.0627
+            ],
+            "alpha": 0.06,
+            "hex": "#911410"
+          },
+          "$description": "Wallpaper stripe.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "site",
+                "ref": "j3w1/j3w1.github.io@ffa81225149e6b6e26d0b4a850223a1781c3b973 assets/css/desktop.css",
+                "key": "wallpaper stripe rgb(145 20 16 / 6%)"
+              }
+            }
+          }
+        },
+        "red-12": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5686,
+              0.0784,
+              0.0627
+            ],
+            "alpha": 0.12,
+            "hex": "#911410"
+          },
+          "$description": "Drag marquee.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "observed",
+              "origin": {
+                "kind": "site",
+                "ref": "j3w1/j3w1.github.io@ffa81225149e6b6e26d0b4a850223a1781c3b973 assets/css/desktop.css",
+                "key": ".wm-drag-ghost rgb(145 20 16 / 12%)"
+              }
+            }
+          }
+        }
+      },
+      "ansi": {
+        "0": {
+          "$value": "{color.primitive.ink.20}",
+          "$description": "color0"
+        },
+        "1": {
+          "$value": "{color.primitive.red.650}",
+          "$description": "color1"
+        },
+        "2": {
+          "$value": "{color.primitive.rose.600}",
+          "$description": "color2"
+        },
+        "3": {
+          "$value": "{color.primitive.rose.650}",
+          "$description": "color3"
+        },
+        "4": {
+          "$value": "{color.primitive.red.250}",
+          "$description": "color4"
+        },
+        "5": {
+          "$value": "{color.primitive.red.850}",
+          "$description": "color5"
+        },
+        "6": {
+          "$value": "{color.primitive.rose.320}",
+          "$description": "color6"
+        },
+        "7": {
+          "$value": "{color.primitive.rose.800}",
+          "$description": "color7"
+        },
+        "8": {
+          "$value": "{color.primitive.red.200}",
+          "$description": "color8"
+        },
+        "9": {
+          "$value": "{color.primitive.red.450}",
+          "$description": "color9"
+        },
+        "10": {
+          "$value": "{color.primitive.red.500}",
+          "$description": "color10"
+        },
+        "11": {
+          "$value": "{color.primitive.rose.550}",
+          "$description": "color11"
+        },
+        "12": {
+          "$value": "{color.primitive.red.300}",
+          "$description": "color12"
+        },
+        "13": {
+          "$value": "{color.primitive.red.770}",
+          "$description": "color13"
+        },
+        "14": {
+          "$value": "{color.primitive.red.760}",
+          "$description": "color14"
+        },
+        "15": {
+          "$value": "{color.primitive.rose.350}",
+          "$description": "color15"
+        },
+        "$description": "The sixteen Xresources slots by number, exact. Historical fidelity; the slot names carry no semantic promise."
+      }
+    }
+  }
+}

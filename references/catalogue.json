@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "id": "web-site-css",
+      "kind": "reference-implementation",
+      "title": "j3w1.github.io site.css — the flagship web implementation",
+      "source": { "repository": "j3w1-web", "path": "assets/css/site.css" },
+      "verificationStatus": "reference-only",
+      "notes": "The :root block (lines 78–136) is the observed source of every role value. It will become a pinned consumer of this theme through a separate reviewed change; there is no live import.",
+      "license": "as in source repository"
+    },
+    {
+      "id": "web-accessibility-contract",
+      "kind": "reference-implementation",
+      "title": "j3w1.github.io accessibility contract (contrast floor, reduced motion, focus)",
+      "source": { "repository": "j3w1-web", "path": "docs/wm-accessibility.md" },
+      "verificationStatus": "reference-only",
+      "notes": "Section 9 measured the palette and restricted --quiet and --inactive; this specification extends those rules (D-003).",
+      "license": "as in source repository"
+    },
+    {
+      "id": "legacy-xresources",
+      "kind": "historical",
+      "title": "Xresources — the canonical sixteen-slot palette with the author's slot annotations",
+      "source": { "repository": "legacy-i3", "path": "config/Xresources" },
+      "verificationStatus": "reference-only",
+      "notes": "Exact values are preserved as color.primitive.ansi.*; the annotations seed the syntax roles. A 2020–21 X11 configuration proves nothing about current desktop installations.",
+      "license": "as in source repository"
+    },
+    {
+      "id": "legacy-i3-config",
+      "kind": "historical",
+      "title": "i3-gaps configuration — borders, gaps, bar and client colours",
+      "source": { "repository": "legacy-i3", "path": "config/i3/config" },
+      "verificationStatus": "reference-only",
+      "notes": "Source of the 1px borders, 14/−2 gaps and the focused/urgent colour classes. Window-manager geometry is reference metrics, not a cross-application rule.",
+      "license": "as in source repository"
+    },
+    {
+      "id": "legacy-i3status",
+      "kind": "historical",
+      "title": "i3status colours — good, bad and degraded inside the same hue",
+      "source": { "repository": "legacy-i3", "path": "config/i3/i3status.conf" },
+      "verificationStatus": "reference-only",
+      "notes": "A historical status semantic (#FFA2A7 / #A3676B / #C81A1A). Superseded for new work by D-001.",
+      "license": "as in source repository"
+    },
+    {
+      "id": "legacy-dunst",
+      "kind": "historical",
+      "title": "dunst notification colours",
+      "source": { "repository": "legacy-i3", "path": "config/config/dunst/dunstrc" },
+      "verificationStatus": "reference-only",
+      "notes": "Origin of the toast roles and the critical pair #DC282E / #F9FAF9 (4.58:1).",
+      "license": "as in source repository"
+    },
+    {
+      "id": "legacy-dmenu",
+      "kind": "historical",
+      "title": "dmenu colours",
+      "source": { "repository": "legacy-i3", "path": "config/dmenurc" },
+      "verificationStatus": "reference-only",
+      "notes": "Origin of the dark selection #630F0D.",
+      "license": "as in source repository"
+    },
+    {
+      "id": "legacy-gedit",
+      "kind": "historical",
+      "title": "gedit GtkSourceView scheme '1w3j' — a Solarized structure filled with reds",
+      "source": { "repository": "legacy-i3", "path": "config/config/gedit/styles/1w3j.xml" },
+      "verificationStatus": "reference-only",
+      "notes": "An early editor port by the owner. Not a supported download; values predate the token set.",
+      "license": "as in source repository"
+    },
+    {
+      "id": "legacy-intellij",
+      "kind": "historical",
+      "title": "IntelliJ colour scheme '1w3j theme' (2020–21, Material Darker base, red chrome and console)",
+      "source": { "repository": "legacy-i3", "path": "config/intellij/config/colors/1w3j-theme.icls" },
+      "verificationStatus": "reference-only",
+      "notes": "Only chrome, console, gutter and selection were recoloured; syntax stayed stock. Evidence that a JetBrains port has precedent, not a port.",
+      "license": "as in source repository"
+    },
+    {
+      "id": "legacy-tmux",
+      "kind": "historical",
+      "title": "tmux status colours (pywal-cache variant)",
+      "source": { "repository": "legacy-i3", "path": "config/tmux.conf.local" },
+      "verificationStatus": "reference-only",
+      "notes": "Uses the non-canonical #0C0A09 / #D09899 variant; catalogued to explain why those values are not tokens.",
+      "license": "as in source repository"
+    },
+    {
+      "id": "legacy-pywal",
+      "kind": "historical",
+      "title": "pywal-generated ramp (scripts/colors.sh)",
+      "source": { "repository": "legacy-i3", "path": "scripts/colors.sh" },
+      "verificationStatus": "reference-only",
+      "notes": "The machine-generated predecessor of the hand-tuned Xresources palette. Not normative.",
+      "license": "as in source repository"
+    }
+  ]
+}

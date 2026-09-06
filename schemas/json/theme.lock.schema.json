@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "number",
+      "const": 1
+    },
+    "theme": {
+      "type": "string",
+      "const": "j3w1-theme"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+(?:-[0-9A-Za-z.-]+)?$"
+    },
+    "ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revision": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "profile": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "integration": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "css-vars",
+            "vuetify",
+            "tailwind",
+            "jetbrains-icls",
+            "gtk-css",
+            "terminal-16",
+            "other"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "kind"
+      ],
+      "additionalProperties": false
+    },
+    "resolvedAt": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+    },
+    "exports": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^exports\\/"
+      },
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^sha256-[A-Za-z0-9+/=]+$"
+      }
+    },
+    "components": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]*$"
+      }
+    },
+    "deviations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "component": {
+            "type": "string",
+            "minLength": 1
+          },
+          "target": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "unsupported",
+              "substituted",
+              "omitted",
+              "host-rule"
+            ]
+          },
+          "specValue": {
+            "type": "string",
+            "minLength": 1
+          },
+          "applied": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "component",
+          "target",
+          "kind",
+          "specValue",
+          "applied",
+          "reason"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "theme",
+    "version",
+    "ref",
+    "revision",
+    "profile",
+    "integration",
+    "resolvedAt",
+    "exports",
+    "components",
+    "deviations"
+  ],
+  "additionalProperties": false
+}

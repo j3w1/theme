@@ -1,0 +1,427 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "type": "number",
+      "const": 1
+    },
+    "name": {
+      "type": "string",
+      "const": "j3w1-theme"
+    },
+    "displayName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+(?:-[0-9A-Za-z.-]+)?$"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "repository": {
+      "type": "string",
+      "format": "uri"
+    },
+    "tokenFormat": {
+      "type": "object",
+      "properties": {
+        "spec": {
+          "type": "string",
+          "const": "dtcg-2025.10"
+        },
+        "specUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "note": {
+          "type": "string"
+        },
+        "supported": {
+          "type": "object",
+          "properties": {
+            "types": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "colorSpaces": {
+              "minItems": 1,
+              "maxItems": 1,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "const": "srgb"
+              }
+            },
+            "colorHexRequired": {
+              "type": "boolean",
+              "const": true
+            },
+            "aliases": {
+              "type": "string"
+            },
+            "extensionsKey": {
+              "type": "string",
+              "const": "io.github.j3w1.theme"
+            }
+          },
+          "required": [
+            "types",
+            "colorSpaces",
+            "colorHexRequired",
+            "aliases",
+            "extensionsKey"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "spec",
+        "specUrl",
+        "note",
+        "supported"
+      ],
+      "additionalProperties": false
+    },
+    "sourceRevision": {
+      "type": "object",
+      "properties": {
+        "policy": {
+          "type": "string",
+          "const": "consumer-pinned-git-revision"
+        },
+        "allowed": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "tag",
+              "commit"
+            ]
+          }
+        },
+        "forbidden": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "const": "branch"
+          }
+        },
+        "tagPattern": {
+          "type": "string"
+        },
+        "resolveTag": {
+          "type": "string",
+          "format": "uri"
+        },
+        "rawBase": {
+          "type": "string",
+          "format": "uri"
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "policy",
+        "allowed",
+        "forbidden",
+        "tagPattern",
+        "resolveTag",
+        "rawBase",
+        "note"
+      ],
+      "additionalProperties": false
+    },
+    "profiles": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "displayName": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "approved",
+              "proposed",
+              "heritage"
+            ]
+          },
+          "default": {
+            "type": "boolean"
+          },
+          "overlay": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "tokens": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^tokens\\/.+\\.tokens\\.json$"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "displayName",
+          "status",
+          "default",
+          "tokens"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "spec": {
+      "type": "object",
+      "properties": {
+        "identity": {
+          "type": "string"
+        },
+        "foundations": {
+          "type": "string"
+        },
+        "accessibility": {
+          "type": "string"
+        },
+        "portability": {
+          "type": "string"
+        },
+        "decisions": {
+          "type": "string"
+        },
+        "families": {
+          "type": "string"
+        },
+        "componentsDir": {
+          "type": "string",
+          "pattern": "\\/$"
+        }
+      },
+      "required": [
+        "identity",
+        "foundations",
+        "accessibility",
+        "portability",
+        "decisions",
+        "families",
+        "componentsDir"
+      ],
+      "additionalProperties": false
+    },
+    "agents": {
+      "type": "object",
+      "properties": {
+        "consume": {
+          "type": "string"
+        },
+        "contributors": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "consume",
+        "contributors"
+      ],
+      "additionalProperties": false
+    },
+    "exports": {
+      "type": "object",
+      "properties": {
+        "dir": {
+          "type": "string",
+          "pattern": "\\/$"
+        },
+        "canonicalForAgents": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "derivative": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "digests": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "dir",
+        "canonicalForAgents",
+        "derivative",
+        "digests"
+      ],
+      "additionalProperties": false
+    },
+    "site": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "pattern": "\\/$"
+        },
+        "base": {
+          "type": "string",
+          "pattern": "^\\/[a-z0-9-]+$"
+        },
+        "role": {
+          "type": "string",
+          "const": "confirmation-only"
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "url",
+        "base",
+        "role",
+        "note"
+      ],
+      "additionalProperties": false
+    },
+    "ports": {
+      "type": "object",
+      "properties": {
+        "catalogue": {
+          "type": "string"
+        },
+        "dir": {
+          "type": "string",
+          "pattern": "\\/$"
+        },
+        "statuses": {
+          "minItems": 3,
+          "maxItems": 3,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "experimental",
+              "verified",
+              "deprecated"
+            ]
+          }
+        }
+      },
+      "required": [
+        "catalogue",
+        "dir",
+        "statuses"
+      ],
+      "additionalProperties": false
+    },
+    "references": {
+      "type": "object",
+      "properties": {
+        "catalogue": {
+          "type": "string"
+        },
+        "sources": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "catalogue",
+        "sources"
+      ],
+      "additionalProperties": false
+    },
+    "font": {
+      "type": "object",
+      "properties": {
+        "family": {
+          "type": "string",
+          "minLength": 1
+        },
+        "lineage": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string",
+          "format": "uri"
+        },
+        "bundled": {
+          "type": "boolean",
+          "const": false
+        }
+      },
+      "required": [
+        "family",
+        "lineage",
+        "source",
+        "bundled"
+      ],
+      "additionalProperties": false
+    },
+    "license": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "const": "MIT"
+        },
+        "prose": {
+          "type": "string",
+          "const": "CC-BY-4.0"
+        },
+        "screenshots": {
+          "type": "string"
+        },
+        "file": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "prose",
+        "screenshots",
+        "file"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "name",
+    "displayName",
+    "version",
+    "description",
+    "repository",
+    "tokenFormat",
+    "sourceRevision",
+    "profiles",
+    "spec",
+    "agents",
+    "exports",
+    "site",
+    "ports",
+    "references",
+    "font",
+    "license"
+  ],
+  "additionalProperties": false
+}

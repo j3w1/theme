@@ -1,0 +1,30 @@
+{
+  "name": "j3w1-theme",
+  "version": "0.1.0-draft.1",
+  "private": true,
+  "type": "module",
+  "description": "j3w1 UI Theme Spec: canonical design tokens, component rules, a generated single-page visual specification, and machine exports for agents. The repository owns the theme; j3w1.github.io demonstrates it.",
+  "engines": {
+    "node": "24.x"
+  },
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "tokens:validate": "node scripts/validate.mjs tokens",
+    "spec:validate": "node scripts/validate.mjs spec ports references",
+    "generate": "node scripts/generate.mjs",
+    "check": "node scripts/generate.mjs --check",
+    "test": "node --test tests/*.test.js",
+    "test:dist": "node --test tests/dist/*.test.js",
+    "test:browser": "playwright test",
+    "test:all": "npm run check && npm test && npm run build && npm run test:dist && npm run test:browser",
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "consumption:kit": "node scripts/consumption-kit.mjs",
+    "consumption:judge": "node scripts/consumption-judge.mjs"
+  },
+  "devDependencies": {
+    "yaml": "2.9.0",
+    "zod": "4.5.4"
+  }
+}

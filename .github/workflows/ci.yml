@@ -1,0 +1,40 @@
+name: ci
+
+# The gate: hand-authored sources validate, committed generated artifacts are
+# current, and the source tests pass. Build, browser and Pages deployment jobs
+# are added with the site (see the plan's M2); deployment happens only from
+# main and only from the same dist the browser job tested.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  ASTRO_TELEMETRY_DISABLED: "1"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Sources validate
+        run: npm run validate
+      - name: Generated artifacts are current
+        run: npm run check
+      - name: Source and export tests
+        run: npm test

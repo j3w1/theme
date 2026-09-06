@@ -1,0 +1,113 @@
+{
+  "color": {
+    "$type": "color",
+    "$description": "heritage-ansi profile: the historical assignments, exact, including the ones that fail the contrast floor.",
+    "text": {
+      "subtle": {
+        "$value": "{color.primitive.rose.350}",
+        "$description": "color15 as the site's --quiet.",
+        "$deprecated": "fails 4.5:1 (4.45); historical fidelity only",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "heritage"
+          }
+        }
+      }
+    },
+    "border": {
+      "overlay": {
+        "$value": "{color.primitive.red.550}",
+        "$description": "dunst frame_color.",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "heritage"
+          }
+        }
+      }
+    },
+    "code": {
+      "line-number": {
+        "$value": "{color.primitive.red.200}",
+        "$description": "color8, as vim rendered line numbers.",
+        "$deprecated": "fails 4.5:1 (1.86); historical fidelity only",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "heritage"
+          }
+        }
+      },
+      "syntax": {
+        "comment": {
+          "$value": "{color.primitive.red.200}",
+          "$description": "color8: comments and shebang in vim.",
+          "$deprecated": "fails 4.5:1 (1.86); historical fidelity only",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "heritage"
+            }
+          }
+        },
+        "variable": {
+          "$value": "{color.primitive.red.450}",
+          "$description": "color9: declarations and assignments.",
+          "$deprecated": "fails 4.5:1 (2.70); historical fidelity only",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "heritage"
+            }
+          }
+        },
+        "function": {
+          "$value": "{color.primitive.rose.800}",
+          "$description": "color7: function calls, quotes, operators.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "heritage"
+            }
+          }
+        },
+        "operator": {
+          "$value": "{color.primitive.rose.800}",
+          "$description": "color7.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "heritage"
+            }
+          }
+        },
+        "punctuation": {
+          "$value": "{color.primitive.rose.650}",
+          "$description": "color3: parentheses, symbols, commas.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "heritage"
+            }
+          }
+        }
+      }
+    },
+    "status": {
+      "neutral": {
+        "fill": {
+          "$value": "{color.primitive.rose.350}",
+          "$description": "dunst urgency_low background.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "heritage"
+            }
+          }
+        },
+        "on-fill": {
+          "$value": "{color.primitive.ink.20}",
+          "$description": "dunst urgency_low foreground.",
+          "$deprecated": "fails 4.5:1 (4.45); historical fidelity only",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "heritage"
+            }
+          }
+        }
+      }
+    }
+  }
+}

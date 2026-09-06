@@ -1,0 +1,15 @@
+/* The only place anchors are named. The site's Astro components and the
+   export builders both import this, so the page and the exports cannot
+   disagree about where a component or token lives. */
+
+export const anchorFor = {
+  component: (id) => `c-${id}`,
+  family: (id) => `f-${id}`,
+  doc: (id) => `d-${id}`,
+  token: (path) => `t-${path.replaceAll(".", "-")}`,
+  specimen: (id) => `s-${id}`,
+  nonExample: (id) => `x-${id}`,
+  fixture: (id) => `fx-${id.toLowerCase()}`,
+};
+
+export const siteAnchor = (manifest, anchor) => `${manifest.site.url}#${anchor}`;

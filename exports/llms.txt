@@ -1,0 +1,24 @@
+# j3w1 UI Theme Spec
+
+> Versioned design tokens and component rules for the j3w1 identity (warm-black #0c0909 surfaces, rose #e99499 text, red #e53935 focus, dark-red #911410 selection, 1px square borders, zero radii, monospace). Version 0.1.0-draft.1. Agents: read the compact export and per-component JSON at a pinned tag; the website is confirmation only.
+
+Pin a tag or commit and use the same revision for every file. Never read `main`.
+
+## Start here
+
+- [Reading protocol](https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/agents/consume.md): the seven steps, what you may not do, the lock and report formats
+- [Manifest](https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/theme.json): profiles, entry points, export paths
+- [Compact spec](https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/theme.compact.md): approved values, state rules, ten component briefs
+
+## Data
+
+- [Resolved tokens](https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/tokens.resolved.json): every profile, every alias resolved
+- [Token CSS](https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/tokens.css): the same values as custom properties
+- [Component JSON](https://github.com/j3w1/theme/tree/v0.1.0-draft.1/exports/components): one file per component
+- [Digests](https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/digests.json): sha256 per export for theme.lock.json
+
+## Optional
+
+- [Full spec](https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/theme.full.md): everything concatenated
+- [Contrast report](https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/contrast.md): every declared pair, unrounded
+- [Website](https://j3w1.github.io/theme/): rendered specimens for visual confirmation

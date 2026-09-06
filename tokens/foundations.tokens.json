@@ -1,0 +1,522 @@
+{
+  "space": {
+    "0": {
+      "$value": {
+        "value": 0,
+        "unit": "px"
+      }
+    },
+    "1": {
+      "$value": {
+        "value": 1,
+        "unit": "px"
+      }
+    },
+    "2": {
+      "$value": {
+        "value": 2,
+        "unit": "px"
+      }
+    },
+    "4": {
+      "$value": {
+        "value": 4,
+        "unit": "px"
+      }
+    },
+    "8": {
+      "$value": {
+        "value": 8,
+        "unit": "px"
+      }
+    },
+    "12": {
+      "$value": {
+        "value": 12,
+        "unit": "px"
+      }
+    },
+    "16": {
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      }
+    },
+    "24": {
+      "$value": {
+        "value": 24,
+        "unit": "px"
+      }
+    },
+    "32": {
+      "$value": {
+        "value": 32,
+        "unit": "px"
+      }
+    },
+    "48": {
+      "$value": {
+        "value": 48,
+        "unit": "px"
+      }
+    },
+    "$type": "dimension",
+    "$description": "Spacing scale, base 4 with hairline steps. The site's 3/5/10/13/14px are reference geometry, not steps."
+  },
+  "border": {
+    "width": {
+      "$type": "dimension",
+      "default": {
+        "$value": {
+          "value": 1,
+          "unit": "px"
+        },
+        "$description": "Every border is 1px."
+      },
+      "emphasis": {
+        "$value": {
+          "value": 2,
+          "unit": "px"
+        },
+        "$description": "Selected indicator, sticky header rule, invalid border."
+      }
+    }
+  },
+  "radius": {
+    "$type": "dimension",
+    "none": {
+      "$value": {
+        "value": 0,
+        "unit": "px"
+      },
+      "$description": "The only radius. Nothing is rounded."
+    }
+  },
+  "font": {
+    "family": {
+      "$type": "fontFamily",
+      "mono": {
+        "$value": [
+          "SauceCodePro NFM",
+          "Source Code Pro",
+          "Cascadia Mono",
+          "Consolas",
+          "Liberation Mono",
+          "DejaVu Sans Mono",
+          "monospace"
+        ],
+        "$description": "One family for chrome, reading and code. Not bundled; see theme.json font."
+      }
+    },
+    "weight": {
+      "$type": "fontWeight",
+      "regular": {
+        "$value": 400
+      },
+      "bold": {
+        "$value": 700
+      }
+    },
+    "size": {
+      "$type": "dimension",
+      "ui-sm": {
+        "$value": {
+          "value": 12,
+          "unit": "px"
+        }
+      },
+      "ui-md": {
+        "$value": {
+          "value": 13,
+          "unit": "px"
+        }
+      },
+      "ui-lg": {
+        "$value": {
+          "value": 14,
+          "unit": "px"
+        }
+      },
+      "reading": {
+        "$value": {
+          "value": 15,
+          "unit": "px"
+        }
+      },
+      "code": {
+        "$value": {
+          "value": 13,
+          "unit": "px"
+        }
+      },
+      "terminal": {
+        "$value": {
+          "value": 13,
+          "unit": "px"
+        },
+        "$description": "URxvt pixelsize 13."
+      },
+      "h1": {
+        "$value": {
+          "value": 20,
+          "unit": "px"
+        }
+      },
+      "h2": {
+        "$value": {
+          "value": 16,
+          "unit": "px"
+        }
+      },
+      "h3": {
+        "$value": {
+          "value": 13,
+          "unit": "px"
+        }
+      },
+      "caption": {
+        "$value": {
+          "value": 11,
+          "unit": "px"
+        },
+        "$description": "Only with text.muted or lighter."
+      }
+    },
+    "line-height": {
+      "$type": "dimension",
+      "ui-sm": {
+        "$value": {
+          "value": 16,
+          "unit": "px"
+        }
+      },
+      "ui-md": {
+        "$value": {
+          "value": 18,
+          "unit": "px"
+        }
+      },
+      "ui-lg": {
+        "$value": {
+          "value": 20,
+          "unit": "px"
+        }
+      },
+      "reading": {
+        "$value": {
+          "value": 24,
+          "unit": "px"
+        }
+      },
+      "code": {
+        "$value": {
+          "value": 19,
+          "unit": "px"
+        }
+      },
+      "terminal": {
+        "$value": {
+          "value": 19,
+          "unit": "px"
+        }
+      },
+      "h1": {
+        "$value": {
+          "value": 28,
+          "unit": "px"
+        }
+      },
+      "h2": {
+        "$value": {
+          "value": 24,
+          "unit": "px"
+        }
+      },
+      "h3": {
+        "$value": {
+          "value": 18,
+          "unit": "px"
+        }
+      },
+      "caption": {
+        "$value": {
+          "value": 16,
+          "unit": "px"
+        }
+      }
+    },
+    "letter-spacing": {
+      "$type": "dimension",
+      "terminal": {
+        "$value": {
+          "value": -0.5,
+          "unit": "px"
+        },
+        "$description": "URxvt letterSpace -1 at pixelsize 13, as the site renders it."
+      }
+    }
+  },
+  "density": {
+    "$type": "dimension",
+    "$description": "Two density modes (D-009), applied with data-density on any subtree.",
+    "compact": {
+      "control-height": {
+        "$value": {
+          "value": 24,
+          "unit": "px"
+        }
+      },
+      "row-height": {
+        "$value": {
+          "value": 28,
+          "unit": "px"
+        }
+      },
+      "control-padding-x": {
+        "$value": {
+          "value": 8,
+          "unit": "px"
+        }
+      },
+      "icon": {
+        "$value": {
+          "value": 16,
+          "unit": "px"
+        }
+      },
+      "gap": {
+        "$value": {
+          "value": 2,
+          "unit": "px"
+        }
+      }
+    },
+    "comfortable": {
+      "control-height": {
+        "$value": {
+          "value": 32,
+          "unit": "px"
+        }
+      },
+      "row-height": {
+        "$value": {
+          "value": 36,
+          "unit": "px"
+        }
+      },
+      "control-padding-x": {
+        "$value": {
+          "value": 12,
+          "unit": "px"
+        }
+      },
+      "icon": {
+        "$value": {
+          "value": 16,
+          "unit": "px"
+        }
+      },
+      "gap": {
+        "$value": {
+          "value": 4,
+          "unit": "px"
+        }
+      }
+    }
+  },
+  "focus": {
+    "$description": "Focus rings (D-006). Controls get the dashed ring; containers the solid one.",
+    "ring": {
+      "$type": "border",
+      "$value": {
+        "color": "{color.interaction.focus.ring}",
+        "width": "{border.width.default}",
+        "style": "dashed"
+      },
+      "$description": "outline on controls and rows."
+    },
+    "ring-container": {
+      "$type": "border",
+      "$value": {
+        "color": "{color.interaction.focus.ring-container}",
+        "width": "{border.width.emphasis}",
+        "style": "solid"
+      },
+      "$description": "outline on focusable containers."
+    },
+    "offset": {
+      "$type": "dimension",
+      "$value": {
+        "value": -2,
+        "unit": "px"
+      },
+      "$description": "outline-offset for controls."
+    },
+    "offset-container": {
+      "$type": "dimension",
+      "$value": {
+        "value": -3,
+        "unit": "px"
+      },
+      "$description": "outline-offset for containers."
+    },
+    "offset-invalid": {
+      "$type": "dimension",
+      "$value": {
+        "value": -4,
+        "unit": "px"
+      },
+      "$description": "outline-offset inside the 2px invalid border."
+    }
+  },
+  "motion": {
+    "duration": {
+      "$type": "duration",
+      "fast": {
+        "$value": {
+          "value": 80,
+          "unit": "ms"
+        }
+      },
+      "base": {
+        "$value": {
+          "value": 120,
+          "unit": "ms"
+        }
+      },
+      "slow": {
+        "$value": {
+          "value": 150,
+          "unit": "ms"
+        },
+        "$description": "The maximum. Reduced motion sets every duration to 0.01ms."
+      }
+    }
+  },
+  "shadow": {
+    "$type": "shadow",
+    "floating": {
+      "$value": {
+        "color": "{color.primitive.alpha.black-55}",
+        "offsetX": "{space.0}",
+        "offsetY": {
+          "value": 6,
+          "unit": "px"
+        },
+        "blur": {
+          "value": 22,
+          "unit": "px"
+        },
+        "spread": "{space.0}"
+      },
+      "$description": "The only shadow: the i3 floating window."
+    }
+  },
+  "layout": {
+    "measure": {
+      "$type": "number",
+      "$value": 72,
+      "$description": "Reading measure in ch."
+    },
+    "content-max": {
+      "$type": "dimension",
+      "$value": {
+        "value": 680,
+        "unit": "px"
+      },
+      "$description": "Reading column maximum."
+    },
+    "app-max": {
+      "$type": "dimension",
+      "$value": {
+        "value": 1440,
+        "unit": "px"
+      },
+      "$description": "Application layout maximum."
+    }
+  },
+  "breakpoint": {
+    "$type": "dimension",
+    "xs": {
+      "$value": {
+        "value": 320,
+        "unit": "px"
+      },
+      "$description": "Reflow floor (WCAG 1.4.10)."
+    },
+    "sm": {
+      "$value": {
+        "value": 600,
+        "unit": "px"
+      }
+    },
+    "md": {
+      "$value": {
+        "value": 900,
+        "unit": "px"
+      }
+    },
+    "lg": {
+      "$value": {
+        "value": 1280,
+        "unit": "px"
+      },
+      "$description": "The site's bar breaks below this."
+    }
+  },
+  "icon": {
+    "size": {
+      "$type": "dimension",
+      "sm": {
+        "$value": {
+          "value": 12,
+          "unit": "px"
+        }
+      },
+      "md": {
+        "$value": {
+          "value": 16,
+          "unit": "px"
+        }
+      },
+      "lg": {
+        "$value": {
+          "value": 20,
+          "unit": "px"
+        }
+      }
+    },
+    "stroke": {
+      "$type": "dimension",
+      "$value": {
+        "value": 1.5,
+        "unit": "px"
+      },
+      "$description": "SVG line icons, currentColor, no fill."
+    }
+  },
+  "z": {
+    "$type": "number",
+    "canvas": {
+      "$value": 0
+    },
+    "raised": {
+      "$value": 1
+    },
+    "popover": {
+      "$value": 10
+    },
+    "drawer": {
+      "$value": 20
+    },
+    "dialog": {
+      "$value": 30
+    },
+    "toast": {
+      "$value": 40
+    },
+    "skip-link": {
+      "$value": 1000
+    }
+  }
+}

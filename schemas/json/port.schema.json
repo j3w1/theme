@@ -1,0 +1,193 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "number",
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "displayName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "experimental",
+        "verified",
+        "deprecated"
+      ]
+    },
+    "themeVersion": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+(?:-[0-9A-Za-z.-]+)?$"
+    },
+    "tokenDigest": {
+      "type": "string",
+      "pattern": "^sha256-[A-Za-z0-9+/=]+$"
+    },
+    "profile": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "format": {
+      "type": "string",
+      "minLength": 1
+    },
+    "targetVersions": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "testedVersions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "os": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "windows",
+          "linux",
+          "macos",
+          "any"
+        ]
+      }
+    },
+    "surfaces": {
+      "type": "object",
+      "properties": {
+        "supported": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "inherited": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "unsupported": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "supported",
+        "inherited",
+        "unsupported"
+      ],
+      "additionalProperties": false
+    },
+    "files": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "pattern": "^dist\\/"
+          },
+          "install": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "path",
+          "install"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "mappingPath": {
+      "type": "string",
+      "const": "mapping.json"
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "screenshot",
+              "log",
+              "report"
+            ]
+          },
+          "path": {
+            "type": "string",
+            "pattern": "^evidence\\/"
+          },
+          "app": {
+            "type": "string",
+            "minLength": 1
+          },
+          "os": {
+            "type": "string",
+            "minLength": 1
+          },
+          "date": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "artifactDigest": {
+            "type": "string",
+            "pattern": "^sha256-[A-Za-z0-9+/=]+$"
+          }
+        },
+        "required": [
+          "kind",
+          "path",
+          "app",
+          "os",
+          "date"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "reason": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "id",
+    "displayName",
+    "status",
+    "themeVersion",
+    "tokenDigest",
+    "profile",
+    "format",
+    "targetVersions",
+    "testedVersions",
+    "os",
+    "surfaces",
+    "files",
+    "mappingPath",
+    "evidence"
+  ],
+  "additionalProperties": false
+}

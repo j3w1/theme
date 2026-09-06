@@ -1,0 +1,182 @@
+---
+id: decisions
+title: Decision log
+order: 90
+summary: Numbered design and governance decisions. A token or rule is approved only through an accepted entry here.
+---
+
+Statuses: `proposed` (awaiting the owner), `accepted`, `rejected`, `superseded`.
+A token moves from `proposed` to `approved` only by an `accepted` decision referenced
+in its `$extensions["io.github.j3w1.theme"].approval.decision`. Agents may open
+`proposed` entries; only the owner changes a status.
+
+| # | Title | Status | Date | Decided by |
+| --- | --- | --- | --- | --- |
+| D-000 | Responsibility split: tokens, spec, ports, evidence | accepted | 2026-09-05 | owner (design package) |
+| D-001 | Controlled three-hue extension for status, diagnostics and diffs | accepted | 2026-09-06 | owner |
+| D-002 | v0.1.0 ships the full R1 component inventory | accepted | 2026-09-06 | owner |
+| D-003 | Text-role corrections with new in-hue values | accepted | 2026-09-06 | owner |
+| D-004 | Public repository; MIT code, CC BY 4.0 prose | accepted | 2026-09-06 | owner |
+| D-005 | Default profile id is `default` | proposed | 2026-09-06 | — |
+| D-006 | Focus-ring rule, including invalid + focus | proposed | 2026-09-06 | — |
+| D-007 | `border.control` uses `#A3676B` | proposed | 2026-09-06 | — |
+| D-008 | Fold site hairlines into `border.divider`; `surface.sunken`; unified overlay border | proposed | 2026-09-06 | — |
+| D-009 | Density modes `compact` and `comfortable` as tokens | proposed | 2026-09-06 | — |
+| D-010 | The site deploys from `main` | proposed | 2026-09-06 | — |
+| D-011 | Reference screenshots are cropped before publication | proposed | 2026-09-06 | — |
+| D-012 | Exports are committed and drift-checked | proposed | 2026-09-06 | — |
+
+## D-000 Responsibility split
+
+Status: accepted · 2026-09-05 (adopted from the design package `ARCHITECTURE.md`).
+
+**Decision.** Token files own literal values and aliases. The specification owns
+meaning, permitted uses and constraints. Port mappings own native keys. Evidence
+records own what was actually tested. README, the site, and pictures summarise
+these authorities and never replace them. A disagreement between spec and tokens
+is a defect to resolve, not permission to choose the convenient answer. Images
+never override token values. Historical source is evidence of origin, not an
+override of the adopted accessible design.
+
+## D-001 Controlled three-hue extension
+
+Status: accepted · 2026-09-06.
+
+**Context.** The observed identity is monochrome red/rose. Diagnostics, diffs and
+status information need differentiation that lightness alone cannot give (a
+200-line diff cannot be scanned by glyph). The owner's own PhpStorm scheme already
+uses conventional hues for these surfaces.
+
+**Decision.** The `default` profile adds exactly three hues, desaturated and
+warm-shifted: amber `#C9973F` (warning, modified), green `#86A46F` (success,
+added), blue `#7E9EBB` (info), with dark tints `#1F1A0C`, `#0F1A0E`, `#0F141C`.
+They are permitted only in the `status`, `diagnostic`, `diff` and (in the
+`extended` overlay) `code`, `terminal` and `chart` groups. They are forbidden in
+`surface`, `text`, `border`, `interaction` and `action`. Purple, cyan and magenta
+are not added. Every status role also carries a mandatory non-colour channel
+(glyph, underline pattern or border style). Syntax highlighting in `default`
+stays monochrome; the `extended` overlay profile remains `proposed`.
+
+**Consequences.** Measured contrast on canvas / surface / raised: amber
+7.54 / 7.34 / 6.90, green 7.13 / 6.95 / 6.53, blue 7.08 / 6.90 / 6.48.
+
+## D-002 v0.1.0 inventory
+
+Status: accepted · 2026-09-06.
+
+**Decision.** The first public release contains every component marked `R1` in
+the coverage inventory (about 47 across all nine families) plus four composed
+specimens (settings panel, administrative form, filterable table, i3 window
+frame), each *specified* and *demonstrated*; ten core components are also
+*tested* (button, link, text-field, select, checkbox, radio-group, tabs, dialog,
+menu, table). `R2` items and the form-builder specimen are deferred to v0.2.
+
+## D-003 Text-role corrections
+
+Status: accepted · 2026-09-06.
+
+**Context.** `#A3676B` (the site's `--quiet`) measures 4.45:1 on `#0C0909` and
+`#7D1310` (`--inactive`) 1.86:1; the site already restricts them but still uses
+`#7D1310` for line numbers. The site's suggested replacement `#A8403A` measures
+only 3.27:1.
+
+**Decision.** `text.subtle` = `#AD7175` (5.10 / 4.96 / 4.67) for metadata,
+comments and line numbers. `text.disabled` = `#8A5559` (3.33 / 3.24 / 3.05;
+exempt under WCAG 1.4.3, at least 3:1 by house policy). `#A3676B` remains in
+service as `border.control`, `icon.decorative`, `status.neutral.fill` and
+`chart.series.4` (non-text, at least 3:1). `#7D1310` remains only as
+`border.disabled`, `code.whitespace` and minor grid lines, never as text. The
+`heritage-ansi` profile keeps the original assignments flagged `$deprecated`.
+
+## D-004 Visibility and licensing
+
+Status: accepted · 2026-09-06.
+
+**Decision.** The repository is public. Code, tokens, schemas, scripts, tests,
+site source and generated JSON/CSS exports are MIT. Specification prose,
+specimens and generated Markdown exports are CC BY 4.0. Screenshots under
+`references/` are all rights reserved, reference only. No fonts, no vendor
+template material, no private business data are ever committed; CI scans for
+them. See `LICENSE.md`.
+
+## D-005 Default profile id
+
+Status: proposed.
+
+**Decision.** The approved everyday composition is the profile `default`. A
+later rename would be a MAJOR version change.
+
+## D-006 Focus-ring rule
+
+Status: proposed.
+
+**Decision.** Controls and rows: `outline: 1px dashed {color.interaction.focus.ring}`
+(`#E53935`) with `outline-offset: -2px`. Focusable containers (panes, windows,
+dialogs, cards): `outline: 2px solid {color.interaction.focus.ring-container}`
+(`#FFA2A7`) with `outline-offset: -3px`. On any filled surface (selection,
+action fills, status fills) the ring takes that surface's on-fill text colour,
+because `#E53935` on `#911410` measures 2.15:1. For invalid + focus, where the
+2px danger border is already red, the ring switches to the container colour
+`#FFA2A7` at `outline-offset: -4px`. `:focus:not(:focus-visible)` draws nothing.
+In forced-colors mode the ring uses `Highlight`. Selection is always a fill and
+focus is always a ring; neither borrows the other's form.
+
+## D-007 Control boundary colour
+
+Status: proposed.
+
+**Decision.** Form-control boundaries must reach 3:1 against their surface
+(WCAG 1.4.11). `#531310` (1.39) and `#9E231F` (2.56) both fail, so
+`border.control` = `#A3676B` (4.45 / 4.33 / 4.07). The alternative `#C81A1A`
+(3.42) is rejected as too loud for every input at rest.
+
+## D-008 Hairlines, sunken surface, overlay border
+
+Status: proposed.
+
+**Decision.** The site's six near-identical hairline hexes (`#290D0C`,
+`#24100F`, `#321110`, `#38100F`, `#190B0B`, `#2B0E0D`) fold into one
+`border.divider` = `#2B0E0D`. `#0A0707` becomes `surface.sunken`. Every
+floating layer (dialog, drawer, menu, popover, toast) uses a 1px
+`border.overlay` = `#E53935`; the historical dunst frame `#AE1914` survives only
+in `heritage-ansi`.
+
+## D-009 Density modes
+
+Status: proposed.
+
+**Decision.** Two density modes are tokens, applied with `data-density` on any
+subtree. `compact` matches the site: control height 24px, row height 28px, UI
+type 12/16, icon 16, list gap 2. `comfortable`: control 32px, row 36px, UI
+type 13/18, icon 16, list gap 4. Both meet the 24×24 CSS-pixel target minimum;
+`compact` requires 4px between adjacent targets.
+
+## D-010 Deployment source
+
+Status: proposed.
+
+**Decision.** The site deploys from `main` through GitHub Actions after the
+full pipeline passes. The page header prints the version and build commit and
+links to the latest tag; consumers pin tags or commits regardless.
+
+## D-011 Reference screenshots
+
+Status: proposed.
+
+**Context.** The four PhpStorm screenshots show a private project name in the
+window title bar.
+
+**Decision.** Before any screenshot is committed under `references/`, the title
+bar is cropped (or the name redacted) and the redaction is disclosed in the
+provenance record. If the owner prefers, the screenshots stay out of the public
+repository and are described in `references/catalogue.json` only.
+
+## D-012 Committed exports
+
+Status: proposed.
+
+**Decision.** `exports/`, `site/src/styles/tokens.generated.css`, the JSON
+schemas under `schemas/json/` and the README marker blocks are generated and
+committed; `npm run check` fails CI on drift or orphan files. Outputs contain no
+timestamps and no commit hashes so two runs are byte-identical. `dist/` is never
+committed.

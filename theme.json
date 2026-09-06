@@ -1,0 +1,112 @@
+{
+  "$schema": "./schemas/json/theme.schema.json",
+  "schemaVersion": 1,
+  "name": "j3w1-theme",
+  "displayName": "j3w1 UI Theme Spec",
+  "version": "0.1.0-draft.1",
+  "description": "Canonical versioned theme specification for the j3w1 identity: warm-black surfaces, rose text, red focus, dark-red selection, 1px square borders, zero radii, monospace character.",
+  "repository": "https://github.com/j3w1/theme",
+  "tokenFormat": {
+    "spec": "dtcg-2025.10",
+    "specUrl": "https://www.designtokens.org/tr/2025.10/format/",
+    "note": "Design Tokens Community Group Final Community Group Report. Not a W3C Recommendation.",
+    "supported": {
+      "types": ["color", "dimension", "fontFamily", "fontWeight", "number", "duration", "border", "typography", "shadow"],
+      "colorSpaces": ["srgb"],
+      "colorHexRequired": true,
+      "aliases": "curly-brace references resolved across all token files of a profile (project convention; the format itself only shows same-file references)",
+      "extensionsKey": "io.github.j3w1.theme"
+    }
+  },
+  "sourceRevision": {
+    "policy": "consumer-pinned-git-revision",
+    "allowed": ["tag", "commit"],
+    "forbidden": ["branch"],
+    "tagPattern": "^v\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z.]+)?$",
+    "resolveTag": "https://api.github.com/repos/j3w1/theme/git/ref/tags/{tag}",
+    "rawBase": "https://raw.githubusercontent.com/j3w1/theme/{rev}/",
+    "note": "This file cannot contain its own commit. Consumers record the commit they fetched in theme.lock.json; exports/digests.json lets them prove every file came from one revision."
+  },
+  "profiles": [
+    {
+      "id": "default",
+      "displayName": "Default (approved everyday composition)",
+      "status": "approved",
+      "default": true,
+      "tokens": ["tokens/primitives.tokens.json", "tokens/semantic.tokens.json", "tokens/foundations.tokens.json"]
+    },
+    {
+      "id": "heritage-ansi",
+      "displayName": "Heritage ANSI (the sixteen historical slots, exact)",
+      "status": "heritage",
+      "default": false,
+      "tokens": ["tokens/primitives.tokens.json", "tokens/semantic.tokens.json", "tokens/foundations.tokens.json", "tokens/profiles/heritage-ansi.tokens.json"]
+    },
+    {
+      "id": "extended",
+      "displayName": "Extended (semantic hues for syntax, terminal and charts)",
+      "status": "proposed",
+      "default": false,
+      "overlay": "default",
+      "tokens": ["tokens/primitives.tokens.json", "tokens/semantic.tokens.json", "tokens/foundations.tokens.json", "tokens/profiles/extended.tokens.json"]
+    }
+  ],
+  "spec": {
+    "identity": "spec/identity.md",
+    "foundations": "spec/foundations.md",
+    "accessibility": "spec/accessibility.md",
+    "portability": "spec/portability.md",
+    "decisions": "spec/decisions.md",
+    "families": "spec/families.json",
+    "componentsDir": "spec/components/"
+  },
+  "agents": {
+    "consume": "agents/consume.md",
+    "contributors": "AGENTS.md"
+  },
+  "exports": {
+    "dir": "exports/",
+    "canonicalForAgents": [
+      "exports/theme.compact.md",
+      "exports/tokens.resolved.json",
+      "exports/components/",
+      "exports/digests.json"
+    ],
+    "derivative": [
+      "exports/theme.full.md",
+      "exports/llms.txt",
+      "exports/tokens.css",
+      "exports/coverage.json",
+      "exports/contrast.json",
+      "exports/contrast.md"
+    ],
+    "digests": "exports/digests.json"
+  },
+  "site": {
+    "url": "https://j3w1.github.io/theme/",
+    "base": "/theme",
+    "role": "confirmation-only",
+    "note": "The page renders the same sources. It never adds values that are not in tokens/ or spec/."
+  },
+  "ports": {
+    "catalogue": "ports/README.md",
+    "dir": "ports/",
+    "statuses": ["experimental", "verified", "deprecated"]
+  },
+  "references": {
+    "catalogue": "references/catalogue.json",
+    "sources": "references/sources.json"
+  },
+  "font": {
+    "family": "SauceCodePro NFM",
+    "lineage": "Source Code Pro (Adobe, SIL OFL) via the Nerd Fonts patched build (SauceCodePro Nerd Font Mono)",
+    "source": "https://github.com/ryanoasis/nerd-fonts/releases/tag/v3.5.1",
+    "bundled": false
+  },
+  "license": {
+    "code": "MIT",
+    "prose": "CC-BY-4.0",
+    "screenshots": "All rights reserved; reference only",
+    "file": "LICENSE.md"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "0.1.0-draft.1",
+  "algorithm": "sha256 over the file bytes with LF line endings, base64",
+  "files": {
+    "exports/contrast.json": "sha256-yd8d8/lpbuVNokdIVeoSE6/UJY+cfGW2VkdfuoOkA/0=",
+    "exports/contrast.md": "sha256-q1W8ei12bkrJf0BjyKPxfJJny6XS1S2v6KdTiwyXwRU=",
+    "exports/coverage.json": "sha256-CqV0nQJR/PLN8AFtQh+2UPCRO8F/bgCGpsyr/vo3yUs=",
+    "exports/llms.txt": "sha256-MlGbe9bnU2fOwKlaptYWkOtUQQB97Je3ThmKVl1UHmY=",
+    "exports/theme.compact.md": "sha256-3XVrcChRikPX9beQZitGByrVObglbvod6cNtMrdoH/U=",
+    "exports/theme.full.md": "sha256-Mk3FsfJtM8doutmqTIBjfdSCBD2ULYKjlqhUorwBGTk=",
+    "exports/tokens.css": "sha256-xvJ8yxOUx3UEgxXt7wGNyNBvy+DzDIHuzJruIeOSS2E=",
+    "exports/tokens.resolved.json": "sha256-c0QLrctZWBiYKPH5kUlnMs+pzp+DAX+CCgKXAxbKGOU="
+  }
+}

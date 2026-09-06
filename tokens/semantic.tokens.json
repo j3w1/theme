@@ -1,0 +1,1078 @@
+{
+  "color": {
+    "$type": "color",
+    "$description": "Semantic roles of the default profile. Roles alias primitives only; meaning and permitted uses are in spec/foundations.md.",
+    "surface": {
+      "desktop": {
+        "$value": "{color.primitive.ink.0}",
+        "$description": "Behind every window."
+      },
+      "canvas": {
+        "$value": "{color.primitive.ink.20}",
+        "$description": "Page and terminal background."
+      },
+      "chrome": {
+        "$value": "{color.primitive.ink.25}",
+        "$description": "Window chrome, title bars, bars."
+      },
+      "chrome-alt": {
+        "$value": "{color.primitive.ink.40}",
+        "$description": "Alternate chrome."
+      },
+      "sunken": {
+        "$value": "{color.primitive.ink.15}",
+        "$description": "Reading and detail panes set below the canvas.",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "proposed",
+            "approval": {
+              "decision": "D-008"
+            }
+          }
+        }
+      },
+      "default": {
+        "$value": "{color.primitive.ink.30}",
+        "$description": "Panels and cards."
+      },
+      "raised": {
+        "$value": "{color.primitive.ink.52}",
+        "$description": "Sticky headers, menus, popovers."
+      },
+      "overlay": {
+        "$value": "{color.primitive.ink.52}",
+        "$description": "Dialogs and drawers."
+      },
+      "input": {
+        "$value": "{color.primitive.ink.20}",
+        "$description": "Form-control fill."
+      },
+      "backdrop": {
+        "$value": "{color.primitive.alpha.black-65}",
+        "$description": "Behind modal dialogs.",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "proposed",
+            "approval": {
+              "decision": "D-008"
+            }
+          }
+        }
+      },
+      "code": {
+        "$value": "{color.primitive.ink.20}",
+        "$description": "Editor background."
+      },
+      "terminal": {
+        "$value": "{color.primitive.ink.20}",
+        "$description": "Terminal background."
+      }
+    },
+    "text": {
+      "default": {
+        "$value": "{color.primitive.rose.700}",
+        "$description": "Interface and body text (8.65:1 on canvas)."
+      },
+      "bright": {
+        "$value": "{color.primitive.rose.800}",
+        "$description": "Headings, emphasis, links."
+      },
+      "prose": {
+        "$value": "{color.primitive.paper.90}",
+        "$description": "Long-form reading text."
+      },
+      "muted": {
+        "$value": "{color.primitive.rose.600}",
+        "$description": "Secondary text; the darkest colour permitted for chrome text (5.81:1)."
+      },
+      "subtle": {
+        "$value": "{color.primitive.rose.450}",
+        "$description": "Metadata, comments, line numbers (5.10:1).",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "approved",
+            "approval": {
+              "decision": "D-003"
+            }
+          }
+        }
+      },
+      "disabled": {
+        "$value": "{color.primitive.rose.300}",
+        "$description": "Disabled control text (3.33:1; exempt, at least 3:1 by policy).",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "approved",
+            "approval": {
+              "decision": "D-003"
+            }
+          }
+        }
+      },
+      "placeholder": {
+        "$value": "{color.primitive.rose.600}",
+        "$description": "Placeholder text, italic."
+      },
+      "accent": {
+        "$value": "{color.primitive.red.800}",
+        "$description": "Accent text on canvas and default surfaces only (4.30:1 on raised fails)."
+      },
+      "accent-strong": {
+        "$value": "{color.primitive.red.850}",
+        "$description": "Accent text safe on every surface (4.94:1 on raised)."
+      },
+      "link": {
+        "$value": "{color.primitive.rose.800}",
+        "$description": "Link text."
+      },
+      "link-underline": {
+        "$value": "{color.primitive.red.750}",
+        "$description": "Link underline."
+      },
+      "link-hover": {
+        "$value": "{color.primitive.paper.90}",
+        "$description": "Link text on hover, over interaction.hover.bg-strong."
+      },
+      "on-selection": {
+        "$value": "{color.primitive.paper.90}",
+        "$description": "Text on the selection fill (7.92:1)."
+      },
+      "on-action": {
+        "$value": "{color.primitive.paper.90}",
+        "$description": "Text on the primary action fill (8.17:1)."
+      },
+      "on-danger": {
+        "$value": "{color.primitive.paper.100}",
+        "$description": "Text on the danger fill (4.58:1)."
+      },
+      "on-light": {
+        "$value": "{color.primitive.ink.20}",
+        "$description": "Text on light fills: bright rose, amber, green, blue."
+      },
+      "inverse": {
+        "$value": "{color.primitive.ink.20}",
+        "$description": "Text on inverted surfaces."
+      }
+    },
+    "border": {
+      "divider": {
+        "$value": "{color.primitive.ink.60}",
+        "$description": "Hairline between rows and sections.",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "proposed",
+            "approval": {
+              "decision": "D-008"
+            }
+          }
+        }
+      },
+      "default": {
+        "$value": "{color.primitive.red.100}",
+        "$description": "Decorative border (1.39:1; never the only edge of a control)."
+      },
+      "strong": {
+        "$value": "{color.primitive.red.400}",
+        "$description": "Emphasised 2px rule: sticky headers, section ends."
+      },
+      "control": {
+        "$value": "{color.primitive.rose.350}",
+        "$description": "Form-control boundary (4.45:1, meets the 3:1 non-text minimum).",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "proposed",
+            "approval": {
+              "decision": "D-007"
+            }
+          }
+        }
+      },
+      "active": {
+        "$value": "{color.primitive.red.800}",
+        "$description": "Active or focused control border."
+      },
+      "overlay": {
+        "$value": "{color.primitive.red.800}",
+        "$description": "Every floating layer's 1px border.",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "proposed",
+            "approval": {
+              "decision": "D-008"
+            }
+          }
+        }
+      },
+      "disabled": {
+        "$value": "{color.primitive.red.200}",
+        "$description": "Disabled control border (exempt)."
+      },
+      "selected-indicator": {
+        "$value": "{color.primitive.red.800}",
+        "$description": "2px indicator bar on the selected tab or nav item."
+      },
+      "selected-indicator-inactive": {
+        "$value": "{color.primitive.red.400}",
+        "$description": "Indicator bar when the container is not focused."
+      }
+    },
+    "interaction": {
+      "focus": {
+        "ring": {
+          "$value": "{color.primitive.red.800}",
+          "$description": "1px dashed focus ring on controls and rows."
+        },
+        "ring-container": {
+          "$value": "{color.primitive.rose.800}",
+          "$description": "2px solid focus ring on focusable containers; also the ring on fills."
+        }
+      },
+      "selection": {
+        "bg": {
+          "$value": "{color.primitive.red.350}",
+          "$description": "Selected row, tab, workspace."
+        },
+        "text": {
+          "$value": "{color.primitive.paper.90}",
+          "$description": "Text on the selection."
+        },
+        "inactive-bg": {
+          "$value": "{color.primitive.red.50}",
+          "$description": "Selection while the container is not focused."
+        },
+        "inactive-text": {
+          "$value": "{color.primitive.rose.700}",
+          "$description": "Text on the inactive selection (7.02:1)."
+        }
+      },
+      "text-selection": {
+        "bg": {
+          "$value": "{color.primitive.red.350}",
+          "$description": "::selection background."
+        },
+        "text": {
+          "$value": "{color.primitive.paper.90}",
+          "$description": "::selection text."
+        }
+      },
+      "hover": {
+        "bg": {
+          "$value": "{color.primitive.ink.40}",
+          "$description": "Hover on rows, ghost buttons, list items."
+        },
+        "bg-strong": {
+          "$value": "{color.primitive.red.150}",
+          "$description": "Hover on links and menu items."
+        }
+      },
+      "pressed": {
+        "bg": {
+          "$value": "{color.primitive.red.50}",
+          "$description": "Pressed fill."
+        }
+      },
+      "disabled": {
+        "bg": {
+          "$value": "{color.primitive.ink.30}",
+          "$description": "Disabled control fill."
+        }
+      },
+      "marquee": {
+        "$value": "{color.primitive.alpha.red-12}",
+        "$description": "Drag marquee and ghost."
+      },
+      "drop-target": {
+        "$value": "{color.primitive.red.800}",
+        "$description": "Dashed drop-target border."
+      },
+      "scrollbar": {
+        "track": {
+          "$value": "{color.primitive.ink.20}",
+          "$description": "Scrollbar track."
+        },
+        "thumb": {
+          "$value": "{color.primitive.red.50}",
+          "$description": "Scrollbar thumb."
+        },
+        "thumb-hover": {
+          "$value": "{color.primitive.red.350}",
+          "$description": "Scrollbar thumb on hover."
+        }
+      }
+    },
+    "action": {
+      "primary": {
+        "bg": {
+          "$value": "{color.primitive.red.300}",
+          "$description": "Primary button fill (color12)."
+        },
+        "text": {
+          "$value": "{color.primitive.paper.90}",
+          "$description": "Primary button text (8.17:1)."
+        },
+        "hover-bg": {
+          "$value": "{color.primitive.red.350}",
+          "$description": "Primary button hover (7.92:1 with prose)."
+        },
+        "pressed-bg": {
+          "$value": "{color.primitive.red.150}",
+          "$description": "Primary button pressed."
+        },
+        "border": {
+          "$value": "{color.primitive.red.400}",
+          "$description": "Primary button border."
+        }
+      },
+      "secondary": {
+        "bg": {
+          "$value": "{color.primitive.alpha.transparent}",
+          "$description": "Secondary button has no fill."
+        },
+        "text": {
+          "$value": "{color.primitive.rose.800}",
+          "$description": "Secondary button text."
+        },
+        "border": {
+          "$value": "{color.primitive.rose.350}",
+          "$description": "Secondary button border (meets 3:1)."
+        },
+        "hover-bg": {
+          "$value": "{color.primitive.red.150}",
+          "$description": "Secondary button hover."
+        },
+        "pressed-bg": {
+          "$value": "{color.primitive.red.50}",
+          "$description": "Secondary button pressed."
+        }
+      },
+      "tertiary": {
+        "text": {
+          "$value": "{color.primitive.rose.700}",
+          "$description": "Ghost and icon button text."
+        },
+        "hover-bg": {
+          "$value": "{color.primitive.ink.40}",
+          "$description": "Ghost and icon button hover."
+        }
+      },
+      "destructive": {
+        "text": {
+          "$value": "{color.primitive.red.850}",
+          "$description": "Destructive button text at rest (outline style)."
+        },
+        "border": {
+          "$value": "{color.primitive.red.800}",
+          "$description": "Destructive button border."
+        },
+        "hover-bg": {
+          "$value": "{color.primitive.red.750}",
+          "$description": "Destructive button hover fill."
+        },
+        "hover-text": {
+          "$value": "{color.primitive.paper.100}",
+          "$description": "Destructive button text on hover (4.58:1)."
+        },
+        "pressed-bg": {
+          "$value": "{color.primitive.red.550}",
+          "$description": "Destructive button pressed fill."
+        },
+        "filled-bg": {
+          "$value": "{color.primitive.red.750}",
+          "$description": "Confirm-dialog destructive fill."
+        },
+        "filled-text": {
+          "$value": "{color.primitive.paper.100}",
+          "$description": "Text on the destructive fill."
+        }
+      }
+    },
+    "status": {
+      "danger": {
+        "text": {
+          "$value": "{color.primitive.red.850}",
+          "$description": "Danger text (5.40:1)."
+        },
+        "fill": {
+          "$value": "{color.primitive.red.750}",
+          "$description": "Danger fill."
+        },
+        "on-fill": {
+          "$value": "{color.primitive.paper.100}",
+          "$description": "Text on the danger fill (4.58:1)."
+        },
+        "tint": {
+          "$value": "{color.primitive.ink.60}",
+          "$description": "Danger background tint."
+        },
+        "border": {
+          "$value": "{color.primitive.red.800}",
+          "$description": "Danger border, 2px on invalid inputs."
+        }
+      },
+      "warning": {
+        "text": {
+          "$value": "{color.primitive.amber.500}",
+          "$description": "Warning text (7.54:1).",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "fill": {
+          "$value": "{color.primitive.amber.500}",
+          "$description": "Warning fill.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "on-fill": {
+          "$value": "{color.primitive.ink.20}",
+          "$description": "Text on the warning fill (7.54:1).",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "tint": {
+          "$value": "{color.primitive.amber.tint}",
+          "$description": "Warning background tint.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "border": {
+          "$value": "{color.primitive.amber.500}",
+          "$description": "Warning border.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        }
+      },
+      "success": {
+        "text": {
+          "$value": "{color.primitive.green.500}",
+          "$description": "Success text (7.13:1).",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "fill": {
+          "$value": "{color.primitive.green.500}",
+          "$description": "Success fill.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "on-fill": {
+          "$value": "{color.primitive.ink.20}",
+          "$description": "Text on the success fill (7.13:1).",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "tint": {
+          "$value": "{color.primitive.green.tint}",
+          "$description": "Success background tint.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "border": {
+          "$value": "{color.primitive.green.500}",
+          "$description": "Success border.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        }
+      },
+      "info": {
+        "text": {
+          "$value": "{color.primitive.blue.500}",
+          "$description": "Info text (7.08:1).",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "fill": {
+          "$value": "{color.primitive.blue.500}",
+          "$description": "Info fill.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "on-fill": {
+          "$value": "{color.primitive.ink.20}",
+          "$description": "Text on the info fill (7.08:1).",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "tint": {
+          "$value": "{color.primitive.blue.tint}",
+          "$description": "Info background tint.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "border": {
+          "$value": "{color.primitive.blue.500}",
+          "$description": "Info border.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        }
+      },
+      "neutral": {
+        "text": {
+          "$value": "{color.primitive.rose.600}",
+          "$description": "Neutral status text."
+        },
+        "fill": {
+          "$value": "{color.primitive.rose.350}",
+          "$description": "Neutral fill (dunst urgency_low)."
+        },
+        "on-fill": {
+          "$value": "{color.primitive.ink.0}",
+          "$description": "Text on the neutral fill (4.71:1)."
+        },
+        "tint": {
+          "$value": "{color.primitive.ink.52}",
+          "$description": "Neutral background tint."
+        },
+        "border": {
+          "$value": "{color.primitive.rose.350}",
+          "$description": "Neutral border."
+        }
+      }
+    },
+    "code": {
+      "bg": {
+        "$value": "{color.primitive.ink.20}",
+        "$description": "Editor background."
+      },
+      "current-line": {
+        "$value": "{color.primitive.ink.40}",
+        "$description": "Current line background."
+      },
+      "gutter-bg": {
+        "$value": "{color.primitive.ink.20}",
+        "$description": "Gutter background."
+      },
+      "line-number": {
+        "$value": "{color.primitive.rose.450}",
+        "$description": "Line numbers (5.10:1; replaces the site's #7d1310).",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "approved",
+            "approval": {
+              "decision": "D-003"
+            }
+          }
+        }
+      },
+      "line-number-active": {
+        "$value": "{color.primitive.rose.700}",
+        "$description": "Line number of the current line."
+      },
+      "gutter-rule": {
+        "$value": "{color.primitive.ink.60}",
+        "$description": "Rule between gutter and text."
+      },
+      "caret": {
+        "$value": "{color.primitive.rose.700}",
+        "$description": "Caret (Xresources *cursorColor)."
+      },
+      "selection-bg": {
+        "$value": "{color.primitive.red.50}",
+        "$description": "Editor selection background (muted text stays 4.71:1)."
+      },
+      "search-match-bg": {
+        "$value": "{color.primitive.red.150}",
+        "$description": "Other search matches."
+      },
+      "search-current-bg": {
+        "$value": "{color.primitive.rose.800}",
+        "$description": "Current search match background."
+      },
+      "search-current-text": {
+        "$value": "{color.primitive.ink.20}",
+        "$description": "Current search match text."
+      },
+      "bracket-match": {
+        "$value": "{color.primitive.red.800}",
+        "$description": "Matching bracket 1px border."
+      },
+      "indent-guide": {
+        "$value": "{color.primitive.red.100}",
+        "$description": "Indent guides."
+      },
+      "whitespace": {
+        "$value": "{color.primitive.red.200}",
+        "$description": "Rendered whitespace (decorative)."
+      },
+      "syntax": {
+        "keyword": {
+          "$value": "{color.primitive.red.850}",
+          "$description": "Keywords (Xresources color5 lineage)."
+        },
+        "string": {
+          "$value": "{color.primitive.rose.600}",
+          "$description": "Strings (color2 lineage)."
+        },
+        "comment": {
+          "$value": "{color.primitive.rose.450}",
+          "$description": "Comments, italic (color8 lineage, corrected for contrast).",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-003"
+              }
+            }
+          }
+        },
+        "number": {
+          "$value": "{color.primitive.rose.650}",
+          "$description": "Numbers."
+        },
+        "constant": {
+          "$value": "{color.primitive.rose.650}",
+          "$description": "Constants and booleans."
+        },
+        "function": {
+          "$value": "{color.primitive.rose.800}",
+          "$description": "Function names and calls (color7 lineage)."
+        },
+        "variable": {
+          "$value": "{color.primitive.rose.700}",
+          "$description": "Variables and default text."
+        },
+        "type": {
+          "$value": "{color.primitive.rose.550}",
+          "$description": "Types."
+        },
+        "operator": {
+          "$value": "{color.primitive.rose.700}",
+          "$description": "Operators."
+        },
+        "punctuation": {
+          "$value": "{color.primitive.rose.700}",
+          "$description": "Punctuation."
+        },
+        "property": {
+          "$value": "{color.primitive.red.800}",
+          "$description": "Properties and keys (site .syntax-key)."
+        },
+        "heading": {
+          "$value": "{color.primitive.red.800}",
+          "$description": "Markup headings (site .syntax-heading)."
+        },
+        "tag": {
+          "$value": "{color.primitive.red.850}",
+          "$description": "Markup tags."
+        },
+        "attribute": {
+          "$value": "{color.primitive.rose.650}",
+          "$description": "Markup attributes."
+        },
+        "escape": {
+          "$value": "{color.primitive.rose.650}",
+          "$description": "Escape sequences and regex, bold."
+        },
+        "invalid": {
+          "$value": "{color.primitive.red.800}",
+          "$description": "Invalid text: wavy underline."
+        },
+        "deprecated": {
+          "$value": "{color.primitive.rose.450}",
+          "$description": "Deprecated symbol: line-through."
+        }
+      }
+    },
+    "diagnostic": {
+      "error": {
+        "underline": {
+          "$value": "{color.primitive.red.800}",
+          "$description": "Error wavy underline."
+        },
+        "text": {
+          "$value": "{color.primitive.red.850}",
+          "$description": "Error message text."
+        },
+        "stripe": {
+          "$value": "{color.primitive.red.800}",
+          "$description": "Error stripe mark."
+        },
+        "bg": {
+          "$value": "{color.primitive.ink.60}",
+          "$description": "Error line background."
+        }
+      },
+      "warning": {
+        "underline": {
+          "$value": "{color.primitive.amber.500}",
+          "$description": "Warning wavy underline.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "text": {
+          "$value": "{color.primitive.amber.500}",
+          "$description": "Warning message text.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "stripe": {
+          "$value": "{color.primitive.amber.500}",
+          "$description": "Warning stripe mark.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        }
+      },
+      "info": {
+        "underline": {
+          "$value": "{color.primitive.blue.500}",
+          "$description": "Info dotted underline.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "text": {
+          "$value": "{color.primitive.blue.500}",
+          "$description": "Info message text.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        }
+      },
+      "hint": {
+        "underline": {
+          "$value": "{color.primitive.rose.450}",
+          "$description": "Hint dotted underline."
+        }
+      },
+      "unused": {
+        "text": {
+          "$value": "{color.primitive.rose.600}",
+          "$description": "Unused symbol, dotted underline."
+        }
+      }
+    },
+    "diff": {
+      "added": {
+        "bg": {
+          "$value": "{color.primitive.green.tint}",
+          "$description": "Added line background.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "gutter": {
+          "$value": "{color.primitive.green.500}",
+          "$description": "Added gutter mark and +.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "emphasis": {
+          "$value": "{color.primitive.green.500}",
+          "$description": "Word-level addition: 2px underline.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        }
+      },
+      "removed": {
+        "bg": {
+          "$value": "{color.primitive.ink.60}",
+          "$description": "Removed line background."
+        },
+        "gutter": {
+          "$value": "{color.primitive.red.800}",
+          "$description": "Removed gutter mark and −."
+        },
+        "emphasis": {
+          "$value": "{color.primitive.red.800}",
+          "$description": "Word-level removal: underline and line-through."
+        }
+      },
+      "modified": {
+        "bg": {
+          "$value": "{color.primitive.amber.tint}",
+          "$description": "Modified line background.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "gutter": {
+          "$value": "{color.primitive.amber.500}",
+          "$description": "Modified gutter mark and ~.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        }
+      },
+      "conflict-border": {
+        "$value": "{color.primitive.red.850}",
+        "$description": "Conflict block: double 1px border."
+      },
+      "header-bg": {
+        "$value": "{color.primitive.ink.52}",
+        "$description": "Hunk header background."
+      }
+    },
+    "terminal": {
+      "bg": {
+        "$value": "{color.primitive.ink.20}",
+        "$description": "Terminal background."
+      },
+      "fg": {
+        "$value": "{color.primitive.rose.700}",
+        "$description": "Terminal foreground."
+      },
+      "cursor": {
+        "$value": "{color.primitive.rose.700}",
+        "$description": "Terminal cursor."
+      },
+      "selection-bg": {
+        "$value": "{color.primitive.red.350}",
+        "$description": "Terminal selection."
+      },
+      "selection-text": {
+        "$value": "{color.primitive.paper.90}",
+        "$description": "Terminal selection text."
+      },
+      "ansi": {
+        "0": {
+          "$value": "{color.primitive.ansi.0}",
+          "$description": "ANSI slot 0, exact heritage value."
+        },
+        "1": {
+          "$value": "{color.primitive.ansi.1}",
+          "$description": "ANSI slot 1, exact heritage value."
+        },
+        "2": {
+          "$value": "{color.primitive.ansi.2}",
+          "$description": "ANSI slot 2, exact heritage value."
+        },
+        "3": {
+          "$value": "{color.primitive.ansi.3}",
+          "$description": "ANSI slot 3, exact heritage value."
+        },
+        "4": {
+          "$value": "{color.primitive.ansi.4}",
+          "$description": "ANSI slot 4, exact heritage value."
+        },
+        "5": {
+          "$value": "{color.primitive.ansi.5}",
+          "$description": "ANSI slot 5, exact heritage value."
+        },
+        "6": {
+          "$value": "{color.primitive.ansi.6}",
+          "$description": "ANSI slot 6, exact heritage value."
+        },
+        "7": {
+          "$value": "{color.primitive.ansi.7}",
+          "$description": "ANSI slot 7, exact heritage value."
+        },
+        "8": {
+          "$value": "{color.primitive.ansi.8}",
+          "$description": "ANSI slot 8, exact heritage value."
+        },
+        "9": {
+          "$value": "{color.primitive.ansi.9}",
+          "$description": "ANSI slot 9, exact heritage value."
+        },
+        "10": {
+          "$value": "{color.primitive.ansi.10}",
+          "$description": "ANSI slot 10, exact heritage value."
+        },
+        "11": {
+          "$value": "{color.primitive.ansi.11}",
+          "$description": "ANSI slot 11, exact heritage value."
+        },
+        "12": {
+          "$value": "{color.primitive.ansi.12}",
+          "$description": "ANSI slot 12, exact heritage value."
+        },
+        "13": {
+          "$value": "{color.primitive.ansi.13}",
+          "$description": "ANSI slot 13, exact heritage value."
+        },
+        "14": {
+          "$value": "{color.primitive.ansi.14}",
+          "$description": "ANSI slot 14, exact heritage value."
+        },
+        "15": {
+          "$value": "{color.primitive.ansi.15}",
+          "$description": "ANSI slot 15, exact heritage value."
+        }
+      }
+    },
+    "chart": {
+      "series-1": {
+        "$value": "{color.primitive.rose.800}",
+        "$description": "First series."
+      },
+      "series-2": {
+        "$value": "{color.primitive.red.850}",
+        "$description": "Second series."
+      },
+      "series-3": {
+        "$value": "{color.primitive.rose.600}",
+        "$description": "Third series."
+      },
+      "series-4": {
+        "$value": "{color.primitive.rose.350}",
+        "$description": "Fourth series (non-text, 4.45:1)."
+      },
+      "axis": {
+        "$value": "{color.primitive.red.400}",
+        "$description": "Axis lines."
+      },
+      "grid": {
+        "$value": "{color.primitive.ink.60}",
+        "$description": "Grid lines."
+      },
+      "label": {
+        "$value": "{color.primitive.rose.600}",
+        "$description": "Axis labels."
+      }
+    },
+    "icon": {
+      "default": {
+        "$value": "{color.primitive.rose.700}",
+        "$description": "Icons take the text colour (currentColor in CSS)."
+      },
+      "decorative": {
+        "$value": "{color.primitive.rose.350}",
+        "$description": "Decorative glyphs (3:1 as graphics, never text)."
+      }
+    }
+  }
+}

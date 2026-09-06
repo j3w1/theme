@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "0.1.0-draft.1",
+  "definitions": {
+    "specified": "spec/components/<id>.md validates",
+    "demonstrated": "<id>.demo.html exists with a fragment for every declared variant and renders on the site",
+    "tested": "tests/browser/components/<id>.spec.js exists"
+  },
+  "byFamily": {},
+  "components": {}
+}
