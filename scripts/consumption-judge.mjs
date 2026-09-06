@@ -124,12 +124,20 @@ if (browser && findings.length === 0) {
       const wrapper = document.querySelector(`[data-state="${state.replace(/"/g, '\\"')}"]`);
       if (!wrapper) continue;
       const control = wrapper.querySelector("input, select, textarea, button, [role]") ?? wrapper.firstElementChild;
-      const box = control?.parentElement && control.parentElement !== wrapper ? control.parentElement : control;
       if (!control) continue;
       if (state.includes("focus-visible")) control.focus?.();
-      const cs = getComputedStyle(control);
-      const bs = getComputedStyle(box);
-      out[state] = { color: toHex(cs.color), background: toHex(bs.backgroundColor === "rgba(0, 0, 0, 0)" ? cs.backgroundColor : bs.backgroundColor), border: toHex(bs.borderTopColor), outline: toHex(bs.outlineColor), outlineStyle: bs.outlineStyle, radius: bs.borderRadius };
+      /* The specification names roles, not markup: the border, outline and
+         background may sit on the control or on the box around it. Measure
+         whichever element actually declares each property. */
+      const candidates = [control, control.parentElement, control.parentElement?.parentElement].filter((el) => el && el !== wrapper && wrapper.contains(el));
+      const styles = candidates.map((el) => getComputedStyle(el));
+      const pick = (test, fallback) => styles.find(test) ?? fallback;
+      const cs = styles[0];
+      const borderStyle = pick((s) => s.borderTopStyle !== "none" && parseFloat(s.borderTopWidth) > 0, cs);
+      const outlineStyle = pick((s) => s.outlineStyle !== "none" && parseFloat(s.outlineWidth) > 0, cs);
+      const bgStyle = pick((s) => s.backgroundColor !== "rgba(0, 0, 0, 0)", cs);
+      const placeholder = state.includes("placeholder-shown") && "value" in control && control.value === "" ? getComputedStyle(control, "::placeholder").color : null;
+      out[state] = { color: toHex(placeholder ?? cs.color), background: toHex(bgStyle.backgroundColor), border: toHex(borderStyle.borderTopColor), outline: toHex(outlineStyle.outlineColor), outlineStyle: outlineStyle.outlineStyle, radius: borderStyle.borderRadius };
     }
     return out;
   }, component.states);

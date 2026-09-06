@@ -52,4 +52,4 @@ state's computed colour, background, border and outline equal the component's
 
 | run-id | rev | component | agent | mode | result | findings | class | follow-up |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| — | — | — | — | — | not yet run | — | — | first run scheduled for the v0.1.0 release candidate |
+| 365b19a-2026-09-06-1 | 365b19a (0.1.0-draft.1) | text-field | Claude Fable 5.1, fresh session | standard, --browser | PASS (14/14 states) | judge measured the wrapper box instead of the input | tooling | judge measures whichever element declares each property; kit gains consume.md and the lock schema; compact export names pending decision ids; text-field States table clarified (invalid+focus ring form, disabled label, read-only focus edge, loading glyph) — no test loosened |

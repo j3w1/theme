@@ -1,0 +1,16 @@
+{
+  "agent": "Claude Fable 5.1 (fresh general-purpose session; kit directory only, no repository, site or screenshot access)",
+  "date": "2026-09-06",
+  "kitMode": "standard",
+  "themeVersion": "0.1.0-draft.1",
+  "revision": "365b19aafaa47d3047ee58cb7bae04eff4900d6f",
+  "component": "text-field",
+  "questionsAsked": 0,
+  "questionsListedInReport": 8,
+  "ambiguitiesRecorded": 17,
+  "judge": {
+    "static": "PASS",
+    "browser": "PASS after a tooling fix: the judge measured the border on the wrapper box while the reconstruction put it on the input; the judge now measures whichever element declares each property (classification: tooling, pass criteria unchanged)"
+  },
+  "followUp": "The kit now includes agents/consume.md and the lock schema; the compact export names the pending decision id of each proposed role; the text-field States table states the invalid+focus ring form, the disabled label colour, the read-only focus edge and the loading glyph position."
+}

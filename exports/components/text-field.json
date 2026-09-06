@@ -3,7 +3,7 @@
   "theme": "j3w1-theme",
   "version": "0.1.0-draft.1",
   "profile": "default",
-  "sourceDigest": "sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=",
+  "sourceDigest": "sha256-wnJ3bd7sJTG2aScwKDRQODBNkg41wUbYrm2inwFtaJ0=",
   "id": "text-field",
   "family": "forms-basic",
   "maturity": "stable",
@@ -328,7 +328,7 @@
     },
     {
       "state": "invalid+focus-visible",
-      "visual": "the 2px danger border and the ring in {color.interaction.focus.ring-container} at −4px",
+      "visual": "the 2px danger border and a 1px dashed ring in {color.interaction.focus.ring-container} at −4px (the control form, recoloured; never the 2px container form)",
       "channel": "double boundary",
       "tokens": {
         "fg": {
@@ -361,7 +361,7 @@
     },
     {
       "state": "disabled",
-      "visual": "text {color.text.disabled}; border {color.border.disabled}; background {color.interaction.disabled.bg}; no hover",
+      "visual": "text {color.text.disabled}; border {color.border.disabled}; background {color.interaction.disabled.bg}; no hover; the label and help keep their colours",
       "channel": "`disabled`; cursor: not-allowed",
       "tokens": {}
     },
@@ -390,13 +390,13 @@
     },
     {
       "state": "read-only+focus-visible",
-      "visual": "the dotted edge and the dashed ring",
+      "visual": "the dotted {color.border.divider} edge unchanged, plus the dashed ring at −2px",
       "channel": "the ring",
       "tokens": {}
     },
     {
       "state": "loading",
-      "visual": "size unchanged; trailing static `⋯` glyph in {color.text.muted}; input remains editable",
+      "visual": "size unchanged; a static `⋯` glyph in {color.text.muted} inside the box after the input and before any trailing action; input remains editable",
       "channel": "glyph; `aria-busy`",
       "tokens": {}
     }

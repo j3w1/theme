@@ -143,13 +143,13 @@ message, which takes the help slot visually while help stays in the DOM and
 | filled | as default with a value | — |
 | required | `*` after the label in {color.status.danger.text} plus visually hidden "required" | `required` attribute; the mark |
 | invalid | border 2px {color.status.danger.border}; message with the ✕ glyph | border width 1 → 2px; glyph; `aria-invalid` |
-| invalid+focus-visible | the 2px danger border and the ring in {color.interaction.focus.ring-container} at −4px | double boundary |
+| invalid+focus-visible | the 2px danger border and a 1px dashed ring in {color.interaction.focus.ring-container} at −4px (the control form, recoloured; never the 2px container form) | double boundary |
 | invalid+hover | as invalid with the hover background | cursor |
-| disabled | text {color.text.disabled}; border {color.border.disabled}; background {color.interaction.disabled.bg}; no hover | `disabled`; cursor: not-allowed |
+| disabled | text {color.text.disabled}; border {color.border.disabled}; background {color.interaction.disabled.bg}; no hover; the label and help keep their colours | `disabled`; cursor: not-allowed |
 | disabled+filled | as disabled with a value | `disabled` |
 | read-only | no box: 1px dotted {color.border.divider} bottom edge on {color.surface.canvas}; text {color.text.default}; focusable and selectable | `readonly`; dotted edge |
-| read-only+focus-visible | the dotted edge and the dashed ring | the ring |
-| loading | size unchanged; trailing static `⋯` glyph in {color.text.muted}; input remains editable | glyph; `aria-busy` |
+| read-only+focus-visible | the dotted {color.border.divider} edge unchanged, plus the dashed ring at −2px | the ring |
+| loading | size unchanged; a static `⋯` glyph in {color.text.muted} inside the box after the input and before any trailing action; input remains editable | glyph; `aria-busy` |
 
 Precedence when several apply: disabled > loading > invalid > hover;
 focus-visible is always drawn.

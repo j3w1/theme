@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>text-field — j3w1-theme 0.1.0-draft.1 state matrix</title>
+<style>
+/* j3w1-theme 0.1.0-draft.1 · profile default · component text-field
+   Every colour below is a resolved value from components/text-field.json,
+   theme.compact.md or tokens.resolved.json. Radius 0 throughout. */
+
+:root { color-scheme: dark; }
+
+html, body {
+  margin: 0;
+  background: #0c0909;                 /* color.surface.canvas */
+  color: #e99499;                      /* color.text.default */
+}
+body {
+  padding: 24px;                       /* space.24 */
+  font-family: "SauceCodePro NFM", "Source Code Pro", "Cascadia Mono", "Consolas",
+               "Liberation Mono", "DejaVu Sans Mono", monospace; /* font.family.mono */
+  font-size: 13px;                     /* font.size.ui-md */
+  line-height: 18px;                   /* font.line-height.ui-md */
+  font-weight: 400;                    /* font.weight.regular */
+}
+::selection {
+  background: #911410;                 /* color.interaction.text-selection.bg */
+  color: #f4eeee;                      /* color.interaction.text-selection.text */
+}
+
+h1 {
+  margin: 0 0 24px;
+  font-size: 20px;                     /* font.size.h1 */
+  line-height: 28px;                   /* font.line-height.h1 */
+  font-weight: 700;                    /* font.weight.bold */
+  color: #ffa2a7;                      /* color.text.bright */
+}
+
+/* The demonstration grid: one cell per declared state. */
+.matrix {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 32px 24px;                      /* space.32 / space.24 */
+  max-width: 1024px;
+}
+.matrix > [data-state] {
+  min-width: 0;
+}
+.state-name {
+  display: block;
+  margin: 0 0 8px;                     /* space.8 */
+  font-size: 12px;                     /* font.size.ui-sm */
+  line-height: 16px;                   /* font.line-height.ui-sm */
+  color: #bd787d;                      /* color.text.muted */
+}
+.state-name::before { content: "data-state="; }
+
+/* ---------- field (label stacked above; box; help; message) ---------- */
+.tf {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;                            /* density.comfortable.gap */
+  min-width: 0;
+}
+.tf-label {
+  color: #ffa2a7;                      /* label.text → color.text.bright */
+}
+.tf-required-mark {
+  color: #f73f35;                      /* label.required-mark → color.status.danger.text */
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0; border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.tf-box {
+  position: relative;
+  display: flex;
+  min-width: 0;
+}
+.tf-help {
+  margin: 0;
+  font-size: 12px;                     /* font.size.ui-sm */
+  line-height: 16px;                   /* font.line-height.ui-sm */
+  color: #bd787d;                      /* help.text → color.text.muted */
+}
+.tf-message {
+  margin: 0;
+  font-size: 12px;
+  line-height: 16px;
+  color: #f73f35;                      /* message.text → color.status.danger.text */
+}
+.tf-message .glyph { margin-inline-end: 4px; }
+
+/* ---------- input: default ---------- */
+.tf-input {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  height: 32px;                        /* density.comfortable.control-height */
+  margin: 0;
+  padding: 0 12px;                     /* density.comfortable.control-padding-x */
+  font: inherit;
+  color: #e99499;                      /* input.text → color.text.default */
+  background: #0c0909;                 /* root.bg → color.surface.input */
+  border: 1px solid #a3676b;           /* border.width.default; root.border → color.border.control */
+  border-radius: 0;                    /* radius.none */
+  outline: none;
+  caret-color: #e99499;                /* input.caret → color.code.caret */
+  appearance: none;
+  -webkit-appearance: none;
+  transition: background-color 80ms;   /* motion.duration.fast; fills only */
+}
+.tf-input::selection {
+  background: #911410;                 /* input.selection-bg */
+  color: #f4eeee;                      /* input.selection-text */
+}
+.tf-input::placeholder {
+  color: #bd787d;                      /* input.placeholder → color.text.placeholder */
+  font-style: italic;
+  opacity: 1;
+}
+/* placeholder-shown: native :placeholder-shown, plus the static class */
+.tf-input:placeholder-shown,
+.tf-input.is-placeholder-shown {
+  font-style: normal;                  /* only the placeholder itself is italic */
+}
+/* filled: as default with a value; no additional styling */
+.tf-input.is-filled { }
+
+/* ---------- hover: fill only, hover-capable pointers, never on disabled / read-only ---------- */
+@media (hover: hover) {
+  .tf-input:hover:not(:disabled):not([readonly]) {
+    background: #1c0a09;               /* root.bg-hover → color.interaction.hover.bg */
+    cursor: text;
+  }
+}
+.tf-input.is-hover:not(:disabled):not([readonly]) {
+  background: #1c0a09;                 /* static rendering of the hover state */
+  cursor: text;
+}
+
+/* ---------- focus-visible: active border + 1px dashed ring at -2px (D-006) ---------- */
+.tf-input:focus:not(:focus-visible) { outline: none; }
+.tf-input:focus-visible,
+.tf-input.is-focus-visible {
+  border-color: #e53935;               /* root.border-focus → color.border.active */
+  outline: 1px dashed #e53935;         /* focus.ring → color.interaction.focus.ring */
+  outline-offset: -2px;                /* focus.offset */
+}
+
+/* ---------- invalid: 2px danger border (border.width.emphasis) ---------- */
+.tf-input[aria-invalid="true"] {
+  border-width: 2px;
+  border-color: #e53935;               /* root.border-invalid → color.status.danger.border */
+  padding: 0 11px;                     /* keeps the text inset at 13px with the 2px border */
+}
+/* invalid + focus-visible: 2px danger border and the ring in the container colour at -4px */
+.tf-input[aria-invalid="true"]:focus-visible,
+.tf-input[aria-invalid="true"].is-focus-visible {
+  border-color: #e53935;               /* the danger border wins over border.active */
+  outline: 1px dashed #ffa2a7;         /* root.ring-invalid → color.interaction.focus.ring-container */
+  outline-offset: -4px;                /* focus.offset-invalid */
+}
+/* invalid + hover: as invalid with the hover background (handled by the hover rules above) */
+
+/* ---------- loading: trailing static ⋯ glyph; input remains editable; size unchanged ---------- */
+.tf-input[aria-busy="true"] {
+  padding-inline-end: 32px;            /* room for the glyph: 12px + 16px icon.size.md + 4px */
+}
+.tf-loading-glyph {
+  position: absolute;
+  inset-inline-end: 12px;              /* density.comfortable.control-padding-x */
+  top: 0;
+  height: 32px;
+  line-height: 32px;
+  width: 16px;                         /* icon.size.md */
+  text-align: center;
+  color: #bd787d;                      /* loading.glyph → color.text.muted */
+  pointer-events: none;
+}
+
+/* ---------- read-only: no box; 1px dotted divider bottom edge on the canvas ---------- */
+.tf-input[readonly] {
+  background: #0c0909;                 /* color.surface.canvas */
+  color: #e99499;                      /* color.text.default */
+  border-width: 0 0 1px 0;
+  border-style: dotted;
+  border-color: #2b0e0d;               /* root.border-readonly → color.border.divider */
+  padding: 0 12px;
+  cursor: default;
+}
+/* read-only + focus-visible: the dotted edge and the dashed ring */
+.tf-input[readonly]:focus-visible,
+.tf-input[readonly].is-focus-visible {
+  border-color: #2b0e0d;               /* the edge stays the divider colour */
+  outline: 1px dashed #e53935;         /* color.interaction.focus.ring */
+  outline-offset: -2px;
+}
+
+/* ---------- disabled: highest precedence; never opacity; no hover or pressed ---------- */
+.tf-input:disabled {
+  color: #8a5559;                      /* input.text-disabled → color.text.disabled */
+  background: #160b0b;                 /* root.bg-disabled → color.interaction.disabled.bg */
+  border: 1px solid #7d1310;           /* root.border-disabled → color.border.disabled */
+  padding: 0 12px;
+  cursor: not-allowed;
+  -webkit-text-fill-color: #8a5559;    /* WebKit/Blink otherwise override the disabled text colour */
+}
+.tf-input:disabled::placeholder {
+  color: #8a5559;
+}
+
+/* ---------- forced colours / reduced motion ---------- */
+@media (forced-colors: active) {
+  .tf-input:focus-visible,
+  .tf-input.is-focus-visible {
+    outline-color: Highlight;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tf-input { transition-duration: 0.01ms; }
+}
+</style>
+</head>
+<body>
+
+<h1>text-field · state matrix</h1>
+
+<div class="matrix">
+
+  <!-- 1. default -->
+  <div data-state="default">
+    <span class="state-name">default</span>
+    <div class="tf">
+      <label class="tf-label" for="tf-default">Display name</label>
+      <div class="tf-box">
+        <input class="tf-input" id="tf-default" type="text" aria-describedby="tf-default-help">
+      </div>
+      <p class="tf-help" id="tf-default-help">Shown on your profile.</p>
+    </div>
+  </div>
+
+  <!-- 2. hover (static via .is-hover; live via :hover under @media (hover: hover)) -->
+  <div data-state="hover">
+    <span class="state-name">hover</span>
+    <div class="tf">
+      <label class="tf-label" for="tf-hover">Display name</label>
+      <div class="tf-box">
+        <input class="tf-input is-hover" id="tf-hover" type="text" aria-describedby="tf-hover-help">
+      </div>
+      <p class="tf-help" id="tf-hover-help">Shown on your profile.</p>
+    </div>
+  </div>
+
+  <!-- 3. focus-visible (static via .is-focus-visible; live via :focus-visible) -->
+  <div data-state="focus-visible">
+    <span class="state-name">focus-visible</span>
+    <div class="tf">
+      <label class="tf-label" for="tf-focus">Display name</label>
+      <div class="tf-box">
+        <input class="tf-input is-focus-visible" id="tf-focus" type="text" aria-describedby="tf-focus-help">
+      </div>
+      <p class="tf-help" id="tf-focus-help">Shown on your profile.</p>
+    </div>
+  </div>
+
+  <!-- 4. placeholder-shown (native: empty value with a placeholder; class added for the static matrix) -->
+  <div data-state="placeholder-shown">
+    <span class="state-name">placeholder-shown</span>
+    <div class="tf">
+      <label class="tf-label" for="tf-placeholder">Display name</label>
+      <div class="tf-box">
+        <input class="tf-input is-placeholder-shown" id="tf-placeholder" type="text" placeholder="e.g. Ada Lovelace" aria-describedby="tf-placeholder-help">
+      </div>
+      <p class="tf-help" id="tf-placeholder-help">Shown on your profile.</p>
+    </div>
+  </div>
+
+  <!-- 5. filled -->
+  <div data-state="filled">
+    <span class="state-name">filled</span>
+    <div class="tf">
+      <label class="tf-label" for="tf-filled">Display name</label>
+      <div class="tf-box">
+        <input class="tf-input is-filled" id="tf-filled" type="text" value="Ada Lovelace" aria-describedby="tf-filled-help">
+      </div>
+      <p class="tf-help" id="tf-filled-help">Shown on your profile.</p>
+    </div>
+  </div>
+
+  <!-- 6. required -->
+  <div data-state="required">
+    <span class="state-name">required</span>
+    <div class="tf">
+      <label class="tf-label" for="tf-required">Display name<span class="tf-required-mark" aria-hidden="true">*</span><span class="visually-hidden"> required</span></label>
+      <div class="tf-box">
+        <input class="tf-input" id="tf-required" type="text" required aria-describedby="tf-required-help">
+      </div>
+      <p class="tf-help" id="tf-required-help">Shown on your profile.</p>
+    </div>
+  </div>
+
+  <!-- 7. invalid -->
+  <div data-state="invalid">
+    <span class="state-name">invalid</span>
+    <div class="tf">
+      <label class="tf-label" for="tf-invalid">Display name</label>
+      <div class="tf-box">
+        <input class="tf-input" id="tf-invalid" type="text" value="" aria-invalid="true" aria-describedby="tf-invalid-help tf-invalid-msg">
+      </div>
+      <p class="tf-help" id="tf-invalid-help">Shown on your profile.</p>
+      <p class="tf-message" id="tf-invalid-msg"><span class="glyph" aria-hidden="true">✕</span>Enter a display name.</p>
+    </div>
+  </div>
+
+  <!-- 8. invalid+focus-visible -->
+  <div data-state="invalid+focus-visible">
+    <span class="state-name">invalid+focus-visible</span>
+    <div class="tf">
+      <label class="tf-label" for="tf-invalid-focus">Display name</label>
+      <div class="tf-box">
+        <input class="tf-input is-focus-visible" id="tf-invalid-focus" type="text" value="" aria-invalid="true" aria-describedby="tf-invalid-focus-help tf-invalid-focus-msg">
+      </div>
+      <p class="tf-help" id="tf-invalid-focus-help">Shown on your profile.</p>
+      <p class="tf-message" id="tf-invalid-focus-msg"><span class="glyph" aria-hidden="true">✕</span>Enter a display name.</p>
+    </div>
+  </div>
+
+  <!-- 9. invalid+hover -->
+  <div data-state="invalid+hover">
+    <span class="state-name">invalid+hover</span>
+    <div class="tf">
+      <label class="tf-label" for="tf-invalid-hover">Display name</label>
+      <div class="tf-box">
+        <input class="tf-input is-hover" id="tf-invalid-hover" type="text" value="" aria-invalid="true" aria-describedby="tf-invalid-hover-help tf-invalid-hover-msg">
+      </div>
+      <p class="tf-help" id="tf-invalid-hover-help">Shown on your profile.</p>
+      <p class="tf-message" id="tf-invalid-hover-msg"><span class="glyph" aria-hidden="true">✕</span>Enter a display name.</p>
+    </div>
+  </div>
+
+  <!-- 10. disabled -->
+  <div data-state="disabled">
+    <span class="state-name">disabled</span>
+    <div class="tf">
+      <label class="tf-label" for="tf-disabled">Display name</label>
+      <div class="tf-box">
+        <input class="tf-input" id="tf-disabled" type="text" disabled aria-describedby="tf-disabled-help">
+      </div>
+      <p class="tf-help" id="tf-disabled-help">Managed by your organisation.</p>
+    </div>
+  </div>
+
+  <!-- 11. disabled+filled -->
+  <div data-state="disabled+filled">
+    <span class="state-name">disabled+filled</span>
+    <div class="tf">
+      <label class="tf-label" for="tf-disabled-filled">Display name</label>
+      <div class="tf-box">
+        <input class="tf-input is-filled" id="tf-disabled-filled" type="text" value="Ada Lovelace" disabled aria-describedby="tf-disabled-filled-help">
+      </div>
+      <p class="tf-help" id="tf-disabled-filled-help">Managed by your organisation.</p>
+    </div>
+  </div>
+
+  <!-- 12. read-only -->
+  <div data-state="read-only">
+    <span class="state-name">read-only</span>
+    <div class="tf">
+      <label class="tf-label" for="tf-readonly">Account id</label>
+      <div class="tf-box">
+        <input class="tf-input" id="tf-readonly" type="text" value="usr_01HZK9" readonly aria-describedby="tf-readonly-help">
+      </div>
+      <p class="tf-help" id="tf-readonly-help">Assigned when the account was created.</p>
+    </div>
+  </div>
+
+  <!-- 13. read-only+focus-visible -->
+  <div data-state="read-only+focus-visible">
+    <span class="state-name">read-only+focus-visible</span>
+    <div class="tf">
+      <label class="tf-label" for="tf-readonly-focus">Account id</label>
+      <div class="tf-box">
+        <input class="tf-input is-focus-visible" id="tf-readonly-focus" type="text" value="usr_01HZK9" readonly aria-describedby="tf-readonly-focus-help">
+      </div>
+      <p class="tf-help" id="tf-readonly-focus-help">Assigned when the account was created.</p>
+    </div>
+  </div>
+
+  <!-- 14. loading (aria-busy on the input; static ⋯ glyph trails the value) -->
+  <div data-state="loading">
+    <span class="state-name">loading</span>
+    <div class="tf">
+      <label class="tf-label" for="tf-loading">Display name</label>
+      <div class="tf-box">
+        <input class="tf-input is-loading" id="tf-loading" type="text" value="Ada Lovelace" aria-busy="true" aria-describedby="tf-loading-help">
+        <span class="tf-loading-glyph" aria-hidden="true">⋯</span>
+      </div>
+      <p class="tf-help" id="tf-loading-help">Checking availability.</p>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

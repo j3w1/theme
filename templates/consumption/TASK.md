@@ -6,8 +6,11 @@ described in `components/<id>.json` in every declared state.
 
 Rules:
 
-- Read `theme.compact.md` first, then the component JSON, then
+- Read `theme.compact.md` first, then the component JSON, then `consume.md`
+  for the deviation-report and `theme.lock.json` formats, then
   `tokens.resolved.json` only for aliases the JSON does not inline.
+- Render the instances on `color.surface.canvas` at the `comfortable` density;
+  demonstrate a size only if a state names one.
 - Render one instance per declared state, each wrapped in an element with
   `data-state="<state>"`. Use real attributes where the state is native
   (`disabled`, `readonly`, `aria-invalid="true"`, `aria-selected`), and a

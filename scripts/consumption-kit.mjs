@@ -32,6 +32,8 @@ await fs.rm(outDir, { recursive: true, force: true });
 await fs.mkdir(path.join(outDir, "components"), { recursive: true });
 const copy = async (relative, target = relative) => fs.writeFile(path.join(outDir, target), await readText(relative));
 await copy("exports/theme.compact.md", "theme.compact.md");
+await copy("agents/consume.md", "consume.md");
+await copy("schemas/json/theme.lock.schema.json", "theme.lock.schema.json");
 await copy(componentFile, `components/${id}.json`);
 await copy(`exports/components/${id}.brief.txt`, `components/${id}.brief.txt`);
 if (!strict) await copy("exports/tokens.resolved.json", "tokens.resolved.json");
