@@ -3,7 +3,7 @@
   "schemaVersion": 1,
   "name": "j3w1-theme",
   "displayName": "j3w1 UI Theme Spec",
-  "version": "0.1.0-draft.1",
+  "version": "0.1.0",
   "description": "Canonical versioned theme specification for the j3w1 identity: warm-black surfaces, rose text, red focus, dark-red selection, 1px square borders, zero radii, monospace character.",
   "repository": "https://github.com/j3w1/theme",
   "tokenFormat": {
@@ -11,8 +11,20 @@
     "specUrl": "https://www.designtokens.org/tr/2025.10/format/",
     "note": "Design Tokens Community Group Final Community Group Report. Not a W3C Recommendation.",
     "supported": {
-      "types": ["color", "dimension", "fontFamily", "fontWeight", "number", "duration", "border", "typography", "shadow"],
-      "colorSpaces": ["srgb"],
+      "types": [
+        "color",
+        "dimension",
+        "fontFamily",
+        "fontWeight",
+        "number",
+        "duration",
+        "border",
+        "typography",
+        "shadow"
+      ],
+      "colorSpaces": [
+        "srgb"
+      ],
       "colorHexRequired": true,
       "aliases": "curly-brace references resolved across all token files of a profile (project convention; the format itself only shows same-file references)",
       "extensionsKey": "io.github.j3w1.theme"
@@ -20,8 +32,13 @@
   },
   "sourceRevision": {
     "policy": "consumer-pinned-git-revision",
-    "allowed": ["tag", "commit"],
-    "forbidden": ["branch"],
+    "allowed": [
+      "tag",
+      "commit"
+    ],
+    "forbidden": [
+      "branch"
+    ],
     "tagPattern": "^v\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z.]+)?$",
     "resolveTag": "https://api.github.com/repos/j3w1/theme/git/ref/tags/{tag}",
     "rawBase": "https://raw.githubusercontent.com/j3w1/theme/{rev}/",
@@ -33,14 +50,23 @@
       "displayName": "Default (approved everyday composition)",
       "status": "approved",
       "default": true,
-      "tokens": ["tokens/primitives.tokens.json", "tokens/semantic.tokens.json", "tokens/foundations.tokens.json"]
+      "tokens": [
+        "tokens/primitives.tokens.json",
+        "tokens/semantic.tokens.json",
+        "tokens/foundations.tokens.json"
+      ]
     },
     {
       "id": "heritage-ansi",
       "displayName": "Heritage ANSI (the sixteen historical slots, exact)",
       "status": "heritage",
       "default": false,
-      "tokens": ["tokens/primitives.tokens.json", "tokens/semantic.tokens.json", "tokens/foundations.tokens.json", "tokens/profiles/heritage-ansi.tokens.json"]
+      "tokens": [
+        "tokens/primitives.tokens.json",
+        "tokens/semantic.tokens.json",
+        "tokens/foundations.tokens.json",
+        "tokens/profiles/heritage-ansi.tokens.json"
+      ]
     },
     {
       "id": "extended",
@@ -48,7 +74,12 @@
       "status": "proposed",
       "default": false,
       "overlay": "default",
-      "tokens": ["tokens/primitives.tokens.json", "tokens/semantic.tokens.json", "tokens/foundations.tokens.json", "tokens/profiles/extended.tokens.json"]
+      "tokens": [
+        "tokens/primitives.tokens.json",
+        "tokens/semantic.tokens.json",
+        "tokens/foundations.tokens.json",
+        "tokens/profiles/extended.tokens.json"
+      ]
     }
   ],
   "spec": {
@@ -91,7 +122,11 @@
   "ports": {
     "catalogue": "ports/README.md",
     "dir": "ports/",
-    "statuses": ["experimental", "verified", "deprecated"]
+    "statuses": [
+      "experimental",
+      "verified",
+      "deprecated"
+    ]
   },
   "references": {
     "catalogue": "references/catalogue.json",

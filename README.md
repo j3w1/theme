@@ -9,7 +9,7 @@ formats. It publishes one long visual reference page at
 **https://j3w1.github.io/theme/** and machine-readable exports for agents.
 
 <!-- version:start -->
-Specification version **0.1.0-draft.1** (default: approved, heritage-ansi: heritage, extended: proposed).
+Specification version **0.1.0** (default: approved, heritage-ansi: heritage, extended: proposed).
 <!-- version:end -->
 
 > Pre-release. Values marked **PROPOSED** on the site and in the exports are

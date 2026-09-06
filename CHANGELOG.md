@@ -6,11 +6,40 @@ policy in `README.md` (roles and approved values are the public contract).
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-09-06
+
+The first public specification: the j3w1 identity as versioned tokens,
+component rules, one generated page and machine exports for agents.
+
 ### Added
 
-- Repository bootstrap: manifest, schemas, validators, generators, licences,
-  provenance catalogue (M0).
-- Token files for the `default`, `heritage-ansi` and proposed `extended`
-  profiles with the approved D-001 hues and D-003 text corrections (M1).
-- Normative documents: identity, foundations, accessibility, portability,
-  decision log (M1).
+- **Tokens.** `default` (approved), `heritage-ansi` (the sixteen historical
+  slots, exact) and the proposed `extended` overlay, in DTCG 2025.10 form with
+  provenance on every primitive. The D-001 status hues (amber, green, blue)
+  and the D-003 text corrections (`text.subtle`, `text.disabled`).
+- **Specification.** Identity, foundations with the state rules and the focus
+  contract, accessibility with the recorded limitations, portability, and the
+  decision log D-000 to D-012.
+- **Components.** 47 across nine families, every one specified and
+  demonstrated with a full state matrix; ten core components carry browser
+  tests. Four composed specimens: settings panel, administrative form,
+  filterable table, i3 window frame.
+- **The page.** One long specification at https://j3w1.github.io/theme/ with
+  token tables, specimens, stress fixtures, sixteen non-examples, the contrast
+  report and the coverage ledger. Everything normative is in the initial HTML.
+- **For agents.** `agents/consume.md`, the compact and full Markdown exports,
+  per-component JSON and briefs, resolved tokens, CSS custom properties,
+  `llms.txt`, digests, and the `theme.lock.json` convention. The fresh-agent
+  consumption test passes on `text-field`.
+- **Gates.** 853 declared contrast pairs measured unrounded; base-path,
+  consistency, private-material, keyboard, axe, reflow, reduced-motion, no-JS
+  and print checks; generated artifacts committed and drift-checked.
+
+### Notes
+
+- No native application ports are published. Historical implementations are
+  catalogued in `references/` and are not supported downloads.
+- Decisions D-005 to D-012 are still `proposed`; the roles they cover are
+  implemented as listed and named in the compact export.
+
+[0.1.0]: https://github.com/j3w1/theme/releases/tag/v0.1.0
