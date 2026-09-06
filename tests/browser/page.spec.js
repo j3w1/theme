@@ -14,7 +14,9 @@ test.describe("the specification page", () => {
     expect(bg).toBe(token("color.surface.canvas"));
     const fg = rgbToHex(await page.evaluate(() => getComputedStyle(document.body).color));
     expect(fg).toBe(token("color.text.default"));
-    const radius = await page.evaluate(() => getComputedStyle(document.querySelector(".banner")).borderRadius);
+    /* nothing is rounded; measured on a section that exists in every release
+       (the pre-release banner does not) */
+    const radius = await page.evaluate(() => getComputedStyle(document.querySelector("section.component")).borderRadius);
     expect(radius).toBe("0px");
     spec.assertClean();
     if (only(testInfo, "nojs")) {
