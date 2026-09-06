@@ -177,15 +177,37 @@ export const validateDocs = async (manifest) => {
   return docs;
 };
 
+export const loadInventory = async () => {
+  const inventory = await readJson("spec/inventory.json");
+  const ids = new Set();
+  for (const entry of inventory.components) {
+    if (!/^[a-z][a-z0-9-]*$/.test(entry.id)) fail(`spec/inventory.json: bad id ${entry.id}`);
+    if (ids.has(entry.id)) fail(`spec/inventory.json: duplicate ${entry.id}`);
+    if (!["R1", "R2", "L"].includes(entry.priority)) fail(`spec/inventory.json: ${entry.id} has priority ${entry.priority}`);
+    ids.add(entry.id);
+  }
+  for (const id of inventory.tested) if (!ids.has(id)) fail(`spec/inventory.json: tested ${id} is not in the inventory`);
+  return { ...inventory, ids };
+};
+
 export const validateSpec = async ({ profiles, defaultId } = {}) => {
   ({ profiles, defaultId } = profiles ? { profiles, defaultId } : await validateTokens());
   const resolved = profiles.get(defaultId);
   const components = await loadComponents();
-  const ids = new Set(components.map((c) => c.id));
+  const inventory = await loadInventory();
+  const families = new Set((await loadFamilies()).map((f) => f.id));
+  for (const entry of inventory.components) if (!families.has(entry.family)) fail(`spec/inventory.json: ${entry.id} has unknown family ${entry.family}`);
   const problems = [];
   for (const component of components) {
+    const planned = inventory.components.find((e) => e.id === component.id);
+    if (!planned) problems.push(`${component.file}: ${component.id} is not in spec/inventory.json (adding a component is a decision)`);
+    else {
+      if (planned.family !== component.family) problems.push(`${component.file}: family ${component.family} differs from the inventory (${planned.family})`);
+      if (planned.priority !== component.priority) problems.push(`${component.file}: priority ${component.priority} differs from the inventory (${planned.priority})`);
+    }
     for (const ref of tokenRefsOf(component)) if (!resolved.has(ref)) problems.push(`${component.file}: token ${ref} does not resolve in the ${defaultId} profile`);
-    for (const rel of component.related) if (!ids.has(rel)) problems.push(`${component.file}: related ${rel} is not a component`);
+    for (const rel of component.related) if (!inventory.ids.has(rel)) problems.push(`${component.file}: related ${rel} is not in the inventory`);
+    for (const spec of component.specimens) if (!inventory.ids.has(spec)) problems.push(`${component.file}: specimen ${spec} is not in the inventory`);
     for (const source of component.sources) if (!(await sourceExists(source))) problems.push(`${component.file}: source ${source} is not in references/sources.json`);
     if (/\]\(\/|href="\//.test(component.body)) problems.push(`${component.file}: root-absolute links are forbidden (base path)`);
     if (component.maturity !== "draft" && !component.demo) problems.push(`${component.file}: ${component.maturity} components need ${component.id}.demo.html`);
@@ -218,8 +240,11 @@ export const validateSpec = async ({ profiles, defaultId } = {}) => {
         if (!known) problems.push(`site/src/styles/components/${component.id}.css: ${v} is not a token variable`);
       }
       for (const state of component.states) {
-        if (state === "default") continue;
-        if (!css.includes(`[data-state="${state}"]`)) problems.push(`site/src/styles/components/${component.id}.css: no forced-state selector [data-state="${state}"]`);
+        if (state === "default" || state === "filled") continue;
+        /* "filled" is a data condition (the demo carries a value), not a style */
+        const parts = state.split("+").filter((p) => p !== "filled");
+        const covered = css.includes(`[data-state="${state}"]`) || parts.every((p) => css.includes(`[data-state-${p}]`));
+        if (!covered) problems.push(`site/src/styles/components/${component.id}.css: no forced-state selector for ${state} ([data-state="${state}"] or [data-state-<part>] for every part)`);
       }
     }
   }

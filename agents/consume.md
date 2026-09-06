@@ -41,8 +41,12 @@ If the copy you are reading came from a different revision, fetch it again.
 Use the profile with `"default": true` unless the requester names another one.
 Only profiles with `"status": "approved"` may be implemented as "the j3w1
 theme". `heritage` profiles are historical data for terminals and archives.
-`proposed` profiles, and any token whose `status` is `proposed`, are never used
-in delivered work.
+`proposed` **profiles** (such as `extended`) are never used in delivered work.
+
+A role inside the default profile may itself carry `status: "proposed"` while
+its decision in `spec/decisions.md` is pending. Implement it as listed (it is
+the recommended value) and name its decision id in the deviation report; its
+value may change in the next pre-release, which is why you pin a revision.
 
 ## 4. Read only what you need, in this order
 

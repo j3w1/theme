@@ -463,6 +463,14 @@ main {
   min-width: 0;
 }
 
+/* disabled cells sit in a disabled fieldset so the whole clone is genuinely inert */
+.matrix-disabled {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
 .inspector {
   position: fixed;
   z-index: var(--z-popover);

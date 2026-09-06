@@ -7,6 +7,23 @@
     "demonstrated": "<id>.demo.html exists with a fragment for every declared variant and renders on the site",
     "tested": "tests/browser/components/<id>.spec.js exists"
   },
-  "byFamily": {},
-  "components": {}
+  "byFamily": {
+    "forms-basic": {
+      "specified": 1,
+      "demonstrated": 1,
+      "tested": 1,
+      "total": 1
+    }
+  },
+  "components": {
+    "text-field": {
+      "family": "forms-basic",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": true,
+      "states": 14
+    }
+  }
 }

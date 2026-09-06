@@ -4,12 +4,14 @@
   "version": "0.1.0-draft.1",
   "algorithm": "sha256 over the file bytes with LF line endings, base64",
   "files": {
-    "exports/contrast.json": "sha256-yd8d8/lpbuVNokdIVeoSE6/UJY+cfGW2VkdfuoOkA/0=",
-    "exports/contrast.md": "sha256-q1W8ei12bkrJf0BjyKPxfJJny6XS1S2v6KdTiwyXwRU=",
-    "exports/coverage.json": "sha256-CqV0nQJR/PLN8AFtQh+2UPCRO8F/bgCGpsyr/vo3yUs=",
+    "exports/components/text-field.brief.txt": "sha256-K/b4ms0rVNzovfx0pRuaaQCa4L5gQHROVicEz4CRTm0=",
+    "exports/components/text-field.json": "sha256-uMZRESPmiV0jKrM/6fFhWcxS9NcmMmox/2QqVn+CPfw=",
+    "exports/contrast.json": "sha256-ryHSDMr7/6Xzre0HKKVCpemrtmmxpQbc7NYnWR0N7fY=",
+    "exports/contrast.md": "sha256-68zpB566mR50XeMnbBNQ3Q6wd+YcMkdUi4ql/TH+RtY=",
+    "exports/coverage.json": "sha256-KPTFq935ttpsBCjZP5Jvjg2mWMEI1W1sSQuUf6sMOew=",
     "exports/llms.txt": "sha256-MlGbe9bnU2fOwKlaptYWkOtUQQB97Je3ThmKVl1UHmY=",
-    "exports/theme.compact.md": "sha256-3XVrcChRikPX9beQZitGByrVObglbvod6cNtMrdoH/U=",
-    "exports/theme.full.md": "sha256-Mk3FsfJtM8doutmqTIBjfdSCBD2ULYKjlqhUorwBGTk=",
+    "exports/theme.compact.md": "sha256-3e+EspDGdpr/VajrfbB5EdDTcK/ZS2IaDKQqrp0LDh4=",
+    "exports/theme.full.md": "sha256-DComwIEFiqshnp5IdCNCjfqzbAHDpZqz9cIDd4uQtYM=",
     "exports/tokens.css": "sha256-xvJ8yxOUx3UEgxXt7wGNyNBvy+DzDIHuzJruIeOSS2E=",
     "exports/tokens.resolved.json": "sha256-c0QLrctZWBiYKPH5kUlnMs+pzp+DAX+CCgKXAxbKGOU="
   }

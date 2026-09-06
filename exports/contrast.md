@@ -67,3 +67,23 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | chart label on canvas | — | text | `color.chart.label` #bd787d | `color.surface.canvas` #0c0909 | 5.81 | 4.5 | pass |
 | chart series 4 on canvas (graphic) | — | ui | `color.chart.series-4` #a3676b | `color.surface.canvas` #0c0909 | 4.45 | 3 | pass |
 | decorative icon on canvas (graphic) | — | ui | `color.icon.decorative` #a3676b | `color.surface.canvas` #0c0909 | 4.45 | 3 | pass |
+| text-field default text | default | text | `color.text.default` #e99499 | `color.surface.input` #0c0909 | 8.65 | 4.5 | pass |
+| text-field default border | default | ui | `color.border.control` #a3676b | `color.surface.input` #0c0909 | 4.45 | 3 | pass |
+| text-field hover text | hover | text | `color.text.default` #e99499 | `color.interaction.hover.bg` #1c0a09 | 8.35 | 4.5 | pass |
+| text-field hover border | hover | ui | `color.border.control` #a3676b | `color.interaction.hover.bg` #1c0a09 | 4.29 | 3 | pass |
+| text-field focus-visible text | focus-visible | text | `color.text.default` #e99499 | `color.surface.input` #0c0909 | 8.65 | 4.5 | pass |
+| text-field focus-visible border | focus-visible | ui | `color.border.active` #e53935 | `color.surface.input` #0c0909 | 4.69 | 3 | pass |
+| text-field focus-visible outline | focus-visible | ui | `color.interaction.focus.ring` #e53935 | `color.surface.input` #0c0909 | 4.69 | 3 | pass |
+| text-field placeholder-shown text | placeholder-shown | text | `color.text.placeholder` #bd787d | `color.surface.input` #0c0909 | 5.81 | 4.5 | pass |
+| text-field placeholder-shown border | placeholder-shown | ui | `color.border.control` #a3676b | `color.surface.input` #0c0909 | 4.45 | 3 | pass |
+| text-field invalid text | invalid | text | `color.text.default` #e99499 | `color.surface.input` #0c0909 | 8.65 | 4.5 | pass |
+| text-field invalid border | invalid | ui | `color.status.danger.border` #e53935 | `color.surface.input` #0c0909 | 4.69 | 3 | pass |
+| text-field invalid+focus-visible text | invalid+focus-visible | text | `color.text.default` #e99499 | `color.surface.input` #0c0909 | 8.65 | 4.5 | pass |
+| text-field invalid+focus-visible border | invalid+focus-visible | ui | `color.status.danger.border` #e53935 | `color.surface.input` #0c0909 | 4.69 | 3 | pass |
+| text-field invalid+focus-visible outline | invalid+focus-visible | ui | `color.interaction.focus.ring-container` #ffa2a7 | `color.surface.input` #0c0909 | 10.37 | 3 | pass |
+| text-field read-only text | read-only | text | `color.text.default` #e99499 | `color.surface.canvas` #0c0909 | 8.65 | 4.5 | pass |
+| validation message on the panel surface | — | text | `color.status.danger.text` #f73f35 | `color.surface.default` #160b0b | 5.26 | 4.5 | pass |
+| help text on the panel surface | — | text | `color.text.muted` #bd787d | `color.surface.default` #160b0b | 5.66 | 4.5 | pass |
+| disabled text (exempt; house floor 3:1) | disabled | ui | `color.text.disabled` #8a5559 | `color.interaction.disabled.bg` #160b0b | 3.24 | 3 | pass |
+| disabled border (exempt) | disabled | ui | `color.border.disabled` #7d1310 | `color.interaction.disabled.bg` #160b0b | 1.82 | 1 | pass |
+| read-only bottom edge (decorative; the field has no box) | read-only | ui | `color.border.divider` #2b0e0d | `color.surface.canvas` #0c0909 | 1.11 | 1 | pass |

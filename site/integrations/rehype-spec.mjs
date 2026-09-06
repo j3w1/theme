@@ -8,26 +8,40 @@
 const SHIFT = { doc: 1, component: 2 };
 const TOKEN = /\{([a-z0-9][a-z0-9.-]*)\}/g;
 
+const pathOf = (file) => String(file?.path ?? file?.history?.[0] ?? "").replaceAll("\\", "/");
+
 const kindOf = (file) => {
-  const p = String(file?.path ?? file?.history?.[0] ?? "").replaceAll("\\", "/");
+  const p = pathOf(file);
   if (p.includes("/spec/components/")) return "component";
   if (p.includes("/spec/") || p.includes("/agents/")) return "doc";
   return null;
 };
+
+const stemOf = (file) => pathOf(file).replace(/^.*\//, "").replace(/\.md$/, "");
 
 const walk = (node, fn) => {
   fn(node);
   for (const child of node.children ?? []) walk(child, fn);
 };
 
+const textOf = (node) => (node.type === "text" ? node.value : (node.children ?? []).map(textOf).join(""));
+
+const slug = (text) => text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
 export default function rehypeSpec() {
   return (tree, file) => {
     const kind = kindOf(file);
     if (!kind) return;
     const by = SHIFT[kind];
+    const prefix = `${kind === "component" ? "c" : "d"}-${stemOf(file)}--`;
     walk(tree, (node) => {
       if (node.type === "element" && /^h[1-6]$/.test(node.tagName)) {
         node.tagName = `h${Math.min(6, Number(node.tagName[1]) + by)}`;
+        /* heading ids are namespaced by their source so "Keyboard" in two
+           documents never collides; every id on the page must be unique */
+        node.properties ??= {};
+        const own = node.properties.id ?? slug(textOf(node));
+        node.properties.id = `${prefix}${own}`;
       }
       if (node.type === "comment" && /@compact:(start|end)/.test(node.value)) node.value = "";
     });

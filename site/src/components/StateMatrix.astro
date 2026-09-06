@@ -23,6 +23,15 @@ const inert = (html: string) =>
       return focusable ? `<${tag}${attrs} tabindex="-1"${slash}>` : m;
     });
 
+/* Every cell is a clone, so ids and the attributes that point at them get a
+   per-cell suffix; label/for, describedby, labelledby, controls and fragment
+   links keep working inside the cell. */
+const uniqueIds = (html: string, suffix: string) =>
+  html
+    .replace(/\s(id|for)="([^"]+)"/g, (m, attr, value) => ` ${attr}="${value}-${suffix}"`)
+    .replace(/\s(aria-describedby|aria-labelledby|aria-controls|aria-owns)="([^"]+)"/g, (m, attr, value) => ` ${attr}="${value.split(/\s+/).map((v: string) => `${v}-${suffix}`).join(" ")}"`)
+    .replace(/\shref="#([^"]+)"/g, (m, value) => ` href="#${value}-${suffix}"`);
+
 const stateAttributes = (state: string) => {
   const parts = state.split("+");
   const attrs: string[] = [`data-state="${state}"`];
@@ -34,6 +43,7 @@ const stateAttributes = (state: string) => {
 const nativeState = (html: string, state: string) => {
   let out = html;
   const parts = state.split("+");
+  if (parts.includes("placeholder-shown")) out = out.replace(/(<(?:input|textarea)\b[^>]*?)\svalue="[^"]*"/g, "$1");
   if (parts.includes("disabled")) out = out.replace(/<(input|button|select|textarea|fieldset)(\s|>)/g, "<$1 disabled$2");
   if (parts.includes("read-only")) out = out.replace(/<(input|textarea)(\s|>)/g, "<$1 readonly$2");
   if (parts.includes("required")) out = out.replace(/<(input|select|textarea)(\s|>)/g, "<$1 required$2");
@@ -50,7 +60,7 @@ const nativeState = (html: string, state: string) => {
 
 <div class="block" id={`${id}-states`}>
   <h4>State matrix</h4>
-  <p class="family-description">Every declared state and combination, statically rendered; the default cell is live. Density: <span class="js-only">use the page control</span>{sizes.join(" / ")}.</p>
+  <p class="family-description">Every declared state and combination, statically rendered; the default cell is live. Sizes: {sizes.join(", ")}<span class="js-only"> (switch with the density control above)</span>.</p>
   <div class="table-scroll">
     <table class="matrix">
       <thead>
@@ -64,12 +74,15 @@ const nativeState = (html: string, state: string) => {
           <tr>
             <th scope="row"><code>{state}</code></th>
             {variants.map((v) => {
-              const html = fragments.get(v.id) ?? "";
+              const suffix = `${v.id}-${state.replace(/[^a-z0-9]+/g, "-")}`;
+              const html = uniqueIds(fragments.get(v.id) ?? "", suffix);
               const live = state === "default";
               const body = live ? html : inert(nativeState(html, state));
               return (
                 <td>
-                  <div class={`demo ${id}-demo`} data-component={id} data-variant={v.id} set:html={`<div ${stateAttributes(state)}${live ? "" : ' aria-hidden="true"'}>${body}</div>`} />
+                  <div class={`demo ${id}-demo`} data-component={id} data-variant={v.id} set:html={state.split("+").includes("disabled")
+                    ? `<fieldset class="matrix-disabled" disabled aria-hidden="true"><div ${stateAttributes(state)}>${body}</div></fieldset>`
+                    : `<div ${stateAttributes(state)}${live ? "" : ' aria-hidden="true"'}>${body}</div>`} />
                 </td>
               );
             })}

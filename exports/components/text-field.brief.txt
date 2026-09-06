@@ -1,0 +1,66 @@
+j3w1/theme implementation brief — text-field
+theme: j3w1-theme 0.1.0-draft.1  profile: default  sourceDigest: sha256-tkedpSLvZxC0FyoUDAjE9MqJLQscTENDcCUk+dmuziY=
+pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/components/text-field.json
+spec: spec/components/text-field.md  site: https://j3w1.github.io/theme/#c-text-field
+maturity: stable  priority: R1
+
+Summary: Single-line free-text entry, covering every native input type that renders as a line box; search, number and password are variants, not separate components.
+
+Tokens (resolved):
+  root.bg               #0c0909  ({color.surface.input})
+  root.border           #a3676b  ({color.border.control})
+  root.bg-hover         #1c0a09  ({color.interaction.hover.bg})
+  root.border-focus     #e53935  ({color.border.active})
+  root.ring             #e53935  ({color.interaction.focus.ring})
+  root.ring-invalid     #ffa2a7  ({color.interaction.focus.ring-container})
+  root.border-invalid   #e53935  ({color.status.danger.border})
+  root.border-disabled  #7d1310  ({color.border.disabled})
+  root.bg-disabled      #160b0b  ({color.interaction.disabled.bg})
+  root.border-readonly  #2b0e0d  ({color.border.divider})
+  input.text            #e99499  ({color.text.default})
+  input.text-disabled   #8a5559  ({color.text.disabled})
+  input.placeholder     #bd787d  ({color.text.placeholder})
+  input.caret           #e99499  ({color.code.caret})
+  input.selection-bg    #911410  ({color.interaction.text-selection.bg})
+  input.selection-text  #f4eeee  ({color.interaction.text-selection.text})
+  label.text            #ffa2a7  ({color.text.bright})
+  label.required-mark   #f73f35  ({color.status.danger.text})
+  help.text             #bd787d  ({color.text.muted})
+  message.text          #f73f35  ({color.status.danger.text})
+  affix.text            #bd787d  ({color.text.muted})
+  affix.border          #2b0e0d  ({color.border.divider})
+  action.text           #e99499  ({color.action.tertiary.text})
+  action.bg-hover       #1c0a09  ({color.action.tertiary.hover-bg})
+  loading.glyph         #bd787d  ({color.text.muted})
+
+States: default, hover, focus-visible, placeholder-shown, filled, required, invalid, invalid+focus-visible, invalid+hover, disabled, disabled+filled, read-only, read-only+focus-visible, loading
+  default: 1px {color.border.control} on {color.surface.input}; text {color.text.default} [—]
+  hover: background → {color.interaction.hover.bg}; border unchanged [cursor: text]
+  focus-visible: border → {color.border.active}; ring 1px dashed {color.interaction.focus.ring} at −2px [the ring]
+  placeholder-shown: placeholder in {color.text.placeholder}, italic [italic]
+  filled: as default with a value [—]
+  required: `*` after the label in {color.status.danger.text} plus visually hidden "required" [`required` attribute; the mark]
+  invalid: border 2px {color.status.danger.border}; message with the ✕ glyph [border width 1 → 2px; glyph; `aria-invalid`]
+  invalid+focus-visible: the 2px danger border and the ring in {color.interaction.focus.ring-container} at −4px [double boundary]
+  invalid+hover: as invalid with the hover background [cursor]
+  disabled: text {color.text.disabled}; border {color.border.disabled}; background {color.interaction.disabled.bg}; no hover [`disabled`; cursor: not-allowed]
+  disabled+filled: as disabled with a value [`disabled`]
+  read-only: no box: 1px dotted {color.border.divider} bottom edge on {color.surface.canvas}; text {color.text.default}; focusable and selectable [`readonly`; dotted edge]
+  read-only+focus-visible: the dotted edge and the dashed ring [the ring]
+  loading: size unchanged; trailing static `⋯` glyph in {color.text.muted}; input remains editable [glyph; `aria-busy`]
+
+Keyboard:
+  Tab / Shift+Tab: Moves focus in and out; affix actions (clear, reveal, stepper) are separate tab stops after the input.
+  Escape: Clears the value in the search variant when it is non-empty; otherwise nothing.
+  Enter: Submits the owning form (native).
+  Up / Down: Number variant steps by the step attribute; Shift multiplies by ten.
+
+ARIA: native <input> with <label> (https://www.w3.org/WAI/ARIA/apg/practices/forms/)
+Responsive: Fills its field container with min-width 0; affixes never wrap; the label is always stacked above (no inline labels in this theme); at 320px the box, help and message stack without clipping. RTL swaps prefix and suffix.
+Portability: native <input> plus <label>, no wrapper role; help and message via aria-describedby in that order; aria-invalid only after interaction or submit; the dashed ring through outline, never box-shadow.
+  native: GTK4 Entry with a css-name mapping; invalid through the .error style class.
+  native: Qt QLineEdit stylesheet; invalid through a dynamic property selector.
+  native: Terminal UI: 1-cell border glyphs; focus as dashed box-drawing; invalid as a 2-cell double line.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

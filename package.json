@@ -18,7 +18,7 @@
     "test:browser": "playwright test",
     "test:all": "npm run check && npm test && npm run build && npm run test:dist && npm run test:browser",
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build --force",
     "preview": "astro preview",
     "consumption:kit": "node scripts/consumption-kit.mjs",
     "consumption:judge": "node scripts/consumption-judge.mjs"

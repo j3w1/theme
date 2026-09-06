@@ -120,7 +120,9 @@ means its demo renders every declared variant on the site; *tested* means a
 browser test exists for it. The ledger is generated from the sources.
 
 <!-- coverage:start -->
-No components are specified yet.
+| Component | Family | Priority | Specified | Demonstrated | Tested |
+| --- | --- | --- | --- | --- | --- |
+| `text-field` | forms-basic | R1 | yes | yes | yes |
 <!-- coverage:end -->
 
 ## Versioning

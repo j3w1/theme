@@ -3,6 +3,8 @@ import "../styles/tokens.generated.css";
 import "../styles/base.css";
 import "../styles/site.css";
 import "../styles/print.css";
+/* Reference CSS for every specified component; the glob is a side-effect import. */
+import.meta.glob("../styles/components/*.css", { eager: true });
 import { withBase } from "../lib/base";
 import { theme, defaultTokens, profiles, defaultProfileId } from "../lib/theme";
 
