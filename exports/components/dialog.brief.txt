@@ -1,0 +1,57 @@
+j3w1/theme implementation brief — dialog
+theme: j3w1-theme 0.1.0-draft.1  profile: default  sourceDigest: sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=
+pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/components/dialog.json
+spec: spec/components/dialog.md  site: https://j3w1.github.io/theme/#c-dialog
+maturity: stable  priority: R1
+
+Summary: A native dialog on the overlay surface behind a 1px overlay border and the backdrop; modal when shown, with trapped focus and Escape to close.
+
+Tokens (resolved):
+  backdrop.bg           rgb(0 0 0 / 65%)  ({color.surface.backdrop})
+  root.bg               #241010  ({color.surface.overlay})
+  root.border           #e53935  ({color.border.overlay})
+  root.ring             #ffa2a7  ({color.interaction.focus.ring-container})
+  root.z                30  ({z.dialog})
+  title.text            #ffa2a7  ({color.text.bright})
+  text.text             #e99499  ({color.text.default})
+  close.text            #e99499  ({color.action.tertiary.text})
+  close.bg-hover        #1c0a09  ({color.action.tertiary.hover-bg})
+  close.ring            #e53935  ({color.interaction.focus.ring})
+  button.text           #ffa2a7  ({color.action.secondary.text})
+  button.border         #a3676b  ({color.action.secondary.border})
+  button.bg-hover       #630f0d  ({color.action.secondary.hover-bg})
+  primary.bg            #871f19  ({color.action.primary.bg})
+  primary.text          #f4eeee  ({color.action.primary.text})
+  primary.bg-hover      #911410  ({color.action.primary.hover-bg})
+  destructive.bg        #dc282e  ({color.action.destructive.filled-bg})
+  destructive.text      #f9faf9  ({color.action.destructive.filled-text})
+  destructive.bg-hover  #dc282e  ({color.action.destructive.hover-bg})
+  field.bg              #0c0909  ({color.surface.input})
+  field.border          #a3676b  ({color.border.control})
+  field.label           #ffa2a7  ({color.text.bright})
+  note.text             #bd787d  ({color.text.muted})
+
+States: default, open, closed, focus-trapped, hover, focus-visible, reduced-motion
+  default: the dialog open on its backdrop [`open`; the page behind is inert]
+  open: as default; opacity 0 → 1 within 150 ms on capable hosts [`open`; focus inside the dialog]
+  closed: nothing: the dialog and its backdrop are absent [no `open`; focus back on the opener]
+  focus-trapped: the dialog itself carries the container ring, 2px solid {color.interaction.focus.ring-container} at −3px, when it holds focus; the note says Tab cycles [Tab never leaves; the note text]
+  hover: Close background → {color.action.tertiary.hover-bg}; other buttons take their tone's hover [cursor: pointer]
+  focus-visible: ring 1px dashed {color.interaction.focus.ring} at −2px on the focused control; on a filled button the ring takes the fill's on-fill colour [the ring]
+  reduced-motion: no opacity transition; the dialog is simply present or absent [`prefers-reduced-motion`]
+
+Keyboard:
+  Tab / Shift+Tab: Cycles through the dialog's focusable elements and never leaves it while open.
+  Escape: Closes the dialog (cancel) and returns focus to the element that opened it.
+  Enter: In a form dialog, submits; otherwise activates the focused button only.
+  Space: Activates the focused button.
+
+ARIA: native <dialog> opened with showModal; role=alertdialog for confirmations; named by its heading, described by its first paragraph (https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/)
+Responsive: At most 28rem wide and 100% minus the 16px gutter below that; the body scrolls inside the dialog when taller than the viewport, header and actions stay visible; at 320px buttons stack. RTL mirrors the header and the action order.
+Portability: native <dialog> opened with showModal() so the host provides the top layer, inertness of the page and Escape; ::backdrop takes surface.backdrop; focus moves to the first focusable element (or the dialog itself) on open and back to the opener on close; role=alertdialog with aria-describedby for confirmations.
+  native: GTK4 Window with modal and transient-for; the css node gets the overlay border.
+  native: Qt QDialog modal; stylesheet border and background; QMessageBox for the alert dialog.
+  native: Terminal UI: a centred box drawn with a single-line border over a dimmed screen.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

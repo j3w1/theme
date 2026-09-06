@@ -1,0 +1,40 @@
+j3w1/theme implementation brief — breadcrumbs
+theme: j3w1-theme 0.1.0-draft.1  profile: default  sourceDigest: sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=
+pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/components/breadcrumbs.json
+spec: spec/components/breadcrumbs.md  site: https://j3w1.github.io/theme/#c-breadcrumbs
+maturity: stable  priority: R1
+
+Summary: The path from the root to the current page as an ordered list of links separated by slashes; the last item is the current page and not a link.
+
+Tokens (resolved):
+  root.bg            #160b0b  ({color.surface.default})
+  link.text          #ffa2a7  ({color.text.link})
+  link.underline     #dc282e  ({color.text.link-underline})
+  link.text-hover    #f4eeee  ({color.text.link-hover})
+  link.bg-hover      #630f0d  ({color.interaction.hover.bg-strong})
+  link.ring          #e53935  ({color.interaction.focus.ring})
+  current.text       #ffa2a7  ({color.text.bright})
+  separator.text     #bd787d  ({color.text.muted})
+  ellipsis.text      #e99499  ({color.text.default})
+  ellipsis.bg-hover  #1c0a09  ({color.interaction.hover.bg})
+
+States: default, hover, focus-visible, current, truncated
+  default: links {color.text.link}, 1px underline; separators {color.text.muted}; current {color.text.bright} [underline on links; none on the current page]
+  hover: link background → {color.interaction.hover.bg-strong}; text → {color.text.link-hover} [underline thickens 1px → 2px; cursor]
+  focus-visible: ring 1px dashed {color.interaction.focus.ring} at −2px around the link [the ring]
+  current: text {color.text.bright}; no underline; no hover [`aria-current="page"`; no underline]
+  truncated: the middle levels are replaced by an `…` button in {color.text.default} [`aria-expanded="false"` on the button; its label counts the hidden levels]
+
+Keyboard:
+  Tab / Shift+Tab: Moves through the links in order; the current page is skipped when it is not a link.
+  Enter: Follows the focused link, or discloses the hidden levels from the ellipsis button.
+
+ARIA: native nav > ol with aria-current="page" on the last item (https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/)
+Responsive: Items wrap onto further lines at 320px with the separator staying attached to the item before it; nothing truncates by itself, the truncated variant is an explicit choice for deep trails. RTL mirrors the order and the separators through logical margins; the slash glyph is not mirrored.
+Portability: nav with aria-label="Breadcrumb" wrapping an ol; each level an li; ancestor levels are anchors; the last li carries aria-current="page"; separators are aria-hidden spans, never list bullets or generated content that screen readers might voice.
+  native: GTK4 a Box of LinkButtons with Labels for the slashes; the current level a Label with the bright colour.
+  native: Qt a QHBoxLayout of QLabels with rich-text links; the current level plain.
+  native: Terminal UI: the trail as one line; the current level in the bright colour; slashes in the muted colour.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

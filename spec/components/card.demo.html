@@ -1,0 +1,24 @@
+<article class="card">
+  <h3 class="card-title">Window gaps</h3>
+  <p class="card-body">Inner 14px, outer −2px; the bar sits above the gap and the border is 1px.</p>
+  <p class="card-meta">Decided in D-009 · 3 fixtures</p>
+</article>
+<!-- @variant link-card -->
+<a class="card card-link card-demo-target" href="#card-focus">
+  <span class="card-title">Focus ring</span>
+  <span class="card-body">One dashed pixel at −2px on controls; two solid pixels at −3px on containers.</span>
+  <span class="card-meta">Decided in D-006 · 5 fixtures</span>
+</a>
+<!-- @variant selectable -->
+<div class="card-group" role="listbox" aria-label="Layouts">
+  <div class="card card-selectable" role="option" aria-selected="false" tabindex="0">
+    <span class="card-title">Tiling</span>
+    <span class="card-body">Windows fill the screen without overlap; the gap is the only ornament.</span>
+    <span class="card-meta">Default</span>
+  </div>
+  <div class="card card-selectable card-demo-target" role="option" aria-selected="false" tabindex="-1">
+    <span class="card-title">Floating</span>
+    <span class="card-body">Windows overlap and carry the one shadow the theme permits.</span>
+    <span class="card-meta">Dialogs and tools</span>
+  </div>
+</div>

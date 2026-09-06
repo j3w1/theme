@@ -1,0 +1,58 @@
+j3w1/theme implementation brief — data-table
+theme: j3w1-theme 0.1.0-draft.1  profile: default  sourceDigest: sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=
+pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/components/data-table.json
+spec: spec/components/data-table.md  site: https://j3w1.github.io/theme/#c-data-table
+maturity: stable  priority: R1
+
+Summary: A native table with controls: a selection column with a mixed select-all, sortable headers, row focus with the ring on the fill, and static resize handles.
+
+Tokens (resolved):
+  root.bg              #160b0b  ({color.surface.default})
+  header.text          #ffa2a7  ({color.text.bright})
+  header.rule          #9e231f  ({color.border.strong})
+  sort.glyph           #ffa2a7  ({color.text.bright})
+  row.text             #e99499  ({color.text.default})
+  row.divider          #2b0e0d  ({color.border.divider})
+  row.bg-hover         #1c0a09  ({color.interaction.hover.bg})
+  row.ring             #e53935  ({color.interaction.focus.ring})
+  selected.bg          #911410  ({color.interaction.selection.bg})
+  selected.text        #f4eeee  ({color.interaction.selection.text})
+  selected.ring        #ffa2a7  ({color.interaction.focus.ring-container})
+  checkbox.bg          #0c0909  ({color.surface.input})
+  checkbox.border      #a3676b  ({color.border.control})
+  checkbox.checked-bg  #871f19  ({color.action.primary.bg})
+  checkbox.glyph       #f4eeee  ({color.action.primary.text})
+  resize.handle        #531310  ({color.border.default})
+  resize.handle-hover  #e53935  ({color.border.active})
+  empty.text           #bd787d  ({color.text.muted})
+  loading.glyph        #bd787d  ({color.text.muted})
+
+States: default, hover, focus-visible, selected, selected+focus-visible, sorted, mixed, empty, loading
+  default: rows on {color.surface.default}; header rule 1px {color.border.strong} [—]
+  hover: row background → {color.interaction.hover.bg}; a resize handle → {color.border.active} [cursor: default on rows, col-resize on handles]
+  focus-visible: ring 1px dashed {color.interaction.focus.ring} at −2px around the focused row or control [the ring]
+  selected: row fill {color.interaction.selection.bg}; every cell {color.interaction.selection.text}; the row checkbox checked [`aria-selected="true"`; the checked box]
+  selected+focus-visible: the fill and the ring in {color.interaction.focus.ring-container} [both visible at once]
+  sorted: ▲ or ▼ in {color.text.bright} on the sorted header [`aria-sort`; the glyph]
+  mixed: the select-all on {color.action.primary.bg} with the – glyph [`aria-checked="mixed"`; the glyph]
+  empty: one full-width cell in {color.text.muted}: "No rows match."; the header and controls stay [the message text]
+  loading: one full-width cell with the static `⋯` glyph; the header stays [`aria-busy="true"`; the glyph; no animation]
+
+Keyboard:
+  Tab / Shift+Tab: Moves through the select-all, the sort buttons, then the rows (one row is the tab stop; roving tabindex) and any control inside the focused row.
+  Down / Up: Moves row focus; in a single-select table the selection follows focus.
+  Space: Toggles the focused row's selection (the same as its checkbox).
+  Shift+Down / Shift+Up: Extends the selection by one row.
+  Ctrl+A: Selects every row; the select-all reflects it.
+  Enter / Space: On a sort button, cycles the sort; on the select-all, toggles between all and none.
+  Left / Right: Reserved for cell navigation in hosts that promote the table to a grid; not used here.
+
+ARIA: native table with aria-selected rows, a select-all checkbox in the mixed state, aria-sort headers and aria-busy while loading (https://www.w3.org/WAI/ARIA/apg/patterns/grid/)
+Responsive: Below 600px the table scrolls horizontally inside its container with the selection column and the first data column sticky; the page never scrolls. Resize handles are hidden on touch pointers, where column widths come from the header menu. RTL mirrors the selection column and the handles to the inline start and end respectively.
+Portability: A native table; rows carry aria-selected and a roving tabindex; the selection column holds native checkboxes labelled by the row and a button with role checkbox and aria-checked mixed in the header; headers with aria-sort wrap a button; aria-busy on the table while loading; the APG grid pattern is cited for the keyboard model only, the markup stays a table.
+  native: GTK4 ColumnView with a selection model; the select-all through a header CheckButton.
+  native: Qt QTableView with a selection model; a header checkbox drawn by a header delegate.
+  native: Terminal UI: a check column of [x] and [ ] cells; the focused row in the ring colour; the selected rows inverted.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

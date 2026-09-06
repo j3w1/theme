@@ -1,0 +1,56 @@
+<div class="file-input">
+  <label class="file-input-label" for="fi-attach">Attachments</label>
+  <div class="file-input-root">
+    <input class="file-input-native" id="fi-attach" type="file" multiple aria-describedby="fi-attach-help fi-attach-message">
+    <label class="file-input-button" for="fi-attach">Choose files</label>
+    <span class="file-input-status" role="status">No file chosen</span>
+    <span class="file-input-drop-hint" aria-hidden="true">Release to add</span>
+  </div>
+  <div class="file-input-progress" aria-hidden="true"></div>
+  <p class="file-input-help" id="fi-attach-help">Up to five files, 10 MB each.</p>
+  <p class="file-input-message" id="fi-attach-message">✕ Choose at least one file.</p>
+</div>
+<!-- @variant drop-zone -->
+<div class="file-input">
+  <label class="file-input-label" for="fi-zone">Screenshots</label>
+  <div class="file-input-root file-input-zone">
+    <input class="file-input-native" id="fi-zone" type="file" multiple accept="image/png,image/webp" aria-describedby="fi-zone-help fi-zone-message">
+    <label class="file-input-button" for="fi-zone">Choose files</label>
+    <span class="file-input-status" role="status">or drop PNG or WebP files here</span>
+    <span class="file-input-drop-hint" aria-hidden="true">Release to add</span>
+  </div>
+  <div class="file-input-progress" aria-hidden="true"></div>
+  <p class="file-input-help" id="fi-zone-help">PNG or WebP, 4 MB each.</p>
+  <p class="file-input-message" id="fi-zone-message">✕ Only PNG or WebP files.</p>
+</div>
+<!-- @variant with-list -->
+<div class="file-input">
+  <label class="file-input-label" for="fi-list">Attachments</label>
+  <div class="file-input-root">
+    <input class="file-input-native" id="fi-list" type="file" multiple aria-describedby="fi-list-help fi-list-message">
+    <label class="file-input-button" for="fi-list">Add files</label>
+    <span class="file-input-status" role="status">3 files chosen</span>
+    <span class="file-input-drop-hint" aria-hidden="true">Release to add</span>
+  </div>
+  <div class="file-input-progress" aria-hidden="true"></div>
+  <ul class="file-input-list" aria-label="Chosen files">
+    <li class="file-input-item">
+      <span class="file-input-name">theme.json</span>
+      <span class="file-input-size">12 KB</span>
+      <button class="file-input-remove" type="button" aria-label="Remove theme.json">✕</button>
+    </li>
+    <li class="file-input-item file-input-item-error">
+      <span class="file-input-name">wallpaper.psd</span>
+      <span class="file-input-size">48 MB</span>
+      <button class="file-input-remove" type="button" aria-label="Remove wallpaper.psd">✕</button>
+      <span class="file-input-error">✕ Larger than 10 MB.</span>
+    </li>
+    <li class="file-input-item">
+      <span class="file-input-name">i3-config</span>
+      <span class="file-input-size">3 KB</span>
+      <button class="file-input-remove" type="button" aria-label="Remove i3-config">✕</button>
+    </li>
+  </ul>
+  <p class="file-input-help" id="fi-list-help">Up to five files, 10 MB each.</p>
+  <p class="file-input-message" id="fi-list-message">✕ One file could not be added.</p>
+</div>

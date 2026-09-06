@@ -122,7 +122,49 @@ browser test exists for it. The ledger is generated from the sources.
 <!-- coverage:start -->
 | Component | Family | Priority | Specified | Demonstrated | Tested |
 | --- | --- | --- | --- | --- | --- |
+| `alert` | feedback | R1 | yes | yes | — |
+| `badge` | display | R1 | yes | yes | — |
+| `breadcrumbs` | navigation | R1 | yes | yes | — |
+| `button` | actions | R1 | yes | yes | yes |
+| `card` | display | R1 | yes | yes | — |
+| `checkbox` | forms-basic | R1 | yes | yes | yes |
+| `chip` | display | R1 | yes | yes | — |
+| `code-editor` | developer | R1 | yes | yes | — |
+| `combobox` | forms-advanced | R1 | yes | yes | — |
+| `data-table` | display | R1 | yes | yes | — |
+| `date-picker` | forms-advanced | R1 | yes | yes | — |
+| `diagnostics` | developer | R1 | yes | yes | — |
+| `dialog` | feedback | R1 | yes | yes | yes |
+| `diff-view` | developer | R1 | yes | yes | — |
+| `drawer` | feedback | R1 | yes | yes | — |
+| `empty-state` | feedback | R1 | yes | yes | — |
+| `field` | forms-basic | R1 | yes | yes | — |
+| `fieldset` | forms-basic | R1 | yes | yes | — |
+| `file-input` | forms-advanced | R1 | yes | yes | — |
+| `icon-button` | actions | R1 | yes | yes | — |
+| `link` | actions | R1 | yes | yes | yes |
+| `list` | display | R1 | yes | yes | — |
+| `loading-indicator` | feedback | R1 | yes | yes | — |
+| `menu` | navigation | R1 | yes | yes | yes |
+| `number-field` | forms-basic | R1 | yes | yes | — |
+| `pagination` | navigation | R1 | yes | yes | — |
+| `progress` | feedback | R1 | yes | yes | — |
+| `radio-group` | forms-basic | R1 | yes | yes | yes |
+| `search-field` | forms-basic | R1 | yes | yes | — |
+| `select` | forms-basic | R1 | yes | yes | yes |
+| `sidebar-nav` | navigation | R1 | yes | yes | — |
+| `skip-link` | navigation | R1 | yes | yes | — |
+| `switch` | forms-basic | R1 | yes | yes | — |
+| `table` | display | R1 | yes | yes | yes |
+| `tabs` | navigation | R1 | yes | yes | yes |
+| `terminal` | developer | R1 | yes | yes | — |
 | `text-field` | forms-basic | R1 | yes | yes | yes |
+| `textarea` | forms-basic | R1 | yes | yes | — |
+| `time-picker` | forms-advanced | R1 | yes | yes | — |
+| `toast` | feedback | R1 | yes | yes | — |
+| `toolbar` | navigation | R1 | yes | yes | — |
+| `tooltip` | feedback | R1 | yes | yes | — |
+| `wizard` | forms-advanced | R1 | yes | yes | — |
 <!-- coverage:end -->
 
 ## Versioning

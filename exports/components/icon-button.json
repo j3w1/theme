@@ -1,0 +1,464 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "0.1.0-draft.1",
+  "profile": "default",
+  "sourceDigest": "sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=",
+  "id": "icon-button",
+  "family": "actions",
+  "maturity": "stable",
+  "priority": "R1",
+  "coverage": {
+    "family": "actions",
+    "priority": "R1",
+    "maturity": "stable",
+    "specified": true,
+    "demonstrated": true,
+    "tested": false,
+    "states": 7
+  },
+  "title": "Icon button",
+  "summary": "A square ghost button whose only content is a 16px line icon; it always carries an accessible name and, as a toggle, aria-pressed.",
+  "anchors": {
+    "site": "https://j3w1.github.io/theme/#c-icon-button",
+    "spec": "spec/components/icon-button.md",
+    "brief": "exports/components/icon-button.brief.txt"
+  },
+  "native": true,
+  "aria": {
+    "pattern": "native <button> with aria-label; aria-pressed for the toggle",
+    "apg": "https://www.w3.org/WAI/ARIA/apg/patterns/button/"
+  },
+  "variants": [
+    {
+      "id": "default",
+      "name": "Action",
+      "description": "Fires an action; no pressed state."
+    },
+    {
+      "id": "toggle",
+      "name": "Toggle",
+      "description": "Holds a boolean through aria-pressed."
+    }
+  ],
+  "sizes": [
+    "compact",
+    "comfortable"
+  ],
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "active",
+    "disabled",
+    "toggled",
+    "toggled+focus-visible"
+  ],
+  "tokens": {
+    "root.bg": {
+      "alias": "color.action.secondary.bg",
+      "value": "rgb(0 0 0 / 0%)",
+      "status": "observed"
+    },
+    "root.text": {
+      "alias": "color.action.tertiary.text",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "root.bg-hover": {
+      "alias": "color.action.tertiary.hover-bg",
+      "value": "#1c0a09",
+      "status": "observed"
+    },
+    "root.bg-active": {
+      "alias": "color.interaction.pressed.bg",
+      "value": "#420f0c",
+      "status": "observed"
+    },
+    "root.border-active": {
+      "alias": "color.border.active",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "root.ring": {
+      "alias": "color.interaction.focus.ring",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "root.bg-toggled": {
+      "alias": "color.interaction.selection.bg",
+      "value": "#911410",
+      "status": "observed"
+    },
+    "root.text-toggled": {
+      "alias": "color.interaction.selection.text",
+      "value": "#f4eeee",
+      "status": "observed"
+    },
+    "root.border-toggled": {
+      "alias": "color.border.selected-indicator",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "root.ring-toggled": {
+      "alias": "color.interaction.focus.ring-container",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "root.text-disabled": {
+      "alias": "color.text.disabled",
+      "value": "#8a5559",
+      "status": "approved"
+    },
+    "root.bg-disabled": {
+      "alias": "color.interaction.disabled.bg",
+      "value": "#160b0b",
+      "status": "observed"
+    },
+    "root.border-disabled": {
+      "alias": "color.border.disabled",
+      "value": "#7d1310",
+      "status": "observed"
+    },
+    "icon.stroke": {
+      "alias": "color.icon.default",
+      "value": "#e99499",
+      "status": "observed"
+    }
+  },
+  "stateRules": [
+    {
+      "state": "default",
+      "visual": "{color.action.tertiary.text} icon on nothing; transparent 1px border",
+      "channel": "—",
+      "tokens": {
+        "fg": {
+          "alias": "color.action.tertiary.text",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.action.secondary.bg",
+          "value": "rgb(0 0 0 / 0%)",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "hover",
+      "visual": "background → {color.action.tertiary.hover-bg}",
+      "channel": "cursor: pointer; hover-capable pointers only",
+      "tokens": {
+        "fg": {
+          "alias": "color.action.tertiary.text",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.action.tertiary.hover-bg",
+          "value": "#1c0a09",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "focus-visible",
+      "visual": "ring 1px dashed {color.interaction.focus.ring} at −2px",
+      "channel": "the ring",
+      "tokens": {
+        "fg": {
+          "alias": "color.action.tertiary.text",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.action.secondary.bg",
+          "value": "rgb(0 0 0 / 0%)",
+          "status": "observed"
+        },
+        "outline": {
+          "alias": "color.interaction.focus.ring",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "active",
+      "visual": "background → {color.interaction.pressed.bg}; border → {color.border.active}",
+      "channel": "border change; no translation",
+      "tokens": {
+        "fg": {
+          "alias": "color.action.tertiary.text",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.interaction.pressed.bg",
+          "value": "#420f0c",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.active",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "disabled",
+      "visual": "{color.text.disabled} on {color.interaction.disabled.bg} with 1px {color.border.disabled}; no hover",
+      "channel": "`disabled`; cursor: not-allowed",
+      "tokens": {}
+    },
+    {
+      "state": "toggled",
+      "visual": "fill {color.interaction.selection.bg} with {color.interaction.selection.text}; border {color.border.selected-indicator}; the icon draws in its filled form",
+      "channel": "`aria-pressed=\"true\"`; the filled icon shape; the border",
+      "tokens": {
+        "fg": {
+          "alias": "color.interaction.selection.text",
+          "value": "#f4eeee",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.interaction.selection.bg",
+          "value": "#911410",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "toggled+focus-visible",
+      "visual": "the selection fill and a ring in {color.interaction.focus.ring-container}",
+      "channel": "both visible at once",
+      "tokens": {
+        "fg": {
+          "alias": "color.interaction.selection.text",
+          "value": "#f4eeee",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.interaction.selection.bg",
+          "value": "#911410",
+          "status": "observed"
+        },
+        "outline": {
+          "alias": "color.interaction.focus.ring-container",
+          "value": "#ffa2a7",
+          "status": "observed"
+        }
+      }
+    }
+  ],
+  "keyboard": [
+    {
+      "key": "Tab / Shift+Tab",
+      "action": "Moves focus to and from the button."
+    },
+    {
+      "key": "Enter / Space",
+      "action": "Activates; the toggle variant flips aria-pressed."
+    }
+  ],
+  "responsive": "Fixed square; never shrinks below the density control height, which keeps the 24×24 CSS-pixel target at 320px and in compact density. Direction-neutral; mirrored icons (back, forward) flip in RTL through the host.",
+  "portability": {
+    "web": "native <button type=\"button\" aria-label=\"…\"> containing one SVG; toggles use aria-pressed, never aria-checked or a class; a tooltip repeats the name on hover and focus.",
+    "nativeFallbacks": [
+      "GTK4 Button with an icon child and the flat style class; ToggleButton for the toggle.",
+      "Qt QToolButton with autoRaise; checkable for the toggle.",
+      "Terminal UI: a single glyph in brackets; toggled inverted."
+    ]
+  },
+  "fixtures": [
+    "FX-320",
+    "FX-ZOOM-200",
+    "FX-RM",
+    "FX-HC",
+    "FX-TOUCH",
+    "FX-DENSITY",
+    "FX-STATE-MATRIX"
+  ],
+  "related": [
+    "button",
+    "toolbar",
+    "tooltip",
+    "segmented-control"
+  ],
+  "specimens": [
+    "filterable-table",
+    "i3-window-frame"
+  ],
+  "nonExamples": "A circle. An icon button without an accessible name. A toggle that changes\nits label instead of `aria-pressed`. A hover that recolours the icon alone.\nAn emoji or icon-font glyph in place of the SVG. A toggled state shown by\ncolour alone with a line icon. A shadow or scale on press.",
+  "contrast": [
+    {
+      "label": "icon-button default text",
+      "state": "default",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.tertiary.text",
+      "bg": "color.action.secondary.bg",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "icon-button hover text",
+      "state": "hover",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.tertiary.text",
+      "bg": "color.action.tertiary.hover-bg",
+      "fgHex": "#e99499",
+      "bgHex": "#1c0a09",
+      "ratio": 8.35,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "icon-button focus-visible text",
+      "state": "focus-visible",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.tertiary.text",
+      "bg": "color.action.secondary.bg",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "icon-button focus-visible outline",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring",
+      "bg": "color.action.secondary.bg",
+      "fgHex": "#e53935",
+      "bgHex": "#0c0909",
+      "ratio": 4.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "icon-button active text",
+      "state": "active",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.tertiary.text",
+      "bg": "color.interaction.pressed.bg",
+      "fgHex": "#e99499",
+      "bgHex": "#420f0c",
+      "ratio": 7.02,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "icon-button active border",
+      "state": "active",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.active",
+      "bg": "color.interaction.pressed.bg",
+      "fgHex": "#e53935",
+      "bgHex": "#420f0c",
+      "ratio": 3.81,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "icon-button toggled text",
+      "state": "toggled",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.interaction.selection.text",
+      "bg": "color.interaction.selection.bg",
+      "fgHex": "#f4eeee",
+      "bgHex": "#911410",
+      "ratio": 7.92,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "icon-button toggled+focus-visible text",
+      "state": "toggled+focus-visible",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.interaction.selection.text",
+      "bg": "color.interaction.selection.bg",
+      "fgHex": "#f4eeee",
+      "bgHex": "#911410",
+      "ratio": 7.92,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "icon-button toggled+focus-visible outline",
+      "state": "toggled+focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring-container",
+      "bg": "color.interaction.selection.bg",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#911410",
+      "ratio": 4.75,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "toggled border against the panel",
+      "state": "toggled",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.selected-indicator",
+      "bg": "color.surface.default",
+      "fgHex": "#e53935",
+      "bgHex": "#160b0b",
+      "ratio": 4.57,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "toggled fill against the panel (decorative)",
+      "state": "toggled",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.selection.bg",
+      "bg": "color.surface.default",
+      "fgHex": "#911410",
+      "bgHex": "#160b0b",
+      "ratio": 2.13,
+      "pass": false,
+      "waiver": "aria-pressed, the filled icon form and the 1px selected-indicator border carry the state; the fill is not the boundary"
+    },
+    {
+      "label": "disabled icon (exempt; house floor 3:1)",
+      "state": "disabled",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.text.disabled",
+      "bg": "color.interaction.disabled.bg",
+      "fgHex": "#8a5559",
+      "bgHex": "#160b0b",
+      "ratio": 3.24,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "disabled border (exempt)",
+      "state": "disabled",
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.border.disabled",
+      "bg": "color.interaction.disabled.bg",
+      "fgHex": "#7d1310",
+      "bgHex": "#160b0b",
+      "ratio": 1.82,
+      "pass": true,
+      "waiver": "disabled controls are exempt from 1.4.11"
+    }
+  ]
+}

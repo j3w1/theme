@@ -1,0 +1,52 @@
+j3w1/theme implementation brief — checkbox
+theme: j3w1-theme 0.1.0-draft.1  profile: default  sourceDigest: sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=
+pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/components/checkbox.json
+spec: spec/components/checkbox.md  site: https://j3w1.github.io/theme/#c-checkbox
+maturity: stable  priority: R1
+
+Summary: The native checkbox drawn as a 16px square that fills with the primary action colour and a ✓ or – glyph; single, or a fieldset group of independent choices.
+
+Tokens (resolved):
+  box.bg                #0c0909  ({color.surface.input})
+  box.border            #a3676b  ({color.border.control})
+  box.bg-hover          #1c0a09  ({color.interaction.hover.bg})
+  box.ring              #e53935  ({color.interaction.focus.ring})
+  box.bg-checked        #871f19  ({color.action.primary.bg})
+  box.bg-checked-hover  #911410  ({color.action.primary.hover-bg})
+  box.glyph             #f4eeee  ({color.action.primary.text})
+  box.ring-checked      #ffa2a7  ({color.interaction.focus.ring-container})
+  box.border-invalid    #e53935  ({color.status.danger.border})
+  box.bg-disabled       #160b0b  ({color.interaction.disabled.bg})
+  box.border-disabled   #7d1310  ({color.border.disabled})
+  box.glyph-disabled    #8a5559  ({color.text.disabled})
+  text.default          #e99499  ({color.text.default})
+  text.disabled         #8a5559  ({color.text.disabled})
+  legend.text           #ffa2a7  ({color.text.bright})
+  legend.required-mark  #f73f35  ({color.status.danger.text})
+  message.text          #f73f35  ({color.status.danger.text})
+
+States: default, hover, focus-visible, checked, mixed, checked+focus-visible, checked+disabled, disabled, invalid, required
+  default: 16px box, 1px {color.border.control} on {color.surface.input}; text {color.text.default} [—]
+  hover: box background → {color.interaction.hover.bg}; checked box → {color.action.primary.hover-bg} [cursor: pointer; hover-capable pointers only]
+  focus-visible: ring 1px dashed {color.interaction.focus.ring} at −2px around the box [the ring]
+  checked: box fills {color.action.primary.bg}; ✓ in {color.action.primary.text}; border stays {color.border.control} [the ✓ glyph; `checked`]
+  mixed: box fills {color.action.primary.bg}; – in {color.action.primary.text} [the – glyph; `indeterminate` / `aria-checked="mixed"`]
+  checked+focus-visible: the fill and a ring in {color.interaction.focus.ring-container} [glyph and ring]
+  checked+disabled: box {color.interaction.disabled.bg} with 1px {color.border.disabled}; ✓ and text in {color.text.disabled} [glyph; `disabled`; cursor: not-allowed]
+  disabled: box {color.interaction.disabled.bg} with 1px {color.border.disabled}; text {color.text.disabled} [`disabled`; cursor: not-allowed]
+  invalid: box border 2px {color.status.danger.border}; message with the ✕ glyph [border width 1 → 2px; glyph; `aria-invalid`]
+  required: `*` after the text or legend in {color.status.danger.text} plus visually hidden "required" [`required`; the mark]
+
+Keyboard:
+  Tab / Shift+Tab: Moves through every checkbox; each is its own tab stop.
+  Space: Toggles; a mixed box becomes checked.
+
+ARIA: native <input type="checkbox"> with <label>; fieldset and legend for a group (https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/)
+Responsive: The row wraps its text under itself with the box staying top-aligned; groups stack vertically at every width. RTL mirrors the box to the inline start of the text.
+Portability: native <input type="checkbox"> inside <label>; indeterminate through the DOM property with the host reflecting it as data-state-mixed for styling; groups in <fieldset> with <legend>; never role="checkbox" on a div.
+  native: GTK4 CheckButton; inconsistent for mixed.
+  native: Qt QCheckBox with tristate; indicator subcontrol styled square.
+  native: Terminal UI: [x], [ ] and [-] glyphs; the box inverted when focused.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

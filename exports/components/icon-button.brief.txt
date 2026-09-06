@@ -1,0 +1,46 @@
+j3w1/theme implementation brief — icon-button
+theme: j3w1-theme 0.1.0-draft.1  profile: default  sourceDigest: sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=
+pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/components/icon-button.json
+spec: spec/components/icon-button.md  site: https://j3w1.github.io/theme/#c-icon-button
+maturity: stable  priority: R1
+
+Summary: A square ghost button whose only content is a 16px line icon; it always carries an accessible name and, as a toggle, aria-pressed.
+
+Tokens (resolved):
+  root.bg               rgb(0 0 0 / 0%)  ({color.action.secondary.bg})
+  root.text             #e99499  ({color.action.tertiary.text})
+  root.bg-hover         #1c0a09  ({color.action.tertiary.hover-bg})
+  root.bg-active        #420f0c  ({color.interaction.pressed.bg})
+  root.border-active    #e53935  ({color.border.active})
+  root.ring             #e53935  ({color.interaction.focus.ring})
+  root.bg-toggled       #911410  ({color.interaction.selection.bg})
+  root.text-toggled     #f4eeee  ({color.interaction.selection.text})
+  root.border-toggled   #e53935  ({color.border.selected-indicator})
+  root.ring-toggled     #ffa2a7  ({color.interaction.focus.ring-container})
+  root.text-disabled    #8a5559  ({color.text.disabled})
+  root.bg-disabled      #160b0b  ({color.interaction.disabled.bg})
+  root.border-disabled  #7d1310  ({color.border.disabled})
+  icon.stroke           #e99499  ({color.icon.default})
+
+States: default, hover, focus-visible, active, disabled, toggled, toggled+focus-visible
+  default: {color.action.tertiary.text} icon on nothing; transparent 1px border [—]
+  hover: background → {color.action.tertiary.hover-bg} [cursor: pointer; hover-capable pointers only]
+  focus-visible: ring 1px dashed {color.interaction.focus.ring} at −2px [the ring]
+  active: background → {color.interaction.pressed.bg}; border → {color.border.active} [border change; no translation]
+  disabled: {color.text.disabled} on {color.interaction.disabled.bg} with 1px {color.border.disabled}; no hover [`disabled`; cursor: not-allowed]
+  toggled: fill {color.interaction.selection.bg} with {color.interaction.selection.text}; border {color.border.selected-indicator}; the icon draws in its filled form [`aria-pressed="true"`; the filled icon shape; the border]
+  toggled+focus-visible: the selection fill and a ring in {color.interaction.focus.ring-container} [both visible at once]
+
+Keyboard:
+  Tab / Shift+Tab: Moves focus to and from the button.
+  Enter / Space: Activates; the toggle variant flips aria-pressed.
+
+ARIA: native <button> with aria-label; aria-pressed for the toggle (https://www.w3.org/WAI/ARIA/apg/patterns/button/)
+Responsive: Fixed square; never shrinks below the density control height, which keeps the 24×24 CSS-pixel target at 320px and in compact density. Direction-neutral; mirrored icons (back, forward) flip in RTL through the host.
+Portability: native <button type="button" aria-label="…"> containing one SVG; toggles use aria-pressed, never aria-checked or a class; a tooltip repeats the name on hover and focus.
+  native: GTK4 Button with an icon child and the flat style class; ToggleButton for the toggle.
+  native: Qt QToolButton with autoRaise; checkable for the toggle.
+  native: Terminal UI: a single glyph in brackets; toggled inverted.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

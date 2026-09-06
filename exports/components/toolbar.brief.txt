@@ -1,0 +1,45 @@
+j3w1/theme implementation brief — toolbar
+theme: j3w1-theme 0.1.0-draft.1  profile: default  sourceDigest: sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=
+pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/components/toolbar.json
+spec: spec/components/toolbar.md  site: https://j3w1.github.io/theme/#c-toolbar
+maturity: stable  priority: R1
+
+Summary: A row of related controls under one tab stop with arrow-key movement; ghost buttons, a vertical separator, and a "more" button when the row overflows.
+
+Tokens (resolved):
+  root.bg               #100909  ({color.surface.chrome})
+  root.border           #2b0e0d  ({color.border.divider})
+  button.text           #e99499  ({color.text.default})
+  button.bg-hover       #1c0a09  ({color.interaction.hover.bg})
+  button.bg-pressed     #420f0c  ({color.interaction.pressed.bg})
+  button.ring           #e53935  ({color.interaction.focus.ring})
+  button.text-disabled  #8a5559  ({color.text.disabled})
+  toggled.bg            #420f0c  ({color.interaction.pressed.bg})
+  toggled.border        #e53935  ({color.border.active})
+  toggled.text          #ffa2a7  ({color.text.bright})
+  separator.color       #531310  ({color.border.default})
+  more.chevron          #a3676b  ({color.icon.decorative})
+
+States: default, hover, focus-visible, disabled, toggled
+  default: text {color.text.default}; no fill; transparent border [—]
+  hover: background → {color.interaction.hover.bg} [cursor: pointer]
+  focus-visible: ring 1px dashed {color.interaction.focus.ring} at −2px [the ring]
+  disabled: text {color.text.disabled}; no fill; no hover [`disabled`; cursor: not-allowed; skipped by the arrow keys]
+  toggled: fill {color.interaction.pressed.bg}; 1px {color.border.active} border; text {color.text.bright} [`aria-pressed="true"`; the border]
+
+Keyboard:
+  Tab / Shift+Tab: Enters or leaves the toolbar; one control has tabindex 0 (roving tabindex).
+  Left / Right: Moves focus to the previous or next enabled control; wraps at the ends; Up and Down when aria-orientation is vertical.
+  Home / End: Moves focus to the first or last control.
+  Enter / Space: Activates the focused button or toggles a toggle button.
+  Escape: Restores the previous value in a toolbar that edits, otherwise nothing.
+
+ARIA: APG toolbar with roving tabindex; buttons, toggle buttons with aria-pressed, and a separator (https://www.w3.org/WAI/ARIA/apg/patterns/toolbar/)
+Responsive: The row never wraps: below its intrinsic width the trailing controls move into the More menu (the overflow variant); at 320px only the leading controls and the more button remain visible. RTL mirrors the order and the arrow keys follow the reading direction.
+Portability: A div with role toolbar and aria-label; native buttons inside, toggles with aria-pressed; a div with role separator and aria-orientation vertical; roving tabindex maintained by script; without script every button stays in the tab order, which is the acceptable no-JS fallback.
+  native: GTK4 Box in the toolbar style class with flat Buttons and ToggleButtons; a Separator between groups.
+  native: Qt QToolBar with QActions; checkable actions draw the pressed fill and active border.
+  native: Terminal UI: a one-line row of bracketed labels; the toggled one inverted.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

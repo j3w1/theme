@@ -140,9 +140,13 @@ deprecated text a line-through. Languages inherit these roles; a
 language-specific override needs a documented reason.
 
 Terminal roles carry the sixteen slots **exactly** in every profile. Slots
-1, 4, 6, 8, 9, 10, 12, 13 and 14 do not reach 4.5:1 on the terminal
-background; the theme documents this rather than normalising it, because
-programs, not the theme, choose which slot means what. The `extended` overlay
+1, 4, 6, 8, 9, 10, 12, 13, 14 and 15 do not reach 4.5:1 on the terminal
+background (slot 15, `#a3676b`, measures 4.45:1; slot 0 is the background
+itself); the theme documents this rather than normalising it, because
+programs, not the theme, choose which slot means what. Inside an editor
+selection (`code.selection-bg`, `#420f0c`) muted text stays at 4.71:1 but the
+keyword, type, property and comment roles fall below 4.5:1; a selection is a
+transient state and the limitation is recorded, not hidden. The `extended` overlay
 proposes a semantic sixteen-slot palette that all reaches 4.5:1.
 
 ## Typography

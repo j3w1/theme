@@ -1,0 +1,115 @@
+/* alert — reference CSS. Status tint behind a 1px status border with the
+   mandatory glyph; only the optional close button is interactive. Every real
+   pseudo-class is paired with the forced-state attribute the state matrix
+   emits. Token variables only. */
+
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-8);
+  min-width: 0;
+  padding: var(--space-8) var(--space-12);
+  border: var(--border-width-default) solid;
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+}
+
+.alert-danger {
+  background: var(--color-status-danger-tint);
+  border-color: var(--color-status-danger-border);
+  --_status-text: var(--color-status-danger-text);
+}
+
+.alert-warning {
+  background: var(--color-status-warning-tint);
+  border-color: var(--color-status-warning-border);
+  --_status-text: var(--color-status-warning-text);
+}
+
+.alert-success {
+  background: var(--color-status-success-tint);
+  border-color: var(--color-status-success-border);
+  --_status-text: var(--color-status-success-text);
+}
+
+.alert-info {
+  background: var(--color-status-info-tint);
+  border-color: var(--color-status-info-border);
+  --_status-text: var(--color-status-info-text);
+}
+
+.alert-neutral {
+  background: var(--color-status-neutral-tint);
+  border-color: var(--color-status-neutral-border);
+  --_status-text: var(--color-status-neutral-text);
+}
+
+.alert-glyph {
+  flex: 0 0 auto;
+  min-width: var(--icon-size-md);
+  color: var(--_status-text);
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+}
+
+.alert-body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.alert-title {
+  display: block;
+  color: var(--_status-text);
+  font-weight: var(--font-weight-bold);
+}
+
+.alert-text {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.alert-close {
+  flex: 0 0 auto;
+  min-width: 24px;
+  min-height: 24px;
+  margin: calc(-1 * var(--space-2)) calc(-1 * var(--space-4)) 0 0;
+  padding: 0 var(--space-4);
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-none);
+  color: var(--color-action-tertiary-text);
+  font: inherit;
+  cursor: pointer;
+}
+
+/* hover: only the close button reacts */
+.alert-close:hover,
+[data-state-hover] .alert-close {
+  background: var(--color-action-tertiary-hover-bg);
+}
+
+/* focus-visible */
+.alert-close:focus-visible,
+[data-state-focus-visible] .alert-close {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+@media (hover: none) {
+  .alert-close:hover {
+    background: transparent;
+  }
+}
+
+@media (forced-colors: active) {
+  .alert {
+    border-color: CanvasText;
+  }
+
+  .alert-close:focus-visible,
+  [data-state-focus-visible] .alert-close {
+    outline-color: Highlight;
+  }
+}

@@ -1,0 +1,223 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "0.1.0-draft.1",
+  "profile": "default",
+  "sourceDigest": "sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=",
+  "id": "loading-indicator",
+  "family": "feedback",
+  "maturity": "stable",
+  "priority": "R1",
+  "coverage": {
+    "family": "feedback",
+    "priority": "R1",
+    "maturity": "stable",
+    "specified": true,
+    "demonstrated": true,
+    "tested": false,
+    "states": 2
+  },
+  "title": "Loading indicator",
+  "summary": "A static ⋯ glyph with a worded label inside an aria-busy container; inline next to text or as a centred block. There is no spinner.",
+  "anchors": {
+    "site": "https://j3w1.github.io/theme/#c-loading-indicator",
+    "spec": "spec/components/loading-indicator.md",
+    "brief": "exports/components/loading-indicator.brief.txt"
+  },
+  "native": true,
+  "aria": {
+    "pattern": "native container with aria-busy=true and role=status; the glyph is aria-hidden and the label carries the meaning",
+    "apg": "https://www.w3.org/WAI/ARIA/apg/patterns/alert/"
+  },
+  "variants": [
+    {
+      "id": "inline",
+      "name": "Inline"
+    },
+    {
+      "id": "block",
+      "name": "Block"
+    }
+  ],
+  "sizes": [
+    "compact",
+    "comfortable"
+  ],
+  "states": [
+    "default",
+    "reduced-motion"
+  ],
+  "tokens": {
+    "glyph.text": {
+      "alias": "color.text.muted",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "label.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "block.bg": {
+      "alias": "color.surface.default",
+      "value": "#160b0b",
+      "status": "observed"
+    },
+    "block.border": {
+      "alias": "color.border.divider",
+      "value": "#2b0e0d",
+      "status": "proposed"
+    }
+  },
+  "stateRules": [
+    {
+      "state": "default",
+      "visual": "the static ⋯ and the label",
+      "channel": "`aria-busy=\"true\"`; the glyph; the worded label",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.canvas",
+          "value": "#0c0909",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "reduced-motion",
+      "visual": "identical: there is nothing to reduce",
+      "channel": "`prefers-reduced-motion`",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.canvas",
+          "value": "#0c0909",
+          "status": "observed"
+        }
+      }
+    }
+  ],
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Nothing; the indicator is not focusable and never traps focus; the content it replaces keeps its tab stops when it returns."
+    }
+  ],
+  "responsive": "Inline, it follows the text and wraps with it; the block centres in its container at any width and needs no minimum height beyond one row. RTL leaves the glyph in place, since ⋯ has no direction.",
+  "portability": {
+    "web": "a <span role=status aria-busy=true> inline or a <div role=status aria-busy=true> block; the glyph is text; the label is the announcement; aria-busy is removed, and the label replaced by the result, when loading ends.",
+    "nativeFallbacks": [
+      "GTK4 Label with the glyph; no Spinner widget.",
+      "Qt QLabel; QProgressBar busy mode only when a bar is wanted.",
+      "Terminal UI: the glyph in the status line."
+    ]
+  },
+  "fixtures": [
+    "FX-320",
+    "FX-ZOOM-200",
+    "FX-I18N",
+    "FX-RTL",
+    "FX-RM",
+    "FX-HC",
+    "FX-STATE-MATRIX"
+  ],
+  "related": [
+    "progress",
+    "skeleton",
+    "empty-state",
+    "toast"
+  ],
+  "specimens": [
+    "filterable-table",
+    "settings-panel"
+  ],
+  "nonExamples": "A spinner or rotating ring. Animated dots. A shimmering skeleton. A full-page\noverlay that blocks input for a fetch. A glyph with no label. An indicator\nthat takes focus. A dimmed container at reduced opacity.",
+  "contrast": [
+    {
+      "label": "loading-indicator default text",
+      "state": "default",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.canvas",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "loading-indicator reduced-motion text",
+      "state": "reduced-motion",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.canvas",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "glyph on the canvas",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.muted",
+      "bg": "color.surface.canvas",
+      "fgHex": "#bd787d",
+      "bgHex": "#0c0909",
+      "ratio": 5.81,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "block label on the panel surface",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.default",
+      "fgHex": "#e99499",
+      "bgHex": "#160b0b",
+      "ratio": 8.43,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "block glyph on the panel surface",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.muted",
+      "bg": "color.surface.default",
+      "fgHex": "#bd787d",
+      "bgHex": "#160b0b",
+      "ratio": 5.66,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "block edge (decorative)",
+      "state": null,
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.border.divider",
+      "bg": "color.surface.canvas",
+      "fgHex": "#2b0e0d",
+      "bgHex": "#0c0909",
+      "ratio": 1.11,
+      "pass": true,
+      "waiver": "the block is identified by its label and aria-busy, not by this edge"
+    }
+  ]
+}

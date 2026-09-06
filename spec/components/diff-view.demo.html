@@ -1,0 +1,211 @@
+<!-- @variant unified -->
+<table class="diff-view diff-view-unified">
+  <caption class="sr-only">title.js, old against new, unified</caption>
+  <thead class="sr-only">
+    <tr><th scope="col">Old line</th><th scope="col">New line</th><th scope="col">Change</th><th scope="col">Text</th></tr>
+  </thead>
+  <tbody>
+    <tr class="diff-view-row diff-view-row-hunk">
+      <td class="diff-view-ln"></td><td class="diff-view-ln"></td><td class="diff-view-marker"> </td>
+      <td class="diff-view-text"><span class="diff-view-range">@@ -3,7 +3,8 @@</span> export function title(container)</td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-context">
+      <td class="diff-view-ln">3</td><td class="diff-view-ln">3</td><td class="diff-view-marker"> </td>
+      <td class="diff-view-text">  const name = container.name ?? "untitled";</td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-removed">
+      <td class="diff-view-ln">4</td><td class="diff-view-ln"></td><td class="diff-view-marker">−<span class="sr-only"> removed</span></td>
+      <td class="diff-view-text">  let label = name;</td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-added diff-view-row-active">
+      <td class="diff-view-ln"></td><td class="diff-view-ln">4</td><td class="diff-view-marker">+<span class="sr-only"> added</span></td>
+      <td class="diff-view-text">  let label = `${name} (${container.children.length})`;</td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-context">
+      <td class="diff-view-ln">5</td><td class="diff-view-ln">5</td><td class="diff-view-marker"> </td>
+      <td class="diff-view-text">  if (label.length &gt; MAX_LENGTH) {</td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-modified">
+      <td class="diff-view-ln">6</td><td class="diff-view-ln">6</td><td class="diff-view-marker">~<span class="sr-only"> modified</span></td>
+      <td class="diff-view-text">    label = label.slice(0, MAX_LENGTH) + "…";</td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-context">
+      <td class="diff-view-ln">7</td><td class="diff-view-ln">7</td><td class="diff-view-marker"> </td>
+      <td class="diff-view-text">  }</td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-fold">
+      <td class="diff-view-fold-cell" colspan="4">
+        <button class="diff-view-fold" type="button" aria-expanded="false" aria-controls="dv-u-fold">
+          <svg class="diff-view-chevron" width="12" height="12" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          <span class="diff-view-fold-collapsed">… 12 unchanged lines</span><span class="diff-view-fold-expanded">Hide 12 unchanged lines</span>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+  <tbody class="diff-view-folded" id="dv-u-fold" hidden>
+    <tr class="diff-view-row diff-view-row-context">
+      <td class="diff-view-ln">8</td><td class="diff-view-ln">8</td><td class="diff-view-marker"> </td>
+      <td class="diff-view-text">  return escape(label);</td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-context">
+      <td class="diff-view-ln">9</td><td class="diff-view-ln">9</td><td class="diff-view-marker"> </td>
+      <td class="diff-view-text">}</td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-context">
+      <td class="diff-view-ln">10</td><td class="diff-view-ln">10</td><td class="diff-view-marker"> </td>
+      <td class="diff-view-text">… ten more context lines …</td>
+    </tr>
+  </tbody>
+</table>
+<!-- @variant split -->
+<table class="diff-view diff-view-split">
+  <caption class="sr-only">title.js, old on the left, new on the right</caption>
+  <thead class="sr-only">
+    <tr><th scope="col">Old line</th><th scope="col">Old change</th><th scope="col">Old text</th><th scope="col">New line</th><th scope="col">New change</th><th scope="col">New text</th></tr>
+  </thead>
+  <tbody>
+    <tr class="diff-view-row diff-view-row-hunk">
+      <td class="diff-view-fold-cell" colspan="6"><span class="diff-view-range">@@ -3,7 +3,8 @@</span> export function title(container)</td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-context">
+      <td class="diff-view-ln diff-view-side-old">3</td><td class="diff-view-marker diff-view-side-old"> </td><td class="diff-view-text diff-view-side-old">  const name = container.name ?? "untitled";</td>
+      <td class="diff-view-ln diff-view-side-new">3</td><td class="diff-view-marker diff-view-side-new"> </td><td class="diff-view-text diff-view-side-new">  const name = container.name ?? "untitled";</td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-pair diff-view-row-active">
+      <td class="diff-view-ln diff-view-side-old diff-view-cell-removed">4</td><td class="diff-view-marker diff-view-side-old diff-view-cell-removed">−<span class="sr-only"> removed</span></td><td class="diff-view-text diff-view-side-old diff-view-cell-removed">  let label = name;</td>
+      <td class="diff-view-ln diff-view-side-new diff-view-cell-added">4</td><td class="diff-view-marker diff-view-side-new diff-view-cell-added">+<span class="sr-only"> added</span></td><td class="diff-view-text diff-view-side-new diff-view-cell-added">  let label = `${name} (${container.children.length})`;</td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-context">
+      <td class="diff-view-ln diff-view-side-old">5</td><td class="diff-view-marker diff-view-side-old"> </td><td class="diff-view-text diff-view-side-old">  if (label.length &gt; MAX_LENGTH) {</td>
+      <td class="diff-view-ln diff-view-side-new">5</td><td class="diff-view-marker diff-view-side-new"> </td><td class="diff-view-text diff-view-side-new">  if (label.length &gt; MAX_LENGTH) {</td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-modified">
+      <td class="diff-view-ln diff-view-side-old">6</td><td class="diff-view-marker diff-view-side-old">~<span class="sr-only"> modified</span></td><td class="diff-view-text diff-view-side-old">    label = label.slice(0, MAX_LENGTH);</td>
+      <td class="diff-view-ln diff-view-side-new">6</td><td class="diff-view-marker diff-view-side-new">~<span class="sr-only"> modified</span></td><td class="diff-view-text diff-view-side-new">    label = label.slice(0, MAX_LENGTH) + "…";</td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-added">
+      <td class="diff-view-ln diff-view-side-old"></td><td class="diff-view-marker diff-view-side-old"> </td><td class="diff-view-text diff-view-side-old diff-view-cell-blank"></td>
+      <td class="diff-view-ln diff-view-side-new">7</td><td class="diff-view-marker diff-view-side-new">+<span class="sr-only"> added</span></td><td class="diff-view-text diff-view-side-new">    label = label.trimEnd();</td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-fold">
+      <td class="diff-view-fold-cell" colspan="6">
+        <button class="diff-view-fold" type="button" aria-expanded="false" aria-controls="dv-s-fold">
+          <svg class="diff-view-chevron" width="12" height="12" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          <span class="diff-view-fold-collapsed">… 12 unchanged lines</span><span class="diff-view-fold-expanded">Hide 12 unchanged lines</span>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+  <tbody class="diff-view-folded" id="dv-s-fold" hidden>
+    <tr class="diff-view-row diff-view-row-context">
+      <td class="diff-view-ln diff-view-side-old">7</td><td class="diff-view-marker diff-view-side-old"> </td><td class="diff-view-text diff-view-side-old">  }</td>
+      <td class="diff-view-ln diff-view-side-new">8</td><td class="diff-view-marker diff-view-side-new"> </td><td class="diff-view-text diff-view-side-new">  }</td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-context">
+      <td class="diff-view-ln diff-view-side-old">8</td><td class="diff-view-marker diff-view-side-old"> </td><td class="diff-view-text diff-view-side-old">  return escape(label);</td>
+      <td class="diff-view-ln diff-view-side-new">9</td><td class="diff-view-marker diff-view-side-new"> </td><td class="diff-view-text diff-view-side-new">  return escape(label);</td>
+    </tr>
+  </tbody>
+</table>
+<!-- @variant word-level -->
+<table class="diff-view diff-view-word-level">
+  <caption class="sr-only">title.js, unified with word-level changes</caption>
+  <thead class="sr-only">
+    <tr><th scope="col">Old line</th><th scope="col">New line</th><th scope="col">Change</th><th scope="col">Text</th></tr>
+  </thead>
+  <tbody>
+    <tr class="diff-view-row diff-view-row-hunk">
+      <td class="diff-view-ln"></td><td class="diff-view-ln"></td><td class="diff-view-marker"> </td>
+      <td class="diff-view-text"><span class="diff-view-range">@@ -4,3 +4,3 @@</span> export function title(container)</td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-removed">
+      <td class="diff-view-ln">4</td><td class="diff-view-ln"></td><td class="diff-view-marker">−<span class="sr-only"> removed</span></td>
+      <td class="diff-view-text">  let label = <del class="diff-view-word-removed">name;</del></td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-added diff-view-row-active">
+      <td class="diff-view-ln"></td><td class="diff-view-ln">4</td><td class="diff-view-marker">+<span class="sr-only"> added</span></td>
+      <td class="diff-view-text">  let label = <ins class="diff-view-word-added">`${name} (${count})`;</ins></td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-removed">
+      <td class="diff-view-ln">5</td><td class="diff-view-ln"></td><td class="diff-view-marker">−<span class="sr-only"> removed</span></td>
+      <td class="diff-view-text">  if (label.length &gt; <del class="diff-view-word-removed">48</del>) {</td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-added">
+      <td class="diff-view-ln"></td><td class="diff-view-ln">5</td><td class="diff-view-marker">+<span class="sr-only"> added</span></td>
+      <td class="diff-view-text">  if (label.length &gt; <ins class="diff-view-word-added">MAX_LENGTH</ins>) {</td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-fold">
+      <td class="diff-view-fold-cell" colspan="4">
+        <button class="diff-view-fold" type="button" aria-expanded="false" aria-controls="dv-w-fold">
+          <svg class="diff-view-chevron" width="12" height="12" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          <span class="diff-view-fold-collapsed">… 12 unchanged lines</span><span class="diff-view-fold-expanded">Hide 12 unchanged lines</span>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+  <tbody class="diff-view-folded" id="dv-w-fold" hidden>
+    <tr class="diff-view-row diff-view-row-context">
+      <td class="diff-view-ln">6</td><td class="diff-view-ln">6</td><td class="diff-view-marker"> </td>
+      <td class="diff-view-text">    label = label.slice(0, MAX_LENGTH) + "…";</td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-context">
+      <td class="diff-view-ln">7</td><td class="diff-view-ln">7</td><td class="diff-view-marker"> </td>
+      <td class="diff-view-text">  }</td>
+    </tr>
+  </tbody>
+</table>
+<!-- @variant conflict -->
+<table class="diff-view diff-view-conflict">
+  <caption class="sr-only">title.js, merge conflict between main and feature/gaps</caption>
+  <thead class="sr-only">
+    <tr><th scope="col">Line</th><th scope="col">Change</th><th scope="col">Text</th></tr>
+  </thead>
+  <tbody>
+    <tr class="diff-view-row diff-view-row-context">
+      <td class="diff-view-ln">3</td><td class="diff-view-marker"> </td>
+      <td class="diff-view-text">  const name = container.name ?? "untitled";</td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-conflict diff-view-row-conflict-start">
+      <td class="diff-view-ln">4</td><td class="diff-view-marker"> </td>
+      <td class="diff-view-text">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD (main)</td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-conflict diff-view-row-ours diff-view-row-active">
+      <td class="diff-view-ln">5</td><td class="diff-view-marker">−<span class="sr-only"> ours</span></td>
+      <td class="diff-view-text">  let label = name;</td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-conflict diff-view-row-conflict-mid">
+      <td class="diff-view-ln">6</td><td class="diff-view-marker"> </td>
+      <td class="diff-view-text">=======</td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-conflict diff-view-row-theirs">
+      <td class="diff-view-ln">7</td><td class="diff-view-marker">+<span class="sr-only"> theirs</span></td>
+      <td class="diff-view-text">  let label = `${name} (${count})`;</td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-conflict diff-view-row-conflict-end">
+      <td class="diff-view-ln">8</td><td class="diff-view-marker"> </td>
+      <td class="diff-view-text">&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature/gaps</td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-context">
+      <td class="diff-view-ln">9</td><td class="diff-view-marker"> </td>
+      <td class="diff-view-text">  if (label.length &gt; MAX_LENGTH) {</td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-fold">
+      <td class="diff-view-fold-cell" colspan="3">
+        <button class="diff-view-fold" type="button" aria-expanded="false" aria-controls="dv-c-fold">
+          <svg class="diff-view-chevron" width="12" height="12" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          <span class="diff-view-fold-collapsed">… 12 unchanged lines</span><span class="diff-view-fold-expanded">Hide 12 unchanged lines</span>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+  <tbody class="diff-view-folded" id="dv-c-fold" hidden>
+    <tr class="diff-view-row diff-view-row-context">
+      <td class="diff-view-ln">10</td><td class="diff-view-marker"> </td>
+      <td class="diff-view-text">    label = label.slice(0, MAX_LENGTH) + "…";</td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-context">
+      <td class="diff-view-ln">11</td><td class="diff-view-marker"> </td>
+      <td class="diff-view-text">  }</td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,239 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "0.1.0-draft.1",
+  "profile": "default",
+  "sourceDigest": "sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=",
+  "id": "skip-link",
+  "family": "navigation",
+  "maturity": "stable",
+  "priority": "R1",
+  "coverage": {
+    "family": "navigation",
+    "priority": "R1",
+    "maturity": "stable",
+    "specified": true,
+    "demonstrated": true,
+    "tested": false,
+    "states": 2
+  },
+  "title": "Skip link",
+  "summary": "The first tab stop of a page, hidden until it receives keyboard focus, that jumps past the chrome to the main content.",
+  "anchors": {
+    "site": "https://j3w1.github.io/theme/#c-skip-link",
+    "spec": "spec/components/skip-link.md",
+    "brief": "exports/components/skip-link.brief.txt"
+  },
+  "native": true,
+  "aria": {
+    "pattern": "native <a href=\"#main\"> as the first focusable element in the body"
+  },
+  "variants": [
+    {
+      "id": "default",
+      "name": "Default"
+    }
+  ],
+  "sizes": [
+    "compact",
+    "comfortable"
+  ],
+  "states": [
+    "default",
+    "focus-visible"
+  ],
+  "tokens": {
+    "root.bg": {
+      "alias": "color.surface.raised",
+      "value": "#241010",
+      "status": "observed"
+    },
+    "root.text": {
+      "alias": "color.text.bright",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "root.border": {
+      "alias": "color.border.overlay",
+      "value": "#e53935",
+      "status": "proposed"
+    },
+    "root.ring": {
+      "alias": "color.interaction.focus.ring",
+      "value": "#e53935",
+      "status": "observed"
+    }
+  },
+  "stateRules": [
+    {
+      "state": "default",
+      "visual": "off-screen; nothing is painted",
+      "channel": "the link is still in the tab order and the accessibility tree",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.bright",
+          "value": "#ffa2a7",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.raised",
+          "value": "#241010",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.overlay",
+          "value": "#e53935",
+          "status": "proposed"
+        }
+      }
+    },
+    {
+      "state": "focus-visible",
+      "visual": "appears in the top corner; ring 1px dashed {color.interaction.focus.ring} at −2px",
+      "channel": "the link appears; the ring",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.bright",
+          "value": "#ffa2a7",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.raised",
+          "value": "#241010",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.overlay",
+          "value": "#e53935",
+          "status": "proposed"
+        },
+        "outline": {
+          "alias": "color.interaction.focus.ring",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    }
+  ],
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "From the address bar or the top of the document, focuses the skip link and reveals it."
+    },
+    {
+      "key": "Enter",
+      "action": "Moves focus to the main landmark (which carries tabindex=\"-1\") and scrolls it into view."
+    },
+    {
+      "key": "Tab (again)",
+      "action": "Leaves the link without activating it; it hides again."
+    }
+  ],
+  "responsive": "Fixed size in every layout; it never overlaps the main content because it is only visible while focused, and it never causes horizontal scroll while off-screen because it is moved on the block axis, not the inline axis. RTL positions it at the inline-start corner.",
+  "portability": {
+    "web": "An anchor with href pointing at the id of the main landmark, first in the body; main carries tabindex=\"-1\" so focus lands on it; the link is moved off-screen with a negative top, never display none or visibility hidden, so it stays focusable.",
+    "nativeFallbacks": [
+      "GTK4 and Qt have no page chrome to skip; the pattern does not apply and hosts record it.",
+      "Terminal UI: does not apply; keyboard focus starts in the content."
+    ]
+  },
+  "fixtures": [
+    "FX-320",
+    "FX-ZOOM-200",
+    "FX-I18N",
+    "FX-RTL",
+    "FX-RM",
+    "FX-HC",
+    "FX-STATE-MATRIX"
+  ],
+  "related": [
+    "link",
+    "sidebar-nav",
+    "toolbar"
+  ],
+  "specimens": [
+    "settings-panel",
+    "admin-form"
+  ],
+  "nonExamples": "A skip link that is always visible. One hidden with `display: none` or\n`visibility: hidden`. One that is not the first tab stop. One that points at\nan element without `tabindex=\"-1\"`, so focus does not move. A skip link\nthat slides in from the side and causes horizontal scroll while hidden. A\nrounded pill. One rendered without the frame on the canvas.",
+  "contrast": [
+    {
+      "label": "skip-link default text",
+      "state": "default",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.bright",
+      "bg": "color.surface.raised",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#241010",
+      "ratio": 9.49,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "skip-link default border",
+      "state": "default",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.overlay",
+      "bg": "color.surface.raised",
+      "fgHex": "#e53935",
+      "bgHex": "#241010",
+      "ratio": 4.3,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "skip-link focus-visible text",
+      "state": "focus-visible",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.bright",
+      "bg": "color.surface.raised",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#241010",
+      "ratio": 9.49,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "skip-link focus-visible border",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.overlay",
+      "bg": "color.surface.raised",
+      "fgHex": "#e53935",
+      "bgHex": "#241010",
+      "ratio": 4.3,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "skip-link focus-visible outline",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring",
+      "bg": "color.surface.raised",
+      "fgHex": "#e53935",
+      "bgHex": "#241010",
+      "ratio": 4.3,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "ring on the raised surface",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring",
+      "bg": "color.surface.raised",
+      "fgHex": "#e53935",
+      "bgHex": "#241010",
+      "ratio": 4.3,
+      "pass": true,
+      "waiver": null
+    }
+  ]
+}

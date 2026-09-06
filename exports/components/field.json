@@ -1,0 +1,312 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "0.1.0-draft.1",
+  "profile": "default",
+  "sourceDigest": "sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=",
+  "id": "field",
+  "family": "forms-basic",
+  "maturity": "stable",
+  "priority": "R1",
+  "coverage": {
+    "family": "forms-basic",
+    "priority": "R1",
+    "maturity": "stable",
+    "specified": true,
+    "demonstrated": true,
+    "tested": false,
+    "states": 4
+  },
+  "title": "Field",
+  "summary": "The label, control, help and message wrapper that every form control sits in; it fixes the stacking order, the required mark, the description links and the invalid message.",
+  "anchors": {
+    "site": "https://j3w1.github.io/theme/#c-field",
+    "spec": "spec/components/field.md",
+    "brief": "exports/components/field.brief.txt"
+  },
+  "native": true,
+  "aria": {
+    "pattern": "native <label for> with aria-describedby on the control",
+    "apg": "https://www.w3.org/WAI/ARIA/apg/practices/forms/"
+  },
+  "variants": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "Label above, one control, help below, message when invalid."
+    }
+  ],
+  "sizes": [
+    "compact",
+    "comfortable"
+  ],
+  "states": [
+    "default",
+    "required",
+    "invalid",
+    "disabled"
+  ],
+  "tokens": {
+    "root.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "label.text": {
+      "alias": "color.text.bright",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "label.required-mark": {
+      "alias": "color.status.danger.text",
+      "value": "#f73f35",
+      "status": "observed"
+    },
+    "control.bg": {
+      "alias": "color.surface.input",
+      "value": "#0c0909",
+      "status": "observed"
+    },
+    "control.border": {
+      "alias": "color.border.control",
+      "value": "#a3676b",
+      "status": "proposed"
+    },
+    "control.border-invalid": {
+      "alias": "color.status.danger.border",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "control.text-disabled": {
+      "alias": "color.text.disabled",
+      "value": "#8a5559",
+      "status": "approved"
+    },
+    "control.bg-disabled": {
+      "alias": "color.interaction.disabled.bg",
+      "value": "#160b0b",
+      "status": "observed"
+    },
+    "control.border-disabled": {
+      "alias": "color.border.disabled",
+      "value": "#7d1310",
+      "status": "observed"
+    },
+    "help.text": {
+      "alias": "color.text.muted",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "message.text": {
+      "alias": "color.status.danger.text",
+      "value": "#f73f35",
+      "status": "observed"
+    }
+  },
+  "stateRules": [
+    {
+      "state": "default",
+      "visual": "label {color.text.bright}; help {color.text.muted}; control as its own component",
+      "channel": "—",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.bright",
+          "value": "#ffa2a7",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.default",
+          "value": "#160b0b",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "required",
+      "visual": "`*` after the label in {color.status.danger.text} plus visually hidden \"required\"",
+      "channel": "`required` attribute; the mark",
+      "tokens": {
+        "fg": {
+          "alias": "color.status.danger.text",
+          "value": "#f73f35",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.default",
+          "value": "#160b0b",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "invalid",
+      "visual": "the control's 2px {color.status.danger.border}; message with the ✕ glyph in {color.status.danger.text}; help visually hidden",
+      "channel": "border width 1 → 2px; glyph; `aria-invalid`",
+      "tokens": {
+        "fg": {
+          "alias": "color.status.danger.text",
+          "value": "#f73f35",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.default",
+          "value": "#160b0b",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "disabled",
+      "visual": "label and control text {color.text.disabled}; control {color.interaction.disabled.bg} with 1px {color.border.disabled}; help unchanged",
+      "channel": "`disabled`; cursor: not-allowed",
+      "tokens": {}
+    }
+  ],
+  "keyboard": [
+    {
+      "key": "Tab / Shift+Tab",
+      "action": "Reaches the control; the label is not a tab stop."
+    }
+  ],
+  "responsive": "Fills its container with min-width 0; at 320px label, control, help and message stack without clipping; long labels wrap. RTL keeps the stack and mirrors the required mark to the label's end.",
+  "portability": {
+    "web": "<div> wrapper with <label for>, the control, <p> help and <p> message; aria-describedby lists help then message; aria-invalid on the control only after interaction or submit; groups use fieldset and legend instead of label.",
+    "nativeFallbacks": [
+      "GTK4 Box with a Label, the control and a caption-style Label.",
+      "Qt QFormLayout row with a QLabel buddy.",
+      "Terminal UI: label line, control line, dim help line."
+    ]
+  },
+  "fixtures": [
+    "FX-LONG",
+    "FX-320",
+    "FX-ZOOM-200",
+    "FX-I18N",
+    "FX-RTL",
+    "FX-RM",
+    "FX-HC",
+    "FX-DENSITY",
+    "FX-STATE-MATRIX"
+  ],
+  "related": [
+    "text-field",
+    "textarea",
+    "select",
+    "checkbox",
+    "radio-group",
+    "fieldset",
+    "number-field",
+    "search-field"
+  ],
+  "specimens": [
+    "admin-form",
+    "settings-panel"
+  ],
+  "nonExamples": "A floating label inside the control. A label to the left of the control.\nPlaceholder text as the only label. An error shown by a red border alone. A\nmessage that replaces the help text in the DOM. A required mark that is only\na colour change. An asterisk with no text alternative. Two controls in one\nfield.",
+  "contrast": [
+    {
+      "label": "field default text",
+      "state": "default",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.bright",
+      "bg": "color.surface.default",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#160b0b",
+      "ratio": 10.1,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "field required text",
+      "state": "required",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.status.danger.text",
+      "bg": "color.surface.default",
+      "fgHex": "#f73f35",
+      "bgHex": "#160b0b",
+      "ratio": 5.26,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "field invalid text",
+      "state": "invalid",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.status.danger.text",
+      "bg": "color.surface.default",
+      "fgHex": "#f73f35",
+      "bgHex": "#160b0b",
+      "ratio": 5.26,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "help text on the panel surface",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.muted",
+      "bg": "color.surface.default",
+      "fgHex": "#bd787d",
+      "bgHex": "#160b0b",
+      "ratio": 5.66,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "help text on the canvas",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.muted",
+      "bg": "color.surface.canvas",
+      "fgHex": "#bd787d",
+      "bgHex": "#0c0909",
+      "ratio": 5.81,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "disabled label (exempt; house floor 3:1)",
+      "state": "disabled",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.text.disabled",
+      "bg": "color.surface.default",
+      "fgHex": "#8a5559",
+      "bgHex": "#160b0b",
+      "ratio": 3.24,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "disabled control text (exempt; house floor 3:1)",
+      "state": "disabled",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.text.disabled",
+      "bg": "color.interaction.disabled.bg",
+      "fgHex": "#8a5559",
+      "bgHex": "#160b0b",
+      "ratio": 3.24,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "disabled border (exempt)",
+      "state": "disabled",
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.border.disabled",
+      "bg": "color.interaction.disabled.bg",
+      "fgHex": "#7d1310",
+      "bgHex": "#160b0b",
+      "ratio": 1.82,
+      "pass": true,
+      "waiver": "disabled controls are exempt from 1.4.11"
+    }
+  ]
+}

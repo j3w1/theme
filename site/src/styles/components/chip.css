@@ -1,0 +1,173 @@
+/* chip — reference CSS. A square bordered token; a pressed filter chip is
+   the selection fill with a check glyph. Every pseudo-class is paired with
+   the forced-state attribute the state matrix emits. Token variables only. */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  vertical-align: middle;
+  min-height: var(--density-control-height, 32px);
+  padding: 0 var(--space-8);
+  box-sizing: border-box;
+  background: var(--color-surface-default);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+  font: inherit;
+  white-space: nowrap;
+}
+
+.chip-filter {
+  cursor: pointer;
+}
+
+.chip-check {
+  display: none;
+  flex: 0 0 auto;
+}
+
+.chip-label {
+  flex: 0 0 auto;
+}
+
+.chip-removable {
+  padding-inline-end: 0;
+}
+
+.chip-remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  min-width: calc(var(--density-control-height, 32px) - var(--border-width-emphasis));
+  padding: 0 var(--space-4);
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-none);
+  color: var(--color-text-muted);
+  font: inherit;
+  cursor: pointer;
+}
+
+/* hover */
+.chip-filter:hover,
+[data-state-hover] .chip-filter {
+  background: var(--color-interaction-hover-bg);
+}
+
+.chip-remove:hover,
+[data-state-hover] .chip-remove {
+  background: var(--color-interaction-hover-bg-strong);
+  color: var(--color-text-bright);
+}
+
+/* pressed */
+.chip-filter:active {
+  background: var(--color-interaction-pressed-bg);
+}
+
+/* focus-visible */
+.chip-filter:focus-visible,
+.chip-remove:focus-visible,
+[data-state-focus-visible] .chip-filter,
+[data-state-focus-visible] .chip-remove {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.chip-filter:focus:not(:focus-visible),
+.chip-remove:focus:not(:focus-visible) {
+  outline: 0;
+}
+
+/* selected: the fill; the glyph shows */
+.chip-filter[aria-pressed="true"],
+[data-state-selected] .chip {
+  background: var(--color-interaction-selection-bg);
+  border-color: var(--color-interaction-selection-bg);
+  color: var(--color-interaction-selection-text);
+}
+
+.chip-filter[aria-pressed="true"] .chip-check,
+[data-state-selected] .chip-check {
+  display: inline-flex;
+}
+
+.chip-filter[aria-pressed="true"]:hover,
+[data-state-selected] .chip-filter:hover {
+  background: var(--color-interaction-selection-bg);
+}
+
+[data-state-selected] .chip-remove {
+  color: var(--color-interaction-selection-text);
+}
+
+/* selected + focus-visible: the ring takes the on-fill colour */
+.chip-filter[aria-pressed="true"]:focus-visible,
+[data-state-selected][data-state-focus-visible] .chip-filter,
+[data-state-selected][data-state-focus-visible] .chip-remove {
+  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline-offset: var(--focus-offset);
+}
+
+/* disabled: never opacity */
+.chip-filter:disabled,
+.chip:has(.chip-remove:disabled),
+[data-state-disabled] .chip {
+  background: var(--color-interaction-disabled-bg);
+  border-color: var(--color-border-disabled);
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.chip-remove:disabled,
+[data-state-disabled] .chip-remove {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.chip-filter:disabled:hover,
+.chip-remove:disabled:hover,
+[data-state-disabled] .chip-filter:hover,
+[data-state-disabled] .chip-remove:hover {
+  background: var(--color-interaction-disabled-bg);
+  color: var(--color-text-disabled);
+}
+
+[data-state-disabled] .chip-remove:hover {
+  background: transparent;
+}
+
+@media (hover: none) {
+  .chip-filter:hover {
+    background: var(--color-surface-default);
+  }
+
+  .chip-remove:hover {
+    background: transparent;
+    color: var(--color-text-muted);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .chip-filter,
+  .chip-remove {
+    transition: background-color var(--motion-duration-fast);
+  }
+}
+
+@media (forced-colors: active) {
+  .chip-filter:focus-visible,
+  .chip-remove:focus-visible,
+  [data-state-focus-visible] .chip-filter,
+  [data-state-focus-visible] .chip-remove {
+    outline-color: Highlight;
+  }
+
+  .chip-filter[aria-pressed="true"],
+  [data-state-selected] .chip {
+    background: Highlight;
+    color: HighlightText;
+  }
+}

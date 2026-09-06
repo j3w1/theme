@@ -1,0 +1,47 @@
+j3w1/theme implementation brief — tabs
+theme: j3w1-theme 0.1.0-draft.1  profile: default  sourceDigest: sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=
+pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/components/tabs.json
+spec: spec/components/tabs.md  site: https://j3w1.github.io/theme/#c-tabs
+maturity: stable  priority: R1
+
+Summary: A tablist of buttons that switches between panels in place; the selected tab carries a 2px indicator bar and bright text, never a fill.
+
+Tokens (resolved):
+  list.bg                 #160b0b  ({color.surface.default})
+  list.border             #2b0e0d  ({color.border.divider})
+  tab.text                #e99499  ({color.text.default})
+  tab.text-selected       #ffa2a7  ({color.text.bright})
+  tab.text-disabled       #8a5559  ({color.text.disabled})
+  tab.bg-hover            #1c0a09  ({color.interaction.hover.bg})
+  tab.bg-pressed          #420f0c  ({color.interaction.pressed.bg})
+  tab.indicator           #e53935  ({color.border.selected-indicator})
+  tab.indicator-inactive  #9e231f  ({color.border.selected-indicator-inactive})
+  tab.ring                #e53935  ({color.interaction.focus.ring})
+  panel.bg                #160b0b  ({color.surface.default})
+  panel.text              #e99499  ({color.text.default})
+
+States: default, hover, focus-visible, selected, selected+focus-visible, selected+container-inactive, disabled
+  default: text {color.text.default}; transparent 2px bottom edge [—]
+  hover: background → {color.interaction.hover.bg}; text unchanged [cursor: pointer]
+  focus-visible: ring 1px dashed {color.interaction.focus.ring} at −2px [the ring]
+  selected: text {color.text.bright}; 2px {color.border.selected-indicator} bar [`aria-selected="true"`; the bar; tabindex 0]
+  selected+focus-visible: the bar and the ring together [both visible]
+  selected+container-inactive: bar → {color.border.selected-indicator-inactive}; text stays bright [lightness drop of the bar; the container's own inactive state]
+  disabled: text {color.text.disabled}; no hover; bar hidden unless selected [`disabled` or `aria-disabled`; cursor: not-allowed]
+
+Keyboard:
+  Tab: Moves focus to the selected tab (roving tabindex); a second Tab leaves the tablist for the panel.
+  Left / Right: Moves focus to the previous or next tab and wraps; with automatic activation the panel follows.
+  Home / End: Moves focus to the first or last tab.
+  Enter / Space: Activates the focused tab when activation is manual.
+  Delete: Closes the focused tab where tabs are closable (not in this reference).
+
+ARIA: APG tabs (tablist, tab, tabpanel) with roving tabindex (https://www.w3.org/WAI/ARIA/apg/patterns/tabs/)
+Responsive: The strip takes the full width and scrolls horizontally with overflow-x auto below the sum of its tabs; tabs never wrap or shrink their label; at 320px the overflow variant scrolls and the page does not. RTL reverses the strip and the arrow keys follow the reading direction.
+Portability: A div with role tablist holding buttons with role tab, aria-selected and aria-controls; panels with role tabpanel and aria-labelledby; one tab has tabindex 0, the rest -1; the indicator is a border-bottom, the ring an outline.
+  native: GTK4 Notebook with a css-name mapping; the indicator through the tab's bottom border.
+  native: Qt QTabBar stylesheet; QTabBar::tab:selected draws the 2px bottom border.
+  native: Terminal UI: the selected tab underlined with a 2-cell heavy line; other tabs plain.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

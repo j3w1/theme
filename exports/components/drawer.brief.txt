@@ -1,0 +1,46 @@
+j3w1/theme implementation brief — drawer
+theme: j3w1-theme 0.1.0-draft.1  profile: default  sourceDigest: sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=
+pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/components/drawer.json
+spec: spec/components/drawer.md  site: https://j3w1.github.io/theme/#c-drawer
+maturity: stable  priority: R1
+
+Summary: A full-height modal panel anchored to the start or end edge; a native dialog on the overlay surface with a 1px overlay border on its inner edge.
+
+Tokens (resolved):
+  backdrop.bg      rgb(0 0 0 / 65%)  ({color.surface.backdrop})
+  root.bg          #241010  ({color.surface.overlay})
+  root.border      #e53935  ({color.border.overlay})
+  root.ring        #ffa2a7  ({color.interaction.focus.ring-container})
+  root.z           20  ({z.drawer})
+  title.text       #ffa2a7  ({color.text.bright})
+  text.text        #e99499  ({color.text.default})
+  body.divider     #2b0e0d  ({color.border.divider})
+  item.text        #e99499  ({color.text.default})
+  item.bg-hover    #630f0d  ({color.interaction.hover.bg-strong})
+  item.text-hover  #f4eeee  ({color.text.link-hover})
+  close.text       #e99499  ({color.action.tertiary.text})
+  close.bg-hover   #1c0a09  ({color.action.tertiary.hover-bg})
+  close.ring       #e53935  ({color.interaction.focus.ring})
+  note.text        #bd787d  ({color.text.muted})
+
+States: default, open, closed, focus-trapped, reduced-motion
+  default: the panel open at its edge on the backdrop [`open`; the page behind is inert]
+  open: as default; opacity 0 → 1 within 150 ms on capable hosts; never a slide [`open`; focus inside the panel]
+  closed: nothing: the panel and the backdrop are absent [no `open`; focus back on the opener]
+  focus-trapped: the panel carries the container ring, 2px solid {color.interaction.focus.ring-container} at −3px, when it holds focus; the note says Tab cycles [Tab never leaves; the note text]
+  reduced-motion: no opacity transition; the panel is simply present or absent [`prefers-reduced-motion`]
+
+Keyboard:
+  Tab / Shift+Tab: Cycles inside the drawer and never leaves it while open.
+  Escape: Closes the drawer and returns focus to the element that opened it.
+  Enter / Space: Activates the focused item or button; a navigation item closes the drawer after navigating.
+
+ARIA: native <dialog> opened with showModal, anchored to an inline edge; named by its heading; Escape closes (https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/)
+Responsive: At most 20rem wide and 100% minus the 48px gutter below 360px; always the full height of the viewport; the body scrolls inside. RTL swaps the edges, which the logical properties do on their own.
+Portability: native <dialog> opened with showModal() and positioned with inset-block 0 and inset-inline-start or -end 0, so the top layer, inertness and Escape come from the host; ::backdrop takes surface.backdrop; focus moves to the first focusable element on open and back to the opener on close.
+  native: GTK4 a Window with modal set and the panel aligned to an edge; libadwaita sidebars are not drawers.
+  native: Qt QDockWidget floating and modal is not equivalent; a QDialog positioned at the edge with the overlay border.
+  native: Terminal UI: a full-height column at the edge drawn with a single vertical line, the rest of the screen dimmed.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

@@ -1,0 +1,283 @@
+/* dialog — reference CSS. A native <dialog> rendered open in flow inside a
+   wrapper that stands in for ::backdrop; a host uses showModal(), where the
+   same rules apply to ::backdrop. Every real pseudo-class is paired with the
+   forced-state attribute the state matrix emits. Token variables only. */
+
+.dialog-backdrop {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  padding: var(--space-24) var(--space-16);
+  background: var(--color-surface-backdrop);
+}
+
+.dialog {
+  position: static;
+  width: min(28rem, 100%);
+  max-width: 100%;
+  margin: 0;
+  padding: var(--space-16);
+  background: var(--color-surface-overlay);
+  border: var(--border-width-default) solid var(--color-border-overlay);
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+  z-index: var(--z-dialog);
+}
+
+.dialog::backdrop {
+  background: var(--color-surface-backdrop);
+}
+
+.dialog:not([open]) {
+  display: none;
+}
+
+.dialog-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-8);
+  margin-bottom: var(--space-12);
+}
+
+.dialog-title {
+  margin: 0;
+  color: var(--color-text-bright);
+  font-size: var(--font-size-h2);
+  line-height: var(--font-line-height-h2);
+  font-weight: var(--font-weight-bold);
+  overflow-wrap: anywhere;
+}
+
+.dialog-close {
+  flex: 0 0 auto;
+  min-width: 24px;
+  min-height: 24px;
+  padding: 0 var(--space-4);
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-none);
+  color: var(--color-action-tertiary-text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.dialog-body {
+  display: grid;
+  gap: var(--space-12);
+  margin: 0;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.dialog-text {
+  margin: 0;
+}
+
+.dialog-field {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.dialog-field-label {
+  color: var(--color-text-bright);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.dialog-field-input {
+  min-height: var(--density-control-height, 32px);
+  padding: 0 var(--density-control-padding-x, 12px);
+  background: var(--color-surface-input);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+  caret-color: var(--color-code-caret);
+  font: inherit;
+}
+
+.dialog-field-input:focus-visible {
+  border-color: var(--color-border-active);
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.dialog-field-help {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.dialog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--space-8);
+  margin-top: var(--space-16);
+}
+
+.dialog-body .dialog-actions {
+  margin-top: var(--space-4);
+}
+
+.dialog-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  min-height: var(--density-control-height, 32px);
+  padding: 0 var(--density-control-padding-x, 12px);
+  background: var(--color-action-secondary-bg);
+  border: var(--border-width-default) solid var(--color-action-secondary-border);
+  border-radius: var(--radius-none);
+  color: var(--color-action-secondary-text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.dialog-button-primary {
+  background: var(--color-action-primary-bg);
+  border-color: var(--color-action-primary-border);
+  color: var(--color-action-primary-text);
+}
+
+.dialog-button-destructive {
+  background: var(--color-action-destructive-filled-bg);
+  border-color: var(--color-action-destructive-border);
+  color: var(--color-action-destructive-filled-text);
+}
+
+.dialog-trap-note {
+  display: none;
+  margin: var(--space-12) 0 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+/* hover: the buttons react in their tone */
+.dialog-close:hover,
+[data-state-hover] .dialog-close {
+  background: var(--color-action-tertiary-hover-bg);
+}
+
+.dialog-button:hover,
+[data-state-hover] .dialog-button {
+  background: var(--color-action-secondary-hover-bg);
+}
+
+.dialog-button-primary:hover,
+[data-state-hover] .dialog-button-primary {
+  background: var(--color-action-primary-hover-bg);
+}
+
+.dialog-button-destructive:hover,
+[data-state-hover] .dialog-button-destructive {
+  background: var(--color-action-destructive-hover-bg);
+  color: var(--color-action-destructive-hover-text);
+}
+
+/* focus-visible: the dashed ring; on a fill it takes the on-fill colour */
+.dialog-close:focus-visible,
+.dialog-button:focus-visible,
+[data-state-focus-visible] .dialog-close {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.dialog-button-primary:focus-visible {
+  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline-offset: var(--focus-offset);
+}
+
+.dialog-button-destructive:focus-visible {
+  outline: var(--border-width-default) dashed var(--color-action-destructive-filled-text);
+  outline-offset: var(--focus-offset);
+}
+
+/* open: the native attribute; the matrix re-adds it */
+.dialog[open],
+[data-state-open] .dialog {
+  display: block;
+}
+
+/* closed: the dialog and its backdrop are absent */
+[data-state-closed] .dialog {
+  display: none;
+}
+
+[data-state-closed] .dialog-backdrop {
+  min-height: var(--density-row-height, 36px);
+  background: transparent;
+}
+
+/* focus-trapped: the dialog holds focus itself (right after opening) and
+   shows the container ring; the note explains the cycle */
+.dialog:focus-visible,
+[data-state-focus-trapped] .dialog {
+  outline: var(--focus-ring-container);
+  outline-offset: var(--focus-offset-container);
+}
+
+[data-state-focus-trapped] .dialog-trap-note {
+  display: block;
+}
+
+/* motion: an opacity change only */
+@media (prefers-reduced-motion: no-preference) {
+  .dialog {
+    transition: opacity var(--motion-duration-slow);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dialog {
+    transition: none;
+  }
+}
+
+[data-state-reduced-motion] .dialog {
+  transition: none;
+}
+
+@media (hover: none) {
+  .dialog-close:hover {
+    background: transparent;
+  }
+
+  .dialog-button:hover {
+    background: var(--color-action-secondary-bg);
+  }
+
+  .dialog-button-primary:hover {
+    background: var(--color-action-primary-bg);
+  }
+
+  .dialog-button-destructive:hover {
+    background: var(--color-action-destructive-filled-bg);
+    color: var(--color-action-destructive-filled-text);
+  }
+}
+
+@media (max-width: 320px) {
+  .dialog-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+@media (forced-colors: active) {
+  .dialog {
+    border-color: CanvasText;
+  }
+
+  .dialog-close:focus-visible,
+  .dialog-button:focus-visible,
+  .dialog:focus-visible,
+  [data-state-focus-visible] .dialog-close,
+  [data-state-focus-trapped] .dialog {
+    outline-color: Highlight;
+  }
+}

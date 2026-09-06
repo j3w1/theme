@@ -1,0 +1,40 @@
+j3w1/theme implementation brief — tooltip
+theme: j3w1-theme 0.1.0-draft.1  profile: default  sourceDigest: sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=
+pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/components/tooltip.json
+spec: spec/components/tooltip.md  site: https://j3w1.github.io/theme/#c-tooltip
+maturity: stable  priority: R1
+
+Summary: A short description of a control shown on hover and focus; role tooltip linked by aria-describedby, a 1px overlay border on the raised surface, no arrow.
+
+Tokens (resolved):
+  popup.bg          #241010  ({color.surface.raised})
+  popup.border      #e53935  ({color.border.overlay})
+  popup.text        #e99499  ({color.text.default})
+  shortcut.text     #ffa2a7  ({color.text.bright})
+  shortcut.border   #a3676b  ({color.border.control})
+  trigger.text      #e99499  ({color.action.tertiary.text})
+  trigger.bg-hover  #1c0a09  ({color.action.tertiary.hover-bg})
+  trigger.ring      #e53935  ({color.interaction.focus.ring})
+  popup.z           10  ({z.popover})
+
+States: default, hover, focus-visible, open, closed
+  default: trigger at rest; the popup shown for the demonstration [`aria-describedby` on the trigger]
+  hover: trigger background → {color.action.tertiary.hover-bg}; the popup appears after 300 ms [cursor: pointer; the popup itself]
+  focus-visible: ring 1px dashed {color.interaction.focus.ring} at −2px on the trigger; the popup appears at once [the ring; the popup]
+  open: the popup visible, 1px {color.border.overlay} on {color.surface.raised} [the popup is present in the accessibility tree]
+  closed: the popup absent; the trigger unchanged [`hidden`; the description is still read from the DOM]
+
+Keyboard:
+  Tab: Focusing the trigger shows the tooltip; leaving it hides the tooltip.
+  Escape: Hides the tooltip without moving focus; the trigger's own Escape behaviour is not triggered.
+  Enter / Space: Act on the trigger as usual; the tooltip hides on activation.
+
+ARIA: APG tooltip: a trigger with aria-describedby pointing at an element with role=tooltip, shown on hover and focus, hidden on Escape (https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/)
+Responsive: The popup is at most 24rem wide and wraps; it flips to the side with room and is never clipped by the viewport; at 320px it is as wide as the viewport minus the gutter. RTL mirrors the placement and keeps the shortcut at the end.
+Portability: the trigger carries aria-describedby to a <div role=tooltip>; visibility toggles the hidden attribute after a 300 ms open delay and no close delay; positioned with anchor positioning or a popover at z.popover; the tooltip is never the only place a control's name lives.
+  native: GTK4 tooltip-text; the host draws it with the overlay border through the tooltip css node.
+  native: Qt QToolTip stylesheet; border and background from the tokens; no rounded corners.
+  native: Terminal UI: the description in the status line while the control is focused.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

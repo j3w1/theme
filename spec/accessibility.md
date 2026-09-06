@@ -98,6 +98,10 @@ it silently.
   test suite, not implied by the scan.
 - `text.disabled` at 3.33:1 is below the ordinary-text floor by design and
   relies on the WCAG exemption for inactive controls.
-- Heritage ANSI slots 1, 4, 6, 8, 9, 10, 12, 13 and 14 fail 4.5:1 on the
-  terminal background. Programs that render errors or directories in those
-  slots inherit that failure; the `extended` overlay proposes a corrected set.
+- Heritage ANSI slots 1, 4, 6, 8, 9, 10, 12, 13, 14 and 15 fail 4.5:1 on the
+  terminal background (slot 0 is the background). Programs that render errors
+  or directories in those slots inherit that failure; the `extended` overlay
+  proposes a corrected set.
+- Syntax roles inside an editor selection: keyword, type, property and comment
+  drop below 4.5:1 on `code.selection-bg`. Selection is transient; the
+  limitation is recorded in the code-editor specification.

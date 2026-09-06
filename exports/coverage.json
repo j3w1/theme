@@ -8,14 +8,374 @@
     "tested": "tests/browser/components/<id>.spec.js exists"
   },
   "byFamily": {
-    "forms-basic": {
-      "specified": 1,
-      "demonstrated": 1,
+    "feedback": {
+      "specified": 8,
+      "demonstrated": 8,
       "tested": 1,
-      "total": 1
+      "total": 8
+    },
+    "display": {
+      "specified": 6,
+      "demonstrated": 6,
+      "tested": 1,
+      "total": 6
+    },
+    "navigation": {
+      "specified": 7,
+      "demonstrated": 7,
+      "tested": 2,
+      "total": 7
+    },
+    "actions": {
+      "specified": 3,
+      "demonstrated": 3,
+      "tested": 2,
+      "total": 3
+    },
+    "forms-basic": {
+      "specified": 10,
+      "demonstrated": 10,
+      "tested": 4,
+      "total": 10
+    },
+    "developer": {
+      "specified": 4,
+      "demonstrated": 4,
+      "tested": 0,
+      "total": 4
+    },
+    "forms-advanced": {
+      "specified": 5,
+      "demonstrated": 5,
+      "tested": 0,
+      "total": 5
     }
   },
   "components": {
+    "alert": {
+      "family": "feedback",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "states": 3
+    },
+    "badge": {
+      "family": "display",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "states": 2
+    },
+    "breadcrumbs": {
+      "family": "navigation",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "states": 5
+    },
+    "button": {
+      "family": "actions",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": true,
+      "states": 6
+    },
+    "card": {
+      "family": "display",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "states": 5
+    },
+    "checkbox": {
+      "family": "forms-basic",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": true,
+      "states": 10
+    },
+    "chip": {
+      "family": "display",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "states": 6
+    },
+    "code-editor": {
+      "family": "developer",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "states": 6
+    },
+    "combobox": {
+      "family": "forms-advanced",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "states": 10
+    },
+    "data-table": {
+      "family": "display",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "states": 9
+    },
+    "date-picker": {
+      "family": "forms-advanced",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "states": 7
+    },
+    "diagnostics": {
+      "family": "developer",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "states": 7
+    },
+    "dialog": {
+      "family": "feedback",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": true,
+      "states": 7
+    },
+    "diff-view": {
+      "family": "developer",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "states": 6
+    },
+    "drawer": {
+      "family": "feedback",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "states": 5
+    },
+    "empty-state": {
+      "family": "feedback",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "states": 1
+    },
+    "field": {
+      "family": "forms-basic",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "states": 4
+    },
+    "fieldset": {
+      "family": "forms-basic",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "states": 2
+    },
+    "file-input": {
+      "family": "forms-advanced",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "states": 7
+    },
+    "icon-button": {
+      "family": "actions",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "states": 7
+    },
+    "link": {
+      "family": "actions",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": true,
+      "states": 5
+    },
+    "list": {
+      "family": "display",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "states": 7
+    },
+    "loading-indicator": {
+      "family": "feedback",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "states": 2
+    },
+    "menu": {
+      "family": "navigation",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": true,
+      "states": 8
+    },
+    "number-field": {
+      "family": "forms-basic",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "states": 7
+    },
+    "pagination": {
+      "family": "navigation",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "states": 5
+    },
+    "progress": {
+      "family": "feedback",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "states": 4
+    },
+    "radio-group": {
+      "family": "forms-basic",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": true,
+      "states": 8
+    },
+    "search-field": {
+      "family": "forms-basic",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "states": 8
+    },
+    "select": {
+      "family": "forms-basic",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": true,
+      "states": 7
+    },
+    "sidebar-nav": {
+      "family": "navigation",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "states": 8
+    },
+    "skip-link": {
+      "family": "navigation",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "states": 2
+    },
+    "switch": {
+      "family": "forms-basic",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "states": 7
+    },
+    "table": {
+      "family": "display",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": true,
+      "states": 8
+    },
+    "tabs": {
+      "family": "navigation",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": true,
+      "states": 7
+    },
+    "terminal": {
+      "family": "developer",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "states": 5
+    },
     "text-field": {
       "family": "forms-basic",
       "priority": "R1",
@@ -24,6 +384,60 @@
       "demonstrated": true,
       "tested": true,
       "states": 14
+    },
+    "textarea": {
+      "family": "forms-basic",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "states": 10
+    },
+    "time-picker": {
+      "family": "forms-advanced",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "states": 5
+    },
+    "toast": {
+      "family": "feedback",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "states": 5
+    },
+    "toolbar": {
+      "family": "navigation",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "states": 5
+    },
+    "tooltip": {
+      "family": "feedback",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "states": 5
+    },
+    "wizard": {
+      "family": "forms-advanced",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "states": 7
     }
   }
 }

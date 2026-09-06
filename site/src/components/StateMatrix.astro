@@ -28,8 +28,8 @@ const inert = (html: string) =>
    links keep working inside the cell. */
 const uniqueIds = (html: string, suffix: string) =>
   html
-    .replace(/\s(id|for)="([^"]+)"/g, (m, attr, value) => ` ${attr}="${value}-${suffix}"`)
-    .replace(/\s(aria-describedby|aria-labelledby|aria-controls|aria-owns)="([^"]+)"/g, (m, attr, value) => ` ${attr}="${value.split(/\s+/).map((v: string) => `${v}-${suffix}`).join(" ")}"`)
+    .replace(/\s(id|for|name)="([^"]+)"/g, (m, attr, value) => ` ${attr}="${value}-${suffix}"`)
+    .replace(/\s(aria-describedby|aria-labelledby|aria-controls|aria-owns|aria-activedescendant|aria-errormessage)="([^"]+)"/g, (m, attr, value) => ` ${attr}="${value.split(/\s+/).map((v: string) => `${v}-${suffix}`).join(" ")}"`)
     .replace(/\shref="#([^"]+)"/g, (m, value) => ` href="#${value}-${suffix}"`);
 
 const stateAttributes = (state: string) => {
@@ -39,20 +39,33 @@ const stateAttributes = (state: string) => {
   return attrs.join(" ");
 };
 
+/* Sets an aria state on the element the fragment prepared for it (the first
+   one carrying attr="false"), or on the fragment root when none exists. */
+const ariaState = (html: string, attr: string, value = "true") => {
+  const pattern = new RegExp(`\\s${attr}="false"`);
+  if (pattern.test(html)) return html.replace(pattern, ` ${attr}="${value}"`);
+  return html.replace(/^(\s*<\w+)/, `$1 ${attr}="${value}"`);
+};
+
 /* Native attributes the fragment needs for the state to be real, not just painted. */
 const nativeState = (html: string, state: string) => {
   let out = html;
   const parts = state.split("+");
-  if (parts.includes("placeholder-shown")) out = out.replace(/(<(?:input|textarea)\b[^>]*?)\svalue="[^"]*"/g, "$1");
+  if (parts.includes("placeholder-shown")) {
+    out = out.replace(/(<(?:input|textarea)\b[^>]*?)\svalue="[^"]*"/g, "$1");
+    out = out.replace(/(<textarea\b[^>]*>)[\s\S]*?(<\/textarea>)/g, "$1$2");
+  }
   if (parts.includes("disabled")) out = out.replace(/<(input|button|select|textarea|fieldset)(\s|>)/g, "<$1 disabled$2");
   if (parts.includes("read-only")) out = out.replace(/<(input|textarea)(\s|>)/g, "<$1 readonly$2");
   if (parts.includes("required")) out = out.replace(/<(input|select|textarea)(\s|>)/g, "<$1 required$2");
   if (parts.includes("invalid")) out = out.replace(/<(input|select|textarea)(\s|>)/g, '<$1 aria-invalid="true"$2');
   if (parts.includes("checked")) out = out.replace(/<input(\s[^>]*type="(?:checkbox|radio)"[^>]*)>/g, "<input$1 checked>");
   if (parts.includes("busy") || parts.includes("loading")) out = out.replace(/^(\s*<\w+)/, '$1 aria-busy="true"');
-  if (parts.includes("selected")) out = out.replace(/^(\s*<\w+)/, '$1 aria-selected="true"');
-  if (parts.includes("current")) out = out.replace(/^(\s*<\w+)/, '$1 aria-current="true"');
-  if (parts.includes("expanded")) out = out.replace(/^(\s*<\w+)/, '$1 aria-expanded="true"');
+  if (parts.includes("selected")) out = ariaState(out, "aria-selected");
+  if (parts.includes("current")) out = ariaState(out, "aria-current");
+  if (parts.includes("expanded")) out = ariaState(out, "aria-expanded");
+  if (parts.includes("toggled")) out = ariaState(out, "aria-pressed");
+  if (parts.includes("checked") && /role="switch"/.test(out)) out = ariaState(out, "aria-checked");
   if (parts.includes("open")) out = out.replace(/<(details|dialog)(\s|>)/g, "<$1 open$2");
   return out;
 };

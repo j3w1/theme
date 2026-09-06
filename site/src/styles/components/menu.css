@@ -1,0 +1,249 @@
+/* menu — reference CSS. A menu button and its list rendered open in flow;
+   hosts position the list at z.popover. The active item is the selection
+   fill. Every pseudo-class is paired with the forced-state attribute the
+   state matrix emits. Token variables only. */
+
+.menu {
+  display: grid;
+  gap: var(--space-2);
+  justify-items: start;
+  min-width: 0;
+  color: var(--color-text-default);
+}
+
+.menu-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  min-height: var(--density-control-height, 32px);
+  padding: 0 var(--density-control-padding-x, 12px);
+  background: var(--color-surface-default);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+  font: inherit;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.menu-chevron,
+.menu-submenu {
+  display: inline-flex;
+  flex: 0 0 auto;
+  width: var(--icon-size-sm);
+  height: var(--icon-size-sm);
+  color: var(--color-icon-decorative);
+}
+
+.menu-chevron svg,
+.menu-submenu svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: var(--icon-stroke);
+}
+
+.menu-list {
+  min-width: 12rem;
+  max-width: calc(100vw - var(--space-16));
+  margin: 0;
+  padding: var(--space-4) 0;
+  list-style: none;
+  background: var(--color-surface-raised);
+  border: var(--border-width-default) solid var(--color-border-overlay);
+  border-radius: var(--radius-none);
+  z-index: var(--z-popover);
+}
+
+.menu-list[hidden] {
+  display: none;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  width: 100%;
+  min-height: var(--density-row-height, 36px);
+  padding: 0 var(--density-control-padding-x, 12px);
+  box-sizing: border-box;
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+  font: inherit;
+  text-align: start;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.menu-check {
+  display: inline-flex;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: var(--density-icon, 16px);
+  color: var(--color-text-bright);
+  visibility: hidden;
+}
+
+.menu-label {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.menu-shortcut {
+  flex: 0 0 auto;
+  padding-inline-start: var(--space-16);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.menu-separator {
+  height: 0;
+  margin: var(--space-4) 0;
+  border: 0;
+  border-top: var(--border-width-default) solid var(--color-border-divider);
+}
+
+/* hover: items take the strong hover fill and the link-hover text */
+.menu-button:hover {
+  background: var(--color-interaction-hover-bg);
+}
+
+.menu-item:hover,
+[data-state-hover] .menu-item-demo-target {
+  background: var(--color-interaction-hover-bg-strong);
+  color: var(--color-text-link-hover);
+}
+
+.menu-item:hover .menu-shortcut,
+[data-state-hover] .menu-item-demo-target .menu-shortcut {
+  color: var(--color-text-link-hover);
+}
+
+/* focus-visible: the ring on the button; on items it follows the fill */
+.menu-button:focus-visible,
+[data-state-focus-visible] .menu-button {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.menu-item:focus-visible {
+  outline: var(--focus-ring-container);
+  outline-offset: var(--focus-offset-container);
+}
+
+.menu-button:focus:not(:focus-visible),
+.menu-item:focus:not(:focus-visible) {
+  outline: 0;
+}
+
+/* open / closed */
+.menu-button[aria-expanded="true"],
+[data-state-open] .menu-button {
+  background: var(--color-interaction-pressed-bg);
+  border-color: var(--color-border-active);
+}
+
+[data-state-open] .menu-list {
+  display: block;
+}
+
+[data-state-closed] .menu-button {
+  background: var(--color-surface-default);
+  border-color: var(--color-border-control);
+}
+
+[data-state-closed] .menu-list {
+  display: none;
+}
+
+/* selected: the active item is the selection fill */
+.menu-item:focus,
+.menu-item[aria-selected="true"],
+[data-state-selected] .menu-item-demo-target {
+  background: var(--color-interaction-selection-bg);
+  color: var(--color-interaction-selection-text);
+}
+
+.menu-item:focus .menu-shortcut,
+.menu-item:focus .menu-check,
+.menu-item:focus .menu-submenu,
+[data-state-selected] .menu-item-demo-target .menu-shortcut,
+[data-state-selected] .menu-item-demo-target .menu-check,
+[data-state-selected] .menu-item-demo-target .menu-submenu {
+  color: var(--color-interaction-selection-text);
+}
+
+/* checked: the glyph shows */
+.menu-item[aria-checked="true"] .menu-check,
+[data-state-checked] .menu-item-demo-target .menu-check {
+  visibility: visible;
+}
+
+/* disabled: never opacity */
+.menu-item:disabled,
+.menu-item[aria-disabled="true"],
+[data-state-disabled] .menu-item,
+.menu-button:disabled,
+[data-state-disabled] .menu-button {
+  background: transparent;
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.menu-item[aria-disabled="true"] .menu-shortcut,
+.menu-item[aria-disabled="true"] .menu-check,
+.menu-item[aria-disabled="true"] .menu-submenu,
+[data-state-disabled] .menu-shortcut,
+[data-state-disabled] .menu-check,
+[data-state-disabled] .menu-submenu,
+[data-state-disabled] .menu-chevron {
+  color: var(--color-text-disabled);
+}
+
+.menu-button:disabled,
+[data-state-disabled] .menu-button {
+  background: var(--color-interaction-disabled-bg);
+  border-color: var(--color-border-disabled);
+}
+
+.menu-item[aria-disabled="true"]:hover,
+[data-state-disabled] .menu-item:hover {
+  background: transparent;
+  color: var(--color-text-disabled);
+}
+
+@media (hover: none) {
+  .menu-item:hover {
+    background: transparent;
+    color: var(--color-text-default);
+  }
+
+  .menu-button:hover {
+    background: var(--color-surface-default);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .menu-item,
+  .menu-button {
+    transition: background-color var(--motion-duration-fast);
+  }
+}
+
+@media (forced-colors: active) {
+  .menu-button:focus-visible,
+  [data-state-focus-visible] .menu-button,
+  .menu-item:focus-visible {
+    outline-color: Highlight;
+  }
+
+  .menu-item:focus,
+  [data-state-selected] .menu-item-demo-target {
+    background: Highlight;
+    color: HighlightText;
+  }
+}

@@ -1,0 +1,51 @@
+j3w1/theme implementation brief — radio-group
+theme: j3w1-theme 0.1.0-draft.1  profile: default  sourceDigest: sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=
+pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/components/radio-group.json
+spec: spec/components/radio-group.md  site: https://j3w1.github.io/theme/#c-radio-group
+maturity: stable  priority: R1
+
+Summary: A fieldset of native radios for one exclusive choice; each radio is a 16px square that fills with the primary action colour and an inner square when checked.
+
+Tokens (resolved):
+  box.bg                #0c0909  ({color.surface.input})
+  box.border            #a3676b  ({color.border.control})
+  box.bg-hover          #1c0a09  ({color.interaction.hover.bg})
+  box.ring              #e53935  ({color.interaction.focus.ring})
+  box.bg-checked        #871f19  ({color.action.primary.bg})
+  box.bg-checked-hover  #911410  ({color.action.primary.hover-bg})
+  box.dot               #f4eeee  ({color.action.primary.text})
+  box.ring-checked      #ffa2a7  ({color.interaction.focus.ring-container})
+  box.border-invalid    #e53935  ({color.status.danger.border})
+  box.bg-disabled       #160b0b  ({color.interaction.disabled.bg})
+  box.border-disabled   #7d1310  ({color.border.disabled})
+  box.dot-disabled      #8a5559  ({color.text.disabled})
+  text.default          #e99499  ({color.text.default})
+  text.disabled         #8a5559  ({color.text.disabled})
+  legend.text           #ffa2a7  ({color.text.bright})
+  legend.required-mark  #f73f35  ({color.status.danger.text})
+  message.text          #f73f35  ({color.status.danger.text})
+
+States: default, hover, focus-visible, checked, checked+focus-visible, disabled, invalid, required
+  default: 16px square, 1px {color.border.control} on {color.surface.input}; text {color.text.default} [—]
+  hover: box background → {color.interaction.hover.bg}; a checked box → {color.action.primary.hover-bg} [cursor: pointer; hover-capable pointers only]
+  focus-visible: ring 1px dashed {color.interaction.focus.ring} at −2px around the box [the ring]
+  checked: box fills {color.action.primary.bg}; an 8px inner square in {color.action.primary.text}; border stays {color.border.control} [the inner square; `checked`]
+  checked+focus-visible: the fill and a ring in {color.interaction.focus.ring-container} [inner square and ring]
+  disabled: boxes {color.interaction.disabled.bg} with 1px {color.border.disabled}; inner square and text {color.text.disabled} [`disabled`; cursor: not-allowed]
+  invalid: every box border 2px {color.status.danger.border}; message with the ✕ glyph [border width 1 → 2px; glyph; `aria-invalid`]
+  required: `*` after the legend in {color.status.danger.text} plus visually hidden "required" [`required`; the mark]
+
+Keyboard:
+  Tab / Shift+Tab: Enters the group on the checked radio, or the first when none is checked; leaves it entirely.
+  Up / Down / Left / Right: Moves the check to the previous or next radio and selects it (native); wraps at the ends.
+  Space: Checks the focused radio when none is checked.
+
+ARIA: native <input type="radio"> inside <fieldset> with <legend> (https://www.w3.org/WAI/ARIA/apg/patterns/radio/)
+Responsive: Vertical groups stack at every width. The horizontal variant wraps into rows at 320px and keeps a 16px gap between options. RTL mirrors the box to the inline start and reverses the row.
+Portability: native <input type="radio"> sharing a name, each inside a <label>, all inside <fieldset> with <legend>; never role="radiogroup" on a div when the native group is available; the message is linked from the fieldset.
+  native: GTK4 CheckButton with a group; square indicator through CSS.
+  native: Qt QRadioButton in a QButtonGroup; indicator subcontrol styled square.
+  native: Terminal UI: (o) and ( ) glyphs; arrow keys move the mark.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

@@ -1,0 +1,51 @@
+j3w1/theme implementation brief — list
+theme: j3w1-theme 0.1.0-draft.1  profile: default  sourceDigest: sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=
+pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/components/list.json
+spec: spec/components/list.md  site: https://j3w1.github.io/theme/#c-list
+maturity: stable  priority: R1
+
+Summary: A selectable list of rows (an APG listbox) in single or multiple selection; the selected row is the selection fill with a check glyph and an optional metadata column.
+
+Tokens (resolved):
+  root.bg                 #160b0b  ({color.surface.default})
+  root.border             #a3676b  ({color.border.control})
+  row.text                #e99499  ({color.text.default})
+  row.bg-hover            #1c0a09  ({color.interaction.hover.bg})
+  row.divider             #2b0e0d  ({color.border.divider})
+  row.ring                #e53935  ({color.interaction.focus.ring})
+  row.text-disabled       #8a5559  ({color.text.disabled})
+  selected.bg             #911410  ({color.interaction.selection.bg})
+  selected.text           #f4eeee  ({color.interaction.selection.text})
+  selected.ring           #ffa2a7  ({color.interaction.focus.ring-container})
+  selected.inactive-bg    #420f0c  ({color.interaction.selection.inactive-bg})
+  selected.inactive-text  #e99499  ({color.interaction.selection.inactive-text})
+  check.glyph             #f4eeee  ({color.interaction.selection.text})
+  meta.text               #bd787d  ({color.text.muted})
+
+States: default, hover, focus-visible, selected, selected+focus-visible, selected+container-inactive, disabled
+  default: text {color.text.default}; no fill; the check gutter empty [—]
+  hover: background → {color.interaction.hover.bg} [cursor: pointer]
+  focus-visible: ring 1px dashed {color.interaction.focus.ring} at −2px on the option [the ring]
+  selected: fill {color.interaction.selection.bg}; text and glyph {color.interaction.selection.text} [`aria-selected="true"`; the ✓ glyph]
+  selected+focus-visible: the fill and the ring in {color.interaction.focus.ring-container} [both visible at once]
+  selected+container-inactive: fill {color.interaction.selection.inactive-bg} with {color.interaction.selection.inactive-text}; no ring [lightness drop between the two fills; the glyph stays]
+  disabled: text {color.text.disabled}; no fill; no hover; still reachable by arrow keys [`aria-disabled="true"`; cursor: not-allowed]
+
+Keyboard:
+  Tab: Enters the list at the selected option, or the first option when nothing is selected; a second Tab leaves the list.
+  Down / Up: Moves focus to the next or previous option; in single selection the selection follows focus.
+  Home / End: Moves focus to the first or last option.
+  Space: Toggles the focused option in a multi-select list.
+  Shift+Down / Shift+Up: Extends the selection by one in a multi-select list.
+  Ctrl+A: Selects every option in a multi-select list.
+  A-Z: Moves focus to the next option starting with the typed character.
+
+ARIA: APG listbox with roving tabindex; options carry aria-selected, the list aria-multiselectable when several may be chosen (https://www.w3.org/WAI/ARIA/apg/patterns/listbox/)
+Responsive: The list fills its container with min-width 0; labels wrap onto a second line rather than truncate; the metadata column keeps its width and the label shrinks. The list scrolls vertically inside a fixed-height container, never the page. RTL mirrors the check gutter and the metadata column.
+Portability: A ul with role listbox, aria-label and, when several may be chosen, aria-multiselectable; li with role option, aria-selected and a roving tabindex; the fill is a background, the ring an outline, the check a glyph in a fixed gutter.
+  native: GTK4 ListBox with selection-mode single or multiple; the selected row through the :selected style class.
+  native: Qt QListView stylesheet; ::item:selected draws the fill, ::item:selected:!active the inactive fill.
+  native: Terminal UI: the selected row inverted; a leading check column; the inactive pane dims the fill.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

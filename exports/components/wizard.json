@@ -1,0 +1,602 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "0.1.0-draft.1",
+  "profile": "default",
+  "sourceDigest": "sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=",
+  "id": "wizard",
+  "family": "forms-advanced",
+  "maturity": "stable",
+  "priority": "R1",
+  "coverage": {
+    "family": "forms-advanced",
+    "priority": "R1",
+    "maturity": "stable",
+    "specified": true,
+    "demonstrated": true,
+    "tested": false,
+    "states": 7
+  },
+  "title": "Wizard",
+  "summary": "A multi-step form with a stepper header, the current panel and back/next actions; native buttons with aria-current=\"step\".",
+  "anchors": {
+    "site": "https://j3w1.github.io/theme/#c-wizard",
+    "spec": "spec/components/wizard.md",
+    "brief": "exports/components/wizard.brief.txt"
+  },
+  "native": true,
+  "aria": {
+    "pattern": "native <button>s in an <ol>; the current step carries aria-current=step; the panel is a section named by its heading",
+    "apg": "https://www.w3.org/WAI/ARIA/apg/practices/forms/"
+  },
+  "variants": [
+    {
+      "id": "numbered",
+      "name": "Numbered steps"
+    },
+    {
+      "id": "icons",
+      "name": "Glyph markers"
+    }
+  ],
+  "sizes": [
+    "compact",
+    "comfortable"
+  ],
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "current",
+    "disabled",
+    "invalid",
+    "busy"
+  ],
+  "tokens": {
+    "steps.divider": {
+      "alias": "color.border.divider",
+      "value": "#2b0e0d",
+      "status": "proposed"
+    },
+    "step.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "step.bg-hover": {
+      "alias": "color.interaction.hover.bg",
+      "value": "#1c0a09",
+      "status": "observed"
+    },
+    "step.ring": {
+      "alias": "color.interaction.focus.ring",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "step.text-current": {
+      "alias": "color.text.bright",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "step.indicator-current": {
+      "alias": "color.border.selected-indicator",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "step.text-disabled": {
+      "alias": "color.text.disabled",
+      "value": "#8a5559",
+      "status": "approved"
+    },
+    "step.marker-complete": {
+      "alias": "color.status.success.text",
+      "value": "#86a46f",
+      "status": "approved"
+    },
+    "step.marker-invalid": {
+      "alias": "color.status.danger.text",
+      "value": "#f73f35",
+      "status": "observed"
+    },
+    "step.indicator-invalid": {
+      "alias": "color.status.danger.border",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "panel.bg": {
+      "alias": "color.surface.default",
+      "value": "#160b0b",
+      "status": "observed"
+    },
+    "panel.border": {
+      "alias": "color.border.default",
+      "value": "#531310",
+      "status": "observed"
+    },
+    "title.text": {
+      "alias": "color.text.bright",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "text.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "message.text": {
+      "alias": "color.status.danger.text",
+      "value": "#f73f35",
+      "status": "observed"
+    },
+    "next.bg": {
+      "alias": "color.action.primary.bg",
+      "value": "#871f19",
+      "status": "observed"
+    },
+    "next.text": {
+      "alias": "color.action.primary.text",
+      "value": "#f4eeee",
+      "status": "observed"
+    },
+    "next.bg-hover": {
+      "alias": "color.action.primary.hover-bg",
+      "value": "#911410",
+      "status": "observed"
+    },
+    "next.bg-pressed": {
+      "alias": "color.action.primary.pressed-bg",
+      "value": "#630f0d",
+      "status": "observed"
+    },
+    "next.border": {
+      "alias": "color.action.primary.border",
+      "value": "#9e231f",
+      "status": "observed"
+    },
+    "next.ring": {
+      "alias": "color.interaction.focus.ring-container",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "back.text": {
+      "alias": "color.action.secondary.text",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "back.border": {
+      "alias": "color.action.secondary.border",
+      "value": "#a3676b",
+      "status": "observed"
+    },
+    "back.bg-hover": {
+      "alias": "color.action.secondary.hover-bg",
+      "value": "#630f0d",
+      "status": "observed"
+    },
+    "busy.glyph": {
+      "alias": "color.action.primary.text",
+      "value": "#f4eeee",
+      "status": "observed"
+    }
+  },
+  "stateRules": [
+    {
+      "state": "default",
+      "visual": "steps in {color.text.default}; complete steps carry the ✓ in {color.status.success.text}",
+      "channel": "the ✓ glyph; the numbers",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.canvas",
+          "value": "#0c0909",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "hover",
+      "visual": "step background → {color.interaction.hover.bg}; Next → {color.action.primary.hover-bg}; Back → {color.action.secondary.hover-bg}",
+      "channel": "cursor: pointer",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.interaction.hover.bg",
+          "value": "#1c0a09",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "focus-visible",
+      "visual": "ring 1px dashed {color.interaction.focus.ring} at −2px; on Next's fill the ring takes {color.interaction.focus.ring-container}",
+      "channel": "the ring",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.bright",
+          "value": "#ffa2a7",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.canvas",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "outline": {
+          "alias": "color.interaction.focus.ring",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "current",
+      "visual": "2px {color.border.selected-indicator} under the step; name in {color.text.bright}",
+      "channel": "`aria-current=\"step\"`; the indicator bar; the heading reads \"Step n of m\"",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.bright",
+          "value": "#ffa2a7",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.canvas",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.selected-indicator",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "disabled",
+      "visual": "a future step in {color.text.disabled}; no hover",
+      "channel": "`disabled`; cursor: not-allowed; skipped by Tab",
+      "tokens": {}
+    },
+    {
+      "state": "invalid",
+      "visual": "the step's marker becomes ✕ in {color.status.danger.text}; its indicator takes {color.status.danger.border}; the panel shows the message",
+      "channel": "glyph; message text; `aria-invalid` on the failing fields",
+      "tokens": {
+        "fg": {
+          "alias": "color.status.danger.text",
+          "value": "#f73f35",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.canvas",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.status.danger.border",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "busy",
+      "visual": "Next shows the static ⋯ glyph before its label and does not respond; size unchanged",
+      "channel": "`aria-busy` on the wizard; the glyph; cursor: progress",
+      "tokens": {
+        "fg": {
+          "alias": "color.action.primary.text",
+          "value": "#f4eeee",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.action.primary.bg",
+          "value": "#871f19",
+          "status": "observed"
+        }
+      }
+    }
+  ],
+  "keyboard": [
+    {
+      "key": "Tab / Shift+Tab",
+      "action": "Reaches each enabled step button, the panel's fields, then Back and Next; future steps are disabled and skipped."
+    },
+    {
+      "key": "Enter / Space",
+      "action": "On a step button, goes to that step if it is reachable; on Next, validates the panel and advances; on Back, returns without validating."
+    },
+    {
+      "key": "Escape",
+      "action": "Nothing; leaving a wizard is an explicit Cancel or the host's navigation."
+    }
+  ],
+  "responsive": "The stepper wraps to a vertical list below 600px, the panel and actions stack, and Next stays last in reading order; nothing scrolls horizontally at 320px. RTL mirrors the progression, the markers and the action order.",
+  "portability": {
+    "web": "an <ol> of <button type=button> with aria-current=step on the current one and disabled on unreachable ones; the panel is a <section aria-labelledby>; focus moves to the panel heading after each step change; no role=tablist, because steps are sequential and validated.",
+    "nativeFallbacks": [
+      "GTK4 Assistant; the page list maps to the stepper, the current page to the indicator.",
+      "Qt QWizard; the side widget lists steps, the current one bold with the indicator.",
+      "Terminal UI: a breadcrumb line of steps above the form, the current one underlined."
+    ]
+  },
+  "fixtures": [
+    "FX-LONG",
+    "FX-320",
+    "FX-ZOOM-200",
+    "FX-I18N",
+    "FX-RTL",
+    "FX-RM",
+    "FX-HC",
+    "FX-STATE-MATRIX"
+  ],
+  "related": [
+    "button",
+    "fieldset",
+    "tabs",
+    "breadcrumbs",
+    "progress",
+    "admin-form"
+  ],
+  "specimens": [
+    "admin-form",
+    "settings-panel"
+  ],
+  "nonExamples": "Tabs restyled as steps. A progress bar in place of the stepper. Circles with\nconnecting lines that need a rounded radius. Future steps that look enabled\nand reject the click. A spinner on Next. Colour-only completion marks.\nValidation that blocks Back. Animated slides between panels.",
+  "contrast": [
+    {
+      "label": "wizard default text",
+      "state": "default",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.canvas",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "wizard hover text",
+      "state": "hover",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.interaction.hover.bg",
+      "fgHex": "#e99499",
+      "bgHex": "#1c0a09",
+      "ratio": 8.35,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "wizard focus-visible text",
+      "state": "focus-visible",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.bright",
+      "bg": "color.surface.canvas",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#0c0909",
+      "ratio": 10.37,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "wizard focus-visible outline",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring",
+      "bg": "color.surface.canvas",
+      "fgHex": "#e53935",
+      "bgHex": "#0c0909",
+      "ratio": 4.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "wizard current text",
+      "state": "current",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.bright",
+      "bg": "color.surface.canvas",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#0c0909",
+      "ratio": 10.37,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "wizard current border",
+      "state": "current",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.selected-indicator",
+      "bg": "color.surface.canvas",
+      "fgHex": "#e53935",
+      "bgHex": "#0c0909",
+      "ratio": 4.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "wizard invalid text",
+      "state": "invalid",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.status.danger.text",
+      "bg": "color.surface.canvas",
+      "fgHex": "#f73f35",
+      "bgHex": "#0c0909",
+      "ratio": 5.4,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "wizard invalid border",
+      "state": "invalid",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.status.danger.border",
+      "bg": "color.surface.canvas",
+      "fgHex": "#e53935",
+      "bgHex": "#0c0909",
+      "ratio": 4.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "wizard busy text",
+      "state": "busy",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.primary.text",
+      "bg": "color.action.primary.bg",
+      "fgHex": "#f4eeee",
+      "bgHex": "#871f19",
+      "ratio": 8.17,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "complete marker on the canvas",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.status.success.text",
+      "bg": "color.surface.canvas",
+      "fgHex": "#86a46f",
+      "bgHex": "#0c0909",
+      "ratio": 7.13,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "panel title on the panel surface",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.bright",
+      "bg": "color.surface.default",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#160b0b",
+      "ratio": 10.1,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "panel text on the panel surface",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.default",
+      "fgHex": "#e99499",
+      "bgHex": "#160b0b",
+      "ratio": 8.43,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "step message on the panel surface",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.status.danger.text",
+      "bg": "color.surface.default",
+      "fgHex": "#f73f35",
+      "bgHex": "#160b0b",
+      "ratio": 5.26,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "panel edge (decorative)",
+      "state": null,
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.border.default",
+      "bg": "color.surface.canvas",
+      "fgHex": "#531310",
+      "bgHex": "#0c0909",
+      "ratio": 1.39,
+      "pass": true,
+      "waiver": "the panel is identified by its heading and position, not by this edge"
+    },
+    {
+      "label": "back button text",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.secondary.text",
+      "bg": "color.surface.canvas",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#0c0909",
+      "ratio": 10.37,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "back button boundary",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.action.secondary.border",
+      "bg": "color.surface.canvas",
+      "fgHex": "#a3676b",
+      "bgHex": "#0c0909",
+      "ratio": 4.45,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "next button boundary",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.action.primary.border",
+      "bg": "color.surface.canvas",
+      "fgHex": "#9e231f",
+      "bgHex": "#0c0909",
+      "ratio": 2.56,
+      "pass": false,
+      "waiver": "the primary button is identified by its text at 8.17:1 on its fill and by its position; the fill measures 2.12:1 and its border 2.56:1 against the canvas, a documented property of the actions family, not of the wizard"
+    },
+    {
+      "label": "ring on the next button's fill",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring-container",
+      "bg": "color.action.primary.bg",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#871f19",
+      "ratio": 4.9,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "future step text (exempt; house floor 3:1)",
+      "state": "disabled",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.text.disabled",
+      "bg": "color.surface.canvas",
+      "fgHex": "#8a5559",
+      "bgHex": "#0c0909",
+      "ratio": 3.33,
+      "pass": true,
+      "waiver": null
+    }
+  ]
+}

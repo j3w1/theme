@@ -1,0 +1,196 @@
+/* radio-group — reference CSS. The native radio, appearance none, is a
+   square box; the inner square stacks over it in the same 16px cell. Every
+   real pseudo-class is paired with the forced-state attribute the state
+   matrix emits. Token variables only. */
+
+.radio-group {
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+  max-width: 28rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: var(--color-text-default);
+}
+
+.radio-group-legend {
+  padding: 0;
+  margin-bottom: var(--space-4);
+  color: var(--color-text-bright);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.radio-group-required {
+  display: none;
+  color: var(--color-status-danger-text);
+}
+
+.radio-group-options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.radio-group-horizontal .radio-group-options {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-16);
+}
+
+.radio-group-option {
+  display: grid;
+  grid-template-columns: var(--icon-size-md) minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-8);
+  min-height: var(--space-24);
+  padding: var(--space-4) 0;
+  cursor: pointer;
+}
+
+.radio-group-control {
+  display: inline-grid;
+  width: var(--icon-size-md);
+  height: var(--icon-size-md);
+}
+
+.radio-group-control > * {
+  grid-area: 1 / 1;
+}
+
+.radio-group-input {
+  appearance: none;
+  width: var(--icon-size-md);
+  height: var(--icon-size-md);
+  margin: 0;
+  background: var(--color-surface-input);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+  cursor: pointer;
+  outline: 0;
+}
+
+.radio-group-dot {
+  display: none;
+  width: var(--space-8);
+  height: var(--space-8);
+  margin: var(--space-4);
+  background: var(--color-action-primary-text);
+  pointer-events: none;
+}
+
+.radio-group-text {
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+}
+
+.radio-group-message {
+  display: none;
+  margin: 0;
+  color: var(--color-status-danger-text);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+/* hover: the box fill only, on hover-capable pointers */
+@media (hover: hover) {
+  .radio-group-option:hover .radio-group-input:not(:disabled) {
+    background: var(--color-interaction-hover-bg);
+  }
+
+  .radio-group-option:hover .radio-group-input:checked:not(:disabled) {
+    background: var(--color-action-primary-hover-bg);
+  }
+}
+
+[data-state-hover] .radio-group-input {
+  background: var(--color-interaction-hover-bg);
+}
+
+/* checked: the primary fill and the inner square; the border stays border.control */
+.radio-group-input:checked,
+[data-state-checked] .radio-group-input {
+  background: var(--color-action-primary-bg);
+}
+
+.radio-group-input:checked ~ .radio-group-dot,
+[data-state-checked] .radio-group-dot {
+  display: block;
+}
+
+[data-state-hover][data-state-checked] .radio-group-input {
+  background: var(--color-action-primary-hover-bg);
+}
+
+/* focus-visible */
+.radio-group-input:focus-visible,
+[data-state-focus-visible] .radio-group-input {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* checked + focus-visible: the ring takes the on-fill colour */
+.radio-group-input:checked:focus-visible,
+[data-state-checked][data-state-focus-visible] .radio-group-input {
+  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline-offset: var(--focus-offset);
+}
+
+/* required */
+.radio-group:has(.radio-group-input:required) .radio-group-required,
+[data-state-required] .radio-group-required {
+  display: inline;
+}
+
+/* invalid */
+.radio-group-input[aria-invalid="true"],
+[data-state-invalid] .radio-group-input {
+  border-color: var(--color-status-danger-border);
+  border-width: var(--border-width-emphasis);
+}
+
+.radio-group:has(.radio-group-input[aria-invalid="true"]) .radio-group-message,
+[data-state-invalid] .radio-group-message {
+  display: block;
+}
+
+/* disabled */
+.radio-group-input:disabled,
+[data-state-disabled] .radio-group-input {
+  background: var(--color-interaction-disabled-bg);
+  border-color: var(--color-border-disabled);
+  cursor: not-allowed;
+}
+
+.radio-group-input:disabled ~ .radio-group-dot,
+[data-state-disabled] .radio-group-dot {
+  background: var(--color-text-disabled);
+}
+
+.radio-group-option:has(.radio-group-input:disabled),
+[data-state-disabled] .radio-group-option {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.radio-group:disabled .radio-group-legend,
+[data-state-disabled] .radio-group-legend {
+  color: var(--color-text-disabled);
+}
+
+@media (forced-colors: active) {
+  .radio-group-input:focus-visible,
+  [data-state-focus-visible] .radio-group-input {
+    outline-color: Highlight;
+  }
+
+  .radio-group-input:checked,
+  [data-state-checked] .radio-group-input {
+    background: Highlight;
+  }
+
+  .radio-group-dot {
+    background: HighlightText;
+  }
+}

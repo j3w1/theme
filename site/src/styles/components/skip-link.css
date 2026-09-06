@@ -1,0 +1,46 @@
+/* skip-link — reference CSS. Off-screen on the block axis until focused;
+   the site's own skip link is this component, so the values here match
+   site.css exactly. The matrix wraps every cell in .skip-link-demo, which
+   becomes the containing block so the demo stays inside its cell. */
+
+.skip-link {
+  position: absolute;
+  inset-inline-start: var(--space-8);
+  top: calc(-1 * var(--space-48));
+  z-index: var(--z-skip-link);
+  min-height: var(--density-control-height, 32px);
+  padding: var(--space-4) var(--space-8);
+  box-sizing: border-box;
+  background: var(--color-surface-raised);
+  border: var(--border-width-default) solid var(--color-border-overlay);
+  border-radius: var(--radius-none);
+  color: var(--color-text-bright);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* focus-visible: the link moves on-screen and takes the ring */
+.skip-link:focus-visible,
+[data-state-focus-visible] .skip-link {
+  top: var(--space-8);
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.skip-link:focus:not(:focus-visible) {
+  outline: 0;
+}
+
+/* the matrix cell: a positioned, clipped box the link can appear inside */
+.skip-link-demo {
+  position: relative;
+  min-height: calc(var(--density-control-height, 32px) + var(--space-16));
+  overflow: hidden;
+}
+
+@media (forced-colors: active) {
+  .skip-link:focus-visible,
+  [data-state-focus-visible] .skip-link {
+    outline-color: Highlight;
+  }
+}

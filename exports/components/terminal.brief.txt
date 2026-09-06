@@ -1,0 +1,66 @@
+j3w1/theme implementation brief — terminal
+theme: j3w1-theme 0.1.0-draft.1  profile: default  sourceDigest: sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=
+pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/components/terminal.json
+spec: spec/components/terminal.md  site: https://j3w1.github.io/theme/#c-terminal
+maturity: stable  priority: R1
+
+Summary: Terminal text on the terminal surface with the sixteen heritage ANSI slots carried exactly, the cursor, the selection and the six text attributes; a transcript, the slot grid and the attributes.
+
+Tokens (resolved):
+  root.bg             #0c0909  ({color.terminal.bg})
+  root.text           #e99499  ({color.terminal.fg})
+  root.border         #a3676b  ({color.border.control})
+  root.ring           #ffa2a7  ({color.interaction.focus.ring-container})
+  cursor.bg           #e99499  ({color.terminal.cursor})
+  cursor.text         #0c0909  ({color.terminal.bg})
+  selection.bg        #911410  ({color.terminal.selection-bg})
+  selection.text      #f4eeee  ({color.terminal.selection-text})
+  current.bg          #1c0a09  ({color.code.current-line})
+  prompt.bg           #8c1212  ({color.terminal.ansi.4})
+  prompt.text         #f4eeee  ({color.terminal.selection-text})
+  prompt.branch-bg    #d4868b  ({color.terminal.ansi.3})
+  prompt.branch-text  #0c0909  ({color.terminal.bg})
+  dim.text            #bd787d  ({color.text.muted})
+  inverse.bg          #e99499  ({color.terminal.fg})
+  inverse.text        #0c0909  ({color.terminal.bg})
+  label.text          #bd787d  ({color.text.muted})
+  fail.glyph          #e99499  ({color.terminal.fg})
+  slot.ansi-0         #0c0909  ({color.terminal.ansi.0})
+  slot.ansi-1         #c81a1a  ({color.terminal.ansi.1})
+  slot.ansi-2         #bd787d  ({color.terminal.ansi.2})
+  slot.ansi-3         #d4868b  ({color.terminal.ansi.3})
+  slot.ansi-4         #8c1212  ({color.terminal.ansi.4})
+  slot.ansi-5         #f73f35  ({color.terminal.ansi.5})
+  slot.ansi-6         #9e474a  ({color.terminal.ansi.6})
+  slot.ansi-7         #ffa2a7  ({color.terminal.ansi.7})
+  slot.ansi-8         #7d1310  ({color.terminal.ansi.8})
+  slot.ansi-9         #ab1612  ({color.terminal.ansi.9})
+  slot.ansi-10        #ad2721  ({color.terminal.ansi.10})
+  slot.ansi-11        #b37175  ({color.terminal.ansi.11})
+  slot.ansi-12        #871f19  ({color.terminal.ansi.12})
+  slot.ansi-13        #e82132  ({color.terminal.ansi.13})
+  slot.ansi-14        #e0292f  ({color.terminal.ansi.14})
+  slot.ansi-15        #a3676b  ({color.terminal.ansi.15})
+
+States: default, focus-visible, selected, busy, current
+  default: text on {color.terminal.bg}; the cursor cell hollow, a 1px {color.terminal.cursor} outline; no ring [the hollow cursor]
+  focus-visible: container ring 2px {color.interaction.focus.ring-container} at −3px; the cursor solid {color.terminal.cursor} with {color.terminal.bg} text [the ring; the cursor fills]
+  selected: the run filled {color.terminal.selection-bg} with {color.terminal.selection-text}; slot colours inside the run give way to the selection text [the fill spans whole cells; the emulator exposes the selection]
+  busy: a command is running: the cursor is a solid static block at the end of the output; the transcript is `aria-busy` [`aria-busy`; the cursor shape; no blink]
+  current: the cursor line filled {color.code.current-line} across its width; the cursor as in focus [the row fill; the cursor cell]
+
+Keyboard:
+  (host): The emulator and the shell own every key; the theme changes no binding and no cursor behaviour.
+  Tab: Reaches the transcript as one focus stop; inside a live emulator Tab belongs to the shell.
+  Shift+Arrows / mouse: Selection is the emulator's; the theme draws it in selection-bg and selection-text.
+
+ARIA: native <pre role=log> for a transcript; a plain <pre> with aria-label for the slot grid and the attribute sheet (https://www.w3.org/WAI/ARIA/apg/practices/names-and-descriptions/)
+Responsive: The transcript scrolls horizontally inside its box and never wraps; at 320px the prompt segments stay on one line and the grid scrolls. Type is the terminal scale (13/19, −0.5px letter-spacing) in both densities. The terminal is always left-to-right; RTL pages do not mirror it.
+Portability: <pre role=log aria-live=polite> for a transcript; slot classes on spans; the cursor is a span, not a caret; selection through ::selection with the terminal roles; xterm.js and similar map the sixteen slots, foreground, background, cursor and selection from these roles.
+  native: Xresources / URxvt / xterm: *background, *foreground, *cursorColor and *color0–15 (the origin of these values).
+  native: Alacritty, kitty, WezTerm, Windows Terminal: the sixteen slots plus foreground, background, cursor and selection keys; bold-as-bright must be off for the slots to hold.
+  native: GNOME Terminal, Konsole: palette entries in order; disable the system theme so the slots are not re-derived.
+  native: tmux, vim inside a terminal: they see slot numbers, never these values; a 256-colour or 24-bit escape bypasses the slots entirely.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

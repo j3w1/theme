@@ -1,0 +1,152 @@
+/* pagination — reference CSS. Square page links with no border; the
+   current page is the selection fill. Every pseudo-class is paired with the
+   forced-state attribute the state matrix emits. Token variables only. */
+
+.pagination {
+  min-width: 0;
+  color: var(--color-text-default);
+  background: var(--color-surface-default);
+}
+
+.pagination-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--density-gap, 4px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pagination-compact .pagination-list {
+  flex-wrap: nowrap;
+}
+
+.pagination-item {
+  display: inline-flex;
+  min-width: 0;
+}
+
+.pagination-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--density-control-height, 32px);
+  min-height: var(--density-control-height, 32px);
+  padding: 0 var(--space-8);
+  background: transparent;
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+  text-decoration: none;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.pagination-edge {
+  padding: 0 var(--density-control-padding-x, 12px);
+}
+
+.pagination-glyph {
+  padding-inline: var(--space-2);
+}
+
+.pagination-gap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--density-control-height, 32px);
+  min-height: var(--density-control-height, 32px);
+  color: var(--color-text-muted);
+  user-select: none;
+}
+
+.pagination-status {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--density-control-height, 32px);
+  padding: 0 var(--space-8);
+  color: var(--color-text-default);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.pagination-status-current {
+  padding-inline-end: var(--space-4);
+  color: var(--color-text-bright);
+  font-weight: var(--font-weight-bold);
+}
+
+/* hover */
+.pagination-link:hover,
+[data-state-hover] .pagination-link-demo-target {
+  background: var(--color-interaction-hover-bg);
+}
+
+/* pressed */
+.pagination-link:active {
+  background: var(--color-interaction-pressed-bg);
+}
+
+/* focus-visible */
+.pagination-link:focus-visible,
+[data-state-focus-visible] .pagination-link-demo-target {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.pagination-link:focus:not(:focus-visible) {
+  outline: 0;
+}
+
+/* current: the selection fill; the ring recolours on it */
+.pagination-link[aria-current="page"],
+[data-state-current] .pagination-current {
+  background: var(--color-interaction-selection-bg);
+  color: var(--color-text-on-selection);
+}
+
+.pagination-link[aria-current="page"]:hover,
+[data-state-current] .pagination-current:hover {
+  background: var(--color-interaction-selection-bg);
+}
+
+.pagination-link[aria-current="page"]:focus-visible {
+  outline-color: var(--color-interaction-focus-ring-container);
+}
+
+/* disabled ends: no href, aria-disabled, never opacity */
+.pagination-link[aria-disabled="true"],
+[data-state-disabled] .pagination-edge {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.pagination-link[aria-disabled="true"]:hover,
+[data-state-disabled] .pagination-edge:hover {
+  background: transparent;
+}
+
+@media (hover: none) {
+  .pagination-link:hover {
+    background: transparent;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .pagination-link {
+    transition: background-color var(--motion-duration-fast);
+  }
+}
+
+@media (forced-colors: active) {
+  .pagination-link:focus-visible,
+  [data-state-focus-visible] .pagination-link-demo-target {
+    outline-color: Highlight;
+  }
+
+  .pagination-link[aria-current="page"],
+  [data-state-current] .pagination-current {
+    background: Highlight;
+    color: HighlightText;
+  }
+}

@@ -1,0 +1,581 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "0.1.0-draft.1",
+  "profile": "default",
+  "sourceDigest": "sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=",
+  "id": "date-picker",
+  "family": "forms-advanced",
+  "maturity": "stable",
+  "priority": "R1",
+  "coverage": {
+    "family": "forms-advanced",
+    "priority": "R1",
+    "maturity": "stable",
+    "specified": true,
+    "demonstrated": true,
+    "tested": false,
+    "states": 7
+  },
+  "title": "Date picker",
+  "summary": "A native date input, alone or as a from/to pair; the calendar popup belongs to the host and is styled only through color-scheme.",
+  "anchors": {
+    "site": "https://j3w1.github.io/theme/#c-date-picker",
+    "spec": "spec/components/date-picker.md",
+    "brief": "exports/components/date-picker.brief.txt"
+  },
+  "native": true,
+  "aria": {
+    "pattern": "native <input type=date> with <label>; a from/to pair inside a <fieldset>",
+    "apg": "https://www.w3.org/WAI/ARIA/apg/practices/forms/"
+  },
+  "variants": [
+    {
+      "id": "default",
+      "name": "Single date"
+    },
+    {
+      "id": "range",
+      "name": "From / to"
+    }
+  ],
+  "sizes": [
+    "compact",
+    "comfortable"
+  ],
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "invalid",
+    "invalid+focus-visible",
+    "disabled",
+    "read-only"
+  ],
+  "tokens": {
+    "root.bg": {
+      "alias": "color.surface.input",
+      "value": "#0c0909",
+      "status": "observed"
+    },
+    "root.border": {
+      "alias": "color.border.control",
+      "value": "#a3676b",
+      "status": "proposed"
+    },
+    "root.bg-hover": {
+      "alias": "color.interaction.hover.bg",
+      "value": "#1c0a09",
+      "status": "observed"
+    },
+    "root.border-focus": {
+      "alias": "color.border.active",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "root.ring": {
+      "alias": "color.interaction.focus.ring",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "root.ring-invalid": {
+      "alias": "color.interaction.focus.ring-container",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "root.border-invalid": {
+      "alias": "color.status.danger.border",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "root.border-disabled": {
+      "alias": "color.border.disabled",
+      "value": "#7d1310",
+      "status": "observed"
+    },
+    "root.bg-disabled": {
+      "alias": "color.interaction.disabled.bg",
+      "value": "#160b0b",
+      "status": "observed"
+    },
+    "root.border-readonly": {
+      "alias": "color.border.divider",
+      "value": "#2b0e0d",
+      "status": "proposed"
+    },
+    "root.bg-readonly": {
+      "alias": "color.surface.canvas",
+      "value": "#0c0909",
+      "status": "observed"
+    },
+    "input.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "input.text-disabled": {
+      "alias": "color.text.disabled",
+      "value": "#8a5559",
+      "status": "approved"
+    },
+    "input.caret": {
+      "alias": "color.code.caret",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "label.text": {
+      "alias": "color.text.bright",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "legend.text": {
+      "alias": "color.text.bright",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "separator.text": {
+      "alias": "color.text.muted",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "help.text": {
+      "alias": "color.text.muted",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "message.text": {
+      "alias": "color.status.danger.text",
+      "value": "#f73f35",
+      "status": "observed"
+    }
+  },
+  "stateRules": [
+    {
+      "state": "default",
+      "visual": "1px {color.border.control} on {color.surface.input}; text {color.text.default}, tabular figures",
+      "channel": "—",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.input",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.control",
+          "value": "#a3676b",
+          "status": "proposed"
+        }
+      }
+    },
+    {
+      "state": "hover",
+      "visual": "background → {color.interaction.hover.bg}; border unchanged",
+      "channel": "cursor: text",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.interaction.hover.bg",
+          "value": "#1c0a09",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.control",
+          "value": "#a3676b",
+          "status": "proposed"
+        }
+      }
+    },
+    {
+      "state": "focus-visible",
+      "visual": "border → {color.border.active}; ring 1px dashed {color.interaction.focus.ring} at −2px",
+      "channel": "the ring",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.input",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.active",
+          "value": "#e53935",
+          "status": "observed"
+        },
+        "outline": {
+          "alias": "color.interaction.focus.ring",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "invalid",
+      "visual": "border 2px {color.status.danger.border}; message with the ✕ glyph",
+      "channel": "border width 1 → 2px; glyph; `aria-invalid`",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.input",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.status.danger.border",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "invalid+focus-visible",
+      "visual": "the 2px danger border and the ring in {color.interaction.focus.ring-container} at −4px",
+      "channel": "double boundary",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.input",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.status.danger.border",
+          "value": "#e53935",
+          "status": "observed"
+        },
+        "outline": {
+          "alias": "color.interaction.focus.ring-container",
+          "value": "#ffa2a7",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "disabled",
+      "visual": "text {color.text.disabled}; border {color.border.disabled}; background {color.interaction.disabled.bg}; no hover",
+      "channel": "`disabled`; cursor: not-allowed",
+      "tokens": {}
+    },
+    {
+      "state": "read-only",
+      "visual": "no box: 1px dotted {color.border.divider} bottom edge on {color.surface.canvas}; focusable and selectable",
+      "channel": "`readonly`; dotted edge",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.canvas",
+          "value": "#0c0909",
+          "status": "observed"
+        }
+      }
+    }
+  ],
+  "keyboard": [
+    {
+      "key": "Tab / Shift+Tab",
+      "action": "Moves between the date segments and then out of the control (host behaviour); the range pair is two tab stops."
+    },
+    {
+      "key": "Up / Down",
+      "action": "Steps the focused segment (host behaviour)."
+    },
+    {
+      "key": "Space / Alt+Down",
+      "action": "Opens the host calendar where one exists; Escape closes it."
+    },
+    {
+      "key": "Enter",
+      "action": "Submits the owning form (native)."
+    }
+  ],
+  "responsive": "The box fills its field container with min-width 0; the range pair sits side by side and wraps to two rows below 320px; the label is always stacked above. RTL keeps the from/to order of reading and mirrors the separator.",
+  "portability": {
+    "web": "native <input type=date>; hosts without a date type fall back to a text field with a pattern and a format hint in the help text; color-scheme dark keeps the host popup on a dark surface.",
+    "nativeFallbacks": [
+      "GTK4 Calendar in a Popover opened from an Entry; the entry carries the field styling.",
+      "Qt QDateEdit with calendarPopup; the popup frame through the QCalendarWidget stylesheet.",
+      "Terminal UI: a masked line editor (YYYY-MM-DD); no popup."
+    ]
+  },
+  "fixtures": [
+    "FX-LONG",
+    "FX-320",
+    "FX-ZOOM-200",
+    "FX-I18N",
+    "FX-RTL",
+    "FX-RM",
+    "FX-HC",
+    "FX-STATE-MATRIX"
+  ],
+  "related": [
+    "text-field",
+    "time-picker",
+    "field",
+    "fieldset"
+  ],
+  "specimens": [
+    "admin-form",
+    "filterable-table"
+  ],
+  "nonExamples": "A custom calendar drawn where the host has one. Rounded corners. An icon-only\ncalendar button with no text input. Placeholder text pretending to be a\nformat hint. A floating label. Disabling by opacity. A hover that changes the\ntext colour. A red border with no message.",
+  "contrast": [
+    {
+      "label": "date-picker default text",
+      "state": "default",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.input",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "date-picker default border",
+      "state": "default",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.control",
+      "bg": "color.surface.input",
+      "fgHex": "#a3676b",
+      "bgHex": "#0c0909",
+      "ratio": 4.45,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "date-picker hover text",
+      "state": "hover",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.interaction.hover.bg",
+      "fgHex": "#e99499",
+      "bgHex": "#1c0a09",
+      "ratio": 8.35,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "date-picker hover border",
+      "state": "hover",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.control",
+      "bg": "color.interaction.hover.bg",
+      "fgHex": "#a3676b",
+      "bgHex": "#1c0a09",
+      "ratio": 4.29,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "date-picker focus-visible text",
+      "state": "focus-visible",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.input",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "date-picker focus-visible border",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.active",
+      "bg": "color.surface.input",
+      "fgHex": "#e53935",
+      "bgHex": "#0c0909",
+      "ratio": 4.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "date-picker focus-visible outline",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring",
+      "bg": "color.surface.input",
+      "fgHex": "#e53935",
+      "bgHex": "#0c0909",
+      "ratio": 4.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "date-picker invalid text",
+      "state": "invalid",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.input",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "date-picker invalid border",
+      "state": "invalid",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.status.danger.border",
+      "bg": "color.surface.input",
+      "fgHex": "#e53935",
+      "bgHex": "#0c0909",
+      "ratio": 4.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "date-picker invalid+focus-visible text",
+      "state": "invalid+focus-visible",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.input",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "date-picker invalid+focus-visible border",
+      "state": "invalid+focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.status.danger.border",
+      "bg": "color.surface.input",
+      "fgHex": "#e53935",
+      "bgHex": "#0c0909",
+      "ratio": 4.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "date-picker invalid+focus-visible outline",
+      "state": "invalid+focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring-container",
+      "bg": "color.surface.input",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#0c0909",
+      "ratio": 10.37,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "date-picker read-only text",
+      "state": "read-only",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.canvas",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "validation message on the canvas",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.status.danger.text",
+      "bg": "color.surface.canvas",
+      "fgHex": "#f73f35",
+      "bgHex": "#0c0909",
+      "ratio": 5.4,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "help text and the range separator on the canvas",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.muted",
+      "bg": "color.surface.canvas",
+      "fgHex": "#bd787d",
+      "bgHex": "#0c0909",
+      "ratio": 5.81,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "disabled text (exempt; house floor 3:1)",
+      "state": "disabled",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.text.disabled",
+      "bg": "color.interaction.disabled.bg",
+      "fgHex": "#8a5559",
+      "bgHex": "#160b0b",
+      "ratio": 3.24,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "disabled border (exempt)",
+      "state": "disabled",
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.border.disabled",
+      "bg": "color.interaction.disabled.bg",
+      "fgHex": "#7d1310",
+      "bgHex": "#160b0b",
+      "ratio": 1.82,
+      "pass": true,
+      "waiver": "disabled controls are exempt from 1.4.11"
+    },
+    {
+      "label": "read-only bottom edge (decorative; the field has no box)",
+      "state": "read-only",
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.border.divider",
+      "bg": "color.surface.canvas",
+      "fgHex": "#2b0e0d",
+      "bgHex": "#0c0909",
+      "ratio": 1.11,
+      "pass": true,
+      "waiver": "read-only fields are identified by the readonly attribute and the absence of a box, not by this edge"
+    }
+  ]
+}

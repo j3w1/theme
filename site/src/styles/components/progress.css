@@ -1,0 +1,148 @@
+/* progress — reference CSS. A native <progress> with the track and fill
+   restyled; indeterminate work shows static stripes. Nothing animates in any
+   state. [data-state-error] is also the runtime hook a host sets on the root
+   when the task fails. Token variables only. */
+
+.progress {
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+  max-width: 28rem;
+  color: var(--color-text-default);
+  --_stripes: repeating-linear-gradient(
+    45deg,
+    var(--color-action-primary-bg) 0 var(--space-8),
+    var(--color-interaction-pressed-bg) var(--space-8) var(--space-16)
+  );
+}
+
+.progress-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-8);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.progress-label {
+  color: var(--color-text-bright);
+}
+
+.progress-error-glyph {
+  display: none;
+  color: var(--color-status-danger-text);
+  font-weight: var(--font-weight-bold);
+}
+
+.progress-value {
+  color: var(--color-text-default);
+  font-variant-numeric: tabular-nums;
+}
+
+.progress-bar {
+  display: block;
+  width: 100%;
+  height: var(--space-8);
+  appearance: none;
+  background: var(--color-interaction-pressed-bg);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+  color: var(--color-action-primary-bg);
+  overflow: hidden;
+}
+
+.progress-bar::-webkit-progress-bar {
+  background: var(--color-interaction-pressed-bg);
+  border-radius: var(--radius-none);
+}
+
+.progress-bar::-webkit-progress-value {
+  background: var(--color-action-primary-bg);
+  border-radius: var(--radius-none);
+}
+
+.progress-bar::-moz-progress-bar {
+  background: var(--color-action-primary-bg);
+  border-radius: var(--radius-none);
+}
+
+/* busy / indeterminate: static stripes across the whole track */
+.progress-bar:indeterminate,
+[data-state-busy] .progress-bar {
+  background: var(--_stripes);
+}
+
+.progress-bar:indeterminate::-webkit-progress-bar,
+[data-state-busy] .progress-bar::-webkit-progress-bar {
+  background: var(--_stripes);
+}
+
+.progress-bar:indeterminate::-webkit-progress-value,
+[data-state-busy] .progress-bar::-webkit-progress-value {
+  background: transparent;
+}
+
+.progress-bar:indeterminate::-moz-progress-bar,
+[data-state-busy] .progress-bar::-moz-progress-bar {
+  background: transparent;
+}
+
+[data-state-busy] .progress-value {
+  display: none;
+}
+
+/* error: the danger fill and the ✕ glyph in the label */
+.progress[data-state-error] .progress-bar,
+[data-state-error] .progress-bar {
+  color: var(--color-status-danger-fill);
+}
+
+[data-state-error] .progress-bar::-webkit-progress-value {
+  background: var(--color-status-danger-fill);
+}
+
+[data-state-error] .progress-bar::-moz-progress-bar {
+  background: var(--color-status-danger-fill);
+}
+
+[data-state-error] .progress-error-glyph {
+  display: inline;
+}
+
+.progress-detail {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+/* reduced-motion: there is no motion to remove; the rule states it */
+@media (prefers-reduced-motion: reduce) {
+  .progress-bar,
+  .progress-bar::-webkit-progress-bar,
+  .progress-bar::-webkit-progress-value {
+    animation: none;
+    transition: none;
+  }
+}
+
+[data-state-reduced-motion] .progress-bar,
+[data-state-reduced-motion] .progress-bar::-webkit-progress-bar,
+[data-state-reduced-motion] .progress-bar::-webkit-progress-value {
+  animation: none;
+  transition: none;
+}
+
+@media (forced-colors: active) {
+  .progress-bar {
+    border-color: CanvasText;
+  }
+
+  .progress-bar:indeterminate,
+  [data-state-busy] .progress-bar,
+  .progress-bar:indeterminate::-webkit-progress-bar,
+  [data-state-busy] .progress-bar::-webkit-progress-bar {
+    background: repeating-linear-gradient(45deg, CanvasText 0 var(--space-8), Canvas var(--space-8) var(--space-16));
+  }
+}

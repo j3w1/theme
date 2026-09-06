@@ -1,0 +1,194 @@
+/* select — reference CSS. The text-field box around a native <select>
+   with the host chevron replaced by a line icon; the open popup stays
+   host-rendered. Every real pseudo-class is paired with the forced-state
+   attribute the state matrix emits. Token variables only. */
+
+.select {
+  position: relative; /* the visually hidden help text in the invalid state stays inside the component */
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+  max-width: 28rem;
+  color: var(--color-text-default);
+}
+
+.select-label {
+  color: var(--color-text-bright);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.select-required {
+  display: none;
+  color: var(--color-status-danger-text);
+}
+
+.select-root {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  min-height: var(--density-control-height, 32px);
+  background: var(--color-surface-input);
+  color: var(--color-icon-default);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+}
+
+.select-control {
+  appearance: none;
+  width: 100%;
+  min-width: 0;
+  min-height: calc(var(--density-control-height, 32px) - 2 * var(--border-width-default));
+  padding: 0 calc(var(--density-control-padding-x, 12px) + var(--icon-size-md) + var(--space-4)) 0 var(--density-control-padding-x, 12px);
+  margin: 0;
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+  font: inherit;
+  cursor: default;
+  outline: 0;
+}
+
+.select-control-multiple {
+  padding: var(--space-2) 0;
+  overflow-y: auto;
+}
+
+.select-control option,
+.select-control optgroup {
+  background: var(--color-surface-raised);
+  color: var(--color-text-default);
+  font: inherit;
+  font-style: normal;
+}
+
+.select-control option {
+  padding: 0 var(--density-control-padding-x, 12px);
+  min-height: var(--density-row-height, 36px);
+}
+
+.select-control optgroup {
+  color: var(--color-text-muted);
+}
+
+.select-control option:checked {
+  background: var(--color-interaction-selection-bg);
+  color: var(--color-interaction-selection-text);
+}
+
+.select-chevron {
+  position: absolute;
+  inset-inline-end: var(--density-control-padding-x, 12px);
+  top: 50%;
+  width: var(--icon-size-md);
+  height: var(--icon-size-md);
+  margin-top: calc(var(--icon-size-md) / -2);
+  stroke: currentColor;
+  fill: none;
+  pointer-events: none;
+}
+
+.select-help {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.select-message {
+  display: none;
+  margin: 0;
+  color: var(--color-status-danger-text);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+/* hover */
+@media (hover: hover) {
+  .select-root:hover {
+    background: var(--color-interaction-hover-bg);
+  }
+}
+
+[data-state-hover] .select-root {
+  background: var(--color-interaction-hover-bg);
+}
+
+/* focus-visible */
+.select-root:has(.select-control:focus-visible),
+[data-state-focus-visible] .select-root {
+  border-color: var(--color-border-active);
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* required */
+.select:has(.select-control:required) .select-required,
+[data-state-required] .select-required {
+  display: inline;
+}
+
+/* invalid */
+.select-root:has(.select-control[aria-invalid="true"]),
+.select-root:has(.select-control:user-invalid),
+[data-state-invalid] .select-root {
+  border-color: var(--color-status-danger-border);
+  border-width: var(--border-width-emphasis);
+}
+
+.select:has(.select-control[aria-invalid="true"]) .select-message,
+.select:has(.select-control:user-invalid) .select-message,
+[data-state-invalid] .select-message {
+  display: block;
+}
+
+.select:has(.select-control[aria-invalid="true"]) .select-help,
+[data-state-invalid] .select-help {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+/* invalid + focus-visible */
+.select-root:has(.select-control[aria-invalid="true"]:focus-visible),
+[data-state-invalid][data-state-focus-visible] .select-root {
+  border-color: var(--color-status-danger-border);
+  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline-offset: var(--focus-offset-invalid);
+}
+
+/* disabled */
+.select-root:has(.select-control:disabled),
+[data-state-disabled] .select-root {
+  background: var(--color-interaction-disabled-bg);
+  color: var(--color-text-disabled);
+  border-color: var(--color-border-disabled);
+  cursor: not-allowed;
+}
+
+.select-control:disabled,
+[data-state-disabled] .select-control {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.select:has(.select-control:disabled) .select-label,
+[data-state-disabled] .select-label {
+  color: var(--color-text-disabled);
+}
+
+@media (forced-colors: active) {
+  .select-root:has(.select-control:focus-visible),
+  [data-state-focus-visible] .select-root {
+    outline-color: Highlight;
+  }
+}
+
+/* Chromium's user-agent sheet fades a disabled select to 0.7; disabled is colour, never opacity */
+.select-control:disabled,
+[data-state-disabled] .select-control {
+  opacity: 1;
+}

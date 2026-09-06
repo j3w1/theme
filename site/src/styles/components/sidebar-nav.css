@@ -1,0 +1,226 @@
+/* sidebar-nav — reference CSS. The current link is a 2px inline-start bar
+   and bright text; a selected link (listbox-style rails) is the selection
+   fill. Every pseudo-class is paired with the forced-state attribute the
+   state matrix emits. Token variables only. */
+
+.sidebar-nav {
+  --_indent: calc(var(--density-icon, 16px) + var(--space-8));
+  min-width: 0;
+  max-width: 15rem;
+  padding: var(--space-4) 0;
+  background: var(--color-surface-default);
+  border-inline-end: var(--border-width-default) solid var(--color-border-divider);
+  color: var(--color-text-default);
+}
+
+.sidebar-nav-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sidebar-nav-sublist {
+  padding-inline-start: var(--_indent);
+}
+
+.sidebar-nav-sublist[hidden] {
+  display: none;
+}
+
+.sidebar-nav-item {
+  min-width: 0;
+}
+
+.sidebar-nav-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  width: 100%;
+  min-height: var(--density-row-height, 36px);
+  padding: var(--space-4) var(--density-control-padding-x, 12px);
+  padding-inline-start: calc(var(--density-control-padding-x, 12px) - var(--border-width-emphasis));
+  box-sizing: border-box;
+  background: transparent;
+  border: 0;
+  border-inline-start: var(--border-width-emphasis) solid transparent;
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+  font: inherit;
+  text-align: start;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.sidebar-nav-icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  width: var(--density-icon, 16px);
+  height: var(--density-icon, 16px);
+  color: var(--color-icon-default);
+}
+
+.sidebar-nav-icon svg,
+.sidebar-nav-chevron svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: var(--icon-stroke);
+  stroke-linecap: square;
+}
+
+.sidebar-nav-label {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.sidebar-nav-chevron {
+  display: inline-flex;
+  flex: 0 0 auto;
+  width: var(--icon-size-sm);
+  height: var(--icon-size-sm);
+  color: var(--color-icon-decorative);
+  transform: rotate(0deg);
+}
+
+/* hover: fill only */
+.sidebar-nav-link:hover,
+[data-state-hover] .sidebar-nav-link-demo-target {
+  background: var(--color-interaction-hover-bg);
+}
+
+/* pressed */
+.sidebar-nav-link:active {
+  background: var(--color-interaction-pressed-bg);
+}
+
+/* focus-visible */
+.sidebar-nav-link:focus-visible,
+[data-state-focus-visible] .sidebar-nav-link-demo-target {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.sidebar-nav-link:focus:not(:focus-visible) {
+  outline: 0;
+}
+
+/* current: the bar and bright text */
+.sidebar-nav-link[aria-current="page"],
+[data-state-current] .sidebar-nav-current {
+  border-inline-start-color: var(--color-border-selected-indicator);
+  color: var(--color-text-bright);
+}
+
+.sidebar-nav-link[aria-current="page"] .sidebar-nav-icon,
+[data-state-current] .sidebar-nav-current .sidebar-nav-icon {
+  color: var(--color-text-bright);
+}
+
+/* selected: the fill; the ring recolours on it */
+.sidebar-nav-link[aria-selected="true"],
+[data-state-selected] .sidebar-nav-link-demo-target {
+  background: var(--color-interaction-selection-bg);
+  color: var(--color-interaction-selection-text);
+}
+
+.sidebar-nav-link[aria-selected="true"] .sidebar-nav-icon,
+[data-state-selected] .sidebar-nav-link-demo-target .sidebar-nav-icon {
+  color: var(--color-interaction-selection-text);
+}
+
+.sidebar-nav-link[aria-selected="true"]:focus-visible {
+  outline-color: var(--color-interaction-focus-ring-container);
+}
+
+/* selected, container inactive */
+.sidebar-nav[data-container-inactive] .sidebar-nav-link[aria-selected="true"],
+[data-state-selected][data-state-container-inactive] .sidebar-nav-link-demo-target {
+  background: var(--color-interaction-selection-inactive-bg);
+  color: var(--color-interaction-selection-inactive-text);
+}
+
+.sidebar-nav[data-container-inactive] .sidebar-nav-link[aria-selected="true"] .sidebar-nav-icon,
+[data-state-selected][data-state-container-inactive] .sidebar-nav-link-demo-target .sidebar-nav-icon {
+  color: var(--color-interaction-selection-inactive-text);
+}
+
+/* expanded: the chevron turns and the sublist shows */
+.sidebar-nav-group[aria-expanded="true"] .sidebar-nav-chevron,
+[data-state-expanded] .sidebar-nav-chevron {
+  transform: rotate(90deg);
+}
+
+.sidebar-nav-group[aria-expanded="true"] + .sidebar-nav-sublist,
+[data-state-expanded] .sidebar-nav-sublist {
+  display: block;
+}
+
+/* collapsed: an icon rail; labels are hidden, not removed */
+.sidebar-nav-collapsed,
+[data-state-collapsed] .sidebar-nav {
+  max-width: none;
+  width: max-content;
+}
+
+.sidebar-nav-collapsed .sidebar-nav-label,
+[data-state-collapsed] .sidebar-nav-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.sidebar-nav-collapsed .sidebar-nav-chevron,
+[data-state-collapsed] .sidebar-nav-chevron {
+  display: none;
+}
+
+.sidebar-nav-collapsed .sidebar-nav-sublist,
+[data-state-collapsed] .sidebar-nav-sublist {
+  padding-inline-start: 0;
+}
+
+.sidebar-nav-collapsed .sidebar-nav-link,
+[data-state-collapsed] .sidebar-nav-link {
+  justify-content: center;
+  padding-inline: var(--space-8);
+  padding-inline-start: calc(var(--space-8) - var(--border-width-emphasis));
+}
+
+@media (hover: none) {
+  .sidebar-nav-link:hover {
+    background: transparent;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sidebar-nav-link {
+    transition: background-color var(--motion-duration-fast);
+  }
+
+  .sidebar-nav-chevron {
+    transition: transform var(--motion-duration-base);
+  }
+}
+
+@media (forced-colors: active) {
+  .sidebar-nav-link:focus-visible,
+  [data-state-focus-visible] .sidebar-nav-link-demo-target {
+    outline-color: Highlight;
+  }
+
+  .sidebar-nav-link[aria-current="page"],
+  [data-state-current] .sidebar-nav-current {
+    border-inline-start-color: Highlight;
+  }
+
+  .sidebar-nav-link[aria-selected="true"],
+  [data-state-selected] .sidebar-nav-link-demo-target {
+    background: Highlight;
+    color: HighlightText;
+  }
+}

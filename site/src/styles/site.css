@@ -437,21 +437,26 @@ main {
   min-width: 100%;
 }
 
-.matrix th {
+/* child combinators so nested demo tables keep their own component styles */
+.matrix > thead > tr > th {
   background: var(--color-surface-raised);
   position: sticky;
   top: 0;
   z-index: var(--z-raised);
 }
 
-.matrix td {
+.matrix > tbody > tr > td {
   vertical-align: middle;
   min-width: 12rem;
   padding: var(--space-8);
   background: var(--color-surface-canvas);
 }
 
-.matrix th[scope="row"] {
+.matrix > tbody > tr:hover {
+  background: transparent;
+}
+
+.matrix > tbody > tr > th[scope="row"] {
   white-space: nowrap;
   font-weight: var(--font-weight-regular);
   color: var(--color-text-default);
@@ -554,6 +559,7 @@ main {
   content: "! ";
 }
 
+/* No !important: a component's forced-state selector may reveal a [hidden] part (e.g. a table's empty row). */
 [hidden] {
-  display: none !important;
+  display: none;
 }

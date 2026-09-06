@@ -1,0 +1,296 @@
+/* data-table — reference CSS. The table's drawing plus a selection column
+   with a mixed select-all, focusable rows and static resize handles. Cell
+   rules carry the root class so they outrank the site's matrix table rules
+   when the demo is nested. Every pseudo-class is paired with the forced-
+   state attribute the state matrix emits. Token variables only. */
+
+.data-table {
+  width: 100%;
+  min-width: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+  background: var(--color-surface-default);
+  border: 0;
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+  text-align: start;
+}
+
+.data-table .data-table-header {
+  position: relative;
+  height: var(--density-row-height, 36px);
+  min-width: 0;
+  padding: 0 var(--density-control-padding-x, 12px);
+  background: var(--color-surface-default);
+  border: 0;
+  border-bottom: var(--border-width-default) solid var(--color-border-strong);
+  color: var(--color-text-bright);
+  font-weight: var(--font-weight-bold);
+  text-align: start;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.data-table .data-table-header-select,
+.data-table .data-table-cell-select {
+  width: var(--density-control-height, 32px);
+  padding-inline-end: 0;
+  text-align: center;
+}
+
+.data-table .data-table-cell-numeric {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.data-table-sort {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  width: 100%;
+  min-height: var(--density-control-height, 32px);
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-none);
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+  cursor: pointer;
+}
+
+.data-table-sort-glyph {
+  display: none;
+  color: var(--color-text-bright);
+}
+
+/* the select-all: a checkbox-role button on the primary fill when not clear */
+.data-table-select-all,
+.data-table-checkbox {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--density-icon, 16px);
+  height: var(--density-icon, 16px);
+  margin: 0;
+  padding: 0;
+  vertical-align: middle;
+  appearance: none;
+  background: var(--color-surface-input);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+  color: var(--color-action-primary-text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.data-table-check-glyph {
+  display: none;
+  line-height: 1;
+}
+
+.data-table-select-all[aria-checked="true"],
+.data-table-select-all[aria-checked="mixed"],
+[data-state-mixed] .data-table-select-all,
+.data-table-checkbox:checked {
+  background: var(--color-action-primary-bg);
+  border-color: var(--color-action-primary-border);
+}
+
+.data-table-select-all[aria-checked="true"] .data-table-check-glyph,
+.data-table-select-all[aria-checked="mixed"] .data-table-check-glyph,
+[data-state-mixed] .data-table-select-all .data-table-check-glyph {
+  display: inline;
+}
+
+.data-table-checkbox:checked::before {
+  content: "✓";
+  color: var(--color-action-primary-text);
+  font-size: var(--font-size-ui-sm);
+  line-height: 1;
+}
+
+.data-table .data-table-row {
+  height: var(--density-row-height, 36px);
+  background: transparent;
+  border-top: var(--border-width-default) solid var(--color-border-divider);
+}
+
+.data-table .data-table-body .data-table-row:first-child {
+  border-top: 0;
+}
+
+.data-table .data-table-cell {
+  min-width: 0;
+  padding: var(--space-4) var(--density-control-padding-x, 12px);
+  background: transparent;
+  border: 0;
+  color: inherit;
+  vertical-align: middle;
+}
+
+.data-table .data-table-empty[hidden],
+.data-table .data-table-loading[hidden] {
+  display: none;
+}
+
+.data-table .data-table-empty-cell,
+.data-table .data-table-loading-cell {
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.data-table-loading-glyph {
+  color: var(--color-text-muted);
+}
+
+.data-table-loading-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* the resize handle: a pointer affordance only */
+.data-table-resize {
+  position: absolute;
+  inset-inline-end: 0;
+  top: var(--space-8);
+  bottom: var(--space-8);
+  width: var(--border-width-default);
+  background: var(--color-border-default);
+  cursor: col-resize;
+}
+
+/* hover: the row fill; the handle turns active */
+.data-table .data-table-body .data-table-row:hover,
+[data-state-hover] .data-table-row-demo-target {
+  background: var(--color-interaction-hover-bg);
+}
+
+.data-table-resize:hover,
+[data-state-hover] .data-table-header-demo-target .data-table-resize {
+  background: var(--color-border-active);
+  width: var(--border-width-emphasis);
+}
+
+/* focus-visible: the ring on a row or a control */
+.data-table .data-table-row:focus-visible,
+.data-table-sort:focus-visible,
+.data-table-select-all:focus-visible,
+.data-table-checkbox:focus-visible,
+[data-state-focus-visible] .data-table-row-demo-target {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.data-table .data-table-row:focus:not(:focus-visible),
+.data-table-sort:focus:not(:focus-visible),
+.data-table-select-all:focus:not(:focus-visible),
+.data-table-checkbox:focus:not(:focus-visible) {
+  outline: 0;
+}
+
+/* selected: the fill; a checked row checkbox selects its row */
+.data-table .data-table-row[aria-selected="true"],
+.data-table .data-table-row:has(.data-table-checkbox:checked),
+[data-state-selected] .data-table-row-demo-target {
+  background: var(--color-interaction-selection-bg);
+  color: var(--color-interaction-selection-text);
+}
+
+.data-table .data-table-row[aria-selected="true"]:hover,
+[data-state-selected] .data-table-row-demo-target:hover {
+  background: var(--color-interaction-selection-bg);
+}
+
+[data-state-selected] .data-table-row-demo-target .data-table-checkbox {
+  background: var(--color-action-primary-bg);
+  border-color: var(--color-action-primary-border);
+}
+
+[data-state-selected] .data-table-row-demo-target .data-table-checkbox::before {
+  content: "✓";
+  color: var(--color-action-primary-text);
+  font-size: var(--font-size-ui-sm);
+  line-height: 1;
+}
+
+/* selected + focus-visible: the ring takes the on-fill colour */
+.data-table .data-table-row[aria-selected="true"]:focus-visible,
+.data-table .data-table-row:has(.data-table-checkbox:checked):focus-visible,
+[data-state-selected][data-state-focus-visible] .data-table-row-demo-target {
+  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline-offset: var(--focus-offset);
+}
+
+/* sorted */
+.data-table .data-table-header[aria-sort="ascending"] .data-table-sort-glyph,
+.data-table .data-table-header[aria-sort="descending"] .data-table-sort-glyph,
+[data-state-sorted] .data-table-header-demo-target .data-table-sort-glyph {
+  display: inline;
+}
+
+.data-table .data-table-header[aria-sort="descending"] .data-table-sort-glyph {
+  transform: scaleY(-1);
+}
+
+/* empty */
+[data-state-empty] .data-table-body .data-table-row {
+  display: none;
+}
+
+.data-table .data-table-body .data-table-empty:not([hidden]),
+[data-state-empty] .data-table-body .data-table-empty {
+  display: table-row;
+}
+
+/* loading */
+.data-table[aria-busy="true"] .data-table-body .data-table-row,
+[data-state-loading] .data-table-body .data-table-row {
+  display: none;
+}
+
+.data-table[aria-busy="true"] .data-table-body .data-table-loading,
+.data-table .data-table-body .data-table-loading:not([hidden]),
+[data-state-loading] .data-table-body .data-table-loading {
+  display: table-row;
+}
+
+@media (hover: none) {
+  .data-table .data-table-body .data-table-row:hover {
+    background: transparent;
+  }
+
+  .data-table .data-table-row[aria-selected="true"]:hover {
+    background: var(--color-interaction-selection-bg);
+  }
+
+  .data-table-resize {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .data-table .data-table-row {
+    transition: background-color var(--motion-duration-fast);
+  }
+}
+
+@media (forced-colors: active) {
+  .data-table .data-table-row:focus-visible,
+  .data-table-sort:focus-visible,
+  .data-table-select-all:focus-visible,
+  .data-table-checkbox:focus-visible,
+  [data-state-focus-visible] .data-table-row-demo-target {
+    outline-color: Highlight;
+  }
+
+  .data-table .data-table-row[aria-selected="true"],
+  [data-state-selected] .data-table-row-demo-target {
+    background: Highlight;
+    color: HighlightText;
+  }
+}

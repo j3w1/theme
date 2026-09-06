@@ -1,0 +1,224 @@
+/* drawer — reference CSS. A native <dialog> anchored to an inline edge;
+   the demonstration renders it inside a stage of fixed height that stands in
+   for the viewport and ::backdrop. Logical properties mirror it in RTL.
+   Every real pseudo-class is paired with the forced-state attribute the
+   state matrix emits. Token variables only. */
+
+.drawer-backdrop {
+  position: relative;
+  min-width: 0;
+  min-height: 18rem;
+  background: var(--color-surface-backdrop);
+  overflow: hidden;
+}
+
+.drawer {
+  position: absolute;
+  inset-block: 0;
+  display: flex;
+  flex-direction: column;
+  width: min(20rem, calc(100% - var(--space-48)));
+  max-width: 100%;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  background: var(--color-surface-overlay);
+  border: 0;
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+  z-index: var(--z-drawer);
+}
+
+.drawer-start {
+  inset-inline-start: 0;
+  border-inline-end: var(--border-width-default) solid var(--color-border-overlay);
+}
+
+.drawer-end {
+  inset-inline-end: 0;
+  border-inline-start: var(--border-width-default) solid var(--color-border-overlay);
+}
+
+.drawer::backdrop {
+  background: var(--color-surface-backdrop);
+}
+
+.drawer:not([open]) {
+  display: none;
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+  min-height: var(--density-row-height, 36px);
+  padding: var(--space-8) var(--space-12);
+  border-bottom: var(--border-width-default) solid var(--color-border-divider);
+}
+
+.drawer-title {
+  margin: 0;
+  color: var(--color-text-bright);
+  font-size: var(--font-size-h2);
+  line-height: var(--font-line-height-h2);
+  font-weight: var(--font-weight-bold);
+}
+
+.drawer-close {
+  flex: 0 0 auto;
+  min-width: 24px;
+  min-height: 24px;
+  padding: 0 var(--space-4);
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-none);
+  color: var(--color-action-tertiary-text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.drawer-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.drawer-text {
+  margin: 0;
+  padding: var(--space-8) var(--space-12);
+}
+
+.drawer-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.drawer-item {
+  border-bottom: var(--border-width-default) solid var(--color-border-divider);
+}
+
+.drawer-link,
+.drawer-check {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  min-height: var(--density-row-height, 36px);
+  padding: 0 var(--space-12);
+  color: var(--color-text-default);
+  text-decoration: none;
+}
+
+.drawer-link[aria-current="page"] {
+  color: var(--color-text-bright);
+  box-shadow: inset var(--border-width-emphasis) 0 0 var(--color-border-selected-indicator);
+}
+
+.drawer-link:hover,
+.drawer-check:hover {
+  background: var(--color-interaction-hover-bg-strong);
+  color: var(--color-text-link-hover);
+}
+
+.drawer-checkbox {
+  width: var(--icon-size-md);
+  height: var(--icon-size-md);
+  margin: 0;
+  accent-color: var(--color-action-primary-bg);
+}
+
+.drawer-close:hover {
+  background: var(--color-action-tertiary-hover-bg);
+}
+
+.drawer-close:focus-visible,
+.drawer-link:focus-visible,
+.drawer-checkbox:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.drawer-trap-note {
+  display: none;
+  margin: 0;
+  padding: var(--space-8) var(--space-12);
+  border-top: var(--border-width-default) solid var(--color-border-divider);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+/* open: the native attribute; the matrix re-adds it */
+.drawer[open],
+[data-state-open] .drawer {
+  display: flex;
+}
+
+/* closed: the panel and the backdrop are absent */
+[data-state-closed] .drawer {
+  display: none;
+}
+
+[data-state-closed] .drawer-backdrop {
+  min-height: var(--density-row-height, 36px);
+  background: transparent;
+}
+
+/* focus-trapped: the panel holds focus itself and shows the container ring */
+.drawer:focus-visible,
+[data-state-focus-trapped] .drawer {
+  outline: var(--focus-ring-container);
+  outline-offset: var(--focus-offset-container);
+}
+
+[data-state-focus-trapped] .drawer-trap-note {
+  display: block;
+}
+
+/* motion: an opacity change only, never a slide */
+@media (prefers-reduced-motion: no-preference) {
+  .drawer {
+    transition: opacity var(--motion-duration-slow);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drawer {
+    transition: none;
+  }
+}
+
+[data-state-reduced-motion] .drawer {
+  transition: none;
+}
+
+@media (hover: none) {
+  .drawer-close:hover {
+    background: transparent;
+  }
+
+  .drawer-link:hover,
+  .drawer-check:hover {
+    background: transparent;
+    color: var(--color-text-default);
+  }
+}
+
+@media (forced-colors: active) {
+  .drawer-start,
+  .drawer-end {
+    border-color: CanvasText;
+  }
+
+  .drawer-close:focus-visible,
+  .drawer-link:focus-visible,
+  .drawer-checkbox:focus-visible,
+  .drawer:focus-visible,
+  [data-state-focus-trapped] .drawer {
+    outline-color: Highlight;
+  }
+}

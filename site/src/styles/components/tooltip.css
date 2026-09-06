@@ -1,0 +1,102 @@
+/* tooltip — reference CSS. The popup is rendered in flow below the trigger
+   in the demonstration; a host positions it with its anchoring primitive at
+   z.popover. Visibility is the hidden attribute; hover and focus on the
+   trigger are the real triggers and are paired with the forced-state
+   attributes the state matrix emits. Token variables only. */
+
+.tooltip {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-4);
+  min-width: 0;
+  color: var(--color-text-default);
+}
+
+.tooltip-trigger {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--density-control-height, 32px);
+  padding: 0 var(--density-control-padding-x, 12px);
+  background: transparent;
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+  color: var(--color-action-tertiary-text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.tooltip-popup {
+  z-index: var(--z-popover);
+  max-width: min(24rem, 100%);
+  padding: var(--space-4) var(--space-8);
+  background: var(--color-surface-raised);
+  border: var(--border-width-default) solid var(--color-border-overlay);
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+  overflow-wrap: anywhere;
+}
+
+.tooltip-popup[hidden] {
+  display: none;
+}
+
+.tooltip-shortcut {
+  margin-inline-start: var(--space-4);
+  padding: 0 var(--space-4);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+  color: var(--color-text-bright);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-ui-sm);
+  white-space: nowrap;
+}
+
+/* hover: the trigger reacts; the popup follows after the open delay */
+.tooltip-trigger:hover,
+[data-state-hover] .tooltip-trigger {
+  background: var(--color-action-tertiary-hover-bg);
+}
+
+/* focus-visible */
+.tooltip-trigger:focus-visible,
+[data-state-focus-visible] .tooltip-trigger {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* open: hover or focus on the trigger shows the popup */
+.tooltip-trigger:hover + .tooltip-popup,
+.tooltip-trigger:focus-visible + .tooltip-popup,
+[data-state-open] .tooltip-popup {
+  display: block;
+}
+
+/* closed */
+[data-state-closed] .tooltip-popup {
+  display: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .tooltip-popup {
+    transition: opacity var(--motion-duration-fast);
+  }
+}
+
+@media (hover: none) {
+  .tooltip-trigger:hover {
+    background: transparent;
+  }
+}
+
+@media (forced-colors: active) {
+  .tooltip-popup {
+    border-color: CanvasText;
+  }
+
+  .tooltip-trigger:focus-visible,
+  [data-state-focus-visible] .tooltip-trigger {
+    outline-color: Highlight;
+  }
+}

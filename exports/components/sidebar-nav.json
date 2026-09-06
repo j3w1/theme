@@ -1,0 +1,509 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "0.1.0-draft.1",
+  "profile": "default",
+  "sourceDigest": "sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=",
+  "id": "sidebar-nav",
+  "family": "navigation",
+  "maturity": "stable",
+  "priority": "R1",
+  "coverage": {
+    "family": "navigation",
+    "priority": "R1",
+    "maturity": "stable",
+    "specified": true,
+    "demonstrated": true,
+    "tested": false,
+    "states": 8
+  },
+  "title": "Sidebar navigation",
+  "summary": "A vertical list of section links with optional nested groups; the current section carries a 2px inline-start indicator and bright text, and the rail collapses to icons.",
+  "anchors": {
+    "site": "https://j3w1.github.io/theme/#c-sidebar-nav",
+    "spec": "spec/components/sidebar-nav.md",
+    "brief": "exports/components/sidebar-nav.brief.txt"
+  },
+  "native": true,
+  "aria": {
+    "pattern": "native nav with nested ul lists; groups are buttons with aria-expanded",
+    "apg": "https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/"
+  },
+  "variants": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "Flat links plus one closed group."
+    },
+    {
+      "id": "collapsed",
+      "name": "Collapsed",
+      "description": "Icons only; labels stay in the DOM for assistive technology and as tooltips."
+    },
+    {
+      "id": "nested",
+      "name": "Nested",
+      "description": "A group expanded with its children indented."
+    }
+  ],
+  "sizes": [
+    "compact",
+    "comfortable"
+  ],
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "current",
+    "selected",
+    "selected+container-inactive",
+    "expanded",
+    "collapsed"
+  ],
+  "tokens": {
+    "root.bg": {
+      "alias": "color.surface.default",
+      "value": "#160b0b",
+      "status": "observed"
+    },
+    "root.border": {
+      "alias": "color.border.divider",
+      "value": "#2b0e0d",
+      "status": "proposed"
+    },
+    "link.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "link.bg-hover": {
+      "alias": "color.interaction.hover.bg",
+      "value": "#1c0a09",
+      "status": "observed"
+    },
+    "link.bg-pressed": {
+      "alias": "color.interaction.pressed.bg",
+      "value": "#420f0c",
+      "status": "observed"
+    },
+    "link.ring": {
+      "alias": "color.interaction.focus.ring",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "link.indicator": {
+      "alias": "color.border.selected-indicator",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "link.indicator-inactive": {
+      "alias": "color.border.selected-indicator-inactive",
+      "value": "#9e231f",
+      "status": "observed"
+    },
+    "current.text": {
+      "alias": "color.text.bright",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "selected.bg": {
+      "alias": "color.interaction.selection.bg",
+      "value": "#911410",
+      "status": "observed"
+    },
+    "selected.text": {
+      "alias": "color.interaction.selection.text",
+      "value": "#f4eeee",
+      "status": "observed"
+    },
+    "selected.ring": {
+      "alias": "color.interaction.focus.ring-container",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "selected.inactive-bg": {
+      "alias": "color.interaction.selection.inactive-bg",
+      "value": "#420f0c",
+      "status": "observed"
+    },
+    "selected.inactive-text": {
+      "alias": "color.interaction.selection.inactive-text",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "icon.stroke": {
+      "alias": "color.icon.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "group.chevron": {
+      "alias": "color.icon.decorative",
+      "value": "#a3676b",
+      "status": "observed"
+    }
+  },
+  "stateRules": [
+    {
+      "state": "default",
+      "visual": "text {color.text.default}; no fill; transparent inline-start edge",
+      "channel": "—",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.default",
+          "value": "#160b0b",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "hover",
+      "visual": "background → {color.interaction.hover.bg}",
+      "channel": "cursor: pointer",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.interaction.hover.bg",
+          "value": "#1c0a09",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "focus-visible",
+      "visual": "ring 1px dashed {color.interaction.focus.ring} at −2px",
+      "channel": "the ring",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.default",
+          "value": "#160b0b",
+          "status": "observed"
+        },
+        "outline": {
+          "alias": "color.interaction.focus.ring",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "current",
+      "visual": "2px {color.border.selected-indicator} inline-start bar; text {color.text.bright}",
+      "channel": "`aria-current=\"page\"`; the bar",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.bright",
+          "value": "#ffa2a7",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.default",
+          "value": "#160b0b",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.selected-indicator",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "selected",
+      "visual": "fill {color.interaction.selection.bg} with {color.interaction.selection.text}; the ring in {color.interaction.focus.ring-container} when focused",
+      "channel": "`aria-selected` on a listbox-style rail; the fill's on-fill text",
+      "tokens": {
+        "fg": {
+          "alias": "color.interaction.selection.text",
+          "value": "#f4eeee",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.interaction.selection.bg",
+          "value": "#911410",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "selected+container-inactive",
+      "visual": "fill {color.interaction.selection.inactive-bg} with {color.interaction.selection.inactive-text}; no ring",
+      "channel": "lightness drop between the two fills",
+      "tokens": {
+        "fg": {
+          "alias": "color.interaction.selection.inactive-text",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.interaction.selection.inactive-bg",
+          "value": "#420f0c",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "expanded",
+      "visual": "the group's chevron rotated 90°; its sublist shown",
+      "channel": "`aria-expanded=\"true\"`; the children are present",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.default",
+          "value": "#160b0b",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "collapsed",
+      "visual": "labels visually hidden; icons centred; the current bar and fills unchanged",
+      "channel": "the labels remain for assistive technology and as tooltips",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.default",
+          "value": "#160b0b",
+          "status": "observed"
+        }
+      }
+    }
+  ],
+  "keyboard": [
+    {
+      "key": "Tab / Shift+Tab",
+      "action": "Moves through links and group buttons in document order; hidden children are skipped."
+    },
+    {
+      "key": "Enter",
+      "action": "Follows a link or toggles a group."
+    },
+    {
+      "key": "Space",
+      "action": "Toggles a group."
+    }
+  ],
+  "responsive": "The rail is 240px wide in the application layout and collapses to an icon rail (the collapsed variant) between 900px and 1280px; below 900px it becomes a drawer. Labels never truncate; long labels wrap onto a second line. RTL mirrors the indicator to the inline-start edge and the chevron direction.",
+  "portability": {
+    "web": "nav with aria-label wrapping a ul; each item an anchor with aria-current=\"page\" for the current section; groups are buttons with aria-expanded and aria-controls followed by a ul that is hidden until expanded; the indicator is a border-inline-start, the selection a background, the ring an outline.",
+    "nativeFallbacks": [
+      "GTK4 ListBox with rows; the current row's indicator through a 2px start border style class.",
+      "Qt QTreeView with the branch indicator hidden; the current row painted with the indicator by a delegate.",
+      "Terminal UI: the current section prefixed by a 2-cell heavy bar; children indented by two cells."
+    ]
+  },
+  "fixtures": [
+    "FX-LONG",
+    "FX-320",
+    "FX-ZOOM-200",
+    "FX-I18N",
+    "FX-RTL",
+    "FX-RM",
+    "FX-HC",
+    "FX-STATE-MATRIX"
+  ],
+  "related": [
+    "tabs",
+    "breadcrumbs",
+    "tree",
+    "disclosure",
+    "drawer"
+  ],
+  "specimens": [
+    "settings-panel",
+    "i3-window-frame"
+  ],
+  "nonExamples": "A filled or rounded current item. The indicator on the inline-end edge. A\ncurrent item marked by bold text alone. Labels removed from the DOM when\ncollapsed. A group whose children stay in the tab order while hidden. A rail\nthat scrolls horizontally. Icon-only links with no accessible name. Hover that\nchanges the text colour.",
+  "contrast": [
+    {
+      "label": "sidebar-nav default text",
+      "state": "default",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.default",
+      "fgHex": "#e99499",
+      "bgHex": "#160b0b",
+      "ratio": 8.43,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "sidebar-nav hover text",
+      "state": "hover",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.interaction.hover.bg",
+      "fgHex": "#e99499",
+      "bgHex": "#1c0a09",
+      "ratio": 8.35,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "sidebar-nav focus-visible text",
+      "state": "focus-visible",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.default",
+      "fgHex": "#e99499",
+      "bgHex": "#160b0b",
+      "ratio": 8.43,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "sidebar-nav focus-visible outline",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring",
+      "bg": "color.surface.default",
+      "fgHex": "#e53935",
+      "bgHex": "#160b0b",
+      "ratio": 4.57,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "sidebar-nav current text",
+      "state": "current",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.bright",
+      "bg": "color.surface.default",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#160b0b",
+      "ratio": 10.1,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "sidebar-nav current border",
+      "state": "current",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.selected-indicator",
+      "bg": "color.surface.default",
+      "fgHex": "#e53935",
+      "bgHex": "#160b0b",
+      "ratio": 4.57,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "sidebar-nav selected text",
+      "state": "selected",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.interaction.selection.text",
+      "bg": "color.interaction.selection.bg",
+      "fgHex": "#f4eeee",
+      "bgHex": "#911410",
+      "ratio": 7.92,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "sidebar-nav selected+container-inactive text",
+      "state": "selected+container-inactive",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.interaction.selection.inactive-text",
+      "bg": "color.interaction.selection.inactive-bg",
+      "fgHex": "#e99499",
+      "bgHex": "#420f0c",
+      "ratio": 7.02,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "sidebar-nav expanded text",
+      "state": "expanded",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.default",
+      "fgHex": "#e99499",
+      "bgHex": "#160b0b",
+      "ratio": 8.43,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "sidebar-nav collapsed text",
+      "state": "collapsed",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.default",
+      "fgHex": "#e99499",
+      "bgHex": "#160b0b",
+      "ratio": 8.43,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "ring on a selected item when focused",
+      "state": "selected",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring-container",
+      "bg": "color.interaction.selection.bg",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#911410",
+      "ratio": 4.75,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "group chevron (decorative; aria-expanded carries the state)",
+      "state": null,
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.icon.decorative",
+      "bg": "color.surface.default",
+      "fgHex": "#a3676b",
+      "bgHex": "#160b0b",
+      "ratio": 4.33,
+      "pass": true,
+      "waiver": "the chevron duplicates aria-expanded and the visible children; it is not the only channel"
+    },
+    {
+      "label": "rail edge (decorative)",
+      "state": null,
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.border.divider",
+      "bg": "color.surface.default",
+      "fgHex": "#2b0e0d",
+      "bgHex": "#160b0b",
+      "ratio": 1.08,
+      "pass": true,
+      "waiver": "the edge separates the rail from the canvas; the links are the targets"
+    }
+  ]
+}

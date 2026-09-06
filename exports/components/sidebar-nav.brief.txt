@@ -1,0 +1,50 @@
+j3w1/theme implementation brief — sidebar-nav
+theme: j3w1-theme 0.1.0-draft.1  profile: default  sourceDigest: sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=
+pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/components/sidebar-nav.json
+spec: spec/components/sidebar-nav.md  site: https://j3w1.github.io/theme/#c-sidebar-nav
+maturity: stable  priority: R1
+
+Summary: A vertical list of section links with optional nested groups; the current section carries a 2px inline-start indicator and bright text, and the rail collapses to icons.
+
+Tokens (resolved):
+  root.bg                  #160b0b  ({color.surface.default})
+  root.border              #2b0e0d  ({color.border.divider})
+  link.text                #e99499  ({color.text.default})
+  link.bg-hover            #1c0a09  ({color.interaction.hover.bg})
+  link.bg-pressed          #420f0c  ({color.interaction.pressed.bg})
+  link.ring                #e53935  ({color.interaction.focus.ring})
+  link.indicator           #e53935  ({color.border.selected-indicator})
+  link.indicator-inactive  #9e231f  ({color.border.selected-indicator-inactive})
+  current.text             #ffa2a7  ({color.text.bright})
+  selected.bg              #911410  ({color.interaction.selection.bg})
+  selected.text            #f4eeee  ({color.interaction.selection.text})
+  selected.ring            #ffa2a7  ({color.interaction.focus.ring-container})
+  selected.inactive-bg     #420f0c  ({color.interaction.selection.inactive-bg})
+  selected.inactive-text   #e99499  ({color.interaction.selection.inactive-text})
+  icon.stroke              #e99499  ({color.icon.default})
+  group.chevron            #a3676b  ({color.icon.decorative})
+
+States: default, hover, focus-visible, current, selected, selected+container-inactive, expanded, collapsed
+  default: text {color.text.default}; no fill; transparent inline-start edge [—]
+  hover: background → {color.interaction.hover.bg} [cursor: pointer]
+  focus-visible: ring 1px dashed {color.interaction.focus.ring} at −2px [the ring]
+  current: 2px {color.border.selected-indicator} inline-start bar; text {color.text.bright} [`aria-current="page"`; the bar]
+  selected: fill {color.interaction.selection.bg} with {color.interaction.selection.text}; the ring in {color.interaction.focus.ring-container} when focused [`aria-selected` on a listbox-style rail; the fill's on-fill text]
+  selected+container-inactive: fill {color.interaction.selection.inactive-bg} with {color.interaction.selection.inactive-text}; no ring [lightness drop between the two fills]
+  expanded: the group's chevron rotated 90°; its sublist shown [`aria-expanded="true"`; the children are present]
+  collapsed: labels visually hidden; icons centred; the current bar and fills unchanged [the labels remain for assistive technology and as tooltips]
+
+Keyboard:
+  Tab / Shift+Tab: Moves through links and group buttons in document order; hidden children are skipped.
+  Enter: Follows a link or toggles a group.
+  Space: Toggles a group.
+
+ARIA: native nav with nested ul lists; groups are buttons with aria-expanded (https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/)
+Responsive: The rail is 240px wide in the application layout and collapses to an icon rail (the collapsed variant) between 900px and 1280px; below 900px it becomes a drawer. Labels never truncate; long labels wrap onto a second line. RTL mirrors the indicator to the inline-start edge and the chevron direction.
+Portability: nav with aria-label wrapping a ul; each item an anchor with aria-current="page" for the current section; groups are buttons with aria-expanded and aria-controls followed by a ul that is hidden until expanded; the indicator is a border-inline-start, the selection a background, the ring an outline.
+  native: GTK4 ListBox with rows; the current row's indicator through a 2px start border style class.
+  native: Qt QTreeView with the branch indicator hidden; the current row painted with the indicator by a delegate.
+  native: Terminal UI: the current section prefixed by a 2-cell heavy bar; children indented by two cells.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

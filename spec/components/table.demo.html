@@ -1,0 +1,78 @@
+<table class="table">
+  <thead class="table-head">
+    <tr class="table-header-row">
+      <th class="table-header table-header-demo-target" scope="col"><button class="table-sort" type="button">Component<span class="table-sort-glyph" aria-hidden="true">▲</span></button></th>
+      <th class="table-header" scope="col"><button class="table-sort" type="button">Family<span class="table-sort-glyph" aria-hidden="true">▲</span></button></th>
+      <th class="table-header" scope="col"><button class="table-sort" type="button">Priority<span class="table-sort-glyph" aria-hidden="true">▲</span></button></th>
+      <th class="table-header" scope="col"><button class="table-sort" type="button">States<span class="table-sort-glyph" aria-hidden="true">▲</span></button></th>
+    </tr>
+  </thead>
+  <tbody class="table-body">
+    <tr class="table-row"><td class="table-cell">tabs</td><td class="table-cell">navigation</td><td class="table-cell">R1</td><td class="table-cell">7</td></tr>
+    <tr class="table-row table-row-demo-target"><td class="table-cell">menu</td><td class="table-cell">navigation</td><td class="table-cell">R1</td><td class="table-cell">8</td></tr>
+    <tr class="table-row"><td class="table-cell">table</td><td class="table-cell">display</td><td class="table-cell">R1</td><td class="table-cell">8</td></tr>
+    <tr class="table-row"><td class="table-cell">chart</td><td class="table-cell">display</td><td class="table-cell">R2</td><td class="table-cell">0</td></tr>
+    <tr class="table-row table-empty" hidden><td class="table-cell table-empty-cell" colspan="4">No rows match.</td></tr>
+    <tr class="table-row table-loading" hidden><td class="table-cell table-loading-cell" colspan="4"><span class="table-loading-glyph" aria-hidden="true">⋯</span><span class="table-loading-text">Loading rows</span></td></tr>
+  </tbody>
+</table>
+<!-- @variant sticky-header -->
+<div class="table-scroller">
+  <table class="table table-sticky">
+    <thead class="table-head">
+      <tr class="table-header-row">
+        <th class="table-header table-header-demo-target" scope="col"><button class="table-sort" type="button">Component<span class="table-sort-glyph" aria-hidden="true">▲</span></button></th>
+        <th class="table-header" scope="col"><button class="table-sort" type="button">Family<span class="table-sort-glyph" aria-hidden="true">▲</span></button></th>
+        <th class="table-header" scope="col"><button class="table-sort" type="button">Priority<span class="table-sort-glyph" aria-hidden="true">▲</span></button></th>
+        <th class="table-header" scope="col"><button class="table-sort" type="button">States<span class="table-sort-glyph" aria-hidden="true">▲</span></button></th>
+      </tr>
+    </thead>
+    <tbody class="table-body">
+      <tr class="table-row"><td class="table-cell">tabs</td><td class="table-cell">navigation</td><td class="table-cell">R1</td><td class="table-cell">7</td></tr>
+      <tr class="table-row table-row-demo-target"><td class="table-cell">menu</td><td class="table-cell">navigation</td><td class="table-cell">R1</td><td class="table-cell">8</td></tr>
+      <tr class="table-row"><td class="table-cell">table</td><td class="table-cell">display</td><td class="table-cell">R1</td><td class="table-cell">8</td></tr>
+      <tr class="table-row"><td class="table-cell">chart</td><td class="table-cell">display</td><td class="table-cell">R2</td><td class="table-cell">0</td></tr>
+      <tr class="table-row table-empty" hidden><td class="table-cell table-empty-cell" colspan="4">No rows match.</td></tr>
+      <tr class="table-row table-loading" hidden><td class="table-cell table-loading-cell" colspan="4"><span class="table-loading-glyph" aria-hidden="true">⋯</span><span class="table-loading-text">Loading rows</span></td></tr>
+    </tbody>
+  </table>
+</div>
+<!-- @variant numeric -->
+<table class="table">
+  <thead class="table-head">
+    <tr class="table-header-row">
+      <th class="table-header table-header-demo-target" scope="col"><button class="table-sort" type="button">Component<span class="table-sort-glyph" aria-hidden="true">▲</span></button></th>
+      <th class="table-header" scope="col"><button class="table-sort" type="button">Family<span class="table-sort-glyph" aria-hidden="true">▲</span></button></th>
+      <th class="table-header" scope="col"><button class="table-sort" type="button">Priority<span class="table-sort-glyph" aria-hidden="true">▲</span></button></th>
+      <th class="table-header table-header-numeric" scope="col"><button class="table-sort" type="button">States<span class="table-sort-glyph" aria-hidden="true">▲</span></button></th>
+    </tr>
+  </thead>
+  <tbody class="table-body">
+    <tr class="table-row"><td class="table-cell">tabs</td><td class="table-cell">navigation</td><td class="table-cell">R1</td><td class="table-cell table-cell-numeric">7</td></tr>
+    <tr class="table-row table-row-demo-target"><td class="table-cell">menu</td><td class="table-cell">navigation</td><td class="table-cell">R1</td><td class="table-cell table-cell-numeric">8</td></tr>
+    <tr class="table-row"><td class="table-cell">table</td><td class="table-cell">display</td><td class="table-cell">R1</td><td class="table-cell table-cell-numeric">8</td></tr>
+    <tr class="table-row"><td class="table-cell">chart</td><td class="table-cell">display</td><td class="table-cell">R2</td><td class="table-cell table-cell-numeric">0</td></tr>
+    <tr class="table-row table-empty" hidden><td class="table-cell table-empty-cell" colspan="4">No rows match.</td></tr>
+    <tr class="table-row table-loading" hidden><td class="table-cell table-loading-cell" colspan="4"><span class="table-loading-glyph" aria-hidden="true">⋯</span><span class="table-loading-text">Loading rows</span></td></tr>
+  </tbody>
+</table>
+<!-- @variant with-caption -->
+<table class="table">
+  <caption class="table-caption">Components in this batch, with their declared state counts</caption>
+  <thead class="table-head">
+    <tr class="table-header-row">
+      <th class="table-header table-header-demo-target" scope="col"><button class="table-sort" type="button">Component<span class="table-sort-glyph" aria-hidden="true">▲</span></button></th>
+      <th class="table-header" scope="col"><button class="table-sort" type="button">Family<span class="table-sort-glyph" aria-hidden="true">▲</span></button></th>
+      <th class="table-header" scope="col"><button class="table-sort" type="button">Priority<span class="table-sort-glyph" aria-hidden="true">▲</span></button></th>
+      <th class="table-header" scope="col"><button class="table-sort" type="button">States<span class="table-sort-glyph" aria-hidden="true">▲</span></button></th>
+    </tr>
+  </thead>
+  <tbody class="table-body">
+    <tr class="table-row"><td class="table-cell">tabs</td><td class="table-cell">navigation</td><td class="table-cell">R1</td><td class="table-cell">7</td></tr>
+    <tr class="table-row table-row-demo-target"><td class="table-cell">menu</td><td class="table-cell">navigation</td><td class="table-cell">R1</td><td class="table-cell">8</td></tr>
+    <tr class="table-row"><td class="table-cell">table</td><td class="table-cell">display</td><td class="table-cell">R1</td><td class="table-cell">8</td></tr>
+    <tr class="table-row"><td class="table-cell">chart</td><td class="table-cell">display</td><td class="table-cell">R2</td><td class="table-cell">0</td></tr>
+    <tr class="table-row table-empty" hidden><td class="table-cell table-empty-cell" colspan="4">No rows match.</td></tr>
+    <tr class="table-row table-loading" hidden><td class="table-cell table-loading-cell" colspan="4"><span class="table-loading-glyph" aria-hidden="true">⋯</span><span class="table-loading-text">Loading rows</span></td></tr>
+  </tbody>
+</table>

@@ -1,0 +1,690 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "0.1.0-draft.1",
+  "profile": "default",
+  "sourceDigest": "sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=",
+  "id": "toast",
+  "family": "feedback",
+  "maturity": "stable",
+  "priority": "R1",
+  "coverage": {
+    "family": "feedback",
+    "priority": "R1",
+    "maturity": "stable",
+    "specified": true,
+    "demonstrated": true,
+    "tested": false,
+    "states": 5
+  },
+  "title": "Toast",
+  "summary": "A brief notification in a fixed corner stack; canvas surface behind a 1px overlay border, status tints for the four polite statuses and the danger fill for critical ones.",
+  "anchors": {
+    "site": "https://j3w1.github.io/theme/#c-toast",
+    "spec": "spec/components/toast.md",
+    "brief": "exports/components/toast.brief.txt"
+  },
+  "native": true,
+  "aria": {
+    "pattern": "native <div role=status> (role=alert for danger) inside a region named Notifications; native buttons for the action and dismiss",
+    "apg": "https://www.w3.org/WAI/ARIA/apg/patterns/alert/"
+  },
+  "variants": [
+    {
+      "id": "default",
+      "name": "Plain"
+    },
+    {
+      "id": "status",
+      "name": "Five statuses stacked"
+    },
+    {
+      "id": "with-action",
+      "name": "With action"
+    }
+  ],
+  "sizes": [
+    "compact",
+    "comfortable"
+  ],
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "stacked",
+    "reduced-motion"
+  ],
+  "tokens": {
+    "root.bg": {
+      "alias": "color.surface.canvas",
+      "value": "#0c0909",
+      "status": "observed"
+    },
+    "root.border": {
+      "alias": "color.border.overlay",
+      "value": "#e53935",
+      "status": "proposed"
+    },
+    "root.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "glyph.text": {
+      "alias": "color.status.info.text",
+      "value": "#7e9ebb",
+      "status": "approved"
+    },
+    "warning.bg": {
+      "alias": "color.status.warning.tint",
+      "value": "#1f1a0c",
+      "status": "approved"
+    },
+    "warning.border": {
+      "alias": "color.status.warning.border",
+      "value": "#c9973f",
+      "status": "approved"
+    },
+    "warning.text": {
+      "alias": "color.status.warning.text",
+      "value": "#c9973f",
+      "status": "approved"
+    },
+    "success.bg": {
+      "alias": "color.status.success.tint",
+      "value": "#0f1a0e",
+      "status": "approved"
+    },
+    "success.border": {
+      "alias": "color.status.success.border",
+      "value": "#86a46f",
+      "status": "approved"
+    },
+    "success.text": {
+      "alias": "color.status.success.text",
+      "value": "#86a46f",
+      "status": "approved"
+    },
+    "info.bg": {
+      "alias": "color.status.info.tint",
+      "value": "#0f141c",
+      "status": "approved"
+    },
+    "info.border": {
+      "alias": "color.status.info.border",
+      "value": "#7e9ebb",
+      "status": "approved"
+    },
+    "info.text": {
+      "alias": "color.status.info.text",
+      "value": "#7e9ebb",
+      "status": "approved"
+    },
+    "neutral.bg": {
+      "alias": "color.status.neutral.tint",
+      "value": "#241010",
+      "status": "observed"
+    },
+    "neutral.border": {
+      "alias": "color.status.neutral.border",
+      "value": "#a3676b",
+      "status": "observed"
+    },
+    "neutral.text": {
+      "alias": "color.status.neutral.text",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "danger.bg": {
+      "alias": "color.status.danger.fill",
+      "value": "#dc282e",
+      "status": "observed"
+    },
+    "danger.text": {
+      "alias": "color.status.danger.on-fill",
+      "value": "#f9faf9",
+      "status": "observed"
+    },
+    "danger.button-bg-hover": {
+      "alias": "color.action.destructive.pressed-bg",
+      "value": "#ae1914",
+      "status": "observed"
+    },
+    "action.text": {
+      "alias": "color.text.link",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "action.bg-hover": {
+      "alias": "color.interaction.hover.bg-strong",
+      "value": "#630f0d",
+      "status": "observed"
+    },
+    "action.text-hover": {
+      "alias": "color.text.link-hover",
+      "value": "#f4eeee",
+      "status": "observed"
+    },
+    "close.text": {
+      "alias": "color.action.tertiary.text",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "close.bg-hover": {
+      "alias": "color.action.tertiary.hover-bg",
+      "value": "#1c0a09",
+      "status": "observed"
+    },
+    "close.ring": {
+      "alias": "color.interaction.focus.ring",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "count.text": {
+      "alias": "color.text.muted",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "stack.z": {
+      "alias": "z.toast",
+      "value": "40",
+      "status": "observed"
+    }
+  },
+  "stateRules": [
+    {
+      "state": "default",
+      "visual": "canvas surface, 1px overlay border, glyph in the status text colour",
+      "channel": "the glyph; the worded text",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.canvas",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.overlay",
+          "value": "#e53935",
+          "status": "proposed"
+        }
+      }
+    },
+    {
+      "state": "hover",
+      "visual": "action → {color.interaction.hover.bg-strong} with {color.text.link-hover}; Dismiss → {color.action.tertiary.hover-bg}; the timeout pauses",
+      "channel": "cursor: pointer; underline thickens on the action",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.link-hover",
+          "value": "#f4eeee",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.interaction.hover.bg-strong",
+          "value": "#630f0d",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "focus-visible",
+      "visual": "ring 1px dashed {color.interaction.focus.ring} at −2px on the focused button; on the danger fill the ring takes {color.status.danger.on-fill}; the timeout pauses",
+      "channel": "the ring",
+      "tokens": {
+        "fg": {
+          "alias": "color.action.tertiary.text",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.canvas",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "outline": {
+          "alias": "color.interaction.focus.ring",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "stacked",
+      "visual": "toasts sit in one column with a 4px gap, newest at the end; the last visible toast shows \"+n\" in {color.text.muted} for queued ones",
+      "channel": "the count text; at most three visible",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.muted",
+          "value": "#bd787d",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.canvas",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.overlay",
+          "value": "#e53935",
+          "status": "proposed"
+        }
+      }
+    },
+    {
+      "state": "reduced-motion",
+      "visual": "no transition; the toast is simply present or absent",
+      "channel": "`prefers-reduced-motion`; nothing moves",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.canvas",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.overlay",
+          "value": "#e53935",
+          "status": "proposed"
+        }
+      }
+    }
+  ],
+  "keyboard": [
+    {
+      "key": "F6 / a host shortcut",
+      "action": "Moves focus into the notification region; toasts never steal focus when they appear."
+    },
+    {
+      "key": "Tab / Shift+Tab",
+      "action": "Within the region, reaches the action and then Dismiss of each toast in order."
+    },
+    {
+      "key": "Enter / Space",
+      "action": "Activates the action or dismisses."
+    },
+    {
+      "key": "Escape",
+      "action": "Dismisses the focused toast and returns focus to the region, then to the page."
+    }
+  ],
+  "responsive": "The stack is at most 24rem wide and fills the viewport width minus the 8px gutter below 360px; text wraps, buttons keep their size; at 320px nothing is clipped. RTL mirrors the corner and the button order.",
+  "portability": {
+    "web": "a <div role=region aria-label=Notifications> fixed in the end corner at z.toast holding <div role=status> toasts (role=alert for danger); the timeout pauses on hover and focus and is at least 8 s; appearance is an opacity change within the motion budget, never a slide.",
+    "nativeFallbacks": [
+      "GTK4 Toast in a ToastOverlay; the danger fill is not available and is recorded.",
+      "Desktop notifications through the host daemon (the historical dunst configuration is the origin of the danger fill); urgency critical maps to danger.",
+      "Terminal UI: a message line at the bottom edge; no stacking."
+    ]
+  },
+  "fixtures": [
+    "FX-LONG",
+    "FX-320",
+    "FX-ZOOM-200",
+    "FX-I18N",
+    "FX-RTL",
+    "FX-RM",
+    "FX-HC",
+    "FX-OVERFLOW",
+    "FX-STATE-MATRIX"
+  ],
+  "related": [
+    "alert",
+    "dialog",
+    "progress",
+    "badge"
+  ],
+  "specimens": [
+    "i3-window-frame",
+    "settings-panel"
+  ],
+  "nonExamples": "A toast that slides in from an edge. A rounded, shadowed pill. A toast with\nno Dismiss that vanishes after two seconds. A toast that takes focus on\nappearance. Stacking more than three with no count. A form error shown as a\ntoast. Colour-only status without the glyph and worded text.",
+  "contrast": [
+    {
+      "label": "toast default text",
+      "state": "default",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.canvas",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "toast default border",
+      "state": "default",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.overlay",
+      "bg": "color.surface.canvas",
+      "fgHex": "#e53935",
+      "bgHex": "#0c0909",
+      "ratio": 4.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "toast hover text",
+      "state": "hover",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.link-hover",
+      "bg": "color.interaction.hover.bg-strong",
+      "fgHex": "#f4eeee",
+      "bgHex": "#630f0d",
+      "ratio": 11.41,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "toast focus-visible text",
+      "state": "focus-visible",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.tertiary.text",
+      "bg": "color.surface.canvas",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "toast focus-visible outline",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring",
+      "bg": "color.surface.canvas",
+      "fgHex": "#e53935",
+      "bgHex": "#0c0909",
+      "ratio": 4.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "toast stacked text",
+      "state": "stacked",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.muted",
+      "bg": "color.surface.canvas",
+      "fgHex": "#bd787d",
+      "bgHex": "#0c0909",
+      "ratio": 5.81,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "toast stacked border",
+      "state": "stacked",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.overlay",
+      "bg": "color.surface.canvas",
+      "fgHex": "#e53935",
+      "bgHex": "#0c0909",
+      "ratio": 4.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "toast reduced-motion text",
+      "state": "reduced-motion",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.canvas",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "toast reduced-motion border",
+      "state": "reduced-motion",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.overlay",
+      "bg": "color.surface.canvas",
+      "fgHex": "#e53935",
+      "bgHex": "#0c0909",
+      "ratio": 4.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "glyph on the plain toast",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.status.info.text",
+      "bg": "color.surface.canvas",
+      "fgHex": "#7e9ebb",
+      "bgHex": "#0c0909",
+      "ratio": 7.08,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "action text on the plain toast",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.link",
+      "bg": "color.surface.canvas",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#0c0909",
+      "ratio": 10.37,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "warning glyph on its tint",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.status.warning.text",
+      "bg": "color.status.warning.tint",
+      "fgHex": "#c9973f",
+      "bgHex": "#1f1a0c",
+      "ratio": 6.59,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "warning border on its tint",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.status.warning.border",
+      "bg": "color.status.warning.tint",
+      "fgHex": "#c9973f",
+      "bgHex": "#1f1a0c",
+      "ratio": 6.59,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "text on the warning tint",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.status.warning.tint",
+      "fgHex": "#e99499",
+      "bgHex": "#1f1a0c",
+      "ratio": 7.56,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "success glyph on its tint",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.status.success.text",
+      "bg": "color.status.success.tint",
+      "fgHex": "#86a46f",
+      "bgHex": "#0f1a0e",
+      "ratio": 6.43,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "success border on its tint",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.status.success.border",
+      "bg": "color.status.success.tint",
+      "fgHex": "#86a46f",
+      "bgHex": "#0f1a0e",
+      "ratio": 6.43,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "text on the success tint",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.status.success.tint",
+      "fgHex": "#e99499",
+      "bgHex": "#0f1a0e",
+      "ratio": 7.8,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "info glyph on its tint",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.status.info.text",
+      "bg": "color.status.info.tint",
+      "fgHex": "#7e9ebb",
+      "bgHex": "#0f141c",
+      "ratio": 6.59,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "info border on its tint",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.status.info.border",
+      "bg": "color.status.info.tint",
+      "fgHex": "#7e9ebb",
+      "bgHex": "#0f141c",
+      "ratio": 6.59,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "text on the info tint",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.status.info.tint",
+      "fgHex": "#e99499",
+      "bgHex": "#0f141c",
+      "ratio": 8.06,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "neutral glyph on its tint",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.status.neutral.text",
+      "bg": "color.status.neutral.tint",
+      "fgHex": "#bd787d",
+      "bgHex": "#241010",
+      "ratio": 5.31,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "neutral border on its tint",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.status.neutral.border",
+      "bg": "color.status.neutral.tint",
+      "fgHex": "#a3676b",
+      "bgHex": "#241010",
+      "ratio": 4.07,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "text on the neutral tint",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.status.neutral.tint",
+      "fgHex": "#e99499",
+      "bgHex": "#241010",
+      "ratio": 7.92,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "text, glyph and buttons on the danger fill",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.status.danger.on-fill",
+      "bg": "color.status.danger.fill",
+      "fgHex": "#f9faf9",
+      "bgHex": "#dc282e",
+      "ratio": 4.58,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "the danger fill is its own boundary against the canvas",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.status.danger.fill",
+      "bg": "color.surface.canvas",
+      "fgHex": "#dc282e",
+      "bgHex": "#0c0909",
+      "ratio": 4.14,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "danger border on the danger fill (decorative)",
+      "state": null,
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.status.danger.border",
+      "bg": "color.status.danger.fill",
+      "fgHex": "#e53935",
+      "bgHex": "#dc282e",
+      "ratio": 1.13,
+      "pass": true,
+      "waiver": "the fill is the boundary at 4.14:1 against the canvas; the border only keeps the box model identical across statuses"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+<div class="tabs">
+  <div class="tabs-list" role="tablist" aria-label="Settings sections">
+    <button class="tabs-tab" role="tab" type="button" id="tabs-general" aria-selected="true" aria-controls="tabs-panel-general" tabindex="0">General</button>
+    <button class="tabs-tab tabs-tab-demo-target" role="tab" type="button" id="tabs-appearance" aria-selected="false" aria-controls="tabs-panel-appearance" tabindex="-1">Appearance</button>
+    <button class="tabs-tab" role="tab" type="button" id="tabs-keys" aria-selected="false" aria-controls="tabs-panel-keys" tabindex="-1">Keys</button>
+  </div>
+  <div class="tabs-panel" role="tabpanel" id="tabs-panel-general" aria-labelledby="tabs-general" tabindex="0">
+    <p class="tabs-panel-text">Window gaps, bar height and the focus follows mouse setting.</p>
+  </div>
+  <div class="tabs-panel" role="tabpanel" id="tabs-panel-appearance" aria-labelledby="tabs-appearance" hidden>
+    <p class="tabs-panel-text">Profile, font and density.</p>
+  </div>
+  <div class="tabs-panel" role="tabpanel" id="tabs-panel-keys" aria-labelledby="tabs-keys" hidden>
+    <p class="tabs-panel-text">Bindings for the window manager and the editor.</p>
+  </div>
+</div>
+<!-- @variant overflow -->
+<div class="tabs">
+  <div class="tabs-list" role="tablist" aria-label="Open files">
+    <button class="tabs-tab" role="tab" type="button" id="tabs-f1" aria-selected="true" aria-controls="tabs-panel-f1" tabindex="0">foundations.md</button>
+    <button class="tabs-tab tabs-tab-demo-target" role="tab" type="button" id="tabs-f2" aria-selected="false" tabindex="-1">identity.md</button>
+    <button class="tabs-tab" role="tab" type="button" id="tabs-f3" aria-selected="false" tabindex="-1">accessibility.md</button>
+    <button class="tabs-tab" role="tab" type="button" id="tabs-f4" aria-selected="false" tabindex="-1">portability.md</button>
+    <button class="tabs-tab" role="tab" type="button" id="tabs-f5" aria-selected="false" tabindex="-1">decisions.md</button>
+    <button class="tabs-tab" role="tab" type="button" id="tabs-f6" aria-selected="false" tabindex="-1">inventory.json</button>
+    <button class="tabs-tab" role="tab" type="button" id="tabs-f7" aria-selected="false" tabindex="-1">contrast.json</button>
+    <button class="tabs-tab" role="tab" type="button" id="tabs-f8" aria-selected="false" tabindex="-1">tokens.resolved.json</button>
+  </div>
+  <div class="tabs-panel" role="tabpanel" id="tabs-panel-f1" aria-labelledby="tabs-f1" tabindex="0">
+    <p class="tabs-panel-text">Values live in tokens; this document says what each role means.</p>
+  </div>
+</div>

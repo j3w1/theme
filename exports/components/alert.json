@@ -1,0 +1,534 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "0.1.0-draft.1",
+  "profile": "default",
+  "sourceDigest": "sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=",
+  "id": "alert",
+  "family": "feedback",
+  "maturity": "stable",
+  "priority": "R1",
+  "coverage": {
+    "family": "feedback",
+    "priority": "R1",
+    "maturity": "stable",
+    "specified": true,
+    "demonstrated": true,
+    "tested": false,
+    "states": 3
+  },
+  "title": "Alert",
+  "summary": "An inline status message with a mandatory glyph on the status tint behind a 1px status border; role alert for danger, status otherwise.",
+  "anchors": {
+    "site": "https://j3w1.github.io/theme/#c-alert",
+    "spec": "spec/components/alert.md",
+    "brief": "exports/components/alert.brief.txt"
+  },
+  "native": true,
+  "aria": {
+    "pattern": "native landmark-free block; role=alert for danger, role=status for every other status; an optional native close button",
+    "apg": "https://www.w3.org/WAI/ARIA/apg/patterns/alert/"
+  },
+  "variants": [
+    {
+      "id": "danger",
+      "name": "Danger"
+    },
+    {
+      "id": "warning",
+      "name": "Warning"
+    },
+    {
+      "id": "success",
+      "name": "Success"
+    },
+    {
+      "id": "info",
+      "name": "Info"
+    },
+    {
+      "id": "neutral",
+      "name": "Neutral"
+    },
+    {
+      "id": "dismissible",
+      "name": "Dismissible"
+    }
+  ],
+  "sizes": [
+    "compact",
+    "comfortable"
+  ],
+  "states": [
+    "default",
+    "hover",
+    "focus-visible"
+  ],
+  "tokens": {
+    "danger.bg": {
+      "alias": "color.status.danger.tint",
+      "value": "#2b0e0d",
+      "status": "observed"
+    },
+    "danger.border": {
+      "alias": "color.status.danger.border",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "danger.text": {
+      "alias": "color.status.danger.text",
+      "value": "#f73f35",
+      "status": "observed"
+    },
+    "warning.bg": {
+      "alias": "color.status.warning.tint",
+      "value": "#1f1a0c",
+      "status": "approved"
+    },
+    "warning.border": {
+      "alias": "color.status.warning.border",
+      "value": "#c9973f",
+      "status": "approved"
+    },
+    "warning.text": {
+      "alias": "color.status.warning.text",
+      "value": "#c9973f",
+      "status": "approved"
+    },
+    "success.bg": {
+      "alias": "color.status.success.tint",
+      "value": "#0f1a0e",
+      "status": "approved"
+    },
+    "success.border": {
+      "alias": "color.status.success.border",
+      "value": "#86a46f",
+      "status": "approved"
+    },
+    "success.text": {
+      "alias": "color.status.success.text",
+      "value": "#86a46f",
+      "status": "approved"
+    },
+    "info.bg": {
+      "alias": "color.status.info.tint",
+      "value": "#0f141c",
+      "status": "approved"
+    },
+    "info.border": {
+      "alias": "color.status.info.border",
+      "value": "#7e9ebb",
+      "status": "approved"
+    },
+    "info.text": {
+      "alias": "color.status.info.text",
+      "value": "#7e9ebb",
+      "status": "approved"
+    },
+    "neutral.bg": {
+      "alias": "color.status.neutral.tint",
+      "value": "#241010",
+      "status": "observed"
+    },
+    "neutral.border": {
+      "alias": "color.status.neutral.border",
+      "value": "#a3676b",
+      "status": "observed"
+    },
+    "neutral.text": {
+      "alias": "color.status.neutral.text",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "body.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "close.text": {
+      "alias": "color.action.tertiary.text",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "close.bg-hover": {
+      "alias": "color.action.tertiary.hover-bg",
+      "value": "#1c0a09",
+      "status": "observed"
+    },
+    "close.ring": {
+      "alias": "color.interaction.focus.ring",
+      "value": "#e53935",
+      "status": "observed"
+    }
+  },
+  "stateRules": [
+    {
+      "state": "default",
+      "visual": "status tint, 1px status border, glyph and title in the status text colour",
+      "channel": "the glyph ✕ ! ✓ i ·",
+      "tokens": {
+        "fg": {
+          "alias": "color.status.danger.text",
+          "value": "#f73f35",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.status.danger.tint",
+          "value": "#2b0e0d",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.status.danger.border",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "hover",
+      "visual": "close button background → {color.action.tertiary.hover-bg}; the alert itself does not react",
+      "channel": "cursor: pointer on the button only",
+      "tokens": {
+        "fg": {
+          "alias": "color.action.tertiary.text",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.action.tertiary.hover-bg",
+          "value": "#1c0a09",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "focus-visible",
+      "visual": "ring 1px dashed {color.interaction.focus.ring} at −2px on the close button",
+      "channel": "the ring",
+      "tokens": {
+        "fg": {
+          "alias": "color.action.tertiary.text",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.status.info.tint",
+          "value": "#0f141c",
+          "status": "approved"
+        },
+        "outline": {
+          "alias": "color.interaction.focus.ring",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    }
+  ],
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Reaches the close button when present; the alert itself is never focusable."
+    },
+    {
+      "key": "Enter / Space",
+      "action": "Dismisses; focus returns to the element that had it, or to the next focusable element after the alert."
+    },
+    {
+      "key": "Escape",
+      "action": "Nothing; alerts are not dialogs."
+    }
+  ],
+  "responsive": "Fills its container; glyph, body and close button stay on one row with the body wrapping; at 320px long titles wrap under the glyph. RTL mirrors the glyph and close positions.",
+  "portability": {
+    "web": "a <div role=alert> for danger and <div role=status> otherwise, present in the DOM before its text is filled so the announcement fires; the close button is a native <button type=button aria-label=Dismiss>.",
+    "nativeFallbacks": [
+      "GTK4 InfoBar with the message-type mapped to the status roles.",
+      "Qt QFrame with a dynamic status property; QMessageBox only for modal cases.",
+      "Terminal UI: a one-line banner with the glyph and a single-line border in the status colour."
+    ]
+  },
+  "fixtures": [
+    "FX-LONG",
+    "FX-320",
+    "FX-ZOOM-200",
+    "FX-I18N",
+    "FX-RTL",
+    "FX-RM",
+    "FX-HC",
+    "FX-STATE-MATRIX"
+  ],
+  "related": [
+    "toast",
+    "badge",
+    "dialog",
+    "empty-state",
+    "error-state"
+  ],
+  "specimens": [
+    "admin-form",
+    "settings-panel"
+  ],
+  "nonExamples": "A coloured left stripe with no border. A rounded, shadowed card. A banner\nthat slides in or auto-dismisses. Colour-only status without the glyph and a\nworded title. Using `role=\"alert\"` for success messages. A close button that\nis an icon with no accessible name. Fixed-position alerts covering content.",
+  "contrast": [
+    {
+      "label": "alert default text",
+      "state": "default",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.status.danger.text",
+      "bg": "color.status.danger.tint",
+      "fgHex": "#f73f35",
+      "bgHex": "#2b0e0d",
+      "ratio": 4.88,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "alert default border",
+      "state": "default",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.status.danger.border",
+      "bg": "color.status.danger.tint",
+      "fgHex": "#e53935",
+      "bgHex": "#2b0e0d",
+      "ratio": 4.24,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "alert hover text",
+      "state": "hover",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.tertiary.text",
+      "bg": "color.action.tertiary.hover-bg",
+      "fgHex": "#e99499",
+      "bgHex": "#1c0a09",
+      "ratio": 8.35,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "alert focus-visible text",
+      "state": "focus-visible",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.tertiary.text",
+      "bg": "color.status.info.tint",
+      "fgHex": "#e99499",
+      "bgHex": "#0f141c",
+      "ratio": 8.06,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "alert focus-visible outline",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring",
+      "bg": "color.status.info.tint",
+      "fgHex": "#e53935",
+      "bgHex": "#0f141c",
+      "ratio": 4.37,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "body text on the danger tint",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.status.danger.tint",
+      "fgHex": "#e99499",
+      "bgHex": "#2b0e0d",
+      "ratio": 7.82,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "warning glyph and title on the warning tint",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.status.warning.text",
+      "bg": "color.status.warning.tint",
+      "fgHex": "#c9973f",
+      "bgHex": "#1f1a0c",
+      "ratio": 6.59,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "warning border on the warning tint",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.status.warning.border",
+      "bg": "color.status.warning.tint",
+      "fgHex": "#c9973f",
+      "bgHex": "#1f1a0c",
+      "ratio": 6.59,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "body text on the warning tint",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.status.warning.tint",
+      "fgHex": "#e99499",
+      "bgHex": "#1f1a0c",
+      "ratio": 7.56,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "success glyph and title on the success tint",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.status.success.text",
+      "bg": "color.status.success.tint",
+      "fgHex": "#86a46f",
+      "bgHex": "#0f1a0e",
+      "ratio": 6.43,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "success border on the success tint",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.status.success.border",
+      "bg": "color.status.success.tint",
+      "fgHex": "#86a46f",
+      "bgHex": "#0f1a0e",
+      "ratio": 6.43,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "body text on the success tint",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.status.success.tint",
+      "fgHex": "#e99499",
+      "bgHex": "#0f1a0e",
+      "ratio": 7.8,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "info glyph and title on the info tint",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.status.info.text",
+      "bg": "color.status.info.tint",
+      "fgHex": "#7e9ebb",
+      "bgHex": "#0f141c",
+      "ratio": 6.59,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "info border on the info tint",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.status.info.border",
+      "bg": "color.status.info.tint",
+      "fgHex": "#7e9ebb",
+      "bgHex": "#0f141c",
+      "ratio": 6.59,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "body text on the info tint",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.status.info.tint",
+      "fgHex": "#e99499",
+      "bgHex": "#0f141c",
+      "ratio": 8.06,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "neutral glyph and title on the neutral tint",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.status.neutral.text",
+      "bg": "color.status.neutral.tint",
+      "fgHex": "#bd787d",
+      "bgHex": "#241010",
+      "ratio": 5.31,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "neutral border on the neutral tint",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.status.neutral.border",
+      "bg": "color.status.neutral.tint",
+      "fgHex": "#a3676b",
+      "bgHex": "#241010",
+      "ratio": 4.07,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "body text on the neutral tint",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.status.neutral.tint",
+      "fgHex": "#e99499",
+      "bgHex": "#241010",
+      "ratio": 7.92,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "close button on the info tint",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.tertiary.text",
+      "bg": "color.status.info.tint",
+      "fgHex": "#e99499",
+      "bgHex": "#0f141c",
+      "ratio": 8.06,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "ring on the info tint",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring",
+      "bg": "color.status.info.tint",
+      "fgHex": "#e53935",
+      "bgHex": "#0f141c",
+      "ratio": 4.37,
+      "pass": true,
+      "waiver": null
+    }
+  ]
+}

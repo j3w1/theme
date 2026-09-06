@@ -1,0 +1,763 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "0.1.0-draft.1",
+  "profile": "default",
+  "sourceDigest": "sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=",
+  "id": "terminal",
+  "family": "developer",
+  "maturity": "stable",
+  "priority": "R1",
+  "coverage": {
+    "family": "developer",
+    "priority": "R1",
+    "maturity": "stable",
+    "specified": true,
+    "demonstrated": true,
+    "tested": false,
+    "states": 5
+  },
+  "title": "Terminal",
+  "summary": "Terminal text on the terminal surface with the sixteen heritage ANSI slots carried exactly, the cursor, the selection and the six text attributes; a transcript, the slot grid and the attributes.",
+  "anchors": {
+    "site": "https://j3w1.github.io/theme/#c-terminal",
+    "spec": "spec/components/terminal.md",
+    "brief": "exports/components/terminal.brief.txt"
+  },
+  "native": true,
+  "aria": {
+    "pattern": "native <pre role=log> for a transcript; a plain <pre> with aria-label for the slot grid and the attribute sheet",
+    "apg": "https://www.w3.org/WAI/ARIA/apg/practices/names-and-descriptions/"
+  },
+  "variants": [
+    {
+      "id": "default",
+      "name": "Transcript",
+      "description": "An agnoster-style prompt, an ls listing coloured by the slots that pass the text floor, an ESC[31m-style error line and the cursor."
+    },
+    {
+      "id": "ansi-grid",
+      "name": "ANSI grid",
+      "description": "One row per slot, labelled with its number; slots that pass 4.5:1 show sample text, slots that fail show colour blocks and a ✕, and every background is a block."
+    },
+    {
+      "id": "attributes",
+      "name": "Attributes",
+      "description": "Bold, dim, italic, underline, inverse and strikethrough."
+    }
+  ],
+  "sizes": [
+    "compact",
+    "comfortable"
+  ],
+  "states": [
+    "default",
+    "focus-visible",
+    "selected",
+    "busy",
+    "current"
+  ],
+  "tokens": {
+    "root.bg": {
+      "alias": "color.terminal.bg",
+      "value": "#0c0909",
+      "status": "observed"
+    },
+    "root.text": {
+      "alias": "color.terminal.fg",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "root.border": {
+      "alias": "color.border.control",
+      "value": "#a3676b",
+      "status": "proposed"
+    },
+    "root.ring": {
+      "alias": "color.interaction.focus.ring-container",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "cursor.bg": {
+      "alias": "color.terminal.cursor",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "cursor.text": {
+      "alias": "color.terminal.bg",
+      "value": "#0c0909",
+      "status": "observed"
+    },
+    "selection.bg": {
+      "alias": "color.terminal.selection-bg",
+      "value": "#911410",
+      "status": "observed"
+    },
+    "selection.text": {
+      "alias": "color.terminal.selection-text",
+      "value": "#f4eeee",
+      "status": "observed"
+    },
+    "current.bg": {
+      "alias": "color.code.current-line",
+      "value": "#1c0a09",
+      "status": "observed"
+    },
+    "prompt.bg": {
+      "alias": "color.terminal.ansi.4",
+      "value": "#8c1212",
+      "status": "observed"
+    },
+    "prompt.text": {
+      "alias": "color.terminal.selection-text",
+      "value": "#f4eeee",
+      "status": "observed"
+    },
+    "prompt.branch-bg": {
+      "alias": "color.terminal.ansi.3",
+      "value": "#d4868b",
+      "status": "observed"
+    },
+    "prompt.branch-text": {
+      "alias": "color.terminal.bg",
+      "value": "#0c0909",
+      "status": "observed"
+    },
+    "dim.text": {
+      "alias": "color.text.muted",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "inverse.bg": {
+      "alias": "color.terminal.fg",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "inverse.text": {
+      "alias": "color.terminal.bg",
+      "value": "#0c0909",
+      "status": "observed"
+    },
+    "label.text": {
+      "alias": "color.text.muted",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "fail.glyph": {
+      "alias": "color.terminal.fg",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "slot.ansi-0": {
+      "alias": "color.terminal.ansi.0",
+      "value": "#0c0909",
+      "status": "observed"
+    },
+    "slot.ansi-1": {
+      "alias": "color.terminal.ansi.1",
+      "value": "#c81a1a",
+      "status": "observed"
+    },
+    "slot.ansi-2": {
+      "alias": "color.terminal.ansi.2",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "slot.ansi-3": {
+      "alias": "color.terminal.ansi.3",
+      "value": "#d4868b",
+      "status": "observed"
+    },
+    "slot.ansi-4": {
+      "alias": "color.terminal.ansi.4",
+      "value": "#8c1212",
+      "status": "observed"
+    },
+    "slot.ansi-5": {
+      "alias": "color.terminal.ansi.5",
+      "value": "#f73f35",
+      "status": "observed"
+    },
+    "slot.ansi-6": {
+      "alias": "color.terminal.ansi.6",
+      "value": "#9e474a",
+      "status": "observed"
+    },
+    "slot.ansi-7": {
+      "alias": "color.terminal.ansi.7",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "slot.ansi-8": {
+      "alias": "color.terminal.ansi.8",
+      "value": "#7d1310",
+      "status": "observed"
+    },
+    "slot.ansi-9": {
+      "alias": "color.terminal.ansi.9",
+      "value": "#ab1612",
+      "status": "observed"
+    },
+    "slot.ansi-10": {
+      "alias": "color.terminal.ansi.10",
+      "value": "#ad2721",
+      "status": "observed"
+    },
+    "slot.ansi-11": {
+      "alias": "color.terminal.ansi.11",
+      "value": "#b37175",
+      "status": "observed"
+    },
+    "slot.ansi-12": {
+      "alias": "color.terminal.ansi.12",
+      "value": "#871f19",
+      "status": "observed"
+    },
+    "slot.ansi-13": {
+      "alias": "color.terminal.ansi.13",
+      "value": "#e82132",
+      "status": "observed"
+    },
+    "slot.ansi-14": {
+      "alias": "color.terminal.ansi.14",
+      "value": "#e0292f",
+      "status": "observed"
+    },
+    "slot.ansi-15": {
+      "alias": "color.terminal.ansi.15",
+      "value": "#a3676b",
+      "status": "observed"
+    }
+  },
+  "stateRules": [
+    {
+      "state": "default",
+      "visual": "text on {color.terminal.bg}; the cursor cell hollow, a 1px {color.terminal.cursor} outline; no ring",
+      "channel": "the hollow cursor",
+      "tokens": {
+        "fg": {
+          "alias": "color.terminal.fg",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.terminal.bg",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.control",
+          "value": "#a3676b",
+          "status": "proposed"
+        }
+      }
+    },
+    {
+      "state": "focus-visible",
+      "visual": "container ring 2px {color.interaction.focus.ring-container} at −3px; the cursor solid {color.terminal.cursor} with {color.terminal.bg} text",
+      "channel": "the ring; the cursor fills",
+      "tokens": {
+        "fg": {
+          "alias": "color.terminal.fg",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.terminal.bg",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "outline": {
+          "alias": "color.interaction.focus.ring-container",
+          "value": "#ffa2a7",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "selected",
+      "visual": "the run filled {color.terminal.selection-bg} with {color.terminal.selection-text}; slot colours inside the run give way to the selection text",
+      "channel": "the fill spans whole cells; the emulator exposes the selection",
+      "tokens": {
+        "fg": {
+          "alias": "color.terminal.selection-text",
+          "value": "#f4eeee",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.terminal.selection-bg",
+          "value": "#911410",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "busy",
+      "visual": "a command is running: the cursor is a solid static block at the end of the output; the transcript is `aria-busy`",
+      "channel": "`aria-busy`; the cursor shape; no blink",
+      "tokens": {
+        "fg": {
+          "alias": "color.terminal.bg",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.terminal.cursor",
+          "value": "#e99499",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "current",
+      "visual": "the cursor line filled {color.code.current-line} across its width; the cursor as in focus",
+      "channel": "the row fill; the cursor cell",
+      "tokens": {
+        "fg": {
+          "alias": "color.terminal.fg",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.code.current-line",
+          "value": "#1c0a09",
+          "status": "observed"
+        }
+      }
+    }
+  ],
+  "keyboard": [
+    {
+      "key": "(host)",
+      "action": "The emulator and the shell own every key; the theme changes no binding and no cursor behaviour."
+    },
+    {
+      "key": "Tab",
+      "action": "Reaches the transcript as one focus stop; inside a live emulator Tab belongs to the shell."
+    },
+    {
+      "key": "Shift+Arrows / mouse",
+      "action": "Selection is the emulator's; the theme draws it in selection-bg and selection-text."
+    }
+  ],
+  "responsive": "The transcript scrolls horizontally inside its box and never wraps; at 320px the prompt segments stay on one line and the grid scrolls. Type is the terminal scale (13/19, −0.5px letter-spacing) in both densities. The terminal is always left-to-right; RTL pages do not mirror it.",
+  "portability": {
+    "web": "<pre role=log aria-live=polite> for a transcript; slot classes on spans; the cursor is a span, not a caret; selection through ::selection with the terminal roles; xterm.js and similar map the sixteen slots, foreground, background, cursor and selection from these roles.",
+    "nativeFallbacks": [
+      "Xresources / URxvt / xterm: *background, *foreground, *cursorColor and *color0–15 (the origin of these values).",
+      "Alacritty, kitty, WezTerm, Windows Terminal: the sixteen slots plus foreground, background, cursor and selection keys; bold-as-bright must be off for the slots to hold.",
+      "GNOME Terminal, Konsole: palette entries in order; disable the system theme so the slots are not re-derived.",
+      "tmux, vim inside a terminal: they see slot numbers, never these values; a 256-colour or 24-bit escape bypasses the slots entirely."
+    ]
+  },
+  "fixtures": [
+    "FX-STATE-MATRIX",
+    "FX-320",
+    "FX-ZOOM-200",
+    "FX-RM",
+    "FX-HC",
+    "FX-LONG",
+    "FX-OVERFLOW"
+  ],
+  "related": [
+    "code-editor",
+    "diagnostics",
+    "diff-view"
+  ],
+  "specimens": [
+    "i3-window-frame"
+  ],
+  "nonExamples": "Normalising the heritage slots so every one reaches 4.5:1 and calling it\n`heritage-ansi`. A blinking cursor in the reference. A cursor that is a\nglowing bar. Bold rendered as bright, which silently swaps the slots. A\npurple or cyan slot borrowed from another scheme. Wrapping the transcript at\nnarrow widths and breaking the prompt segments. A selection drawn as a ring\ninstead of a fill. Rounded prompt segments or a gradient prompt.",
+  "contrast": [
+    {
+      "label": "terminal default text",
+      "state": "default",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.terminal.fg",
+      "bg": "color.terminal.bg",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "terminal default border",
+      "state": "default",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.control",
+      "bg": "color.terminal.bg",
+      "fgHex": "#a3676b",
+      "bgHex": "#0c0909",
+      "ratio": 4.45,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "terminal focus-visible text",
+      "state": "focus-visible",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.terminal.fg",
+      "bg": "color.terminal.bg",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "terminal focus-visible outline",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring-container",
+      "bg": "color.terminal.bg",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#0c0909",
+      "ratio": 10.37,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "terminal selected text",
+      "state": "selected",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.terminal.selection-text",
+      "bg": "color.terminal.selection-bg",
+      "fgHex": "#f4eeee",
+      "bgHex": "#911410",
+      "ratio": 7.92,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "terminal busy text",
+      "state": "busy",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.terminal.bg",
+      "bg": "color.terminal.cursor",
+      "fgHex": "#0c0909",
+      "bgHex": "#e99499",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "terminal current text",
+      "state": "current",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.terminal.fg",
+      "bg": "color.code.current-line",
+      "fgHex": "#e99499",
+      "bgHex": "#1c0a09",
+      "ratio": 8.35,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "hollow cursor outline at rest",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.terminal.cursor",
+      "bg": "color.terminal.bg",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "cursor on the cursor line",
+      "state": "current",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.terminal.cursor",
+      "bg": "color.code.current-line",
+      "fgHex": "#e99499",
+      "bgHex": "#1c0a09",
+      "ratio": 8.35,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "prompt segment text on slot 4",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.terminal.selection-text",
+      "bg": "color.terminal.ansi.4",
+      "fgHex": "#f4eeee",
+      "bgHex": "#8c1212",
+      "ratio": 8.28,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "branch segment text on slot 3",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.terminal.bg",
+      "bg": "color.terminal.ansi.3",
+      "fgHex": "#0c0909",
+      "bgHex": "#d4868b",
+      "ratio": 7.16,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "prompt arrow (the segment's own colour, decorative)",
+      "state": null,
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.terminal.ansi.4",
+      "bg": "color.terminal.bg",
+      "fgHex": "#8c1212",
+      "bgHex": "#0c0909",
+      "ratio": 2.09,
+      "pass": true,
+      "waiver": "the arrow is the segment edge; the segment text carries the content"
+    },
+    {
+      "label": "dim text and grid labels",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.muted",
+      "bg": "color.terminal.bg",
+      "fgHex": "#bd787d",
+      "bgHex": "#0c0909",
+      "ratio": 5.81,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "inverse text",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.terminal.bg",
+      "bg": "color.terminal.fg",
+      "fgHex": "#0c0909",
+      "bgHex": "#e99499",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "slot 2",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.terminal.ansi.2",
+      "bg": "color.terminal.bg",
+      "fgHex": "#bd787d",
+      "bgHex": "#0c0909",
+      "ratio": 5.81,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "slot 3",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.terminal.ansi.3",
+      "bg": "color.terminal.bg",
+      "fgHex": "#d4868b",
+      "bgHex": "#0c0909",
+      "ratio": 7.16,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "slot 5",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.terminal.ansi.5",
+      "bg": "color.terminal.bg",
+      "fgHex": "#f73f35",
+      "bgHex": "#0c0909",
+      "ratio": 5.4,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "slot 7",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.terminal.ansi.7",
+      "bg": "color.terminal.bg",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#0c0909",
+      "ratio": 10.37,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "slot 11",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.terminal.ansi.11",
+      "bg": "color.terminal.bg",
+      "fgHex": "#b37175",
+      "bgHex": "#0c0909",
+      "ratio": 5.23,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "slot 1 (3.42:1)",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.terminal.ansi.1",
+      "bg": "color.terminal.bg",
+      "fgHex": "#c81a1a",
+      "bgHex": "#0c0909",
+      "ratio": 3.42,
+      "pass": false,
+      "waiver": "heritage slot; documented as failing, programs choose slot semantics"
+    },
+    {
+      "label": "slot 4 (2.09:1)",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.terminal.ansi.4",
+      "bg": "color.terminal.bg",
+      "fgHex": "#8c1212",
+      "bgHex": "#0c0909",
+      "ratio": 2.09,
+      "pass": false,
+      "waiver": "heritage slot; documented as failing, programs choose slot semantics"
+    },
+    {
+      "label": "slot 6 (3.26:1)",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.terminal.ansi.6",
+      "bg": "color.terminal.bg",
+      "fgHex": "#9e474a",
+      "bgHex": "#0c0909",
+      "ratio": 3.26,
+      "pass": false,
+      "waiver": "heritage slot; documented as failing, programs choose slot semantics"
+    },
+    {
+      "label": "slot 8 (1.86:1)",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.terminal.ansi.8",
+      "bg": "color.terminal.bg",
+      "fgHex": "#7d1310",
+      "bgHex": "#0c0909",
+      "ratio": 1.86,
+      "pass": false,
+      "waiver": "heritage slot; documented as failing, programs choose slot semantics"
+    },
+    {
+      "label": "slot 9 (2.70:1)",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.terminal.ansi.9",
+      "bg": "color.terminal.bg",
+      "fgHex": "#ab1612",
+      "bgHex": "#0c0909",
+      "ratio": 2.7,
+      "pass": false,
+      "waiver": "heritage slot; documented as failing, programs choose slot semantics"
+    },
+    {
+      "label": "slot 10 (2.92:1)",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.terminal.ansi.10",
+      "bg": "color.terminal.bg",
+      "fgHex": "#ad2721",
+      "bgHex": "#0c0909",
+      "ratio": 2.92,
+      "pass": false,
+      "waiver": "heritage slot; documented as failing, programs choose slot semantics"
+    },
+    {
+      "label": "slot 12 (2.12:1)",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.terminal.ansi.12",
+      "bg": "color.terminal.bg",
+      "fgHex": "#871f19",
+      "bgHex": "#0c0909",
+      "ratio": 2.12,
+      "pass": false,
+      "waiver": "heritage slot; documented as failing, programs choose slot semantics"
+    },
+    {
+      "label": "slot 13 (4.43:1)",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.terminal.ansi.13",
+      "bg": "color.terminal.bg",
+      "fgHex": "#e82132",
+      "bgHex": "#0c0909",
+      "ratio": 4.43,
+      "pass": false,
+      "waiver": "heritage slot; documented as failing, programs choose slot semantics"
+    },
+    {
+      "label": "slot 14 (4.28:1)",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.terminal.ansi.14",
+      "bg": "color.terminal.bg",
+      "fgHex": "#e0292f",
+      "bgHex": "#0c0909",
+      "ratio": 4.28,
+      "pass": false,
+      "waiver": "heritage slot; documented as failing, programs choose slot semantics"
+    },
+    {
+      "label": "slot 15 (4.45:1; not in the foundations list)",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.terminal.ansi.15",
+      "bg": "color.terminal.bg",
+      "fgHex": "#a3676b",
+      "bgHex": "#0c0909",
+      "ratio": 4.45,
+      "pass": false,
+      "waiver": "heritage slot; documented as failing, programs choose slot semantics"
+    },
+    {
+      "label": "slot 0 (1.00:1; it is the background)",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.terminal.ansi.0",
+      "bg": "color.terminal.bg",
+      "fgHex": "#0c0909",
+      "bgHex": "#0c0909",
+      "ratio": 1,
+      "pass": false,
+      "waiver": "heritage slot; slot 0 is the terminal background and is never a foreground on it"
+    }
+  ]
+}

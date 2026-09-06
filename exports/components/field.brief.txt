@@ -1,0 +1,39 @@
+j3w1/theme implementation brief — field
+theme: j3w1-theme 0.1.0-draft.1  profile: default  sourceDigest: sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=
+pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/components/field.json
+spec: spec/components/field.md  site: https://j3w1.github.io/theme/#c-field
+maturity: stable  priority: R1
+
+Summary: The label, control, help and message wrapper that every form control sits in; it fixes the stacking order, the required mark, the description links and the invalid message.
+
+Tokens (resolved):
+  root.text                #e99499  ({color.text.default})
+  label.text               #ffa2a7  ({color.text.bright})
+  label.required-mark      #f73f35  ({color.status.danger.text})
+  control.bg               #0c0909  ({color.surface.input})
+  control.border           #a3676b  ({color.border.control})
+  control.border-invalid   #e53935  ({color.status.danger.border})
+  control.text-disabled    #8a5559  ({color.text.disabled})
+  control.bg-disabled      #160b0b  ({color.interaction.disabled.bg})
+  control.border-disabled  #7d1310  ({color.border.disabled})
+  help.text                #bd787d  ({color.text.muted})
+  message.text             #f73f35  ({color.status.danger.text})
+
+States: default, required, invalid, disabled
+  default: label {color.text.bright}; help {color.text.muted}; control as its own component [—]
+  required: `*` after the label in {color.status.danger.text} plus visually hidden "required" [`required` attribute; the mark]
+  invalid: the control's 2px {color.status.danger.border}; message with the ✕ glyph in {color.status.danger.text}; help visually hidden [border width 1 → 2px; glyph; `aria-invalid`]
+  disabled: label and control text {color.text.disabled}; control {color.interaction.disabled.bg} with 1px {color.border.disabled}; help unchanged [`disabled`; cursor: not-allowed]
+
+Keyboard:
+  Tab / Shift+Tab: Reaches the control; the label is not a tab stop.
+
+ARIA: native <label for> with aria-describedby on the control (https://www.w3.org/WAI/ARIA/apg/practices/forms/)
+Responsive: Fills its container with min-width 0; at 320px label, control, help and message stack without clipping; long labels wrap. RTL keeps the stack and mirrors the required mark to the label's end.
+Portability: <div> wrapper with <label for>, the control, <p> help and <p> message; aria-describedby lists help then message; aria-invalid on the control only after interaction or submit; groups use fieldset and legend instead of label.
+  native: GTK4 Box with a Label, the control and a caption-style Label.
+  native: Qt QFormLayout row with a QLabel buddy.
+  native: Terminal UI: label line, control line, dim help line.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

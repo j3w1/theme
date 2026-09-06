@@ -1,0 +1,99 @@
+/* link — reference CSS. The underline is the affordance; hover fills and
+   thickens it; current swaps it for the 2px indicator bar. Every real
+   pseudo-class is paired with the forced-state attribute the state matrix
+   emits. Token variables only. */
+
+.link-prose {
+  margin: 0;
+  max-width: 40rem;
+  color: var(--color-text-default);
+  font-size: var(--font-size-reading);
+  line-height: var(--font-line-height-reading);
+}
+
+.link {
+  color: var(--color-text-link);
+  text-decoration: underline;
+  text-decoration-color: var(--color-text-link-underline);
+  text-decoration-thickness: var(--border-width-default);
+  text-underline-offset: var(--space-2);
+  border-radius: var(--radius-none);
+  cursor: pointer;
+  outline: 0;
+}
+
+.link-standalone {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: 0 var(--space-4);
+  min-height: var(--density-control-height, 32px);
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+}
+
+.link-icon {
+  flex: none;
+  width: var(--icon-size-md);
+  height: var(--icon-size-md);
+  stroke: currentColor;
+  fill: none;
+}
+
+/* hover: the strong fill, the prose-white text, a 2px underline in the text colour */
+@media (hover: hover) {
+  .link:hover {
+    background: var(--color-interaction-hover-bg-strong);
+    color: var(--color-text-link-hover);
+    text-decoration-color: currentColor;
+    text-decoration-thickness: var(--border-width-emphasis);
+  }
+}
+
+[data-state-hover] .link {
+  background: var(--color-interaction-hover-bg-strong);
+  color: var(--color-text-link-hover);
+  text-decoration-color: currentColor;
+  text-decoration-thickness: var(--border-width-emphasis);
+}
+
+/* focus-visible */
+.link:focus-visible,
+[data-state-focus-visible] .link {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* visited: only colour may change in a real :visited rule */
+.link:visited,
+[data-state-visited] .link {
+  color: var(--color-text-default);
+}
+
+/* current: the bar replaces the underline; no hover fill */
+.link[aria-current="page"],
+[data-state-current] .link {
+  color: var(--color-text-bright);
+  text-decoration: none;
+  border-bottom: var(--border-width-emphasis) solid var(--color-border-selected-indicator);
+  background: transparent;
+}
+
+@media (hover: hover) {
+  .link[aria-current="page"]:hover {
+    background: transparent;
+    color: var(--color-text-bright);
+  }
+}
+
+@media (forced-colors: active) {
+  .link:focus-visible,
+  [data-state-focus-visible] .link {
+    outline-color: Highlight;
+  }
+
+  .link[aria-current="page"],
+  [data-state-current] .link {
+    border-bottom-color: Highlight;
+  }
+}

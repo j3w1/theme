@@ -1,0 +1,272 @@
+/* wizard — reference CSS. Native buttons in an ordered list; the current
+   step is aria-current="step". Every real pseudo-class is paired with the
+   forced-state attribute the state matrix emits; [data-state-invalid] and
+   [data-state-busy] are also the runtime hooks a host sets on the root. */
+
+.wizard {
+  display: grid;
+  gap: var(--space-8);
+  min-width: 0;
+  max-width: 36rem;
+  color: var(--color-text-default);
+}
+
+.wizard-steps {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-bottom: var(--border-width-default) solid var(--color-border-divider);
+}
+
+.wizard-step {
+  flex: 1 1 8rem;
+  min-width: 0;
+}
+
+.wizard-step-button {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  width: 100%;
+  min-height: var(--density-row-height, 36px);
+  padding: 0 var(--density-control-padding-x, 12px);
+  background: transparent;
+  border: 0;
+  border-bottom: var(--border-width-emphasis) solid transparent;
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+
+.wizard-step-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--icon-size-lg);
+  font-variant-numeric: tabular-nums;
+}
+
+.wizard-step-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* complete: the ✓ in the success text colour, as a marker or as a suffix */
+.wizard-step-complete .wizard-step-marker,
+.wizard-step-done {
+  color: var(--color-status-success-text);
+}
+
+.wizard-panel {
+  padding: var(--space-12);
+  background: var(--color-surface-default);
+  border: var(--border-width-default) solid var(--color-border-default);
+}
+
+.wizard-title {
+  margin: 0 0 var(--space-8);
+  color: var(--color-text-bright);
+  font-size: var(--font-size-h3);
+  line-height: var(--font-line-height-h3);
+  font-weight: var(--font-weight-bold);
+}
+
+.wizard-text {
+  margin: 0;
+}
+
+.wizard-message {
+  display: none;
+  margin: var(--space-8) 0 0;
+  color: var(--color-status-danger-text);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.wizard-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-8);
+}
+
+.wizard-back,
+.wizard-next {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  min-height: var(--density-control-height, 32px);
+  padding: 0 var(--density-control-padding-x, 12px);
+  border: var(--border-width-default) solid;
+  border-radius: var(--radius-none);
+  font: inherit;
+  cursor: pointer;
+}
+
+.wizard-back {
+  background: var(--color-action-secondary-bg);
+  border-color: var(--color-action-secondary-border);
+  color: var(--color-action-secondary-text);
+}
+
+.wizard-next {
+  background: var(--color-action-primary-bg);
+  border-color: var(--color-action-primary-border);
+  color: var(--color-action-primary-text);
+}
+
+.wizard-busy {
+  display: none;
+}
+
+/* hover */
+.wizard-step-button:hover:not(:disabled),
+[data-state-hover] .wizard-step-button:not(:disabled) {
+  background: var(--color-interaction-hover-bg);
+}
+
+.wizard-back:hover:not(:disabled),
+[data-state-hover] .wizard-back:not(:disabled) {
+  background: var(--color-action-secondary-hover-bg);
+}
+
+.wizard-next:hover:not(:disabled),
+[data-state-hover] .wizard-next:not(:disabled) {
+  background: var(--color-action-primary-hover-bg);
+}
+
+.wizard-back:active {
+  background: var(--color-action-secondary-pressed-bg);
+  border-color: var(--color-border-active);
+}
+
+.wizard-next:active {
+  background: var(--color-action-primary-pressed-bg);
+}
+
+/* focus-visible: the dashed ring; on the primary fill it takes the on-fill colour */
+.wizard-step-button:focus-visible,
+.wizard-back:focus-visible,
+[data-state-focus-visible] .wizard-step-button[aria-current="step"] {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.wizard-next:focus-visible,
+[data-state-focus-visible] .wizard-next {
+  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline-offset: var(--focus-offset);
+}
+
+/* current: the 2px indicator and bright text */
+.wizard-step-button[aria-current="step"],
+[data-state-current] .wizard-step-button[aria-current="step"] {
+  border-bottom-color: var(--color-border-selected-indicator);
+  color: var(--color-text-bright);
+}
+
+/* disabled: a future step (the matrix disables every button in the cell) */
+.wizard-step-button:disabled,
+[data-state-disabled] .wizard-step-button {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.wizard-step-button:disabled .wizard-step-marker,
+.wizard-step-button:disabled .wizard-step-done,
+[data-state-disabled] .wizard-step-marker,
+[data-state-disabled] .wizard-step-done {
+  color: var(--color-text-disabled);
+}
+
+.wizard-back:disabled,
+[data-state-disabled] .wizard-back {
+  background: var(--color-interaction-disabled-bg);
+  border-color: var(--color-border-disabled);
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.wizard-next:disabled,
+[data-state-disabled] .wizard-next {
+  background: var(--color-interaction-disabled-bg);
+  border-color: var(--color-border-disabled);
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+/* invalid: the current step's marker becomes ✕ and the panel shows the message */
+[data-state-invalid] .wizard-step-button[aria-current="step"] {
+  border-bottom-color: var(--color-status-danger-border);
+}
+
+[data-state-invalid] .wizard-step-button[aria-current="step"] .wizard-step-marker {
+  color: var(--color-status-danger-text);
+  font-size: 0;
+}
+
+[data-state-invalid] .wizard-step-button[aria-current="step"] .wizard-step-marker::before {
+  content: "✕";
+  font-size: var(--font-size-ui-md);
+}
+
+[data-state-invalid] .wizard-message {
+  display: block;
+}
+
+/* busy: aria-busy on the wizard; Next shows the static ⋯ glyph */
+.wizard[aria-busy="true"] .wizard-busy,
+[data-state-busy] .wizard-busy {
+  display: inline;
+}
+
+.wizard[aria-busy="true"] .wizard-next,
+[data-state-busy] .wizard-next {
+  cursor: progress;
+}
+
+@media (hover: none) {
+  .wizard-step-button:hover:not(:disabled) {
+    background: transparent;
+  }
+
+  .wizard-back:hover:not(:disabled) {
+    background: var(--color-action-secondary-bg);
+  }
+
+  .wizard-next:hover:not(:disabled) {
+    background: var(--color-action-primary-bg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .wizard-step-button,
+  .wizard-back,
+  .wizard-next {
+    transition: background-color var(--motion-duration-fast);
+  }
+}
+
+@media (max-width: 600px) {
+  .wizard-steps {
+    flex-direction: column;
+  }
+}
+
+@media (forced-colors: active) {
+  .wizard-step-button:focus-visible,
+  .wizard-back:focus-visible,
+  .wizard-next:focus-visible,
+  [data-state-focus-visible] .wizard-step-button[aria-current="step"],
+  [data-state-focus-visible] .wizard-next {
+    outline-color: Highlight;
+  }
+
+  .wizard-step-button[aria-current="step"] {
+    border-bottom-color: Highlight;
+  }
+}

@@ -1,0 +1,47 @@
+j3w1/theme implementation brief — chip
+theme: j3w1-theme 0.1.0-draft.1  profile: default  sourceDigest: sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=
+pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/components/chip.json
+spec: spec/components/chip.md  site: https://j3w1.github.io/theme/#c-chip
+maturity: stable  priority: R1
+
+Summary: A square bordered token for a filter, a removable value or a static tag; a pressed filter chip takes the selection fill and a check glyph.
+
+Tokens (resolved):
+  root.bg               #160b0b  ({color.surface.default})
+  root.border           #a3676b  ({color.border.control})
+  root.text             #e99499  ({color.text.default})
+  root.bg-hover         #1c0a09  ({color.interaction.hover.bg})
+  root.bg-pressed       #420f0c  ({color.interaction.pressed.bg})
+  root.ring             #e53935  ({color.interaction.focus.ring})
+  root.text-disabled    #8a5559  ({color.text.disabled})
+  root.border-disabled  #7d1310  ({color.border.disabled})
+  root.bg-disabled      #160b0b  ({color.interaction.disabled.bg})
+  selected.bg           #911410  ({color.interaction.selection.bg})
+  selected.text         #f4eeee  ({color.interaction.selection.text})
+  selected.ring         #ffa2a7  ({color.interaction.focus.ring-container})
+  remove.text           #bd787d  ({color.text.muted})
+  remove.text-hover     #ffa2a7  ({color.text.bright})
+  remove.bg-hover       #630f0d  ({color.interaction.hover.bg-strong})
+
+States: default, hover, focus-visible, selected, selected+focus-visible, disabled
+  default: 1px {color.border.control} on {color.surface.default}; text {color.text.default} [—]
+  hover: background → {color.interaction.hover.bg}; the remove button → {color.interaction.hover.bg-strong} with {color.text.bright} [cursor: pointer]
+  focus-visible: ring 1px dashed {color.interaction.focus.ring} at −2px on the chip or on the remove button [the ring]
+  selected: fill {color.interaction.selection.bg}; text and glyph {color.interaction.selection.text}; the border takes the fill colour [`aria-pressed="true"`; the ✓ glyph]
+  selected+focus-visible: the fill and the ring in {color.interaction.focus.ring-container} [both visible at once]
+  disabled: text {color.text.disabled}; border {color.border.disabled}; background {color.interaction.disabled.bg}; no hover [`disabled`; cursor: not-allowed]
+
+Keyboard:
+  Tab / Shift+Tab: Reaches a filter chip, or the remove button of a removable chip; static chips are skipped.
+  Space / Enter: Toggles a filter chip; activates the remove button.
+  Backspace / Delete: In a token field, removes the chip before the caret (the field's contract, not the chip's).
+
+ARIA: native button with aria-pressed for filters; a span with a labelled remove button for values; a plain span for tags
+Responsive: A chip never wraps its label; a row of chips wraps at 320px with the density gap between rows. Long values are shortened by the host with a full-value tooltip, never by clipping the border. RTL mirrors the check gutter and the remove button to the inline end.
+Portability: A filter chip is a button with aria-pressed; a removable chip is a span holding the label and a button with aria-label "Remove <value>"; a static chip is a span; the fill is a background, the ring an outline, the check a glyph.
+  native: GTK4 ToggleButton for filters; a Box of Label and Button for removable values.
+  native: Qt QPushButton with checkable for filters; a QFrame with a QToolButton for removable values.
+  native: Terminal UI: bracketed labels; the pressed chip inverted; removable values followed by an x.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

@@ -1,0 +1,552 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "0.1.0-draft.1",
+  "profile": "default",
+  "sourceDigest": "sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=",
+  "id": "radio-group",
+  "family": "forms-basic",
+  "maturity": "stable",
+  "priority": "R1",
+  "coverage": {
+    "family": "forms-basic",
+    "priority": "R1",
+    "maturity": "stable",
+    "specified": true,
+    "demonstrated": true,
+    "tested": true,
+    "states": 8
+  },
+  "title": "Radio group",
+  "summary": "A fieldset of native radios for one exclusive choice; each radio is a 16px square that fills with the primary action colour and an inner square when checked.",
+  "anchors": {
+    "site": "https://j3w1.github.io/theme/#c-radio-group",
+    "spec": "spec/components/radio-group.md",
+    "brief": "exports/components/radio-group.brief.txt"
+  },
+  "native": true,
+  "aria": {
+    "pattern": "native <input type=\"radio\"> inside <fieldset> with <legend>",
+    "apg": "https://www.w3.org/WAI/ARIA/apg/patterns/radio/"
+  },
+  "variants": [
+    {
+      "id": "default",
+      "name": "Vertical"
+    },
+    {
+      "id": "horizontal",
+      "name": "Horizontal",
+      "description": "Options in a row that wraps; for two or three short labels."
+    }
+  ],
+  "sizes": [
+    "compact",
+    "comfortable"
+  ],
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "checked",
+    "checked+focus-visible",
+    "disabled",
+    "invalid",
+    "required"
+  ],
+  "tokens": {
+    "box.bg": {
+      "alias": "color.surface.input",
+      "value": "#0c0909",
+      "status": "observed"
+    },
+    "box.border": {
+      "alias": "color.border.control",
+      "value": "#a3676b",
+      "status": "proposed"
+    },
+    "box.bg-hover": {
+      "alias": "color.interaction.hover.bg",
+      "value": "#1c0a09",
+      "status": "observed"
+    },
+    "box.ring": {
+      "alias": "color.interaction.focus.ring",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "box.bg-checked": {
+      "alias": "color.action.primary.bg",
+      "value": "#871f19",
+      "status": "observed"
+    },
+    "box.bg-checked-hover": {
+      "alias": "color.action.primary.hover-bg",
+      "value": "#911410",
+      "status": "observed"
+    },
+    "box.dot": {
+      "alias": "color.action.primary.text",
+      "value": "#f4eeee",
+      "status": "observed"
+    },
+    "box.ring-checked": {
+      "alias": "color.interaction.focus.ring-container",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "box.border-invalid": {
+      "alias": "color.status.danger.border",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "box.bg-disabled": {
+      "alias": "color.interaction.disabled.bg",
+      "value": "#160b0b",
+      "status": "observed"
+    },
+    "box.border-disabled": {
+      "alias": "color.border.disabled",
+      "value": "#7d1310",
+      "status": "observed"
+    },
+    "box.dot-disabled": {
+      "alias": "color.text.disabled",
+      "value": "#8a5559",
+      "status": "approved"
+    },
+    "text.default": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "text.disabled": {
+      "alias": "color.text.disabled",
+      "value": "#8a5559",
+      "status": "approved"
+    },
+    "legend.text": {
+      "alias": "color.text.bright",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "legend.required-mark": {
+      "alias": "color.status.danger.text",
+      "value": "#f73f35",
+      "status": "observed"
+    },
+    "message.text": {
+      "alias": "color.status.danger.text",
+      "value": "#f73f35",
+      "status": "observed"
+    }
+  },
+  "stateRules": [
+    {
+      "state": "default",
+      "visual": "16px square, 1px {color.border.control} on {color.surface.input}; text {color.text.default}",
+      "channel": "—",
+      "tokens": {
+        "bg": {
+          "alias": "color.surface.input",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.control",
+          "value": "#a3676b",
+          "status": "proposed"
+        }
+      }
+    },
+    {
+      "state": "hover",
+      "visual": "box background → {color.interaction.hover.bg}; a checked box → {color.action.primary.hover-bg}",
+      "channel": "cursor: pointer; hover-capable pointers only",
+      "tokens": {
+        "bg": {
+          "alias": "color.interaction.hover.bg",
+          "value": "#1c0a09",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.control",
+          "value": "#a3676b",
+          "status": "proposed"
+        }
+      }
+    },
+    {
+      "state": "focus-visible",
+      "visual": "ring 1px dashed {color.interaction.focus.ring} at −2px around the box",
+      "channel": "the ring",
+      "tokens": {
+        "bg": {
+          "alias": "color.surface.input",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.control",
+          "value": "#a3676b",
+          "status": "proposed"
+        },
+        "outline": {
+          "alias": "color.interaction.focus.ring",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "checked",
+      "visual": "box fills {color.action.primary.bg}; an 8px inner square in {color.action.primary.text}; border stays {color.border.control}",
+      "channel": "the inner square; `checked`",
+      "tokens": {
+        "fg": {
+          "alias": "color.action.primary.text",
+          "value": "#f4eeee",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.action.primary.bg",
+          "value": "#871f19",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "checked+focus-visible",
+      "visual": "the fill and a ring in {color.interaction.focus.ring-container}",
+      "channel": "inner square and ring",
+      "tokens": {
+        "fg": {
+          "alias": "color.action.primary.text",
+          "value": "#f4eeee",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.action.primary.bg",
+          "value": "#871f19",
+          "status": "observed"
+        },
+        "outline": {
+          "alias": "color.interaction.focus.ring-container",
+          "value": "#ffa2a7",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "disabled",
+      "visual": "boxes {color.interaction.disabled.bg} with 1px {color.border.disabled}; inner square and text {color.text.disabled}",
+      "channel": "`disabled`; cursor: not-allowed",
+      "tokens": {}
+    },
+    {
+      "state": "invalid",
+      "visual": "every box border 2px {color.status.danger.border}; message with the ✕ glyph",
+      "channel": "border width 1 → 2px; glyph; `aria-invalid`",
+      "tokens": {
+        "bg": {
+          "alias": "color.surface.input",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.status.danger.border",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "required",
+      "visual": "`*` after the legend in {color.status.danger.text} plus visually hidden \"required\"",
+      "channel": "`required`; the mark",
+      "tokens": {
+        "bg": {
+          "alias": "color.surface.input",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.control",
+          "value": "#a3676b",
+          "status": "proposed"
+        }
+      }
+    }
+  ],
+  "keyboard": [
+    {
+      "key": "Tab / Shift+Tab",
+      "action": "Enters the group on the checked radio, or the first when none is checked; leaves it entirely."
+    },
+    {
+      "key": "Up / Down / Left / Right",
+      "action": "Moves the check to the previous or next radio and selects it (native); wraps at the ends."
+    },
+    {
+      "key": "Space",
+      "action": "Checks the focused radio when none is checked."
+    }
+  ],
+  "responsive": "Vertical groups stack at every width. The horizontal variant wraps into rows at 320px and keeps a 16px gap between options. RTL mirrors the box to the inline start and reverses the row.",
+  "portability": {
+    "web": "native <input type=\"radio\"> sharing a name, each inside a <label>, all inside <fieldset> with <legend>; never role=\"radiogroup\" on a div when the native group is available; the message is linked from the fieldset.",
+    "nativeFallbacks": [
+      "GTK4 CheckButton with a group; square indicator through CSS.",
+      "Qt QRadioButton in a QButtonGroup; indicator subcontrol styled square.",
+      "Terminal UI: (o) and ( ) glyphs; arrow keys move the mark."
+    ]
+  },
+  "fixtures": [
+    "FX-LONG",
+    "FX-320",
+    "FX-ZOOM-200",
+    "FX-I18N",
+    "FX-RTL",
+    "FX-RM",
+    "FX-HC",
+    "FX-TOUCH",
+    "FX-DENSITY",
+    "FX-STATE-MATRIX"
+  ],
+  "related": [
+    "checkbox",
+    "switch",
+    "segmented-control",
+    "fieldset",
+    "field",
+    "select"
+  ],
+  "specimens": [
+    "settings-panel",
+    "admin-form"
+  ],
+  "nonExamples": "Circular radios. A checked state shown by border colour alone with no inner\nsquare. Radios that submit or navigate on change. A group with no legend or\nwith the legend rendered as a label on one option. Separate tab stops per\nradio. One radio on its own. Disabling by opacity. A div with\n`role=\"radiogroup\"` built from spans.",
+  "contrast": [
+    {
+      "label": "radio-group default border",
+      "state": "default",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.control",
+      "bg": "color.surface.input",
+      "fgHex": "#a3676b",
+      "bgHex": "#0c0909",
+      "ratio": 4.45,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "radio-group hover border",
+      "state": "hover",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.control",
+      "bg": "color.interaction.hover.bg",
+      "fgHex": "#a3676b",
+      "bgHex": "#1c0a09",
+      "ratio": 4.29,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "radio-group focus-visible border",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.control",
+      "bg": "color.surface.input",
+      "fgHex": "#a3676b",
+      "bgHex": "#0c0909",
+      "ratio": 4.45,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "radio-group focus-visible outline",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring",
+      "bg": "color.surface.input",
+      "fgHex": "#e53935",
+      "bgHex": "#0c0909",
+      "ratio": 4.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "radio-group checked text",
+      "state": "checked",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.primary.text",
+      "bg": "color.action.primary.bg",
+      "fgHex": "#f4eeee",
+      "bgHex": "#871f19",
+      "ratio": 8.17,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "radio-group checked+focus-visible text",
+      "state": "checked+focus-visible",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.primary.text",
+      "bg": "color.action.primary.bg",
+      "fgHex": "#f4eeee",
+      "bgHex": "#871f19",
+      "ratio": 8.17,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "radio-group checked+focus-visible outline",
+      "state": "checked+focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring-container",
+      "bg": "color.action.primary.bg",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#871f19",
+      "ratio": 4.9,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "radio-group invalid border",
+      "state": "invalid",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.status.danger.border",
+      "bg": "color.surface.input",
+      "fgHex": "#e53935",
+      "bgHex": "#0c0909",
+      "ratio": 4.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "radio-group required border",
+      "state": "required",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.control",
+      "bg": "color.surface.input",
+      "fgHex": "#a3676b",
+      "bgHex": "#0c0909",
+      "ratio": 4.45,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "option text on the panel surface",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.default",
+      "fgHex": "#e99499",
+      "bgHex": "#160b0b",
+      "ratio": 8.43,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "legend on the panel surface",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.bright",
+      "bg": "color.surface.default",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#160b0b",
+      "ratio": 10.1,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "checked radio edge against the panel (the border stays border.control)",
+      "state": "checked",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.control",
+      "bg": "color.surface.default",
+      "fgHex": "#a3676b",
+      "bgHex": "#160b0b",
+      "ratio": 4.33,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "inner square on the hovered checked fill",
+      "state": "hover",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.action.primary.text",
+      "bg": "color.action.primary.hover-bg",
+      "fgHex": "#f4eeee",
+      "bgHex": "#911410",
+      "ratio": 7.92,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "validation message on the panel surface",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.status.danger.text",
+      "bg": "color.surface.default",
+      "fgHex": "#f73f35",
+      "bgHex": "#160b0b",
+      "ratio": 5.26,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "disabled option text (exempt; house floor 3:1)",
+      "state": "disabled",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.text.disabled",
+      "bg": "color.surface.default",
+      "fgHex": "#8a5559",
+      "bgHex": "#160b0b",
+      "ratio": 3.24,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "disabled inner square (exempt; house floor 3:1)",
+      "state": "disabled",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.text.disabled",
+      "bg": "color.interaction.disabled.bg",
+      "fgHex": "#8a5559",
+      "bgHex": "#160b0b",
+      "ratio": 3.24,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "disabled border (exempt)",
+      "state": "disabled",
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.border.disabled",
+      "bg": "color.interaction.disabled.bg",
+      "fgHex": "#7d1310",
+      "bgHex": "#160b0b",
+      "ratio": 1.82,
+      "pass": true,
+      "waiver": "disabled controls are exempt from 1.4.11"
+    }
+  ]
+}

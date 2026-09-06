@@ -1,0 +1,472 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "0.1.0-draft.1",
+  "profile": "default",
+  "sourceDigest": "sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=",
+  "id": "chip",
+  "family": "display",
+  "maturity": "stable",
+  "priority": "R1",
+  "coverage": {
+    "family": "display",
+    "priority": "R1",
+    "maturity": "stable",
+    "specified": true,
+    "demonstrated": true,
+    "tested": false,
+    "states": 6
+  },
+  "title": "Chip",
+  "summary": "A square bordered token for a filter, a removable value or a static tag; a pressed filter chip takes the selection fill and a check glyph.",
+  "anchors": {
+    "site": "https://j3w1.github.io/theme/#c-chip",
+    "spec": "spec/components/chip.md",
+    "brief": "exports/components/chip.brief.txt"
+  },
+  "native": true,
+  "aria": {
+    "pattern": "native button with aria-pressed for filters; a span with a labelled remove button for values; a plain span for tags"
+  },
+  "variants": [
+    {
+      "id": "filter",
+      "name": "Filter",
+      "description": "A toggle button with aria-pressed; selected chips filter the view."
+    },
+    {
+      "id": "removable",
+      "name": "Removable",
+      "description": "A value with a labelled × button that removes it."
+    },
+    {
+      "id": "static",
+      "name": "Static",
+      "description": "A read-only tag; no hover, no focus."
+    }
+  ],
+  "sizes": [
+    "compact",
+    "comfortable"
+  ],
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "selected",
+    "selected+focus-visible",
+    "disabled"
+  ],
+  "tokens": {
+    "root.bg": {
+      "alias": "color.surface.default",
+      "value": "#160b0b",
+      "status": "observed"
+    },
+    "root.border": {
+      "alias": "color.border.control",
+      "value": "#a3676b",
+      "status": "proposed"
+    },
+    "root.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "root.bg-hover": {
+      "alias": "color.interaction.hover.bg",
+      "value": "#1c0a09",
+      "status": "observed"
+    },
+    "root.bg-pressed": {
+      "alias": "color.interaction.pressed.bg",
+      "value": "#420f0c",
+      "status": "observed"
+    },
+    "root.ring": {
+      "alias": "color.interaction.focus.ring",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "root.text-disabled": {
+      "alias": "color.text.disabled",
+      "value": "#8a5559",
+      "status": "approved"
+    },
+    "root.border-disabled": {
+      "alias": "color.border.disabled",
+      "value": "#7d1310",
+      "status": "observed"
+    },
+    "root.bg-disabled": {
+      "alias": "color.interaction.disabled.bg",
+      "value": "#160b0b",
+      "status": "observed"
+    },
+    "selected.bg": {
+      "alias": "color.interaction.selection.bg",
+      "value": "#911410",
+      "status": "observed"
+    },
+    "selected.text": {
+      "alias": "color.interaction.selection.text",
+      "value": "#f4eeee",
+      "status": "observed"
+    },
+    "selected.ring": {
+      "alias": "color.interaction.focus.ring-container",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "remove.text": {
+      "alias": "color.text.muted",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "remove.text-hover": {
+      "alias": "color.text.bright",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "remove.bg-hover": {
+      "alias": "color.interaction.hover.bg-strong",
+      "value": "#630f0d",
+      "status": "observed"
+    }
+  },
+  "stateRules": [
+    {
+      "state": "default",
+      "visual": "1px {color.border.control} on {color.surface.default}; text {color.text.default}",
+      "channel": "—",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.default",
+          "value": "#160b0b",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.control",
+          "value": "#a3676b",
+          "status": "proposed"
+        }
+      }
+    },
+    {
+      "state": "hover",
+      "visual": "background → {color.interaction.hover.bg}; the remove button → {color.interaction.hover.bg-strong} with {color.text.bright}",
+      "channel": "cursor: pointer",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.interaction.hover.bg",
+          "value": "#1c0a09",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.control",
+          "value": "#a3676b",
+          "status": "proposed"
+        }
+      }
+    },
+    {
+      "state": "focus-visible",
+      "visual": "ring 1px dashed {color.interaction.focus.ring} at −2px on the chip or on the remove button",
+      "channel": "the ring",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.default",
+          "value": "#160b0b",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.control",
+          "value": "#a3676b",
+          "status": "proposed"
+        },
+        "outline": {
+          "alias": "color.interaction.focus.ring",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "selected",
+      "visual": "fill {color.interaction.selection.bg}; text and glyph {color.interaction.selection.text}; the border takes the fill colour",
+      "channel": "`aria-pressed=\"true\"`; the ✓ glyph",
+      "tokens": {
+        "fg": {
+          "alias": "color.interaction.selection.text",
+          "value": "#f4eeee",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.interaction.selection.bg",
+          "value": "#911410",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "selected+focus-visible",
+      "visual": "the fill and the ring in {color.interaction.focus.ring-container}",
+      "channel": "both visible at once",
+      "tokens": {
+        "fg": {
+          "alias": "color.interaction.selection.text",
+          "value": "#f4eeee",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.interaction.selection.bg",
+          "value": "#911410",
+          "status": "observed"
+        },
+        "outline": {
+          "alias": "color.interaction.focus.ring-container",
+          "value": "#ffa2a7",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "disabled",
+      "visual": "text {color.text.disabled}; border {color.border.disabled}; background {color.interaction.disabled.bg}; no hover",
+      "channel": "`disabled`; cursor: not-allowed",
+      "tokens": {}
+    }
+  ],
+  "keyboard": [
+    {
+      "key": "Tab / Shift+Tab",
+      "action": "Reaches a filter chip, or the remove button of a removable chip; static chips are skipped."
+    },
+    {
+      "key": "Space / Enter",
+      "action": "Toggles a filter chip; activates the remove button."
+    },
+    {
+      "key": "Backspace / Delete",
+      "action": "In a token field, removes the chip before the caret (the field's contract, not the chip's)."
+    }
+  ],
+  "responsive": "A chip never wraps its label; a row of chips wraps at 320px with the density gap between rows. Long values are shortened by the host with a full-value tooltip, never by clipping the border. RTL mirrors the check gutter and the remove button to the inline end.",
+  "portability": {
+    "web": "A filter chip is a button with aria-pressed; a removable chip is a span holding the label and a button with aria-label \"Remove <value>\"; a static chip is a span; the fill is a background, the ring an outline, the check a glyph.",
+    "nativeFallbacks": [
+      "GTK4 ToggleButton for filters; a Box of Label and Button for removable values.",
+      "Qt QPushButton with checkable for filters; a QFrame with a QToolButton for removable values.",
+      "Terminal UI: bracketed labels; the pressed chip inverted; removable values followed by an x."
+    ]
+  },
+  "fixtures": [
+    "FX-LONG",
+    "FX-320",
+    "FX-ZOOM-200",
+    "FX-I18N",
+    "FX-RTL",
+    "FX-RM",
+    "FX-HC",
+    "FX-TOUCH",
+    "FX-STATE-MATRIX"
+  ],
+  "related": [
+    "badge",
+    "button",
+    "multiselect",
+    "combobox",
+    "toolbar"
+  ],
+  "specimens": [
+    "filterable-table",
+    "admin-form"
+  ],
+  "nonExamples": "Pill or rounded chips. A selected chip shown by a border colour alone\nwithout the fill and `aria-pressed`. A removable chip whose × has no name.\nA chip that is a link. A static tag that reacts to hover. Disabling by\nopacity. A chip whose label clips inside the border. A chip in caption\ntype (that is a badge).",
+  "contrast": [
+    {
+      "label": "chip default text",
+      "state": "default",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.default",
+      "fgHex": "#e99499",
+      "bgHex": "#160b0b",
+      "ratio": 8.43,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "chip default border",
+      "state": "default",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.control",
+      "bg": "color.surface.default",
+      "fgHex": "#a3676b",
+      "bgHex": "#160b0b",
+      "ratio": 4.33,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "chip hover text",
+      "state": "hover",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.interaction.hover.bg",
+      "fgHex": "#e99499",
+      "bgHex": "#1c0a09",
+      "ratio": 8.35,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "chip hover border",
+      "state": "hover",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.control",
+      "bg": "color.interaction.hover.bg",
+      "fgHex": "#a3676b",
+      "bgHex": "#1c0a09",
+      "ratio": 4.29,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "chip focus-visible text",
+      "state": "focus-visible",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.default",
+      "fgHex": "#e99499",
+      "bgHex": "#160b0b",
+      "ratio": 8.43,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "chip focus-visible border",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.control",
+      "bg": "color.surface.default",
+      "fgHex": "#a3676b",
+      "bgHex": "#160b0b",
+      "ratio": 4.33,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "chip focus-visible outline",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring",
+      "bg": "color.surface.default",
+      "fgHex": "#e53935",
+      "bgHex": "#160b0b",
+      "ratio": 4.57,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "chip selected text",
+      "state": "selected",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.interaction.selection.text",
+      "bg": "color.interaction.selection.bg",
+      "fgHex": "#f4eeee",
+      "bgHex": "#911410",
+      "ratio": 7.92,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "chip selected+focus-visible text",
+      "state": "selected+focus-visible",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.interaction.selection.text",
+      "bg": "color.interaction.selection.bg",
+      "fgHex": "#f4eeee",
+      "bgHex": "#911410",
+      "ratio": 7.92,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "chip selected+focus-visible outline",
+      "state": "selected+focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring-container",
+      "bg": "color.interaction.selection.bg",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#911410",
+      "ratio": 4.75,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "remove glyph at rest",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.muted",
+      "bg": "color.surface.default",
+      "fgHex": "#bd787d",
+      "bgHex": "#160b0b",
+      "ratio": 5.66,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "disabled chip text (exempt; house floor 3:1)",
+      "state": "disabled",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.text.disabled",
+      "bg": "color.interaction.disabled.bg",
+      "fgHex": "#8a5559",
+      "bgHex": "#160b0b",
+      "ratio": 3.24,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "disabled chip border (exempt)",
+      "state": "disabled",
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.border.disabled",
+      "bg": "color.interaction.disabled.bg",
+      "fgHex": "#7d1310",
+      "bgHex": "#160b0b",
+      "ratio": 1.82,
+      "pass": true,
+      "waiver": "disabled controls are exempt from 1.4.11"
+    }
+  ]
+}

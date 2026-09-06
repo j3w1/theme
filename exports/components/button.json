@@ -1,0 +1,690 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "0.1.0-draft.1",
+  "profile": "default",
+  "sourceDigest": "sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=",
+  "id": "button",
+  "family": "actions",
+  "maturity": "stable",
+  "priority": "R1",
+  "coverage": {
+    "family": "actions",
+    "priority": "R1",
+    "maturity": "stable",
+    "specified": true,
+    "demonstrated": true,
+    "tested": true,
+    "states": 6
+  },
+  "title": "Button",
+  "summary": "The native push button in the four action tones; primary is the only filled button at rest, destructive fills on hover and always needs a confirmation or an undo.",
+  "anchors": {
+    "site": "https://j3w1.github.io/theme/#c-button",
+    "spec": "spec/components/button.md",
+    "brief": "exports/components/button.brief.txt"
+  },
+  "native": true,
+  "aria": {
+    "pattern": "native <button type=\"button\">",
+    "apg": "https://www.w3.org/WAI/ARIA/apg/patterns/button/"
+  },
+  "variants": [
+    {
+      "id": "default",
+      "name": "Primary",
+      "description": "The one filled button in a view."
+    },
+    {
+      "id": "secondary",
+      "name": "Secondary",
+      "description": "Outline in border.control with text.bright."
+    },
+    {
+      "id": "tertiary",
+      "name": "Tertiary",
+      "description": "Ghost button; text only until hovered."
+    },
+    {
+      "id": "destructive",
+      "name": "Destructive",
+      "description": "Outline in the danger tone that fills on hover."
+    }
+  ],
+  "sizes": [
+    "compact",
+    "comfortable"
+  ],
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "active",
+    "disabled",
+    "loading"
+  ],
+  "tokens": {
+    "root.bg": {
+      "alias": "color.action.primary.bg",
+      "value": "#871f19",
+      "status": "observed"
+    },
+    "root.text": {
+      "alias": "color.action.primary.text",
+      "value": "#f4eeee",
+      "status": "observed"
+    },
+    "root.border": {
+      "alias": "color.action.primary.border",
+      "value": "#9e231f",
+      "status": "observed"
+    },
+    "root.bg-hover": {
+      "alias": "color.action.primary.hover-bg",
+      "value": "#911410",
+      "status": "observed"
+    },
+    "root.bg-active": {
+      "alias": "color.action.primary.pressed-bg",
+      "value": "#630f0d",
+      "status": "observed"
+    },
+    "root.ring": {
+      "alias": "color.interaction.focus.ring-container",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "secondary.bg": {
+      "alias": "color.action.secondary.bg",
+      "value": "rgb(0 0 0 / 0%)",
+      "status": "observed"
+    },
+    "secondary.text": {
+      "alias": "color.action.secondary.text",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "secondary.border": {
+      "alias": "color.action.secondary.border",
+      "value": "#a3676b",
+      "status": "observed"
+    },
+    "secondary.bg-hover": {
+      "alias": "color.action.secondary.hover-bg",
+      "value": "#630f0d",
+      "status": "observed"
+    },
+    "secondary.bg-active": {
+      "alias": "color.action.secondary.pressed-bg",
+      "value": "#420f0c",
+      "status": "observed"
+    },
+    "secondary.ring": {
+      "alias": "color.interaction.focus.ring",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "tertiary.text": {
+      "alias": "color.action.tertiary.text",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "tertiary.bg-hover": {
+      "alias": "color.action.tertiary.hover-bg",
+      "value": "#1c0a09",
+      "status": "observed"
+    },
+    "tertiary.bg-active": {
+      "alias": "color.interaction.pressed.bg",
+      "value": "#420f0c",
+      "status": "observed"
+    },
+    "destructive.text": {
+      "alias": "color.action.destructive.text",
+      "value": "#f73f35",
+      "status": "observed"
+    },
+    "destructive.border": {
+      "alias": "color.action.destructive.border",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "destructive.bg-hover": {
+      "alias": "color.action.destructive.hover-bg",
+      "value": "#dc282e",
+      "status": "observed"
+    },
+    "destructive.text-hover": {
+      "alias": "color.action.destructive.hover-text",
+      "value": "#f9faf9",
+      "status": "observed"
+    },
+    "destructive.bg-active": {
+      "alias": "color.action.destructive.pressed-bg",
+      "value": "#ae1914",
+      "status": "observed"
+    },
+    "destructive.bg-filled": {
+      "alias": "color.action.destructive.filled-bg",
+      "value": "#dc282e",
+      "status": "observed"
+    },
+    "destructive.text-filled": {
+      "alias": "color.action.destructive.filled-text",
+      "value": "#f9faf9",
+      "status": "observed"
+    },
+    "root.border-active": {
+      "alias": "color.border.active",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "root.text-disabled": {
+      "alias": "color.text.disabled",
+      "value": "#8a5559",
+      "status": "approved"
+    },
+    "root.bg-disabled": {
+      "alias": "color.interaction.disabled.bg",
+      "value": "#160b0b",
+      "status": "observed"
+    },
+    "root.border-disabled": {
+      "alias": "color.border.disabled",
+      "value": "#7d1310",
+      "status": "observed"
+    },
+    "loading.glyph": {
+      "alias": "color.action.primary.text",
+      "value": "#f4eeee",
+      "status": "observed"
+    }
+  },
+  "stateRules": [
+    {
+      "state": "default",
+      "visual": "primary: {color.action.primary.bg} fill, {color.action.primary.text}, 1px {color.action.primary.border}; secondary: 1px {color.action.secondary.border}, {color.action.secondary.text}; tertiary: {color.action.tertiary.text}, no border; destructive: 1px {color.action.destructive.border}, {color.action.destructive.text}",
+      "channel": "—",
+      "tokens": {
+        "fg": {
+          "alias": "color.action.primary.text",
+          "value": "#f4eeee",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.action.primary.bg",
+          "value": "#871f19",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "hover",
+      "visual": "primary → {color.action.primary.hover-bg}; secondary → {color.action.secondary.hover-bg}; tertiary → {color.action.tertiary.hover-bg}; destructive fills {color.action.destructive.hover-bg} with {color.action.destructive.hover-text}",
+      "channel": "cursor: pointer; hover-capable pointers only",
+      "tokens": {
+        "fg": {
+          "alias": "color.action.primary.text",
+          "value": "#f4eeee",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.action.primary.hover-bg",
+          "value": "#911410",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "focus-visible",
+      "visual": "ring 1px dashed at −2px: {color.interaction.focus.ring-container} on the primary fill, {color.interaction.focus.ring} on the outline tones, {color.action.destructive.hover-text} on the destructive hover fill",
+      "channel": "the ring",
+      "tokens": {
+        "fg": {
+          "alias": "color.action.primary.text",
+          "value": "#f4eeee",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.action.primary.bg",
+          "value": "#871f19",
+          "status": "observed"
+        },
+        "outline": {
+          "alias": "color.interaction.focus.ring-container",
+          "value": "#ffa2a7",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "active",
+      "visual": "primary → {color.action.primary.pressed-bg}; secondary → {color.action.secondary.pressed-bg}; tertiary → {color.interaction.pressed.bg}; destructive → {color.action.destructive.pressed-bg}; border → {color.border.active} on the outline tones",
+      "channel": "border change; no translation or scale",
+      "tokens": {
+        "fg": {
+          "alias": "color.action.primary.text",
+          "value": "#f4eeee",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.action.primary.pressed-bg",
+          "value": "#630f0d",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.active",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "disabled",
+      "visual": "{color.text.disabled} on {color.interaction.disabled.bg} with 1px {color.border.disabled}, every tone alike; no hover or active styling",
+      "channel": "`disabled`; cursor: not-allowed; never opacity",
+      "tokens": {}
+    },
+    {
+      "state": "loading",
+      "visual": "size unchanged; the static `⋯` glyph replaces the icon; the button keeps its tone and stays focusable but ignores activation",
+      "channel": "glyph; `aria-busy`",
+      "tokens": {
+        "fg": {
+          "alias": "color.action.primary.text",
+          "value": "#f4eeee",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.action.primary.bg",
+          "value": "#871f19",
+          "status": "observed"
+        }
+      }
+    }
+  ],
+  "keyboard": [
+    {
+      "key": "Tab / Shift+Tab",
+      "action": "Moves focus to and from the button in document order."
+    },
+    {
+      "key": "Enter / Space",
+      "action": "Activates (native); Space activates on key up."
+    }
+  ],
+  "responsive": "Width follows the label; a full-width modifier is a layout decision outside the theme. Groups of buttons wrap at 320px rather than shrinking below the density height. RTL mirrors the icon side.",
+  "portability": {
+    "web": "native <button type=\"button\">, or type=\"submit\" in forms; never a div or a link with role=\"button\"; the four tones are class modifiers on the same element; loading through aria-busy and a static glyph, not a spinner.",
+    "nativeFallbacks": [
+      "GTK4 Button with the suggested-action and destructive-action style classes.",
+      "Qt QPushButton stylesheet with a dynamic tone property.",
+      "Terminal UI: bracketed label; primary inverted; destructive in slot 5."
+    ]
+  },
+  "fixtures": [
+    "FX-LONG",
+    "FX-320",
+    "FX-ZOOM-200",
+    "FX-I18N",
+    "FX-RTL",
+    "FX-RM",
+    "FX-HC",
+    "FX-TOUCH",
+    "FX-DENSITY",
+    "FX-STATE-MATRIX"
+  ],
+  "related": [
+    "icon-button",
+    "link",
+    "button-group",
+    "segmented-control",
+    "dialog"
+  ],
+  "specimens": [
+    "admin-form",
+    "settings-panel",
+    "filterable-table"
+  ],
+  "nonExamples": "Rounded corners or pill shapes. Two filled buttons in one view. A red\nfilled destructive button at rest. A hover that only changes text colour.\nTranslating or scaling the button on press. A spinner inside the button.\nDisabling with opacity. A `<div>` or `<a>` styled as a button. A gradient or\nshadow to suggest depth.",
+  "contrast": [
+    {
+      "label": "button default text",
+      "state": "default",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.primary.text",
+      "bg": "color.action.primary.bg",
+      "fgHex": "#f4eeee",
+      "bgHex": "#871f19",
+      "ratio": 8.17,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "button hover text",
+      "state": "hover",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.primary.text",
+      "bg": "color.action.primary.hover-bg",
+      "fgHex": "#f4eeee",
+      "bgHex": "#911410",
+      "ratio": 7.92,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "button focus-visible text",
+      "state": "focus-visible",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.primary.text",
+      "bg": "color.action.primary.bg",
+      "fgHex": "#f4eeee",
+      "bgHex": "#871f19",
+      "ratio": 8.17,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "button focus-visible outline",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring-container",
+      "bg": "color.action.primary.bg",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#871f19",
+      "ratio": 4.9,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "button active text",
+      "state": "active",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.primary.text",
+      "bg": "color.action.primary.pressed-bg",
+      "fgHex": "#f4eeee",
+      "bgHex": "#630f0d",
+      "ratio": 11.41,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "button active border",
+      "state": "active",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.active",
+      "bg": "color.action.primary.pressed-bg",
+      "fgHex": "#e53935",
+      "bgHex": "#630f0d",
+      "ratio": 3.1,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "button loading text",
+      "state": "loading",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.primary.text",
+      "bg": "color.action.primary.bg",
+      "fgHex": "#f4eeee",
+      "bgHex": "#871f19",
+      "ratio": 8.17,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "primary fill against the panel (decorative; the label identifies the button)",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.action.primary.bg",
+      "bg": "color.surface.default",
+      "fgHex": "#871f19",
+      "bgHex": "#160b0b",
+      "ratio": 2.06,
+      "pass": false,
+      "waiver": "the fill is not the boundary of the control; the label text at 8.17:1 identifies it, and hover, active and focus each add a second channel"
+    },
+    {
+      "label": "secondary text at rest",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.secondary.text",
+      "bg": "color.action.secondary.bg",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#0c0909",
+      "ratio": 10.37,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "secondary border at rest",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.action.secondary.border",
+      "bg": "color.action.secondary.bg",
+      "fgHex": "#a3676b",
+      "bgHex": "#0c0909",
+      "ratio": 4.45,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "secondary text on the hover fill",
+      "state": "hover",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.secondary.text",
+      "bg": "color.action.secondary.hover-bg",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#630f0d",
+      "ratio": 6.84,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "secondary border against the panel while hovered (the fill inside it measures 2.94:1)",
+      "state": "hover",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.action.secondary.border",
+      "bg": "color.surface.default",
+      "fgHex": "#a3676b",
+      "bgHex": "#160b0b",
+      "ratio": 4.33,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "ring on the secondary hover fill",
+      "state": "hover",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring",
+      "bg": "color.action.secondary.hover-bg",
+      "fgHex": "#e53935",
+      "bgHex": "#630f0d",
+      "ratio": 3.1,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "secondary text while pressed",
+      "state": "active",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.secondary.text",
+      "bg": "color.action.secondary.pressed-bg",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#420f0c",
+      "ratio": 8.41,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "tertiary text at rest",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.tertiary.text",
+      "bg": "color.action.secondary.bg",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "tertiary text on the hover fill",
+      "state": "hover",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.tertiary.text",
+      "bg": "color.action.tertiary.hover-bg",
+      "fgHex": "#e99499",
+      "bgHex": "#1c0a09",
+      "ratio": 8.35,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "tertiary text while pressed",
+      "state": "active",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.tertiary.text",
+      "bg": "color.interaction.pressed.bg",
+      "fgHex": "#e99499",
+      "bgHex": "#420f0c",
+      "ratio": 7.02,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "active border on the pressed fill",
+      "state": "active",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.active",
+      "bg": "color.interaction.pressed.bg",
+      "fgHex": "#e53935",
+      "bgHex": "#420f0c",
+      "ratio": 3.81,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "destructive text at rest",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.destructive.text",
+      "bg": "color.action.secondary.bg",
+      "fgHex": "#f73f35",
+      "bgHex": "#0c0909",
+      "ratio": 5.4,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "destructive border at rest",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.action.destructive.border",
+      "bg": "color.action.secondary.bg",
+      "fgHex": "#e53935",
+      "bgHex": "#0c0909",
+      "ratio": 4.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "destructive text on the hover fill",
+      "state": "hover",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.destructive.hover-text",
+      "bg": "color.action.destructive.hover-bg",
+      "fgHex": "#f9faf9",
+      "bgHex": "#dc282e",
+      "ratio": 4.58,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "ring on the destructive hover fill (the ring takes the on-fill colour)",
+      "state": "hover",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.action.destructive.hover-text",
+      "bg": "color.action.destructive.hover-bg",
+      "fgHex": "#f9faf9",
+      "bgHex": "#dc282e",
+      "ratio": 4.58,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "destructive text while pressed",
+      "state": "active",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.destructive.hover-text",
+      "bg": "color.action.destructive.pressed-bg",
+      "fgHex": "#f9faf9",
+      "bgHex": "#ae1914",
+      "ratio": 6.81,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "confirm-dialog filled destructive",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.destructive.filled-text",
+      "bg": "color.action.destructive.filled-bg",
+      "fgHex": "#f9faf9",
+      "bgHex": "#dc282e",
+      "ratio": 4.58,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "disabled text (exempt; house floor 3:1)",
+      "state": "disabled",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.text.disabled",
+      "bg": "color.interaction.disabled.bg",
+      "fgHex": "#8a5559",
+      "bgHex": "#160b0b",
+      "ratio": 3.24,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "disabled border (exempt)",
+      "state": "disabled",
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.border.disabled",
+      "bg": "color.interaction.disabled.bg",
+      "fgHex": "#7d1310",
+      "bgHex": "#160b0b",
+      "ratio": 1.82,
+      "pass": true,
+      "waiver": "disabled controls are exempt from 1.4.11"
+    }
+  ]
+}

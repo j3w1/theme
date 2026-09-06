@@ -1,0 +1,198 @@
+/* code-editor — reference CSS. A static presentation of source code: the
+   gutter, caret, current line, selection, bracket match and syntax roles a
+   real editor's theme API is mapped onto. Every state is reachable through
+   the forced-state attributes the state matrix emits ([data-state-<part>]).
+   Role variables only, so the specimen profile switch recolours the sample. */
+
+.code-editor {
+  display: block;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  background: var(--color-code-bg);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+  color: var(--color-code-syntax-variable);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-code);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--font-line-height-code);
+  tab-size: 2;
+  unicode-bidi: isolate;
+  direction: ltr;
+}
+
+.code-editor-pre {
+  margin: 0;
+  min-width: max-content;
+  font: inherit;
+  white-space: normal; /* lines are blocks; each text part preserves its own whitespace */
+}
+
+.code-editor-line {
+  display: flex;
+  align-items: stretch;
+}
+
+.code-editor-ln {
+  flex: none;
+  box-sizing: content-box;
+  min-width: 3ch;
+  padding: 0 var(--space-8);
+  background: var(--color-code-gutter-bg);
+  border-inline-end: var(--border-width-default) solid var(--color-code-gutter-rule);
+  color: var(--color-code-line-number);
+  text-align: end;
+  user-select: none;
+}
+
+.code-editor-fold-gutter {
+  float: inline-start;
+  color: var(--color-code-line-number);
+}
+
+.code-editor-text {
+  flex: 1 0 auto;
+  padding: 0 var(--space-8);
+  white-space: pre;
+}
+
+/* decorative helpers inside the text */
+.code-editor-indent {
+  border-inline-start: var(--border-width-default) solid var(--color-code-indent-guide);
+}
+
+.code-editor-ws {
+  color: var(--color-code-whitespace);
+}
+
+.code-editor-fold {
+  display: inline-block;
+  padding: 0 var(--space-4);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+  color: var(--color-text-muted);
+  line-height: 1;
+}
+
+/* the caret exists in the markup and is drawn only while focused */
+.code-editor-caret {
+  display: none;
+  inline-size: var(--border-width-default);
+  block-size: var(--font-line-height-code);
+  margin-inline-start: calc(-1 * var(--border-width-default));
+  vertical-align: top;
+  background: var(--color-code-caret);
+}
+
+/* syntax roles: colour plus the non-colour styles foundations requires */
+.code-editor-kw { color: var(--color-code-syntax-keyword); }
+.code-editor-str { color: var(--color-code-syntax-string); }
+.code-editor-cm { color: var(--color-code-syntax-comment); font-style: italic; }
+.code-editor-num { color: var(--color-code-syntax-number); }
+.code-editor-const { color: var(--color-code-syntax-constant); }
+.code-editor-fn { color: var(--color-code-syntax-function); }
+.code-editor-var { color: var(--color-code-syntax-variable); }
+.code-editor-type { color: var(--color-code-syntax-type); }
+.code-editor-op { color: var(--color-code-syntax-operator); }
+.code-editor-punct { color: var(--color-code-syntax-punctuation); }
+.code-editor-prop { color: var(--color-code-syntax-property); }
+.code-editor-heading { color: var(--color-code-syntax-heading); font-weight: var(--font-weight-bold); }
+.code-editor-tag { color: var(--color-code-syntax-tag); }
+.code-editor-attr { color: var(--color-code-syntax-attribute); }
+.code-editor-esc { color: var(--color-code-syntax-escape); }
+
+.code-editor-invalid {
+  color: var(--color-code-syntax-invalid);
+  text-decoration: underline wavy var(--color-code-syntax-invalid);
+  text-decoration-skip-ink: none;
+  text-underline-offset: var(--space-2);
+}
+
+.code-editor-deprecated {
+  color: var(--color-code-syntax-deprecated);
+  text-decoration: line-through var(--color-code-syntax-deprecated);
+}
+
+/* focus-visible: container ring, caret, current line, active line number */
+.code-editor:focus-visible,
+[data-state-focus-visible] .code-editor {
+  outline: var(--focus-ring-container);
+  outline-offset: var(--focus-offset-container);
+}
+
+.code-editor:focus-visible .code-editor-caret,
+[data-state-focus-visible] .code-editor-caret {
+  display: inline-block;
+}
+
+.code-editor:focus-visible .code-editor-line-current,
+[data-state-focus-visible] .code-editor-line-current {
+  background: var(--color-code-current-line);
+}
+
+.code-editor:focus-visible .code-editor-line-current .code-editor-ln,
+[data-state-focus-visible] .code-editor-line-current .code-editor-ln {
+  background: var(--color-code-current-line);
+  color: var(--color-code-line-number-active);
+}
+
+.code-editor:focus:not(:focus-visible) {
+  outline: 0;
+}
+
+/* selected: the range spans carry the fill; syntax colours are kept */
+[data-state-selected] .code-editor-sel {
+  background: var(--color-code-selection-bg);
+  box-decoration-break: clone;
+}
+
+/* selected + container-inactive: the muted fill, no caret, no ring */
+[data-state-selected][data-state-container-inactive] .code-editor-sel {
+  background: var(--color-interaction-selection-inactive-bg);
+  color: var(--color-interaction-selection-inactive-text);
+}
+
+[data-state-container-inactive] .code-editor {
+  outline: 0;
+}
+
+[data-state-container-inactive] .code-editor-caret {
+  display: none;
+}
+
+/* current: the matched bracket pair is outlined, never filled */
+[data-state-current] .code-editor-bracket {
+  outline: var(--border-width-default) solid var(--color-code-bracket-match);
+  outline-offset: calc(-1 * var(--border-width-default));
+}
+
+/* read-only: the gutter drops to the sunken surface, the rule turns dotted, no caret */
+[data-state-read-only] .code-editor-ln {
+  background: var(--color-surface-sunken);
+  border-inline-end-style: dotted;
+}
+
+[data-state-read-only] .code-editor-caret {
+  display: none;
+}
+
+@media (forced-colors: active) {
+  .code-editor:focus-visible,
+  [data-state-focus-visible] .code-editor {
+    outline-color: Highlight;
+  }
+
+  .code-editor-caret {
+    background: Highlight;
+  }
+
+  [data-state-selected] .code-editor-sel {
+    background: Highlight;
+    color: HighlightText;
+  }
+
+  [data-state-current] .code-editor-bracket {
+    outline-color: Highlight;
+  }
+}

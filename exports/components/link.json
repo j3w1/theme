@@ -1,0 +1,389 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "0.1.0-draft.1",
+  "profile": "default",
+  "sourceDigest": "sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=",
+  "id": "link",
+  "family": "actions",
+  "maturity": "stable",
+  "priority": "R1",
+  "coverage": {
+    "family": "actions",
+    "priority": "R1",
+    "maturity": "stable",
+    "specified": true,
+    "demonstrated": true,
+    "tested": true,
+    "states": 5
+  },
+  "title": "Link",
+  "summary": "The native anchor for navigation; always underlined in the link-underline role, hover fills with the strong hover surface, the current page carries a 2px indicator bar.",
+  "anchors": {
+    "site": "https://j3w1.github.io/theme/#c-link",
+    "spec": "spec/components/link.md",
+    "brief": "exports/components/link.brief.txt"
+  },
+  "native": true,
+  "aria": {
+    "pattern": "native <a href>"
+  },
+  "variants": [
+    {
+      "id": "default",
+      "name": "Inline",
+      "description": "Inside a sentence; the underline is what distinguishes it from prose."
+    },
+    {
+      "id": "standalone",
+      "name": "Standalone",
+      "description": "On its own line with a trailing arrow icon."
+    },
+    {
+      "id": "current",
+      "name": "Current",
+      "description": "Navigation link to the page being shown; aria-current=\"page\"."
+    }
+  ],
+  "sizes": [
+    "compact",
+    "comfortable"
+  ],
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "visited",
+    "current"
+  ],
+  "tokens": {
+    "root.text": {
+      "alias": "color.text.link",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "root.underline": {
+      "alias": "color.text.link-underline",
+      "value": "#dc282e",
+      "status": "observed"
+    },
+    "root.text-hover": {
+      "alias": "color.text.link-hover",
+      "value": "#f4eeee",
+      "status": "observed"
+    },
+    "root.bg-hover": {
+      "alias": "color.interaction.hover.bg-strong",
+      "value": "#630f0d",
+      "status": "observed"
+    },
+    "root.ring": {
+      "alias": "color.interaction.focus.ring",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "root.text-visited": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "root.text-current": {
+      "alias": "color.text.bright",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "root.indicator": {
+      "alias": "color.border.selected-indicator",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "icon.stroke": {
+      "alias": "color.icon.default",
+      "value": "#e99499",
+      "status": "observed"
+    }
+  },
+  "stateRules": [
+    {
+      "state": "default",
+      "visual": "{color.text.link}; underline 1px {color.text.link-underline} offset 2px",
+      "channel": "the underline",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.link",
+          "value": "#ffa2a7",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.canvas",
+          "value": "#0c0909",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "hover",
+      "visual": "background → {color.interaction.hover.bg-strong}; text → {color.text.link-hover}; underline 2px in the text colour",
+      "channel": "underline thickens 1px → 2px; cursor: pointer",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.link-hover",
+          "value": "#f4eeee",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.interaction.hover.bg-strong",
+          "value": "#630f0d",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "focus-visible",
+      "visual": "ring 1px dashed {color.interaction.focus.ring} at −2px; no change to the underline",
+      "channel": "the ring",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.link",
+          "value": "#ffa2a7",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.canvas",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "outline": {
+          "alias": "color.interaction.focus.ring",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "visited",
+      "visual": "text → {color.text.default}; underline unchanged",
+      "channel": "— (browsers restrict `:visited` to colour; visited is informational and the underline still marks the link)",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.canvas",
+          "value": "#0c0909",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "current",
+      "visual": "text → {color.text.bright}; the underline becomes a 2px {color.border.selected-indicator} bottom border; no hover fill",
+      "channel": "`aria-current=\"page\"`; the bar's 2px weight",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.bright",
+          "value": "#ffa2a7",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.canvas",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.selected-indicator",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    }
+  ],
+  "keyboard": [
+    {
+      "key": "Tab / Shift+Tab",
+      "action": "Moves focus to and from the link."
+    },
+    {
+      "key": "Enter",
+      "action": "Follows the link (native); Space scrolls the page, never activates."
+    }
+  ],
+  "responsive": "Inline links wrap with their sentence and may break across lines; the underline and hover fill follow each fragment. Standalone links keep the icon on the same line as the last word. RTL flips the arrow through the host's icon mirroring.",
+  "portability": {
+    "web": "native <a href>; never a button styled as a link nor a link with role=\"button\"; aria-current=\"page\" on the link to the current document; external links are marked in text, not by colour.",
+    "nativeFallbacks": [
+      "GTK4 LinkButton; visited through the visited style class.",
+      "Qt QLabel with rich text and the link stylesheet roles.",
+      "Terminal UI: OSC 8 hyperlink; underlined in slot 7."
+    ]
+  },
+  "fixtures": [
+    "FX-LONG",
+    "FX-320",
+    "FX-ZOOM-200",
+    "FX-I18N",
+    "FX-RTL",
+    "FX-RM",
+    "FX-HC",
+    "FX-STATE-MATRIX"
+  ],
+  "related": [
+    "button",
+    "breadcrumbs",
+    "sidebar-nav",
+    "skip-link",
+    "pagination"
+  ],
+  "specimens": [
+    "settings-panel",
+    "i3-window-frame"
+  ],
+  "nonExamples": "A link without an underline at rest. Blue or purple links. A hover that only\nrecolours the text. A link that opens a dialog or submits a form. An\nunderline drawn with a border on an inline link. A visited colour that fails\n4.5:1. A button styled to look like a link. Text such as \"click here\".",
+  "contrast": [
+    {
+      "label": "link default text",
+      "state": "default",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.link",
+      "bg": "color.surface.canvas",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#0c0909",
+      "ratio": 10.37,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "link hover text",
+      "state": "hover",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.link-hover",
+      "bg": "color.interaction.hover.bg-strong",
+      "fgHex": "#f4eeee",
+      "bgHex": "#630f0d",
+      "ratio": 11.41,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "link focus-visible text",
+      "state": "focus-visible",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.link",
+      "bg": "color.surface.canvas",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#0c0909",
+      "ratio": 10.37,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "link focus-visible outline",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring",
+      "bg": "color.surface.canvas",
+      "fgHex": "#e53935",
+      "bgHex": "#0c0909",
+      "ratio": 4.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "link visited text",
+      "state": "visited",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.canvas",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "link current text",
+      "state": "current",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.bright",
+      "bg": "color.surface.canvas",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#0c0909",
+      "ratio": 10.37,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "link current border",
+      "state": "current",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.selected-indicator",
+      "bg": "color.surface.canvas",
+      "fgHex": "#e53935",
+      "bgHex": "#0c0909",
+      "ratio": 4.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "underline on the canvas",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.text.link-underline",
+      "bg": "color.surface.canvas",
+      "fgHex": "#dc282e",
+      "bgHex": "#0c0909",
+      "ratio": 4.14,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "underline on the panel",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.text.link-underline",
+      "bg": "color.surface.default",
+      "fgHex": "#dc282e",
+      "bgHex": "#160b0b",
+      "ratio": 4.04,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "link text on the panel",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.link",
+      "bg": "color.surface.default",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#160b0b",
+      "ratio": 10.1,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "ring on the hover fill",
+      "state": "hover",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring",
+      "bg": "color.interaction.hover.bg-strong",
+      "fgHex": "#e53935",
+      "bgHex": "#630f0d",
+      "ratio": 3.1,
+      "pass": true,
+      "waiver": null
+    }
+  ]
+}

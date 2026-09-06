@@ -32,7 +32,7 @@ are the reference; copy their shape.
 - The demo has a fragment for every variant and no undeclared variant.
 - `related` and `specimens` name inventory ids. `sources` name
   `references/sources.json` ids.
-- Exactly ten components carry `compact: true` (the ten core ones).
+- `compact: true` exactly on the ten core components listed under `tested` in `spec/inventory.json`, and on nothing else.
 
 ## What the state matrix does for you
 
@@ -43,8 +43,11 @@ the matrix also edits the clone: `disabled` wraps the cell in a disabled
 fieldset and adds `disabled`; `read-only` adds `readonly`; `required` adds
 `required`; `invalid` adds `aria-invalid="true"`; `checked` adds `checked` to
 checkboxes and radios; `placeholder-shown` strips `value`; `loading`/`busy`
-add `aria-busy`; `selected`, `current`, `expanded` add the matching `aria-*`
-to the root; `open` opens `details`/`dialog`. Everything else is CSS.
+add `aria-busy`; `selected`, `current`, `expanded`, `toggled` (aria-pressed)
+and a switch's `checked` set the matching `aria-*` on the first element that
+already carries it as `"false"`, or on the root; `open` opens `details`/`dialog`;
+`name`, `id`, `for`, `aria-describedby`, `aria-labelledby`, `aria-controls`,
+`aria-activedescendant` and `aria-errormessage` are suffixed per cell. Everything else is CSS.
 
 ## Design rules to apply (spec/foundations.md is normative)
 

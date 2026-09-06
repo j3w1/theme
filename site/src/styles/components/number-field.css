@@ -1,0 +1,212 @@
+/* number-field — reference CSS. The text-field box around a native number
+   input, the host spinner hidden and replaced by two square stepper
+   buttons. Every real pseudo-class is paired with the forced-state
+   attribute the state matrix emits. Token variables only. */
+
+.number-field {
+  position: relative; /* the visually hidden help text in the invalid state stays inside the component */
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+  max-width: 20rem;
+  color: var(--color-text-default);
+}
+
+.number-field-label {
+  color: var(--color-text-bright);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.number-field-root {
+  display: flex;
+  align-items: stretch;
+  min-height: var(--density-control-height, 32px);
+  background: var(--color-surface-input);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+}
+
+.number-field-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0 var(--density-control-padding-x, 12px);
+  background: transparent;
+  border: 0;
+  color: var(--color-text-default);
+  caret-color: var(--color-code-caret);
+  font: inherit;
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+  appearance: textfield;
+  outline: 0;
+}
+
+.number-field-input::-webkit-inner-spin-button,
+.number-field-input::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+.number-field-input::selection {
+  background: var(--color-interaction-text-selection-bg);
+  color: var(--color-interaction-text-selection-text);
+}
+
+.number-field-unit {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 var(--space-8);
+  color: var(--color-text-muted);
+  border-inline-start: var(--border-width-default) solid var(--color-border-divider);
+  white-space: nowrap;
+}
+
+.number-field-stepper {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  min-width: var(--space-24);
+  border-inline-start: var(--border-width-default) solid var(--color-border-divider);
+}
+
+.number-field-action {
+  min-width: var(--space-24);
+  padding: 0 var(--space-4);
+  margin: 0;
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-none);
+  color: var(--color-action-tertiary-text);
+  font: inherit;
+  line-height: 1;
+  cursor: pointer;
+  outline: 0;
+}
+
+.number-field-action + .number-field-action {
+  border-top: var(--border-width-default) solid var(--color-border-divider);
+}
+
+.number-field-help {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.number-field-message {
+  display: none;
+  margin: 0;
+  color: var(--color-status-danger-text);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+/* hover */
+@media (hover: hover) {
+  .number-field-root:hover {
+    background: var(--color-interaction-hover-bg);
+  }
+
+  .number-field-action:hover:not(:disabled) {
+    background: var(--color-action-tertiary-hover-bg);
+  }
+}
+
+[data-state-hover] .number-field-root {
+  background: var(--color-interaction-hover-bg);
+}
+
+/* focus-visible: on the box for the input, on the button for a stepper */
+.number-field-root:has(.number-field-input:focus-visible),
+[data-state-focus-visible] .number-field-root {
+  border-color: var(--color-border-active);
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.number-field-action:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* invalid */
+.number-field-root:has(.number-field-input[aria-invalid="true"]),
+.number-field-root:has(.number-field-input:user-invalid),
+[data-state-invalid] .number-field-root {
+  border-color: var(--color-status-danger-border);
+  border-width: var(--border-width-emphasis);
+}
+
+.number-field:has(.number-field-input[aria-invalid="true"]) .number-field-message,
+.number-field:has(.number-field-input:user-invalid) .number-field-message,
+[data-state-invalid] .number-field-message {
+  display: block;
+}
+
+.number-field:has(.number-field-input[aria-invalid="true"]) .number-field-help,
+[data-state-invalid] .number-field-help {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+/* invalid + focus-visible */
+.number-field-root:has(.number-field-input[aria-invalid="true"]:focus-visible),
+[data-state-invalid][data-state-focus-visible] .number-field-root {
+  border-color: var(--color-status-danger-border);
+  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline-offset: var(--focus-offset-invalid);
+}
+
+/* disabled */
+.number-field-root:has(.number-field-input:disabled),
+[data-state-disabled] .number-field-root {
+  background: var(--color-interaction-disabled-bg);
+  border-color: var(--color-border-disabled);
+  cursor: not-allowed;
+}
+
+.number-field-input:disabled,
+.number-field-root:has(.number-field-input:disabled) .number-field-unit,
+.number-field-action:disabled,
+[data-state-disabled] .number-field-input,
+[data-state-disabled] .number-field-unit,
+[data-state-disabled] .number-field-action {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.number-field:has(.number-field-input:disabled) .number-field-label,
+[data-state-disabled] .number-field-label {
+  color: var(--color-text-disabled);
+}
+
+/* read-only: no box, a dotted bottom edge on the canvas, no stepper */
+.number-field-root:has(.number-field-input:read-only:not(:disabled)),
+[data-state-read-only] .number-field-root {
+  background: var(--color-surface-canvas);
+  border-color: transparent;
+  border-bottom: var(--border-width-default) dotted var(--color-border-divider);
+}
+
+.number-field-root:has(.number-field-input:read-only) .number-field-stepper,
+[data-state-read-only] .number-field-stepper {
+  display: none;
+}
+
+.number-field-root:has(.number-field-input:read-only:focus-visible),
+[data-state-read-only][data-state-focus-visible] .number-field-root {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+@media (forced-colors: active) {
+  .number-field-root:has(.number-field-input:focus-visible),
+  .number-field-action:focus-visible,
+  [data-state-focus-visible] .number-field-root {
+    outline-color: Highlight;
+  }
+}

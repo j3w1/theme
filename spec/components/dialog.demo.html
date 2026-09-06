@@ -1,0 +1,55 @@
+<div class="dialog-backdrop">
+  <dialog class="dialog" open aria-labelledby="dg-confirm-title" aria-describedby="dg-confirm-text">
+    <div class="dialog-header">
+      <h2 class="dialog-title" id="dg-confirm-title">Save changes?</h2>
+      <button class="dialog-close" type="button" aria-label="Close">✕</button>
+    </div>
+    <div class="dialog-body">
+      <p class="dialog-text" id="dg-confirm-text">Three settings changed since the last save. Unsaved changes are kept locally until you publish.</p>
+    </div>
+    <div class="dialog-actions">
+      <button class="dialog-button" type="button">Keep editing</button>
+      <button class="dialog-button dialog-button-primary" type="button">Save</button>
+    </div>
+    <p class="dialog-trap-note">Focus is trapped: Tab cycles inside the dialog; Escape closes it.</p>
+  </dialog>
+</div>
+<!-- @variant alert-dialog -->
+<div class="dialog-backdrop">
+  <dialog class="dialog" role="alertdialog" open aria-labelledby="dg-delete-title" aria-describedby="dg-delete-text">
+    <div class="dialog-header">
+      <h2 class="dialog-title" id="dg-delete-title">Delete profile "workstation"?</h2>
+      <button class="dialog-close" type="button" aria-label="Close">✕</button>
+    </div>
+    <div class="dialog-body">
+      <p class="dialog-text" id="dg-delete-text">The profile and its two overlays are removed. This cannot be undone.</p>
+    </div>
+    <div class="dialog-actions">
+      <button class="dialog-button" type="button">Cancel</button>
+      <button class="dialog-button dialog-button-destructive" type="button">Delete profile</button>
+    </div>
+    <p class="dialog-trap-note">Focus is trapped: Tab cycles inside the dialog; Escape cancels.</p>
+  </dialog>
+</div>
+<!-- @variant form -->
+<div class="dialog-backdrop">
+  <dialog class="dialog" open aria-labelledby="dg-form-title" aria-describedby="dg-form-text">
+    <div class="dialog-header">
+      <h2 class="dialog-title" id="dg-form-title">New profile</h2>
+      <button class="dialog-close" type="button" aria-label="Close">✕</button>
+    </div>
+    <form class="dialog-body" method="dialog">
+      <p class="dialog-text" id="dg-form-text">The profile starts from the default tokens.</p>
+      <div class="dialog-field">
+        <label class="dialog-field-label" for="dg-form-name">Profile name</label>
+        <input class="dialog-field-input" id="dg-form-name" type="text" value="laptop" aria-describedby="dg-form-help">
+        <p class="dialog-field-help" id="dg-form-help">Lowercase letters, digits and hyphens.</p>
+      </div>
+      <div class="dialog-actions">
+        <button class="dialog-button" type="button">Cancel</button>
+        <button class="dialog-button dialog-button-primary" type="submit">Create</button>
+      </div>
+    </form>
+    <p class="dialog-trap-note">Focus is trapped: Tab cycles inside the dialog; Enter submits; Escape cancels.</p>
+  </dialog>
+</div>

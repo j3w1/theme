@@ -1,0 +1,35 @@
+j3w1/theme implementation brief — empty-state
+theme: j3w1-theme 0.1.0-draft.1  profile: default  sourceDigest: sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=
+pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/components/empty-state.json
+spec: spec/components/empty-state.md  site: https://j3w1.github.io/theme/#c-empty-state
+maturity: stable  priority: R1
+
+Summary: What a container shows when it has nothing to list; a glyph, a heading in the bright text colour, one sentence in the muted colour and an optional secondary action.
+
+Tokens (resolved):
+  root.bg          #160b0b  ({color.surface.default})
+  root.border      #2b0e0d  ({color.border.divider})
+  glyph.text       #a3676b  ({color.icon.decorative})
+  heading.text     #ffa2a7  ({color.text.bright})
+  text.text        #bd787d  ({color.text.muted})
+  action.text      #ffa2a7  ({color.action.secondary.text})
+  action.border    #a3676b  ({color.action.secondary.border})
+  action.bg-hover  #630f0d  ({color.action.secondary.hover-bg})
+  action.ring      #e53935  ({color.interaction.focus.ring})
+
+States: default
+  default: glyph, heading and sentence centred; the action, when present, below them [the worded heading; the action is a real button]
+
+Keyboard:
+  Tab: Reaches the action when present; the block itself is never focusable.
+  Enter / Space: Activates the action.
+
+ARIA: native block; a heading and a paragraph inside the region the content would fill; the action is a native <button> or <a> (https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/)
+Responsive: Centred at any width; the heading and sentence wrap; at 320px the padding shrinks to 16px and the action takes the full width. RTL needs no change; the glyph has no direction.
+Portability: a <div> with an <h3> (or the heading level of the region) and a <p>, placed where the list, table body or pane content would be; the action is a native <button> or <a>; a live region announces the change when a filter empties the list.
+  native: GTK4 StatusPage; the icon slot holds the glyph as text.
+  native: Qt a QLabel stack in the empty view; QListView placeholder text is not enough because it has no action.
+  native: Terminal UI: the heading and sentence centred in the pane.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

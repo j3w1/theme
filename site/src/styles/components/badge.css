@@ -1,0 +1,124 @@
+/* badge — reference CSS. A square caption-type label; the status classes
+   pick the fill, on-fill text and border roles. The empty state collapses
+   the badge to a named dot. Token variables only. */
+
+.badge {
+  --_fill: var(--color-status-neutral-fill);
+  --_on-fill: var(--color-status-neutral-on-fill);
+  --_text: var(--color-status-neutral-text);
+  --_border: var(--color-status-neutral-border);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  vertical-align: middle;
+  padding: var(--space-2) var(--space-8);
+  box-sizing: border-box;
+  background: var(--_fill);
+  border: var(--border-width-default) solid var(--_fill);
+  border-radius: var(--radius-none);
+  color: var(--_on-fill);
+  font-size: var(--font-size-caption);
+  line-height: var(--font-line-height-caption);
+  font-weight: var(--font-weight-bold);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.badge-danger {
+  --_fill: var(--color-status-danger-fill);
+  --_on-fill: var(--color-status-danger-on-fill);
+  --_text: var(--color-status-danger-text);
+  --_border: var(--color-status-danger-border);
+}
+
+.badge-warning {
+  --_fill: var(--color-status-warning-fill);
+  --_on-fill: var(--color-status-warning-on-fill);
+  --_text: var(--color-status-warning-text);
+  --_border: var(--color-status-warning-border);
+}
+
+.badge-success {
+  --_fill: var(--color-status-success-fill);
+  --_on-fill: var(--color-status-success-on-fill);
+  --_text: var(--color-status-success-text);
+  --_border: var(--color-status-success-border);
+}
+
+.badge-info {
+  --_fill: var(--color-status-info-fill);
+  --_on-fill: var(--color-status-info-on-fill);
+  --_text: var(--color-status-info-text);
+  --_border: var(--color-status-info-border);
+}
+
+.badge-neutral {
+  --_fill: var(--color-status-neutral-fill);
+  --_on-fill: var(--color-status-neutral-on-fill);
+  --_text: var(--color-status-neutral-text);
+  --_border: var(--color-status-neutral-border);
+}
+
+.badge-count {
+  --_fill: var(--color-action-primary-bg);
+  --_on-fill: var(--color-action-primary-text);
+  --_text: var(--color-text-bright);
+  --_border: var(--color-action-primary-border);
+  min-width: calc(var(--font-line-height-caption) + var(--space-4));
+  justify-content: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.badge-glyph {
+  flex: 0 0 auto;
+}
+
+.badge-text {
+  flex: 0 0 auto;
+}
+
+/* the hidden unit of a count badge */
+.badge-unit {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* outline: no fill, the status text and border */
+.badge-outline {
+  background: transparent;
+  border-color: var(--_border);
+  color: var(--_text);
+}
+
+/* empty: a named dot; the glyph and the text stay for assistive technology */
+.badge-empty,
+[data-state-empty] .badge {
+  width: var(--space-8);
+  height: var(--space-8);
+  min-width: 0;
+  padding: 0;
+  gap: 0;
+}
+
+.badge-empty .badge-glyph,
+.badge-empty .badge-text,
+[data-state-empty] .badge-glyph,
+[data-state-empty] .badge-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (forced-colors: active) {
+  .badge {
+    forced-color-adjust: none;
+  }
+}

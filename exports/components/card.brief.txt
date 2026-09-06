@@ -1,0 +1,43 @@
+j3w1/theme implementation brief — card
+theme: j3w1-theme 0.1.0-draft.1  profile: default  sourceDigest: sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=
+pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/components/card.json
+spec: spec/components/card.md  site: https://j3w1.github.io/theme/#c-card
+maturity: stable  priority: R1
+
+Summary: A bordered panel that groups a title, body and metadata; a link card makes the whole panel one link, a selectable card is an option with the selection fill.
+
+Tokens (resolved):
+  root.bg            #160b0b  ({color.surface.default})
+  root.border        #531310  ({color.border.default})
+  root.bg-hover      #1c0a09  ({color.interaction.hover.bg})
+  root.border-hover  #a3676b  ({color.border.control})
+  root.ring          #ffa2a7  ({color.interaction.focus.ring-container})
+  title.text         #ffa2a7  ({color.text.bright})
+  body.text          #e99499  ({color.text.default})
+  meta.text          #bd787d  ({color.text.muted})
+  selected.bg        #911410  ({color.interaction.selection.bg})
+  selected.text      #f4eeee  ({color.interaction.selection.text})
+  selected.ring      #ffa2a7  ({color.interaction.focus.ring-container})
+
+States: default, hover, focus-visible, selected, selected+focus-visible
+  default: 1px {color.border.default} on {color.surface.default} [—]
+  hover: link and selectable cards only: background → {color.interaction.hover.bg}; border → {color.border.control} [cursor: pointer; the border lightens from decorative to control]
+  focus-visible: container ring 2px solid {color.interaction.focus.ring-container} at −3px [the ring]
+  selected: fill {color.interaction.selection.bg} with {color.interaction.selection.text} on every line [`aria-selected="true"`; the fill's on-fill text]
+  selected+focus-visible: the fill and the 2px ring in {color.interaction.focus.ring-container} [both visible at once]
+
+Keyboard:
+  Tab: Reaches a link card as one stop; reaches a selectable group at its selected card (roving tabindex).
+  Enter: Follows a link card.
+  Up / Down / Left / Right: Moves between selectable cards in the group and selects the focused one.
+  Space: Toggles the focused card in a multi-select group.
+
+ARIA: native article or section; link cards are a single anchor; selectable cards are options inside a listbox (https://www.w3.org/WAI/ARIA/apg/patterns/listbox/)
+Responsive: Cards fill their column with min-width 0 and stack at 320px; the body wraps and nothing truncates; a grid of cards uses container queries to change its column count. RTL mirrors the text alignment only.
+Portability: A static card is an article (with a heading) or a section; a link card is one anchor wrapping block content; a selectable card is a div with role option inside a div with role listbox, aria-selected on the option and roving tabindex; the border is a border, the fill a background, the ring an outline.
+  native: GTK4 Frame with a Box; a selectable card is a ListBoxRow.
+  native: Qt QFrame with a StyledPanel shape; selectable cards through QListView with a delegate.
+  native: Terminal UI: a single-line box; the selected card inverted.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

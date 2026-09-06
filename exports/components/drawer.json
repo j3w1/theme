@@ -1,0 +1,473 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "0.1.0-draft.1",
+  "profile": "default",
+  "sourceDigest": "sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=",
+  "id": "drawer",
+  "family": "feedback",
+  "maturity": "stable",
+  "priority": "R1",
+  "coverage": {
+    "family": "feedback",
+    "priority": "R1",
+    "maturity": "stable",
+    "specified": true,
+    "demonstrated": true,
+    "tested": false,
+    "states": 5
+  },
+  "title": "Drawer",
+  "summary": "A full-height modal panel anchored to the start or end edge; a native dialog on the overlay surface with a 1px overlay border on its inner edge.",
+  "anchors": {
+    "site": "https://j3w1.github.io/theme/#c-drawer",
+    "spec": "spec/components/drawer.md",
+    "brief": "exports/components/drawer.brief.txt"
+  },
+  "native": true,
+  "aria": {
+    "pattern": "native <dialog> opened with showModal, anchored to an inline edge; named by its heading; Escape closes",
+    "apg": "https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/"
+  },
+  "variants": [
+    {
+      "id": "start",
+      "name": "Start edge"
+    },
+    {
+      "id": "end",
+      "name": "End edge"
+    }
+  ],
+  "sizes": [
+    "compact",
+    "comfortable"
+  ],
+  "states": [
+    "default",
+    "open",
+    "closed",
+    "focus-trapped",
+    "reduced-motion"
+  ],
+  "tokens": {
+    "backdrop.bg": {
+      "alias": "color.surface.backdrop",
+      "value": "rgb(0 0 0 / 65%)",
+      "status": "proposed"
+    },
+    "root.bg": {
+      "alias": "color.surface.overlay",
+      "value": "#241010",
+      "status": "observed"
+    },
+    "root.border": {
+      "alias": "color.border.overlay",
+      "value": "#e53935",
+      "status": "proposed"
+    },
+    "root.ring": {
+      "alias": "color.interaction.focus.ring-container",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "root.z": {
+      "alias": "z.drawer",
+      "value": "20",
+      "status": "observed"
+    },
+    "title.text": {
+      "alias": "color.text.bright",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "text.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "body.divider": {
+      "alias": "color.border.divider",
+      "value": "#2b0e0d",
+      "status": "proposed"
+    },
+    "item.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "item.bg-hover": {
+      "alias": "color.interaction.hover.bg-strong",
+      "value": "#630f0d",
+      "status": "observed"
+    },
+    "item.text-hover": {
+      "alias": "color.text.link-hover",
+      "value": "#f4eeee",
+      "status": "observed"
+    },
+    "close.text": {
+      "alias": "color.action.tertiary.text",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "close.bg-hover": {
+      "alias": "color.action.tertiary.hover-bg",
+      "value": "#1c0a09",
+      "status": "observed"
+    },
+    "close.ring": {
+      "alias": "color.interaction.focus.ring",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "note.text": {
+      "alias": "color.text.muted",
+      "value": "#bd787d",
+      "status": "observed"
+    }
+  },
+  "stateRules": [
+    {
+      "state": "default",
+      "visual": "the panel open at its edge on the backdrop",
+      "channel": "`open`; the page behind is inert",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.overlay",
+          "value": "#241010",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.overlay",
+          "value": "#e53935",
+          "status": "proposed"
+        }
+      }
+    },
+    {
+      "state": "open",
+      "visual": "as default; opacity 0 → 1 within 150 ms on capable hosts; never a slide",
+      "channel": "`open`; focus inside the panel",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.overlay",
+          "value": "#241010",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.overlay",
+          "value": "#e53935",
+          "status": "proposed"
+        }
+      }
+    },
+    {
+      "state": "closed",
+      "visual": "nothing: the panel and the backdrop are absent",
+      "channel": "no `open`; focus back on the opener",
+      "tokens": {}
+    },
+    {
+      "state": "focus-trapped",
+      "visual": "the panel carries the container ring, 2px solid {color.interaction.focus.ring-container} at −3px, when it holds focus; the note says Tab cycles",
+      "channel": "Tab never leaves; the note text",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.overlay",
+          "value": "#241010",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.overlay",
+          "value": "#e53935",
+          "status": "proposed"
+        },
+        "outline": {
+          "alias": "color.interaction.focus.ring-container",
+          "value": "#ffa2a7",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "reduced-motion",
+      "visual": "no opacity transition; the panel is simply present or absent",
+      "channel": "`prefers-reduced-motion`",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.overlay",
+          "value": "#241010",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.overlay",
+          "value": "#e53935",
+          "status": "proposed"
+        }
+      }
+    }
+  ],
+  "keyboard": [
+    {
+      "key": "Tab / Shift+Tab",
+      "action": "Cycles inside the drawer and never leaves it while open."
+    },
+    {
+      "key": "Escape",
+      "action": "Closes the drawer and returns focus to the element that opened it."
+    },
+    {
+      "key": "Enter / Space",
+      "action": "Activates the focused item or button; a navigation item closes the drawer after navigating."
+    }
+  ],
+  "responsive": "At most 20rem wide and 100% minus the 48px gutter below 360px; always the full height of the viewport; the body scrolls inside. RTL swaps the edges, which the logical properties do on their own.",
+  "portability": {
+    "web": "native <dialog> opened with showModal() and positioned with inset-block 0 and inset-inline-start or -end 0, so the top layer, inertness and Escape come from the host; ::backdrop takes surface.backdrop; focus moves to the first focusable element on open and back to the opener on close.",
+    "nativeFallbacks": [
+      "GTK4 a Window with modal set and the panel aligned to an edge; libadwaita sidebars are not drawers.",
+      "Qt QDockWidget floating and modal is not equivalent; a QDialog positioned at the edge with the overlay border.",
+      "Terminal UI: a full-height column at the edge drawn with a single vertical line, the rest of the screen dimmed."
+    ]
+  },
+  "fixtures": [
+    "FX-LONG",
+    "FX-320",
+    "FX-ZOOM-200",
+    "FX-I18N",
+    "FX-RTL",
+    "FX-RM",
+    "FX-HC",
+    "FX-OVERFLOW",
+    "FX-STATE-MATRIX"
+  ],
+  "related": [
+    "dialog",
+    "sidebar-nav",
+    "menu",
+    "toolbar"
+  ],
+  "specimens": [
+    "settings-panel",
+    "i3-window-frame"
+  ],
+  "nonExamples": "A panel that slides in from the edge. A drawer with a shadow or a rounded\ninner corner. A drawer that is a plain aside with a hand-written focus trap.\nA bottom sheet with a drag handle. A drawer with no Close button. A drawer\nthat stays open under a dialog. A translucent panel over page content.",
+  "contrast": [
+    {
+      "label": "drawer default text",
+      "state": "default",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.overlay",
+      "fgHex": "#e99499",
+      "bgHex": "#241010",
+      "ratio": 7.92,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "drawer default border",
+      "state": "default",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.overlay",
+      "bg": "color.surface.overlay",
+      "fgHex": "#e53935",
+      "bgHex": "#241010",
+      "ratio": 4.3,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "drawer open text",
+      "state": "open",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.overlay",
+      "fgHex": "#e99499",
+      "bgHex": "#241010",
+      "ratio": 7.92,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "drawer open border",
+      "state": "open",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.overlay",
+      "bg": "color.surface.overlay",
+      "fgHex": "#e53935",
+      "bgHex": "#241010",
+      "ratio": 4.3,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "drawer focus-trapped text",
+      "state": "focus-trapped",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.overlay",
+      "fgHex": "#e99499",
+      "bgHex": "#241010",
+      "ratio": 7.92,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "drawer focus-trapped border",
+      "state": "focus-trapped",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.overlay",
+      "bg": "color.surface.overlay",
+      "fgHex": "#e53935",
+      "bgHex": "#241010",
+      "ratio": 4.3,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "drawer focus-trapped outline",
+      "state": "focus-trapped",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring-container",
+      "bg": "color.surface.overlay",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#241010",
+      "ratio": 9.49,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "drawer reduced-motion text",
+      "state": "reduced-motion",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.overlay",
+      "fgHex": "#e99499",
+      "bgHex": "#241010",
+      "ratio": 7.92,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "drawer reduced-motion border",
+      "state": "reduced-motion",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.overlay",
+      "bg": "color.surface.overlay",
+      "fgHex": "#e53935",
+      "bgHex": "#241010",
+      "ratio": 4.3,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "title on the overlay surface",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.bright",
+      "bg": "color.surface.overlay",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#241010",
+      "ratio": 9.49,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "note on the overlay surface",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.muted",
+      "bg": "color.surface.overlay",
+      "fgHex": "#bd787d",
+      "bgHex": "#241010",
+      "ratio": 5.31,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "close button on the overlay surface",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.tertiary.text",
+      "bg": "color.surface.overlay",
+      "fgHex": "#e99499",
+      "bgHex": "#241010",
+      "ratio": 7.92,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "ring on the overlay surface",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring",
+      "bg": "color.surface.overlay",
+      "fgHex": "#e53935",
+      "bgHex": "#241010",
+      "ratio": 4.3,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "hovered item",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.link-hover",
+      "bg": "color.interaction.hover.bg-strong",
+      "fgHex": "#f4eeee",
+      "bgHex": "#630f0d",
+      "ratio": 11.41,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "row dividers (decorative)",
+      "state": null,
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.border.divider",
+      "bg": "color.surface.overlay",
+      "fgHex": "#2b0e0d",
+      "bgHex": "#241010",
+      "ratio": 1.01,
+      "pass": true,
+      "waiver": "rows are list items; the divider separates, it does not bound a control"
+    }
+  ]
+}

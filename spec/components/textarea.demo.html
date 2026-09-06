@@ -1,0 +1,19 @@
+<div class="textarea">
+  <label class="textarea-label" for="ta-notes">Release notes <span class="textarea-required" aria-hidden="true">*</span><span class="textarea-required sr-only"> required</span></label>
+  <div class="textarea-root">
+    <textarea class="textarea-input" id="ta-notes" rows="3" placeholder="What changed and why" aria-describedby="ta-notes-help ta-notes-message">Focus rings now recolour on filled surfaces.
+Disabled controls no longer use opacity.</textarea>
+  </div>
+  <p class="textarea-help" id="ta-notes-help">Plain text; one change per line.</p>
+  <p class="textarea-message" id="ta-notes-message">✕ Say why, not only what.</p>
+</div>
+<!-- @variant with-count -->
+<div class="textarea">
+  <label class="textarea-label" for="ta-summary">Commit summary <span class="textarea-required" aria-hidden="true">*</span><span class="textarea-required sr-only"> required</span></label>
+  <div class="textarea-root">
+    <textarea class="textarea-input" id="ta-summary" rows="3" maxlength="200" placeholder="Under 200 characters" aria-describedby="ta-summary-help ta-summary-count ta-summary-message">spec: button, link and the basic form controls</textarea>
+  </div>
+  <p class="textarea-count" id="ta-summary-count" aria-live="polite">46 / 200</p>
+  <p class="textarea-help" id="ta-summary-help">Counts characters, not bytes.</p>
+  <p class="textarea-message" id="ta-summary-message">✕ Over the limit.</p>
+</div>

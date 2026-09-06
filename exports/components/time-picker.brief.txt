@@ -1,0 +1,46 @@
+j3w1/theme implementation brief — time-picker
+theme: j3w1-theme 0.1.0-draft.1  profile: default  sourceDigest: sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=
+pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/components/time-picker.json
+spec: spec/components/time-picker.md  site: https://j3w1.github.io/theme/#c-time-picker
+maturity: stable  priority: R1
+
+Summary: A native time input in the text-field box; segment editing and any clock popup belong to the host.
+
+Tokens (resolved):
+  root.bg               #0c0909  ({color.surface.input})
+  root.border           #a3676b  ({color.border.control})
+  root.bg-hover         #1c0a09  ({color.interaction.hover.bg})
+  root.border-focus     #e53935  ({color.border.active})
+  root.ring             #e53935  ({color.interaction.focus.ring})
+  root.border-invalid   #e53935  ({color.status.danger.border})
+  root.border-disabled  #7d1310  ({color.border.disabled})
+  root.bg-disabled      #160b0b  ({color.interaction.disabled.bg})
+  input.text            #e99499  ({color.text.default})
+  input.text-disabled   #8a5559  ({color.text.disabled})
+  input.caret           #e99499  ({color.code.caret})
+  label.text            #ffa2a7  ({color.text.bright})
+  help.text             #bd787d  ({color.text.muted})
+  message.text          #f73f35  ({color.status.danger.text})
+
+States: default, hover, focus-visible, invalid, disabled
+  default: 1px {color.border.control} on {color.surface.input}; text {color.text.default}, tabular figures [—]
+  hover: background → {color.interaction.hover.bg}; border unchanged [cursor: text]
+  focus-visible: border → {color.border.active}; ring 1px dashed {color.interaction.focus.ring} at −2px [the ring]
+  invalid: border 2px {color.status.danger.border}; message with the ✕ glyph [border width 1 → 2px; glyph; `aria-invalid`]
+  disabled: text {color.text.disabled}; border {color.border.disabled}; background {color.interaction.disabled.bg}; no hover [`disabled`; cursor: not-allowed]
+
+Keyboard:
+  Tab / Shift+Tab: Moves between hour, minute and any meridiem segment, then out of the control (host behaviour).
+  Up / Down: Steps the focused segment by one, minutes by the step attribute (host behaviour).
+  Space / Alt+Down: Opens the host clock where one exists; Escape closes it.
+  Enter: Submits the owning form (native).
+
+ARIA: native <input type=time> with <label> (https://www.w3.org/WAI/ARIA/apg/practices/forms/)
+Responsive: Fits its content (about 8ch) and never grows to fill the container; at 320px the box, help and message stack without clipping. RTL keeps the segments in the locale order the host chooses.
+Portability: native <input type=time> with step; hosts without a time type fall back to a text field with a pattern and a format hint; color-scheme dark keeps any host popup on a dark surface.
+  native: GTK4 SpinButton pair for hours and minutes inside one box.
+  native: Qt QTimeEdit; section navigation is native.
+  native: Terminal UI: a masked line editor (HH:MM); no popup.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

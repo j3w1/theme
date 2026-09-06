@@ -1,0 +1,325 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "0.1.0-draft.1",
+  "profile": "default",
+  "sourceDigest": "sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=",
+  "id": "progress",
+  "family": "feedback",
+  "maturity": "stable",
+  "priority": "R1",
+  "coverage": {
+    "family": "feedback",
+    "priority": "R1",
+    "maturity": "stable",
+    "specified": true,
+    "demonstrated": true,
+    "tested": false,
+    "states": 4
+  },
+  "title": "Progress",
+  "summary": "A native progress element with a label and value; determinate fills with the primary colour, indeterminate shows static 45° stripes, never an animation.",
+  "anchors": {
+    "site": "https://j3w1.github.io/theme/#c-progress",
+    "spec": "spec/components/progress.md",
+    "brief": "exports/components/progress.brief.txt"
+  },
+  "native": true,
+  "aria": {
+    "pattern": "native <progress> labelled by <label for>; aria-valuetext for indeterminate work",
+    "apg": "https://www.w3.org/WAI/ARIA/apg/patterns/meter/"
+  },
+  "variants": [
+    {
+      "id": "determinate",
+      "name": "Determinate"
+    },
+    {
+      "id": "indeterminate",
+      "name": "Indeterminate"
+    },
+    {
+      "id": "with-label",
+      "name": "With detail line"
+    }
+  ],
+  "sizes": [
+    "compact",
+    "comfortable"
+  ],
+  "states": [
+    "default",
+    "busy",
+    "error",
+    "reduced-motion"
+  ],
+  "tokens": {
+    "track.bg": {
+      "alias": "color.interaction.pressed.bg",
+      "value": "#420f0c",
+      "status": "observed"
+    },
+    "track.border": {
+      "alias": "color.border.control",
+      "value": "#a3676b",
+      "status": "proposed"
+    },
+    "value.bg": {
+      "alias": "color.action.primary.bg",
+      "value": "#871f19",
+      "status": "observed"
+    },
+    "value.bg-error": {
+      "alias": "color.status.danger.fill",
+      "value": "#dc282e",
+      "status": "observed"
+    },
+    "stripe.a": {
+      "alias": "color.action.primary.bg",
+      "value": "#871f19",
+      "status": "observed"
+    },
+    "stripe.b": {
+      "alias": "color.interaction.pressed.bg",
+      "value": "#420f0c",
+      "status": "observed"
+    },
+    "label.text": {
+      "alias": "color.text.bright",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "value.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "detail.text": {
+      "alias": "color.text.muted",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "error.text": {
+      "alias": "color.status.danger.text",
+      "value": "#f73f35",
+      "status": "observed"
+    }
+  },
+  "stateRules": [
+    {
+      "state": "default",
+      "visual": "fill {color.action.primary.bg} on the track; the value text",
+      "channel": "the native value; the percentage text",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.canvas",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.control",
+          "value": "#a3676b",
+          "status": "proposed"
+        }
+      }
+    },
+    {
+      "state": "busy",
+      "visual": "the whole track shows static 45° stripes of {color.action.primary.bg} on {color.interaction.pressed.bg}; no value text",
+      "channel": "`aria-busy`; `aria-valuetext`; the stripe pattern; no animation",
+      "tokens": {}
+    },
+    {
+      "state": "error",
+      "visual": "fill → {color.status.danger.fill}; the label gains the ✕ glyph in {color.status.danger.text}; the detail line says what failed",
+      "channel": "glyph; worded detail",
+      "tokens": {
+        "fg": {
+          "alias": "color.status.danger.text",
+          "value": "#f73f35",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.canvas",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.status.danger.border",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "reduced-motion",
+      "visual": "identical to default and busy: nothing animates in any state",
+      "channel": "`prefers-reduced-motion`",
+      "tokens": {}
+    }
+  ],
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Nothing; progress is not focusable and never traps a person."
+    },
+    {
+      "key": "Escape",
+      "action": "Nothing; cancelling is a separate button next to the bar."
+    }
+  ],
+  "responsive": "Fills its container; the header wraps the value under the label below 320px; the bar never shrinks below 8px. RTL fills from the end edge, which the native element does on its own.",
+  "portability": {
+    "web": "native <progress max value> with a <label for>; indeterminate by omitting value and setting aria-valuetext; the fill through ::-webkit-progress-value and ::-moz-progress-bar; stripes through a repeating-linear-gradient with no animation.",
+    "nativeFallbacks": [
+      "GTK4 ProgressBar; pulse mode draws the stripes statically (no pulse animation).",
+      "Qt QProgressBar; the chunk is the fill, minimum = maximum = 0 for indeterminate with a static hatched brush.",
+      "Terminal UI: a bar of block characters; indeterminate as alternating half blocks."
+    ]
+  },
+  "fixtures": [
+    "FX-LONG",
+    "FX-320",
+    "FX-ZOOM-200",
+    "FX-I18N",
+    "FX-RTL",
+    "FX-RM",
+    "FX-HC",
+    "FX-STATE-MATRIX"
+  ],
+  "related": [
+    "loading-indicator",
+    "file-input",
+    "wizard",
+    "toast"
+  ],
+  "specimens": [
+    "admin-form",
+    "i3-window-frame"
+  ],
+  "nonExamples": "A spinner. Animated or \"barber-pole\" stripes. A shimmering skeleton in place\nof a bar. A circular ring. A rounded pill-shaped bar. Colour-only failure\nwithout the glyph and text. A bar with no label. A bar that blocks input.",
+  "contrast": [
+    {
+      "label": "progress default text",
+      "state": "default",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.canvas",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "progress default border",
+      "state": "default",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.control",
+      "bg": "color.surface.canvas",
+      "fgHex": "#a3676b",
+      "bgHex": "#0c0909",
+      "ratio": 4.45,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "progress error text",
+      "state": "error",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.status.danger.text",
+      "bg": "color.surface.canvas",
+      "fgHex": "#f73f35",
+      "bgHex": "#0c0909",
+      "ratio": 5.4,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "progress error border",
+      "state": "error",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.status.danger.border",
+      "bg": "color.surface.canvas",
+      "fgHex": "#e53935",
+      "bgHex": "#0c0909",
+      "ratio": 4.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "label on the canvas",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.bright",
+      "bg": "color.surface.canvas",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#0c0909",
+      "ratio": 10.37,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "detail line on the canvas",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.muted",
+      "bg": "color.surface.canvas",
+      "fgHex": "#bd787d",
+      "bgHex": "#0c0909",
+      "ratio": 5.81,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "value fill against the track",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.action.primary.bg",
+      "bg": "color.interaction.pressed.bg",
+      "fgHex": "#871f19",
+      "bgHex": "#420f0c",
+      "ratio": 1.72,
+      "pass": false,
+      "waiver": "the fill measures 1.72:1 against the track; the value is carried by the visible percentage text and the native value, and the track boundary (border.control, 4.45:1) marks the full extent"
+    },
+    {
+      "label": "stripes (decorative pattern)",
+      "state": "busy",
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.action.primary.bg",
+      "bg": "color.interaction.pressed.bg",
+      "fgHex": "#871f19",
+      "bgHex": "#420f0c",
+      "ratio": 1.72,
+      "pass": true,
+      "waiver": "the stripes are a pattern, not a boundary; busy is carried by aria-busy and aria-valuetext"
+    },
+    {
+      "label": "error fill against the track",
+      "state": "error",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.status.danger.fill",
+      "bg": "color.interaction.pressed.bg",
+      "fgHex": "#dc282e",
+      "bgHex": "#420f0c",
+      "ratio": 3.36,
+      "pass": true,
+      "waiver": null
+    }
+  ]
+}

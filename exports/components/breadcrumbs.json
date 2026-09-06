@@ -1,0 +1,344 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "0.1.0-draft.1",
+  "profile": "default",
+  "sourceDigest": "sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=",
+  "id": "breadcrumbs",
+  "family": "navigation",
+  "maturity": "stable",
+  "priority": "R1",
+  "coverage": {
+    "family": "navigation",
+    "priority": "R1",
+    "maturity": "stable",
+    "specified": true,
+    "demonstrated": true,
+    "tested": false,
+    "states": 5
+  },
+  "title": "Breadcrumbs",
+  "summary": "The path from the root to the current page as an ordered list of links separated by slashes; the last item is the current page and not a link.",
+  "anchors": {
+    "site": "https://j3w1.github.io/theme/#c-breadcrumbs",
+    "spec": "spec/components/breadcrumbs.md",
+    "brief": "exports/components/breadcrumbs.brief.txt"
+  },
+  "native": true,
+  "aria": {
+    "pattern": "native nav > ol with aria-current=\"page\" on the last item",
+    "apg": "https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/"
+  },
+  "variants": [
+    {
+      "id": "default",
+      "name": "Default"
+    },
+    {
+      "id": "truncated",
+      "name": "Truncated",
+      "description": "Middle levels collapsed behind an ellipsis button that discloses them."
+    }
+  ],
+  "sizes": [
+    "compact",
+    "comfortable"
+  ],
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "current",
+    "truncated"
+  ],
+  "tokens": {
+    "root.bg": {
+      "alias": "color.surface.default",
+      "value": "#160b0b",
+      "status": "observed"
+    },
+    "link.text": {
+      "alias": "color.text.link",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "link.underline": {
+      "alias": "color.text.link-underline",
+      "value": "#dc282e",
+      "status": "observed"
+    },
+    "link.text-hover": {
+      "alias": "color.text.link-hover",
+      "value": "#f4eeee",
+      "status": "observed"
+    },
+    "link.bg-hover": {
+      "alias": "color.interaction.hover.bg-strong",
+      "value": "#630f0d",
+      "status": "observed"
+    },
+    "link.ring": {
+      "alias": "color.interaction.focus.ring",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "current.text": {
+      "alias": "color.text.bright",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "separator.text": {
+      "alias": "color.text.muted",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "ellipsis.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "ellipsis.bg-hover": {
+      "alias": "color.interaction.hover.bg",
+      "value": "#1c0a09",
+      "status": "observed"
+    }
+  },
+  "stateRules": [
+    {
+      "state": "default",
+      "visual": "links {color.text.link}, 1px underline; separators {color.text.muted}; current {color.text.bright}",
+      "channel": "underline on links; none on the current page",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.link",
+          "value": "#ffa2a7",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.default",
+          "value": "#160b0b",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "hover",
+      "visual": "link background → {color.interaction.hover.bg-strong}; text → {color.text.link-hover}",
+      "channel": "underline thickens 1px → 2px; cursor",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.link-hover",
+          "value": "#f4eeee",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.interaction.hover.bg-strong",
+          "value": "#630f0d",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "focus-visible",
+      "visual": "ring 1px dashed {color.interaction.focus.ring} at −2px around the link",
+      "channel": "the ring",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.link",
+          "value": "#ffa2a7",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.default",
+          "value": "#160b0b",
+          "status": "observed"
+        },
+        "outline": {
+          "alias": "color.interaction.focus.ring",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "current",
+      "visual": "text {color.text.bright}; no underline; no hover",
+      "channel": "`aria-current=\"page\"`; no underline",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.bright",
+          "value": "#ffa2a7",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.default",
+          "value": "#160b0b",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "truncated",
+      "visual": "the middle levels are replaced by an `…` button in {color.text.default}",
+      "channel": "`aria-expanded=\"false\"` on the button; its label counts the hidden levels",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.default",
+          "value": "#160b0b",
+          "status": "observed"
+        }
+      }
+    }
+  ],
+  "keyboard": [
+    {
+      "key": "Tab / Shift+Tab",
+      "action": "Moves through the links in order; the current page is skipped when it is not a link."
+    },
+    {
+      "key": "Enter",
+      "action": "Follows the focused link, or discloses the hidden levels from the ellipsis button."
+    }
+  ],
+  "responsive": "Items wrap onto further lines at 320px with the separator staying attached to the item before it; nothing truncates by itself, the truncated variant is an explicit choice for deep trails. RTL mirrors the order and the separators through logical margins; the slash glyph is not mirrored.",
+  "portability": {
+    "web": "nav with aria-label=\"Breadcrumb\" wrapping an ol; each level an li; ancestor levels are anchors; the last li carries aria-current=\"page\"; separators are aria-hidden spans, never list bullets or generated content that screen readers might voice.",
+    "nativeFallbacks": [
+      "GTK4 a Box of LinkButtons with Labels for the slashes; the current level a Label with the bright colour.",
+      "Qt a QHBoxLayout of QLabels with rich-text links; the current level plain.",
+      "Terminal UI: the trail as one line; the current level in the bright colour; slashes in the muted colour."
+    ]
+  },
+  "fixtures": [
+    "FX-LONG",
+    "FX-320",
+    "FX-ZOOM-200",
+    "FX-I18N",
+    "FX-RTL",
+    "FX-RM",
+    "FX-HC",
+    "FX-STATE-MATRIX"
+  ],
+  "related": [
+    "link",
+    "sidebar-nav",
+    "pagination",
+    "tree"
+  ],
+  "specimens": [
+    "settings-panel",
+    "filterable-table"
+  ],
+  "nonExamples": "Chevrons, arrows or bullets as separators. A trail that ends with the site\nname instead of the current page. The current page drawn as a link with an\nunderline. Automatic truncation by `text-overflow` that hides levels without\na way to reach them. A trail that scrolls horizontally. Uppercase or\nletter-spaced items. Separators that are read aloud.",
+  "contrast": [
+    {
+      "label": "breadcrumbs default text",
+      "state": "default",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.link",
+      "bg": "color.surface.default",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#160b0b",
+      "ratio": 10.1,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "breadcrumbs hover text",
+      "state": "hover",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.link-hover",
+      "bg": "color.interaction.hover.bg-strong",
+      "fgHex": "#f4eeee",
+      "bgHex": "#630f0d",
+      "ratio": 11.41,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "breadcrumbs focus-visible text",
+      "state": "focus-visible",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.link",
+      "bg": "color.surface.default",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#160b0b",
+      "ratio": 10.1,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "breadcrumbs focus-visible outline",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring",
+      "bg": "color.surface.default",
+      "fgHex": "#e53935",
+      "bgHex": "#160b0b",
+      "ratio": 4.57,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "breadcrumbs current text",
+      "state": "current",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.bright",
+      "bg": "color.surface.default",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#160b0b",
+      "ratio": 10.1,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "breadcrumbs truncated text",
+      "state": "truncated",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.default",
+      "fgHex": "#e99499",
+      "bgHex": "#160b0b",
+      "ratio": 8.43,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "separator on the panel surface",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.muted",
+      "bg": "color.surface.default",
+      "fgHex": "#bd787d",
+      "bgHex": "#160b0b",
+      "ratio": 5.66,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "link underline",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.text.link-underline",
+      "bg": "color.surface.default",
+      "fgHex": "#dc282e",
+      "bgHex": "#160b0b",
+      "ratio": 4.04,
+      "pass": true,
+      "waiver": null
+    }
+  ]
+}

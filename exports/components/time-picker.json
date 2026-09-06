@@ -1,0 +1,440 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "0.1.0-draft.1",
+  "profile": "default",
+  "sourceDigest": "sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=",
+  "id": "time-picker",
+  "family": "forms-advanced",
+  "maturity": "stable",
+  "priority": "R1",
+  "coverage": {
+    "family": "forms-advanced",
+    "priority": "R1",
+    "maturity": "stable",
+    "specified": true,
+    "demonstrated": true,
+    "tested": false,
+    "states": 5
+  },
+  "title": "Time picker",
+  "summary": "A native time input in the text-field box; segment editing and any clock popup belong to the host.",
+  "anchors": {
+    "site": "https://j3w1.github.io/theme/#c-time-picker",
+    "spec": "spec/components/time-picker.md",
+    "brief": "exports/components/time-picker.brief.txt"
+  },
+  "native": true,
+  "aria": {
+    "pattern": "native <input type=time> with <label>",
+    "apg": "https://www.w3.org/WAI/ARIA/apg/practices/forms/"
+  },
+  "variants": [
+    {
+      "id": "default",
+      "name": "Time"
+    }
+  ],
+  "sizes": [
+    "compact",
+    "comfortable"
+  ],
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "invalid",
+    "disabled"
+  ],
+  "tokens": {
+    "root.bg": {
+      "alias": "color.surface.input",
+      "value": "#0c0909",
+      "status": "observed"
+    },
+    "root.border": {
+      "alias": "color.border.control",
+      "value": "#a3676b",
+      "status": "proposed"
+    },
+    "root.bg-hover": {
+      "alias": "color.interaction.hover.bg",
+      "value": "#1c0a09",
+      "status": "observed"
+    },
+    "root.border-focus": {
+      "alias": "color.border.active",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "root.ring": {
+      "alias": "color.interaction.focus.ring",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "root.border-invalid": {
+      "alias": "color.status.danger.border",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "root.border-disabled": {
+      "alias": "color.border.disabled",
+      "value": "#7d1310",
+      "status": "observed"
+    },
+    "root.bg-disabled": {
+      "alias": "color.interaction.disabled.bg",
+      "value": "#160b0b",
+      "status": "observed"
+    },
+    "input.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "input.text-disabled": {
+      "alias": "color.text.disabled",
+      "value": "#8a5559",
+      "status": "approved"
+    },
+    "input.caret": {
+      "alias": "color.code.caret",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "label.text": {
+      "alias": "color.text.bright",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "help.text": {
+      "alias": "color.text.muted",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "message.text": {
+      "alias": "color.status.danger.text",
+      "value": "#f73f35",
+      "status": "observed"
+    }
+  },
+  "stateRules": [
+    {
+      "state": "default",
+      "visual": "1px {color.border.control} on {color.surface.input}; text {color.text.default}, tabular figures",
+      "channel": "—",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.input",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.control",
+          "value": "#a3676b",
+          "status": "proposed"
+        }
+      }
+    },
+    {
+      "state": "hover",
+      "visual": "background → {color.interaction.hover.bg}; border unchanged",
+      "channel": "cursor: text",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.interaction.hover.bg",
+          "value": "#1c0a09",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.control",
+          "value": "#a3676b",
+          "status": "proposed"
+        }
+      }
+    },
+    {
+      "state": "focus-visible",
+      "visual": "border → {color.border.active}; ring 1px dashed {color.interaction.focus.ring} at −2px",
+      "channel": "the ring",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.input",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.active",
+          "value": "#e53935",
+          "status": "observed"
+        },
+        "outline": {
+          "alias": "color.interaction.focus.ring",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "invalid",
+      "visual": "border 2px {color.status.danger.border}; message with the ✕ glyph",
+      "channel": "border width 1 → 2px; glyph; `aria-invalid`",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.input",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.status.danger.border",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "disabled",
+      "visual": "text {color.text.disabled}; border {color.border.disabled}; background {color.interaction.disabled.bg}; no hover",
+      "channel": "`disabled`; cursor: not-allowed",
+      "tokens": {}
+    }
+  ],
+  "keyboard": [
+    {
+      "key": "Tab / Shift+Tab",
+      "action": "Moves between hour, minute and any meridiem segment, then out of the control (host behaviour)."
+    },
+    {
+      "key": "Up / Down",
+      "action": "Steps the focused segment by one, minutes by the step attribute (host behaviour)."
+    },
+    {
+      "key": "Space / Alt+Down",
+      "action": "Opens the host clock where one exists; Escape closes it."
+    },
+    {
+      "key": "Enter",
+      "action": "Submits the owning form (native)."
+    }
+  ],
+  "responsive": "Fits its content (about 8ch) and never grows to fill the container; at 320px the box, help and message stack without clipping. RTL keeps the segments in the locale order the host chooses.",
+  "portability": {
+    "web": "native <input type=time> with step; hosts without a time type fall back to a text field with a pattern and a format hint; color-scheme dark keeps any host popup on a dark surface.",
+    "nativeFallbacks": [
+      "GTK4 SpinButton pair for hours and minutes inside one box.",
+      "Qt QTimeEdit; section navigation is native.",
+      "Terminal UI: a masked line editor (HH:MM); no popup."
+    ]
+  },
+  "fixtures": [
+    "FX-320",
+    "FX-ZOOM-200",
+    "FX-I18N",
+    "FX-RTL",
+    "FX-RM",
+    "FX-HC",
+    "FX-STATE-MATRIX"
+  ],
+  "related": [
+    "text-field",
+    "date-picker",
+    "number-field",
+    "field"
+  ],
+  "specimens": [
+    "admin-form",
+    "settings-panel"
+  ],
+  "nonExamples": "A custom clock face or a scrolling drum. A select for hours and a select for\nminutes. Rounded corners. A placeholder in place of a format hint. Disabling\nby opacity. Colour alone for the invalid state. A box that stretches to the\nfull container width.",
+  "contrast": [
+    {
+      "label": "time-picker default text",
+      "state": "default",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.input",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "time-picker default border",
+      "state": "default",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.control",
+      "bg": "color.surface.input",
+      "fgHex": "#a3676b",
+      "bgHex": "#0c0909",
+      "ratio": 4.45,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "time-picker hover text",
+      "state": "hover",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.interaction.hover.bg",
+      "fgHex": "#e99499",
+      "bgHex": "#1c0a09",
+      "ratio": 8.35,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "time-picker hover border",
+      "state": "hover",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.control",
+      "bg": "color.interaction.hover.bg",
+      "fgHex": "#a3676b",
+      "bgHex": "#1c0a09",
+      "ratio": 4.29,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "time-picker focus-visible text",
+      "state": "focus-visible",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.input",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "time-picker focus-visible border",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.active",
+      "bg": "color.surface.input",
+      "fgHex": "#e53935",
+      "bgHex": "#0c0909",
+      "ratio": 4.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "time-picker focus-visible outline",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring",
+      "bg": "color.surface.input",
+      "fgHex": "#e53935",
+      "bgHex": "#0c0909",
+      "ratio": 4.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "time-picker invalid text",
+      "state": "invalid",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.input",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "time-picker invalid border",
+      "state": "invalid",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.status.danger.border",
+      "bg": "color.surface.input",
+      "fgHex": "#e53935",
+      "bgHex": "#0c0909",
+      "ratio": 4.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "validation message on the canvas",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.status.danger.text",
+      "bg": "color.surface.canvas",
+      "fgHex": "#f73f35",
+      "bgHex": "#0c0909",
+      "ratio": 5.4,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "help text on the canvas",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.muted",
+      "bg": "color.surface.canvas",
+      "fgHex": "#bd787d",
+      "bgHex": "#0c0909",
+      "ratio": 5.81,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "disabled text (exempt; house floor 3:1)",
+      "state": "disabled",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.text.disabled",
+      "bg": "color.interaction.disabled.bg",
+      "fgHex": "#8a5559",
+      "bgHex": "#160b0b",
+      "ratio": 3.24,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "disabled border (exempt)",
+      "state": "disabled",
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.border.disabled",
+      "bg": "color.interaction.disabled.bg",
+      "fgHex": "#7d1310",
+      "bgHex": "#160b0b",
+      "ratio": 1.82,
+      "pass": true,
+      "waiver": "disabled controls are exempt from 1.4.11"
+    }
+  ]
+}

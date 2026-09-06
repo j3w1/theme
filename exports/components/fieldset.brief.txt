@@ -1,0 +1,37 @@
+j3w1/theme implementation brief — fieldset
+theme: j3w1-theme 0.1.0-draft.1  profile: default  sourceDigest: sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=
+pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/components/fieldset.json
+spec: spec/components/fieldset.md  site: https://j3w1.github.io/theme/#c-fieldset
+maturity: stable  priority: R1
+
+Summary: The native fieldset that groups related fields under a legend inside a 1px divider border; disabling it disables everything inside.
+
+Tokens (resolved):
+  root.border            #2b0e0d  ({color.border.divider})
+  root.bg                #160b0b  ({color.surface.default})
+  legend.text            #ffa2a7  ({color.text.bright})
+  body.text              #e99499  ({color.text.default})
+  legend.text-disabled   #8a5559  ({color.text.disabled})
+  field.bg               #0c0909  ({color.surface.input})
+  field.border           #a3676b  ({color.border.control})
+  field.bg-disabled      #160b0b  ({color.interaction.disabled.bg})
+  field.border-disabled  #7d1310  ({color.border.disabled})
+  field.text-disabled    #8a5559  ({color.text.disabled})
+  help.text              #bd787d  ({color.text.muted})
+
+States: default, disabled
+  default: 1px {color.border.divider} border; legend {color.text.bright}; fields as their own components [the border and the legend]
+  disabled: legend and labels {color.text.disabled}; every control inside takes its own disabled treatment ({color.interaction.disabled.bg}, {color.border.disabled}); the border unchanged [`disabled` on the fieldset; cursor: not-allowed on the controls]
+
+Keyboard:
+  Tab / Shift+Tab: Moves through the fields inside in document order; the legend is not a tab stop.
+
+ARIA: native <fieldset> with <legend> (https://www.w3.org/WAI/ARIA/apg/practices/forms/)
+Responsive: Fills its container; fields inside stack at every width; the legend wraps rather than truncating at 320px. RTL keeps the legend at the inline start of the top border.
+Portability: native <fieldset> and <legend>; disabled on the fieldset disables every descendant control and is the only way a group is disabled; never a div with role="group" when the group holds form controls.
+  native: GTK4 Frame with a label child; sensitivity propagates.
+  native: Qt QGroupBox; the title styled as the legend, checkable off.
+  native: Terminal UI: a box-drawing border with the legend in the top edge.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

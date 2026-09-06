@@ -1,0 +1,663 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "0.1.0-draft.1",
+  "profile": "default",
+  "sourceDigest": "sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=",
+  "id": "textarea",
+  "family": "forms-basic",
+  "maturity": "stable",
+  "priority": "R1",
+  "coverage": {
+    "family": "forms-basic",
+    "priority": "R1",
+    "maturity": "stable",
+    "specified": true,
+    "demonstrated": true,
+    "tested": false,
+    "states": 10
+  },
+  "title": "Textarea",
+  "summary": "Multi-line free-text entry in the same box as the text field; resizes vertically only and can show a character count.",
+  "anchors": {
+    "site": "https://j3w1.github.io/theme/#c-textarea",
+    "spec": "spec/components/textarea.md",
+    "brief": "exports/components/textarea.brief.txt"
+  },
+  "native": true,
+  "aria": {
+    "pattern": "native <textarea> with <label>",
+    "apg": "https://www.w3.org/WAI/ARIA/apg/practices/forms/"
+  },
+  "variants": [
+    {
+      "id": "default",
+      "name": "Default"
+    },
+    {
+      "id": "with-count",
+      "name": "With character count",
+      "description": "A live count under the box in text.muted."
+    }
+  ],
+  "sizes": [
+    "compact",
+    "comfortable"
+  ],
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "placeholder-shown",
+    "filled",
+    "required",
+    "invalid",
+    "invalid+focus-visible",
+    "disabled",
+    "read-only"
+  ],
+  "tokens": {
+    "root.bg": {
+      "alias": "color.surface.input",
+      "value": "#0c0909",
+      "status": "observed"
+    },
+    "root.border": {
+      "alias": "color.border.control",
+      "value": "#a3676b",
+      "status": "proposed"
+    },
+    "root.bg-hover": {
+      "alias": "color.interaction.hover.bg",
+      "value": "#1c0a09",
+      "status": "observed"
+    },
+    "root.border-focus": {
+      "alias": "color.border.active",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "root.ring": {
+      "alias": "color.interaction.focus.ring",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "root.ring-invalid": {
+      "alias": "color.interaction.focus.ring-container",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "root.border-invalid": {
+      "alias": "color.status.danger.border",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "root.border-disabled": {
+      "alias": "color.border.disabled",
+      "value": "#7d1310",
+      "status": "observed"
+    },
+    "root.bg-disabled": {
+      "alias": "color.interaction.disabled.bg",
+      "value": "#160b0b",
+      "status": "observed"
+    },
+    "root.border-readonly": {
+      "alias": "color.border.divider",
+      "value": "#2b0e0d",
+      "status": "proposed"
+    },
+    "root.bg-readonly": {
+      "alias": "color.surface.canvas",
+      "value": "#0c0909",
+      "status": "observed"
+    },
+    "input.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "input.text-disabled": {
+      "alias": "color.text.disabled",
+      "value": "#8a5559",
+      "status": "approved"
+    },
+    "input.placeholder": {
+      "alias": "color.text.placeholder",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "input.caret": {
+      "alias": "color.code.caret",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "input.selection-bg": {
+      "alias": "color.interaction.text-selection.bg",
+      "value": "#911410",
+      "status": "observed"
+    },
+    "input.selection-text": {
+      "alias": "color.interaction.text-selection.text",
+      "value": "#f4eeee",
+      "status": "observed"
+    },
+    "label.text": {
+      "alias": "color.text.bright",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "label.required-mark": {
+      "alias": "color.status.danger.text",
+      "value": "#f73f35",
+      "status": "observed"
+    },
+    "help.text": {
+      "alias": "color.text.muted",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "count.text": {
+      "alias": "color.text.muted",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "count.text-over": {
+      "alias": "color.status.danger.text",
+      "value": "#f73f35",
+      "status": "observed"
+    },
+    "message.text": {
+      "alias": "color.status.danger.text",
+      "value": "#f73f35",
+      "status": "observed"
+    }
+  },
+  "stateRules": [
+    {
+      "state": "default",
+      "visual": "1px {color.border.control} on {color.surface.input}; text {color.text.default}",
+      "channel": "—",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.input",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.control",
+          "value": "#a3676b",
+          "status": "proposed"
+        }
+      }
+    },
+    {
+      "state": "hover",
+      "visual": "background → {color.interaction.hover.bg}; border unchanged",
+      "channel": "cursor: text",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.interaction.hover.bg",
+          "value": "#1c0a09",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.control",
+          "value": "#a3676b",
+          "status": "proposed"
+        }
+      }
+    },
+    {
+      "state": "focus-visible",
+      "visual": "border → {color.border.active}; ring 1px dashed {color.interaction.focus.ring} at −2px",
+      "channel": "the ring",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.input",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.active",
+          "value": "#e53935",
+          "status": "observed"
+        },
+        "outline": {
+          "alias": "color.interaction.focus.ring",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "placeholder-shown",
+      "visual": "placeholder in {color.text.placeholder}, italic",
+      "channel": "italic",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.placeholder",
+          "value": "#bd787d",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.input",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.control",
+          "value": "#a3676b",
+          "status": "proposed"
+        }
+      }
+    },
+    {
+      "state": "filled",
+      "visual": "as default with a value",
+      "channel": "—",
+      "tokens": {}
+    },
+    {
+      "state": "required",
+      "visual": "`*` after the label in {color.status.danger.text} plus visually hidden \"required\"",
+      "channel": "`required`; the mark",
+      "tokens": {}
+    },
+    {
+      "state": "invalid",
+      "visual": "border 2px {color.status.danger.border}; message with the ✕ glyph; a count past its limit turns {color.status.danger.text} with the glyph",
+      "channel": "border width 1 → 2px; glyph; `aria-invalid`",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.input",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.status.danger.border",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "invalid+focus-visible",
+      "visual": "the 2px danger border and the ring in {color.interaction.focus.ring-container} at −4px",
+      "channel": "double boundary",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.input",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.status.danger.border",
+          "value": "#e53935",
+          "status": "observed"
+        },
+        "outline": {
+          "alias": "color.interaction.focus.ring-container",
+          "value": "#ffa2a7",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "disabled",
+      "visual": "text {color.text.disabled}; border {color.border.disabled}; background {color.interaction.disabled.bg}; no resize handle",
+      "channel": "`disabled`; cursor: not-allowed",
+      "tokens": {}
+    },
+    {
+      "state": "read-only",
+      "visual": "no box: 1px dotted {color.border.divider} bottom edge on {color.surface.canvas}; no resize handle; selectable",
+      "channel": "`readonly`; dotted edge",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.canvas",
+          "value": "#0c0909",
+          "status": "observed"
+        }
+      }
+    }
+  ],
+  "keyboard": [
+    {
+      "key": "Tab / Shift+Tab",
+      "action": "Moves focus in and out; Tab never inserts a tab character."
+    },
+    {
+      "key": "Enter",
+      "action": "Inserts a line break; never submits."
+    },
+    {
+      "key": "Ctrl+Enter / Cmd+Enter",
+      "action": "May submit the owning form when the host binds it; announced in the help text."
+    }
+  ],
+  "responsive": "Fills its field container with min-width 0 and width 100%; the resize handle is vertical only so the box can never widen past its container at 320px. RTL keeps the handle on the inline-end corner.",
+  "portability": {
+    "web": "native <textarea> plus <label>; rows=\"3\" minimum; resize vertical; the count is a live region with aria-live=\"polite\" updated at most once per second; the dashed ring through outline, never box-shadow.",
+    "nativeFallbacks": [
+      "GTK4 TextView inside a ScrolledWindow with a frame.",
+      "Qt QPlainTextEdit stylesheet; invalid through a dynamic property selector.",
+      "Terminal UI: bordered multi-line box; the count in the bottom border."
+    ]
+  },
+  "fixtures": [
+    "FX-LONG",
+    "FX-320",
+    "FX-ZOOM-200",
+    "FX-I18N",
+    "FX-RTL",
+    "FX-RM",
+    "FX-HC",
+    "FX-TOUCH",
+    "FX-DENSITY",
+    "FX-OVERFLOW",
+    "FX-STATE-MATRIX"
+  ],
+  "related": [
+    "text-field",
+    "field",
+    "code-editor"
+  ],
+  "specimens": [
+    "admin-form",
+    "settings-panel"
+  ],
+  "nonExamples": "Horizontal or free resizing. A box narrower than its label column. A count\nthat only changes colour past the limit. A glow instead of the dashed ring.\nRounded corners. An auto-growing box with no maximum. Tab inserting a\ncharacter. Placeholder text as the label. Disabling by opacity.",
+  "contrast": [
+    {
+      "label": "textarea default text",
+      "state": "default",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.input",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "textarea default border",
+      "state": "default",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.control",
+      "bg": "color.surface.input",
+      "fgHex": "#a3676b",
+      "bgHex": "#0c0909",
+      "ratio": 4.45,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "textarea hover text",
+      "state": "hover",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.interaction.hover.bg",
+      "fgHex": "#e99499",
+      "bgHex": "#1c0a09",
+      "ratio": 8.35,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "textarea hover border",
+      "state": "hover",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.control",
+      "bg": "color.interaction.hover.bg",
+      "fgHex": "#a3676b",
+      "bgHex": "#1c0a09",
+      "ratio": 4.29,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "textarea focus-visible text",
+      "state": "focus-visible",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.input",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "textarea focus-visible border",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.active",
+      "bg": "color.surface.input",
+      "fgHex": "#e53935",
+      "bgHex": "#0c0909",
+      "ratio": 4.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "textarea focus-visible outline",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring",
+      "bg": "color.surface.input",
+      "fgHex": "#e53935",
+      "bgHex": "#0c0909",
+      "ratio": 4.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "textarea placeholder-shown text",
+      "state": "placeholder-shown",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.placeholder",
+      "bg": "color.surface.input",
+      "fgHex": "#bd787d",
+      "bgHex": "#0c0909",
+      "ratio": 5.81,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "textarea placeholder-shown border",
+      "state": "placeholder-shown",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.control",
+      "bg": "color.surface.input",
+      "fgHex": "#a3676b",
+      "bgHex": "#0c0909",
+      "ratio": 4.45,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "textarea invalid text",
+      "state": "invalid",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.input",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "textarea invalid border",
+      "state": "invalid",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.status.danger.border",
+      "bg": "color.surface.input",
+      "fgHex": "#e53935",
+      "bgHex": "#0c0909",
+      "ratio": 4.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "textarea invalid+focus-visible text",
+      "state": "invalid+focus-visible",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.input",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "textarea invalid+focus-visible border",
+      "state": "invalid+focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.status.danger.border",
+      "bg": "color.surface.input",
+      "fgHex": "#e53935",
+      "bgHex": "#0c0909",
+      "ratio": 4.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "textarea invalid+focus-visible outline",
+      "state": "invalid+focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring-container",
+      "bg": "color.surface.input",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#0c0909",
+      "ratio": 10.37,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "textarea read-only text",
+      "state": "read-only",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.canvas",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "validation message on the panel surface",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.status.danger.text",
+      "bg": "color.surface.default",
+      "fgHex": "#f73f35",
+      "bgHex": "#160b0b",
+      "ratio": 5.26,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "help and count on the panel surface",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.muted",
+      "bg": "color.surface.default",
+      "fgHex": "#bd787d",
+      "bgHex": "#160b0b",
+      "ratio": 5.66,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "disabled text (exempt; house floor 3:1)",
+      "state": "disabled",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.text.disabled",
+      "bg": "color.interaction.disabled.bg",
+      "fgHex": "#8a5559",
+      "bgHex": "#160b0b",
+      "ratio": 3.24,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "disabled border (exempt)",
+      "state": "disabled",
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.border.disabled",
+      "bg": "color.interaction.disabled.bg",
+      "fgHex": "#7d1310",
+      "bgHex": "#160b0b",
+      "ratio": 1.82,
+      "pass": true,
+      "waiver": "disabled controls are exempt from 1.4.11"
+    },
+    {
+      "label": "read-only bottom edge (decorative; the field has no box)",
+      "state": "read-only",
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.border.divider",
+      "bg": "color.surface.canvas",
+      "fgHex": "#2b0e0d",
+      "bgHex": "#0c0909",
+      "ratio": 1.11,
+      "pass": true,
+      "waiver": "read-only fields are identified by the readonly attribute and the absence of a box, not by this edge"
+    }
+  ]
+}

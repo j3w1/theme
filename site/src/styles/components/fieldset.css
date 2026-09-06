@@ -1,0 +1,87 @@
+/* fieldset — reference CSS. A divider border, a legend in text.bright and
+   the fields stacked inside; disabled propagates natively and is paired
+   with the forced-state attribute the state matrix emits. The minimal
+   .fieldset-input here is only what the demo needs. Token variables only. */
+
+.fieldset {
+  min-width: 0;
+  max-width: 28rem;
+  margin: 0;
+  padding: var(--space-12) var(--space-16) var(--space-16);
+  border: var(--border-width-default) solid var(--color-border-divider);
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+}
+
+.fieldset-legend {
+  padding: 0 var(--space-4);
+  color: var(--color-text-bright);
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+  font-weight: var(--font-weight-bold);
+}
+
+.fieldset-body {
+  display: grid;
+  gap: var(--space-12);
+  min-width: 0;
+}
+
+.fieldset-field {
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.fieldset-label {
+  color: var(--color-text-bright);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.fieldset-input {
+  min-width: 0;
+  min-height: var(--density-control-height, 32px);
+  padding: 0 var(--density-control-padding-x, 12px);
+  background: var(--color-surface-input);
+  color: var(--color-text-default);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+  font: inherit;
+  outline: 0;
+}
+
+.fieldset-input:focus-visible {
+  border-color: var(--color-border-active);
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.fieldset-help {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+/* disabled: the legend and labels dim; every control inside takes its own disabled treatment */
+.fieldset:disabled .fieldset-legend,
+.fieldset:disabled .fieldset-label,
+[data-state-disabled] .fieldset-legend,
+[data-state-disabled] .fieldset-label {
+  color: var(--color-text-disabled);
+}
+
+.fieldset-input:disabled,
+[data-state-disabled] .fieldset-input {
+  background: var(--color-interaction-disabled-bg);
+  color: var(--color-text-disabled);
+  border-color: var(--color-border-disabled);
+  cursor: not-allowed;
+}
+
+@media (forced-colors: active) {
+  .fieldset-input:focus-visible {
+    outline-color: Highlight;
+  }
+}

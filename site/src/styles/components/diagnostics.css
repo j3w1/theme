@@ -1,0 +1,308 @@
+/* diagnostics — reference CSS. Inline markers (underline patterns, the error
+   row, the overview stripe) and the problems panel (an APG listbox). Every
+   severity has a pattern or a glyph as well as a colour. Forced-state
+   attributes from the state matrix ([data-state-<part>]) render each state
+   statically. Token variables only. */
+
+.diagnostics {
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+  max-width: 100%;
+  color: var(--color-text-default);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+}
+
+/* ---- inline ---- */
+
+.diagnostics-box {
+  min-width: 0;
+  overflow-x: auto;
+  background: var(--color-code-bg);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+  font-size: var(--font-size-code);
+  line-height: var(--font-line-height-code);
+  unicode-bidi: isolate;
+  direction: ltr;
+}
+
+.diagnostics-code {
+  margin: 0;
+  min-width: max-content;
+  font: inherit;
+  white-space: normal;
+}
+
+.diagnostics-line {
+  display: flex;
+  align-items: stretch;
+}
+
+.diagnostics-ln {
+  flex: none;
+  min-width: 2ch;
+  padding: 0 var(--space-8);
+  border-inline-end: var(--border-width-default) solid var(--color-code-gutter-rule);
+  color: var(--color-code-line-number);
+  text-align: end;
+  user-select: none;
+}
+
+.diagnostics-text {
+  flex: 1 0 auto;
+  padding: 0 var(--space-8);
+  white-space: pre;
+}
+
+/* the overview stripe: one cell per row on the inline-end edge */
+.diagnostics-mark {
+  flex: none;
+  position: sticky;
+  inset-inline-end: 0;
+  min-width: 2ch;
+  background: var(--color-code-bg);
+  border-inline-start: var(--border-width-default) solid var(--color-code-gutter-rule);
+  font-size: var(--font-size-caption);
+  text-align: center;
+  user-select: none;
+}
+
+.diagnostics-mark-error { color: var(--color-diagnostic-error-stripe); }
+.diagnostics-mark-warning { color: var(--color-diagnostic-warning-stripe); }
+.diagnostics-mark-info { color: var(--color-diagnostic-info-text); }
+.diagnostics-mark-hint { color: var(--color-diagnostic-hint-underline); }
+
+.diagnostics-line-error,
+.diagnostics-line-error .diagnostics-mark {
+  background: var(--color-diagnostic-error-bg);
+}
+
+/* the ranges: pattern first, colour second */
+.diagnostics-error,
+.diagnostics-warning,
+.diagnostics-info,
+.diagnostics-hint,
+.diagnostics-unused {
+  text-decoration-skip-ink: none;
+  text-underline-offset: var(--space-2);
+}
+
+.diagnostics-error { text-decoration: underline wavy var(--color-diagnostic-error-underline); }
+.diagnostics-warning { text-decoration: underline wavy var(--color-diagnostic-warning-underline); }
+.diagnostics-info { text-decoration: underline dotted var(--color-diagnostic-info-underline); }
+.diagnostics-hint { text-decoration: underline dotted var(--color-diagnostic-hint-underline); }
+
+.diagnostics-unused {
+  color: var(--color-diagnostic-unused-text);
+  text-decoration: underline dotted var(--color-diagnostic-unused-text);
+}
+
+.diagnostics-deprecated {
+  color: var(--color-code-syntax-deprecated);
+  text-decoration: line-through var(--color-code-syntax-deprecated);
+}
+
+/* ---- panel ---- */
+
+.diagnostics-panel {
+  gap: 0;
+  background: var(--color-surface-default);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+}
+
+.diagnostics-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-12);
+  align-items: baseline;
+  min-height: var(--density-row-height, 36px);
+  padding: 0 var(--density-control-padding-x, 12px);
+  border-bottom: var(--border-width-default) solid var(--color-border-divider);
+}
+
+.diagnostics-title {
+  color: var(--color-text-bright);
+  font-weight: var(--font-weight-bold);
+}
+
+.diagnostics-count {
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.diagnostics-glyph {
+  display: inline-block;
+  min-width: 1ch;
+  text-align: center;
+  font-weight: var(--font-weight-bold);
+}
+
+.diagnostics-glyph-error { color: var(--color-diagnostic-error-text); }
+.diagnostics-glyph-warning { color: var(--color-diagnostic-warning-text); }
+.diagnostics-glyph-info { color: var(--color-diagnostic-info-text); }
+.diagnostics-glyph-hint { color: var(--color-text-subtle); }
+.diagnostics-glyph-success { color: var(--color-status-success-text); }
+
+.diagnostics-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  outline: 0;
+}
+
+.diagnostics-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  gap: 0 var(--space-8);
+  align-items: baseline;
+  min-height: var(--density-row-height, 36px);
+  padding: var(--space-4) var(--density-control-padding-x, 12px);
+  border-bottom: var(--border-width-default) solid var(--color-border-divider);
+  cursor: default;
+}
+
+.diagnostics-row:last-child {
+  border-bottom: 0;
+}
+
+.diagnostics-message {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.diagnostics-loc,
+.diagnostics-rule {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+  white-space: nowrap;
+}
+
+.diagnostics-status,
+.diagnostics-empty {
+  display: none;
+  margin: 0;
+  padding: var(--space-4) var(--density-control-padding-x, 12px);
+}
+
+.diagnostics-status {
+  color: var(--color-status-danger-text);
+  border-bottom: var(--border-width-default) solid var(--color-border-divider);
+}
+
+.diagnostics-inline .diagnostics-status {
+  padding: 0;
+  border-bottom: 0;
+}
+
+.diagnostics-empty {
+  color: var(--color-text-muted);
+}
+
+/* hover: the row fill; inline ranges do not change */
+@media (hover: hover) {
+  .diagnostics-row:hover {
+    background: var(--color-interaction-hover-bg);
+  }
+}
+
+[data-state-hover] .diagnostics-row-active {
+  background: var(--color-interaction-hover-bg);
+}
+
+/* focus-visible: the active row ring; the inline box takes the container ring */
+.diagnostics-list:focus-visible .diagnostics-row-active,
+[data-state-focus-visible] .diagnostics-row-active {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.diagnostics-box:focus-visible,
+[data-state-focus-visible] .diagnostics-box {
+  outline: var(--focus-ring-container);
+  outline-offset: var(--focus-offset-container);
+}
+
+.diagnostics-box:focus:not(:focus-visible) {
+  outline: 0;
+}
+
+/* selected: the row fill with on-selection text and glyph; the matching range in code */
+.diagnostics-row[aria-selected="true"],
+[data-state-selected] .diagnostics-row-active {
+  background: var(--color-interaction-selection-bg);
+  color: var(--color-interaction-selection-text);
+}
+
+.diagnostics-row[aria-selected="true"] .diagnostics-glyph,
+.diagnostics-row[aria-selected="true"] .diagnostics-loc,
+.diagnostics-row[aria-selected="true"] .diagnostics-rule,
+[data-state-selected] .diagnostics-row-active .diagnostics-glyph,
+[data-state-selected] .diagnostics-row-active .diagnostics-loc,
+[data-state-selected] .diagnostics-row-active .diagnostics-rule {
+  color: var(--color-interaction-selection-text);
+}
+
+[data-state-selected] .diagnostics-target {
+  background: var(--color-code-selection-bg);
+}
+
+/* selected + focus-visible: the ring recolours on the fill */
+.diagnostics-list:focus-visible .diagnostics-row[aria-selected="true"],
+[data-state-selected][data-state-focus-visible] .diagnostics-row-active {
+  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline-offset: var(--focus-offset);
+}
+
+/* error: the provider failed; the status line appears, rows stay */
+[data-state-error] .diagnostics-status {
+  display: block;
+}
+
+/* empty: no problems; decorations, marks and rows go, the message appears */
+[data-state-empty] .diagnostics-empty {
+  display: block;
+}
+
+[data-state-empty] .diagnostics-list,
+[data-state-empty] .diagnostics-count {
+  display: none;
+}
+
+[data-state-empty] .diagnostics-error,
+[data-state-empty] .diagnostics-warning,
+[data-state-empty] .diagnostics-info,
+[data-state-empty] .diagnostics-hint,
+[data-state-empty] .diagnostics-unused,
+[data-state-empty] .diagnostics-deprecated {
+  color: inherit;
+  text-decoration: none;
+}
+
+[data-state-empty] .diagnostics-mark {
+  color: transparent;
+}
+
+[data-state-empty] .diagnostics-line-error,
+[data-state-empty] .diagnostics-line-error .diagnostics-mark {
+  background: var(--color-code-bg);
+}
+
+@media (forced-colors: active) {
+  .diagnostics-list:focus-visible .diagnostics-row-active,
+  [data-state-focus-visible] .diagnostics-row-active,
+  .diagnostics-box:focus-visible,
+  [data-state-focus-visible] .diagnostics-box {
+    outline-color: Highlight;
+  }
+
+  .diagnostics-row[aria-selected="true"],
+  [data-state-selected] .diagnostics-row-active {
+    background: Highlight;
+    color: HighlightText;
+  }
+}

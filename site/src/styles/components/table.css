@@ -1,0 +1,233 @@
+/* table — reference CSS. A collapsed native table: a border.strong header
+   rule (2px when sticky), divider rows, the hover and selection fills.
+   Every pseudo-class is paired with the forced-state attribute the state
+   matrix emits. Cell rules carry the root class so they outrank the site's
+   own matrix table rules when the demo is nested. Token variables only. */
+
+.table {
+  width: 100%;
+  min-width: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+  background: var(--color-surface-default);
+  border: 0;
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+  text-align: start;
+}
+
+.table-scroller {
+  max-height: calc(var(--density-row-height, 36px) * 4);
+  overflow: auto;
+  min-width: 0;
+}
+
+.table-caption {
+  padding: 0 0 var(--space-8);
+  color: var(--color-text-muted);
+  text-align: start;
+  caption-side: top;
+}
+
+.table .table-header {
+  position: static;
+  height: var(--density-row-height, 36px);
+  min-width: 0;
+  padding: 0 var(--density-control-padding-x, 12px);
+  background: var(--color-surface-default);
+  border: 0;
+  border-bottom: var(--border-width-default) solid var(--color-border-strong);
+  color: var(--color-text-bright);
+  font-weight: var(--font-weight-bold);
+  text-align: start;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.table .table-header-numeric,
+.table .table-cell-numeric {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.table-sort {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  width: 100%;
+  min-height: var(--density-control-height, 32px);
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-none);
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+  cursor: pointer;
+}
+
+.table-header-numeric .table-sort {
+  justify-content: flex-end;
+}
+
+.table-sort-glyph {
+  display: none;
+  color: var(--color-text-bright);
+}
+
+.table .table-row {
+  height: var(--density-row-height, 36px);
+  background: transparent;
+  border-top: var(--border-width-default) solid var(--color-border-divider);
+}
+
+.table .table-body .table-row:first-child {
+  border-top: 0;
+}
+
+.table .table-cell {
+  min-width: 0;
+  padding: var(--space-4) var(--density-control-padding-x, 12px);
+  background: transparent;
+  border: 0;
+  color: inherit;
+  vertical-align: middle;
+}
+
+.table .table-empty[hidden],
+.table .table-loading[hidden] {
+  display: none;
+}
+
+.table .table-empty-cell,
+.table .table-loading-cell {
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.table-loading-glyph {
+  color: var(--color-text-muted);
+}
+
+.table-loading-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* sticky header: the 2px rule on the raised surface */
+.table-sticky .table-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-raised);
+  background: var(--color-surface-raised);
+  border-bottom-width: var(--border-width-emphasis);
+}
+
+/* hover: the row fill */
+.table-body .table-row:hover,
+[data-state-hover] .table-row-demo-target {
+  background: var(--color-interaction-hover-bg);
+}
+
+/* focus-visible on a sort button */
+.table-sort:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.table-sort:focus:not(:focus-visible) {
+  outline: 0;
+}
+
+/* selected: the fill on the row */
+.table-row[aria-selected="true"],
+[data-state-selected] .table-row-demo-target {
+  background: var(--color-interaction-selection-bg);
+  color: var(--color-interaction-selection-text);
+}
+
+.table-row[aria-selected="true"]:hover,
+[data-state-selected] .table-row-demo-target:hover {
+  background: var(--color-interaction-selection-bg);
+}
+
+/* selected + focus-visible: the ring recolours on the fill */
+.table-row[aria-selected="true"]:focus-visible,
+.table-row[aria-selected="true"]:focus-within,
+[data-state-selected][data-state-focus-visible] .table-row-demo-target {
+  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline-offset: var(--focus-offset);
+}
+
+/* selected, container inactive */
+.table[data-container-inactive] .table-row[aria-selected="true"],
+[data-state-selected][data-state-container-inactive] .table-row-demo-target {
+  background: var(--color-interaction-selection-inactive-bg);
+  color: var(--color-interaction-selection-inactive-text);
+  outline: 0;
+}
+
+/* sorted: the glyph shows on the header carrying aria-sort */
+.table-header[aria-sort="ascending"] .table-sort-glyph,
+.table-header[aria-sort="descending"] .table-sort-glyph,
+[data-state-sorted] .table-header-demo-target .table-sort-glyph {
+  display: inline;
+}
+
+.table-header[aria-sort="descending"] .table-sort-glyph {
+  transform: scaleY(-1);
+}
+
+/* empty: the body is the message row */
+[data-state-empty] .table-body .table-row {
+  display: none;
+}
+
+.table-body .table-empty:not([hidden]),
+[data-state-empty] .table-body .table-empty {
+  display: table-row;
+}
+
+/* loading: the body is the glyph row; aria-busy on the table */
+.table[aria-busy="true"] .table-body .table-row,
+[data-state-loading] .table-body .table-row {
+  display: none;
+}
+
+.table[aria-busy="true"] .table-body .table-loading,
+.table-body .table-loading:not([hidden]),
+[data-state-loading] .table-body .table-loading {
+  display: table-row;
+}
+
+@media (hover: none) {
+  .table-body .table-row:hover {
+    background: transparent;
+  }
+
+  .table-row[aria-selected="true"]:hover {
+    background: var(--color-interaction-selection-bg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .table-row {
+    transition: background-color var(--motion-duration-fast);
+  }
+}
+
+@media (forced-colors: active) {
+  .table-sort:focus-visible {
+    outline-color: Highlight;
+  }
+
+  .table-row[aria-selected="true"],
+  [data-state-selected] .table-row-demo-target {
+    background: Highlight;
+    color: HighlightText;
+  }
+}

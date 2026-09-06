@@ -1,0 +1,765 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "0.1.0-draft.1",
+  "profile": "default",
+  "sourceDigest": "sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=",
+  "id": "combobox",
+  "family": "forms-advanced",
+  "maturity": "stable",
+  "priority": "R1",
+  "coverage": {
+    "family": "forms-advanced",
+    "priority": "R1",
+    "maturity": "stable",
+    "specified": true,
+    "demonstrated": true,
+    "tested": false,
+    "states": 10
+  },
+  "title": "Combobox",
+  "summary": "A text input that filters a listbox of suggestions; the APG combobox with list autocomplete, rendered with the list open.",
+  "anchors": {
+    "site": "https://j3w1.github.io/theme/#c-combobox",
+    "spec": "spec/components/combobox.md",
+    "brief": "exports/components/combobox.brief.txt"
+  },
+  "native": false,
+  "aria": {
+    "pattern": "APG combobox with list autocomplete: input role combobox owning a listbox of options",
+    "apg": "https://www.w3.org/WAI/ARIA/apg/patterns/combobox/",
+    "role": "combobox"
+  },
+  "variants": [
+    {
+      "id": "default",
+      "name": "Flat list"
+    },
+    {
+      "id": "with-groups",
+      "name": "Grouped options"
+    },
+    {
+      "id": "no-results",
+      "name": "No results"
+    }
+  ],
+  "sizes": [
+    "compact",
+    "comfortable"
+  ],
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "open",
+    "closed",
+    "selected",
+    "invalid",
+    "invalid+focus-visible",
+    "disabled",
+    "no-results"
+  ],
+  "tokens": {
+    "root.bg": {
+      "alias": "color.surface.input",
+      "value": "#0c0909",
+      "status": "observed"
+    },
+    "root.border": {
+      "alias": "color.border.control",
+      "value": "#a3676b",
+      "status": "proposed"
+    },
+    "root.bg-hover": {
+      "alias": "color.interaction.hover.bg",
+      "value": "#1c0a09",
+      "status": "observed"
+    },
+    "root.border-focus": {
+      "alias": "color.border.active",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "root.ring": {
+      "alias": "color.interaction.focus.ring",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "root.ring-invalid": {
+      "alias": "color.interaction.focus.ring-container",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "root.border-invalid": {
+      "alias": "color.status.danger.border",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "root.border-disabled": {
+      "alias": "color.border.disabled",
+      "value": "#7d1310",
+      "status": "observed"
+    },
+    "root.bg-disabled": {
+      "alias": "color.interaction.disabled.bg",
+      "value": "#160b0b",
+      "status": "observed"
+    },
+    "input.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "input.text-disabled": {
+      "alias": "color.text.disabled",
+      "value": "#8a5559",
+      "status": "approved"
+    },
+    "input.placeholder": {
+      "alias": "color.text.placeholder",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "input.caret": {
+      "alias": "color.code.caret",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "toggle.text": {
+      "alias": "color.action.tertiary.text",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "toggle.bg-hover": {
+      "alias": "color.action.tertiary.hover-bg",
+      "value": "#1c0a09",
+      "status": "observed"
+    },
+    "label.text": {
+      "alias": "color.text.bright",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "listbox.bg": {
+      "alias": "color.surface.raised",
+      "value": "#241010",
+      "status": "observed"
+    },
+    "listbox.border": {
+      "alias": "color.border.overlay",
+      "value": "#e53935",
+      "status": "proposed"
+    },
+    "option.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "option.bg-hover": {
+      "alias": "color.interaction.hover.bg-strong",
+      "value": "#630f0d",
+      "status": "observed"
+    },
+    "option.text-hover": {
+      "alias": "color.text.link-hover",
+      "value": "#f4eeee",
+      "status": "observed"
+    },
+    "option.bg-selected": {
+      "alias": "color.interaction.selection.bg",
+      "value": "#911410",
+      "status": "observed"
+    },
+    "option.text-selected": {
+      "alias": "color.interaction.selection.text",
+      "value": "#f4eeee",
+      "status": "observed"
+    },
+    "option.ring-selected": {
+      "alias": "color.interaction.focus.ring-container",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "group.text": {
+      "alias": "color.text.subtle",
+      "value": "#ad7175",
+      "status": "approved"
+    },
+    "group.border": {
+      "alias": "color.border.divider",
+      "value": "#2b0e0d",
+      "status": "proposed"
+    },
+    "empty.text": {
+      "alias": "color.text.muted",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "help.text": {
+      "alias": "color.text.muted",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "message.text": {
+      "alias": "color.status.danger.text",
+      "value": "#f73f35",
+      "status": "observed"
+    }
+  },
+  "stateRules": [
+    {
+      "state": "default",
+      "visual": "1px {color.border.control} on {color.surface.input}; list on {color.surface.raised} with a 1px {color.border.overlay}",
+      "channel": "—",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.input",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.control",
+          "value": "#a3676b",
+          "status": "proposed"
+        }
+      }
+    },
+    {
+      "state": "hover",
+      "visual": "box background → {color.interaction.hover.bg}; the hovered option → {color.interaction.hover.bg-strong} with {color.text.link-hover}",
+      "channel": "cursor: text on the box, default on the list",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.link-hover",
+          "value": "#f4eeee",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.interaction.hover.bg-strong",
+          "value": "#630f0d",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "focus-visible",
+      "visual": "box border → {color.border.active}; ring 1px dashed {color.interaction.focus.ring} at −2px",
+      "channel": "the ring",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.input",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.active",
+          "value": "#e53935",
+          "status": "observed"
+        },
+        "outline": {
+          "alias": "color.interaction.focus.ring",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "open",
+      "visual": "list visible below the box; toggle glyph rotated 180°",
+      "channel": "`aria-expanded=\"true\"`; the toggle glyph",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.raised",
+          "value": "#241010",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.overlay",
+          "value": "#e53935",
+          "status": "proposed"
+        }
+      }
+    },
+    {
+      "state": "closed",
+      "visual": "list absent; the box unchanged",
+      "channel": "`aria-expanded=\"false\"`; nothing below the box",
+      "tokens": {}
+    },
+    {
+      "state": "selected",
+      "visual": "the active option filled {color.interaction.selection.bg} with {color.interaction.selection.text} and a 1px dashed ring in {color.interaction.focus.ring-container}",
+      "channel": "`aria-selected=\"true\"`; `aria-activedescendant`; the ring",
+      "tokens": {
+        "fg": {
+          "alias": "color.interaction.selection.text",
+          "value": "#f4eeee",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.interaction.selection.bg",
+          "value": "#911410",
+          "status": "observed"
+        },
+        "outline": {
+          "alias": "color.interaction.focus.ring-container",
+          "value": "#ffa2a7",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "invalid",
+      "visual": "box border 2px {color.status.danger.border}; message with the ✕ glyph",
+      "channel": "border width 1 → 2px; glyph; `aria-invalid`",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.input",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.status.danger.border",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "invalid+focus-visible",
+      "visual": "the 2px danger border and the ring in {color.interaction.focus.ring-container} at −4px",
+      "channel": "double boundary",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.input",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.status.danger.border",
+          "value": "#e53935",
+          "status": "observed"
+        },
+        "outline": {
+          "alias": "color.interaction.focus.ring-container",
+          "value": "#ffa2a7",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "disabled",
+      "visual": "text {color.text.disabled}; border {color.border.disabled}; background {color.interaction.disabled.bg}; list never opens",
+      "channel": "`disabled`; cursor: not-allowed",
+      "tokens": {}
+    },
+    {
+      "state": "no-results",
+      "visual": "the list holds only the empty row in {color.text.muted}, italic",
+      "channel": "`aria-disabled` row; italic; a polite announcement of zero matches",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.muted",
+          "value": "#bd787d",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.raised",
+          "value": "#241010",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.overlay",
+          "value": "#e53935",
+          "status": "proposed"
+        }
+      }
+    }
+  ],
+  "keyboard": [
+    {
+      "key": "Down / Up",
+      "action": "Opens the list if closed; moves the active option, wrapping at either end; the input keeps DOM focus."
+    },
+    {
+      "key": "Enter",
+      "action": "Accepts the active option into the input and closes the list."
+    },
+    {
+      "key": "Escape",
+      "action": "Closes the list; a second Escape clears the input."
+    },
+    {
+      "key": "Alt+Down / Alt+Up",
+      "action": "Opens or closes the list without moving the active option."
+    },
+    {
+      "key": "Home / End",
+      "action": "Moves the caret inside the input, never the active option."
+    },
+    {
+      "key": "Tab",
+      "action": "Leaves the control; an open list closes and the typed text stays."
+    }
+  ],
+  "responsive": "The box fills its field container with min-width 0; the list is as wide as the box and scrolls after eight rows; at 320px nothing overflows horizontally. RTL mirrors the toggle and the group indentation.",
+  "portability": {
+    "web": "<input role=combobox aria-autocomplete=list aria-expanded aria-controls> owning a <ul role=listbox>; the active option through aria-activedescendant, never by moving DOM focus; the list is a sibling in flow or a popover, never an iframe.",
+    "nativeFallbacks": [
+      "GTK4 Entry with an EntryCompletion; the selection fill through the .selected style class.",
+      "Qt QComboBox editable with a QCompleter; popup frame through QAbstractItemView stylesheet.",
+      "Terminal UI: a line editor with a list of suggestions drawn below it; the active row inverted."
+    ]
+  },
+  "fixtures": [
+    "FX-LONG",
+    "FX-320",
+    "FX-ZOOM-200",
+    "FX-I18N",
+    "FX-RTL",
+    "FX-RM",
+    "FX-HC",
+    "FX-OVERFLOW",
+    "FX-STATE-MATRIX"
+  ],
+  "related": [
+    "text-field",
+    "select",
+    "multiselect",
+    "search-field",
+    "menu",
+    "command-palette"
+  ],
+  "specimens": [
+    "admin-form",
+    "filterable-table"
+  ],
+  "nonExamples": "A select restyled as a combobox. Moving DOM focus into the list on Down. A\nlist that floats over the page with a shadow or a rounded frame. Highlighting\nthe active option with a colour change of the text alone. A no-results state\nthat silently shows the full list. Opening on hover. A list that slides or\nfades in for longer than 150 ms.",
+  "contrast": [
+    {
+      "label": "combobox default text",
+      "state": "default",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.input",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "combobox default border",
+      "state": "default",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.control",
+      "bg": "color.surface.input",
+      "fgHex": "#a3676b",
+      "bgHex": "#0c0909",
+      "ratio": 4.45,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "combobox hover text",
+      "state": "hover",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.link-hover",
+      "bg": "color.interaction.hover.bg-strong",
+      "fgHex": "#f4eeee",
+      "bgHex": "#630f0d",
+      "ratio": 11.41,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "combobox focus-visible text",
+      "state": "focus-visible",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.input",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "combobox focus-visible border",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.active",
+      "bg": "color.surface.input",
+      "fgHex": "#e53935",
+      "bgHex": "#0c0909",
+      "ratio": 4.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "combobox focus-visible outline",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring",
+      "bg": "color.surface.input",
+      "fgHex": "#e53935",
+      "bgHex": "#0c0909",
+      "ratio": 4.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "combobox open text",
+      "state": "open",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.raised",
+      "fgHex": "#e99499",
+      "bgHex": "#241010",
+      "ratio": 7.92,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "combobox open border",
+      "state": "open",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.overlay",
+      "bg": "color.surface.raised",
+      "fgHex": "#e53935",
+      "bgHex": "#241010",
+      "ratio": 4.3,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "combobox selected text",
+      "state": "selected",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.interaction.selection.text",
+      "bg": "color.interaction.selection.bg",
+      "fgHex": "#f4eeee",
+      "bgHex": "#911410",
+      "ratio": 7.92,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "combobox selected outline",
+      "state": "selected",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring-container",
+      "bg": "color.interaction.selection.bg",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#911410",
+      "ratio": 4.75,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "combobox invalid text",
+      "state": "invalid",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.input",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "combobox invalid border",
+      "state": "invalid",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.status.danger.border",
+      "bg": "color.surface.input",
+      "fgHex": "#e53935",
+      "bgHex": "#0c0909",
+      "ratio": 4.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "combobox invalid+focus-visible text",
+      "state": "invalid+focus-visible",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.input",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "combobox invalid+focus-visible border",
+      "state": "invalid+focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.status.danger.border",
+      "bg": "color.surface.input",
+      "fgHex": "#e53935",
+      "bgHex": "#0c0909",
+      "ratio": 4.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "combobox invalid+focus-visible outline",
+      "state": "invalid+focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring-container",
+      "bg": "color.surface.input",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#0c0909",
+      "ratio": 10.37,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "combobox no-results text",
+      "state": "no-results",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.muted",
+      "bg": "color.surface.raised",
+      "fgHex": "#bd787d",
+      "bgHex": "#241010",
+      "ratio": 5.31,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "combobox no-results border",
+      "state": "no-results",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.overlay",
+      "bg": "color.surface.raised",
+      "fgHex": "#e53935",
+      "bgHex": "#241010",
+      "ratio": 4.3,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "group heading on the listbox",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.subtle",
+      "bg": "color.surface.raised",
+      "fgHex": "#ad7175",
+      "bgHex": "#241010",
+      "ratio": 4.66,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "validation message on the canvas",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.status.danger.text",
+      "bg": "color.surface.canvas",
+      "fgHex": "#f73f35",
+      "bgHex": "#0c0909",
+      "ratio": 5.4,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "help text on the canvas",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.muted",
+      "bg": "color.surface.canvas",
+      "fgHex": "#bd787d",
+      "bgHex": "#0c0909",
+      "ratio": 5.81,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "disabled text (exempt; house floor 3:1)",
+      "state": "disabled",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.text.disabled",
+      "bg": "color.interaction.disabled.bg",
+      "fgHex": "#8a5559",
+      "bgHex": "#160b0b",
+      "ratio": 3.24,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "disabled border (exempt)",
+      "state": "disabled",
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.border.disabled",
+      "bg": "color.interaction.disabled.bg",
+      "fgHex": "#7d1310",
+      "bgHex": "#160b0b",
+      "ratio": 1.82,
+      "pass": true,
+      "waiver": "disabled controls are exempt from 1.4.11"
+    },
+    {
+      "label": "group separator (decorative)",
+      "state": null,
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.border.divider",
+      "bg": "color.surface.raised",
+      "fgHex": "#2b0e0d",
+      "bgHex": "#241010",
+      "ratio": 1.01,
+      "pass": true,
+      "waiver": "groups are announced through role=group and their heading; the rule is decorative"
+    }
+  ]
+}

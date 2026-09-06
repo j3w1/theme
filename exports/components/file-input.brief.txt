@@ -1,0 +1,59 @@
+j3w1/theme implementation brief — file-input
+theme: j3w1-theme 0.1.0-draft.1  profile: default  sourceDigest: sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=
+pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/components/file-input.json
+spec: spec/components/file-input.md  site: https://j3w1.github.io/theme/#c-file-input
+maturity: stable  priority: R1
+
+Summary: A native file input behind a label styled as a secondary button, optionally inside a drop zone, with a list of chosen files and per-file errors.
+
+Tokens (resolved):
+  button.bg               rgb(0 0 0 / 0%)  ({color.action.secondary.bg})
+  button.text             #ffa2a7  ({color.action.secondary.text})
+  button.border           #a3676b  ({color.action.secondary.border})
+  button.bg-hover         #630f0d  ({color.action.secondary.hover-bg})
+  button.bg-pressed       #420f0c  ({color.action.secondary.pressed-bg})
+  button.ring             #e53935  ({color.interaction.focus.ring})
+  button.border-invalid   #e53935  ({color.status.danger.border})
+  button.text-disabled    #8a5559  ({color.text.disabled})
+  button.border-disabled  #7d1310  ({color.border.disabled})
+  button.bg-disabled      #160b0b  ({color.interaction.disabled.bg})
+  zone.border             #e53935  ({color.interaction.drop-target})
+  zone.bg-drop-target     rgb(145 20 16 / 12%)  ({color.interaction.marquee})
+  zone.hint               #bd787d  ({color.text.muted})
+  label.text              #ffa2a7  ({color.text.bright})
+  status.text             #bd787d  ({color.text.muted})
+  list.text               #e99499  ({color.text.default})
+  list.divider            #2b0e0d  ({color.border.divider})
+  list.size               #ad7175  ({color.text.subtle})
+  list.error              #f73f35  ({color.status.danger.text})
+  remove.text             #e99499  ({color.action.tertiary.text})
+  remove.bg-hover         #1c0a09  ({color.action.tertiary.hover-bg})
+  progress.track          #420f0c  ({color.interaction.pressed.bg})
+  progress.stripe         #871f19  ({color.action.primary.bg})
+  help.text               #bd787d  ({color.text.muted})
+  message.text            #f73f35  ({color.status.danger.text})
+
+States: default, hover, focus-visible, drop-target, invalid, disabled, loading
+  default: button: 1px {color.action.secondary.border} outline, text {color.action.secondary.text}; zone: 1px dashed {color.interaction.drop-target} [—]
+  hover: button background → {color.action.secondary.hover-bg}; border unchanged [cursor: pointer]
+  focus-visible: ring 1px dashed {color.interaction.focus.ring} at −2px on the button (the input has focus) [the ring]
+  drop-target: root fill {color.interaction.marquee}; border 1px dashed {color.interaction.drop-target} [dashed pattern; the hint text changes to "Release to add"]
+  invalid: button border 2px {color.status.danger.border}; message with the ✕ glyph; a failed row shows its own ✕ [border width 1 → 2px; glyphs; `aria-invalid`]
+  disabled: button text {color.text.disabled}, border {color.border.disabled}, background {color.interaction.disabled.bg}; the zone's dashes take {color.border.disabled}; no hover [`disabled`; cursor: not-allowed]
+  loading: a static bar of 45° stripes, {color.action.primary.bg} on {color.interaction.pressed.bg}, below the row; the button stays enabled [`aria-busy`; the status text reads "Uploading n files"; no animation]
+
+Keyboard:
+  Tab / Shift+Tab: Reaches the native input (drawn as the button), then each remove button in the list.
+  Enter / Space: Opens the host file chooser from the input.
+  Delete / Backspace: On a focused remove button, same as activating it.
+  Escape: Closes the host chooser (host behaviour).
+
+ARIA: native <input type=file> named by two <label>s; the drop zone is a plain region, never a role (https://www.w3.org/WAI/ARIA/apg/practices/forms/)
+Responsive: The button and status wrap onto two rows below 320px; the list rows truncate file names with an ellipsis and keep the size and remove button visible; the drop zone keeps its padding. RTL mirrors the button and status order and the list columns.
+Portability: native <input type=file> with the sr-only pattern (never display none, which removes it from the tab order); two <label for> elements name it; the drop zone listens for dragover and drop on the root and mirrors the drop-target attribute; progress through aria-busy on the root and a live status.
+  native: GTK4 FileDialog opened from a Button; the chosen list is a ListBox.
+  native: Qt QFileDialog from a QPushButton; the list is a QListWidget.
+  native: Terminal UI: a path line editor with completion; no drop zone.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

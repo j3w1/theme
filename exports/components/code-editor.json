@@ -1,0 +1,779 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "0.1.0-draft.1",
+  "profile": "default",
+  "sourceDigest": "sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=",
+  "id": "code-editor",
+  "family": "developer",
+  "maturity": "stable",
+  "priority": "R1",
+  "coverage": {
+    "family": "developer",
+    "priority": "R1",
+    "maturity": "stable",
+    "specified": true,
+    "demonstrated": true,
+    "tested": false,
+    "states": 6
+  },
+  "title": "Code editor",
+  "summary": "The editor surface, gutter, caret, current line, selection, bracket match and monochrome syntax roles that every code-editing or code-viewing host maps onto.",
+  "anchors": {
+    "site": "https://j3w1.github.io/theme/#c-code-editor",
+    "spec": "spec/components/code-editor.md",
+    "brief": "exports/components/code-editor.brief.txt"
+  },
+  "native": false,
+  "aria": {
+    "pattern": "presentation of <pre> inside role=textbox with aria-multiline and aria-readonly; a real editor is a host surface",
+    "apg": "https://www.w3.org/WAI/ARIA/apg/patterns/",
+    "role": "textbox"
+  },
+  "variants": [
+    {
+      "id": "default",
+      "name": "JavaScript",
+      "description": "Every syntax role in one twelve-line sample."
+    },
+    {
+      "id": "markup",
+      "name": "Markup",
+      "description": "Tags, attributes, an entity escape and a heading."
+    },
+    {
+      "id": "folded",
+      "name": "Folded region",
+      "description": "A collapsed block with its fold marker and skipped line numbers."
+    }
+  ],
+  "sizes": [
+    "compact",
+    "comfortable"
+  ],
+  "states": [
+    "default",
+    "focus-visible",
+    "selected",
+    "selected+container-inactive",
+    "current",
+    "read-only"
+  ],
+  "tokens": {
+    "root.bg": {
+      "alias": "color.code.bg",
+      "value": "#0c0909",
+      "status": "observed"
+    },
+    "root.border": {
+      "alias": "color.border.control",
+      "value": "#a3676b",
+      "status": "proposed"
+    },
+    "root.ring": {
+      "alias": "color.interaction.focus.ring-container",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "gutter.bg": {
+      "alias": "color.code.gutter-bg",
+      "value": "#0c0909",
+      "status": "observed"
+    },
+    "gutter.rule": {
+      "alias": "color.code.gutter-rule",
+      "value": "#2b0e0d",
+      "status": "observed"
+    },
+    "gutter.bg-read-only": {
+      "alias": "color.surface.sunken",
+      "value": "#0a0707",
+      "status": "proposed"
+    },
+    "line-number.text": {
+      "alias": "color.code.line-number",
+      "value": "#ad7175",
+      "status": "approved"
+    },
+    "line-number.text-active": {
+      "alias": "color.code.line-number-active",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "line.bg-current": {
+      "alias": "color.code.current-line",
+      "value": "#1c0a09",
+      "status": "observed"
+    },
+    "caret.bg": {
+      "alias": "color.code.caret",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "selection.bg": {
+      "alias": "color.code.selection-bg",
+      "value": "#420f0c",
+      "status": "observed"
+    },
+    "selection.bg-inactive": {
+      "alias": "color.interaction.selection.inactive-bg",
+      "value": "#420f0c",
+      "status": "observed"
+    },
+    "selection.text-inactive": {
+      "alias": "color.interaction.selection.inactive-text",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "bracket.outline": {
+      "alias": "color.code.bracket-match",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "indent.guide": {
+      "alias": "color.code.indent-guide",
+      "value": "#531310",
+      "status": "observed"
+    },
+    "whitespace.text": {
+      "alias": "color.code.whitespace",
+      "value": "#7d1310",
+      "status": "observed"
+    },
+    "fold.text": {
+      "alias": "color.text.muted",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "fold.border": {
+      "alias": "color.border.control",
+      "value": "#a3676b",
+      "status": "proposed"
+    },
+    "syntax.keyword": {
+      "alias": "color.code.syntax.keyword",
+      "value": "#f73f35",
+      "status": "observed"
+    },
+    "syntax.string": {
+      "alias": "color.code.syntax.string",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "syntax.comment": {
+      "alias": "color.code.syntax.comment",
+      "value": "#ad7175",
+      "status": "approved"
+    },
+    "syntax.number": {
+      "alias": "color.code.syntax.number",
+      "value": "#d4868b",
+      "status": "observed"
+    },
+    "syntax.constant": {
+      "alias": "color.code.syntax.constant",
+      "value": "#d4868b",
+      "status": "observed"
+    },
+    "syntax.function": {
+      "alias": "color.code.syntax.function",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "syntax.variable": {
+      "alias": "color.code.syntax.variable",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "syntax.type": {
+      "alias": "color.code.syntax.type",
+      "value": "#b37175",
+      "status": "observed"
+    },
+    "syntax.operator": {
+      "alias": "color.code.syntax.operator",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "syntax.punctuation": {
+      "alias": "color.code.syntax.punctuation",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "syntax.property": {
+      "alias": "color.code.syntax.property",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "syntax.heading": {
+      "alias": "color.code.syntax.heading",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "syntax.tag": {
+      "alias": "color.code.syntax.tag",
+      "value": "#f73f35",
+      "status": "observed"
+    },
+    "syntax.attribute": {
+      "alias": "color.code.syntax.attribute",
+      "value": "#d4868b",
+      "status": "observed"
+    },
+    "syntax.escape": {
+      "alias": "color.code.syntax.escape",
+      "value": "#d4868b",
+      "status": "observed"
+    },
+    "syntax.invalid": {
+      "alias": "color.code.syntax.invalid",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "syntax.deprecated": {
+      "alias": "color.code.syntax.deprecated",
+      "value": "#ad7175",
+      "status": "observed"
+    }
+  },
+  "stateRules": [
+    {
+      "state": "default",
+      "visual": "code on {color.code.bg}; comments italic; invalid text wavy-underlined in {color.code.syntax.invalid}; deprecated text struck through",
+      "channel": "italic, wavy underline, line-through",
+      "tokens": {
+        "fg": {
+          "alias": "color.code.syntax.variable",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.code.bg",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.control",
+          "value": "#a3676b",
+          "status": "proposed"
+        }
+      }
+    },
+    {
+      "state": "focus-visible",
+      "visual": "container ring 2px {color.interaction.focus.ring-container} at −3px; a 1px {color.code.caret} bar; the caret line filled {color.code.current-line} across gutter and text; its number in {color.code.line-number-active}",
+      "channel": "the ring; the caret bar",
+      "tokens": {
+        "fg": {
+          "alias": "color.code.syntax.variable",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.code.current-line",
+          "value": "#1c0a09",
+          "status": "observed"
+        },
+        "outline": {
+          "alias": "color.interaction.focus.ring-container",
+          "value": "#ffa2a7",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "selected",
+      "visual": "the range filled {color.code.selection-bg}; syntax colours kept",
+      "channel": "the range is announced through the host's selection; the fill spans line ends",
+      "tokens": {
+        "fg": {
+          "alias": "color.code.syntax.variable",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.code.selection-bg",
+          "value": "#420f0c",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "selected+container-inactive",
+      "visual": "the same range in {color.interaction.selection.inactive-bg} with {color.interaction.selection.inactive-text}; no caret, no ring",
+      "channel": "lightness drop between the two fills",
+      "tokens": {
+        "fg": {
+          "alias": "color.interaction.selection.inactive-text",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.interaction.selection.inactive-bg",
+          "value": "#420f0c",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "current",
+      "visual": "both characters of the matched pair outlined 1px solid {color.code.bracket-match}",
+      "channel": "the outline is a box, not a colour change",
+      "tokens": {
+        "fg": {
+          "alias": "color.code.syntax.variable",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.code.bg",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.code.bracket-match",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "read-only",
+      "visual": "gutter drops to {color.surface.sunken} behind the same line numbers; the gutter rule becomes dotted; no caret is drawn",
+      "channel": "`aria-readonly`; dotted rule; missing caret",
+      "tokens": {
+        "fg": {
+          "alias": "color.code.line-number",
+          "value": "#ad7175",
+          "status": "approved"
+        },
+        "bg": {
+          "alias": "color.surface.sunken",
+          "value": "#0a0707",
+          "status": "proposed"
+        }
+      }
+    }
+  ],
+  "keyboard": [
+    {
+      "key": "(host)",
+      "action": "The host editor owns every key; the theme changes no binding, no caret behaviour and no selection model."
+    },
+    {
+      "key": "Tab",
+      "action": "Reaches the editor as one stop in the reference; whether Tab inserts or moves focus is the host's rule and is announced by the host."
+    },
+    {
+      "key": "Escape",
+      "action": "In hosts that trap Tab, Escape must release focus to the next stop; the theme does not provide it."
+    }
+  ],
+  "responsive": "The box fills its container with min-width 0 and scrolls horizontally inside itself; lines never wrap in the reference; at 320px the gutter stays and the text pane scrolls. Type is the code scale in both densities; density does not change editor metrics. RTL keeps code left-to-right (bidi isolation) while the gutter mirrors to the inline-start edge.",
+  "portability": {
+    "web": "role=textbox aria-multiline=true aria-readonly=true over <pre>, tabindex=0, one focus stop; a live editor (CodeMirror, Monaco, contenteditable) is a host surface that maps these roles onto its own theme API and keeps its own caret, selection and keyboard handling.",
+    "nativeFallbacks": [
+      "GTK: GtkSourceView style scheme; current-line, selection, bracket-match and the syntax roles map one to one; the container ring becomes the frame's focus outline.",
+      "Qt: KSyntaxHighlighting theme JSON; editor colours and text styles carry the same roles; caret width follows the toolkit.",
+      "JetBrains: an editor scheme (.icls); CARET_ROW, SELECTION_BACKGROUND, MATCHED_BRACE_ATTRIBUTES and the language attribute keys; the UI theme is a separate capability.",
+      "Terminal editors (vim, helix): 16-slot hosts use the heritage-ansi mapping and document that the caret follows the terminal cursor."
+    ]
+  },
+  "fixtures": [
+    "FX-STATE-MATRIX",
+    "FX-320",
+    "FX-ZOOM-200",
+    "FX-RM",
+    "FX-HC",
+    "FX-LONG",
+    "FX-RTL"
+  ],
+  "related": [
+    "diagnostics",
+    "diff-view",
+    "terminal"
+  ],
+  "specimens": [
+    "i3-window-frame"
+  ],
+  "nonExamples": "Rainbow syntax in the `default` profile (the three extension hues are\nproposed only in `extended`). A blinking or animated caret in the reference.\nA selection that recolours the text to white and loses the syntax roles. A\ncurrent-line highlight brighter than the selection. A bracket match drawn as\na background fill, which reads as a selection. Line numbers in the decorative\n`#7d1310`. A glow, gradient or rounded corner on the editor box. Removing the\nhost's focus indicator without drawing the container ring.",
+  "contrast": [
+    {
+      "label": "code-editor default text",
+      "state": "default",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.code.syntax.variable",
+      "bg": "color.code.bg",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "code-editor default border",
+      "state": "default",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.control",
+      "bg": "color.code.bg",
+      "fgHex": "#a3676b",
+      "bgHex": "#0c0909",
+      "ratio": 4.45,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "code-editor focus-visible text",
+      "state": "focus-visible",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.code.syntax.variable",
+      "bg": "color.code.current-line",
+      "fgHex": "#e99499",
+      "bgHex": "#1c0a09",
+      "ratio": 8.35,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "code-editor focus-visible outline",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring-container",
+      "bg": "color.code.current-line",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#1c0a09",
+      "ratio": 10.01,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "code-editor selected text",
+      "state": "selected",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.code.syntax.variable",
+      "bg": "color.code.selection-bg",
+      "fgHex": "#e99499",
+      "bgHex": "#420f0c",
+      "ratio": 7.02,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "code-editor selected+container-inactive text",
+      "state": "selected+container-inactive",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.interaction.selection.inactive-text",
+      "bg": "color.interaction.selection.inactive-bg",
+      "fgHex": "#e99499",
+      "bgHex": "#420f0c",
+      "ratio": 7.02,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "code-editor current text",
+      "state": "current",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.code.syntax.variable",
+      "bg": "color.code.bg",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "code-editor current border",
+      "state": "current",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.code.bracket-match",
+      "bg": "color.code.bg",
+      "fgHex": "#e53935",
+      "bgHex": "#0c0909",
+      "ratio": 4.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "code-editor read-only text",
+      "state": "read-only",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.code.line-number",
+      "bg": "color.surface.sunken",
+      "fgHex": "#ad7175",
+      "bgHex": "#0a0707",
+      "ratio": 5.16,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "caret on the current line",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.code.caret",
+      "bg": "color.code.current-line",
+      "fgHex": "#e99499",
+      "bgHex": "#1c0a09",
+      "ratio": 8.35,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "bracket-match outline on the editor surface",
+      "state": "current",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.code.bracket-match",
+      "bg": "color.code.bg",
+      "fgHex": "#e53935",
+      "bgHex": "#0c0909",
+      "ratio": 4.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "bracket-match outline on the current line",
+      "state": "current",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.code.bracket-match",
+      "bg": "color.code.current-line",
+      "fgHex": "#e53935",
+      "bgHex": "#1c0a09",
+      "ratio": 4.53,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "line numbers in the gutter",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.code.line-number",
+      "bg": "color.code.gutter-bg",
+      "fgHex": "#ad7175",
+      "bgHex": "#0c0909",
+      "ratio": 5.1,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "active line number",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.code.line-number-active",
+      "bg": "color.code.current-line",
+      "fgHex": "#e99499",
+      "bgHex": "#1c0a09",
+      "ratio": 8.35,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "keyword",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.code.syntax.keyword",
+      "bg": "color.code.bg",
+      "fgHex": "#f73f35",
+      "bgHex": "#0c0909",
+      "ratio": 5.4,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "string",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.code.syntax.string",
+      "bg": "color.code.bg",
+      "fgHex": "#bd787d",
+      "bgHex": "#0c0909",
+      "ratio": 5.81,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "comment",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.code.syntax.comment",
+      "bg": "color.code.bg",
+      "fgHex": "#ad7175",
+      "bgHex": "#0c0909",
+      "ratio": 5.1,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "number and constant",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.code.syntax.number",
+      "bg": "color.code.bg",
+      "fgHex": "#d4868b",
+      "bgHex": "#0c0909",
+      "ratio": 7.16,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "function",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.code.syntax.function",
+      "bg": "color.code.bg",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#0c0909",
+      "ratio": 10.37,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "type",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.code.syntax.type",
+      "bg": "color.code.bg",
+      "fgHex": "#b37175",
+      "bgHex": "#0c0909",
+      "ratio": 5.23,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "property, heading and invalid text",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.code.syntax.property",
+      "bg": "color.code.bg",
+      "fgHex": "#e53935",
+      "bgHex": "#0c0909",
+      "ratio": 4.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "tag",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.code.syntax.tag",
+      "bg": "color.code.bg",
+      "fgHex": "#f73f35",
+      "bgHex": "#0c0909",
+      "ratio": 5.4,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "attribute and escape",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.code.syntax.attribute",
+      "bg": "color.code.bg",
+      "fgHex": "#d4868b",
+      "bgHex": "#0c0909",
+      "ratio": 7.16,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "deprecated text",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.code.syntax.deprecated",
+      "bg": "color.code.bg",
+      "fgHex": "#ad7175",
+      "bgHex": "#0c0909",
+      "ratio": 5.1,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "muted string text inside the selection",
+      "state": "selected",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.code.syntax.string",
+      "bg": "color.code.selection-bg",
+      "fgHex": "#bd787d",
+      "bgHex": "#420f0c",
+      "ratio": 4.71,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "fold marker text",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.muted",
+      "bg": "color.code.bg",
+      "fgHex": "#bd787d",
+      "bgHex": "#0c0909",
+      "ratio": 5.81,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "indent guide (decorative)",
+      "state": null,
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.code.indent-guide",
+      "bg": "color.code.bg",
+      "fgHex": "#531310",
+      "bgHex": "#0c0909",
+      "ratio": 1.39,
+      "pass": true,
+      "waiver": "indent guides duplicate the whitespace that is already in the text; they carry no information of their own"
+    },
+    {
+      "label": "rendered whitespace (decorative)",
+      "state": null,
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.code.whitespace",
+      "bg": "color.code.bg",
+      "fgHex": "#7d1310",
+      "bgHex": "#0c0909",
+      "ratio": 1.86,
+      "pass": true,
+      "waiver": "rendered whitespace duplicates characters that are already in the text; foundations names it decorative"
+    },
+    {
+      "label": "gutter rule (decorative)",
+      "state": null,
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.code.gutter-rule",
+      "bg": "color.code.bg",
+      "fgHex": "#2b0e0d",
+      "bgHex": "#0c0909",
+      "ratio": 1.11,
+      "pass": true,
+      "waiver": "the gutter is identified by its number column; the rule is a divider, not a boundary"
+    }
+  ]
+}

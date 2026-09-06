@@ -1,0 +1,54 @@
+<div class="combobox">
+  <label class="combobox-label" for="cb-font">Font family</label>
+  <div class="combobox-root">
+    <input class="combobox-input" id="cb-font" type="text" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-controls="cb-font-list" autocomplete="off" value="Sauce" placeholder="Type to filter" aria-describedby="cb-font-help cb-font-message">
+    <button class="combobox-toggle" type="button" tabindex="-1" aria-label="Show all fonts"><svg class="combobox-chevron" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path d="M3.5 6 8 10.5 12.5 6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+  </div>
+  <ul class="combobox-listbox" id="cb-font-list" role="listbox" aria-label="Fonts">
+    <li class="combobox-option" role="option" id="cb-font-opt-1">Cascadia Mono</li>
+    <li class="combobox-option" role="option" id="cb-font-opt-2" aria-selected="true">SauceCodePro NFM</li>
+    <li class="combobox-option" role="option" id="cb-font-opt-3">Source Code Pro</li>
+    <li class="combobox-empty" role="option" aria-disabled="true">No fonts match.</li>
+  </ul>
+  <p class="combobox-help" id="cb-font-help">Down opens the list; Enter accepts.</p>
+  <p class="combobox-message" id="cb-font-message">✕ Choose a font from the list.</p>
+</div>
+<!-- @variant with-groups -->
+<div class="combobox">
+  <label class="combobox-label" for="cb-host">Host</label>
+  <div class="combobox-root">
+    <input class="combobox-input" id="cb-host" type="text" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-controls="cb-host-list" autocomplete="off" value="j3" placeholder="Name or address" aria-describedby="cb-host-help cb-host-message">
+    <button class="combobox-toggle" type="button" tabindex="-1" aria-label="Show all hosts"><svg class="combobox-chevron" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path d="M3.5 6 8 10.5 12.5 6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+  </div>
+  <ul class="combobox-listbox" id="cb-host-list" role="listbox" aria-label="Hosts">
+    <li class="combobox-group" role="group" aria-labelledby="cb-host-g1">
+      <span class="combobox-group-heading" id="cb-host-g1" role="presentation">Recent</span>
+      <ul class="combobox-group-list" role="presentation">
+        <li class="combobox-option" role="option" id="cb-host-opt-1" aria-selected="true">j3w1.github.io</li>
+        <li class="combobox-option" role="option" id="cb-host-opt-2">j3w1.local</li>
+      </ul>
+    </li>
+    <li class="combobox-group" role="group" aria-labelledby="cb-host-g2">
+      <span class="combobox-group-heading" id="cb-host-g2" role="presentation">Known</span>
+      <ul class="combobox-group-list" role="presentation">
+        <li class="combobox-option" role="option" id="cb-host-opt-3">j3w1-build.internal</li>
+      </ul>
+    </li>
+    <li class="combobox-empty" role="option" aria-disabled="true">No hosts match.</li>
+  </ul>
+  <p class="combobox-help" id="cb-host-help">Recent hosts first.</p>
+  <p class="combobox-message" id="cb-host-message">✕ Choose a known host.</p>
+</div>
+<!-- @variant no-results -->
+<div class="combobox">
+  <label class="combobox-label" for="cb-tag">Tag</label>
+  <div class="combobox-root">
+    <input class="combobox-input" id="cb-tag" type="text" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-controls="cb-tag-list" autocomplete="off" value="zzq" placeholder="Type to filter" aria-describedby="cb-tag-help cb-tag-message">
+    <button class="combobox-toggle" type="button" tabindex="-1" aria-label="Show all tags"><svg class="combobox-chevron" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path d="M3.5 6 8 10.5 12.5 6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+  </div>
+  <ul class="combobox-listbox" id="cb-tag-list" role="listbox" aria-label="Tags">
+    <li class="combobox-empty combobox-empty-shown" role="option" aria-disabled="true">No tags match.</li>
+  </ul>
+  <p class="combobox-help" id="cb-tag-help">Escape clears the filter.</p>
+  <p class="combobox-message" id="cb-tag-message">✕ Choose an existing tag.</p>
+</div>

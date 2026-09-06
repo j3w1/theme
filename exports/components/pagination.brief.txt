@@ -1,0 +1,42 @@
+j3w1/theme implementation brief — pagination
+theme: j3w1-theme 0.1.0-draft.1  profile: default  sourceDigest: sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=
+pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/components/pagination.json
+spec: spec/components/pagination.md  site: https://j3w1.github.io/theme/#c-pagination
+maturity: stable  priority: R1
+
+Summary: Page links for a long result set; the current page takes the selection fill and aria-current, and the compact form reads "3 of 12" between previous and next.
+
+Tokens (resolved):
+  root.bg             #160b0b  ({color.surface.default})
+  link.text           #e99499  ({color.text.default})
+  link.bg-hover       #1c0a09  ({color.interaction.hover.bg})
+  link.bg-pressed     #420f0c  ({color.interaction.pressed.bg})
+  link.ring           #e53935  ({color.interaction.focus.ring})
+  link.text-disabled  #8a5559  ({color.text.disabled})
+  current.bg          #911410  ({color.interaction.selection.bg})
+  current.text        #f4eeee  ({color.text.on-selection})
+  current.ring        #ffa2a7  ({color.interaction.focus.ring-container})
+  gap.text            #bd787d  ({color.text.muted})
+  status.text         #e99499  ({color.text.default})
+  status.emphasis     #ffa2a7  ({color.text.bright})
+
+States: default, hover, focus-visible, current, disabled
+  default: text {color.text.default}; no fill; no border [—]
+  hover: background → {color.interaction.hover.bg} [cursor: pointer]
+  focus-visible: ring 1px dashed {color.interaction.focus.ring} at −2px; on the current page the ring is {color.interaction.focus.ring-container} [the ring]
+  current: fill {color.interaction.selection.bg}; text {color.text.on-selection}; no hover [`aria-current="page"`]
+  disabled: text {color.text.disabled}; no fill; no hover [`aria-disabled="true"`; no `href`; cursor: not-allowed]
+
+Keyboard:
+  Tab / Shift+Tab: Moves through previous, each page link and next in order; a disabled end has no href and is not a stop.
+  Enter: Follows the focused link.
+
+ARIA: native nav > ul of links with aria-current="page"
+Responsive: The list wraps at 320px; the compact variant never wraps and is the choice below 600px or in a toolbar. RTL mirrors the order and swaps the previous and next glyphs through logical properties.
+Portability: nav with aria-label="Pagination" wrapping a ul of anchors; the current page is an anchor with aria-current="page"; a disabled end is an anchor without href carrying aria-disabled="true"; the fill is a background, the ring an outline.
+  native: GTK4 a Box of Buttons with the current one using the selected style class.
+  native: Qt a row of QToolButtons; the current one checked and styled with the selection fill.
+  native: Terminal UI: page numbers on one line; the current number inverted.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

@@ -1,0 +1,375 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "0.1.0-draft.1",
+  "profile": "default",
+  "sourceDigest": "sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=",
+  "id": "toolbar",
+  "family": "navigation",
+  "maturity": "stable",
+  "priority": "R1",
+  "coverage": {
+    "family": "navigation",
+    "priority": "R1",
+    "maturity": "stable",
+    "specified": true,
+    "demonstrated": true,
+    "tested": false,
+    "states": 5
+  },
+  "title": "Toolbar",
+  "summary": "A row of related controls under one tab stop with arrow-key movement; ghost buttons, a vertical separator, and a \"more\" button when the row overflows.",
+  "anchors": {
+    "site": "https://j3w1.github.io/theme/#c-toolbar",
+    "spec": "spec/components/toolbar.md",
+    "brief": "exports/components/toolbar.brief.txt"
+  },
+  "native": false,
+  "aria": {
+    "pattern": "APG toolbar with roving tabindex; buttons, toggle buttons with aria-pressed, and a separator",
+    "apg": "https://www.w3.org/WAI/ARIA/apg/patterns/toolbar/",
+    "role": "toolbar"
+  },
+  "variants": [
+    {
+      "id": "default",
+      "name": "Default"
+    },
+    {
+      "id": "overflow",
+      "name": "Overflow",
+      "description": "The trailing controls collapse behind a \"More\" menu button when the row is narrower than its contents."
+    }
+  ],
+  "sizes": [
+    "compact",
+    "comfortable"
+  ],
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "disabled",
+    "toggled"
+  ],
+  "tokens": {
+    "root.bg": {
+      "alias": "color.surface.chrome",
+      "value": "#100909",
+      "status": "observed"
+    },
+    "root.border": {
+      "alias": "color.border.divider",
+      "value": "#2b0e0d",
+      "status": "proposed"
+    },
+    "button.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "button.bg-hover": {
+      "alias": "color.interaction.hover.bg",
+      "value": "#1c0a09",
+      "status": "observed"
+    },
+    "button.bg-pressed": {
+      "alias": "color.interaction.pressed.bg",
+      "value": "#420f0c",
+      "status": "observed"
+    },
+    "button.ring": {
+      "alias": "color.interaction.focus.ring",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "button.text-disabled": {
+      "alias": "color.text.disabled",
+      "value": "#8a5559",
+      "status": "approved"
+    },
+    "toggled.bg": {
+      "alias": "color.interaction.pressed.bg",
+      "value": "#420f0c",
+      "status": "observed"
+    },
+    "toggled.border": {
+      "alias": "color.border.active",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "toggled.text": {
+      "alias": "color.text.bright",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "separator.color": {
+      "alias": "color.border.default",
+      "value": "#531310",
+      "status": "observed"
+    },
+    "more.chevron": {
+      "alias": "color.icon.decorative",
+      "value": "#a3676b",
+      "status": "observed"
+    }
+  },
+  "stateRules": [
+    {
+      "state": "default",
+      "visual": "text {color.text.default}; no fill; transparent border",
+      "channel": "—",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.chrome",
+          "value": "#100909",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "hover",
+      "visual": "background → {color.interaction.hover.bg}",
+      "channel": "cursor: pointer",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.interaction.hover.bg",
+          "value": "#1c0a09",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "focus-visible",
+      "visual": "ring 1px dashed {color.interaction.focus.ring} at −2px",
+      "channel": "the ring",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.chrome",
+          "value": "#100909",
+          "status": "observed"
+        },
+        "outline": {
+          "alias": "color.interaction.focus.ring",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "disabled",
+      "visual": "text {color.text.disabled}; no fill; no hover",
+      "channel": "`disabled`; cursor: not-allowed; skipped by the arrow keys",
+      "tokens": {}
+    },
+    {
+      "state": "toggled",
+      "visual": "fill {color.interaction.pressed.bg}; 1px {color.border.active} border; text {color.text.bright}",
+      "channel": "`aria-pressed=\"true\"`; the border",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.bright",
+          "value": "#ffa2a7",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.interaction.pressed.bg",
+          "value": "#420f0c",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.active",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    }
+  ],
+  "keyboard": [
+    {
+      "key": "Tab / Shift+Tab",
+      "action": "Enters or leaves the toolbar; one control has tabindex 0 (roving tabindex)."
+    },
+    {
+      "key": "Left / Right",
+      "action": "Moves focus to the previous or next enabled control; wraps at the ends; Up and Down when aria-orientation is vertical."
+    },
+    {
+      "key": "Home / End",
+      "action": "Moves focus to the first or last control."
+    },
+    {
+      "key": "Enter / Space",
+      "action": "Activates the focused button or toggles a toggle button."
+    },
+    {
+      "key": "Escape",
+      "action": "Restores the previous value in a toolbar that edits, otherwise nothing."
+    }
+  ],
+  "responsive": "The row never wraps: below its intrinsic width the trailing controls move into the More menu (the overflow variant); at 320px only the leading controls and the more button remain visible. RTL mirrors the order and the arrow keys follow the reading direction.",
+  "portability": {
+    "web": "A div with role toolbar and aria-label; native buttons inside, toggles with aria-pressed; a div with role separator and aria-orientation vertical; roving tabindex maintained by script; without script every button stays in the tab order, which is the acceptable no-JS fallback.",
+    "nativeFallbacks": [
+      "GTK4 Box in the toolbar style class with flat Buttons and ToggleButtons; a Separator between groups.",
+      "Qt QToolBar with QActions; checkable actions draw the pressed fill and active border.",
+      "Terminal UI: a one-line row of bracketed labels; the toggled one inverted."
+    ]
+  },
+  "fixtures": [
+    "FX-320",
+    "FX-ZOOM-200",
+    "FX-I18N",
+    "FX-RTL",
+    "FX-RM",
+    "FX-HC",
+    "FX-OVERFLOW",
+    "FX-STATE-MATRIX"
+  ],
+  "related": [
+    "button",
+    "icon-button",
+    "menu",
+    "tabs",
+    "button-group"
+  ],
+  "specimens": [
+    "filterable-table",
+    "i3-window-frame"
+  ],
+  "nonExamples": "Buttons with a visible border at rest. A filled primary button inside the\ntoolbar. Rounded buttons or a pill-shaped toolbar. Every button in the tab\norder when script is available. A toggled state shown by colour alone without\n`aria-pressed`. A toolbar that wraps to two lines. A separator that receives\nfocus. Disabling by opacity.",
+  "contrast": [
+    {
+      "label": "toolbar default text",
+      "state": "default",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.chrome",
+      "fgHex": "#e99499",
+      "bgHex": "#100909",
+      "ratio": 8.6,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "toolbar hover text",
+      "state": "hover",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.interaction.hover.bg",
+      "fgHex": "#e99499",
+      "bgHex": "#1c0a09",
+      "ratio": 8.35,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "toolbar focus-visible text",
+      "state": "focus-visible",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.chrome",
+      "fgHex": "#e99499",
+      "bgHex": "#100909",
+      "ratio": 8.6,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "toolbar focus-visible outline",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring",
+      "bg": "color.surface.chrome",
+      "fgHex": "#e53935",
+      "bgHex": "#100909",
+      "ratio": 4.66,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "toolbar toggled text",
+      "state": "toggled",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.bright",
+      "bg": "color.interaction.pressed.bg",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#420f0c",
+      "ratio": 8.41,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "toolbar toggled border",
+      "state": "toggled",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.active",
+      "bg": "color.interaction.pressed.bg",
+      "fgHex": "#e53935",
+      "bgHex": "#420f0c",
+      "ratio": 3.81,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "disabled button text (exempt; house floor 3:1)",
+      "state": "disabled",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.text.disabled",
+      "bg": "color.surface.chrome",
+      "fgHex": "#8a5559",
+      "bgHex": "#100909",
+      "ratio": 3.31,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "separator (decorative; role separator carries the grouping)",
+      "state": null,
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.border.default",
+      "bg": "color.surface.chrome",
+      "fgHex": "#531310",
+      "bgHex": "#100909",
+      "ratio": 1.38,
+      "pass": true,
+      "waiver": "the separator groups controls that are already distinct targets; it is not a control boundary"
+    },
+    {
+      "label": "toolbar bottom edge (decorative)",
+      "state": null,
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.border.divider",
+      "bg": "color.surface.chrome",
+      "fgHex": "#2b0e0d",
+      "bgHex": "#100909",
+      "ratio": 1.1,
+      "pass": true,
+      "waiver": "the edge separates chrome from content; the controls are the boundaries"
+    }
+  ]
+}

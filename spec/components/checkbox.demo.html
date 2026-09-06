@@ -1,0 +1,40 @@
+<div class="checkbox">
+  <label class="checkbox-option">
+    <span class="checkbox-control">
+      <input class="checkbox-input" type="checkbox" name="wrap" aria-describedby="cb-wrap-message">
+      <svg class="checkbox-check" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M3.5 8.5l3 3 6-6"/></svg>
+      <svg class="checkbox-dash" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M4 8h8"/></svg>
+    </span>
+    <span class="checkbox-text">Wrap long lines <span class="checkbox-required" aria-hidden="true">*</span><span class="checkbox-required sr-only"> required</span></span>
+  </label>
+  <p class="checkbox-message" id="cb-wrap-message">✕ Confirm before continuing.</p>
+</div>
+<!-- @variant group -->
+<fieldset class="checkbox checkbox-group" aria-describedby="cb-modules-message">
+  <legend class="checkbox-legend">Bar modules <span class="checkbox-required" aria-hidden="true">*</span><span class="checkbox-required sr-only"> required</span></legend>
+  <label class="checkbox-option">
+    <span class="checkbox-control">
+      <input class="checkbox-input" type="checkbox" name="modules" value="cpu">
+      <svg class="checkbox-check" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M3.5 8.5l3 3 6-6"/></svg>
+      <svg class="checkbox-dash" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M4 8h8"/></svg>
+    </span>
+    <span class="checkbox-text">CPU load</span>
+  </label>
+  <label class="checkbox-option">
+    <span class="checkbox-control">
+      <input class="checkbox-input" type="checkbox" name="modules" value="memory">
+      <svg class="checkbox-check" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M3.5 8.5l3 3 6-6"/></svg>
+      <svg class="checkbox-dash" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M4 8h8"/></svg>
+    </span>
+    <span class="checkbox-text">Memory</span>
+  </label>
+  <label class="checkbox-option">
+    <span class="checkbox-control">
+      <input class="checkbox-input" type="checkbox" name="modules" value="battery">
+      <svg class="checkbox-check" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M3.5 8.5l3 3 6-6"/></svg>
+      <svg class="checkbox-dash" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M4 8h8"/></svg>
+    </span>
+    <span class="checkbox-text">Battery</span>
+  </label>
+  <p class="checkbox-message" id="cb-modules-message">✕ Choose at least one module.</p>
+</fieldset>

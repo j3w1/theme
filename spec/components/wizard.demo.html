@@ -1,0 +1,49 @@
+<!-- @variant numbered -->
+<div class="wizard" aria-label="Set up the theme">
+  <ol class="wizard-steps">
+    <li class="wizard-step wizard-step-complete">
+      <button class="wizard-step-button" type="button"><span class="wizard-step-marker" aria-hidden="true">1</span><span class="wizard-step-name">Profile</span><span class="wizard-step-done" aria-hidden="true">✓</span><span class="sr-only">, complete</span></button>
+    </li>
+    <li class="wizard-step">
+      <button class="wizard-step-button" type="button" aria-current="step"><span class="wizard-step-marker" aria-hidden="true">2</span><span class="wizard-step-name">Tokens</span></button>
+    </li>
+    <li class="wizard-step">
+      <button class="wizard-step-button" type="button" disabled><span class="wizard-step-marker" aria-hidden="true">3</span><span class="wizard-step-name">Review</span></button>
+    </li>
+  </ol>
+  <section class="wizard-panel" aria-labelledby="wz-num-title">
+    <h3 class="wizard-title" id="wz-num-title">Step 2 of 3: Tokens</h3>
+    <p class="wizard-text">Choose the profile the tokens resolve against. The extended overlay can be added later.</p>
+    <p class="wizard-message">✕ Choose a profile before continuing.</p>
+  </section>
+  <div class="wizard-actions">
+    <button class="wizard-back" type="button">Back</button>
+    <button class="wizard-next" type="button"><span class="wizard-busy" aria-hidden="true">⋯</span>Next</button>
+  </div>
+</div>
+<!-- @variant icons -->
+<div class="wizard" aria-label="Import a window layout">
+  <ol class="wizard-steps">
+    <li class="wizard-step wizard-step-complete">
+      <button class="wizard-step-button" type="button"><span class="wizard-step-marker" aria-hidden="true">✓</span><span class="wizard-step-name">Source</span><span class="sr-only">, complete</span></button>
+    </li>
+    <li class="wizard-step wizard-step-complete">
+      <button class="wizard-step-button" type="button"><span class="wizard-step-marker" aria-hidden="true">✓</span><span class="wizard-step-name">Workspaces</span><span class="sr-only">, complete</span></button>
+    </li>
+    <li class="wizard-step">
+      <button class="wizard-step-button" type="button" aria-current="step"><span class="wizard-step-marker" aria-hidden="true">·</span><span class="wizard-step-name">Bindings</span></button>
+    </li>
+    <li class="wizard-step">
+      <button class="wizard-step-button" type="button" disabled><span class="wizard-step-marker" aria-hidden="true">·</span><span class="wizard-step-name">Apply</span></button>
+    </li>
+  </ol>
+  <section class="wizard-panel" aria-labelledby="wz-ico-title">
+    <h3 class="wizard-title" id="wz-ico-title">Step 3 of 4: Bindings</h3>
+    <p class="wizard-text">Keep the existing hjkl bindings or replace them with the imported set.</p>
+    <p class="wizard-message">✕ Two bindings conflict.</p>
+  </section>
+  <div class="wizard-actions">
+    <button class="wizard-back" type="button">Back</button>
+    <button class="wizard-next" type="button"><span class="wizard-busy" aria-hidden="true">⋯</span>Next</button>
+  </div>
+</div>

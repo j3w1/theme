@@ -1,0 +1,47 @@
+<div class="select">
+  <label class="select-label" for="sel-workspace">Workspace <span class="select-required" aria-hidden="true">*</span><span class="select-required sr-only"> required</span></label>
+  <div class="select-root">
+    <select class="select-control" id="sel-workspace" aria-describedby="sel-workspace-help sel-workspace-message">
+      <option value="">Choose a workspace</option>
+      <option value="1" selected>1: terminal</option>
+      <option value="2">2: editor</option>
+      <option value="3">3: browser</option>
+    </select>
+    <svg class="select-chevron" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M4 6.5l4 4 4-4"/></svg>
+  </div>
+  <p class="select-help" id="sel-workspace-help">New windows open here.</p>
+  <p class="select-message" id="sel-workspace-message">✕ Choose a workspace.</p>
+</div>
+<!-- @variant with-groups -->
+<div class="select">
+  <label class="select-label" for="sel-font">Font <span class="select-required" aria-hidden="true">*</span><span class="select-required sr-only"> required</span></label>
+  <div class="select-root">
+    <select class="select-control" id="sel-font" aria-describedby="sel-font-help sel-font-message">
+      <optgroup label="Installed">
+        <option value="scp" selected>SauceCodePro NFM</option>
+        <option value="cascadia">Cascadia Mono</option>
+      </optgroup>
+      <optgroup label="Fallbacks">
+        <option value="consolas">Consolas</option>
+        <option value="dejavu">DejaVu Sans Mono</option>
+      </optgroup>
+    </select>
+    <svg class="select-chevron" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M4 6.5l4 4 4-4"/></svg>
+  </div>
+  <p class="select-help" id="sel-font-help">Fallbacks use recorded size-adjust metrics.</p>
+  <p class="select-message" id="sel-font-message">✕ That font is not installed.</p>
+</div>
+<!-- @variant multiple -->
+<div class="select">
+  <label class="select-label" for="sel-outputs">Outputs <span class="select-required" aria-hidden="true">*</span><span class="select-required sr-only"> required</span></label>
+  <div class="select-root">
+    <select class="select-control select-control-multiple" id="sel-outputs" multiple size="4" aria-describedby="sel-outputs-help sel-outputs-message">
+      <option value="dp1" selected>DP-1 (2560×1440)</option>
+      <option value="dp2" selected>DP-2 (2560×1440)</option>
+      <option value="hdmi">HDMI-1 (1920×1080)</option>
+      <option value="edp">eDP-1 (laptop)</option>
+    </select>
+  </div>
+  <p class="select-help" id="sel-outputs-help">Ctrl+click or Shift+arrows to choose more than one.</p>
+  <p class="select-message" id="sel-outputs-message">✕ Choose at least one output.</p>
+</div>

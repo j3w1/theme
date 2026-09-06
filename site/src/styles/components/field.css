@@ -1,0 +1,110 @@
+/* field — reference CSS. The wrapper owns the label, help and message; the
+   control inside is styled by its own component. The minimal .field-input
+   here is only what the demo needs. Every real pseudo-class is paired with
+   the forced-state attribute the state matrix emits. Token variables only. */
+
+.field {
+  position: relative; /* the visually hidden help text in the invalid state stays inside the component */
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+  max-width: 28rem;
+  color: var(--color-text-default);
+}
+
+.field-label {
+  color: var(--color-text-bright);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.field-required {
+  display: none;
+  color: var(--color-status-danger-text);
+}
+
+.field-control {
+  display: grid;
+  min-width: 0;
+}
+
+.field-input {
+  min-width: 0;
+  min-height: var(--density-control-height, 32px);
+  padding: 0 var(--density-control-padding-x, 12px);
+  background: var(--color-surface-input);
+  color: var(--color-text-default);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+  font: inherit;
+  outline: 0;
+}
+
+.field-input:focus-visible {
+  border-color: var(--color-border-active);
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.field-help {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.field-message {
+  display: none;
+  margin: 0;
+  color: var(--color-status-danger-text);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+/* required: the mark exists in the markup and shows with the attribute */
+.field:has(:required) .field-required,
+[data-state-required] .field-required {
+  display: inline;
+}
+
+/* invalid: the control's 2px danger border, the message, help hidden visually */
+.field:has([aria-invalid="true"]) .field-input,
+[data-state-invalid] .field-input {
+  border-color: var(--color-status-danger-border);
+  border-width: var(--border-width-emphasis);
+}
+
+.field:has([aria-invalid="true"]) .field-message,
+[data-state-invalid] .field-message {
+  display: block;
+}
+
+.field:has([aria-invalid="true"]) .field-help,
+[data-state-invalid] .field-help {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+/* disabled */
+.field:has(:disabled) .field-label,
+[data-state-disabled] .field-label {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.field-input:disabled,
+[data-state-disabled] .field-input {
+  background: var(--color-interaction-disabled-bg);
+  color: var(--color-text-disabled);
+  border-color: var(--color-border-disabled);
+  cursor: not-allowed;
+}
+
+@media (forced-colors: active) {
+  .field-input:focus-visible {
+    outline-color: Highlight;
+  }
+}

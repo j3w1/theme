@@ -1,0 +1,59 @@
+j3w1/theme implementation brief — diff-view
+theme: j3w1-theme 0.1.0-draft.1  profile: default  sourceDigest: sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=
+pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/components/diff-view.json
+spec: spec/components/diff-view.md  site: https://j3w1.github.io/theme/#c-diff-view
+maturity: stable  priority: R1
+
+Summary: Unified and split diffs as native tables; added, removed and modified rows keep their textual gutter marker, word-level changes are underlines, conflicts are double borders.
+
+Tokens (resolved):
+  root.bg            #0c0909  ({color.code.bg})
+  root.border        #a3676b  ({color.border.control})
+  root.text          #e99499  ({color.text.default})
+  line-number.text   #bd787d  ({color.text.muted})
+  line-number.rule   #2b0e0d  ({color.code.gutter-rule})
+  row.divider        #2b0e0d  ({color.border.divider})
+  added.bg           #0f1a0e  ({color.diff.added.bg})
+  added.gutter       #86a46f  ({color.diff.added.gutter})
+  added.emphasis     #86a46f  ({color.diff.added.emphasis})
+  removed.bg         #2b0e0d  ({color.diff.removed.bg})
+  removed.gutter     #e53935  ({color.diff.removed.gutter})
+  removed.emphasis   #e53935  ({color.diff.removed.emphasis})
+  modified.bg        #1f1a0c  ({color.diff.modified.bg})
+  modified.gutter    #c9973f  ({color.diff.modified.gutter})
+  hunk.bg            #241010  ({color.diff.header-bg})
+  hunk.text          #bd787d  ({color.text.muted})
+  hunk.context       #e99499  ({color.text.default})
+  conflict.border    #f73f35  ({color.diff.conflict-border})
+  conflict.marker    #ffa2a7  ({color.text.bright})
+  fold.text          #ffa2a7  ({color.text.link})
+  fold.bg-hover      #630f0d  ({color.interaction.hover.bg-strong})
+  row.bg-hover       #1c0a09  ({color.interaction.hover.bg})
+  row.ring           #e53935  ({color.interaction.focus.ring})
+  row.bg-selected    #911410  ({color.interaction.selection.bg})
+  row.text-selected  #f4eeee  ({color.interaction.selection.text})
+  row.ring-selected  #ffa2a7  ({color.interaction.focus.ring-container})
+
+States: default, hover, selected, focus-visible, expanded, collapsed
+  default: added rows {color.diff.added.bg} with `+` in {color.diff.added.gutter}; removed {color.diff.removed.bg} with `−` in {color.diff.removed.gutter}; modified {color.diff.modified.bg} with `~` in {color.diff.modified.gutter}; hunk rows {color.diff.header-bg}; conflicts in a 3px double {color.diff.conflict-border} [the markers; the double border]
+  hover: the row's number and marker cells → {color.interaction.hover.bg}; the text cell keeps its fill [cursor: default; only on hover-capable pointers]
+  selected: the whole row filled {color.interaction.selection.bg} with {color.interaction.selection.text}; the marker stays [`aria-current` (or `:target` for a permalinked line); the marker glyph]
+  focus-visible: 1px dashed {color.interaction.focus.ring} at −2px around the row; on a selected row the ring is {color.interaction.focus.ring-container} [the ring]
+  expanded: the folded `<tbody>` is shown; the chevron points down; the button reads "Hide 12 unchanged lines" [`aria-expanded="true"`; the rows appear]
+  collapsed: the folded `<tbody>` is hidden; the chevron points to the inline end; "… 12 unchanged lines" [`aria-expanded="false"`; the ellipsis]
+
+Keyboard:
+  Tab / Shift+Tab: Moves between the fold buttons and any row the host makes focusable; rows are not stops in a plain table.
+  Enter / Space: On a fold button toggles the hidden hunk; focus stays on the button.
+  Down / Up: In grid hosts, moves the selected row; the theme draws the ring on whichever row the host focuses.
+  (host): Next-change and previous-change navigation, staging and comment affordances are host bindings.
+
+ARIA: native <table> with a caption; one row per line; collapsed hunks are a <button> with aria-expanded controlling a hidden <tbody> (https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/)
+Responsive: The table scrolls horizontally inside its box; line numbers and markers are sticky at the inline-start edge below 600px; the split variant becomes unified below 600px in hosts that can, otherwise scrolls. At 320px nothing wraps and nothing is clipped. RTL mirrors the number columns while the code stays left-to-right.
+Portability: native <table> with <caption>, <tbody> per hunk, a <button aria-expanded aria-controls> per collapsed hunk; markers are real characters in their own cell; word-level changes are <ins>/<del> or spans with text-decoration; conflicts are a bordered <tbody>.
+  native: GTK/Qt: a two-column source view or QPlainTextEdit with per-line backgrounds; the marker column is a gutter renderer with real glyphs.
+  native: JetBrains: DIFF_INSERTED, DIFF_DELETED, DIFF_MODIFIED and DIFF_CONFLICT keys; the gutter marker follows the IDE.
+  native: Terminal (delta, git diff --color): the three fills as background slots, markers untouched; word-level as underline where the emulator supports it.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

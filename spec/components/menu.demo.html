@@ -1,0 +1,32 @@
+<div class="menu">
+  <button class="menu-button" type="button" id="menu-file-button" aria-haspopup="menu" aria-expanded="true" aria-controls="menu-file">File<span class="menu-chevron" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" focusable="false"><path d="M4 6l4 4 4-4"/></svg></span></button>
+  <ul class="menu-list" role="menu" id="menu-file" aria-labelledby="menu-file-button">
+    <li role="none"><button class="menu-item" role="menuitem" type="button" tabindex="0"><span class="menu-check" aria-hidden="true">✓</span><span class="menu-label">New window</span><span class="menu-shortcut">Mod+Enter</span></button></li>
+    <li role="none"><button class="menu-item menu-item-demo-target" role="menuitem" type="button" tabindex="-1"><span class="menu-check" aria-hidden="true">✓</span><span class="menu-label">Open…</span><span class="menu-shortcut">Mod+O</span></button></li>
+    <li role="none"><button class="menu-item" role="menuitem" type="button" tabindex="-1" aria-disabled="true"><span class="menu-check" aria-hidden="true">✓</span><span class="menu-label">Save</span><span class="menu-shortcut">Mod+S</span></button></li>
+    <li class="menu-separator" role="separator"></li>
+    <li role="none"><button class="menu-item" role="menuitem" type="button" tabindex="-1"><span class="menu-check" aria-hidden="true">✓</span><span class="menu-label">Quit</span><span class="menu-shortcut">Mod+Shift+Q</span></button></li>
+  </ul>
+</div>
+<!-- @variant with-submenu -->
+<div class="menu">
+  <button class="menu-button" type="button" id="menu-view-button" aria-haspopup="menu" aria-expanded="true" aria-controls="menu-view">View<span class="menu-chevron" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" focusable="false"><path d="M4 6l4 4 4-4"/></svg></span></button>
+  <ul class="menu-list" role="menu" id="menu-view" aria-labelledby="menu-view-button">
+    <li role="none"><button class="menu-item" role="menuitem" type="button" tabindex="0"><span class="menu-check" aria-hidden="true">✓</span><span class="menu-label">Reload</span><span class="menu-shortcut">Mod+R</span></button></li>
+    <li role="none"><button class="menu-item menu-item-demo-target" role="menuitem" type="button" tabindex="-1" aria-haspopup="menu" aria-expanded="false"><span class="menu-check" aria-hidden="true">✓</span><span class="menu-label">Density</span><span class="menu-submenu" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" focusable="false"><path d="M6 4l4 4-4 4"/></svg></span></button></li>
+    <li role="none"><button class="menu-item" role="menuitem" type="button" tabindex="-1" aria-haspopup="menu" aria-expanded="false"><span class="menu-check" aria-hidden="true">✓</span><span class="menu-label">Profile</span><span class="menu-submenu" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" focusable="false"><path d="M6 4l4 4-4 4"/></svg></span></button></li>
+    <li class="menu-separator" role="separator"></li>
+    <li role="none"><button class="menu-item" role="menuitem" type="button" tabindex="-1"><span class="menu-check" aria-hidden="true">✓</span><span class="menu-label">Full screen</span><span class="menu-shortcut">F11</span></button></li>
+  </ul>
+</div>
+<!-- @variant with-checks -->
+<div class="menu">
+  <button class="menu-button" type="button" id="menu-options-button" aria-haspopup="menu" aria-expanded="true" aria-controls="menu-options">Options<span class="menu-chevron" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" focusable="false"><path d="M4 6l4 4 4-4"/></svg></span></button>
+  <ul class="menu-list" role="menu" id="menu-options" aria-labelledby="menu-options-button">
+    <li role="none"><button class="menu-item" role="menuitemcheckbox" type="button" tabindex="0" aria-checked="true"><span class="menu-check" aria-hidden="true">✓</span><span class="menu-label">Line numbers</span></button></li>
+    <li role="none"><button class="menu-item menu-item-demo-target" role="menuitemcheckbox" type="button" tabindex="-1" aria-checked="false"><span class="menu-check" aria-hidden="true">✓</span><span class="menu-label">Wrap lines</span></button></li>
+    <li role="none"><button class="menu-item" role="menuitemcheckbox" type="button" tabindex="-1" aria-checked="true"><span class="menu-check" aria-hidden="true">✓</span><span class="menu-label">Render whitespace</span></button></li>
+    <li class="menu-separator" role="separator"></li>
+    <li role="none"><button class="menu-item" role="menuitemcheckbox" type="button" tabindex="-1" aria-checked="false" aria-disabled="true"><span class="menu-check" aria-hidden="true">✓</span><span class="menu-label">Minimap</span></button></li>
+  </ul>
+</div>

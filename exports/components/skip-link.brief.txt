@@ -1,0 +1,31 @@
+j3w1/theme implementation brief — skip-link
+theme: j3w1-theme 0.1.0-draft.1  profile: default  sourceDigest: sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=
+pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/components/skip-link.json
+spec: spec/components/skip-link.md  site: https://j3w1.github.io/theme/#c-skip-link
+maturity: stable  priority: R1
+
+Summary: The first tab stop of a page, hidden until it receives keyboard focus, that jumps past the chrome to the main content.
+
+Tokens (resolved):
+  root.bg      #241010  ({color.surface.raised})
+  root.text    #ffa2a7  ({color.text.bright})
+  root.border  #e53935  ({color.border.overlay})
+  root.ring    #e53935  ({color.interaction.focus.ring})
+
+States: default, focus-visible
+  default: off-screen; nothing is painted [the link is still in the tab order and the accessibility tree]
+  focus-visible: appears in the top corner; ring 1px dashed {color.interaction.focus.ring} at −2px [the link appears; the ring]
+
+Keyboard:
+  Tab: From the address bar or the top of the document, focuses the skip link and reveals it.
+  Enter: Moves focus to the main landmark (which carries tabindex="-1") and scrolls it into view.
+  Tab (again): Leaves the link without activating it; it hides again.
+
+ARIA: native <a href="#main"> as the first focusable element in the body
+Responsive: Fixed size in every layout; it never overlaps the main content because it is only visible while focused, and it never causes horizontal scroll while off-screen because it is moved on the block axis, not the inline axis. RTL positions it at the inline-start corner.
+Portability: An anchor with href pointing at the id of the main landmark, first in the body; main carries tabindex="-1" so focus lands on it; the link is moved off-screen with a negative top, never display none or visibility hidden, so it stays focusable.
+  native: GTK4 and Qt have no page chrome to skip; the pattern does not apply and hosts record it.
+  native: Terminal UI: does not apply; keyboard focus starts in the content.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

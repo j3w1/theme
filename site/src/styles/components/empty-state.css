@@ -1,0 +1,104 @@
+/* empty-state — reference CSS. A centred block where content would be;
+   only the optional action is interactive and it takes the secondary
+   button's states. Token variables only. */
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-8);
+  min-width: 0;
+  padding: var(--space-32) var(--space-16);
+  background: var(--color-surface-default);
+  border: var(--border-width-default) solid var(--color-border-divider);
+  border-radius: var(--radius-none);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.empty-state-glyph {
+  color: var(--color-icon-decorative);
+  font-size: var(--font-size-h1);
+  line-height: var(--font-line-height-h1);
+}
+
+.empty-state-heading {
+  margin: 0;
+  color: var(--color-text-bright);
+  font-size: var(--font-size-h2);
+  line-height: var(--font-line-height-h2);
+  font-weight: var(--font-weight-bold);
+  overflow-wrap: anywhere;
+}
+
+.empty-state-text {
+  max-width: var(--layout-measure);
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+  overflow-wrap: anywhere;
+}
+
+.empty-state-action {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--density-control-height, 32px);
+  margin-top: var(--space-8);
+  padding: 0 var(--density-control-padding-x, 12px);
+  background: var(--color-action-secondary-bg);
+  border: var(--border-width-default) solid var(--color-action-secondary-border);
+  border-radius: var(--radius-none);
+  color: var(--color-action-secondary-text);
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* the block has only its default state; the matrix emits it as well */
+[data-state-default] .empty-state {
+  background: var(--color-surface-default);
+}
+
+.empty-state-action:hover {
+  background: var(--color-action-secondary-hover-bg);
+}
+
+.empty-state-action:active {
+  background: var(--color-action-secondary-pressed-bg);
+  border-color: var(--color-border-active);
+}
+
+.empty-state-action:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+@media (max-width: 320px) {
+  .empty-state {
+    padding: var(--space-16);
+  }
+
+  .empty-state-action {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (hover: none) {
+  .empty-state-action:hover {
+    background: var(--color-action-secondary-bg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .empty-state-action {
+    transition: background-color var(--motion-duration-fast);
+  }
+}
+
+@media (forced-colors: active) {
+  .empty-state-action:focus-visible {
+    outline-color: Highlight;
+  }
+}

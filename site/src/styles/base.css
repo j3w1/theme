@@ -234,6 +234,7 @@ svg {
 }
 
 .table-scroll {
+  position: relative; /* contains absolutely positioned descendants of demos, so they cannot widen the page */
   overflow-x: auto;
 }
 

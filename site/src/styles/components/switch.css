@@ -1,0 +1,159 @@
+/* switch — reference CSS. A button with role switch; the track and thumb
+   are nested rectangles and the thumb position is layout. The checked
+   state is styled from aria-checked and from the forced-state attribute the
+   state matrix emits. Token variables only. */
+
+.switch-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-8);
+  min-width: 0;
+  color: var(--color-text-default);
+}
+
+.switch-name {
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+}
+
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  min-height: var(--space-24);
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+  font: inherit;
+  cursor: pointer;
+  outline: 0;
+}
+
+.switch-track {
+  display: flex;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  width: calc(var(--icon-size-md) * 2);
+  height: var(--icon-size-md);
+  padding: var(--space-2);
+  background: var(--color-surface-input);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+}
+
+.switch-thumb {
+  display: block;
+  width: calc(var(--icon-size-md) - 2 * var(--border-width-default) - 2 * var(--space-2));
+  height: calc(var(--icon-size-md) - 2 * var(--border-width-default) - 2 * var(--space-2));
+  background: var(--color-text-default);
+}
+
+.switch-state {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+  white-space: nowrap;
+}
+
+.switch-state-on {
+  display: none;
+}
+
+/* hover: the track fill only, on hover-capable pointers */
+@media (hover: hover) {
+  .switch:hover:not(:disabled) .switch-track {
+    background: var(--color-interaction-hover-bg);
+  }
+
+  .switch[aria-checked="true"]:hover:not(:disabled) .switch-track {
+    background: var(--color-action-primary-hover-bg);
+  }
+}
+
+[data-state-hover] .switch-track {
+  background: var(--color-interaction-hover-bg);
+}
+
+/* checked: the primary fill, the on-fill thumb at the end, the word "On" */
+.switch[aria-checked="true"] .switch-track,
+[data-state-checked] .switch-track {
+  justify-content: flex-end;
+  background: var(--color-action-primary-bg);
+}
+
+.switch[aria-checked="true"] .switch-thumb,
+[data-state-checked] .switch-thumb {
+  background: var(--color-action-primary-text);
+}
+
+.switch[aria-checked="true"] .switch-state-off,
+[data-state-checked] .switch-state-off {
+  display: none;
+}
+
+.switch[aria-checked="true"] .switch-state-on,
+[data-state-checked] .switch-state-on {
+  display: inline;
+}
+
+[data-state-hover][data-state-checked] .switch-track {
+  background: var(--color-action-primary-hover-bg);
+}
+
+/* focus-visible: the ring sits on the track, so it can take the fill's colour */
+.switch:focus-visible .switch-track,
+[data-state-focus-visible] .switch-track {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.switch[aria-checked="true"]:focus-visible .switch-track,
+[data-state-checked][data-state-focus-visible] .switch-track {
+  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline-offset: var(--focus-offset);
+}
+
+/* disabled, including checked + disabled */
+.switch:disabled,
+[data-state-disabled] .switch {
+  cursor: not-allowed;
+}
+
+.switch:disabled .switch-track,
+[data-state-disabled] .switch-track {
+  background: var(--color-interaction-disabled-bg);
+  border-color: var(--color-border-disabled);
+}
+
+.switch:disabled .switch-thumb,
+[data-state-disabled] .switch-thumb {
+  background: var(--color-text-disabled);
+}
+
+.switch-row:has(.switch:disabled) .switch-name,
+.switch:disabled .switch-state,
+[data-state-disabled] .switch-name,
+[data-state-disabled] .switch-state {
+  color: var(--color-text-disabled);
+}
+
+@media (forced-colors: active) {
+  .switch:focus-visible .switch-track,
+  [data-state-focus-visible] .switch-track {
+    outline-color: Highlight;
+  }
+
+  .switch[aria-checked="true"] .switch-track,
+  [data-state-checked] .switch-track {
+    background: Highlight;
+  }
+
+  .switch[aria-checked="true"] .switch-thumb,
+  [data-state-checked] .switch-thumb {
+    background: HighlightText;
+  }
+}

@@ -1,0 +1,279 @@
+/* file-input — reference CSS. The native input stays focusable (sr-only
+   pattern) and a second label is drawn as the secondary button. Every real
+   pseudo-class is paired with the forced-state attribute the state matrix
+   emits; [data-state-drop-target] is also the runtime hook a host sets on
+   dragover. Token variables only. */
+
+.file-input {
+  position: relative;
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+  max-width: 28rem;
+  color: var(--color-text-default);
+}
+
+.file-input-label {
+  color: var(--color-text-bright);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.file-input-root {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4) var(--space-8);
+  min-width: 0;
+  border: var(--border-width-default) solid transparent;
+  border-radius: var(--radius-none);
+}
+
+.file-input-zone {
+  justify-content: center;
+  padding: var(--space-16);
+  border-style: dashed;
+  border-color: var(--color-interaction-drop-target);
+  text-align: center;
+}
+
+/* the native input keeps focus and the host chooser; it is only visually hidden */
+.file-input-native {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.file-input-button {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--density-control-height, 32px);
+  padding: 0 var(--density-control-padding-x, 12px);
+  background: var(--color-action-secondary-bg);
+  border: var(--border-width-default) solid var(--color-action-secondary-border);
+  border-radius: var(--radius-none);
+  color: var(--color-action-secondary-text);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.file-input-status {
+  min-width: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.file-input-drop-hint {
+  display: none;
+  color: var(--color-text-default);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+/* the static striped bar; no animation in any state */
+.file-input-progress {
+  display: none;
+  height: var(--space-8);
+  border: var(--border-width-default) solid var(--color-border-control);
+  background: repeating-linear-gradient(
+    45deg,
+    var(--color-action-primary-bg) 0 var(--space-8),
+    var(--color-interaction-pressed-bg) var(--space-8) var(--space-16)
+  );
+}
+
+.file-input-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: var(--border-width-default) solid var(--color-border-divider);
+}
+
+.file-input-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  column-gap: var(--space-8);
+  min-height: var(--density-row-height, 36px);
+  border-bottom: var(--border-width-default) solid var(--color-border-divider);
+}
+
+.file-input-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-input-size {
+  color: var(--color-text-subtle);
+  font-size: var(--font-size-ui-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.file-input-remove {
+  min-width: 24px;
+  min-height: 24px;
+  padding: 0 var(--space-4);
+  background: transparent;
+  border: 0;
+  color: var(--color-action-tertiary-text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.file-input-remove:hover,
+[data-state-hover] .file-input-remove {
+  background: var(--color-action-tertiary-hover-bg);
+}
+
+.file-input-remove:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.file-input-error {
+  grid-column: 1 / -1;
+  padding-bottom: var(--space-4);
+  color: var(--color-status-danger-text);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.file-input-help {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.file-input-message {
+  display: none;
+  margin: 0;
+  color: var(--color-status-danger-text);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+/* hover */
+.file-input-button:hover,
+[data-state-hover] .file-input-button {
+  background: var(--color-action-secondary-hover-bg);
+}
+
+.file-input-button:active {
+  background: var(--color-action-secondary-pressed-bg);
+  border-color: var(--color-border-active);
+}
+
+/* focus-visible: the input has focus; the ring is drawn on its button label */
+.file-input-root:has(.file-input-native:focus-visible) .file-input-button,
+[data-state-focus-visible] .file-input-button {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* drop-target: the root fills with the marquee colour behind a dashed border */
+[data-state-drop-target] .file-input-root {
+  background: var(--color-interaction-marquee);
+  border-style: dashed;
+  border-color: var(--color-interaction-drop-target);
+}
+
+[data-state-drop-target] .file-input-status {
+  display: none;
+}
+
+[data-state-drop-target] .file-input-drop-hint {
+  display: inline;
+}
+
+/* invalid */
+.file-input-root:has(.file-input-native[aria-invalid="true"]) .file-input-button,
+[data-state-invalid] .file-input-button {
+  border-color: var(--color-status-danger-border);
+  border-width: var(--border-width-emphasis);
+}
+
+.file-input:has(.file-input-native[aria-invalid="true"]) .file-input-message,
+[data-state-invalid] .file-input-message {
+  display: block;
+}
+
+.file-input:has(.file-input-native[aria-invalid="true"]) .file-input-help,
+[data-state-invalid] .file-input-help {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+/* invalid + focus-visible (not a declared cell; the pair stays honest) */
+.file-input-root:has(.file-input-native[aria-invalid="true"]:focus-visible) .file-input-button,
+[data-state-invalid][data-state-focus-visible] .file-input-button {
+  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline-offset: var(--focus-offset-invalid);
+}
+
+/* disabled */
+.file-input-root:has(.file-input-native:disabled) .file-input-button,
+[data-state-disabled] .file-input-button {
+  background: var(--color-interaction-disabled-bg);
+  border-color: var(--color-border-disabled);
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.file-input-root:has(.file-input-native:disabled).file-input-zone,
+[data-state-disabled] .file-input-zone {
+  border-color: var(--color-border-disabled);
+}
+
+.file-input-root:has(.file-input-native:disabled) .file-input-status,
+[data-state-disabled] .file-input-status,
+[data-state-disabled] .file-input-remove {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+[data-state-disabled] .file-input-remove:hover {
+  background: transparent;
+}
+
+/* loading: aria-busy on the root shows the static striped bar */
+.file-input[aria-busy="true"] .file-input-progress,
+[data-state-loading] .file-input-progress {
+  display: block;
+}
+
+@media (hover: none) {
+  .file-input-button:hover {
+    background: var(--color-action-secondary-bg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .file-input-button,
+  .file-input-root {
+    transition: background-color var(--motion-duration-fast);
+  }
+}
+
+@media (forced-colors: active) {
+  .file-input-root:has(.file-input-native:focus-visible) .file-input-button,
+  [data-state-focus-visible] .file-input-button {
+    outline-color: Highlight;
+  }
+
+  .file-input-progress {
+    background: repeating-linear-gradient(45deg, CanvasText 0 var(--space-8), Canvas var(--space-8) var(--space-16));
+  }
+}

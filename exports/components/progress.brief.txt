@@ -1,0 +1,39 @@
+j3w1/theme implementation brief — progress
+theme: j3w1-theme 0.1.0-draft.1  profile: default  sourceDigest: sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=
+pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/components/progress.json
+spec: spec/components/progress.md  site: https://j3w1.github.io/theme/#c-progress
+maturity: stable  priority: R1
+
+Summary: A native progress element with a label and value; determinate fills with the primary colour, indeterminate shows static 45° stripes, never an animation.
+
+Tokens (resolved):
+  track.bg        #420f0c  ({color.interaction.pressed.bg})
+  track.border    #a3676b  ({color.border.control})
+  value.bg        #871f19  ({color.action.primary.bg})
+  value.bg-error  #dc282e  ({color.status.danger.fill})
+  stripe.a        #871f19  ({color.action.primary.bg})
+  stripe.b        #420f0c  ({color.interaction.pressed.bg})
+  label.text      #ffa2a7  ({color.text.bright})
+  value.text      #e99499  ({color.text.default})
+  detail.text     #bd787d  ({color.text.muted})
+  error.text      #f73f35  ({color.status.danger.text})
+
+States: default, busy, error, reduced-motion
+  default: fill {color.action.primary.bg} on the track; the value text [the native value; the percentage text]
+  busy: the whole track shows static 45° stripes of {color.action.primary.bg} on {color.interaction.pressed.bg}; no value text [`aria-busy`; `aria-valuetext`; the stripe pattern; no animation]
+  error: fill → {color.status.danger.fill}; the label gains the ✕ glyph in {color.status.danger.text}; the detail line says what failed [glyph; worded detail]
+  reduced-motion: identical to default and busy: nothing animates in any state [`prefers-reduced-motion`]
+
+Keyboard:
+  Tab: Nothing; progress is not focusable and never traps a person.
+  Escape: Nothing; cancelling is a separate button next to the bar.
+
+ARIA: native <progress> labelled by <label for>; aria-valuetext for indeterminate work (https://www.w3.org/WAI/ARIA/apg/patterns/meter/)
+Responsive: Fills its container; the header wraps the value under the label below 320px; the bar never shrinks below 8px. RTL fills from the end edge, which the native element does on its own.
+Portability: native <progress max value> with a <label for>; indeterminate by omitting value and setting aria-valuetext; the fill through ::-webkit-progress-value and ::-moz-progress-bar; stripes through a repeating-linear-gradient with no animation.
+  native: GTK4 ProgressBar; pulse mode draws the stripes statically (no pulse animation).
+  native: Qt QProgressBar; the chunk is the fill, minimum = maximum = 0 for indeterminate with a static hatched brush.
+  native: Terminal UI: a bar of block characters; indeterminate as alternating half blocks.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

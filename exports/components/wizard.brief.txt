@@ -1,0 +1,58 @@
+j3w1/theme implementation brief — wizard
+theme: j3w1-theme 0.1.0-draft.1  profile: default  sourceDigest: sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=
+pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/components/wizard.json
+spec: spec/components/wizard.md  site: https://j3w1.github.io/theme/#c-wizard
+maturity: stable  priority: R1
+
+Summary: A multi-step form with a stepper header, the current panel and back/next actions; native buttons with aria-current="step".
+
+Tokens (resolved):
+  steps.divider           #2b0e0d  ({color.border.divider})
+  step.text               #e99499  ({color.text.default})
+  step.bg-hover           #1c0a09  ({color.interaction.hover.bg})
+  step.ring               #e53935  ({color.interaction.focus.ring})
+  step.text-current       #ffa2a7  ({color.text.bright})
+  step.indicator-current  #e53935  ({color.border.selected-indicator})
+  step.text-disabled      #8a5559  ({color.text.disabled})
+  step.marker-complete    #86a46f  ({color.status.success.text})
+  step.marker-invalid     #f73f35  ({color.status.danger.text})
+  step.indicator-invalid  #e53935  ({color.status.danger.border})
+  panel.bg                #160b0b  ({color.surface.default})
+  panel.border            #531310  ({color.border.default})
+  title.text              #ffa2a7  ({color.text.bright})
+  text.text               #e99499  ({color.text.default})
+  message.text            #f73f35  ({color.status.danger.text})
+  next.bg                 #871f19  ({color.action.primary.bg})
+  next.text               #f4eeee  ({color.action.primary.text})
+  next.bg-hover           #911410  ({color.action.primary.hover-bg})
+  next.bg-pressed         #630f0d  ({color.action.primary.pressed-bg})
+  next.border             #9e231f  ({color.action.primary.border})
+  next.ring               #ffa2a7  ({color.interaction.focus.ring-container})
+  back.text               #ffa2a7  ({color.action.secondary.text})
+  back.border             #a3676b  ({color.action.secondary.border})
+  back.bg-hover           #630f0d  ({color.action.secondary.hover-bg})
+  busy.glyph              #f4eeee  ({color.action.primary.text})
+
+States: default, hover, focus-visible, current, disabled, invalid, busy
+  default: steps in {color.text.default}; complete steps carry the ✓ in {color.status.success.text} [the ✓ glyph; the numbers]
+  hover: step background → {color.interaction.hover.bg}; Next → {color.action.primary.hover-bg}; Back → {color.action.secondary.hover-bg} [cursor: pointer]
+  focus-visible: ring 1px dashed {color.interaction.focus.ring} at −2px; on Next's fill the ring takes {color.interaction.focus.ring-container} [the ring]
+  current: 2px {color.border.selected-indicator} under the step; name in {color.text.bright} [`aria-current="step"`; the indicator bar; the heading reads "Step n of m"]
+  disabled: a future step in {color.text.disabled}; no hover [`disabled`; cursor: not-allowed; skipped by Tab]
+  invalid: the step's marker becomes ✕ in {color.status.danger.text}; its indicator takes {color.status.danger.border}; the panel shows the message [glyph; message text; `aria-invalid` on the failing fields]
+  busy: Next shows the static ⋯ glyph before its label and does not respond; size unchanged [`aria-busy` on the wizard; the glyph; cursor: progress]
+
+Keyboard:
+  Tab / Shift+Tab: Reaches each enabled step button, the panel's fields, then Back and Next; future steps are disabled and skipped.
+  Enter / Space: On a step button, goes to that step if it is reachable; on Next, validates the panel and advances; on Back, returns without validating.
+  Escape: Nothing; leaving a wizard is an explicit Cancel or the host's navigation.
+
+ARIA: native <button>s in an <ol>; the current step carries aria-current=step; the panel is a section named by its heading (https://www.w3.org/WAI/ARIA/apg/practices/forms/)
+Responsive: The stepper wraps to a vertical list below 600px, the panel and actions stack, and Next stays last in reading order; nothing scrolls horizontally at 320px. RTL mirrors the progression, the markers and the action order.
+Portability: an <ol> of <button type=button> with aria-current=step on the current one and disabled on unreachable ones; the panel is a <section aria-labelledby>; focus moves to the panel heading after each step change; no role=tablist, because steps are sequential and validated.
+  native: GTK4 Assistant; the page list maps to the stepper, the current page to the indicator.
+  native: Qt QWizard; the side widget lists steps, the current one bold with the indicator.
+  native: Terminal UI: a breadcrumb line of steps above the form, the current one underlined.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

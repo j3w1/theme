@@ -1,0 +1,637 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "0.1.0-draft.1",
+  "profile": "default",
+  "sourceDigest": "sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=",
+  "id": "search-field",
+  "family": "forms-basic",
+  "maturity": "stable",
+  "priority": "R1",
+  "coverage": {
+    "family": "forms-basic",
+    "priority": "R1",
+    "maturity": "stable",
+    "specified": true,
+    "demonstrated": true,
+    "tested": false,
+    "states": 8
+  },
+  "title": "Search field",
+  "summary": "The text-field box around a native search input with a magnifier, a clear button that appears with a value, an optional shortcut hint, a loading glyph and a no-results status line.",
+  "anchors": {
+    "site": "https://j3w1.github.io/theme/#c-search-field",
+    "spec": "spec/components/search-field.md",
+    "brief": "exports/components/search-field.brief.txt"
+  },
+  "native": true,
+  "aria": {
+    "pattern": "native <input type=\"search\"> with <label> inside a role=\"search\" landmark; status through role=\"status\"",
+    "apg": "https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/search.html"
+  },
+  "variants": [
+    {
+      "id": "default",
+      "name": "Default"
+    },
+    {
+      "id": "with-shortcut",
+      "name": "With shortcut hint",
+      "description": "A kbd hint at the inline end showing the key that focuses the field."
+    }
+  ],
+  "sizes": [
+    "compact",
+    "comfortable"
+  ],
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "placeholder-shown",
+    "filled",
+    "loading",
+    "disabled",
+    "no-results"
+  ],
+  "tokens": {
+    "root.bg": {
+      "alias": "color.surface.input",
+      "value": "#0c0909",
+      "status": "observed"
+    },
+    "root.border": {
+      "alias": "color.border.control",
+      "value": "#a3676b",
+      "status": "proposed"
+    },
+    "root.bg-hover": {
+      "alias": "color.interaction.hover.bg",
+      "value": "#1c0a09",
+      "status": "observed"
+    },
+    "root.border-focus": {
+      "alias": "color.border.active",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "root.ring": {
+      "alias": "color.interaction.focus.ring",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "root.border-disabled": {
+      "alias": "color.border.disabled",
+      "value": "#7d1310",
+      "status": "observed"
+    },
+    "root.bg-disabled": {
+      "alias": "color.interaction.disabled.bg",
+      "value": "#160b0b",
+      "status": "observed"
+    },
+    "input.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "input.text-disabled": {
+      "alias": "color.text.disabled",
+      "value": "#8a5559",
+      "status": "approved"
+    },
+    "input.placeholder": {
+      "alias": "color.text.placeholder",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "input.caret": {
+      "alias": "color.code.caret",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "icon.stroke": {
+      "alias": "color.icon.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "loading.glyph": {
+      "alias": "color.text.muted",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "clear.text": {
+      "alias": "color.action.tertiary.text",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "clear.bg-hover": {
+      "alias": "color.action.tertiary.hover-bg",
+      "value": "#1c0a09",
+      "status": "observed"
+    },
+    "kbd.text": {
+      "alias": "color.text.muted",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "kbd.border": {
+      "alias": "color.border.default",
+      "value": "#531310",
+      "status": "observed"
+    },
+    "label.text": {
+      "alias": "color.text.bright",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "help.text": {
+      "alias": "color.text.muted",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "status.text": {
+      "alias": "color.text.muted",
+      "value": "#bd787d",
+      "status": "observed"
+    }
+  },
+  "stateRules": [
+    {
+      "state": "default",
+      "visual": "1px {color.border.control} on {color.surface.input}; magnifier {color.icon.default}; text {color.text.default}",
+      "channel": "the magnifier",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.input",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.control",
+          "value": "#a3676b",
+          "status": "proposed"
+        }
+      }
+    },
+    {
+      "state": "hover",
+      "visual": "background → {color.interaction.hover.bg}; the clear button → {color.action.tertiary.hover-bg} when hovered",
+      "channel": "cursor: text",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.interaction.hover.bg",
+          "value": "#1c0a09",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.control",
+          "value": "#a3676b",
+          "status": "proposed"
+        }
+      }
+    },
+    {
+      "state": "focus-visible",
+      "visual": "border → {color.border.active}; ring 1px dashed {color.interaction.focus.ring} at −2px; the hint hides",
+      "channel": "the ring",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.input",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.active",
+          "value": "#e53935",
+          "status": "observed"
+        },
+        "outline": {
+          "alias": "color.interaction.focus.ring",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "placeholder-shown",
+      "visual": "placeholder in {color.text.placeholder}, italic; no clear button",
+      "channel": "italic; the clear button is absent",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.placeholder",
+          "value": "#bd787d",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.input",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.control",
+          "value": "#a3676b",
+          "status": "proposed"
+        }
+      }
+    },
+    {
+      "state": "filled",
+      "visual": "as default with a value; the clear button is present",
+      "channel": "the clear button",
+      "tokens": {}
+    },
+    {
+      "state": "loading",
+      "visual": "the static `⋯` glyph in {color.text.muted} replaces the magnifier; the input stays editable",
+      "channel": "glyph; `aria-busy`",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.input",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.control",
+          "value": "#a3676b",
+          "status": "proposed"
+        }
+      }
+    },
+    {
+      "state": "disabled",
+      "visual": "text and icon {color.text.disabled}; border {color.border.disabled}; background {color.interaction.disabled.bg}; no clear button",
+      "channel": "`disabled`; cursor: not-allowed",
+      "tokens": {}
+    },
+    {
+      "state": "no-results",
+      "visual": "the status line \"No results for …\" in {color.text.muted} below the help; the box unchanged",
+      "channel": "the status text; `role=\"status\"`",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.input",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.control",
+          "value": "#a3676b",
+          "status": "proposed"
+        }
+      }
+    }
+  ],
+  "keyboard": [
+    {
+      "key": "Tab / Shift+Tab",
+      "action": "Input, then the clear button when it is visible."
+    },
+    {
+      "key": "Escape",
+      "action": "Clears a non-empty value and keeps focus; with an empty value, nothing."
+    },
+    {
+      "key": "Enter",
+      "action": "Runs the search when the host does not search as you type."
+    },
+    {
+      "key": "/ or Ctrl+K",
+      "action": "Focuses the field from anywhere on the page when the host binds the shortcut shown in the hint."
+    }
+  ],
+  "responsive": "Fills its container with min-width 0; icon, clear and hint keep their slots and the text shrinks first; in a toolbar it may collapse to an icon button below 600px. RTL mirrors the icon to the inline start and the clear and hint to the inline end.",
+  "portability": {
+    "web": "native <input type=\"search\"> with <label>, inside <form role=\"search\"> or a role=\"search\" landmark; results announced through the status line, never a live region on every keystroke; the hint is a <kbd> that is aria-hidden; the host cancel button is hidden and replaced by the clear button.",
+    "nativeFallbacks": [
+      "GTK4 SearchEntry; the clear icon is its secondary icon.",
+      "Qt QLineEdit with a clearButtonEnabled and a leading QAction icon.",
+      "Terminal UI: a / prompt line; the status in dim text under it."
+    ]
+  },
+  "fixtures": [
+    "FX-LONG",
+    "FX-320",
+    "FX-ZOOM-200",
+    "FX-I18N",
+    "FX-RTL",
+    "FX-RM",
+    "FX-HC",
+    "FX-TOUCH",
+    "FX-DENSITY",
+    "FX-STATE-MATRIX"
+  ],
+  "related": [
+    "text-field",
+    "combobox",
+    "command-palette",
+    "toolbar",
+    "empty-state",
+    "kbd"
+  ],
+  "specimens": [
+    "filterable-table",
+    "settings-panel"
+  ],
+  "nonExamples": "Rounded or pill-shaped search boxes. A magnifier button that submits\ninstead of an icon. A spinner while loading. Results announced on every\nkeystroke. \"No results\" in red or with the ✕ glyph. A clear button that is\nalways visible. A search field without a label. Disabling by opacity.",
+  "contrast": [
+    {
+      "label": "search-field default text",
+      "state": "default",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.input",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "search-field default border",
+      "state": "default",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.control",
+      "bg": "color.surface.input",
+      "fgHex": "#a3676b",
+      "bgHex": "#0c0909",
+      "ratio": 4.45,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "search-field hover text",
+      "state": "hover",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.interaction.hover.bg",
+      "fgHex": "#e99499",
+      "bgHex": "#1c0a09",
+      "ratio": 8.35,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "search-field hover border",
+      "state": "hover",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.control",
+      "bg": "color.interaction.hover.bg",
+      "fgHex": "#a3676b",
+      "bgHex": "#1c0a09",
+      "ratio": 4.29,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "search-field focus-visible text",
+      "state": "focus-visible",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.input",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "search-field focus-visible border",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.active",
+      "bg": "color.surface.input",
+      "fgHex": "#e53935",
+      "bgHex": "#0c0909",
+      "ratio": 4.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "search-field focus-visible outline",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring",
+      "bg": "color.surface.input",
+      "fgHex": "#e53935",
+      "bgHex": "#0c0909",
+      "ratio": 4.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "search-field placeholder-shown text",
+      "state": "placeholder-shown",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.placeholder",
+      "bg": "color.surface.input",
+      "fgHex": "#bd787d",
+      "bgHex": "#0c0909",
+      "ratio": 5.81,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "search-field placeholder-shown border",
+      "state": "placeholder-shown",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.control",
+      "bg": "color.surface.input",
+      "fgHex": "#a3676b",
+      "bgHex": "#0c0909",
+      "ratio": 4.45,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "search-field loading text",
+      "state": "loading",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.input",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "search-field loading border",
+      "state": "loading",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.control",
+      "bg": "color.surface.input",
+      "fgHex": "#a3676b",
+      "bgHex": "#0c0909",
+      "ratio": 4.45,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "search-field no-results text",
+      "state": "no-results",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.input",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "search-field no-results border",
+      "state": "no-results",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.control",
+      "bg": "color.surface.input",
+      "fgHex": "#a3676b",
+      "bgHex": "#0c0909",
+      "ratio": 4.45,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "magnifier on the input surface",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.icon.default",
+      "bg": "color.surface.input",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "loading glyph and kbd hint on the input surface",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.muted",
+      "bg": "color.surface.input",
+      "fgHex": "#bd787d",
+      "bgHex": "#0c0909",
+      "ratio": 5.81,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "clear glyph on the input surface",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.tertiary.text",
+      "bg": "color.surface.input",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "clear glyph on its hover fill",
+      "state": "hover",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.tertiary.text",
+      "bg": "color.action.tertiary.hover-bg",
+      "fgHex": "#e99499",
+      "bgHex": "#1c0a09",
+      "ratio": 8.35,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "help and no-results status on the panel surface",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.muted",
+      "bg": "color.surface.default",
+      "fgHex": "#bd787d",
+      "bgHex": "#160b0b",
+      "ratio": 5.66,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "kbd hint edge (decorative)",
+      "state": null,
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.border.default",
+      "bg": "color.surface.input",
+      "fgHex": "#531310",
+      "bgHex": "#0c0909",
+      "ratio": 1.39,
+      "pass": true,
+      "waiver": "the hint is not a control; its text at 5.81:1 carries the meaning"
+    },
+    {
+      "label": "disabled text (exempt; house floor 3:1)",
+      "state": "disabled",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.text.disabled",
+      "bg": "color.interaction.disabled.bg",
+      "fgHex": "#8a5559",
+      "bgHex": "#160b0b",
+      "ratio": 3.24,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "disabled border (exempt)",
+      "state": "disabled",
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.border.disabled",
+      "bg": "color.interaction.disabled.bg",
+      "fgHex": "#7d1310",
+      "bgHex": "#160b0b",
+      "ratio": 1.82,
+      "pass": true,
+      "waiver": "disabled controls are exempt from 1.4.11"
+    }
+  ]
+}

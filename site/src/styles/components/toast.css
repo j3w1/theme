@@ -1,0 +1,201 @@
+/* toast — reference CSS. The stack is fixed in the end corner in a host;
+   the demonstration renders it in flow. Every real pseudo-class is paired
+   with the forced-state attribute the state matrix emits;
+   [data-state-stacked] is also the runtime hook a host sets on the stack
+   when more toasts are queued than shown. Token variables only. */
+
+.toast-stack {
+  display: grid;
+  gap: var(--space-8);
+  width: min(24rem, 100%);
+  min-width: 0;
+  z-index: var(--z-toast);
+}
+
+.toast {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-8);
+  min-width: 0;
+  padding: var(--space-8) var(--space-12);
+  background: var(--color-surface-canvas);
+  border: var(--border-width-default) solid var(--color-border-overlay);
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+  --_glyph: var(--color-status-info-text);
+  --_button-text: var(--color-action-tertiary-text);
+  --_button-hover: var(--color-action-tertiary-hover-bg);
+  --_ring: var(--color-interaction-focus-ring);
+}
+
+.toast-warning {
+  background: var(--color-status-warning-tint);
+  border-color: var(--color-status-warning-border);
+  --_glyph: var(--color-status-warning-text);
+}
+
+.toast-success {
+  background: var(--color-status-success-tint);
+  border-color: var(--color-status-success-border);
+  --_glyph: var(--color-status-success-text);
+}
+
+.toast-info {
+  background: var(--color-status-info-tint);
+  border-color: var(--color-status-info-border);
+  --_glyph: var(--color-status-info-text);
+}
+
+.toast-neutral {
+  background: var(--color-status-neutral-tint);
+  border-color: var(--color-status-neutral-border);
+  --_glyph: var(--color-status-neutral-text);
+}
+
+/* the historical critical notification: the danger fill with on-fill text */
+.toast-danger {
+  background: var(--color-status-danger-fill);
+  border-color: var(--color-status-danger-border);
+  color: var(--color-status-danger-on-fill);
+  --_glyph: var(--color-status-danger-on-fill);
+  --_button-text: var(--color-status-danger-on-fill);
+  --_button-hover: var(--color-action-destructive-pressed-bg);
+  --_ring: var(--color-status-danger-on-fill);
+}
+
+.toast-glyph {
+  flex: 0 0 auto;
+  min-width: var(--icon-size-md);
+  color: var(--_glyph);
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+}
+
+.toast-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.toast-action,
+.toast-close {
+  flex: 0 0 auto;
+  min-width: 24px;
+  min-height: 24px;
+  margin-top: calc(-1 * var(--space-2));
+  padding: 0 var(--space-4);
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-none);
+  color: var(--_button-text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.toast-action {
+  color: var(--color-text-link);
+  text-decoration: underline;
+  text-decoration-color: var(--color-text-link-underline);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+.toast-danger .toast-action {
+  color: var(--color-status-danger-on-fill);
+  text-decoration-color: currentColor;
+}
+
+.toast-count {
+  display: none;
+  align-self: center;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.toast-danger .toast-count {
+  color: var(--color-status-danger-on-fill);
+}
+
+/* hover: only the buttons react; the timeout pauses on the whole toast */
+.toast-close:hover,
+[data-state-hover] .toast-close {
+  background: var(--_button-hover);
+}
+
+.toast-action:hover,
+[data-state-hover] .toast-action {
+  background: var(--color-interaction-hover-bg-strong);
+  color: var(--color-text-link-hover);
+  text-decoration-thickness: 2px;
+}
+
+.toast-danger .toast-action:hover,
+[data-state-hover] .toast-danger .toast-action {
+  background: var(--color-action-destructive-pressed-bg);
+  color: var(--color-status-danger-on-fill);
+}
+
+/* focus-visible: the ring takes the on-fill colour on the danger fill */
+.toast-action:focus-visible,
+.toast-close:focus-visible,
+[data-state-focus-visible] .toast-close {
+  outline: var(--border-width-default) dashed var(--_ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* stacked: a tighter column and the overflow count on the last toast */
+[data-state-stacked] .toast-stack,
+.toast-stack[data-state-stacked] {
+  gap: var(--space-4);
+}
+
+[data-state-stacked] .toast:last-child .toast-count,
+.toast-stack[data-state-stacked] .toast:last-child .toast-count {
+  display: inline;
+}
+
+/* motion: an opacity change only, never a slide */
+@media (prefers-reduced-motion: no-preference) {
+  .toast {
+    transition: opacity var(--motion-duration-slow);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast {
+    transition: none;
+  }
+}
+
+[data-state-reduced-motion] .toast {
+  transition: none;
+}
+
+@media (hover: none) {
+  .toast-close:hover {
+    background: transparent;
+  }
+
+  .toast-action:hover {
+    background: transparent;
+    color: var(--color-text-link);
+    text-decoration-thickness: 1px;
+  }
+}
+
+@media (forced-colors: active) {
+  .toast {
+    border-color: CanvasText;
+  }
+
+  .toast-action:focus-visible,
+  .toast-close:focus-visible,
+  [data-state-focus-visible] .toast-close {
+    outline-color: Highlight;
+  }
+}

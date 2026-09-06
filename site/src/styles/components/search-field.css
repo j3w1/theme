@@ -1,0 +1,220 @@
+/* search-field — reference CSS. The text-field box around a native search
+   input with a magnifier, a clear button, a shortcut hint, a loading glyph
+   and a status line. Every real pseudo-class and attribute is paired with
+   the forced-state attribute the state matrix emits. Token variables only. */
+
+.search-field {
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+  max-width: 28rem;
+  color: var(--color-text-default);
+}
+
+.search-field-label {
+  color: var(--color-text-bright);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.search-field-root {
+  display: flex;
+  align-items: center;
+  min-height: var(--density-control-height, 32px);
+  padding-inline-start: var(--space-8);
+  background: var(--color-surface-input);
+  color: var(--color-icon-default);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+}
+
+.search-field-icon {
+  flex: none;
+  width: var(--icon-size-md);
+  height: var(--icon-size-md);
+  stroke: currentColor;
+  fill: none;
+}
+
+.search-field-loading {
+  display: none;
+  flex: none;
+  width: var(--icon-size-md);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.search-field-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  align-self: stretch;
+  padding: 0 var(--space-8);
+  background: transparent;
+  border: 0;
+  color: var(--color-text-default);
+  caret-color: var(--color-code-caret);
+  font: inherit;
+  appearance: none;
+  outline: 0;
+}
+
+.search-field-input::placeholder {
+  color: var(--color-text-placeholder);
+  font-style: italic;
+  opacity: 1;
+}
+
+.search-field-input::selection {
+  background: var(--color-interaction-text-selection-bg);
+  color: var(--color-interaction-text-selection-text);
+}
+
+.search-field-input::-webkit-search-cancel-button,
+.search-field-input::-webkit-search-decoration {
+  appearance: none;
+  display: none;
+}
+
+.search-field-clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  align-self: stretch;
+  min-width: var(--space-24);
+  padding: 0 var(--space-4);
+  margin: 0;
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-none);
+  color: var(--color-action-tertiary-text);
+  font: inherit;
+  cursor: pointer;
+  outline: 0;
+}
+
+.search-field-clear svg {
+  width: var(--icon-size-md);
+  height: var(--icon-size-md);
+  stroke: currentColor;
+  fill: none;
+}
+
+.search-field-kbd {
+  flex: none;
+  margin-inline-end: var(--space-8);
+  padding: 0 var(--space-4);
+  color: var(--color-text-muted);
+  border: var(--border-width-default) solid var(--color-border-default);
+  border-radius: var(--radius-none);
+  font: inherit;
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.search-field-help {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.search-field-status {
+  display: none;
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+/* hover */
+@media (hover: hover) {
+  .search-field-root:hover {
+    background: var(--color-interaction-hover-bg);
+  }
+
+  .search-field-clear:hover:not(:disabled) {
+    background: var(--color-action-tertiary-hover-bg);
+  }
+}
+
+[data-state-hover] .search-field-root {
+  background: var(--color-interaction-hover-bg);
+}
+
+/* focus-visible: the ring on the box; the hint hides while typing */
+.search-field-root:has(.search-field-input:focus-visible),
+[data-state-focus-visible] .search-field-root {
+  border-color: var(--color-border-active);
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.search-field-root:has(.search-field-input:focus) .search-field-kbd,
+[data-state-focus-visible] .search-field-kbd {
+  display: none;
+}
+
+.search-field-clear:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* placeholder-shown: the matrix strips the value; the clear button leaves with it */
+.search-field-input:placeholder-shown ~ .search-field-clear,
+[data-state-placeholder-shown] .search-field-clear {
+  display: none;
+}
+
+/* filled: the demo already carries a value, so the clear button is present */
+
+/* loading: the glyph takes the magnifier's slot */
+.search-field[aria-busy="true"] .search-field-icon,
+[data-state-loading] .search-field-icon {
+  display: none;
+}
+
+.search-field[aria-busy="true"] .search-field-loading,
+[data-state-loading] .search-field-loading {
+  display: inline-block;
+}
+
+/* no-results: the host sets data-results="none" and fills the status line */
+.search-field[data-results="none"] .search-field-status,
+[data-state-no-results] .search-field-status {
+  display: block;
+}
+
+/* disabled */
+.search-field-root:has(.search-field-input:disabled),
+[data-state-disabled] .search-field-root {
+  background: var(--color-interaction-disabled-bg);
+  color: var(--color-text-disabled);
+  border-color: var(--color-border-disabled);
+  cursor: not-allowed;
+}
+
+.search-field-input:disabled,
+[data-state-disabled] .search-field-input,
+[data-state-disabled] .search-field-kbd {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.search-field-root:has(.search-field-input:disabled) .search-field-clear,
+[data-state-disabled] .search-field-clear {
+  display: none;
+}
+
+.search-field:has(.search-field-input:disabled) .search-field-label,
+[data-state-disabled] .search-field-label {
+  color: var(--color-text-disabled);
+}
+
+@media (forced-colors: active) {
+  .search-field-root:has(.search-field-input:focus-visible),
+  .search-field-clear:focus-visible,
+  [data-state-focus-visible] .search-field-root {
+    outline-color: Highlight;
+  }
+}

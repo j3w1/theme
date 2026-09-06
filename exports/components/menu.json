@@ -1,0 +1,611 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "0.1.0-draft.1",
+  "profile": "default",
+  "sourceDigest": "sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=",
+  "id": "menu",
+  "family": "navigation",
+  "maturity": "stable",
+  "priority": "R1",
+  "coverage": {
+    "family": "navigation",
+    "priority": "R1",
+    "maturity": "stable",
+    "specified": true,
+    "demonstrated": true,
+    "tested": true,
+    "states": 8
+  },
+  "title": "Menu",
+  "summary": "A menu button that opens a list of actions on the raised surface inside a 1px overlay border; the active item is the selection fill and check items show a glyph.",
+  "anchors": {
+    "site": "https://j3w1.github.io/theme/#c-menu",
+    "spec": "spec/components/menu.md",
+    "brief": "exports/components/menu.brief.txt"
+  },
+  "native": false,
+  "aria": {
+    "pattern": "APG menu button (button with aria-haspopup=\"menu\") opening a menu of menuitem, menuitemcheckbox and separator",
+    "apg": "https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/",
+    "role": "menu"
+  },
+  "variants": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "Actions with shortcuts and a separator."
+    },
+    {
+      "id": "with-submenu",
+      "name": "With submenu",
+      "description": "An item that opens a nested menu; aria-haspopup and a chevron."
+    },
+    {
+      "id": "with-checks",
+      "name": "With checks",
+      "description": "menuitemcheckbox items that toggle settings and show the ✓ glyph."
+    }
+  ],
+  "sizes": [
+    "compact",
+    "comfortable"
+  ],
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "open",
+    "closed",
+    "disabled",
+    "checked",
+    "selected"
+  ],
+  "tokens": {
+    "button.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "button.bg": {
+      "alias": "color.surface.default",
+      "value": "#160b0b",
+      "status": "observed"
+    },
+    "button.border": {
+      "alias": "color.border.control",
+      "value": "#a3676b",
+      "status": "proposed"
+    },
+    "button.bg-hover": {
+      "alias": "color.interaction.hover.bg",
+      "value": "#1c0a09",
+      "status": "observed"
+    },
+    "button.bg-open": {
+      "alias": "color.interaction.pressed.bg",
+      "value": "#420f0c",
+      "status": "observed"
+    },
+    "button.border-open": {
+      "alias": "color.border.active",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "button.ring": {
+      "alias": "color.interaction.focus.ring",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "surface.bg": {
+      "alias": "color.surface.raised",
+      "value": "#241010",
+      "status": "observed"
+    },
+    "surface.border": {
+      "alias": "color.border.overlay",
+      "value": "#e53935",
+      "status": "proposed"
+    },
+    "item.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "item.bg-hover": {
+      "alias": "color.interaction.hover.bg-strong",
+      "value": "#630f0d",
+      "status": "observed"
+    },
+    "item.text-hover": {
+      "alias": "color.text.link-hover",
+      "value": "#f4eeee",
+      "status": "observed"
+    },
+    "item.text-disabled": {
+      "alias": "color.text.disabled",
+      "value": "#8a5559",
+      "status": "approved"
+    },
+    "active.bg": {
+      "alias": "color.interaction.selection.bg",
+      "value": "#911410",
+      "status": "observed"
+    },
+    "active.text": {
+      "alias": "color.interaction.selection.text",
+      "value": "#f4eeee",
+      "status": "observed"
+    },
+    "active.ring": {
+      "alias": "color.interaction.focus.ring-container",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "check.glyph": {
+      "alias": "color.text.bright",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "shortcut.text": {
+      "alias": "color.text.muted",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "separator.color": {
+      "alias": "color.border.divider",
+      "value": "#2b0e0d",
+      "status": "proposed"
+    },
+    "chevron.color": {
+      "alias": "color.icon.decorative",
+      "value": "#a3676b",
+      "status": "observed"
+    }
+  },
+  "stateRules": [
+    {
+      "state": "default",
+      "visual": "the button at rest; the list on {color.surface.raised} with the {color.border.overlay} frame",
+      "channel": "—",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.raised",
+          "value": "#241010",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.overlay",
+          "value": "#e53935",
+          "status": "proposed"
+        }
+      }
+    },
+    {
+      "state": "hover",
+      "visual": "item background → {color.interaction.hover.bg-strong}; text → {color.text.link-hover}",
+      "channel": "cursor: pointer",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.link-hover",
+          "value": "#f4eeee",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.interaction.hover.bg-strong",
+          "value": "#630f0d",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "focus-visible",
+      "visual": "ring 1px dashed {color.interaction.focus.ring} at −2px on the button; on the active item the ring is {color.interaction.focus.ring-container}",
+      "channel": "the ring",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.default",
+          "value": "#160b0b",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.control",
+          "value": "#a3676b",
+          "status": "proposed"
+        },
+        "outline": {
+          "alias": "color.interaction.focus.ring",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "open",
+      "visual": "button fill {color.interaction.pressed.bg} with 1px {color.border.active}; the list shown",
+      "channel": "`aria-expanded=\"true\"`; the list is present",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.interaction.pressed.bg",
+          "value": "#420f0c",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.active",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "closed",
+      "visual": "the button at rest; the list hidden",
+      "channel": "`aria-expanded=\"false\"`; the list is absent from the tree",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.default",
+          "value": "#160b0b",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.control",
+          "value": "#a3676b",
+          "status": "proposed"
+        }
+      }
+    },
+    {
+      "state": "disabled",
+      "visual": "item text {color.text.disabled}; no hover; still focusable by arrow keys when `aria-disabled`",
+      "channel": "`aria-disabled=\"true\"`; cursor: not-allowed",
+      "tokens": {}
+    },
+    {
+      "state": "checked",
+      "visual": "the ✓ glyph in {color.text.bright} in the gutter",
+      "channel": "`aria-checked=\"true\"`; the glyph",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.bright",
+          "value": "#ffa2a7",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.raised",
+          "value": "#241010",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "selected",
+      "visual": "the active item: fill {color.interaction.selection.bg} with {color.interaction.selection.text}",
+      "channel": "focus is on the item; `aria-activedescendant` where used",
+      "tokens": {
+        "fg": {
+          "alias": "color.interaction.selection.text",
+          "value": "#f4eeee",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.interaction.selection.bg",
+          "value": "#911410",
+          "status": "observed"
+        },
+        "outline": {
+          "alias": "color.interaction.focus.ring-container",
+          "value": "#ffa2a7",
+          "status": "observed"
+        }
+      }
+    }
+  ],
+  "keyboard": [
+    {
+      "key": "Enter / Space / Down",
+      "action": "On the button, opens the menu and focuses the first item; Up opens it and focuses the last."
+    },
+    {
+      "key": "Down / Up",
+      "action": "Moves to the next or previous item and wraps."
+    },
+    {
+      "key": "Home / End",
+      "action": "Moves to the first or last item."
+    },
+    {
+      "key": "Right / Left",
+      "action": "Opens a submenu and focuses its first item; Left closes the submenu and returns to the parent item."
+    },
+    {
+      "key": "Enter / Space",
+      "action": "Activates the focused item; a check item toggles and the menu stays open."
+    },
+    {
+      "key": "Escape",
+      "action": "Closes the menu and returns focus to the button."
+    },
+    {
+      "key": "Tab",
+      "action": "Closes the menu and moves focus to the next tab stop after the button."
+    },
+    {
+      "key": "A-Z",
+      "action": "Moves focus to the next item starting with the typed character."
+    }
+  ],
+  "responsive": "The menu is as wide as its longest item, at least 12rem, at most the viewport minus 16px; it flips above the button when there is no room below and never causes page scroll; at 320px submenus open below their parent instead of beside it. RTL mirrors the check gutter and the submenu side.",
+  "portability": {
+    "web": "A native button with aria-haspopup=\"menu\", aria-expanded and aria-controls; a ul with role menu and li with role none wrapping buttons with role menuitem or menuitemcheckbox; aria-checked for checks; the menu is hidden until open and positioned by script; the reference renders it statically open in flow.",
+    "nativeFallbacks": [
+      "GTK4 MenuButton with a PopoverMenu; the popover border and background through css-name selectors.",
+      "Qt QMenu stylesheet; QMenu::item:selected draws the selection fill; QMenu::indicator draws the check.",
+      "Terminal UI: a boxed list; the active row inverted; checks as a leading glyph column."
+    ]
+  },
+  "fixtures": [
+    "FX-LONG",
+    "FX-320",
+    "FX-ZOOM-200",
+    "FX-I18N",
+    "FX-RTL",
+    "FX-RM",
+    "FX-HC",
+    "FX-STATE-MATRIX"
+  ],
+  "related": [
+    "button",
+    "toolbar",
+    "command-palette",
+    "popover",
+    "select"
+  ],
+  "specimens": [
+    "filterable-table",
+    "i3-window-frame"
+  ],
+  "nonExamples": "A shadow under the menu. Rounded corners on the menu or the items. An active\nitem marked by text colour alone. A hover fill that differs from every other\nmenu in the product. Icons in the check gutter of a plain menuitem. A menu\nthat stays open after an action. Items that are links styled as menu items\nwithout `role=\"menuitem\"`. Disabling by opacity.",
+  "contrast": [
+    {
+      "label": "menu default text",
+      "state": "default",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.raised",
+      "fgHex": "#e99499",
+      "bgHex": "#241010",
+      "ratio": 7.92,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "menu default border",
+      "state": "default",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.overlay",
+      "bg": "color.surface.raised",
+      "fgHex": "#e53935",
+      "bgHex": "#241010",
+      "ratio": 4.3,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "menu hover text",
+      "state": "hover",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.link-hover",
+      "bg": "color.interaction.hover.bg-strong",
+      "fgHex": "#f4eeee",
+      "bgHex": "#630f0d",
+      "ratio": 11.41,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "menu focus-visible text",
+      "state": "focus-visible",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.default",
+      "fgHex": "#e99499",
+      "bgHex": "#160b0b",
+      "ratio": 8.43,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "menu focus-visible border",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.control",
+      "bg": "color.surface.default",
+      "fgHex": "#a3676b",
+      "bgHex": "#160b0b",
+      "ratio": 4.33,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "menu focus-visible outline",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring",
+      "bg": "color.surface.default",
+      "fgHex": "#e53935",
+      "bgHex": "#160b0b",
+      "ratio": 4.57,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "menu open text",
+      "state": "open",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.interaction.pressed.bg",
+      "fgHex": "#e99499",
+      "bgHex": "#420f0c",
+      "ratio": 7.02,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "menu open border",
+      "state": "open",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.active",
+      "bg": "color.interaction.pressed.bg",
+      "fgHex": "#e53935",
+      "bgHex": "#420f0c",
+      "ratio": 3.81,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "menu closed text",
+      "state": "closed",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.default",
+      "fgHex": "#e99499",
+      "bgHex": "#160b0b",
+      "ratio": 8.43,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "menu closed border",
+      "state": "closed",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.control",
+      "bg": "color.surface.default",
+      "fgHex": "#a3676b",
+      "bgHex": "#160b0b",
+      "ratio": 4.33,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "menu checked text",
+      "state": "checked",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.bright",
+      "bg": "color.surface.raised",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#241010",
+      "ratio": 9.49,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "menu selected text",
+      "state": "selected",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.interaction.selection.text",
+      "bg": "color.interaction.selection.bg",
+      "fgHex": "#f4eeee",
+      "bgHex": "#911410",
+      "ratio": 7.92,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "menu selected outline",
+      "state": "selected",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring-container",
+      "bg": "color.interaction.selection.bg",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#911410",
+      "ratio": 4.75,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "shortcut hint on the raised surface",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.muted",
+      "bg": "color.surface.raised",
+      "fgHex": "#bd787d",
+      "bgHex": "#241010",
+      "ratio": 5.31,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "disabled item text (exempt; house floor 3:1)",
+      "state": "disabled",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.text.disabled",
+      "bg": "color.surface.raised",
+      "fgHex": "#8a5559",
+      "bgHex": "#241010",
+      "ratio": 3.05,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "item separator (decorative; role separator carries the grouping)",
+      "state": null,
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.border.divider",
+      "bg": "color.surface.raised",
+      "fgHex": "#2b0e0d",
+      "bgHex": "#241010",
+      "ratio": 1.01,
+      "pass": true,
+      "waiver": "the separator groups items that are already distinct rows; it is not a control boundary"
+    },
+    {
+      "label": "submenu chevron (decorative; aria-haspopup carries the meaning)",
+      "state": null,
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.icon.decorative",
+      "bg": "color.surface.raised",
+      "fgHex": "#a3676b",
+      "bgHex": "#241010",
+      "ratio": 4.07,
+      "pass": true,
+      "waiver": "the chevron duplicates aria-haspopup on the item"
+    }
+  ]
+}

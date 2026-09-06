@@ -1,0 +1,68 @@
+j3w1/theme implementation brief — code-editor
+theme: j3w1-theme 0.1.0-draft.1  profile: default  sourceDigest: sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=
+pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/components/code-editor.json
+spec: spec/components/code-editor.md  site: https://j3w1.github.io/theme/#c-code-editor
+maturity: stable  priority: R1
+
+Summary: The editor surface, gutter, caret, current line, selection, bracket match and monochrome syntax roles that every code-editing or code-viewing host maps onto.
+
+Tokens (resolved):
+  root.bg                  #0c0909  ({color.code.bg})
+  root.border              #a3676b  ({color.border.control})
+  root.ring                #ffa2a7  ({color.interaction.focus.ring-container})
+  gutter.bg                #0c0909  ({color.code.gutter-bg})
+  gutter.rule              #2b0e0d  ({color.code.gutter-rule})
+  gutter.bg-read-only      #0a0707  ({color.surface.sunken})
+  line-number.text         #ad7175  ({color.code.line-number})
+  line-number.text-active  #e99499  ({color.code.line-number-active})
+  line.bg-current          #1c0a09  ({color.code.current-line})
+  caret.bg                 #e99499  ({color.code.caret})
+  selection.bg             #420f0c  ({color.code.selection-bg})
+  selection.bg-inactive    #420f0c  ({color.interaction.selection.inactive-bg})
+  selection.text-inactive  #e99499  ({color.interaction.selection.inactive-text})
+  bracket.outline          #e53935  ({color.code.bracket-match})
+  indent.guide             #531310  ({color.code.indent-guide})
+  whitespace.text          #7d1310  ({color.code.whitespace})
+  fold.text                #bd787d  ({color.text.muted})
+  fold.border              #a3676b  ({color.border.control})
+  syntax.keyword           #f73f35  ({color.code.syntax.keyword})
+  syntax.string            #bd787d  ({color.code.syntax.string})
+  syntax.comment           #ad7175  ({color.code.syntax.comment})
+  syntax.number            #d4868b  ({color.code.syntax.number})
+  syntax.constant          #d4868b  ({color.code.syntax.constant})
+  syntax.function          #ffa2a7  ({color.code.syntax.function})
+  syntax.variable          #e99499  ({color.code.syntax.variable})
+  syntax.type              #b37175  ({color.code.syntax.type})
+  syntax.operator          #e99499  ({color.code.syntax.operator})
+  syntax.punctuation       #e99499  ({color.code.syntax.punctuation})
+  syntax.property          #e53935  ({color.code.syntax.property})
+  syntax.heading           #e53935  ({color.code.syntax.heading})
+  syntax.tag               #f73f35  ({color.code.syntax.tag})
+  syntax.attribute         #d4868b  ({color.code.syntax.attribute})
+  syntax.escape            #d4868b  ({color.code.syntax.escape})
+  syntax.invalid           #e53935  ({color.code.syntax.invalid})
+  syntax.deprecated        #ad7175  ({color.code.syntax.deprecated})
+
+States: default, focus-visible, selected, selected+container-inactive, current, read-only
+  default: code on {color.code.bg}; comments italic; invalid text wavy-underlined in {color.code.syntax.invalid}; deprecated text struck through [italic, wavy underline, line-through]
+  focus-visible: container ring 2px {color.interaction.focus.ring-container} at −3px; a 1px {color.code.caret} bar; the caret line filled {color.code.current-line} across gutter and text; its number in {color.code.line-number-active} [the ring; the caret bar]
+  selected: the range filled {color.code.selection-bg}; syntax colours kept [the range is announced through the host's selection; the fill spans line ends]
+  selected+container-inactive: the same range in {color.interaction.selection.inactive-bg} with {color.interaction.selection.inactive-text}; no caret, no ring [lightness drop between the two fills]
+  current: both characters of the matched pair outlined 1px solid {color.code.bracket-match} [the outline is a box, not a colour change]
+  read-only: gutter drops to {color.surface.sunken} behind the same line numbers; the gutter rule becomes dotted; no caret is drawn [`aria-readonly`; dotted rule; missing caret]
+
+Keyboard:
+  (host): The host editor owns every key; the theme changes no binding, no caret behaviour and no selection model.
+  Tab: Reaches the editor as one stop in the reference; whether Tab inserts or moves focus is the host's rule and is announced by the host.
+  Escape: In hosts that trap Tab, Escape must release focus to the next stop; the theme does not provide it.
+
+ARIA: presentation of <pre> inside role=textbox with aria-multiline and aria-readonly; a real editor is a host surface (https://www.w3.org/WAI/ARIA/apg/patterns/)
+Responsive: The box fills its container with min-width 0 and scrolls horizontally inside itself; lines never wrap in the reference; at 320px the gutter stays and the text pane scrolls. Type is the code scale in both densities; density does not change editor metrics. RTL keeps code left-to-right (bidi isolation) while the gutter mirrors to the inline-start edge.
+Portability: role=textbox aria-multiline=true aria-readonly=true over <pre>, tabindex=0, one focus stop; a live editor (CodeMirror, Monaco, contenteditable) is a host surface that maps these roles onto its own theme API and keeps its own caret, selection and keyboard handling.
+  native: GTK: GtkSourceView style scheme; current-line, selection, bracket-match and the syntax roles map one to one; the container ring becomes the frame's focus outline.
+  native: Qt: KSyntaxHighlighting theme JSON; editor colours and text styles carry the same roles; caret width follows the toolkit.
+  native: JetBrains: an editor scheme (.icls); CARET_ROW, SELECTION_BACKGROUND, MATCHED_BRACE_ATTRIBUTES and the language attribute keys; the UI theme is a separate capability.
+  native: Terminal editors (vim, helix): 16-slot hosts use the heritage-ansi mapping and document that the caret follows the terminal cursor.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

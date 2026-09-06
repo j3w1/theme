@@ -1,0 +1,67 @@
+/* loading-indicator — reference CSS. A static glyph and a label in a busy
+   container; nothing animates, so reduced motion changes nothing. Token
+   variables only. */
+
+.loading-indicator {
+  color: var(--color-text-default);
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+}
+
+.loading-indicator-inline {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.loading-indicator-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  min-height: calc(3 * var(--density-row-height, 36px));
+  padding: var(--space-16);
+  background: var(--color-surface-default);
+  border: var(--border-width-default) solid var(--color-border-divider);
+  border-radius: var(--radius-none);
+  text-align: center;
+}
+
+.loading-indicator-glyph {
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--space-1);
+}
+
+.loading-indicator-block .loading-indicator-glyph {
+  font-size: var(--font-size-h1);
+  line-height: var(--font-line-height-h1);
+}
+
+.loading-indicator-label {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* aria-busy is the state; the matrix adds it on the root as well */
+.loading-indicator[aria-busy="true"] .loading-indicator-glyph,
+[data-state-default] .loading-indicator-glyph {
+  display: inline;
+}
+
+/* reduced-motion: there is no motion to remove; the rule states it */
+@media (prefers-reduced-motion: reduce) {
+  .loading-indicator,
+  .loading-indicator-glyph {
+    animation: none;
+    transition: none;
+  }
+}
+
+[data-state-reduced-motion] .loading-indicator,
+[data-state-reduced-motion] .loading-indicator-glyph {
+  animation: none;
+  transition: none;
+}

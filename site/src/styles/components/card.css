@@ -1,0 +1,129 @@
+/* card — reference CSS. A bordered panel with no shadow and no radius;
+   only link and selectable cards react to the pointer. Every pseudo-class
+   is paired with the forced-state attribute the state matrix emits. */
+
+.card {
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+  max-width: 28rem;
+  padding: var(--density-control-padding-x, 12px);
+  box-sizing: border-box;
+  background: var(--color-surface-default);
+  border: var(--border-width-default) solid var(--color-border-default);
+  border-radius: var(--radius-none);
+  box-shadow: none;
+  color: var(--color-text-default);
+  text-decoration: none;
+}
+
+.card-title {
+  margin: 0;
+  color: var(--color-text-bright);
+  font-size: var(--font-size-h3);
+  line-height: var(--font-line-height-h3);
+  font-weight: var(--font-weight-bold);
+}
+
+.card-body {
+  margin: 0;
+  color: var(--color-text-default);
+}
+
+.card-meta {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.card-link,
+.card-selectable {
+  cursor: pointer;
+}
+
+.card-group {
+  display: grid;
+  gap: var(--density-gap, 4px);
+  min-width: 0;
+}
+
+/* hover: link and selectable cards only */
+.card-link:hover,
+.card-selectable:hover,
+[data-state-hover] .card-demo-target {
+  background: var(--color-interaction-hover-bg);
+  border-color: var(--color-border-control);
+}
+
+/* focus-visible: the container ring */
+.card-link:focus-visible,
+.card-selectable:focus-visible,
+[data-state-focus-visible] .card-demo-target {
+  outline: var(--focus-ring-container);
+  outline-offset: var(--focus-offset-container);
+}
+
+.card-link:focus:not(:focus-visible),
+.card-selectable:focus:not(:focus-visible) {
+  outline: 0;
+}
+
+/* selected: the fill; every line takes the on-fill text */
+.card-selectable[aria-selected="true"],
+[data-state-selected] .card-demo-target {
+  background: var(--color-interaction-selection-bg);
+  border-color: var(--color-interaction-selection-bg);
+  color: var(--color-interaction-selection-text);
+}
+
+.card-selectable[aria-selected="true"] .card-title,
+.card-selectable[aria-selected="true"] .card-body,
+.card-selectable[aria-selected="true"] .card-meta,
+[data-state-selected] .card-demo-target .card-title,
+[data-state-selected] .card-demo-target .card-body,
+[data-state-selected] .card-demo-target .card-meta {
+  color: var(--color-interaction-selection-text);
+}
+
+.card-selectable[aria-selected="true"]:hover,
+[data-state-selected] .card-demo-target:hover {
+  background: var(--color-interaction-selection-bg);
+  border-color: var(--color-interaction-selection-bg);
+}
+
+/* selected + focus-visible: the fill and the container ring together */
+.card-selectable[aria-selected="true"]:focus-visible,
+[data-state-selected][data-state-focus-visible] .card-demo-target {
+  outline: var(--focus-ring-container);
+  outline-offset: var(--focus-offset-container);
+}
+
+@media (hover: none) {
+  .card-link:hover,
+  .card-selectable:hover {
+    background: var(--color-surface-default);
+    border-color: var(--color-border-default);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .card-link,
+  .card-selectable {
+    transition: background-color var(--motion-duration-fast);
+  }
+}
+
+@media (forced-colors: active) {
+  .card-link:focus-visible,
+  .card-selectable:focus-visible,
+  [data-state-focus-visible] .card-demo-target {
+    outline-color: Highlight;
+  }
+
+  .card-selectable[aria-selected="true"],
+  [data-state-selected] .card-demo-target {
+    background: Highlight;
+    color: HighlightText;
+  }
+}

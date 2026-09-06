@@ -1,0 +1,129 @@
+/* breadcrumbs — reference CSS. Inline links separated by an aria-hidden
+   slash; logical properties so RTL mirrors the trail. Every pseudo-class is
+   paired with the forced-state attribute the state matrix emits. */
+
+.breadcrumbs {
+  min-width: 0;
+  color: var(--color-text-default);
+  background: var(--color-surface-default);
+}
+
+.breadcrumbs-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.breadcrumbs-item {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--density-control-height, 32px);
+}
+
+.breadcrumbs-item[hidden] {
+  display: none;
+}
+
+.breadcrumbs-separator {
+  padding-inline: var(--space-8);
+  color: var(--color-text-muted);
+  user-select: none;
+}
+
+.breadcrumbs-link {
+  padding: var(--space-2) var(--space-4);
+  color: var(--color-text-link);
+  text-decoration: underline;
+  text-decoration-color: var(--color-text-link-underline);
+  text-decoration-thickness: var(--border-width-default);
+  text-underline-offset: var(--space-2);
+  border-radius: var(--radius-none);
+}
+
+.breadcrumbs-ellipsis {
+  min-width: var(--density-control-height, 32px);
+  min-height: var(--density-control-height, 32px);
+  padding: 0 var(--space-4);
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+  font: inherit;
+  cursor: pointer;
+}
+
+/* hover: links take the strong hover fill and the underline thickens */
+.breadcrumbs-link:hover,
+[data-state-hover] .breadcrumbs-link-demo-target {
+  background: var(--color-interaction-hover-bg-strong);
+  color: var(--color-text-link-hover);
+  text-decoration-thickness: var(--border-width-emphasis);
+}
+
+.breadcrumbs-ellipsis:hover {
+  background: var(--color-interaction-hover-bg);
+}
+
+/* focus-visible */
+.breadcrumbs-link:focus-visible,
+.breadcrumbs-ellipsis:focus-visible,
+[data-state-focus-visible] .breadcrumbs-link-demo-target {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.breadcrumbs-link:focus:not(:focus-visible),
+.breadcrumbs-ellipsis:focus:not(:focus-visible) {
+  outline: 0;
+}
+
+/* current: bright, no underline, no hover */
+.breadcrumbs-link[aria-current="page"],
+[data-state-current] .breadcrumbs-current {
+  color: var(--color-text-bright);
+  text-decoration: none;
+}
+
+.breadcrumbs-link[aria-current="page"]:hover,
+[data-state-current] .breadcrumbs-current:hover {
+  background: transparent;
+  color: var(--color-text-bright);
+}
+
+/* truncated: the collapsible levels hide behind the ellipsis button */
+[data-state-truncated] .breadcrumbs-item-collapsible {
+  display: none;
+}
+
+[data-state-truncated] .breadcrumbs-item-ellipsis {
+  display: inline-flex;
+}
+
+.breadcrumbs-item-ellipsis:has(.breadcrumbs-ellipsis[aria-expanded="true"]) ~ .breadcrumbs-item-collapsible {
+  display: inline-flex;
+}
+
+@media (hover: none) {
+  .breadcrumbs-link:hover {
+    background: transparent;
+    color: var(--color-text-link);
+    text-decoration-thickness: var(--border-width-default);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .breadcrumbs-link {
+    transition: background-color var(--motion-duration-fast);
+  }
+}
+
+@media (forced-colors: active) {
+  .breadcrumbs-link:focus-visible,
+  [data-state-focus-visible] .breadcrumbs-link-demo-target {
+    outline-color: Highlight;
+  }
+}

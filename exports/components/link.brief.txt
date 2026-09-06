@@ -1,0 +1,39 @@
+j3w1/theme implementation brief — link
+theme: j3w1-theme 0.1.0-draft.1  profile: default  sourceDigest: sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=
+pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/components/link.json
+spec: spec/components/link.md  site: https://j3w1.github.io/theme/#c-link
+maturity: stable  priority: R1
+
+Summary: The native anchor for navigation; always underlined in the link-underline role, hover fills with the strong hover surface, the current page carries a 2px indicator bar.
+
+Tokens (resolved):
+  root.text          #ffa2a7  ({color.text.link})
+  root.underline     #dc282e  ({color.text.link-underline})
+  root.text-hover    #f4eeee  ({color.text.link-hover})
+  root.bg-hover      #630f0d  ({color.interaction.hover.bg-strong})
+  root.ring          #e53935  ({color.interaction.focus.ring})
+  root.text-visited  #e99499  ({color.text.default})
+  root.text-current  #ffa2a7  ({color.text.bright})
+  root.indicator     #e53935  ({color.border.selected-indicator})
+  icon.stroke        #e99499  ({color.icon.default})
+
+States: default, hover, focus-visible, visited, current
+  default: {color.text.link}; underline 1px {color.text.link-underline} offset 2px [the underline]
+  hover: background → {color.interaction.hover.bg-strong}; text → {color.text.link-hover}; underline 2px in the text colour [underline thickens 1px → 2px; cursor: pointer]
+  focus-visible: ring 1px dashed {color.interaction.focus.ring} at −2px; no change to the underline [the ring]
+  visited: text → {color.text.default}; underline unchanged [— (browsers restrict `:visited` to colour; visited is informational and the underline still marks the link)]
+  current: text → {color.text.bright}; the underline becomes a 2px {color.border.selected-indicator} bottom border; no hover fill [`aria-current="page"`; the bar's 2px weight]
+
+Keyboard:
+  Tab / Shift+Tab: Moves focus to and from the link.
+  Enter: Follows the link (native); Space scrolls the page, never activates.
+
+ARIA: native <a href>
+Responsive: Inline links wrap with their sentence and may break across lines; the underline and hover fill follow each fragment. Standalone links keep the icon on the same line as the last word. RTL flips the arrow through the host's icon mirroring.
+Portability: native <a href>; never a button styled as a link nor a link with role="button"; aria-current="page" on the link to the current document; external links are marked in text, not by colour.
+  native: GTK4 LinkButton; visited through the visited style class.
+  native: Qt QLabel with rich text and the link stylesheet roles.
+  native: Terminal UI: OSC 8 hyperlink; underlined in slot 7.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

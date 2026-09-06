@@ -1,0 +1,29 @@
+<div class="date-picker">
+  <label class="date-picker-label" for="dp-release">Release date</label>
+  <div class="date-picker-root">
+    <input class="date-picker-input" id="dp-release" type="date" value="2026-09-06" min="2026-01-01" max="2026-12-31" aria-describedby="dp-release-help dp-release-message">
+  </div>
+  <p class="date-picker-help" id="dp-release-help">Within 2026.</p>
+  <p class="date-picker-message" id="dp-release-message">✕ Choose a date in 2026.</p>
+</div>
+<!-- @variant range -->
+<fieldset class="date-picker date-picker-range">
+  <legend class="date-picker-legend">Report period</legend>
+  <div class="date-picker-pair">
+    <div class="date-picker-half">
+      <label class="date-picker-label" for="dp-from">From</label>
+      <div class="date-picker-root">
+        <input class="date-picker-input" id="dp-from" type="date" value="2026-09-01" aria-describedby="dp-range-help dp-range-message">
+      </div>
+    </div>
+    <span class="date-picker-separator" aria-hidden="true">–</span>
+    <div class="date-picker-half">
+      <label class="date-picker-label" for="dp-to">To</label>
+      <div class="date-picker-root">
+        <input class="date-picker-input" id="dp-to" type="date" value="2026-09-30" aria-describedby="dp-range-help dp-range-message">
+      </div>
+    </div>
+  </div>
+  <p class="date-picker-help" id="dp-range-help">Inclusive; at most 92 days.</p>
+  <p class="date-picker-message" id="dp-range-message">✕ The end date is before the start date.</p>
+</fieldset>

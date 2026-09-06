@@ -1,0 +1,55 @@
+j3w1/theme implementation brief — search-field
+theme: j3w1-theme 0.1.0-draft.1  profile: default  sourceDigest: sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=
+pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/components/search-field.json
+spec: spec/components/search-field.md  site: https://j3w1.github.io/theme/#c-search-field
+maturity: stable  priority: R1
+
+Summary: The text-field box around a native search input with a magnifier, a clear button that appears with a value, an optional shortcut hint, a loading glyph and a no-results status line.
+
+Tokens (resolved):
+  root.bg               #0c0909  ({color.surface.input})
+  root.border           #a3676b  ({color.border.control})
+  root.bg-hover         #1c0a09  ({color.interaction.hover.bg})
+  root.border-focus     #e53935  ({color.border.active})
+  root.ring             #e53935  ({color.interaction.focus.ring})
+  root.border-disabled  #7d1310  ({color.border.disabled})
+  root.bg-disabled      #160b0b  ({color.interaction.disabled.bg})
+  input.text            #e99499  ({color.text.default})
+  input.text-disabled   #8a5559  ({color.text.disabled})
+  input.placeholder     #bd787d  ({color.text.placeholder})
+  input.caret           #e99499  ({color.code.caret})
+  icon.stroke           #e99499  ({color.icon.default})
+  loading.glyph         #bd787d  ({color.text.muted})
+  clear.text            #e99499  ({color.action.tertiary.text})
+  clear.bg-hover        #1c0a09  ({color.action.tertiary.hover-bg})
+  kbd.text              #bd787d  ({color.text.muted})
+  kbd.border            #531310  ({color.border.default})
+  label.text            #ffa2a7  ({color.text.bright})
+  help.text             #bd787d  ({color.text.muted})
+  status.text           #bd787d  ({color.text.muted})
+
+States: default, hover, focus-visible, placeholder-shown, filled, loading, disabled, no-results
+  default: 1px {color.border.control} on {color.surface.input}; magnifier {color.icon.default}; text {color.text.default} [the magnifier]
+  hover: background → {color.interaction.hover.bg}; the clear button → {color.action.tertiary.hover-bg} when hovered [cursor: text]
+  focus-visible: border → {color.border.active}; ring 1px dashed {color.interaction.focus.ring} at −2px; the hint hides [the ring]
+  placeholder-shown: placeholder in {color.text.placeholder}, italic; no clear button [italic; the clear button is absent]
+  filled: as default with a value; the clear button is present [the clear button]
+  loading: the static `⋯` glyph in {color.text.muted} replaces the magnifier; the input stays editable [glyph; `aria-busy`]
+  disabled: text and icon {color.text.disabled}; border {color.border.disabled}; background {color.interaction.disabled.bg}; no clear button [`disabled`; cursor: not-allowed]
+  no-results: the status line "No results for …" in {color.text.muted} below the help; the box unchanged [the status text; `role="status"`]
+
+Keyboard:
+  Tab / Shift+Tab: Input, then the clear button when it is visible.
+  Escape: Clears a non-empty value and keeps focus; with an empty value, nothing.
+  Enter: Runs the search when the host does not search as you type.
+  / or Ctrl+K: Focuses the field from anywhere on the page when the host binds the shortcut shown in the hint.
+
+ARIA: native <input type="search"> with <label> inside a role="search" landmark; status through role="status" (https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/search.html)
+Responsive: Fills its container with min-width 0; icon, clear and hint keep their slots and the text shrinks first; in a toolbar it may collapse to an icon button below 600px. RTL mirrors the icon to the inline start and the clear and hint to the inline end.
+Portability: native <input type="search"> with <label>, inside <form role="search"> or a role="search" landmark; results announced through the status line, never a live region on every keystroke; the hint is a <kbd> that is aria-hidden; the host cancel button is hidden and replaced by the clear button.
+  native: GTK4 SearchEntry; the clear icon is its secondary icon.
+  native: Qt QLineEdit with a clearButtonEnabled and a leading QAction icon.
+  native: Terminal UI: a / prompt line; the status in dim text under it.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

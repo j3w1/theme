@@ -1,0 +1,213 @@
+/* terminal — reference CSS. A native <pre> on the terminal surface with the
+   sixteen heritage slots as classes, the cursor, the selection and the six
+   attributes. Slot colours are the role variables --color-terminal-ansi-0 …
+   -15 and nothing else, so the specimen profile switch shows the extended
+   reassignment. No animation: the cursor does not blink. Forced-state
+   attributes from the state matrix ([data-state-<part>]) render each state
+   statically. */
+
+.terminal {
+  display: block;
+  min-width: 0;
+  max-width: 100%;
+  margin: 0;
+  padding: var(--space-8);
+  overflow-x: auto;
+  background: var(--color-terminal-bg);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+  color: var(--color-terminal-fg);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-terminal);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--font-line-height-terminal);
+  letter-spacing: var(--font-letter-spacing-terminal);
+  white-space: pre;
+  tab-size: 8;
+  unicode-bidi: isolate;
+  direction: ltr;
+}
+
+.terminal-line {
+  display: inline-block; /* fills the row so the cursor-line fill spans the width; the source newline ends the line */
+  min-width: 100%;
+  vertical-align: top;
+}
+
+/* the agnoster-style prompt: two filled segments, each ending in its own arrow */
+.terminal-prompt-path {
+  background: var(--color-terminal-ansi-4);
+  color: var(--color-terminal-selection-text);
+}
+
+.terminal-prompt-arrow-path {
+  background: var(--color-terminal-ansi-3);
+  color: var(--color-terminal-ansi-4);
+}
+
+.terminal-prompt-branch {
+  background: var(--color-terminal-ansi-3);
+  color: var(--color-terminal-bg);
+}
+
+.terminal-prompt-arrow-branch {
+  color: var(--color-terminal-ansi-3);
+}
+
+/* the sixteen slots, exact in every profile */
+.terminal-fg-0 { color: var(--color-terminal-ansi-0); }
+.terminal-fg-1 { color: var(--color-terminal-ansi-1); }
+.terminal-fg-2 { color: var(--color-terminal-ansi-2); }
+.terminal-fg-3 { color: var(--color-terminal-ansi-3); }
+.terminal-fg-4 { color: var(--color-terminal-ansi-4); }
+.terminal-fg-5 { color: var(--color-terminal-ansi-5); }
+.terminal-fg-6 { color: var(--color-terminal-ansi-6); }
+.terminal-fg-7 { color: var(--color-terminal-ansi-7); }
+.terminal-fg-8 { color: var(--color-terminal-ansi-8); }
+.terminal-fg-9 { color: var(--color-terminal-ansi-9); }
+.terminal-fg-10 { color: var(--color-terminal-ansi-10); }
+.terminal-fg-11 { color: var(--color-terminal-ansi-11); }
+.terminal-fg-12 { color: var(--color-terminal-ansi-12); }
+.terminal-fg-13 { color: var(--color-terminal-ansi-13); }
+.terminal-fg-14 { color: var(--color-terminal-ansi-14); }
+.terminal-fg-15 { color: var(--color-terminal-ansi-15); }
+
+.terminal-bg-0 { background: var(--color-terminal-ansi-0); color: var(--color-terminal-fg); }
+.terminal-bg-1 { background: var(--color-terminal-ansi-1); color: var(--color-terminal-fg); }
+.terminal-bg-2 { background: var(--color-terminal-ansi-2); color: var(--color-terminal-fg); }
+.terminal-bg-3 { background: var(--color-terminal-ansi-3); color: var(--color-terminal-fg); }
+.terminal-bg-4 { background: var(--color-terminal-ansi-4); color: var(--color-terminal-fg); }
+.terminal-bg-5 { background: var(--color-terminal-ansi-5); color: var(--color-terminal-fg); }
+.terminal-bg-6 { background: var(--color-terminal-ansi-6); color: var(--color-terminal-fg); }
+.terminal-bg-7 { background: var(--color-terminal-ansi-7); color: var(--color-terminal-fg); }
+.terminal-bg-8 { background: var(--color-terminal-ansi-8); color: var(--color-terminal-fg); }
+.terminal-bg-9 { background: var(--color-terminal-ansi-9); color: var(--color-terminal-fg); }
+.terminal-bg-10 { background: var(--color-terminal-ansi-10); color: var(--color-terminal-fg); }
+.terminal-bg-11 { background: var(--color-terminal-ansi-11); color: var(--color-terminal-fg); }
+.terminal-bg-12 { background: var(--color-terminal-ansi-12); color: var(--color-terminal-fg); }
+.terminal-bg-13 { background: var(--color-terminal-ansi-13); color: var(--color-terminal-fg); }
+.terminal-bg-14 { background: var(--color-terminal-ansi-14); color: var(--color-terminal-fg); }
+.terminal-bg-15 { background: var(--color-terminal-ansi-15); color: var(--color-terminal-fg); }
+
+/* grid labels and the failure mark */
+.terminal-label {
+  color: var(--color-text-muted);
+}
+
+.terminal-fail {
+  color: var(--color-terminal-fg);
+  font-weight: var(--font-weight-bold);
+}
+
+/* attributes */
+.terminal-bold { font-weight: var(--font-weight-bold); }
+.terminal-dim { color: var(--color-text-muted); }
+.terminal-italic { font-style: italic; }
+.terminal-underline { text-decoration: underline; text-underline-offset: var(--space-2); }
+.terminal-strike { text-decoration: line-through; }
+
+.terminal-inverse {
+  background: var(--color-terminal-fg);
+  color: var(--color-terminal-bg);
+}
+
+/* the cursor: one cell, hollow at rest, solid while focused or busy; never blinks */
+.terminal-cursor {
+  display: inline-block;
+  min-width: 1ch;
+  outline: var(--border-width-default) solid var(--color-terminal-cursor);
+  outline-offset: calc(-1 * var(--border-width-default));
+  vertical-align: top;
+}
+
+/* native text selection inside a live transcript */
+.terminal ::selection,
+.terminal::selection {
+  background: var(--color-terminal-selection-bg);
+  color: var(--color-terminal-selection-text);
+}
+
+/* focus-visible: the container ring; the cursor fills */
+.terminal:focus-visible,
+[data-state-focus-visible] .terminal {
+  outline: var(--focus-ring-container);
+  outline-offset: var(--focus-offset-container);
+}
+
+.terminal:focus-visible .terminal-cursor,
+[data-state-focus-visible] .terminal-cursor {
+  outline: 0;
+  background: var(--color-terminal-cursor);
+  color: var(--color-terminal-bg);
+}
+
+.terminal:focus:not(:focus-visible) {
+  outline: 0;
+}
+
+/* selected: the run takes the selection fill; slot colours give way */
+[data-state-selected] .terminal-sel {
+  background: var(--color-terminal-selection-bg);
+  color: var(--color-terminal-selection-text);
+}
+
+/* busy: a command is running; the cursor is a solid static block */
+.terminal[aria-busy="true"] .terminal-cursor,
+[data-state-busy] .terminal-cursor {
+  outline: 0;
+  background: var(--color-terminal-cursor);
+  color: var(--color-terminal-bg);
+}
+
+/* current: the cursor line is filled; the cursor is solid */
+.terminal[aria-current="true"] .terminal-line-cursor,
+[data-state-current] .terminal-line-cursor {
+  background: var(--color-code-current-line);
+}
+
+.terminal[aria-current="true"] .terminal-cursor,
+[data-state-current] .terminal-cursor {
+  outline: 0;
+  background: var(--color-terminal-cursor);
+  color: var(--color-terminal-bg);
+}
+
+@media (forced-colors: active) {
+  .terminal:focus-visible,
+  [data-state-focus-visible] .terminal {
+    outline-color: Highlight;
+  }
+
+  .terminal-cursor {
+    outline-color: CanvasText;
+  }
+
+  [data-state-focus-visible] .terminal-cursor,
+  [data-state-busy] .terminal-cursor,
+  [data-state-current] .terminal-cursor {
+    background: CanvasText;
+    color: Canvas;
+  }
+
+  [data-state-selected] .terminal-sel {
+    background: Highlight;
+    color: HighlightText;
+  }
+}
+
+/* ansi-grid samples of slots that fail the text floor are colour blocks, not words */
+.terminal-swatch,
+.terminal-swatch-bg {
+  display: inline-block;
+  width: 6ch;
+  height: 1em;
+  vertical-align: text-bottom;
+}
+
+.terminal-swatch {
+  background: currentColor;
+}
+
+.terminal-swatch-bg {
+  width: 12ch;
+}

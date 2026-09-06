@@ -1,0 +1,296 @@
+/* diff-view — reference CSS. A native table: one row per line, the marker
+   in its own cell, fills per change kind, word-level changes as text
+   decoration, conflicts in a double border. Forced-state attributes from the
+   state matrix ([data-state-<part>]) render each state statically. Token
+   variables only. */
+
+.diff-view {
+  display: table;
+  width: 100%;
+  min-width: 0;
+  border-collapse: collapse;
+  background: var(--color-code-bg);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-code);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--font-line-height-code);
+  tab-size: 2;
+  unicode-bidi: isolate;
+}
+
+.diff-view-row > td {
+  padding: 0;
+  vertical-align: top;
+  border-bottom: var(--border-width-default) solid var(--color-border-divider);
+}
+
+.diff-view-row > .diff-view-ln {
+  min-width: 3ch;
+  padding: 0 var(--space-8);
+  color: var(--color-text-muted);
+  text-align: end;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.diff-view-row > .diff-view-marker {
+  min-width: 1ch;
+  padding: 0 var(--space-4);
+  border-inline-start: var(--border-width-default) solid var(--color-code-gutter-rule);
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  white-space: pre;
+  user-select: none;
+}
+
+.diff-view-row > .diff-view-text {
+  width: 100%;
+  padding: 0 var(--space-8);
+  white-space: pre;
+  direction: ltr;
+}
+
+.diff-view-side-new.diff-view-ln {
+  border-inline-start: var(--border-width-default) solid var(--color-code-gutter-rule);
+}
+
+.diff-view-split .diff-view-text {
+  width: 50%;
+}
+
+/* change kinds: a fill and a marker colour; the marker is content */
+.diff-view-row-added > td,
+.diff-view-cell-added {
+  background: var(--color-diff-added-bg);
+}
+
+.diff-view-row-added .diff-view-marker,
+.diff-view-marker.diff-view-cell-added {
+  color: var(--color-diff-added-gutter);
+}
+
+.diff-view-row-removed > td,
+.diff-view-cell-removed {
+  background: var(--color-diff-removed-bg);
+}
+
+.diff-view-row-removed .diff-view-marker,
+.diff-view-marker.diff-view-cell-removed {
+  color: var(--color-diff-removed-gutter);
+}
+
+.diff-view-row-modified > td {
+  background: var(--color-diff-modified-bg);
+}
+
+.diff-view-row-modified .diff-view-marker {
+  color: var(--color-diff-modified-gutter);
+}
+
+.diff-view-split .diff-view-row-added .diff-view-side-old {
+  background: var(--color-code-bg);
+}
+
+/* hunk headers */
+.diff-view-row-hunk > td {
+  background: var(--color-diff-header-bg);
+  color: var(--color-text-default);
+}
+
+.diff-view-row-hunk .diff-view-marker {
+  color: var(--color-text-muted);
+}
+
+.diff-view-range {
+  color: var(--color-text-muted);
+}
+
+/* word-level: decoration only, never a fill */
+.diff-view-word-added {
+  background: transparent;
+  color: inherit;
+  text-decoration: underline var(--color-diff-added-emphasis);
+  text-decoration-thickness: var(--border-width-emphasis);
+  text-decoration-skip-ink: none;
+  text-underline-offset: var(--space-2);
+}
+
+.diff-view-word-removed {
+  background: transparent;
+  color: inherit;
+  text-decoration: underline line-through var(--color-diff-removed-emphasis);
+  text-decoration-thickness: var(--border-width-default);
+  text-decoration-skip-ink: none;
+  text-underline-offset: var(--space-2);
+}
+
+/* conflicts: a double border around the block, marker lines on the header fill */
+.diff-view-row-conflict > td:first-child {
+  border-inline-start: calc(3 * var(--border-width-default)) double var(--color-diff-conflict-border);
+}
+
+.diff-view-row-conflict > td:last-child {
+  border-inline-end: calc(3 * var(--border-width-default)) double var(--color-diff-conflict-border);
+}
+
+.diff-view-row-conflict-start > td {
+  border-top: calc(3 * var(--border-width-default)) double var(--color-diff-conflict-border);
+}
+
+.diff-view-row-conflict-end > td {
+  border-bottom: calc(3 * var(--border-width-default)) double var(--color-diff-conflict-border);
+}
+
+.diff-view-row-conflict-start > td,
+.diff-view-row-conflict-mid > td,
+.diff-view-row-conflict-end > td {
+  background: var(--color-diff-header-bg);
+  color: var(--color-text-bright);
+  font-weight: var(--font-weight-bold);
+}
+
+.diff-view-row-ours .diff-view-marker {
+  color: var(--color-diff-removed-gutter);
+}
+
+.diff-view-row-theirs .diff-view-marker {
+  color: var(--color-diff-added-gutter);
+}
+
+/* the fold header and its button */
+.diff-view-row > .diff-view-fold-cell {
+  padding: 0 var(--space-8);
+  background: var(--color-diff-header-bg);
+}
+
+.diff-view-fold {
+  display: inline-flex;
+  gap: var(--space-4);
+  align-items: center;
+  min-height: var(--density-control-height, 32px);
+  padding: 0 var(--space-4);
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-none);
+  color: var(--color-text-link);
+  font: inherit;
+  cursor: pointer;
+}
+
+.diff-view-chevron {
+  flex: none;
+  transition: transform var(--motion-duration-base);
+}
+
+.diff-view-fold-expanded {
+  display: none;
+}
+
+@media (hover: hover) {
+  .diff-view-fold:hover {
+    background: var(--color-interaction-hover-bg-strong);
+    color: var(--color-text-link-hover);
+  }
+}
+
+.diff-view-fold:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* hover: the number and marker cells take the hover fill; the text keeps its own */
+@media (hover: hover) {
+  .diff-view-row:hover > .diff-view-ln,
+  .diff-view-row:hover > .diff-view-marker {
+    background: var(--color-interaction-hover-bg);
+  }
+}
+
+[data-state-hover] .diff-view-row-active > .diff-view-ln,
+[data-state-hover] .diff-view-row-active > .diff-view-marker {
+  background: var(--color-interaction-hover-bg);
+}
+
+/* selected: the whole row on the selection fill; the marker is still there */
+.diff-view-row[aria-current="true"] > td,
+.diff-view-row:target > td,
+[data-state-selected] .diff-view-row-active > td {
+  background: var(--color-interaction-selection-bg);
+  color: var(--color-interaction-selection-text);
+}
+
+.diff-view-row[aria-current="true"] .diff-view-marker,
+.diff-view-row:target .diff-view-marker,
+[data-state-selected] .diff-view-row-active .diff-view-marker,
+[data-state-selected] .diff-view-row-active .diff-view-ln {
+  color: var(--color-interaction-selection-text);
+}
+
+/* focus-visible: the row ring; recoloured on the selection fill */
+.diff-view-row:focus-visible,
+[data-state-focus-visible] .diff-view-row-active {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.diff-view-row[aria-current="true"]:focus-visible,
+[data-state-selected][data-state-focus-visible] .diff-view-row-active {
+  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline-offset: var(--focus-offset);
+}
+
+/* expanded: the folded body shows, the chevron turns, the label changes */
+.diff-view-fold[aria-expanded="true"] .diff-view-chevron,
+[data-state-expanded] .diff-view-chevron {
+  transform: rotate(90deg);
+}
+
+.diff-view-fold[aria-expanded="true"] .diff-view-fold-collapsed,
+[data-state-expanded] .diff-view-fold-collapsed {
+  display: none;
+}
+
+.diff-view-fold[aria-expanded="true"] .diff-view-fold-expanded,
+[data-state-expanded] .diff-view-fold-expanded {
+  display: inline;
+}
+
+[data-state-expanded] .diff-view-folded[hidden] {
+  display: table-row-group;
+}
+
+/* collapsed: the rest state of the fold; the body stays hidden */
+[data-state-collapsed] .diff-view-folded {
+  display: none;
+}
+
+[data-state-collapsed] .diff-view-chevron {
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .diff-view-chevron {
+    transition-duration: 0.01ms;
+  }
+}
+
+@media (forced-colors: active) {
+  .diff-view-row:focus-visible,
+  [data-state-focus-visible] .diff-view-row-active,
+  .diff-view-fold:focus-visible {
+    outline-color: Highlight;
+  }
+
+  .diff-view-row[aria-current="true"] > td,
+  [data-state-selected] .diff-view-row-active > td {
+    background: Highlight;
+    color: HighlightText;
+  }
+
+  .diff-view-row-conflict > td {
+    border-color: CanvasText;
+  }
+}

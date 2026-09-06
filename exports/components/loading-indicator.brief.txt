@@ -1,0 +1,30 @@
+j3w1/theme implementation brief — loading-indicator
+theme: j3w1-theme 0.1.0-draft.1  profile: default  sourceDigest: sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=
+pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/components/loading-indicator.json
+spec: spec/components/loading-indicator.md  site: https://j3w1.github.io/theme/#c-loading-indicator
+maturity: stable  priority: R1
+
+Summary: A static ⋯ glyph with a worded label inside an aria-busy container; inline next to text or as a centred block. There is no spinner.
+
+Tokens (resolved):
+  glyph.text    #bd787d  ({color.text.muted})
+  label.text    #e99499  ({color.text.default})
+  block.bg      #160b0b  ({color.surface.default})
+  block.border  #2b0e0d  ({color.border.divider})
+
+States: default, reduced-motion
+  default: the static ⋯ and the label [`aria-busy="true"`; the glyph; the worded label]
+  reduced-motion: identical: there is nothing to reduce [`prefers-reduced-motion`]
+
+Keyboard:
+  Tab: Nothing; the indicator is not focusable and never traps focus; the content it replaces keeps its tab stops when it returns.
+
+ARIA: native container with aria-busy=true and role=status; the glyph is aria-hidden and the label carries the meaning (https://www.w3.org/WAI/ARIA/apg/patterns/alert/)
+Responsive: Inline, it follows the text and wraps with it; the block centres in its container at any width and needs no minimum height beyond one row. RTL leaves the glyph in place, since ⋯ has no direction.
+Portability: a <span role=status aria-busy=true> inline or a <div role=status aria-busy=true> block; the glyph is text; the label is the announcement; aria-busy is removed, and the label replaced by the result, when loading ends.
+  native: GTK4 Label with the glyph; no Spinner widget.
+  native: Qt QLabel; QProgressBar busy mode only when a bar is wanted.
+  native: Terminal UI: the glyph in the status line.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

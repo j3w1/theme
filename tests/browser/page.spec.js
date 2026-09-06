@@ -30,7 +30,7 @@ test.describe("the specification page", () => {
     test.skip(only(testInfo, "nojs"), "controls need scripts");
     await openSpec(page);
     await page.keyboard.press("Tab");
-    await expect(page.locator(".skip-link")).toBeFocused();
+    await expect(page.locator("body > .skip-link")).toBeFocused();
     const ring = await page.evaluate(() => {
       const s = getComputedStyle(document.activeElement);
       return { style: s.outlineStyle, color: s.outlineColor, width: s.outlineWidth };

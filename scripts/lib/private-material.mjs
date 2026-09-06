@@ -42,6 +42,10 @@ export const BINARY_EXTENSIONS = [".png", ".webp", ".jpg", ".jpeg", ".gif", ".ic
 export const IMAGE_EXTENSIONS = [".png", ".webp"];
 export const IMAGE_DIRECTORIES = ["references/", "ports/"];
 export const MAX_FILE_BYTES = 2 * 1024 * 1024;
+/* The single specification page and the full Markdown export are large on
+   purpose; text gets a higher ceiling, binaries keep the 2 MB one. */
+export const MAX_TEXT_FILE_BYTES = 12 * 1024 * 1024;
+const TEXT_EXTENSIONS = [".html", ".md", ".json", ".css", ".js", ".mjs", ".txt", ".svg", ".xml"];
 
 const termPattern = (term) => {
   const escaped = term.replace(/[.*+?^${}()|[\]\\/]/g, "\\$&");
@@ -58,7 +62,8 @@ export const scanFiles = async (files, { textOnly = false } = {}) => {
     const ext = path.extname(file).toLowerCase();
     const full = path.join(repoRoot, file);
     const buffer = await fs.readFile(full);
-    if (buffer.length > MAX_FILE_BYTES) findings.push({ file, problem: `exceeds ${MAX_FILE_BYTES} bytes` });
+    const limit = TEXT_EXTENSIONS.includes(ext) ? MAX_TEXT_FILE_BYTES : MAX_FILE_BYTES;
+    if (buffer.length > limit) findings.push({ file, problem: `exceeds ${limit} bytes` });
     if (FONT_EXTENSIONS.includes(ext)) findings.push({ file, problem: "font binary by extension" });
     if (isFontBuffer(buffer)) findings.push({ file, problem: "font binary by magic bytes" });
     if (IMAGE_EXTENSIONS.includes(ext) && !IMAGE_DIRECTORIES.some((dir) => file.startsWith(dir))) {

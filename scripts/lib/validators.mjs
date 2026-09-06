@@ -248,8 +248,12 @@ export const validateSpec = async ({ profiles, defaultId } = {}) => {
       }
     }
   }
-  const compact = components.filter((c) => c.compact).length;
-  if (components.length >= 10 ? compact !== 10 : compact > 10) problems.push(`spec: exactly 10 components must be marked compact (found ${compact})`);
+  /* The compact export carries exactly the ten core (tested) components; in a partial checkout the rule is "compact ⇔ core and present". */
+  const core = new Set(inventory.tested);
+  for (const component of components) {
+    if (component.compact && !core.has(component.id)) problems.push(`${component.file}: compact is reserved for the core components (${inventory.tested.join(", ")})`);
+    if (!component.compact && core.has(component.id)) problems.push(`${component.file}: core components must be marked compact: true`);
+  }
   if (problems.length) fail(`spec:\n  ${problems.join("\n  ")}`);
   return components;
 };

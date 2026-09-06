@@ -1,0 +1,668 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "0.1.0-draft.1",
+  "profile": "default",
+  "sourceDigest": "sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=",
+  "id": "dialog",
+  "family": "feedback",
+  "maturity": "stable",
+  "priority": "R1",
+  "coverage": {
+    "family": "feedback",
+    "priority": "R1",
+    "maturity": "stable",
+    "specified": true,
+    "demonstrated": true,
+    "tested": true,
+    "states": 7
+  },
+  "title": "Dialog",
+  "summary": "A native dialog on the overlay surface behind a 1px overlay border and the backdrop; modal when shown, with trapped focus and Escape to close.",
+  "anchors": {
+    "site": "https://j3w1.github.io/theme/#c-dialog",
+    "spec": "spec/components/dialog.md",
+    "brief": "exports/components/dialog.brief.txt"
+  },
+  "native": true,
+  "aria": {
+    "pattern": "native <dialog> opened with showModal; role=alertdialog for confirmations; named by its heading, described by its first paragraph",
+    "apg": "https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/"
+  },
+  "variants": [
+    {
+      "id": "default",
+      "name": "Confirm"
+    },
+    {
+      "id": "alert-dialog",
+      "name": "Alert dialog"
+    },
+    {
+      "id": "form",
+      "name": "Form"
+    }
+  ],
+  "sizes": [
+    "compact",
+    "comfortable"
+  ],
+  "states": [
+    "default",
+    "open",
+    "closed",
+    "focus-trapped",
+    "hover",
+    "focus-visible",
+    "reduced-motion"
+  ],
+  "tokens": {
+    "backdrop.bg": {
+      "alias": "color.surface.backdrop",
+      "value": "rgb(0 0 0 / 65%)",
+      "status": "proposed"
+    },
+    "root.bg": {
+      "alias": "color.surface.overlay",
+      "value": "#241010",
+      "status": "observed"
+    },
+    "root.border": {
+      "alias": "color.border.overlay",
+      "value": "#e53935",
+      "status": "proposed"
+    },
+    "root.ring": {
+      "alias": "color.interaction.focus.ring-container",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "root.z": {
+      "alias": "z.dialog",
+      "value": "30",
+      "status": "observed"
+    },
+    "title.text": {
+      "alias": "color.text.bright",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "text.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "close.text": {
+      "alias": "color.action.tertiary.text",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "close.bg-hover": {
+      "alias": "color.action.tertiary.hover-bg",
+      "value": "#1c0a09",
+      "status": "observed"
+    },
+    "close.ring": {
+      "alias": "color.interaction.focus.ring",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "button.text": {
+      "alias": "color.action.secondary.text",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "button.border": {
+      "alias": "color.action.secondary.border",
+      "value": "#a3676b",
+      "status": "observed"
+    },
+    "button.bg-hover": {
+      "alias": "color.action.secondary.hover-bg",
+      "value": "#630f0d",
+      "status": "observed"
+    },
+    "primary.bg": {
+      "alias": "color.action.primary.bg",
+      "value": "#871f19",
+      "status": "observed"
+    },
+    "primary.text": {
+      "alias": "color.action.primary.text",
+      "value": "#f4eeee",
+      "status": "observed"
+    },
+    "primary.bg-hover": {
+      "alias": "color.action.primary.hover-bg",
+      "value": "#911410",
+      "status": "observed"
+    },
+    "destructive.bg": {
+      "alias": "color.action.destructive.filled-bg",
+      "value": "#dc282e",
+      "status": "observed"
+    },
+    "destructive.text": {
+      "alias": "color.action.destructive.filled-text",
+      "value": "#f9faf9",
+      "status": "observed"
+    },
+    "destructive.bg-hover": {
+      "alias": "color.action.destructive.hover-bg",
+      "value": "#dc282e",
+      "status": "observed"
+    },
+    "field.bg": {
+      "alias": "color.surface.input",
+      "value": "#0c0909",
+      "status": "observed"
+    },
+    "field.border": {
+      "alias": "color.border.control",
+      "value": "#a3676b",
+      "status": "proposed"
+    },
+    "field.label": {
+      "alias": "color.text.bright",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "note.text": {
+      "alias": "color.text.muted",
+      "value": "#bd787d",
+      "status": "observed"
+    }
+  },
+  "stateRules": [
+    {
+      "state": "default",
+      "visual": "the dialog open on its backdrop",
+      "channel": "`open`; the page behind is inert",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.overlay",
+          "value": "#241010",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.overlay",
+          "value": "#e53935",
+          "status": "proposed"
+        }
+      }
+    },
+    {
+      "state": "open",
+      "visual": "as default; opacity 0 → 1 within 150 ms on capable hosts",
+      "channel": "`open`; focus inside the dialog",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.overlay",
+          "value": "#241010",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.overlay",
+          "value": "#e53935",
+          "status": "proposed"
+        }
+      }
+    },
+    {
+      "state": "closed",
+      "visual": "nothing: the dialog and its backdrop are absent",
+      "channel": "no `open`; focus back on the opener",
+      "tokens": {}
+    },
+    {
+      "state": "focus-trapped",
+      "visual": "the dialog itself carries the container ring, 2px solid {color.interaction.focus.ring-container} at −3px, when it holds focus; the note says Tab cycles",
+      "channel": "Tab never leaves; the note text",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.overlay",
+          "value": "#241010",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.overlay",
+          "value": "#e53935",
+          "status": "proposed"
+        },
+        "outline": {
+          "alias": "color.interaction.focus.ring-container",
+          "value": "#ffa2a7",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "hover",
+      "visual": "Close background → {color.action.tertiary.hover-bg}; other buttons take their tone's hover",
+      "channel": "cursor: pointer",
+      "tokens": {
+        "fg": {
+          "alias": "color.action.tertiary.text",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.action.tertiary.hover-bg",
+          "value": "#1c0a09",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "focus-visible",
+      "visual": "ring 1px dashed {color.interaction.focus.ring} at −2px on the focused control; on a filled button the ring takes the fill's on-fill colour",
+      "channel": "the ring",
+      "tokens": {
+        "fg": {
+          "alias": "color.action.tertiary.text",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.overlay",
+          "value": "#241010",
+          "status": "observed"
+        },
+        "outline": {
+          "alias": "color.interaction.focus.ring",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "reduced-motion",
+      "visual": "no opacity transition; the dialog is simply present or absent",
+      "channel": "`prefers-reduced-motion`",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.overlay",
+          "value": "#241010",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.overlay",
+          "value": "#e53935",
+          "status": "proposed"
+        }
+      }
+    }
+  ],
+  "keyboard": [
+    {
+      "key": "Tab / Shift+Tab",
+      "action": "Cycles through the dialog's focusable elements and never leaves it while open."
+    },
+    {
+      "key": "Escape",
+      "action": "Closes the dialog (cancel) and returns focus to the element that opened it."
+    },
+    {
+      "key": "Enter",
+      "action": "In a form dialog, submits; otherwise activates the focused button only."
+    },
+    {
+      "key": "Space",
+      "action": "Activates the focused button."
+    }
+  ],
+  "responsive": "At most 28rem wide and 100% minus the 16px gutter below that; the body scrolls inside the dialog when taller than the viewport, header and actions stay visible; at 320px buttons stack. RTL mirrors the header and the action order.",
+  "portability": {
+    "web": "native <dialog> opened with showModal() so the host provides the top layer, inertness of the page and Escape; ::backdrop takes surface.backdrop; focus moves to the first focusable element (or the dialog itself) on open and back to the opener on close; role=alertdialog with aria-describedby for confirmations.",
+    "nativeFallbacks": [
+      "GTK4 Window with modal and transient-for; the css node gets the overlay border.",
+      "Qt QDialog modal; stylesheet border and background; QMessageBox for the alert dialog.",
+      "Terminal UI: a centred box drawn with a single-line border over a dimmed screen."
+    ]
+  },
+  "fixtures": [
+    "FX-LONG",
+    "FX-320",
+    "FX-ZOOM-200",
+    "FX-I18N",
+    "FX-RTL",
+    "FX-RM",
+    "FX-HC",
+    "FX-OVERFLOW",
+    "FX-STATE-MATRIX"
+  ],
+  "related": [
+    "drawer",
+    "alert",
+    "toast",
+    "button",
+    "text-field",
+    "popover"
+  ],
+  "specimens": [
+    "admin-form",
+    "settings-panel"
+  ],
+  "nonExamples": "A glowing or shadowed card. Rounded corners. A dialog that slides or scales\nin. `<dialog>` shown with `show()` and a hand-written focus trap. A dialog\nwith no title, or with the title only in the accessible name. A destructive\nconfirm as the default Enter action. A backdrop that closes the dialog with\nno Close button. A dialog stacked on a dialog.",
+  "contrast": [
+    {
+      "label": "dialog default text",
+      "state": "default",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.overlay",
+      "fgHex": "#e99499",
+      "bgHex": "#241010",
+      "ratio": 7.92,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "dialog default border",
+      "state": "default",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.overlay",
+      "bg": "color.surface.overlay",
+      "fgHex": "#e53935",
+      "bgHex": "#241010",
+      "ratio": 4.3,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "dialog open text",
+      "state": "open",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.overlay",
+      "fgHex": "#e99499",
+      "bgHex": "#241010",
+      "ratio": 7.92,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "dialog open border",
+      "state": "open",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.overlay",
+      "bg": "color.surface.overlay",
+      "fgHex": "#e53935",
+      "bgHex": "#241010",
+      "ratio": 4.3,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "dialog focus-trapped text",
+      "state": "focus-trapped",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.overlay",
+      "fgHex": "#e99499",
+      "bgHex": "#241010",
+      "ratio": 7.92,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "dialog focus-trapped border",
+      "state": "focus-trapped",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.overlay",
+      "bg": "color.surface.overlay",
+      "fgHex": "#e53935",
+      "bgHex": "#241010",
+      "ratio": 4.3,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "dialog focus-trapped outline",
+      "state": "focus-trapped",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring-container",
+      "bg": "color.surface.overlay",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#241010",
+      "ratio": 9.49,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "dialog hover text",
+      "state": "hover",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.tertiary.text",
+      "bg": "color.action.tertiary.hover-bg",
+      "fgHex": "#e99499",
+      "bgHex": "#1c0a09",
+      "ratio": 8.35,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "dialog focus-visible text",
+      "state": "focus-visible",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.tertiary.text",
+      "bg": "color.surface.overlay",
+      "fgHex": "#e99499",
+      "bgHex": "#241010",
+      "ratio": 7.92,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "dialog focus-visible outline",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring",
+      "bg": "color.surface.overlay",
+      "fgHex": "#e53935",
+      "bgHex": "#241010",
+      "ratio": 4.3,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "dialog reduced-motion text",
+      "state": "reduced-motion",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.overlay",
+      "fgHex": "#e99499",
+      "bgHex": "#241010",
+      "ratio": 7.92,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "dialog reduced-motion border",
+      "state": "reduced-motion",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.overlay",
+      "bg": "color.surface.overlay",
+      "fgHex": "#e53935",
+      "bgHex": "#241010",
+      "ratio": 4.3,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "title on the overlay surface",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.bright",
+      "bg": "color.surface.overlay",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#241010",
+      "ratio": 9.49,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "note on the overlay surface",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.muted",
+      "bg": "color.surface.overlay",
+      "fgHex": "#bd787d",
+      "bgHex": "#241010",
+      "ratio": 5.31,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "secondary button text on the overlay surface",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.secondary.text",
+      "bg": "color.surface.overlay",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#241010",
+      "ratio": 9.49,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "secondary button boundary on the overlay surface",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.action.secondary.border",
+      "bg": "color.surface.overlay",
+      "fgHex": "#a3676b",
+      "bgHex": "#241010",
+      "ratio": 4.07,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "primary button text",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.primary.text",
+      "bg": "color.action.primary.bg",
+      "fgHex": "#f4eeee",
+      "bgHex": "#871f19",
+      "ratio": 8.17,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "destructive confirm text on its fill",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.destructive.filled-text",
+      "bg": "color.action.destructive.filled-bg",
+      "fgHex": "#f9faf9",
+      "bgHex": "#dc282e",
+      "ratio": 4.58,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "destructive fill against the overlay surface",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.action.destructive.filled-bg",
+      "bg": "color.surface.overlay",
+      "fgHex": "#dc282e",
+      "bgHex": "#241010",
+      "ratio": 3.79,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "ring on the primary fill",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring-container",
+      "bg": "color.action.primary.bg",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#871f19",
+      "ratio": 4.9,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "ring on the destructive fill",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.action.destructive.filled-text",
+      "bg": "color.action.destructive.filled-bg",
+      "fgHex": "#f9faf9",
+      "bgHex": "#dc282e",
+      "ratio": 4.58,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "form field text",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.input",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "form field boundary on the overlay surface",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.control",
+      "bg": "color.surface.overlay",
+      "fgHex": "#a3676b",
+      "bgHex": "#241010",
+      "ratio": 4.07,
+      "pass": true,
+      "waiver": null
+    }
+  ]
+}

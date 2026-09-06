@@ -1,0 +1,473 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "0.1.0-draft.1",
+  "profile": "default",
+  "sourceDigest": "sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=",
+  "id": "tabs",
+  "family": "navigation",
+  "maturity": "stable",
+  "priority": "R1",
+  "coverage": {
+    "family": "navigation",
+    "priority": "R1",
+    "maturity": "stable",
+    "specified": true,
+    "demonstrated": true,
+    "tested": true,
+    "states": 7
+  },
+  "title": "Tabs",
+  "summary": "A tablist of buttons that switches between panels in place; the selected tab carries a 2px indicator bar and bright text, never a fill.",
+  "anchors": {
+    "site": "https://j3w1.github.io/theme/#c-tabs",
+    "spec": "spec/components/tabs.md",
+    "brief": "exports/components/tabs.brief.txt"
+  },
+  "native": false,
+  "aria": {
+    "pattern": "APG tabs (tablist, tab, tabpanel) with roving tabindex",
+    "apg": "https://www.w3.org/WAI/ARIA/apg/patterns/tabs/",
+    "role": "tablist"
+  },
+  "variants": [
+    {
+      "id": "default",
+      "name": "Default"
+    },
+    {
+      "id": "overflow",
+      "name": "Overflow",
+      "description": "Many tabs in a horizontally scrolling strip; the strip scrolls, the page never does."
+    }
+  ],
+  "sizes": [
+    "compact",
+    "comfortable"
+  ],
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "selected",
+    "selected+focus-visible",
+    "selected+container-inactive",
+    "disabled"
+  ],
+  "tokens": {
+    "list.bg": {
+      "alias": "color.surface.default",
+      "value": "#160b0b",
+      "status": "observed"
+    },
+    "list.border": {
+      "alias": "color.border.divider",
+      "value": "#2b0e0d",
+      "status": "proposed"
+    },
+    "tab.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "tab.text-selected": {
+      "alias": "color.text.bright",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "tab.text-disabled": {
+      "alias": "color.text.disabled",
+      "value": "#8a5559",
+      "status": "approved"
+    },
+    "tab.bg-hover": {
+      "alias": "color.interaction.hover.bg",
+      "value": "#1c0a09",
+      "status": "observed"
+    },
+    "tab.bg-pressed": {
+      "alias": "color.interaction.pressed.bg",
+      "value": "#420f0c",
+      "status": "observed"
+    },
+    "tab.indicator": {
+      "alias": "color.border.selected-indicator",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "tab.indicator-inactive": {
+      "alias": "color.border.selected-indicator-inactive",
+      "value": "#9e231f",
+      "status": "observed"
+    },
+    "tab.ring": {
+      "alias": "color.interaction.focus.ring",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "panel.bg": {
+      "alias": "color.surface.default",
+      "value": "#160b0b",
+      "status": "observed"
+    },
+    "panel.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed"
+    }
+  },
+  "stateRules": [
+    {
+      "state": "default",
+      "visual": "text {color.text.default}; transparent 2px bottom edge",
+      "channel": "—",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.default",
+          "value": "#160b0b",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "hover",
+      "visual": "background → {color.interaction.hover.bg}; text unchanged",
+      "channel": "cursor: pointer",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.interaction.hover.bg",
+          "value": "#1c0a09",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "focus-visible",
+      "visual": "ring 1px dashed {color.interaction.focus.ring} at −2px",
+      "channel": "the ring",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.default",
+          "value": "#160b0b",
+          "status": "observed"
+        },
+        "outline": {
+          "alias": "color.interaction.focus.ring",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "selected",
+      "visual": "text {color.text.bright}; 2px {color.border.selected-indicator} bar",
+      "channel": "`aria-selected=\"true\"`; the bar; tabindex 0",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.bright",
+          "value": "#ffa2a7",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.default",
+          "value": "#160b0b",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.selected-indicator",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "selected+focus-visible",
+      "visual": "the bar and the ring together",
+      "channel": "both visible",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.bright",
+          "value": "#ffa2a7",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.default",
+          "value": "#160b0b",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.selected-indicator",
+          "value": "#e53935",
+          "status": "observed"
+        },
+        "outline": {
+          "alias": "color.interaction.focus.ring",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "selected+container-inactive",
+      "visual": "bar → {color.border.selected-indicator-inactive}; text stays bright",
+      "channel": "lightness drop of the bar; the container's own inactive state",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.bright",
+          "value": "#ffa2a7",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.default",
+          "value": "#160b0b",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "disabled",
+      "visual": "text {color.text.disabled}; no hover; bar hidden unless selected",
+      "channel": "`disabled` or `aria-disabled`; cursor: not-allowed",
+      "tokens": {}
+    }
+  ],
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Moves focus to the selected tab (roving tabindex); a second Tab leaves the tablist for the panel."
+    },
+    {
+      "key": "Left / Right",
+      "action": "Moves focus to the previous or next tab and wraps; with automatic activation the panel follows."
+    },
+    {
+      "key": "Home / End",
+      "action": "Moves focus to the first or last tab."
+    },
+    {
+      "key": "Enter / Space",
+      "action": "Activates the focused tab when activation is manual."
+    },
+    {
+      "key": "Delete",
+      "action": "Closes the focused tab where tabs are closable (not in this reference)."
+    }
+  ],
+  "responsive": "The strip takes the full width and scrolls horizontally with overflow-x auto below the sum of its tabs; tabs never wrap or shrink their label; at 320px the overflow variant scrolls and the page does not. RTL reverses the strip and the arrow keys follow the reading direction.",
+  "portability": {
+    "web": "A div with role tablist holding buttons with role tab, aria-selected and aria-controls; panels with role tabpanel and aria-labelledby; one tab has tabindex 0, the rest -1; the indicator is a border-bottom, the ring an outline.",
+    "nativeFallbacks": [
+      "GTK4 Notebook with a css-name mapping; the indicator through the tab's bottom border.",
+      "Qt QTabBar stylesheet; QTabBar::tab:selected draws the 2px bottom border.",
+      "Terminal UI: the selected tab underlined with a 2-cell heavy line; other tabs plain."
+    ]
+  },
+  "fixtures": [
+    "FX-LONG",
+    "FX-320",
+    "FX-ZOOM-200",
+    "FX-I18N",
+    "FX-RTL",
+    "FX-RM",
+    "FX-HC",
+    "FX-OVERFLOW",
+    "FX-STATE-MATRIX"
+  ],
+  "related": [
+    "sidebar-nav",
+    "toolbar",
+    "segmented-control",
+    "disclosure"
+  ],
+  "specimens": [
+    "settings-panel",
+    "i3-window-frame"
+  ],
+  "nonExamples": "Pill or filled tabs. A selected tab drawn with the selection fill. Rounded\ncorners on the tab or the bar. A tab strip that wraps to two lines. A tab that\nchanges only its text colour when selected. A glow instead of the dashed ring.\nEvery tab in the tab order. Disabling by opacity.",
+  "contrast": [
+    {
+      "label": "tabs default text",
+      "state": "default",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.default",
+      "fgHex": "#e99499",
+      "bgHex": "#160b0b",
+      "ratio": 8.43,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "tabs hover text",
+      "state": "hover",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.interaction.hover.bg",
+      "fgHex": "#e99499",
+      "bgHex": "#1c0a09",
+      "ratio": 8.35,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "tabs focus-visible text",
+      "state": "focus-visible",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.default",
+      "fgHex": "#e99499",
+      "bgHex": "#160b0b",
+      "ratio": 8.43,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "tabs focus-visible outline",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring",
+      "bg": "color.surface.default",
+      "fgHex": "#e53935",
+      "bgHex": "#160b0b",
+      "ratio": 4.57,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "tabs selected text",
+      "state": "selected",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.bright",
+      "bg": "color.surface.default",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#160b0b",
+      "ratio": 10.1,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "tabs selected border",
+      "state": "selected",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.selected-indicator",
+      "bg": "color.surface.default",
+      "fgHex": "#e53935",
+      "bgHex": "#160b0b",
+      "ratio": 4.57,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "tabs selected+focus-visible text",
+      "state": "selected+focus-visible",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.bright",
+      "bg": "color.surface.default",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#160b0b",
+      "ratio": 10.1,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "tabs selected+focus-visible border",
+      "state": "selected+focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.selected-indicator",
+      "bg": "color.surface.default",
+      "fgHex": "#e53935",
+      "bgHex": "#160b0b",
+      "ratio": 4.57,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "tabs selected+focus-visible outline",
+      "state": "selected+focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring",
+      "bg": "color.surface.default",
+      "fgHex": "#e53935",
+      "bgHex": "#160b0b",
+      "ratio": 4.57,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "tabs selected+container-inactive text",
+      "state": "selected+container-inactive",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.bright",
+      "bg": "color.surface.default",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#160b0b",
+      "ratio": 10.1,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "inactive indicator (decorative; the selected tab keeps aria-selected and bright text)",
+      "state": "selected+container-inactive",
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.border.selected-indicator-inactive",
+      "bg": "color.surface.default",
+      "fgHex": "#9e231f",
+      "bgHex": "#160b0b",
+      "ratio": 2.5,
+      "pass": true,
+      "waiver": "the inactive container is the state; the dimmed bar is a lightness drop, not the only channel"
+    },
+    {
+      "label": "disabled tab text (exempt; house floor 3:1)",
+      "state": "disabled",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.text.disabled",
+      "bg": "color.surface.default",
+      "fgHex": "#8a5559",
+      "bgHex": "#160b0b",
+      "ratio": 3.24,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "tablist bottom rule (decorative)",
+      "state": null,
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.border.divider",
+      "bg": "color.surface.default",
+      "fgHex": "#2b0e0d",
+      "bgHex": "#160b0b",
+      "ratio": 1.08,
+      "pass": true,
+      "waiver": "the rule separates the strip from the panel; the tabs are the boundary"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+j3w1/theme implementation brief — table
+theme: j3w1-theme 0.1.0-draft.1  profile: default  sourceDigest: sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=
+pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/components/table.json
+spec: spec/components/table.md  site: https://j3w1.github.io/theme/#c-table
+maturity: stable  priority: R1
+
+Summary: A native data table with a header rule, row dividers, hover and selection fills, sortable headers with a glyph, and static empty and loading rows.
+
+Tokens (resolved):
+  root.bg                 #160b0b  ({color.surface.default})
+  header.text             #ffa2a7  ({color.text.bright})
+  header.bg               #160b0b  ({color.surface.default})
+  header.rule             #9e231f  ({color.border.strong})
+  header.bg-sticky        #241010  ({color.surface.raised})
+  sort.glyph              #ffa2a7  ({color.text.bright})
+  sort.ring               #e53935  ({color.interaction.focus.ring})
+  row.text                #e99499  ({color.text.default})
+  row.divider             #2b0e0d  ({color.border.divider})
+  row.bg-hover            #1c0a09  ({color.interaction.hover.bg})
+  selected.bg             #911410  ({color.interaction.selection.bg})
+  selected.text           #f4eeee  ({color.interaction.selection.text})
+  selected.ring           #ffa2a7  ({color.interaction.focus.ring-container})
+  selected.inactive-bg    #420f0c  ({color.interaction.selection.inactive-bg})
+  selected.inactive-text  #e99499  ({color.interaction.selection.inactive-text})
+  caption.text            #bd787d  ({color.text.muted})
+  empty.text              #bd787d  ({color.text.muted})
+  loading.glyph           #bd787d  ({color.text.muted})
+
+States: default, hover, selected, selected+focus-visible, selected+container-inactive, sorted, empty, loading
+  default: rows on {color.surface.default}; header rule 1px {color.border.strong} [—]
+  hover: row background → {color.interaction.hover.bg} [cursor: default; only on hover-capable pointers]
+  selected: row fill {color.interaction.selection.bg}; every cell {color.interaction.selection.text} [`aria-selected="true"` on the row]
+  selected+focus-visible: the fill and a ring in {color.interaction.focus.ring-container} around the row [both visible at once]
+  selected+container-inactive: row fill {color.interaction.selection.inactive-bg} with {color.interaction.selection.inactive-text}; no ring [lightness drop between the two fills]
+  sorted: the sorted header shows ▲ (ascending) or ▼ (descending) in {color.text.bright} [`aria-sort`; the glyph]
+  empty: the body is one full-width cell in {color.text.muted}: "No rows match." [the message text]
+  loading: the body is one full-width cell with the static `⋯` glyph in {color.text.muted}; the header stays [`aria-busy="true"`; the glyph; no animation]
+
+Keyboard:
+  Tab / Shift+Tab: Moves between the sort buttons and any controls inside cells; rows themselves are not tab stops in a plain table.
+  Enter / Space: Toggles the sort of the focused header between ascending and descending.
+
+ARIA: native table with caption, thead, th scope, aria-sort on sorted headers and aria-busy while loading
+Responsive: The table sits in a container with overflow-x auto below 600px, with the first column sticky; the page never scrolls horizontally. Columns never truncate text by default; hosts that must truncate provide the full value on focus or hover. RTL mirrors the numeric alignment (end) and the sticky column.
+Portability: A native table with caption, thead and th scope="col"; sortable headers wrap their label in a button and set aria-sort on the th; empty and loading rows are ordinary rows with one cell spanning every column; aria-busy="true" on the table while loading; row selection through aria-selected on tr is the data-table's contract.
+  native: GTK4 ColumnView; the header rule and row dividers through css-name selectors.
+  native: Qt QTableView stylesheet; QHeaderView::section draws the rule; ::item:selected the fill.
+  native: Terminal UI: a header line underlined with a heavy rule; the selected row inverted; the empty message centred.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

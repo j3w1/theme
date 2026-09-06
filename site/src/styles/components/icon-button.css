@@ -1,0 +1,107 @@
+/* icon-button — reference CSS. A square tertiary button; every real
+   pseudo-class and aria-pressed is paired with the forced-state attribute
+   the state matrix emits. Token variables only. */
+
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--density-control-height, 32px);
+  height: var(--density-control-height, 32px);
+  padding: 0;
+  margin: 0;
+  background: var(--color-action-secondary-bg);
+  color: var(--color-action-tertiary-text);
+  border: var(--border-width-default) solid transparent;
+  border-radius: var(--radius-none);
+  font: inherit;
+  cursor: pointer;
+  outline: 0;
+}
+
+.icon-button-icon {
+  display: block;
+  width: var(--icon-size-md);
+  height: var(--icon-size-md);
+  stroke: currentColor;
+  stroke-width: var(--icon-stroke);
+  fill: none;
+}
+
+/* hover */
+@media (hover: hover) {
+  .icon-button:hover {
+    background: var(--color-action-tertiary-hover-bg);
+  }
+}
+
+[data-state-hover] .icon-button {
+  background: var(--color-action-tertiary-hover-bg);
+}
+
+/* active */
+.icon-button:active,
+[data-state-active] .icon-button {
+  background: var(--color-interaction-pressed-bg);
+  border-color: var(--color-border-active);
+}
+
+/* focus-visible */
+.icon-button:focus-visible,
+[data-state-focus-visible] .icon-button {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* toggled: the selection fill, the indicator border and the filled icon form */
+.icon-button[aria-pressed="true"],
+[data-state-toggled] .icon-button {
+  background: var(--color-interaction-selection-bg);
+  color: var(--color-interaction-selection-text);
+  border-color: var(--color-border-selected-indicator);
+}
+
+.icon-button[aria-pressed="true"] .icon-button-icon,
+[data-state-toggled] .icon-button-icon {
+  fill: currentColor;
+}
+
+/* toggled + focus-visible: the ring takes the on-fill colour */
+.icon-button[aria-pressed="true"]:focus-visible,
+[data-state-toggled][data-state-focus-visible] .icon-button {
+  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline-offset: var(--focus-offset);
+}
+
+/* disabled */
+.icon-button:disabled,
+[data-state-disabled] .icon-button {
+  background: var(--color-interaction-disabled-bg);
+  color: var(--color-text-disabled);
+  border-color: var(--color-border-disabled);
+  cursor: not-allowed;
+}
+
+.icon-button:disabled .icon-button-icon,
+[data-state-disabled] .icon-button-icon {
+  fill: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .icon-button {
+    transition: background-color var(--motion-duration-fast);
+  }
+}
+
+@media (forced-colors: active) {
+  .icon-button:focus-visible,
+  [data-state-focus-visible] .icon-button {
+    outline-color: Highlight;
+  }
+
+  .icon-button[aria-pressed="true"],
+  [data-state-toggled] .icon-button {
+    background: Highlight;
+    color: HighlightText;
+  }
+}

@@ -1,0 +1,45 @@
+j3w1/theme implementation brief — badge
+theme: j3w1-theme 0.1.0-draft.1  profile: default  sourceDigest: sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=
+pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/components/badge.json
+spec: spec/components/badge.md  site: https://j3w1.github.io/theme/#c-badge
+maturity: stable  priority: R1
+
+Summary: A small square label for a status or a count; every status carries its glyph and its fill, the outline form uses the status border, and an empty badge is a dot with a name.
+
+Tokens (resolved):
+  danger.bg             #dc282e  ({color.status.danger.fill})
+  danger.text           #f9faf9  ({color.status.danger.on-fill})
+  danger.border         #e53935  ({color.status.danger.border})
+  danger.outline-text   #f73f35  ({color.status.danger.text})
+  warning.bg            #c9973f  ({color.status.warning.fill})
+  warning.text          #0c0909  ({color.status.warning.on-fill})
+  warning.border        #c9973f  ({color.status.warning.border})
+  warning.outline-text  #c9973f  ({color.status.warning.text})
+  success.bg            #86a46f  ({color.status.success.fill})
+  success.text          #0c0909  ({color.status.success.on-fill})
+  success.border        #86a46f  ({color.status.success.border})
+  success.outline-text  #86a46f  ({color.status.success.text})
+  info.bg               #7e9ebb  ({color.status.info.fill})
+  info.text             #0c0909  ({color.status.info.on-fill})
+  info.border           #7e9ebb  ({color.status.info.border})
+  info.outline-text     #7e9ebb  ({color.status.info.text})
+  neutral.bg            #a3676b  ({color.status.neutral.fill})
+  neutral.text          #000000  ({color.status.neutral.on-fill})
+  neutral.border        #a3676b  ({color.status.neutral.border})
+  neutral.outline-text  #bd787d  ({color.status.neutral.text})
+  count.bg              #871f19  ({color.action.primary.bg})
+  count.text            #f4eeee  ({color.action.primary.text})
+
+States: default, empty
+  default: fill, glyph and text for the status; or the outline form [the glyph; the text]
+  empty: an 8px square dot in the status fill; the glyph and text visually hidden [`role="img"` with `aria-label`, or the hidden text; the dot's position beside its subject]
+
+ARIA: native span; an empty badge is role="img" with aria-label
+Responsive: A badge never wraps; the surrounding line wraps around it. Long labels are a design error, not a truncation case. RTL keeps the glyph at the inline start.
+Portability: A span with a modifier class; a count badge adds a visually hidden unit; an empty badge is a span with role="img" and aria-label; a badge never receives focus and never carries a click handler.
+  native: GTK4 Label with a status style class and the fill through the css-name.
+  native: Qt QLabel with a dynamic status property selected in the stylesheet.
+  native: Terminal UI: the glyph and the label in the status colour; fills only where the emulator supports background colours.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

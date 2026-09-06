@@ -1,0 +1,168 @@
+/* list — reference CSS. An APG listbox; the selected option is the
+   selection fill with a check glyph, and the ring recolours on the fill.
+   Every pseudo-class is paired with the forced-state attribute the state
+   matrix emits. Token variables only. */
+
+.list {
+  min-width: 0;
+  max-width: 28rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: var(--color-surface-default);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+}
+
+.list-option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  min-height: var(--density-row-height, 36px);
+  padding: var(--space-2) var(--density-control-padding-x, 12px);
+  box-sizing: border-box;
+  border-top: var(--border-width-default) solid var(--color-border-divider);
+  color: var(--color-text-default);
+  cursor: pointer;
+}
+
+.list-option:first-child {
+  border-top: 0;
+}
+
+.list-check {
+  display: inline-flex;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: var(--density-icon, 16px);
+  color: var(--color-interaction-selection-text);
+  visibility: hidden;
+}
+
+.list-label {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.list-meta {
+  flex: 0 0 auto;
+  padding-inline-start: var(--space-12);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+/* hover */
+.list-option:hover,
+[data-state-hover] .list-option-demo-target {
+  background: var(--color-interaction-hover-bg);
+}
+
+/* focus-visible */
+.list-option:focus-visible,
+[data-state-focus-visible] .list-option-demo-target {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.list-option:focus:not(:focus-visible) {
+  outline: 0;
+}
+
+/* selected: the fill; the glyph shows; every part takes the on-fill text */
+.list-option[aria-selected="true"],
+[data-state-selected] .list-option-demo-target {
+  background: var(--color-interaction-selection-bg);
+  color: var(--color-interaction-selection-text);
+}
+
+.list-option[aria-selected="true"] .list-check,
+[data-state-selected] .list-option-demo-target .list-check {
+  visibility: visible;
+}
+
+.list-option[aria-selected="true"] .list-meta,
+[data-state-selected] .list-option-demo-target .list-meta {
+  color: var(--color-interaction-selection-text);
+}
+
+.list-option[aria-selected="true"]:hover,
+[data-state-selected] .list-option-demo-target:hover {
+  background: var(--color-interaction-selection-bg);
+}
+
+/* selected + focus-visible: the ring takes the on-fill colour */
+.list-option[aria-selected="true"]:focus-visible,
+[data-state-selected][data-state-focus-visible] .list-option-demo-target {
+  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline-offset: var(--focus-offset);
+}
+
+/* selected, container inactive: the dimmer fill, no ring */
+.list[data-container-inactive] .list-option[aria-selected="true"],
+[data-state-selected][data-state-container-inactive] .list-option-demo-target {
+  background: var(--color-interaction-selection-inactive-bg);
+  color: var(--color-interaction-selection-inactive-text);
+  outline: 0;
+}
+
+.list[data-container-inactive] .list-option[aria-selected="true"] .list-check,
+.list[data-container-inactive] .list-option[aria-selected="true"] .list-meta,
+[data-state-selected][data-state-container-inactive] .list-option-demo-target .list-check,
+[data-state-selected][data-state-container-inactive] .list-option-demo-target .list-meta {
+  color: var(--color-interaction-selection-inactive-text);
+}
+
+/* disabled: aria-disabled; never opacity */
+.list-option[aria-disabled="true"],
+[data-state-disabled] .list-option {
+  background: transparent;
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.list-option[aria-disabled="true"] .list-meta,
+[data-state-disabled] .list-meta {
+  color: var(--color-text-disabled);
+}
+
+.list-option[aria-disabled="true"]:hover,
+[data-state-disabled] .list-option:hover {
+  background: transparent;
+}
+
+[data-state-disabled] .list-option[aria-selected="true"] .list-check {
+  color: var(--color-text-disabled);
+}
+
+@media (hover: none) {
+  .list-option:hover {
+    background: transparent;
+  }
+
+  .list-option[aria-selected="true"]:hover {
+    background: var(--color-interaction-selection-bg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .list-option {
+    transition: background-color var(--motion-duration-fast);
+  }
+}
+
+@media (forced-colors: active) {
+  .list-option:focus-visible,
+  [data-state-focus-visible] .list-option-demo-target {
+    outline-color: Highlight;
+  }
+
+  .list-option[aria-selected="true"],
+  [data-state-selected] .list-option-demo-target {
+    background: Highlight;
+    color: HighlightText;
+  }
+}

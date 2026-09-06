@@ -1,0 +1,736 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "0.1.0-draft.1",
+  "profile": "default",
+  "sourceDigest": "sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=",
+  "id": "diff-view",
+  "family": "developer",
+  "maturity": "stable",
+  "priority": "R1",
+  "coverage": {
+    "family": "developer",
+    "priority": "R1",
+    "maturity": "stable",
+    "specified": true,
+    "demonstrated": true,
+    "tested": false,
+    "states": 6
+  },
+  "title": "Diff view",
+  "summary": "Unified and split diffs as native tables; added, removed and modified rows keep their textual gutter marker, word-level changes are underlines, conflicts are double borders.",
+  "anchors": {
+    "site": "https://j3w1.github.io/theme/#c-diff-view",
+    "spec": "spec/components/diff-view.md",
+    "brief": "exports/components/diff-view.brief.txt"
+  },
+  "native": true,
+  "aria": {
+    "pattern": "native <table> with a caption; one row per line; collapsed hunks are a <button> with aria-expanded controlling a hidden <tbody>",
+    "apg": "https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/"
+  },
+  "variants": [
+    {
+      "id": "unified",
+      "name": "Unified",
+      "description": "One column of lines with old and new numbers and the + − ~ gutter."
+    },
+    {
+      "id": "split",
+      "name": "Split",
+      "description": "Old and new side by side, each with its own numbers and marker."
+    },
+    {
+      "id": "word-level",
+      "name": "Word-level",
+      "description": "Removed and added rows with the changed words underlined."
+    },
+    {
+      "id": "conflict",
+      "name": "Merge conflict",
+      "description": "Ours, theirs and the three marker lines inside a double border."
+    }
+  ],
+  "sizes": [
+    "compact",
+    "comfortable"
+  ],
+  "states": [
+    "default",
+    "hover",
+    "selected",
+    "focus-visible",
+    "expanded",
+    "collapsed"
+  ],
+  "tokens": {
+    "root.bg": {
+      "alias": "color.code.bg",
+      "value": "#0c0909",
+      "status": "observed"
+    },
+    "root.border": {
+      "alias": "color.border.control",
+      "value": "#a3676b",
+      "status": "proposed"
+    },
+    "root.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "line-number.text": {
+      "alias": "color.text.muted",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "line-number.rule": {
+      "alias": "color.code.gutter-rule",
+      "value": "#2b0e0d",
+      "status": "observed"
+    },
+    "row.divider": {
+      "alias": "color.border.divider",
+      "value": "#2b0e0d",
+      "status": "proposed"
+    },
+    "added.bg": {
+      "alias": "color.diff.added.bg",
+      "value": "#0f1a0e",
+      "status": "approved"
+    },
+    "added.gutter": {
+      "alias": "color.diff.added.gutter",
+      "value": "#86a46f",
+      "status": "approved"
+    },
+    "added.emphasis": {
+      "alias": "color.diff.added.emphasis",
+      "value": "#86a46f",
+      "status": "approved"
+    },
+    "removed.bg": {
+      "alias": "color.diff.removed.bg",
+      "value": "#2b0e0d",
+      "status": "observed"
+    },
+    "removed.gutter": {
+      "alias": "color.diff.removed.gutter",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "removed.emphasis": {
+      "alias": "color.diff.removed.emphasis",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "modified.bg": {
+      "alias": "color.diff.modified.bg",
+      "value": "#1f1a0c",
+      "status": "approved"
+    },
+    "modified.gutter": {
+      "alias": "color.diff.modified.gutter",
+      "value": "#c9973f",
+      "status": "approved"
+    },
+    "hunk.bg": {
+      "alias": "color.diff.header-bg",
+      "value": "#241010",
+      "status": "observed"
+    },
+    "hunk.text": {
+      "alias": "color.text.muted",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "hunk.context": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "conflict.border": {
+      "alias": "color.diff.conflict-border",
+      "value": "#f73f35",
+      "status": "observed"
+    },
+    "conflict.marker": {
+      "alias": "color.text.bright",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "fold.text": {
+      "alias": "color.text.link",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "fold.bg-hover": {
+      "alias": "color.interaction.hover.bg-strong",
+      "value": "#630f0d",
+      "status": "observed"
+    },
+    "row.bg-hover": {
+      "alias": "color.interaction.hover.bg",
+      "value": "#1c0a09",
+      "status": "observed"
+    },
+    "row.ring": {
+      "alias": "color.interaction.focus.ring",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "row.bg-selected": {
+      "alias": "color.interaction.selection.bg",
+      "value": "#911410",
+      "status": "observed"
+    },
+    "row.text-selected": {
+      "alias": "color.interaction.selection.text",
+      "value": "#f4eeee",
+      "status": "observed"
+    },
+    "row.ring-selected": {
+      "alias": "color.interaction.focus.ring-container",
+      "value": "#ffa2a7",
+      "status": "observed"
+    }
+  },
+  "stateRules": [
+    {
+      "state": "default",
+      "visual": "added rows {color.diff.added.bg} with `+` in {color.diff.added.gutter}; removed {color.diff.removed.bg} with `−` in {color.diff.removed.gutter}; modified {color.diff.modified.bg} with `~` in {color.diff.modified.gutter}; hunk rows {color.diff.header-bg}; conflicts in a 3px double {color.diff.conflict-border}",
+      "channel": "the markers; the double border",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.code.bg",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.control",
+          "value": "#a3676b",
+          "status": "proposed"
+        }
+      }
+    },
+    {
+      "state": "hover",
+      "visual": "the row's number and marker cells → {color.interaction.hover.bg}; the text cell keeps its fill",
+      "channel": "cursor: default; only on hover-capable pointers",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.interaction.hover.bg",
+          "value": "#1c0a09",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "selected",
+      "visual": "the whole row filled {color.interaction.selection.bg} with {color.interaction.selection.text}; the marker stays",
+      "channel": "`aria-current` (or `:target` for a permalinked line); the marker glyph",
+      "tokens": {
+        "fg": {
+          "alias": "color.interaction.selection.text",
+          "value": "#f4eeee",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.interaction.selection.bg",
+          "value": "#911410",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "focus-visible",
+      "visual": "1px dashed {color.interaction.focus.ring} at −2px around the row; on a selected row the ring is {color.interaction.focus.ring-container}",
+      "channel": "the ring",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.code.bg",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "outline": {
+          "alias": "color.interaction.focus.ring",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "expanded",
+      "visual": "the folded `<tbody>` is shown; the chevron points down; the button reads \"Hide 12 unchanged lines\"",
+      "channel": "`aria-expanded=\"true\"`; the rows appear",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.link",
+          "value": "#ffa2a7",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.diff.header-bg",
+          "value": "#241010",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "collapsed",
+      "visual": "the folded `<tbody>` is hidden; the chevron points to the inline end; \"… 12 unchanged lines\"",
+      "channel": "`aria-expanded=\"false\"`; the ellipsis",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.link",
+          "value": "#ffa2a7",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.diff.header-bg",
+          "value": "#241010",
+          "status": "observed"
+        }
+      }
+    }
+  ],
+  "keyboard": [
+    {
+      "key": "Tab / Shift+Tab",
+      "action": "Moves between the fold buttons and any row the host makes focusable; rows are not stops in a plain table."
+    },
+    {
+      "key": "Enter / Space",
+      "action": "On a fold button toggles the hidden hunk; focus stays on the button."
+    },
+    {
+      "key": "Down / Up",
+      "action": "In grid hosts, moves the selected row; the theme draws the ring on whichever row the host focuses."
+    },
+    {
+      "key": "(host)",
+      "action": "Next-change and previous-change navigation, staging and comment affordances are host bindings."
+    }
+  ],
+  "responsive": "The table scrolls horizontally inside its box; line numbers and markers are sticky at the inline-start edge below 600px; the split variant becomes unified below 600px in hosts that can, otherwise scrolls. At 320px nothing wraps and nothing is clipped. RTL mirrors the number columns while the code stays left-to-right.",
+  "portability": {
+    "web": "native <table> with <caption>, <tbody> per hunk, a <button aria-expanded aria-controls> per collapsed hunk; markers are real characters in their own cell; word-level changes are <ins>/<del> or spans with text-decoration; conflicts are a bordered <tbody>.",
+    "nativeFallbacks": [
+      "GTK/Qt: a two-column source view or QPlainTextEdit with per-line backgrounds; the marker column is a gutter renderer with real glyphs.",
+      "JetBrains: DIFF_INSERTED, DIFF_DELETED, DIFF_MODIFIED and DIFF_CONFLICT keys; the gutter marker follows the IDE.",
+      "Terminal (delta, git diff --color): the three fills as background slots, markers untouched; word-level as underline where the emulator supports it."
+    ]
+  },
+  "fixtures": [
+    "FX-STATE-MATRIX",
+    "FX-320",
+    "FX-ZOOM-200",
+    "FX-RM",
+    "FX-HC",
+    "FX-LONG",
+    "FX-OVERFLOW"
+  ],
+  "related": [
+    "code-editor",
+    "diagnostics",
+    "terminal"
+  ],
+  "specimens": [
+    "i3-window-frame"
+  ],
+  "nonExamples": "Red and green fills with no `+`/`−` marker. Word-level changes drawn as a\nbright fill that pushes the text below 4.5:1. A removed line rendered in\n`text.disabled` or struck through as a whole. Collapsed hunks that are only\nvisually clipped and still read out. Conflict blocks in purple. Hover that\nrecolours the code text. Round-cornered hunk cards floating on the page. A\nselected row that drops the marker because \"the colour says it\".",
+  "contrast": [
+    {
+      "label": "diff-view default text",
+      "state": "default",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.code.bg",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "diff-view default border",
+      "state": "default",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.control",
+      "bg": "color.code.bg",
+      "fgHex": "#a3676b",
+      "bgHex": "#0c0909",
+      "ratio": 4.45,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "diff-view hover text",
+      "state": "hover",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.interaction.hover.bg",
+      "fgHex": "#e99499",
+      "bgHex": "#1c0a09",
+      "ratio": 8.35,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "diff-view selected text",
+      "state": "selected",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.interaction.selection.text",
+      "bg": "color.interaction.selection.bg",
+      "fgHex": "#f4eeee",
+      "bgHex": "#911410",
+      "ratio": 7.92,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "diff-view focus-visible text",
+      "state": "focus-visible",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.code.bg",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "diff-view focus-visible outline",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring",
+      "bg": "color.code.bg",
+      "fgHex": "#e53935",
+      "bgHex": "#0c0909",
+      "ratio": 4.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "diff-view expanded text",
+      "state": "expanded",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.link",
+      "bg": "color.diff.header-bg",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#241010",
+      "ratio": 9.49,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "diff-view collapsed text",
+      "state": "collapsed",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.link",
+      "bg": "color.diff.header-bg",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#241010",
+      "ratio": 9.49,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "text on an added row",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.diff.added.bg",
+      "fgHex": "#e99499",
+      "bgHex": "#0f1a0e",
+      "ratio": 7.8,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "text on a removed row",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.diff.removed.bg",
+      "fgHex": "#e99499",
+      "bgHex": "#2b0e0d",
+      "ratio": 7.82,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "text on a modified row",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.diff.modified.bg",
+      "fgHex": "#e99499",
+      "bgHex": "#1f1a0c",
+      "ratio": 7.56,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "hunk context on the header",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.diff.header-bg",
+      "fgHex": "#e99499",
+      "bgHex": "#241010",
+      "ratio": 7.92,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "hunk range on the header",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.muted",
+      "bg": "color.diff.header-bg",
+      "fgHex": "#bd787d",
+      "bgHex": "#241010",
+      "ratio": 5.31,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "line numbers on a context row",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.muted",
+      "bg": "color.code.bg",
+      "fgHex": "#bd787d",
+      "bgHex": "#0c0909",
+      "ratio": 5.81,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "line numbers on an added row",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.muted",
+      "bg": "color.diff.added.bg",
+      "fgHex": "#bd787d",
+      "bgHex": "#0f1a0e",
+      "ratio": 5.23,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "line numbers on a removed row",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.muted",
+      "bg": "color.diff.removed.bg",
+      "fgHex": "#bd787d",
+      "bgHex": "#2b0e0d",
+      "ratio": 5.25,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "line numbers on a modified row",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.muted",
+      "bg": "color.diff.modified.bg",
+      "fgHex": "#bd787d",
+      "bgHex": "#1f1a0c",
+      "ratio": 5.07,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "the + marker",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.diff.added.gutter",
+      "bg": "color.diff.added.bg",
+      "fgHex": "#86a46f",
+      "bgHex": "#0f1a0e",
+      "ratio": 6.43,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "the − marker (bold, 4.24:1; glyph plus fill)",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.diff.removed.gutter",
+      "bg": "color.diff.removed.bg",
+      "fgHex": "#e53935",
+      "bgHex": "#2b0e0d",
+      "ratio": 4.24,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "the ~ marker",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.diff.modified.gutter",
+      "bg": "color.diff.modified.bg",
+      "fgHex": "#c9973f",
+      "bgHex": "#1f1a0c",
+      "ratio": 6.59,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "word-level added underline",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.diff.added.emphasis",
+      "bg": "color.diff.added.bg",
+      "fgHex": "#86a46f",
+      "bgHex": "#0f1a0e",
+      "ratio": 6.43,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "word-level removed underline and strike",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.diff.removed.emphasis",
+      "bg": "color.diff.removed.bg",
+      "fgHex": "#e53935",
+      "bgHex": "#2b0e0d",
+      "ratio": 4.24,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "conflict double border",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.diff.conflict-border",
+      "bg": "color.code.bg",
+      "fgHex": "#f73f35",
+      "bgHex": "#0c0909",
+      "ratio": 5.4,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "conflict marker lines",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.bright",
+      "bg": "color.diff.header-bg",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#241010",
+      "ratio": 9.49,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "ring on an added row",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring",
+      "bg": "color.diff.added.bg",
+      "fgHex": "#e53935",
+      "bgHex": "#0f1a0e",
+      "ratio": 4.23,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "ring on a removed row",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring",
+      "bg": "color.diff.removed.bg",
+      "fgHex": "#e53935",
+      "bgHex": "#2b0e0d",
+      "ratio": 4.24,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "ring on a modified row",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring",
+      "bg": "color.diff.modified.bg",
+      "fgHex": "#e53935",
+      "bgHex": "#1f1a0c",
+      "ratio": 4.1,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "ring on the selected row",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring-container",
+      "bg": "color.interaction.selection.bg",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#911410",
+      "ratio": 4.75,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "fold button text",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.link",
+      "bg": "color.diff.header-bg",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#241010",
+      "ratio": 9.49,
+      "pass": true,
+      "waiver": null
+    }
+  ]
+}

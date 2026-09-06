@@ -1,0 +1,182 @@
+/* date-picker — reference CSS. The box is the text-field box; the calendar
+   popup is the host's and only receives color-scheme. Every real pseudo-class
+   is paired with the forced-state attribute the state matrix emits. */
+
+.date-picker {
+  position: relative;
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+  max-width: 28rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: var(--color-text-default);
+}
+
+.date-picker-label,
+.date-picker-legend {
+  padding: 0;
+  color: var(--color-text-bright);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.date-picker-pair {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: var(--space-4) var(--space-8);
+}
+
+.date-picker-half {
+  display: grid;
+  flex: 1 1 10rem;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.date-picker-separator {
+  align-self: end;
+  padding-bottom: var(--space-4);
+  color: var(--color-text-muted);
+}
+
+.date-picker-root {
+  display: flex;
+  align-items: stretch;
+  min-height: var(--density-control-height, 32px);
+  background: var(--color-surface-input);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+}
+
+.date-picker-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0 var(--density-control-padding-x, 12px);
+  background: transparent;
+  border: 0;
+  color: var(--color-text-default);
+  caret-color: var(--color-code-caret);
+  color-scheme: dark;
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+  outline: 0;
+}
+
+.date-picker-input::selection {
+  background: var(--color-interaction-text-selection-bg);
+  color: var(--color-interaction-text-selection-text);
+}
+
+.date-picker-input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
+
+.date-picker-help {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.date-picker-message {
+  display: none;
+  margin: 0;
+  color: var(--color-status-danger-text);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+/* hover */
+.date-picker-root:hover,
+[data-state-hover] .date-picker-root {
+  background: var(--color-interaction-hover-bg);
+}
+
+/* focus-visible */
+.date-picker-root:has(.date-picker-input:focus-visible),
+[data-state-focus-visible] .date-picker-root {
+  border-color: var(--color-border-active);
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* invalid */
+.date-picker-root:has(.date-picker-input[aria-invalid="true"]),
+.date-picker-root:has(.date-picker-input:user-invalid),
+[data-state-invalid] .date-picker-root {
+  border-color: var(--color-status-danger-border);
+  border-width: var(--border-width-emphasis);
+}
+
+.date-picker:has(.date-picker-input[aria-invalid="true"]) .date-picker-message,
+.date-picker:has(.date-picker-input:user-invalid) .date-picker-message,
+[data-state-invalid] .date-picker-message {
+  display: block;
+}
+
+.date-picker:has(.date-picker-input[aria-invalid="true"]) .date-picker-help,
+[data-state-invalid] .date-picker-help {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+/* invalid + focus-visible */
+.date-picker-root:has(.date-picker-input[aria-invalid="true"]:focus-visible),
+[data-state-invalid][data-state-focus-visible] .date-picker-root {
+  border-color: var(--color-status-danger-border);
+  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline-offset: var(--focus-offset-invalid);
+}
+
+/* disabled */
+.date-picker-root:has(.date-picker-input:disabled),
+[data-state-disabled] .date-picker-root {
+  background: var(--color-interaction-disabled-bg);
+  border-color: var(--color-border-disabled);
+  cursor: not-allowed;
+}
+
+.date-picker-input:disabled,
+[data-state-disabled] .date-picker-input,
+[data-state-disabled] .date-picker-separator {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.date-picker-root:has(.date-picker-input:disabled):hover,
+[data-state-disabled] .date-picker-root:hover {
+  background: var(--color-interaction-disabled-bg);
+}
+
+/* read-only: no box, a dotted bottom edge on the canvas */
+.date-picker-root:has(.date-picker-input:read-only:not(:disabled)),
+[data-state-read-only] .date-picker-root {
+  background: var(--color-surface-canvas);
+  border-color: transparent;
+  border-bottom: var(--border-width-default) dotted var(--color-border-divider);
+}
+
+.date-picker-root:has(.date-picker-input:read-only:focus-visible),
+[data-state-read-only][data-state-focus-visible] .date-picker-root {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+@media (hover: none) {
+  .date-picker-root:hover {
+    background: var(--color-surface-input);
+  }
+}
+
+@media (forced-colors: active) {
+  .date-picker-root:has(.date-picker-input:focus-visible),
+  [data-state-focus-visible] .date-picker-root {
+    outline-color: Highlight;
+  }
+}

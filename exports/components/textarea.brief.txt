@@ -1,0 +1,59 @@
+j3w1/theme implementation brief — textarea
+theme: j3w1-theme 0.1.0-draft.1  profile: default  sourceDigest: sha256-8OQMCIgCpf9ai1///uY3cYpsQTr44Npife7eSPAd2N8=
+pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/components/textarea.json
+spec: spec/components/textarea.md  site: https://j3w1.github.io/theme/#c-textarea
+maturity: stable  priority: R1
+
+Summary: Multi-line free-text entry in the same box as the text field; resizes vertically only and can show a character count.
+
+Tokens (resolved):
+  root.bg               #0c0909  ({color.surface.input})
+  root.border           #a3676b  ({color.border.control})
+  root.bg-hover         #1c0a09  ({color.interaction.hover.bg})
+  root.border-focus     #e53935  ({color.border.active})
+  root.ring             #e53935  ({color.interaction.focus.ring})
+  root.ring-invalid     #ffa2a7  ({color.interaction.focus.ring-container})
+  root.border-invalid   #e53935  ({color.status.danger.border})
+  root.border-disabled  #7d1310  ({color.border.disabled})
+  root.bg-disabled      #160b0b  ({color.interaction.disabled.bg})
+  root.border-readonly  #2b0e0d  ({color.border.divider})
+  root.bg-readonly      #0c0909  ({color.surface.canvas})
+  input.text            #e99499  ({color.text.default})
+  input.text-disabled   #8a5559  ({color.text.disabled})
+  input.placeholder     #bd787d  ({color.text.placeholder})
+  input.caret           #e99499  ({color.code.caret})
+  input.selection-bg    #911410  ({color.interaction.text-selection.bg})
+  input.selection-text  #f4eeee  ({color.interaction.text-selection.text})
+  label.text            #ffa2a7  ({color.text.bright})
+  label.required-mark   #f73f35  ({color.status.danger.text})
+  help.text             #bd787d  ({color.text.muted})
+  count.text            #bd787d  ({color.text.muted})
+  count.text-over       #f73f35  ({color.status.danger.text})
+  message.text          #f73f35  ({color.status.danger.text})
+
+States: default, hover, focus-visible, placeholder-shown, filled, required, invalid, invalid+focus-visible, disabled, read-only
+  default: 1px {color.border.control} on {color.surface.input}; text {color.text.default} [—]
+  hover: background → {color.interaction.hover.bg}; border unchanged [cursor: text]
+  focus-visible: border → {color.border.active}; ring 1px dashed {color.interaction.focus.ring} at −2px [the ring]
+  placeholder-shown: placeholder in {color.text.placeholder}, italic [italic]
+  filled: as default with a value [—]
+  required: `*` after the label in {color.status.danger.text} plus visually hidden "required" [`required`; the mark]
+  invalid: border 2px {color.status.danger.border}; message with the ✕ glyph; a count past its limit turns {color.status.danger.text} with the glyph [border width 1 → 2px; glyph; `aria-invalid`]
+  invalid+focus-visible: the 2px danger border and the ring in {color.interaction.focus.ring-container} at −4px [double boundary]
+  disabled: text {color.text.disabled}; border {color.border.disabled}; background {color.interaction.disabled.bg}; no resize handle [`disabled`; cursor: not-allowed]
+  read-only: no box: 1px dotted {color.border.divider} bottom edge on {color.surface.canvas}; no resize handle; selectable [`readonly`; dotted edge]
+
+Keyboard:
+  Tab / Shift+Tab: Moves focus in and out; Tab never inserts a tab character.
+  Enter: Inserts a line break; never submits.
+  Ctrl+Enter / Cmd+Enter: May submit the owning form when the host binds it; announced in the help text.
+
+ARIA: native <textarea> with <label> (https://www.w3.org/WAI/ARIA/apg/practices/forms/)
+Responsive: Fills its field container with min-width 0 and width 100%; the resize handle is vertical only so the box can never widen past its container at 320px. RTL keeps the handle on the inline-end corner.
+Portability: native <textarea> plus <label>; rows="3" minimum; resize vertical; the count is a live region with aria-live="polite" updated at most once per second; the dashed ring through outline, never box-shadow.
+  native: GTK4 TextView inside a ScrolledWindow with a frame.
+  native: Qt QPlainTextEdit stylesheet; invalid through a dynamic property selector.
+  native: Terminal UI: bordered multi-line box; the count in the bottom border.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

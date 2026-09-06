@@ -1,0 +1,210 @@
+/* checkbox — reference CSS. The native input, appearance none, is the box;
+   the ✓ and – SVGs stack over it in the same 16px cell. Every real
+   pseudo-class is paired with the forced-state attribute the state matrix
+   emits. Token variables only. */
+
+.checkbox {
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+  max-width: 28rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: var(--color-text-default);
+}
+
+.checkbox-legend {
+  padding: 0;
+  margin-bottom: var(--space-4);
+  color: var(--color-text-bright);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.checkbox-required {
+  display: none;
+  color: var(--color-status-danger-text);
+}
+
+.checkbox-option {
+  display: grid;
+  grid-template-columns: var(--icon-size-md) minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-8);
+  min-height: var(--space-24);
+  padding: var(--space-4) 0;
+  cursor: pointer;
+}
+
+.checkbox-control {
+  display: inline-grid;
+  width: var(--icon-size-md);
+  height: var(--icon-size-md);
+  color: var(--color-action-primary-text);
+}
+
+.checkbox-control > * {
+  grid-area: 1 / 1;
+}
+
+.checkbox-input {
+  appearance: none;
+  width: var(--icon-size-md);
+  height: var(--icon-size-md);
+  margin: 0;
+  background: var(--color-surface-input);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+  cursor: pointer;
+  outline: 0;
+}
+
+.checkbox-check,
+.checkbox-dash {
+  display: none;
+  width: var(--icon-size-md);
+  height: var(--icon-size-md);
+  stroke: currentColor;
+  fill: none;
+  pointer-events: none;
+}
+
+.checkbox-text {
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+}
+
+.checkbox-message {
+  display: none;
+  margin: 0;
+  color: var(--color-status-danger-text);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+/* hover: the box fill only, on hover-capable pointers */
+@media (hover: hover) {
+  .checkbox-option:hover .checkbox-input:not(:disabled) {
+    background: var(--color-interaction-hover-bg);
+  }
+
+  .checkbox-option:hover .checkbox-input:checked:not(:disabled),
+  .checkbox-option:hover .checkbox-input:indeterminate:not(:disabled) {
+    background: var(--color-action-primary-hover-bg);
+  }
+}
+
+[data-state-hover] .checkbox-input {
+  background: var(--color-interaction-hover-bg);
+}
+
+/* checked: the primary fill and the ✓ glyph; the border stays border.control */
+.checkbox-input:checked,
+[data-state-checked] .checkbox-input {
+  background: var(--color-action-primary-bg);
+}
+
+.checkbox-input:checked ~ .checkbox-check,
+[data-state-checked] .checkbox-check {
+  display: block;
+}
+
+/* mixed: the same fill with the – glyph; the host mirrors the indeterminate property */
+.checkbox-input:indeterminate,
+[data-state-mixed] .checkbox-input {
+  background: var(--color-action-primary-bg);
+}
+
+.checkbox-input:indeterminate ~ .checkbox-check,
+[data-state-mixed] .checkbox-check {
+  display: none;
+}
+
+.checkbox-input:indeterminate ~ .checkbox-dash,
+[data-state-mixed] .checkbox-dash {
+  display: block;
+}
+
+[data-state-hover][data-state-checked] .checkbox-input,
+[data-state-hover][data-state-mixed] .checkbox-input {
+  background: var(--color-action-primary-hover-bg);
+}
+
+/* focus-visible */
+.checkbox-input:focus-visible,
+[data-state-focus-visible] .checkbox-input {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* checked + focus-visible: the ring takes the on-fill colour */
+.checkbox-input:checked:focus-visible,
+.checkbox-input:indeterminate:focus-visible,
+[data-state-checked][data-state-focus-visible] .checkbox-input,
+[data-state-mixed][data-state-focus-visible] .checkbox-input {
+  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline-offset: var(--focus-offset);
+}
+
+/* required */
+.checkbox:has(.checkbox-input:required) .checkbox-required,
+[data-state-required] .checkbox-required {
+  display: inline;
+}
+
+/* invalid */
+.checkbox-input[aria-invalid="true"],
+[data-state-invalid] .checkbox-input {
+  border-color: var(--color-status-danger-border);
+  border-width: var(--border-width-emphasis);
+}
+
+.checkbox:has(.checkbox-input[aria-invalid="true"]) .checkbox-message,
+[data-state-invalid] .checkbox-message {
+  display: block;
+}
+
+/* disabled, including checked + disabled */
+.checkbox-input:disabled,
+[data-state-disabled] .checkbox-input {
+  background: var(--color-interaction-disabled-bg);
+  border-color: var(--color-border-disabled);
+  cursor: not-allowed;
+}
+
+.checkbox-input:disabled ~ .checkbox-check,
+.checkbox-input:disabled ~ .checkbox-dash,
+[data-state-disabled] .checkbox-check,
+[data-state-disabled] .checkbox-dash {
+  color: var(--color-text-disabled);
+}
+
+.checkbox-option:has(.checkbox-input:disabled),
+[data-state-disabled] .checkbox-option {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.checkbox:disabled .checkbox-legend,
+[data-state-disabled] .checkbox-legend {
+  color: var(--color-text-disabled);
+}
+
+@media (forced-colors: active) {
+  .checkbox-input:focus-visible,
+  [data-state-focus-visible] .checkbox-input {
+    outline-color: Highlight;
+  }
+
+  .checkbox-input:checked,
+  .checkbox-input:indeterminate,
+  [data-state-checked] .checkbox-input,
+  [data-state-mixed] .checkbox-input {
+    background: Highlight;
+  }
+
+  .checkbox-control {
+    color: HighlightText;
+  }
+}

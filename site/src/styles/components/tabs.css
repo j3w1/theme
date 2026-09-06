@@ -1,0 +1,132 @@
+/* tabs — reference CSS. The selected tab is a 2px bottom bar and bright
+   text, never a fill; every pseudo-class is paired with the forced-state
+   attribute the state matrix emits. Token variables only. */
+
+.tabs {
+  display: grid;
+  min-width: 0;
+  color: var(--color-text-default);
+}
+
+.tabs-list {
+  display: flex;
+  gap: var(--density-gap, 4px);
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  background: var(--color-surface-default);
+  border-bottom: var(--border-width-default) solid var(--color-border-divider);
+}
+
+.tabs-tab {
+  flex: 0 0 auto;
+  min-height: var(--density-control-height, 32px);
+  padding: 0 var(--density-control-padding-x, 12px);
+  margin-bottom: calc(-1 * var(--border-width-default)); /* the bar sits on the rule */
+  background: transparent;
+  border: 0;
+  border-bottom: var(--border-width-emphasis) solid transparent;
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+  font: inherit;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.tabs-panel {
+  padding: var(--space-12) 0 0;
+  background: var(--color-surface-default);
+  color: var(--color-text-default);
+}
+
+.tabs-panel[hidden] {
+  display: none;
+}
+
+.tabs-panel-text {
+  margin: 0;
+}
+
+/* hover: fill only, never the text colour */
+.tabs-tab:hover,
+[data-state-hover] .tabs-tab-demo-target {
+  background: var(--color-interaction-hover-bg);
+}
+
+/* pressed */
+.tabs-tab:active {
+  background: var(--color-interaction-pressed-bg);
+}
+
+/* focus-visible: the dashed ring on the tab itself */
+.tabs-tab:focus-visible,
+[data-state-focus-visible]:not([data-state-selected]) .tabs-tab-demo-target,
+[data-state-selected][data-state-focus-visible] .tabs-tab[aria-selected="true"] {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.tabs-tab:focus:not(:focus-visible) {
+  outline: 0;
+}
+
+.tabs-panel:focus-visible {
+  outline: var(--focus-ring-container);
+  outline-offset: var(--focus-offset-container);
+}
+
+/* selected: the bar and bright text */
+.tabs-tab[aria-selected="true"],
+[data-state-selected] .tabs-tab[aria-selected="true"] {
+  color: var(--color-text-bright);
+  border-bottom-color: var(--color-border-selected-indicator);
+}
+
+/* selected, container inactive: the bar drops in lightness */
+.tabs[data-container-inactive] .tabs-tab[aria-selected="true"],
+[data-state-container-inactive] .tabs-tab[aria-selected="true"] {
+  border-bottom-color: var(--color-border-selected-indicator-inactive);
+}
+
+/* disabled: never opacity */
+.tabs-tab:disabled,
+.tabs-tab[aria-disabled="true"],
+[data-state-disabled] .tabs-tab {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.tabs-tab:disabled:hover,
+.tabs-tab[aria-disabled="true"]:hover,
+[data-state-disabled] .tabs-tab:hover {
+  background: transparent;
+}
+
+.tabs-tab:disabled[aria-selected="true"],
+[data-state-disabled] .tabs-tab[aria-selected="true"] {
+  border-bottom-color: var(--color-border-selected-indicator-inactive);
+}
+
+@media (hover: none) {
+  .tabs-tab:hover {
+    background: transparent;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .tabs-tab {
+    transition: background-color var(--motion-duration-fast);
+  }
+}
+
+@media (forced-colors: active) {
+  .tabs-tab:focus-visible,
+  [data-state-focus-visible] .tabs-tab-demo-target {
+    outline-color: Highlight;
+  }
+
+  .tabs-tab[aria-selected="true"] {
+    border-bottom-color: Highlight;
+  }
+}
