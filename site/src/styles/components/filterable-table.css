@@ -1,0 +1,251 @@
+/* filterable-table — composed specimen. A toolbar holding a search-field,
+   a filter menu button, a columns icon-button and a primary button; a row
+   of removable filter chips; a selectable, sortable data-table with status
+   badges; a count and a compact pagination. The composed components keep
+   their own classes and CSS; this file adds layout and the forced-state
+   selectors the state matrix emits. Because the matrix wrapper reaches
+   every control in a cell, hover and focus-visible name one representative
+   row and hold the toolbar and chips at rest, and selected names two rows
+   plus the mixed select-all. Token variables only. */
+
+.filterable-table {
+  container-type: inline-size;
+  container-name: filterable-table;
+  display: grid;
+  gap: var(--space-8);
+  width: 56rem;
+  max-width: 100%;
+  min-width: 0;
+  background: var(--color-surface-default);
+  border: var(--border-width-default) solid var(--color-border-default);
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+}
+
+/* the toolbar keeps its chrome surface; the search field is its first stop.
+   Layout rules carry the root class so they outrank the components' own
+   root rules whatever the stylesheet order. */
+.filterable-table .filterable-table-toolbar {
+  gap: var(--space-8);
+  padding: var(--space-4) var(--space-8);
+  overflow: visible;
+}
+
+.filterable-table .filterable-table-search {
+  position: relative;
+  flex: 1 1 12rem;
+  max-width: 20rem;
+  min-width: 0;
+}
+
+.filterable-table-search .search-field-status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.filterable-table .filterable-table-filter {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.filterable-table .filterable-table-filter .menu-list {
+  position: absolute;
+  inset-inline-start: 0;
+  top: 100%;
+}
+
+.filterable-table .filterable-table-new {
+  margin-inline-start: auto;
+}
+
+.filterable-table-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--density-gap, 4px);
+  min-width: 0;
+  padding: 0 var(--space-8);
+}
+
+/* the table scrolls inside its own container below its natural width */
+.filterable-table-scroller {
+  min-width: 0;
+  overflow-x: auto;
+  border-top: var(--border-width-default) solid var(--color-border-divider);
+}
+
+.filterable-table-scroller .data-table {
+  min-width: 44rem;
+}
+
+.filterable-table .filterable-table-empty {
+  margin: 0 var(--space-8);
+}
+
+.filterable-table-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+  padding: 0 var(--space-8) var(--space-8);
+  border-top: var(--border-width-default) solid var(--color-border-divider);
+}
+
+.filterable-table-count {
+  margin: var(--space-8) 0 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.filterable-table-count-none {
+  display: none;
+}
+
+.filterable-table-footer .pagination {
+  margin-top: var(--space-8);
+}
+
+/* below 600px the toolbar wraps and the search field spans the row */
+@container filterable-table (width < 600px) {
+  .filterable-table .filterable-table-toolbar {
+    flex-wrap: wrap;
+    min-height: 0;
+  }
+
+  .filterable-table .filterable-table-search {
+    flex-basis: 100%;
+    max-width: none;
+  }
+}
+
+/* hover: the representative row takes the hover fill; the search box, the
+   chips, the icon button and the primary button the matrix also reached stay at rest */
+.filterable-table .data-table-body .filterable-table-demo-target:hover,
+[data-state-hover] .filterable-table .filterable-table-demo-target {
+  background: var(--color-interaction-hover-bg);
+}
+
+[data-state-hover] .filterable-table .search-field .search-field-root {
+  background: var(--color-surface-input);
+}
+
+[data-state-hover] .filterable-table .chip .chip-remove {
+  background: transparent;
+  color: var(--color-text-muted);
+}
+
+[data-state-hover] .filterable-table .icon-button {
+  background: var(--color-action-secondary-bg);
+}
+
+[data-state-hover] .filterable-table .filterable-table-new {
+  --_bg: var(--color-action-primary-bg);
+  --_fg: var(--color-action-primary-text);
+}
+
+/* focus-visible: the ring on the representative row */
+[data-state-focus-visible] .filterable-table .filterable-table-demo-target {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+[data-state-focus-visible] .filterable-table .search-field .search-field-root {
+  border-color: var(--color-border-control);
+  outline: 0;
+}
+
+[data-state-focus-visible] .filterable-table .menu-button,
+[data-state-focus-visible] .filterable-table .icon-button,
+[data-state-focus-visible] .filterable-table .button,
+[data-state-focus-visible] .filterable-table .chip .chip-remove {
+  outline: 0;
+}
+
+/* selected: two rows carry the selection fill and a checked box; the
+   select-all reports mixed; the chips the matrix also reached stay at rest */
+[data-state-selected] .filterable-table .filterable-table-row-selected {
+  background: var(--color-interaction-selection-bg);
+  color: var(--color-interaction-selection-text);
+}
+
+[data-state-selected] .filterable-table .filterable-table-row-selected:hover {
+  background: var(--color-interaction-selection-bg);
+}
+
+[data-state-selected] .filterable-table .filterable-table-row-selected .data-table-checkbox {
+  background: var(--color-action-primary-bg);
+  border-color: var(--color-action-primary-border);
+}
+
+[data-state-selected] .filterable-table .filterable-table-row-selected .data-table-checkbox::before {
+  content: "✓";
+  color: var(--color-action-primary-text);
+  font-size: var(--font-size-ui-sm);
+  line-height: 1;
+}
+
+[data-state-selected] .filterable-table .data-table-select-all:not(:disabled) {
+  background: var(--color-action-primary-bg);
+  border-color: var(--color-action-primary-border);
+}
+
+[data-state-selected] .filterable-table .data-table-select-all:not(:disabled) .data-table-check-glyph {
+  display: inline;
+}
+
+[data-state-selected] .filterable-table .chip {
+  background: var(--color-surface-default);
+  border-color: var(--color-border-control);
+  color: var(--color-text-default);
+}
+
+[data-state-selected] .filterable-table .chip .chip-remove {
+  color: var(--color-text-muted);
+}
+
+/* no-results: the search field announces it, the body is the empty row and
+   the count reads zero; the chips stay so the cause is visible */
+[data-state-no-results] .filterable-table .data-table-body .data-table-row {
+  display: none;
+}
+
+[data-state-no-results] .filterable-table .data-table-body .data-table-empty {
+  display: table-row;
+}
+
+[data-state-no-results] .filterable-table .filterable-table-count-some {
+  display: none;
+}
+
+[data-state-no-results] .filterable-table .filterable-table-count-none {
+  display: inline;
+}
+
+@media (hover: none) {
+  .filterable-table .data-table-body .filterable-table-demo-target:hover {
+    background: transparent;
+  }
+}
+
+@media (forced-colors: active) {
+  .filterable-table {
+    border-color: CanvasText;
+  }
+
+  [data-state-focus-visible] .filterable-table .filterable-table-demo-target {
+    outline-color: Highlight;
+  }
+
+  [data-state-selected] .filterable-table .filterable-table-row-selected {
+    background: Highlight;
+    color: HighlightText;
+  }
+}

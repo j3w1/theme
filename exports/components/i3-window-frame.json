@@ -1,0 +1,621 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "0.1.0-draft.1",
+  "profile": "default",
+  "sourceDigest": "sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=",
+  "id": "i3-window-frame",
+  "family": "composed",
+  "maturity": "stable",
+  "priority": "R1",
+  "coverage": {
+    "family": "composed",
+    "priority": "R1",
+    "maturity": "stable",
+    "specified": true,
+    "demonstrated": true,
+    "tested": false,
+    "states": 5
+  },
+  "title": "i3 window frame",
+  "summary": "The workstation frame; an i3 bar with workspaces and Chinese i3status labels above the terminal and code-editor components as tiled, tabbed or floating windows behind i3 title bars.",
+  "anchors": {
+    "site": "https://j3w1.github.io/theme/#c-i3-window-frame",
+    "spec": "spec/components/i3-window-frame.md",
+    "brief": "exports/components/i3-window-frame.brief.txt"
+  },
+  "native": true,
+  "aria": {
+    "pattern": "region landmark; a group for the bar holding a tablist of workspaces (aria-selected on the visible one) and a labelled status group; each window a focusable named group, or a tablist and tabpanels in the tabbed variant; the clients keep their own roles (log, textbox)",
+    "apg": "https://www.w3.org/WAI/ARIA/apg/patterns/tabs/"
+  },
+  "variants": [
+    {
+      "id": "default",
+      "name": "Tiled",
+      "description": "Two windows side by side; the terminal is focused."
+    },
+    {
+      "id": "tabbed",
+      "name": "Tabbed",
+      "description": "One container whose title row is a tab list; the terminal tab is visible and the editor panel is hidden."
+    },
+    {
+      "id": "floating",
+      "name": "Floating",
+      "description": "The terminal fills the workspace; the editor floats above it with the theme's only shadow and is focused."
+    }
+  ],
+  "sizes": [
+    "compact",
+    "comfortable"
+  ],
+  "states": [
+    "default",
+    "focus-visible",
+    "selected",
+    "container-inactive",
+    "error"
+  ],
+  "tokens": {
+    "root.bg": {
+      "alias": "color.surface.desktop",
+      "value": "#000000",
+      "status": "observed"
+    },
+    "root.border": {
+      "alias": "color.border.default",
+      "value": "#531310",
+      "status": "observed"
+    },
+    "bar.bg": {
+      "alias": "color.surface.chrome",
+      "value": "#100909",
+      "status": "observed"
+    },
+    "bar.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "bar.rule": {
+      "alias": "color.border.divider",
+      "value": "#2b0e0d",
+      "status": "proposed"
+    },
+    "workspace.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "workspace.selected-bg": {
+      "alias": "color.interaction.selection.bg",
+      "value": "#911410",
+      "status": "observed"
+    },
+    "workspace.selected-text": {
+      "alias": "color.interaction.selection.text",
+      "value": "#f4eeee",
+      "status": "observed"
+    },
+    "workspace.bg-hover": {
+      "alias": "color.interaction.hover.bg",
+      "value": "#1c0a09",
+      "status": "observed"
+    },
+    "workspace.ring": {
+      "alias": "color.interaction.focus.ring",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "workspace.ring-on-selection": {
+      "alias": "color.interaction.focus.ring-container",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "workspace.urgent-bg": {
+      "alias": "color.status.danger.fill",
+      "value": "#dc282e",
+      "status": "observed"
+    },
+    "workspace.urgent-text": {
+      "alias": "color.status.danger.on-fill",
+      "value": "#f9faf9",
+      "status": "observed"
+    },
+    "status.separator": {
+      "alias": "color.text.muted",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "status.glyph": {
+      "alias": "color.icon.decorative",
+      "value": "#a3676b",
+      "status": "observed"
+    },
+    "clock.text": {
+      "alias": "color.text.bright",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "area.bg": {
+      "alias": "color.surface.desktop",
+      "value": "#000000",
+      "status": "observed"
+    },
+    "window.bg": {
+      "alias": "color.surface.canvas",
+      "value": "#0c0909",
+      "status": "observed"
+    },
+    "window.border": {
+      "alias": "color.border.default",
+      "value": "#531310",
+      "status": "observed"
+    },
+    "window.border-focused": {
+      "alias": "color.border.active",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "window.ring": {
+      "alias": "color.interaction.focus.ring-container",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "title.bg": {
+      "alias": "color.surface.chrome",
+      "value": "#100909",
+      "status": "observed"
+    },
+    "title.text": {
+      "alias": "color.text.muted",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "title.bg-focused": {
+      "alias": "color.surface.chrome-alt",
+      "value": "#1c0a09",
+      "status": "observed"
+    },
+    "title.text-focused": {
+      "alias": "color.text.bright",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "tab.indicator": {
+      "alias": "color.border.selected-indicator",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "tab.indicator-inactive": {
+      "alias": "color.border.selected-indicator-inactive",
+      "value": "#9e231f",
+      "status": "observed"
+    },
+    "floating.border": {
+      "alias": "color.border.overlay",
+      "value": "#e53935",
+      "status": "proposed"
+    },
+    "floating.shadow": {
+      "alias": "shadow.floating",
+      "value": "0px 6px 22px 0px rgb(0 0 0 / 55%)",
+      "status": "observed"
+    },
+    "terminal.bg": {
+      "alias": "color.terminal.bg",
+      "value": "#0c0909",
+      "status": "observed"
+    },
+    "terminal.text": {
+      "alias": "color.terminal.fg",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "editor.bg": {
+      "alias": "color.code.bg",
+      "value": "#0c0909",
+      "status": "observed"
+    }
+  },
+  "stateRules": [
+    {
+      "state": "default",
+      "visual": "the terminal window focused: {color.border.active} frame and the bright title; the editor at rest; workspace 1 filled",
+      "channel": "the title text; `aria-selected`",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.muted",
+          "value": "#bd787d",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.chrome",
+          "value": "#100909",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "focus-visible",
+      "visual": "the 2px {color.interaction.focus.ring-container} ring at −3px inside the focused window or container; the client draws no second ring",
+      "channel": "the ring",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.bright",
+          "value": "#ffa2a7",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.chrome-alt",
+          "value": "#1c0a09",
+          "status": "observed"
+        },
+        "outline": {
+          "alias": "color.interaction.focus.ring-container",
+          "value": "#ffa2a7",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "selected",
+      "visual": "workspace 2 takes the selection fill with {color.interaction.selection.text}; workspace 1 drops to rest",
+      "channel": "`aria-selected`",
+      "tokens": {
+        "fg": {
+          "alias": "color.interaction.selection.text",
+          "value": "#f4eeee",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.interaction.selection.bg",
+          "value": "#911410",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "container-inactive",
+      "visual": "no window has focus: every frame {color.border.default}, every title {color.text.muted} on {color.surface.chrome}, the tab indicator {color.border.selected-indicator-inactive}, no caret",
+      "channel": "lightness drop; no caret",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.muted",
+          "value": "#bd787d",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.chrome",
+          "value": "#100909",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "error",
+      "visual": "workspace 3 is urgent: {color.status.danger.fill} with {color.status.danger.on-fill} and a trailing !",
+      "channel": "the ! mark; \"urgent\" read to assistive technology",
+      "tokens": {
+        "fg": {
+          "alias": "color.status.danger.on-fill",
+          "value": "#f9faf9",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.status.danger.fill",
+          "value": "#dc282e",
+          "status": "observed"
+        }
+      }
+    }
+  ],
+  "keyboard": [
+    {
+      "key": "Tab / Shift+Tab",
+      "action": "The workspace tablist (its selected tab is the stop), then each window group, then the client inside it; in the tabbed variant the tab list, then the visible panel's client."
+    },
+    {
+      "key": "Arrow keys",
+      "action": "Move between workspaces in the bar and between tabs in a tabbed container; inside a client the client's own contract applies."
+    },
+    {
+      "key": "Enter / Space",
+      "action": "Shows the workspace or tab under focus."
+    },
+    {
+      "key": "Mod+h j k l, Mod+1..9",
+      "action": "The window manager's own bindings move focus and switch workspaces on the workstation; the specimen documents them and does not reimplement them."
+    }
+  ],
+  "responsive": "The root is an inline-size container; below 600px the windows stack in one column, the floating window narrows to 80% of the workspace, and the bar scrolls horizontally rather than wrapping. Each client scrolls inside its own window; the region never scrolls horizontally. RTL mirrors the workspace order, the status side and the floating window's inset; the clients themselves stay left-to-right as terminals and editors do.",
+  "portability": {
+    "web": "A region, groups, a tablist and the clients' own roles; every state renders from the root hooks data-state-focus-visible, data-state-selected, data-state-container-inactive and data-state-error without a script. The bar height (28px), title height (23px) and gaps (14px inner, −2px outer) are private variables on the root that reproduce the workstation's i3 configuration; they are reference metrics, not tokens, and not a rule for any other application.",
+    "nativeFallbacks": [
+      "i3 / sway: bar colours from the bar block, client colours from client.focused, client.unfocused and client.urgent, border pixel 1, gaps inner 14 and outer −2; the port records the exact mapping.",
+      "GTK4 / Qt: not applicable; a desktop application never draws its own window manager. Hosts style their own frames with the border and title roles only.",
+      "Terminal multiplexer (tmux): the status line takes the bar roles, the pane borders border.default and border.active, the active window name the selection fill."
+    ]
+  },
+  "fixtures": [
+    "FX-STATE-MATRIX",
+    "FX-320",
+    "FX-360",
+    "FX-ZOOM-200",
+    "FX-RM",
+    "FX-HC",
+    "FX-I18N",
+    "FX-RTL",
+    "FX-DENSITY"
+  ],
+  "related": [
+    "terminal",
+    "code-editor",
+    "tabs"
+  ],
+  "specimens": [],
+  "nonExamples": "A window with rounded corners or a title bar gradient. A focused window\nthat glows or blurs its neighbours. A shadow under a tiled window; the only\nshadow is the floating one. Gaps of 14/−2 forced into an unrelated\napplication's layout. A workspace indicator drawn as a red underline\ninstead of the selection fill. Traffic-light close buttons in the title\nbar. A translucent bar.",
+  "contrast": [
+    {
+      "label": "i3-window-frame default text",
+      "state": "default",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.muted",
+      "bg": "color.surface.chrome",
+      "fgHex": "#bd787d",
+      "bgHex": "#100909",
+      "ratio": 5.77,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "i3-window-frame focus-visible text",
+      "state": "focus-visible",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.bright",
+      "bg": "color.surface.chrome-alt",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#1c0a09",
+      "ratio": 10.01,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "i3-window-frame focus-visible outline",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring-container",
+      "bg": "color.surface.chrome-alt",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#1c0a09",
+      "ratio": 10.01,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "i3-window-frame selected text",
+      "state": "selected",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.interaction.selection.text",
+      "bg": "color.interaction.selection.bg",
+      "fgHex": "#f4eeee",
+      "bgHex": "#911410",
+      "ratio": 7.92,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "i3-window-frame container-inactive text",
+      "state": "container-inactive",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.muted",
+      "bg": "color.surface.chrome",
+      "fgHex": "#bd787d",
+      "bgHex": "#100909",
+      "ratio": 5.77,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "i3-window-frame error text",
+      "state": "error",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.status.danger.on-fill",
+      "bg": "color.status.danger.fill",
+      "fgHex": "#f9faf9",
+      "bgHex": "#dc282e",
+      "ratio": 4.58,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "workspace names and status text on the bar",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.chrome",
+      "fgHex": "#e99499",
+      "bgHex": "#100909",
+      "ratio": 8.6,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "clock on the bar",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.bright",
+      "bg": "color.surface.chrome",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#100909",
+      "ratio": 10.31,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "focused title",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.bright",
+      "bg": "color.surface.chrome-alt",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#1c0a09",
+      "ratio": 10.01,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "focused window frame on the desktop",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.active",
+      "bg": "color.surface.desktop",
+      "fgHex": "#e53935",
+      "bgHex": "#000000",
+      "ratio": 4.97,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "floating window frame on the desktop",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.overlay",
+      "bg": "color.surface.desktop",
+      "fgHex": "#e53935",
+      "bgHex": "#000000",
+      "ratio": 4.97,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "container ring on the window surface",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring-container",
+      "bg": "color.surface.canvas",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#0c0909",
+      "ratio": 10.37,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "ring on a workspace or tab",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring",
+      "bg": "color.surface.chrome",
+      "fgHex": "#e53935",
+      "bgHex": "#100909",
+      "ratio": 4.66,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "visible-tab indicator on the title row",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.selected-indicator",
+      "bg": "color.surface.chrome",
+      "fgHex": "#e53935",
+      "bgHex": "#100909",
+      "ratio": 4.66,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "urgent fill against the bar",
+      "state": "error",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.status.danger.fill",
+      "bg": "color.surface.chrome",
+      "fgHex": "#dc282e",
+      "bgHex": "#100909",
+      "ratio": 4.12,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "visible-workspace fill against the bar",
+      "state": null,
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.interaction.selection.bg",
+      "bg": "color.surface.chrome",
+      "fgHex": "#911410",
+      "bgHex": "#100909",
+      "ratio": 2.17,
+      "pass": true,
+      "waiver": "the fill is identified by its on-fill text (7.92:1) and aria-selected, as every selection fill in the theme"
+    },
+    {
+      "label": "inactive tab indicator",
+      "state": "container-inactive",
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.border.selected-indicator-inactive",
+      "bg": "color.surface.chrome",
+      "fgHex": "#9e231f",
+      "bgHex": "#100909",
+      "ratio": 2.55,
+      "pass": true,
+      "waiver": "an unfocused container's indicator is informative only; the visible tab is still named by aria-selected and bright text is withheld on purpose"
+    },
+    {
+      "label": "unfocused window frames (decorative)",
+      "state": null,
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.border.default",
+      "bg": "color.surface.desktop",
+      "fgHex": "#531310",
+      "bgHex": "#000000",
+      "ratio": 1.47,
+      "pass": true,
+      "waiver": "an unfocused window is identified by its title bar and its client; the 1px frame only separates it from the desktop, as pixel borders do in i3"
+    },
+    {
+      "label": "status block separators (decorative)",
+      "state": null,
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.text.muted",
+      "bg": "color.surface.chrome",
+      "fgHex": "#bd787d",
+      "bgHex": "#100909",
+      "ratio": 5.77,
+      "pass": true,
+      "waiver": "the separators only space blocks that are already distinct text"
+    },
+    {
+      "label": "status glyphs (decorative)",
+      "state": null,
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.icon.decorative",
+      "bg": "color.surface.chrome",
+      "fgHex": "#a3676b",
+      "bgHex": "#100909",
+      "ratio": 4.42,
+      "pass": true,
+      "waiver": "every glyph is followed by its label; the glyphs are aria-hidden"
+    }
+  ]
+}

@@ -1,0 +1,178 @@
+<div class="admin-form" role="region" aria-labelledby="af-title">
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <ol class="breadcrumbs-list">
+      <li class="breadcrumbs-item"><a class="breadcrumbs-link" href="#af-records">Records</a><span class="breadcrumbs-separator" aria-hidden="true">/</span></li>
+      <li class="breadcrumbs-item"><a class="breadcrumbs-link" href="#af-workstations">Workstations</a><span class="breadcrumbs-separator" aria-hidden="true">/</span></li>
+      <li class="breadcrumbs-item"><a class="breadcrumbs-link breadcrumbs-current" href="#af-new" aria-current="page">New</a></li>
+    </ol>
+  </nav>
+  <h2 class="admin-form-title" id="af-title">New workstation</h2>
+  <div class="wizard admin-form-steps" aria-label="Create a workstation">
+    <ol class="wizard-steps">
+      <li class="wizard-step">
+        <button class="wizard-step-button" type="button" aria-current="step"><span class="wizard-step-marker" aria-hidden="true">1</span><span class="wizard-step-name">Identity</span></button>
+      </li>
+      <li class="wizard-step">
+        <button class="wizard-step-button" type="button" disabled><span class="wizard-step-marker" aria-hidden="true">2</span><span class="wizard-step-name">Network</span></button>
+      </li>
+      <li class="wizard-step">
+        <button class="wizard-step-button" type="button" disabled><span class="wizard-step-marker" aria-hidden="true">3</span><span class="wizard-step-name">Review</span></button>
+      </li>
+    </ol>
+  </div>
+  <div class="alert alert-info admin-form-notice" role="status">
+    <span class="alert-glyph" aria-hidden="true">i</span>
+    <div class="alert-body">
+      <strong class="alert-title">Draft</strong>
+      <p class="alert-text">Nothing is created until Review; Save draft keeps the record locally.</p>
+    </div>
+  </div>
+  <div class="alert alert-danger admin-form-summary" role="alert">
+    <span class="alert-glyph" aria-hidden="true">✕</span>
+    <div class="alert-body">
+      <strong class="alert-title">Two fields need attention</strong>
+      <p class="alert-text">The name and the hostname are already in use; choose different ones.</p>
+    </div>
+  </div>
+  <div class="admin-form-fields" role="form" aria-labelledby="af-title">
+    <div class="text-field">
+      <label class="text-field-label" for="af-name">Name <span class="text-field-required" aria-hidden="true">*</span><span class="text-field-required sr-only"> required</span></label>
+      <div class="text-field-root">
+        <input class="text-field-input" id="af-name" type="text" required value="ws-07" placeholder="Short name" aria-describedby="af-name-help af-name-message">
+        <span class="text-field-loading" aria-hidden="true">⋯</span>
+      </div>
+      <p class="text-field-help" id="af-name-help">Shown in the bar and the records list.</p>
+      <p class="text-field-message" id="af-name-message">✕ A workstation named ws-07 already exists.</p>
+    </div>
+    <div class="text-field">
+      <label class="text-field-label" for="af-host">Hostname <span class="text-field-required" aria-hidden="true">*</span><span class="text-field-required sr-only"> required</span></label>
+      <div class="text-field-root">
+        <input class="text-field-input" id="af-host" type="text" required value="ws-07" placeholder="host" aria-describedby="af-host-help af-host-message">
+        <span class="text-field-affix" aria-hidden="true">.lan</span>
+        <span class="text-field-loading" aria-hidden="true">⋯</span>
+      </div>
+      <p class="text-field-help" id="af-host-help">Letters, digits and hyphens; the domain is fixed.</p>
+      <p class="text-field-message" id="af-host-message">✕ ws-07.lan is already registered.</p>
+    </div>
+    <div class="select">
+      <label class="select-label" for="af-role">Role</label>
+      <div class="select-root">
+        <select class="select-control" id="af-role" aria-describedby="af-role-help af-role-message">
+          <option value="dev" selected>Development</option>
+          <option value="build">Build agent</option>
+          <option value="kiosk">Kiosk</option>
+        </select>
+        <svg class="select-chevron" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M4 6.5l4 4 4-4"/></svg>
+      </div>
+      <p class="select-help" id="af-role-help">Decides the default workspace layout.</p>
+      <p class="select-message" id="af-role-message">✕ Choose a role.</p>
+    </div>
+    <div class="date-picker">
+      <label class="date-picker-label" for="af-commissioned">Commissioned on</label>
+      <div class="date-picker-root">
+        <input class="date-picker-input" id="af-commissioned" type="date" value="2026-09-06" aria-describedby="af-commissioned-help af-commissioned-message">
+      </div>
+      <p class="date-picker-help" id="af-commissioned-help">Today if left unchanged.</p>
+      <p class="date-picker-message" id="af-commissioned-message">✕ Not in the future.</p>
+    </div>
+    <div class="file-input">
+      <label class="file-input-label" for="af-key">SSH public key</label>
+      <div class="file-input-root">
+        <input class="file-input-native" id="af-key" type="file" accept=".pub" aria-describedby="af-key-help af-key-message">
+        <label class="file-input-button" for="af-key">Choose file</label>
+        <span class="file-input-status" role="status">No file chosen</span>
+        <span class="file-input-drop-hint" aria-hidden="true">Release to add</span>
+      </div>
+      <div class="file-input-progress" aria-hidden="true"></div>
+      <p class="file-input-help" id="af-key-help">One .pub file; ed25519 preferred.</p>
+      <p class="file-input-message" id="af-key-message">✕ Only a .pub file.</p>
+    </div>
+    <div class="textarea admin-form-notes">
+      <label class="textarea-label" for="af-notes">Notes</label>
+      <div class="textarea-root">
+        <textarea class="textarea-input" id="af-notes" rows="3" maxlength="200" placeholder="Location, owner, quirks" aria-describedby="af-notes-help af-notes-count af-notes-message">Desk 4, second monitor on DP-2.</textarea>
+      </div>
+      <p class="textarea-count" id="af-notes-count" aria-live="polite">31 / 200</p>
+      <p class="textarea-help" id="af-notes-help">Plain text; shown on the record page.</p>
+      <p class="textarea-message" id="af-notes-message">✕ Over the limit.</p>
+    </div>
+    <div class="checkbox">
+      <label class="checkbox-option">
+        <span class="checkbox-control">
+          <input class="checkbox-input" type="checkbox" name="af-enabled" checked aria-describedby="af-enabled-message">
+          <svg class="checkbox-check" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M3.5 8.5l3 3 6-6"/></svg>
+          <svg class="checkbox-dash" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M4 8h8"/></svg>
+        </span>
+        <span class="checkbox-text">Enable after saving</span>
+      </label>
+      <p class="checkbox-message" id="af-enabled-message">✕ Confirm before continuing.</p>
+    </div>
+  </div>
+  <div class="admin-form-footer">
+    <button class="button button-secondary" type="button"><span class="button-loading" aria-hidden="true">⋯</span><span class="button-label">Back</span></button>
+    <button class="button button-tertiary" type="button"><span class="button-loading" aria-hidden="true">⋯</span><span class="button-label">Save draft</span></button>
+    <button class="button admin-form-continue" type="button"><span class="button-loading" aria-hidden="true">⋯</span><span class="button-label">Continue</span></button>
+  </div>
+</div>
+<!-- @variant review -->
+<div class="admin-form" role="region" aria-labelledby="af-review-title">
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <ol class="breadcrumbs-list">
+      <li class="breadcrumbs-item"><a class="breadcrumbs-link" href="#af-records">Records</a><span class="breadcrumbs-separator" aria-hidden="true">/</span></li>
+      <li class="breadcrumbs-item"><a class="breadcrumbs-link" href="#af-workstations">Workstations</a><span class="breadcrumbs-separator" aria-hidden="true">/</span></li>
+      <li class="breadcrumbs-item"><a class="breadcrumbs-link breadcrumbs-current" href="#af-new" aria-current="page">New</a></li>
+    </ol>
+  </nav>
+  <h2 class="admin-form-title" id="af-review-title">New workstation</h2>
+  <div class="wizard admin-form-steps" aria-label="Create a workstation">
+    <ol class="wizard-steps">
+      <li class="wizard-step wizard-step-complete">
+        <button class="wizard-step-button" type="button"><span class="wizard-step-marker" aria-hidden="true">1</span><span class="wizard-step-name">Identity</span><span class="wizard-step-done" aria-hidden="true">✓</span><span class="sr-only">, complete</span></button>
+      </li>
+      <li class="wizard-step wizard-step-complete">
+        <button class="wizard-step-button" type="button"><span class="wizard-step-marker" aria-hidden="true">2</span><span class="wizard-step-name">Network</span><span class="wizard-step-done" aria-hidden="true">✓</span><span class="sr-only">, complete</span></button>
+      </li>
+      <li class="wizard-step">
+        <button class="wizard-step-button" type="button" aria-current="step"><span class="wizard-step-marker" aria-hidden="true">3</span><span class="wizard-step-name">Review</span></button>
+      </li>
+    </ol>
+  </div>
+  <div class="alert alert-info admin-form-notice" role="status">
+    <span class="alert-glyph" aria-hidden="true">i</span>
+    <div class="alert-body">
+      <strong class="alert-title">Review</strong>
+      <p class="alert-text">Edit returns to the step that owns the value; Save creates the record.</p>
+    </div>
+  </div>
+  <div class="alert alert-danger admin-form-summary" role="alert">
+    <span class="alert-glyph" aria-hidden="true">✕</span>
+    <div class="alert-body">
+      <strong class="alert-title">Two fields need attention</strong>
+      <p class="alert-text">The name and the hostname are already in use; edit the Identity step.</p>
+    </div>
+  </div>
+  <table class="table admin-form-review">
+    <caption class="table-caption">Values entered so far</caption>
+    <thead class="table-head">
+      <tr class="table-header-row">
+        <th class="table-header" scope="col">Field</th>
+        <th class="table-header" scope="col">Value</th>
+        <th class="table-header admin-form-review-actions" scope="col"><span class="sr-only">Actions</span></th>
+      </tr>
+    </thead>
+    <tbody class="table-body">
+      <tr class="table-row"><th class="table-cell admin-form-review-key" scope="row">Name</th><td class="table-cell">ws-07</td><td class="table-cell admin-form-review-actions"><button class="button button-tertiary" type="button"><span class="button-loading" aria-hidden="true">⋯</span><span class="button-label">Edit<span class="sr-only"> name</span></span></button></td></tr>
+      <tr class="table-row"><th class="table-cell admin-form-review-key" scope="row">Hostname</th><td class="table-cell">ws-07.lan</td><td class="table-cell admin-form-review-actions"><button class="button button-tertiary" type="button"><span class="button-loading" aria-hidden="true">⋯</span><span class="button-label">Edit<span class="sr-only"> hostname</span></span></button></td></tr>
+      <tr class="table-row"><th class="table-cell admin-form-review-key" scope="row">Role</th><td class="table-cell">Development</td><td class="table-cell admin-form-review-actions"><button class="button button-tertiary" type="button"><span class="button-loading" aria-hidden="true">⋯</span><span class="button-label">Edit<span class="sr-only"> role</span></span></button></td></tr>
+      <tr class="table-row"><th class="table-cell admin-form-review-key" scope="row">Commissioned on</th><td class="table-cell">2026-09-06</td><td class="table-cell admin-form-review-actions"><button class="button button-tertiary" type="button"><span class="button-loading" aria-hidden="true">⋯</span><span class="button-label">Edit<span class="sr-only"> commissioned on</span></span></button></td></tr>
+      <tr class="table-row"><th class="table-cell admin-form-review-key" scope="row">SSH public key</th><td class="table-cell">ws-07.pub (ed25519)</td><td class="table-cell admin-form-review-actions"><button class="button button-tertiary" type="button"><span class="button-loading" aria-hidden="true">⋯</span><span class="button-label">Edit<span class="sr-only"> SSH public key</span></span></button></td></tr>
+      <tr class="table-row"><th class="table-cell admin-form-review-key" scope="row">Network</th><td class="table-cell">10.0.7.12 / 24, DNS from DHCP</td><td class="table-cell admin-form-review-actions"><button class="button button-tertiary" type="button"><span class="button-loading" aria-hidden="true">⋯</span><span class="button-label">Edit<span class="sr-only"> network</span></span></button></td></tr>
+      <tr class="table-row"><th class="table-cell admin-form-review-key" scope="row">Enabled</th><td class="table-cell">Yes, after saving</td><td class="table-cell admin-form-review-actions"><button class="button button-tertiary" type="button"><span class="button-loading" aria-hidden="true">⋯</span><span class="button-label">Edit<span class="sr-only"> enabled</span></span></button></td></tr>
+    </tbody>
+  </table>
+  <div class="admin-form-footer">
+    <button class="button button-secondary" type="button"><span class="button-loading" aria-hidden="true">⋯</span><span class="button-label">Back</span></button>
+    <button class="button button-tertiary" type="button"><span class="button-loading" aria-hidden="true">⋯</span><span class="button-label">Save draft</span></button>
+    <button class="button admin-form-continue" type="button"><span class="button-loading" aria-hidden="true">⋯</span><span class="button-label">Save workstation</span></button>
+  </div>
+</div>

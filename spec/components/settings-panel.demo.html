@@ -1,0 +1,221 @@
+<div class="settings-panel" role="region" aria-labelledby="sp-title">
+  <div class="settings-panel-nav">
+    <nav class="sidebar-nav" aria-label="Settings sections">
+      <ul class="sidebar-nav-list">
+        <li class="sidebar-nav-item"><a class="sidebar-nav-link sidebar-nav-current" href="#sp-appearance" aria-current="page"><span class="sidebar-nav-icon" aria-hidden="true"><svg viewBox="0 0 16 16" width="16" height="16" focusable="false"><rect x="2.5" y="2.5" width="11" height="11"/></svg></span><span class="sidebar-nav-label">Appearance</span></a></li>
+        <li class="sidebar-nav-item"><a class="sidebar-nav-link" href="#sp-keyboard"><span class="sidebar-nav-icon" aria-hidden="true"><svg viewBox="0 0 16 16" width="16" height="16" focusable="false"><rect x="2.5" y="4.5" width="11" height="7"/><path d="M5 8h6"/></svg></span><span class="sidebar-nav-label">Keyboard</span></a></li>
+        <li class="sidebar-nav-item"><a class="sidebar-nav-link" href="#sp-notifications"><span class="sidebar-nav-icon" aria-hidden="true"><svg viewBox="0 0 16 16" width="16" height="16" focusable="false"><path d="M4 11V7a4 4 0 0 1 8 0v4l1 1H3z"/><path d="M6.5 13.5h3"/></svg></span><span class="sidebar-nav-label">Notifications</span></a></li>
+        <li class="sidebar-nav-item"><a class="sidebar-nav-link" href="#sp-advanced"><span class="sidebar-nav-icon" aria-hidden="true"><svg viewBox="0 0 16 16" width="16" height="16" focusable="false"><path d="M2.5 4h11M2.5 8h11M2.5 12h11"/></svg></span><span class="sidebar-nav-label">Advanced</span></a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="settings-panel-content" role="form" aria-labelledby="sp-title" id="sp-appearance">
+    <h2 class="settings-panel-title" id="sp-title">Appearance</h2>
+    <p class="settings-panel-lead">Bar, gaps and labels of the workstation. Changes apply to new windows.</p>
+    <fieldset class="fieldset settings-panel-group">
+      <legend class="fieldset-legend">Bar and gaps</legend>
+      <div class="fieldset-body">
+        <div class="switch-row">
+          <span class="switch-name" id="sp-hide-bar-name">Hide the bar</span>
+          <button class="switch settings-panel-demo-target" type="button" role="switch" aria-checked="false" aria-labelledby="sp-hide-bar-name">
+            <span class="switch-track"><span class="switch-thumb"></span></span>
+            <span class="switch-state" aria-hidden="true"><span class="switch-state-off">Off</span><span class="switch-state-on">On</span></span>
+          </button>
+        </div>
+        <div class="switch-row">
+          <span class="switch-name" id="sp-smart-gaps-name">Smart gaps</span>
+          <button class="switch" type="button" role="switch" aria-checked="true" aria-labelledby="sp-smart-gaps-name">
+            <span class="switch-track"><span class="switch-thumb"></span></span>
+            <span class="switch-state" aria-hidden="true"><span class="switch-state-off">Off</span><span class="switch-state-on">On</span></span>
+          </button>
+        </div>
+        <div class="select">
+          <label class="select-label" for="sp-wallpaper">Wallpaper</label>
+          <div class="select-root">
+            <select class="select-control" id="sp-wallpaper" aria-describedby="sp-wallpaper-help sp-wallpaper-message">
+              <option value="black" selected>black</option>
+              <option value="ember">ember</option>
+              <option value="ridge">ridge</option>
+            </select>
+            <svg class="select-chevron" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M4 6.5l4 4 4-4"/></svg>
+          </div>
+          <p class="select-help" id="sp-wallpaper-help">Shown only where no window is.</p>
+          <p class="select-message" id="sp-wallpaper-message">✕ Choose a wallpaper.</p>
+        </div>
+        <fieldset class="radio-group radio-group-horizontal" aria-describedby="sp-labels-message">
+          <legend class="radio-group-legend">Bar labels</legend>
+          <div class="radio-group-options">
+            <label class="radio-group-option">
+              <span class="radio-group-control">
+                <input class="radio-group-input" type="radio" name="sp-labels" value="zh" checked>
+                <span class="radio-group-dot" aria-hidden="true"></span>
+              </span>
+              <span class="radio-group-text" lang="zh">中文</span>
+            </label>
+            <label class="radio-group-option">
+              <span class="radio-group-control">
+                <input class="radio-group-input" type="radio" name="sp-labels" value="en">
+                <span class="radio-group-dot" aria-hidden="true"></span>
+              </span>
+              <span class="radio-group-text">English</span>
+            </label>
+          </div>
+          <p class="radio-group-message" id="sp-labels-message">✕ Choose a language.</p>
+        </fieldset>
+        <div class="text-field">
+          <label class="text-field-label" for="sp-inner-gap">Inner gap</label>
+          <div class="text-field-root">
+            <input class="text-field-input text-field-input-numeric" id="sp-inner-gap" type="number" value="14" min="0" max="64" step="1" placeholder="0" aria-describedby="sp-inner-gap-help sp-inner-gap-message">
+            <span class="text-field-affix" aria-hidden="true">px</span>
+            <span class="text-field-loading" aria-hidden="true">⋯</span>
+          </div>
+          <p class="text-field-help" id="sp-inner-gap-help">Pixels between windows; the outer gap follows.</p>
+          <p class="text-field-message" id="sp-inner-gap-message">✕ Between 0 and 64.</p>
+        </div>
+        <fieldset class="checkbox checkbox-group" aria-describedby="sp-modules-message">
+          <legend class="checkbox-legend">Bar modules</legend>
+          <label class="checkbox-option">
+            <span class="checkbox-control">
+              <input class="checkbox-input" type="checkbox" name="sp-modules" value="cpu" checked>
+              <svg class="checkbox-check" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M3.5 8.5l3 3 6-6"/></svg>
+              <svg class="checkbox-dash" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M4 8h8"/></svg>
+            </span>
+            <span class="checkbox-text">CPU load</span>
+          </label>
+          <label class="checkbox-option">
+            <span class="checkbox-control">
+              <input class="checkbox-input" type="checkbox" name="sp-modules" value="memory" checked>
+              <svg class="checkbox-check" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M3.5 8.5l3 3 6-6"/></svg>
+              <svg class="checkbox-dash" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M4 8h8"/></svg>
+            </span>
+            <span class="checkbox-text">Memory</span>
+          </label>
+          <label class="checkbox-option">
+            <span class="checkbox-control">
+              <input class="checkbox-input" type="checkbox" name="sp-modules" value="battery">
+              <svg class="checkbox-check" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M3.5 8.5l3 3 6-6"/></svg>
+              <svg class="checkbox-dash" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M4 8h8"/></svg>
+            </span>
+            <span class="checkbox-text">Battery</span>
+          </label>
+          <p class="checkbox-message" id="sp-modules-message">✕ Choose at least one module.</p>
+        </fieldset>
+      </div>
+    </fieldset>
+    <div class="settings-panel-footer">
+      <button class="button settings-panel-apply" type="button"><span class="button-loading" aria-hidden="true">⋯</span><span class="button-label">Apply</span></button>
+      <button class="button button-secondary" type="button"><span class="button-loading" aria-hidden="true">⋯</span><span class="button-label">Reset</span></button>
+    </div>
+  </div>
+</div>
+<!-- @variant narrow -->
+<div class="settings-panel settings-panel-narrow" role="region aria-labelledby="sp-title">
+  <div class="settings-panel-nav">
+    <nav class="sidebar-nav" aria-label="Settings sections">
+      <ul class="sidebar-nav-list">
+        <li class="sidebar-nav-item"><a class="sidebar-nav-link sidebar-nav-current" href="#sp-appearance" aria-current="page"><span class="sidebar-nav-icon" aria-hidden="true"><svg viewBox="0 0 16 16" width="16" height="16" focusable="false"><rect x="2.5" y="2.5" width="11" height="11"/></svg></span><span class="sidebar-nav-label">Appearance</span></a></li>
+        <li class="sidebar-nav-item"><a class="sidebar-nav-link" href="#sp-keyboard"><span class="sidebar-nav-icon" aria-hidden="true"><svg viewBox="0 0 16 16" width="16" height="16" focusable="false"><rect x="2.5" y="4.5" width="11" height="7"/><path d="M5 8h6"/></svg></span><span class="sidebar-nav-label">Keyboard</span></a></li>
+        <li class="sidebar-nav-item"><a class="sidebar-nav-link" href="#sp-notifications"><span class="sidebar-nav-icon" aria-hidden="true"><svg viewBox="0 0 16 16" width="16" height="16" focusable="false"><path d="M4 11V7a4 4 0 0 1 8 0v4l1 1H3z"/><path d="M6.5 13.5h3"/></svg></span><span class="sidebar-nav-label">Notifications</span></a></li>
+        <li class="sidebar-nav-item"><a class="sidebar-nav-link" href="#sp-advanced"><span class="sidebar-nav-icon" aria-hidden="true"><svg viewBox="0 0 16 16" width="16" height="16" focusable="false"><path d="M2.5 4h11M2.5 8h11M2.5 12h11"/></svg></span><span class="sidebar-nav-label">Advanced</span></a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="settings-panel-content" role="form" aria-labelledby="sp-title" id="sp-appearance">
+    <h2 class="settings-panel-title" id="sp-title">Appearance</h2>
+    <p class="settings-panel-lead">Bar, gaps and labels of the workstation. Changes apply to new windows.</p>
+    <fieldset class="fieldset settings-panel-group">
+      <legend class="fieldset-legend">Bar and gaps</legend>
+      <div class="fieldset-body">
+        <div class="switch-row">
+          <span class="switch-name" id="sp-hide-bar-name">Hide the bar</span>
+          <button class="switch settings-panel-demo-target" type="button" role="switch" aria-checked="false" aria-labelledby="sp-hide-bar-name">
+            <span class="switch-track"><span class="switch-thumb"></span></span>
+            <span class="switch-state" aria-hidden="true"><span class="switch-state-off">Off</span><span class="switch-state-on">On</span></span>
+          </button>
+        </div>
+        <div class="switch-row">
+          <span class="switch-name" id="sp-smart-gaps-name">Smart gaps</span>
+          <button class="switch" type="button" role="switch" aria-checked="true" aria-labelledby="sp-smart-gaps-name">
+            <span class="switch-track"><span class="switch-thumb"></span></span>
+            <span class="switch-state" aria-hidden="true"><span class="switch-state-off">Off</span><span class="switch-state-on">On</span></span>
+          </button>
+        </div>
+        <div class="select">
+          <label class="select-label" for="sp-wallpaper">Wallpaper</label>
+          <div class="select-root">
+            <select class="select-control" id="sp-wallpaper" aria-describedby="sp-wallpaper-help sp-wallpaper-message">
+              <option value="black" selected>black</option>
+              <option value="ember">ember</option>
+              <option value="ridge">ridge</option>
+            </select>
+            <svg class="select-chevron" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M4 6.5l4 4 4-4"/></svg>
+          </div>
+          <p class="select-help" id="sp-wallpaper-help">Shown only where no window is.</p>
+          <p class="select-message" id="sp-wallpaper-message">✕ Choose a wallpaper.</p>
+        </div>
+        <fieldset class="radio-group radio-group-horizontal" aria-describedby="sp-labels-message">
+          <legend class="radio-group-legend">Bar labels</legend>
+          <div class="radio-group-options">
+            <label class="radio-group-option">
+              <span class="radio-group-control">
+                <input class="radio-group-input" type="radio" name="sp-labels" value="zh" checked>
+                <span class="radio-group-dot" aria-hidden="true"></span>
+              </span>
+              <span class="radio-group-text" lang="zh">中文</span>
+            </label>
+            <label class="radio-group-option">
+              <span class="radio-group-control">
+                <input class="radio-group-input" type="radio" name="sp-labels" value="en">
+                <span class="radio-group-dot" aria-hidden="true"></span>
+              </span>
+              <span class="radio-group-text">English</span>
+            </label>
+          </div>
+          <p class="radio-group-message" id="sp-labels-message">✕ Choose a language.</p>
+        </fieldset>
+        <div class="text-field">
+          <label class="text-field-label" for="sp-inner-gap">Inner gap</label>
+          <div class="text-field-root">
+            <input class="text-field-input text-field-input-numeric" id="sp-inner-gap" type="number" value="14" min="0" max="64" step="1" placeholder="0" aria-describedby="sp-inner-gap-help sp-inner-gap-message">
+            <span class="text-field-affix" aria-hidden="true">px</span>
+            <span class="text-field-loading" aria-hidden="true">⋯</span>
+          </div>
+          <p class="text-field-help" id="sp-inner-gap-help">Pixels between windows; the outer gap follows.</p>
+          <p class="text-field-message" id="sp-inner-gap-message">✕ Between 0 and 64.</p>
+        </div>
+        <fieldset class="checkbox checkbox-group" aria-describedby="sp-modules-message">
+          <legend class="checkbox-legend">Bar modules</legend>
+          <label class="checkbox-option">
+            <span class="checkbox-control">
+              <input class="checkbox-input" type="checkbox" name="sp-modules" value="cpu" checked>
+              <svg class="checkbox-check" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M3.5 8.5l3 3 6-6"/></svg>
+              <svg class="checkbox-dash" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M4 8h8"/></svg>
+            </span>
+            <span class="checkbox-text">CPU load</span>
+          </label>
+          <label class="checkbox-option">
+            <span class="checkbox-control">
+              <input class="checkbox-input" type="checkbox" name="sp-modules" value="memory" checked>
+              <svg class="checkbox-check" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M3.5 8.5l3 3 6-6"/></svg>
+              <svg class="checkbox-dash" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M4 8h8"/></svg>
+            </span>
+            <span class="checkbox-text">Memory</span>
+          </label>
+          <label class="checkbox-option">
+            <span class="checkbox-control">
+              <input class="checkbox-input" type="checkbox" name="sp-modules" value="battery">
+              <svg class="checkbox-check" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M3.5 8.5l3 3 6-6"/></svg>
+              <svg class="checkbox-dash" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M4 8h8"/></svg>
+            </span>
+            <span class="checkbox-text">Battery</span>
+          </label>
+          <p class="checkbox-message" id="sp-modules-message">✕ Choose at least one module.</p>
+        </fieldset>
+      </div>
+    </fieldset>
+    <div class="settings-panel-footer">
+      <button class="button settings-panel-apply" type="button"><span class="button-loading" aria-hidden="true">⋯</span><span class="button-label">Apply</span></button>
+      <button class="button button-secondary" type="button"><span class="button-loading" aria-hidden="true">⋯</span><span class="button-label">Reset</span></button>
+    </div>
+  </div>
+</div>

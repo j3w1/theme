@@ -1,0 +1,74 @@
+j3w1/theme implementation brief — filterable-table
+theme: j3w1-theme 0.1.0-draft.1  profile: default  sourceDigest: sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=
+pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/components/filterable-table.json
+spec: spec/components/filterable-table.md  site: https://j3w1.github.io/theme/#c-filterable-table
+maturity: stable  priority: R1
+
+Summary: A list screen composed from a toolbar with search and filter, removable chips, a selectable sortable data-table with status badges, a count and pagination; with empty and loading variants.
+
+Tokens (resolved):
+  root.bg                  #160b0b  ({color.surface.default})
+  root.border              #531310  ({color.border.default})
+  toolbar.bg               #100909  ({color.surface.chrome})
+  toolbar.border           #2b0e0d  ({color.border.divider})
+  toolbar.separator        #531310  ({color.border.default})
+  search.bg                #0c0909  ({color.surface.input})
+  search.border            #a3676b  ({color.border.control})
+  search.text              #e99499  ({color.text.default})
+  search.placeholder       #bd787d  ({color.text.placeholder})
+  search.icon              #e99499  ({color.icon.default})
+  filter.text              #e99499  ({color.text.default})
+  filter.border            #a3676b  ({color.border.control})
+  new.bg                   #871f19  ({color.action.primary.bg})
+  new.text                 #f4eeee  ({color.action.primary.text})
+  chip.bg                  #160b0b  ({color.surface.default})
+  chip.border              #a3676b  ({color.border.control})
+  chip.text                #e99499  ({color.text.default})
+  chip.remove              #bd787d  ({color.text.muted})
+  header.text              #ffa2a7  ({color.text.bright})
+  header.rule              #9e231f  ({color.border.strong})
+  row.text                 #e99499  ({color.text.default})
+  row.rule                 #2b0e0d  ({color.border.divider})
+  row.bg-hover             #1c0a09  ({color.interaction.hover.bg})
+  row.ring                 #e53935  ({color.interaction.focus.ring})
+  row.selected-bg          #911410  ({color.interaction.selection.bg})
+  row.selected-text        #f4eeee  ({color.interaction.selection.text})
+  row.ring-on-selection    #ffa2a7  ({color.interaction.focus.ring-container})
+  check.bg                 #0c0909  ({color.surface.input})
+  check.border             #a3676b  ({color.border.control})
+  check.checked-bg         #871f19  ({color.action.primary.bg})
+  check.glyph              #f4eeee  ({color.action.primary.text})
+  badge.tested-fill        #86a46f  ({color.status.success.fill})
+  badge.tested-text        #0c0909  ({color.status.success.on-fill})
+  badge.demonstrated-fill  #7e9ebb  ({color.status.info.fill})
+  badge.demonstrated-text  #0c0909  ({color.status.info.on-fill})
+  empty.text               #bd787d  ({color.text.muted})
+  empty.heading            #ffa2a7  ({color.text.bright})
+  empty.glyph              #a3676b  ({color.icon.decorative})
+  count.text               #bd787d  ({color.text.muted})
+  pagination.text          #e99499  ({color.text.default})
+  pagination.current       #ffa2a7  ({color.text.bright})
+  pagination.disabled      #8a5559  ({color.text.disabled})
+
+States: default, hover, focus-visible, selected, no-results
+  default: rest tokens of every component; Name sorted ascending with its ▲ glyph; Prev disabled [`aria-sort`; the glyph]
+  hover: the pointed row takes {color.interaction.hover.bg}; the toolbar controls and chips keep their own hover on their own pointer events only [cursor]
+  focus-visible: the dashed {color.interaction.focus.ring} on the row holding focus (shown on the third row); the toolbar and chips stay at rest [the ring]
+  selected: two rows take {color.interaction.selection.bg} with {color.interaction.selection.text} and a checked box; the select-all reports mixed with the – glyph [`aria-selected`; ✓ and – glyphs; `aria-checked="mixed"`]
+  no-results: the body is the "No components match" row, the count reads 0 of 43, the search field's status line announces it; the chips stay so the cause is visible [text; `role="status"`]
+
+Keyboard:
+  Tab / Shift+Tab: Into the toolbar (the search input is its stop), then each chip's Remove button, then the table (the first row is its stop), then Next.
+  Arrow keys: Inside the toolbar move between the search field, Filter, Columns and New; inside the table move between rows; Home and End reach the first and last row.
+  Enter / Space: Open the Filter menu; toggle Columns; activate New or a chip's Remove; on a header sort by it; on a row's checkbox toggle its selection.
+  Escape: Clears a non-empty search; closes the Filter menu and returns focus to its button.
+
+ARIA: region landmark; a toolbar with roving tabindex holding a search landmark, a menu button, a toggle icon button and a button; a group of removable chips; a grid-less native table with aria-sort, aria-selected rows and a checkbox-role select-all; role=status for the count; a pagination nav (https://www.w3.org/WAI/ARIA/apg/patterns/toolbar/)
+Responsive: The root is an inline-size container; below 600px the toolbar wraps with the search field on its own row and New at the end of the second, chips wrap, and the table scrolls inside its own container while the region never scrolls horizontally. The footer wraps the count above the pagination. RTL mirrors the toolbar order, the chip Remove side, the numeric column and the pagination glyphs.
+Portability: Native table semantics with aria-sort and aria-selected; the toolbar's roving tabindex and the menu need the host's script, everything else is static. The count is a status region so filtering announces its result once. Hosts without container queries wrap the toolbar at the 600px viewport breakpoint. The 56rem width and the 44rem table minimum are layout of this specimen, not rules.
+  native: GTK4: a SearchBar and a MenuButton above a ColumnView with a selection column; badges are styled labels; the empty state is a StatusPage.
+  native: Qt: a QToolBar, a flow of tag widgets, a QTableView with a check column and QStyledItemDelegate badges; the count is a QLabel in the status bar.
+  native: Terminal UI: a one-line prompt row, filters as bracketed tags, the table as aligned columns with the selection fill; no hover.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

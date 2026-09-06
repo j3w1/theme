@@ -8,6 +8,12 @@
     "tested": "tests/browser/components/<id>.spec.js exists"
   },
   "byFamily": {
+    "composed": {
+      "specified": 4,
+      "demonstrated": 4,
+      "tested": 0,
+      "total": 4
+    },
     "feedback": {
       "specified": 8,
       "demonstrated": 8,
@@ -52,6 +58,15 @@
     }
   },
   "components": {
+    "admin-form": {
+      "family": "composed",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "states": 4
+    },
     "alert": {
       "family": "feedback",
       "priority": "R1",
@@ -223,6 +238,24 @@
       "tested": false,
       "states": 7
     },
+    "filterable-table": {
+      "family": "composed",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "states": 5
+    },
+    "i3-window-frame": {
+      "family": "composed",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "states": 5
+    },
     "icon-button": {
       "family": "actions",
       "priority": "R1",
@@ -321,6 +354,15 @@
       "demonstrated": true,
       "tested": true,
       "states": 7
+    },
+    "settings-panel": {
+      "family": "composed",
+      "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "states": 4
     },
     "sidebar-nav": {
       "family": "navigation",

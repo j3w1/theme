@@ -67,6 +67,28 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | chart label on canvas | — | text | `color.chart.label` #bd787d | `color.surface.canvas` #0c0909 | 5.81 | 4.5 | pass |
 | chart series 4 on canvas (graphic) | — | ui | `color.chart.series-4` #a3676b | `color.surface.canvas` #0c0909 | 4.45 | 3 | pass |
 | decorative icon on canvas (graphic) | — | ui | `color.icon.decorative` #a3676b | `color.surface.canvas` #0c0909 | 4.45 | 3 | pass |
+| admin-form default text | default | text | `color.text.default` #e99499 | `color.surface.input` #0c0909 | 8.65 | 4.5 | pass |
+| admin-form default border | default | ui | `color.border.control` #a3676b | `color.surface.input` #0c0909 | 4.45 | 3 | pass |
+| admin-form invalid text | invalid | text | `color.status.danger.text` #f73f35 | `color.status.danger.tint` #2b0e0d | 4.88 | 4.5 | pass |
+| admin-form invalid border | invalid | ui | `color.status.danger.border` #e53935 | `color.status.danger.tint` #2b0e0d | 4.24 | 3 | pass |
+| admin-form busy text | busy | text | `color.action.primary.text` #f4eeee | `color.action.primary.bg` #871f19 | 8.17 | 4.5 | pass |
+| title, labels and the current step on the panel surface | — | text | `color.text.bright` #ffa2a7 | `color.surface.default` #160b0b | 10.10 | 4.5 | pass |
+| help, affix and review keys on the panel surface | — | text | `color.text.muted` #bd787d | `color.surface.default` #160b0b | 5.66 | 4.5 | pass |
+| breadcrumb links on the panel surface | — | text | `color.text.link` #ffa2a7 | `color.surface.default` #160b0b | 10.10 | 4.5 | pass |
+| complete-step check | — | text | `color.status.success.text` #86a46f | `color.surface.default` #160b0b | 6.95 | 4.5 | pass |
+| notice title on its tint | — | text | `color.status.info.text` #7e9ebb | `color.status.info.tint` #0f141c | 6.59 | 4.5 | pass |
+| notice text on its tint | — | text | `color.text.default` #e99499 | `color.status.info.tint` #0f141c | 8.06 | 4.5 | pass |
+| summary text on the danger tint | invalid | text | `color.text.default` #e99499 | `color.status.danger.tint` #2b0e0d | 7.82 | 4.5 | pass |
+| field messages on the panel surface | invalid | text | `color.status.danger.text` #f73f35 | `color.surface.default` #160b0b | 5.26 | 4.5 | pass |
+| invalid field boundary | invalid | ui | `color.status.danger.border` #e53935 | `color.surface.input` #0c0909 | 4.69 | 3 | pass |
+| current-step indicator bar | — | ui | `color.border.selected-indicator` #e53935 | `color.surface.default` #160b0b | 4.57 | 3 | pass |
+| Back button and file-input button boundaries | — | ui | `color.action.secondary.border` #a3676b | `color.surface.default` #160b0b | 4.33 | 3 | pass |
+| disabled control text (exempt; house floor 3:1) | disabled | ui | `color.text.disabled` #8a5559 | `color.interaction.disabled.bg` #160b0b | 3.24 | 3 | pass |
+| disabled labels and review keys (exempt; house floor 3:1) | disabled | ui | `color.text.disabled` #8a5559 | `color.surface.default` #160b0b | 3.24 | 3 | pass |
+| disabled boundaries (exempt) | disabled | ui | `color.border.disabled` #7d1310 | `color.interaction.disabled.bg` #160b0b | 1.82 | 1 | pass |
+| review header rule (decorative) | — | ui | `color.border.strong` #9e231f | `color.surface.default` #160b0b | 2.50 | 1 | pass |
+| panel edge (decorative) | — | ui | `color.border.default` #531310 | `color.surface.default` #160b0b | 1.35 | 1 | pass |
+| step, row and footer rules (decorative) | — | ui | `color.border.divider` #2b0e0d | `color.surface.default` #160b0b | 1.08 | 1 | pass |
 | alert default text | default | text | `color.status.danger.text` #f73f35 | `color.status.danger.tint` #2b0e0d | 4.88 | 4.5 | pass |
 | alert default border | default | ui | `color.status.danger.border` #e53935 | `color.status.danger.tint` #2b0e0d | 4.24 | 3 | pass |
 | alert hover text | hover | text | `color.action.tertiary.text` #e99499 | `color.action.tertiary.hover-bg` #1c0a09 | 8.35 | 4.5 | pass |
@@ -412,6 +434,45 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | disabled button text (exempt; house floor 3:1) | disabled | ui | `color.text.disabled` #8a5559 | `color.interaction.disabled.bg` #160b0b | 3.24 | 3 | pass |
 | disabled border (exempt) | disabled | ui | `color.border.disabled` #7d1310 | `color.interaction.disabled.bg` #160b0b | 1.82 | 1 | pass |
 | progress stripes (decorative pattern) | loading | ui | `color.action.primary.bg` #871f19 | `color.interaction.pressed.bg` #420f0c | 1.72 | 1 | pass |
+| filterable-table default text | default | text | `color.text.default` #e99499 | `color.surface.default` #160b0b | 8.43 | 4.5 | pass |
+| filterable-table hover text | hover | text | `color.text.default` #e99499 | `color.interaction.hover.bg` #1c0a09 | 8.35 | 4.5 | pass |
+| filterable-table focus-visible text | focus-visible | text | `color.text.default` #e99499 | `color.surface.default` #160b0b | 8.43 | 4.5 | pass |
+| filterable-table focus-visible outline | focus-visible | ui | `color.interaction.focus.ring` #e53935 | `color.surface.default` #160b0b | 4.57 | 3 | pass |
+| filterable-table selected text | selected | text | `color.interaction.selection.text` #f4eeee | `color.interaction.selection.bg` #911410 | 7.92 | 4.5 | pass |
+| filterable-table no-results text | no-results | text | `color.text.muted` #bd787d | `color.surface.default` #160b0b | 5.66 | 4.5 | pass |
+| toolbar controls on the chrome surface | — | text | `color.text.default` #e99499 | `color.surface.chrome` #100909 | 8.60 | 4.5 | pass |
+| search box and filter button boundaries on the chrome surface | — | ui | `color.border.control` #a3676b | `color.surface.chrome` #100909 | 4.42 | 3 | pass |
+| column headers, empty-state heading and current page | — | text | `color.text.bright` #ffa2a7 | `color.surface.default` #160b0b | 10.10 | 4.5 | pass |
+| count, chip remove glyph and empty-state text | — | text | `color.text.muted` #bd787d | `color.surface.default` #160b0b | 5.66 | 4.5 | pass |
+| Tested badge | — | text | `color.status.success.on-fill` #0c0909 | `color.status.success.fill` #86a46f | 7.13 | 4.5 | pass |
+| Demonstrated badge | — | text | `color.status.info.on-fill` #0c0909 | `color.status.info.fill` #7e9ebb | 7.08 | 4.5 | pass |
+| New button and checked boxes | — | text | `color.action.primary.text` #f4eeee | `color.action.primary.bg` #871f19 | 8.17 | 4.5 | pass |
+| ring on a selected row | selected | ui | `color.interaction.focus.ring-container` #ffa2a7 | `color.interaction.selection.bg` #911410 | 4.75 | 3 | pass |
+| chip and checkbox boundaries | — | ui | `color.border.control` #a3676b | `color.surface.default` #160b0b | 4.33 | 3 | pass |
+| disabled Prev link (exempt; house floor 3:1) | — | ui | `color.text.disabled` #8a5559 | `color.surface.default` #160b0b | 3.24 | 3 | pass |
+| header rule (decorative) | — | ui | `color.border.strong` #9e231f | `color.surface.default` #160b0b | 2.50 | 1 | pass |
+| panel edge and toolbar separator (decorative) | — | ui | `color.border.default` #531310 | `color.surface.default` #160b0b | 1.35 | 1 | pass |
+| row, toolbar and footer rules (decorative) | — | ui | `color.border.divider` #2b0e0d | `color.surface.default` #160b0b | 1.08 | 1 | pass |
+| i3-window-frame default text | default | text | `color.text.muted` #bd787d | `color.surface.chrome` #100909 | 5.77 | 4.5 | pass |
+| i3-window-frame focus-visible text | focus-visible | text | `color.text.bright` #ffa2a7 | `color.surface.chrome-alt` #1c0a09 | 10.01 | 4.5 | pass |
+| i3-window-frame focus-visible outline | focus-visible | ui | `color.interaction.focus.ring-container` #ffa2a7 | `color.surface.chrome-alt` #1c0a09 | 10.01 | 3 | pass |
+| i3-window-frame selected text | selected | text | `color.interaction.selection.text` #f4eeee | `color.interaction.selection.bg` #911410 | 7.92 | 4.5 | pass |
+| i3-window-frame container-inactive text | container-inactive | text | `color.text.muted` #bd787d | `color.surface.chrome` #100909 | 5.77 | 4.5 | pass |
+| i3-window-frame error text | error | text | `color.status.danger.on-fill` #f9faf9 | `color.status.danger.fill` #dc282e | 4.58 | 4.5 | pass |
+| workspace names and status text on the bar | — | text | `color.text.default` #e99499 | `color.surface.chrome` #100909 | 8.60 | 4.5 | pass |
+| clock on the bar | — | text | `color.text.bright` #ffa2a7 | `color.surface.chrome` #100909 | 10.31 | 4.5 | pass |
+| focused title | — | text | `color.text.bright` #ffa2a7 | `color.surface.chrome-alt` #1c0a09 | 10.01 | 4.5 | pass |
+| focused window frame on the desktop | — | ui | `color.border.active` #e53935 | `color.surface.desktop` #000000 | 4.97 | 3 | pass |
+| floating window frame on the desktop | — | ui | `color.border.overlay` #e53935 | `color.surface.desktop` #000000 | 4.97 | 3 | pass |
+| container ring on the window surface | focus-visible | ui | `color.interaction.focus.ring-container` #ffa2a7 | `color.surface.canvas` #0c0909 | 10.37 | 3 | pass |
+| ring on a workspace or tab | — | ui | `color.interaction.focus.ring` #e53935 | `color.surface.chrome` #100909 | 4.66 | 3 | pass |
+| visible-tab indicator on the title row | — | ui | `color.border.selected-indicator` #e53935 | `color.surface.chrome` #100909 | 4.66 | 3 | pass |
+| urgent fill against the bar | error | ui | `color.status.danger.fill` #dc282e | `color.surface.chrome` #100909 | 4.12 | 3 | pass |
+| visible-workspace fill against the bar | — | ui | `color.interaction.selection.bg` #911410 | `color.surface.chrome` #100909 | 2.17 | 1 | pass |
+| inactive tab indicator | container-inactive | ui | `color.border.selected-indicator-inactive` #9e231f | `color.surface.chrome` #100909 | 2.55 | 1 | pass |
+| unfocused window frames (decorative) | — | ui | `color.border.default` #531310 | `color.surface.desktop` #000000 | 1.47 | 1 | pass |
+| status block separators (decorative) | — | ui | `color.text.muted` #bd787d | `color.surface.chrome` #100909 | 5.77 | 1 | pass |
+| status glyphs (decorative) | — | ui | `color.icon.decorative` #a3676b | `color.surface.chrome` #100909 | 4.42 | 1 | pass |
 | icon-button default text | default | text | `color.action.tertiary.text` #e99499 | `color.action.secondary.bg` #0c0909 | 8.65 | 4.5 | pass |
 | icon-button hover text | hover | text | `color.action.tertiary.text` #e99499 | `color.action.tertiary.hover-bg` #1c0a09 | 8.35 | 4.5 | pass |
 | icon-button focus-visible text | focus-visible | text | `color.action.tertiary.text` #e99499 | `color.action.secondary.bg` #0c0909 | 8.65 | 4.5 | pass |
@@ -571,6 +632,21 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | help text on the panel surface | — | text | `color.text.muted` #bd787d | `color.surface.default` #160b0b | 5.66 | 4.5 | pass |
 | disabled text (exempt; house floor 3:1) | disabled | ui | `color.text.disabled` #8a5559 | `color.interaction.disabled.bg` #160b0b | 3.24 | 3 | pass |
 | disabled border (exempt) | disabled | ui | `color.border.disabled` #7d1310 | `color.interaction.disabled.bg` #160b0b | 1.82 | 1 | pass |
+| settings-panel default text | default | text | `color.text.default` #e99499 | `color.surface.default` #160b0b | 8.43 | 4.5 | pass |
+| settings-panel focus-visible text | focus-visible | text | `color.text.default` #e99499 | `color.surface.input` #0c0909 | 8.65 | 4.5 | pass |
+| settings-panel focus-visible border | focus-visible | ui | `color.border.control` #a3676b | `color.surface.input` #0c0909 | 4.45 | 3 | pass |
+| settings-panel focus-visible outline | focus-visible | ui | `color.interaction.focus.ring` #e53935 | `color.surface.input` #0c0909 | 4.69 | 3 | pass |
+| settings-panel invalid text | invalid | text | `color.text.default` #e99499 | `color.surface.input` #0c0909 | 8.65 | 4.5 | pass |
+| settings-panel invalid border | invalid | ui | `color.status.danger.border` #e53935 | `color.surface.input` #0c0909 | 4.69 | 3 | pass |
+| settings-panel busy text | busy | text | `color.action.primary.text` #f4eeee | `color.action.primary.bg` #871f19 | 8.17 | 4.5 | pass |
+| title, legend and the current section on the panel surface | — | text | `color.text.bright` #ffa2a7 | `color.surface.default` #160b0b | 10.10 | 4.5 | pass |
+| lead and help text on the panel surface | — | text | `color.text.muted` #bd787d | `color.surface.default` #160b0b | 5.66 | 4.5 | pass |
+| validation message on the panel surface | invalid | text | `color.status.danger.text` #f73f35 | `color.surface.default` #160b0b | 5.26 | 4.5 | pass |
+| current-section indicator bar | — | ui | `color.border.selected-indicator` #e53935 | `color.surface.default` #160b0b | 4.57 | 3 | pass |
+| control boundaries on the panel surface | — | ui | `color.border.control` #a3676b | `color.surface.default` #160b0b | 4.33 | 3 | pass |
+| Reset button boundary | — | ui | `color.action.secondary.border` #a3676b | `color.surface.default` #160b0b | 4.33 | 3 | pass |
+| panel edge (decorative) | — | ui | `color.border.default` #531310 | `color.surface.default` #160b0b | 1.35 | 1 | pass |
+| sidebar, group and footer rules (decorative) | — | ui | `color.border.divider` #2b0e0d | `color.surface.default` #160b0b | 1.08 | 1 | pass |
 | sidebar-nav default text | default | text | `color.text.default` #e99499 | `color.surface.default` #160b0b | 8.43 | 4.5 | pass |
 | sidebar-nav hover text | hover | text | `color.text.default` #e99499 | `color.interaction.hover.bg` #1c0a09 | 8.35 | 4.5 | pass |
 | sidebar-nav focus-visible text | focus-visible | text | `color.text.default` #e99499 | `color.surface.default` #160b0b | 8.43 | 4.5 | pass |

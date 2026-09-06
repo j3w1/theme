@@ -1,0 +1,192 @@
+/* settings-panel — composed specimen. A sidebar-nav beside a form column
+   built from the switch, select, radio-group, text-field, checkbox, fieldset
+   and button components, which keep their own classes and CSS. This file
+   adds only the layout, the container-query collapse of the sidebar into a
+   tab strip, and the forced-state selectors the state matrix emits. Because
+   the matrix wrapper reaches every composed control, each forced state names
+   one representative control and withholds the reused styling from the rest.
+   Token variables only. */
+
+.settings-panel {
+  container-type: inline-size;
+  container-name: settings-panel;
+  display: grid;
+  grid-template-columns: minmax(9rem, 13rem) minmax(0, 1fr);
+  width: 56rem;
+  max-width: 100%;
+  min-width: 0;
+  background: var(--color-surface-default);
+  border: var(--border-width-default) solid var(--color-border-default);
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+}
+
+/* the narrow variant pins the root below the collapse breakpoint */
+.settings-panel-narrow {
+  width: 360px;
+}
+
+.settings-panel-nav {
+  min-width: 0;
+}
+
+.settings-panel-nav .sidebar-nav {
+  height: 100%;
+  max-width: none;
+}
+
+.settings-panel-content {
+  display: grid;
+  gap: var(--space-16);
+  min-width: 0;
+  padding: var(--space-16);
+}
+
+.settings-panel-title {
+  margin: 0;
+  color: var(--color-text-bright);
+  font-size: var(--font-size-h2);
+  line-height: var(--font-line-height-h2);
+  font-weight: var(--font-weight-bold);
+}
+
+.settings-panel-lead {
+  margin: calc(-1 * var(--space-8)) 0 0;
+  color: var(--color-text-muted);
+  overflow-wrap: anywhere;
+}
+
+/* layout rules carry the root class so they outrank the components' own
+   root rules whatever the stylesheet order */
+.settings-panel .settings-panel-group {
+  max-width: none;
+}
+
+.settings-panel-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+  padding-top: var(--space-12);
+  border-top: var(--border-width-default) solid var(--color-border-divider);
+}
+
+/* below 600px the sidebar becomes a tab-style strip above the form:
+   the current link keeps its 2px indicator, now along the bottom edge */
+@container settings-panel (width < 600px) {
+  .settings-panel-nav {
+    grid-column: 1 / -1;
+  }
+
+  .settings-panel-content {
+    grid-column: 1 / -1;
+  }
+
+  .settings-panel-nav .sidebar-nav {
+    height: auto;
+    padding: 0;
+    border-inline-end: 0;
+    border-bottom: var(--border-width-default) solid var(--color-border-divider);
+  }
+
+  .settings-panel-nav .sidebar-nav-list {
+    display: flex;
+    gap: var(--density-gap, 4px);
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+
+  .settings-panel-nav .sidebar-nav-item {
+    flex: 0 0 auto;
+  }
+
+  .settings-panel-nav .sidebar-nav-link {
+    width: auto;
+    min-height: var(--density-control-height, 32px);
+    padding: 0 var(--density-control-padding-x, 12px);
+    margin-bottom: calc(-1 * var(--border-width-default));
+    border-inline-start: 0;
+    border-bottom: var(--border-width-emphasis) solid transparent;
+    white-space: nowrap;
+  }
+
+  .settings-panel-nav .sidebar-nav-link[aria-current="page"] {
+    border-bottom-color: var(--color-border-selected-indicator);
+  }
+
+  .settings-panel-nav .sidebar-nav-icon {
+    display: none;
+  }
+}
+
+/* focus-visible: the ring on the representative control (the first switch);
+   every other composed control stays at rest */
+[data-state-focus-visible] .settings-panel .text-field-root,
+[data-state-focus-visible] .settings-panel .select-root {
+  border-color: var(--color-border-control);
+  outline: 0;
+}
+
+[data-state-focus-visible] .settings-panel .checkbox-input,
+[data-state-focus-visible] .settings-panel .radio-group-input,
+[data-state-focus-visible] .settings-panel .button,
+[data-state-focus-visible] .settings-panel .switch:not(.settings-panel-demo-target) .switch-track {
+  outline: 0;
+}
+
+[data-state-focus-visible] .settings-panel .settings-panel-demo-target .switch-track {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* invalid: the inner-gap field carries the 2px danger border and its
+   message; the select, radios and checkboxes the matrix also marked stay at
+   rest. These carry one more class than the components own
+   :has([aria-invalid]) rules so they win whatever the stylesheet order. */
+[data-state-invalid] .settings-panel .settings-panel-group .select .select-root {
+  border-color: var(--color-border-control);
+  border-width: var(--border-width-default);
+}
+
+[data-state-invalid] .settings-panel .settings-panel-group .select .select-message,
+[data-state-invalid] .settings-panel .settings-panel-group .checkbox .checkbox-message,
+[data-state-invalid] .settings-panel .settings-panel-group .radio-group .radio-group-message {
+  display: none;
+}
+
+[data-state-invalid] .settings-panel .settings-panel-group .select .select-help {
+  position: static;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip: auto;
+}
+
+[data-state-invalid] .settings-panel .settings-panel-group .checkbox .checkbox-input,
+[data-state-invalid] .settings-panel .settings-panel-group .radio-group .radio-group-input {
+  border-color: var(--color-border-control);
+  border-width: var(--border-width-default);
+}
+
+/* busy: Apply shows the static ⋯ glyph and aria-busy sits on the form;
+   the size of the button does not change */
+.settings-panel[aria-busy="true"] .settings-panel-apply .button-loading,
+[data-state-busy] .settings-panel-apply .button-loading {
+  display: inline;
+}
+
+.settings-panel[aria-busy="true"] .settings-panel-apply,
+[data-state-busy] .settings-panel-apply {
+  cursor: progress;
+}
+
+@media (forced-colors: active) {
+  [data-state-focus-visible] .settings-panel .settings-panel-demo-target .switch-track {
+    outline-color: Highlight;
+  }
+
+  .settings-panel {
+    border-color: CanvasText;
+  }
+}

@@ -1,0 +1,64 @@
+j3w1/theme implementation brief — i3-window-frame
+theme: j3w1-theme 0.1.0-draft.1  profile: default  sourceDigest: sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=
+pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/components/i3-window-frame.json
+spec: spec/components/i3-window-frame.md  site: https://j3w1.github.io/theme/#c-i3-window-frame
+maturity: stable  priority: R1
+
+Summary: The workstation frame; an i3 bar with workspaces and Chinese i3status labels above the terminal and code-editor components as tiled, tabbed or floating windows behind i3 title bars.
+
+Tokens (resolved):
+  root.bg                      #000000  ({color.surface.desktop})
+  root.border                  #531310  ({color.border.default})
+  bar.bg                       #100909  ({color.surface.chrome})
+  bar.text                     #e99499  ({color.text.default})
+  bar.rule                     #2b0e0d  ({color.border.divider})
+  workspace.text               #e99499  ({color.text.default})
+  workspace.selected-bg        #911410  ({color.interaction.selection.bg})
+  workspace.selected-text      #f4eeee  ({color.interaction.selection.text})
+  workspace.bg-hover           #1c0a09  ({color.interaction.hover.bg})
+  workspace.ring               #e53935  ({color.interaction.focus.ring})
+  workspace.ring-on-selection  #ffa2a7  ({color.interaction.focus.ring-container})
+  workspace.urgent-bg          #dc282e  ({color.status.danger.fill})
+  workspace.urgent-text        #f9faf9  ({color.status.danger.on-fill})
+  status.separator             #bd787d  ({color.text.muted})
+  status.glyph                 #a3676b  ({color.icon.decorative})
+  clock.text                   #ffa2a7  ({color.text.bright})
+  area.bg                      #000000  ({color.surface.desktop})
+  window.bg                    #0c0909  ({color.surface.canvas})
+  window.border                #531310  ({color.border.default})
+  window.border-focused        #e53935  ({color.border.active})
+  window.ring                  #ffa2a7  ({color.interaction.focus.ring-container})
+  title.bg                     #100909  ({color.surface.chrome})
+  title.text                   #bd787d  ({color.text.muted})
+  title.bg-focused             #1c0a09  ({color.surface.chrome-alt})
+  title.text-focused           #ffa2a7  ({color.text.bright})
+  tab.indicator                #e53935  ({color.border.selected-indicator})
+  tab.indicator-inactive       #9e231f  ({color.border.selected-indicator-inactive})
+  floating.border              #e53935  ({color.border.overlay})
+  floating.shadow              0px 6px 22px 0px rgb(0 0 0 / 55%)  ({shadow.floating})
+  terminal.bg                  #0c0909  ({color.terminal.bg})
+  terminal.text                #e99499  ({color.terminal.fg})
+  editor.bg                    #0c0909  ({color.code.bg})
+
+States: default, focus-visible, selected, container-inactive, error
+  default: the terminal window focused: {color.border.active} frame and the bright title; the editor at rest; workspace 1 filled [the title text; `aria-selected`]
+  focus-visible: the 2px {color.interaction.focus.ring-container} ring at −3px inside the focused window or container; the client draws no second ring [the ring]
+  selected: workspace 2 takes the selection fill with {color.interaction.selection.text}; workspace 1 drops to rest [`aria-selected`]
+  container-inactive: no window has focus: every frame {color.border.default}, every title {color.text.muted} on {color.surface.chrome}, the tab indicator {color.border.selected-indicator-inactive}, no caret [lightness drop; no caret]
+  error: workspace 3 is urgent: {color.status.danger.fill} with {color.status.danger.on-fill} and a trailing ! [the ! mark; "urgent" read to assistive technology]
+
+Keyboard:
+  Tab / Shift+Tab: The workspace tablist (its selected tab is the stop), then each window group, then the client inside it; in the tabbed variant the tab list, then the visible panel's client.
+  Arrow keys: Move between workspaces in the bar and between tabs in a tabbed container; inside a client the client's own contract applies.
+  Enter / Space: Shows the workspace or tab under focus.
+  Mod+h j k l, Mod+1..9: The window manager's own bindings move focus and switch workspaces on the workstation; the specimen documents them and does not reimplement them.
+
+ARIA: region landmark; a group for the bar holding a tablist of workspaces (aria-selected on the visible one) and a labelled status group; each window a focusable named group, or a tablist and tabpanels in the tabbed variant; the clients keep their own roles (log, textbox) (https://www.w3.org/WAI/ARIA/apg/patterns/tabs/)
+Responsive: The root is an inline-size container; below 600px the windows stack in one column, the floating window narrows to 80% of the workspace, and the bar scrolls horizontally rather than wrapping. Each client scrolls inside its own window; the region never scrolls horizontally. RTL mirrors the workspace order, the status side and the floating window's inset; the clients themselves stay left-to-right as terminals and editors do.
+Portability: A region, groups, a tablist and the clients' own roles; every state renders from the root hooks data-state-focus-visible, data-state-selected, data-state-container-inactive and data-state-error without a script. The bar height (28px), title height (23px) and gaps (14px inner, −2px outer) are private variables on the root that reproduce the workstation's i3 configuration; they are reference metrics, not tokens, and not a rule for any other application.
+  native: i3 / sway: bar colours from the bar block, client colours from client.focused, client.unfocused and client.urgent, border pixel 1, gaps inner 14 and outer −2; the port records the exact mapping.
+  native: GTK4 / Qt: not applicable; a desktop application never draws its own window manager. Hosts style their own frames with the border and title roles only.
+  native: Terminal multiplexer (tmux): the status line takes the bar roles, the pane borders border.default and border.active, the active window name the selection fill.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

@@ -1,0 +1,665 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "0.1.0-draft.1",
+  "profile": "default",
+  "sourceDigest": "sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=",
+  "id": "filterable-table",
+  "family": "composed",
+  "maturity": "stable",
+  "priority": "R1",
+  "coverage": {
+    "family": "composed",
+    "priority": "R1",
+    "maturity": "stable",
+    "specified": true,
+    "demonstrated": true,
+    "tested": false,
+    "states": 5
+  },
+  "title": "Filterable table",
+  "summary": "A list screen composed from a toolbar with search and filter, removable chips, a selectable sortable data-table with status badges, a count and pagination; with empty and loading variants.",
+  "anchors": {
+    "site": "https://j3w1.github.io/theme/#c-filterable-table",
+    "spec": "spec/components/filterable-table.md",
+    "brief": "exports/components/filterable-table.brief.txt"
+  },
+  "native": true,
+  "aria": {
+    "pattern": "region landmark; a toolbar with roving tabindex holding a search landmark, a menu button, a toggle icon button and a button; a group of removable chips; a grid-less native table with aria-sort, aria-selected rows and a checkbox-role select-all; role=status for the count; a pagination nav",
+    "apg": "https://www.w3.org/WAI/ARIA/apg/patterns/toolbar/"
+  },
+  "variants": [
+    {
+      "id": "default",
+      "name": "Eight of 43"
+    },
+    {
+      "id": "empty",
+      "name": "Nothing matches",
+      "description": "A search term no component matches; the table body is its empty row, an empty-state block offers Clear filters, and the count reads zero."
+    },
+    {
+      "id": "loading",
+      "name": "Loading",
+      "description": "The table carries aria-busy; its body is the ⋯ row and the search field shows the loading glyph."
+    }
+  ],
+  "sizes": [
+    "compact",
+    "comfortable"
+  ],
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "selected",
+    "no-results"
+  ],
+  "tokens": {
+    "root.bg": {
+      "alias": "color.surface.default",
+      "value": "#160b0b",
+      "status": "observed"
+    },
+    "root.border": {
+      "alias": "color.border.default",
+      "value": "#531310",
+      "status": "observed"
+    },
+    "toolbar.bg": {
+      "alias": "color.surface.chrome",
+      "value": "#100909",
+      "status": "observed"
+    },
+    "toolbar.border": {
+      "alias": "color.border.divider",
+      "value": "#2b0e0d",
+      "status": "proposed"
+    },
+    "toolbar.separator": {
+      "alias": "color.border.default",
+      "value": "#531310",
+      "status": "observed"
+    },
+    "search.bg": {
+      "alias": "color.surface.input",
+      "value": "#0c0909",
+      "status": "observed"
+    },
+    "search.border": {
+      "alias": "color.border.control",
+      "value": "#a3676b",
+      "status": "proposed"
+    },
+    "search.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "search.placeholder": {
+      "alias": "color.text.placeholder",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "search.icon": {
+      "alias": "color.icon.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "filter.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "filter.border": {
+      "alias": "color.border.control",
+      "value": "#a3676b",
+      "status": "proposed"
+    },
+    "new.bg": {
+      "alias": "color.action.primary.bg",
+      "value": "#871f19",
+      "status": "observed"
+    },
+    "new.text": {
+      "alias": "color.action.primary.text",
+      "value": "#f4eeee",
+      "status": "observed"
+    },
+    "chip.bg": {
+      "alias": "color.surface.default",
+      "value": "#160b0b",
+      "status": "observed"
+    },
+    "chip.border": {
+      "alias": "color.border.control",
+      "value": "#a3676b",
+      "status": "proposed"
+    },
+    "chip.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "chip.remove": {
+      "alias": "color.text.muted",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "header.text": {
+      "alias": "color.text.bright",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "header.rule": {
+      "alias": "color.border.strong",
+      "value": "#9e231f",
+      "status": "observed"
+    },
+    "row.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "row.rule": {
+      "alias": "color.border.divider",
+      "value": "#2b0e0d",
+      "status": "proposed"
+    },
+    "row.bg-hover": {
+      "alias": "color.interaction.hover.bg",
+      "value": "#1c0a09",
+      "status": "observed"
+    },
+    "row.ring": {
+      "alias": "color.interaction.focus.ring",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "row.selected-bg": {
+      "alias": "color.interaction.selection.bg",
+      "value": "#911410",
+      "status": "observed"
+    },
+    "row.selected-text": {
+      "alias": "color.interaction.selection.text",
+      "value": "#f4eeee",
+      "status": "observed"
+    },
+    "row.ring-on-selection": {
+      "alias": "color.interaction.focus.ring-container",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "check.bg": {
+      "alias": "color.surface.input",
+      "value": "#0c0909",
+      "status": "observed"
+    },
+    "check.border": {
+      "alias": "color.border.control",
+      "value": "#a3676b",
+      "status": "proposed"
+    },
+    "check.checked-bg": {
+      "alias": "color.action.primary.bg",
+      "value": "#871f19",
+      "status": "observed"
+    },
+    "check.glyph": {
+      "alias": "color.action.primary.text",
+      "value": "#f4eeee",
+      "status": "observed"
+    },
+    "badge.tested-fill": {
+      "alias": "color.status.success.fill",
+      "value": "#86a46f",
+      "status": "approved"
+    },
+    "badge.tested-text": {
+      "alias": "color.status.success.on-fill",
+      "value": "#0c0909",
+      "status": "approved"
+    },
+    "badge.demonstrated-fill": {
+      "alias": "color.status.info.fill",
+      "value": "#7e9ebb",
+      "status": "approved"
+    },
+    "badge.demonstrated-text": {
+      "alias": "color.status.info.on-fill",
+      "value": "#0c0909",
+      "status": "approved"
+    },
+    "empty.text": {
+      "alias": "color.text.muted",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "empty.heading": {
+      "alias": "color.text.bright",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "empty.glyph": {
+      "alias": "color.icon.decorative",
+      "value": "#a3676b",
+      "status": "observed"
+    },
+    "count.text": {
+      "alias": "color.text.muted",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "pagination.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "pagination.current": {
+      "alias": "color.text.bright",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "pagination.disabled": {
+      "alias": "color.text.disabled",
+      "value": "#8a5559",
+      "status": "approved"
+    }
+  },
+  "stateRules": [
+    {
+      "state": "default",
+      "visual": "rest tokens of every component; Name sorted ascending with its ▲ glyph; Prev disabled",
+      "channel": "`aria-sort`; the glyph",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.default",
+          "value": "#160b0b",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "hover",
+      "visual": "the pointed row takes {color.interaction.hover.bg}; the toolbar controls and chips keep their own hover on their own pointer events only",
+      "channel": "cursor",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.interaction.hover.bg",
+          "value": "#1c0a09",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "focus-visible",
+      "visual": "the dashed {color.interaction.focus.ring} on the row holding focus (shown on the third row); the toolbar and chips stay at rest",
+      "channel": "the ring",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.default",
+          "value": "#160b0b",
+          "status": "observed"
+        },
+        "outline": {
+          "alias": "color.interaction.focus.ring",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "selected",
+      "visual": "two rows take {color.interaction.selection.bg} with {color.interaction.selection.text} and a checked box; the select-all reports mixed with the – glyph",
+      "channel": "`aria-selected`; ✓ and – glyphs; `aria-checked=\"mixed\"`",
+      "tokens": {
+        "fg": {
+          "alias": "color.interaction.selection.text",
+          "value": "#f4eeee",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.interaction.selection.bg",
+          "value": "#911410",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "no-results",
+      "visual": "the body is the \"No components match\" row, the count reads 0 of 43, the search field's status line announces it; the chips stay so the cause is visible",
+      "channel": "text; `role=\"status\"`",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.muted",
+          "value": "#bd787d",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.default",
+          "value": "#160b0b",
+          "status": "observed"
+        }
+      }
+    }
+  ],
+  "keyboard": [
+    {
+      "key": "Tab / Shift+Tab",
+      "action": "Into the toolbar (the search input is its stop), then each chip's Remove button, then the table (the first row is its stop), then Next."
+    },
+    {
+      "key": "Arrow keys",
+      "action": "Inside the toolbar move between the search field, Filter, Columns and New; inside the table move between rows; Home and End reach the first and last row."
+    },
+    {
+      "key": "Enter / Space",
+      "action": "Open the Filter menu; toggle Columns; activate New or a chip's Remove; on a header sort by it; on a row's checkbox toggle its selection."
+    },
+    {
+      "key": "Escape",
+      "action": "Clears a non-empty search; closes the Filter menu and returns focus to its button."
+    }
+  ],
+  "responsive": "The root is an inline-size container; below 600px the toolbar wraps with the search field on its own row and New at the end of the second, chips wrap, and the table scrolls inside its own container while the region never scrolls horizontally. The footer wraps the count above the pagination. RTL mirrors the toolbar order, the chip Remove side, the numeric column and the pagination glyphs.",
+  "portability": {
+    "web": "Native table semantics with aria-sort and aria-selected; the toolbar's roving tabindex and the menu need the host's script, everything else is static. The count is a status region so filtering announces its result once. Hosts without container queries wrap the toolbar at the 600px viewport breakpoint. The 56rem width and the 44rem table minimum are layout of this specimen, not rules.",
+    "nativeFallbacks": [
+      "GTK4: a SearchBar and a MenuButton above a ColumnView with a selection column; badges are styled labels; the empty state is a StatusPage.",
+      "Qt: a QToolBar, a flow of tag widgets, a QTableView with a check column and QStyledItemDelegate badges; the count is a QLabel in the status bar.",
+      "Terminal UI: a one-line prompt row, filters as bracketed tags, the table as aligned columns with the selection fill; no hover."
+    ]
+  },
+  "fixtures": [
+    "FX-STATE-MATRIX",
+    "FX-320",
+    "FX-360",
+    "FX-ZOOM-200",
+    "FX-RM",
+    "FX-HC",
+    "FX-I18N",
+    "FX-RTL",
+    "FX-OVERFLOW",
+    "FX-DENSITY"
+  ],
+  "related": [
+    "toolbar",
+    "search-field",
+    "menu",
+    "icon-button",
+    "button",
+    "chip",
+    "data-table",
+    "badge",
+    "empty-state",
+    "pagination"
+  ],
+  "specimens": [],
+  "nonExamples": "A rounded search pill with a magnifier inside a shadowed toolbar. Filter\nchips drawn as pills with a coloured fill per category. Zebra-striped rows.\nA selected row shown by a coloured left bar and no fill. A blue Material\ncheckbox. A skeleton shimmer while loading. An infinite scroll with no count\nand no pages.",
+  "contrast": [
+    {
+      "label": "filterable-table default text",
+      "state": "default",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.default",
+      "fgHex": "#e99499",
+      "bgHex": "#160b0b",
+      "ratio": 8.43,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "filterable-table hover text",
+      "state": "hover",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.interaction.hover.bg",
+      "fgHex": "#e99499",
+      "bgHex": "#1c0a09",
+      "ratio": 8.35,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "filterable-table focus-visible text",
+      "state": "focus-visible",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.default",
+      "fgHex": "#e99499",
+      "bgHex": "#160b0b",
+      "ratio": 8.43,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "filterable-table focus-visible outline",
+      "state": "focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring",
+      "bg": "color.surface.default",
+      "fgHex": "#e53935",
+      "bgHex": "#160b0b",
+      "ratio": 4.57,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "filterable-table selected text",
+      "state": "selected",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.interaction.selection.text",
+      "bg": "color.interaction.selection.bg",
+      "fgHex": "#f4eeee",
+      "bgHex": "#911410",
+      "ratio": 7.92,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "filterable-table no-results text",
+      "state": "no-results",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.muted",
+      "bg": "color.surface.default",
+      "fgHex": "#bd787d",
+      "bgHex": "#160b0b",
+      "ratio": 5.66,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "toolbar controls on the chrome surface",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.chrome",
+      "fgHex": "#e99499",
+      "bgHex": "#100909",
+      "ratio": 8.6,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "search box and filter button boundaries on the chrome surface",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.control",
+      "bg": "color.surface.chrome",
+      "fgHex": "#a3676b",
+      "bgHex": "#100909",
+      "ratio": 4.42,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "column headers, empty-state heading and current page",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.bright",
+      "bg": "color.surface.default",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#160b0b",
+      "ratio": 10.1,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "count, chip remove glyph and empty-state text",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.muted",
+      "bg": "color.surface.default",
+      "fgHex": "#bd787d",
+      "bgHex": "#160b0b",
+      "ratio": 5.66,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "Tested badge",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.status.success.on-fill",
+      "bg": "color.status.success.fill",
+      "fgHex": "#0c0909",
+      "bgHex": "#86a46f",
+      "ratio": 7.13,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "Demonstrated badge",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.status.info.on-fill",
+      "bg": "color.status.info.fill",
+      "fgHex": "#0c0909",
+      "bgHex": "#7e9ebb",
+      "ratio": 7.08,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "New button and checked boxes",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.primary.text",
+      "bg": "color.action.primary.bg",
+      "fgHex": "#f4eeee",
+      "bgHex": "#871f19",
+      "ratio": 8.17,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "ring on a selected row",
+      "state": "selected",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring-container",
+      "bg": "color.interaction.selection.bg",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#911410",
+      "ratio": 4.75,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "chip and checkbox boundaries",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.control",
+      "bg": "color.surface.default",
+      "fgHex": "#a3676b",
+      "bgHex": "#160b0b",
+      "ratio": 4.33,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "disabled Prev link (exempt; house floor 3:1)",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.text.disabled",
+      "bg": "color.surface.default",
+      "fgHex": "#8a5559",
+      "bgHex": "#160b0b",
+      "ratio": 3.24,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "header rule (decorative)",
+      "state": null,
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.border.strong",
+      "bg": "color.surface.default",
+      "fgHex": "#9e231f",
+      "bgHex": "#160b0b",
+      "ratio": 2.5,
+      "pass": true,
+      "waiver": "the header row is identified by th scope=col; the rule only separates it"
+    },
+    {
+      "label": "panel edge and toolbar separator (decorative)",
+      "state": null,
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.border.default",
+      "bg": "color.surface.default",
+      "fgHex": "#531310",
+      "bgHex": "#160b0b",
+      "ratio": 1.35,
+      "pass": true,
+      "waiver": "the edge and the separator group controls that are already distinct targets"
+    },
+    {
+      "label": "row, toolbar and footer rules (decorative)",
+      "state": null,
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.border.divider",
+      "bg": "color.surface.default",
+      "fgHex": "#2b0e0d",
+      "bgHex": "#160b0b",
+      "ratio": 1.08,
+      "pass": true,
+      "waiver": "rows are distinct by table structure; the rules only separate them"
+    }
+  ]
+}

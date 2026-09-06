@@ -1,0 +1,399 @@
+/* i3-window-frame — composed specimen. The workstation frame: an i3 bar
+   with workspaces and i3status blocks, then a workspace holding the
+   terminal and code-editor components as tiled, tabbed or floating windows
+   behind i3 title bars. The two components keep their own classes and CSS;
+   this file adds the bar, the title bars, the window borders, the gaps and
+   the forced-state selectors the state matrix emits. The i3 geometry
+   (28px bar, 23px titles, 14px inner and −2px outer gaps) is reproduced as
+   private variables on the root: reference metrics of the workstation, not
+   tokens and not a cross-application rule. Token variables only. */
+
+.i3-window-frame {
+  --_bar: 28px;
+  --_title: 23px;
+  --_gap: 14px;
+  --_outer: -2px;
+  container-type: inline-size;
+  container-name: i3-window-frame;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  width: 72rem;
+  max-width: 100%;
+  min-width: 0;
+  background: var(--color-surface-desktop);
+  border: var(--border-width-default) solid var(--color-border-default);
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+/* the bar: workspaces at the start, i3status at the end */
+.i3-window-frame-bar {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: var(--space-8);
+  min-height: var(--_bar);
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  background: var(--color-surface-chrome);
+  border-bottom: var(--border-width-default) solid var(--color-border-divider);
+}
+
+.i3-window-frame-workspaces {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: stretch;
+}
+
+.i3-window-frame-workspace {
+  display: inline-flex;
+  align-items: center;
+  min-width: var(--space-32);
+  min-height: var(--_bar);
+  padding: 0 var(--space-8);
+  background: transparent;
+  border: 0;
+  border-inline-end: var(--border-width-default) solid var(--color-border-divider);
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+  font: inherit;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+/* the visible workspace: the selection fill */
+.i3-window-frame-workspace[aria-selected="true"] {
+  background: var(--color-interaction-selection-bg);
+  color: var(--color-interaction-selection-text);
+}
+
+.i3-window-frame-workspace:hover {
+  background: var(--color-interaction-hover-bg);
+}
+
+.i3-window-frame-workspace[aria-selected="true"]:hover {
+  background: var(--color-interaction-selection-bg);
+}
+
+.i3-window-frame-workspace:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.i3-window-frame-workspace[aria-selected="true"]:focus-visible {
+  outline-color: var(--color-interaction-focus-ring-container);
+}
+
+.i3-window-frame-workspace:focus:not(:focus-visible) {
+  outline: 0;
+}
+
+/* the urgent mark exists in the markup and shows only for an urgent workspace */
+.i3-window-frame-urgent-mark {
+  display: none;
+  padding-inline-start: var(--space-2);
+}
+
+.i3-window-frame-status {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  padding-inline-end: var(--space-8);
+  color: var(--color-text-default);
+  white-space: nowrap;
+}
+
+.i3-window-frame-block {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: 0 var(--space-8);
+  border-inline-start: var(--border-width-default) solid var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.i3-window-frame-glyph {
+  color: var(--color-icon-decorative);
+}
+
+.i3-window-frame-clock {
+  color: var(--color-text-bright);
+}
+
+/* the workspace: the desktop surface with the reference gaps; the outer
+   gap is added to the inner one at the edges, as i3 does */
+.i3-window-frame-area {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--_gap);
+  min-width: 0;
+  min-height: 18rem;
+  padding: calc(var(--_gap) + var(--_outer));
+  overflow: hidden;
+  background: var(--color-surface-desktop);
+}
+
+/* a window: a 1px border.default frame around a title bar and its client */
+.i3-window-frame-window,
+.i3-window-frame-container {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  min-width: 0;
+  min-height: 0;
+  background: var(--color-surface-canvas);
+  border: var(--border-width-default) solid var(--color-border-default);
+  border-radius: var(--radius-none);
+  outline: 0;
+}
+
+.i3-window-frame-title,
+.i3-window-frame-tab {
+  display: flex;
+  align-items: center;
+  min-height: var(--_title);
+  padding: 0 var(--space-8);
+  background: var(--color-surface-chrome);
+  border: 0;
+  border-bottom: var(--border-width-default) solid var(--color-border-divider);
+  border-radius: var(--radius-none);
+  color: var(--color-text-muted);
+  font: inherit;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* the client fills the window; its own 1px boundary gives way to the frame */
+.i3-window-frame-window > .terminal,
+.i3-window-frame-window > .code-editor,
+.i3-window-frame-panel > .terminal,
+.i3-window-frame-panel > .code-editor {
+  border: 0;
+}
+
+/* the focused window: border.active and a bright title */
+.i3-window-frame-focused {
+  border-color: var(--color-border-active);
+}
+
+.i3-window-frame-focused > .i3-window-frame-title {
+  background: var(--color-surface-chrome-alt);
+  color: var(--color-text-bright);
+}
+
+/* tabbed: one container whose title row is a tab list; the visible tab
+   carries the 2px indicator and bright text */
+.i3-window-frame-tabs {
+  display: flex;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  background: var(--color-surface-chrome);
+  border-bottom: var(--border-width-default) solid var(--color-border-divider);
+}
+
+.i3-window-frame-tab {
+  flex: 1 1 0;
+  min-width: 0;
+  margin-bottom: calc(-1 * var(--border-width-default));
+  border-bottom: var(--border-width-emphasis) solid transparent;
+  cursor: pointer;
+}
+
+.i3-window-frame-tab[aria-selected="true"] {
+  background: var(--color-surface-chrome-alt);
+  border-bottom-color: var(--color-border-selected-indicator);
+  color: var(--color-text-bright);
+}
+
+.i3-window-frame-tab:hover {
+  background: var(--color-interaction-hover-bg);
+}
+
+.i3-window-frame-tab:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.i3-window-frame-tab:focus:not(:focus-visible) {
+  outline: 0;
+}
+
+/* the tabbed container is the only child of the workspace and spans it */
+.i3-window-frame-container {
+  grid-column: 1 / -1;
+}
+
+.i3-window-frame-panel {
+  display: grid;
+  min-width: 0;
+  min-height: 0;
+}
+
+.i3-window-frame-panel[hidden] {
+  display: none;
+}
+
+/* floating: the tiled window fills the workspace; the floating one sits
+   above it with the theme's only shadow and the overlay border */
+.i3-window-frame-area-floating {
+  grid-template-columns: minmax(0, 1fr);
+  min-height: 27rem;
+}
+
+.i3-window-frame-floating {
+  position: absolute;
+  inset-inline-end: var(--space-24);
+  top: var(--space-32);
+  width: 60%;
+  max-height: calc(100% - var(--space-48));
+  border-color: var(--color-border-overlay);
+  box-shadow: var(--shadow-floating);
+  z-index: var(--z-raised);
+}
+
+/* the frame shrinks with its container: windows stack below 600px */
+@container i3-window-frame (width < 600px) {
+  .i3-window-frame-area {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .i3-window-frame-floating {
+    inset-inline-end: var(--space-8);
+    width: 80%;
+  }
+}
+
+/* focus-visible: the 2px container ring on the focused window or container;
+   the client inside does not draw its own ring as well */
+.i3-window-frame-focused:focus-visible,
+[data-state-focus-visible] .i3-window-frame .i3-window-frame-focused {
+  outline: var(--focus-ring-container);
+  outline-offset: var(--focus-offset-container);
+}
+
+[data-state-focus-visible] .i3-window-frame .terminal,
+[data-state-focus-visible] .i3-window-frame .code-editor {
+  outline: 0;
+}
+
+/* the client of an unfocused window stays at rest: a hollow cursor, no caret, no current line */
+[data-state-focus-visible] .i3-window-frame .i3-window-frame-window:not(.i3-window-frame-focused) .terminal-cursor {
+  background: transparent;
+  color: inherit;
+  outline: var(--border-width-default) solid var(--color-terminal-cursor);
+  outline-offset: calc(-1 * var(--border-width-default));
+}
+
+[data-state-focus-visible] .i3-window-frame .i3-window-frame-window:not(.i3-window-frame-focused) .code-editor-caret {
+  display: none;
+}
+
+[data-state-focus-visible] .i3-window-frame .i3-window-frame-window:not(.i3-window-frame-focused) .code-editor-line-current {
+  background: transparent;
+}
+
+[data-state-focus-visible] .i3-window-frame .i3-window-frame-window:not(.i3-window-frame-focused) .code-editor-line-current .code-editor-ln {
+  background: var(--color-code-gutter-bg);
+  color: var(--color-code-line-number);
+}
+
+/* selected: the second workspace becomes the visible one; the first drops
+   to rest, and the text selections inside the clients stay at rest */
+[data-state-selected] .i3-window-frame .i3-window-frame-workspace-demo-target {
+  background: var(--color-interaction-selection-bg);
+  color: var(--color-interaction-selection-text);
+}
+
+[data-state-selected] .i3-window-frame .i3-window-frame-workspace:not(.i3-window-frame-workspace-demo-target) {
+  background: transparent;
+  color: var(--color-text-default);
+}
+
+[data-state-selected] .i3-window-frame .terminal-sel,
+[data-state-selected] .i3-window-frame .code-editor-sel {
+  background: transparent;
+}
+
+[data-state-selected] .i3-window-frame .terminal-sel {
+  color: var(--color-terminal-fg);
+}
+
+[data-state-selected] .i3-window-frame .terminal-sel.terminal-fg-3 {
+  color: var(--color-terminal-ansi-3);
+}
+
+/* container-inactive: no window has focus; every frame and title is at rest
+   and the tab indicator drops in lightness */
+[data-state-container-inactive] .i3-window-frame .i3-window-frame-focused {
+  border-color: var(--color-border-default);
+  outline: 0;
+}
+
+[data-state-container-inactive] .i3-window-frame .i3-window-frame-focused > .i3-window-frame-title,
+[data-state-container-inactive] .i3-window-frame .i3-window-frame-tab[aria-selected="true"] {
+  background: var(--color-surface-chrome);
+  color: var(--color-text-muted);
+}
+
+[data-state-container-inactive] .i3-window-frame .i3-window-frame-tab[aria-selected="true"] {
+  border-bottom-color: var(--color-border-selected-indicator-inactive);
+}
+
+[data-state-container-inactive] .i3-window-frame .i3-window-frame-floating {
+  border-color: var(--color-border-default);
+}
+
+/* error: the third workspace is urgent; the danger fill and the ! mark */
+[data-state-error] .i3-window-frame .i3-window-frame-workspace-urgent {
+  background: var(--color-status-danger-fill);
+  color: var(--color-status-danger-on-fill);
+}
+
+[data-state-error] .i3-window-frame .i3-window-frame-urgent-mark {
+  display: inline;
+}
+
+@media (hover: none) {
+  .i3-window-frame-workspace:hover,
+  .i3-window-frame-tab:hover {
+    background: transparent;
+  }
+
+  .i3-window-frame-workspace[aria-selected="true"]:hover {
+    background: var(--color-interaction-selection-bg);
+  }
+
+  .i3-window-frame-tab[aria-selected="true"]:hover {
+    background: var(--color-surface-chrome-alt);
+  }
+}
+
+@media (forced-colors: active) {
+  .i3-window-frame,
+  .i3-window-frame-window,
+  .i3-window-frame-container {
+    border-color: CanvasText;
+  }
+
+  .i3-window-frame-focused:focus-visible,
+  [data-state-focus-visible] .i3-window-frame .i3-window-frame-focused {
+    outline-color: Highlight;
+  }
+
+  .i3-window-frame-workspace[aria-selected="true"],
+  [data-state-selected] .i3-window-frame .i3-window-frame-workspace-demo-target,
+  [data-state-error] .i3-window-frame .i3-window-frame-workspace-urgent {
+    background: Highlight;
+    color: HighlightText;
+  }
+
+  .i3-window-frame-floating {
+    box-shadow: none;
+  }
+}

@@ -122,6 +122,7 @@ browser test exists for it. The ledger is generated from the sources.
 <!-- coverage:start -->
 | Component | Family | Priority | Specified | Demonstrated | Tested |
 | --- | --- | --- | --- | --- | --- |
+| `admin-form` | composed | R1 | yes | yes | — |
 | `alert` | feedback | R1 | yes | yes | — |
 | `badge` | display | R1 | yes | yes | — |
 | `breadcrumbs` | navigation | R1 | yes | yes | — |
@@ -141,6 +142,8 @@ browser test exists for it. The ledger is generated from the sources.
 | `field` | forms-basic | R1 | yes | yes | — |
 | `fieldset` | forms-basic | R1 | yes | yes | — |
 | `file-input` | forms-advanced | R1 | yes | yes | — |
+| `filterable-table` | composed | R1 | yes | yes | — |
+| `i3-window-frame` | composed | R1 | yes | yes | — |
 | `icon-button` | actions | R1 | yes | yes | — |
 | `link` | actions | R1 | yes | yes | yes |
 | `list` | display | R1 | yes | yes | — |
@@ -152,6 +155,7 @@ browser test exists for it. The ledger is generated from the sources.
 | `radio-group` | forms-basic | R1 | yes | yes | yes |
 | `search-field` | forms-basic | R1 | yes | yes | — |
 | `select` | forms-basic | R1 | yes | yes | yes |
+| `settings-panel` | composed | R1 | yes | yes | — |
 | `sidebar-nav` | navigation | R1 | yes | yes | — |
 | `skip-link` | navigation | R1 | yes | yes | — |
 | `switch` | forms-basic | R1 | yes | yes | — |

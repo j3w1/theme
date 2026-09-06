@@ -1,0 +1,660 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "0.1.0-draft.1",
+  "profile": "default",
+  "sourceDigest": "sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=",
+  "id": "admin-form",
+  "family": "composed",
+  "maturity": "stable",
+  "priority": "R1",
+  "coverage": {
+    "family": "composed",
+    "priority": "R1",
+    "maturity": "stable",
+    "specified": true,
+    "demonstrated": true,
+    "tested": false,
+    "states": 4
+  },
+  "title": "Admin form",
+  "summary": "A create-or-edit record screen composed from breadcrumbs, a wizard step list, alerts, six field components and a button row; the review step is a table with an Edit button per row.",
+  "anchors": {
+    "site": "https://j3w1.github.io/theme/#c-admin-form",
+    "spec": "spec/components/admin-form.md",
+    "brief": "exports/components/admin-form.brief.txt"
+  },
+  "native": true,
+  "aria": {
+    "pattern": "region landmark named by the h2; a Breadcrumb nav landmark; the wizard step list with aria-current=step; role=status and role=alert notices; a form landmark of native controls; aria-busy on the form while saving; a disabled fieldset around it while inert",
+    "apg": "https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/"
+  },
+  "variants": [
+    {
+      "id": "default",
+      "name": "Identity step"
+    },
+    {
+      "id": "review",
+      "name": "Review step",
+      "description": "The third step; the field grid is replaced by a table of the entered values with a tertiary Edit button per row, and the primary action saves the record."
+    }
+  ],
+  "sizes": [
+    "compact",
+    "comfortable"
+  ],
+  "states": [
+    "default",
+    "invalid",
+    "busy",
+    "disabled"
+  ],
+  "tokens": {
+    "root.bg": {
+      "alias": "color.surface.default",
+      "value": "#160b0b",
+      "status": "observed"
+    },
+    "root.border": {
+      "alias": "color.border.default",
+      "value": "#531310",
+      "status": "observed"
+    },
+    "crumbs.link": {
+      "alias": "color.text.link",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "crumbs.current": {
+      "alias": "color.text.bright",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "title.text": {
+      "alias": "color.text.bright",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "step.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "step.current-text": {
+      "alias": "color.text.bright",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "step.current-indicator": {
+      "alias": "color.border.selected-indicator",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "step.complete": {
+      "alias": "color.status.success.text",
+      "value": "#86a46f",
+      "status": "approved"
+    },
+    "step.invalid": {
+      "alias": "color.status.danger.text",
+      "value": "#f73f35",
+      "status": "observed"
+    },
+    "notice.tint": {
+      "alias": "color.status.info.tint",
+      "value": "#0f141c",
+      "status": "approved"
+    },
+    "notice.border": {
+      "alias": "color.status.info.border",
+      "value": "#7e9ebb",
+      "status": "approved"
+    },
+    "notice.text": {
+      "alias": "color.status.info.text",
+      "value": "#7e9ebb",
+      "status": "approved"
+    },
+    "summary.tint": {
+      "alias": "color.status.danger.tint",
+      "value": "#2b0e0d",
+      "status": "observed"
+    },
+    "summary.border": {
+      "alias": "color.status.danger.border",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "summary.text": {
+      "alias": "color.status.danger.text",
+      "value": "#f73f35",
+      "status": "observed"
+    },
+    "field.bg": {
+      "alias": "color.surface.input",
+      "value": "#0c0909",
+      "status": "observed"
+    },
+    "field.border": {
+      "alias": "color.border.control",
+      "value": "#a3676b",
+      "status": "proposed"
+    },
+    "field.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "field.label": {
+      "alias": "color.text.bright",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "field.help": {
+      "alias": "color.text.muted",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "field.affix": {
+      "alias": "color.text.muted",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "invalid.border": {
+      "alias": "color.status.danger.border",
+      "value": "#e53935",
+      "status": "observed"
+    },
+    "invalid.message": {
+      "alias": "color.status.danger.text",
+      "value": "#f73f35",
+      "status": "observed"
+    },
+    "disabled.bg": {
+      "alias": "color.interaction.disabled.bg",
+      "value": "#160b0b",
+      "status": "observed"
+    },
+    "disabled.text": {
+      "alias": "color.text.disabled",
+      "value": "#8a5559",
+      "status": "approved"
+    },
+    "disabled.border": {
+      "alias": "color.border.disabled",
+      "value": "#7d1310",
+      "status": "observed"
+    },
+    "review.key": {
+      "alias": "color.text.muted",
+      "value": "#bd787d",
+      "status": "observed"
+    },
+    "review.header-rule": {
+      "alias": "color.border.strong",
+      "value": "#9e231f",
+      "status": "observed"
+    },
+    "review.row-rule": {
+      "alias": "color.border.divider",
+      "value": "#2b0e0d",
+      "status": "proposed"
+    },
+    "footer.border": {
+      "alias": "color.border.divider",
+      "value": "#2b0e0d",
+      "status": "proposed"
+    },
+    "continue.bg": {
+      "alias": "color.action.primary.bg",
+      "value": "#871f19",
+      "status": "observed"
+    },
+    "continue.text": {
+      "alias": "color.action.primary.text",
+      "value": "#f4eeee",
+      "status": "observed"
+    },
+    "continue.busy-glyph": {
+      "alias": "color.action.primary.text",
+      "value": "#f4eeee",
+      "status": "observed"
+    },
+    "back.text": {
+      "alias": "color.action.secondary.text",
+      "value": "#ffa2a7",
+      "status": "observed"
+    },
+    "back.border": {
+      "alias": "color.action.secondary.border",
+      "value": "#a3676b",
+      "status": "observed"
+    },
+    "draft.text": {
+      "alias": "color.action.tertiary.text",
+      "value": "#e99499",
+      "status": "observed"
+    },
+    "draft.bg-hover": {
+      "alias": "color.action.tertiary.hover-bg",
+      "value": "#1c0a09",
+      "status": "observed"
+    }
+  },
+  "stateRules": [
+    {
+      "state": "default",
+      "visual": "rest tokens of every component on {color.surface.default}; the current step carries the indicator bar, future steps are disabled",
+      "channel": "`aria-current=\"step\"`",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.surface.input",
+          "value": "#0c0909",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.border.control",
+          "value": "#a3676b",
+          "status": "proposed"
+        }
+      }
+    },
+    {
+      "state": "invalid",
+      "visual": "the name and hostname fields take the 2px {color.status.danger.border} and show their ✕ messages; the current step's marker becomes ✕; a danger alert on {color.status.danger.tint} summarising the two fields replaces the notice; the other fields stay at rest",
+      "channel": "border width 1 → 2px; glyphs; `aria-invalid`; `role=\"alert\"`",
+      "tokens": {
+        "fg": {
+          "alias": "color.status.danger.text",
+          "value": "#f73f35",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.status.danger.tint",
+          "value": "#2b0e0d",
+          "status": "observed"
+        },
+        "border": {
+          "alias": "color.status.danger.border",
+          "value": "#e53935",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "busy",
+      "visual": "Continue shows the static ⋯ glyph in {color.action.primary.text}; the form carries `aria-busy`; nothing shrinks or animates",
+      "channel": "glyph; `aria-busy`; cursor: progress",
+      "tokens": {
+        "fg": {
+          "alias": "color.action.primary.text",
+          "value": "#f4eeee",
+          "status": "observed"
+        },
+        "bg": {
+          "alias": "color.action.primary.bg",
+          "value": "#871f19",
+          "status": "observed"
+        }
+      }
+    },
+    {
+      "state": "disabled",
+      "visual": "every control takes its component's disabled treatment ({color.text.disabled}, {color.border.disabled}, {color.interaction.disabled.bg}); labels and review keys dim; no hover anywhere",
+      "channel": "`disabled` on the wrapping fieldset; cursor: not-allowed; never opacity",
+      "tokens": {}
+    }
+  ],
+  "keyboard": [
+    {
+      "key": "Tab / Shift+Tab",
+      "action": "Breadcrumb links, the reachable step buttons, then every field in reading order, then Back, Save draft and Continue; the file-input's native input is the stop and its button label is drawn with the ring."
+    },
+    {
+      "key": "Enter",
+      "action": "Follows a breadcrumb, activates a step or a button; in a text field submits the form in a host."
+    },
+    {
+      "key": "Space",
+      "action": "Toggles the checkbox; opens the file chooser from the file-input."
+    },
+    {
+      "key": "Arrow keys",
+      "action": "Move within the select and the date field's segments."
+    },
+    {
+      "key": "Escape",
+      "action": "Nothing; the screen is not a dialog."
+    }
+  ],
+  "responsive": "The root is an inline-size container; the field grid uses auto-fill columns of at least 20rem, so it is two columns wide in the reference frame and one at 320px, the notes always spanning the row. Below 600px the footer buttons stack full width with the primary action first in visual order. The review table scrolls inside its own container when narrower than its content. RTL mirrors the breadcrumb separators, the step order, the suffix and the button alignment.",
+  "portability": {
+    "web": "Landmarks and native controls; aria-invalid and the summary alert appear after submit, aria-busy while saving, and a disabled fieldset makes the form inert; the state hooks are data-state-invalid, data-state-busy and data-state-disabled on the root. Hosts without container queries stack the footer at the 600px viewport breakpoint. The 56rem width and the two-column grid are layout of this specimen, not rules.",
+    "nativeFallbacks": [
+      "GTK4: a Breadcrumb-free HeaderBar title, an Adw.Carousel-free step list as a ListBox, and a PreferencesGroup of rows; invalid rows use the .error style class and an InfoBar carries the summary.",
+      "Qt: QWizard with its page list, a QFormLayout of fields, a QMessageBox-free inline banner; busy disables the page through setEnabled(false).",
+      "Terminal UI: a title, a step line, fields stacked at full width, the summary as a double-line box; the ✓ and ✕ glyphs survive without colour."
+    ]
+  },
+  "fixtures": [
+    "FX-STATE-MATRIX",
+    "FX-LONG",
+    "FX-320",
+    "FX-360",
+    "FX-ZOOM-200",
+    "FX-RM",
+    "FX-HC",
+    "FX-I18N",
+    "FX-RTL",
+    "FX-DENSITY"
+  ],
+  "related": [
+    "breadcrumbs",
+    "wizard",
+    "alert",
+    "text-field",
+    "select",
+    "date-picker",
+    "file-input",
+    "textarea",
+    "checkbox",
+    "button",
+    "table"
+  ],
+  "specimens": [],
+  "nonExamples": "A rounded card with a drop shadow around the form. A Material stepper with\ncircular numbered badges and a connecting line. A red banner across the\nwhole form instead of the summary alert plus field messages. Fields whose\nborders glow red. A spinner replacing the Continue label. Saving while the\nfields fade to half opacity. Placing the actions in a sticky footer bar with\na shadow.",
+  "contrast": [
+    {
+      "label": "admin-form default text",
+      "state": "default",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.input",
+      "fgHex": "#e99499",
+      "bgHex": "#0c0909",
+      "ratio": 8.65,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "admin-form default border",
+      "state": "default",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.control",
+      "bg": "color.surface.input",
+      "fgHex": "#a3676b",
+      "bgHex": "#0c0909",
+      "ratio": 4.45,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "admin-form invalid text",
+      "state": "invalid",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.status.danger.text",
+      "bg": "color.status.danger.tint",
+      "fgHex": "#f73f35",
+      "bgHex": "#2b0e0d",
+      "ratio": 4.88,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "admin-form invalid border",
+      "state": "invalid",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.status.danger.border",
+      "bg": "color.status.danger.tint",
+      "fgHex": "#e53935",
+      "bgHex": "#2b0e0d",
+      "ratio": 4.24,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "admin-form busy text",
+      "state": "busy",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.primary.text",
+      "bg": "color.action.primary.bg",
+      "fgHex": "#f4eeee",
+      "bgHex": "#871f19",
+      "ratio": 8.17,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "title, labels and the current step on the panel surface",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.bright",
+      "bg": "color.surface.default",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#160b0b",
+      "ratio": 10.1,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "help, affix and review keys on the panel surface",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.muted",
+      "bg": "color.surface.default",
+      "fgHex": "#bd787d",
+      "bgHex": "#160b0b",
+      "ratio": 5.66,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "breadcrumb links on the panel surface",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.link",
+      "bg": "color.surface.default",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#160b0b",
+      "ratio": 10.1,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "complete-step check",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.status.success.text",
+      "bg": "color.surface.default",
+      "fgHex": "#86a46f",
+      "bgHex": "#160b0b",
+      "ratio": 6.95,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "notice title on its tint",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.status.info.text",
+      "bg": "color.status.info.tint",
+      "fgHex": "#7e9ebb",
+      "bgHex": "#0f141c",
+      "ratio": 6.59,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "notice text on its tint",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.status.info.tint",
+      "fgHex": "#e99499",
+      "bgHex": "#0f141c",
+      "ratio": 8.06,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "summary text on the danger tint",
+      "state": "invalid",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.status.danger.tint",
+      "fgHex": "#e99499",
+      "bgHex": "#2b0e0d",
+      "ratio": 7.82,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "field messages on the panel surface",
+      "state": "invalid",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.status.danger.text",
+      "bg": "color.surface.default",
+      "fgHex": "#f73f35",
+      "bgHex": "#160b0b",
+      "ratio": 5.26,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "invalid field boundary",
+      "state": "invalid",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.status.danger.border",
+      "bg": "color.surface.input",
+      "fgHex": "#e53935",
+      "bgHex": "#0c0909",
+      "ratio": 4.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "current-step indicator bar",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.selected-indicator",
+      "bg": "color.surface.default",
+      "fgHex": "#e53935",
+      "bgHex": "#160b0b",
+      "ratio": 4.57,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "Back button and file-input button boundaries",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.action.secondary.border",
+      "bg": "color.surface.default",
+      "fgHex": "#a3676b",
+      "bgHex": "#160b0b",
+      "ratio": 4.33,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "disabled control text (exempt; house floor 3:1)",
+      "state": "disabled",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.text.disabled",
+      "bg": "color.interaction.disabled.bg",
+      "fgHex": "#8a5559",
+      "bgHex": "#160b0b",
+      "ratio": 3.24,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "disabled labels and review keys (exempt; house floor 3:1)",
+      "state": "disabled",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.text.disabled",
+      "bg": "color.surface.default",
+      "fgHex": "#8a5559",
+      "bgHex": "#160b0b",
+      "ratio": 3.24,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "disabled boundaries (exempt)",
+      "state": "disabled",
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.border.disabled",
+      "bg": "color.interaction.disabled.bg",
+      "fgHex": "#7d1310",
+      "bgHex": "#160b0b",
+      "ratio": 1.82,
+      "pass": true,
+      "waiver": "disabled controls are exempt from 1.4.11"
+    },
+    {
+      "label": "review header rule (decorative)",
+      "state": null,
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.border.strong",
+      "bg": "color.surface.default",
+      "fgHex": "#9e231f",
+      "bgHex": "#160b0b",
+      "ratio": 2.5,
+      "pass": true,
+      "waiver": "the header row is identified by th scope=col; the rule only separates it"
+    },
+    {
+      "label": "panel edge (decorative)",
+      "state": null,
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.border.default",
+      "bg": "color.surface.default",
+      "fgHex": "#531310",
+      "bgHex": "#160b0b",
+      "ratio": 1.35,
+      "pass": true,
+      "waiver": "the panel edge separates the screen from the page; every control inside carries its own boundary"
+    },
+    {
+      "label": "step, row and footer rules (decorative)",
+      "state": null,
+      "kind": "ui",
+      "min": 1,
+      "fg": "color.border.divider",
+      "bg": "color.surface.default",
+      "fgHex": "#2b0e0d",
+      "bgHex": "#160b0b",
+      "ratio": 1.08,
+      "pass": true,
+      "waiver": "the rules group content that is already distinct by landmark, list and table structure"
+    }
+  ]
+}

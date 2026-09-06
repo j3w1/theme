@@ -1,0 +1,70 @@
+j3w1/theme implementation brief — admin-form
+theme: j3w1-theme 0.1.0-draft.1  profile: default  sourceDigest: sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=
+pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0-draft.1/exports/components/admin-form.json
+spec: spec/components/admin-form.md  site: https://j3w1.github.io/theme/#c-admin-form
+maturity: stable  priority: R1
+
+Summary: A create-or-edit record screen composed from breadcrumbs, a wizard step list, alerts, six field components and a button row; the review step is a table with an Edit button per row.
+
+Tokens (resolved):
+  root.bg                 #160b0b  ({color.surface.default})
+  root.border             #531310  ({color.border.default})
+  crumbs.link             #ffa2a7  ({color.text.link})
+  crumbs.current          #ffa2a7  ({color.text.bright})
+  title.text              #ffa2a7  ({color.text.bright})
+  step.text               #e99499  ({color.text.default})
+  step.current-text       #ffa2a7  ({color.text.bright})
+  step.current-indicator  #e53935  ({color.border.selected-indicator})
+  step.complete           #86a46f  ({color.status.success.text})
+  step.invalid            #f73f35  ({color.status.danger.text})
+  notice.tint             #0f141c  ({color.status.info.tint})
+  notice.border           #7e9ebb  ({color.status.info.border})
+  notice.text             #7e9ebb  ({color.status.info.text})
+  summary.tint            #2b0e0d  ({color.status.danger.tint})
+  summary.border          #e53935  ({color.status.danger.border})
+  summary.text            #f73f35  ({color.status.danger.text})
+  field.bg                #0c0909  ({color.surface.input})
+  field.border            #a3676b  ({color.border.control})
+  field.text              #e99499  ({color.text.default})
+  field.label             #ffa2a7  ({color.text.bright})
+  field.help              #bd787d  ({color.text.muted})
+  field.affix             #bd787d  ({color.text.muted})
+  invalid.border          #e53935  ({color.status.danger.border})
+  invalid.message         #f73f35  ({color.status.danger.text})
+  disabled.bg             #160b0b  ({color.interaction.disabled.bg})
+  disabled.text           #8a5559  ({color.text.disabled})
+  disabled.border         #7d1310  ({color.border.disabled})
+  review.key              #bd787d  ({color.text.muted})
+  review.header-rule      #9e231f  ({color.border.strong})
+  review.row-rule         #2b0e0d  ({color.border.divider})
+  footer.border           #2b0e0d  ({color.border.divider})
+  continue.bg             #871f19  ({color.action.primary.bg})
+  continue.text           #f4eeee  ({color.action.primary.text})
+  continue.busy-glyph     #f4eeee  ({color.action.primary.text})
+  back.text               #ffa2a7  ({color.action.secondary.text})
+  back.border             #a3676b  ({color.action.secondary.border})
+  draft.text              #e99499  ({color.action.tertiary.text})
+  draft.bg-hover          #1c0a09  ({color.action.tertiary.hover-bg})
+
+States: default, invalid, busy, disabled
+  default: rest tokens of every component on {color.surface.default}; the current step carries the indicator bar, future steps are disabled [`aria-current="step"`]
+  invalid: the name and hostname fields take the 2px {color.status.danger.border} and show their ✕ messages; the current step's marker becomes ✕; a danger alert on {color.status.danger.tint} summarising the two fields replaces the notice; the other fields stay at rest [border width 1 → 2px; glyphs; `aria-invalid`; `role="alert"`]
+  busy: Continue shows the static ⋯ glyph in {color.action.primary.text}; the form carries `aria-busy`; nothing shrinks or animates [glyph; `aria-busy`; cursor: progress]
+  disabled: every control takes its component's disabled treatment ({color.text.disabled}, {color.border.disabled}, {color.interaction.disabled.bg}); labels and review keys dim; no hover anywhere [`disabled` on the wrapping fieldset; cursor: not-allowed; never opacity]
+
+Keyboard:
+  Tab / Shift+Tab: Breadcrumb links, the reachable step buttons, then every field in reading order, then Back, Save draft and Continue; the file-input's native input is the stop and its button label is drawn with the ring.
+  Enter: Follows a breadcrumb, activates a step or a button; in a text field submits the form in a host.
+  Space: Toggles the checkbox; opens the file chooser from the file-input.
+  Arrow keys: Move within the select and the date field's segments.
+  Escape: Nothing; the screen is not a dialog.
+
+ARIA: region landmark named by the h2; a Breadcrumb nav landmark; the wizard step list with aria-current=step; role=status and role=alert notices; a form landmark of native controls; aria-busy on the form while saving; a disabled fieldset around it while inert (https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/)
+Responsive: The root is an inline-size container; the field grid uses auto-fill columns of at least 20rem, so it is two columns wide in the reference frame and one at 320px, the notes always spanning the row. Below 600px the footer buttons stack full width with the primary action first in visual order. The review table scrolls inside its own container when narrower than its content. RTL mirrors the breadcrumb separators, the step order, the suffix and the button alignment.
+Portability: Landmarks and native controls; aria-invalid and the summary alert appear after submit, aria-busy while saving, and a disabled fieldset makes the form inert; the state hooks are data-state-invalid, data-state-busy and data-state-disabled on the root. Hosts without container queries stack the footer at the 600px viewport breakpoint. The 56rem width and the two-column grid are layout of this specimen, not rules.
+  native: GTK4: a Breadcrumb-free HeaderBar title, an Adw.Carousel-free step list as a ListBox, and a PreferencesGroup of rows; invalid rows use the .error style class and an InfoBar carries the summary.
+  native: Qt: QWizard with its page list, a QFormLayout of fields, a QMessageBox-free inline banner; busy disables the page through setEnabled(false).
+  native: Terminal UI: a title, a step line, fields stacked at full width, the summary as a double-line box; the ✓ and ✕ glyphs survive without colour.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

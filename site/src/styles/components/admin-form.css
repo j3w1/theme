@@ -1,0 +1,179 @@
+/* admin-form — composed specimen. Breadcrumbs, a heading, the wizard step
+   list, an alert, a field grid built from the text-field, select,
+   date-picker, file-input, textarea and checkbox components, and a button
+   row; the review variant swaps the grid for a table of values with an Edit
+   button per row. The composed components keep their own classes and CSS;
+   this file adds layout and the forced-state selectors the state matrix
+   emits, which are also the runtime hooks a host sets on the root
+   (data-state-invalid, data-state-busy, data-state-disabled). Because the
+   matrix marks every field in a cell, the invalid state names the two
+   representative fields and holds the rest at rest. Token variables only. */
+
+.admin-form {
+  container-type: inline-size;
+  container-name: admin-form;
+  display: grid;
+  gap: var(--space-16);
+  width: 56rem;
+  max-width: 100%;
+  min-width: 0;
+  padding: var(--space-16);
+  background: var(--color-surface-default);
+  border: var(--border-width-default) solid var(--color-border-default);
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+}
+
+.admin-form-title {
+  margin: calc(-1 * var(--space-8)) 0 0;
+  color: var(--color-text-bright);
+  font-size: var(--font-size-h2);
+  line-height: var(--font-line-height-h2);
+  font-weight: var(--font-weight-bold);
+  overflow-wrap: anywhere;
+}
+
+/* layout rules carry the root class so they outrank the components' own
+   root rules whatever the stylesheet order */
+.admin-form .admin-form-steps {
+  max-width: none;
+}
+
+/* the danger summary exists in every fragment and shows only when the form is invalid */
+.admin-form .admin-form-summary {
+  display: none;
+}
+
+.admin-form-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+  gap: var(--space-16) var(--space-24);
+  align-items: start;
+  min-width: 0;
+}
+
+.admin-form .admin-form-fields > * {
+  max-width: none;
+}
+
+.admin-form-notes {
+  grid-column: 1 / -1;
+}
+
+.admin-form-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--space-8);
+  padding-top: var(--space-12);
+  border-top: var(--border-width-default) solid var(--color-border-divider);
+}
+
+/* below 600px the button row stacks and every button spans the row */
+@container admin-form (width < 600px) {
+  .admin-form-footer {
+    flex-direction: column-reverse;
+  }
+
+  .admin-form-footer .button {
+    width: 100%;
+  }
+}
+
+/* review: a description-style table; the row header is the field name */
+.admin-form-review {
+  min-width: 0;
+}
+
+.admin-form .admin-form-review .admin-form-review-key {
+  width: 30%;
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-regular);
+  text-align: start;
+  white-space: nowrap;
+}
+
+.admin-form .admin-form-review .admin-form-review-actions {
+  width: 1%;
+  text-align: end;
+  white-space: nowrap;
+}
+
+/* invalid: the name and hostname fields carry the 2px danger border and
+   their messages, the wizard marks the current step ✕, and the danger
+   summary replaces the notice; the fields the matrix also marked stay at rest.
+   These carry one more class than the components own :has([aria-invalid])
+   rules so they win whatever the stylesheet order. */
+[data-state-invalid] .admin-form .admin-form-summary {
+  display: flex;
+}
+
+[data-state-invalid] .admin-form .admin-form-notice {
+  display: none;
+}
+
+[data-state-invalid] .admin-form .admin-form-fields .select .select-root,
+[data-state-invalid] .admin-form .admin-form-fields .date-picker .date-picker-root,
+[data-state-invalid] .admin-form .admin-form-fields .textarea .textarea-root,
+[data-state-invalid] .admin-form .admin-form-fields .checkbox .checkbox-input {
+  border-color: var(--color-border-control);
+  border-width: var(--border-width-default);
+}
+
+[data-state-invalid] .admin-form .admin-form-fields .file-input .file-input-button {
+  border-color: var(--color-action-secondary-border);
+  border-width: var(--border-width-default);
+}
+
+[data-state-invalid] .admin-form .admin-form-fields .select .select-message,
+[data-state-invalid] .admin-form .admin-form-fields .date-picker .date-picker-message,
+[data-state-invalid] .admin-form .admin-form-fields .file-input .file-input-message,
+[data-state-invalid] .admin-form .admin-form-fields .textarea .textarea-message,
+[data-state-invalid] .admin-form .admin-form-fields .checkbox .checkbox-message {
+  display: none;
+}
+
+[data-state-invalid] .admin-form .admin-form-fields .select .select-help,
+[data-state-invalid] .admin-form .admin-form-fields .date-picker .date-picker-help,
+[data-state-invalid] .admin-form .admin-form-fields .file-input .file-input-help,
+[data-state-invalid] .admin-form .admin-form-fields .textarea .textarea-help {
+  position: static;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip: auto;
+}
+
+[data-state-invalid] .admin-form .admin-form-fields .textarea .textarea-count {
+  color: var(--color-text-muted);
+}
+
+/* busy: Continue shows the static ⋯ glyph; aria-busy sits on the form */
+.admin-form[aria-busy="true"] .admin-form-continue .button-loading,
+[data-state-busy] .admin-form-continue .button-loading {
+  display: inline;
+}
+
+.admin-form[aria-busy="true"] .admin-form-continue,
+[data-state-busy] .admin-form-continue {
+  cursor: progress;
+}
+
+/* disabled: the whole form is inert while saving; every composed control
+   takes its own disabled treatment and the review keys dim with them */
+[data-state-disabled] .admin-form .admin-form-review .admin-form-review-key {
+  color: var(--color-text-disabled);
+}
+
+[data-state-disabled] .admin-form-fields,
+[data-state-disabled] .admin-form-footer {
+  cursor: not-allowed;
+}
+
+@media (forced-colors: active) {
+  .admin-form {
+    border-color: CanvasText;
+  }
+}
