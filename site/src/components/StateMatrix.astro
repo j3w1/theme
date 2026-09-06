@@ -1,0 +1,81 @@
+---
+/* Rows = declared states, columns = variants. Every cell is a static clone
+   of the demo fragment wrapped in [data-state]; forced-state selectors in the
+   component CSS render the state without JavaScript. Only the default cell
+   is live in the tab order; the others are aria-hidden with tabindex="-1"
+   so keyboard users are not walked through dozens of copies. */
+
+interface Props {
+  id: string;
+  states: string[];
+  variants: { id: string; name: string }[];
+  fragments: Map<string, string>;
+  sizes: string[];
+}
+
+const { id, states, variants, fragments, sizes } = Astro.props;
+
+const inert = (html: string) =>
+  html
+    .replace(/\s(tabindex)="[^"]*"/g, "")
+    .replace(/<(a|button|input|select|textarea|summary|details|\w+)(\s[^>]*?)?(\/?)>/g, (m, tag, attrs = "", slash) => {
+      const focusable = ["a", "button", "input", "select", "textarea", "summary"].includes(tag) || /\stabindex=|\scontenteditable/.test(attrs);
+      return focusable ? `<${tag}${attrs} tabindex="-1"${slash}>` : m;
+    });
+
+const stateAttributes = (state: string) => {
+  const parts = state.split("+");
+  const attrs: string[] = [`data-state="${state}"`];
+  for (const part of parts) attrs.push(`data-state-${part}=""`);
+  return attrs.join(" ");
+};
+
+/* Native attributes the fragment needs for the state to be real, not just painted. */
+const nativeState = (html: string, state: string) => {
+  let out = html;
+  const parts = state.split("+");
+  if (parts.includes("disabled")) out = out.replace(/<(input|button|select|textarea|fieldset)(\s|>)/g, "<$1 disabled$2");
+  if (parts.includes("read-only")) out = out.replace(/<(input|textarea)(\s|>)/g, "<$1 readonly$2");
+  if (parts.includes("required")) out = out.replace(/<(input|select|textarea)(\s|>)/g, "<$1 required$2");
+  if (parts.includes("invalid")) out = out.replace(/<(input|select|textarea)(\s|>)/g, '<$1 aria-invalid="true"$2');
+  if (parts.includes("checked")) out = out.replace(/<input(\s[^>]*type="(?:checkbox|radio)"[^>]*)>/g, "<input$1 checked>");
+  if (parts.includes("busy") || parts.includes("loading")) out = out.replace(/^(\s*<\w+)/, '$1 aria-busy="true"');
+  if (parts.includes("selected")) out = out.replace(/^(\s*<\w+)/, '$1 aria-selected="true"');
+  if (parts.includes("current")) out = out.replace(/^(\s*<\w+)/, '$1 aria-current="true"');
+  if (parts.includes("expanded")) out = out.replace(/^(\s*<\w+)/, '$1 aria-expanded="true"');
+  if (parts.includes("open")) out = out.replace(/<(details|dialog)(\s|>)/g, "<$1 open$2");
+  return out;
+};
+---
+
+<div class="block" id={`${id}-states`}>
+  <h4>State matrix</h4>
+  <p class="family-description">Every declared state and combination, statically rendered; the default cell is live. Density: <span class="js-only">use the page control</span>{sizes.join(" / ")}.</p>
+  <div class="table-scroll">
+    <table class="matrix">
+      <thead>
+        <tr>
+          <th scope="col">State</th>
+          {variants.map((v) => <th scope="col">{v.name}</th>)}
+        </tr>
+      </thead>
+      <tbody>
+        {states.map((state) => (
+          <tr>
+            <th scope="row"><code>{state}</code></th>
+            {variants.map((v) => {
+              const html = fragments.get(v.id) ?? "";
+              const live = state === "default";
+              const body = live ? html : inert(nativeState(html, state));
+              return (
+                <td>
+                  <div class={`demo ${id}-demo`} data-component={id} data-variant={v.id} set:html={`<div ${stateAttributes(state)}${live ? "" : ' aria-hidden="true"'}>${body}</div>`} />
+                </td>
+              );
+            })}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>

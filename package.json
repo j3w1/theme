@@ -24,6 +24,10 @@
     "consumption:judge": "node scripts/consumption-judge.mjs"
   },
   "devDependencies": {
+    "@astrojs/markdown-remark": "7.3.0",
+    "@axe-core/playwright": "4.13.0",
+    "@playwright/test": "1.63.0",
+    "astro": "7.3.1",
     "yaml": "2.9.0",
     "zod": "4.5.4"
   }

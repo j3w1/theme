@@ -1,0 +1,66 @@
+---
+import "../styles/tokens.generated.css";
+import "../styles/base.css";
+import "../styles/site.css";
+import "../styles/print.css";
+import { withBase } from "../lib/base";
+import { theme, defaultTokens, profiles, defaultProfileId } from "../lib/theme";
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const canonical = new URL(import.meta.env.BASE_URL.replace(/\/?$/, "/"), Astro.site).href;
+const buildCommit = (process.env.GITHUB_SHA ?? "").slice(0, 7);
+const inspectorData = Object.fromEntries(
+  Object.entries(profiles).map(([id, p]) => [
+    id,
+    Object.fromEntries(Object.entries(p.tokens).map(([path, t]) => [path, [t.css, t.aliasOf ?? "", t.status, t.description ?? ""]])),
+  ]),
+);
+---
+
+<!doctype html>
+<html lang="en" data-density="comfortable">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content={(defaultTokens["color.surface.canvas"].value as { hex: string }).hex} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href={withBase("favicon.svg")} type="image/svg+xml" />
+    <link rel="alternate" type="text/markdown" href={withBase("exports/theme.compact.md")} title="Compact specification for agents" />
+    <script is:inline>
+      /* Restore the viewer's density and profile before first paint; both are
+         page preferences namespaced under j3w1-theme:*. Never throws. */
+      (function () {
+        try {
+          document.documentElement.classList.add("js");
+          var d = localStorage.getItem("j3w1-theme:density");
+          if (d === "compact" || d === "comfortable") document.documentElement.setAttribute("data-density", d);
+          var p = localStorage.getItem("j3w1-theme:profile");
+          if (p) document.documentElement.setAttribute("data-demo-profile", p);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="page">
+      <slot />
+    </div>
+    <div class="inspector" id="inspector" role="dialog" aria-label="Token inspector" hidden></div>
+    <script type="application/json" id="j3w1-tokens" set:html={JSON.stringify({ defaultProfile: defaultProfileId, version: theme.version, buildCommit, profiles: inspectorData })} />
+    <script>
+      import "../scripts/main";
+    </script>
+  </body>
+</html>

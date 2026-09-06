@@ -1,0 +1,56 @@
+/* Rehype plugin for the spec Markdown:
+   - shifts headings so the page outline stays h1 > h2 (doc or family) > h3
+     (component) > h4 (sections): documents shift by one, components by two;
+   - wraps `{token.path}` references in prose as <code data-token> so the
+     inspector can resolve them;
+   - strips the @compact markers, which are for the export builders. */
+
+const SHIFT = { doc: 1, component: 2 };
+const TOKEN = /\{([a-z0-9][a-z0-9.-]*)\}/g;
+
+const kindOf = (file) => {
+  const p = String(file?.path ?? file?.history?.[0] ?? "").replaceAll("\\", "/");
+  if (p.includes("/spec/components/")) return "component";
+  if (p.includes("/spec/") || p.includes("/agents/")) return "doc";
+  return null;
+};
+
+const walk = (node, fn) => {
+  fn(node);
+  for (const child of node.children ?? []) walk(child, fn);
+};
+
+export default function rehypeSpec() {
+  return (tree, file) => {
+    const kind = kindOf(file);
+    if (!kind) return;
+    const by = SHIFT[kind];
+    walk(tree, (node) => {
+      if (node.type === "element" && /^h[1-6]$/.test(node.tagName)) {
+        node.tagName = `h${Math.min(6, Number(node.tagName[1]) + by)}`;
+      }
+      if (node.type === "comment" && /@compact:(start|end)/.test(node.value)) node.value = "";
+    });
+    const rewrite = (parent) => {
+      if (!parent.children) return;
+      const next = [];
+      for (const child of parent.children) {
+        if (child.type === "text" && TOKEN.test(child.value) && parent.tagName !== "code" && parent.tagName !== "pre") {
+          TOKEN.lastIndex = 0;
+          let last = 0;
+          for (const match of child.value.matchAll(TOKEN)) {
+            if (match.index > last) next.push({ type: "text", value: child.value.slice(last, match.index) });
+            next.push({ type: "element", tagName: "code", properties: { dataToken: match[1] }, children: [{ type: "text", value: match[1] }] });
+            last = match.index + match[0].length;
+          }
+          if (last < child.value.length) next.push({ type: "text", value: child.value.slice(last) });
+        } else {
+          rewrite(child);
+          next.push(child);
+        }
+      }
+      parent.children = next;
+    };
+    rewrite(tree);
+  };
+}

@@ -1,0 +1,88 @@
+---
+/* One component: identity, meta, tokens, state matrix, the rendered
+   specification body, the agent brief. Anchors come from scripts/lib/anchors.mjs. */
+import { render } from "astro:content";
+import { withBase } from "../lib/base";
+import { anchors, coverageLedger, cssVar, defaultTokens, familyList } from "../lib/theme";
+import StateMatrix from "./StateMatrix.astro";
+import { splitVariants } from "../../../scripts/lib/spec.mjs";
+
+interface Props {
+  entry: any;
+  demo: string | null;
+}
+
+const { entry, demo } = Astro.props;
+const c = entry.data;
+const { Content } = await render(entry);
+const fragments = demo ? (splitVariants(demo) as Map<string, string>) : new Map<string, string>();
+const coverage = (coverageLedger.components as Record<string, { specified: boolean; demonstrated: boolean; tested: boolean }>)[c.id];
+const family = familyList.find((f) => f.id === c.family);
+const statusTags = [coverage?.specified && "specified", coverage?.demonstrated && "demonstrated", coverage?.tested && "tested"].filter(Boolean) as string[];
+---
+
+<section class="component" id={anchors.component(c.id)} data-component={c.id} data-family={c.family} data-states={c.states.join(",")} data-priority={c.priority} data-maturity={c.maturity} data-keywords={[c.name, ...c.keywords].join(" ").toLowerCase()}>
+  <h3>{c.name} <code>{c.id}</code></h3>
+  <ul class="meta">
+    <li>Family: <code>{family?.title ?? c.family}</code></li>
+    <li>Maturity: <code>{c.maturity}</code></li>
+    <li>Priority: <code>{c.priority}</code></li>
+    <li>Since: <code>{c.since}</code></li>
+    <li>{c.native ? "Native control" : "Custom widget"}: <code>{c.aria.pattern}</code>{c.aria.apg && <> — <a href={c.aria.apg}>APG pattern</a></>}</li>
+    {statusTags.map((t) => <li><span class="tag">{t}</span></li>)}
+    {c.maturity === "draft" && <li><span class="tag tag-proposed">draft</span></li>}
+  </ul>
+  <p class="prose">{c.summary}</p>
+
+  <div class="block">
+    <h4>Tokens</h4>
+    <div class="table-scroll">
+      <table class="token-table">
+        <thead><tr><th scope="col">Part</th><th scope="col">Role</th><th scope="col">Value</th><th scope="col">Use</th></tr></thead>
+        <tbody>
+          {Object.entries(c.tokens as Record<string, string>).map(([part, path]) => {
+            const token = defaultTokens[path];
+            return (
+              <tr>
+                <td><code>{part}</code></td>
+                <td>{token?.type === "color" && <span class="swatch" style={`background: var(${cssVar(path)})`} aria-hidden="true"></span>}<code data-token={path}>{path}</code>{token?.status === "proposed" && <span class="tag tag-proposed">proposed</span>}</td>
+                <td><code>{token?.css ?? "unresolved"}</code></td>
+                <td>{token?.description}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  {fragments.size > 0 && <StateMatrix id={c.id} states={c.states} variants={c.variants} fragments={fragments} sizes={c.sizes} />}
+  {fragments.size === 0 && <p class="family-description">No demonstration yet; the specification below is normative.</p>}
+
+  <div class="spec-body prose">
+    <Content />
+  </div>
+
+  {c.keyboard.length > 0 && (
+    <div class="block">
+      <h4>Keys</h4>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th scope="col">Key</th><th scope="col">Action</th></tr></thead>
+          <tbody>{c.keyboard.map((k: { key: string; action: string }) => <tr><td><kbd>{k.key}</kbd></td><td>{k.action}</td></tr>)}</tbody>
+        </table>
+      </div>
+    </div>
+  )}
+
+  <div class="block agent-brief">
+    <h4>For agents</h4>
+    <p>
+      <a href={withBase(`exports/components/${c.id}.json`)}>Component JSON</a> ·
+      <a href={withBase(`exports/components/${c.id}.brief.txt`)}>Implementation brief</a> ·
+      <button type="button" class="btn js-only" data-copy-brief={withBase(`exports/components/${c.id}.brief.txt`)}>Copy implementation brief</button>
+    </p>
+    {c.related.length > 0 && <p>Related: {c.related.map((r: string) => <><a href={`#${anchors.component(r)}`}><code>{r}</code></a> </>)}</p>}
+    {c.fixtures.length > 0 && <p>Stress fixtures: {c.fixtures.map((f: string) => <><code>{f}</code> </>)}</p>}
+  </div>
+</section>

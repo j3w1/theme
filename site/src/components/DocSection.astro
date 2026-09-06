@@ -1,0 +1,19 @@
+---
+/* A normative document rendered as a page section with a stable anchor. */
+import { render } from "astro:content";
+import { anchors } from "../lib/theme";
+
+interface Props {
+  entry: any;
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<section class="doc prose" id={anchors.doc(entry.data.id)} data-doc={entry.data.id}>
+  <h2>{entry.data.title}</h2>
+  <p class="family-description">{entry.data.summary}</p>
+  <Content />
+  <slot />
+</section>

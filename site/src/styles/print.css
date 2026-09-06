@@ -1,0 +1,42 @@
+/* Print: no chrome controls, no sticky contents, link URLs visible, every
+   details element opened by scripts/print.ts before printing. */
+
+@media print {
+  html,
+  body {
+    background: var(--color-surface-canvas);
+  }
+
+  .controls,
+  .skip-link,
+  .copy-button,
+  .inspector {
+    display: none !important;
+  }
+
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .toc {
+    position: static;
+    max-height: none;
+    overflow: visible;
+    border-right: 0;
+  }
+
+  .component,
+  .specimen {
+    break-inside: avoid;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    color: var(--color-text-muted);
+    font-size: var(--font-size-caption);
+  }
+
+  .matrix th {
+    position: static;
+  }
+}

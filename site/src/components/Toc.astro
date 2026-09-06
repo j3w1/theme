@@ -1,0 +1,38 @@
+---
+/* Table of contents built from the same collections as the page. Every
+   anchor it emits must exist; tests/dist/consistency.test.js checks. */
+import { anchors } from "../lib/theme";
+
+interface Props {
+  docs: { id: string; title: string }[];
+  families: { id: string; title: string; components: { id: string; name: string }[] }[];
+  extra: { id: string; title: string }[];
+}
+
+const { docs, families, extra } = Astro.props;
+---
+
+<nav class="toc" id="toc" aria-label="Contents">
+  <details open>
+    <summary>Contents</summary>
+    <ol>
+      {docs.map((d) => (
+        <li><a href={`#${anchors.doc(d.id)}`}>{d.title}</a></li>
+      ))}
+      {families.map((f) => (
+        <li>
+          <div class="toc-family">{f.title}</div>
+          <a href={`#${anchors.family(f.id)}`}>{f.title}</a>
+          <ol>
+            {f.components.map((c) => (
+              <li><a href={`#${anchors.component(c.id)}`} data-toc-component={c.id}>{c.name}</a></li>
+            ))}
+          </ol>
+        </li>
+      ))}
+      {extra.map((e) => (
+        <li><a href={`#${e.id}`}>{e.title}</a></li>
+      ))}
+    </ol>
+  </details>
+</nav>

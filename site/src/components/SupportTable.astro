@@ -1,0 +1,34 @@
+---
+interface Props {
+  ports: any[];
+}
+
+const { ports } = Astro.props;
+---
+
+<div class="block" id="support-table">
+  <h3>Application ports</h3>
+  {ports.length === 0 ? (
+    <p>No native ports are published yet. Historical implementations are catalogued under References and are not supported downloads.</p>
+  ) : (
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th scope="col">Port</th><th scope="col">Format</th><th scope="col">Status</th><th scope="col">Theme</th><th scope="col">Tested on</th><th scope="col">Supported / inherited / unsupported</th></tr>
+        </thead>
+        <tbody>
+          {ports.map((p) => (
+            <tr>
+              <td>{p.data.displayName}</td>
+              <td>{p.data.format}</td>
+              <td><span class={`tag${p.data.status === "verified" ? "" : " tag-proposed"}`}>{p.data.status}</span></td>
+              <td>{p.data.themeVersion}</td>
+              <td>{p.data.testedVersions.join(", ") || "—"} ({p.data.os.join(", ")})</td>
+              <td>{p.data.surfaces.supported.length} / {p.data.surfaces.inherited.length} / {p.data.surfaces.unsupported.length}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )}
+</div>

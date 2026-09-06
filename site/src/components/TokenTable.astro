@@ -1,0 +1,63 @@
+---
+/* Every token under a prefix, with swatches, per-profile values and status. */
+import { anchors, cssVar, profiles, tokensInGroup } from "../lib/theme";
+
+interface Props {
+  prefix: string;
+  title: string;
+  id?: string;
+  grid?: boolean;
+}
+
+const { prefix, title, id, grid = false } = Astro.props;
+const rows = tokensInGroup(prefix);
+const profileIds = Object.keys(profiles);
+---
+
+<div class="block" id={id ?? anchors.token(prefix.replace(/\.$/, ""))}>
+  <h4>{title}</h4>
+  {grid ? (
+    <div class="swatch-grid">
+      {rows.map(([path, token]) => (
+        <div class="swatch-row" id={anchors.token(path)}>
+          <div class="paint" style={token.type === "color" ? `background: var(${cssVar(path)})` : ""} aria-hidden="true"></div>
+          <div class="label">
+            <code data-token={path}>{path.replace(prefix, "")}</code>
+            <span class="copy-target"><span class="value">{token.css}</span><button type="button" class="copy-button js-only" data-copy={token.css} aria-label={`Copy ${path}`}>copy</button></span>
+            {token.status === "proposed" && <span class="tag tag-proposed">proposed</span>}
+            {token.deprecated && <span class="tag tag-deprecated">deprecated</span>}
+            {token.description && <span class="value"> — {token.description}</span>}
+          </div>
+        </div>
+      ))}
+    </div>
+  ) : (
+    <div class="table-scroll">
+      <table class="token-table">
+        <thead>
+          <tr>
+            <th scope="col">Token</th>
+            {profileIds.map((p) => <th scope="col">{p}</th>)}
+            <th scope="col">Use</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map(([path, token]) => (
+            <tr id={anchors.token(path)}>
+              <td>
+                {token.type === "color" && <span class="swatch" style={`background: var(${cssVar(path)})`} aria-hidden="true"></span>}
+                <code data-token={path}>{path}</code>
+                {token.status === "proposed" && <span class="tag tag-proposed">proposed</span>}
+                {token.deprecated && <span class="tag tag-deprecated">deprecated</span>}
+              </td>
+              {profileIds.map((p) => (
+                <td><span class="copy-target"><code>{profiles[p].tokens[path]?.css ?? "—"}</code>{profiles[p].tokens[path] && <button type="button" class="copy-button js-only" data-copy={profiles[p].tokens[path].css} aria-label={`Copy ${path} (${p})`}>copy</button>}</span></td>
+              ))}
+              <td>{token.description}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )}
+</div>

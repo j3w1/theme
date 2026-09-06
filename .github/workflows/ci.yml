@@ -1,9 +1,8 @@
 name: ci
 
-# The gate: hand-authored sources validate, committed generated artifacts are
-# current, and the source tests pass. Build, browser and Pages deployment jobs
-# are added with the site (see the plan's M2); deployment happens only from
-# main and only from the same dist the browser job tested.
+# validate → build (+dist gates) → browser → deploy. The dist the browser job
+# tests is the dist that deploys; PRs get it as a downloadable artifact and
+# never deploy. Pages is configured to deploy from Actions (D-010).
 
 on:
   push:
@@ -38,3 +37,77 @@ jobs:
         run: npm run check
       - name: Source and export tests
         run: npm test
+
+  build:
+    runs-on: ubuntu-latest
+    needs: validate
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Build the site under /theme/
+        run: npm run build
+        env:
+          GITHUB_SHA: ${{ github.sha }}
+      - name: Base paths, consistency and private-material gates on dist/
+        run: npm run test:dist
+      - uses: actions/upload-artifact@v7
+        with:
+          name: site-dist
+          path: dist
+          retention-days: 7
+          include-hidden-files: true
+      - uses: actions/upload-pages-artifact@v5
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        with:
+          path: dist
+
+  browser:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@v8
+        with:
+          name: site-dist
+          path: dist
+      - run: npx playwright install --with-deps chromium
+      - name: Keyboard, axe, reflow, motion, no-JS, enhancements, print
+        run: npm run test:browser
+        env:
+          CI: "1"
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: playwright-results
+          path: |
+            test-results/
+            playwright-report/
+          if-no-files-found: ignore
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [build, browser]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

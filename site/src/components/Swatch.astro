@@ -1,0 +1,24 @@
+---
+/* A colour chip plus its path and value, linkable by token anchor. */
+import { anchors, cssVar, defaultTokens } from "../lib/theme";
+
+interface Props {
+  path: string;
+  showPath?: boolean;
+}
+
+const { path, showPath = true } = Astro.props;
+const token = defaultTokens[path];
+const isColor = token?.type === "color";
+---
+
+{token && (
+  <span class="copy-target">
+    {isColor && <span class="swatch" style={`background: var(${cssVar(path)})`} aria-hidden="true"></span>}
+    {showPath && <code data-token={path}>{path}</code>}
+    <code class="value">{token.css}</code>
+    <button type="button" class="copy-button js-only" data-copy={token.css} aria-label={`Copy ${token.css}`}>copy</button>
+  </span>
+)}
+{!token && <code>{path} (unresolved)</code>}
+<span hidden id={anchors.token(path)}></span>

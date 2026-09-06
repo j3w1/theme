@@ -1,0 +1,46 @@
+---
+import { coverageLedger } from "../lib/theme";
+
+const byFamily = coverageLedger.byFamily as Record<string, { specified: number; demonstrated: number; tested: number; total: number }>;
+const components = coverageLedger.components as Record<string, { family: string; priority: string; maturity: string; specified: boolean; demonstrated: boolean; tested: boolean; states: number }>;
+const rows = Object.entries(components);
+const defs = coverageLedger.definitions as Record<string, string>;
+---
+
+<div class="block" id="coverage-ledger">
+  <h3>Coverage ledger</h3>
+  <p><em>Specified</em>: {defs.specified}. <em>Demonstrated</em>: {defs.demonstrated}. <em>Tested</em>: {defs.tested}. Computed from the sources, never declared.</p>
+  {rows.length === 0 ? (
+    <p>No components are specified yet.</p>
+  ) : (
+    <div class="table-scroll">
+      <table class="ledger">
+        <thead>
+          <tr><th scope="col">Family</th><th scope="col">Total</th><th scope="col">Specified</th><th scope="col">Demonstrated</th><th scope="col">Tested</th></tr>
+        </thead>
+        <tbody>
+          {Object.entries(byFamily).map(([family, c]) => (
+            <tr><td>{family}</td><td>{c.total}</td><td>{c.specified}</td><td>{c.demonstrated}</td><td>{c.tested}</td></tr>
+          ))}
+        </tbody>
+      </table>
+      <table class="ledger">
+        <thead>
+          <tr><th scope="col">Component</th><th scope="col">Family</th><th scope="col">Priority</th><th scope="col">Specified</th><th scope="col">Demonstrated</th><th scope="col">Tested</th></tr>
+        </thead>
+        <tbody>
+          {rows.map(([id, c]) => (
+            <tr>
+              <td><a href={`#c-${id}`}><code>{id}</code></a></td>
+              <td>{c.family}</td>
+              <td>{c.priority}</td>
+              <td>{c.specified ? <span class="status-pass">yes</span> : "—"}</td>
+              <td>{c.demonstrated ? <span class="status-pass">yes</span> : "—"}</td>
+              <td>{c.tested ? <span class="status-pass">yes</span> : "—"}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )}
+</div>

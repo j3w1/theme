@@ -1,0 +1,218 @@
+---
+/* Static specimens that make the foundations visible: the text ladder on
+   each surface, selection versus focus, the border set, the status set, the
+   terminal slots per profile. Token variables only. */
+import { anchors, defaultTokens, profiles } from "../lib/theme";
+
+const surfaces = ["canvas", "default", "raised"];
+const textRoles = ["prose", "bright", "default", "muted", "subtle", "disabled", "accent", "accent-strong"];
+const statuses = ["danger", "warning", "success", "info", "neutral"];
+const glyph: Record<string, string> = { danger: "✕", warning: "!", success: "✓", info: "i", neutral: "·" };
+const profileIds = Object.keys(profiles);
+const ratio = (fg: string, bg: string) => {
+  const lum = (hex: string) => {
+    const c = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255).map((v) => (v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4));
+    return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+  };
+  const a = lum(fg);
+  const b = lum(bg);
+  return ((Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05)).toFixed(2);
+};
+const hex = (path: string) => (defaultTokens[path].value as { hex: string }).hex;
+---
+
+<div class="block" id={anchors.specimen("text-ladder")}>
+  <h4>Text ladder on each surface</h4>
+  <p class="family-description">Measured ratios; ordinary text needs 4.5:1, disabled text is exempt but held to 3:1.</p>
+  <div class="ladder">
+    {surfaces.map((s) => (
+      <div class="ladder-surface" style={`background: var(--color-surface-${s})`}>
+        <div class="ladder-title">surface.{s}</div>
+        {textRoles.map((t) => {
+          const r = ratio(hex(`color.text.${t}`), hex(`color.surface.${s}`));
+          const passes = Number(r) >= 4.5;
+          /* text.disabled is only ever the text of a disabled control, so it is
+             shown as one; a role that fails 4.5:1 on this surface is shown as a
+             graphic with the verdict spelled out, never as readable text. */
+          if (t === "disabled") {
+            return (
+              <button type="button" disabled class="ladder-row" style={`color: var(--color-text-${t})`}>
+                <span>text.{t}</span>
+                <span class="ladder-ratio">{r}:1 (disabled control; ≥ 3:1)</span>
+              </button>
+            );
+          }
+          if (!passes) {
+            return (
+              <div class="ladder-row ladder-forbidden">
+                <span><span class="swatch" style={`background: var(--color-text-${t})`} aria-hidden="true"></span>text.{t}</span>
+                <span class="ladder-ratio">{r}:1 — ✕ not permitted as text here</span>
+              </div>
+            );
+          }
+          return (
+            <div class="ladder-row" style={`color: var(--color-text-${t})`}>
+              <span>text.{t}</span>
+              <span class="ladder-ratio">{r}:1</span>
+            </div>
+          );
+        })}
+      </div>
+    ))}
+  </div>
+</div>
+
+<div class="block" id={anchors.specimen("selection-focus")}>
+  <h4>Selection is a fill; focus is a ring</h4>
+  <p class="family-description">The four combinations every list, table and tab strip must show. Focus rings on fills take the on-fill text colour.</p>
+  <div class="spec-rows">
+    <div class="spec-row">plain row</div>
+    <div class="spec-row" data-state="hover">hovered row</div>
+    <div class="spec-row" data-state="focus-visible">focused row (ring only)</div>
+    <div class="spec-row" data-state="selected">selected row (fill only)</div>
+    <div class="spec-row" data-state="selected+focus-visible">selected + focused row (fill and on-fill ring)</div>
+    <div class="spec-row" data-state="selected+container-inactive">selected while the container is not focused</div>
+  </div>
+</div>
+
+<div class="block" id={anchors.specimen("borders")}>
+  <h4>Borders and radii</h4>
+  <div class="border-set">
+    <div class="border-box" style="border-color: var(--color-border-divider)">divider · decorative hairline between rows</div>
+    <div class="border-box" style="border-color: var(--color-border-default)">default · decorative, never a control's only edge</div>
+    <div class="border-box" style="border-color: var(--color-border-control)">control · every form control at rest (≥ 3:1)</div>
+    <div class="border-box" style="border-color: var(--color-border-active)">active · focused or active control</div>
+    <div class="border-box" style="border-color: var(--color-border-strong); border-width: var(--border-width-emphasis)">strong · 2px rules</div>
+    <div class="border-box" style="border-color: var(--color-border-overlay)">overlay · every floating layer</div>
+    <div class="border-box" style="border-color: var(--color-border-disabled)">disabled</div>
+    <div class="border-box" style="border-color: var(--color-border-control); border-style: dashed">dashed · focus, drop target, read-only only</div>
+  </div>
+</div>
+
+<div class="block" id={anchors.specimen("status")}>
+  <h4>Status set</h4>
+  <p class="family-description">Each status has text, fill, tint and border roles and a mandatory glyph. The three extension hues (D-001) exist only here, in diagnostics, in diffs and in the proposed overlay.</p>
+  <div class="status-set">
+    {statuses.map((s) => (
+      <div class="status-card">
+        <div class="status-text" style={`color: var(--color-status-${s}-text)`}>{glyph[s]} {s} text</div>
+        <div class="status-fill" style={`background: var(--color-status-${s}-fill); color: var(--color-status-${s}-on-fill)`}>{glyph[s]} {s} fill</div>
+        <div class="status-tint" style={`background: var(--color-status-${s}-tint); color: var(--color-status-${s}-text); border-color: var(--color-status-${s}-border)`}>{glyph[s]} {s} tint with border</div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<div class="block" id={anchors.specimen("terminal-slots")}>
+  <h4>Terminal slots by profile</h4>
+  <p class="family-description">The sixteen slots are exact in every profile; only the proposed <code>extended</code> overlay reassigns them. Use the page's profile control to switch specimens, or read the columns.</p>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th scope="col">Slot</th>{profileIds.map((p) => <th scope="col">{p}</th>)}</tr></thead>
+      <tbody>
+        {Array.from({ length: 16 }, (_, i) => (
+          <tr>
+            <td><code>ansi.{i}</code></td>
+            {profileIds.map((p) => {
+              const t = profiles[p].tokens[`color.terminal.ansi.${i}`];
+              return <td><span class="swatch" style={`background:${t.css}`} aria-hidden="true"></span><code>{t.css}</code>{t.status === "proposed" && <span class="tag tag-proposed">proposed</span>}</td>;
+            })}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<style>
+  .ladder {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr));
+    gap: var(--space-8);
+  }
+  button.ladder-row {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    padding: var(--space-2) 0;
+    font: inherit;
+    text-align: left;
+    cursor: not-allowed;
+  }
+  .ladder-forbidden {
+    color: var(--color-text-muted);
+  }
+  .ladder-forbidden .ladder-ratio {
+    color: var(--color-status-danger-text);
+  }
+  .ladder-surface {
+    padding: var(--space-12);
+    border: var(--border-width-default) solid var(--color-border-divider);
+  }
+  .ladder-title {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-ui-sm);
+    margin-bottom: var(--space-8);
+  }
+  .ladder-row {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-8);
+    padding: var(--space-2) 0;
+  }
+  .ladder-ratio {
+    font-size: var(--font-size-ui-sm);
+  }
+  .spec-rows {
+    max-width: 40rem;
+    border: var(--border-width-default) solid var(--color-border-control);
+    background: var(--color-surface-canvas);
+  }
+  .spec-row {
+    padding: var(--space-4) var(--space-8);
+    border-bottom: var(--border-width-default) solid var(--color-border-divider);
+    min-height: var(--density-row-height, 28px);
+  }
+  .spec-row[data-state="hover"] {
+    background: var(--color-interaction-hover-bg);
+  }
+  .spec-row[data-state="focus-visible"] {
+    outline: var(--focus-ring);
+    outline-offset: var(--focus-offset);
+  }
+  .spec-row[data-state="selected"] {
+    background: var(--color-interaction-selection-bg);
+    color: var(--color-interaction-selection-text);
+  }
+  .spec-row[data-state="selected+focus-visible"] {
+    background: var(--color-interaction-selection-bg);
+    color: var(--color-interaction-selection-text);
+    outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+    outline-offset: var(--focus-offset);
+  }
+  .spec-row[data-state="selected+container-inactive"] {
+    background: var(--color-interaction-selection-inactive-bg);
+    color: var(--color-interaction-selection-inactive-text);
+  }
+  .border-set {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(16rem, 100%), 1fr));
+    gap: var(--space-8);
+  }
+  .border-box {
+    padding: var(--space-8);
+    border: var(--border-width-default) solid;
+    background: var(--color-surface-input);
+    font-size: var(--font-size-ui-sm);
+  }
+  .status-set {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(12rem, 100%), 1fr));
+    gap: var(--space-8);
+  }
+  .status-card > div {
+    padding: var(--space-4) var(--space-8);
+    border: var(--border-width-default) solid transparent;
+    margin-bottom: var(--space-2);
+  }
+</style>

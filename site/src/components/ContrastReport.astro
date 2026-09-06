@@ -1,0 +1,42 @@
+---
+import { contrastReport } from "../lib/theme";
+
+const pairs = contrastReport.pairs as Array<{ label: string | null; source: string; state: string | null; kind: string; min: number; fg: string; bg: string; fgHex: string; bgHex: string; ratio: number; pass: boolean; waiver: string | null }>;
+const failing = pairs.filter((p) => !p.pass && !p.waiver).length;
+const waived = pairs.filter((p) => !p.pass && p.waiver).length;
+---
+
+<div class="block" id="contrast-report">
+  <h3>Contrast report</h3>
+  <p>{pairs.length} declared pairs measured on resolved sRGB values with the WCAG 2.x formula; {waived} waived (decorative only), {failing} failing. A pass is a design target for the named role, not an application-wide conformance claim.</p>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Pair</th>
+          <th scope="col">State</th>
+          <th scope="col">Kind</th>
+          <th scope="col">Foreground</th>
+          <th scope="col">Background</th>
+          <th scope="col">Ratio</th>
+          <th scope="col">Min</th>
+          <th scope="col">Result</th>
+        </tr>
+      </thead>
+      <tbody>
+        {pairs.map((p) => (
+          <tr>
+            <td>{p.label ?? p.source}</td>
+            <td>{p.state ?? "—"}</td>
+            <td>{p.kind}</td>
+            <td><span class="swatch" style={`background:${p.fgHex}`} aria-hidden="true"></span><code data-token={p.fg}>{p.fg}</code> <code>{p.fgHex}</code></td>
+            <td><span class="swatch" style={`background:${p.bgHex}`} aria-hidden="true"></span><code data-token={p.bg}>{p.bg}</code> <code>{p.bgHex}</code></td>
+            <td>{p.ratio.toFixed(2)}</td>
+            <td>{p.min}</td>
+            <td>{p.pass ? <span class="status-pass">pass</span> : p.waiver ? <span class="status-waived">waived: {p.waiver}</span> : <span class="status-fail">fail</span>}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
