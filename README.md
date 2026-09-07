@@ -1,6 +1,6 @@
 # j3w1 UI Theme Spec
 
-**Warm-black surfaces. Rose text. Red focus. One monospace family. Nothing rounded.**
+**Warm-black surfaces. Rose text. Red focus. One monospace family. Square components.**
 
 This repository is the canonical, versioned specification of the j3w1 visual
 identity, so that people and AI agents can implement it consistently in
@@ -9,11 +9,13 @@ formats. It publishes one long visual reference page at
 **https://j3w1.github.io/theme/** and machine-readable exports for agents.
 
 <!-- version:start -->
-Specification version **0.1.0** (default: approved, heritage-ansi: heritage, extended: proposed).
+Specification version **0.1.0** (release; default: approved, heritage-ansi: heritage, extended: proposed).
+
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 <!-- version:end -->
 
-> Pre-release. Values marked **PROPOSED** on the site and in the exports are
-> not approved; see `spec/decisions.md`.
+Approval and consumption eligibility are separate; see the policy above and
+`spec/decisions.md` D-013.
 
 ## What this is, and what it is not
 
@@ -45,23 +47,23 @@ scheme, tmux, browser extensions) are catalogued in
 <!-- tokens:start -->
 | Role | Value | Status | Use |
 | --- | --- | --- | --- |
-| `color.surface.canvas` | `#0c0909` | observed | Page and terminal background. |
-| `color.surface.default` | `#160b0b` | observed | Panels and cards. |
-| `color.surface.raised` | `#241010` | observed | Sticky headers, menus, popovers. |
-| `color.text.default` | `#e99499` | observed | Interface and body text (8.65:1 on canvas). |
-| `color.text.bright` | `#ffa2a7` | observed | Headings, emphasis, links. |
-| `color.text.prose` | `#f4eeee` | observed | Long-form reading text. |
-| `color.text.muted` | `#bd787d` | observed | Secondary text; the darkest colour permitted for chrome text (5.81:1). |
-| `color.text.subtle` | `#ad7175` | approved | Metadata, comments, line numbers (5.10:1). |
-| `color.border.control` | `#a3676b` | proposed | Form-control boundary (4.45:1, meets the 3:1 non-text minimum). |
-| `color.border.default` | `#531310` | observed | Decorative border (1.39:1; never the only edge of a control). |
-| `color.interaction.focus.ring` | `#e53935` | observed | 1px dashed focus ring on controls and rows. |
-| `color.interaction.selection.bg` | `#911410` | observed | Selected row, tab, workspace. |
-| `color.action.primary.bg` | `#871f19` | observed | Primary button fill (color12). |
-| `color.status.danger.text` | `#f73f35` | observed | Danger text (5.40:1). |
-| `color.status.warning.text` | `#c9973f` | approved | Warning text (7.54:1). |
-| `color.status.success.text` | `#86a46f` | approved | Success text (7.13:1). |
-| `color.status.info.text` | `#7e9ebb` | approved | Info text (7.08:1). |
+| `color.surface.canvas` | `#0c0909` | observed; use | Page and terminal background. |
+| `color.surface.default` | `#160b0b` | observed; use | Panels and cards. |
+| `color.surface.raised` | `#241010` | observed; use | Sticky headers, menus, popovers. |
+| `color.text.default` | `#e99499` | observed; use | Interface and body text (8.65:1 on canvas). |
+| `color.text.bright` | `#ffa2a7` | observed; use | Headings, emphasis, links. |
+| `color.text.prose` | `#f4eeee` | observed; use | Long-form reading text. |
+| `color.text.muted` | `#bd787d` | observed; use | Secondary text; the darkest colour permitted for chrome text (5.81:1). |
+| `color.text.subtle` | `#ad7175` | approved; use | Metadata, comments, line numbers (5.10:1). |
+| `color.border.control` | `#a3676b` | proposed; use-and-report (D-007) | Form-control boundary (4.45:1, meets the 3:1 non-text minimum). |
+| `color.border.default` | `#531310` | observed; use | Decorative border (1.39:1; never the only edge of a control). |
+| `color.interaction.focus.ring` | `#e53935` | observed; use | 1px dashed focus ring on controls and rows. |
+| `color.interaction.selection.bg` | `#911410` | observed; use | Selected row, tab, workspace. |
+| `color.action.primary.bg` | `#871f19` | observed; use | Primary button fill (color12). |
+| `color.status.danger.text` | `#f73f35` | observed; use | Danger text (5.40:1). |
+| `color.status.warning.text` | `#c9973f` | approved; use | Warning text (7.54:1). |
+| `color.status.success.text` | `#86a46f` | approved; use | Success text (7.13:1). |
+| `color.status.info.text` | `#7e9ebb` | approved; use | Info text (7.08:1). |
 <!-- tokens:end -->
 
 Three bounded hues (amber, green, blue) exist for status, diagnostics and diffs
@@ -116,11 +118,12 @@ No native ports are published yet. Historical implementations are catalogued in 
 ## Component coverage
 
 *Specified* means the component's specification validates; *demonstrated*
-means its demo renders every declared variant on the site; *tested* means a
-browser test exists for it. The ledger is generated from the sources.
+means its demo renders every declared variant on the site; *test implemented* means a
+browser test exists for it. Actual outcomes are published separately in the
+linked verification report, with exact scope, configuration and digests. The ledger is generated from the sources.
 
 <!-- coverage:start -->
-| Component | Family | Priority | Specified | Demonstrated | Tested |
+| Component | Family | Priority | Specified | Demonstrated | Test implemented |
 | --- | --- | --- | --- | --- | --- |
 | `admin-form` | composed | R1 | yes | yes | — |
 | `alert` | feedback | R1 | yes | yes | — |

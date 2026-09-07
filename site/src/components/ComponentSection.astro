@@ -1,4 +1,5 @@
 ---
+import Eligibility from "./Eligibility.astro";
 /* One component: identity, meta, tokens, state matrix, the rendered
    specification body, the agent brief. Anchors come from scripts/lib/anchors.mjs. */
 import { render } from "astro:content";
@@ -45,7 +46,7 @@ const statusTags = [coverage?.specified && "specified", coverage?.demonstrated &
             return (
               <tr>
                 <td><code>{part}</code></td>
-                <td>{token?.type === "color" && <span class="swatch" style={`background: var(${cssVar(path)})`} aria-hidden="true"></span>}<code data-token={path}>{path}</code>{token?.status === "proposed" && <span class="tag tag-proposed">proposed</span>}</td>
+                <td><code data-token={path}>{path}</code><Eligibility token={token} /></td>
                 <td><code>{token?.css ?? "unresolved"}</code></td>
                 <td>{token?.description}</td>
               </tr>

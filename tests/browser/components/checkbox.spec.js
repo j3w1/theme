@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../evidence-fixture.mjs";
 import { promises as fs } from "node:fs";
 import { openSpec, only, rgbToHex } from "../helpers.mjs";
 
@@ -27,7 +27,7 @@ const box = (locator) =>
   });
 
 test.describe("checkbox", () => {
-  test("the state matrix renders every declared state for both variants", async ({ page }) => {
+  test("the state matrix renders every declared state for both variants", { annotation: { type: "verification", description: JSON.stringify({"component": "checkbox", "category": "rendering", "states": ["default", "hover", "focus-visible", "checked", "mixed", "checked+focus-visible", "checked+disabled", "disabled", "invalid", "required"], "variants": ["default", "group"], "note": "Presence and selected structural assertions only; not behavioral verification of every state."}) } }, async ({ page }) => {
     await openSpec(page, "#c-checkbox");
     for (const state of STATES) {
       await expect(page.locator(`#checkbox-states [data-state="${state}"]`)).toHaveCount(VARIANTS.length);
@@ -40,7 +40,7 @@ test.describe("checkbox", () => {
     await expect(page.locator('#checkbox-states [data-state="default"] fieldset.checkbox-group')).toHaveCount(1);
   });
 
-  test("the live box: square, checked fill and glyph, rings", async ({ page }, testInfo) => {
+  test("the live box: square, checked fill and glyph, rings", { annotation: { type: "verification", description: JSON.stringify({"component": "checkbox", "category": "appearance", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }, testInfo) => {
     test.skip(only(testInfo, "nojs"), "computed styles are the same without scripts; keep one run");
     await openSpec(page, "#c-checkbox");
     const live = page.locator('#checkbox-states [data-state="default"]').first();
@@ -91,7 +91,7 @@ test.describe("checkbox", () => {
     });
   });
 
-  test("keyboard: Space toggles the live checkbox", async ({ page }, testInfo) => {
+  test("keyboard: Space toggles the live checkbox", { annotation: { type: "verification", description: JSON.stringify({"component": "checkbox", "category": "keyboard", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }, testInfo) => {
     test.skip(only(testInfo, "nojs", "narrow", "zoom200"), "one keyboard walk");
     await openSpec(page, "#c-checkbox");
     const input = page.locator('#checkbox-states [data-state="default"][data-state-default] input.checkbox-input').first();

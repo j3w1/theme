@@ -21,13 +21,17 @@
     "build": "astro build --force",
     "preview": "astro preview",
     "consumption:kit": "node scripts/consumption-kit.mjs",
-    "consumption:judge": "node scripts/consumption-judge.mjs"
+    "consumption:judge": "node scripts/consumption-judge.mjs",
+    "verification:report": "node scripts/verification-report.mjs",
+    "verification:check": "node --test tests/verification/*.test.js",
+    "test:verification": "playwright test --config playwright.verification.config.mjs"
   },
   "devDependencies": {
     "@astrojs/markdown-remark": "7.3.0",
     "@axe-core/playwright": "4.13.0",
     "@playwright/test": "1.63.0",
     "astro": "7.3.1",
+    "parse5": "7.3.0",
     "yaml": "2.9.0",
     "zod": "4.5.4"
   }

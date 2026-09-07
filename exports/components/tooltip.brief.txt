@@ -1,21 +1,23 @@
 j3w1/theme implementation brief — tooltip
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=
+theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-w7xwAkhVM2iRfcrpHTYOoDFyoe6tJZCBjbJ78mFagcI=
 pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/tooltip.json
 spec: spec/components/tooltip.md  site: https://j3w1.github.io/theme/#c-tooltip
 maturity: stable  priority: R1
 
 Summary: A short description of a control shown on hover and focus; role tooltip linked by aria-describedby, a 1px overlay border on the raised surface, no arrow.
 
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  popup.bg          #241010  ({color.surface.raised})
-  popup.border      #e53935  ({color.border.overlay})
-  popup.text        #e99499  ({color.text.default})
-  shortcut.text     #ffa2a7  ({color.text.bright})
-  shortcut.border   #a3676b  ({color.border.control})
-  trigger.text      #e99499  ({color.action.tertiary.text})
-  trigger.bg-hover  #1c0a09  ({color.action.tertiary.hover-bg})
-  trigger.ring      #e53935  ({color.interaction.focus.ring})
-  popup.z           10  ({z.popover})
+  popup.bg          #241010  ({color.surface.raised})  use
+  popup.border      #e53935  ({color.border.overlay})  use-and-report (D-008)
+  popup.text        #e99499  ({color.text.default})  use
+  shortcut.text     #ffa2a7  ({color.text.bright})  use
+  shortcut.border   #a3676b  ({color.border.control})  use-and-report (D-007)
+  trigger.text      #e99499  ({color.action.tertiary.text})  use
+  trigger.bg-hover  #1c0a09  ({color.action.tertiary.hover-bg})  use
+  trigger.ring      #e53935  ({color.interaction.focus.ring})  use
+  popup.z           10  ({z.popover})  use
+State dependency disclosures: D-008
 
 States: default, hover, focus-visible, open, closed
   default: trigger at rest; the popup shown for the demonstration [`aria-describedby` on the trigger]

@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../evidence-fixture.mjs";
 import { promises as fs } from "node:fs";
 import { openSpec, only, rgbToHex } from "../helpers.mjs";
 
@@ -25,7 +25,7 @@ const paint = (locator) =>
   });
 
 test.describe("button", () => {
-  test("the state matrix renders every declared state for every tone", async ({ page }) => {
+  test("the state matrix renders every declared state for every tone", { annotation: { type: "verification", description: JSON.stringify({"component": "button", "category": "rendering", "states": ["default", "hover", "focus-visible", "active", "disabled", "loading"], "variants": ["default", "secondary", "tertiary", "destructive"], "note": "Presence and selected structural assertions only; not behavioral verification of every state."}) } }, async ({ page }) => {
     await openSpec(page, "#c-button");
     for (const state of STATES) {
       await expect(page.locator(`#button-states [data-state="${state}"]`)).toHaveCount(VARIANTS.length);
@@ -35,7 +35,7 @@ test.describe("button", () => {
     await expect(page.locator('#button-states [data-state="loading"] button').first()).toHaveAttribute("aria-busy", "true");
   });
 
-  test("the primary tone: fill, hover fill, container ring, radius 0", async ({ page }, testInfo) => {
+  test("the primary tone: fill, hover fill, container ring, radius 0", { annotation: { type: "verification", description: JSON.stringify({"component": "button", "category": "appearance", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }, testInfo) => {
     test.skip(only(testInfo, "nojs"), "computed styles are the same without scripts; keep one run");
     await openSpec(page, "#c-button");
     const live = page.locator('#button-states [data-state="default"]').first();
@@ -59,7 +59,7 @@ test.describe("button", () => {
     expect(rgbToHex(focused.bg)).toBe(token("color.action.primary.bg"));
   });
 
-  test("the destructive tone fills on hover with its on-fill text", async ({ page }, testInfo) => {
+  test("the destructive tone fills on hover with its on-fill text", { annotation: { type: "verification", description: JSON.stringify({"component": "button", "category": "appearance", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }, testInfo) => {
     test.skip(only(testInfo, "nojs"), "one run");
     await openSpec(page, "#c-button");
     const rest = await paint(page.locator('#button-states [data-state="default"] button.button-destructive').first());
@@ -75,7 +75,7 @@ test.describe("button", () => {
     expect(rgbToHex(outline.outlineColor)).toBe(token("color.interaction.focus.ring"));
   });
 
-  test("disabled uses the disabled roles at full opacity", async ({ page }, testInfo) => {
+  test("disabled uses the disabled roles at full opacity", { annotation: { type: "verification", description: JSON.stringify({"component": "button", "category": "appearance", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }, testInfo) => {
     test.skip(only(testInfo, "nojs"), "one run");
     await openSpec(page, "#c-button");
     const button = page.locator('#button-states [data-state="default"] button.button').first();
@@ -93,7 +93,7 @@ test.describe("button", () => {
     });
   });
 
-  test("keyboard: Tab reaches the live button and shows the ring", async ({ page }, testInfo) => {
+  test("keyboard: Tab reaches the live button and shows the ring", { annotation: { type: "verification", description: JSON.stringify({"component": "button", "category": "keyboard", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }, testInfo) => {
     test.skip(only(testInfo, "nojs", "narrow", "zoom200"), "one keyboard walk");
     await openSpec(page, "#c-button");
     const cell = page.locator('#button-states [data-state="default"][data-state-default]').nth(1);

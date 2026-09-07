@@ -1,38 +1,40 @@
 j3w1/theme implementation brief — settings-panel
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=
+theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-w7xwAkhVM2iRfcrpHTYOoDFyoe6tJZCBjbJ78mFagcI=
 pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/settings-panel.json
 spec: spec/components/settings-panel.md  site: https://j3w1.github.io/theme/#c-settings-panel
 maturity: stable  priority: R1
 
 Summary: A two-column settings screen composed from the sidebar-nav, fieldset, switch, select, radio-group, text-field, checkbox and button components; below 600px the sidebar becomes a tab strip.
 
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  root.bg                #160b0b  ({color.surface.default})
-  root.border            #531310  ({color.border.default})
-  nav.bg                 #160b0b  ({color.surface.default})
-  nav.border             #2b0e0d  ({color.border.divider})
-  nav.text               #e99499  ({color.text.default})
-  nav.current-text       #ffa2a7  ({color.text.bright})
-  nav.current-indicator  #e53935  ({color.border.selected-indicator})
-  nav.bg-hover           #1c0a09  ({color.interaction.hover.bg})
-  title.text             #ffa2a7  ({color.text.bright})
-  lead.text              #bd787d  ({color.text.muted})
-  group.border           #2b0e0d  ({color.border.divider})
-  group.legend           #ffa2a7  ({color.text.bright})
-  control.bg             #0c0909  ({color.surface.input})
-  control.border         #a3676b  ({color.border.control})
-  control.text           #e99499  ({color.text.default})
-  control.ring           #e53935  ({color.interaction.focus.ring})
-  control.checked-bg     #871f19  ({color.action.primary.bg})
-  control.checked-glyph  #f4eeee  ({color.action.primary.text})
-  invalid.border         #e53935  ({color.status.danger.border})
-  invalid.message        #f73f35  ({color.status.danger.text})
-  footer.border          #2b0e0d  ({color.border.divider})
-  apply.bg               #871f19  ({color.action.primary.bg})
-  apply.text             #f4eeee  ({color.action.primary.text})
-  apply.busy-glyph       #f4eeee  ({color.action.primary.text})
-  reset.text             #ffa2a7  ({color.action.secondary.text})
-  reset.border           #a3676b  ({color.action.secondary.border})
+  root.bg                #160b0b  ({color.surface.default})  use
+  root.border            #531310  ({color.border.default})  use
+  nav.bg                 #160b0b  ({color.surface.default})  use
+  nav.border             #2b0e0d  ({color.border.divider})  use-and-report (D-008)
+  nav.text               #e99499  ({color.text.default})  use
+  nav.current-text       #ffa2a7  ({color.text.bright})  use
+  nav.current-indicator  #e53935  ({color.border.selected-indicator})  use
+  nav.bg-hover           #1c0a09  ({color.interaction.hover.bg})  use
+  title.text             #ffa2a7  ({color.text.bright})  use
+  lead.text              #bd787d  ({color.text.muted})  use
+  group.border           #2b0e0d  ({color.border.divider})  use-and-report (D-008)
+  group.legend           #ffa2a7  ({color.text.bright})  use
+  control.bg             #0c0909  ({color.surface.input})  use
+  control.border         #a3676b  ({color.border.control})  use-and-report (D-007)
+  control.text           #e99499  ({color.text.default})  use
+  control.ring           #e53935  ({color.interaction.focus.ring})  use
+  control.checked-bg     #871f19  ({color.action.primary.bg})  use
+  control.checked-glyph  #f4eeee  ({color.action.primary.text})  use
+  invalid.border         #e53935  ({color.status.danger.border})  use
+  invalid.message        #f73f35  ({color.status.danger.text})  use
+  footer.border          #2b0e0d  ({color.border.divider})  use-and-report (D-008)
+  apply.bg               #871f19  ({color.action.primary.bg})  use
+  apply.text             #f4eeee  ({color.action.primary.text})  use
+  apply.busy-glyph       #f4eeee  ({color.action.primary.text})  use
+  reset.text             #ffa2a7  ({color.action.secondary.text})  use
+  reset.border           #a3676b  ({color.action.secondary.border})  use
+State dependency disclosures: D-007
 
 States: default, focus-visible, invalid, busy
   default: rest tokens of every component on {color.surface.default}; the open section carries the indicator bar [`aria-current`]

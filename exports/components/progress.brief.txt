@@ -1,22 +1,24 @@
 j3w1/theme implementation brief — progress
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=
+theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-w7xwAkhVM2iRfcrpHTYOoDFyoe6tJZCBjbJ78mFagcI=
 pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/progress.json
 spec: spec/components/progress.md  site: https://j3w1.github.io/theme/#c-progress
 maturity: stable  priority: R1
 
 Summary: A native progress element with a label and value; determinate fills with the primary colour, indeterminate shows static 45° stripes, never an animation.
 
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  track.bg        #420f0c  ({color.interaction.pressed.bg})
-  track.border    #a3676b  ({color.border.control})
-  value.bg        #871f19  ({color.action.primary.bg})
-  value.bg-error  #dc282e  ({color.status.danger.fill})
-  stripe.a        #871f19  ({color.action.primary.bg})
-  stripe.b        #420f0c  ({color.interaction.pressed.bg})
-  label.text      #ffa2a7  ({color.text.bright})
-  value.text      #e99499  ({color.text.default})
-  detail.text     #bd787d  ({color.text.muted})
-  error.text      #f73f35  ({color.status.danger.text})
+  track.bg        #420f0c  ({color.interaction.pressed.bg})  use
+  track.border    #a3676b  ({color.border.control})  use-and-report (D-007)
+  value.bg        #871f19  ({color.action.primary.bg})  use
+  value.bg-error  #dc282e  ({color.status.danger.fill})  use
+  stripe.a        #871f19  ({color.action.primary.bg})  use
+  stripe.b        #420f0c  ({color.interaction.pressed.bg})  use
+  label.text      #ffa2a7  ({color.text.bright})  use
+  value.text      #e99499  ({color.text.default})  use
+  detail.text     #bd787d  ({color.text.muted})  use
+  error.text      #f73f35  ({color.status.danger.text})  use
+State dependency disclosures: D-007
 
 States: default, busy, error, reduced-motion
   default: fill {color.action.primary.bg} on the track; the value text [the native value; the percentage text]

@@ -1,23 +1,24 @@
 j3w1/theme implementation brief — fieldset
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=
+theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-w7xwAkhVM2iRfcrpHTYOoDFyoe6tJZCBjbJ78mFagcI=
 pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/fieldset.json
 spec: spec/components/fieldset.md  site: https://j3w1.github.io/theme/#c-fieldset
 maturity: stable  priority: R1
 
 Summary: The native fieldset that groups related fields under a legend inside a 1px divider border; disabling it disables everything inside.
 
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  root.border            #2b0e0d  ({color.border.divider})
-  root.bg                #160b0b  ({color.surface.default})
-  legend.text            #ffa2a7  ({color.text.bright})
-  body.text              #e99499  ({color.text.default})
-  legend.text-disabled   #8a5559  ({color.text.disabled})
-  field.bg               #0c0909  ({color.surface.input})
-  field.border           #a3676b  ({color.border.control})
-  field.bg-disabled      #160b0b  ({color.interaction.disabled.bg})
-  field.border-disabled  #7d1310  ({color.border.disabled})
-  field.text-disabled    #8a5559  ({color.text.disabled})
-  help.text              #bd787d  ({color.text.muted})
+  root.border            #2b0e0d  ({color.border.divider})  use-and-report (D-008)
+  root.bg                #160b0b  ({color.surface.default})  use
+  legend.text            #ffa2a7  ({color.text.bright})  use
+  body.text              #e99499  ({color.text.default})  use
+  legend.text-disabled   #8a5559  ({color.text.disabled})  use
+  field.bg               #0c0909  ({color.surface.input})  use
+  field.border           #a3676b  ({color.border.control})  use-and-report (D-007)
+  field.bg-disabled      #160b0b  ({color.interaction.disabled.bg})  use
+  field.border-disabled  #7d1310  ({color.border.disabled})  use
+  field.text-disabled    #8a5559  ({color.text.disabled})  use
+  help.text              #bd787d  ({color.text.muted})  use
 
 States: default, disabled
   default: 1px {color.border.divider} border; legend {color.text.bright}; fields as their own components [the border and the legend]

@@ -1,33 +1,35 @@
 j3w1/theme implementation brief — select
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=
+theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-w7xwAkhVM2iRfcrpHTYOoDFyoe6tJZCBjbJ78mFagcI=
 pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/select.json
 spec: spec/components/select.md  site: https://j3w1.github.io/theme/#c-select
 maturity: stable  priority: R1
 
 Summary: The native single or multiple select in the text-field box with a line-icon chevron; the popup list is host-rendered and outside the theme.
 
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  root.bg                #0c0909  ({color.surface.input})
-  root.border            #a3676b  ({color.border.control})
-  root.bg-hover          #1c0a09  ({color.interaction.hover.bg})
-  root.border-focus      #e53935  ({color.border.active})
-  root.ring              #e53935  ({color.interaction.focus.ring})
-  root.ring-invalid      #ffa2a7  ({color.interaction.focus.ring-container})
-  root.border-invalid    #e53935  ({color.status.danger.border})
-  root.border-disabled   #7d1310  ({color.border.disabled})
-  root.bg-disabled       #160b0b  ({color.interaction.disabled.bg})
-  control.text           #e99499  ({color.text.default})
-  control.text-disabled  #8a5559  ({color.text.disabled})
-  chevron.stroke         #e99499  ({color.icon.default})
-  option.bg              #241010  ({color.surface.raised})
-  option.text            #e99499  ({color.text.default})
-  option.bg-selected     #911410  ({color.interaction.selection.bg})
-  option.text-selected   #f4eeee  ({color.interaction.selection.text})
-  group.text             #bd787d  ({color.text.muted})
-  label.text             #ffa2a7  ({color.text.bright})
-  label.required-mark    #f73f35  ({color.status.danger.text})
-  help.text              #bd787d  ({color.text.muted})
-  message.text           #f73f35  ({color.status.danger.text})
+  root.bg                #0c0909  ({color.surface.input})  use
+  root.border            #a3676b  ({color.border.control})  use-and-report (D-007)
+  root.bg-hover          #1c0a09  ({color.interaction.hover.bg})  use
+  root.border-focus      #e53935  ({color.border.active})  use
+  root.ring              #e53935  ({color.interaction.focus.ring})  use
+  root.ring-invalid      #ffa2a7  ({color.interaction.focus.ring-container})  use
+  root.border-invalid    #e53935  ({color.status.danger.border})  use
+  root.border-disabled   #7d1310  ({color.border.disabled})  use
+  root.bg-disabled       #160b0b  ({color.interaction.disabled.bg})  use
+  control.text           #e99499  ({color.text.default})  use
+  control.text-disabled  #8a5559  ({color.text.disabled})  use
+  chevron.stroke         #e99499  ({color.icon.default})  use
+  option.bg              #241010  ({color.surface.raised})  use
+  option.text            #e99499  ({color.text.default})  use
+  option.bg-selected     #911410  ({color.interaction.selection.bg})  use
+  option.text-selected   #f4eeee  ({color.interaction.selection.text})  use
+  group.text             #bd787d  ({color.text.muted})  use
+  label.text             #ffa2a7  ({color.text.bright})  use
+  label.required-mark    #f73f35  ({color.status.danger.text})  use
+  help.text              #bd787d  ({color.text.muted})  use
+  message.text           #f73f35  ({color.status.danger.text})  use
+State dependency disclosures: D-007
 
 States: default, hover, focus-visible, required, invalid, invalid+focus-visible, disabled
   default: 1px {color.border.control} on {color.surface.input}; value {color.text.default}; chevron {color.icon.default} [the chevron]

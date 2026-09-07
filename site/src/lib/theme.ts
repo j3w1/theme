@@ -18,6 +18,8 @@ export type ResolvedToken = {
   description: string | null;
   status: string;
   deprecated: boolean | string;
+  decisionId: string | null;
+  eligibility: { action: string; reason: string; decisionIds: string[] };
 };
 
 export const theme = manifest;

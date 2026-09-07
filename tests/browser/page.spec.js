@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./evidence-fixture.mjs";
 import AxeBuilder from "@axe-core/playwright";
 import { promises as fs } from "node:fs";
 import { openSpec, only, rgbToHex } from "./helpers.mjs";
@@ -7,7 +7,7 @@ const resolved = JSON.parse(await fs.readFile(new URL("../../exports/tokens.reso
 const token = (path) => resolved.profiles[resolved.defaultProfile].tokens[path].css;
 
 test.describe("the specification page", () => {
-  test("loads under /theme/ with no errors, no requests outside the base, and the theme applied", async ({ page }, testInfo) => {
+  test("loads under /theme/ with no errors, no requests outside the base, and the theme applied", { annotation: { type: "verification", description: JSON.stringify({"component": "page", "category": "appearance", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }, testInfo) => {
     const spec = await openSpec(page);
     await expect(page).toHaveTitle(/j3w1 UI Theme Spec/);
     const bg = rgbToHex(await page.evaluate(() => getComputedStyle(document.body).backgroundColor));
@@ -28,7 +28,7 @@ test.describe("the specification page", () => {
     }
   });
 
-  test("keyboard: the skip link, contents and controls are reachable and focus is visibly dashed", async ({ page }, testInfo) => {
+  test("keyboard: the skip link, contents and controls are reachable and focus is visibly dashed", { annotation: { type: "verification", description: JSON.stringify({"component": "page", "category": "keyboard", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }, testInfo) => {
     test.skip(only(testInfo, "nojs"), "controls need scripts");
     await openSpec(page);
     await page.keyboard.press("Tab");
@@ -48,7 +48,7 @@ test.describe("the specification page", () => {
     await expect(page.locator('#family-filter input[name="family"]').first()).toBeFocused();
   });
 
-  test("axe finds no WCAG 2.x A/AA violations (a scan, not a conformance claim)", async ({ page }, testInfo) => {
+  test("axe finds no WCAG 2.x A/AA violations (a scan, not a conformance claim)", { annotation: { type: "verification", description: JSON.stringify({"component": "page", "category": "axe", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }, testInfo) => {
     test.skip(!only(testInfo, "desktop"), "one scan is enough");
     test.setTimeout(600_000);
     await openSpec(page);
@@ -61,7 +61,7 @@ test.describe("the specification page", () => {
     expect(results.violations.map((v) => `${v.id}: ${v.nodes.length} × ${v.help}`)).toEqual([]);
   });
 
-  test("reflow: no horizontal page scroll at 360px and at 200% text zoom", async ({ page }, testInfo) => {
+  test("reflow: no horizontal page scroll at 360px and at 200% text zoom", { annotation: { type: "verification", description: JSON.stringify({"component": "page", "category": "reflow", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }, testInfo) => {
     test.skip(!only(testInfo, "narrow", "zoom200"), "reflow projects only");
     await openSpec(page);
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
@@ -74,7 +74,7 @@ test.describe("the specification page", () => {
     expect(zoomed).toBeLessThanOrEqual(0);
   });
 
-  test("reduced motion: every transition and animation is effectively instant", async ({ page }, testInfo) => {
+  test("reduced motion: every transition and animation is effectively instant", { annotation: { type: "verification", description: JSON.stringify({"component": "page", "category": "motion", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }, testInfo) => {
     test.skip(!only(testInfo, "desktop"), "one check is enough");
     await page.emulateMedia({ reducedMotion: "reduce" });
     await openSpec(page);
@@ -87,7 +87,7 @@ test.describe("the specification page", () => {
     expect(slow).toBe(0);
   });
 
-  test("enhancements: search narrows the contents, family filter hides sections, density and profile persist, reset clears", async ({ page }, testInfo) => {
+  test("enhancements: search narrows the contents, family filter hides sections, density and profile persist, reset clears", { annotation: { type: "verification", description: JSON.stringify({"component": "page", "category": "enhancements", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }, testInfo) => {
     test.skip(!only(testInfo, "desktop"), "scripts on desktop");
     const context = page.context();
     await context.grantPermissions(["clipboard-read", "clipboard-write"]);
@@ -117,7 +117,7 @@ test.describe("the specification page", () => {
     expect(await page.evaluate(() => navigator.clipboard.readText())).toMatch(/^#[0-9a-f]{6}$|^\d|^"/);
   });
 
-  test("inspector: hovering a token reference shows its resolved value and profile values", async ({ page }, testInfo) => {
+  test("inspector: hovering a token reference shows its resolved value and profile values", { annotation: { type: "verification", description: JSON.stringify({"component": "page", "category": "enhancements", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }, testInfo) => {
     test.skip(!only(testInfo, "desktop"), "scripts on desktop");
     await openSpec(page);
     const ref = page.locator('[data-token="color.interaction.focus.ring"]').first();
@@ -131,7 +131,7 @@ test.describe("the specification page", () => {
     await expect(box).toBeHidden();
   });
 
-  test("print: controls and the sticky contents are hidden, link URLs are printed", async ({ page }, testInfo) => {
+  test("print: controls and the sticky contents are hidden, link URLs are printed", { annotation: { type: "verification", description: JSON.stringify({"component": "page", "category": "print", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }, testInfo) => {
     test.skip(!only(testInfo, "desktop"), "one check is enough");
     await openSpec(page);
     await page.emulateMedia({ media: "print" });

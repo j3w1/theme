@@ -1,31 +1,32 @@
 j3w1/theme implementation brief — alert
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=
+theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-w7xwAkhVM2iRfcrpHTYOoDFyoe6tJZCBjbJ78mFagcI=
 pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/alert.json
 spec: spec/components/alert.md  site: https://j3w1.github.io/theme/#c-alert
 maturity: stable  priority: R1
 
 Summary: An inline status message with a mandatory glyph on the status tint behind a 1px status border; role alert for danger, status otherwise.
 
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  danger.bg       #2b0e0d  ({color.status.danger.tint})
-  danger.border   #e53935  ({color.status.danger.border})
-  danger.text     #f73f35  ({color.status.danger.text})
-  warning.bg      #1f1a0c  ({color.status.warning.tint})
-  warning.border  #c9973f  ({color.status.warning.border})
-  warning.text    #c9973f  ({color.status.warning.text})
-  success.bg      #0f1a0e  ({color.status.success.tint})
-  success.border  #86a46f  ({color.status.success.border})
-  success.text    #86a46f  ({color.status.success.text})
-  info.bg         #0f141c  ({color.status.info.tint})
-  info.border     #7e9ebb  ({color.status.info.border})
-  info.text       #7e9ebb  ({color.status.info.text})
-  neutral.bg      #241010  ({color.status.neutral.tint})
-  neutral.border  #a3676b  ({color.status.neutral.border})
-  neutral.text    #bd787d  ({color.status.neutral.text})
-  body.text       #e99499  ({color.text.default})
-  close.text      #e99499  ({color.action.tertiary.text})
-  close.bg-hover  #1c0a09  ({color.action.tertiary.hover-bg})
-  close.ring      #e53935  ({color.interaction.focus.ring})
+  danger.bg       #2b0e0d  ({color.status.danger.tint})  use
+  danger.border   #e53935  ({color.status.danger.border})  use
+  danger.text     #f73f35  ({color.status.danger.text})  use
+  warning.bg      #1f1a0c  ({color.status.warning.tint})  use
+  warning.border  #c9973f  ({color.status.warning.border})  use
+  warning.text    #c9973f  ({color.status.warning.text})  use
+  success.bg      #0f1a0e  ({color.status.success.tint})  use
+  success.border  #86a46f  ({color.status.success.border})  use
+  success.text    #86a46f  ({color.status.success.text})  use
+  info.bg         #0f141c  ({color.status.info.tint})  use
+  info.border     #7e9ebb  ({color.status.info.border})  use
+  info.text       #7e9ebb  ({color.status.info.text})  use
+  neutral.bg      #241010  ({color.status.neutral.tint})  use
+  neutral.border  #a3676b  ({color.status.neutral.border})  use
+  neutral.text    #bd787d  ({color.status.neutral.text})  use
+  body.text       #e99499  ({color.text.default})  use
+  close.text      #e99499  ({color.action.tertiary.text})  use
+  close.bg-hover  #1c0a09  ({color.action.tertiary.hover-bg})  use
+  close.ring      #e53935  ({color.interaction.focus.ring})  use
 
 States: default, hover, focus-visible
   default: status tint, 1px status border, glyph and title in the status text colour [the glyph ✕ ! ✓ i ·]

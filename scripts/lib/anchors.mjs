@@ -3,9 +3,11 @@
    disagree about where a component or token lives. */
 
 export const anchorFor = {
+  verification: (id) => `v-${id}`,
   component: (id) => `c-${id}`,
   family: (id) => `f-${id}`,
   doc: (id) => `d-${id}`,
+  decision: (id) => `d-decisions--${id.toLowerCase()}`,
   token: (path) => `t-${path.replaceAll(".", "-")}`,
   specimen: (id) => `s-${id}`,
   nonExample: (id) => `x-${id}`,

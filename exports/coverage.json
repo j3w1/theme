@@ -5,55 +5,64 @@
   "definitions": {
     "specified": "spec/components/<id>.md validates",
     "demonstrated": "<id>.demo.html exists with a fragment for every declared variant and renders on the site",
-    "tested": "tests/browser/components/<id>.spec.js exists"
+    "tested": "Compatibility alias for testImplemented; never an execution result",
+    "testImplemented": "tests/browser/components/<id>.spec.js exists; does not establish a pass"
   },
   "byFamily": {
     "composed": {
       "specified": 4,
       "demonstrated": 4,
       "tested": 0,
+      "testImplemented": 0,
       "total": 4
     },
     "feedback": {
       "specified": 8,
       "demonstrated": 8,
       "tested": 1,
+      "testImplemented": 1,
       "total": 8
     },
     "display": {
       "specified": 6,
       "demonstrated": 6,
       "tested": 1,
+      "testImplemented": 1,
       "total": 6
     },
     "navigation": {
       "specified": 7,
       "demonstrated": 7,
       "tested": 2,
+      "testImplemented": 2,
       "total": 7
     },
     "actions": {
       "specified": 3,
       "demonstrated": 3,
       "tested": 2,
+      "testImplemented": 2,
       "total": 3
     },
     "forms-basic": {
       "specified": 10,
       "demonstrated": 10,
       "tested": 4,
+      "testImplemented": 4,
       "total": 10
     },
     "developer": {
       "specified": 4,
       "demonstrated": 4,
       "tested": 0,
+      "testImplemented": 0,
       "total": 4
     },
     "forms-advanced": {
       "specified": 5,
       "demonstrated": 5,
       "tested": 0,
+      "testImplemented": 0,
       "total": 5
     }
   },
@@ -65,6 +74,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": false,
+      "testImplemented": false,
       "states": 4
     },
     "alert": {
@@ -74,6 +84,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": false,
+      "testImplemented": false,
       "states": 3
     },
     "badge": {
@@ -83,6 +94,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": false,
+      "testImplemented": false,
       "states": 2
     },
     "breadcrumbs": {
@@ -92,6 +104,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": false,
+      "testImplemented": false,
       "states": 5
     },
     "button": {
@@ -101,6 +114,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": true,
+      "testImplemented": true,
       "states": 6
     },
     "card": {
@@ -110,6 +124,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": false,
+      "testImplemented": false,
       "states": 5
     },
     "checkbox": {
@@ -119,6 +134,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": true,
+      "testImplemented": true,
       "states": 10
     },
     "chip": {
@@ -128,6 +144,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": false,
+      "testImplemented": false,
       "states": 6
     },
     "code-editor": {
@@ -137,6 +154,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": false,
+      "testImplemented": false,
       "states": 6
     },
     "combobox": {
@@ -146,6 +164,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": false,
+      "testImplemented": false,
       "states": 10
     },
     "data-table": {
@@ -155,6 +174,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": false,
+      "testImplemented": false,
       "states": 9
     },
     "date-picker": {
@@ -164,6 +184,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": false,
+      "testImplemented": false,
       "states": 7
     },
     "diagnostics": {
@@ -173,6 +194,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": false,
+      "testImplemented": false,
       "states": 7
     },
     "dialog": {
@@ -182,6 +204,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": true,
+      "testImplemented": true,
       "states": 7
     },
     "diff-view": {
@@ -191,6 +214,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": false,
+      "testImplemented": false,
       "states": 6
     },
     "drawer": {
@@ -200,6 +224,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": false,
+      "testImplemented": false,
       "states": 5
     },
     "empty-state": {
@@ -209,6 +234,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": false,
+      "testImplemented": false,
       "states": 1
     },
     "field": {
@@ -218,6 +244,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": false,
+      "testImplemented": false,
       "states": 4
     },
     "fieldset": {
@@ -227,6 +254,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": false,
+      "testImplemented": false,
       "states": 2
     },
     "file-input": {
@@ -236,6 +264,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": false,
+      "testImplemented": false,
       "states": 7
     },
     "filterable-table": {
@@ -245,6 +274,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": false,
+      "testImplemented": false,
       "states": 5
     },
     "i3-window-frame": {
@@ -254,6 +284,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": false,
+      "testImplemented": false,
       "states": 5
     },
     "icon-button": {
@@ -263,6 +294,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": false,
+      "testImplemented": false,
       "states": 7
     },
     "link": {
@@ -272,6 +304,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": true,
+      "testImplemented": true,
       "states": 5
     },
     "list": {
@@ -281,6 +314,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": false,
+      "testImplemented": false,
       "states": 7
     },
     "loading-indicator": {
@@ -290,6 +324,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": false,
+      "testImplemented": false,
       "states": 2
     },
     "menu": {
@@ -299,6 +334,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": true,
+      "testImplemented": true,
       "states": 8
     },
     "number-field": {
@@ -308,6 +344,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": false,
+      "testImplemented": false,
       "states": 7
     },
     "pagination": {
@@ -317,6 +354,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": false,
+      "testImplemented": false,
       "states": 5
     },
     "progress": {
@@ -326,6 +364,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": false,
+      "testImplemented": false,
       "states": 4
     },
     "radio-group": {
@@ -335,6 +374,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": true,
+      "testImplemented": true,
       "states": 8
     },
     "search-field": {
@@ -344,6 +384,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": false,
+      "testImplemented": false,
       "states": 8
     },
     "select": {
@@ -353,6 +394,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": true,
+      "testImplemented": true,
       "states": 7
     },
     "settings-panel": {
@@ -362,6 +404,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": false,
+      "testImplemented": false,
       "states": 4
     },
     "sidebar-nav": {
@@ -371,6 +414,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": false,
+      "testImplemented": false,
       "states": 8
     },
     "skip-link": {
@@ -380,6 +424,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": false,
+      "testImplemented": false,
       "states": 2
     },
     "switch": {
@@ -389,6 +434,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": false,
+      "testImplemented": false,
       "states": 7
     },
     "table": {
@@ -398,6 +444,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": true,
+      "testImplemented": true,
       "states": 8
     },
     "tabs": {
@@ -407,6 +454,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": true,
+      "testImplemented": true,
       "states": 7
     },
     "terminal": {
@@ -416,6 +464,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": false,
+      "testImplemented": false,
       "states": 5
     },
     "text-field": {
@@ -425,6 +474,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": true,
+      "testImplemented": true,
       "states": 14
     },
     "textarea": {
@@ -434,6 +484,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": false,
+      "testImplemented": false,
       "states": 10
     },
     "time-picker": {
@@ -443,6 +494,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": false,
+      "testImplemented": false,
       "states": 5
     },
     "toast": {
@@ -452,6 +504,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": false,
+      "testImplemented": false,
       "states": 5
     },
     "toolbar": {
@@ -461,6 +514,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": false,
+      "testImplemented": false,
       "states": 5
     },
     "tooltip": {
@@ -470,6 +524,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": false,
+      "testImplemented": false,
       "states": 5
     },
     "wizard": {
@@ -479,6 +534,7 @@
       "specified": true,
       "demonstrated": true,
       "tested": false,
+      "testImplemented": false,
       "states": 7
     }
   }

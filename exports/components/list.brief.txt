@@ -1,26 +1,28 @@
 j3w1/theme implementation brief — list
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=
+theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-w7xwAkhVM2iRfcrpHTYOoDFyoe6tJZCBjbJ78mFagcI=
 pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/list.json
 spec: spec/components/list.md  site: https://j3w1.github.io/theme/#c-list
 maturity: stable  priority: R1
 
 Summary: A selectable list of rows (an APG listbox) in single or multiple selection; the selected row is the selection fill with a check glyph and an optional metadata column.
 
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  root.bg                 #160b0b  ({color.surface.default})
-  root.border             #a3676b  ({color.border.control})
-  row.text                #e99499  ({color.text.default})
-  row.bg-hover            #1c0a09  ({color.interaction.hover.bg})
-  row.divider             #2b0e0d  ({color.border.divider})
-  row.ring                #e53935  ({color.interaction.focus.ring})
-  row.text-disabled       #8a5559  ({color.text.disabled})
-  selected.bg             #911410  ({color.interaction.selection.bg})
-  selected.text           #f4eeee  ({color.interaction.selection.text})
-  selected.ring           #ffa2a7  ({color.interaction.focus.ring-container})
-  selected.inactive-bg    #420f0c  ({color.interaction.selection.inactive-bg})
-  selected.inactive-text  #e99499  ({color.interaction.selection.inactive-text})
-  check.glyph             #f4eeee  ({color.interaction.selection.text})
-  meta.text               #bd787d  ({color.text.muted})
+  root.bg                 #160b0b  ({color.surface.default})  use
+  root.border             #a3676b  ({color.border.control})  use-and-report (D-007)
+  row.text                #e99499  ({color.text.default})  use
+  row.bg-hover            #1c0a09  ({color.interaction.hover.bg})  use
+  row.divider             #2b0e0d  ({color.border.divider})  use-and-report (D-008)
+  row.ring                #e53935  ({color.interaction.focus.ring})  use
+  row.text-disabled       #8a5559  ({color.text.disabled})  use
+  selected.bg             #911410  ({color.interaction.selection.bg})  use
+  selected.text           #f4eeee  ({color.interaction.selection.text})  use
+  selected.ring           #ffa2a7  ({color.interaction.focus.ring-container})  use
+  selected.inactive-bg    #420f0c  ({color.interaction.selection.inactive-bg})  use
+  selected.inactive-text  #e99499  ({color.interaction.selection.inactive-text})  use
+  check.glyph             #f4eeee  ({color.interaction.selection.text})  use
+  meta.text               #bd787d  ({color.text.muted})  use
+State dependency disclosures: D-007
 
 States: default, hover, focus-visible, selected, selected+focus-visible, selected+container-inactive, disabled
   default: text {color.text.default}; no fill; the check gutter empty [—]

@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../evidence-fixture.mjs";
 import { promises as fs } from "node:fs";
 import { openSpec, only, rgbToHex } from "../helpers.mjs";
 
@@ -9,7 +9,7 @@ const STATES = ["default", "hover", "selected", "selected+focus-visible", "selec
 const VARIANTS = 4;
 
 test.describe("table", () => {
-  test("the state matrix renders every declared state for every variant", async ({ page }) => {
+  test("the state matrix renders every declared state for every variant", { annotation: { type: "verification", description: JSON.stringify({"component": "table", "category": "rendering", "states": ["default", "hover", "selected", "selected+focus-visible", "selected+container-inactive", "sorted", "empty", "loading"], "variants": ["default", "sticky-header", "numeric", "with-caption"], "note": "Presence and selected structural assertions only; not behavioral verification of every state."}) } }, async ({ page }) => {
     await openSpec(page, "#c-table");
     for (const state of STATES) {
       const cells = page.locator(`#table-states [data-state="${state}"]`);
@@ -22,7 +22,7 @@ test.describe("table", () => {
     await expect(page.locator('#table-states [data-state="sorted"] .table-header-demo-target .table-sort-glyph').first()).toBeVisible();
   });
 
-  test("header rule, selected fill, hover fill and square corners", async ({ page }, testInfo) => {
+  test("header rule, selected fill, hover fill and square corners", { annotation: { type: "verification", description: JSON.stringify({"component": "table", "category": "appearance", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }, testInfo) => {
     test.skip(only(testInfo, "nojs"), "computed styles are the same without scripts; keep one run");
     await openSpec(page, "#c-table");
     const cells = page.locator('#table-states [data-state="default"]');
@@ -70,7 +70,7 @@ test.describe("table", () => {
     expect(selected.radius).toBe("0px");
   });
 
-  test("keyboard: the sort buttons are the only tab stops and take the dashed ring", async ({ page }, testInfo) => {
+  test("keyboard: the sort buttons are the only tab stops and take the dashed ring", { annotation: { type: "verification", description: JSON.stringify({"component": "table", "category": "keyboard", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }, testInfo) => {
     test.skip(only(testInfo, "nojs", "narrow", "zoom200"), "one keyboard walk");
     await openSpec(page, "#c-table");
     const live = page.locator('#table-states [data-state="default"]').first();

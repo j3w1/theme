@@ -1,27 +1,29 @@
 j3w1/theme implementation brief — drawer
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=
+theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-w7xwAkhVM2iRfcrpHTYOoDFyoe6tJZCBjbJ78mFagcI=
 pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/drawer.json
 spec: spec/components/drawer.md  site: https://j3w1.github.io/theme/#c-drawer
 maturity: stable  priority: R1
 
 Summary: A full-height modal panel anchored to the start or end edge; a native dialog on the overlay surface with a 1px overlay border on its inner edge.
 
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  backdrop.bg      rgb(0 0 0 / 65%)  ({color.surface.backdrop})
-  root.bg          #241010  ({color.surface.overlay})
-  root.border      #e53935  ({color.border.overlay})
-  root.ring        #ffa2a7  ({color.interaction.focus.ring-container})
-  root.z           20  ({z.drawer})
-  title.text       #ffa2a7  ({color.text.bright})
-  text.text        #e99499  ({color.text.default})
-  body.divider     #2b0e0d  ({color.border.divider})
-  item.text        #e99499  ({color.text.default})
-  item.bg-hover    #630f0d  ({color.interaction.hover.bg-strong})
-  item.text-hover  #f4eeee  ({color.text.link-hover})
-  close.text       #e99499  ({color.action.tertiary.text})
-  close.bg-hover   #1c0a09  ({color.action.tertiary.hover-bg})
-  close.ring       #e53935  ({color.interaction.focus.ring})
-  note.text        #bd787d  ({color.text.muted})
+  backdrop.bg      rgb(0 0 0 / 65%)  ({color.surface.backdrop})  use-and-report (D-008)
+  root.bg          #241010  ({color.surface.overlay})  use
+  root.border      #e53935  ({color.border.overlay})  use-and-report (D-008)
+  root.ring        #ffa2a7  ({color.interaction.focus.ring-container})  use
+  root.z           20  ({z.drawer})  use
+  title.text       #ffa2a7  ({color.text.bright})  use
+  text.text        #e99499  ({color.text.default})  use
+  body.divider     #2b0e0d  ({color.border.divider})  use-and-report (D-008)
+  item.text        #e99499  ({color.text.default})  use
+  item.bg-hover    #630f0d  ({color.interaction.hover.bg-strong})  use
+  item.text-hover  #f4eeee  ({color.text.link-hover})  use
+  close.text       #e99499  ({color.action.tertiary.text})  use
+  close.bg-hover   #1c0a09  ({color.action.tertiary.hover-bg})  use
+  close.ring       #e53935  ({color.interaction.focus.ring})  use
+  note.text        #bd787d  ({color.text.muted})  use
+State dependency disclosures: D-008
 
 States: default, open, closed, focus-trapped, reduced-motion
   default: the panel open at its edge on the backdrop [`open`; the page behind is inert]

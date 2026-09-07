@@ -1,24 +1,25 @@
 j3w1/theme implementation brief — pagination
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=
+theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-w7xwAkhVM2iRfcrpHTYOoDFyoe6tJZCBjbJ78mFagcI=
 pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/pagination.json
 spec: spec/components/pagination.md  site: https://j3w1.github.io/theme/#c-pagination
 maturity: stable  priority: R1
 
 Summary: Page links for a long result set; the current page takes the selection fill and aria-current, and the compact form reads "3 of 12" between previous and next.
 
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  root.bg             #160b0b  ({color.surface.default})
-  link.text           #e99499  ({color.text.default})
-  link.bg-hover       #1c0a09  ({color.interaction.hover.bg})
-  link.bg-pressed     #420f0c  ({color.interaction.pressed.bg})
-  link.ring           #e53935  ({color.interaction.focus.ring})
-  link.text-disabled  #8a5559  ({color.text.disabled})
-  current.bg          #911410  ({color.interaction.selection.bg})
-  current.text        #f4eeee  ({color.text.on-selection})
-  current.ring        #ffa2a7  ({color.interaction.focus.ring-container})
-  gap.text            #bd787d  ({color.text.muted})
-  status.text         #e99499  ({color.text.default})
-  status.emphasis     #ffa2a7  ({color.text.bright})
+  root.bg             #160b0b  ({color.surface.default})  use
+  link.text           #e99499  ({color.text.default})  use
+  link.bg-hover       #1c0a09  ({color.interaction.hover.bg})  use
+  link.bg-pressed     #420f0c  ({color.interaction.pressed.bg})  use
+  link.ring           #e53935  ({color.interaction.focus.ring})  use
+  link.text-disabled  #8a5559  ({color.text.disabled})  use
+  current.bg          #911410  ({color.interaction.selection.bg})  use
+  current.text        #f4eeee  ({color.text.on-selection})  use
+  current.ring        #ffa2a7  ({color.interaction.focus.ring-container})  use
+  gap.text            #bd787d  ({color.text.muted})  use
+  status.text         #e99499  ({color.text.default})  use
+  status.emphasis     #ffa2a7  ({color.text.bright})  use
 
 States: default, hover, focus-visible, current, disabled
   default: text {color.text.default}; no fill; no border [—]

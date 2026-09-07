@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../evidence-fixture.mjs";
 import { promises as fs } from "node:fs";
 import { openSpec, only, rgbToHex } from "../helpers.mjs";
 
@@ -9,7 +9,7 @@ const STATES = ["default", "hover", "focus-visible", "selected", "selected+focus
 const VARIANTS = 2;
 
 test.describe("tabs", () => {
-  test("the state matrix renders every declared state for every variant", async ({ page }) => {
+  test("the state matrix renders every declared state for every variant", { annotation: { type: "verification", description: JSON.stringify({"component": "tabs", "category": "rendering", "states": ["default", "hover", "focus-visible", "selected", "selected+focus-visible", "selected+container-inactive", "disabled"], "variants": ["default", "overflow"], "note": "Presence and selected structural assertions only; not behavioral verification of every state."}) } }, async ({ page }) => {
     await openSpec(page, "#c-tabs");
     for (const state of STATES) {
       const cells = page.locator(`#tabs-states [data-state="${state}"]`);
@@ -20,7 +20,7 @@ test.describe("tabs", () => {
     expect(rgbToHex(inactiveBar)).toBe(token("color.border.selected-indicator-inactive"));
   });
 
-  test("the selected tab is a 2px indicator bar with bright text, and the ring sits on it", async ({ page }, testInfo) => {
+  test("the selected tab is a 2px indicator bar with bright text, and the ring sits on it", { annotation: { type: "verification", description: JSON.stringify({"component": "tabs", "category": "appearance", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }, testInfo) => {
     test.skip(only(testInfo, "nojs"), "computed styles are the same without scripts; keep one run");
     await openSpec(page, "#c-tabs");
     const live = page.locator('#tabs-states [data-state="default"]').first();
@@ -54,7 +54,7 @@ test.describe("tabs", () => {
     expect(rgbToHex(ring.bar)).toBe(token("color.border.selected-indicator"));
   });
 
-  test("roving tabindex: exactly one tab is in the tab order and it is the selected one", async ({ page }, testInfo) => {
+  test("roving tabindex: exactly one tab is in the tab order and it is the selected one", { annotation: { type: "verification", description: JSON.stringify({"component": "tabs", "category": "structure", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }, testInfo) => {
     test.skip(only(testInfo, "narrow", "zoom200"), "one walk is enough");
     await openSpec(page, "#c-tabs");
     const live = page.locator('#tabs-states [data-state="default"]').first();

@@ -29,8 +29,8 @@ const waived = pairs.filter((p) => !p.pass && p.waiver).length;
             <td>{p.label ?? p.source}</td>
             <td>{p.state ?? "—"}</td>
             <td>{p.kind}</td>
-            <td><span class="swatch" style={`background:${p.fgHex}`} aria-hidden="true"></span><code data-token={p.fg}>{p.fg}</code> <code>{p.fgHex}</code></td>
-            <td><span class="swatch" style={`background:${p.bgHex}`} aria-hidden="true"></span><code data-token={p.bg}>{p.bg}</code> <code>{p.bgHex}</code></td>
+            <td><code data-token={p.fg}>{p.fg}</code> <code>{p.fgHex}</code></td>
+            <td><code data-token={p.bg}>{p.bg}</code> <code>{p.bgHex}</code></td>
             <td>{p.ratio.toFixed(2)}</td>
             <td>{p.min}</td>
             <td>{p.pass ? <span class="status-pass">pass</span> : p.waiver ? <span class="status-waived">waived: {p.waiver}</span> : <span class="status-fail">fail</span>}</td>

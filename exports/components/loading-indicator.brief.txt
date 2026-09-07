@@ -1,16 +1,17 @@
 j3w1/theme implementation brief — loading-indicator
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=
+theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-w7xwAkhVM2iRfcrpHTYOoDFyoe6tJZCBjbJ78mFagcI=
 pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/loading-indicator.json
 spec: spec/components/loading-indicator.md  site: https://j3w1.github.io/theme/#c-loading-indicator
 maturity: stable  priority: R1
 
 Summary: A static ⋯ glyph with a worded label inside an aria-busy container; inline next to text or as a centred block. There is no spinner.
 
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  glyph.text    #bd787d  ({color.text.muted})
-  label.text    #e99499  ({color.text.default})
-  block.bg      #160b0b  ({color.surface.default})
-  block.border  #2b0e0d  ({color.border.divider})
+  glyph.text    #bd787d  ({color.text.muted})  use
+  label.text    #e99499  ({color.text.default})  use
+  block.bg      #160b0b  ({color.surface.default})  use
+  block.border  #2b0e0d  ({color.border.divider})  use-and-report (D-008)
 
 States: default, reduced-motion
   default: the static ⋯ and the label [`aria-busy="true"`; the glyph; the worded label]

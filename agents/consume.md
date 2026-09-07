@@ -38,15 +38,15 @@ If the copy you are reading came from a different revision, fetch it again.
 
 ## 3. Pick a profile
 
-Use the profile with `"default": true` unless the requester names another one.
-Only profiles with `"status": "approved"` may be implemented as "the j3w1
-theme". `heritage` profiles are historical data for terminals and archives.
-`proposed` **profiles** (such as `extended`) are never used in delivered work.
+<!-- eligibility:start -->
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
+<!-- eligibility:end -->
 
-A role inside the default profile may itself carry `status: "proposed"` while
-its decision in `spec/decisions.md` is pending. Implement it as listed (it is
-the recommended value) and name its decision id in the deviation report; its
-value may change in the next pre-release, which is why you pin a revision.
+The policy block is generated. Pending decision IDs are available in each
+resolved token's `eligibility.decisionIds`, including alias dependencies.
+Report those IDs alongside any actual deviations; using an authorized pending
+value is a disclosure, not an invented substitution. No replacement is implied
+by a blocked action. A profile preview does not authorize delivered work.
 
 ## 4. Read only what you need, in this order
 
@@ -95,7 +95,8 @@ write `theme.lock.json` (below) at the consumer's chosen path.
 ## What you may not do
 
 - Invent, blend, lighten, darken or "harmonise" colours. Only resolved values.
-- Use a `proposed` or `heritage` value in an approved-profile implementation.
+- Use a blocked value, deliver a proposed profile, or omit the required
+  pending-decision disclosures. Historical-only values are not approved UI roles.
 - Derive values from the site's HTML, from screenshots or from memory.
 - Touch unrelated components, layouts, copy, dependencies or build
   configuration.

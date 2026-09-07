@@ -1,29 +1,31 @@
 j3w1/theme implementation brief — radio-group
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=
+theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-w7xwAkhVM2iRfcrpHTYOoDFyoe6tJZCBjbJ78mFagcI=
 pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/radio-group.json
 spec: spec/components/radio-group.md  site: https://j3w1.github.io/theme/#c-radio-group
 maturity: stable  priority: R1
 
 Summary: A fieldset of native radios for one exclusive choice; each radio is a 16px square that fills with the primary action colour and an inner square when checked.
 
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  box.bg                #0c0909  ({color.surface.input})
-  box.border            #a3676b  ({color.border.control})
-  box.bg-hover          #1c0a09  ({color.interaction.hover.bg})
-  box.ring              #e53935  ({color.interaction.focus.ring})
-  box.bg-checked        #871f19  ({color.action.primary.bg})
-  box.bg-checked-hover  #911410  ({color.action.primary.hover-bg})
-  box.dot               #f4eeee  ({color.action.primary.text})
-  box.ring-checked      #ffa2a7  ({color.interaction.focus.ring-container})
-  box.border-invalid    #e53935  ({color.status.danger.border})
-  box.bg-disabled       #160b0b  ({color.interaction.disabled.bg})
-  box.border-disabled   #7d1310  ({color.border.disabled})
-  box.dot-disabled      #8a5559  ({color.text.disabled})
-  text.default          #e99499  ({color.text.default})
-  text.disabled         #8a5559  ({color.text.disabled})
-  legend.text           #ffa2a7  ({color.text.bright})
-  legend.required-mark  #f73f35  ({color.status.danger.text})
-  message.text          #f73f35  ({color.status.danger.text})
+  box.bg                #0c0909  ({color.surface.input})  use
+  box.border            #a3676b  ({color.border.control})  use-and-report (D-007)
+  box.bg-hover          #1c0a09  ({color.interaction.hover.bg})  use
+  box.ring              #e53935  ({color.interaction.focus.ring})  use
+  box.bg-checked        #871f19  ({color.action.primary.bg})  use
+  box.bg-checked-hover  #911410  ({color.action.primary.hover-bg})  use
+  box.dot               #f4eeee  ({color.action.primary.text})  use
+  box.ring-checked      #ffa2a7  ({color.interaction.focus.ring-container})  use
+  box.border-invalid    #e53935  ({color.status.danger.border})  use
+  box.bg-disabled       #160b0b  ({color.interaction.disabled.bg})  use
+  box.border-disabled   #7d1310  ({color.border.disabled})  use
+  box.dot-disabled      #8a5559  ({color.text.disabled})  use
+  text.default          #e99499  ({color.text.default})  use
+  text.disabled         #8a5559  ({color.text.disabled})  use
+  legend.text           #ffa2a7  ({color.text.bright})  use
+  legend.required-mark  #f73f35  ({color.status.danger.text})  use
+  message.text          #f73f35  ({color.status.danger.text})  use
+State dependency disclosures: D-007
 
 States: default, hover, focus-visible, checked, checked+focus-visible, disabled, invalid, required
   default: 16px square, 1px {color.border.control} on {color.surface.input}; text {color.text.default} [—]

@@ -66,6 +66,10 @@ dialogs and drawers appear in place, indeterminate progress shows static
 stripes, loading glyphs do not spin, skeletons do not shimmer, tab indicators
 do not slide. No behaviour is sequenced on `transitionend`.
 
+The specification page’s generated literal-color previews have the narrow
+geometry, checkerboard and motion exception recorded in D-014; the component
+and consumer rules remain as written.
+
 ## Forced colours and high contrast
 
 Under `forced-colors: active` rings use `Highlight`, selections use
@@ -94,8 +98,8 @@ it silently.
   host application's own focus management, labels or reading order correct.
 - The automated scan on the site uses axe-core with the WCAG 2.x A and AA
   rule sets. It does not evaluate every success criterion, and manual checks
-  (keyboard walks, screen-reader reading, zoom) are recorded separately in the
-  test suite, not implied by the scan.
+  (keyboard walks, screen-reader reading, zoom) require separate execution
+  evidence. Missing protocols remain not run, not implied by the scan.
 - `text.disabled` at 3.33:1 is below the ordinary-text floor by design and
   relies on the WCAG exemption for inactive controls.
 - Heritage ANSI slots 1, 4, 6, 8, 9, 10, 12, 13, 14 and 15 fail 4.5:1 on the
@@ -105,3 +109,47 @@ it silently.
 - Syntax roles inside an editor selection: keyword, type, property and comment
   drop below 4.5:1 on `code.selection-bg`. Selection is transient; the
   limitation is recorded in the code-editor specification.
+
+
+## Verification evidence and freshness
+
+The coverage ledger describes source facts: specified, demonstrated and test
+implemented. `exports/coverage.json` schemaVersion 1 adds `testImplemented` and
+retains `tested` as a compatibility alias with its original file-existence
+meaning. Component JSON coverage and family totals use the same definitions.
+No source coverage Boolean proves execution or blanket WCAG conformance.
+
+The linked static verification report supplies actual per-test outcomes and
+per-component summaries. Evidence schemaVersion 1 records automated or manual
+method, category, component, explicitly covered states/variants, browser/version,
+OS, viewport, profile, density, JavaScript setting and a run or protocol reference.
+Empty state/variant lists mean unspecified, never all. The environment's profile
+and density describe the initial configuration; tests that switch them say so
+in their scope. Browser records from one engine never imply another engine.
+Skipped, failed, not run and not applicable are separate outcomes; every non-pass
+has a reason. Manual screen-reader and keyboard claims require protocol records.
+The existing automated suite targets Chromium; other engines remain not run.
+
+Freshness compares both the tested artifact digest and a conservative source
+fingerprint covering tracked contract sources, schemas, generators, site code,
+tests, agent guidance, CI configuration and package lockfile. All such changes
+invalidate the current claim; unrelated source changes may therefore invalidate
+more evidence than strictly necessary. A stale record retains its actual outcome
+and supporting reference but does not establish a current pass.
+
+A build first publishes a static not-run report and a subject manifest. The
+browser reporter checks that source and specimen assets still match that subject
+before publishing execution evidence. Report generation writes only under
+`dist/verification/` and verifies all specimen bytes remain unchanged. Report
+presentation gets a separate static/browser gate and never certifies itself.
+Run timestamps and revisions live only in this post-test evidence, outside the
+committed deterministic exports and their digests, avoiding circular hashes.
+
+Local workflow: build, run the browser suite, `npm run verification:report`,
+`npm run verification:check`, then `npm run test:verification`. A local run names
+its local execution and digests; it is not represented as hosted CI evidence.
+For a manual protocol, provide a schema-valid evidence document to
+`node scripts/verification-report.mjs <repo-relative-evidence.json>` with its
+actual tested digests, browser/environment and a `protocol:` reference containing
+the protocol identifier and recorded observations. Retain the protocol with the
+evidence; do not copy private artifacts into this public repository.

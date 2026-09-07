@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "action": {
+      "type": "string",
+      "enum": [
+        "use",
+        "use-and-report",
+        "blocked",
+        "historical-only"
+      ]
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "decisionIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^D-\\d{3}$"
+      }
+    }
+  },
+  "required": [
+    "action",
+    "reason",
+    "decisionIds"
+  ],
+  "additionalProperties": false
+}

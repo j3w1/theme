@@ -10,6 +10,7 @@
 import { z } from "zod";
 import { readJson } from "./fs.mjs";
 import { ALIAS, EXTENSIONS_KEY, TOKEN_TYPES, tokenFileSchema, valueSchemaFor } from "../../schemas/tokens.mjs";
+import { eligibilityOf } from "./eligibility.mjs";
 
 export class TokenError extends Error {}
 
@@ -165,7 +166,7 @@ export const hexToColor = (hex, alpha = 1) => {
 };
 
 /* Flattened export shape: path → { type, value (resolved), css, aliasOf, description, status, deprecated }. */
-export const toResolvedExport = (resolved) => {
+export const toResolvedExport = (resolved, profile = { status: "approved", default: true }) => {
   const out = {};
   for (const [path, token] of resolved) {
     out[path] = {
@@ -176,6 +177,8 @@ export const toResolvedExport = (resolved) => {
       description: token.description,
       status: statusOf(token),
       deprecated: token.deprecated || false,
+      decisionId: extensionOf(token)?.approval?.decision ?? null,
+      eligibility: eligibilityOf(profile, token, resolved),
     };
   }
   return out;

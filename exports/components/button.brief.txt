@@ -1,39 +1,40 @@
 j3w1/theme implementation brief — button
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=
+theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-w7xwAkhVM2iRfcrpHTYOoDFyoe6tJZCBjbJ78mFagcI=
 pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/button.json
 spec: spec/components/button.md  site: https://j3w1.github.io/theme/#c-button
 maturity: stable  priority: R1
 
 Summary: The native push button in the four action tones; primary is the only filled button at rest, destructive fills on hover and always needs a confirmation or an undo.
 
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  root.bg                  #871f19  ({color.action.primary.bg})
-  root.text                #f4eeee  ({color.action.primary.text})
-  root.border              #9e231f  ({color.action.primary.border})
-  root.bg-hover            #911410  ({color.action.primary.hover-bg})
-  root.bg-active           #630f0d  ({color.action.primary.pressed-bg})
-  root.ring                #ffa2a7  ({color.interaction.focus.ring-container})
-  secondary.bg             rgb(0 0 0 / 0%)  ({color.action.secondary.bg})
-  secondary.text           #ffa2a7  ({color.action.secondary.text})
-  secondary.border         #a3676b  ({color.action.secondary.border})
-  secondary.bg-hover       #630f0d  ({color.action.secondary.hover-bg})
-  secondary.bg-active      #420f0c  ({color.action.secondary.pressed-bg})
-  secondary.ring           #e53935  ({color.interaction.focus.ring})
-  tertiary.text            #e99499  ({color.action.tertiary.text})
-  tertiary.bg-hover        #1c0a09  ({color.action.tertiary.hover-bg})
-  tertiary.bg-active       #420f0c  ({color.interaction.pressed.bg})
-  destructive.text         #f73f35  ({color.action.destructive.text})
-  destructive.border       #e53935  ({color.action.destructive.border})
-  destructive.bg-hover     #dc282e  ({color.action.destructive.hover-bg})
-  destructive.text-hover   #f9faf9  ({color.action.destructive.hover-text})
-  destructive.bg-active    #ae1914  ({color.action.destructive.pressed-bg})
-  destructive.bg-filled    #dc282e  ({color.action.destructive.filled-bg})
-  destructive.text-filled  #f9faf9  ({color.action.destructive.filled-text})
-  root.border-active       #e53935  ({color.border.active})
-  root.text-disabled       #8a5559  ({color.text.disabled})
-  root.bg-disabled         #160b0b  ({color.interaction.disabled.bg})
-  root.border-disabled     #7d1310  ({color.border.disabled})
-  loading.glyph            #f4eeee  ({color.action.primary.text})
+  root.bg                  #871f19  ({color.action.primary.bg})  use
+  root.text                #f4eeee  ({color.action.primary.text})  use
+  root.border              #9e231f  ({color.action.primary.border})  use
+  root.bg-hover            #911410  ({color.action.primary.hover-bg})  use
+  root.bg-active           #630f0d  ({color.action.primary.pressed-bg})  use
+  root.ring                #ffa2a7  ({color.interaction.focus.ring-container})  use
+  secondary.bg             rgb(0 0 0 / 0%)  ({color.action.secondary.bg})  use
+  secondary.text           #ffa2a7  ({color.action.secondary.text})  use
+  secondary.border         #a3676b  ({color.action.secondary.border})  use
+  secondary.bg-hover       #630f0d  ({color.action.secondary.hover-bg})  use
+  secondary.bg-active      #420f0c  ({color.action.secondary.pressed-bg})  use
+  secondary.ring           #e53935  ({color.interaction.focus.ring})  use
+  tertiary.text            #e99499  ({color.action.tertiary.text})  use
+  tertiary.bg-hover        #1c0a09  ({color.action.tertiary.hover-bg})  use
+  tertiary.bg-active       #420f0c  ({color.interaction.pressed.bg})  use
+  destructive.text         #f73f35  ({color.action.destructive.text})  use
+  destructive.border       #e53935  ({color.action.destructive.border})  use
+  destructive.bg-hover     #dc282e  ({color.action.destructive.hover-bg})  use
+  destructive.text-hover   #f9faf9  ({color.action.destructive.hover-text})  use
+  destructive.bg-active    #ae1914  ({color.action.destructive.pressed-bg})  use
+  destructive.bg-filled    #dc282e  ({color.action.destructive.filled-bg})  use
+  destructive.text-filled  #f9faf9  ({color.action.destructive.filled-text})  use
+  root.border-active       #e53935  ({color.border.active})  use
+  root.text-disabled       #8a5559  ({color.text.disabled})  use
+  root.bg-disabled         #160b0b  ({color.interaction.disabled.bg})  use
+  root.border-disabled     #7d1310  ({color.border.disabled})  use
+  loading.glyph            #f4eeee  ({color.action.primary.text})  use
 
 States: default, hover, focus-visible, active, disabled, loading
   default: primary: {color.action.primary.bg} fill, {color.action.primary.text}, 1px {color.action.primary.border}; secondary: 1px {color.action.secondary.border}, {color.action.secondary.text}; tertiary: {color.action.tertiary.text}, no border; destructive: 1px {color.action.destructive.border}, {color.action.destructive.text} [—]

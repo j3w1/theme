@@ -1,21 +1,22 @@
 j3w1/theme implementation brief — empty-state
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=
+theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-w7xwAkhVM2iRfcrpHTYOoDFyoe6tJZCBjbJ78mFagcI=
 pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/empty-state.json
 spec: spec/components/empty-state.md  site: https://j3w1.github.io/theme/#c-empty-state
 maturity: stable  priority: R1
 
 Summary: What a container shows when it has nothing to list; a glyph, a heading in the bright text colour, one sentence in the muted colour and an optional secondary action.
 
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  root.bg          #160b0b  ({color.surface.default})
-  root.border      #2b0e0d  ({color.border.divider})
-  glyph.text       #a3676b  ({color.icon.decorative})
-  heading.text     #ffa2a7  ({color.text.bright})
-  text.text        #bd787d  ({color.text.muted})
-  action.text      #ffa2a7  ({color.action.secondary.text})
-  action.border    #a3676b  ({color.action.secondary.border})
-  action.bg-hover  #630f0d  ({color.action.secondary.hover-bg})
-  action.ring      #e53935  ({color.interaction.focus.ring})
+  root.bg          #160b0b  ({color.surface.default})  use
+  root.border      #2b0e0d  ({color.border.divider})  use-and-report (D-008)
+  glyph.text       #a3676b  ({color.icon.decorative})  use
+  heading.text     #ffa2a7  ({color.text.bright})  use
+  text.text        #bd787d  ({color.text.muted})  use
+  action.text      #ffa2a7  ({color.action.secondary.text})  use
+  action.border    #a3676b  ({color.action.secondary.border})  use
+  action.bg-hover  #630f0d  ({color.action.secondary.hover-bg})  use
+  action.ring      #e53935  ({color.interaction.focus.ring})  use
 
 States: default
   default: glyph, heading and sentence centred; the action, when present, below them [the worded heading; the action is a real button]

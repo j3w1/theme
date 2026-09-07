@@ -1,39 +1,41 @@
 j3w1/theme implementation brief — toast
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=
+theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-w7xwAkhVM2iRfcrpHTYOoDFyoe6tJZCBjbJ78mFagcI=
 pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/toast.json
 spec: spec/components/toast.md  site: https://j3w1.github.io/theme/#c-toast
 maturity: stable  priority: R1
 
 Summary: A brief notification in a fixed corner stack; canvas surface behind a 1px overlay border, status tints for the four polite statuses and the danger fill for critical ones.
 
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  root.bg                 #0c0909  ({color.surface.canvas})
-  root.border             #e53935  ({color.border.overlay})
-  root.text               #e99499  ({color.text.default})
-  glyph.text              #7e9ebb  ({color.status.info.text})
-  warning.bg              #1f1a0c  ({color.status.warning.tint})
-  warning.border          #c9973f  ({color.status.warning.border})
-  warning.text            #c9973f  ({color.status.warning.text})
-  success.bg              #0f1a0e  ({color.status.success.tint})
-  success.border          #86a46f  ({color.status.success.border})
-  success.text            #86a46f  ({color.status.success.text})
-  info.bg                 #0f141c  ({color.status.info.tint})
-  info.border             #7e9ebb  ({color.status.info.border})
-  info.text               #7e9ebb  ({color.status.info.text})
-  neutral.bg              #241010  ({color.status.neutral.tint})
-  neutral.border          #a3676b  ({color.status.neutral.border})
-  neutral.text            #bd787d  ({color.status.neutral.text})
-  danger.bg               #dc282e  ({color.status.danger.fill})
-  danger.text             #f9faf9  ({color.status.danger.on-fill})
-  danger.button-bg-hover  #ae1914  ({color.action.destructive.pressed-bg})
-  action.text             #ffa2a7  ({color.text.link})
-  action.bg-hover         #630f0d  ({color.interaction.hover.bg-strong})
-  action.text-hover       #f4eeee  ({color.text.link-hover})
-  close.text              #e99499  ({color.action.tertiary.text})
-  close.bg-hover          #1c0a09  ({color.action.tertiary.hover-bg})
-  close.ring              #e53935  ({color.interaction.focus.ring})
-  count.text              #bd787d  ({color.text.muted})
-  stack.z                 40  ({z.toast})
+  root.bg                 #0c0909  ({color.surface.canvas})  use
+  root.border             #e53935  ({color.border.overlay})  use-and-report (D-008)
+  root.text               #e99499  ({color.text.default})  use
+  glyph.text              #7e9ebb  ({color.status.info.text})  use
+  warning.bg              #1f1a0c  ({color.status.warning.tint})  use
+  warning.border          #c9973f  ({color.status.warning.border})  use
+  warning.text            #c9973f  ({color.status.warning.text})  use
+  success.bg              #0f1a0e  ({color.status.success.tint})  use
+  success.border          #86a46f  ({color.status.success.border})  use
+  success.text            #86a46f  ({color.status.success.text})  use
+  info.bg                 #0f141c  ({color.status.info.tint})  use
+  info.border             #7e9ebb  ({color.status.info.border})  use
+  info.text               #7e9ebb  ({color.status.info.text})  use
+  neutral.bg              #241010  ({color.status.neutral.tint})  use
+  neutral.border          #a3676b  ({color.status.neutral.border})  use
+  neutral.text            #bd787d  ({color.status.neutral.text})  use
+  danger.bg               #dc282e  ({color.status.danger.fill})  use
+  danger.text             #f9faf9  ({color.status.danger.on-fill})  use
+  danger.button-bg-hover  #ae1914  ({color.action.destructive.pressed-bg})  use
+  action.text             #ffa2a7  ({color.text.link})  use
+  action.bg-hover         #630f0d  ({color.interaction.hover.bg-strong})  use
+  action.text-hover       #f4eeee  ({color.text.link-hover})  use
+  close.text              #e99499  ({color.action.tertiary.text})  use
+  close.bg-hover          #1c0a09  ({color.action.tertiary.hover-bg})  use
+  close.ring              #e53935  ({color.interaction.focus.ring})  use
+  count.text              #bd787d  ({color.text.muted})  use
+  stack.z                 40  ({z.toast})  use
+State dependency disclosures: D-008
 
 States: default, hover, focus-visible, stacked, reduced-motion
   default: canvas surface, 1px overlay border, glyph in the status text colour [the glyph; the worded text]

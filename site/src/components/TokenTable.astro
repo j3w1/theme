@@ -1,6 +1,7 @@
 ---
 /* Every token under a prefix, with swatches, per-profile values and status. */
 import { anchors, cssVar, profiles, tokensInGroup } from "../lib/theme";
+import Eligibility from "./Eligibility.astro";
 
 interface Props {
   prefix: string;
@@ -24,8 +25,7 @@ const profileIds = Object.keys(profiles);
           <div class="label">
             <code data-token={path}>{path.replace(prefix, "")}</code>
             <span class="copy-target"><span class="value">{token.css}</span><button type="button" class="copy-button js-only" data-copy={token.css} aria-label={`Copy ${path}`}>copy</button></span>
-            {token.status === "proposed" && <span class="tag tag-proposed">proposed</span>}
-            {token.deprecated && <span class="tag tag-deprecated">deprecated</span>}
+            <Eligibility token={token} />
             {token.description && <span class="value"> — {token.description}</span>}
           </div>
         </div>
@@ -45,13 +45,11 @@ const profileIds = Object.keys(profiles);
           {rows.map(([path, token]) => (
             <tr id={anchors.token(path)}>
               <td>
-                {token.type === "color" && <span class="swatch" style={`background: var(${cssVar(path)})`} aria-hidden="true"></span>}
+
                 <code data-token={path}>{path}</code>
-                {token.status === "proposed" && <span class="tag tag-proposed">proposed</span>}
-                {token.deprecated && <span class="tag tag-deprecated">deprecated</span>}
               </td>
               {profileIds.map((p) => (
-                <td><span class="copy-target"><code>{profiles[p].tokens[path]?.css ?? "—"}</code>{profiles[p].tokens[path] && <button type="button" class="copy-button js-only" data-copy={profiles[p].tokens[path].css} aria-label={`Copy ${path} (${p})`}>copy</button>}</span></td>
+                <td><span class="copy-target"><code>{profiles[p].tokens[path]?.css ?? "—"}</code>{profiles[p].tokens[path] && <button type="button" class="copy-button js-only" data-copy={profiles[p].tokens[path].css} aria-label={`Copy ${path} (${p})`}>copy</button>}</span><Eligibility token={profiles[p].tokens[path]} /></td>
               ))}
               <td>{token.description}</td>
             </tr>

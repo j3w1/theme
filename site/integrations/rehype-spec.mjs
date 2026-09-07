@@ -5,6 +5,7 @@
      inspector can resolve them;
    - strips the @compact markers, which are for the export builders. */
 
+import { anchorFor } from "../../scripts/lib/anchors.mjs";
 const SHIFT = { doc: 1, component: 2 };
 const TOKEN = /\{([a-z0-9][a-z0-9.-]*)\}/g;
 
@@ -42,6 +43,8 @@ export default function rehypeSpec() {
         node.properties ??= {};
         const own = node.properties.id ?? slug(textOf(node));
         node.properties.id = `${prefix}${own}`;
+        const decision = stemOf(file) === "decisions" && textOf(node).match(/^(D-\d{3})\b/);
+        if (decision) node.properties.id = anchorFor.decision(decision[1]);
       }
       if (node.type === "comment" && /@compact:(start|end)/.test(node.value)) node.value = "";
     });

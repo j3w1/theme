@@ -41,6 +41,10 @@ remain in service as `border.control`, `icon.decorative`, `status.neutral.fill`
 and `border.disabled`. Metadata and comments that a person needs to read are
 not decorative and use `text.subtle`, not a graphic colour.
 
+The specification page’s generated literal-color previews have the narrow
+geometry, checkerboard and motion exception recorded in D-014; the component
+and consumer rules remain as written.
+
 ## Borders
 
 Every border is 1px (`border.width.default`); 2px (`border.width.emphasis`) is

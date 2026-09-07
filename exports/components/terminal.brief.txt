@@ -1,46 +1,48 @@
 j3w1/theme implementation brief — terminal
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=
+theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-w7xwAkhVM2iRfcrpHTYOoDFyoe6tJZCBjbJ78mFagcI=
 pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/terminal.json
 spec: spec/components/terminal.md  site: https://j3w1.github.io/theme/#c-terminal
 maturity: stable  priority: R1
 
 Summary: Terminal text on the terminal surface with the sixteen heritage ANSI slots carried exactly, the cursor, the selection and the six text attributes; a transcript, the slot grid and the attributes.
 
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  root.bg             #0c0909  ({color.terminal.bg})
-  root.text           #e99499  ({color.terminal.fg})
-  root.border         #a3676b  ({color.border.control})
-  root.ring           #ffa2a7  ({color.interaction.focus.ring-container})
-  cursor.bg           #e99499  ({color.terminal.cursor})
-  cursor.text         #0c0909  ({color.terminal.bg})
-  selection.bg        #911410  ({color.terminal.selection-bg})
-  selection.text      #f4eeee  ({color.terminal.selection-text})
-  current.bg          #1c0a09  ({color.code.current-line})
-  prompt.bg           #8c1212  ({color.terminal.ansi.4})
-  prompt.text         #f4eeee  ({color.terminal.selection-text})
-  prompt.branch-bg    #d4868b  ({color.terminal.ansi.3})
-  prompt.branch-text  #0c0909  ({color.terminal.bg})
-  dim.text            #bd787d  ({color.text.muted})
-  inverse.bg          #e99499  ({color.terminal.fg})
-  inverse.text        #0c0909  ({color.terminal.bg})
-  label.text          #bd787d  ({color.text.muted})
-  fail.glyph          #e99499  ({color.terminal.fg})
-  slot.ansi-0         #0c0909  ({color.terminal.ansi.0})
-  slot.ansi-1         #c81a1a  ({color.terminal.ansi.1})
-  slot.ansi-2         #bd787d  ({color.terminal.ansi.2})
-  slot.ansi-3         #d4868b  ({color.terminal.ansi.3})
-  slot.ansi-4         #8c1212  ({color.terminal.ansi.4})
-  slot.ansi-5         #f73f35  ({color.terminal.ansi.5})
-  slot.ansi-6         #9e474a  ({color.terminal.ansi.6})
-  slot.ansi-7         #ffa2a7  ({color.terminal.ansi.7})
-  slot.ansi-8         #7d1310  ({color.terminal.ansi.8})
-  slot.ansi-9         #ab1612  ({color.terminal.ansi.9})
-  slot.ansi-10        #ad2721  ({color.terminal.ansi.10})
-  slot.ansi-11        #b37175  ({color.terminal.ansi.11})
-  slot.ansi-12        #871f19  ({color.terminal.ansi.12})
-  slot.ansi-13        #e82132  ({color.terminal.ansi.13})
-  slot.ansi-14        #e0292f  ({color.terminal.ansi.14})
-  slot.ansi-15        #a3676b  ({color.terminal.ansi.15})
+  root.bg             #0c0909  ({color.terminal.bg})  use
+  root.text           #e99499  ({color.terminal.fg})  use
+  root.border         #a3676b  ({color.border.control})  use-and-report (D-007)
+  root.ring           #ffa2a7  ({color.interaction.focus.ring-container})  use
+  cursor.bg           #e99499  ({color.terminal.cursor})  use
+  cursor.text         #0c0909  ({color.terminal.bg})  use
+  selection.bg        #911410  ({color.terminal.selection-bg})  use
+  selection.text      #f4eeee  ({color.terminal.selection-text})  use
+  current.bg          #1c0a09  ({color.code.current-line})  use
+  prompt.bg           #8c1212  ({color.terminal.ansi.4})  use
+  prompt.text         #f4eeee  ({color.terminal.selection-text})  use
+  prompt.branch-bg    #d4868b  ({color.terminal.ansi.3})  use
+  prompt.branch-text  #0c0909  ({color.terminal.bg})  use
+  dim.text            #bd787d  ({color.text.muted})  use
+  inverse.bg          #e99499  ({color.terminal.fg})  use
+  inverse.text        #0c0909  ({color.terminal.bg})  use
+  label.text          #bd787d  ({color.text.muted})  use
+  fail.glyph          #e99499  ({color.terminal.fg})  use
+  slot.ansi-0         #0c0909  ({color.terminal.ansi.0})  use
+  slot.ansi-1         #c81a1a  ({color.terminal.ansi.1})  use
+  slot.ansi-2         #bd787d  ({color.terminal.ansi.2})  use
+  slot.ansi-3         #d4868b  ({color.terminal.ansi.3})  use
+  slot.ansi-4         #8c1212  ({color.terminal.ansi.4})  use
+  slot.ansi-5         #f73f35  ({color.terminal.ansi.5})  use
+  slot.ansi-6         #9e474a  ({color.terminal.ansi.6})  use
+  slot.ansi-7         #ffa2a7  ({color.terminal.ansi.7})  use
+  slot.ansi-8         #7d1310  ({color.terminal.ansi.8})  use
+  slot.ansi-9         #ab1612  ({color.terminal.ansi.9})  use
+  slot.ansi-10        #ad2721  ({color.terminal.ansi.10})  use
+  slot.ansi-11        #b37175  ({color.terminal.ansi.11})  use
+  slot.ansi-12        #871f19  ({color.terminal.ansi.12})  use
+  slot.ansi-13        #e82132  ({color.terminal.ansi.13})  use
+  slot.ansi-14        #e0292f  ({color.terminal.ansi.14})  use
+  slot.ansi-15        #a3676b  ({color.terminal.ansi.15})  use
+State dependency disclosures: D-007
 
 States: default, focus-visible, selected, busy, current
   default: text on {color.terminal.bg}; the cursor cell hollow, a 1px {color.terminal.cursor} outline; no ring [the hollow cursor]

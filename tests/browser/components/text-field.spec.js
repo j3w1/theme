@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../evidence-fixture.mjs";
 import { promises as fs } from "node:fs";
 import { openSpec, only, rgbToHex } from "../helpers.mjs";
 
@@ -7,7 +7,7 @@ const spec = JSON.parse(await fs.readFile(new URL("../../../exports/components/t
 const token = (path) => resolved.profiles[resolved.defaultProfile].tokens[path].css;
 
 test.describe("text-field", () => {
-  test("the state matrix renders every declared state for every variant", async ({ page }) => {
+  test("the state matrix renders every declared state for every variant", { annotation: { type: "verification", description: JSON.stringify({"component": "text-field", "category": "rendering", "states": ["default", "hover", "focus-visible", "placeholder-shown", "filled", "required", "invalid", "invalid+focus-visible", "invalid+hover", "disabled", "disabled+filled", "read-only", "read-only+focus-visible", "loading"], "variants": ["default", "password", "search", "number", "affix"], "note": "Presence and selected structural assertions only; not behavioral verification of every state."}) } }, async ({ page }) => {
     await openSpec(page, "#c-text-field");
     for (const state of spec.states) {
       const cells = page.locator(`#text-field-states [data-state="${state}"]`);
@@ -19,7 +19,7 @@ test.describe("text-field", () => {
     await expect(page.locator('#text-field-states [data-state="read-only"] input').first()).toHaveAttribute("readonly", "");
   });
 
-  test("the live control honours the focus, invalid, disabled and read-only rules", async ({ page }, testInfo) => {
+  test("the live control honours the focus, invalid, disabled and read-only rules", { annotation: { type: "verification", description: JSON.stringify({"component": "text-field", "category": "appearance", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }, testInfo) => {
     test.skip(only(testInfo, "nojs"), "computed styles are the same without scripts; keep one run");
     await openSpec(page, "#c-text-field");
     const live = page.locator('#text-field-states [data-state="default"]').first();
@@ -65,7 +65,7 @@ test.describe("text-field", () => {
     expect(readOnly.bottom).toBe("dotted");
   });
 
-  test("keyboard: Tab reaches the input, then the trailing action", async ({ page }, testInfo) => {
+  test("keyboard: Tab reaches the input, then the trailing action", { annotation: { type: "verification", description: JSON.stringify({"component": "text-field", "category": "keyboard", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }, testInfo) => {
     test.skip(only(testInfo, "nojs", "narrow", "zoom200"), "one keyboard walk");
     await openSpec(page, "#c-text-field");
     const cell = page.locator('#text-field-states [data-state="default"][data-state-default]').nth(1);

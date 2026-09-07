@@ -1,24 +1,25 @@
 j3w1/theme implementation brief — toolbar
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=
+theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-w7xwAkhVM2iRfcrpHTYOoDFyoe6tJZCBjbJ78mFagcI=
 pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/toolbar.json
 spec: spec/components/toolbar.md  site: https://j3w1.github.io/theme/#c-toolbar
 maturity: stable  priority: R1
 
 Summary: A row of related controls under one tab stop with arrow-key movement; ghost buttons, a vertical separator, and a "more" button when the row overflows.
 
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  root.bg               #100909  ({color.surface.chrome})
-  root.border           #2b0e0d  ({color.border.divider})
-  button.text           #e99499  ({color.text.default})
-  button.bg-hover       #1c0a09  ({color.interaction.hover.bg})
-  button.bg-pressed     #420f0c  ({color.interaction.pressed.bg})
-  button.ring           #e53935  ({color.interaction.focus.ring})
-  button.text-disabled  #8a5559  ({color.text.disabled})
-  toggled.bg            #420f0c  ({color.interaction.pressed.bg})
-  toggled.border        #e53935  ({color.border.active})
-  toggled.text          #ffa2a7  ({color.text.bright})
-  separator.color       #531310  ({color.border.default})
-  more.chevron          #a3676b  ({color.icon.decorative})
+  root.bg               #100909  ({color.surface.chrome})  use
+  root.border           #2b0e0d  ({color.border.divider})  use-and-report (D-008)
+  button.text           #e99499  ({color.text.default})  use
+  button.bg-hover       #1c0a09  ({color.interaction.hover.bg})  use
+  button.bg-pressed     #420f0c  ({color.interaction.pressed.bg})  use
+  button.ring           #e53935  ({color.interaction.focus.ring})  use
+  button.text-disabled  #8a5559  ({color.text.disabled})  use
+  toggled.bg            #420f0c  ({color.interaction.pressed.bg})  use
+  toggled.border        #e53935  ({color.border.active})  use
+  toggled.text          #ffa2a7  ({color.text.bright})  use
+  separator.color       #531310  ({color.border.default})  use
+  more.chevron          #a3676b  ({color.icon.decorative})  use
 
 States: default, hover, focus-visible, disabled, toggled
   default: text {color.text.default}; no fill; transparent border [—]

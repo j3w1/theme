@@ -1,30 +1,31 @@
 j3w1/theme implementation brief — table
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=
+theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-w7xwAkhVM2iRfcrpHTYOoDFyoe6tJZCBjbJ78mFagcI=
 pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/table.json
 spec: spec/components/table.md  site: https://j3w1.github.io/theme/#c-table
 maturity: stable  priority: R1
 
 Summary: A native data table with a header rule, row dividers, hover and selection fills, sortable headers with a glyph, and static empty and loading rows.
 
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  root.bg                 #160b0b  ({color.surface.default})
-  header.text             #ffa2a7  ({color.text.bright})
-  header.bg               #160b0b  ({color.surface.default})
-  header.rule             #9e231f  ({color.border.strong})
-  header.bg-sticky        #241010  ({color.surface.raised})
-  sort.glyph              #ffa2a7  ({color.text.bright})
-  sort.ring               #e53935  ({color.interaction.focus.ring})
-  row.text                #e99499  ({color.text.default})
-  row.divider             #2b0e0d  ({color.border.divider})
-  row.bg-hover            #1c0a09  ({color.interaction.hover.bg})
-  selected.bg             #911410  ({color.interaction.selection.bg})
-  selected.text           #f4eeee  ({color.interaction.selection.text})
-  selected.ring           #ffa2a7  ({color.interaction.focus.ring-container})
-  selected.inactive-bg    #420f0c  ({color.interaction.selection.inactive-bg})
-  selected.inactive-text  #e99499  ({color.interaction.selection.inactive-text})
-  caption.text            #bd787d  ({color.text.muted})
-  empty.text              #bd787d  ({color.text.muted})
-  loading.glyph           #bd787d  ({color.text.muted})
+  root.bg                 #160b0b  ({color.surface.default})  use
+  header.text             #ffa2a7  ({color.text.bright})  use
+  header.bg               #160b0b  ({color.surface.default})  use
+  header.rule             #9e231f  ({color.border.strong})  use
+  header.bg-sticky        #241010  ({color.surface.raised})  use
+  sort.glyph              #ffa2a7  ({color.text.bright})  use
+  sort.ring               #e53935  ({color.interaction.focus.ring})  use
+  row.text                #e99499  ({color.text.default})  use
+  row.divider             #2b0e0d  ({color.border.divider})  use-and-report (D-008)
+  row.bg-hover            #1c0a09  ({color.interaction.hover.bg})  use
+  selected.bg             #911410  ({color.interaction.selection.bg})  use
+  selected.text           #f4eeee  ({color.interaction.selection.text})  use
+  selected.ring           #ffa2a7  ({color.interaction.focus.ring-container})  use
+  selected.inactive-bg    #420f0c  ({color.interaction.selection.inactive-bg})  use
+  selected.inactive-text  #e99499  ({color.interaction.selection.inactive-text})  use
+  caption.text            #bd787d  ({color.text.muted})  use
+  empty.text              #bd787d  ({color.text.muted})  use
+  loading.glyph           #bd787d  ({color.text.muted})  use
 
 States: default, hover, selected, selected+focus-visible, selected+container-inactive, sorted, empty, loading
   default: rows on {color.surface.default}; header rule 1px {color.border.strong} [—]

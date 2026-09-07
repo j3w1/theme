@@ -1,0 +1,40 @@
+/* D-014: literal preview geometry is an explicit spec-UI exception. */
+.hex-literal { white-space: nowrap; }
+.hex-swatch {
+  display: inline-block;
+  position: relative;
+  width: 16px;
+  height: 16px;
+  margin-inline-start: var(--space-4);
+  vertical-align: -3px;
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: 50%;
+  background: var(--color-surface-canvas);
+  font-size: 0;
+  line-height: 0;
+  user-select: none;
+  transform-origin: center;
+  transition: transform var(--motion-duration-fast) ease-out, border-radius var(--motion-duration-fast) ease-out;
+}
+.hex-swatch::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--_hex-color);
+}
+.hex-alpha {
+  background: conic-gradient(var(--color-text-muted) 25%, var(--color-surface-canvas) 0 50%, var(--color-text-muted) 0 75%, var(--color-surface-canvas) 0) 0 0 / 8px 8px;
+}
+@media (hover: hover) {
+  .hex-swatch:hover { border-radius: 0; transform: scale(1.0875); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hex-swatch { transition: none !important; }
+}
+@media (forced-colors: active) {
+  .hex-swatch { forced-color-adjust: none; border-color: CanvasText; }
+}
+@media print {
+  .hex-swatch { print-color-adjust: exact; }
+}

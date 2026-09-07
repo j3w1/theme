@@ -2,9 +2,11 @@
 import "../styles/tokens.generated.css";
 import "../styles/base.css";
 import "../styles/site.css";
+import "../styles/hex-swatches.css";
 import "../styles/print.css";
 /* Reference CSS for every specified component; the glob is a side-effect import. */
 import.meta.glob("../styles/components/*.css", { eager: true });
+import { tokenColorIndex } from "../../../scripts/lib/hex-literals.mjs";
 import { withBase } from "../lib/base";
 import { theme, defaultTokens, profiles, defaultProfileId } from "../lib/theme";
 
@@ -19,7 +21,7 @@ const buildCommit = (process.env.GITHUB_SHA ?? "").slice(0, 7);
 const inspectorData = Object.fromEntries(
   Object.entries(profiles).map(([id, p]) => [
     id,
-    Object.fromEntries(Object.entries(p.tokens).map(([path, t]) => [path, [t.css, t.aliasOf ?? "", t.status, t.description ?? ""]])),
+    Object.fromEntries(Object.entries(p.tokens).map(([path, t]) => [path, [t.css, t.aliasOf ?? "", t.status, t.description ?? "", t.eligibility, t.deprecated]])),
   ]),
 );
 ---
@@ -60,7 +62,7 @@ const inspectorData = Object.fromEntries(
       <slot />
     </div>
     <div class="inspector" id="inspector" role="dialog" aria-label="Token inspector" hidden></div>
-    <script type="application/json" id="j3w1-tokens" set:html={JSON.stringify({ defaultProfile: defaultProfileId, version: theme.version, buildCommit, profiles: inspectorData })} />
+    <script type="application/json" id="j3w1-tokens" set:html={JSON.stringify({ defaultProfile: defaultProfileId, version: theme.version, buildCommit, profiles: inspectorData, colorIndex: tokenColorIndex(profiles) })} />
     <script>
       import "../scripts/main";
     </script>

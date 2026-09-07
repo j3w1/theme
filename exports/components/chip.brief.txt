@@ -1,27 +1,29 @@
 j3w1/theme implementation brief — chip
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=
+theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-w7xwAkhVM2iRfcrpHTYOoDFyoe6tJZCBjbJ78mFagcI=
 pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/chip.json
 spec: spec/components/chip.md  site: https://j3w1.github.io/theme/#c-chip
 maturity: stable  priority: R1
 
 Summary: A square bordered token for a filter, a removable value or a static tag; a pressed filter chip takes the selection fill and a check glyph.
 
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  root.bg               #160b0b  ({color.surface.default})
-  root.border           #a3676b  ({color.border.control})
-  root.text             #e99499  ({color.text.default})
-  root.bg-hover         #1c0a09  ({color.interaction.hover.bg})
-  root.bg-pressed       #420f0c  ({color.interaction.pressed.bg})
-  root.ring             #e53935  ({color.interaction.focus.ring})
-  root.text-disabled    #8a5559  ({color.text.disabled})
-  root.border-disabled  #7d1310  ({color.border.disabled})
-  root.bg-disabled      #160b0b  ({color.interaction.disabled.bg})
-  selected.bg           #911410  ({color.interaction.selection.bg})
-  selected.text         #f4eeee  ({color.interaction.selection.text})
-  selected.ring         #ffa2a7  ({color.interaction.focus.ring-container})
-  remove.text           #bd787d  ({color.text.muted})
-  remove.text-hover     #ffa2a7  ({color.text.bright})
-  remove.bg-hover       #630f0d  ({color.interaction.hover.bg-strong})
+  root.bg               #160b0b  ({color.surface.default})  use
+  root.border           #a3676b  ({color.border.control})  use-and-report (D-007)
+  root.text             #e99499  ({color.text.default})  use
+  root.bg-hover         #1c0a09  ({color.interaction.hover.bg})  use
+  root.bg-pressed       #420f0c  ({color.interaction.pressed.bg})  use
+  root.ring             #e53935  ({color.interaction.focus.ring})  use
+  root.text-disabled    #8a5559  ({color.text.disabled})  use
+  root.border-disabled  #7d1310  ({color.border.disabled})  use
+  root.bg-disabled      #160b0b  ({color.interaction.disabled.bg})  use
+  selected.bg           #911410  ({color.interaction.selection.bg})  use
+  selected.text         #f4eeee  ({color.interaction.selection.text})  use
+  selected.ring         #ffa2a7  ({color.interaction.focus.ring-container})  use
+  remove.text           #bd787d  ({color.text.muted})  use
+  remove.text-hover     #ffa2a7  ({color.text.bright})  use
+  remove.bg-hover       #630f0d  ({color.interaction.hover.bg-strong})  use
+State dependency disclosures: D-007
 
 States: default, hover, focus-visible, selected, selected+focus-visible, disabled
   default: 1px {color.border.control} on {color.surface.default}; text {color.text.default} [—]

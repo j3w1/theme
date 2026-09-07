@@ -3,6 +3,7 @@
    (with the contrast report) → portability (support table, coverage ledger)
    → references → for agents → decisions. Everything normative is in the
    initial HTML; scripts only enhance. */
+import { POLICY_TEXT, releaseOf } from "../../../scripts/lib/eligibility.mjs";
 import { getCollection, render } from "astro:content";
 import SpecLayout from "../layouts/SpecLayout.astro";
 import Toc from "../components/Toc.astro";
@@ -53,7 +54,7 @@ const tocExtra = [
 <SpecLayout title={title} description={description}>
   <header class="site-header">
     <h1>{theme.displayName}</h1>
-    <p class="lede">Warm-black surfaces. Rose text. Red focus. One monospace family. Nothing rounded. This page is the complete visual specification of the j3w1 identity; agents read the exports linked at the end instead.</p>
+    <p class="lede">Warm-black surfaces. Rose text. Red focus. One monospace family. Square components. This page is the complete visual specification of the j3w1 identity; agents read the exports linked at the end instead.</p>
     <p class="stamp">
       <span>version <code>{theme.version}</code></span>
       {buildCommit && <span>build <code>{buildCommit}</code></span>}
@@ -61,7 +62,7 @@ const tocExtra = [
       <span>sources {Object.entries(repositories).map(([id, r]) => <><code>{r.repo}@{r.revision.slice(0, 7)}</code> </>)}</span>
       <span><a href="https://github.com/j3w1/theme">github.com/j3w1/theme</a></span>
     </p>
-    {theme.version.includes("-") && <p class="banner">Pre-release <code>{theme.version}</code>. Values and roles marked PROPOSED are not approved; see the decision log.</p>}
+    <p class="banner" id="consumption-policy">{releaseOf(theme.version).stability}: <code>{theme.version}</code>. {POLICY_TEXT}</p>
     <div class="controls js-only" id="controls">
       <label>Search components, documents and tokens
         <input type="search" id="search" placeholder="e.g. focus ring, text-field, #e53935" autocomplete="off" />
@@ -125,7 +126,7 @@ const tocExtra = [
       {familiesWithComponents.length === 0 && (
         <section class="family" id="components-pending">
           <h2>Components</h2>
-          <p class="family-description">Component specifications land family by family; the coverage ledger below records what is specified, demonstrated and tested.</p>
+          <p class="family-description">Component specifications land family by family; the coverage ledger below records what is specified, demonstrated and test implemented.</p>
         </section>
       )}
 
@@ -175,7 +176,7 @@ const tocExtra = [
           <li><a href={withBase("exports/tokens.css")}>exports/tokens.css</a> — roles as CSS custom properties</li>
           <li><a href={withBase("exports/theme.full.md")}>exports/theme.full.md</a> — everything in one document</li>
           <li><a href={withBase("exports/contrast.md")}>exports/contrast.md</a> — every declared pair, unrounded</li>
-          <li><a href={withBase("exports/coverage.json")}>exports/coverage.json</a> — specified / demonstrated / tested</li>
+          <li><a href={withBase("exports/coverage.json")}>exports/coverage.json</a> — specified / demonstrated / test implemented</li>
           <li><a href={withBase("exports/digests.json")}>exports/digests.json</a> — sha256 per export for theme.lock.json</li>
           <li><a href={withBase("llms.txt")}>llms.txt</a> — discovery index</li>
         </ul>

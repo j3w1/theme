@@ -1,5 +1,24 @@
 # Changelog
 
+## Unreleased
+
+- #11: preserve test-file coverage and publish separate, digest-bound execution
+  evidence with a static matrix, explicit manual gaps and progressive filtering.
+  Downstream: schemaVersion 1 coverage adds `testImplemented`; `tested` keeps
+  its original meaning. Execution evidence has its own schema and is published
+  after tests without changing the specimen artifact.
+
+- #1: generate exact inline hex previews throughout the static page and token
+  inspector, including alpha, all matching token paths and reduced motion.
+  Downstream: presentation only; copy text, token values and CSS exports are
+  unchanged. D-014 records the owner-authorized preview geometry exception.
+
+- #4: unify pending-role consumption around pinned use-and-report, separate
+  approval from deprecation and release numbering, and expose decision links.
+  Downstream: resolved tokens and component values gain additive `decisionId`
+  and `eligibility` metadata; existing status/value fields and schemaVersion 1
+  retain their meanings. Blocked mappings have no automatic replacement.
+
 All notable changes to the j3w1 theme specification. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versions follow the
 policy in `README.md` (roles and approved values are the public contract).
