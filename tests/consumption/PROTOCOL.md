@@ -7,6 +7,12 @@ release requires the latest run at the release inputs to PASS with no open
 
 ## Run
 
+The kit writer now refuses an existing destination instead of replacing it.
+Use a new `--out` directory for a repeat run; its parent must already exist.
+The default `.cache/consumption/<id>/` remains available for the first run.
+The standard/strict contract files and judging guarantees are unchanged;
+the kit file list now uses portable forward-slash paths on every host.
+
 1. Choose the revision `<rev>` (a release-candidate tag or a commit) and the
    component (the first is `text-field`).
 2. `npm run generate && npm run consumption:kit -- <id> [--strict]` writes
@@ -52,4 +58,5 @@ state's computed colour, background, border and outline equal the component's
 
 | run-id | rev | component | agent | mode | result | findings | class | follow-up |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| bbf0cc9-2026-09-07-1 | bbf0cc9 (0.1.0) | text-field | Codex, fresh isolated session | standard, --browser | PASS (14/14 states) | original judge scope; typography/layout assumptions and sealed-kit pin limitation recorded; read-order process deviation disclosed | agent (process observation) | preserve deviations.md; no judge change; composed task-kit acceptance is separate |
 | 365b19a-2026-09-06-1 | 365b19a (0.1.0-draft.1) | text-field | Claude Fable 5.1, fresh session | standard, --browser | PASS (14/14 states) | judge measured the wrapper box instead of the input | tooling | judge measures whichever element declares each property; kit gains consume.md and the lock schema; compact export names pending decision ids; text-field States table clarified (invalid+focus ring form, disabled label, read-only focus edge, loading glyph) — no test loosened |

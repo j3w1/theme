@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "0.1.0",
+  "ref": "bbf0cc992588aa6fa22d7294e1e8a09a955af028",
+  "revision": "bbf0cc992588aa6fa22d7294e1e8a09a955af028",
+  "profile": "default",
+  "integration": {
+    "id": "acceptance-settings",
+    "version": "1",
+    "kind": "css-vars"
+  },
+  "resolvedAt": "2026-09-07T10:09:47.000Z",
+  "exports": {
+    "exports/components/button.json": "sha256-QA+loxWZxiSgHK/d7G57FE3ya42AgnryTOckk/x+xbI=",
+    "exports/components/checkbox.json": "sha256-k3zGCUR5GsJ/TyVI97Z+W6dcWQRYrg7kNZ+IYbjQ5AU=",
+    "exports/components/dialog.json": "sha256-nvcTe/idjh240UQPdhOShmBbG26WKcxBUrks0SuIbxY=",
+    "exports/components/text-field.json": "sha256-5we8hwkd1oKQxHj4WvFFOAa6uXSAw5xlwPRvN7TBTWo=",
+    "exports/recipes/button/README.md": "sha256-qi/xoc7BFgfeBpPavZbZBz3U/eSIoKO85pYIWR7qZF4=",
+    "exports/recipes/button/component.css": "sha256-lblL1pZDQTMiODJyimiGiPPSTZrbUWJcq+s43n3Sa1I=",
+    "exports/recipes/button/foundation.css": "sha256-yb1H0v78r2Og+RVIUuAqgSwBiuNeTBAR+SN0EisL0Ok=",
+    "exports/recipes/dialog/README.md": "sha256-J8hdC/5jTQBKGjF+hy8WaD76agE/+yjKYOSdqslwFOQ=",
+    "exports/recipes/dialog/component.css": "sha256-imf4DDnYsHKrUtNxEHLkoJyCHKEry3jM/W4NdwxtC0w=",
+    "exports/recipes/text-field/README.md": "sha256-ThaYBc/RO0XzA5zhdeMyVvIBmzWheeEz41AlKUT/aVg=",
+    "exports/recipes/text-field/component.css": "sha256-gFyjkx4Qk59zySjrfsaWnUh0YGewTEhNnS/gvpJxO1A=",
+    "exports/theme.compact.md": "sha256-+CCVk3Omvjwu2nfOgvTSwPJgPnmS4q/f/QY9EUG4ptg=",
+    "exports/tokens.resolved.json": "sha256-t47UmfTj0puRlTSrMjX4B2ApJDCfhzGgqWK9iiYlxSk="
+  },
+  "components": [
+    "button",
+    "checkbox",
+    "dialog",
+    "text-field"
+  ],
+  "deviations": [
+    {
+      "component": "button",
+      "target": "disabled, loading; destructive tone",
+      "kind": "omitted",
+      "specValue": "All six button states and four tones",
+      "applied": "Enabled primary, secondary and tertiary actions only",
+      "reason": "No asynchronous, disabled or destructive action occurs in the requested workflow."
+    },
+    {
+      "component": "checkbox",
+      "target": "mixed, checked+disabled, disabled, invalid, required; group",
+      "kind": "omitted",
+      "specValue": "All ten checkbox states and group variant",
+      "applied": "Optional single binary notifications checkbox",
+      "reason": "Task supplies no mixed group, requirement, validation or disabled rule."
+    },
+    {
+      "component": "text-field",
+      "target": "required, invalid, invalid+focus-visible, invalid+hover, disabled, disabled+filled, read-only, read-only+focus-visible, loading; other variants",
+      "kind": "omitted",
+      "specValue": "All fourteen field states and variants",
+      "applied": "Optional editable text field with no validation or asynchronous state",
+      "reason": "No validation, read-only, disabling, loading or other input variant was requested."
+    },
+    {
+      "component": "dialog",
+      "target": "alert-dialog confirm tone",
+      "kind": "substituted",
+      "specValue": "Alert-dialog anatomy describes filled destructive confirm",
+      "applied": "color.action.primary.bg with color.action.primary.text",
+      "reason": "The confirmation is non-destructive; primary tone follows the default Confirm variant and the action-role scope. The semantic alertdialog requirement is retained."
+    },
+    {
+      "component": "button",
+      "target": "primary active border",
+      "kind": "substituted",
+      "specValue": "stateTokens active border: color.border.active",
+      "applied": "color.action.primary.border",
+      "reason": "Recipe and component prose retain the primary border while prose changes active borders on outline tones. Conflicting JSON mapping is disclosed."
+    }
+  ]
+}

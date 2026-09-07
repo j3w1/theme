@@ -5,6 +5,7 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { KIT_SHARED_FILES } from "../../scripts/lib/task-inputs-generator.mjs";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
 
@@ -29,6 +30,13 @@ export default function copyExports() {
         await fs.copyFile(path.join(repoRoot, "agents", "consume.md"), path.join(out, "agents", "consume.md"));
         await fs.copyFile(path.join(repoRoot, "theme.json"), path.join(out, "theme.json"));
         await fs.copyFile(path.join(repoRoot, "exports", "llms.txt"), path.join(out, "llms.txt"));
+        const kitIndex = JSON.parse(await fs.readFile(path.join(repoRoot, "exports", "task-inputs.json"), "utf8"));
+        const kitSources = new Set([...KIT_SHARED_FILES, ...Object.values(kitIndex.components).flatMap((entry) => entry.files)]);
+        for (const relative of kitSources) {
+          const target = path.join(out, relative);
+          await fs.mkdir(path.dirname(target), { recursive: true });
+          await fs.copyFile(path.join(repoRoot, relative), target);
+        }
         await fs.writeFile(path.join(out, ".nojekyll"), "");
       },
     },

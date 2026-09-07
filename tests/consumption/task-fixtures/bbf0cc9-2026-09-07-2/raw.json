@@ -1,0 +1,2045 @@
+{
+  "source": "bbf0cc992588aa6fa22d7294e1e8a09a955af028",
+  "kitDigest": "sha256-Zzz0eyFDnu5A7xlpxaz3wkPXhZV5J8arZkfw9Zui7gk=",
+  "candidateHashes": {
+    "result.html": "sha256-tpkqO3eSLZ9GA8FjNd9mckrnNOf3j7I0dj1DA0jRgQo=",
+    "deviations.md": "sha256-RORseyGIfpQWZTRWjxyE4g8NR9Wst8h2GBLc+53AfRM=",
+    "theme.lock.json": "sha256-XuXe0MHEHz6bLR4V4shB14ZjlRtBmK32oYvkytV49xA="
+  },
+  "environment": {
+    "browser": "Chromium",
+    "version": "153.0.8010.12",
+    "playwright": "1.63.0",
+    "axe": "4.13.0",
+    "os": "win32 10.0.26200",
+    "node": "v24.18.0",
+    "headless": true,
+    "viewports": [
+      {
+        "width": 1000,
+        "height": 800
+      },
+      {
+        "width": 320,
+        "height": 568
+      }
+    ],
+    "profile": "default",
+    "density": "comfortable"
+  },
+  "checks": [
+    {
+      "name": "kit digest: LICENSE.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: README.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: TASK.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: agents/consume.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: exports/components/button.json",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: exports/components/checkbox.json",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: exports/components/dialog.json",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: exports/components/text-field.json",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: exports/recipes/button/LICENSE.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: exports/recipes/button/README.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: exports/recipes/button/component.css",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: exports/recipes/button/example.html",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: exports/recipes/button/foundation.css",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: exports/recipes/button/manifest.json",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: exports/recipes/button/markup.html",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: exports/recipes/button/template.html",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: exports/recipes/button/tokens.css",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: exports/recipes/button/two-instances.html",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: exports/recipes/dialog/LICENSE.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: exports/recipes/dialog/README.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: exports/recipes/dialog/component.css",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: exports/recipes/dialog/example.html",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: exports/recipes/dialog/foundation.css",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: exports/recipes/dialog/manifest.json",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: exports/recipes/dialog/markup.html",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: exports/recipes/dialog/template.html",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: exports/recipes/dialog/tokens.css",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: exports/recipes/dialog/two-instances.html",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: exports/recipes/text-field/LICENSE.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: exports/recipes/text-field/README.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: exports/recipes/text-field/component.css",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: exports/recipes/text-field/example.html",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: exports/recipes/text-field/foundation.css",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: exports/recipes/text-field/manifest.json",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: exports/recipes/text-field/markup.html",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: exports/recipes/text-field/template.html",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: exports/recipes/text-field/tokens.css",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: exports/recipes/text-field/two-instances.html",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: schemas/json/theme.lock.schema.json",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: spec/accessibility.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: spec/components/button.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: spec/components/checkbox.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: spec/components/dialog.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: spec/components/text-field.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: spec/foundations.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: spec/identity.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: spec/portability.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: theme.compact.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: theme.json",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: theme.lock.json",
+      "outcome": "passed"
+    },
+    {
+      "name": "kit digest: tokens.subset.json",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: LICENSE.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: agents/consume.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: exports/components/button.json",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: exports/components/checkbox.json",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: exports/components/dialog.json",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: exports/components/text-field.json",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: exports/recipes/button/LICENSE.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: exports/recipes/button/README.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: exports/recipes/button/component.css",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: exports/recipes/button/example.html",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: exports/recipes/button/foundation.css",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: exports/recipes/button/manifest.json",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: exports/recipes/button/markup.html",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: exports/recipes/button/template.html",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: exports/recipes/button/tokens.css",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: exports/recipes/button/two-instances.html",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: exports/recipes/dialog/LICENSE.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: exports/recipes/dialog/README.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: exports/recipes/dialog/component.css",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: exports/recipes/dialog/example.html",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: exports/recipes/dialog/foundation.css",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: exports/recipes/dialog/manifest.json",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: exports/recipes/dialog/markup.html",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: exports/recipes/dialog/template.html",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: exports/recipes/dialog/tokens.css",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: exports/recipes/dialog/two-instances.html",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: exports/recipes/text-field/LICENSE.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: exports/recipes/text-field/README.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: exports/recipes/text-field/component.css",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: exports/recipes/text-field/example.html",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: exports/recipes/text-field/foundation.css",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: exports/recipes/text-field/manifest.json",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: exports/recipes/text-field/markup.html",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: exports/recipes/text-field/template.html",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: exports/recipes/text-field/tokens.css",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: exports/recipes/text-field/two-instances.html",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: schemas/json/theme.lock.schema.json",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: spec/accessibility.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: spec/components/button.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: spec/components/checkbox.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: spec/components/dialog.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: spec/components/text-field.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: spec/foundations.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: spec/identity.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: spec/portability.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "available upstream source: theme.json",
+      "outcome": "passed"
+    },
+    {
+      "name": "lock upstream digest: exports/components/button.json",
+      "outcome": "passed"
+    },
+    {
+      "name": "lock upstream digest: exports/components/checkbox.json",
+      "outcome": "passed"
+    },
+    {
+      "name": "lock upstream digest: exports/components/dialog.json",
+      "outcome": "passed"
+    },
+    {
+      "name": "lock upstream digest: exports/components/text-field.json",
+      "outcome": "passed"
+    },
+    {
+      "name": "lock upstream digest: exports/recipes/button/README.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "lock upstream digest: exports/recipes/button/component.css",
+      "outcome": "passed"
+    },
+    {
+      "name": "lock upstream digest: exports/recipes/button/foundation.css",
+      "outcome": "passed"
+    },
+    {
+      "name": "lock upstream digest: exports/recipes/dialog/README.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "lock upstream digest: exports/recipes/dialog/component.css",
+      "outcome": "passed"
+    },
+    {
+      "name": "lock upstream digest: exports/recipes/text-field/README.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "lock upstream digest: exports/recipes/text-field/component.css",
+      "outcome": "passed"
+    },
+    {
+      "name": "lock upstream digest: exports/theme.compact.md",
+      "outcome": "passed"
+    },
+    {
+      "name": "lock upstream digest: exports/tokens.resolved.json",
+      "outcome": "passed"
+    },
+    {
+      "name": "lock identity: schemaVersion",
+      "outcome": "passed"
+    },
+    {
+      "name": "lock identity: theme",
+      "outcome": "passed"
+    },
+    {
+      "name": "lock identity: version",
+      "outcome": "passed"
+    },
+    {
+      "name": "lock identity: ref",
+      "outcome": "passed"
+    },
+    {
+      "name": "lock identity: revision",
+      "outcome": "passed"
+    },
+    {
+      "name": "lock identity: profile",
+      "outcome": "passed"
+    },
+    {
+      "name": "lock identity: integration",
+      "outcome": "passed"
+    },
+    {
+      "name": "lock identity: resolvedAt",
+      "outcome": "passed"
+    },
+    {
+      "name": "lock identity: components",
+      "outcome": "passed"
+    },
+    {
+      "name": "lock schema",
+      "outcome": "passed"
+    },
+    {
+      "name": "literal role --border-width-default",
+      "outcome": "passed",
+      "actual": "1px",
+      "expected": "1px"
+    },
+    {
+      "name": "literal role --border-width-emphasis",
+      "outcome": "passed",
+      "actual": "2px",
+      "expected": "2px"
+    },
+    {
+      "name": "literal role --breakpoint-lg",
+      "outcome": "passed",
+      "actual": "1280px",
+      "expected": "1280px"
+    },
+    {
+      "name": "literal role --breakpoint-md",
+      "outcome": "passed",
+      "actual": "900px",
+      "expected": "900px"
+    },
+    {
+      "name": "literal role --breakpoint-sm",
+      "outcome": "passed",
+      "actual": "600px",
+      "expected": "600px"
+    },
+    {
+      "name": "literal role --breakpoint-xs",
+      "outcome": "passed",
+      "actual": "320px",
+      "expected": "320px"
+    },
+    {
+      "name": "literal role --color-action-destructive-border",
+      "outcome": "passed",
+      "actual": "#e53935",
+      "expected": "#e53935"
+    },
+    {
+      "name": "literal role --color-action-destructive-filled-bg",
+      "outcome": "passed",
+      "actual": "#dc282e",
+      "expected": "#dc282e"
+    },
+    {
+      "name": "literal role --color-action-destructive-filled-text",
+      "outcome": "passed",
+      "actual": "#f9faf9",
+      "expected": "#f9faf9"
+    },
+    {
+      "name": "literal role --color-action-destructive-hover-bg",
+      "outcome": "passed",
+      "actual": "#dc282e",
+      "expected": "#dc282e"
+    },
+    {
+      "name": "literal role --color-action-destructive-hover-text",
+      "outcome": "passed",
+      "actual": "#f9faf9",
+      "expected": "#f9faf9"
+    },
+    {
+      "name": "literal role --color-action-destructive-pressed-bg",
+      "outcome": "passed",
+      "actual": "#ae1914",
+      "expected": "#ae1914"
+    },
+    {
+      "name": "literal role --color-action-destructive-text",
+      "outcome": "passed",
+      "actual": "#f73f35",
+      "expected": "#f73f35"
+    },
+    {
+      "name": "literal role --color-action-primary-bg",
+      "outcome": "passed",
+      "actual": "#871f19",
+      "expected": "#871f19"
+    },
+    {
+      "name": "literal role --color-action-primary-border",
+      "outcome": "passed",
+      "actual": "#9e231f",
+      "expected": "#9e231f"
+    },
+    {
+      "name": "literal role --color-action-primary-hover-bg",
+      "outcome": "passed",
+      "actual": "#911410",
+      "expected": "#911410"
+    },
+    {
+      "name": "literal role --color-action-primary-pressed-bg",
+      "outcome": "passed",
+      "actual": "#630f0d",
+      "expected": "#630f0d"
+    },
+    {
+      "name": "literal role --color-action-primary-text",
+      "outcome": "passed",
+      "actual": "#f4eeee",
+      "expected": "#f4eeee"
+    },
+    {
+      "name": "literal role --color-action-secondary-bg",
+      "outcome": "passed",
+      "actual": "rgb(0 0 0 / 0%)",
+      "expected": "rgb(0 0 0 / 0%)"
+    },
+    {
+      "name": "literal role --color-action-secondary-border",
+      "outcome": "passed",
+      "actual": "#a3676b",
+      "expected": "#a3676b"
+    },
+    {
+      "name": "literal role --color-action-secondary-hover-bg",
+      "outcome": "passed",
+      "actual": "#630f0d",
+      "expected": "#630f0d"
+    },
+    {
+      "name": "literal role --color-action-secondary-pressed-bg",
+      "outcome": "passed",
+      "actual": "#420f0c",
+      "expected": "#420f0c"
+    },
+    {
+      "name": "literal role --color-action-secondary-text",
+      "outcome": "passed",
+      "actual": "#ffa2a7",
+      "expected": "#ffa2a7"
+    },
+    {
+      "name": "literal role --color-action-tertiary-hover-bg",
+      "outcome": "passed",
+      "actual": "#1c0a09",
+      "expected": "#1c0a09"
+    },
+    {
+      "name": "literal role --color-action-tertiary-text",
+      "outcome": "passed",
+      "actual": "#e99499",
+      "expected": "#e99499"
+    },
+    {
+      "name": "literal role --color-border-active",
+      "outcome": "passed",
+      "actual": "#e53935",
+      "expected": "#e53935"
+    },
+    {
+      "name": "literal role --color-border-control",
+      "outcome": "passed",
+      "actual": "#a3676b",
+      "expected": "#a3676b"
+    },
+    {
+      "name": "literal role --color-border-default",
+      "outcome": "passed",
+      "actual": "#531310",
+      "expected": "#531310"
+    },
+    {
+      "name": "literal role --color-border-disabled",
+      "outcome": "passed",
+      "actual": "#7d1310",
+      "expected": "#7d1310"
+    },
+    {
+      "name": "literal role --color-border-divider",
+      "outcome": "passed",
+      "actual": "#2b0e0d",
+      "expected": "#2b0e0d"
+    },
+    {
+      "name": "literal role --color-border-overlay",
+      "outcome": "passed",
+      "actual": "#e53935",
+      "expected": "#e53935"
+    },
+    {
+      "name": "literal role --color-border-selected-indicator",
+      "outcome": "passed",
+      "actual": "#e53935",
+      "expected": "#e53935"
+    },
+    {
+      "name": "literal role --color-border-selected-indicator-inactive",
+      "outcome": "passed",
+      "actual": "#9e231f",
+      "expected": "#9e231f"
+    },
+    {
+      "name": "literal role --color-border-strong",
+      "outcome": "passed",
+      "actual": "#9e231f",
+      "expected": "#9e231f"
+    },
+    {
+      "name": "literal role --color-code-caret",
+      "outcome": "passed",
+      "actual": "#e99499",
+      "expected": "#e99499"
+    },
+    {
+      "name": "literal role --color-interaction-disabled-bg",
+      "outcome": "passed",
+      "actual": "#160b0b",
+      "expected": "#160b0b"
+    },
+    {
+      "name": "literal role --color-interaction-drop-target",
+      "outcome": "passed",
+      "actual": "#e53935",
+      "expected": "#e53935"
+    },
+    {
+      "name": "literal role --color-interaction-focus-ring",
+      "outcome": "passed",
+      "actual": "#e53935",
+      "expected": "#e53935"
+    },
+    {
+      "name": "literal role --color-interaction-focus-ring-container",
+      "outcome": "passed",
+      "actual": "#ffa2a7",
+      "expected": "#ffa2a7"
+    },
+    {
+      "name": "literal role --color-interaction-hover-bg",
+      "outcome": "passed",
+      "actual": "#1c0a09",
+      "expected": "#1c0a09"
+    },
+    {
+      "name": "literal role --color-interaction-hover-bg-strong",
+      "outcome": "passed",
+      "actual": "#630f0d",
+      "expected": "#630f0d"
+    },
+    {
+      "name": "literal role --color-interaction-marquee",
+      "outcome": "passed",
+      "actual": "rgb(145 20 16 / 12%)",
+      "expected": "rgb(145 20 16 / 12%)"
+    },
+    {
+      "name": "literal role --color-interaction-pressed-bg",
+      "outcome": "passed",
+      "actual": "#420f0c",
+      "expected": "#420f0c"
+    },
+    {
+      "name": "literal role --color-interaction-scrollbar-thumb",
+      "outcome": "passed",
+      "actual": "#420f0c",
+      "expected": "#420f0c"
+    },
+    {
+      "name": "literal role --color-interaction-scrollbar-thumb-hover",
+      "outcome": "passed",
+      "actual": "#911410",
+      "expected": "#911410"
+    },
+    {
+      "name": "literal role --color-interaction-scrollbar-track",
+      "outcome": "passed",
+      "actual": "#0c0909",
+      "expected": "#0c0909"
+    },
+    {
+      "name": "literal role --color-interaction-selection-bg",
+      "outcome": "passed",
+      "actual": "#911410",
+      "expected": "#911410"
+    },
+    {
+      "name": "literal role --color-interaction-selection-inactive-bg",
+      "outcome": "passed",
+      "actual": "#420f0c",
+      "expected": "#420f0c"
+    },
+    {
+      "name": "literal role --color-interaction-selection-inactive-text",
+      "outcome": "passed",
+      "actual": "#e99499",
+      "expected": "#e99499"
+    },
+    {
+      "name": "literal role --color-interaction-selection-text",
+      "outcome": "passed",
+      "actual": "#f4eeee",
+      "expected": "#f4eeee"
+    },
+    {
+      "name": "literal role --color-interaction-text-selection-bg",
+      "outcome": "passed",
+      "actual": "#911410",
+      "expected": "#911410"
+    },
+    {
+      "name": "literal role --color-interaction-text-selection-text",
+      "outcome": "passed",
+      "actual": "#f4eeee",
+      "expected": "#f4eeee"
+    },
+    {
+      "name": "literal role --color-primitive-alpha-black-55",
+      "outcome": "passed",
+      "actual": "rgb(0 0 0 / 55%)",
+      "expected": "rgb(0 0 0 / 55%)"
+    },
+    {
+      "name": "literal role --color-primitive-alpha-black-65",
+      "outcome": "passed",
+      "actual": "rgb(0 0 0 / 65%)",
+      "expected": "rgb(0 0 0 / 65%)"
+    },
+    {
+      "name": "literal role --color-primitive-alpha-red-12",
+      "outcome": "passed",
+      "actual": "rgb(145 20 16 / 12%)",
+      "expected": "rgb(145 20 16 / 12%)"
+    },
+    {
+      "name": "literal role --color-primitive-alpha-transparent",
+      "outcome": "passed",
+      "actual": "rgb(0 0 0 / 0%)",
+      "expected": "rgb(0 0 0 / 0%)"
+    },
+    {
+      "name": "literal role --color-primitive-amber-500",
+      "outcome": "passed",
+      "actual": "#c9973f",
+      "expected": "#c9973f"
+    },
+    {
+      "name": "literal role --color-primitive-amber-tint",
+      "outcome": "passed",
+      "actual": "#1f1a0c",
+      "expected": "#1f1a0c"
+    },
+    {
+      "name": "literal role --color-primitive-blue-500",
+      "outcome": "passed",
+      "actual": "#7e9ebb",
+      "expected": "#7e9ebb"
+    },
+    {
+      "name": "literal role --color-primitive-blue-tint",
+      "outcome": "passed",
+      "actual": "#0f141c",
+      "expected": "#0f141c"
+    },
+    {
+      "name": "literal role --color-primitive-green-500",
+      "outcome": "passed",
+      "actual": "#86a46f",
+      "expected": "#86a46f"
+    },
+    {
+      "name": "literal role --color-primitive-green-tint",
+      "outcome": "passed",
+      "actual": "#0f1a0e",
+      "expected": "#0f1a0e"
+    },
+    {
+      "name": "literal role --color-primitive-ink-0",
+      "outcome": "passed",
+      "actual": "#000000",
+      "expected": "#000000"
+    },
+    {
+      "name": "literal role --color-primitive-ink-15",
+      "outcome": "passed",
+      "actual": "#0a0707",
+      "expected": "#0a0707"
+    },
+    {
+      "name": "literal role --color-primitive-ink-20",
+      "outcome": "passed",
+      "actual": "#0c0909",
+      "expected": "#0c0909"
+    },
+    {
+      "name": "literal role --color-primitive-ink-25",
+      "outcome": "passed",
+      "actual": "#100909",
+      "expected": "#100909"
+    },
+    {
+      "name": "literal role --color-primitive-ink-30",
+      "outcome": "passed",
+      "actual": "#160b0b",
+      "expected": "#160b0b"
+    },
+    {
+      "name": "literal role --color-primitive-ink-40",
+      "outcome": "passed",
+      "actual": "#1c0a09",
+      "expected": "#1c0a09"
+    },
+    {
+      "name": "literal role --color-primitive-ink-52",
+      "outcome": "passed",
+      "actual": "#241010",
+      "expected": "#241010"
+    },
+    {
+      "name": "literal role --color-primitive-ink-60",
+      "outcome": "passed",
+      "actual": "#2b0e0d",
+      "expected": "#2b0e0d"
+    },
+    {
+      "name": "literal role --color-primitive-paper-100",
+      "outcome": "passed",
+      "actual": "#f9faf9",
+      "expected": "#f9faf9"
+    },
+    {
+      "name": "literal role --color-primitive-paper-90",
+      "outcome": "passed",
+      "actual": "#f4eeee",
+      "expected": "#f4eeee"
+    },
+    {
+      "name": "literal role --color-primitive-red-100",
+      "outcome": "passed",
+      "actual": "#531310",
+      "expected": "#531310"
+    },
+    {
+      "name": "literal role --color-primitive-red-150",
+      "outcome": "passed",
+      "actual": "#630f0d",
+      "expected": "#630f0d"
+    },
+    {
+      "name": "literal role --color-primitive-red-200",
+      "outcome": "passed",
+      "actual": "#7d1310",
+      "expected": "#7d1310"
+    },
+    {
+      "name": "literal role --color-primitive-red-300",
+      "outcome": "passed",
+      "actual": "#871f19",
+      "expected": "#871f19"
+    },
+    {
+      "name": "literal role --color-primitive-red-350",
+      "outcome": "passed",
+      "actual": "#911410",
+      "expected": "#911410"
+    },
+    {
+      "name": "literal role --color-primitive-red-400",
+      "outcome": "passed",
+      "actual": "#9e231f",
+      "expected": "#9e231f"
+    },
+    {
+      "name": "literal role --color-primitive-red-50",
+      "outcome": "passed",
+      "actual": "#420f0c",
+      "expected": "#420f0c"
+    },
+    {
+      "name": "literal role --color-primitive-red-550",
+      "outcome": "passed",
+      "actual": "#ae1914",
+      "expected": "#ae1914"
+    },
+    {
+      "name": "literal role --color-primitive-red-750",
+      "outcome": "passed",
+      "actual": "#dc282e",
+      "expected": "#dc282e"
+    },
+    {
+      "name": "literal role --color-primitive-red-800",
+      "outcome": "passed",
+      "actual": "#e53935",
+      "expected": "#e53935"
+    },
+    {
+      "name": "literal role --color-primitive-red-850",
+      "outcome": "passed",
+      "actual": "#f73f35",
+      "expected": "#f73f35"
+    },
+    {
+      "name": "literal role --color-primitive-rose-300",
+      "outcome": "passed",
+      "actual": "#8a5559",
+      "expected": "#8a5559"
+    },
+    {
+      "name": "literal role --color-primitive-rose-350",
+      "outcome": "passed",
+      "actual": "#a3676b",
+      "expected": "#a3676b"
+    },
+    {
+      "name": "literal role --color-primitive-rose-450",
+      "outcome": "passed",
+      "actual": "#ad7175",
+      "expected": "#ad7175"
+    },
+    {
+      "name": "literal role --color-primitive-rose-600",
+      "outcome": "passed",
+      "actual": "#bd787d",
+      "expected": "#bd787d"
+    },
+    {
+      "name": "literal role --color-primitive-rose-700",
+      "outcome": "passed",
+      "actual": "#e99499",
+      "expected": "#e99499"
+    },
+    {
+      "name": "literal role --color-primitive-rose-800",
+      "outcome": "passed",
+      "actual": "#ffa2a7",
+      "expected": "#ffa2a7"
+    },
+    {
+      "name": "literal role --color-status-danger-border",
+      "outcome": "passed",
+      "actual": "#e53935",
+      "expected": "#e53935"
+    },
+    {
+      "name": "literal role --color-status-danger-fill",
+      "outcome": "passed",
+      "actual": "#dc282e",
+      "expected": "#dc282e"
+    },
+    {
+      "name": "literal role --color-status-danger-on-fill",
+      "outcome": "passed",
+      "actual": "#f9faf9",
+      "expected": "#f9faf9"
+    },
+    {
+      "name": "literal role --color-status-danger-text",
+      "outcome": "passed",
+      "actual": "#f73f35",
+      "expected": "#f73f35"
+    },
+    {
+      "name": "literal role --color-status-danger-tint",
+      "outcome": "passed",
+      "actual": "#2b0e0d",
+      "expected": "#2b0e0d"
+    },
+    {
+      "name": "literal role --color-status-info-border",
+      "outcome": "passed",
+      "actual": "#7e9ebb",
+      "expected": "#7e9ebb"
+    },
+    {
+      "name": "literal role --color-status-info-fill",
+      "outcome": "passed",
+      "actual": "#7e9ebb",
+      "expected": "#7e9ebb"
+    },
+    {
+      "name": "literal role --color-status-info-on-fill",
+      "outcome": "passed",
+      "actual": "#0c0909",
+      "expected": "#0c0909"
+    },
+    {
+      "name": "literal role --color-status-info-text",
+      "outcome": "passed",
+      "actual": "#7e9ebb",
+      "expected": "#7e9ebb"
+    },
+    {
+      "name": "literal role --color-status-info-tint",
+      "outcome": "passed",
+      "actual": "#0f141c",
+      "expected": "#0f141c"
+    },
+    {
+      "name": "literal role --color-status-neutral-border",
+      "outcome": "passed",
+      "actual": "#a3676b",
+      "expected": "#a3676b"
+    },
+    {
+      "name": "literal role --color-status-neutral-fill",
+      "outcome": "passed",
+      "actual": "#a3676b",
+      "expected": "#a3676b"
+    },
+    {
+      "name": "literal role --color-status-neutral-on-fill",
+      "outcome": "passed",
+      "actual": "#000000",
+      "expected": "#000000"
+    },
+    {
+      "name": "literal role --color-status-neutral-text",
+      "outcome": "passed",
+      "actual": "#bd787d",
+      "expected": "#bd787d"
+    },
+    {
+      "name": "literal role --color-status-neutral-tint",
+      "outcome": "passed",
+      "actual": "#241010",
+      "expected": "#241010"
+    },
+    {
+      "name": "literal role --color-status-success-border",
+      "outcome": "passed",
+      "actual": "#86a46f",
+      "expected": "#86a46f"
+    },
+    {
+      "name": "literal role --color-status-success-fill",
+      "outcome": "passed",
+      "actual": "#86a46f",
+      "expected": "#86a46f"
+    },
+    {
+      "name": "literal role --color-status-success-on-fill",
+      "outcome": "passed",
+      "actual": "#0c0909",
+      "expected": "#0c0909"
+    },
+    {
+      "name": "literal role --color-status-success-text",
+      "outcome": "passed",
+      "actual": "#86a46f",
+      "expected": "#86a46f"
+    },
+    {
+      "name": "literal role --color-status-success-tint",
+      "outcome": "passed",
+      "actual": "#0f1a0e",
+      "expected": "#0f1a0e"
+    },
+    {
+      "name": "literal role --color-status-warning-border",
+      "outcome": "passed",
+      "actual": "#c9973f",
+      "expected": "#c9973f"
+    },
+    {
+      "name": "literal role --color-status-warning-fill",
+      "outcome": "passed",
+      "actual": "#c9973f",
+      "expected": "#c9973f"
+    },
+    {
+      "name": "literal role --color-status-warning-on-fill",
+      "outcome": "passed",
+      "actual": "#0c0909",
+      "expected": "#0c0909"
+    },
+    {
+      "name": "literal role --color-status-warning-text",
+      "outcome": "passed",
+      "actual": "#c9973f",
+      "expected": "#c9973f"
+    },
+    {
+      "name": "literal role --color-status-warning-tint",
+      "outcome": "passed",
+      "actual": "#1f1a0c",
+      "expected": "#1f1a0c"
+    },
+    {
+      "name": "literal role --color-surface-backdrop",
+      "outcome": "passed",
+      "actual": "rgb(0 0 0 / 65%)",
+      "expected": "rgb(0 0 0 / 65%)"
+    },
+    {
+      "name": "literal role --color-surface-canvas",
+      "outcome": "passed",
+      "actual": "#0c0909",
+      "expected": "#0c0909"
+    },
+    {
+      "name": "literal role --color-surface-chrome",
+      "outcome": "passed",
+      "actual": "#100909",
+      "expected": "#100909"
+    },
+    {
+      "name": "literal role --color-surface-chrome-alt",
+      "outcome": "passed",
+      "actual": "#1c0a09",
+      "expected": "#1c0a09"
+    },
+    {
+      "name": "literal role --color-surface-code",
+      "outcome": "passed",
+      "actual": "#0c0909",
+      "expected": "#0c0909"
+    },
+    {
+      "name": "literal role --color-surface-default",
+      "outcome": "passed",
+      "actual": "#160b0b",
+      "expected": "#160b0b"
+    },
+    {
+      "name": "literal role --color-surface-desktop",
+      "outcome": "passed",
+      "actual": "#000000",
+      "expected": "#000000"
+    },
+    {
+      "name": "literal role --color-surface-input",
+      "outcome": "passed",
+      "actual": "#0c0909",
+      "expected": "#0c0909"
+    },
+    {
+      "name": "literal role --color-surface-overlay",
+      "outcome": "passed",
+      "actual": "#241010",
+      "expected": "#241010"
+    },
+    {
+      "name": "literal role --color-surface-raised",
+      "outcome": "passed",
+      "actual": "#241010",
+      "expected": "#241010"
+    },
+    {
+      "name": "literal role --color-surface-sunken",
+      "outcome": "passed",
+      "actual": "#0a0707",
+      "expected": "#0a0707"
+    },
+    {
+      "name": "literal role --color-surface-terminal",
+      "outcome": "passed",
+      "actual": "#0c0909",
+      "expected": "#0c0909"
+    },
+    {
+      "name": "literal role --color-text-accent",
+      "outcome": "passed",
+      "actual": "#e53935",
+      "expected": "#e53935"
+    },
+    {
+      "name": "literal role --color-text-accent-strong",
+      "outcome": "passed",
+      "actual": "#f73f35",
+      "expected": "#f73f35"
+    },
+    {
+      "name": "literal role --color-text-bright",
+      "outcome": "passed",
+      "actual": "#ffa2a7",
+      "expected": "#ffa2a7"
+    },
+    {
+      "name": "literal role --color-text-default",
+      "outcome": "passed",
+      "actual": "#e99499",
+      "expected": "#e99499"
+    },
+    {
+      "name": "literal role --color-text-disabled",
+      "outcome": "passed",
+      "actual": "#8a5559",
+      "expected": "#8a5559"
+    },
+    {
+      "name": "literal role --color-text-inverse",
+      "outcome": "passed",
+      "actual": "#0c0909",
+      "expected": "#0c0909"
+    },
+    {
+      "name": "literal role --color-text-link",
+      "outcome": "passed",
+      "actual": "#ffa2a7",
+      "expected": "#ffa2a7"
+    },
+    {
+      "name": "literal role --color-text-link-hover",
+      "outcome": "passed",
+      "actual": "#f4eeee",
+      "expected": "#f4eeee"
+    },
+    {
+      "name": "literal role --color-text-link-underline",
+      "outcome": "passed",
+      "actual": "#dc282e",
+      "expected": "#dc282e"
+    },
+    {
+      "name": "literal role --color-text-muted",
+      "outcome": "passed",
+      "actual": "#bd787d",
+      "expected": "#bd787d"
+    },
+    {
+      "name": "literal role --color-text-on-action",
+      "outcome": "passed",
+      "actual": "#f4eeee",
+      "expected": "#f4eeee"
+    },
+    {
+      "name": "literal role --color-text-on-danger",
+      "outcome": "passed",
+      "actual": "#f9faf9",
+      "expected": "#f9faf9"
+    },
+    {
+      "name": "literal role --color-text-on-light",
+      "outcome": "passed",
+      "actual": "#0c0909",
+      "expected": "#0c0909"
+    },
+    {
+      "name": "literal role --color-text-on-selection",
+      "outcome": "passed",
+      "actual": "#f4eeee",
+      "expected": "#f4eeee"
+    },
+    {
+      "name": "literal role --color-text-placeholder",
+      "outcome": "passed",
+      "actual": "#bd787d",
+      "expected": "#bd787d"
+    },
+    {
+      "name": "literal role --color-text-prose",
+      "outcome": "passed",
+      "actual": "#f4eeee",
+      "expected": "#f4eeee"
+    },
+    {
+      "name": "literal role --color-text-subtle",
+      "outcome": "passed",
+      "actual": "#ad7175",
+      "expected": "#ad7175"
+    },
+    {
+      "name": "literal role --density-comfortable-control-height",
+      "outcome": "passed",
+      "actual": "32px",
+      "expected": "32px"
+    },
+    {
+      "name": "literal role --density-comfortable-control-padding-x",
+      "outcome": "passed",
+      "actual": "12px",
+      "expected": "12px"
+    },
+    {
+      "name": "literal role --density-comfortable-gap",
+      "outcome": "passed",
+      "actual": "4px",
+      "expected": "4px"
+    },
+    {
+      "name": "literal role --density-comfortable-icon",
+      "outcome": "passed",
+      "actual": "16px",
+      "expected": "16px"
+    },
+    {
+      "name": "literal role --density-comfortable-row-height",
+      "outcome": "passed",
+      "actual": "36px",
+      "expected": "36px"
+    },
+    {
+      "name": "literal role --density-compact-control-height",
+      "outcome": "passed",
+      "actual": "24px",
+      "expected": "24px"
+    },
+    {
+      "name": "literal role --density-compact-control-padding-x",
+      "outcome": "passed",
+      "actual": "8px",
+      "expected": "8px"
+    },
+    {
+      "name": "literal role --density-compact-gap",
+      "outcome": "passed",
+      "actual": "2px",
+      "expected": "2px"
+    },
+    {
+      "name": "literal role --density-compact-icon",
+      "outcome": "passed",
+      "actual": "16px",
+      "expected": "16px"
+    },
+    {
+      "name": "literal role --density-compact-row-height",
+      "outcome": "passed",
+      "actual": "28px",
+      "expected": "28px"
+    },
+    {
+      "name": "literal role --focus-offset",
+      "outcome": "passed",
+      "actual": "-2px",
+      "expected": "-2px"
+    },
+    {
+      "name": "literal role --focus-offset-container",
+      "outcome": "passed",
+      "actual": "-3px",
+      "expected": "-3px"
+    },
+    {
+      "name": "literal role --focus-offset-invalid",
+      "outcome": "passed",
+      "actual": "-4px",
+      "expected": "-4px"
+    },
+    {
+      "name": "literal role --focus-ring",
+      "outcome": "passed",
+      "actual": "1px dashed #e53935",
+      "expected": "1px dashed #e53935"
+    },
+    {
+      "name": "literal role --focus-ring-container",
+      "outcome": "passed",
+      "actual": "2px solid #ffa2a7",
+      "expected": "2px solid #ffa2a7"
+    },
+    {
+      "name": "literal role --font-family-mono",
+      "outcome": "passed",
+      "actual": "\"SauceCodePro NFM\", \"Source Code Pro\", \"Cascadia Mono\", \"Consolas\", \"Liberation Mono\", \"DejaVu Sans Mono\", monospace",
+      "expected": "\"SauceCodePro NFM\", \"Source Code Pro\", \"Cascadia Mono\", \"Consolas\", \"Liberation Mono\", \"DejaVu Sans Mono\", monospace"
+    },
+    {
+      "name": "literal role --font-letter-spacing-terminal",
+      "outcome": "passed",
+      "actual": "-0.5px",
+      "expected": "-0.5px"
+    },
+    {
+      "name": "literal role --font-line-height-caption",
+      "outcome": "passed",
+      "actual": "16px",
+      "expected": "16px"
+    },
+    {
+      "name": "literal role --font-line-height-code",
+      "outcome": "passed",
+      "actual": "19px",
+      "expected": "19px"
+    },
+    {
+      "name": "literal role --font-line-height-h1",
+      "outcome": "passed",
+      "actual": "28px",
+      "expected": "28px"
+    },
+    {
+      "name": "literal role --font-line-height-h2",
+      "outcome": "passed",
+      "actual": "24px",
+      "expected": "24px"
+    },
+    {
+      "name": "literal role --font-line-height-h3",
+      "outcome": "passed",
+      "actual": "18px",
+      "expected": "18px"
+    },
+    {
+      "name": "literal role --font-line-height-reading",
+      "outcome": "passed",
+      "actual": "24px",
+      "expected": "24px"
+    },
+    {
+      "name": "literal role --font-line-height-terminal",
+      "outcome": "passed",
+      "actual": "19px",
+      "expected": "19px"
+    },
+    {
+      "name": "literal role --font-line-height-ui-lg",
+      "outcome": "passed",
+      "actual": "20px",
+      "expected": "20px"
+    },
+    {
+      "name": "literal role --font-line-height-ui-md",
+      "outcome": "passed",
+      "actual": "18px",
+      "expected": "18px"
+    },
+    {
+      "name": "literal role --font-line-height-ui-sm",
+      "outcome": "passed",
+      "actual": "16px",
+      "expected": "16px"
+    },
+    {
+      "name": "literal role --font-size-caption",
+      "outcome": "passed",
+      "actual": "11px",
+      "expected": "11px"
+    },
+    {
+      "name": "literal role --font-size-code",
+      "outcome": "passed",
+      "actual": "13px",
+      "expected": "13px"
+    },
+    {
+      "name": "literal role --font-size-h1",
+      "outcome": "passed",
+      "actual": "20px",
+      "expected": "20px"
+    },
+    {
+      "name": "literal role --font-size-h2",
+      "outcome": "passed",
+      "actual": "16px",
+      "expected": "16px"
+    },
+    {
+      "name": "literal role --font-size-h3",
+      "outcome": "passed",
+      "actual": "13px",
+      "expected": "13px"
+    },
+    {
+      "name": "literal role --font-size-reading",
+      "outcome": "passed",
+      "actual": "15px",
+      "expected": "15px"
+    },
+    {
+      "name": "literal role --font-size-terminal",
+      "outcome": "passed",
+      "actual": "13px",
+      "expected": "13px"
+    },
+    {
+      "name": "literal role --font-size-ui-lg",
+      "outcome": "passed",
+      "actual": "14px",
+      "expected": "14px"
+    },
+    {
+      "name": "literal role --font-size-ui-md",
+      "outcome": "passed",
+      "actual": "13px",
+      "expected": "13px"
+    },
+    {
+      "name": "literal role --font-size-ui-sm",
+      "outcome": "passed",
+      "actual": "12px",
+      "expected": "12px"
+    },
+    {
+      "name": "literal role --font-weight-bold",
+      "outcome": "passed",
+      "actual": "700",
+      "expected": "700"
+    },
+    {
+      "name": "literal role --font-weight-regular",
+      "outcome": "passed",
+      "actual": "400",
+      "expected": "400"
+    },
+    {
+      "name": "literal role --icon-size-lg",
+      "outcome": "passed",
+      "actual": "20px",
+      "expected": "20px"
+    },
+    {
+      "name": "literal role --icon-size-md",
+      "outcome": "passed",
+      "actual": "16px",
+      "expected": "16px"
+    },
+    {
+      "name": "literal role --icon-size-sm",
+      "outcome": "passed",
+      "actual": "12px",
+      "expected": "12px"
+    },
+    {
+      "name": "literal role --icon-stroke",
+      "outcome": "passed",
+      "actual": "1.5px",
+      "expected": "1.5px"
+    },
+    {
+      "name": "literal role --layout-app-max",
+      "outcome": "passed",
+      "actual": "1440px",
+      "expected": "1440px"
+    },
+    {
+      "name": "literal role --layout-content-max",
+      "outcome": "passed",
+      "actual": "680px",
+      "expected": "680px"
+    },
+    {
+      "name": "literal role --layout-measure",
+      "outcome": "passed",
+      "actual": "72",
+      "expected": "72"
+    },
+    {
+      "name": "literal role --motion-duration-base",
+      "outcome": "passed",
+      "actual": "120ms",
+      "expected": "120ms"
+    },
+    {
+      "name": "literal role --motion-duration-fast",
+      "outcome": "passed",
+      "actual": "80ms",
+      "expected": "80ms"
+    },
+    {
+      "name": "literal role --motion-duration-slow",
+      "outcome": "passed",
+      "actual": "150ms",
+      "expected": "150ms"
+    },
+    {
+      "name": "literal role --radius-none",
+      "outcome": "passed",
+      "actual": "0px",
+      "expected": "0px"
+    },
+    {
+      "name": "literal role --shadow-floating",
+      "outcome": "passed",
+      "actual": "0px 6px 22px 0px rgb(0 0 0 / 55%)",
+      "expected": "0px 6px 22px 0px rgb(0 0 0 / 55%)"
+    },
+    {
+      "name": "literal role --space-0",
+      "outcome": "passed",
+      "actual": "0px",
+      "expected": "0px"
+    },
+    {
+      "name": "literal role --space-1",
+      "outcome": "passed",
+      "actual": "1px",
+      "expected": "1px"
+    },
+    {
+      "name": "literal role --space-12",
+      "outcome": "passed",
+      "actual": "12px",
+      "expected": "12px"
+    },
+    {
+      "name": "literal role --space-16",
+      "outcome": "passed",
+      "actual": "16px",
+      "expected": "16px"
+    },
+    {
+      "name": "literal role --space-2",
+      "outcome": "passed",
+      "actual": "2px",
+      "expected": "2px"
+    },
+    {
+      "name": "literal role --space-24",
+      "outcome": "passed",
+      "actual": "24px",
+      "expected": "24px"
+    },
+    {
+      "name": "literal role --space-32",
+      "outcome": "passed",
+      "actual": "32px",
+      "expected": "32px"
+    },
+    {
+      "name": "literal role --space-4",
+      "outcome": "passed",
+      "actual": "4px",
+      "expected": "4px"
+    },
+    {
+      "name": "literal role --space-48",
+      "outcome": "passed",
+      "actual": "48px",
+      "expected": "48px"
+    },
+    {
+      "name": "literal role --space-8",
+      "outcome": "passed",
+      "actual": "8px",
+      "expected": "8px"
+    },
+    {
+      "name": "literal role --z-canvas",
+      "outcome": "passed",
+      "actual": "0",
+      "expected": "0"
+    },
+    {
+      "name": "literal role --z-dialog",
+      "outcome": "passed",
+      "actual": "30",
+      "expected": "30"
+    },
+    {
+      "name": "literal role --z-drawer",
+      "outcome": "passed",
+      "actual": "20",
+      "expected": "20"
+    },
+    {
+      "name": "literal role --z-popover",
+      "outcome": "passed",
+      "actual": "10",
+      "expected": "10"
+    },
+    {
+      "name": "literal role --z-raised",
+      "outcome": "passed",
+      "actual": "1",
+      "expected": "1"
+    },
+    {
+      "name": "literal role --z-skip-link",
+      "outcome": "passed",
+      "actual": "1000",
+      "expected": "1000"
+    },
+    {
+      "name": "literal role --z-toast",
+      "outcome": "passed",
+      "actual": "40",
+      "expected": "40"
+    },
+    {
+      "name": "attribution retained",
+      "outcome": "passed"
+    },
+    {
+      "name": "pending decisions disclosed",
+      "outcome": "passed"
+    },
+    {
+      "name": "body background-color color.surface.canvas",
+      "outcome": "passed",
+      "expected": "rgb(12, 9, 9)",
+      "actual": "rgb(12, 9, 9)"
+    },
+    {
+      "name": ".text-field-root border-top-color color.border.control",
+      "outcome": "passed",
+      "expected": "rgb(163, 103, 107)",
+      "actual": "rgb(163, 103, 107)"
+    },
+    {
+      "name": "#save background-color color.action.primary.bg",
+      "outcome": "passed",
+      "expected": "rgb(135, 31, 25)",
+      "actual": "rgb(135, 31, 25)"
+    },
+    {
+      "name": "#notifications border-top-color color.border.control",
+      "outcome": "passed",
+      "expected": "rgb(163, 103, 107)",
+      "actual": "rgb(163, 103, 107)"
+    },
+    {
+      "name": "Tab reaches native text field",
+      "outcome": "passed"
+    },
+    {
+      "name": ".text-field-root outline-color color.interaction.focus.ring",
+      "outcome": "passed",
+      "expected": "rgb(229, 57, 53)",
+      "actual": "rgb(229, 57, 53)"
+    },
+    {
+      "name": "field ring geometry",
+      "outcome": "passed"
+    },
+    {
+      "name": "native text editing",
+      "outcome": "passed"
+    },
+    {
+      "name": "Tab reaches checkbox",
+      "outcome": "passed"
+    },
+    {
+      "name": "#notifications outline-color color.interaction.focus.ring",
+      "outcome": "passed",
+      "expected": "rgb(229, 57, 53)",
+      "actual": "rgb(229, 57, 53)"
+    },
+    {
+      "name": "native Space toggles checkbox",
+      "outcome": "passed"
+    },
+    {
+      "name": "#notifications outline-color color.interaction.focus.ring-container",
+      "outcome": "passed",
+      "expected": "rgb(255, 162, 167)",
+      "actual": "rgb(255, 162, 167)"
+    },
+    {
+      "name": "#notifications background-color color.action.primary.bg",
+      "outcome": "passed",
+      "expected": "rgb(135, 31, 25)",
+      "actual": "rgb(135, 31, 25)"
+    },
+    {
+      "name": "checked glyph visible",
+      "outcome": "passed"
+    },
+    {
+      "name": "checkbox does not modify text",
+      "outcome": "passed"
+    },
+    {
+      "name": "Tab reaches Save",
+      "outcome": "passed"
+    },
+    {
+      "name": "#save outline-color color.interaction.focus.ring-container",
+      "outcome": "passed",
+      "expected": "rgb(255, 162, 167)",
+      "actual": "rgb(255, 162, 167)"
+    },
+    {
+      "name": "axe form filled checked",
+      "outcome": "passed",
+      "violations": []
+    },
+    {
+      "name": "Save opens native modal",
+      "outcome": "passed"
+    },
+    {
+      "name": "initial focus Close",
+      "outcome": "passed"
+    },
+    {
+      "name": "#confirmation background-color color.surface.overlay",
+      "outcome": "passed",
+      "expected": "rgb(36, 16, 16)",
+      "actual": "rgb(36, 16, 16)"
+    },
+    {
+      "name": "#confirmation border-top-color color.border.overlay",
+      "outcome": "passed",
+      "expected": "rgb(229, 57, 53)",
+      "actual": "rgb(229, 57, 53)"
+    },
+    {
+      "name": "#confirmation background-color color.surface.backdrop",
+      "outcome": "passed",
+      "expected": "rgba(0, 0, 0, 0.65)",
+      "actual": "rgba(0, 0, 0, 0.65)"
+    },
+    {
+      "name": "reverse Tab wraps Confirm",
+      "outcome": "passed"
+    },
+    {
+      "name": "forward Tab wraps Close",
+      "outcome": "passed"
+    },
+    {
+      "name": "Tab Close to named scroller",
+      "outcome": "passed"
+    },
+    {
+      "name": "Tab scroller to Cancel",
+      "outcome": "passed"
+    },
+    {
+      "name": "Tab Cancel to Confirm",
+      "outcome": "passed"
+    },
+    {
+      "name": "native modal keeps background inert",
+      "outcome": "passed"
+    },
+    {
+      "name": "axe modal open",
+      "outcome": "passed",
+      "violations": []
+    },
+    {
+      "name": "Escape closes and returns focus",
+      "outcome": "passed"
+    },
+    {
+      "name": "Escape preserves status and draft",
+      "outcome": "passed"
+    },
+    {
+      "name": "cancel closes and returns focus",
+      "outcome": "passed"
+    },
+    {
+      "name": "cancel preserves status",
+      "outcome": "passed"
+    },
+    {
+      "name": "close closes and returns focus",
+      "outcome": "passed"
+    },
+    {
+      "name": "close preserves status",
+      "outcome": "passed"
+    },
+    {
+      "name": "confirmation displays plain draft text",
+      "outcome": "passed"
+    },
+    {
+      "name": "Confirm updates only plain status",
+      "outcome": "passed"
+    },
+    {
+      "name": "Confirm preserves inputs",
+      "outcome": "passed"
+    },
+    {
+      "name": "narrow dialog and page fit horizontally",
+      "outcome": "passed"
+    },
+    {
+      "name": "320px actions stack",
+      "outcome": "passed"
+    },
+    {
+      "name": "overflow body scrolls with visible actions",
+      "outcome": "passed"
+    },
+    {
+      "name": "axe narrow long-content modal",
+      "outcome": "passed",
+      "violations": []
+    },
+    {
+      "name": "long confirmed status page fits",
+      "outcome": "passed"
+    },
+    {
+      "name": "reduced motion no meaningful duration",
+      "outcome": "passed"
+    },
+    {
+      "name": "forced colors focus retained",
+      "outcome": "passed"
+    },
+    {
+      "name": "no JS Save hidden and explanation visible",
+      "outcome": "passed"
+    },
+    {
+      "name": "no JS native inputs work",
+      "outcome": "passed"
+    },
+    {
+      "name": "no page errors",
+      "outcome": "passed",
+      "errors": []
+    },
+    {
+      "name": "no external requests",
+      "outcome": "passed",
+      "requests": []
+    },
+    {
+      "name": "candidate bytes unchanged",
+      "outcome": "passed"
+    }
+  ],
+  "axe": [
+    {
+      "state": "form filled checked",
+      "violations": [],
+      "incomplete": [],
+      "passes": 21
+    },
+    {
+      "state": "modal open",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 1
+        }
+      ],
+      "passes": 18
+    },
+    {
+      "state": "narrow long-content modal",
+      "violations": [],
+      "incomplete": [],
+      "passes": 19
+    }
+  ]
+}

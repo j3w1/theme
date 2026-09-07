@@ -1,0 +1,14 @@
+{
+  "agent": "Fresh isolated consumer, followed by separate independent acceptance reviewer",
+  "date": "2026-09-07",
+  "revision": "bbf0cc992588aa6fa22d7294e1e8a09a955af028",
+  "input": "Sealed standard kit only; exact upstream and payload digests retained in kit-manifest.json",
+  "candidateDigests": {
+    "result.html": "sha256-mzsJpfNpImAdoghh85c4f+7eI8CR5hHG+qGDvIrFV+4=",
+    "deviations.md": "sha256-5EA+/4vYod91FUBHgBUhmQeJyKhNag8lOkiTfYZeTjo=",
+    "theme.lock.json": "sha256-XuXe0MHEHz6bLR4V4shB14ZjlRtBmK32oYvkytV49xA=",
+    "kit-manifest.json": "sha256-Zzz0eyFDnu5A7xlpxaz3wkPXhZV5J8arZkfw9Zui7gk="
+  },
+  "scope": "Requested four-component settings workflow only. Downstream deviations and contract ambiguities retained; not all-state or universal accessibility conformance.",
+  "review": "review.json"
+}

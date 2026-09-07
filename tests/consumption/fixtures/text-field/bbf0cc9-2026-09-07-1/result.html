@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Text field — declared states</title>
+<style>
+:root { color-scheme: dark; font-family: "SauceCodePro NFM", "Source Code Pro", "Cascadia Mono", "Consolas", "Liberation Mono", "DejaVu Sans Mono", monospace; color: #e99499; background: #0c0909; font-size: 13px; line-height: 18px; }
+* { box-sizing: border-box; }
+body { margin: 0; padding: 16px; }
+main { width: 100%; max-width: 48rem; margin-inline: auto; }
+h1 { font-size: 20px; line-height: 28px; color: #ffa2a7; margin: 0 0 24px; }
+.field { display: grid; gap: 4px; min-width: 0; margin-bottom: 24px; }
+label { display: block; color: #ffa2a7; }
+.control { position: relative; min-width: 0; }
+input { display: block; width: 100%; min-width: 0; height: 32px; padding: 0 12px; border: 1px solid #a3676b; border-radius: 0; background: #0c0909; color: #e99499; font: inherit; caret-color: #e99499; box-shadow: none; }
+input::placeholder { color: #bd787d; font-style: italic; opacity: 1; }
+::selection { background: #911410; color: #f4eeee; }
+.help, .message { margin: 0; overflow-wrap: anywhere; font-size: 12px; line-height: 16px; }
+.help { color: #bd787d; }
+.message, .required-mark { color: #f73f35; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+@media (hover: hover) {
+ input:not(:disabled):not([readonly]):hover, [data-state="hover"] input, [data-state="invalid+hover"] input { background: #1c0a09; cursor: text; }
+}
+input:focus:not(:focus-visible) { outline: none; }
+input:focus-visible, [data-state*="focus-visible"] input { border-color: #e53935; outline: 1px dashed #e53935; outline-offset: -2px; }
+input[aria-invalid="true"] { border: 2px solid #e53935; }
+input[aria-invalid="true"]:focus-visible, [data-state="invalid+focus-visible"] input { outline: 1px dashed #ffa2a7; outline-offset: -4px; }
+input:disabled { color: #8a5559; border: 1px solid #7d1310; background: #160b0b; cursor: not-allowed; opacity: 1; }
+input[readonly] { border: 0; border-bottom: 1px dotted #2b0e0d; background: #0c0909; color: #e99499; }
+input[aria-busy="true"] { padding-inline-end: 32px; }
+.loading { position: absolute; inset-inline-end: 12px; inset-block-start: 0; height: 32px; display: flex; align-items: center; color: #bd787d; pointer-events: none; }
+@media (forced-colors: active) {
+ input:focus-visible, [data-state*="focus-visible"] input { outline-color: Highlight; }
+}
+</style>
+</head>
+<body data-density="comfortable">
+<main>
+<h1>Text field</h1>
+<section class="field" data-state="default">
+<label for="field-default">default</label>
+<div class="control"><input type="text" id="field-default" name="field-default" value="" aria-describedby="field-default-help"></div>
+<p class="help" id="field-default-help">Single-line text entry.</p>
+
+</section>
+<section class="field" data-state="hover">
+<label for="field-hover">hover</label>
+<div class="control"><input type="text" id="field-hover" name="field-hover" value="" aria-describedby="field-hover-help"></div>
+<p class="help" id="field-hover-help">Single-line text entry.</p>
+
+</section>
+<section class="field" data-state="focus-visible">
+<label for="field-focus-visible">focus-visible</label>
+<div class="control"><input type="text" id="field-focus-visible" name="field-focus-visible" value="" aria-describedby="field-focus-visible-help"></div>
+<p class="help" id="field-focus-visible-help">Single-line text entry.</p>
+
+</section>
+<section class="field" data-state="placeholder-shown">
+<label for="field-placeholder-shown">placeholder-shown</label>
+<div class="control"><input type="text" id="field-placeholder-shown" name="field-placeholder-shown" value="" aria-describedby="field-placeholder-shown-help" placeholder="Enter a value"></div>
+<p class="help" id="field-placeholder-shown-help">Single-line text entry.</p>
+
+</section>
+<section class="field" data-state="filled">
+<label for="field-filled">filled</label>
+<div class="control"><input type="text" id="field-filled" name="field-filled" value="Sample value" aria-describedby="field-filled-help"></div>
+<p class="help" id="field-filled-help">Single-line text entry.</p>
+
+</section>
+<section class="field" data-state="required">
+<label for="field-required">required <span class="required-mark" aria-hidden="true">*</span><span class="sr-only"> required</span></label>
+<div class="control"><input type="text" id="field-required" name="field-required" value="" aria-describedby="field-required-help" required></div>
+<p class="help" id="field-required-help">Single-line text entry.</p>
+
+</section>
+<section class="field" data-state="invalid">
+<label for="field-invalid">invalid</label>
+<div class="control"><input type="text" id="field-invalid" name="field-invalid" value="Invalid value" aria-describedby="field-invalid-help field-invalid-message" aria-invalid="true"></div>
+<p class="help" id="field-invalid-help">Single-line text entry.</p>
+<p class="message" id="field-invalid-message"><span aria-hidden="true">✕</span> Enter a valid value.</p>
+</section>
+<section class="field" data-state="invalid+focus-visible">
+<label for="field-invalid-focus-visible">invalid+focus-visible</label>
+<div class="control"><input type="text" id="field-invalid-focus-visible" name="field-invalid-focus-visible" value="Invalid value" aria-describedby="field-invalid-focus-visible-help field-invalid-focus-visible-message" aria-invalid="true"></div>
+<p class="help" id="field-invalid-focus-visible-help">Single-line text entry.</p>
+<p class="message" id="field-invalid-focus-visible-message"><span aria-hidden="true">✕</span> Enter a valid value.</p>
+</section>
+<section class="field" data-state="invalid+hover">
+<label for="field-invalid-hover">invalid+hover</label>
+<div class="control"><input type="text" id="field-invalid-hover" name="field-invalid-hover" value="Invalid value" aria-describedby="field-invalid-hover-help field-invalid-hover-message" aria-invalid="true"></div>
+<p class="help" id="field-invalid-hover-help">Single-line text entry.</p>
+<p class="message" id="field-invalid-hover-message"><span aria-hidden="true">✕</span> Enter a valid value.</p>
+</section>
+<section class="field" data-state="disabled">
+<label for="field-disabled">disabled</label>
+<div class="control"><input type="text" id="field-disabled" name="field-disabled" value="" aria-describedby="field-disabled-help" disabled></div>
+<p class="help" id="field-disabled-help">Single-line text entry.</p>
+
+</section>
+<section class="field" data-state="disabled+filled">
+<label for="field-disabled-filled">disabled+filled</label>
+<div class="control"><input type="text" id="field-disabled-filled" name="field-disabled-filled" value="Sample value" aria-describedby="field-disabled-filled-help" disabled></div>
+<p class="help" id="field-disabled-filled-help">Single-line text entry.</p>
+
+</section>
+<section class="field" data-state="read-only">
+<label for="field-read-only">read-only</label>
+<div class="control"><input type="text" id="field-read-only" name="field-read-only" value="Read-only value" aria-describedby="field-read-only-help" readonly></div>
+<p class="help" id="field-read-only-help">Single-line text entry.</p>
+
+</section>
+<section class="field" data-state="read-only+focus-visible">
+<label for="field-read-only-focus-visible">read-only+focus-visible</label>
+<div class="control"><input type="text" id="field-read-only-focus-visible" name="field-read-only-focus-visible" value="Read-only value" aria-describedby="field-read-only-focus-visible-help" readonly></div>
+<p class="help" id="field-read-only-focus-visible-help">Single-line text entry.</p>
+
+</section>
+<section class="field" data-state="loading">
+<label for="field-loading">loading</label>
+<div class="control"><input type="text" id="field-loading" name="field-loading" value="" aria-describedby="field-loading-help" aria-busy="true"><span class="loading" aria-hidden="true">⋯</span></div>
+<p class="help" id="field-loading-help">Single-line text entry.</p>
+
+</section>
+</main>
+</body>
+</html>

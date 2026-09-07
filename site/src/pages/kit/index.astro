@@ -1,0 +1,98 @@
+---
+import { execFileSync } from "node:child_process";
+import ToolLayout from "../../layouts/ToolLayout.astro";
+import { withBase } from "../../lib/base";
+import { usageRevision } from "../../lib/usage";
+import { anchorFor } from "../../../../scripts/lib/anchors.mjs";
+import { INTEGRATION_KINDS } from "../../../../schemas/lock.mjs";
+import index from "../../../../exports/task-inputs.json";
+let source = null;
+if (usageRevision) {
+  const committed = JSON.parse(execFileSync("git", ["show", `${usageRevision}:exports/task-inputs.json`], { encoding: "utf8", maxBuffer: 8 * 1024 * 1024 }));
+  if (JSON.stringify(committed) !== JSON.stringify(index)) throw new Error("Task inputs differ from the advertised revision; commit generated artifacts before a pinned build.");
+  const seconds = Number(execFileSync("git", ["show", "-s", "--format=%ct", usageRevision], { encoding: "utf8" }).trim());
+  source = { revision: usageRevision, resolvedAt: new Date(seconds * 1000).toISOString() };
+}
+---
+<ToolLayout title="Build a task kit" description="Select component contracts and package one pinned, reproducible implementation task.">
+  <p>The kit contains selected specifications, shared rules, required tokens, source digests, a lock file and a bounded task prompt. Task text stays in this page; generation needs no account or model service.</p>
+  <p>Standard includes available recipes. Minimal omits only optional recipes; both retain all required contracts and rules. The legacy single-component <code>--strict</code> reconstruction command remains separate.</p>
+  {!source && <p>This local build has no committed source pin. Commit generated inputs and build with <code>GITHUB_SHA</code> set to that full commit to enable packaging, or use the CLI at a committed revision.</p>}
+  <noscript><p>Interactive packaging needs JavaScript. Use the CLI below or download the <a href={withBase("exports/task-inputs.json")}>dependency index</a> and <a href={withBase("agents/consume.md")}>consumption contract</a>.</p></noscript>
+  <form data-kit-form class="kit-form js-only">
+    <fieldset><legend>Component selection</legend>
+      <p><button type="button" class="btn" data-kit-example>Use settings-form selection</button> <button type="button" class="btn" data-kit-clear>Clear selection</button></p>
+      <div class="kit-components">{Object.entries(index.components).map(([id, entry]) => <label><input type="checkbox" name="component" value={id} /> {entry.title}</label>)}</div>
+    </fieldset>
+    <label for={anchorFor.kitControl("task")}>Implementation task</label>
+    <textarea id={anchorFor.kitControl("task")} name="task" rows="4" maxlength="12000" required placeholder="Describe the interface and the changes authorized in the consumer project." />
+    <div class="kit-fields">
+      <label for={anchorFor.kitControl("id")}>Integration ID</label><input id={anchorFor.kitControl("id")} name="integration-id" required maxlength="120" />
+      <label for={anchorFor.kitControl("version")}>Integration version</label><input id={anchorFor.kitControl("version")} name="integration-version" required maxlength="120" />
+      <label for={anchorFor.kitControl("kind")}>Integration kind</label><select id={anchorFor.kitControl("kind")} name="integration-kind">{INTEGRATION_KINDS.map((kind) => <option value={kind}>{kind}</option>)}</select>
+      <label for={anchorFor.kitControl("mode")}>Mode</label><select id={anchorFor.kitControl("mode")} name="mode"><option value="standard">Standard — include available recipes</option><option value="minimal">Minimal — contracts and rules, omit recipes</option></select>
+    </div>
+    <p>Delivery profile: <code>{index.profile}</code>. Proposed and historical profiles cannot become delivery kits. Pending roles retain their required decision disclosures.</p>
+    <button class="btn" type="submit" disabled={!source}>Build kit</button>
+    <p role="status" aria-live="polite" data-kit-status></p>
+  </form>
+  <section hidden data-kit-result>
+    <h2>Generated kit</h2>
+    <p data-kit-summary></p>
+    <p><a data-kit-download download="j3w1-task-kit.zip">Download ZIP</a> · <button type="button" class="btn" data-kit-copy>Copy complete Markdown kit</button></p>
+    <label for={anchorFor.kitControl("output")}>Complete Markdown kit</label>
+    <textarea id={anchorFor.kitControl("output")} data-kit-output readonly rows="12" />
+  </section>
+  <h2>CLI</h2>
+  <p>Run from a checkout containing the task-kit command. Supply the consumer integration identity and a new directory whose parent exists. Existing directories are never replaced. Omit <code>--ref</code> to pin the checkout’s current commit.</p>
+  <pre tabindex="0" role="region" aria-label="Task kit command, scrollable"><code>npm run task:kit -- --components text-field,checkbox,button,dialog --task "Implement a settings form" --integration-id settings --integration-version 1 --mode standard --out ../settings-kit</code></pre>
+  <p><a href={withBase("exports/task-inputs.json")}>Dependency index</a> · <a href={withBase("agents/consume.md")}>Consumer authority and reporting contract</a></p>
+  <script type="application/json" id={anchorFor.kitControl("data")} set:html={JSON.stringify({ index, source }).replaceAll("<", "\\u003c")} />
+  <script>
+    import { buildTaskKit, zipTaskKit } from "../../../../scripts/lib/task-kit.mjs";
+    import { anchorFor } from "../../../../scripts/lib/anchors.mjs";
+    import { withBase } from "../../lib/base";
+    const { index, source } = JSON.parse(document.getElementById(anchorFor.kitControl("data"))!.textContent!);
+    const form = document.querySelector<HTMLFormElement>("[data-kit-form]")!;
+    const status = form.querySelector<HTMLElement>("[data-kit-status]")!;
+    const result = document.querySelector<HTMLElement>("[data-kit-result]")!;
+    let markdown = "", download: string | null = null, generation = 0;
+    const invalidate = () => { generation++; result.hidden = true; };
+    const select = (ids: string[]) => { invalidate(); form.querySelectorAll<HTMLInputElement>('[name="component"]').forEach((input) => { input.checked = ids.includes(input.value); }); };
+    select(new URLSearchParams(location.search).get("components")?.split(",") ?? []);
+    form.querySelector("[data-kit-example]")!.addEventListener("click", () => select(["text-field", "checkbox", "button", "dialog"]));
+    form.querySelector("[data-kit-clear]")!.addEventListener("click", () => select([]));
+    form.addEventListener("input", invalidate);
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (!source) return;
+      const data = new FormData(form);
+      const components = data.getAll("component") as string[];
+      if (!components.length) { status.textContent = "Select at least one component."; return; }
+      const button = form.querySelector<HTMLButtonElement>('[type="submit"]')!;
+      const attempt = ++generation;
+      button.disabled = true; result.hidden = true; status.textContent = "Checking pinned sources and building the kit…";
+      try {
+        const kit = await buildTaskKit({ index, request: { ...source, profile: index.profile, components, mode: data.get("mode"), task: data.get("task"), integration: { id: data.get("integration-id"), version: data.get("integration-version"), kind: data.get("integration-kind") } }, read: async (file: string) => {
+          const response = await fetch(withBase(file), { cache: "no-store" });
+          if (!response.ok) throw new Error(`${file}: HTTP ${response.status}`);
+          return response.text();
+        } });
+        if (attempt !== generation) { status.textContent = "Inputs changed. Build again to package the current selection."; return; }
+        markdown = kit.markdown;
+        if (download) URL.revokeObjectURL(download);
+        download = URL.createObjectURL(new Blob([zipTaskKit(kit.files)], { type: "application/zip" }));
+        document.querySelector<HTMLAnchorElement>("[data-kit-download]")!.href = download;
+        document.querySelector<HTMLTextAreaElement>("[data-kit-output]")!.value = markdown;
+        const manifest = JSON.parse(kit.files["KIT.json"]);
+        document.querySelector<HTMLElement>("[data-kit-summary]")!.textContent = `${components.length} components; ${manifest.tokenClosure.length} tokens including alias dependencies; ${Object.keys(kit.files).length} files. Pending decisions: ${manifest.pendingDecisionIds.join(", ") || "none"}.`;
+        result.hidden = false; status.textContent = "Kit ready. Sources and digests agree at the displayed revision.";
+      } catch (error) { status.textContent = `Kit could not be built: ${(error as Error).message}`; }
+      finally { button.disabled = false; }
+    });
+    document.querySelector("[data-kit-copy]")!.addEventListener("click", async () => {
+      try { await navigator.clipboard.writeText(markdown); status.textContent = "Complete Markdown kit copied."; }
+      catch { status.textContent = "Clipboard unavailable. Select the Markdown text or download the ZIP."; }
+    });
+  </script>
+</ToolLayout>

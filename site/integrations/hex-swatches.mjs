@@ -19,6 +19,7 @@ export default function hexSwatches() {
         };
         await decorateTools(new URL("tokens/", dir));
         await decorateTools(new URL("recipes/", dir));
+        await decorateTools(new URL("kit/", dir));
       },
     },
   };

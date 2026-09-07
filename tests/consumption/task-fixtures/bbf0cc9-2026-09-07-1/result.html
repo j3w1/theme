@@ -1,0 +1,730 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Settings</title>
+<!-- Adapted from j3w1 UI Theme Spec, https://github.com/j3w1/theme, CC BY 4.0 https://creativecommons.org/licenses/by/4.0/. Changes: standalone settings composition, native modal lifecycle and local status. Code and tokens: MIT; full notice below. -->
+<style>
+:root {
+  --border-width-default: 1px;
+  --border-width-emphasis: 2px;
+  --breakpoint-lg: 1280px;
+  --breakpoint-md: 900px;
+  --breakpoint-sm: 600px;
+  --breakpoint-xs: 320px;
+  --color-action-destructive-border: #e53935;
+  --color-action-destructive-filled-bg: #dc282e;
+  --color-action-destructive-filled-text: #f9faf9;
+  --color-action-destructive-hover-bg: #dc282e;
+  --color-action-destructive-hover-text: #f9faf9;
+  --color-action-destructive-pressed-bg: #ae1914;
+  --color-action-destructive-text: #f73f35;
+  --color-action-primary-bg: #871f19;
+  --color-action-primary-border: #9e231f;
+  --color-action-primary-hover-bg: #911410;
+  --color-action-primary-pressed-bg: #630f0d;
+  --color-action-primary-text: #f4eeee;
+  --color-action-secondary-bg: rgb(0 0 0 / 0%);
+  --color-action-secondary-border: #a3676b;
+  --color-action-secondary-hover-bg: #630f0d;
+  --color-action-secondary-pressed-bg: #420f0c;
+  --color-action-secondary-text: #ffa2a7;
+  --color-action-tertiary-hover-bg: #1c0a09;
+  --color-action-tertiary-text: #e99499;
+  --color-border-active: #e53935;
+  --color-border-control: #a3676b;
+  --color-border-default: #531310;
+  --color-border-disabled: #7d1310;
+  --color-border-divider: #2b0e0d;
+  --color-border-overlay: #e53935;
+  --color-border-selected-indicator: #e53935;
+  --color-border-selected-indicator-inactive: #9e231f;
+  --color-border-strong: #9e231f;
+  --color-code-caret: #e99499;
+  --color-interaction-disabled-bg: #160b0b;
+  --color-interaction-drop-target: #e53935;
+  --color-interaction-focus-ring: #e53935;
+  --color-interaction-focus-ring-container: #ffa2a7;
+  --color-interaction-hover-bg: #1c0a09;
+  --color-interaction-hover-bg-strong: #630f0d;
+  --color-interaction-marquee: rgb(145 20 16 / 12%);
+  --color-interaction-pressed-bg: #420f0c;
+  --color-interaction-scrollbar-thumb: #420f0c;
+  --color-interaction-scrollbar-thumb-hover: #911410;
+  --color-interaction-scrollbar-track: #0c0909;
+  --color-interaction-selection-bg: #911410;
+  --color-interaction-selection-inactive-bg: #420f0c;
+  --color-interaction-selection-inactive-text: #e99499;
+  --color-interaction-selection-text: #f4eeee;
+  --color-interaction-text-selection-bg: #911410;
+  --color-interaction-text-selection-text: #f4eeee;
+  --color-primitive-alpha-black-55: rgb(0 0 0 / 55%);
+  --color-primitive-alpha-black-65: rgb(0 0 0 / 65%);
+  --color-primitive-alpha-red-12: rgb(145 20 16 / 12%);
+  --color-primitive-alpha-transparent: rgb(0 0 0 / 0%);
+  --color-primitive-amber-500: #c9973f;
+  --color-primitive-amber-tint: #1f1a0c;
+  --color-primitive-blue-500: #7e9ebb;
+  --color-primitive-blue-tint: #0f141c;
+  --color-primitive-green-500: #86a46f;
+  --color-primitive-green-tint: #0f1a0e;
+  --color-primitive-ink-0: #000000;
+  --color-primitive-ink-15: #0a0707;
+  --color-primitive-ink-20: #0c0909;
+  --color-primitive-ink-25: #100909;
+  --color-primitive-ink-30: #160b0b;
+  --color-primitive-ink-40: #1c0a09;
+  --color-primitive-ink-52: #241010;
+  --color-primitive-ink-60: #2b0e0d;
+  --color-primitive-paper-100: #f9faf9;
+  --color-primitive-paper-90: #f4eeee;
+  --color-primitive-red-100: #531310;
+  --color-primitive-red-150: #630f0d;
+  --color-primitive-red-200: #7d1310;
+  --color-primitive-red-300: #871f19;
+  --color-primitive-red-350: #911410;
+  --color-primitive-red-400: #9e231f;
+  --color-primitive-red-50: #420f0c;
+  --color-primitive-red-550: #ae1914;
+  --color-primitive-red-750: #dc282e;
+  --color-primitive-red-800: #e53935;
+  --color-primitive-red-850: #f73f35;
+  --color-primitive-rose-300: #8a5559;
+  --color-primitive-rose-350: #a3676b;
+  --color-primitive-rose-450: #ad7175;
+  --color-primitive-rose-600: #bd787d;
+  --color-primitive-rose-700: #e99499;
+  --color-primitive-rose-800: #ffa2a7;
+  --color-status-danger-border: #e53935;
+  --color-status-danger-fill: #dc282e;
+  --color-status-danger-on-fill: #f9faf9;
+  --color-status-danger-text: #f73f35;
+  --color-status-danger-tint: #2b0e0d;
+  --color-status-info-border: #7e9ebb;
+  --color-status-info-fill: #7e9ebb;
+  --color-status-info-on-fill: #0c0909;
+  --color-status-info-text: #7e9ebb;
+  --color-status-info-tint: #0f141c;
+  --color-status-neutral-border: #a3676b;
+  --color-status-neutral-fill: #a3676b;
+  --color-status-neutral-on-fill: #000000;
+  --color-status-neutral-text: #bd787d;
+  --color-status-neutral-tint: #241010;
+  --color-status-success-border: #86a46f;
+  --color-status-success-fill: #86a46f;
+  --color-status-success-on-fill: #0c0909;
+  --color-status-success-text: #86a46f;
+  --color-status-success-tint: #0f1a0e;
+  --color-status-warning-border: #c9973f;
+  --color-status-warning-fill: #c9973f;
+  --color-status-warning-on-fill: #0c0909;
+  --color-status-warning-text: #c9973f;
+  --color-status-warning-tint: #1f1a0c;
+  --color-surface-backdrop: rgb(0 0 0 / 65%);
+  --color-surface-canvas: #0c0909;
+  --color-surface-chrome: #100909;
+  --color-surface-chrome-alt: #1c0a09;
+  --color-surface-code: #0c0909;
+  --color-surface-default: #160b0b;
+  --color-surface-desktop: #000000;
+  --color-surface-input: #0c0909;
+  --color-surface-overlay: #241010;
+  --color-surface-raised: #241010;
+  --color-surface-sunken: #0a0707;
+  --color-surface-terminal: #0c0909;
+  --color-text-accent: #e53935;
+  --color-text-accent-strong: #f73f35;
+  --color-text-bright: #ffa2a7;
+  --color-text-default: #e99499;
+  --color-text-disabled: #8a5559;
+  --color-text-inverse: #0c0909;
+  --color-text-link: #ffa2a7;
+  --color-text-link-hover: #f4eeee;
+  --color-text-link-underline: #dc282e;
+  --color-text-muted: #bd787d;
+  --color-text-on-action: #f4eeee;
+  --color-text-on-danger: #f9faf9;
+  --color-text-on-light: #0c0909;
+  --color-text-on-selection: #f4eeee;
+  --color-text-placeholder: #bd787d;
+  --color-text-prose: #f4eeee;
+  --color-text-subtle: #ad7175;
+  --density-comfortable-control-height: 32px;
+  --density-comfortable-control-padding-x: 12px;
+  --density-comfortable-gap: 4px;
+  --density-comfortable-icon: 16px;
+  --density-comfortable-row-height: 36px;
+  --density-compact-control-height: 24px;
+  --density-compact-control-padding-x: 8px;
+  --density-compact-gap: 2px;
+  --density-compact-icon: 16px;
+  --density-compact-row-height: 28px;
+  --focus-offset: -2px;
+  --focus-offset-container: -3px;
+  --focus-offset-invalid: -4px;
+  --focus-ring: 1px dashed #e53935;
+  --focus-ring-container: 2px solid #ffa2a7;
+  --font-family-mono: "SauceCodePro NFM", "Source Code Pro", "Cascadia Mono", "Consolas", "Liberation Mono", "DejaVu Sans Mono", monospace;
+  --font-letter-spacing-terminal: -0.5px;
+  --font-line-height-caption: 16px;
+  --font-line-height-code: 19px;
+  --font-line-height-h1: 28px;
+  --font-line-height-h2: 24px;
+  --font-line-height-h3: 18px;
+  --font-line-height-reading: 24px;
+  --font-line-height-terminal: 19px;
+  --font-line-height-ui-lg: 20px;
+  --font-line-height-ui-md: 18px;
+  --font-line-height-ui-sm: 16px;
+  --font-size-caption: 11px;
+  --font-size-code: 13px;
+  --font-size-h1: 20px;
+  --font-size-h2: 16px;
+  --font-size-h3: 13px;
+  --font-size-reading: 15px;
+  --font-size-terminal: 13px;
+  --font-size-ui-lg: 14px;
+  --font-size-ui-md: 13px;
+  --font-size-ui-sm: 12px;
+  --font-weight-bold: 700;
+  --font-weight-regular: 400;
+  --icon-size-lg: 20px;
+  --icon-size-md: 16px;
+  --icon-size-sm: 12px;
+  --icon-stroke: 1.5px;
+  --layout-app-max: 1440px;
+  --layout-content-max: 680px;
+  --layout-measure: 72;
+  --motion-duration-base: 120ms;
+  --motion-duration-fast: 80ms;
+  --motion-duration-slow: 150ms;
+  --radius-none: 0px;
+  --shadow-floating: 0px 6px 22px 0px rgb(0 0 0 / 55%);
+  --space-0: 0px;
+  --space-1: 1px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-2: 2px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-4: 4px;
+  --space-48: 48px;
+  --space-8: 8px;
+  --z-canvas: 0;
+  --z-dialog: 30;
+  --z-drawer: 20;
+  --z-popover: 10;
+  --z-raised: 1;
+  --z-skip-link: 1000;
+  --z-toast: 40;
+}
+/* j3w1 theme 0.1.0 — MIT
+Copyright (c) 2026 j3w1
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+.j3w1-recipe {
+  color-scheme: dark;
+  background: var(--color-surface-canvas);
+  color: var(--color-text-default);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+}
+.j3w1-recipe, .j3w1-recipe *, .j3w1-recipe *::before, .j3w1-recipe *::after { box-sizing: border-box; }
+.j3w1-recipe button, .j3w1-recipe input, .j3w1-recipe select, .j3w1-recipe textarea { font: inherit; }
+.j3w1-recipe ::selection {
+  background: var(--color-interaction-text-selection-bg);
+  color: var(--color-interaction-text-selection-text);
+}
+.j3w1-recipe .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* j3w1 theme 0.1.0 — MIT
+Copyright (c) 2026 j3w1
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+.j3w1-recipe .button {
+  --_bg: var(--color-action-primary-bg);
+  --_fg: var(--color-action-primary-text);
+  --_border: var(--color-action-primary-border);
+  --_bg-hover: var(--color-action-primary-hover-bg);
+  --_fg-hover: var(--color-action-primary-text);
+  --_bg-active: var(--color-action-primary-pressed-bg);
+  --_border-active: var(--color-action-primary-border);
+  --_ring: var(--color-interaction-focus-ring-container);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  min-height: var(--density-control-height, 32px);
+  padding: 0 var(--density-control-padding-x, 12px);
+  margin: 0;
+  background: var(--_bg);
+  color: var(--_fg);
+  border: var(--border-width-default) solid var(--_border);
+  border-radius: var(--radius-none);
+  font: inherit;
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+  white-space: nowrap;
+  cursor: pointer;
+  outline: 0;
+}
+
+.j3w1-recipe .button-secondary {
+  --_bg: var(--color-action-secondary-bg);
+  --_fg: var(--color-action-secondary-text);
+  --_border: var(--color-action-secondary-border);
+  --_bg-hover: var(--color-action-secondary-hover-bg);
+  --_fg-hover: var(--color-action-secondary-text);
+  --_bg-active: var(--color-action-secondary-pressed-bg);
+  --_border-active: var(--color-border-active);
+  --_ring: var(--color-interaction-focus-ring);
+}
+
+.j3w1-recipe .button-tertiary {
+  --_bg: transparent;
+  --_fg: var(--color-action-tertiary-text);
+  --_border: transparent;
+  --_bg-hover: var(--color-action-tertiary-hover-bg);
+  --_fg-hover: var(--color-action-tertiary-text);
+  --_bg-active: var(--color-interaction-pressed-bg);
+  --_border-active: var(--color-border-active);
+  --_ring: var(--color-interaction-focus-ring);
+}
+
+.j3w1-recipe .button-destructive {
+  --_bg: transparent;
+  --_fg: var(--color-action-destructive-text);
+  --_border: var(--color-action-destructive-border);
+  --_bg-hover: var(--color-action-destructive-hover-bg);
+  --_fg-hover: var(--color-action-destructive-hover-text);
+  --_bg-active: var(--color-action-destructive-pressed-bg);
+  --_border-active: var(--color-action-destructive-border);
+  --_ring: var(--color-interaction-focus-ring);
+}
+.j3w1-recipe .button-destructive-filled {
+  --_bg: var(--color-action-destructive-filled-bg);
+  --_fg: var(--color-action-destructive-filled-text);
+  --_border: var(--color-action-destructive-border);
+  --_bg-hover: var(--color-action-destructive-hover-bg);
+  --_fg-hover: var(--color-action-destructive-hover-text);
+  --_bg-active: var(--color-action-destructive-pressed-bg);
+  --_border-active: var(--color-action-destructive-border);
+  --_ring: var(--color-action-destructive-filled-text);
+}
+
+.j3w1-recipe .button-icon {
+  flex: none;
+  width: var(--icon-size-md);
+  height: var(--icon-size-md);
+  stroke: currentColor;
+  fill: none;
+}
+
+.j3w1-recipe .button-loading {
+  display: none;
+  flex: none;
+}
+
+.j3w1-recipe .button-label {
+  min-width: 0;
+}
+@media (hover: hover) {
+  .j3w1-recipe .button:hover {
+    --_bg: var(--_bg-hover);
+    --_fg: var(--_fg-hover);
+  }
+
+  .j3w1-recipe .button-destructive:hover {
+    --_ring: var(--color-action-destructive-hover-text);
+  }
+}
+.j3w1-recipe .button:active {
+  --_bg: var(--_bg-active);
+  --_fg: var(--_fg-hover);
+  --_border: var(--_border-active);
+}
+.j3w1-recipe .button:focus-visible {
+  outline: var(--border-width-default) dashed var(--_ring);
+  outline-offset: var(--focus-offset);
+}
+.j3w1-recipe .button[aria-busy="true"] .button-loading {
+  display: inline;
+}
+
+.j3w1-recipe .button[aria-busy="true"] .button-icon {
+  display: none;
+}
+
+.j3w1-recipe .button[aria-busy="true"] {
+  cursor: progress;
+}
+.j3w1-recipe .button:disabled {
+  --_bg: var(--color-interaction-disabled-bg);
+  --_fg: var(--color-text-disabled);
+  --_border: var(--color-border-disabled);
+  --_bg-hover: var(--color-interaction-disabled-bg);
+  --_fg-hover: var(--color-text-disabled);
+  --_bg-active: var(--color-interaction-disabled-bg);
+  --_border-active: var(--color-border-disabled);
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .j3w1-recipe .button {
+    transition: background-color var(--motion-duration-fast);
+  }
+}
+
+@media (forced-colors: active) {
+  .j3w1-recipe .button:focus-visible {
+    outline-color: Highlight;
+  }
+}
+
+/* j3w1 theme 0.1.0 — MIT
+Copyright (c) 2026 j3w1
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+.j3w1-recipe .text-field {
+  position: relative;
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+  max-width: calc(var(--font-size-ui-md) * 28);
+  color: var(--color-text-default);
+}
+
+.j3w1-recipe .text-field-label {
+  color: var(--color-text-bright);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.j3w1-recipe .text-field-required {
+  display: none;
+  color: var(--color-status-danger-text);
+}
+
+.j3w1-recipe .text-field-root {
+  display: flex;
+  min-width: 0;
+  align-items: stretch;
+  min-height: var(--density-control-height, 32px);
+  background: var(--color-surface-input);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+}
+
+.j3w1-recipe .text-field-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0 var(--density-control-padding-x, 12px);
+  background: transparent;
+  border: 0;
+  color: var(--color-text-default);
+  caret-color: var(--color-code-caret);
+  font: inherit;
+  outline: 0;
+}
+
+.j3w1-recipe .text-field-input::placeholder {
+  color: var(--color-text-placeholder);
+  font-style: italic;
+  opacity: 1;
+}
+
+.j3w1-recipe .text-field-input::selection {
+  background: var(--color-interaction-text-selection-bg);
+  color: var(--color-interaction-text-selection-text);
+}
+
+.j3w1-recipe .text-field-input-numeric {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.j3w1-recipe .text-field-input::-webkit-search-cancel-button,
+.j3w1-recipe .text-field-input::-webkit-inner-spin-button,
+.j3w1-recipe .text-field-input::-webkit-outer-spin-button {
+  appearance: none;
+  display: none;
+}
+
+.j3w1-recipe .text-field-affix {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  padding: 0 var(--space-8);
+  color: var(--color-text-muted);
+  border-inline-end: var(--border-width-default) solid var(--color-border-divider);
+}
+
+.j3w1-recipe .text-field-input ~ .text-field-affix {
+  border-inline-end: 0;
+  border-inline-start: var(--border-width-default) solid var(--color-border-divider);
+}
+
+.j3w1-recipe .text-field-action {
+  padding: 0 var(--space-8);
+  white-space: nowrap;
+  background: transparent;
+  border: 0;
+  border-inline-start: var(--border-width-default) solid var(--color-border-divider);
+  color: var(--color-action-tertiary-text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.j3w1-recipe .text-field-action:hover {
+  background: var(--color-action-tertiary-hover-bg);
+}
+
+.j3w1-recipe .text-field-action:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.j3w1-recipe .text-field-stepper {
+  display: flex;
+}
+
+.j3w1-recipe .text-field-loading {
+  display: none;
+  align-items: center;
+  padding: 0 var(--space-8);
+  color: var(--color-text-muted);
+}
+
+.j3w1-recipe .text-field-help {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.j3w1-recipe .text-field-message {
+  display: none;
+  margin: 0;
+  color: var(--color-status-danger-text);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+.j3w1-recipe .text-field-root:hover {
+  background: var(--color-interaction-hover-bg);
+}
+.j3w1-recipe .text-field-root:has(.text-field-input:focus-visible) {
+  border-color: var(--color-border-active);
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+.j3w1-recipe .text-field:has(.text-field-input:required) .text-field-required {
+  display: inline;
+}
+.j3w1-recipe .text-field-root:has(.text-field-input[aria-invalid="true"]),
+.j3w1-recipe .text-field-root:has(.text-field-input:user-invalid) {
+  border-color: var(--color-status-danger-border);
+  border-width: var(--border-width-emphasis);
+}
+
+.j3w1-recipe .text-field:has(.text-field-input[aria-invalid="true"]) .text-field-message,
+.j3w1-recipe .text-field:has(.text-field-input:user-invalid) .text-field-message {
+  display: block;
+}
+
+.j3w1-recipe .text-field:has(.text-field-input[aria-invalid="true"]) .text-field-help {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+.j3w1-recipe .text-field-root:has(.text-field-input[aria-invalid="true"]:focus-visible) {
+  border-color: var(--color-status-danger-border);
+  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline-offset: var(--focus-offset-invalid);
+}
+.j3w1-recipe .text-field-root:has(.text-field-input:disabled) {
+  background: var(--color-interaction-disabled-bg);
+  border-color: var(--color-border-disabled);
+  cursor: not-allowed;
+}
+
+.j3w1-recipe .text-field-input:disabled {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.j3w1-recipe .text-field-root:has(.text-field-input:disabled):hover {
+  background: var(--color-interaction-disabled-bg);
+}
+.j3w1-recipe .text-field-root:has(.text-field-input:read-only:not(:disabled)) {
+  background: var(--color-surface-canvas);
+  border-color: transparent;
+  border-bottom: var(--border-width-default) dotted var(--color-border-divider);
+}
+
+.j3w1-recipe .text-field-root:has(.text-field-input:read-only:focus-visible) {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+.j3w1-recipe .text-field-root[aria-busy="true"] .text-field-loading {
+  display: inline-flex;
+}
+
+@media (hover: none) {
+  .j3w1-recipe .text-field-root:hover {
+    background: var(--color-surface-input);
+  }
+}
+
+@media (forced-colors: active) {
+  .j3w1-recipe .text-field-root:has(.text-field-input:focus-visible) {
+    outline-color: Highlight;
+  }
+}
+
+body {margin:0; padding:var(--space-16); --density-control-height:var(--density-comfortable-control-height); --density-control-padding-x:var(--density-comfortable-control-padding-x);}
+main {max-width:var(--layout-content-max); margin:var(--space-32) auto; padding:var(--space-24); background:var(--color-surface-default); border:var(--border-width-default) solid var(--color-border-default);}
+h1 {font-size:var(--font-size-h1); line-height:var(--font-line-height-h1); color:var(--color-text-bright); margin:0 0 var(--space-16);}
+h2 {font-size:var(--font-size-h2); line-height:var(--font-line-height-h2); color:var(--color-text-bright); margin:0;}
+p {margin:0; overflow-wrap:anywhere;}
+form {display:grid; gap:var(--space-16); margin-top:var(--space-24);}
+.actions {display:flex; flex-wrap:wrap; gap:var(--space-8);}
+.note {color:var(--color-text-muted); font-size:var(--font-size-ui-sm); line-height:var(--font-line-height-ui-sm);}
+#status {margin-top:var(--space-24); border-top:var(--border-width-default) solid var(--color-border-divider); padding-top:var(--space-16);}
+.checkbox-option {display:flex; align-items:flex-start; gap:var(--space-8); min-height:var(--density-comfortable-control-height); cursor:pointer;}
+.checkbox-control {display:grid; flex:none; width:var(--icon-size-md); height:var(--icon-size-md); margin-top:var(--space-1);}
+.checkbox-control input,.checkbox-control svg {grid-area:1/1; width:100%; height:100%; margin:0;}
+.checkbox-control input {appearance:none; background:var(--color-surface-input); border:var(--border-width-default) solid var(--color-border-control); border-radius:var(--radius-none); cursor:inherit;}
+.checkbox-control svg {display:none; pointer-events:none; stroke:var(--color-action-primary-text); stroke-width:1.5; fill:none;}
+.checkbox-control input:checked {background:var(--color-action-primary-bg);}
+.checkbox-control input:checked + svg {display:block;}
+.checkbox-control input:focus-visible {outline:var(--focus-ring); outline-offset:var(--focus-offset);}
+.checkbox-control input:checked:focus-visible {outline-color:var(--color-interaction-focus-ring-container);}
+@media (hover:hover) {
+.checkbox-option:hover input {background:var(--color-interaction-hover-bg);}
+.checkbox-option:hover input:checked {background:var(--color-action-primary-hover-bg);}
+}
+.dialog {max-width:28rem; width:calc(100% - var(--space-32)); max-height:calc(100dvh - var(--space-32)); margin:auto; padding:var(--space-16); border:var(--border-width-default) solid var(--color-border-overlay); border-radius:var(--radius-none); background:var(--color-surface-overlay); color:var(--color-text-default); z-index:var(--z-dialog); overflow:hidden;}
+.dialog[open] {display:flex; flex-direction:column; gap:var(--space-16);}
+.dialog::backdrop {background:var(--color-surface-backdrop);}
+.dialog-header {display:flex; align-items:center; justify-content:space-between; gap:var(--space-8); flex:none;}
+.dialog-body {overflow:auto; min-height:0; display:grid; gap:var(--space-12);}
+.dialog .actions {justify-content:flex-end; flex:none;}
+.dialog:focus-visible {outline:var(--focus-ring-container); outline-offset:var(--focus-offset-container);}
+.dialog dl {margin:0; display:grid; gap:var(--space-4);}
+.dialog dt {color:var(--color-text-bright);}
+.dialog dd {margin:0 0 var(--space-8); overflow-wrap:anywhere; white-space:pre-wrap;}
+@media (prefers-reduced-motion:no-preference) {.dialog[open] {animation:appear var(--motion-duration-slow) linear;} @keyframes appear {from {opacity:0;} to {opacity:1;}}}
+@media (prefers-reduced-motion:reduce) {*,*::before,*::after {animation-duration:0.01ms !important; transition-duration:0.01ms !important;}}
+@media (forced-colors:active) {.checkbox-control input:focus-visible,.checkbox-control input:checked:focus-visible,.dialog:focus-visible {outline-color:Highlight;} .checkbox-control input:checked {background:Highlight; forced-color-adjust:none; border-color:CanvasText;} .checkbox-control svg {stroke:HighlightText; forced-color-adjust:none;} ::selection {background:Highlight; color:HighlightText;} }
+@media (max-width:320px) {main {padding:var(--space-16); margin:var(--space-16) auto;} .dialog .actions {flex-direction:column; align-items:stretch;}}
+</style></head>
+<body class="j3w1-recipe" data-density="comfortable"><main>
+<h1>Settings</h1><p>Choose your display name and notification preference.</p>
+<form id="settings" autocomplete="off">
+<div class="text-field"><label class="text-field-label" for="display-name">Display name</label><div class="text-field-root"><input class="text-field-input" id="display-name" name="display-name" type="text" placeholder="Your display name" aria-describedby="display-name-help"></div><p id="display-name-help" class="text-field-help">Shown in the confirmation before you save.</p></div>
+<label class="checkbox-option" for="notifications"><span class="checkbox-control"><input id="notifications" name="notifications" type="checkbox"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="m3 8 3 3 7-7"/></svg></span><span>Enable notifications</span></label>
+<div class="actions"><button class="button" id="save" type="submit">Save</button></div>
+</form>
+<p id="status" role="status" aria-live="polite" aria-atomic="true">No settings confirmed.</p>
+<noscript><p>JavaScript is required to open the confirmation. Settings cannot be confirmed while JavaScript is disabled.</p><style>#save {display:none;}</style></noscript>
+</main>
+<dialog class="dialog" id="confirmation" role="alertdialog" aria-labelledby="confirmation-title" aria-describedby="confirmation-description" tabindex="-1">
+<header class="dialog-header"><h2 id="confirmation-title">Confirm settings</h2><button class="button button-tertiary" id="close" type="button" autofocus>Close</button></header>
+<div class="dialog-body"><p id="confirmation-description">Confirm these settings for this page. Nothing is sent or stored.</p><dl><dt>Display name</dt><dd id="summary-name"></dd><dt>Notifications</dt><dd id="summary-notifications"></dd></dl><p class="note">Tab cycles within this dialog. Escape cancels.</p></div>
+<div class="actions"><button class="button button-secondary" id="cancel" type="button">Cancel</button><button class="button" id="confirm" type="button">Confirm</button></div>
+</dialog>
+<script>
+const form = document.querySelector('#settings');
+const modal = document.querySelector('#confirmation');
+const save = document.querySelector('#save');
+const status = document.querySelector('#status');
+let pending;
+let confirmations = 0;
+form.addEventListener('submit', event => {
+  event.preventDefault();
+  if (modal.open) return;
+  pending = { name: document.querySelector('#display-name').value, notifications: document.querySelector('#notifications').checked };
+  document.querySelector('#summary-name').textContent = pending.name || '(empty)';
+  document.querySelector('#summary-notifications').textContent = pending.notifications ? 'Enabled' : 'Disabled';
+  modal.showModal();
+});
+for (const id of ['close', 'cancel']) document.getElementById(id).addEventListener('click', () => modal.close('cancel'));
+modal.addEventListener('keydown', event => {
+  if (event.key !== 'Tab') return;
+  const first = document.querySelector('#close');
+  const last = document.querySelector('#confirm');
+  if (event.shiftKey && (document.activeElement === first || document.activeElement === modal)) {
+    event.preventDefault(); last.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault(); first.focus();
+  }
+});
+modal.addEventListener('close', () => { pending = undefined; save.focus(); });
+document.querySelector('#confirm').addEventListener('click', () => {
+  if (!pending) return;
+  confirmations += 1;
+  status.textContent = '✓ Settings confirmed (' + confirmations + '). Display name: ' + (pending.name || '(empty)') + '. Notifications: ' + (pending.notifications ? 'enabled' : 'disabled') + '. Nothing was sent or stored.';
+  modal.close('confirm');
+});
+</script></body></html>

@@ -1,0 +1,73 @@
+{
+  "settlement": "Awaited all dialog animations without modifying candidate",
+  "violations": [],
+  "incomplete": [],
+  "focusCycle": [
+    {
+      "id": "close",
+      "tag": "BUTTON",
+      "classes": "button button-tertiary"
+    },
+    {
+      "id": "",
+      "tag": "DIV",
+      "classes": "dialog-body"
+    },
+    {
+      "id": "cancel",
+      "tag": "BUTTON",
+      "classes": "button button-secondary"
+    },
+    {
+      "id": "confirm",
+      "tag": "BUTTON",
+      "classes": "button"
+    },
+    {
+      "id": "close",
+      "tag": "BUTTON",
+      "classes": "button button-tertiary"
+    },
+    {
+      "id": "",
+      "tag": "DIV",
+      "classes": "dialog-body"
+    },
+    {
+      "id": "cancel",
+      "tag": "BUTTON",
+      "classes": "button button-secondary"
+    },
+    {
+      "id": "confirm",
+      "tag": "BUTTON",
+      "classes": "button"
+    }
+  ],
+  "focusedBody": {
+    "classes": "dialog-body",
+    "outline": "rgb(255, 162, 167) solid 2px",
+    "offset": "-3px"
+  },
+  "forced": {
+    "color": "rgb(55, 0, 110)",
+    "style": "solid",
+    "width": "2px",
+    "offset": "-3px",
+    "highlight": "rgb(55, 0, 110)",
+    "focused": true
+  },
+  "keyboardScroll": {
+    "before": 0,
+    "after": 150,
+    "home": 0
+  },
+  "body": {
+    "tabIndex": 0,
+    "role": "region",
+    "name": "Settings confirmation details",
+    "clientHeight": 366,
+    "scrollHeight": 516
+  },
+  "opacity": "1"
+}
