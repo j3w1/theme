@@ -22,7 +22,7 @@ if (usageRevision) {
   <form data-kit-form class="kit-form js-only">
     <fieldset><legend>Component selection</legend>
       <p><button type="button" class="btn" data-kit-example>Use settings-form selection</button> <button type="button" class="btn" data-kit-clear>Clear selection</button></p>
-      <div class="kit-components">{Object.entries(index.components).map(([id, entry]) => <label><input type="checkbox" name="component" value={id} /> {entry.title} <code>{id}</code></label>)}</div>
+      <div class="kit-components">{Object.entries(index.components).map(([id, entry]) => <label><input type="checkbox" name="component" value={id} /> {entry.title}</label>)}</div>
     </fieldset>
     <label for={anchorFor.kitControl("task")}>Implementation task</label>
     <textarea id={anchorFor.kitControl("task")} name="task" rows="4" maxlength="12000" required placeholder="Describe the interface and the changes authorized in the consumer project." />

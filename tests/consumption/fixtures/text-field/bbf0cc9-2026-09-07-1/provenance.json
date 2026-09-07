@@ -1,0 +1,26 @@
+{
+  "agent": "Codex fresh isolated consumer; sealed legacy kit only",
+  "date": "2026-09-07",
+  "kitMode": "standard",
+  "themeVersion": "0.1.0",
+  "revision": "bbf0cc992588aa6fa22d7294e1e8a09a955af028",
+  "component": "text-field",
+  "questionsAsked": 0,
+  "inputDigests": {
+    "KIT.json": "sha256-crfASRA9FYtT8rPnLeVn6xWWDZvEgm6mIsT0KnM93KQ=",
+    "TASK.md": "sha256-jyowQ+aZJX/Mztg9VCobv7a2tlLQ+AzhRt807WOBxCk=",
+    "components/text-field.brief.txt": "sha256-+jCwqbn5MmvWSwq47ipWRkFK+8D08dw+o19LUCP7rWE=",
+    "components/text-field.json": "sha256-5we8hwkd1oKQxHj4WvFFOAa6uXSAw5xlwPRvN7TBTWo=",
+    "consume.md": "sha256-52f04gc8KMHw4t4hxpdvSAjJeDG3ZNJTWBWcOH9eXis=",
+    "theme.compact.md": "sha256-+CCVk3Omvjwu2nfOgvTSwPJgPnmS4q/f/QY9EUG4ptg=",
+    "theme.lock.schema.json": "sha256-y6m+IekX0jzgI6Rhel1Vx33fgz8RIT5A2OPyBL0qlXw=",
+    "tokens.resolved.json": "sha256-t47UmfTj0puRlTSrMjX4B2ApJDCfhzGgqWK9iiYlxSk="
+  },
+  "resultDigest": "sha256-ClcQE5W7OtH3dWTTsa/ctiqDwArKHKnVDfEtdD8REzg=",
+  "judge": {
+    "static": "PASS",
+    "browser": "PASS (14 declared states)",
+    "report": "judge.json"
+  },
+  "limitations": "Original judge scope only; typography/layout assumptions and a disclosed read-order process deviation are preserved in deviations.md. The sealed legacy kit did not supply its full revision, so the consumer correctly did not fabricate a lock."
+}
