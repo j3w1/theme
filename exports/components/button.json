@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-NtoH1ZKzSEF20+ODl23cnHD4n4Xwnd2XF12bRlDnvy0=",
+  "sourceDigest": "sha256-4/3Y27Dea+mfWPBBnSpdlyMVXpDO3ncO5aWORsMzgdQ=",
   "id": "button",
   "family": "actions",
   "maturity": "stable",
@@ -336,7 +336,43 @@
       }
     },
     "root.border-active": {
+      "alias": "color.action.primary.border",
+      "value": "#9e231f",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "secondary.border-active": {
       "alias": "color.border.active",
+      "value": "#e53935",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "tertiary.border-active": {
+      "alias": "color.border.active",
+      "value": "#e53935",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "destructive.border-active": {
+      "alias": "color.action.destructive.border",
       "value": "#e53935",
       "status": "observed",
       "deprecated": false,
@@ -504,8 +540,8 @@
     },
     {
       "state": "active",
-      "visual": "primary → {color.action.primary.pressed-bg}; secondary → {color.action.secondary.pressed-bg}; tertiary → {color.interaction.pressed.bg}; destructive → {color.action.destructive.pressed-bg}; border → {color.border.active} on the outline tones",
-      "channel": "border change; no translation or scale",
+      "visual": "primary → {color.action.primary.pressed-bg}; secondary → {color.action.secondary.pressed-bg}; tertiary → {color.interaction.pressed.bg}; destructive → {color.action.destructive.pressed-bg}; primary keeps {color.action.primary.border}, secondary and tertiary use {color.border.active}, destructive keeps {color.action.destructive.border} (D-015)",
+      "channel": "border change on secondary and tertiary; no translation or scale",
       "tokens": {
         "fg": {
           "alias": "color.action.primary.text",
@@ -522,18 +558,6 @@
         "bg": {
           "alias": "color.action.primary.pressed-bg",
           "value": "#630f0d",
-          "status": "observed",
-          "deprecated": false,
-          "decisionId": null,
-          "eligibility": {
-            "action": "use",
-            "reason": "Use within the role's documented scope and restrictions.",
-            "decisionIds": []
-          }
-        },
-        "border": {
-          "alias": "color.border.active",
-          "value": "#e53935",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -690,19 +714,6 @@
       "fgHex": "#f4eeee",
       "bgHex": "#630f0d",
       "ratio": 11.41,
-      "pass": true,
-      "waiver": null
-    },
-    {
-      "label": "button active border",
-      "state": "active",
-      "kind": "ui",
-      "min": 3,
-      "fg": "color.border.active",
-      "bg": "color.action.primary.pressed-bg",
-      "fgHex": "#e53935",
-      "bgHex": "#630f0d",
-      "ratio": 3.1,
       "pass": true,
       "waiver": null
     },

@@ -1,0 +1,10 @@
+---
+import ToolLayout from "../../layouts/ToolLayout.astro";
+import { PREVIEW_IDS } from "../../../../schemas/playground.mjs";
+import { withBase } from "../../lib/base";
+---
+<ToolLayout title="Component workbench" description="Live controls and bounded inspection tools for maintained j3w1 specimens.">
+  <p>Open a component to inspect its declared states, profile, density, text, real viewport widths, anatomy, contrast, and maintained motion. Configuration links identify the supplying build and report unavailable snapshots honestly.</p>
+  <ul>{PREVIEW_IDS.map((id) => <li><a href={withBase(`workbench/${id}/`)}>{id}</a></li>)}</ul>
+  <p>Normative rules remain in the <a href={withBase("")}>complete static specification</a>. Workbench behavior is a reference implementation for these specimens; standalone recipes continue to declare their own behavior dependencies.</p>
+</ToolLayout>

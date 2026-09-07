@@ -8,6 +8,7 @@ import { anchors, coverageLedger, cssVar, defaultTokens, familyList } from "../l
 import StateMatrix from "./StateMatrix.astro";
 import { splitVariants } from "../../../scripts/lib/spec.mjs";
 import { RECIPE_IDS } from "../../../schemas/recipe.mjs";
+import { PREVIEW_IDS } from "../../../schemas/playground.mjs";
 
 interface Props {
   entry: any;
@@ -35,6 +36,8 @@ const statusTags = [coverage?.specified && "specified", coverage?.demonstrated &
     {c.maturity === "draft" && <li><span class="tag tag-proposed">draft</span></li>}
   </ul>
   <p class="prose">{c.summary}</p>
+  <p><a href={withBase(`report/?component=${encodeURIComponent(c.id)}`)}>Report an issue with this component</a></p>
+  {PREVIEW_IDS.includes(c.id) && <div class="workbench-entry"><p><a href={withBase(`workbench/${c.id}/`)}>Open component workbench</a> <button type="button" class="btn js-only" data-workbench-open={withBase(`workbench/${c.id}/`)} aria-controls={anchors.workbench(c.id, "embedded")} aria-expanded="false">Open live controls here</button></p><div id={anchors.workbench(c.id, "embedded")} data-workbench-slot></div></div>}
   {RECIPE_IDS.includes(c.id) && <p><a href={withBase(`recipes/${c.id}/`)}>View source and copy recipe</a> · <a href={withBase(`exports/recipes/${c.id}/example.html`)} download>Download standalone example</a>{c.id === "dialog" && " — visual-only; modal behavior is host-owned."}</p>}
 
   <div class="block">

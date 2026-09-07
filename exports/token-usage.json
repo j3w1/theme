@@ -198,7 +198,22 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/12",
-                "line": 76
+                "line": 79
+              }
+            },
+            {
+              "kind": "part",
+              "component": "button",
+              "part": "destructive.border-active",
+              "state": null,
+              "variant": "destructive",
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/button.md",
+                "pointer": "/tokens/destructive.border-active",
+                "line": 55
               }
             },
             {
@@ -226,7 +241,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/12",
-                "line": 76
+                "line": 79
               }
             }
           ]
@@ -268,7 +283,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/16",
-                "line": 80
+                "line": 83
               }
             },
             {
@@ -367,7 +382,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/16",
-                "line": 80
+                "line": 83
               }
             },
             {
@@ -431,7 +446,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/16",
-                "line": 80
+                "line": 83
               }
             },
             {
@@ -504,7 +519,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/16",
-                "line": 80
+                "line": 83
               }
             },
             {
@@ -568,7 +583,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/13",
-                "line": 77
+                "line": 80
               }
             },
             {
@@ -583,7 +598,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/14",
-                "line": 78
+                "line": 81
               }
             },
             {
@@ -652,7 +667,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/13",
-                "line": 77
+                "line": 80
               }
             },
             {
@@ -663,7 +678,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/14",
-                "line": 78
+                "line": 81
               }
             }
           ]
@@ -705,7 +720,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/15",
-                "line": 79
+                "line": 82
               }
             },
             {
@@ -720,7 +735,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/13",
-                "line": 77
+                "line": 80
               }
             },
             {
@@ -735,7 +750,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/14",
-                "line": 78
+                "line": 81
               }
             },
             {
@@ -789,7 +804,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/13",
-                "line": 77
+                "line": 80
               }
             },
             {
@@ -800,7 +815,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/14",
-                "line": 78
+                "line": 81
               }
             },
             {
@@ -811,7 +826,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/15",
-                "line": 79
+                "line": 82
               }
             }
           ]
@@ -853,7 +868,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/15",
-                "line": 79
+                "line": 82
               }
             },
             {
@@ -896,7 +911,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/15",
-                "line": 79
+                "line": 82
               }
             }
           ]
@@ -938,7 +953,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/11",
-                "line": 75
+                "line": 78
               }
             },
             {
@@ -981,7 +996,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/11",
-                "line": 75
+                "line": 78
               }
             },
             {
@@ -1049,7 +1064,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/0",
-                "line": 64
+                "line": 67
               }
             },
             {
@@ -1454,7 +1469,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/default/bg",
-                "line": 58
+                "line": 61
               }
             },
             {
@@ -1469,7 +1484,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/focus-visible/bg",
-                "line": 60
+                "line": 63
               }
             },
             {
@@ -1484,7 +1499,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/loading/bg",
-                "line": 62
+                "line": 65
               }
             },
             {
@@ -1691,7 +1706,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/0",
-                "line": 64
+                "line": 67
               }
             },
             {
@@ -1713,7 +1728,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/default",
-                "line": 58
+                "line": 61
               }
             },
             {
@@ -1724,7 +1739,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 60
+                "line": 63
               }
             },
             {
@@ -1735,7 +1750,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/loading",
-                "line": 62
+                "line": 65
               }
             },
             {
@@ -1900,7 +1915,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 60
+                "line": 63
               }
             },
             {
@@ -1998,6 +2013,21 @@
                 "file": "spec/components/wizard.md",
                 "pointer": "/contrast/7",
                 "line": 69
+              }
+            },
+            {
+              "kind": "part",
+              "component": "button",
+              "part": "root.border-active",
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/button.md",
+                "pointer": "/tokens/root.border-active",
+                "line": 52
               }
             },
             {
@@ -2232,7 +2262,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/hover/bg",
-                "line": 59
+                "line": 62
               }
             }
           ],
@@ -2245,7 +2275,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/hover",
-                "line": 59
+                "line": 62
               }
             },
             {
@@ -2361,7 +2391,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/active/bg",
-                "line": 61
+                "line": 64
               }
             }
           ],
@@ -2374,18 +2404,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/active",
-                "line": 61
-              }
-            },
-            {
-              "fg": "color.border.active",
-              "bg": "color.action.primary.pressed-bg",
-              "label": "button active border",
-              "state": "active",
-              "source": {
-                "file": "spec/components/button.md",
-                "pointer": "/stateTokens/active",
-                "line": 61
+                "line": 64
               }
             }
           ]
@@ -2592,7 +2611,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/tokens/loading.glyph",
-                "line": 56
+                "line": 59
               }
             },
             {
@@ -2817,7 +2836,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/active/fg",
-                "line": 61
+                "line": 64
               }
             },
             {
@@ -2832,7 +2851,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/default/fg",
-                "line": 58
+                "line": 61
               }
             },
             {
@@ -2847,7 +2866,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/focus-visible/fg",
-                "line": 60
+                "line": 63
               }
             },
             {
@@ -2862,7 +2881,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/hover/fg",
-                "line": 59
+                "line": 62
               }
             },
             {
@@ -2877,7 +2896,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/loading/fg",
-                "line": 62
+                "line": 65
               }
             },
             {
@@ -3051,7 +3070,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/default",
-                "line": 58
+                "line": 61
               }
             },
             {
@@ -3062,7 +3081,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 60
+                "line": 63
               }
             },
             {
@@ -3073,7 +3092,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/loading",
-                "line": 62
+                "line": 65
               }
             },
             {
@@ -3238,7 +3257,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/hover",
-                "line": 59
+                "line": 62
               }
             },
             {
@@ -3293,7 +3312,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/active",
-                "line": 61
+                "line": 64
               }
             }
           ]
@@ -3335,7 +3354,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/1",
-                "line": 65
+                "line": 68
               }
             },
             {
@@ -3350,7 +3369,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/11",
-                "line": 75
+                "line": 78
               }
             },
             {
@@ -3365,7 +3384,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/12",
-                "line": 76
+                "line": 79
               }
             },
             {
@@ -3380,7 +3399,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/2",
-                "line": 66
+                "line": 69
               }
             },
             {
@@ -3395,7 +3414,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/7",
-                "line": 71
+                "line": 74
               }
             },
             {
@@ -3483,7 +3502,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/12",
-                "line": 76
+                "line": 79
               }
             },
             {
@@ -3494,7 +3513,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/11",
-                "line": 75
+                "line": 78
               }
             },
             {
@@ -3505,7 +3524,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/2",
-                "line": 66
+                "line": 69
               }
             },
             {
@@ -3516,7 +3535,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/1",
-                "line": 65
+                "line": 68
               }
             },
             {
@@ -3549,7 +3568,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/7",
-                "line": 71
+                "line": 74
               }
             },
             {
@@ -3617,7 +3636,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/4",
-                "line": 68
+                "line": 71
               }
             },
             {
@@ -3632,7 +3651,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/2",
-                "line": 66
+                "line": 69
               }
             },
             {
@@ -3855,7 +3874,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/2",
-                "line": 66
+                "line": 69
               }
             },
             {
@@ -3943,7 +3962,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/4",
-                "line": 68
+                "line": 71
               }
             },
             {
@@ -3996,7 +4015,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/3",
-                "line": 67
+                "line": 70
               }
             },
             {
@@ -4011,7 +4030,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/5",
-                "line": 69
+                "line": 72
               }
             },
             {
@@ -4125,7 +4144,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/3",
-                "line": 67
+                "line": 70
               }
             },
             {
@@ -4136,7 +4155,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/5",
-                "line": 69
+                "line": 72
               }
             }
           ]
@@ -4178,7 +4197,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/6",
-                "line": 70
+                "line": 73
               }
             },
             {
@@ -4221,7 +4240,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/6",
-                "line": 70
+                "line": 73
               }
             }
           ]
@@ -4263,7 +4282,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/6",
-                "line": 70
+                "line": 73
               }
             },
             {
@@ -4278,7 +4297,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/3",
-                "line": 67
+                "line": 70
               }
             },
             {
@@ -4293,7 +4312,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/1",
-                "line": 65
+                "line": 68
               }
             },
             {
@@ -4531,7 +4550,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/1",
-                "line": 65
+                "line": 68
               }
             },
             {
@@ -4553,7 +4572,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/3",
-                "line": 67
+                "line": 70
               }
             },
             {
@@ -4564,7 +4583,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/6",
-                "line": 70
+                "line": 73
               }
             },
             {
@@ -4683,7 +4702,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/8",
-                "line": 72
+                "line": 75
               }
             },
             {
@@ -5036,7 +5055,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/8",
-                "line": 72
+                "line": 75
               }
             },
             {
@@ -5104,7 +5123,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/9",
-                "line": 73
+                "line": 76
               }
             },
             {
@@ -5119,7 +5138,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/8",
-                "line": 72
+                "line": 75
               }
             },
             {
@@ -5134,7 +5153,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/7",
-                "line": 71
+                "line": 74
               }
             },
             {
@@ -5619,7 +5638,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/7",
-                "line": 71
+                "line": 74
               }
             },
             {
@@ -5685,7 +5704,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/8",
-                "line": 72
+                "line": 75
               }
             },
             {
@@ -5718,7 +5737,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/9",
-                "line": 73
+                "line": 76
               }
             },
             {
@@ -5859,7 +5878,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/10",
-                "line": 74
+                "line": 77
               }
             },
             {
@@ -5895,16 +5914,31 @@
             {
               "kind": "part",
               "component": "button",
-              "part": "root.border-active",
+              "part": "secondary.border-active",
               "state": null,
-              "variant": null,
+              "variant": "secondary",
               "surface": null,
               "nativeKey": null,
               "port": null,
               "source": {
                 "file": "spec/components/button.md",
-                "pointer": "/tokens/root.border-active",
-                "line": 52
+                "pointer": "/tokens/secondary.border-active",
+                "line": 53
+              }
+            },
+            {
+              "kind": "part",
+              "component": "button",
+              "part": "tertiary.border-active",
+              "state": null,
+              "variant": "tertiary",
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/button.md",
+                "pointer": "/tokens/tertiary.border-active",
+                "line": 54
               }
             },
             {
@@ -6104,21 +6138,6 @@
             },
             {
               "kind": "state",
-              "component": "button",
-              "part": "border",
-              "state": "active",
-              "variant": null,
-              "surface": "color.action.primary.pressed-bg",
-              "nativeKey": null,
-              "port": null,
-              "source": {
-                "file": "spec/components/button.md",
-                "pointer": "/stateTokens/active/border",
-                "line": 61
-              }
-            },
-            {
-              "kind": "state",
               "component": "combobox",
               "part": "border",
               "state": "focus-visible",
@@ -6286,24 +6305,13 @@
           "contrast": [
             {
               "fg": "color.border.active",
-              "bg": "color.action.primary.pressed-bg",
-              "label": "button active border",
-              "state": "active",
-              "source": {
-                "file": "spec/components/button.md",
-                "pointer": "/stateTokens/active",
-                "line": 61
-              }
-            },
-            {
-              "fg": "color.border.active",
               "bg": "color.interaction.pressed.bg",
               "label": "active border on the pressed fill",
               "state": "active",
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/10",
-                "line": 74
+                "line": 77
               }
             },
             {
@@ -8955,7 +8963,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/18",
-                "line": 82
+                "line": 85
               }
             },
             {
@@ -9225,7 +9233,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/tokens/root.border-disabled",
-                "line": 55
+                "line": 58
               }
             },
             {
@@ -9478,7 +9486,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/18",
-                "line": 82
+                "line": 85
               }
             },
             {
@@ -18838,7 +18846,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/17",
-                "line": 81
+                "line": 84
               }
             },
             {
@@ -18853,7 +18861,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/18",
-                "line": 82
+                "line": 85
               }
             },
             {
@@ -19363,7 +19371,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/tokens/root.bg-disabled",
-                "line": 54
+                "line": 57
               }
             },
             {
@@ -19616,7 +19624,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/18",
-                "line": 82
+                "line": 85
               }
             },
             {
@@ -19902,7 +19910,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/17",
-                "line": 81
+                "line": 84
               }
             },
             {
@@ -20156,7 +20164,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/5",
-                "line": 69
+                "line": 72
               }
             },
             {
@@ -21410,7 +21418,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/5",
-                "line": 69
+                "line": 72
               }
             },
             {
@@ -21904,7 +21912,7 @@
           "group": "interaction",
           "css": "#ffa2a7",
           "variable": "--color-interaction-focus-ring-container",
-          "description": "2px solid focus ring on focusable containers; also the ring on fills.",
+          "description": "Focus colour for containers and explicitly mapped filled controls (D-015); component rules determine ring geometry.",
           "status": "observed",
           "deprecated": false,
           "eligibility": {
@@ -22523,7 +22531,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/focus-visible/outline",
-                "line": 60
+                "line": 63
               }
             },
             {
@@ -22896,7 +22904,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 60
+                "line": 63
               }
             },
             {
@@ -25030,7 +25038,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/10",
-                "line": 74
+                "line": 77
               }
             },
             {
@@ -25045,7 +25053,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/9",
-                "line": 73
+                "line": 76
               }
             },
             {
@@ -25387,7 +25395,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/9",
-                "line": 73
+                "line": 76
               }
             },
             {
@@ -25398,7 +25406,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/10",
-                "line": 74
+                "line": 77
               }
             },
             {
@@ -40601,7 +40609,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/4",
-                "line": 68
+                "line": 71
               }
             },
             {
@@ -40616,7 +40624,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/0",
-                "line": 64
+                "line": 67
               }
             },
             {
@@ -42341,7 +42349,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "body",
-                "line": 111
+                "line": 114
               }
             },
             {
@@ -43205,7 +43213,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/0",
-                "line": 64
+                "line": 67
               }
             },
             {
@@ -43249,7 +43257,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/4",
-                "line": 68
+                "line": 71
               }
             },
             {
@@ -58782,7 +58790,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/17",
-                "line": 81
+                "line": 84
               }
             },
             {
@@ -59247,7 +59255,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/tokens/root.text-disabled",
-                "line": 53
+                "line": 56
               }
             },
             {
@@ -59753,7 +59761,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/17",
-                "line": 81
+                "line": 84
               }
             },
             {
@@ -65857,7 +65865,22 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/12",
-                "line": 76
+                "line": 79
+              }
+            },
+            {
+              "kind": "part",
+              "component": "button",
+              "part": "destructive.border-active",
+              "state": null,
+              "variant": "destructive",
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/button.md",
+                "pointer": "/tokens/destructive.border-active",
+                "line": 55
               }
             },
             {
@@ -65885,7 +65908,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/12",
-                "line": 76
+                "line": 79
               }
             }
           ]
@@ -65927,7 +65950,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/16",
-                "line": 80
+                "line": 83
               }
             },
             {
@@ -66026,7 +66049,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/16",
-                "line": 80
+                "line": 83
               }
             },
             {
@@ -66090,7 +66113,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/16",
-                "line": 80
+                "line": 83
               }
             },
             {
@@ -66163,7 +66186,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/16",
-                "line": 80
+                "line": 83
               }
             },
             {
@@ -66227,7 +66250,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/13",
-                "line": 77
+                "line": 80
               }
             },
             {
@@ -66242,7 +66265,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/14",
-                "line": 78
+                "line": 81
               }
             },
             {
@@ -66311,7 +66334,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/13",
-                "line": 77
+                "line": 80
               }
             },
             {
@@ -66322,7 +66345,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/14",
-                "line": 78
+                "line": 81
               }
             }
           ]
@@ -66364,7 +66387,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/15",
-                "line": 79
+                "line": 82
               }
             },
             {
@@ -66379,7 +66402,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/13",
-                "line": 77
+                "line": 80
               }
             },
             {
@@ -66394,7 +66417,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/14",
-                "line": 78
+                "line": 81
               }
             },
             {
@@ -66448,7 +66471,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/13",
-                "line": 77
+                "line": 80
               }
             },
             {
@@ -66459,7 +66482,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/14",
-                "line": 78
+                "line": 81
               }
             },
             {
@@ -66470,7 +66493,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/15",
-                "line": 79
+                "line": 82
               }
             }
           ]
@@ -66512,7 +66535,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/15",
-                "line": 79
+                "line": 82
               }
             },
             {
@@ -66555,7 +66578,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/15",
-                "line": 79
+                "line": 82
               }
             }
           ]
@@ -66597,7 +66620,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/11",
-                "line": 75
+                "line": 78
               }
             },
             {
@@ -66640,7 +66663,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/11",
-                "line": 75
+                "line": 78
               }
             },
             {
@@ -66708,7 +66731,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/0",
-                "line": 64
+                "line": 67
               }
             },
             {
@@ -67113,7 +67136,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/default/bg",
-                "line": 58
+                "line": 61
               }
             },
             {
@@ -67128,7 +67151,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/focus-visible/bg",
-                "line": 60
+                "line": 63
               }
             },
             {
@@ -67143,7 +67166,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/loading/bg",
-                "line": 62
+                "line": 65
               }
             },
             {
@@ -67350,7 +67373,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/0",
-                "line": 64
+                "line": 67
               }
             },
             {
@@ -67372,7 +67395,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/default",
-                "line": 58
+                "line": 61
               }
             },
             {
@@ -67383,7 +67406,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 60
+                "line": 63
               }
             },
             {
@@ -67394,7 +67417,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/loading",
-                "line": 62
+                "line": 65
               }
             },
             {
@@ -67559,7 +67582,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 60
+                "line": 63
               }
             },
             {
@@ -67657,6 +67680,21 @@
                 "file": "spec/components/wizard.md",
                 "pointer": "/contrast/7",
                 "line": 69
+              }
+            },
+            {
+              "kind": "part",
+              "component": "button",
+              "part": "root.border-active",
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/button.md",
+                "pointer": "/tokens/root.border-active",
+                "line": 52
               }
             },
             {
@@ -67891,7 +67929,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/hover/bg",
-                "line": 59
+                "line": 62
               }
             }
           ],
@@ -67904,7 +67942,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/hover",
-                "line": 59
+                "line": 62
               }
             },
             {
@@ -68020,7 +68058,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/active/bg",
-                "line": 61
+                "line": 64
               }
             }
           ],
@@ -68033,18 +68071,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/active",
-                "line": 61
-              }
-            },
-            {
-              "fg": "color.border.active",
-              "bg": "color.action.primary.pressed-bg",
-              "label": "button active border",
-              "state": "active",
-              "source": {
-                "file": "spec/components/button.md",
-                "pointer": "/stateTokens/active",
-                "line": 61
+                "line": 64
               }
             }
           ]
@@ -68251,7 +68278,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/tokens/loading.glyph",
-                "line": 56
+                "line": 59
               }
             },
             {
@@ -68476,7 +68503,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/active/fg",
-                "line": 61
+                "line": 64
               }
             },
             {
@@ -68491,7 +68518,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/default/fg",
-                "line": 58
+                "line": 61
               }
             },
             {
@@ -68506,7 +68533,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/focus-visible/fg",
-                "line": 60
+                "line": 63
               }
             },
             {
@@ -68521,7 +68548,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/hover/fg",
-                "line": 59
+                "line": 62
               }
             },
             {
@@ -68536,7 +68563,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/loading/fg",
-                "line": 62
+                "line": 65
               }
             },
             {
@@ -68710,7 +68737,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/default",
-                "line": 58
+                "line": 61
               }
             },
             {
@@ -68721,7 +68748,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 60
+                "line": 63
               }
             },
             {
@@ -68732,7 +68759,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/loading",
-                "line": 62
+                "line": 65
               }
             },
             {
@@ -68897,7 +68924,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/hover",
-                "line": 59
+                "line": 62
               }
             },
             {
@@ -68952,7 +68979,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/active",
-                "line": 61
+                "line": 64
               }
             }
           ]
@@ -68994,7 +69021,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/1",
-                "line": 65
+                "line": 68
               }
             },
             {
@@ -69009,7 +69036,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/11",
-                "line": 75
+                "line": 78
               }
             },
             {
@@ -69024,7 +69051,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/12",
-                "line": 76
+                "line": 79
               }
             },
             {
@@ -69039,7 +69066,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/2",
-                "line": 66
+                "line": 69
               }
             },
             {
@@ -69054,7 +69081,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/7",
-                "line": 71
+                "line": 74
               }
             },
             {
@@ -69142,7 +69169,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/12",
-                "line": 76
+                "line": 79
               }
             },
             {
@@ -69153,7 +69180,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/11",
-                "line": 75
+                "line": 78
               }
             },
             {
@@ -69164,7 +69191,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/2",
-                "line": 66
+                "line": 69
               }
             },
             {
@@ -69175,7 +69202,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/1",
-                "line": 65
+                "line": 68
               }
             },
             {
@@ -69208,7 +69235,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/7",
-                "line": 71
+                "line": 74
               }
             },
             {
@@ -69276,7 +69303,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/4",
-                "line": 68
+                "line": 71
               }
             },
             {
@@ -69291,7 +69318,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/2",
-                "line": 66
+                "line": 69
               }
             },
             {
@@ -69514,7 +69541,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/2",
-                "line": 66
+                "line": 69
               }
             },
             {
@@ -69602,7 +69629,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/4",
-                "line": 68
+                "line": 71
               }
             },
             {
@@ -69655,7 +69682,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/3",
-                "line": 67
+                "line": 70
               }
             },
             {
@@ -69670,7 +69697,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/5",
-                "line": 69
+                "line": 72
               }
             },
             {
@@ -69784,7 +69811,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/3",
-                "line": 67
+                "line": 70
               }
             },
             {
@@ -69795,7 +69822,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/5",
-                "line": 69
+                "line": 72
               }
             }
           ]
@@ -69837,7 +69864,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/6",
-                "line": 70
+                "line": 73
               }
             },
             {
@@ -69880,7 +69907,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/6",
-                "line": 70
+                "line": 73
               }
             }
           ]
@@ -69922,7 +69949,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/6",
-                "line": 70
+                "line": 73
               }
             },
             {
@@ -69937,7 +69964,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/3",
-                "line": 67
+                "line": 70
               }
             },
             {
@@ -69952,7 +69979,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/1",
-                "line": 65
+                "line": 68
               }
             },
             {
@@ -70190,7 +70217,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/1",
-                "line": 65
+                "line": 68
               }
             },
             {
@@ -70212,7 +70239,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/3",
-                "line": 67
+                "line": 70
               }
             },
             {
@@ -70223,7 +70250,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/6",
-                "line": 70
+                "line": 73
               }
             },
             {
@@ -70342,7 +70369,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/8",
-                "line": 72
+                "line": 75
               }
             },
             {
@@ -70695,7 +70722,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/8",
-                "line": 72
+                "line": 75
               }
             },
             {
@@ -70763,7 +70790,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/9",
-                "line": 73
+                "line": 76
               }
             },
             {
@@ -70778,7 +70805,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/8",
-                "line": 72
+                "line": 75
               }
             },
             {
@@ -70793,7 +70820,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/7",
-                "line": 71
+                "line": 74
               }
             },
             {
@@ -71278,7 +71305,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/7",
-                "line": 71
+                "line": 74
               }
             },
             {
@@ -71344,7 +71371,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/8",
-                "line": 72
+                "line": 75
               }
             },
             {
@@ -71377,7 +71404,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/9",
-                "line": 73
+                "line": 76
               }
             },
             {
@@ -71518,7 +71545,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/10",
-                "line": 74
+                "line": 77
               }
             },
             {
@@ -71554,16 +71581,31 @@
             {
               "kind": "part",
               "component": "button",
-              "part": "root.border-active",
+              "part": "secondary.border-active",
               "state": null,
-              "variant": null,
+              "variant": "secondary",
               "surface": null,
               "nativeKey": null,
               "port": null,
               "source": {
                 "file": "spec/components/button.md",
-                "pointer": "/tokens/root.border-active",
-                "line": 52
+                "pointer": "/tokens/secondary.border-active",
+                "line": 53
+              }
+            },
+            {
+              "kind": "part",
+              "component": "button",
+              "part": "tertiary.border-active",
+              "state": null,
+              "variant": "tertiary",
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/button.md",
+                "pointer": "/tokens/tertiary.border-active",
+                "line": 54
               }
             },
             {
@@ -71763,21 +71805,6 @@
             },
             {
               "kind": "state",
-              "component": "button",
-              "part": "border",
-              "state": "active",
-              "variant": null,
-              "surface": "color.action.primary.pressed-bg",
-              "nativeKey": null,
-              "port": null,
-              "source": {
-                "file": "spec/components/button.md",
-                "pointer": "/stateTokens/active/border",
-                "line": 61
-              }
-            },
-            {
-              "kind": "state",
               "component": "combobox",
               "part": "border",
               "state": "focus-visible",
@@ -71945,24 +71972,13 @@
           "contrast": [
             {
               "fg": "color.border.active",
-              "bg": "color.action.primary.pressed-bg",
-              "label": "button active border",
-              "state": "active",
-              "source": {
-                "file": "spec/components/button.md",
-                "pointer": "/stateTokens/active",
-                "line": 61
-              }
-            },
-            {
-              "fg": "color.border.active",
               "bg": "color.interaction.pressed.bg",
               "label": "active border on the pressed fill",
               "state": "active",
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/10",
-                "line": 74
+                "line": 77
               }
             },
             {
@@ -74614,7 +74630,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/18",
-                "line": 82
+                "line": 85
               }
             },
             {
@@ -74884,7 +74900,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/tokens/root.border-disabled",
-                "line": 55
+                "line": 58
               }
             },
             {
@@ -75137,7 +75153,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/18",
-                "line": 82
+                "line": 85
               }
             },
             {
@@ -84494,7 +84510,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/17",
-                "line": 81
+                "line": 84
               }
             },
             {
@@ -84509,7 +84525,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/18",
-                "line": 82
+                "line": 85
               }
             },
             {
@@ -85019,7 +85035,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/tokens/root.bg-disabled",
-                "line": 54
+                "line": 57
               }
             },
             {
@@ -85272,7 +85288,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/18",
-                "line": 82
+                "line": 85
               }
             },
             {
@@ -85558,7 +85574,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/17",
-                "line": 81
+                "line": 84
               }
             },
             {
@@ -85812,7 +85828,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/5",
-                "line": 69
+                "line": 72
               }
             },
             {
@@ -87066,7 +87082,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/5",
-                "line": 69
+                "line": 72
               }
             },
             {
@@ -87560,7 +87576,7 @@
           "group": "interaction",
           "css": "#ffa2a7",
           "variable": "--color-interaction-focus-ring-container",
-          "description": "2px solid focus ring on focusable containers; also the ring on fills.",
+          "description": "Focus colour for containers and explicitly mapped filled controls (D-015); component rules determine ring geometry.",
           "status": "observed",
           "deprecated": false,
           "eligibility": {
@@ -88179,7 +88195,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/focus-visible/outline",
-                "line": 60
+                "line": 63
               }
             },
             {
@@ -88552,7 +88568,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 60
+                "line": 63
               }
             },
             {
@@ -90686,7 +90702,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/10",
-                "line": 74
+                "line": 77
               }
             },
             {
@@ -90701,7 +90717,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/9",
-                "line": 73
+                "line": 76
               }
             },
             {
@@ -91043,7 +91059,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/9",
-                "line": 73
+                "line": 76
               }
             },
             {
@@ -91054,7 +91070,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/10",
-                "line": 74
+                "line": 77
               }
             },
             {
@@ -106261,7 +106277,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/4",
-                "line": 68
+                "line": 71
               }
             },
             {
@@ -106276,7 +106292,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/0",
-                "line": 64
+                "line": 67
               }
             },
             {
@@ -108001,7 +108017,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "body",
-                "line": 111
+                "line": 114
               }
             },
             {
@@ -108865,7 +108881,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/0",
-                "line": 64
+                "line": 67
               }
             },
             {
@@ -108909,7 +108925,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/4",
-                "line": 68
+                "line": 71
               }
             },
             {
@@ -124442,7 +124458,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/17",
-                "line": 81
+                "line": 84
               }
             },
             {
@@ -124907,7 +124923,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/tokens/root.text-disabled",
-                "line": 53
+                "line": 56
               }
             },
             {
@@ -125413,7 +125429,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/17",
-                "line": 81
+                "line": 84
               }
             },
             {
@@ -131514,7 +131530,22 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/12",
-                "line": 76
+                "line": 79
+              }
+            },
+            {
+              "kind": "part",
+              "component": "button",
+              "part": "destructive.border-active",
+              "state": null,
+              "variant": "destructive",
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/button.md",
+                "pointer": "/tokens/destructive.border-active",
+                "line": 55
               }
             },
             {
@@ -131542,7 +131573,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/12",
-                "line": 76
+                "line": 79
               }
             }
           ]
@@ -131584,7 +131615,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/16",
-                "line": 80
+                "line": 83
               }
             },
             {
@@ -131683,7 +131714,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/16",
-                "line": 80
+                "line": 83
               }
             },
             {
@@ -131747,7 +131778,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/16",
-                "line": 80
+                "line": 83
               }
             },
             {
@@ -131820,7 +131851,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/16",
-                "line": 80
+                "line": 83
               }
             },
             {
@@ -131884,7 +131915,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/13",
-                "line": 77
+                "line": 80
               }
             },
             {
@@ -131899,7 +131930,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/14",
-                "line": 78
+                "line": 81
               }
             },
             {
@@ -131968,7 +131999,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/13",
-                "line": 77
+                "line": 80
               }
             },
             {
@@ -131979,7 +132010,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/14",
-                "line": 78
+                "line": 81
               }
             }
           ]
@@ -132021,7 +132052,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/15",
-                "line": 79
+                "line": 82
               }
             },
             {
@@ -132036,7 +132067,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/13",
-                "line": 77
+                "line": 80
               }
             },
             {
@@ -132051,7 +132082,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/14",
-                "line": 78
+                "line": 81
               }
             },
             {
@@ -132105,7 +132136,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/13",
-                "line": 77
+                "line": 80
               }
             },
             {
@@ -132116,7 +132147,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/14",
-                "line": 78
+                "line": 81
               }
             },
             {
@@ -132127,7 +132158,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/15",
-                "line": 79
+                "line": 82
               }
             }
           ]
@@ -132169,7 +132200,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/15",
-                "line": 79
+                "line": 82
               }
             },
             {
@@ -132212,7 +132243,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/15",
-                "line": 79
+                "line": 82
               }
             }
           ]
@@ -132254,7 +132285,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/11",
-                "line": 75
+                "line": 78
               }
             },
             {
@@ -132297,7 +132328,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/11",
-                "line": 75
+                "line": 78
               }
             },
             {
@@ -132365,7 +132396,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/0",
-                "line": 64
+                "line": 67
               }
             },
             {
@@ -132770,7 +132801,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/default/bg",
-                "line": 58
+                "line": 61
               }
             },
             {
@@ -132785,7 +132816,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/focus-visible/bg",
-                "line": 60
+                "line": 63
               }
             },
             {
@@ -132800,7 +132831,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/loading/bg",
-                "line": 62
+                "line": 65
               }
             },
             {
@@ -133007,7 +133038,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/0",
-                "line": 64
+                "line": 67
               }
             },
             {
@@ -133029,7 +133060,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/default",
-                "line": 58
+                "line": 61
               }
             },
             {
@@ -133040,7 +133071,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 60
+                "line": 63
               }
             },
             {
@@ -133051,7 +133082,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/loading",
-                "line": 62
+                "line": 65
               }
             },
             {
@@ -133216,7 +133247,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 60
+                "line": 63
               }
             },
             {
@@ -133314,6 +133345,21 @@
                 "file": "spec/components/wizard.md",
                 "pointer": "/contrast/7",
                 "line": 69
+              }
+            },
+            {
+              "kind": "part",
+              "component": "button",
+              "part": "root.border-active",
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/button.md",
+                "pointer": "/tokens/root.border-active",
+                "line": 52
               }
             },
             {
@@ -133548,7 +133594,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/hover/bg",
-                "line": 59
+                "line": 62
               }
             }
           ],
@@ -133561,7 +133607,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/hover",
-                "line": 59
+                "line": 62
               }
             },
             {
@@ -133677,7 +133723,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/active/bg",
-                "line": 61
+                "line": 64
               }
             }
           ],
@@ -133690,18 +133736,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/active",
-                "line": 61
-              }
-            },
-            {
-              "fg": "color.border.active",
-              "bg": "color.action.primary.pressed-bg",
-              "label": "button active border",
-              "state": "active",
-              "source": {
-                "file": "spec/components/button.md",
-                "pointer": "/stateTokens/active",
-                "line": 61
+                "line": 64
               }
             }
           ]
@@ -133908,7 +133943,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/tokens/loading.glyph",
-                "line": 56
+                "line": 59
               }
             },
             {
@@ -134133,7 +134168,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/active/fg",
-                "line": 61
+                "line": 64
               }
             },
             {
@@ -134148,7 +134183,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/default/fg",
-                "line": 58
+                "line": 61
               }
             },
             {
@@ -134163,7 +134198,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/focus-visible/fg",
-                "line": 60
+                "line": 63
               }
             },
             {
@@ -134178,7 +134213,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/hover/fg",
-                "line": 59
+                "line": 62
               }
             },
             {
@@ -134193,7 +134228,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/loading/fg",
-                "line": 62
+                "line": 65
               }
             },
             {
@@ -134367,7 +134402,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/default",
-                "line": 58
+                "line": 61
               }
             },
             {
@@ -134378,7 +134413,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 60
+                "line": 63
               }
             },
             {
@@ -134389,7 +134424,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/loading",
-                "line": 62
+                "line": 65
               }
             },
             {
@@ -134554,7 +134589,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/hover",
-                "line": 59
+                "line": 62
               }
             },
             {
@@ -134609,7 +134644,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/active",
-                "line": 61
+                "line": 64
               }
             }
           ]
@@ -134651,7 +134686,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/1",
-                "line": 65
+                "line": 68
               }
             },
             {
@@ -134666,7 +134701,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/11",
-                "line": 75
+                "line": 78
               }
             },
             {
@@ -134681,7 +134716,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/12",
-                "line": 76
+                "line": 79
               }
             },
             {
@@ -134696,7 +134731,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/2",
-                "line": 66
+                "line": 69
               }
             },
             {
@@ -134711,7 +134746,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/7",
-                "line": 71
+                "line": 74
               }
             },
             {
@@ -134799,7 +134834,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/12",
-                "line": 76
+                "line": 79
               }
             },
             {
@@ -134810,7 +134845,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/11",
-                "line": 75
+                "line": 78
               }
             },
             {
@@ -134821,7 +134856,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/2",
-                "line": 66
+                "line": 69
               }
             },
             {
@@ -134832,7 +134867,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/1",
-                "line": 65
+                "line": 68
               }
             },
             {
@@ -134865,7 +134900,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/7",
-                "line": 71
+                "line": 74
               }
             },
             {
@@ -134933,7 +134968,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/4",
-                "line": 68
+                "line": 71
               }
             },
             {
@@ -134948,7 +134983,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/2",
-                "line": 66
+                "line": 69
               }
             },
             {
@@ -135171,7 +135206,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/2",
-                "line": 66
+                "line": 69
               }
             },
             {
@@ -135259,7 +135294,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/4",
-                "line": 68
+                "line": 71
               }
             },
             {
@@ -135312,7 +135347,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/3",
-                "line": 67
+                "line": 70
               }
             },
             {
@@ -135327,7 +135362,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/5",
-                "line": 69
+                "line": 72
               }
             },
             {
@@ -135441,7 +135476,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/3",
-                "line": 67
+                "line": 70
               }
             },
             {
@@ -135452,7 +135487,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/5",
-                "line": 69
+                "line": 72
               }
             }
           ]
@@ -135494,7 +135529,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/6",
-                "line": 70
+                "line": 73
               }
             },
             {
@@ -135537,7 +135572,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/6",
-                "line": 70
+                "line": 73
               }
             }
           ]
@@ -135579,7 +135614,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/6",
-                "line": 70
+                "line": 73
               }
             },
             {
@@ -135594,7 +135629,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/3",
-                "line": 67
+                "line": 70
               }
             },
             {
@@ -135609,7 +135644,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/1",
-                "line": 65
+                "line": 68
               }
             },
             {
@@ -135847,7 +135882,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/1",
-                "line": 65
+                "line": 68
               }
             },
             {
@@ -135869,7 +135904,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/3",
-                "line": 67
+                "line": 70
               }
             },
             {
@@ -135880,7 +135915,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/6",
-                "line": 70
+                "line": 73
               }
             },
             {
@@ -135999,7 +136034,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/8",
-                "line": 72
+                "line": 75
               }
             },
             {
@@ -136352,7 +136387,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/8",
-                "line": 72
+                "line": 75
               }
             },
             {
@@ -136420,7 +136455,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/9",
-                "line": 73
+                "line": 76
               }
             },
             {
@@ -136435,7 +136470,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/8",
-                "line": 72
+                "line": 75
               }
             },
             {
@@ -136450,7 +136485,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/7",
-                "line": 71
+                "line": 74
               }
             },
             {
@@ -136935,7 +136970,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/7",
-                "line": 71
+                "line": 74
               }
             },
             {
@@ -137001,7 +137036,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/8",
-                "line": 72
+                "line": 75
               }
             },
             {
@@ -137034,7 +137069,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/9",
-                "line": 73
+                "line": 76
               }
             },
             {
@@ -137175,7 +137210,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/10",
-                "line": 74
+                "line": 77
               }
             },
             {
@@ -137211,16 +137246,31 @@
             {
               "kind": "part",
               "component": "button",
-              "part": "root.border-active",
+              "part": "secondary.border-active",
               "state": null,
-              "variant": null,
+              "variant": "secondary",
               "surface": null,
               "nativeKey": null,
               "port": null,
               "source": {
                 "file": "spec/components/button.md",
-                "pointer": "/tokens/root.border-active",
-                "line": 52
+                "pointer": "/tokens/secondary.border-active",
+                "line": 53
+              }
+            },
+            {
+              "kind": "part",
+              "component": "button",
+              "part": "tertiary.border-active",
+              "state": null,
+              "variant": "tertiary",
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/button.md",
+                "pointer": "/tokens/tertiary.border-active",
+                "line": 54
               }
             },
             {
@@ -137420,21 +137470,6 @@
             },
             {
               "kind": "state",
-              "component": "button",
-              "part": "border",
-              "state": "active",
-              "variant": null,
-              "surface": "color.action.primary.pressed-bg",
-              "nativeKey": null,
-              "port": null,
-              "source": {
-                "file": "spec/components/button.md",
-                "pointer": "/stateTokens/active/border",
-                "line": 61
-              }
-            },
-            {
-              "kind": "state",
               "component": "combobox",
               "part": "border",
               "state": "focus-visible",
@@ -137602,24 +137637,13 @@
           "contrast": [
             {
               "fg": "color.border.active",
-              "bg": "color.action.primary.pressed-bg",
-              "label": "button active border",
-              "state": "active",
-              "source": {
-                "file": "spec/components/button.md",
-                "pointer": "/stateTokens/active",
-                "line": 61
-              }
-            },
-            {
-              "fg": "color.border.active",
               "bg": "color.interaction.pressed.bg",
               "label": "active border on the pressed fill",
               "state": "active",
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/10",
-                "line": 74
+                "line": 77
               }
             },
             {
@@ -140271,7 +140295,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/18",
-                "line": 82
+                "line": 85
               }
             },
             {
@@ -140541,7 +140565,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/tokens/root.border-disabled",
-                "line": 55
+                "line": 58
               }
             },
             {
@@ -140794,7 +140818,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/18",
-                "line": 82
+                "line": 85
               }
             },
             {
@@ -150203,7 +150227,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/17",
-                "line": 81
+                "line": 84
               }
             },
             {
@@ -150218,7 +150242,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/18",
-                "line": 82
+                "line": 85
               }
             },
             {
@@ -150728,7 +150752,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/tokens/root.bg-disabled",
-                "line": 54
+                "line": 57
               }
             },
             {
@@ -150981,7 +151005,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/18",
-                "line": 82
+                "line": 85
               }
             },
             {
@@ -151267,7 +151291,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/17",
-                "line": 81
+                "line": 84
               }
             },
             {
@@ -151521,7 +151545,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/5",
-                "line": 69
+                "line": 72
               }
             },
             {
@@ -152775,7 +152799,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/5",
-                "line": 69
+                "line": 72
               }
             },
             {
@@ -153269,7 +153293,7 @@
           "group": "interaction",
           "css": "#ffa2a7",
           "variable": "--color-interaction-focus-ring-container",
-          "description": "2px solid focus ring on focusable containers; also the ring on fills.",
+          "description": "Focus colour for containers and explicitly mapped filled controls (D-015); component rules determine ring geometry.",
           "status": "observed",
           "deprecated": false,
           "eligibility": {
@@ -153888,7 +153912,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/focus-visible/outline",
-                "line": 60
+                "line": 63
               }
             },
             {
@@ -154261,7 +154285,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 60
+                "line": 63
               }
             },
             {
@@ -156395,7 +156419,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/10",
-                "line": 74
+                "line": 77
               }
             },
             {
@@ -156410,7 +156434,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/9",
-                "line": 73
+                "line": 76
               }
             },
             {
@@ -156752,7 +156776,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/9",
-                "line": 73
+                "line": 76
               }
             },
             {
@@ -156763,7 +156787,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/10",
-                "line": 74
+                "line": 77
               }
             },
             {
@@ -171937,7 +171961,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/4",
-                "line": 68
+                "line": 71
               }
             },
             {
@@ -171952,7 +171976,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/0",
-                "line": 64
+                "line": 67
               }
             },
             {
@@ -173677,7 +173701,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "body",
-                "line": 111
+                "line": 114
               }
             },
             {
@@ -174541,7 +174565,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/0",
-                "line": 64
+                "line": 67
               }
             },
             {
@@ -174585,7 +174609,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/4",
-                "line": 68
+                "line": 71
               }
             },
             {
@@ -190214,7 +190238,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/17",
-                "line": 81
+                "line": 84
               }
             },
             {
@@ -190679,7 +190703,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/tokens/root.text-disabled",
-                "line": 53
+                "line": 56
               }
             },
             {
@@ -191185,7 +191209,7 @@
               "source": {
                 "file": "spec/components/button.md",
                 "pointer": "/contrast/17",
-                "line": 81
+                "line": 84
               }
             },
             {

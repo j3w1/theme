@@ -2,6 +2,20 @@
 
 ## Unreleased
 
+- #6, #8, #9, #10, #12, #17, #18: add bounded component workbenches,
+  isolated revision-aware previews, real viewport comparisons, anatomy
+  measurements, contrast and motion inspection, and reviewed public issue
+  drafts for components and tokens. Shared links omit entered specimen text
+  by default; reporting always omits it. Static normative content remains
+  available without JavaScript. These are diagnostic tools, not new theme
+  rules or accessibility certification.
+- Apply the owner-directed D-015 clarification while preserving current
+  component appearance: document actual pressed button borders and focus
+  roles, distinguish dialog semantics from destructive tone, and correct the
+  default confirmation's alertdialog role. Formal decision status remains
+  owner-managed. Complete overflow-tab panel relationships and share parsed
+  specimen ID rewriting with recipe generation.
+
 - Fix inline swatch interaction when hover media queries report false despite
   working mouse input. CSS hover controls the morph; mouse and pen events
   control the popup, excluding touch. Downstream: D-014 compatibility only;

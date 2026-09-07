@@ -1,0 +1,9 @@
+{
+  "button": { "label": ".button-label", "labelName": "Button label", "help": null, "motion": ".button", "motionState": "hover" },
+  "text-field": { "label": ".text-field-label", "labelName": "Field label", "help": ".text-field-help", "motion": null },
+  "checkbox": { "label": ".checkbox-text", "labelName": "First option label", "help": null, "motion": null },
+  "tabs": { "label": ".tabs-tab", "labelName": "First tab label", "help": ".tabs-panel-text", "motion": ".tabs-tab-demo-target", "motionState": "hover" },
+  "dialog": { "label": ".dialog-title", "labelName": "Dialog title", "help": ".dialog-text", "motion": null },
+  "table": { "label": ".table-sort", "labelName": "First column label", "help": null, "motion": ".table-row-demo-target", "motionState": "hover" },
+  "sidebar-nav": { "label": ".sidebar-nav-label", "labelName": "First link label", "help": null, "motion": ".sidebar-nav-link-demo-target", "motionState": "hover" }
+}

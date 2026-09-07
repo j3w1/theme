@@ -1,0 +1,19 @@
+---
+import { anchorFor } from "../../../scripts/lib/anchors.mjs";
+const { id, context = null } = Astro.props;
+const key = (name: string) => anchorFor.workbench(id, `report-${name}`);
+---
+<section data-issue-draft data-report-context={JSON.stringify(context)}>
+  <h2>Prepare a public issue draft</h2>
+  <p>Describe the problem and review the resulting draft. Entered specimen text, storage, screenshots, and unrelated URLs are not collected. No issue is submitted automatically.</p>
+  <p><a href={`https://github.com/j3w1/theme/issues/new?title=${encodeURIComponent(`${id}: describe the issue`)}`}>Open GitHub directly (also works without JavaScript)</a> · <a href={`https://github.com/j3w1/theme/issues?q=${encodeURIComponent(`is:issue ${id}`)}`}>Search existing issues</a></p>
+  <form class="issue-draft js-only" data-issue-form>
+    {[["expected", "Expected"], ["actual", "Actual"], ["steps", "Steps to reproduce"], ["evidence", "Evidence notes"]].map(([name, label]) => <label for={key(name)}>{label}<textarea id={key(name)} name={name} maxlength="1600" rows="2"></textarea></label>)}
+    <button type="submit" class="btn">Prepare draft for review</button>
+    <label for={key("body")}>Public issue body<textarea id={key("body")} data-issue-body readonly rows="8"></textarea></label>
+    <label class="workbench-consent"><input type="checkbox" data-review-issue /> I reviewed this draft for public sharing</label>
+    <p><a class="btn" data-open-issue aria-disabled="true" target="_blank" rel="noopener noreferrer">Open GitHub composer</a> <button type="button" class="btn" data-copy-issue disabled>Copy draft</button> <button type="button" class="btn" data-cancel-issue>Clear draft</button></p>
+    <p data-issue-status role="status"></p>
+  </form>
+</section>
+<script>import "../scripts/issue-draft";</script>

@@ -224,7 +224,7 @@
         },
         "ring-container": {
           "$value": "{color.primitive.rose.800}",
-          "$description": "2px solid focus ring on focusable containers; also the ring on fills."
+          "$description": "Focus colour for containers and explicitly mapped filled controls (D-015); component rules determine ring geometry."
         }
       },
       "selection": {

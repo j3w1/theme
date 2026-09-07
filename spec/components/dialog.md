@@ -120,7 +120,8 @@ wrapper standing in for the backdrop; a host always uses `showModal()`.
 The backdrop, {color.surface.backdrop} over the page; the dialog on
 {color.surface.overlay} behind a 1px {color.border.overlay}; the header with
 the title in {color.text.bright} and Close; the body in {color.text.default};
-the actions row. The alert dialog's confirm is the filled destructive button,
+the actions row. Confirmation semantics do not prescribe action tone (D-015):
+ordinary confirmations use primary. A destructive confirmation uses the filled destructive button,
 {color.action.destructive.filled-bg} with {color.action.destructive.filled-text};
 the form dialog holds a labelled text field on {color.surface.input}.
 
@@ -133,7 +134,7 @@ the form dialog holds a labelled text field on {color.surface.input}.
 | closed | nothing: the dialog and its backdrop are absent | no `open`; focus back on the opener |
 | focus-trapped | the dialog itself carries the container ring, 2px solid {color.interaction.focus.ring-container} at −3px, when it holds focus; the note says Tab cycles | Tab never leaves; the note text |
 | hover | Close background → {color.action.tertiary.hover-bg}; other buttons take their tone's hover | cursor: pointer |
-| focus-visible | ring 1px dashed {color.interaction.focus.ring} at −2px on the focused control; on a filled button the ring takes the fill's on-fill colour | the ring |
+| focus-visible | ring 1px dashed {color.interaction.focus.ring} at −2px on the focused control; primary uses {color.interaction.focus.ring-container}, destructive uses {color.action.destructive.filled-text} (D-015) | the ring |
 | reduced-motion | no opacity transition; the dialog is simply present or absent | `prefers-reduced-motion` |
 
 A dialog is never disabled; a busy dialog disables its confirm button and

@@ -11,6 +11,7 @@ import { initProfile } from "./profile";
 import { initReset } from "./reset";
 import { initPrint } from "./print";
 import { initToc } from "./toc";
+import { initWorkbenchEntry } from "./workbench-entry";
 
 document.documentElement.classList.add("js");
 
@@ -23,3 +24,4 @@ initCopy();
 initReset();
 initPrint();
 initToc();
+initWorkbenchEntry();

@@ -10,19 +10,20 @@
     "files": {
       "theme.json": "sha256-betbOh4Db3EdSjpz7NhtFmMt+NMtEQP3B0FAXH2lwq4=",
       "site/recipes.json": "sha256-71h0SYIOKbPRh+V/IhtLV7ZGuX90wfmeo84Rx0sm494=",
-      "scripts/lib/recipe-generator.mjs": "sha256-Pk1tZlqjLvgWgsHbk+r/bPTj5O1KnheAmhd0BTg9Ee8=",
+      "scripts/lib/recipe-generator.mjs": "sha256-73WV6IUzUVgC3oyFESbgawkTU9o6mh+rKtZx8HgdZeA=",
       "scripts/lib/recipe-css.mjs": "sha256-iZr1hn5OYgtp2GPeonr+JraIFuTMgNu+cE03AYnOYEA=",
-      "scripts/lib/recipe-markup.mjs": "sha256-U+R5F4TE23YE0cXkLlEXsnBjA1/xqxYqKexktZYy35w=",
-      "spec/components/button.md": "sha256-ie3z5OVhDISdrvpzXcvGH4PeMQ+0oExZD26JfUBt58k=",
+      "scripts/lib/recipe-markup.mjs": "sha256-pxTFKTEWI1f86ScNw0e2ZfSFkdba5Zs6a7GhmMbIUUQ=",
+      "scripts/lib/markup.mjs": "sha256-kSwHm2X/YW6fF4HQz9CKy6IcTKAdoau4wRtSkdSI3fw=",
+      "spec/components/button.md": "sha256-V1AUkmstU5liSmu66otLmCUrzAJwodU0MWdotKfC5Dg=",
       "spec/components/button.demo.html": "sha256-imCfWDUkqdDOF6H8KEdGAw0qejBcHrtPrnyTMxXvpnI=",
       "site/src/styles/recipe-foundation.css": "sha256-siLjKAkNj84Wa0+Xz5Vf2yj9DT9k0K/Swy/cwHNrvYo=",
       "site/src/styles/components/button.css": "sha256-cTeJ1Xhs2PQ77A1isdwO7UPvrb+RZDEArmYJ946DLWI=",
       "LICENSE.md": "sha256-9K+45u2mMtN17qbMfaYXFmwI+1bv0MwpVv4Ef/Onqsg=",
       "tokens/primitives.tokens.json": "sha256-NhEa+8gXBRRPgiiv9KbFilhmh28YE2GsxqZRsvHh60Q=",
-      "tokens/semantic.tokens.json": "sha256-+oHMWK8K0M98owPrBNTMEVJqmrKXFHkgE+0A10d6slw=",
+      "tokens/semantic.tokens.json": "sha256-6UpLwWBR+ST3wYPjmc3OEYjK5JBBlVifQAWoFYm07Ro=",
       "tokens/foundations.tokens.json": "sha256-6J49wo3x5K8ZyTQ9lNt8AVNeRkPCD8FHiXyesXDVPMc="
     },
-    "digest": "sha256-qLf7e69YVctcf2JJ5J/05z2V0r6MGwBzPpGPg1bANJs=",
+    "digest": "sha256-ncG30nWF8PkIpplnwo394b0LSZiy28I9iSgQF8VZcdM=",
     "revisionPolicy": "Resolve these paths at the same pinned commit as this manifest. The hosted source viewer identifies its supplying commit; generated source files contain content digests, never a floating revision claim."
   },
   "dependencies": {
@@ -392,6 +393,6 @@
     "example.html": "sha256-EGm1mVTnwYKwofMVwMvpdyAcHCvb90FnTvugfUhnEkA=",
     "two-instances.html": "sha256-YenbAjOK+JOTBRlhdXo4ZAyyB5u8hmR7irXLBb3qCFw=",
     "LICENSE.md": "sha256-UOZ5qD7UTl2rwGfUTSZ/1vPjFc0kQNy4YPwSUEiTRcI=",
-    "README.md": "sha256-qi/xoc7BFgfeBpPavZbZBz3U/eSIoKO85pYIWR7qZF4="
+    "README.md": "sha256-m5CvZW7/7arHFqGWmjwG7rU7Zc2xCIND4ciln/tgyJo="
   }
 }
