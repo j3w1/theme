@@ -12,6 +12,7 @@ const primary = usageIndex.profiles.default.tokens[path];
 ---
 <ToolLayout title={path} description={primary.description ?? "Documented token values and dependencies."}>
   <p><a href={withBase(`tokens/?query=${encodeURIComponent(path)}`)}>Find related usage</a> · <a href={`${withBase("")}#${anchorFor.token(path)}`}>Specification anchor</a> · <a href={`${withBase("")}#contrast-report`}>Measured contrast report (default profile)</a></p>
+  <p><a href={withBase(`report/?token=${encodeURIComponent(path)}`)}>Report an issue with this token</a></p>
   <div class="copy-target"><code>{path}</code><button class="copy-button js-only" type="button" data-copy={path} aria-label={`Copy token path ${path}`}>copy path</button></div>
   <div class="copy-target"><code>{primary.variable}</code><button class="copy-button js-only" type="button" data-copy={primary.variable} aria-label={`Copy CSS variable ${path}`}>copy variable</button></div>
   <nav aria-label="Profile details">{Object.keys(usageIndex.profiles).map((profile) => <a href={`#${anchorFor.tokenProfile(path, profile)}`}>{profile} </a>)}</nav>

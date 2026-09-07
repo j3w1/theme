@@ -1,0 +1,34 @@
+---
+import { PREVIEW_IDS } from "../../../../schemas/playground.mjs";
+import { buildWorkbenchData } from "../../lib/workbench";
+import { renderSpecimenMarkup, stateAttributes } from "../../../../scripts/lib/specimen-markup.mjs";
+import { withBase } from "../../lib/base";
+import { anchorFor } from "../../../../scripts/lib/anchors.mjs";
+import "../../styles/tokens.generated.css";
+import "../../styles/base.css";
+import "../../styles/site.css";
+import "../../styles/hex-swatches.css";
+import "../../styles/workbench.css";
+import.meta.glob("../../styles/components/*.css", { eager: true });
+export function getStaticPaths() { return PREVIEW_IDS.map((id) => ({ params: { id } })); }
+const data = await buildWorkbenchData(Astro.params.id!);
+const { fragments, ...metadata } = data;
+const id = data.contract.id;
+---
+<!doctype html>
+<html lang="en" data-density="compact" data-profile="default">
+  <head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>{data.contract.name} isolated preview · j3w1</title></head>
+  <body class="preview-page" data-preview-data={JSON.stringify(metadata)}>
+    <header class="preview-heading"><a href={withBase(`workbench/${id}/`)} target="_top">{data.contract.name} workbench</a> · <a href={`${withBase("")}#${anchorFor.component(id)}`} target="_top">Specification</a> · <a href={withBase(`exports/components/${id}.json`)}>Machine contract</a><p data-preview-revision>{data.revision ? `Build ${data.revision}` : "Local unpinned build"} · Theme {data.themeVersion} · <code>{data.sourceDigest}</code></p></header>
+    <main>
+    <h1 class="preview-title">{data.contract.name} isolated specimen</h1>
+    <p class="preview-note" data-preview-note>Canonical static specimen. Native browser controls work; scripted behavior requires JavaScript.</p>
+    <button type="button" class="btn js-only" data-open-dialog hidden={id !== "dialog"}>Open modal dialog</button>
+    <div class="preview-specimen" data-preview-root data-profile="default" data-density="compact" set:html={renderSpecimenMarkup(fragments.default, `preview-static-${id}`)} />
+    <p class="preview-note" role="status" data-preview-status></p>
+    </main>
+    <div class="part-overlay" data-part-overlay hidden aria-hidden="true"></div>
+    {data.contract.variants.flatMap((variant) => data.contract.states.map((state) => <template data-specimen-variant={variant.id} data-specimen-state={state} set:html={`<div ${stateAttributes(state)}>${renderSpecimenMarkup(fragments[variant.id], `preview-${id}-${variant.id}-${state.replaceAll("+", "-")}`, { state })}</div>`} />))}
+    <script>import "../../scripts/preview";</script>
+  </body>
+</html>

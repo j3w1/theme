@@ -1,0 +1,46 @@
+---
+import ToolLayout from "../../layouts/ToolLayout.astro";
+import IssueDraft from "../../components/IssueDraft.astro";
+import { theme, coverageLedger, defaultTokens } from "../../lib/theme";
+import { sha256 } from "../../../../scripts/lib/fs.mjs";
+import { anchorFor } from "../../../../scripts/lib/anchors.mjs";
+import "../../styles/workbench.css";
+const data = { themeVersion: theme.version, siteUrl: theme.site.url, revision: /^[a-f0-9]{40}$/.test(process.env.GITHUB_SHA ?? "") ? process.env.GITHUB_SHA : null, sourceDigest: sha256(JSON.stringify({ theme, coverageLedger, defaultTokens })), components: Object.keys(coverageLedger.components), tokens: Object.keys(defaultTokens), profiles: theme.profiles.map(p => p.id) };
+---
+<ToolLayout title="Report a specification issue" description="Prepare and review a public issue for a component or token.">
+  <div class="workbench" data-report-page data-report-data={JSON.stringify(data)}>
+    <p data-report-target role="status">Choose a component or token. Without JavaScript, use the direct GitHub link below and describe the target in the issue.</p>
+    <form class="workbench-controls js-only" data-report-controls>
+      <label for={anchorFor.workbench("report", "target")}>Component or token<select id={anchorFor.workbench("report", "target")} name="target"><option value="">Choose a target</option><optgroup label="Components">{data.components.map(id => <option value={`component:${id}`}>{id}</option>)}</optgroup><optgroup label="Tokens">{data.tokens.map(id => <option value={`token:${id}`}>{id}</option>)}</optgroup></select></label>
+      <label for={anchorFor.workbench("report", "profile")}>Profile<select id={anchorFor.workbench("report", "profile")} name="profile">{theme.profiles.map(p => <option value={p.id}>{p.id} — {p.status}</option>)}</select></label>
+    </form>
+    <IssueDraft id="specification" />
+  </div>
+</ToolLayout>
+<script>
+  import { reportContext } from "../../../../scripts/lib/issue-draft.mjs";
+  import { initializeIssueDraft } from "../../scripts/issue-draft";
+  const root = document.querySelector<HTMLElement>("[data-report-page]")!;
+  const data = JSON.parse(root.dataset.reportData!);
+  const form = root.querySelector<HTMLFormElement>("[data-report-controls]")!;
+  const target = form.elements.namedItem("target") as HTMLSelectElement;
+  const profile = form.elements.namedItem("profile") as HTMLSelectElement;
+  const issue = root.querySelector<HTMLElement>("[data-issue-draft]")!;
+  const status = root.querySelector<HTMLElement>("[data-report-target]")!;
+  initializeIssueDraft(issue);
+  const update = () => {
+    try {
+      const [kind, id] = target.value.split(":");
+      const context = { ...reportContext(data, kind, id, profile.value), viewport: { width: innerWidth, height: innerHeight } };
+      issue.dispatchEvent(new CustomEvent("theme:report-context", { detail: context }));
+      status.textContent = `${kind}: ${id}; ${profile.value}. Actual build: ${data.revision ?? "local and unpinned"}.`;
+    } catch { issue.dispatchEvent(new CustomEvent("theme:report-context", { detail: null })); status.textContent = "Choose a valid component or token."; }
+  };
+  const query = new URLSearchParams(location.search);
+  const kind = query.has("component") ? "component" : "token";
+  target.value = `${kind}:${query.get(kind) ?? ""}`;
+  if (data.profiles.includes(query.get("profile"))) profile.value = query.get("profile")!;
+  form.addEventListener("submit", e => e.preventDefault());
+  form.addEventListener("change", update);
+  update();
+</script>

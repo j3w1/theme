@@ -49,7 +49,10 @@ tokens:
   destructive.bg-active: color.action.destructive.pressed-bg
   destructive.bg-filled: color.action.destructive.filled-bg
   destructive.text-filled: color.action.destructive.filled-text
-  root.border-active: color.border.active
+  root.border-active: color.action.primary.border
+  secondary.border-active: color.border.active
+  tertiary.border-active: color.border.active
+  destructive.border-active: color.action.destructive.border
   root.text-disabled: color.text.disabled
   root.bg-disabled: color.interaction.disabled.bg
   root.border-disabled: color.border.disabled
@@ -58,7 +61,7 @@ stateTokens:
   default: { fg: color.action.primary.text, bg: color.action.primary.bg }
   hover: { fg: color.action.primary.text, bg: color.action.primary.hover-bg }
   focus-visible: { fg: color.action.primary.text, bg: color.action.primary.bg, outline: color.interaction.focus.ring-container }
-  active: { fg: color.action.primary.text, bg: color.action.primary.pressed-bg, border: color.border.active }
+  active: { fg: color.action.primary.text, bg: color.action.primary.pressed-bg }
   loading: { fg: color.action.primary.text, bg: color.action.primary.bg }
 contrast:
   - { fg: color.action.primary.bg, bg: color.surface.default, min: 3, kind: ui, label: "primary fill against the panel (decorative; the label identifies the button)", waiver: "the fill is not the boundary of the control; the label text at 8.17:1 identifies it, and hover, active and focus each add a second channel" }
@@ -133,12 +136,19 @@ dialogs.
 | default | primary: {color.action.primary.bg} fill, {color.action.primary.text}, 1px {color.action.primary.border}; secondary: 1px {color.action.secondary.border}, {color.action.secondary.text}; tertiary: {color.action.tertiary.text}, no border; destructive: 1px {color.action.destructive.border}, {color.action.destructive.text} | — |
 | hover | primary → {color.action.primary.hover-bg}; secondary → {color.action.secondary.hover-bg}; tertiary → {color.action.tertiary.hover-bg}; destructive fills {color.action.destructive.hover-bg} with {color.action.destructive.hover-text} | cursor: pointer; hover-capable pointers only |
 | focus-visible | ring 1px dashed at −2px: {color.interaction.focus.ring-container} on the primary fill, {color.interaction.focus.ring} on the outline tones, {color.action.destructive.hover-text} on the destructive hover fill | the ring |
-| active | primary → {color.action.primary.pressed-bg}; secondary → {color.action.secondary.pressed-bg}; tertiary → {color.interaction.pressed.bg}; destructive → {color.action.destructive.pressed-bg}; border → {color.border.active} on the outline tones | border change; no translation or scale |
+| active | primary → {color.action.primary.pressed-bg}; secondary → {color.action.secondary.pressed-bg}; tertiary → {color.interaction.pressed.bg}; destructive → {color.action.destructive.pressed-bg}; primary keeps {color.action.primary.border}, secondary and tertiary use {color.border.active}, destructive keeps {color.action.destructive.border} (D-015) | border change on secondary and tertiary; no translation or scale |
 | disabled | {color.text.disabled} on {color.interaction.disabled.bg} with 1px {color.border.disabled}, every tone alike; no hover or active styling | `disabled`; cursor: not-allowed; never opacity |
 | loading | size unchanged; the static `⋯` glyph replaces the icon; the button keeps its tone and stays focusable but ignores activation | glyph; `aria-busy` |
 
 Precedence: disabled > loading > active > hover; focus-visible is always
 drawn.
+
+The primary edge stays unchanged when pressed (D-015). Its exact role is
+`root.border-active` in the part map, just as `root.border` names the rest
+edge. The default-tone state contrast map checks the text against the
+pressed fill; it does not substitute `color.border.active` for this
+unchanged edge. The existing primary-action contrast declaration identifies
+the labelled button through its text, not through the fill's boundary.
 
 ## Keyboard
 

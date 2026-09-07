@@ -1,0 +1,11 @@
+---
+import ToolLayout from "../../layouts/ToolLayout.astro";
+import Workbench from "../../components/Workbench.astro";
+import { PREVIEW_IDS } from "../../../../schemas/playground.mjs";
+import { buildWorkbenchData } from "../../lib/workbench";
+import "../../styles/workbench.css";
+import.meta.glob("../../styles/components/*.css", { eager: true });
+export function getStaticPaths() { return PREVIEW_IDS.map((id) => ({ params: { id } })); }
+const data = await buildWorkbenchData(Astro.params.id!);
+---
+<ToolLayout title={`${data.contract.name} workbench`} description="Inspect maintained specimens, states, viewport behavior, anatomy and contrast."><Workbench data={data} /></ToolLayout>

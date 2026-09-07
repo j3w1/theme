@@ -20,7 +20,7 @@ export const recipeGenerator = {
       const component = components.find((c) => c.id === recipe.id);
       if (!component || recipe.markup !== component.demoFile || recipe.states.some((s) => !component.states.includes(s))) throw new Error(`Recipe ${recipe.id} disagrees with its component contract`);
       const sources = {};
-      for (const file of ["theme.json", "site/recipes.json", "scripts/lib/recipe-generator.mjs", "scripts/lib/recipe-css.mjs", "scripts/lib/recipe-markup.mjs", component.file, recipe.markup, recipe.foundation, ...recipe.styles, "LICENSE.md", ...manifest.profiles.find((p) => p.id === defaultId).tokens]) sources[file] = sha256(await readText(file));
+      for (const file of ["theme.json", "site/recipes.json", "scripts/lib/recipe-generator.mjs", "scripts/lib/recipe-css.mjs", "scripts/lib/recipe-markup.mjs", "scripts/lib/markup.mjs", component.file, recipe.markup, recipe.foundation, ...recipe.styles, "LICENSE.md", ...manifest.profiles.find((p) => p.id === defaultId).tokens]) sources[file] = sha256(await readText(file));
       const fragment = splitVariants(await readText(recipe.markup)).get(recipe.variant);
       if (!fragment) throw new Error(`Missing recipe variant: ${recipe.id}/${recipe.variant}`);
       const markup = `<!-- ${credit} -->\n${instantiateRecipe(fragment, "recipe", recipe)}`;

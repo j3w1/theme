@@ -1,0 +1,81 @@
+---
+import IssueDraft from "./IssueDraft.astro";
+import { anchorFor } from "../../../scripts/lib/anchors.mjs";
+import { renderSpecimenMarkup, stateAttributes } from "../../../scripts/lib/specimen-markup.mjs";
+import { withBase } from "../lib/base";
+const { data } = Astro.props;
+const c = data.contract;
+const { fragments, ...metadata } = data;
+const key = (name: string) => anchorFor.workbench(c.id, name);
+const colors = Object.entries(data.tokens.default).filter(([, token]: any) => token.type === "color").map(([path]) => path);
+---
+<section class="workbench" data-workbench data-workbench-data={JSON.stringify(metadata)} data-preview-url={withBase(`preview/${c.id}/`)}>
+  <p><a href={`${withBase("")}#${anchorFor.component(c.id)}`}>Component specification</a> · <a href={withBase(`preview/${c.id}/`)} data-open-preview>Open isolated preview</a></p>
+  <p>Controls use maintained specimens. A forced focus ring is a visual simulation; it does not move keyboard focus. Profile previews keep their published approval status. Sample text stays in this page unless explicitly included in a shared link.</p>
+  <p data-revision-status role="status">{data.revision ? `Actual build: ${data.revision}` : "Actual build: local and unpinned."} Source snapshot: <code>{data.sourceDigest}</code></p>
+  <p><a href={withBase(`exports/components/${c.id}.json`)}>Machine contract</a> · <a href={`https://github.com/j3w1/theme/issues/new?title=${encodeURIComponent(`${c.id}: describe the issue`)}`}>Report an issue without JavaScript</a></p>
+  <div class="workbench-fallback"><h2>Canonical specimen</h2><div data-density="compact" data-profile="default" set:html={renderSpecimenMarkup(fragments.default, `workbench-static-${c.id}`)} /><p>JavaScript adds the controls below; the complete specification and this specimen remain available without it.</p></div>
+  <form class="workbench-controls js-only" data-workbench-controls>
+    <label for={key("variant")}>Variant<select id={key("variant")} name="variant">{c.variants.map((v: any) => <option value={v.id}>{v.name}</option>)}</select></label>
+    <label for={key("state")}>Initial state<select id={key("state")} name="state">{c.states.map((state: string) => <option value={state}>{state}</option>)}</select></label>
+    <label for={key("density")}>Density<select id={key("density")} name="density">{c.sizes.map((size: string) => <option value={size}>{size}</option>)}</select></label>
+    <label for={key("profile")}>Profile<select id={key("profile")} name="profile">{data.profiles.map((profile: any) => <option value={profile.id}>{profile.id} — {profile.status}</option>)}</select></label>
+    <label for={key("direction")}>Direction<select id={key("direction")} name="direction"><option value="ltr">Left to right</option><option value="rtl">Right to left</option></select></label>
+    <label for={key("fixture")}>Text fixture<select id={key("fixture")} name="fixture"><option value="canonical">Canonical</option><option value="en">English</option><option value="es">Spanish</option><option value="zh">Chinese</option><option value="ar">Arabic</option><option value="long">Long label</option></select></label>
+    <label for={key("label")}>{data.bindings.labelName}<input id={key("label")} name="label" maxlength="256" placeholder="Canonical fixture text" autocomplete="off" /></label>
+    {data.bindings.help && <label for={key("help")}>Help / description<input id={key("help")} name="help" maxlength="512" placeholder="Canonical fixture text" autocomplete="off" /></label>}
+    <label for={key("preset")}>Viewport preset<select id={key("preset")} data-width-preset><option value="320">320 px</option><option value="360">360 px</option><option value="640" selected>640 px</option><option value="1280">Wide — 1280 px</option><option value="custom">Custom</option></select></label>
+    <label for={key("width")}>Viewport width (CSS px)<input id={key("width")} name="width" type="number" min="320" max="1280" step="1" value="640" required /></label>
+    <label for={key("motion")}>Motion preference<select id={key("motion")} name="motion"><option value="system">System preference</option><option value="reduced">Reduced motion</option></select></label>
+    <label for={key("part")}>Inspect anatomy part<select id={key("part")} name="part"><option value="">No overlay</option>{c.anatomy.map((item: any) => <option value={item.part}>{item.part}</option>)}</select></label>
+    <button type="button" class="btn" data-workbench-reset>Reset specimen</button>
+  </form>
+  <p data-workbench-status role="status"></p>
+  <div class="js-only workbench-live">
+    <h2>Live specimen</h2>
+    <p>The iframe has its own viewport. Wide previews scroll inside this inspection region. Resizing is not browser zoom, device emulation, or an accessibility pass. Initial configuration is reproducible; subsequent interactions are temporary.</p>
+    <label class="workbench-consent"><input type="checkbox" data-compare-enabled /> Compare the same specimen in another environment</label>
+    <div class="viewport-grid" data-viewport-grid><div>
+    <div class="viewport-scroll" tabindex="0" role="region" aria-label="Scrollable preview viewport"><iframe title={`${c.name} isolated specimen`} data-workbench-frame loading="lazy" width="640" height="560"></iframe></div>
+    <p data-viewport-report role="status"></p></div>
+    <div data-comparison hidden>
+      <div class="workbench-controls">
+        <label for={key("compare-width")}>Comparison width<select id={key("compare-width")} data-compare-width><option value="320">320 px</option><option value="360">360 px</option><option value="640" selected>640 px</option><option value="1280">1280 px</option></select></label>
+        <label for={key("compare-density")}>Comparison density<select id={key("compare-density")} data-compare-density><option value="compact">Compact</option><option value="comfortable">Comfortable</option></select></label>
+        <label for={key("compare-direction")}>Comparison direction<select id={key("compare-direction")} data-compare-direction><option value="ltr">Left to right</option><option value="rtl">Right to left</option></select></label>
+        <label for={key("compare-motion")}>Comparison motion<select id={key("compare-motion")} data-compare-motion><option value="reduced">Reduced</option><option value="system">System preference</option></select></label>
+      </div>
+      <div class="viewport-scroll" tabindex="0" role="region" aria-label="Scrollable comparison viewport"><iframe title={`${c.name} comparison specimen`} data-comparison-frame loading="lazy" width="640" height="560"></iframe></div>
+      <p data-comparison-report role="status"></p>
+      <p>Comparison settings stay local. Shared links describe the primary specimen.</p>
+    </div>
+    </div>
+    <h2>Anatomy and measurements</h2>
+    <p data-part-description>Select a documented part. The overlay does not capture input or change layout.</p>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="Anatomy measurements"><table class="spec-table"><thead><tr><th>Metric / mapping</th><th>Declared role</th><th>Resolved value</th><th>Measured value / result</th></tr></thead><tbody data-measurements></tbody></table></div>
+    <h2>Contrast lab</h2>
+    <p>Uses the specification’s contrast engine. Choose a context explicitly; a ratio does not establish semantic suitability or overall accessibility. Large text means at least 18.66px bold or 24px regular. Alpha requires the selected opaque underlay.</p>
+    <form class="workbench-controls" data-contrast-controls>
+      <label for={key("pair")}>Declared pair<select id={key("pair")} name="pair"><option value="custom">Custom comparison</option>{c.contrast.map((pair: any, i: number) => <option value={i} selected={i === 0}>{pair.label}</option>)}</select></label>
+      <label for={key("fg")}>Foreground role<select id={key("fg")} name="fg">{colors.map((path) => <option value={path}>{path}</option>)}</select></label>
+      <label for={key("bg")}>Background role<select id={key("bg")} name="bg">{colors.map((path) => <option value={path}>{path}</option>)}</select></label>
+      <label for={key("underlay")}>Opaque underlay<select id={key("underlay")} name="underlay">{colors.filter((path) => (data.tokens.default[path].value.alpha ?? 1) === 1).map((path) => <option value={path} selected={path === "color.surface.default"}>{path}</option>)}</select></label>
+      <label for={key("context")}>Threshold context<select id={key("context")} name="context"><option value="declared">Declared pair threshold</option><option value="text">Normal text — 4.5:1</option><option value="large">Large text — 3:1</option><option value="ui">UI boundary — 3:1</option></select></label>
+    </form>
+    <div data-contrast-result role="status"></div>
+    <label for={key("contrast-copy")}>Contrast result with build context<textarea id={key("contrast-copy")} data-contrast-copy readonly rows="4"></textarea></label>
+    <button type="button" class="btn" data-copy-contrast>Copy contrast result</button>
+    <h2>Motion inspection</h2>
+    <p>{data.bindings.motion ? "Replay the maintained hover background transition. Inspection speed is explicitly slowed to one quarter; system reduced motion always wins. Playback stops when the workbench is hidden." : "This specimen has no replayable maintained transition here. Dialog opacity is specified for capable hosts, but this reference does not add an opening animation. The loading glyph remains static."}</p>
+    <p data-motion-report></p>
+    {data.bindings.motion && <p><button type="button" class="btn" data-replay="normal">Replay at normal speed</button> <button type="button" class="btn" data-replay="slow">Replay at ¼ speed</button> <button type="button" class="btn" data-replay="stop">Stop playback</button> <button type="button" class="btn" data-compare-reduced>Compare normal and reduced outcomes</button></p>}
+    <h2>Share this configuration</h2>
+    <label class="workbench-consent"><input type="checkbox" data-include-text /> Include entered label and help text in the displayed share payload</label>
+    <label for={key("share-payload")}>Review structured payload<textarea id={key("share-payload")} data-share-payload readonly rows="5"></textarea></label>
+    <label for={key("share-link")}>Preview link<input id={key("share-link")} data-share-link readonly /></label>
+    <p><button type="button" class="btn" data-copy-config>Copy configuration</button> <button type="button" class="btn" data-copy-link>Copy preview link</button></p>
+    <IssueDraft id={c.id} />
+  </div>
+  {data.bindings.motion && <div class="motion-static"><h2>Static motion endpoints</h2><p>Default and documented hover backgrounds, available without JavaScript. Property: {data.motion.property}; duration: {data.tokens.default[data.motion.role].css} from {data.motion.role}; easing: {data.motion.easing}. Reduced motion uses instant endpoints.</p><div class="motion-specimens">{["default", "hover"].map((state) => <div class="table-scroll" tabindex="0" role="region" aria-label={`${state} motion endpoint`}><h3>{state}</h3><div aria-hidden="true" set:html={`<div ${stateAttributes(state)}>${renderSpecimenMarkup(fragments.default, `motion-${c.id}-${state}`, { state, inert: true })}</div>`} /></div>)}</div></div>}
+</section>
+<script>import "../scripts/workbench";</script>

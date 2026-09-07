@@ -39,8 +39,11 @@ decorative graphics that are never the sole boundary of a control.
 
 Focus is never lost and never invisible. Controls and rows show
 `focus.ring` (1px dashed `#e53935`, offset −2px); focusable containers show
-`focus.ring-container` (2px solid `#ffa2a7`, offset −3px); on fills the ring
-takes the on-fill text colour. `:focus` without `:focus-visible` draws nothing,
+`focus.ring-container` (2px solid `#ffa2a7`, offset −3px). On fills, use the
+component's explicit ring role (D-015): primary and checked controls use
+`focus.ring-container` where declared; destructive fills use their on-fill
+text role. Colour mapping does not change ring geometry.
+`:focus` without `:focus-visible` draws nothing,
 which keeps pointer clicks quiet without hiding keyboard focus. A component
 that removes a host's default indicator must draw this one. State matrices on
 the site render every declared combination including `selected+focus-visible`

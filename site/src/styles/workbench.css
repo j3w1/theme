@@ -1,0 +1,44 @@
+/* Workbench chrome uses the existing compact document controls and tokens. */
+.workbench { min-width: 0; }
+.workbench > p, .workbench-live > p { margin-block: var(--space-8); overflow-wrap: anywhere; }
+.workbench h2 { margin-block: var(--space-16) var(--space-8); }
+html.js .workbench-controls { display: flex; flex-wrap: wrap; align-items: end; gap: var(--space-8); margin-block: var(--space-12); }
+.workbench-controls label { display: grid; gap: var(--space-4); min-width: 0; max-width: 100%; font-size: var(--font-size-ui-sm); }
+.workbench :is(input, select, textarea) { min-width: 0; max-width: 100%; font: inherit; color: var(--color-text-default); background: var(--color-surface-input); border: var(--border-width-default) solid var(--color-border-control); border-radius: var(--radius-none); }
+.workbench :is(input, select) { min-height: var(--density-compact-control-height); padding-inline: var(--space-4); }
+.workbench-controls select { max-width: 34ch; }
+.workbench :is(input, select, textarea):focus-visible { outline: var(--focus-ring); outline-offset: var(--focus-offset); }
+.workbench textarea, [data-share-link] { display: block; width: 100%; margin-block: var(--space-4) var(--space-8); }
+.workbench textarea { resize: vertical; padding: var(--space-4); }
+.workbench-consent { display: flex; align-items: center; gap: var(--space-4); margin-block: var(--space-8); min-height: var(--density-compact-control-height); }
+.workbench input[type="checkbox"] { width: var(--space-16); min-height: var(--space-16); accent-color: var(--color-action-primary-bg); }
+.viewport-scroll { overflow-x: auto; max-width: 100%; border: var(--border-width-default) solid var(--color-border-default); }
+.viewport-scroll iframe { display: block; max-width: none; border: 0; height: 560px; background: var(--color-surface-canvas); }
+.workbench-live { min-width: 0; }
+.workbench [hidden] { display: none !important; }
+.viewport-grid > div { min-width: 0; }
+.viewport-grid.has-comparison { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-8); }
+@media (max-width: 640px) { .viewport-grid.has-comparison { grid-template-columns: minmax(0, 1fr); } }
+html.js .workbench-live { display: block; }
+html.js .workbench-fallback { display: none; }
+.workbench-embedded { display: block; width: 100%; height: 760px; border: var(--border-width-default) solid var(--color-border-default); margin-block: var(--space-8); }
+html.js .workbench .issue-draft { display: grid; gap: var(--space-4); }
+.workbench [aria-disabled="true"] { color: var(--color-text-disabled); cursor: not-allowed; }
+.motion-specimens { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-8); }
+.motion-specimens h3 { margin-bottom: var(--space-8); }
+.preview-page { padding: var(--space-8); }
+.preview-title { font-size: var(--font-size-ui-md); margin-block: var(--space-8); }
+.preview-heading { margin-bottom: var(--space-8); font-size: var(--font-size-ui-sm); overflow-wrap: anywhere; }
+.preview-heading p, .preview-note { margin: var(--space-4) 0; }
+.preview-note { color: var(--color-text-muted); font-size: var(--font-size-ui-sm); overflow-wrap: anywhere; }
+.preview-specimen { min-width: 0; margin-block: var(--space-12); }
+.preview-specimen > div { min-width: 0; }
+.preview-specimen [data-sample-text] { overflow-wrap: anywhere; }
+.preview-specimen:has(.table) { overflow-x: auto; }
+.js .preview-specimen .dialog-backdrop { background: transparent; padding: 0; }
+.js .preview-specimen .dialog:modal { position: fixed; inset: 0; margin: auto; max-width: calc(100% - var(--space-32)); max-height: calc(100% - var(--space-32)); overflow: auto; }
+.part-overlay { position: fixed; pointer-events: none; border: var(--border-width-default) solid var(--color-border-selected-indicator); z-index: var(--z-toast); }
+.part-overlay[hidden], [data-open-dialog][hidden] { display: none !important; }
+[data-motion="reduced"] *, [data-motion="reduced"] *::before, [data-motion="reduced"] *::after { transition: none !important; animation: none !important; }
+@media (prefers-reduced-motion: reduce) { .preview-specimen *, .preview-specimen *::before, .preview-specimen *::after { transition: none !important; animation: none !important; } }
+@media print { .workbench-controls, .workbench-live, .workbench-embedded { display: none !important; } html.js .workbench-fallback { display: block; } }

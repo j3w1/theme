@@ -92,6 +92,43 @@ discovery index for tools that look for one.
 
 **Contributors:** read [`AGENTS.md`](AGENTS.md). `CLAUDE.md` imports it.
 
+Matrix rendering uses `scripts/lib/specimen-markup.mjs` for native state
+attributes and hidden-cell focus handling. Its parsed ID-reference rewriting
+is shared with recipe instances through `scripts/lib/markup.mjs`; recipes
+reject unresolved local references, while matrices retain their documented
+fixture links. Keep these transformations shared when adding specimen tools.
+The [component workbench](https://j3w1.github.io/theme/workbench/) provides
+live controls for button, text field, checkbox, tabs and dialog, plus table
+and sidebar navigation previews. Choose a maintained variant and initial
+state, then inspect real iframe widths, density, language and RTL behavior.
+Comparison frames can use different environments. The anatomy inspector
+separates declared roles, resolved values and browser measurements; it reports
+mismatches without correcting the specimen. Forced visual states are labeled
+and do not substitute for keyboard interaction or form validation.
+
+Contrast comparisons use the existing unrounded contrast engine. Choose the
+declared pair or an explicit text/UI context and opaque underlay; eligibility
+and waivers remain separate from the numeric result. Motion controls replay
+only maintained transitions, with static endpoints and reduced motion taking
+precedence. These diagnostic tools do not certify accessibility.
+
+Copy a configuration or preview link to reproduce its initial state. Links
+identify the actual build and source digest; unavailable revisions are reported
+with a pinned source link. Entered specimen text is excluded unless explicitly
+included in the displayed share payload. Nothing is saved to browser storage.
+Component and token pages also link to a reviewed public issue draft. Drafts
+include the actual build, profile and public anchor, and always omit entered
+specimen text. If a draft exceeds the 8,000-character portable URL budget,
+copy it and paste it into GitHub's composer. Opening the composer never submits
+an issue. Canonical specimens, normative content and direct reporting links
+remain available without JavaScript.
+
+`schemas/playground.mjs` defines closed configuration choices, and
+`site/workbench.json` binds controls to maintained specimen parts. The build
+validates each binding in every variant. Preview routes and state matrices
+share the parsed renderer; add new bindings and coverage rather than creating
+another specimen implementation.
+
 ### Choosing a semantic role
 
 Use the [token usage explorer](https://j3w1.github.io/theme/tokens/) or follow

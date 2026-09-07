@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — dialog
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-NtoH1ZKzSEF20+ODl23cnHD4n4Xwnd2XF12bRlDnvy0=
+theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-4/3Y27Dea+mfWPBBnSpdlyMVXpDO3ncO5aWORsMzgdQ=
 pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/dialog.json
 spec: spec/components/dialog.md  site: https://j3w1.github.io/theme/#c-dialog
 maturity: stable  priority: R1
@@ -39,7 +39,7 @@ States: default, open, closed, focus-trapped, hover, focus-visible, reduced-moti
   closed: nothing: the dialog and its backdrop are absent [no `open`; focus back on the opener]
   focus-trapped: the dialog itself carries the container ring, 2px solid {color.interaction.focus.ring-container} at −3px, when it holds focus; the note says Tab cycles [Tab never leaves; the note text]
   hover: Close background → {color.action.tertiary.hover-bg}; other buttons take their tone's hover [cursor: pointer]
-  focus-visible: ring 1px dashed {color.interaction.focus.ring} at −2px on the focused control; on a filled button the ring takes the fill's on-fill colour [the ring]
+  focus-visible: ring 1px dashed {color.interaction.focus.ring} at −2px on the focused control; primary uses {color.interaction.focus.ring-container}, destructive uses {color.action.destructive.filled-text} (D-015) [the ring]
   reduced-motion: no opacity transition; the dialog is simply present or absent [`prefers-reduced-motion`]
 
 Keyboard:

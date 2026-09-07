@@ -144,7 +144,6 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | button focus-visible text | focus-visible | text | `color.action.primary.text` #f4eeee | `color.action.primary.bg` #871f19 | 8.17 | 4.5 | pass |
 | button focus-visible outline | focus-visible | ui | `color.interaction.focus.ring-container` #ffa2a7 | `color.action.primary.bg` #871f19 | 4.90 | 3 | pass |
 | button active text | active | text | `color.action.primary.text` #f4eeee | `color.action.primary.pressed-bg` #630f0d | 11.41 | 4.5 | pass |
-| button active border | active | ui | `color.border.active` #e53935 | `color.action.primary.pressed-bg` #630f0d | 3.10 | 3 | pass |
 | button loading text | loading | text | `color.action.primary.text` #f4eeee | `color.action.primary.bg` #871f19 | 8.17 | 4.5 | pass |
 | primary fill against the panel (decorative; the label identifies the button) | — | ui | `color.action.primary.bg` #871f19 | `color.surface.default` #160b0b | 2.06 | 3 | waived: the fill is not the boundary of the control; the label text at 8.17:1 identifies it, and hover, active and focus each add a second channel |
 | secondary text at rest | — | text | `color.action.secondary.text` #ffa2a7 | `color.action.secondary.bg` #0c0909 | 10.37 | 4.5 | pass |

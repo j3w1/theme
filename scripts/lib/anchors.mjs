@@ -13,6 +13,7 @@ export const anchorFor = {
   usageControl: (name) => `usage-control-${name}`,
   recipeSource: (name) => `recipe-source-${name.replaceAll(".", "-")}`,
   kitControl: (name) => `kit-control-${name}`,
+  workbench: (component, name) => `workbench-${component}-${name}`,
   specimen: (id) => `s-${id}`,
   nonExample: (id) => `x-${id}`,
   fixture: (id) => `fx-${id.toLowerCase()}`,

@@ -1967,20 +1967,6 @@
     },
     {
       "source": "button",
-      "label": "button active border",
-      "state": "active",
-      "kind": "ui",
-      "min": 3,
-      "fg": "color.border.active",
-      "bg": "color.action.primary.pressed-bg",
-      "fgHex": "#e53935",
-      "bgHex": "#630f0d",
-      "ratio": 3.1,
-      "pass": true,
-      "waiver": null
-    },
-    {
-      "source": "button",
       "label": "button loading text",
       "state": "loading",
       "kind": "text",

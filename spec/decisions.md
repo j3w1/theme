@@ -25,6 +25,7 @@ in its `$extensions["io.github.j3w1.theme"].approval.decision`. Agents may open
 | D-010 | The site deploys from `main` | proposed | 2026-09-06 | — |
 | D-011 | Reference screenshots are cropped before publication | proposed | 2026-09-06 | — |
 | D-012 | Exports are committed and drift-checked | proposed | 2026-09-06 | — |
+| D-015 | Clarify component mappings exposed by consumption acceptance | proposed | 2026-09-07 | — |
 
 ## D-000 Responsibility split
 
@@ -120,6 +121,12 @@ because `#E53935` on `#911410` measures 2.15:1. For invalid + focus, where the
 `#FFA2A7` at `outline-offset: -4px`. `:focus:not(:focus-visible)` draws nothing.
 In forced-colors mode the ring uses `Highlight`. Selection is always a fill and
 focus is always a ring; neither borrows the other's form.
+
+**Current clarification (D-015).** The owner-directed component mappings
+below clarify the generic on-fill wording above. Primary buttons and checked
+controls retain their explicitly declared container-colour ring; destructive
+fills retain their declared on-fill text ring. Geometry and contrast floors
+are unchanged.
 
 ## D-007 Control boundary colour
 
@@ -253,3 +260,33 @@ unknown pointer types do not open it. Neither behavior is gated by `hover`
 or `any-hover` media features: browsers can report no hover capability while
 still delivering mouse input. Reduced motion continues to remove animation,
 and circles and their literal text remain visible without JavaScript.
+
+## D-015 Clarify component mappings exposed by consumption acceptance
+
+Status: proposed. The owner directed application of this resolution on
+2026-09-07; its implementation preserves existing component appearance.
+The formal decision status remains owner-managed.
+
+**Context.** Phase 2's independently reviewed composed acceptance preserved
+three contradictions: ordinary confirmation versus destructive alert-dialog
+tone, the primary button's pressed-border metadata versus its prose/CSS, and
+the global on-fill focus wording versus explicit component ring mappings.
+Phase 3 controls must not present an arbitrary interpretation as canonical.
+
+**Owner-directed resolution.** Preserve current component appearance and all token
+values. Ordinary confirmation uses the primary action tone; destructive tone
+belongs to destructive actions, independent of the confirmation's semantic
+role. The primary button retains `color.action.primary.border` when pressed;
+secondary and tertiary use `color.border.active`, and destructive retains its
+declared destructive border. Correct the generic/default metadata accordingly.
+Focusable controls retain their documented component ring mappings: primary
+and checked/selected fills use `color.interaction.focus.ring-container` where
+declared; destructive fills use their on-fill text role. Clarify the global
+wording to refer to these explicit mappings, retaining ring geometry,
+forced-colors behavior and every contrast floor. No profile or pending-token
+approval is implied.
+
+**Alternatives.** Enforce the generic prose everywhere, changing currently
+rendered pressed borders and focus colors; or retain the contradictions and
+explicitly mark affected workbench configurations unresolved. Neither is
+silently selected. Historical acceptance reports remain historical evidence.
