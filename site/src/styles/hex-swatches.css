@@ -1,4 +1,11 @@
 /* D-014: literal preview geometry is an explicit spec-UI exception. */
+.hex-popup {
+  pointer-events: none;
+  max-width: min(24rem, calc(100vw - 16px));
+  max-height: calc(100vh - 16px);
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
 .hex-literal { white-space: nowrap; }
 .hex-swatch {
   display: inline-block;

@@ -229,3 +229,20 @@ intact. The parsed literal is data and never inferred from a token or screenshot
 Syntax specimens (literal data, not additional theme roles): `#f00`, `#f008`,
 `#ff0000`, `#ff000080`, `#000000`, `#ffffff`. These examples also exercise
 copy fidelity and transparent, dark and light previews in the browser suite.
+
+### Follow the pointer hovering effect
+
+The j3w1 specification's inline color circles provide a pointer-following
+exact-value preview on hover-capable pointers. The popup follows the pointer's
+position inside the circle with an 8px gap, flips when necessary and stays
+inside an 8px viewport gutter. It disappears immediately when the pointer
+leaves that circle, on an outside press, Escape, or loss of window focus.
+After page or nested-container scrolling, recheck the element under the last
+pointer position: keep the popup only if the same circle remains there.
+The popup cannot capture pointer input or keep itself open when hovered.
+It is a supplementary, non-interactive visual preview; token tables and the
+keyboard-accessible token inspector retain the persistent information and links.
+Long previews are bounded by the viewport. No new keyboard stop is introduced.
+Pointer tracking has no animation or easing, including under reduced motion.
+This owner-directed behavior extends the D-014 preview exception only; it
+does not change the general tooltip or focus contract.
