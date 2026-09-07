@@ -83,6 +83,7 @@ const statusTags = [coverage?.specified && "specified", coverage?.demonstrated &
     <p>
       <a href={withBase(`exports/components/${c.id}.json`)}>Component JSON</a> ·
       <a href={withBase(`exports/components/${c.id}.brief.txt`)}>Implementation brief</a> ·
+      <a href={withBase(`kit/?components=${c.id}`)}>Build a task kit</a> ·
       <button type="button" class="btn js-only" data-copy-brief={withBase(`exports/components/${c.id}.brief.txt`)}>Copy implementation brief</button>
     </p>
     {c.related.length > 0 && <p>Related: {c.related.map((r: string) => <><a href={`#${anchors.component(r)}`}><code>{r}</code></a> </>)}</p>}

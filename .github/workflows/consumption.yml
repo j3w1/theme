@@ -30,7 +30,9 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run check
-      - run: node scripts/consumption-kit.mjs "${{ inputs.component }}" ${{ inputs.strict && '--strict' || '' }} --out kit
+      - run: node scripts/consumption-kit.mjs "$COMPONENT" ${{ inputs.strict && '--strict' || '' }} --out kit
+        env:
+          COMPONENT: ${{ inputs.component }}
       - uses: actions/upload-artifact@v7
         with:
           name: consumption-kit-${{ inputs.component }}

@@ -25,6 +25,8 @@ import { usageSchema, portMappingSchema } from "../../schemas/usage.mjs";
 import { usageGenerator } from "./usage-generator.mjs";
 import { recipeGenerator } from "./recipe-generator.mjs";
 import { recipeDependenciesSchema } from "../../schemas/recipe.mjs";
+import { taskInputsGenerator } from "./task-inputs-generator.mjs";
+import { taskInputsSchema, kitRequestSchema } from "../../schemas/task-kit.mjs";
 
 const write = async (relative, content, { check, changed, files }) => {
   files.push(relative);
@@ -52,6 +54,8 @@ export const schemasGenerator = {
     await emit("token-usage", usageSchema(z));
     await emit("port-mapping", portMappingSchema(z));
     await emit("recipe-dependencies", recipeDependenciesSchema(z));
+    await emit("task-inputs", taskInputsSchema(z));
+    await emit("task-kit-request", kitRequestSchema(z));
     await emit("verification-evidence", evidenceSchema(z));
     await emit("component-frontmatter", componentSchema(z));
     await emit("port", portSchema(z));
@@ -234,4 +238,4 @@ export const digestsGenerator = {
   },
 };
 
-export const GENERATORS = [schemasGenerator, tokensGenerator, contrastGenerator, componentsGenerator, usageGenerator, recipeGenerator, docsGenerator, coverageGenerator, readmeGenerator, digestsGenerator];
+export const GENERATORS = [schemasGenerator, tokensGenerator, contrastGenerator, componentsGenerator, usageGenerator, recipeGenerator, docsGenerator, coverageGenerator, readmeGenerator, taskInputsGenerator, digestsGenerator];

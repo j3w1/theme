@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- #13: add a deterministic task-kit builder shared by the browser and CLI,
+  with selected contracts, preserved global rules, token closure, pinned
+  source hashes and separate derived-file digests. Standard/minimal modes
+  differ only in optional recipes. Both kit commands refuse existing output
+  directories and redirected paths; legacy `--strict` keeps its meaning.
+
 - #7: generate scoped standalone button, text-field and dialog references from
   maintained sources, with token closure, source digests, license notices and
   no-JavaScript downloads. Copying with distinct instance prefixes preserves

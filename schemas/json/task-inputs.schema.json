@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "number",
+      "const": 1
+    },
+    "theme": {
+      "type": "string",
+      "const": "j3w1-theme"
+    },
+    "version": {
+      "type": "string"
+    },
+    "profile": {
+      "type": "string"
+    },
+    "sharedFiles": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "sharedTokens": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "usageDigest": {
+      "type": "string"
+    },
+    "tokenDependencies": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "files": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^sha256-[A-Za-z0-9+/=]+$"
+      }
+    },
+    "components": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "files": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "tokens": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "recipeFiles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "recipeTokens": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "title",
+          "files",
+          "tokens",
+          "recipeFiles",
+          "recipeTokens"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "theme",
+    "version",
+    "profile",
+    "sharedFiles",
+    "sharedTokens",
+    "usageDigest",
+    "tokenDependencies",
+    "files",
+    "components"
+  ],
+  "additionalProperties": false
+}

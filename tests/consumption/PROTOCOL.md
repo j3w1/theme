@@ -7,6 +7,12 @@ release requires the latest run at the release inputs to PASS with no open
 
 ## Run
 
+The kit writer now refuses an existing destination instead of replacing it.
+Use a new `--out` directory for a repeat run; its parent must already exist.
+The default `.cache/consumption/<id>/` remains available for the first run.
+The standard/strict contract files and judging guarantees are unchanged;
+the kit file list now uses portable forward-slash paths on every host.
+
 1. Choose the revision `<rev>` (a release-candidate tag or a commit) and the
    component (the first is `text-field`).
 2. `npm run generate && npm run consumption:kit -- <id> [--strict]` writes

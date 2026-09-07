@@ -144,6 +144,48 @@ Browser checks default to port 4173. When another checkout is testing, set
 example, PowerShell: `$env:PW_PORT = '4174'`; POSIX shells:
 `PW_PORT=4174 npm run test:browser`. Finish the build before starting tests.
 
+### Task-scoped implementation kits
+
+Use the [task-kit builder](https://j3w1.github.io/theme/kit/) to select
+components, describe the authorized task and supply an integration ID,
+version and kind. Download a ZIP or copy the complete Markdown package.
+Inputs stay in the browser; no model service, backend or persistence is used.
+Without JavaScript, use the CLI from a checkout at a committed revision:
+
+```sh
+npm run task:kit -- --components text-field,checkbox,button,dialog --task "Implement a settings form" --integration-id settings --integration-version 1 --out ../settings-kit
+```
+
+The CLI defaults to the current full commit; `--ref` accepts a full commit or
+release tag, never a branch. It reads every input from that Git revision.
+The browser embeds its source revision and expected file digests, then rejects
+mixed deployment bytes. A pinned build requires committed generated inputs
+and `GITHUB_SHA` set to that full commit. An ordinary unpinned local build
+shows the workflow but disables packaging.
+
+Standard mode includes available standalone recipes. `--mode minimal` omits
+only optional recipes. Both retain the selected JSON/specification contracts,
+all shared global rules and foundations, required token/alias closure, the
+consumer contract, lock schema and bounded prompt. Unselected component
+briefs are removed from the derived compact file. `KIT.json` distinguishes
+upstream hashes from derived compact/subset hashes. The lock's `resolvedAt`
+is the source commit timestamp, making repeated inputs deterministic; an
+empty initial deviation list does not certify a downstream implementation.
+
+Output must be a new local directory under an existing, non-redirected parent.
+Existing destinations, symbolic links, Windows reparse points and unsafe file
+names fail closed. The writer never recursively erases a destination; a failed
+write preserves partial output for inspection. Keep the user-owned parent
+stable while writing; this is not an OS sandbox against concurrent mutation.
+The legacy `consumption:kit` command now uses the same writer and refuses
+existing directories. Its default path and `--strict` omission of
+`tokens.resolved.json` are unchanged; select a new `--out` for each rerun.
+
+The original [single-component protocol](tests/consumption/PROTOCOL.md) and
+the [composed task-kit protocol](tests/consumption/TASK-KITS.md) remain separate
+acceptance exercises. A generated kit does not execute an agent or prove that
+the consumer's implementation conforms.
+
 ## Repository map
 
 | Path | Owns |

@@ -1,0 +1,2588 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "0.1.0",
+  "profile": "default",
+  "sharedFiles": [
+    "theme.json",
+    "agents/consume.md",
+    "LICENSE.md",
+    "schemas/json/theme.lock.schema.json",
+    "exports/theme.compact.md",
+    "exports/tokens.resolved.json",
+    "spec/identity.md",
+    "spec/foundations.md",
+    "spec/accessibility.md",
+    "spec/portability.md"
+  ],
+  "sharedTokens": [
+    "border.width.default",
+    "border.width.emphasis",
+    "breakpoint.lg",
+    "breakpoint.md",
+    "breakpoint.sm",
+    "breakpoint.xs",
+    "color.action.destructive.border",
+    "color.action.destructive.filled-bg",
+    "color.action.destructive.filled-text",
+    "color.action.destructive.hover-bg",
+    "color.action.destructive.hover-text",
+    "color.action.destructive.pressed-bg",
+    "color.action.destructive.text",
+    "color.action.primary.bg",
+    "color.action.primary.border",
+    "color.action.primary.hover-bg",
+    "color.action.primary.pressed-bg",
+    "color.action.primary.text",
+    "color.action.secondary.bg",
+    "color.action.secondary.border",
+    "color.action.secondary.hover-bg",
+    "color.action.secondary.pressed-bg",
+    "color.action.secondary.text",
+    "color.action.tertiary.hover-bg",
+    "color.action.tertiary.text",
+    "color.border.active",
+    "color.border.control",
+    "color.border.default",
+    "color.border.disabled",
+    "color.border.divider",
+    "color.border.overlay",
+    "color.border.selected-indicator",
+    "color.border.selected-indicator-inactive",
+    "color.border.strong",
+    "color.interaction.disabled.bg",
+    "color.interaction.drop-target",
+    "color.interaction.focus.ring",
+    "color.interaction.focus.ring-container",
+    "color.interaction.hover.bg",
+    "color.interaction.hover.bg-strong",
+    "color.interaction.marquee",
+    "color.interaction.pressed.bg",
+    "color.interaction.scrollbar.thumb",
+    "color.interaction.scrollbar.thumb-hover",
+    "color.interaction.scrollbar.track",
+    "color.interaction.selection.bg",
+    "color.interaction.selection.inactive-bg",
+    "color.interaction.selection.inactive-text",
+    "color.interaction.selection.text",
+    "color.interaction.text-selection.bg",
+    "color.interaction.text-selection.text",
+    "color.status.danger.border",
+    "color.status.danger.fill",
+    "color.status.danger.on-fill",
+    "color.status.danger.text",
+    "color.status.danger.tint",
+    "color.status.info.border",
+    "color.status.info.fill",
+    "color.status.info.on-fill",
+    "color.status.info.text",
+    "color.status.info.tint",
+    "color.status.neutral.border",
+    "color.status.neutral.fill",
+    "color.status.neutral.on-fill",
+    "color.status.neutral.text",
+    "color.status.neutral.tint",
+    "color.status.success.border",
+    "color.status.success.fill",
+    "color.status.success.on-fill",
+    "color.status.success.text",
+    "color.status.success.tint",
+    "color.status.warning.border",
+    "color.status.warning.fill",
+    "color.status.warning.on-fill",
+    "color.status.warning.text",
+    "color.status.warning.tint",
+    "color.surface.backdrop",
+    "color.surface.canvas",
+    "color.surface.chrome",
+    "color.surface.chrome-alt",
+    "color.surface.code",
+    "color.surface.default",
+    "color.surface.desktop",
+    "color.surface.input",
+    "color.surface.overlay",
+    "color.surface.raised",
+    "color.surface.sunken",
+    "color.surface.terminal",
+    "color.text.accent",
+    "color.text.accent-strong",
+    "color.text.bright",
+    "color.text.default",
+    "color.text.disabled",
+    "color.text.inverse",
+    "color.text.link",
+    "color.text.link-hover",
+    "color.text.link-underline",
+    "color.text.muted",
+    "color.text.on-action",
+    "color.text.on-danger",
+    "color.text.on-light",
+    "color.text.on-selection",
+    "color.text.placeholder",
+    "color.text.prose",
+    "color.text.subtle",
+    "density.comfortable.control-height",
+    "density.comfortable.control-padding-x",
+    "density.comfortable.gap",
+    "density.comfortable.icon",
+    "density.comfortable.row-height",
+    "density.compact.control-height",
+    "density.compact.control-padding-x",
+    "density.compact.gap",
+    "density.compact.icon",
+    "density.compact.row-height",
+    "focus.offset",
+    "focus.offset-container",
+    "focus.offset-invalid",
+    "focus.ring",
+    "focus.ring-container",
+    "font.family.mono",
+    "font.letter-spacing.terminal",
+    "font.line-height.caption",
+    "font.line-height.code",
+    "font.line-height.h1",
+    "font.line-height.h2",
+    "font.line-height.h3",
+    "font.line-height.reading",
+    "font.line-height.terminal",
+    "font.line-height.ui-lg",
+    "font.line-height.ui-md",
+    "font.line-height.ui-sm",
+    "font.size.caption",
+    "font.size.code",
+    "font.size.h1",
+    "font.size.h2",
+    "font.size.h3",
+    "font.size.reading",
+    "font.size.terminal",
+    "font.size.ui-lg",
+    "font.size.ui-md",
+    "font.size.ui-sm",
+    "font.weight.bold",
+    "font.weight.regular",
+    "icon.size.lg",
+    "icon.size.md",
+    "icon.size.sm",
+    "icon.stroke",
+    "layout.app-max",
+    "layout.content-max",
+    "layout.measure",
+    "motion.duration.base",
+    "motion.duration.fast",
+    "motion.duration.slow",
+    "radius.none",
+    "shadow.floating",
+    "space.0",
+    "space.1",
+    "space.12",
+    "space.16",
+    "space.2",
+    "space.24",
+    "space.32",
+    "space.4",
+    "space.48",
+    "space.8",
+    "z.canvas",
+    "z.dialog",
+    "z.drawer",
+    "z.popover",
+    "z.raised",
+    "z.skip-link",
+    "z.toast"
+  ],
+  "usageDigest": "sha256-xmR91ww8dKcK4Zl65GQpaFG1JFPKnTObBy2p6+FqRb8=",
+  "tokenDependencies": {
+    "border.width.default": [],
+    "border.width.emphasis": [],
+    "breakpoint.lg": [],
+    "breakpoint.md": [],
+    "breakpoint.sm": [],
+    "breakpoint.xs": [],
+    "color.action.destructive.border": [
+      "color.primitive.red.800"
+    ],
+    "color.action.destructive.filled-bg": [
+      "color.primitive.red.750"
+    ],
+    "color.action.destructive.filled-text": [
+      "color.primitive.paper.100"
+    ],
+    "color.action.destructive.hover-bg": [
+      "color.primitive.red.750"
+    ],
+    "color.action.destructive.hover-text": [
+      "color.primitive.paper.100"
+    ],
+    "color.action.destructive.pressed-bg": [
+      "color.primitive.red.550"
+    ],
+    "color.action.destructive.text": [
+      "color.primitive.red.850"
+    ],
+    "color.action.primary.bg": [
+      "color.primitive.red.300"
+    ],
+    "color.action.primary.border": [
+      "color.primitive.red.400"
+    ],
+    "color.action.primary.hover-bg": [
+      "color.primitive.red.350"
+    ],
+    "color.action.primary.pressed-bg": [
+      "color.primitive.red.150"
+    ],
+    "color.action.primary.text": [
+      "color.primitive.paper.90"
+    ],
+    "color.action.secondary.bg": [
+      "color.primitive.alpha.transparent"
+    ],
+    "color.action.secondary.border": [
+      "color.primitive.rose.350"
+    ],
+    "color.action.secondary.hover-bg": [
+      "color.primitive.red.150"
+    ],
+    "color.action.secondary.pressed-bg": [
+      "color.primitive.red.50"
+    ],
+    "color.action.secondary.text": [
+      "color.primitive.rose.800"
+    ],
+    "color.action.tertiary.hover-bg": [
+      "color.primitive.ink.40"
+    ],
+    "color.action.tertiary.text": [
+      "color.primitive.rose.700"
+    ],
+    "color.border.active": [
+      "color.primitive.red.800"
+    ],
+    "color.border.control": [
+      "color.primitive.rose.350"
+    ],
+    "color.border.default": [
+      "color.primitive.red.100"
+    ],
+    "color.border.disabled": [
+      "color.primitive.red.200"
+    ],
+    "color.border.divider": [
+      "color.primitive.ink.60"
+    ],
+    "color.border.overlay": [
+      "color.primitive.red.800"
+    ],
+    "color.border.selected-indicator": [
+      "color.primitive.red.800"
+    ],
+    "color.border.selected-indicator-inactive": [
+      "color.primitive.red.400"
+    ],
+    "color.border.strong": [
+      "color.primitive.red.400"
+    ],
+    "color.chart.axis": [
+      "color.primitive.red.400"
+    ],
+    "color.chart.grid": [
+      "color.primitive.ink.60"
+    ],
+    "color.chart.label": [
+      "color.primitive.rose.600"
+    ],
+    "color.chart.series-1": [
+      "color.primitive.rose.800"
+    ],
+    "color.chart.series-2": [
+      "color.primitive.red.850"
+    ],
+    "color.chart.series-3": [
+      "color.primitive.rose.600"
+    ],
+    "color.chart.series-4": [
+      "color.primitive.rose.350"
+    ],
+    "color.code.bg": [
+      "color.primitive.ink.20"
+    ],
+    "color.code.bracket-match": [
+      "color.primitive.red.800"
+    ],
+    "color.code.caret": [
+      "color.primitive.rose.700"
+    ],
+    "color.code.current-line": [
+      "color.primitive.ink.40"
+    ],
+    "color.code.gutter-bg": [
+      "color.primitive.ink.20"
+    ],
+    "color.code.gutter-rule": [
+      "color.primitive.ink.60"
+    ],
+    "color.code.indent-guide": [
+      "color.primitive.red.100"
+    ],
+    "color.code.line-number": [
+      "color.primitive.rose.450"
+    ],
+    "color.code.line-number-active": [
+      "color.primitive.rose.700"
+    ],
+    "color.code.search-current-bg": [
+      "color.primitive.rose.800"
+    ],
+    "color.code.search-current-text": [
+      "color.primitive.ink.20"
+    ],
+    "color.code.search-match-bg": [
+      "color.primitive.red.150"
+    ],
+    "color.code.selection-bg": [
+      "color.primitive.red.50"
+    ],
+    "color.code.syntax.attribute": [
+      "color.primitive.rose.650"
+    ],
+    "color.code.syntax.comment": [
+      "color.primitive.rose.450"
+    ],
+    "color.code.syntax.constant": [
+      "color.primitive.rose.650"
+    ],
+    "color.code.syntax.deprecated": [
+      "color.primitive.rose.450"
+    ],
+    "color.code.syntax.escape": [
+      "color.primitive.rose.650"
+    ],
+    "color.code.syntax.function": [
+      "color.primitive.rose.800"
+    ],
+    "color.code.syntax.heading": [
+      "color.primitive.red.800"
+    ],
+    "color.code.syntax.invalid": [
+      "color.primitive.red.800"
+    ],
+    "color.code.syntax.keyword": [
+      "color.primitive.red.850"
+    ],
+    "color.code.syntax.number": [
+      "color.primitive.rose.650"
+    ],
+    "color.code.syntax.operator": [
+      "color.primitive.rose.700"
+    ],
+    "color.code.syntax.property": [
+      "color.primitive.red.800"
+    ],
+    "color.code.syntax.punctuation": [
+      "color.primitive.rose.700"
+    ],
+    "color.code.syntax.string": [
+      "color.primitive.rose.600"
+    ],
+    "color.code.syntax.tag": [
+      "color.primitive.red.850"
+    ],
+    "color.code.syntax.type": [
+      "color.primitive.rose.550"
+    ],
+    "color.code.syntax.variable": [
+      "color.primitive.rose.700"
+    ],
+    "color.code.whitespace": [
+      "color.primitive.red.200"
+    ],
+    "color.diagnostic.error.bg": [
+      "color.primitive.ink.60"
+    ],
+    "color.diagnostic.error.stripe": [
+      "color.primitive.red.800"
+    ],
+    "color.diagnostic.error.text": [
+      "color.primitive.red.850"
+    ],
+    "color.diagnostic.error.underline": [
+      "color.primitive.red.800"
+    ],
+    "color.diagnostic.hint.underline": [
+      "color.primitive.rose.450"
+    ],
+    "color.diagnostic.info.text": [
+      "color.primitive.blue.500"
+    ],
+    "color.diagnostic.info.underline": [
+      "color.primitive.blue.500"
+    ],
+    "color.diagnostic.unused.text": [
+      "color.primitive.rose.600"
+    ],
+    "color.diagnostic.warning.stripe": [
+      "color.primitive.amber.500"
+    ],
+    "color.diagnostic.warning.text": [
+      "color.primitive.amber.500"
+    ],
+    "color.diagnostic.warning.underline": [
+      "color.primitive.amber.500"
+    ],
+    "color.diff.added.bg": [
+      "color.primitive.green.tint"
+    ],
+    "color.diff.added.emphasis": [
+      "color.primitive.green.500"
+    ],
+    "color.diff.added.gutter": [
+      "color.primitive.green.500"
+    ],
+    "color.diff.conflict-border": [
+      "color.primitive.red.850"
+    ],
+    "color.diff.header-bg": [
+      "color.primitive.ink.52"
+    ],
+    "color.diff.modified.bg": [
+      "color.primitive.amber.tint"
+    ],
+    "color.diff.modified.gutter": [
+      "color.primitive.amber.500"
+    ],
+    "color.diff.removed.bg": [
+      "color.primitive.ink.60"
+    ],
+    "color.diff.removed.emphasis": [
+      "color.primitive.red.800"
+    ],
+    "color.diff.removed.gutter": [
+      "color.primitive.red.800"
+    ],
+    "color.icon.decorative": [
+      "color.primitive.rose.350"
+    ],
+    "color.icon.default": [
+      "color.primitive.rose.700"
+    ],
+    "color.interaction.disabled.bg": [
+      "color.primitive.ink.30"
+    ],
+    "color.interaction.drop-target": [
+      "color.primitive.red.800"
+    ],
+    "color.interaction.focus.ring": [
+      "color.primitive.red.800"
+    ],
+    "color.interaction.focus.ring-container": [
+      "color.primitive.rose.800"
+    ],
+    "color.interaction.hover.bg": [
+      "color.primitive.ink.40"
+    ],
+    "color.interaction.hover.bg-strong": [
+      "color.primitive.red.150"
+    ],
+    "color.interaction.marquee": [
+      "color.primitive.alpha.red-12"
+    ],
+    "color.interaction.pressed.bg": [
+      "color.primitive.red.50"
+    ],
+    "color.interaction.scrollbar.thumb": [
+      "color.primitive.red.50"
+    ],
+    "color.interaction.scrollbar.thumb-hover": [
+      "color.primitive.red.350"
+    ],
+    "color.interaction.scrollbar.track": [
+      "color.primitive.ink.20"
+    ],
+    "color.interaction.selection.bg": [
+      "color.primitive.red.350"
+    ],
+    "color.interaction.selection.inactive-bg": [
+      "color.primitive.red.50"
+    ],
+    "color.interaction.selection.inactive-text": [
+      "color.primitive.rose.700"
+    ],
+    "color.interaction.selection.text": [
+      "color.primitive.paper.90"
+    ],
+    "color.interaction.text-selection.bg": [
+      "color.primitive.red.350"
+    ],
+    "color.interaction.text-selection.text": [
+      "color.primitive.paper.90"
+    ],
+    "color.primitive.alpha.black-55": [],
+    "color.primitive.alpha.black-65": [],
+    "color.primitive.alpha.red-12": [],
+    "color.primitive.alpha.red-6": [],
+    "color.primitive.alpha.transparent": [],
+    "color.primitive.amber.500": [],
+    "color.primitive.amber.600": [],
+    "color.primitive.amber.tint": [],
+    "color.primitive.ansi.0": [
+      "color.primitive.ink.20"
+    ],
+    "color.primitive.ansi.1": [
+      "color.primitive.red.650"
+    ],
+    "color.primitive.ansi.10": [
+      "color.primitive.red.500"
+    ],
+    "color.primitive.ansi.11": [
+      "color.primitive.rose.550"
+    ],
+    "color.primitive.ansi.12": [
+      "color.primitive.red.300"
+    ],
+    "color.primitive.ansi.13": [
+      "color.primitive.red.770"
+    ],
+    "color.primitive.ansi.14": [
+      "color.primitive.red.760"
+    ],
+    "color.primitive.ansi.15": [
+      "color.primitive.rose.350"
+    ],
+    "color.primitive.ansi.2": [
+      "color.primitive.rose.600"
+    ],
+    "color.primitive.ansi.3": [
+      "color.primitive.rose.650"
+    ],
+    "color.primitive.ansi.4": [
+      "color.primitive.red.250"
+    ],
+    "color.primitive.ansi.5": [
+      "color.primitive.red.850"
+    ],
+    "color.primitive.ansi.6": [
+      "color.primitive.rose.320"
+    ],
+    "color.primitive.ansi.7": [
+      "color.primitive.rose.800"
+    ],
+    "color.primitive.ansi.8": [
+      "color.primitive.red.200"
+    ],
+    "color.primitive.ansi.9": [
+      "color.primitive.red.450"
+    ],
+    "color.primitive.blue.500": [],
+    "color.primitive.blue.600": [],
+    "color.primitive.blue.tint": [],
+    "color.primitive.green.500": [],
+    "color.primitive.green.600": [],
+    "color.primitive.green.tint": [],
+    "color.primitive.ink.0": [],
+    "color.primitive.ink.15": [],
+    "color.primitive.ink.20": [],
+    "color.primitive.ink.25": [],
+    "color.primitive.ink.30": [],
+    "color.primitive.ink.40": [],
+    "color.primitive.ink.52": [],
+    "color.primitive.ink.60": [],
+    "color.primitive.paper.100": [],
+    "color.primitive.paper.90": [],
+    "color.primitive.red.100": [],
+    "color.primitive.red.150": [],
+    "color.primitive.red.200": [],
+    "color.primitive.red.250": [],
+    "color.primitive.red.300": [],
+    "color.primitive.red.350": [],
+    "color.primitive.red.400": [],
+    "color.primitive.red.450": [],
+    "color.primitive.red.50": [],
+    "color.primitive.red.500": [],
+    "color.primitive.red.550": [],
+    "color.primitive.red.650": [],
+    "color.primitive.red.750": [],
+    "color.primitive.red.760": [],
+    "color.primitive.red.770": [],
+    "color.primitive.red.800": [],
+    "color.primitive.red.850": [],
+    "color.primitive.rose.300": [],
+    "color.primitive.rose.320": [],
+    "color.primitive.rose.350": [],
+    "color.primitive.rose.450": [],
+    "color.primitive.rose.550": [],
+    "color.primitive.rose.600": [],
+    "color.primitive.rose.650": [],
+    "color.primitive.rose.700": [],
+    "color.primitive.rose.800": [],
+    "color.status.danger.border": [
+      "color.primitive.red.800"
+    ],
+    "color.status.danger.fill": [
+      "color.primitive.red.750"
+    ],
+    "color.status.danger.on-fill": [
+      "color.primitive.paper.100"
+    ],
+    "color.status.danger.text": [
+      "color.primitive.red.850"
+    ],
+    "color.status.danger.tint": [
+      "color.primitive.ink.60"
+    ],
+    "color.status.info.border": [
+      "color.primitive.blue.500"
+    ],
+    "color.status.info.fill": [
+      "color.primitive.blue.500"
+    ],
+    "color.status.info.on-fill": [
+      "color.primitive.ink.20"
+    ],
+    "color.status.info.text": [
+      "color.primitive.blue.500"
+    ],
+    "color.status.info.tint": [
+      "color.primitive.blue.tint"
+    ],
+    "color.status.neutral.border": [
+      "color.primitive.rose.350"
+    ],
+    "color.status.neutral.fill": [
+      "color.primitive.rose.350"
+    ],
+    "color.status.neutral.on-fill": [
+      "color.primitive.ink.0"
+    ],
+    "color.status.neutral.text": [
+      "color.primitive.rose.600"
+    ],
+    "color.status.neutral.tint": [
+      "color.primitive.ink.52"
+    ],
+    "color.status.success.border": [
+      "color.primitive.green.500"
+    ],
+    "color.status.success.fill": [
+      "color.primitive.green.500"
+    ],
+    "color.status.success.on-fill": [
+      "color.primitive.ink.20"
+    ],
+    "color.status.success.text": [
+      "color.primitive.green.500"
+    ],
+    "color.status.success.tint": [
+      "color.primitive.green.tint"
+    ],
+    "color.status.warning.border": [
+      "color.primitive.amber.500"
+    ],
+    "color.status.warning.fill": [
+      "color.primitive.amber.500"
+    ],
+    "color.status.warning.on-fill": [
+      "color.primitive.ink.20"
+    ],
+    "color.status.warning.text": [
+      "color.primitive.amber.500"
+    ],
+    "color.status.warning.tint": [
+      "color.primitive.amber.tint"
+    ],
+    "color.surface.backdrop": [
+      "color.primitive.alpha.black-65"
+    ],
+    "color.surface.canvas": [
+      "color.primitive.ink.20"
+    ],
+    "color.surface.chrome": [
+      "color.primitive.ink.25"
+    ],
+    "color.surface.chrome-alt": [
+      "color.primitive.ink.40"
+    ],
+    "color.surface.code": [
+      "color.primitive.ink.20"
+    ],
+    "color.surface.default": [
+      "color.primitive.ink.30"
+    ],
+    "color.surface.desktop": [
+      "color.primitive.ink.0"
+    ],
+    "color.surface.input": [
+      "color.primitive.ink.20"
+    ],
+    "color.surface.overlay": [
+      "color.primitive.ink.52"
+    ],
+    "color.surface.raised": [
+      "color.primitive.ink.52"
+    ],
+    "color.surface.sunken": [
+      "color.primitive.ink.15"
+    ],
+    "color.surface.terminal": [
+      "color.primitive.ink.20"
+    ],
+    "color.terminal.ansi.0": [
+      "color.primitive.ansi.0",
+      "color.primitive.ink.20"
+    ],
+    "color.terminal.ansi.1": [
+      "color.primitive.ansi.1",
+      "color.primitive.red.650"
+    ],
+    "color.terminal.ansi.10": [
+      "color.primitive.ansi.10",
+      "color.primitive.red.500"
+    ],
+    "color.terminal.ansi.11": [
+      "color.primitive.ansi.11",
+      "color.primitive.rose.550"
+    ],
+    "color.terminal.ansi.12": [
+      "color.primitive.ansi.12",
+      "color.primitive.red.300"
+    ],
+    "color.terminal.ansi.13": [
+      "color.primitive.ansi.13",
+      "color.primitive.red.770"
+    ],
+    "color.terminal.ansi.14": [
+      "color.primitive.ansi.14",
+      "color.primitive.red.760"
+    ],
+    "color.terminal.ansi.15": [
+      "color.primitive.ansi.15",
+      "color.primitive.rose.350"
+    ],
+    "color.terminal.ansi.2": [
+      "color.primitive.ansi.2",
+      "color.primitive.rose.600"
+    ],
+    "color.terminal.ansi.3": [
+      "color.primitive.ansi.3",
+      "color.primitive.rose.650"
+    ],
+    "color.terminal.ansi.4": [
+      "color.primitive.ansi.4",
+      "color.primitive.red.250"
+    ],
+    "color.terminal.ansi.5": [
+      "color.primitive.ansi.5",
+      "color.primitive.red.850"
+    ],
+    "color.terminal.ansi.6": [
+      "color.primitive.ansi.6",
+      "color.primitive.rose.320"
+    ],
+    "color.terminal.ansi.7": [
+      "color.primitive.ansi.7",
+      "color.primitive.rose.800"
+    ],
+    "color.terminal.ansi.8": [
+      "color.primitive.ansi.8",
+      "color.primitive.red.200"
+    ],
+    "color.terminal.ansi.9": [
+      "color.primitive.ansi.9",
+      "color.primitive.red.450"
+    ],
+    "color.terminal.bg": [
+      "color.primitive.ink.20"
+    ],
+    "color.terminal.cursor": [
+      "color.primitive.rose.700"
+    ],
+    "color.terminal.fg": [
+      "color.primitive.rose.700"
+    ],
+    "color.terminal.selection-bg": [
+      "color.primitive.red.350"
+    ],
+    "color.terminal.selection-text": [
+      "color.primitive.paper.90"
+    ],
+    "color.text.accent": [
+      "color.primitive.red.800"
+    ],
+    "color.text.accent-strong": [
+      "color.primitive.red.850"
+    ],
+    "color.text.bright": [
+      "color.primitive.rose.800"
+    ],
+    "color.text.default": [
+      "color.primitive.rose.700"
+    ],
+    "color.text.disabled": [
+      "color.primitive.rose.300"
+    ],
+    "color.text.inverse": [
+      "color.primitive.ink.20"
+    ],
+    "color.text.link": [
+      "color.primitive.rose.800"
+    ],
+    "color.text.link-hover": [
+      "color.primitive.paper.90"
+    ],
+    "color.text.link-underline": [
+      "color.primitive.red.750"
+    ],
+    "color.text.muted": [
+      "color.primitive.rose.600"
+    ],
+    "color.text.on-action": [
+      "color.primitive.paper.90"
+    ],
+    "color.text.on-danger": [
+      "color.primitive.paper.100"
+    ],
+    "color.text.on-light": [
+      "color.primitive.ink.20"
+    ],
+    "color.text.on-selection": [
+      "color.primitive.paper.90"
+    ],
+    "color.text.placeholder": [
+      "color.primitive.rose.600"
+    ],
+    "color.text.prose": [
+      "color.primitive.paper.90"
+    ],
+    "color.text.subtle": [
+      "color.primitive.rose.450"
+    ],
+    "density.comfortable.control-height": [],
+    "density.comfortable.control-padding-x": [],
+    "density.comfortable.gap": [],
+    "density.comfortable.icon": [],
+    "density.comfortable.row-height": [],
+    "density.compact.control-height": [],
+    "density.compact.control-padding-x": [],
+    "density.compact.gap": [],
+    "density.compact.icon": [],
+    "density.compact.row-height": [],
+    "focus.offset": [],
+    "focus.offset-container": [],
+    "focus.offset-invalid": [],
+    "focus.ring": [
+      "color.interaction.focus.ring",
+      "border.width.default"
+    ],
+    "focus.ring-container": [
+      "color.interaction.focus.ring-container",
+      "border.width.emphasis"
+    ],
+    "font.family.mono": [],
+    "font.letter-spacing.terminal": [],
+    "font.line-height.caption": [],
+    "font.line-height.code": [],
+    "font.line-height.h1": [],
+    "font.line-height.h2": [],
+    "font.line-height.h3": [],
+    "font.line-height.reading": [],
+    "font.line-height.terminal": [],
+    "font.line-height.ui-lg": [],
+    "font.line-height.ui-md": [],
+    "font.line-height.ui-sm": [],
+    "font.size.caption": [],
+    "font.size.code": [],
+    "font.size.h1": [],
+    "font.size.h2": [],
+    "font.size.h3": [],
+    "font.size.reading": [],
+    "font.size.terminal": [],
+    "font.size.ui-lg": [],
+    "font.size.ui-md": [],
+    "font.size.ui-sm": [],
+    "font.weight.bold": [],
+    "font.weight.regular": [],
+    "icon.size.lg": [],
+    "icon.size.md": [],
+    "icon.size.sm": [],
+    "icon.stroke": [],
+    "layout.app-max": [],
+    "layout.content-max": [],
+    "layout.measure": [],
+    "motion.duration.base": [],
+    "motion.duration.fast": [],
+    "motion.duration.slow": [],
+    "radius.none": [],
+    "shadow.floating": [
+      "color.primitive.alpha.black-55",
+      "space.0"
+    ],
+    "space.0": [],
+    "space.1": [],
+    "space.12": [],
+    "space.16": [],
+    "space.2": [],
+    "space.24": [],
+    "space.32": [],
+    "space.4": [],
+    "space.48": [],
+    "space.8": [],
+    "z.canvas": [],
+    "z.dialog": [],
+    "z.drawer": [],
+    "z.popover": [],
+    "z.raised": [],
+    "z.skip-link": [],
+    "z.toast": []
+  },
+  "files": {
+    "agents/consume.md": "sha256-52f04gc8KMHw4t4hxpdvSAjJeDG3ZNJTWBWcOH9eXis=",
+    "exports/components/admin-form.json": "sha256-cFrHmZQq85TOtbv2KWiz2zoGY83jUN5qA8itUm97Kg0=",
+    "exports/components/alert.json": "sha256-Dgec4TI6bhulWiZavaXL4fNyHyus+eN0l2km0xulZ44=",
+    "exports/components/badge.json": "sha256-0k8cL9aH0y7GmXuf2oxVNjSE11p9NIyvDuqyDc9BR2g=",
+    "exports/components/breadcrumbs.json": "sha256-8k7vjaPzpjFc8LeEIiqQKTCVi6r80wwAaZP4vtC8sSc=",
+    "exports/components/button.json": "sha256-QA+loxWZxiSgHK/d7G57FE3ya42AgnryTOckk/x+xbI=",
+    "exports/components/card.json": "sha256-hxBco8uda+ongF66k0CR34ub8BkvGxB6Bbkt4CADVY4=",
+    "exports/components/checkbox.json": "sha256-k3zGCUR5GsJ/TyVI97Z+W6dcWQRYrg7kNZ+IYbjQ5AU=",
+    "exports/components/chip.json": "sha256-7U29nIVzXha+fCMeGygiwqGwTfnLBD4Scf/PYOYMWV0=",
+    "exports/components/code-editor.json": "sha256-pfUfEmD7DFqF8XpFy8Mq+z9iuQGhtzxbhX3iE8tH59g=",
+    "exports/components/combobox.json": "sha256-QxHzSTbSSI8X9G3ZGLpP10idmkdiCwoROLPMuJUsmkM=",
+    "exports/components/data-table.json": "sha256-M34i5FP2v8tj3S9uoi4l6/HMdMx0gEong+Ywsyg76o4=",
+    "exports/components/date-picker.json": "sha256-MSRCXlcNc+p6ft30j/8cHCe/nzQJPZ6AHsgP1Gg5E+A=",
+    "exports/components/diagnostics.json": "sha256-mX3w6z/AdFVaAbcwPNsQSuE+vbCjC4gwMdHkIHfCmBY=",
+    "exports/components/dialog.json": "sha256-nvcTe/idjh240UQPdhOShmBbG26WKcxBUrks0SuIbxY=",
+    "exports/components/diff-view.json": "sha256-pDJWV0P6yVy+cRZZJUTGzOQqiz6w2Sl0Zqv+YbyyuGw=",
+    "exports/components/drawer.json": "sha256-g8EBjaFftJvVUxXsL+4mYRT3Zj8BwwTViI8m1qqll5I=",
+    "exports/components/empty-state.json": "sha256-3wD7BKFtXfV6PrnER3ClCYGJWR6RNfRmpcuLO/GPoSA=",
+    "exports/components/field.json": "sha256-gEEBkIMHTJo0UXU8Zra/7xhkPkAEMqGKhGkfb6Sjx5U=",
+    "exports/components/fieldset.json": "sha256-O+f8WuLAUgxVD4mUNVfd7StAXDB1yh2XFBYUWjU6muk=",
+    "exports/components/file-input.json": "sha256-Z465xwRNhpcEKBEpkfH6Qcnmya0nkyxUd6fcXPcjqp8=",
+    "exports/components/filterable-table.json": "sha256-aobTFM1BdtiI+b5/EEFf1tNhKf6VvsXndC6EyIT0pNA=",
+    "exports/components/i3-window-frame.json": "sha256-/uANmV3xnyha3qAq2n6LwCiIU7C+Ru55GQnWw0Lh7vc=",
+    "exports/components/icon-button.json": "sha256-6YWrCYm5aMAnGWqHIwpkMDne1OHbswBEPNkOfVYAf8M=",
+    "exports/components/link.json": "sha256-Bsz/tOfq5VlsCs/h6XMSnG6Z4pDYHUIRcsuFm4qHVFo=",
+    "exports/components/list.json": "sha256-++FoZ43OscWizpO+Se6G8xiekppbI8XUAi1f2l9yWPE=",
+    "exports/components/loading-indicator.json": "sha256-+Mm0RHQiIk0YvvaM4fLQCM66cPNDb2eywnxfWvSPl24=",
+    "exports/components/menu.json": "sha256-AnKPQDuo3UJs5fBPlPNztv/eAo8Eu/blTBEGakTx/Zw=",
+    "exports/components/number-field.json": "sha256-kGCzXuBkYhWmnuU8ZhXWzJE95mdohV8D0IBOR5FbuRI=",
+    "exports/components/pagination.json": "sha256-UNO2sTCB8SIduA7u7kpuS+VM1BLN84+pdX69gD3X5io=",
+    "exports/components/progress.json": "sha256-/27ow/MrWvd4bJxUA9UZxDD7vespEEPNqnZWW/urmLQ=",
+    "exports/components/radio-group.json": "sha256-jnuFrJOD19BYfgq31YeYF6bzoceoripiufld+f+1xMw=",
+    "exports/components/search-field.json": "sha256-UG9zxzTm1cWnqGbxtMi6T+t2HsDRkUpb8C0Cu43tA9I=",
+    "exports/components/select.json": "sha256-43rLSooNbc8dGHgx4mj5b5fetNqCb2WH6iqqhppwj8s=",
+    "exports/components/settings-panel.json": "sha256-j+/I01m855JeMeVfhAF/B37TZAkIzQaNz0F7xG/87Iw=",
+    "exports/components/sidebar-nav.json": "sha256-h+7RdCCfTlbUHrO1sqLkg7Ced/brnw5IoZ+VopnQUHg=",
+    "exports/components/skip-link.json": "sha256-aY97lQnYiCbH6ncUrkqEjY0YG4eZXIqSTfCNqKuY2bs=",
+    "exports/components/switch.json": "sha256-sVk0LmwlGv9INX6ppyO98uvnLsxQSVa6TKNlqaliETc=",
+    "exports/components/table.json": "sha256-UQzHBNAysjpEkn6huKhPxcOY1shs+UILmgVmMMiGXC4=",
+    "exports/components/tabs.json": "sha256-CreVdy+lRDjn2SS9XLfwmaZ9aCJlnMXIRzvkxZJ8uhk=",
+    "exports/components/terminal.json": "sha256-0VRZZTECYW3sqB2UzDUKLUIzwGE+syuci+cABAG3R6g=",
+    "exports/components/text-field.json": "sha256-5we8hwkd1oKQxHj4WvFFOAa6uXSAw5xlwPRvN7TBTWo=",
+    "exports/components/textarea.json": "sha256-KOQkSAD5n3wTq0BXGETku66prYFE0Ud5RI8jw5uMM90=",
+    "exports/components/time-picker.json": "sha256-NFZdvzhjitWRfbUR2gX5St1/5EVnpZ8m8Tdp2zrMY4A=",
+    "exports/components/toast.json": "sha256-zd/HCsKubP23dA45/buLcxYdKkDRgw6T3Kr8MDVYMBc=",
+    "exports/components/toolbar.json": "sha256-BM3r7JwUvP2MNtpGFphhyVyyCnIaartqAJZNGpBE2Ro=",
+    "exports/components/tooltip.json": "sha256-lOb18ChrfS/l7PGsteq33Cw7p3D8LV1oJq4JURgYRYI=",
+    "exports/components/wizard.json": "sha256-6WnCTUkJ0wiFj4H3tcCfH0R3U3dHmnnPO3833iXfrxc=",
+    "exports/recipes/button/component.css": "sha256-lblL1pZDQTMiODJyimiGiPPSTZrbUWJcq+s43n3Sa1I=",
+    "exports/recipes/button/example.html": "sha256-EGm1mVTnwYKwofMVwMvpdyAcHCvb90FnTvugfUhnEkA=",
+    "exports/recipes/button/foundation.css": "sha256-yb1H0v78r2Og+RVIUuAqgSwBiuNeTBAR+SN0EisL0Ok=",
+    "exports/recipes/button/LICENSE.md": "sha256-UOZ5qD7UTl2rwGfUTSZ/1vPjFc0kQNy4YPwSUEiTRcI=",
+    "exports/recipes/button/manifest.json": "sha256-Dv5EXjJCsvHPG9dPAzPW0/6ixp0sgBmFXdwUMvPfYkU=",
+    "exports/recipes/button/markup.html": "sha256-BtI6zDdeTFiEWQIhbynLQV5+0g21y5rmMivwm5d92z4=",
+    "exports/recipes/button/README.md": "sha256-qi/xoc7BFgfeBpPavZbZBz3U/eSIoKO85pYIWR7qZF4=",
+    "exports/recipes/button/template.html": "sha256-+5zUMC0G5JyTIHNo2n+REQ2vjCZJ+sNoR9FqccKC7CQ=",
+    "exports/recipes/button/tokens.css": "sha256-vMAMDnyNdHhwtZ2AjOw6eHyMWiP0rMoCnzqQ1iR6VVE=",
+    "exports/recipes/button/two-instances.html": "sha256-YenbAjOK+JOTBRlhdXo4ZAyyB5u8hmR7irXLBb3qCFw=",
+    "exports/recipes/dialog/component.css": "sha256-imf4DDnYsHKrUtNxEHLkoJyCHKEry3jM/W4NdwxtC0w=",
+    "exports/recipes/dialog/example.html": "sha256-YMkNE9kse6yCK8nnygNDKI7/P4xlK/6iXrDqsw0Yhog=",
+    "exports/recipes/dialog/foundation.css": "sha256-yb1H0v78r2Og+RVIUuAqgSwBiuNeTBAR+SN0EisL0Ok=",
+    "exports/recipes/dialog/LICENSE.md": "sha256-UOZ5qD7UTl2rwGfUTSZ/1vPjFc0kQNy4YPwSUEiTRcI=",
+    "exports/recipes/dialog/manifest.json": "sha256-Hr0MtbEzF6lmJ6XIMKZogiLr3+3RiXK24MiDjtS+RTY=",
+    "exports/recipes/dialog/markup.html": "sha256-X3DmA4c5c7rddR/rsz2awwd0zQNIGFpWtOlZjUr3Tsw=",
+    "exports/recipes/dialog/README.md": "sha256-J8hdC/5jTQBKGjF+hy8WaD76agE/+yjKYOSdqslwFOQ=",
+    "exports/recipes/dialog/template.html": "sha256-/W2nbM67ZK40KPSQKwlYmj2X4Rd++HT5bB/NCL+ms5w=",
+    "exports/recipes/dialog/tokens.css": "sha256-5auQZHKUTRfdWAGR6Jf8kSxETfdQzEJHSJtcCkYPxrA=",
+    "exports/recipes/dialog/two-instances.html": "sha256-3SmNHSFpa620NRtUIAC/3lr6NtLcNcRzXNPSZk8qKI0=",
+    "exports/recipes/text-field/component.css": "sha256-gFyjkx4Qk59zySjrfsaWnUh0YGewTEhNnS/gvpJxO1A=",
+    "exports/recipes/text-field/example.html": "sha256-XrCYGMEDfPqPU16VoWDw0iC2qDvwicgZPZ8wDhHFSNY=",
+    "exports/recipes/text-field/foundation.css": "sha256-yb1H0v78r2Og+RVIUuAqgSwBiuNeTBAR+SN0EisL0Ok=",
+    "exports/recipes/text-field/LICENSE.md": "sha256-UOZ5qD7UTl2rwGfUTSZ/1vPjFc0kQNy4YPwSUEiTRcI=",
+    "exports/recipes/text-field/manifest.json": "sha256-RVZT3n0yMoLErUvnLpG3vpRBqDO3zEs9bCjWXH7Szeg=",
+    "exports/recipes/text-field/markup.html": "sha256-beUpqqGjajxUDU7Ns8glTzu5F0pOktQ9Hy81UayLDqA=",
+    "exports/recipes/text-field/README.md": "sha256-ThaYBc/RO0XzA5zhdeMyVvIBmzWheeEz41AlKUT/aVg=",
+    "exports/recipes/text-field/template.html": "sha256-FNo+wtBvkttaDYQKtyagUxx1eE2aFmleHcFhBWfb3oc=",
+    "exports/recipes/text-field/tokens.css": "sha256-9OGDafaLFrjmrjU2OaJw9dYWaKLX23XBwLI4naa8ixY=",
+    "exports/recipes/text-field/two-instances.html": "sha256-uoX13O+aeWRSub5bZLdlqICPpoIRvTl86xqshgC96qk=",
+    "exports/theme.compact.md": "sha256-+CCVk3Omvjwu2nfOgvTSwPJgPnmS4q/f/QY9EUG4ptg=",
+    "exports/tokens.resolved.json": "sha256-t47UmfTj0puRlTSrMjX4B2ApJDCfhzGgqWK9iiYlxSk=",
+    "LICENSE.md": "sha256-9K+45u2mMtN17qbMfaYXFmwI+1bv0MwpVv4Ef/Onqsg=",
+    "schemas/json/theme.lock.schema.json": "sha256-y6m+IekX0jzgI6Rhel1Vx33fgz8RIT5A2OPyBL0qlXw=",
+    "spec/accessibility.md": "sha256-4uVYxMurU1I2/OuaX0PcfauzDSihCrVpC+ZfmJaDWUI=",
+    "spec/components/admin-form.md": "sha256-552HA8irB15PND4VGHGFeZXaMMfq4Clhg2azvraweUw=",
+    "spec/components/alert.md": "sha256-QqsY2zBnEhvFDkw54c915inRJn08t3SiL5NorcL1s1s=",
+    "spec/components/badge.md": "sha256-8Zvw++3AM/nW4ZxxU1eymHE7p0h34NBIqw1YfTqVcek=",
+    "spec/components/breadcrumbs.md": "sha256-+zfv/ZG8YAXVNjtYLBOgLARWjZGgW8JcQSOs7v+PPJw=",
+    "spec/components/button.md": "sha256-ie3z5OVhDISdrvpzXcvGH4PeMQ+0oExZD26JfUBt58k=",
+    "spec/components/card.md": "sha256-U+seYMqLK4RBw8ThWNsdR0DrCTkLUIcuJ+RQIosvg3Y=",
+    "spec/components/checkbox.md": "sha256-JXufD8VvPJOkRGEaSlipPPA8TVPrfHqCXxOYgdABbGU=",
+    "spec/components/chip.md": "sha256-JHOJWWRe6Mra9CbYtvOXOe1GzYb9+Jqea51Oa6TjngU=",
+    "spec/components/code-editor.md": "sha256-/pJMqTom6t68w04XtsRmNbUI2FmVe+XuWo6fk8VzHsc=",
+    "spec/components/combobox.md": "sha256-oQFjEqOUyJCRXaMiXbQmWeEq+GEnuUjSVIJdprRbgyI=",
+    "spec/components/data-table.md": "sha256-XvxkcynpmSY1PfDvX18mRG8QEz0cpqAdShv0iPL096w=",
+    "spec/components/date-picker.md": "sha256-KHmnJ1jKI6cYwk/iseI4nwOsHYlcsUoRIJVaw/LcwqE=",
+    "spec/components/diagnostics.md": "sha256-f/fHsg7YnWtg0IN8FRKcLqlKzVnPaezFtYFquydZVuQ=",
+    "spec/components/dialog.md": "sha256-kaBUOYbJIw44GR3lEgUoOy3a0WRmveNDpN6xsKhzc14=",
+    "spec/components/diff-view.md": "sha256-N7Pt+TXpjgXmmuDW4vg/q0QH0iYJprcsCABe3TplMCs=",
+    "spec/components/drawer.md": "sha256-UcCTj/kCnSFYryYYP6qGJWhBQe/HmxN2uK7izbMw9a0=",
+    "spec/components/empty-state.md": "sha256-6rtQdRIQan/TZG4ZOCeqswr5srKwbv1s3rn5hEszI2U=",
+    "spec/components/field.md": "sha256-B8hTku4uAttoaE3Os73M1VXy7f6s/quoleTNtS/1FlQ=",
+    "spec/components/fieldset.md": "sha256-A/vskREFO0JeQ4aAtr6CIQLE1ukRcKQKRdvgGNlhmBY=",
+    "spec/components/file-input.md": "sha256-YCjdW2PbufzyfvesNFSv1szRoZ18abR/J2P8cHJ/jCM=",
+    "spec/components/filterable-table.md": "sha256-MSEJlihMIOVPI9tagPwc4yTUFHMSKoXi6+QoL1UM2ck=",
+    "spec/components/i3-window-frame.md": "sha256-F2hVBc4zHcUJU2ScTaaSfz7+F7pgT7X0N39NWXkWNPo=",
+    "spec/components/icon-button.md": "sha256-KEdG8FfemnhtBu4S2cqXLM9z04807XnXxIfYZBgx79w=",
+    "spec/components/link.md": "sha256-HnXWlBteo/LcOZal2StjCa1nj4xqCLNSN7jDJ0gjLw4=",
+    "spec/components/list.md": "sha256-bTFcEqzcQWz89x6+T+akO97W8WjQKDU7z0Ud9J2rEdY=",
+    "spec/components/loading-indicator.md": "sha256-Dxjle5SuLF8jv5MfILOWBv823pJ5BqA9artA2FAp6eU=",
+    "spec/components/menu.md": "sha256-0lB3dhQ2tV0G1xlR5CA99OMTjB3mQxdg/UYYbEMX7A4=",
+    "spec/components/number-field.md": "sha256-Pcb29byKH5op8ohJYPZPhLJACLyifXfCIYIhua6ENxU=",
+    "spec/components/pagination.md": "sha256-Lev4etd1GHzsq4xKqIZKMil1gIIyKxaSSmdNbnPIqWY=",
+    "spec/components/progress.md": "sha256-iLBHXIrIFVbcxcdGTBgX6gas9lc736uem1ClKWktA0g=",
+    "spec/components/radio-group.md": "sha256-BOfvF4GlqGzE2hoXWTkFBsIHyVM9fs9I6NBweh7GvOE=",
+    "spec/components/search-field.md": "sha256-ZGFvtJTINbupQiFER1NFXuUvBgPMR/1cg31De9DxSFI=",
+    "spec/components/select.md": "sha256-/AHConQN9rQFeSVoHl4ZF6TLODRUSXxABpWeEf62YHg=",
+    "spec/components/settings-panel.md": "sha256-QS0hwq2um8Oa8Sdpe/0fsL3U5vACPISLKqGuTqfHE30=",
+    "spec/components/sidebar-nav.md": "sha256-DMQeb/JCyyw9r8mD/PNO1DyAJhUsWGEYzYHDxA8ru70=",
+    "spec/components/skip-link.md": "sha256-H4JRsmIOhdhbucGhsbihjHMA55uQoNvdGc251Sllivo=",
+    "spec/components/switch.md": "sha256-NnePYNiJwnISuFruTyqFWJ6H176brXZemCk5UfD1JOc=",
+    "spec/components/table.md": "sha256-2C48f+7mORWkg6rZAsZkognKC2uJqVZV/ssb+F1l710=",
+    "spec/components/tabs.md": "sha256-A9VYQUj7eb4EWPhcq5K0eWcqS+kGRpjINoTUQ0vyAlA=",
+    "spec/components/terminal.md": "sha256-3vBPqvQ4ZXke1zTGWYV9ROIftUDa3WRU9CYF86+vSu8=",
+    "spec/components/text-field.md": "sha256-nLOL2IloE3AKZ7EqGA0iIBUVuEZf+iVcTJcBn0x8y2Y=",
+    "spec/components/textarea.md": "sha256-0NG50DJ8RhLyEA7FMmZhpAAz0wEuF2o9U+gNmMuQMQU=",
+    "spec/components/time-picker.md": "sha256-zvM0qvGLvlxdCa3PJkJpxU0775znxEDegAlTawqE6Ik=",
+    "spec/components/toast.md": "sha256-H5/i4eMMjz8qwXVXczHuxv/cAeygWTT/SV2V4i/5/zM=",
+    "spec/components/toolbar.md": "sha256-J40C5wSQgnF2IV7G1c2w6czYqg0moflH+wu0Mtdm/rw=",
+    "spec/components/tooltip.md": "sha256-R4fZisCUoZU4xM9DSkiw9ASaXwg9FCq+8yvL2wqnpuw=",
+    "spec/components/wizard.md": "sha256-+3La+OVkhPYOVy4vaYOE3iF7BWmWjuJG2p2eTJGWVew=",
+    "spec/foundations.md": "sha256-Eh6gqzyqVSmBxEYYTJjwRkq8EhNNYn3FwFoO+Z7ewJ0=",
+    "spec/identity.md": "sha256-j0pEQphW3UpuhtpSHY2hbg0e8tHgV+XTUX3YfESryOk=",
+    "spec/portability.md": "sha256-7rBDM1D07oTcxOpHcz8aTnIR0NWGpIS3lEVM8BoPUGA=",
+    "theme.json": "sha256-betbOh4Db3EdSjpz7NhtFmMt+NMtEQP3B0FAXH2lwq4="
+  },
+  "components": {
+    "admin-form": {
+      "title": "Admin form",
+      "files": [
+        "exports/components/admin-form.json",
+        "spec/components/admin-form.md"
+      ],
+      "tokens": [
+        "color.action.primary.bg",
+        "color.action.primary.text",
+        "color.action.secondary.border",
+        "color.action.secondary.text",
+        "color.action.tertiary.hover-bg",
+        "color.action.tertiary.text",
+        "color.border.control",
+        "color.border.default",
+        "color.border.disabled",
+        "color.border.divider",
+        "color.border.selected-indicator",
+        "color.border.strong",
+        "color.interaction.disabled.bg",
+        "color.status.danger.border",
+        "color.status.danger.text",
+        "color.status.danger.tint",
+        "color.status.info.border",
+        "color.status.info.text",
+        "color.status.info.tint",
+        "color.status.success.text",
+        "color.surface.default",
+        "color.surface.input",
+        "color.text.bright",
+        "color.text.default",
+        "color.text.disabled",
+        "color.text.link",
+        "color.text.muted"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "alert": {
+      "title": "Alert",
+      "files": [
+        "exports/components/alert.json",
+        "spec/components/alert.md"
+      ],
+      "tokens": [
+        "color.action.tertiary.hover-bg",
+        "color.action.tertiary.text",
+        "color.interaction.focus.ring",
+        "color.status.danger.border",
+        "color.status.danger.text",
+        "color.status.danger.tint",
+        "color.status.info.border",
+        "color.status.info.text",
+        "color.status.info.tint",
+        "color.status.neutral.border",
+        "color.status.neutral.text",
+        "color.status.neutral.tint",
+        "color.status.success.border",
+        "color.status.success.text",
+        "color.status.success.tint",
+        "color.status.warning.border",
+        "color.status.warning.text",
+        "color.status.warning.tint",
+        "color.text.default"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "badge": {
+      "title": "Badge",
+      "files": [
+        "exports/components/badge.json",
+        "spec/components/badge.md"
+      ],
+      "tokens": [
+        "color.action.primary.bg",
+        "color.action.primary.text",
+        "color.status.danger.border",
+        "color.status.danger.fill",
+        "color.status.danger.on-fill",
+        "color.status.danger.text",
+        "color.status.info.border",
+        "color.status.info.fill",
+        "color.status.info.on-fill",
+        "color.status.info.text",
+        "color.status.neutral.border",
+        "color.status.neutral.fill",
+        "color.status.neutral.on-fill",
+        "color.status.neutral.text",
+        "color.status.success.border",
+        "color.status.success.fill",
+        "color.status.success.on-fill",
+        "color.status.success.text",
+        "color.status.warning.border",
+        "color.status.warning.fill",
+        "color.status.warning.on-fill",
+        "color.status.warning.text",
+        "color.surface.default"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "breadcrumbs": {
+      "title": "Breadcrumbs",
+      "files": [
+        "exports/components/breadcrumbs.json",
+        "spec/components/breadcrumbs.md"
+      ],
+      "tokens": [
+        "color.interaction.focus.ring",
+        "color.interaction.hover.bg",
+        "color.interaction.hover.bg-strong",
+        "color.surface.default",
+        "color.text.bright",
+        "color.text.default",
+        "color.text.link",
+        "color.text.link-hover",
+        "color.text.link-underline",
+        "color.text.muted"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "button": {
+      "title": "Button",
+      "files": [
+        "exports/components/button.json",
+        "spec/components/button.md"
+      ],
+      "tokens": [
+        "color.action.destructive.border",
+        "color.action.destructive.filled-bg",
+        "color.action.destructive.filled-text",
+        "color.action.destructive.hover-bg",
+        "color.action.destructive.hover-text",
+        "color.action.destructive.pressed-bg",
+        "color.action.destructive.text",
+        "color.action.primary.bg",
+        "color.action.primary.border",
+        "color.action.primary.hover-bg",
+        "color.action.primary.pressed-bg",
+        "color.action.primary.text",
+        "color.action.secondary.bg",
+        "color.action.secondary.border",
+        "color.action.secondary.hover-bg",
+        "color.action.secondary.pressed-bg",
+        "color.action.secondary.text",
+        "color.action.tertiary.hover-bg",
+        "color.action.tertiary.text",
+        "color.border.active",
+        "color.border.disabled",
+        "color.interaction.disabled.bg",
+        "color.interaction.focus.ring",
+        "color.interaction.focus.ring-container",
+        "color.interaction.pressed.bg",
+        "color.surface.default",
+        "color.text.disabled"
+      ],
+      "recipeFiles": [
+        "exports/recipes/button/LICENSE.md",
+        "exports/recipes/button/README.md",
+        "exports/recipes/button/component.css",
+        "exports/recipes/button/example.html",
+        "exports/recipes/button/foundation.css",
+        "exports/recipes/button/manifest.json",
+        "exports/recipes/button/markup.html",
+        "exports/recipes/button/template.html",
+        "exports/recipes/button/tokens.css",
+        "exports/recipes/button/two-instances.html"
+      ],
+      "recipeTokens": [
+        "border.width.default",
+        "color.action.destructive.border",
+        "color.action.destructive.filled-bg",
+        "color.action.destructive.filled-text",
+        "color.action.destructive.hover-bg",
+        "color.action.destructive.hover-text",
+        "color.action.destructive.pressed-bg",
+        "color.action.destructive.text",
+        "color.action.primary.bg",
+        "color.action.primary.border",
+        "color.action.primary.hover-bg",
+        "color.action.primary.pressed-bg",
+        "color.action.primary.text",
+        "color.action.secondary.bg",
+        "color.action.secondary.border",
+        "color.action.secondary.hover-bg",
+        "color.action.secondary.pressed-bg",
+        "color.action.secondary.text",
+        "color.action.tertiary.hover-bg",
+        "color.action.tertiary.text",
+        "color.border.active",
+        "color.border.disabled",
+        "color.interaction.disabled.bg",
+        "color.interaction.focus.ring",
+        "color.interaction.focus.ring-container",
+        "color.interaction.pressed.bg",
+        "color.interaction.text-selection.bg",
+        "color.interaction.text-selection.text",
+        "color.surface.canvas",
+        "color.text.default",
+        "color.text.disabled",
+        "density.comfortable.control-height",
+        "density.comfortable.control-padding-x",
+        "density.compact.control-height",
+        "density.compact.control-padding-x",
+        "focus.offset",
+        "font.family.mono",
+        "font.line-height.ui-md",
+        "font.size.ui-md",
+        "icon.size.md",
+        "motion.duration.fast",
+        "radius.none",
+        "space.4"
+      ]
+    },
+    "card": {
+      "title": "Card",
+      "files": [
+        "exports/components/card.json",
+        "spec/components/card.md"
+      ],
+      "tokens": [
+        "color.border.control",
+        "color.border.default",
+        "color.interaction.focus.ring-container",
+        "color.interaction.hover.bg",
+        "color.interaction.selection.bg",
+        "color.interaction.selection.text",
+        "color.surface.default",
+        "color.text.bright",
+        "color.text.default",
+        "color.text.muted"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "checkbox": {
+      "title": "Checkbox",
+      "files": [
+        "exports/components/checkbox.json",
+        "spec/components/checkbox.md"
+      ],
+      "tokens": [
+        "color.action.primary.bg",
+        "color.action.primary.hover-bg",
+        "color.action.primary.text",
+        "color.border.control",
+        "color.border.disabled",
+        "color.interaction.disabled.bg",
+        "color.interaction.focus.ring",
+        "color.interaction.focus.ring-container",
+        "color.interaction.hover.bg",
+        "color.status.danger.border",
+        "color.status.danger.text",
+        "color.surface.default",
+        "color.surface.input",
+        "color.text.bright",
+        "color.text.default",
+        "color.text.disabled"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "chip": {
+      "title": "Chip",
+      "files": [
+        "exports/components/chip.json",
+        "spec/components/chip.md"
+      ],
+      "tokens": [
+        "color.border.control",
+        "color.border.disabled",
+        "color.interaction.disabled.bg",
+        "color.interaction.focus.ring",
+        "color.interaction.focus.ring-container",
+        "color.interaction.hover.bg",
+        "color.interaction.hover.bg-strong",
+        "color.interaction.pressed.bg",
+        "color.interaction.selection.bg",
+        "color.interaction.selection.text",
+        "color.surface.default",
+        "color.text.bright",
+        "color.text.default",
+        "color.text.disabled",
+        "color.text.muted"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "code-editor": {
+      "title": "Code editor",
+      "files": [
+        "exports/components/code-editor.json",
+        "spec/components/code-editor.md"
+      ],
+      "tokens": [
+        "color.border.control",
+        "color.code.bg",
+        "color.code.bracket-match",
+        "color.code.caret",
+        "color.code.current-line",
+        "color.code.gutter-bg",
+        "color.code.gutter-rule",
+        "color.code.indent-guide",
+        "color.code.line-number",
+        "color.code.line-number-active",
+        "color.code.selection-bg",
+        "color.code.syntax.attribute",
+        "color.code.syntax.comment",
+        "color.code.syntax.constant",
+        "color.code.syntax.deprecated",
+        "color.code.syntax.escape",
+        "color.code.syntax.function",
+        "color.code.syntax.heading",
+        "color.code.syntax.invalid",
+        "color.code.syntax.keyword",
+        "color.code.syntax.number",
+        "color.code.syntax.operator",
+        "color.code.syntax.property",
+        "color.code.syntax.punctuation",
+        "color.code.syntax.string",
+        "color.code.syntax.tag",
+        "color.code.syntax.type",
+        "color.code.syntax.variable",
+        "color.code.whitespace",
+        "color.interaction.focus.ring-container",
+        "color.interaction.selection.inactive-bg",
+        "color.interaction.selection.inactive-text",
+        "color.surface.sunken",
+        "color.text.default",
+        "color.text.muted",
+        "color.text.subtle"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "combobox": {
+      "title": "Combobox",
+      "files": [
+        "exports/components/combobox.json",
+        "spec/components/combobox.md"
+      ],
+      "tokens": [
+        "color.action.tertiary.hover-bg",
+        "color.action.tertiary.text",
+        "color.border.active",
+        "color.border.control",
+        "color.border.disabled",
+        "color.border.divider",
+        "color.border.overlay",
+        "color.code.caret",
+        "color.interaction.disabled.bg",
+        "color.interaction.focus.ring",
+        "color.interaction.focus.ring-container",
+        "color.interaction.hover.bg",
+        "color.interaction.hover.bg-strong",
+        "color.interaction.selection.bg",
+        "color.interaction.selection.text",
+        "color.status.danger.border",
+        "color.status.danger.text",
+        "color.surface.canvas",
+        "color.surface.input",
+        "color.surface.raised",
+        "color.text.bright",
+        "color.text.default",
+        "color.text.disabled",
+        "color.text.link-hover",
+        "color.text.muted",
+        "color.text.placeholder",
+        "color.text.subtle"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "data-table": {
+      "title": "Data table",
+      "files": [
+        "exports/components/data-table.json",
+        "spec/components/data-table.md"
+      ],
+      "tokens": [
+        "color.action.primary.bg",
+        "color.action.primary.text",
+        "color.border.active",
+        "color.border.control",
+        "color.border.default",
+        "color.border.divider",
+        "color.border.strong",
+        "color.interaction.focus.ring",
+        "color.interaction.focus.ring-container",
+        "color.interaction.hover.bg",
+        "color.interaction.selection.bg",
+        "color.interaction.selection.text",
+        "color.surface.default",
+        "color.surface.input",
+        "color.text.bright",
+        "color.text.default",
+        "color.text.muted"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "date-picker": {
+      "title": "Date picker",
+      "files": [
+        "exports/components/date-picker.json",
+        "spec/components/date-picker.md"
+      ],
+      "tokens": [
+        "color.border.active",
+        "color.border.control",
+        "color.border.disabled",
+        "color.border.divider",
+        "color.code.caret",
+        "color.interaction.disabled.bg",
+        "color.interaction.focus.ring",
+        "color.interaction.focus.ring-container",
+        "color.interaction.hover.bg",
+        "color.status.danger.border",
+        "color.status.danger.text",
+        "color.surface.canvas",
+        "color.surface.input",
+        "color.text.bright",
+        "color.text.default",
+        "color.text.disabled",
+        "color.text.muted"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "diagnostics": {
+      "title": "Diagnostics",
+      "files": [
+        "exports/components/diagnostics.json",
+        "spec/components/diagnostics.md"
+      ],
+      "tokens": [
+        "color.border.control",
+        "color.border.divider",
+        "color.code.bg",
+        "color.code.gutter-rule",
+        "color.code.line-number",
+        "color.code.selection-bg",
+        "color.code.syntax.deprecated",
+        "color.diagnostic.error.bg",
+        "color.diagnostic.error.stripe",
+        "color.diagnostic.error.text",
+        "color.diagnostic.error.underline",
+        "color.diagnostic.hint.underline",
+        "color.diagnostic.info.text",
+        "color.diagnostic.info.underline",
+        "color.diagnostic.unused.text",
+        "color.diagnostic.warning.stripe",
+        "color.diagnostic.warning.text",
+        "color.diagnostic.warning.underline",
+        "color.interaction.focus.ring",
+        "color.interaction.focus.ring-container",
+        "color.interaction.hover.bg",
+        "color.interaction.selection.bg",
+        "color.interaction.selection.text",
+        "color.status.danger.text",
+        "color.status.success.text",
+        "color.surface.default",
+        "color.text.bright",
+        "color.text.default",
+        "color.text.muted",
+        "color.text.subtle"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "dialog": {
+      "title": "Dialog",
+      "files": [
+        "exports/components/dialog.json",
+        "spec/components/dialog.md"
+      ],
+      "tokens": [
+        "color.action.destructive.filled-bg",
+        "color.action.destructive.filled-text",
+        "color.action.destructive.hover-bg",
+        "color.action.primary.bg",
+        "color.action.primary.hover-bg",
+        "color.action.primary.text",
+        "color.action.secondary.border",
+        "color.action.secondary.hover-bg",
+        "color.action.secondary.text",
+        "color.action.tertiary.hover-bg",
+        "color.action.tertiary.text",
+        "color.border.control",
+        "color.border.overlay",
+        "color.interaction.focus.ring",
+        "color.interaction.focus.ring-container",
+        "color.surface.backdrop",
+        "color.surface.input",
+        "color.surface.overlay",
+        "color.text.bright",
+        "color.text.default",
+        "color.text.muted",
+        "z.dialog"
+      ],
+      "recipeFiles": [
+        "exports/recipes/dialog/LICENSE.md",
+        "exports/recipes/dialog/README.md",
+        "exports/recipes/dialog/component.css",
+        "exports/recipes/dialog/example.html",
+        "exports/recipes/dialog/foundation.css",
+        "exports/recipes/dialog/manifest.json",
+        "exports/recipes/dialog/markup.html",
+        "exports/recipes/dialog/template.html",
+        "exports/recipes/dialog/tokens.css",
+        "exports/recipes/dialog/two-instances.html"
+      ],
+      "recipeTokens": [
+        "border.width.default",
+        "color.action.destructive.border",
+        "color.action.destructive.filled-bg",
+        "color.action.destructive.filled-text",
+        "color.action.destructive.hover-bg",
+        "color.action.destructive.hover-text",
+        "color.action.primary.bg",
+        "color.action.primary.border",
+        "color.action.primary.hover-bg",
+        "color.action.primary.text",
+        "color.action.secondary.bg",
+        "color.action.secondary.border",
+        "color.action.secondary.hover-bg",
+        "color.action.secondary.text",
+        "color.action.tertiary.hover-bg",
+        "color.action.tertiary.text",
+        "color.border.active",
+        "color.border.control",
+        "color.border.overlay",
+        "color.code.caret",
+        "color.interaction.focus.ring-container",
+        "color.interaction.text-selection.bg",
+        "color.interaction.text-selection.text",
+        "color.surface.backdrop",
+        "color.surface.canvas",
+        "color.surface.input",
+        "color.surface.overlay",
+        "color.text.bright",
+        "color.text.default",
+        "color.text.muted",
+        "density.comfortable.control-height",
+        "density.comfortable.control-padding-x",
+        "density.compact.control-height",
+        "density.compact.control-padding-x",
+        "focus.offset",
+        "focus.offset-container",
+        "focus.ring",
+        "focus.ring-container",
+        "font.family.mono",
+        "font.line-height.h2",
+        "font.line-height.ui-md",
+        "font.line-height.ui-sm",
+        "font.size.h2",
+        "font.size.ui-md",
+        "font.size.ui-sm",
+        "font.weight.bold",
+        "motion.duration.slow",
+        "radius.none",
+        "space.12",
+        "space.16",
+        "space.24",
+        "space.4",
+        "space.8",
+        "z.dialog"
+      ]
+    },
+    "diff-view": {
+      "title": "Diff view",
+      "files": [
+        "exports/components/diff-view.json",
+        "spec/components/diff-view.md"
+      ],
+      "tokens": [
+        "color.border.control",
+        "color.border.divider",
+        "color.code.bg",
+        "color.code.gutter-rule",
+        "color.code.line-number",
+        "color.diff.added.bg",
+        "color.diff.added.emphasis",
+        "color.diff.added.gutter",
+        "color.diff.conflict-border",
+        "color.diff.header-bg",
+        "color.diff.modified.bg",
+        "color.diff.modified.gutter",
+        "color.diff.removed.bg",
+        "color.diff.removed.emphasis",
+        "color.diff.removed.gutter",
+        "color.interaction.focus.ring",
+        "color.interaction.focus.ring-container",
+        "color.interaction.hover.bg",
+        "color.interaction.hover.bg-strong",
+        "color.interaction.selection.bg",
+        "color.interaction.selection.text",
+        "color.text.bright",
+        "color.text.default",
+        "color.text.link",
+        "color.text.muted"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "drawer": {
+      "title": "Drawer",
+      "files": [
+        "exports/components/drawer.json",
+        "spec/components/drawer.md"
+      ],
+      "tokens": [
+        "color.action.tertiary.hover-bg",
+        "color.action.tertiary.text",
+        "color.border.divider",
+        "color.border.overlay",
+        "color.interaction.focus.ring",
+        "color.interaction.focus.ring-container",
+        "color.interaction.hover.bg-strong",
+        "color.surface.backdrop",
+        "color.surface.overlay",
+        "color.text.bright",
+        "color.text.default",
+        "color.text.link-hover",
+        "color.text.muted",
+        "z.drawer"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "empty-state": {
+      "title": "Empty state",
+      "files": [
+        "exports/components/empty-state.json",
+        "spec/components/empty-state.md"
+      ],
+      "tokens": [
+        "color.action.secondary.border",
+        "color.action.secondary.hover-bg",
+        "color.action.secondary.text",
+        "color.border.divider",
+        "color.icon.decorative",
+        "color.interaction.focus.ring",
+        "color.surface.canvas",
+        "color.surface.default",
+        "color.text.bright",
+        "color.text.muted"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "field": {
+      "title": "Field",
+      "files": [
+        "exports/components/field.json",
+        "spec/components/field.md"
+      ],
+      "tokens": [
+        "color.border.control",
+        "color.border.disabled",
+        "color.interaction.disabled.bg",
+        "color.status.danger.border",
+        "color.status.danger.text",
+        "color.surface.canvas",
+        "color.surface.default",
+        "color.surface.input",
+        "color.text.bright",
+        "color.text.default",
+        "color.text.disabled",
+        "color.text.muted"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "fieldset": {
+      "title": "Fieldset",
+      "files": [
+        "exports/components/fieldset.json",
+        "spec/components/fieldset.md"
+      ],
+      "tokens": [
+        "color.border.control",
+        "color.border.disabled",
+        "color.border.divider",
+        "color.interaction.disabled.bg",
+        "color.surface.default",
+        "color.surface.input",
+        "color.text.bright",
+        "color.text.default",
+        "color.text.disabled",
+        "color.text.muted"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "file-input": {
+      "title": "File input",
+      "files": [
+        "exports/components/file-input.json",
+        "spec/components/file-input.md"
+      ],
+      "tokens": [
+        "color.action.primary.bg",
+        "color.action.secondary.bg",
+        "color.action.secondary.border",
+        "color.action.secondary.hover-bg",
+        "color.action.secondary.pressed-bg",
+        "color.action.secondary.text",
+        "color.action.tertiary.hover-bg",
+        "color.action.tertiary.text",
+        "color.border.disabled",
+        "color.border.divider",
+        "color.interaction.disabled.bg",
+        "color.interaction.drop-target",
+        "color.interaction.focus.ring",
+        "color.interaction.marquee",
+        "color.interaction.pressed.bg",
+        "color.status.danger.border",
+        "color.status.danger.text",
+        "color.surface.canvas",
+        "color.text.bright",
+        "color.text.default",
+        "color.text.disabled",
+        "color.text.muted",
+        "color.text.subtle"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "filterable-table": {
+      "title": "Filterable table",
+      "files": [
+        "exports/components/filterable-table.json",
+        "spec/components/filterable-table.md"
+      ],
+      "tokens": [
+        "color.action.primary.bg",
+        "color.action.primary.text",
+        "color.border.control",
+        "color.border.default",
+        "color.border.divider",
+        "color.border.strong",
+        "color.icon.decorative",
+        "color.icon.default",
+        "color.interaction.focus.ring",
+        "color.interaction.focus.ring-container",
+        "color.interaction.hover.bg",
+        "color.interaction.selection.bg",
+        "color.interaction.selection.text",
+        "color.status.info.fill",
+        "color.status.info.on-fill",
+        "color.status.success.fill",
+        "color.status.success.on-fill",
+        "color.surface.chrome",
+        "color.surface.default",
+        "color.surface.input",
+        "color.text.bright",
+        "color.text.default",
+        "color.text.disabled",
+        "color.text.muted",
+        "color.text.placeholder"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "i3-window-frame": {
+      "title": "i3 window frame",
+      "files": [
+        "exports/components/i3-window-frame.json",
+        "spec/components/i3-window-frame.md"
+      ],
+      "tokens": [
+        "color.border.active",
+        "color.border.default",
+        "color.border.divider",
+        "color.border.overlay",
+        "color.border.selected-indicator",
+        "color.border.selected-indicator-inactive",
+        "color.code.bg",
+        "color.icon.decorative",
+        "color.interaction.focus.ring",
+        "color.interaction.focus.ring-container",
+        "color.interaction.hover.bg",
+        "color.interaction.selection.bg",
+        "color.interaction.selection.text",
+        "color.status.danger.fill",
+        "color.status.danger.on-fill",
+        "color.surface.canvas",
+        "color.surface.chrome",
+        "color.surface.chrome-alt",
+        "color.surface.desktop",
+        "color.terminal.bg",
+        "color.terminal.fg",
+        "color.text.bright",
+        "color.text.default",
+        "color.text.muted",
+        "shadow.floating"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "icon-button": {
+      "title": "Icon button",
+      "files": [
+        "exports/components/icon-button.json",
+        "spec/components/icon-button.md"
+      ],
+      "tokens": [
+        "color.action.secondary.bg",
+        "color.action.tertiary.hover-bg",
+        "color.action.tertiary.text",
+        "color.border.active",
+        "color.border.disabled",
+        "color.border.selected-indicator",
+        "color.icon.default",
+        "color.interaction.disabled.bg",
+        "color.interaction.focus.ring",
+        "color.interaction.focus.ring-container",
+        "color.interaction.pressed.bg",
+        "color.interaction.selection.bg",
+        "color.interaction.selection.text",
+        "color.surface.default",
+        "color.text.disabled"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "link": {
+      "title": "Link",
+      "files": [
+        "exports/components/link.json",
+        "spec/components/link.md"
+      ],
+      "tokens": [
+        "color.border.selected-indicator",
+        "color.icon.default",
+        "color.interaction.focus.ring",
+        "color.interaction.hover.bg-strong",
+        "color.surface.canvas",
+        "color.surface.default",
+        "color.text.bright",
+        "color.text.default",
+        "color.text.link",
+        "color.text.link-hover",
+        "color.text.link-underline"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "list": {
+      "title": "List",
+      "files": [
+        "exports/components/list.json",
+        "spec/components/list.md"
+      ],
+      "tokens": [
+        "color.border.control",
+        "color.border.divider",
+        "color.interaction.focus.ring",
+        "color.interaction.focus.ring-container",
+        "color.interaction.hover.bg",
+        "color.interaction.selection.bg",
+        "color.interaction.selection.inactive-bg",
+        "color.interaction.selection.inactive-text",
+        "color.interaction.selection.text",
+        "color.surface.default",
+        "color.text.default",
+        "color.text.disabled",
+        "color.text.muted"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "loading-indicator": {
+      "title": "Loading indicator",
+      "files": [
+        "exports/components/loading-indicator.json",
+        "spec/components/loading-indicator.md"
+      ],
+      "tokens": [
+        "color.border.divider",
+        "color.surface.canvas",
+        "color.surface.default",
+        "color.text.default",
+        "color.text.muted"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "menu": {
+      "title": "Menu",
+      "files": [
+        "exports/components/menu.json",
+        "spec/components/menu.md"
+      ],
+      "tokens": [
+        "color.border.active",
+        "color.border.control",
+        "color.border.divider",
+        "color.border.overlay",
+        "color.icon.decorative",
+        "color.interaction.focus.ring",
+        "color.interaction.focus.ring-container",
+        "color.interaction.hover.bg",
+        "color.interaction.hover.bg-strong",
+        "color.interaction.pressed.bg",
+        "color.interaction.selection.bg",
+        "color.interaction.selection.text",
+        "color.surface.default",
+        "color.surface.raised",
+        "color.text.bright",
+        "color.text.default",
+        "color.text.disabled",
+        "color.text.link-hover",
+        "color.text.muted"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "number-field": {
+      "title": "Number field",
+      "files": [
+        "exports/components/number-field.json",
+        "spec/components/number-field.md"
+      ],
+      "tokens": [
+        "color.action.tertiary.hover-bg",
+        "color.action.tertiary.text",
+        "color.border.active",
+        "color.border.control",
+        "color.border.disabled",
+        "color.border.divider",
+        "color.code.caret",
+        "color.interaction.disabled.bg",
+        "color.interaction.focus.ring",
+        "color.interaction.focus.ring-container",
+        "color.interaction.hover.bg",
+        "color.status.danger.border",
+        "color.status.danger.text",
+        "color.surface.canvas",
+        "color.surface.default",
+        "color.surface.input",
+        "color.text.bright",
+        "color.text.default",
+        "color.text.disabled",
+        "color.text.muted"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "pagination": {
+      "title": "Pagination",
+      "files": [
+        "exports/components/pagination.json",
+        "spec/components/pagination.md"
+      ],
+      "tokens": [
+        "color.interaction.focus.ring",
+        "color.interaction.focus.ring-container",
+        "color.interaction.hover.bg",
+        "color.interaction.pressed.bg",
+        "color.interaction.selection.bg",
+        "color.surface.default",
+        "color.text.bright",
+        "color.text.default",
+        "color.text.disabled",
+        "color.text.muted",
+        "color.text.on-selection"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "progress": {
+      "title": "Progress",
+      "files": [
+        "exports/components/progress.json",
+        "spec/components/progress.md"
+      ],
+      "tokens": [
+        "color.action.primary.bg",
+        "color.border.control",
+        "color.interaction.pressed.bg",
+        "color.status.danger.border",
+        "color.status.danger.fill",
+        "color.status.danger.text",
+        "color.surface.canvas",
+        "color.text.bright",
+        "color.text.default",
+        "color.text.muted"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "radio-group": {
+      "title": "Radio group",
+      "files": [
+        "exports/components/radio-group.json",
+        "spec/components/radio-group.md"
+      ],
+      "tokens": [
+        "color.action.primary.bg",
+        "color.action.primary.hover-bg",
+        "color.action.primary.text",
+        "color.border.control",
+        "color.border.disabled",
+        "color.interaction.disabled.bg",
+        "color.interaction.focus.ring",
+        "color.interaction.focus.ring-container",
+        "color.interaction.hover.bg",
+        "color.status.danger.border",
+        "color.status.danger.text",
+        "color.surface.default",
+        "color.surface.input",
+        "color.text.bright",
+        "color.text.default",
+        "color.text.disabled"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "search-field": {
+      "title": "Search field",
+      "files": [
+        "exports/components/search-field.json",
+        "spec/components/search-field.md"
+      ],
+      "tokens": [
+        "color.action.tertiary.hover-bg",
+        "color.action.tertiary.text",
+        "color.border.active",
+        "color.border.control",
+        "color.border.default",
+        "color.border.disabled",
+        "color.code.caret",
+        "color.icon.default",
+        "color.interaction.disabled.bg",
+        "color.interaction.focus.ring",
+        "color.interaction.hover.bg",
+        "color.surface.default",
+        "color.surface.input",
+        "color.text.bright",
+        "color.text.default",
+        "color.text.disabled",
+        "color.text.muted",
+        "color.text.placeholder"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "select": {
+      "title": "Select",
+      "files": [
+        "exports/components/select.json",
+        "spec/components/select.md"
+      ],
+      "tokens": [
+        "color.border.active",
+        "color.border.control",
+        "color.border.disabled",
+        "color.icon.default",
+        "color.interaction.disabled.bg",
+        "color.interaction.focus.ring",
+        "color.interaction.focus.ring-container",
+        "color.interaction.hover.bg",
+        "color.interaction.selection.bg",
+        "color.interaction.selection.text",
+        "color.status.danger.border",
+        "color.status.danger.text",
+        "color.surface.default",
+        "color.surface.input",
+        "color.surface.raised",
+        "color.text.bright",
+        "color.text.default",
+        "color.text.disabled",
+        "color.text.muted"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "settings-panel": {
+      "title": "Settings panel",
+      "files": [
+        "exports/components/settings-panel.json",
+        "spec/components/settings-panel.md"
+      ],
+      "tokens": [
+        "color.action.primary.bg",
+        "color.action.primary.text",
+        "color.action.secondary.border",
+        "color.action.secondary.text",
+        "color.border.control",
+        "color.border.default",
+        "color.border.divider",
+        "color.border.selected-indicator",
+        "color.interaction.focus.ring",
+        "color.interaction.hover.bg",
+        "color.status.danger.border",
+        "color.status.danger.text",
+        "color.surface.default",
+        "color.surface.input",
+        "color.text.bright",
+        "color.text.default",
+        "color.text.muted"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "sidebar-nav": {
+      "title": "Sidebar navigation",
+      "files": [
+        "exports/components/sidebar-nav.json",
+        "spec/components/sidebar-nav.md"
+      ],
+      "tokens": [
+        "color.border.divider",
+        "color.border.selected-indicator",
+        "color.border.selected-indicator-inactive",
+        "color.icon.decorative",
+        "color.icon.default",
+        "color.interaction.focus.ring",
+        "color.interaction.focus.ring-container",
+        "color.interaction.hover.bg",
+        "color.interaction.pressed.bg",
+        "color.interaction.selection.bg",
+        "color.interaction.selection.inactive-bg",
+        "color.interaction.selection.inactive-text",
+        "color.interaction.selection.text",
+        "color.surface.default",
+        "color.text.bright",
+        "color.text.default"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "skip-link": {
+      "title": "Skip link",
+      "files": [
+        "exports/components/skip-link.json",
+        "spec/components/skip-link.md"
+      ],
+      "tokens": [
+        "color.border.overlay",
+        "color.interaction.focus.ring",
+        "color.surface.raised",
+        "color.text.bright"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "switch": {
+      "title": "Switch",
+      "files": [
+        "exports/components/switch.json",
+        "spec/components/switch.md"
+      ],
+      "tokens": [
+        "color.action.primary.bg",
+        "color.action.primary.hover-bg",
+        "color.action.primary.text",
+        "color.border.control",
+        "color.border.disabled",
+        "color.interaction.disabled.bg",
+        "color.interaction.focus.ring",
+        "color.interaction.focus.ring-container",
+        "color.interaction.hover.bg",
+        "color.surface.default",
+        "color.surface.input",
+        "color.text.default",
+        "color.text.disabled",
+        "color.text.muted"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "table": {
+      "title": "Table",
+      "files": [
+        "exports/components/table.json",
+        "spec/components/table.md"
+      ],
+      "tokens": [
+        "color.border.divider",
+        "color.border.strong",
+        "color.interaction.focus.ring",
+        "color.interaction.focus.ring-container",
+        "color.interaction.hover.bg",
+        "color.interaction.selection.bg",
+        "color.interaction.selection.inactive-bg",
+        "color.interaction.selection.inactive-text",
+        "color.interaction.selection.text",
+        "color.surface.default",
+        "color.surface.raised",
+        "color.text.bright",
+        "color.text.default",
+        "color.text.muted"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "tabs": {
+      "title": "Tabs",
+      "files": [
+        "exports/components/tabs.json",
+        "spec/components/tabs.md"
+      ],
+      "tokens": [
+        "color.border.divider",
+        "color.border.selected-indicator",
+        "color.border.selected-indicator-inactive",
+        "color.interaction.focus.ring",
+        "color.interaction.hover.bg",
+        "color.interaction.pressed.bg",
+        "color.surface.default",
+        "color.text.bright",
+        "color.text.default",
+        "color.text.disabled"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "terminal": {
+      "title": "Terminal",
+      "files": [
+        "exports/components/terminal.json",
+        "spec/components/terminal.md"
+      ],
+      "tokens": [
+        "color.border.control",
+        "color.code.current-line",
+        "color.interaction.focus.ring-container",
+        "color.terminal.ansi.0",
+        "color.terminal.ansi.1",
+        "color.terminal.ansi.10",
+        "color.terminal.ansi.11",
+        "color.terminal.ansi.12",
+        "color.terminal.ansi.13",
+        "color.terminal.ansi.14",
+        "color.terminal.ansi.15",
+        "color.terminal.ansi.2",
+        "color.terminal.ansi.3",
+        "color.terminal.ansi.4",
+        "color.terminal.ansi.5",
+        "color.terminal.ansi.6",
+        "color.terminal.ansi.7",
+        "color.terminal.ansi.8",
+        "color.terminal.ansi.9",
+        "color.terminal.bg",
+        "color.terminal.cursor",
+        "color.terminal.fg",
+        "color.terminal.selection-bg",
+        "color.terminal.selection-text",
+        "color.text.muted"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "text-field": {
+      "title": "Text field",
+      "files": [
+        "exports/components/text-field.json",
+        "spec/components/text-field.md"
+      ],
+      "tokens": [
+        "color.action.tertiary.hover-bg",
+        "color.action.tertiary.text",
+        "color.border.active",
+        "color.border.control",
+        "color.border.disabled",
+        "color.border.divider",
+        "color.code.caret",
+        "color.interaction.disabled.bg",
+        "color.interaction.focus.ring",
+        "color.interaction.focus.ring-container",
+        "color.interaction.hover.bg",
+        "color.interaction.text-selection.bg",
+        "color.interaction.text-selection.text",
+        "color.status.danger.border",
+        "color.status.danger.text",
+        "color.surface.canvas",
+        "color.surface.default",
+        "color.surface.input",
+        "color.text.bright",
+        "color.text.default",
+        "color.text.disabled",
+        "color.text.muted",
+        "color.text.placeholder"
+      ],
+      "recipeFiles": [
+        "exports/recipes/text-field/LICENSE.md",
+        "exports/recipes/text-field/README.md",
+        "exports/recipes/text-field/component.css",
+        "exports/recipes/text-field/example.html",
+        "exports/recipes/text-field/foundation.css",
+        "exports/recipes/text-field/manifest.json",
+        "exports/recipes/text-field/markup.html",
+        "exports/recipes/text-field/template.html",
+        "exports/recipes/text-field/tokens.css",
+        "exports/recipes/text-field/two-instances.html"
+      ],
+      "recipeTokens": [
+        "border.width.default",
+        "border.width.emphasis",
+        "color.action.tertiary.hover-bg",
+        "color.action.tertiary.text",
+        "color.border.active",
+        "color.border.control",
+        "color.border.disabled",
+        "color.border.divider",
+        "color.code.caret",
+        "color.interaction.disabled.bg",
+        "color.interaction.focus.ring-container",
+        "color.interaction.hover.bg",
+        "color.interaction.text-selection.bg",
+        "color.interaction.text-selection.text",
+        "color.status.danger.border",
+        "color.status.danger.text",
+        "color.surface.canvas",
+        "color.surface.input",
+        "color.text.bright",
+        "color.text.default",
+        "color.text.disabled",
+        "color.text.muted",
+        "color.text.placeholder",
+        "density.comfortable.control-height",
+        "density.comfortable.control-padding-x",
+        "density.compact.control-height",
+        "density.compact.control-padding-x",
+        "focus.offset",
+        "focus.offset-invalid",
+        "focus.ring",
+        "font.family.mono",
+        "font.line-height.ui-md",
+        "font.line-height.ui-sm",
+        "font.size.ui-md",
+        "font.size.ui-sm",
+        "radius.none",
+        "space.4",
+        "space.8"
+      ]
+    },
+    "textarea": {
+      "title": "Textarea",
+      "files": [
+        "exports/components/textarea.json",
+        "spec/components/textarea.md"
+      ],
+      "tokens": [
+        "color.border.active",
+        "color.border.control",
+        "color.border.disabled",
+        "color.border.divider",
+        "color.code.caret",
+        "color.interaction.disabled.bg",
+        "color.interaction.focus.ring",
+        "color.interaction.focus.ring-container",
+        "color.interaction.hover.bg",
+        "color.interaction.text-selection.bg",
+        "color.interaction.text-selection.text",
+        "color.status.danger.border",
+        "color.status.danger.text",
+        "color.surface.canvas",
+        "color.surface.default",
+        "color.surface.input",
+        "color.text.bright",
+        "color.text.default",
+        "color.text.disabled",
+        "color.text.muted",
+        "color.text.placeholder"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "time-picker": {
+      "title": "Time picker",
+      "files": [
+        "exports/components/time-picker.json",
+        "spec/components/time-picker.md"
+      ],
+      "tokens": [
+        "color.border.active",
+        "color.border.control",
+        "color.border.disabled",
+        "color.code.caret",
+        "color.interaction.disabled.bg",
+        "color.interaction.focus.ring",
+        "color.interaction.hover.bg",
+        "color.status.danger.border",
+        "color.status.danger.text",
+        "color.surface.canvas",
+        "color.surface.input",
+        "color.text.bright",
+        "color.text.default",
+        "color.text.disabled",
+        "color.text.muted"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "toast": {
+      "title": "Toast",
+      "files": [
+        "exports/components/toast.json",
+        "spec/components/toast.md"
+      ],
+      "tokens": [
+        "color.action.destructive.pressed-bg",
+        "color.action.tertiary.hover-bg",
+        "color.action.tertiary.text",
+        "color.border.overlay",
+        "color.interaction.focus.ring",
+        "color.interaction.hover.bg-strong",
+        "color.status.danger.border",
+        "color.status.danger.fill",
+        "color.status.danger.on-fill",
+        "color.status.info.border",
+        "color.status.info.text",
+        "color.status.info.tint",
+        "color.status.neutral.border",
+        "color.status.neutral.text",
+        "color.status.neutral.tint",
+        "color.status.success.border",
+        "color.status.success.text",
+        "color.status.success.tint",
+        "color.status.warning.border",
+        "color.status.warning.text",
+        "color.status.warning.tint",
+        "color.surface.canvas",
+        "color.text.default",
+        "color.text.link",
+        "color.text.link-hover",
+        "color.text.muted",
+        "z.toast"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "toolbar": {
+      "title": "Toolbar",
+      "files": [
+        "exports/components/toolbar.json",
+        "spec/components/toolbar.md"
+      ],
+      "tokens": [
+        "color.border.active",
+        "color.border.default",
+        "color.border.divider",
+        "color.icon.decorative",
+        "color.interaction.focus.ring",
+        "color.interaction.hover.bg",
+        "color.interaction.pressed.bg",
+        "color.surface.chrome",
+        "color.text.bright",
+        "color.text.default",
+        "color.text.disabled"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "tooltip": {
+      "title": "Tooltip",
+      "files": [
+        "exports/components/tooltip.json",
+        "spec/components/tooltip.md"
+      ],
+      "tokens": [
+        "color.action.tertiary.hover-bg",
+        "color.action.tertiary.text",
+        "color.border.control",
+        "color.border.overlay",
+        "color.interaction.focus.ring",
+        "color.surface.canvas",
+        "color.surface.raised",
+        "color.text.bright",
+        "color.text.default",
+        "z.popover"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    },
+    "wizard": {
+      "title": "Wizard",
+      "files": [
+        "exports/components/wizard.json",
+        "spec/components/wizard.md"
+      ],
+      "tokens": [
+        "color.action.primary.bg",
+        "color.action.primary.border",
+        "color.action.primary.hover-bg",
+        "color.action.primary.pressed-bg",
+        "color.action.primary.text",
+        "color.action.secondary.border",
+        "color.action.secondary.hover-bg",
+        "color.action.secondary.text",
+        "color.border.default",
+        "color.border.divider",
+        "color.border.selected-indicator",
+        "color.interaction.focus.ring",
+        "color.interaction.focus.ring-container",
+        "color.interaction.hover.bg",
+        "color.status.danger.border",
+        "color.status.danger.text",
+        "color.status.success.text",
+        "color.surface.canvas",
+        "color.surface.default",
+        "color.text.bright",
+        "color.text.default",
+        "color.text.disabled"
+      ],
+      "recipeFiles": [],
+      "recipeTokens": []
+    }
+  }
+}
