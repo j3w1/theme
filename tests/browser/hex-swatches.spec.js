@@ -24,7 +24,7 @@ test("hex previews preserve exact colors, copy text and the no-JS baseline", { a
   expect(await page.locator(".hex-swatch[tabindex]").count()).toBe(0);
 });
 
-test("hover grows visually by 1.4px without reflow; reduced motion changes instantly", { annotation: { type: "verification", description: JSON.stringify({"component": "page", "category": "motion", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }, testInfo) => {
+test("hover grows visually by 1.4px without reflow", { annotation: { type: "verification", description: JSON.stringify({"component": "page", "category": "motion", "states": [], "variants": [], "note": "Pointer hover: exact circle-to-square scale, fast duration and unchanged adjacent geometry."}) } }, async ({ page }, testInfo) => {
   test.skip(!only(testInfo, "desktop"), "one hover-capable layout");
   await openSpec(page);
   const swatch = page.locator('.hex-swatch[data-hex="#ff0000"]').first();
@@ -37,11 +37,32 @@ test("hover grows visually by 1.4px without reflow; reduced motion changes insta
   await expect(swatch).toHaveCSS("transform", "matrix(1.0875, 0, 0, 1.0875, 0, 0)");
   expect(await swatch.evaluate((el) => new DOMMatrix(getComputedStyle(el).transform).a * el.offsetWidth)).toBe(17.4);
   expect(await geometry()).toEqual(before);
+});
+
+test("reduced-motion previews change instantly", { annotation: { type: "verification", description: JSON.stringify({ component: "page", category: "motion", states: [], variants: [], note: "Reduced-motion media enabled before loading; hover enlargement has no transition." }) } }, async ({ page }, testInfo) => {
+  test.skip(!only(testInfo, "desktop"), "one reduced-motion preview check");
   await page.emulateMedia({ reducedMotion: "reduce" });
+  await openSpec(page);
+  const swatch = page.locator('.hex-swatch[data-hex="#ff0000"]').first();
   expect(await swatch.evaluate((el) => getComputedStyle(el).transitionDuration)).toBe("0s");
+  await swatch.hover();
+  await expect(swatch).toHaveCSS("transform", "matrix(1.0875, 0, 0, 1.0875, 0, 0)");
+});
+
+test("forced-colors previews preserve literal color data", { annotation: { type: "verification", description: JSON.stringify({ component: "page", category: "appearance", states: [], variants: [], note: "Forced-colors media enabled before loading; the decorative preview retains its exact fill." }) } }, async ({ page }, testInfo) => {
+  test.skip(!only(testInfo, "desktop"), "one forced-colors preview check");
   await page.emulateMedia({ forcedColors: "active" });
+  await openSpec(page);
+  const swatch = page.locator('.hex-swatch[data-hex="#ff0000"]').first();
   expect(await swatch.evaluate((el) => getComputedStyle(el).forcedColorAdjust)).toBe("none");
-  await page.emulateMedia({ media: "print", forcedColors: "none" });
+  expect(await swatch.evaluate((el) => getComputedStyle(el, "::after").backgroundColor)).toBe("rgb(255, 0, 0)");
+});
+
+test("printed previews request exact colors", { annotation: { type: "verification", description: JSON.stringify({ component: "page", category: "print", states: [], variants: [], note: "Print media enabled before loading; previews request exact color preservation." }) } }, async ({ page }, testInfo) => {
+  test.skip(!only(testInfo, "desktop"), "one print preview check");
+  await page.emulateMedia({ media: "print" });
+  await openSpec(page);
+  const swatch = page.locator('.hex-swatch[data-hex="#ff0000"]').first();
   expect(await swatch.evaluate((el) => getComputedStyle(el).printColorAdjust)).toBe("exact");
 });
 
