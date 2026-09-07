@@ -1,0 +1,430 @@
+<!doctype html>
+<!-- j3w1 theme 0.1.0. Markup adapted from j3w1 UI Theme Spec, https://github.com/j3w1/theme, CC BY 4.0: https://creativecommons.org/licenses/by/4.0/. Changes: scoped instance IDs and documentation-only content removed. CSS and generator: MIT; see LICENSE.md. -->
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>j3w1 dialog reference</title>
+<style>
+/* j3w1 theme 0.1.0 — MIT
+Copyright (c) 2026 j3w1
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+.j3w1-recipe {
+  --border-width-default: 1px;
+  --border-width-emphasis: 2px;
+  --color-action-destructive-border: #e53935;
+  --color-action-destructive-filled-bg: #dc282e;
+  --color-action-destructive-filled-text: #f9faf9;
+  --color-action-destructive-hover-bg: #dc282e;
+  --color-action-destructive-hover-text: #f9faf9;
+  --color-action-primary-bg: #871f19;
+  --color-action-primary-border: #9e231f;
+  --color-action-primary-hover-bg: #911410;
+  --color-action-primary-text: #f4eeee;
+  --color-action-secondary-bg: rgb(0 0 0 / 0%);
+  --color-action-secondary-border: #a3676b;
+  --color-action-secondary-hover-bg: #630f0d;
+  --color-action-secondary-text: #ffa2a7;
+  --color-action-tertiary-hover-bg: #1c0a09;
+  --color-action-tertiary-text: #e99499;
+  --color-border-active: #e53935;
+  --color-border-control: #a3676b;
+  --color-border-overlay: #e53935;
+  --color-code-caret: #e99499;
+  --color-interaction-focus-ring: #e53935;
+  --color-interaction-focus-ring-container: #ffa2a7;
+  --color-interaction-text-selection-bg: #911410;
+  --color-interaction-text-selection-text: #f4eeee;
+  --color-primitive-alpha-black-65: rgb(0 0 0 / 65%);
+  --color-primitive-alpha-transparent: rgb(0 0 0 / 0%);
+  --color-primitive-ink-20: #0c0909;
+  --color-primitive-ink-40: #1c0a09;
+  --color-primitive-ink-52: #241010;
+  --color-primitive-paper-100: #f9faf9;
+  --color-primitive-paper-90: #f4eeee;
+  --color-primitive-red-150: #630f0d;
+  --color-primitive-red-300: #871f19;
+  --color-primitive-red-350: #911410;
+  --color-primitive-red-400: #9e231f;
+  --color-primitive-red-750: #dc282e;
+  --color-primitive-red-800: #e53935;
+  --color-primitive-rose-350: #a3676b;
+  --color-primitive-rose-600: #bd787d;
+  --color-primitive-rose-700: #e99499;
+  --color-primitive-rose-800: #ffa2a7;
+  --color-surface-backdrop: rgb(0 0 0 / 65%);
+  --color-surface-canvas: #0c0909;
+  --color-surface-input: #0c0909;
+  --color-surface-overlay: #241010;
+  --color-text-bright: #ffa2a7;
+  --color-text-default: #e99499;
+  --color-text-muted: #bd787d;
+  --density-comfortable-control-height: 32px;
+  --density-comfortable-control-padding-x: 12px;
+  --density-compact-control-height: 24px;
+  --density-compact-control-padding-x: 8px;
+  --focus-offset: -2px;
+  --focus-offset-container: -3px;
+  --focus-ring: 1px dashed #e53935;
+  --focus-ring-container: 2px solid #ffa2a7;
+  --font-family-mono: "SauceCodePro NFM", "Source Code Pro", "Cascadia Mono", "Consolas", "Liberation Mono", "DejaVu Sans Mono", monospace;
+  --font-line-height-h2: 24px;
+  --font-line-height-ui-md: 18px;
+  --font-line-height-ui-sm: 16px;
+  --font-size-h2: 16px;
+  --font-size-ui-md: 13px;
+  --font-size-ui-sm: 12px;
+  --font-weight-bold: 700;
+  --motion-duration-slow: 150ms;
+  --radius-none: 0px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-4: 4px;
+  --space-8: 8px;
+  --z-dialog: 30;
+}
+.j3w1-recipe[data-density="compact"] {
+  --density-control-height: var(--density-compact-control-height);
+  --density-control-padding-x: var(--density-compact-control-padding-x);
+}
+.j3w1-recipe[data-density="comfortable"] {
+  --density-control-height: var(--density-comfortable-control-height);
+  --density-control-padding-x: var(--density-comfortable-control-padding-x);
+}
+
+/* j3w1 theme 0.1.0 — MIT
+Copyright (c) 2026 j3w1
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+.j3w1-recipe {
+  color-scheme: dark;
+  background: var(--color-surface-canvas);
+  color: var(--color-text-default);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+}
+.j3w1-recipe, .j3w1-recipe *, .j3w1-recipe *::before, .j3w1-recipe *::after { box-sizing: border-box; }
+.j3w1-recipe button, .j3w1-recipe input, .j3w1-recipe select, .j3w1-recipe textarea { font: inherit; }
+.j3w1-recipe ::selection {
+  background: var(--color-interaction-text-selection-bg);
+  color: var(--color-interaction-text-selection-text);
+}
+.j3w1-recipe .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* j3w1 theme 0.1.0 — MIT
+Copyright (c) 2026 j3w1
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+.j3w1-recipe .dialog-backdrop {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  padding: var(--space-24) var(--space-16);
+  background: var(--color-surface-backdrop);
+}
+
+.j3w1-recipe .dialog {
+  position: static;
+  width: min(calc(var(--font-size-ui-md) * 28), 100%);
+  max-width: 100%;
+  margin: 0;
+  padding: var(--space-16);
+  background: var(--color-surface-overlay);
+  border: var(--border-width-default) solid var(--color-border-overlay);
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+  z-index: var(--z-dialog);
+}
+
+.j3w1-recipe .dialog::backdrop {
+  background: var(--color-surface-backdrop);
+}
+
+.j3w1-recipe .dialog:not([open]) {
+  display: none;
+}
+
+.j3w1-recipe .dialog-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-8);
+  margin-bottom: var(--space-12);
+}
+
+.j3w1-recipe .dialog-title {
+  margin: 0;
+  color: var(--color-text-bright);
+  font-size: var(--font-size-h2);
+  line-height: var(--font-line-height-h2);
+  font-weight: var(--font-weight-bold);
+  overflow-wrap: anywhere;
+}
+
+.j3w1-recipe .dialog-close {
+  flex: 0 0 auto;
+  min-width: 24px;
+  min-height: 24px;
+  padding: 0 var(--space-4);
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-none);
+  color: var(--color-action-tertiary-text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.j3w1-recipe .dialog-body {
+  display: grid;
+  gap: var(--space-12);
+  margin: 0;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.j3w1-recipe .dialog-text {
+  margin: 0;
+}
+
+.j3w1-recipe .dialog-field {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.j3w1-recipe .dialog-field-label {
+  color: var(--color-text-bright);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.j3w1-recipe .dialog-field-input {
+  min-height: var(--density-control-height, 32px);
+  padding: 0 var(--density-control-padding-x, 12px);
+  background: var(--color-surface-input);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+  caret-color: var(--color-code-caret);
+  font: inherit;
+}
+
+.j3w1-recipe .dialog-field-input:focus-visible {
+  border-color: var(--color-border-active);
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.j3w1-recipe .dialog-field-help {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.j3w1-recipe .dialog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--space-8);
+  margin-top: var(--space-16);
+}
+
+.j3w1-recipe .dialog-body .dialog-actions {
+  margin-top: var(--space-4);
+}
+
+.j3w1-recipe .dialog-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  min-height: var(--density-control-height, 32px);
+  padding: 0 var(--density-control-padding-x, 12px);
+  background: var(--color-action-secondary-bg);
+  border: var(--border-width-default) solid var(--color-action-secondary-border);
+  border-radius: var(--radius-none);
+  color: var(--color-action-secondary-text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.j3w1-recipe .dialog-button-primary {
+  background: var(--color-action-primary-bg);
+  border-color: var(--color-action-primary-border);
+  color: var(--color-action-primary-text);
+}
+
+.j3w1-recipe .dialog-button-destructive {
+  background: var(--color-action-destructive-filled-bg);
+  border-color: var(--color-action-destructive-border);
+  color: var(--color-action-destructive-filled-text);
+}
+.j3w1-recipe .dialog-close:hover {
+  background: var(--color-action-tertiary-hover-bg);
+}
+
+.j3w1-recipe .dialog-button:hover {
+  background: var(--color-action-secondary-hover-bg);
+}
+
+.j3w1-recipe .dialog-button-primary:hover {
+  background: var(--color-action-primary-hover-bg);
+}
+
+.j3w1-recipe .dialog-button-destructive:hover {
+  background: var(--color-action-destructive-hover-bg);
+  color: var(--color-action-destructive-hover-text);
+}
+.j3w1-recipe .dialog-close:focus-visible,
+.j3w1-recipe .dialog-button:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.j3w1-recipe .dialog-button-primary:focus-visible {
+  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline-offset: var(--focus-offset);
+}
+
+.j3w1-recipe .dialog-button-destructive:focus-visible {
+  outline: var(--border-width-default) dashed var(--color-action-destructive-filled-text);
+  outline-offset: var(--focus-offset);
+}
+.j3w1-recipe .dialog[open] {
+  display: block;
+}
+.j3w1-recipe .dialog:focus-visible {
+  outline: var(--focus-ring-container);
+  outline-offset: var(--focus-offset-container);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .j3w1-recipe .dialog {
+    transition: opacity var(--motion-duration-slow);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .j3w1-recipe .dialog {
+    transition: none;
+  }
+}
+
+@media (hover: none) {
+  .j3w1-recipe .dialog-close:hover {
+    background: transparent;
+  }
+
+  .j3w1-recipe .dialog-button:hover {
+    background: var(--color-action-secondary-bg);
+  }
+
+  .j3w1-recipe .dialog-button-primary:hover {
+    background: var(--color-action-primary-bg);
+  }
+
+  .j3w1-recipe .dialog-button-destructive:hover {
+    background: var(--color-action-destructive-filled-bg);
+    color: var(--color-action-destructive-filled-text);
+  }
+}
+
+@media (max-width: 320px) {
+  .j3w1-recipe .dialog-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+@media (forced-colors: active) {
+  .j3w1-recipe .dialog {
+    border-color: CanvasText;
+  }
+
+  .j3w1-recipe .dialog-close:focus-visible,
+  .j3w1-recipe .dialog-button:focus-visible,
+  .j3w1-recipe .dialog:focus-visible {
+    outline-color: Highlight;
+  }
+}
+</style>
+</head><body>
+<div class="j3w1-recipe" data-density="comfortable">
+<div class="dialog-backdrop">
+  <dialog class="dialog" open="" aria-labelledby="example-recipe-dg-confirm-title" aria-describedby="example-recipe-dg-confirm-text">
+    <div class="dialog-header">
+      <h2 class="dialog-title" id="example-recipe-dg-confirm-title">Save changes?</h2>
+      <button class="dialog-close" type="button" aria-label="Close">✕</button>
+    </div>
+    <div class="dialog-body">
+      <p class="dialog-text" id="example-recipe-dg-confirm-text">Three settings changed since the last save. Unsaved changes are kept locally until you publish.</p>
+    </div>
+    <div class="dialog-actions">
+      <button class="dialog-button" type="button">Keep editing</button>
+      <button class="dialog-button dialog-button-primary" type="button">Save</button>
+    </div>
+    
+  </dialog>
+</div>
+</div>
+</body></html>

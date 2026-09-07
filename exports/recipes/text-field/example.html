@@ -1,0 +1,368 @@
+<!doctype html>
+<!-- j3w1 theme 0.1.0. Markup adapted from j3w1 UI Theme Spec, https://github.com/j3w1/theme, CC BY 4.0: https://creativecommons.org/licenses/by/4.0/. Changes: scoped instance IDs and documentation-only content removed. CSS and generator: MIT; see LICENSE.md. -->
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>j3w1 text-field reference</title>
+<style>
+/* j3w1 theme 0.1.0 — MIT
+Copyright (c) 2026 j3w1
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+.j3w1-recipe {
+  --border-width-default: 1px;
+  --border-width-emphasis: 2px;
+  --color-action-tertiary-hover-bg: #1c0a09;
+  --color-action-tertiary-text: #e99499;
+  --color-border-active: #e53935;
+  --color-border-control: #a3676b;
+  --color-border-disabled: #7d1310;
+  --color-border-divider: #2b0e0d;
+  --color-code-caret: #e99499;
+  --color-interaction-disabled-bg: #160b0b;
+  --color-interaction-focus-ring: #e53935;
+  --color-interaction-focus-ring-container: #ffa2a7;
+  --color-interaction-hover-bg: #1c0a09;
+  --color-interaction-text-selection-bg: #911410;
+  --color-interaction-text-selection-text: #f4eeee;
+  --color-primitive-ink-20: #0c0909;
+  --color-primitive-ink-30: #160b0b;
+  --color-primitive-ink-40: #1c0a09;
+  --color-primitive-ink-60: #2b0e0d;
+  --color-primitive-paper-90: #f4eeee;
+  --color-primitive-red-200: #7d1310;
+  --color-primitive-red-350: #911410;
+  --color-primitive-red-800: #e53935;
+  --color-primitive-red-850: #f73f35;
+  --color-primitive-rose-300: #8a5559;
+  --color-primitive-rose-350: #a3676b;
+  --color-primitive-rose-600: #bd787d;
+  --color-primitive-rose-700: #e99499;
+  --color-primitive-rose-800: #ffa2a7;
+  --color-status-danger-border: #e53935;
+  --color-status-danger-text: #f73f35;
+  --color-surface-canvas: #0c0909;
+  --color-surface-input: #0c0909;
+  --color-text-bright: #ffa2a7;
+  --color-text-default: #e99499;
+  --color-text-disabled: #8a5559;
+  --color-text-muted: #bd787d;
+  --color-text-placeholder: #bd787d;
+  --density-comfortable-control-height: 32px;
+  --density-comfortable-control-padding-x: 12px;
+  --density-compact-control-height: 24px;
+  --density-compact-control-padding-x: 8px;
+  --focus-offset: -2px;
+  --focus-offset-invalid: -4px;
+  --focus-ring: 1px dashed #e53935;
+  --font-family-mono: "SauceCodePro NFM", "Source Code Pro", "Cascadia Mono", "Consolas", "Liberation Mono", "DejaVu Sans Mono", monospace;
+  --font-line-height-ui-md: 18px;
+  --font-line-height-ui-sm: 16px;
+  --font-size-ui-md: 13px;
+  --font-size-ui-sm: 12px;
+  --radius-none: 0px;
+  --space-4: 4px;
+  --space-8: 8px;
+}
+.j3w1-recipe[data-density="compact"] {
+  --density-control-height: var(--density-compact-control-height);
+  --density-control-padding-x: var(--density-compact-control-padding-x);
+}
+.j3w1-recipe[data-density="comfortable"] {
+  --density-control-height: var(--density-comfortable-control-height);
+  --density-control-padding-x: var(--density-comfortable-control-padding-x);
+}
+
+/* j3w1 theme 0.1.0 — MIT
+Copyright (c) 2026 j3w1
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+.j3w1-recipe {
+  color-scheme: dark;
+  background: var(--color-surface-canvas);
+  color: var(--color-text-default);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+}
+.j3w1-recipe, .j3w1-recipe *, .j3w1-recipe *::before, .j3w1-recipe *::after { box-sizing: border-box; }
+.j3w1-recipe button, .j3w1-recipe input, .j3w1-recipe select, .j3w1-recipe textarea { font: inherit; }
+.j3w1-recipe ::selection {
+  background: var(--color-interaction-text-selection-bg);
+  color: var(--color-interaction-text-selection-text);
+}
+.j3w1-recipe .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* j3w1 theme 0.1.0 — MIT
+Copyright (c) 2026 j3w1
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+.j3w1-recipe .text-field {
+  position: relative;
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+  max-width: calc(var(--font-size-ui-md) * 28);
+  color: var(--color-text-default);
+}
+
+.j3w1-recipe .text-field-label {
+  color: var(--color-text-bright);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.j3w1-recipe .text-field-required {
+  display: none;
+  color: var(--color-status-danger-text);
+}
+
+.j3w1-recipe .text-field-root {
+  display: flex;
+  min-width: 0;
+  align-items: stretch;
+  min-height: var(--density-control-height, 32px);
+  background: var(--color-surface-input);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+}
+
+.j3w1-recipe .text-field-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0 var(--density-control-padding-x, 12px);
+  background: transparent;
+  border: 0;
+  color: var(--color-text-default);
+  caret-color: var(--color-code-caret);
+  font: inherit;
+  outline: 0;
+}
+
+.j3w1-recipe .text-field-input::placeholder {
+  color: var(--color-text-placeholder);
+  font-style: italic;
+  opacity: 1;
+}
+
+.j3w1-recipe .text-field-input::selection {
+  background: var(--color-interaction-text-selection-bg);
+  color: var(--color-interaction-text-selection-text);
+}
+
+.j3w1-recipe .text-field-input-numeric {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.j3w1-recipe .text-field-input::-webkit-search-cancel-button,
+.j3w1-recipe .text-field-input::-webkit-inner-spin-button,
+.j3w1-recipe .text-field-input::-webkit-outer-spin-button {
+  appearance: none;
+  display: none;
+}
+
+.j3w1-recipe .text-field-affix {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  padding: 0 var(--space-8);
+  color: var(--color-text-muted);
+  border-inline-end: var(--border-width-default) solid var(--color-border-divider);
+}
+
+.j3w1-recipe .text-field-input ~ .text-field-affix {
+  border-inline-end: 0;
+  border-inline-start: var(--border-width-default) solid var(--color-border-divider);
+}
+
+.j3w1-recipe .text-field-action {
+  padding: 0 var(--space-8);
+  white-space: nowrap;
+  background: transparent;
+  border: 0;
+  border-inline-start: var(--border-width-default) solid var(--color-border-divider);
+  color: var(--color-action-tertiary-text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.j3w1-recipe .text-field-action:hover {
+  background: var(--color-action-tertiary-hover-bg);
+}
+
+.j3w1-recipe .text-field-action:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.j3w1-recipe .text-field-stepper {
+  display: flex;
+}
+
+.j3w1-recipe .text-field-loading {
+  display: none;
+  align-items: center;
+  padding: 0 var(--space-8);
+  color: var(--color-text-muted);
+}
+
+.j3w1-recipe .text-field-help {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.j3w1-recipe .text-field-message {
+  display: none;
+  margin: 0;
+  color: var(--color-status-danger-text);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+.j3w1-recipe .text-field-root:hover {
+  background: var(--color-interaction-hover-bg);
+}
+.j3w1-recipe .text-field-root:has(.text-field-input:focus-visible) {
+  border-color: var(--color-border-active);
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+.j3w1-recipe .text-field:has(.text-field-input:required) .text-field-required {
+  display: inline;
+}
+.j3w1-recipe .text-field-root:has(.text-field-input[aria-invalid="true"]),
+.j3w1-recipe .text-field-root:has(.text-field-input:user-invalid) {
+  border-color: var(--color-status-danger-border);
+  border-width: var(--border-width-emphasis);
+}
+
+.j3w1-recipe .text-field:has(.text-field-input[aria-invalid="true"]) .text-field-message,
+.j3w1-recipe .text-field:has(.text-field-input:user-invalid) .text-field-message {
+  display: block;
+}
+
+.j3w1-recipe .text-field:has(.text-field-input[aria-invalid="true"]) .text-field-help {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+.j3w1-recipe .text-field-root:has(.text-field-input[aria-invalid="true"]:focus-visible) {
+  border-color: var(--color-status-danger-border);
+  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline-offset: var(--focus-offset-invalid);
+}
+.j3w1-recipe .text-field-root:has(.text-field-input:disabled) {
+  background: var(--color-interaction-disabled-bg);
+  border-color: var(--color-border-disabled);
+  cursor: not-allowed;
+}
+
+.j3w1-recipe .text-field-input:disabled {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.j3w1-recipe .text-field-root:has(.text-field-input:disabled):hover {
+  background: var(--color-interaction-disabled-bg);
+}
+.j3w1-recipe .text-field-root:has(.text-field-input:read-only:not(:disabled)) {
+  background: var(--color-surface-canvas);
+  border-color: transparent;
+  border-bottom: var(--border-width-default) dotted var(--color-border-divider);
+}
+
+.j3w1-recipe .text-field-root:has(.text-field-input:read-only:focus-visible) {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+.j3w1-recipe .text-field-root[aria-busy="true"] .text-field-loading {
+  display: inline-flex;
+}
+
+@media (hover: none) {
+  .j3w1-recipe .text-field-root:hover {
+    background: var(--color-surface-input);
+  }
+}
+
+@media (forced-colors: active) {
+  .j3w1-recipe .text-field-root:has(.text-field-input:focus-visible) {
+    outline-color: Highlight;
+  }
+}
+</style>
+</head><body>
+<div class="j3w1-recipe" data-density="comfortable">
+<div class="text-field">
+  <label class="text-field-label" for="example-recipe-tf-name">Display name <span class="text-field-required" aria-hidden="true">*</span><span class="text-field-required sr-only"> required</span></label>
+  <div class="text-field-root">
+    <input class="text-field-input" id="example-recipe-tf-name" type="text" value="j3w1" placeholder="Your name" aria-describedby="example-recipe-tf-name-help example-recipe-tf-name-message">
+    <span class="text-field-loading" aria-hidden="true">⋯</span>
+  </div>
+  <p class="text-field-help" id="example-recipe-tf-name-help">Shown on your profile and in the window title.</p>
+  <p class="text-field-message" id="example-recipe-tf-name-message">✕ Use 2 to 32 characters.</p>
+</div>
+</div>
+</body></html>

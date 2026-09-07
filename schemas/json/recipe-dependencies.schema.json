@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "number",
+      "const": 1
+    },
+    "recipes": {
+      "minItems": 3,
+      "maxItems": 3,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "enum": [
+              "button",
+              "text-field",
+              "dialog"
+            ]
+          },
+          "variant": {
+            "type": "string",
+            "const": "default"
+          },
+          "markup": {
+            "type": "string",
+            "pattern": "^spec\\/components\\/[a-z-]+\\.demo\\.html$"
+          },
+          "styles": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^site\\/src\\/styles\\/components\\/[a-z-]+\\.css$"
+            }
+          },
+          "foundation": {
+            "type": "string",
+            "const": "site/src/styles/recipe-foundation.css"
+          },
+          "behavior": {
+            "minItems": 0,
+            "maxItems": 0,
+            "type": "array",
+            "items": {
+              "not": {}
+            }
+          },
+          "removeClasses": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "dialog-trap-note"
+              ]
+            }
+          },
+          "states": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "limitations": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "variant",
+          "markup",
+          "styles",
+          "foundation",
+          "behavior",
+          "removeClasses",
+          "states",
+          "limitations"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "recipes"
+  ],
+  "additionalProperties": false
+}

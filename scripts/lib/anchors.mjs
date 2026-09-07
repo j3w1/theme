@@ -11,6 +11,7 @@ export const anchorFor = {
   token: (path) => `t-${path.replaceAll(".", "-")}`,
   tokenProfile: (path, profile) => `tp-${profile}-${path.replaceAll(".", "-")}`,
   usageControl: (name) => `usage-control-${name}`,
+  recipeSource: (name) => `recipe-source-${name.replaceAll(".", "-")}`,
   specimen: (id) => `s-${id}`,
   nonExample: (id) => `x-${id}`,
   fixture: (id) => `fx-${id.toLowerCase()}`,

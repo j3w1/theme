@@ -117,6 +117,33 @@ Missing port consumers remain unknown. The usage index is digest-covered and
 uses `schemas/json/token-usage.schema.json`; regenerate it with the ordinary
 `npm run generate` workflow after editing source mappings.
 
+### Standalone component recipes
+
+The [recipe source viewer](https://j3w1.github.io/theme/recipes/) packages the
+default button, text-field and dialog directly from maintained demo and CSS
+sources. Each component section links to its source and standalone HTML.
+Download `example.html` to run without Astro, or include `tokens.css`,
+`foundation.css` and `component.css` in order with `markup.html`.
+
+Styles stay inside `.j3w1-recipe`; choose a unique instance prefix in the
+viewer for each copy. Labels and ARIA references are rewritten together.
+`two-instances.html` demonstrates coexistence. The dialog is an open visual
+reference: modal lifecycle, close actions, focus trapping and focus return
+remain host responsibilities. No behavior module or font binary is bundled.
+
+`site/recipes.json` declares the inputs; `npm run generate` writes and
+drift-checks `exports/recipes/`. Source and output digests identify the exact
+bytes. Consume these paths at one pinned commit; the hosted viewer exposes
+its supplying revision. Recipe markup retains the specimen's CC BY 4.0
+license and attribution; CSS retains MIT notices. See each recipe's manifest,
+README and LICENSE for dependencies, pending decisions and limitations.
+
+Browser checks default to port 4173. When another checkout is testing, set
+`PW_PORT` to a free port before `npm run test:browser` and
+`npm run test:verification`; both use the same server configuration. For
+example, PowerShell: `$env:PW_PORT = '4174'`; POSIX shells:
+`PW_PORT=4174 npm run test:browser`. Finish the build before starting tests.
+
 ## Repository map
 
 | Path | Owns |

@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- #7: generate scoped standalone button, text-field and dialog references from
+  maintained sources, with token closure, source digests, license notices and
+  no-JavaScript downloads. Copying with distinct instance prefixes preserves
+  labels and ARIA relationships. Dialog modal behavior remains host-owned.
+
 - #5: generate a semantic token usage index with source locations, aliases,
   declared component/port references and contrast declarations. Add exact
   filters and persistent token detail pages with a static no-JavaScript path.

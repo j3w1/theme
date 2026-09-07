@@ -1,0 +1,9 @@
+---
+import ToolLayout from "../../layouts/ToolLayout.astro";
+import { withBase } from "../../lib/base";
+import index from "../../../../exports/recipes/index.json";
+---
+<ToolLayout title="Standalone recipes" description="Maintained reference examples with scoped styles, explicit dependencies and honest interaction limits.">
+  <p>Open an example without Astro, or copy its markup and three stylesheets into a host page. These references contain no JavaScript behavior modules. The dialog is visual-only.</p>
+  <ul>{index.recipes.map((recipe) => <li><a href={withBase(`recipes/${recipe.id}/`)}>{recipe.id}</a> — {recipe.limitations[0]}</li>)}</ul>
+</ToolLayout>
