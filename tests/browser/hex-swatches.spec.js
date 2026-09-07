@@ -1,7 +1,7 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./evidence-fixture.mjs";
 import { openSpec, only } from "./helpers.mjs";
 
-test("hex previews preserve exact colors, copy text and the no-JS baseline", async ({ page }) => {
+test("hex previews preserve exact colors, copy text and the no-JS baseline", { annotation: { type: "verification", description: JSON.stringify({"component": "page", "category": "appearance", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }) => {
   await openSpec(page);
   const swatch = page.locator('.hex-swatch[data-hex="#ff0000"]').first();
   await expect(swatch).toHaveCount(1);
@@ -24,7 +24,7 @@ test("hex previews preserve exact colors, copy text and the no-JS baseline", asy
   expect(await page.locator(".hex-swatch[tabindex]").count()).toBe(0);
 });
 
-test("hover grows visually by 1.4px without reflow; reduced motion changes instantly", async ({ page }, testInfo) => {
+test("hover grows visually by 1.4px without reflow; reduced motion changes instantly", { annotation: { type: "verification", description: JSON.stringify({"component": "page", "category": "motion", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }, testInfo) => {
   test.skip(!only(testInfo, "desktop"), "one hover-capable layout");
   await openSpec(page);
   const swatch = page.locator('.hex-swatch[data-hex="#ff0000"]').first();
@@ -45,7 +45,7 @@ test("hover grows visually by 1.4px without reflow; reduced motion changes insta
   expect(await swatch.evaluate((el) => getComputedStyle(el).printColorAdjust)).toBe("exact");
 });
 
-test("inspector uses generated previews and retains all token matches without new tab stops", async ({ page }, testInfo) => {
+test("inspector uses generated previews and retains all token matches without new tab stops", { annotation: { type: "verification", description: JSON.stringify({"component": "page", "category": "enhancements", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }, testInfo) => {
   test.skip(!only(testInfo, "desktop"), "one enhanced inspector");
   await openSpec(page);
   await page.locator('[data-token="color.interaction.focus.ring"]').first().focus();

@@ -90,3 +90,16 @@ inherit the whole-page build transform; never hand-maintain inline swatches.
 Explicit runtime renderers, such as the token inspector, use the same literal
 parser/presentation helpers. Never scan the runtime DOM for colors. Preserve
 source/copy text and machine exports. Run the hex source, dist and browser gates.
+
+
+## Execution evidence
+
+`tested` remains the compatibility alias for `testImplemented`, never a pass.
+Every browser test needs an explicit `verification` annotation describing its
+component, category, states, variants and limits. Use the shared evidence fixture
+for actual environment metadata. Matrix presence is rendering coverage only.
+After the browser suite, run `npm run verification:report`,
+`npm run verification:check` and `npm run test:verification`. Preserve the exact
+specimen bytes. Run records belong in ignored `test-results/` and published
+`dist/verification/`, never deterministic committed exports. Do not claim a
+manual keyboard or screen-reader pass without a recorded protocol and environment.

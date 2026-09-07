@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- #11: preserve test-file coverage and publish separate, digest-bound execution
+  evidence with a static matrix, explicit manual gaps and progressive filtering.
+  Downstream: schemaVersion 1 coverage adds `testImplemented`; `tested` keeps
+  its original meaning. Execution evidence has its own schema and is published
+  after tests without changing the specimen artifact.
+
 - #1: generate exact inline hex previews throughout the static page and token
   inspector, including alpha, all matching token paths and reduced motion.
   Downstream: presentation only; copy text, token values and CSS exports are

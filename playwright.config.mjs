@@ -12,7 +12,7 @@ export default defineConfig({
   workers: 1,
   retries: 0,
   timeout: 30_000,
-  reporter: process.env.CI ? [["list"], ["html", { open: "never" }]] : "list",
+  reporter: [["list"], ["./tests/evidence-reporter.mjs"], ...(process.env.CI ? [["html", { open: "never" }]] : [])],
   use: {
     baseURL: `http://localhost:${port}/theme/`,
     headless: true,

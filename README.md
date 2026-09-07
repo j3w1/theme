@@ -1,6 +1,6 @@
 # j3w1 UI Theme Spec
 
-**Warm-black surfaces. Rose text. Red focus. One monospace family. Nothing rounded.**
+**Warm-black surfaces. Rose text. Red focus. One monospace family. Square components.**
 
 This repository is the canonical, versioned specification of the j3w1 visual
 identity, so that people and AI agents can implement it consistently in
@@ -118,11 +118,12 @@ No native ports are published yet. Historical implementations are catalogued in 
 ## Component coverage
 
 *Specified* means the component's specification validates; *demonstrated*
-means its demo renders every declared variant on the site; *tested* means a
-browser test exists for it. The ledger is generated from the sources.
+means its demo renders every declared variant on the site; *test implemented* means a
+browser test exists for it. Actual outcomes are published separately in the
+linked verification report, with exact scope, configuration and digests. The ledger is generated from the sources.
 
 <!-- coverage:start -->
-| Component | Family | Priority | Specified | Demonstrated | Tested |
+| Component | Family | Priority | Specified | Demonstrated | Test implemented |
 | --- | --- | --- | --- | --- | --- |
 | `admin-form` | composed | R1 | yes | yes | — |
 | `alert` | feedback | R1 | yes | yes | — |

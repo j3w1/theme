@@ -1,4 +1,6 @@
 ---
+import { withBase } from "../lib/base";
+import { anchors } from "../lib/theme";
 import { coverageLedger } from "../lib/theme";
 
 const byFamily = coverageLedger.byFamily as Record<string, { specified: number; demonstrated: number; tested: number; total: number }>;
@@ -9,14 +11,15 @@ const defs = coverageLedger.definitions as Record<string, string>;
 
 <div class="block" id="coverage-ledger">
   <h3>Coverage ledger</h3>
-  <p><em>Specified</em>: {defs.specified}. <em>Demonstrated</em>: {defs.demonstrated}. <em>Tested</em>: {defs.tested}. Computed from the sources, never declared.</p>
+  <p><em>Specified</em>: {defs.specified}. <em>Demonstrated</em>: {defs.demonstrated}. <em>Test implemented</em>: {defs.testImplemented}. Computed from the sources, never declared.</p>
+  <p>Execution results are separate: <a href={withBase("verification/")}>verification summaries and full matrix</a>. Missing browser or manual evidence is not run.</p>
   {rows.length === 0 ? (
     <p>No components are specified yet.</p>
   ) : (
     <div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table">
       <table class="ledger">
         <thead>
-          <tr><th scope="col">Family</th><th scope="col">Total</th><th scope="col">Specified</th><th scope="col">Demonstrated</th><th scope="col">Tested</th></tr>
+          <tr><th scope="col">Family</th><th scope="col">Total</th><th scope="col">Specified</th><th scope="col">Demonstrated</th><th scope="col">Test implemented</th></tr>
         </thead>
         <tbody>
           {Object.entries(byFamily).map(([family, c]) => (
@@ -26,12 +29,12 @@ const defs = coverageLedger.definitions as Record<string, string>;
       </table>
       <table class="ledger">
         <thead>
-          <tr><th scope="col">Component</th><th scope="col">Family</th><th scope="col">Priority</th><th scope="col">Specified</th><th scope="col">Demonstrated</th><th scope="col">Tested</th></tr>
+          <tr><th scope="col">Component</th><th scope="col">Family</th><th scope="col">Priority</th><th scope="col">Specified</th><th scope="col">Demonstrated</th><th scope="col">Test implemented</th></tr>
         </thead>
         <tbody>
           {rows.map(([id, c]) => (
             <tr>
-              <td><a href={`#c-${id}`}><code>{id}</code></a></td>
+              <td><a href={`#c-${id}`}><code>{id}</code></a> · <a href={`${withBase("verification/")}#${anchors.verification(id)}`}>evidence</a></td>
               <td>{c.family}</td>
               <td>{c.priority}</td>
               <td>{c.specified ? <span class="status-pass">yes</span> : "—"}</td>

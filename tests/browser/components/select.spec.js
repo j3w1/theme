@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../evidence-fixture.mjs";
 import { promises as fs } from "node:fs";
 import { openSpec, only, rgbToHex } from "../helpers.mjs";
 
@@ -9,7 +9,7 @@ const STATES = ["default", "hover", "focus-visible", "required", "invalid", "inv
 const VARIANTS = ["default", "with-groups", "multiple"];
 
 test.describe("select", () => {
-  test("the state matrix renders every declared state for every variant", async ({ page }) => {
+  test("the state matrix renders every declared state for every variant", { annotation: { type: "verification", description: JSON.stringify({"component": "select", "category": "rendering", "states": ["default", "hover", "focus-visible", "required", "invalid", "invalid+focus-visible", "disabled"], "variants": ["default", "with-groups", "multiple"], "note": "Presence and selected structural assertions only; not behavioral verification of every state."}) } }, async ({ page }) => {
     await openSpec(page, "#c-select");
     for (const state of STATES) {
       await expect(page.locator(`#select-states [data-state="${state}"]`)).toHaveCount(VARIANTS.length);
@@ -20,7 +20,7 @@ test.describe("select", () => {
     await expect(page.locator('#select-states [data-state="default"] select[multiple]')).toHaveCount(1);
   });
 
-  test("the live control honours the box, focus, invalid and disabled rules", async ({ page }, testInfo) => {
+  test("the live control honours the box, focus, invalid and disabled rules", { annotation: { type: "verification", description: JSON.stringify({"component": "select", "category": "appearance", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }, testInfo) => {
     test.skip(only(testInfo, "nojs"), "computed styles are the same without scripts; keep one run");
     await openSpec(page, "#c-select");
     const live = page.locator('#select-states [data-state="default"]').first();
@@ -73,7 +73,7 @@ test.describe("select", () => {
     });
   });
 
-  test("keyboard: Tab reaches the live select and the ring shows", async ({ page }, testInfo) => {
+  test("keyboard: Tab reaches the live select and the ring shows", { annotation: { type: "verification", description: JSON.stringify({"component": "select", "category": "keyboard", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }, testInfo) => {
     test.skip(only(testInfo, "nojs", "narrow", "zoom200"), "one keyboard walk");
     await openSpec(page, "#c-select");
     const control = page.locator('#select-states [data-state="default"][data-state-default] select').first();

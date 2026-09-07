@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../evidence-fixture.mjs";
 import { promises as fs } from "node:fs";
 import { openSpec, only, rgbToHex } from "../helpers.mjs";
 
@@ -26,7 +26,7 @@ const box = (locator) =>
   });
 
 test.describe("radio-group", () => {
-  test("the state matrix renders every declared state for both variants", async ({ page }) => {
+  test("the state matrix renders every declared state for both variants", { annotation: { type: "verification", description: JSON.stringify({"component": "radio-group", "category": "rendering", "states": ["default", "hover", "focus-visible", "checked", "checked+focus-visible", "disabled", "invalid", "required"], "variants": ["default", "horizontal"], "note": "Presence and selected structural assertions only; not behavioral verification of every state."}) } }, async ({ page }) => {
     await openSpec(page, "#c-radio-group");
     for (const state of STATES) {
       await expect(page.locator(`#radio-group-states [data-state="${state}"]`)).toHaveCount(VARIANTS.length);
@@ -38,7 +38,7 @@ test.describe("radio-group", () => {
     await expect(page.locator('#radio-group-states [data-state="invalid"] .radio-group-message').first()).toBeVisible();
   });
 
-  test("the live radios: square boxes, checked fill with the inner square, rings", async ({ page }, testInfo) => {
+  test("the live radios: square boxes, checked fill with the inner square, rings", { annotation: { type: "verification", description: JSON.stringify({"component": "radio-group", "category": "appearance", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }, testInfo) => {
     test.skip(only(testInfo, "nojs"), "computed styles are the same without scripts; keep one run");
     await openSpec(page, "#c-radio-group");
     const live = page.locator('#radio-group-states [data-state="default"]').first();
@@ -84,7 +84,7 @@ test.describe("radio-group", () => {
     });
   });
 
-  test("keyboard: the arrow keys move the check through the live group", async ({ page }, testInfo) => {
+  test("keyboard: the arrow keys move the check through the live group", { annotation: { type: "verification", description: JSON.stringify({"component": "radio-group", "category": "keyboard", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }, testInfo) => {
     test.skip(only(testInfo, "nojs", "narrow", "zoom200"), "one keyboard walk");
     await openSpec(page, "#c-radio-group");
     const inputs = page.locator('#radio-group-states [data-state="default"][data-state-default]').first().locator("input.radio-group-input");

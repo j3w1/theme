@@ -5,6 +5,7 @@
    prune what no generator claims. */
 
 import { z } from "zod";
+import { evidenceSchema } from "../../schemas/evidence.mjs";
 import { eligibilitySchema } from "../../schemas/eligibility.mjs";
 import { POLICY_TEXT, releaseOf, eligibilityOf, eligibilityText } from "./eligibility.mjs";
 import { exists, listFiles, pruneOrphans, readText, replaceMarkerBlock, sha256, stableJson, writeOrCheck } from "./fs.mjs";
@@ -44,6 +45,7 @@ export const schemasGenerator = {
     const emit = async (name, schema) => write(`schemas/json/${name}.schema.json`, stableJson(z.toJSONSchema(schema, { unrepresentable: "any" })), { check, changed, files });
     await emit("theme", themeSchema(z));
     await emit("eligibility", eligibilitySchema(z));
+    await emit("verification-evidence", evidenceSchema(z));
     await emit("component-frontmatter", componentSchema(z));
     await emit("port", portSchema(z));
     await emit("theme.lock", lockSchema(z));
@@ -110,7 +112,7 @@ export const coverageOf = async (components) => {
     const variants = demoVariantsOf(component);
     const demonstrated = Boolean(component.demo) && component.variants.every((v) => variants.includes(v.id));
     const tested = await exists(`tests/browser/components/${component.id}.spec.js`);
-    coverage[component.id] = { family: component.family, priority: component.priority, maturity: component.maturity, specified: true, demonstrated, tested, states: component.states.length };
+    coverage[component.id] = { family: component.family, priority: component.priority, maturity: component.maturity, specified: true, demonstrated, tested, testImplemented: tested, states: component.states.length };
   }
   return coverage;
 };
@@ -174,14 +176,14 @@ export const coverageGenerator = {
     const coverage = context.coverage ?? (await coverageOf(components));
     const summary = {};
     for (const [id, c] of Object.entries(coverage)) {
-      summary[c.family] ??= { specified: 0, demonstrated: 0, tested: 0, total: 0 };
+      summary[c.family] ??= { specified: 0, demonstrated: 0, tested: 0, testImplemented: 0, total: 0 };
       summary[c.family].total += 1;
       if (c.specified) summary[c.family].specified += 1;
       if (c.demonstrated) summary[c.family].demonstrated += 1;
-      if (c.tested) summary[c.family].tested += 1;
+      if (c.tested) { summary[c.family].tested += 1; summary[c.family].testImplemented += 1; }
       void id;
     }
-    await write("exports/coverage.json", stableJson({ schemaVersion: 1, theme: manifest.name, version: manifest.version, definitions: { specified: "spec/components/<id>.md validates", demonstrated: "<id>.demo.html exists with a fragment for every declared variant and renders on the site", tested: "tests/browser/components/<id>.spec.js exists" }, byFamily: summary, components: coverage }), { check, changed, files });
+    await write("exports/coverage.json", stableJson({ schemaVersion: 1, theme: manifest.name, version: manifest.version, definitions: { specified: "spec/components/<id>.md validates", demonstrated: "<id>.demo.html exists with a fragment for every declared variant and renders on the site", tested: "Compatibility alias for testImplemented; never an execution result", testImplemented: "tests/browser/components/<id>.spec.js exists; does not establish a pass" }, byFamily: summary, components: coverage }), { check, changed, files });
     return { files, changed };
   },
 };

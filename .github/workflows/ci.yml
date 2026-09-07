@@ -1,7 +1,8 @@
 name: ci
 
 # validate → build (+dist gates) → browser → deploy. The dist the browser job
-# tests is the dist that deploys; PRs get it as a downloadable artifact and
+# tests stays byte-identical; only verification/ is added before deployment.
+# PRs get specimens and evidence as downloadable artifacts and
 # never deploy. Pages is configured to deploy from Actions (D-010).
 
 on:
@@ -62,10 +63,6 @@ jobs:
           path: dist
           retention-days: 7
           include-hidden-files: true
-      - uses: actions/upload-pages-artifact@v5
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        with:
-          path: dist
 
   browser:
     runs-on: ubuntu-latest
@@ -83,9 +80,39 @@ jobs:
           path: dist
       - run: npx playwright install --with-deps chromium
       - name: Keyboard, axe, reflow, motion, no-JS, enhancements, print
+        id: browser-tests
         run: npm run test:browser
         env:
           CI: "1"
+      - name: Publish execution report alongside unchanged specimens
+        if: always()
+        run: npm run verification:report
+      - name: Validate report, evidence and immutable specimen digest
+        if: always()
+        run: npm run verification:check
+      - name: Report keyboard, filtering and no-JS checks
+        if: always()
+        run: npm run test:verification
+        env:
+          CI: "1"
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: verification-evidence
+          path: |
+            test-results/evidence*.json
+            dist/verification/
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v7
+        if: success()
+        with:
+          name: site-with-evidence
+          path: dist
+          include-hidden-files: true
+      - uses: actions/upload-pages-artifact@v5
+        if: success() && github.event_name == 'push' && github.ref == 'refs/heads/main'
+        with:
+          path: dist
       - uses: actions/upload-artifact@v7
         if: failure()
         with:
