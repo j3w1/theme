@@ -1,0 +1,64 @@
+---
+import ToolLayout from "../../layouts/ToolLayout.astro";
+import prepared from "virtual:j3w1-release-comparisons";
+import { PREVIEW_IDS } from "../../../../schemas/playground.mjs";
+import { anchorFor } from "../../../../scripts/lib/anchors.mjs";
+import { withBase } from "../../lib/base";
+import "../../styles/releases.css";
+export function getStaticPaths() { return prepared.comparisons.map((entry: any) => ({ params: { comparison: entry.path }, props: { entry } })); }
+const { entry } = Astro.props;
+const { report, from, to } = entry;
+const summary = (value: unknown) => { const text = JSON.stringify(value); return text.length > 280 ? `${text.slice(0, 280)}… (complete value in download)` : text; };
+const specimenUrl = (side: typeof from, path: string) => withBase(`releases/specimens/${side.pin.id}/${side.profile}/${path}`);
+const models = PREVIEW_IDS.map((component) => {
+  const before = from.specimens.cases.filter((row: any) => row.component === component), after = to.specimens.cases.filter((row: any) => row.component === component);
+  const keys = [...new Set([...before, ...after].map((row: any) => `${row.variant}/${row.state}`))].sort() as string[];
+  const cases = keys.map((key) => {
+    const a = before.find((row: any) => `${row.variant}/${row.state}` === key), b = after.find((row: any) => `${row.variant}/${row.state}` === key);
+    return { key, before: a ? specimenUrl(from, a.path) : null, after: b ? specimenUrl(to, b.path) : null, fixture: a && b ? a.fixtureDigest === b.fixtureDigest ? "Same fixture bytes on both sides." : "Fixture bytes changed: differences include content or markup, not only theme values." : "State or variant unavailable on one side; no replacement is inferred." };
+  });
+  const initial = cases.find((row) => row.key === "default/default" && row.before && row.after) ?? cases.find((row) => row.before && row.after);
+  return { component, cases, initial };
+});
+---
+<ToolLayout title={`${from.pin.label} → ${to.pin.label}`} description={`Pinned release comparison · ${from.profile}`}>
+  <p><a href={withBase("releases/")}>Choose another pair</a> · <a href="comparison.json" download>Download JSON report</a> · <a href="comparison.md" download>Download Markdown migration report</a></p>
+  <dl class="release-metadata">
+    <dt>Before</dt><dd><code>{report.from.revision}</code> · version {report.from.version ?? "unknown"} · {report.from.profileStatus ?? "unknown"}</dd>
+    <dt>After</dt><dd><code>{report.to.revision}</code> · version {report.to.version ?? "unknown"} · {report.to.profileStatus ?? "unknown"}</dd>
+    <dt>Evidence formats</dt><dd>Contract {report.from.contractSchemaVersion ?? "unsupported"} → {report.to.contractSchemaVersion ?? "unsupported"}; execution schema {report.from.evidenceSchemaVersion ?? "unavailable"} → {report.to.evidenceSchemaVersion ?? "unavailable"}; shared renderer {report.rendererVersion}.</dd>
+    <dt>Semantic comparison</dt><dd>{report.semanticStatus}; {report.changes.length} recorded changes.</dd>
+    <dt>Visual execution</dt><dd>Not run by this report. <a href={withBase("verification/")}>Recorded browser evidence</a> has its own scope and digests.</dd>
+  </dl>
+  <h2>Historical availability</h2>
+  <ul>{[...report.from.availability.map((text: string) => `Before: ${text}`), ...report.to.availability.map((text: string) => `After: ${text}`)].map((text: string) => <li>{text}</li>)}</ul>
+  <h2>Semantic changes</h2>
+  {report.changes.length === 0 ? <p>{report.semanticStatus === "compared" ? "No semantic changes detected in supported inputs." : "Unsupported inputs: an empty change list does not establish equivalence."}</p> : <div class="release-scroll" tabindex="0" role="region" aria-label="Semantic changes"><table><thead><tr><th>Kind</th><th>Contract and source</th><th>Before</th><th>After</th></tr></thead><tbody>{report.changes.map((change: any) => <tr><td>{change.kind}</td><th scope="row"><code>{change.key}</code><br />{change.sources.map((source: any, index: number) => <><a href={source.url}>{index ? "After source" : "Before source"}</a> </>)}</th><td><code>{summary(change.before)}</code></td><td><code>{summary(change.after)}</code></td></tr>)}</tbody></table></div>}
+  <h2>Known downstream impact</h2>
+  <p>Port catalogue: <strong>{report.impact.catalogue}</strong>. {report.impact.unknownConsumers} Known affected means a recorded contract or dependency changed; it does not establish a regression in an application.</p>
+  <ul>{report.impact.components.map((item: any) => <li><strong>{item.id}: {item.classification}</strong>. {item.roles.length ? item.roles.join(", ") : "Component or shared appearance sources changed."} <a href={item.sources[0]?.url}>Dependency evidence</a> (all file and JSON-pointer references are in the report).</li>)}</ul>
+  <ul>{report.impact.ports.map((item: any) => <li>{item.id}: {item.classification}. {item.roles.join(", ")} <a href={item.sources[0].url}>Mapping evidence</a></li>)}</ul>
+  <h2>Matched visual references</h2>
+  <p>640 × 480 CSS pixels · comfortable · LTR · static endpoints · historical JavaScript disabled. Both frames use the same browser and available local fonts. A change to requested typography or fixture bytes can change appearance independently of color. No actual keyboard, screen-reader or historical-runtime pass is implied.</p>
+  <p>Requested font before: <code>{from.snapshot.tokens["font.family.mono"]?.css ?? "unavailable"}</code>; after: <code>{to.snapshot.tokens["font.family.mono"]?.css ?? "unavailable"}</code>.</p>
+  {[...from.specimens.unavailable, ...to.specimens.unavailable].length > 0 && <ul>{[...from.specimens.unavailable, ...to.specimens.unavailable].map((text: string) => <li>{text}</li>)}</ul>}
+  {models.map((model) => <section class="release-component" data-release-component={model.component} data-cases={JSON.stringify(model.cases)}>
+    <h3>{model.component}</h3>
+    <label class="js-only" for={anchorFor.release(`${model.component}-case`)}>Variant and visual state <select id={anchorFor.release(`${model.component}-case`)} data-release-case>{model.cases.filter((row) => row.before && row.after).map((row) => <option value={row.key} selected={row.key === model.initial?.key}>{row.key}</option>)}</select></label>
+    {model.initial ? <><p data-release-fixture>{model.initial.fixture}</p><div class="release-frames">{(["before", "after"] as const).map((side) => <figure><figcaption>{side === "before" ? "Before" : "After"} — {side === "before" ? from.pin.label : to.pin.label}</figcaption><div class="release-frame-scroll" tabindex="0" role="region" aria-label={`${model.component} ${side} fixed-width specimen`}><iframe data-release-side={side} src={model.initial![side]!} title={`${model.component} ${side} ${model.initial!.key}`} width="640" height="480" sandbox="" loading="lazy" /></div></figure>)}</div></> : <p>Matching historical visual evidence is unavailable.</p>}
+    <p>All maintained variants and states (static links):</p><ul class="release-case-links">{model.cases.map((row) => <li>{row.key}: {row.before ? <a href={row.before}>Before</a> : "Before unavailable"} · {row.after ? <a href={row.after}>After</a> : "After unavailable"}</li>)}</ul>
+  </section>)}
+  <h2>Expected migration verification</h2><ul>{report.verification.map((text: string) => <li>{text}</li>)}</ul>
+  <h2>Limits</h2><ul>{report.limitations.map((text: string) => <li>{text}</li>)}</ul>
+  <script>
+    for (const section of document.querySelectorAll<HTMLElement>("[data-release-component]")) {
+      const cases = JSON.parse(section.dataset.cases!) as { key: string; before: string | null; after: string | null; fixture: string }[];
+      section.querySelector("select")?.addEventListener("change", (event) => {
+        const chosen = cases.find((row) => row.key === (event.target as HTMLSelectElement).value);
+        if (!chosen?.before || !chosen.after) return;
+        for (const side of ["before", "after"] as const) { const frame = section.querySelector<HTMLIFrameElement>(`[data-release-side="${side}"]`)!; frame.src = chosen[side]!; frame.title = `${section.dataset.releaseComponent} ${side} ${chosen.key}`; }
+        section.querySelector("[data-release-fixture]")!.textContent = chosen.fixture;
+      });
+    }
+  </script>
+</ToolLayout>

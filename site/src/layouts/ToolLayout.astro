@@ -24,7 +24,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
-      <nav aria-label="Theme tools"><a href={withBase("")}>Specification</a> · <a href={withBase("tokens/")}>Token usage</a> · <a href={withBase("recipes/")}>Recipes</a> · <a href={withBase("kit/")}>Task kit</a> · <a href={withBase("workbench/")}>Workbench</a></nav>
+      <nav aria-label="Theme tools"><a href={withBase("")}>Specification</a> · <a href={withBase("tokens/")}>Token usage</a> · <a href={withBase("recipes/")}>Recipes</a> · <a href={withBase("kit/")}>Task kit</a> · <a href={withBase("workbench/")}>Workbench</a> · <a href={withBase("releases/")}>Release comparison</a></nav>
       <h1>{title}</h1>
       <p>{description}</p>
       <p class="stamp">{usageRevision ? <>Source revision <code>{usageRevision}</code></> : "Local build: source locations are relative to this checkout; no published revision is claimed."}</p>

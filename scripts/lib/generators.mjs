@@ -27,6 +27,7 @@ import { recipeGenerator } from "./recipe-generator.mjs";
 import { recipeDependenciesSchema } from "../../schemas/recipe.mjs";
 import { taskInputsGenerator } from "./task-inputs-generator.mjs";
 import { taskInputsSchema, kitRequestSchema } from "../../schemas/task-kit.mjs";
+import { releaseComparisonSchema, releaseCatalogueSchema, releaseMigrationSchema } from "../../schemas/release-comparison.mjs";
 
 const write = async (relative, content, { check, changed, files }) => {
   files.push(relative);
@@ -56,6 +57,9 @@ export const schemasGenerator = {
     await emit("recipe-dependencies", recipeDependenciesSchema(z));
     await emit("task-inputs", taskInputsSchema(z));
     await emit("task-kit-request", kitRequestSchema(z));
+    await emit("release-comparison", releaseComparisonSchema(z));
+    await emit("release-catalogue", releaseCatalogueSchema(z));
+    await emit("release-migration", releaseMigrationSchema(z));
     await emit("verification-evidence", evidenceSchema(z));
     await emit("component-frontmatter", componentSchema(z));
     await emit("port", portSchema(z));

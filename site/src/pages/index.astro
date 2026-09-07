@@ -62,6 +62,7 @@ const tocExtra = [
       <span>sources {Object.entries(repositories).map(([id, r]) => <><code>{r.repo}@{r.revision.slice(0, 7)}</code> </>)}</span>
       <span><a href="https://github.com/j3w1/theme">github.com/j3w1/theme</a></span>
       <span><a href={withBase("tokens/")}>Token usage explorer</a></span>
+      <span><a href={withBase("releases/")}>Release comparison</a></span>
     </p>
     <p class="banner" id="consumption-policy">{releaseOf(theme.version).stability}: <code>{theme.version}</code>. {POLICY_TEXT}</p>
     <div class="controls js-only" id="controls">

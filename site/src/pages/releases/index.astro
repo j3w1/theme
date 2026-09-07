@@ -1,0 +1,36 @@
+---
+import ToolLayout from "../../layouts/ToolLayout.astro";
+import prepared from "virtual:j3w1-release-comparisons";
+import { anchorFor } from "../../../../scripts/lib/anchors.mjs";
+import { withBase } from "../../lib/base";
+import "../../styles/releases.css";
+const { catalogue, comparisons } = prepared;
+const routes = comparisons.map((entry) => entry.path);
+---
+<ToolLayout title="Release comparison" description="Compare two pinned theme revisions, inspect historical specimens, and follow explicit dependency evidence.">
+  <p>Choose a release or a published commit checkpoint. Both sides keep their own values, status and provenance. A checkpoint is not a new release or approval. Proposed and heritage profiles remain inspection-only.</p>
+  <form class="release-picker js-only" data-release-picker data-routes={JSON.stringify(routes)} data-base={withBase("releases/")}>
+    <label for={anchorFor.release("from")}>Before revision</label><select id={anchorFor.release("from")} name="from">{catalogue.revisions.map((pin) => <option value={pin.id}>{pin.label}</option>)}</select>
+    <label for={anchorFor.release("to")}>After revision</label><select id={anchorFor.release("to")} name="to">{catalogue.revisions.map((pin, index) => <option value={pin.id} selected={index === catalogue.revisions.length - 1}>{pin.label}</option>)}</select>
+    <label for={anchorFor.release("profile")}>Profile</label><select id={anchorFor.release("profile")} name="profile">{catalogue.profiles.map((profile) => <option>{profile}</option>)}</select>
+    <button type="submit" class="btn">Open comparison</button>
+  </form>
+  <h2>Available comparisons</h2>
+  <p>Every comparison below is available without JavaScript. JSON and Markdown downloads include the full input pins, digests, changes, dependency references, verification steps and limitations.</p>
+  <ul>{comparisons.map((entry) => <li><a href={withBase(`releases/${entry.path}/`)}>{entry.from.pin.label} → {entry.to.pin.label} · {entry.from.profile}</a></li>)}</ul>
+  <h2>What the visual reference means</h2>
+  <p>Before and after frames use each revision's maintained specimen markup and styles through the same parsed renderer. The initial seven components reuse the workbench inventory, with every recorded variant and state. Frames use 640 × 480 CSS pixels, comfortable density, left-to-right direction, static motion endpoints and no historical JavaScript. Open a frame directly for a full-width view.</p>
+  <p>Fonts come from the same browser and machine; no font binaries are bundled or fetched. Different machines can use different fallbacks. Changed fixtures and requested fonts are reported so their effects are not mistaken for palette regressions. Actual captures and accessibility checks remain separate <a href={withBase("verification/")}>execution evidence</a>.</p>
+  <h2>Compare another pinned pair locally</h2>
+  <pre><code>npm run release:compare -- --from v0.1.0 --to b601998b3711dcd62949d497ed828af2089f9544 --out ../release-comparison</code></pre>
+  <p>The output directory must be new and have an existing, non-redirected parent. The command reads local Git objects without building historical code or fetching a branch. Missing historical exports remain unsupported; missing reverse indexes are reported, with direct mappings used where available.</p>
+  <script>
+    const form = document.querySelector<HTMLFormElement>("[data-release-picker]")!;
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      const route = ["from", "to", "profile"].map((name) => data.get(name)).join("/");
+      if ((JSON.parse(form.dataset.routes!) as string[]).includes(route)) location.assign(`${form.dataset.base}${route}/`);
+    });
+  </script>
+</ToolLayout>
