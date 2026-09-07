@@ -1,35 +1,37 @@
 j3w1/theme implementation brief — dialog
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=
+theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-cvqu3TmPWyLllaZfm15SVeOxi6Q+ji4EeRLA0WomQtA=
 pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/dialog.json
 spec: spec/components/dialog.md  site: https://j3w1.github.io/theme/#c-dialog
 maturity: stable  priority: R1
 
 Summary: A native dialog on the overlay surface behind a 1px overlay border and the backdrop; modal when shown, with trapped focus and Escape to close.
 
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  backdrop.bg           rgb(0 0 0 / 65%)  ({color.surface.backdrop})
-  root.bg               #241010  ({color.surface.overlay})
-  root.border           #e53935  ({color.border.overlay})
-  root.ring             #ffa2a7  ({color.interaction.focus.ring-container})
-  root.z                30  ({z.dialog})
-  title.text            #ffa2a7  ({color.text.bright})
-  text.text             #e99499  ({color.text.default})
-  close.text            #e99499  ({color.action.tertiary.text})
-  close.bg-hover        #1c0a09  ({color.action.tertiary.hover-bg})
-  close.ring            #e53935  ({color.interaction.focus.ring})
-  button.text           #ffa2a7  ({color.action.secondary.text})
-  button.border         #a3676b  ({color.action.secondary.border})
-  button.bg-hover       #630f0d  ({color.action.secondary.hover-bg})
-  primary.bg            #871f19  ({color.action.primary.bg})
-  primary.text          #f4eeee  ({color.action.primary.text})
-  primary.bg-hover      #911410  ({color.action.primary.hover-bg})
-  destructive.bg        #dc282e  ({color.action.destructive.filled-bg})
-  destructive.text      #f9faf9  ({color.action.destructive.filled-text})
-  destructive.bg-hover  #dc282e  ({color.action.destructive.hover-bg})
-  field.bg              #0c0909  ({color.surface.input})
-  field.border          #a3676b  ({color.border.control})
-  field.label           #ffa2a7  ({color.text.bright})
-  note.text             #bd787d  ({color.text.muted})
+  backdrop.bg           rgb(0 0 0 / 65%)  ({color.surface.backdrop})  use-and-report (D-008)
+  root.bg               #241010  ({color.surface.overlay})  use
+  root.border           #e53935  ({color.border.overlay})  use-and-report (D-008)
+  root.ring             #ffa2a7  ({color.interaction.focus.ring-container})  use
+  root.z                30  ({z.dialog})  use
+  title.text            #ffa2a7  ({color.text.bright})  use
+  text.text             #e99499  ({color.text.default})  use
+  close.text            #e99499  ({color.action.tertiary.text})  use
+  close.bg-hover        #1c0a09  ({color.action.tertiary.hover-bg})  use
+  close.ring            #e53935  ({color.interaction.focus.ring})  use
+  button.text           #ffa2a7  ({color.action.secondary.text})  use
+  button.border         #a3676b  ({color.action.secondary.border})  use
+  button.bg-hover       #630f0d  ({color.action.secondary.hover-bg})  use
+  primary.bg            #871f19  ({color.action.primary.bg})  use
+  primary.text          #f4eeee  ({color.action.primary.text})  use
+  primary.bg-hover      #911410  ({color.action.primary.hover-bg})  use
+  destructive.bg        #dc282e  ({color.action.destructive.filled-bg})  use
+  destructive.text      #f9faf9  ({color.action.destructive.filled-text})  use
+  destructive.bg-hover  #dc282e  ({color.action.destructive.hover-bg})  use
+  field.bg              #0c0909  ({color.surface.input})  use
+  field.border          #a3676b  ({color.border.control})  use-and-report (D-007)
+  field.label           #ffa2a7  ({color.text.bright})  use
+  note.text             #bd787d  ({color.text.muted})  use
+State dependency disclosures: D-008
 
 States: default, open, closed, focus-trapped, hover, focus-visible, reduced-motion
   default: the dialog open on its backdrop [`open`; the page behind is inert]

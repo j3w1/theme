@@ -3,7 +3,13 @@
   "theme": "j3w1-theme",
   "version": "0.1.0",
   "profile": "default",
-  "sourceDigest": "sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=",
+  "profileStatus": "approved",
+  "release": {
+    "version": "0.1.0",
+    "stability": "release",
+    "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
+  },
+  "sourceDigest": "sha256-cvqu3TmPWyLllaZfm15SVeOxi6Q+ji4EeRLA0WomQtA=",
   "id": "diagnostics",
   "family": "developer",
   "maturity": "stable",
@@ -59,162 +65,390 @@
     "root.bg": {
       "alias": "color.surface.default",
       "value": "#160b0b",
-      "status": "observed"
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
     },
     "root.border": {
       "alias": "color.border.control",
       "value": "#a3676b",
-      "status": "proposed"
+      "status": "proposed",
+      "deprecated": false,
+      "decisionId": "D-007",
+      "eligibility": {
+        "action": "use-and-report",
+        "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
+        "decisionIds": [
+          "D-007"
+        ]
+      }
     },
     "code.bg": {
       "alias": "color.code.bg",
       "value": "#0c0909",
-      "status": "observed"
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
     },
     "code.text": {
       "alias": "color.text.default",
       "value": "#e99499",
-      "status": "observed"
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
     },
     "code.line-number": {
       "alias": "color.code.line-number",
       "value": "#ad7175",
-      "status": "approved"
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-003",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
     },
     "code.gutter-rule": {
       "alias": "color.code.gutter-rule",
       "value": "#2b0e0d",
-      "status": "observed"
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
     },
     "code.selection-bg": {
       "alias": "color.code.selection-bg",
       "value": "#420f0c",
-      "status": "observed"
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
     },
     "error.underline": {
       "alias": "color.diagnostic.error.underline",
       "value": "#e53935",
-      "status": "observed"
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
     },
     "error.text": {
       "alias": "color.diagnostic.error.text",
       "value": "#f73f35",
-      "status": "observed"
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
     },
     "error.stripe": {
       "alias": "color.diagnostic.error.stripe",
       "value": "#e53935",
-      "status": "observed"
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
     },
     "error.line-bg": {
       "alias": "color.diagnostic.error.bg",
       "value": "#2b0e0d",
-      "status": "observed"
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
     },
     "warning.underline": {
       "alias": "color.diagnostic.warning.underline",
       "value": "#c9973f",
-      "status": "approved"
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-001",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
     },
     "warning.text": {
       "alias": "color.diagnostic.warning.text",
       "value": "#c9973f",
-      "status": "approved"
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-001",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
     },
     "warning.stripe": {
       "alias": "color.diagnostic.warning.stripe",
       "value": "#c9973f",
-      "status": "approved"
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-001",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
     },
     "info.underline": {
       "alias": "color.diagnostic.info.underline",
       "value": "#7e9ebb",
-      "status": "approved"
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-001",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
     },
     "info.text": {
       "alias": "color.diagnostic.info.text",
       "value": "#7e9ebb",
-      "status": "approved"
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-001",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
     },
     "hint.underline": {
       "alias": "color.diagnostic.hint.underline",
       "value": "#ad7175",
-      "status": "observed"
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
     },
     "hint.text": {
       "alias": "color.text.subtle",
       "value": "#ad7175",
-      "status": "approved"
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-003",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
     },
     "unused.text": {
       "alias": "color.diagnostic.unused.text",
       "value": "#bd787d",
-      "status": "observed"
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
     },
     "deprecated.text": {
       "alias": "color.code.syntax.deprecated",
       "value": "#ad7175",
-      "status": "observed"
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
     },
     "row.text": {
       "alias": "color.text.default",
       "value": "#e99499",
-      "status": "observed"
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
     },
     "row.location": {
       "alias": "color.text.muted",
       "value": "#bd787d",
-      "status": "observed"
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
     },
     "row.divider": {
       "alias": "color.border.divider",
       "value": "#2b0e0d",
-      "status": "proposed"
+      "status": "proposed",
+      "deprecated": false,
+      "decisionId": "D-008",
+      "eligibility": {
+        "action": "use-and-report",
+        "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
+        "decisionIds": [
+          "D-008"
+        ]
+      }
     },
     "row.bg-hover": {
       "alias": "color.interaction.hover.bg",
       "value": "#1c0a09",
-      "status": "observed"
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
     },
     "row.ring": {
       "alias": "color.interaction.focus.ring",
       "value": "#e53935",
-      "status": "observed"
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
     },
     "row.bg-selected": {
       "alias": "color.interaction.selection.bg",
       "value": "#911410",
-      "status": "observed"
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
     },
     "row.text-selected": {
       "alias": "color.interaction.selection.text",
       "value": "#f4eeee",
-      "status": "observed"
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
     },
     "row.ring-selected": {
       "alias": "color.interaction.focus.ring-container",
       "value": "#ffa2a7",
-      "status": "observed"
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
     },
     "header.text": {
       "alias": "color.text.bright",
       "value": "#ffa2a7",
-      "status": "observed"
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
     },
     "status.text": {
       "alias": "color.status.danger.text",
       "value": "#f73f35",
-      "status": "observed"
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
     },
     "empty.text": {
       "alias": "color.text.muted",
       "value": "#bd787d",
-      "status": "observed"
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
     },
     "empty.glyph": {
       "alias": "color.status.success.text",
       "value": "#86a46f",
-      "status": "approved"
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-001",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
     }
   },
   "stateRules": [
@@ -226,17 +460,40 @@
         "fg": {
           "alias": "color.text.default",
           "value": "#e99499",
-          "status": "observed"
+          "status": "observed",
+          "deprecated": false,
+          "decisionId": null,
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
         },
         "bg": {
           "alias": "color.surface.default",
           "value": "#160b0b",
-          "status": "observed"
+          "status": "observed",
+          "deprecated": false,
+          "decisionId": null,
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
         },
         "border": {
           "alias": "color.border.control",
           "value": "#a3676b",
-          "status": "proposed"
+          "status": "proposed",
+          "deprecated": false,
+          "decisionId": "D-007",
+          "eligibility": {
+            "action": "use-and-report",
+            "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
+            "decisionIds": [
+              "D-007"
+            ]
+          }
         }
       }
     },
@@ -248,12 +505,26 @@
         "fg": {
           "alias": "color.text.default",
           "value": "#e99499",
-          "status": "observed"
+          "status": "observed",
+          "deprecated": false,
+          "decisionId": null,
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
         },
         "bg": {
           "alias": "color.interaction.hover.bg",
           "value": "#1c0a09",
-          "status": "observed"
+          "status": "observed",
+          "deprecated": false,
+          "decisionId": null,
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
         }
       }
     },
@@ -265,17 +536,38 @@
         "fg": {
           "alias": "color.text.default",
           "value": "#e99499",
-          "status": "observed"
+          "status": "observed",
+          "deprecated": false,
+          "decisionId": null,
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
         },
         "bg": {
           "alias": "color.surface.default",
           "value": "#160b0b",
-          "status": "observed"
+          "status": "observed",
+          "deprecated": false,
+          "decisionId": null,
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
         },
         "outline": {
           "alias": "color.interaction.focus.ring",
           "value": "#e53935",
-          "status": "observed"
+          "status": "observed",
+          "deprecated": false,
+          "decisionId": null,
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
         }
       }
     },
@@ -287,12 +579,26 @@
         "fg": {
           "alias": "color.interaction.selection.text",
           "value": "#f4eeee",
-          "status": "observed"
+          "status": "observed",
+          "deprecated": false,
+          "decisionId": null,
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
         },
         "bg": {
           "alias": "color.interaction.selection.bg",
           "value": "#911410",
-          "status": "observed"
+          "status": "observed",
+          "deprecated": false,
+          "decisionId": null,
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
         }
       }
     },
@@ -304,17 +610,38 @@
         "fg": {
           "alias": "color.interaction.selection.text",
           "value": "#f4eeee",
-          "status": "observed"
+          "status": "observed",
+          "deprecated": false,
+          "decisionId": null,
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
         },
         "bg": {
           "alias": "color.interaction.selection.bg",
           "value": "#911410",
-          "status": "observed"
+          "status": "observed",
+          "deprecated": false,
+          "decisionId": null,
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
         },
         "outline": {
           "alias": "color.interaction.focus.ring-container",
           "value": "#ffa2a7",
-          "status": "observed"
+          "status": "observed",
+          "deprecated": false,
+          "decisionId": null,
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
         }
       }
     },
@@ -326,12 +653,26 @@
         "fg": {
           "alias": "color.status.danger.text",
           "value": "#f73f35",
-          "status": "observed"
+          "status": "observed",
+          "deprecated": false,
+          "decisionId": null,
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
         },
         "bg": {
           "alias": "color.surface.default",
           "value": "#160b0b",
-          "status": "observed"
+          "status": "observed",
+          "deprecated": false,
+          "decisionId": null,
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
         }
       }
     },
@@ -343,12 +684,26 @@
         "fg": {
           "alias": "color.text.muted",
           "value": "#bd787d",
-          "status": "observed"
+          "status": "observed",
+          "deprecated": false,
+          "decisionId": null,
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
         },
         "bg": {
           "alias": "color.surface.default",
           "value": "#160b0b",
-          "status": "observed"
+          "status": "observed",
+          "deprecated": false,
+          "decisionId": null,
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
         }
       }
     }

@@ -1,37 +1,38 @@
 j3w1/theme implementation brief — wizard
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=
+theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-cvqu3TmPWyLllaZfm15SVeOxi6Q+ji4EeRLA0WomQtA=
 pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/wizard.json
 spec: spec/components/wizard.md  site: https://j3w1.github.io/theme/#c-wizard
 maturity: stable  priority: R1
 
 Summary: A multi-step form with a stepper header, the current panel and back/next actions; native buttons with aria-current="step".
 
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  steps.divider           #2b0e0d  ({color.border.divider})
-  step.text               #e99499  ({color.text.default})
-  step.bg-hover           #1c0a09  ({color.interaction.hover.bg})
-  step.ring               #e53935  ({color.interaction.focus.ring})
-  step.text-current       #ffa2a7  ({color.text.bright})
-  step.indicator-current  #e53935  ({color.border.selected-indicator})
-  step.text-disabled      #8a5559  ({color.text.disabled})
-  step.marker-complete    #86a46f  ({color.status.success.text})
-  step.marker-invalid     #f73f35  ({color.status.danger.text})
-  step.indicator-invalid  #e53935  ({color.status.danger.border})
-  panel.bg                #160b0b  ({color.surface.default})
-  panel.border            #531310  ({color.border.default})
-  title.text              #ffa2a7  ({color.text.bright})
-  text.text               #e99499  ({color.text.default})
-  message.text            #f73f35  ({color.status.danger.text})
-  next.bg                 #871f19  ({color.action.primary.bg})
-  next.text               #f4eeee  ({color.action.primary.text})
-  next.bg-hover           #911410  ({color.action.primary.hover-bg})
-  next.bg-pressed         #630f0d  ({color.action.primary.pressed-bg})
-  next.border             #9e231f  ({color.action.primary.border})
-  next.ring               #ffa2a7  ({color.interaction.focus.ring-container})
-  back.text               #ffa2a7  ({color.action.secondary.text})
-  back.border             #a3676b  ({color.action.secondary.border})
-  back.bg-hover           #630f0d  ({color.action.secondary.hover-bg})
-  busy.glyph              #f4eeee  ({color.action.primary.text})
+  steps.divider           #2b0e0d  ({color.border.divider})  use-and-report (D-008)
+  step.text               #e99499  ({color.text.default})  use
+  step.bg-hover           #1c0a09  ({color.interaction.hover.bg})  use
+  step.ring               #e53935  ({color.interaction.focus.ring})  use
+  step.text-current       #ffa2a7  ({color.text.bright})  use
+  step.indicator-current  #e53935  ({color.border.selected-indicator})  use
+  step.text-disabled      #8a5559  ({color.text.disabled})  use
+  step.marker-complete    #86a46f  ({color.status.success.text})  use
+  step.marker-invalid     #f73f35  ({color.status.danger.text})  use
+  step.indicator-invalid  #e53935  ({color.status.danger.border})  use
+  panel.bg                #160b0b  ({color.surface.default})  use
+  panel.border            #531310  ({color.border.default})  use
+  title.text              #ffa2a7  ({color.text.bright})  use
+  text.text               #e99499  ({color.text.default})  use
+  message.text            #f73f35  ({color.status.danger.text})  use
+  next.bg                 #871f19  ({color.action.primary.bg})  use
+  next.text               #f4eeee  ({color.action.primary.text})  use
+  next.bg-hover           #911410  ({color.action.primary.hover-bg})  use
+  next.bg-pressed         #630f0d  ({color.action.primary.pressed-bg})  use
+  next.border             #9e231f  ({color.action.primary.border})  use
+  next.ring               #ffa2a7  ({color.interaction.focus.ring-container})  use
+  back.text               #ffa2a7  ({color.action.secondary.text})  use
+  back.border             #a3676b  ({color.action.secondary.border})  use
+  back.bg-hover           #630f0d  ({color.action.secondary.hover-bg})  use
+  busy.glyph              #f4eeee  ({color.action.primary.text})  use
 
 States: default, hover, focus-visible, current, disabled, invalid, busy
   default: steps in {color.text.default}; complete steps carry the ✓ in {color.status.success.text} [the ✓ glyph; the numbers]

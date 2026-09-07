@@ -6,6 +6,7 @@ export const anchorFor = {
   component: (id) => `c-${id}`,
   family: (id) => `f-${id}`,
   doc: (id) => `d-${id}`,
+  decision: (id) => `d-decisions--${id.toLowerCase()}`,
   token: (path) => `t-${path.replaceAll(".", "-")}`,
   specimen: (id) => `s-${id}`,
   nonExample: (id) => `x-${id}`,

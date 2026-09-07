@@ -1,26 +1,27 @@
 j3w1/theme implementation brief — icon-button
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=
+theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-cvqu3TmPWyLllaZfm15SVeOxi6Q+ji4EeRLA0WomQtA=
 pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/icon-button.json
 spec: spec/components/icon-button.md  site: https://j3w1.github.io/theme/#c-icon-button
 maturity: stable  priority: R1
 
 Summary: A square ghost button whose only content is a 16px line icon; it always carries an accessible name and, as a toggle, aria-pressed.
 
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  root.bg               rgb(0 0 0 / 0%)  ({color.action.secondary.bg})
-  root.text             #e99499  ({color.action.tertiary.text})
-  root.bg-hover         #1c0a09  ({color.action.tertiary.hover-bg})
-  root.bg-active        #420f0c  ({color.interaction.pressed.bg})
-  root.border-active    #e53935  ({color.border.active})
-  root.ring             #e53935  ({color.interaction.focus.ring})
-  root.bg-toggled       #911410  ({color.interaction.selection.bg})
-  root.text-toggled     #f4eeee  ({color.interaction.selection.text})
-  root.border-toggled   #e53935  ({color.border.selected-indicator})
-  root.ring-toggled     #ffa2a7  ({color.interaction.focus.ring-container})
-  root.text-disabled    #8a5559  ({color.text.disabled})
-  root.bg-disabled      #160b0b  ({color.interaction.disabled.bg})
-  root.border-disabled  #7d1310  ({color.border.disabled})
-  icon.stroke           #e99499  ({color.icon.default})
+  root.bg               rgb(0 0 0 / 0%)  ({color.action.secondary.bg})  use
+  root.text             #e99499  ({color.action.tertiary.text})  use
+  root.bg-hover         #1c0a09  ({color.action.tertiary.hover-bg})  use
+  root.bg-active        #420f0c  ({color.interaction.pressed.bg})  use
+  root.border-active    #e53935  ({color.border.active})  use
+  root.ring             #e53935  ({color.interaction.focus.ring})  use
+  root.bg-toggled       #911410  ({color.interaction.selection.bg})  use
+  root.text-toggled     #f4eeee  ({color.interaction.selection.text})  use
+  root.border-toggled   #e53935  ({color.border.selected-indicator})  use
+  root.ring-toggled     #ffa2a7  ({color.interaction.focus.ring-container})  use
+  root.text-disabled    #8a5559  ({color.text.disabled})  use
+  root.bg-disabled      #160b0b  ({color.interaction.disabled.bg})  use
+  root.border-disabled  #7d1310  ({color.border.disabled})  use
+  icon.stroke           #e99499  ({color.icon.default})  use
 
 States: default, hover, focus-visible, active, disabled, toggled, toggled+focus-visible
   default: {color.action.tertiary.text} icon on nothing; transparent 1px border [—]

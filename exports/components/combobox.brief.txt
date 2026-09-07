@@ -1,41 +1,43 @@
 j3w1/theme implementation brief — combobox
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=
+theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-cvqu3TmPWyLllaZfm15SVeOxi6Q+ji4EeRLA0WomQtA=
 pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/combobox.json
 spec: spec/components/combobox.md  site: https://j3w1.github.io/theme/#c-combobox
 maturity: stable  priority: R1
 
 Summary: A text input that filters a listbox of suggestions; the APG combobox with list autocomplete, rendered with the list open.
 
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  root.bg               #0c0909  ({color.surface.input})
-  root.border           #a3676b  ({color.border.control})
-  root.bg-hover         #1c0a09  ({color.interaction.hover.bg})
-  root.border-focus     #e53935  ({color.border.active})
-  root.ring             #e53935  ({color.interaction.focus.ring})
-  root.ring-invalid     #ffa2a7  ({color.interaction.focus.ring-container})
-  root.border-invalid   #e53935  ({color.status.danger.border})
-  root.border-disabled  #7d1310  ({color.border.disabled})
-  root.bg-disabled      #160b0b  ({color.interaction.disabled.bg})
-  input.text            #e99499  ({color.text.default})
-  input.text-disabled   #8a5559  ({color.text.disabled})
-  input.placeholder     #bd787d  ({color.text.placeholder})
-  input.caret           #e99499  ({color.code.caret})
-  toggle.text           #e99499  ({color.action.tertiary.text})
-  toggle.bg-hover       #1c0a09  ({color.action.tertiary.hover-bg})
-  label.text            #ffa2a7  ({color.text.bright})
-  listbox.bg            #241010  ({color.surface.raised})
-  listbox.border        #e53935  ({color.border.overlay})
-  option.text           #e99499  ({color.text.default})
-  option.bg-hover       #630f0d  ({color.interaction.hover.bg-strong})
-  option.text-hover     #f4eeee  ({color.text.link-hover})
-  option.bg-selected    #911410  ({color.interaction.selection.bg})
-  option.text-selected  #f4eeee  ({color.interaction.selection.text})
-  option.ring-selected  #ffa2a7  ({color.interaction.focus.ring-container})
-  group.text            #ad7175  ({color.text.subtle})
-  group.border          #2b0e0d  ({color.border.divider})
-  empty.text            #bd787d  ({color.text.muted})
-  help.text             #bd787d  ({color.text.muted})
-  message.text          #f73f35  ({color.status.danger.text})
+  root.bg               #0c0909  ({color.surface.input})  use
+  root.border           #a3676b  ({color.border.control})  use-and-report (D-007)
+  root.bg-hover         #1c0a09  ({color.interaction.hover.bg})  use
+  root.border-focus     #e53935  ({color.border.active})  use
+  root.ring             #e53935  ({color.interaction.focus.ring})  use
+  root.ring-invalid     #ffa2a7  ({color.interaction.focus.ring-container})  use
+  root.border-invalid   #e53935  ({color.status.danger.border})  use
+  root.border-disabled  #7d1310  ({color.border.disabled})  use
+  root.bg-disabled      #160b0b  ({color.interaction.disabled.bg})  use
+  input.text            #e99499  ({color.text.default})  use
+  input.text-disabled   #8a5559  ({color.text.disabled})  use
+  input.placeholder     #bd787d  ({color.text.placeholder})  use
+  input.caret           #e99499  ({color.code.caret})  use
+  toggle.text           #e99499  ({color.action.tertiary.text})  use
+  toggle.bg-hover       #1c0a09  ({color.action.tertiary.hover-bg})  use
+  label.text            #ffa2a7  ({color.text.bright})  use
+  listbox.bg            #241010  ({color.surface.raised})  use
+  listbox.border        #e53935  ({color.border.overlay})  use-and-report (D-008)
+  option.text           #e99499  ({color.text.default})  use
+  option.bg-hover       #630f0d  ({color.interaction.hover.bg-strong})  use
+  option.text-hover     #f4eeee  ({color.text.link-hover})  use
+  option.bg-selected    #911410  ({color.interaction.selection.bg})  use
+  option.text-selected  #f4eeee  ({color.interaction.selection.text})  use
+  option.ring-selected  #ffa2a7  ({color.interaction.focus.ring-container})  use
+  group.text            #ad7175  ({color.text.subtle})  use
+  group.border          #2b0e0d  ({color.border.divider})  use-and-report (D-008)
+  empty.text            #bd787d  ({color.text.muted})  use
+  help.text             #bd787d  ({color.text.muted})  use
+  message.text          #f73f35  ({color.status.danger.text})  use
+State dependency disclosures: D-007, D-008
 
 States: default, hover, focus-visible, open, closed, selected, invalid, invalid+focus-visible, disabled, no-results
   default: 1px {color.border.control} on {color.surface.input}; list on {color.surface.raised} with a 1px {color.border.overlay} [—]

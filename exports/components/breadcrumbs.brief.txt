@@ -1,22 +1,23 @@
 j3w1/theme implementation brief — breadcrumbs
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=
+theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-cvqu3TmPWyLllaZfm15SVeOxi6Q+ji4EeRLA0WomQtA=
 pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/breadcrumbs.json
 spec: spec/components/breadcrumbs.md  site: https://j3w1.github.io/theme/#c-breadcrumbs
 maturity: stable  priority: R1
 
 Summary: The path from the root to the current page as an ordered list of links separated by slashes; the last item is the current page and not a link.
 
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  root.bg            #160b0b  ({color.surface.default})
-  link.text          #ffa2a7  ({color.text.link})
-  link.underline     #dc282e  ({color.text.link-underline})
-  link.text-hover    #f4eeee  ({color.text.link-hover})
-  link.bg-hover      #630f0d  ({color.interaction.hover.bg-strong})
-  link.ring          #e53935  ({color.interaction.focus.ring})
-  current.text       #ffa2a7  ({color.text.bright})
-  separator.text     #bd787d  ({color.text.muted})
-  ellipsis.text      #e99499  ({color.text.default})
-  ellipsis.bg-hover  #1c0a09  ({color.interaction.hover.bg})
+  root.bg            #160b0b  ({color.surface.default})  use
+  link.text          #ffa2a7  ({color.text.link})  use
+  link.underline     #dc282e  ({color.text.link-underline})  use
+  link.text-hover    #f4eeee  ({color.text.link-hover})  use
+  link.bg-hover      #630f0d  ({color.interaction.hover.bg-strong})  use
+  link.ring          #e53935  ({color.interaction.focus.ring})  use
+  current.text       #ffa2a7  ({color.text.bright})  use
+  separator.text     #bd787d  ({color.text.muted})  use
+  ellipsis.text      #e99499  ({color.text.default})  use
+  ellipsis.bg-hover  #1c0a09  ({color.interaction.hover.bg})  use
 
 States: default, hover, focus-visible, current, truncated
   default: links {color.text.link}, 1px underline; separators {color.text.muted}; current {color.text.bright} [underline on links; none on the current page]

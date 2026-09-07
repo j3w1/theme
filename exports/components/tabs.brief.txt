@@ -1,24 +1,25 @@
 j3w1/theme implementation brief — tabs
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=
+theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-cvqu3TmPWyLllaZfm15SVeOxi6Q+ji4EeRLA0WomQtA=
 pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/tabs.json
 spec: spec/components/tabs.md  site: https://j3w1.github.io/theme/#c-tabs
 maturity: stable  priority: R1
 
 Summary: A tablist of buttons that switches between panels in place; the selected tab carries a 2px indicator bar and bright text, never a fill.
 
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  list.bg                 #160b0b  ({color.surface.default})
-  list.border             #2b0e0d  ({color.border.divider})
-  tab.text                #e99499  ({color.text.default})
-  tab.text-selected       #ffa2a7  ({color.text.bright})
-  tab.text-disabled       #8a5559  ({color.text.disabled})
-  tab.bg-hover            #1c0a09  ({color.interaction.hover.bg})
-  tab.bg-pressed          #420f0c  ({color.interaction.pressed.bg})
-  tab.indicator           #e53935  ({color.border.selected-indicator})
-  tab.indicator-inactive  #9e231f  ({color.border.selected-indicator-inactive})
-  tab.ring                #e53935  ({color.interaction.focus.ring})
-  panel.bg                #160b0b  ({color.surface.default})
-  panel.text              #e99499  ({color.text.default})
+  list.bg                 #160b0b  ({color.surface.default})  use
+  list.border             #2b0e0d  ({color.border.divider})  use-and-report (D-008)
+  tab.text                #e99499  ({color.text.default})  use
+  tab.text-selected       #ffa2a7  ({color.text.bright})  use
+  tab.text-disabled       #8a5559  ({color.text.disabled})  use
+  tab.bg-hover            #1c0a09  ({color.interaction.hover.bg})  use
+  tab.bg-pressed          #420f0c  ({color.interaction.pressed.bg})  use
+  tab.indicator           #e53935  ({color.border.selected-indicator})  use
+  tab.indicator-inactive  #9e231f  ({color.border.selected-indicator-inactive})  use
+  tab.ring                #e53935  ({color.interaction.focus.ring})  use
+  panel.bg                #160b0b  ({color.surface.default})  use
+  panel.text              #e99499  ({color.text.default})  use
 
 States: default, hover, focus-visible, selected, selected+focus-visible, selected+container-inactive, disabled
   default: text {color.text.default}; transparent 2px bottom edge [—]

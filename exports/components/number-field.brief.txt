@@ -1,34 +1,36 @@
 j3w1/theme implementation brief — number-field
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=
+theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-cvqu3TmPWyLllaZfm15SVeOxi6Q+ji4EeRLA0WomQtA=
 pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/number-field.json
 spec: spec/components/number-field.md  site: https://j3w1.github.io/theme/#c-number-field
 maturity: stable  priority: R1
 
 Summary: The text-field box around a native number input with right-aligned tabular digits, an optional unit affix and two square stepper buttons that replace the host spinner.
 
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  root.bg               #0c0909  ({color.surface.input})
-  root.border           #a3676b  ({color.border.control})
-  root.bg-hover         #1c0a09  ({color.interaction.hover.bg})
-  root.border-focus     #e53935  ({color.border.active})
-  root.ring             #e53935  ({color.interaction.focus.ring})
-  root.ring-invalid     #ffa2a7  ({color.interaction.focus.ring-container})
-  root.border-invalid   #e53935  ({color.status.danger.border})
-  root.border-disabled  #7d1310  ({color.border.disabled})
-  root.bg-disabled      #160b0b  ({color.interaction.disabled.bg})
-  root.border-readonly  #2b0e0d  ({color.border.divider})
-  root.bg-readonly      #0c0909  ({color.surface.canvas})
-  input.text            #e99499  ({color.text.default})
-  input.text-disabled   #8a5559  ({color.text.disabled})
-  input.caret           #e99499  ({color.code.caret})
-  unit.text             #bd787d  ({color.text.muted})
-  unit.border           #2b0e0d  ({color.border.divider})
-  action.text           #e99499  ({color.action.tertiary.text})
-  action.bg-hover       #1c0a09  ({color.action.tertiary.hover-bg})
-  action.border         #2b0e0d  ({color.border.divider})
-  label.text            #ffa2a7  ({color.text.bright})
-  help.text             #bd787d  ({color.text.muted})
-  message.text          #f73f35  ({color.status.danger.text})
+  root.bg               #0c0909  ({color.surface.input})  use
+  root.border           #a3676b  ({color.border.control})  use-and-report (D-007)
+  root.bg-hover         #1c0a09  ({color.interaction.hover.bg})  use
+  root.border-focus     #e53935  ({color.border.active})  use
+  root.ring             #e53935  ({color.interaction.focus.ring})  use
+  root.ring-invalid     #ffa2a7  ({color.interaction.focus.ring-container})  use
+  root.border-invalid   #e53935  ({color.status.danger.border})  use
+  root.border-disabled  #7d1310  ({color.border.disabled})  use
+  root.bg-disabled      #160b0b  ({color.interaction.disabled.bg})  use
+  root.border-readonly  #2b0e0d  ({color.border.divider})  use-and-report (D-008)
+  root.bg-readonly      #0c0909  ({color.surface.canvas})  use
+  input.text            #e99499  ({color.text.default})  use
+  input.text-disabled   #8a5559  ({color.text.disabled})  use
+  input.caret           #e99499  ({color.code.caret})  use
+  unit.text             #bd787d  ({color.text.muted})  use
+  unit.border           #2b0e0d  ({color.border.divider})  use-and-report (D-008)
+  action.text           #e99499  ({color.action.tertiary.text})  use
+  action.bg-hover       #1c0a09  ({color.action.tertiary.hover-bg})  use
+  action.border         #2b0e0d  ({color.border.divider})  use-and-report (D-008)
+  label.text            #ffa2a7  ({color.text.bright})  use
+  help.text             #bd787d  ({color.text.muted})  use
+  message.text          #f73f35  ({color.status.danger.text})  use
+State dependency disclosures: D-007
 
 States: default, hover, focus-visible, invalid, invalid+focus-visible, disabled, read-only
   default: 1px {color.border.control} on {color.surface.input}; digits {color.text.default}; unit {color.text.muted}; stepper glyphs {color.action.tertiary.text} [—]

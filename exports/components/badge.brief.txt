@@ -1,34 +1,35 @@
 j3w1/theme implementation brief — badge
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=
+theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-cvqu3TmPWyLllaZfm15SVeOxi6Q+ji4EeRLA0WomQtA=
 pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/badge.json
 spec: spec/components/badge.md  site: https://j3w1.github.io/theme/#c-badge
 maturity: stable  priority: R1
 
 Summary: A small square label for a status or a count; every status carries its glyph and its fill, the outline form uses the status border, and an empty badge is a dot with a name.
 
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  danger.bg             #dc282e  ({color.status.danger.fill})
-  danger.text           #f9faf9  ({color.status.danger.on-fill})
-  danger.border         #e53935  ({color.status.danger.border})
-  danger.outline-text   #f73f35  ({color.status.danger.text})
-  warning.bg            #c9973f  ({color.status.warning.fill})
-  warning.text          #0c0909  ({color.status.warning.on-fill})
-  warning.border        #c9973f  ({color.status.warning.border})
-  warning.outline-text  #c9973f  ({color.status.warning.text})
-  success.bg            #86a46f  ({color.status.success.fill})
-  success.text          #0c0909  ({color.status.success.on-fill})
-  success.border        #86a46f  ({color.status.success.border})
-  success.outline-text  #86a46f  ({color.status.success.text})
-  info.bg               #7e9ebb  ({color.status.info.fill})
-  info.text             #0c0909  ({color.status.info.on-fill})
-  info.border           #7e9ebb  ({color.status.info.border})
-  info.outline-text     #7e9ebb  ({color.status.info.text})
-  neutral.bg            #a3676b  ({color.status.neutral.fill})
-  neutral.text          #000000  ({color.status.neutral.on-fill})
-  neutral.border        #a3676b  ({color.status.neutral.border})
-  neutral.outline-text  #bd787d  ({color.status.neutral.text})
-  count.bg              #871f19  ({color.action.primary.bg})
-  count.text            #f4eeee  ({color.action.primary.text})
+  danger.bg             #dc282e  ({color.status.danger.fill})  use
+  danger.text           #f9faf9  ({color.status.danger.on-fill})  use
+  danger.border         #e53935  ({color.status.danger.border})  use
+  danger.outline-text   #f73f35  ({color.status.danger.text})  use
+  warning.bg            #c9973f  ({color.status.warning.fill})  use
+  warning.text          #0c0909  ({color.status.warning.on-fill})  use
+  warning.border        #c9973f  ({color.status.warning.border})  use
+  warning.outline-text  #c9973f  ({color.status.warning.text})  use
+  success.bg            #86a46f  ({color.status.success.fill})  use
+  success.text          #0c0909  ({color.status.success.on-fill})  use
+  success.border        #86a46f  ({color.status.success.border})  use
+  success.outline-text  #86a46f  ({color.status.success.text})  use
+  info.bg               #7e9ebb  ({color.status.info.fill})  use
+  info.text             #0c0909  ({color.status.info.on-fill})  use
+  info.border           #7e9ebb  ({color.status.info.border})  use
+  info.outline-text     #7e9ebb  ({color.status.info.text})  use
+  neutral.bg            #a3676b  ({color.status.neutral.fill})  use
+  neutral.text          #000000  ({color.status.neutral.on-fill})  use
+  neutral.border        #a3676b  ({color.status.neutral.border})  use
+  neutral.outline-text  #bd787d  ({color.status.neutral.text})  use
+  count.bg              #871f19  ({color.action.primary.bg})  use
+  count.text            #f4eeee  ({color.action.primary.text})  use
 
 States: default, empty
   default: fill, glyph and text for the status; or the outline form [the glyph; the text]

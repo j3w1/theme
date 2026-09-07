@@ -1,23 +1,24 @@
 j3w1/theme implementation brief — field
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=
+theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-cvqu3TmPWyLllaZfm15SVeOxi6Q+ji4EeRLA0WomQtA=
 pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/field.json
 spec: spec/components/field.md  site: https://j3w1.github.io/theme/#c-field
 maturity: stable  priority: R1
 
 Summary: The label, control, help and message wrapper that every form control sits in; it fixes the stacking order, the required mark, the description links and the invalid message.
 
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  root.text                #e99499  ({color.text.default})
-  label.text               #ffa2a7  ({color.text.bright})
-  label.required-mark      #f73f35  ({color.status.danger.text})
-  control.bg               #0c0909  ({color.surface.input})
-  control.border           #a3676b  ({color.border.control})
-  control.border-invalid   #e53935  ({color.status.danger.border})
-  control.text-disabled    #8a5559  ({color.text.disabled})
-  control.bg-disabled      #160b0b  ({color.interaction.disabled.bg})
-  control.border-disabled  #7d1310  ({color.border.disabled})
-  help.text                #bd787d  ({color.text.muted})
-  message.text             #f73f35  ({color.status.danger.text})
+  root.text                #e99499  ({color.text.default})  use
+  label.text               #ffa2a7  ({color.text.bright})  use
+  label.required-mark      #f73f35  ({color.status.danger.text})  use
+  control.bg               #0c0909  ({color.surface.input})  use
+  control.border           #a3676b  ({color.border.control})  use-and-report (D-007)
+  control.border-invalid   #e53935  ({color.status.danger.border})  use
+  control.text-disabled    #8a5559  ({color.text.disabled})  use
+  control.bg-disabled      #160b0b  ({color.interaction.disabled.bg})  use
+  control.border-disabled  #7d1310  ({color.border.disabled})  use
+  help.text                #bd787d  ({color.text.muted})  use
+  message.text             #f73f35  ({color.status.danger.text})  use
 
 States: default, required, invalid, disabled
   default: label {color.text.bright}; help {color.text.muted}; control as its own component [—]

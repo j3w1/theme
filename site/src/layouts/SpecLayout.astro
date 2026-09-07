@@ -19,7 +19,7 @@ const buildCommit = (process.env.GITHUB_SHA ?? "").slice(0, 7);
 const inspectorData = Object.fromEntries(
   Object.entries(profiles).map(([id, p]) => [
     id,
-    Object.fromEntries(Object.entries(p.tokens).map(([path, t]) => [path, [t.css, t.aliasOf ?? "", t.status, t.description ?? ""]])),
+    Object.fromEntries(Object.entries(p.tokens).map(([path, t]) => [path, [t.css, t.aliasOf ?? "", t.status, t.description ?? "", t.eligibility, t.deprecated]])),
   ]),
 );
 ---

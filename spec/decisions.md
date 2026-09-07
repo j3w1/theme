@@ -180,3 +180,25 @@ schemas under `schemas/json/` and the README marker blocks are generated and
 committed; `npm run check` fails CI on drift or orphan files. Outputs contain no
 timestamps and no commit hashes so two runs are byte-identical. `dist/` is never
 committed.
+
+## D-013 Consumption eligibility is separate from approval
+
+Status: proposed (formal log status remains owner-controlled).
+
+**Context.** Issue #4 found conflicting instructions to use and to prohibit
+pending roles in the approved default profile. Alternatives were to block
+pending roles until individually approved, or to use pinned values with disclosure.
+
+**Owner direction, 2026-09-07.** During Phase 1 planning the owner selected
+"Use and report" and "Block new use" for deprecated roles, then authorized
+implementation. That explicit direction governs consumption without approving
+pending token values or changing D-005 through D-012.
+
+**Policy.** An approved default profile's pending roles may be used at a pinned
+revision with disclosure of their pending decision IDs, including dependencies.
+Proposed profiles remain preview-only and blocked for delivery. Heritage profiles
+are historical-only. Deprecated or heritage roles cannot be newly mapped in an
+approved profile; no substitute is implied. Ordinary observed/approved roles
+remain usable within their documented scope; primitives remain inspection-only.
+Release version, profile status, role status, deprecation and eligibility are
+separate facts. The generator emits the policy and eligibility metadata.

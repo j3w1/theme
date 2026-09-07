@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+- #4: unify pending-role consumption around pinned use-and-report, separate
+  approval from deprecation and release numbering, and expose decision links.
+  Downstream: resolved tokens and component values gain additive `decisionId`
+  and `eligibility` metadata; existing status/value fields and schemaVersion 1
+  retain their meanings. Blocked mappings have no automatic replacement.
+
 All notable changes to the j3w1 theme specification. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versions follow the
 policy in `README.md` (roles and approved values are the public contract).

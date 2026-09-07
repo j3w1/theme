@@ -1,37 +1,38 @@
 j3w1/theme implementation brief — file-input
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=
+theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-cvqu3TmPWyLllaZfm15SVeOxi6Q+ji4EeRLA0WomQtA=
 pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/file-input.json
 spec: spec/components/file-input.md  site: https://j3w1.github.io/theme/#c-file-input
 maturity: stable  priority: R1
 
 Summary: A native file input behind a label styled as a secondary button, optionally inside a drop zone, with a list of chosen files and per-file errors.
 
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  button.bg               rgb(0 0 0 / 0%)  ({color.action.secondary.bg})
-  button.text             #ffa2a7  ({color.action.secondary.text})
-  button.border           #a3676b  ({color.action.secondary.border})
-  button.bg-hover         #630f0d  ({color.action.secondary.hover-bg})
-  button.bg-pressed       #420f0c  ({color.action.secondary.pressed-bg})
-  button.ring             #e53935  ({color.interaction.focus.ring})
-  button.border-invalid   #e53935  ({color.status.danger.border})
-  button.text-disabled    #8a5559  ({color.text.disabled})
-  button.border-disabled  #7d1310  ({color.border.disabled})
-  button.bg-disabled      #160b0b  ({color.interaction.disabled.bg})
-  zone.border             #e53935  ({color.interaction.drop-target})
-  zone.bg-drop-target     rgb(145 20 16 / 12%)  ({color.interaction.marquee})
-  zone.hint               #bd787d  ({color.text.muted})
-  label.text              #ffa2a7  ({color.text.bright})
-  status.text             #bd787d  ({color.text.muted})
-  list.text               #e99499  ({color.text.default})
-  list.divider            #2b0e0d  ({color.border.divider})
-  list.size               #ad7175  ({color.text.subtle})
-  list.error              #f73f35  ({color.status.danger.text})
-  remove.text             #e99499  ({color.action.tertiary.text})
-  remove.bg-hover         #1c0a09  ({color.action.tertiary.hover-bg})
-  progress.track          #420f0c  ({color.interaction.pressed.bg})
-  progress.stripe         #871f19  ({color.action.primary.bg})
-  help.text               #bd787d  ({color.text.muted})
-  message.text            #f73f35  ({color.status.danger.text})
+  button.bg               rgb(0 0 0 / 0%)  ({color.action.secondary.bg})  use
+  button.text             #ffa2a7  ({color.action.secondary.text})  use
+  button.border           #a3676b  ({color.action.secondary.border})  use
+  button.bg-hover         #630f0d  ({color.action.secondary.hover-bg})  use
+  button.bg-pressed       #420f0c  ({color.action.secondary.pressed-bg})  use
+  button.ring             #e53935  ({color.interaction.focus.ring})  use
+  button.border-invalid   #e53935  ({color.status.danger.border})  use
+  button.text-disabled    #8a5559  ({color.text.disabled})  use
+  button.border-disabled  #7d1310  ({color.border.disabled})  use
+  button.bg-disabled      #160b0b  ({color.interaction.disabled.bg})  use
+  zone.border             #e53935  ({color.interaction.drop-target})  use
+  zone.bg-drop-target     rgb(145 20 16 / 12%)  ({color.interaction.marquee})  use
+  zone.hint               #bd787d  ({color.text.muted})  use
+  label.text              #ffa2a7  ({color.text.bright})  use
+  status.text             #bd787d  ({color.text.muted})  use
+  list.text               #e99499  ({color.text.default})  use
+  list.divider            #2b0e0d  ({color.border.divider})  use-and-report (D-008)
+  list.size               #ad7175  ({color.text.subtle})  use
+  list.error              #f73f35  ({color.status.danger.text})  use
+  remove.text             #e99499  ({color.action.tertiary.text})  use
+  remove.bg-hover         #1c0a09  ({color.action.tertiary.hover-bg})  use
+  progress.track          #420f0c  ({color.interaction.pressed.bg})  use
+  progress.stripe         #871f19  ({color.action.primary.bg})  use
+  help.text               #bd787d  ({color.text.muted})  use
+  message.text            #f73f35  ({color.status.danger.text})  use
 
 States: default, hover, focus-visible, drop-target, invalid, disabled, loading
   default: button: 1px {color.action.secondary.border} outline, text {color.action.secondary.text}; zone: 1px dashed {color.interaction.drop-target} [—]

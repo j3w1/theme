@@ -3,6 +3,7 @@
    (with the contrast report) → portability (support table, coverage ledger)
    → references → for agents → decisions. Everything normative is in the
    initial HTML; scripts only enhance. */
+import { POLICY_TEXT, releaseOf } from "../../../scripts/lib/eligibility.mjs";
 import { getCollection, render } from "astro:content";
 import SpecLayout from "../layouts/SpecLayout.astro";
 import Toc from "../components/Toc.astro";
@@ -61,7 +62,7 @@ const tocExtra = [
       <span>sources {Object.entries(repositories).map(([id, r]) => <><code>{r.repo}@{r.revision.slice(0, 7)}</code> </>)}</span>
       <span><a href="https://github.com/j3w1/theme">github.com/j3w1/theme</a></span>
     </p>
-    {theme.version.includes("-") && <p class="banner">Pre-release <code>{theme.version}</code>. Values and roles marked PROPOSED are not approved; see the decision log.</p>}
+    <p class="banner" id="consumption-policy">{releaseOf(theme.version).stability}: <code>{theme.version}</code>. {POLICY_TEXT}</p>
     <div class="controls js-only" id="controls">
       <label>Search components, documents and tokens
         <input type="search" id="search" placeholder="e.g. focus ring, text-field, #e53935" autocomplete="off" />

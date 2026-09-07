@@ -1,16 +1,18 @@
 j3w1/theme implementation brief — skip-link
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=
+theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-cvqu3TmPWyLllaZfm15SVeOxi6Q+ji4EeRLA0WomQtA=
 pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/skip-link.json
 spec: spec/components/skip-link.md  site: https://j3w1.github.io/theme/#c-skip-link
 maturity: stable  priority: R1
 
 Summary: The first tab stop of a page, hidden until it receives keyboard focus, that jumps past the chrome to the main content.
 
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  root.bg      #241010  ({color.surface.raised})
-  root.text    #ffa2a7  ({color.text.bright})
-  root.border  #e53935  ({color.border.overlay})
-  root.ring    #e53935  ({color.interaction.focus.ring})
+  root.bg      #241010  ({color.surface.raised})  use
+  root.text    #ffa2a7  ({color.text.bright})  use
+  root.border  #e53935  ({color.border.overlay})  use-and-report (D-008)
+  root.ring    #e53935  ({color.interaction.focus.ring})  use
+State dependency disclosures: D-008
 
 States: default, focus-visible
   default: off-screen; nothing is painted [the link is still in the tab order and the accessibility tree]

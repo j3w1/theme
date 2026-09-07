@@ -1,44 +1,45 @@
 j3w1/theme implementation brief — i3-window-frame
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=
+theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-cvqu3TmPWyLllaZfm15SVeOxi6Q+ji4EeRLA0WomQtA=
 pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/i3-window-frame.json
 spec: spec/components/i3-window-frame.md  site: https://j3w1.github.io/theme/#c-i3-window-frame
 maturity: stable  priority: R1
 
 Summary: The workstation frame; an i3 bar with workspaces and Chinese i3status labels above the terminal and code-editor components as tiled, tabbed or floating windows behind i3 title bars.
 
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  root.bg                      #000000  ({color.surface.desktop})
-  root.border                  #531310  ({color.border.default})
-  bar.bg                       #100909  ({color.surface.chrome})
-  bar.text                     #e99499  ({color.text.default})
-  bar.rule                     #2b0e0d  ({color.border.divider})
-  workspace.text               #e99499  ({color.text.default})
-  workspace.selected-bg        #911410  ({color.interaction.selection.bg})
-  workspace.selected-text      #f4eeee  ({color.interaction.selection.text})
-  workspace.bg-hover           #1c0a09  ({color.interaction.hover.bg})
-  workspace.ring               #e53935  ({color.interaction.focus.ring})
-  workspace.ring-on-selection  #ffa2a7  ({color.interaction.focus.ring-container})
-  workspace.urgent-bg          #dc282e  ({color.status.danger.fill})
-  workspace.urgent-text        #f9faf9  ({color.status.danger.on-fill})
-  status.separator             #bd787d  ({color.text.muted})
-  status.glyph                 #a3676b  ({color.icon.decorative})
-  clock.text                   #ffa2a7  ({color.text.bright})
-  area.bg                      #000000  ({color.surface.desktop})
-  window.bg                    #0c0909  ({color.surface.canvas})
-  window.border                #531310  ({color.border.default})
-  window.border-focused        #e53935  ({color.border.active})
-  window.ring                  #ffa2a7  ({color.interaction.focus.ring-container})
-  title.bg                     #100909  ({color.surface.chrome})
-  title.text                   #bd787d  ({color.text.muted})
-  title.bg-focused             #1c0a09  ({color.surface.chrome-alt})
-  title.text-focused           #ffa2a7  ({color.text.bright})
-  tab.indicator                #e53935  ({color.border.selected-indicator})
-  tab.indicator-inactive       #9e231f  ({color.border.selected-indicator-inactive})
-  floating.border              #e53935  ({color.border.overlay})
-  floating.shadow              0px 6px 22px 0px rgb(0 0 0 / 55%)  ({shadow.floating})
-  terminal.bg                  #0c0909  ({color.terminal.bg})
-  terminal.text                #e99499  ({color.terminal.fg})
-  editor.bg                    #0c0909  ({color.code.bg})
+  root.bg                      #000000  ({color.surface.desktop})  use
+  root.border                  #531310  ({color.border.default})  use
+  bar.bg                       #100909  ({color.surface.chrome})  use
+  bar.text                     #e99499  ({color.text.default})  use
+  bar.rule                     #2b0e0d  ({color.border.divider})  use-and-report (D-008)
+  workspace.text               #e99499  ({color.text.default})  use
+  workspace.selected-bg        #911410  ({color.interaction.selection.bg})  use
+  workspace.selected-text      #f4eeee  ({color.interaction.selection.text})  use
+  workspace.bg-hover           #1c0a09  ({color.interaction.hover.bg})  use
+  workspace.ring               #e53935  ({color.interaction.focus.ring})  use
+  workspace.ring-on-selection  #ffa2a7  ({color.interaction.focus.ring-container})  use
+  workspace.urgent-bg          #dc282e  ({color.status.danger.fill})  use
+  workspace.urgent-text        #f9faf9  ({color.status.danger.on-fill})  use
+  status.separator             #bd787d  ({color.text.muted})  use
+  status.glyph                 #a3676b  ({color.icon.decorative})  use
+  clock.text                   #ffa2a7  ({color.text.bright})  use
+  area.bg                      #000000  ({color.surface.desktop})  use
+  window.bg                    #0c0909  ({color.surface.canvas})  use
+  window.border                #531310  ({color.border.default})  use
+  window.border-focused        #e53935  ({color.border.active})  use
+  window.ring                  #ffa2a7  ({color.interaction.focus.ring-container})  use
+  title.bg                     #100909  ({color.surface.chrome})  use
+  title.text                   #bd787d  ({color.text.muted})  use
+  title.bg-focused             #1c0a09  ({color.surface.chrome-alt})  use
+  title.text-focused           #ffa2a7  ({color.text.bright})  use
+  tab.indicator                #e53935  ({color.border.selected-indicator})  use
+  tab.indicator-inactive       #9e231f  ({color.border.selected-indicator-inactive})  use
+  floating.border              #e53935  ({color.border.overlay})  use-and-report (D-008)
+  floating.shadow              0px 6px 22px 0px rgb(0 0 0 / 55%)  ({shadow.floating})  use
+  terminal.bg                  #0c0909  ({color.terminal.bg})  use
+  terminal.text                #e99499  ({color.terminal.fg})  use
+  editor.bg                    #0c0909  ({color.code.bg})  use
 
 States: default, focus-visible, selected, container-inactive, error
   default: the terminal window focused: {color.border.active} frame and the bright title; the editor at rest; workspace 1 filled [the title text; `aria-selected`]

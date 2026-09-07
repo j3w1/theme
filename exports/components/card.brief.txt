@@ -1,23 +1,25 @@
 j3w1/theme implementation brief — card
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=
+theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-cvqu3TmPWyLllaZfm15SVeOxi6Q+ji4EeRLA0WomQtA=
 pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/card.json
 spec: spec/components/card.md  site: https://j3w1.github.io/theme/#c-card
 maturity: stable  priority: R1
 
 Summary: A bordered panel that groups a title, body and metadata; a link card makes the whole panel one link, a selectable card is an option with the selection fill.
 
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  root.bg            #160b0b  ({color.surface.default})
-  root.border        #531310  ({color.border.default})
-  root.bg-hover      #1c0a09  ({color.interaction.hover.bg})
-  root.border-hover  #a3676b  ({color.border.control})
-  root.ring          #ffa2a7  ({color.interaction.focus.ring-container})
-  title.text         #ffa2a7  ({color.text.bright})
-  body.text          #e99499  ({color.text.default})
-  meta.text          #bd787d  ({color.text.muted})
-  selected.bg        #911410  ({color.interaction.selection.bg})
-  selected.text      #f4eeee  ({color.interaction.selection.text})
-  selected.ring      #ffa2a7  ({color.interaction.focus.ring-container})
+  root.bg            #160b0b  ({color.surface.default})  use
+  root.border        #531310  ({color.border.default})  use
+  root.bg-hover      #1c0a09  ({color.interaction.hover.bg})  use
+  root.border-hover  #a3676b  ({color.border.control})  use-and-report (D-007)
+  root.ring          #ffa2a7  ({color.interaction.focus.ring-container})  use
+  title.text         #ffa2a7  ({color.text.bright})  use
+  body.text          #e99499  ({color.text.default})  use
+  meta.text          #bd787d  ({color.text.muted})  use
+  selected.bg        #911410  ({color.interaction.selection.bg})  use
+  selected.text      #f4eeee  ({color.interaction.selection.text})  use
+  selected.ring      #ffa2a7  ({color.interaction.focus.ring-container})  use
+State dependency disclosures: D-007
 
 States: default, hover, focus-visible, selected, selected+focus-visible
   default: 1px {color.border.default} on {color.surface.default} [—]

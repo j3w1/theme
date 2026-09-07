@@ -3,7 +3,8 @@
    read from the JSON the layout embedded. Escape closes it. The same data is
    in the token tables, so nothing is lost without JavaScript. */
 
-type Row = [css: string, aliasOf: string, status: string, description: string];
+import { anchorFor } from "../../../scripts/lib/anchors.mjs";
+type Row = [css: string, aliasOf: string, status: string, description: string, eligibility: { action: string; reason: string; decisionIds: string[] }, deprecated: boolean | string];
 type Data = { defaultProfile: string; version: string; profiles: Record<string, Record<string, Row>> };
 
 export const initInspector = (): void => {
@@ -18,7 +19,7 @@ export const initInspector = (): void => {
     const profiles = Object.entries(data.profiles);
     const main = data.profiles[data.defaultProfile]?.[path];
     if (!main) return;
-    const rows = profiles.map(([id, tokens]) => `<dt>${id}</dt><dd><code>${tokens[path]?.[0] ?? "—"}</code>${tokens[path]?.[2] === "proposed" ? ' <span class="tag tag-proposed">proposed</span>' : ""}</dd>`).join("");
+    const rows = profiles.map(([id, tokens]) => `<dt>${id}</dt><dd><code>${tokens[path]?.[0] ?? "—"}</code>${tokens[path]?.[2] === "proposed" ? ' <span class="tag tag-proposed">proposed</span>' : ""} ${tokens[path]?.[4].action ?? "blocked"}${tokens[path]?.[5] ? " deprecated" : ""} ${(tokens[path]?.[4].decisionIds ?? []).map((id) => `<a href="#${anchorFor.decision(id)}">${id}</a>`).join(" ")}</dd>`).join("");
     box.innerHTML = `<dl><dt>role</dt><dd><code>${path}</code></dd><dt>css</dt><dd><code>--${path.replaceAll(".", "-")}</code></dd>${rows}<dt>alias of</dt><dd><code>${main[1] || "—"}</code></dd><dt>status</dt><dd>${main[2]}</dd>${main[3] ? `<dt>use</dt><dd>${main[3]}</dd>` : ""}<dt>anchor</dt><dd><a href="#t-${path.replaceAll(".", "-")}">#t-${path.replaceAll(".", "-")}</a></dd></dl>`;
     const rect = target.getBoundingClientRect();
     box.hidden = false;

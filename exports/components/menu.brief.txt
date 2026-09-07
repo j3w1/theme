@@ -1,32 +1,34 @@
 j3w1/theme implementation brief — menu
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=
+theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-cvqu3TmPWyLllaZfm15SVeOxi6Q+ji4EeRLA0WomQtA=
 pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/menu.json
 spec: spec/components/menu.md  site: https://j3w1.github.io/theme/#c-menu
 maturity: stable  priority: R1
 
 Summary: A menu button that opens a list of actions on the raised surface inside a 1px overlay border; the active item is the selection fill and check items show a glyph.
 
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  button.text         #e99499  ({color.text.default})
-  button.bg           #160b0b  ({color.surface.default})
-  button.border       #a3676b  ({color.border.control})
-  button.bg-hover     #1c0a09  ({color.interaction.hover.bg})
-  button.bg-open      #420f0c  ({color.interaction.pressed.bg})
-  button.border-open  #e53935  ({color.border.active})
-  button.ring         #e53935  ({color.interaction.focus.ring})
-  surface.bg          #241010  ({color.surface.raised})
-  surface.border      #e53935  ({color.border.overlay})
-  item.text           #e99499  ({color.text.default})
-  item.bg-hover       #630f0d  ({color.interaction.hover.bg-strong})
-  item.text-hover     #f4eeee  ({color.text.link-hover})
-  item.text-disabled  #8a5559  ({color.text.disabled})
-  active.bg           #911410  ({color.interaction.selection.bg})
-  active.text         #f4eeee  ({color.interaction.selection.text})
-  active.ring         #ffa2a7  ({color.interaction.focus.ring-container})
-  check.glyph         #ffa2a7  ({color.text.bright})
-  shortcut.text       #bd787d  ({color.text.muted})
-  separator.color     #2b0e0d  ({color.border.divider})
-  chevron.color       #a3676b  ({color.icon.decorative})
+  button.text         #e99499  ({color.text.default})  use
+  button.bg           #160b0b  ({color.surface.default})  use
+  button.border       #a3676b  ({color.border.control})  use-and-report (D-007)
+  button.bg-hover     #1c0a09  ({color.interaction.hover.bg})  use
+  button.bg-open      #420f0c  ({color.interaction.pressed.bg})  use
+  button.border-open  #e53935  ({color.border.active})  use
+  button.ring         #e53935  ({color.interaction.focus.ring})  use
+  surface.bg          #241010  ({color.surface.raised})  use
+  surface.border      #e53935  ({color.border.overlay})  use-and-report (D-008)
+  item.text           #e99499  ({color.text.default})  use
+  item.bg-hover       #630f0d  ({color.interaction.hover.bg-strong})  use
+  item.text-hover     #f4eeee  ({color.text.link-hover})  use
+  item.text-disabled  #8a5559  ({color.text.disabled})  use
+  active.bg           #911410  ({color.interaction.selection.bg})  use
+  active.text         #f4eeee  ({color.interaction.selection.text})  use
+  active.ring         #ffa2a7  ({color.interaction.focus.ring-container})  use
+  check.glyph         #ffa2a7  ({color.text.bright})  use
+  shortcut.text       #bd787d  ({color.text.muted})  use
+  separator.color     #2b0e0d  ({color.border.divider})  use-and-report (D-008)
+  chevron.color       #a3676b  ({color.icon.decorative})  use
+State dependency disclosures: D-007, D-008
 
 States: default, hover, focus-visible, open, closed, disabled, checked, selected
   default: the button at rest; the list on {color.surface.raised} with the {color.border.overlay} frame [—]

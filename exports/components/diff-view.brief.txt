@@ -1,38 +1,40 @@
 j3w1/theme implementation brief — diff-view
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-7AfSaRLzDxySOSUMyoNXLzBLPUgaN3r+wiKRV9uYZJc=
+theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-cvqu3TmPWyLllaZfm15SVeOxi6Q+ji4EeRLA0WomQtA=
 pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/diff-view.json
 spec: spec/components/diff-view.md  site: https://j3w1.github.io/theme/#c-diff-view
 maturity: stable  priority: R1
 
 Summary: Unified and split diffs as native tables; added, removed and modified rows keep their textual gutter marker, word-level changes are underlines, conflicts are double borders.
 
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  root.bg            #0c0909  ({color.code.bg})
-  root.border        #a3676b  ({color.border.control})
-  root.text          #e99499  ({color.text.default})
-  line-number.text   #bd787d  ({color.text.muted})
-  line-number.rule   #2b0e0d  ({color.code.gutter-rule})
-  row.divider        #2b0e0d  ({color.border.divider})
-  added.bg           #0f1a0e  ({color.diff.added.bg})
-  added.gutter       #86a46f  ({color.diff.added.gutter})
-  added.emphasis     #86a46f  ({color.diff.added.emphasis})
-  removed.bg         #2b0e0d  ({color.diff.removed.bg})
-  removed.gutter     #e53935  ({color.diff.removed.gutter})
-  removed.emphasis   #e53935  ({color.diff.removed.emphasis})
-  modified.bg        #1f1a0c  ({color.diff.modified.bg})
-  modified.gutter    #c9973f  ({color.diff.modified.gutter})
-  hunk.bg            #241010  ({color.diff.header-bg})
-  hunk.text          #bd787d  ({color.text.muted})
-  hunk.context       #e99499  ({color.text.default})
-  conflict.border    #f73f35  ({color.diff.conflict-border})
-  conflict.marker    #ffa2a7  ({color.text.bright})
-  fold.text          #ffa2a7  ({color.text.link})
-  fold.bg-hover      #630f0d  ({color.interaction.hover.bg-strong})
-  row.bg-hover       #1c0a09  ({color.interaction.hover.bg})
-  row.ring           #e53935  ({color.interaction.focus.ring})
-  row.bg-selected    #911410  ({color.interaction.selection.bg})
-  row.text-selected  #f4eeee  ({color.interaction.selection.text})
-  row.ring-selected  #ffa2a7  ({color.interaction.focus.ring-container})
+  root.bg            #0c0909  ({color.code.bg})  use
+  root.border        #a3676b  ({color.border.control})  use-and-report (D-007)
+  root.text          #e99499  ({color.text.default})  use
+  line-number.text   #bd787d  ({color.text.muted})  use
+  line-number.rule   #2b0e0d  ({color.code.gutter-rule})  use
+  row.divider        #2b0e0d  ({color.border.divider})  use-and-report (D-008)
+  added.bg           #0f1a0e  ({color.diff.added.bg})  use
+  added.gutter       #86a46f  ({color.diff.added.gutter})  use
+  added.emphasis     #86a46f  ({color.diff.added.emphasis})  use
+  removed.bg         #2b0e0d  ({color.diff.removed.bg})  use
+  removed.gutter     #e53935  ({color.diff.removed.gutter})  use
+  removed.emphasis   #e53935  ({color.diff.removed.emphasis})  use
+  modified.bg        #1f1a0c  ({color.diff.modified.bg})  use
+  modified.gutter    #c9973f  ({color.diff.modified.gutter})  use
+  hunk.bg            #241010  ({color.diff.header-bg})  use
+  hunk.text          #bd787d  ({color.text.muted})  use
+  hunk.context       #e99499  ({color.text.default})  use
+  conflict.border    #f73f35  ({color.diff.conflict-border})  use
+  conflict.marker    #ffa2a7  ({color.text.bright})  use
+  fold.text          #ffa2a7  ({color.text.link})  use
+  fold.bg-hover      #630f0d  ({color.interaction.hover.bg-strong})  use
+  row.bg-hover       #1c0a09  ({color.interaction.hover.bg})  use
+  row.ring           #e53935  ({color.interaction.focus.ring})  use
+  row.bg-selected    #911410  ({color.interaction.selection.bg})  use
+  row.text-selected  #f4eeee  ({color.interaction.selection.text})  use
+  row.ring-selected  #ffa2a7  ({color.interaction.focus.ring-container})  use
+State dependency disclosures: D-007
 
 States: default, hover, selected, focus-visible, expanded, collapsed
   default: added rows {color.diff.added.bg} with `+` in {color.diff.added.gutter}; removed {color.diff.removed.bg} with `−` in {color.diff.removed.gutter}; modified {color.diff.modified.bg} with `~` in {color.diff.modified.gutter}; hunk rows {color.diff.header-bg}; conflicts in a 3px double {color.diff.conflict-border} [the markers; the double border]
