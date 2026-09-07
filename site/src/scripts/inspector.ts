@@ -15,6 +15,55 @@ export const initInspector = (): void => {
   const raw = document.getElementById("j3w1-tokens")?.textContent;
   if (!box || !raw) return;
   const data = JSON.parse(raw) as Data;
+  const preview = document.createElement("div");
+  preview.id = "hex-popup";
+  preview.className = "inspector hex-popup";
+  preview.setAttribute("aria-hidden", "true");
+  preview.hidden = true;
+  document.body.append(preview);
+  let circle: HTMLElement | null = null;
+  let pointer = { x: 0, y: 0 };
+  let frame = 0;
+  const closePreview = () => { preview.hidden = true; circle = null; };
+  const placePreview = () => {
+    const { width, height } = preview.getBoundingClientRect();
+    const place = (point: number, size: number, limit: number) => Math.max(8, Math.min(point + 8 + size <= limit - 8 ? point + 8 : point - size - 8, limit - size - 8));
+    preview.style.left = `${place(pointer.x, width, innerWidth)}px`;
+    preview.style.top = `${place(pointer.y, height, innerHeight)}px`;
+  };
+  document.addEventListener("pointermove", (event) => {
+    const target = event.target instanceof Element ? event.target.closest<HTMLElement>(".hex-swatch[data-token-matches]") : null;
+    if (!target || box.contains(target) || event.pointerType === "touch" || !matchMedia("(hover: hover)").matches) { closePreview(); return; }
+    pointer = { x: event.clientX, y: event.clientY };
+    if (circle !== target) {
+      const matches = data.colorIndex[target.dataset.tokenMatches ?? ""] ?? [];
+      preview.innerHTML = `<p>Exact value matches; equality does not assign a role.</p><ul>${matches.map((match) => `<li>${escapeHtml(match.profile)}: <code>${escapeHtml(match.path)}</code></li>`).join("")}</ul>`;
+      circle = target;
+    }
+    box.hidden = true;
+    preview.hidden = false;
+    placePreview();
+  });
+  document.addEventListener("pointerout", (event) => {
+    if (circle && (!(event.relatedTarget instanceof Node) || !circle.contains(event.relatedTarget))) closePreview();
+  });
+  const revalidate = () => {
+    if (!circle || frame) return;
+    frame = requestAnimationFrame(() => {
+      frame = 0;
+      if (!circle) return;
+      const hit = document.elementFromPoint(pointer.x, pointer.y);
+      if (!hit || !circle.contains(hit)) closePreview();
+      else placePreview();
+    });
+  };
+  document.addEventListener("scroll", revalidate, { capture: true, passive: true });
+  window.addEventListener("resize", revalidate);
+  window.addEventListener("blur", closePreview);
+  document.addEventListener("pointerdown", closePreview);
+  document.addEventListener("pointercancel", closePreview);
+  document.addEventListener("visibilitychange", () => { if (document.hidden) closePreview(); });
+  document.addEventListener("keydown", (event) => { if (event.key === "Escape") closePreview(); });
   let current: HTMLElement | null = null;
   const text = (value: string) => renderHexText(value, data.colorIndex);
 
@@ -51,11 +100,12 @@ export const initInspector = (): void => {
   };
 
   document.addEventListener("mouseover", (event) => {
-    const target = (event.target as HTMLElement).closest<HTMLElement>("[data-token], [data-token-matches]");
+    if ((event.target as HTMLElement).closest(".hex-swatch")) return;
+    const target = (event.target as HTMLElement).closest<HTMLElement>("[data-token]");
     if (target) show(target);
   });
   document.addEventListener("mouseout", (event) => {
-    const target = (event.target as HTMLElement).closest<HTMLElement>("[data-token], [data-token-matches]");
+    const target = (event.target as HTMLElement).closest<HTMLElement>("[data-token]");
     if (target && target === current && !box.matches(":hover")) hide();
   });
   document.addEventListener("focusin", (event) => {

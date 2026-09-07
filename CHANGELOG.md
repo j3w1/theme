@@ -13,6 +13,11 @@
   no-JavaScript downloads. Copying with distinct instance prefixes preserves
   labels and ARIA relationships. Dialog modal behavior remains host-owned.
 
+- Make inline color-match popups follow the pointer within their circle and
+  dismiss on hover loss, with post-scroll hit testing. Document this D-014
+  feature on the single-page specification. Downstream: presentation only;
+  token values and the keyboard token inspector retain their contracts.
+
 - #5: generate a semantic token usage index with source locations, aliases,
   declared component/port references and contrast declarations. Add exact
   filters and persistent token detail pages with a static no-JavaScript path.
