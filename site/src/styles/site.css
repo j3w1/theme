@@ -565,3 +565,4 @@ main {
 }
 
 .eligibility { display: flex; flex-wrap: wrap; gap: var(--space-4); font-size: var(--font-size-caption); }
+.inspector { max-height: 60vh; overflow: auto; }

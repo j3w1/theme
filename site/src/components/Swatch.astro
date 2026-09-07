@@ -14,7 +14,7 @@ const isColor = token?.type === "color";
 
 {token && (
   <span class="copy-target">
-    {isColor && <span class="swatch" style={`background: var(${cssVar(path)})`} aria-hidden="true"></span>}
+
     {showPath && <code data-token={path}>{path}</code>}
     <code class="value">{token.css}</code>
     <button type="button" class="copy-button js-only" data-copy={token.css} aria-label={`Copy ${token.css}`}>copy</button>

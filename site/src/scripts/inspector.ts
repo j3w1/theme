@@ -4,8 +4,10 @@
    in the token tables, so nothing is lost without JavaScript. */
 
 import { anchorFor } from "../../../scripts/lib/anchors.mjs";
+import { renderHexText, escapeHtml } from "../../../scripts/lib/hex-literals.mjs";
 type Row = [css: string, aliasOf: string, status: string, description: string, eligibility: { action: string; reason: string; decisionIds: string[] }, deprecated: boolean | string];
-type Data = { defaultProfile: string; version: string; profiles: Record<string, Record<string, Row>> };
+type Match = { profile: string; path: string };
+type Data = { defaultProfile: string; version: string; profiles: Record<string, Record<string, Row>>; colorIndex: Record<string, Match[]> };
 
 export const initInspector = (): void => {
   const box = document.getElementById("inspector");
@@ -13,14 +15,21 @@ export const initInspector = (): void => {
   if (!box || !raw) return;
   const data = JSON.parse(raw) as Data;
   let current: HTMLElement | null = null;
+  const text = (value: string) => renderHexText(value, data.colorIndex);
 
   const show = (target: HTMLElement) => {
+    if (box.contains(target)) return;
     const path = target.dataset.token ?? "";
     const profiles = Object.entries(data.profiles);
     const main = data.profiles[data.defaultProfile]?.[path];
-    if (!main) return;
-    const rows = profiles.map(([id, tokens]) => `<dt>${id}</dt><dd><code>${tokens[path]?.[0] ?? "—"}</code>${tokens[path]?.[2] === "proposed" ? ' <span class="tag tag-proposed">proposed</span>' : ""} ${tokens[path]?.[4].action ?? "blocked"}${tokens[path]?.[5] ? " deprecated" : ""} ${(tokens[path]?.[4].decisionIds ?? []).map((id) => `<a href="#${anchorFor.decision(id)}">${id}</a>`).join(" ")}</dd>`).join("");
-    box.innerHTML = `<dl><dt>role</dt><dd><code>${path}</code></dd><dt>css</dt><dd><code>--${path.replaceAll(".", "-")}</code></dd>${rows}<dt>alias of</dt><dd><code>${main[1] || "—"}</code></dd><dt>status</dt><dd>${main[2]}</dd>${main[3] ? `<dt>use</dt><dd>${main[3]}</dd>` : ""}<dt>anchor</dt><dd><a href="#t-${path.replaceAll(".", "-")}">#t-${path.replaceAll(".", "-")}</a></dd></dl>`;
+    if (target.dataset.tokenMatches) {
+      const matches = data.colorIndex[target.dataset.tokenMatches] ?? [];
+      box.innerHTML = `<p>Exact value matches; equality does not assign a role.</p><ul>${matches.map((match) => `<li>${escapeHtml(match.profile)}: <a href="#${anchorFor.token(match.path)}"><code>${escapeHtml(match.path)}</code></a></li>`).join("")}</ul>`;
+    } else {
+      if (!main) return;
+      const rows = profiles.map(([id, tokens]) => `<dt>${escapeHtml(id)}</dt><dd><code>${text(tokens[path]?.[0] ?? "—")}</code> ${escapeHtml(tokens[path]?.[2] ?? "unresolved")} ${tokens[path]?.[4].action ?? "blocked"}${tokens[path]?.[5] ? " deprecated" : ""} ${(tokens[path]?.[4].decisionIds ?? []).map((id) => `<a href="#${anchorFor.decision(id)}">${id}</a>`).join(" ")}</dd>`).join("");
+      box.innerHTML = `<dl><dt>role</dt><dd><code>${escapeHtml(path)}</code></dd><dt>css</dt><dd><code>--${escapeHtml(path.replaceAll(".", "-"))}</code></dd>${rows}<dt>alias of</dt><dd><code>${escapeHtml(main[1] || "—")}</code></dd><dt>status</dt><dd>${escapeHtml(main[2])}</dd>${main[3] ? `<dt>use</dt><dd>${text(main[3])}</dd>` : ""}<dt>anchor</dt><dd><a href="#${anchorFor.token(path)}">#${anchorFor.token(path)}</a></dd></dl>`;
+    }
     const rect = target.getBoundingClientRect();
     box.hidden = false;
     const width = Math.min(384, window.innerWidth - 16);
@@ -35,11 +44,11 @@ export const initInspector = (): void => {
   };
 
   document.addEventListener("mouseover", (event) => {
-    const target = (event.target as HTMLElement).closest<HTMLElement>("[data-token]");
+    const target = (event.target as HTMLElement).closest<HTMLElement>("[data-token], [data-token-matches]");
     if (target) show(target);
   });
   document.addEventListener("mouseout", (event) => {
-    const target = (event.target as HTMLElement).closest<HTMLElement>("[data-token]");
+    const target = (event.target as HTMLElement).closest<HTMLElement>("[data-token], [data-token-matches]");
     if (target && target === current && !box.matches(":hover")) hide();
   });
   document.addEventListener("focusin", (event) => {

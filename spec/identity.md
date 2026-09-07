@@ -43,6 +43,10 @@ operate. It does not mean pill buttons, glass panels, gradients, neon glows, a
 Material-style redesign, or red on every surface. Sixteen concrete
 misreadings are rendered as labelled non-examples on the site.
 
+The specification page’s generated literal-color previews have the narrow
+geometry, checkerboard and motion exception recorded in D-014; the component
+and consumer rules remain as written.
+
 ## Profiles
 
 - `default` â€” the approved everyday composition. Monochrome red/rose for

@@ -45,7 +45,7 @@ const profileIds = Object.keys(profiles);
           {rows.map(([path, token]) => (
             <tr id={anchors.token(path)}>
               <td>
-                {token.type === "color" && <span class="swatch" style={`background: var(${cssVar(path)})`} aria-hidden="true"></span>}
+
                 <code data-token={path}>{path}</code>
               </td>
               {profileIds.map((p) => (

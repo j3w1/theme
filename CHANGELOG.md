@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- #1: generate exact inline hex previews throughout the static page and token
+  inspector, including alpha, all matching token paths and reduced motion.
+  Downstream: presentation only; copy text, token values and CSS exports are
+  unchanged. D-014 records the owner-authorized preview geometry exception.
+
 - #4: unify pending-role consumption around pinned use-and-report, separate
   approval from deprecation and release numbering, and expose decision links.
   Downstream: resolved tokens and component values gain additive `decisionId`

@@ -81,3 +81,12 @@ kebab-case ids, closed lists in `schemas/`. Anchors come only from
 `scripts/lib/anchors.mjs`. Outputs contain no timestamps and no commit hashes.
 Commits are conventional (`feat:`, `fix:`, `docs:`, `spec:`, `tokens:`,
 `site:`, `chore:`) and explain why.
+
+## Specification UI maintenance
+
+Every human-visible CSS hex literal rendered by the j3w1 UI Theme Spec must
+receive its generated inline color swatch (D-014). New sections and components
+inherit the whole-page build transform; never hand-maintain inline swatches.
+Explicit runtime renderers, such as the token inspector, use the same literal
+parser/presentation helpers. Never scan the runtime DOM for colors. Preserve
+source/copy text and machine exports. Run the hex source, dist and browser gates.

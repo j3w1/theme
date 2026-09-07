@@ -46,7 +46,7 @@ const statusTags = [coverage?.specified && "specified", coverage?.demonstrated &
             return (
               <tr>
                 <td><code>{part}</code></td>
-                <td>{token?.type === "color" && <span class="swatch" style={`background: var(${cssVar(path)})`} aria-hidden="true"></span>}<code data-token={path}>{path}</code><Eligibility token={token} /></td>
+                <td><code data-token={path}>{path}</code><Eligibility token={token} /></td>
                 <td><code>{token?.css ?? "unresolved"}</code></td>
                 <td>{token?.description}</td>
               </tr>

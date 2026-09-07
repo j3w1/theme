@@ -202,3 +202,30 @@ approved profile; no substitute is implied. Ordinary observed/approved roles
 remain usable within their documented scope; primitives remain inspection-only.
 Release version, profile status, role status, deprecation and eligibility are
 separate facts. The generator emits the policy and eligibility metadata.
+
+## D-014 Automatic inline literal color previews
+
+Status: proposed (formal log status remains owner-controlled).
+
+**Context.** Issue #1 requests circular previews and a transparency checkerboard,
+which conflict with the general square geometry and no-gradient rules. Keeping
+square previews would remove the requested circle-to-square interaction.
+
+**Owner direction, 2026-09-07.** The owner explicitly approved a narrow preview
+exception and authorized implementation. It is presentation of literal data,
+not a new palette, semantic role or component geometry rule.
+
+**Exception.** Every visible CSS hex literal on the spec page receives one
+automatically generated preview. Preserve the literal exactly. The preview is
+16px including its theme-derived 1px boundary, circular at rest, and scales to
+17.4px with radius zero on hover-capable pointers. The fast duration token and
+ease-out govern transform and border-radius; reduced motion removes animation.
+Alpha is composited over a checkerboard made from existing theme tokens.
+Only this preview permits rounded geometry, patterned gradient backgrounds and
+border-radius animation. Text, copying, keyboard order and no-JS access remain
+intact. The parsed literal is data and never inferred from a token or screenshot.
+
+
+Syntax specimens (literal data, not additional theme roles): `#f00`, `#f008`,
+`#ff0000`, `#ff000080`, `#000000`, `#ffffff`. These examples also exercise
+copy fidelity and transparent, dark and light previews in the browser suite.

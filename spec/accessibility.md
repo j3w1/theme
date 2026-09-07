@@ -66,6 +66,10 @@ dialogs and drawers appear in place, indeterminate progress shows static
 stripes, loading glyphs do not spin, skeletons do not shimmer, tab indicators
 do not slide. No behaviour is sequenced on `transitionend`.
 
+The specification page’s generated literal-color previews have the narrow
+geometry, checkerboard and motion exception recorded in D-014; the component
+and consumer rules remain as written.
+
 ## Forced colours and high contrast
 
 Under `forced-colors: active` rings use `Highlight`, selections use
