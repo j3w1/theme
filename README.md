@@ -92,6 +92,31 @@ discovery index for tools that look for one.
 
 **Contributors:** read [`AGENTS.md`](AGENTS.md). `CLAUDE.md` imports it.
 
+### Choosing a semantic role
+
+Use the [token usage explorer](https://j3w1.github.io/theme/tokens/) or follow
+a token-name link from the specification. Filter by documented role group,
+component, part, state, variant, profile, status and surface. All selected
+usage facets must match the same declaration; an unknown relationship has no
+match. Exact path, CSS-variable and hex searches remain available, and equal
+values retain their separate roles. Filter URLs can be shared; the explorer
+does not store preferences or submit searches to a service.
+
+Each token has a persistent page with all profile values, eligibility,
+pending decisions, alias dependencies, provenance, component/port references
+and contrast declarations. Profile tables and details remain readable without
+JavaScript. Copy controls copy the role path or CSS variable. Source links in
+hosted builds use the build's full commit and parsed source line; local builds
+show checkout-relative locations without claiming a published revision.
+
+Agents can optionally fetch `exports/token-usage.json` at the same pinned
+revision as the other contracts. This schema-version-1 reverse index is
+generated from source mappings, not colour similarity. Variant references are
+included only when a mapped part's prefix equals a declared variant id.
+Missing port consumers remain unknown. The usage index is digest-covered and
+uses `schemas/json/token-usage.schema.json`; regenerate it with the ordinary
+`npm run generate` workflow after editing source mappings.
+
 ## Repository map
 
 | Path | Owns |
@@ -102,8 +127,8 @@ discovery index for tools that look for one.
 | `agents/consume.md` | How to apply the theme elsewhere |
 | `schemas/` | zod schema factories shared by the scripts and the site; `schemas/json/` is generated |
 | `scripts/` | Validators and generators (`npm run validate`, `npm run generate`, `npm run check`) |
-| `exports/` | Generated, committed: resolved tokens, CSS custom properties, contrast report, coverage ledger, per-component JSON and briefs, compact and full Markdown, `llms.txt`, digests |
-| `site/` | The Astro source of the single page, built to `dist/` and deployed to `/theme/` by CI |
+| `exports/` | Generated, committed: resolved tokens, semantic usage index, CSS custom properties, contrast report, coverage ledger, per-component JSON and briefs, compact and full Markdown, `llms.txt`, digests |
+| `site/` | The Astro source of the single-page specification and token tools, built to `dist/` and deployed to `/theme/` by CI |
 | `references/` | Pinned provenance, catalogued historical implementations, excerpts, and any reference screenshots with their provenance |
 | `ports/` | Native application ports, when they exist, each with a manifest, mapping, artifacts and evidence |
 | `templates/` | Starting points for a port, a component and the fresh-agent consumption task |

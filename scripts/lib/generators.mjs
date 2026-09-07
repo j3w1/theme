@@ -21,6 +21,8 @@ import { lockSchema } from "../../schemas/lock.mjs";
 import { docSchema, familySchema } from "../../schemas/doc.mjs";
 import { catalogueSchema, screenshotProvenanceSchema, sourcesSchema } from "../../schemas/provenance.mjs";
 import { provenanceExtensionSchema } from "../../schemas/tokens.mjs";
+import { usageSchema, portMappingSchema } from "../../schemas/usage.mjs";
+import { usageGenerator } from "./usage-generator.mjs";
 
 const write = async (relative, content, { check, changed, files }) => {
   files.push(relative);
@@ -45,6 +47,8 @@ export const schemasGenerator = {
     const emit = async (name, schema) => write(`schemas/json/${name}.schema.json`, stableJson(z.toJSONSchema(schema, { unrepresentable: "any" })), { check, changed, files });
     await emit("theme", themeSchema(z));
     await emit("eligibility", eligibilitySchema(z));
+    await emit("token-usage", usageSchema(z));
+    await emit("port-mapping", portMappingSchema(z));
     await emit("verification-evidence", evidenceSchema(z));
     await emit("component-frontmatter", componentSchema(z));
     await emit("port", portSchema(z));
@@ -227,4 +231,4 @@ export const digestsGenerator = {
   },
 };
 
-export const GENERATORS = [schemasGenerator, tokensGenerator, contrastGenerator, componentsGenerator, docsGenerator, coverageGenerator, readmeGenerator, digestsGenerator];
+export const GENERATORS = [schemasGenerator, tokensGenerator, contrastGenerator, componentsGenerator, usageGenerator, docsGenerator, coverageGenerator, readmeGenerator, digestsGenerator];

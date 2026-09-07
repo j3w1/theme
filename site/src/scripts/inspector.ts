@@ -5,6 +5,7 @@
 
 import { anchorFor } from "../../../scripts/lib/anchors.mjs";
 import { renderHexText, escapeHtml } from "../../../scripts/lib/hex-literals.mjs";
+import { withBase } from "../lib/base";
 type Row = [css: string, aliasOf: string, status: string, description: string, eligibility: { action: string; reason: string; decisionIds: string[] }, deprecated: boolean | string];
 type Match = { profile: string; path: string };
 type Data = { defaultProfile: string; version: string; profiles: Record<string, Record<string, Row>>; colorIndex: Record<string, Match[]> };
@@ -29,6 +30,12 @@ export const initInspector = (): void => {
       if (!main) return;
       const rows = profiles.map(([id, tokens]) => `<dt>${escapeHtml(id)}</dt><dd><code>${text(tokens[path]?.[0] ?? "—")}</code> ${escapeHtml(tokens[path]?.[2] ?? "unresolved")} ${tokens[path]?.[4].action ?? "blocked"}${tokens[path]?.[5] ? " deprecated" : ""} ${(tokens[path]?.[4].decisionIds ?? []).map((id) => `<a href="#${anchorFor.decision(id)}">${id}</a>`).join(" ")}</dd>`).join("");
       box.innerHTML = `<dl><dt>role</dt><dd><code>${escapeHtml(path)}</code></dd><dt>css</dt><dd><code>--${escapeHtml(path.replaceAll(".", "-"))}</code></dd>${rows}<dt>alias of</dt><dd><code>${escapeHtml(main[1] || "—")}</code></dd><dt>status</dt><dd>${escapeHtml(main[2])}</dd>${main[3] ? `<dt>use</dt><dd>${text(main[3])}</dd>` : ""}<dt>anchor</dt><dd><a href="#${anchorFor.token(path)}">#${anchorFor.token(path)}</a></dd></dl>`;
+    }
+    if (main) {
+      const link = document.createElement("a");
+      link.href = withBase(`tokens/${encodeURIComponent(path)}/`);
+      link.textContent = "Full usage and source details";
+      box.append(link);
     }
     const rect = target.getBoundingClientRect();
     box.hidden = false;

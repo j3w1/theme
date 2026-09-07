@@ -1,0 +1,7 @@
+---
+import { sourceUrl } from "../lib/usage";
+const { source } = Astro.props;
+const href = sourceUrl(source);
+const label = `${source.file}${source.line ? `:${source.line}` : ""}`;
+---
+<span class="usage-source">{href ? <a href={href}>{label}</a> : <span>{label}</span>} <code>{source.pointer}</code></span>
