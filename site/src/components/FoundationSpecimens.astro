@@ -107,7 +107,7 @@ const hex = (path: string) => (defaultTokens[path].value as { hex: string }).hex
   <h4>Terminal slots by profile</h4>
   <p class="family-description">The sixteen slots are exact in every profile; only the proposed <code>extended</code> overlay reassigns them. Use the page's profile control to switch specimens, or read the columns.</p>
   <div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table">
-    <table>
+    <table class="spec-table">
       <thead><tr><th scope="col">Slot</th>{profileIds.map((p) => <th scope="col">{p}</th>)}</tr></thead>
       <tbody>
         {Array.from({ length: 16 }, (_, i) => (

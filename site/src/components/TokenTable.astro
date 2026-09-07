@@ -33,7 +33,12 @@ const profileIds = Object.keys(profiles);
     </div>
   ) : (
     <div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table">
-      <table class="token-table">
+      <table class="spec-table token-table profile-token-table">
+        <colgroup>
+          <col class="token-path-column" />
+          {profileIds.map(() => <col class="token-profile-column" />)}
+          <col class="token-use-column" />
+        </colgroup>
         <thead>
           <tr>
             <th scope="col">Token</th>

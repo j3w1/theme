@@ -394,9 +394,51 @@ main {
   gap: var(--space-4) var(--space-12);
 }
 
-.token-table td:first-child {
-  white-space: nowrap;
+/* Documentation tables keep a compact rhythm and readable intrinsic widths.
+   Wide data scrolls in its own region; it never collapses into vertical text.
+   These rules deliberately exclude the component specimens and state matrix. */
+.doc.prose { max-width: none; }
+.doc.prose > :is(p, ul, ol, blockquote) { max-width: var(--layout-content-max); }
+
+.spec-table {
+  min-width: 32rem;
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
 }
+
+.spec-table > :is(thead, tbody) > tr > :is(th, td) {
+  min-width: 7ch;
+  padding: var(--space-4) var(--space-8);
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.spec-table code {
+  font-size: inherit;
+  overflow-wrap: anywhere;
+}
+
+.profile-token-table {
+  table-layout: fixed;
+  min-width: 68rem;
+}
+
+.profile-token-table .token-path-column { width: 28%; }
+.profile-token-table .token-profile-column { width: 16%; }
+.profile-token-table .token-use-column { width: 24%; }
+.profile-token-table th { white-space: nowrap; }
+.profile-token-table .eligibility { margin-top: var(--space-4); }
+.token-table td:first-child { white-space: normal; }
+.token-table:not(.profile-token-table) { min-width: 60rem; }
+.token-table:not(.profile-token-table) td:last-child { min-width: 24ch; }
+
+.contrast-table { min-width: 88rem; }
+.contrast-table td:first-child,
+.contrast-table td:last-child { min-width: 24ch; }
+.contrast-table td:nth-child(4),
+.contrast-table td:nth-child(5) { min-width: 26ch; }
+.contrast-table td:nth-child(6),
+.contrast-table td:nth-child(7) { white-space: nowrap; font-variant-numeric: tabular-nums; }
 
 [data-token] {
   cursor: help;
@@ -406,13 +448,17 @@ main {
 
 .copy-target {
   display: inline-flex;
+  max-width: 100%;
+  flex-wrap: wrap;
   gap: var(--space-4);
   align-items: center;
 }
 
 .copy-button {
+  flex: none;
+  white-space: nowrap;
   padding: 0 var(--space-4);
-  min-height: 1.5em;
+  min-height: var(--density-compact-control-height);
   border: var(--border-width-default) solid var(--color-border-divider);
   background: transparent;
   color: var(--color-text-muted);
@@ -564,5 +610,6 @@ main {
   display: none;
 }
 
-.eligibility { display: flex; flex-wrap: wrap; gap: var(--space-4); font-size: var(--font-size-caption); }
+.eligibility { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); font-size: var(--font-size-caption); line-height: var(--font-line-height-caption); }
+.eligibility > * { white-space: nowrap; }
 .inspector { max-height: 60vh; overflow: auto; }
