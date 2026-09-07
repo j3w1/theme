@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "recipes": [
+    {
+      "id": "button",
+      "variant": "default",
+      "markup": "spec/components/button.demo.html",
+      "styles": ["site/src/styles/components/button.css"],
+      "foundation": "site/src/styles/recipe-foundation.css",
+      "behavior": [],
+      "removeClasses": [],
+      "states": ["default", "hover", "focus-visible", "active", "disabled", "loading"],
+      "limitations": ["Native button activation only; application actions are supplied by the host.", "aria-busy supplies the loading appearance; the host must suppress repeated activation while busy."]
+    },
+    {
+      "id": "text-field",
+      "variant": "default",
+      "markup": "spec/components/text-field.demo.html",
+      "styles": ["site/src/styles/components/text-field.css"],
+      "foundation": "site/src/styles/recipe-foundation.css",
+      "behavior": [],
+      "removeClasses": [],
+      "states": ["default", "hover", "focus-visible", "disabled", "read-only", "required", "invalid", "loading"],
+      "limitations": ["Native text editing only; validation messages and aria-invalid are managed by the host.", "The default text variant is packaged. Password reveal, search clearing and number steppers are not implemented."]
+    },
+    {
+      "id": "dialog",
+      "variant": "default",
+      "markup": "spec/components/dialog.demo.html",
+      "styles": ["site/src/styles/components/dialog.css"],
+      "foundation": "site/src/styles/recipe-foundation.css",
+      "behavior": [],
+      "removeClasses": ["dialog-trap-note"],
+      "states": ["default", "open", "hover", "focus-visible", "reduced-motion"],
+      "limitations": ["Visual-only: the native dialog is open in normal flow with a simulated backdrop.", "No showModal, focus trap, Escape handling, close actions or focus return is supplied. The host owns the complete modal lifecycle and positioning.", "Removing open hides the dialog but does not remove its backdrop wrapper; this is not a complete closed-state implementation."]
+    }
+  ]
+}

@@ -1,0 +1,253 @@
+/* j3w1 theme 0.1.0 — MIT
+Copyright (c) 2026 j3w1
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+.j3w1-recipe .dialog-backdrop {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  padding: var(--space-24) var(--space-16);
+  background: var(--color-surface-backdrop);
+}
+
+.j3w1-recipe .dialog {
+  position: static;
+  width: min(calc(var(--font-size-ui-md) * 28), 100%);
+  max-width: 100%;
+  margin: 0;
+  padding: var(--space-16);
+  background: var(--color-surface-overlay);
+  border: var(--border-width-default) solid var(--color-border-overlay);
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+  z-index: var(--z-dialog);
+}
+
+.j3w1-recipe .dialog::backdrop {
+  background: var(--color-surface-backdrop);
+}
+
+.j3w1-recipe .dialog:not([open]) {
+  display: none;
+}
+
+.j3w1-recipe .dialog-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-8);
+  margin-bottom: var(--space-12);
+}
+
+.j3w1-recipe .dialog-title {
+  margin: 0;
+  color: var(--color-text-bright);
+  font-size: var(--font-size-h2);
+  line-height: var(--font-line-height-h2);
+  font-weight: var(--font-weight-bold);
+  overflow-wrap: anywhere;
+}
+
+.j3w1-recipe .dialog-close {
+  flex: 0 0 auto;
+  min-width: 24px;
+  min-height: 24px;
+  padding: 0 var(--space-4);
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-none);
+  color: var(--color-action-tertiary-text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.j3w1-recipe .dialog-body {
+  display: grid;
+  gap: var(--space-12);
+  margin: 0;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.j3w1-recipe .dialog-text {
+  margin: 0;
+}
+
+.j3w1-recipe .dialog-field {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.j3w1-recipe .dialog-field-label {
+  color: var(--color-text-bright);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.j3w1-recipe .dialog-field-input {
+  min-height: var(--density-control-height, 32px);
+  padding: 0 var(--density-control-padding-x, 12px);
+  background: var(--color-surface-input);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+  caret-color: var(--color-code-caret);
+  font: inherit;
+}
+
+.j3w1-recipe .dialog-field-input:focus-visible {
+  border-color: var(--color-border-active);
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.j3w1-recipe .dialog-field-help {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.j3w1-recipe .dialog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--space-8);
+  margin-top: var(--space-16);
+}
+
+.j3w1-recipe .dialog-body .dialog-actions {
+  margin-top: var(--space-4);
+}
+
+.j3w1-recipe .dialog-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  min-height: var(--density-control-height, 32px);
+  padding: 0 var(--density-control-padding-x, 12px);
+  background: var(--color-action-secondary-bg);
+  border: var(--border-width-default) solid var(--color-action-secondary-border);
+  border-radius: var(--radius-none);
+  color: var(--color-action-secondary-text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.j3w1-recipe .dialog-button-primary {
+  background: var(--color-action-primary-bg);
+  border-color: var(--color-action-primary-border);
+  color: var(--color-action-primary-text);
+}
+
+.j3w1-recipe .dialog-button-destructive {
+  background: var(--color-action-destructive-filled-bg);
+  border-color: var(--color-action-destructive-border);
+  color: var(--color-action-destructive-filled-text);
+}
+.j3w1-recipe .dialog-close:hover {
+  background: var(--color-action-tertiary-hover-bg);
+}
+
+.j3w1-recipe .dialog-button:hover {
+  background: var(--color-action-secondary-hover-bg);
+}
+
+.j3w1-recipe .dialog-button-primary:hover {
+  background: var(--color-action-primary-hover-bg);
+}
+
+.j3w1-recipe .dialog-button-destructive:hover {
+  background: var(--color-action-destructive-hover-bg);
+  color: var(--color-action-destructive-hover-text);
+}
+.j3w1-recipe .dialog-close:focus-visible,
+.j3w1-recipe .dialog-button:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.j3w1-recipe .dialog-button-primary:focus-visible {
+  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline-offset: var(--focus-offset);
+}
+
+.j3w1-recipe .dialog-button-destructive:focus-visible {
+  outline: var(--border-width-default) dashed var(--color-action-destructive-filled-text);
+  outline-offset: var(--focus-offset);
+}
+.j3w1-recipe .dialog[open] {
+  display: block;
+}
+.j3w1-recipe .dialog:focus-visible {
+  outline: var(--focus-ring-container);
+  outline-offset: var(--focus-offset-container);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .j3w1-recipe .dialog {
+    transition: opacity var(--motion-duration-slow);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .j3w1-recipe .dialog {
+    transition: none;
+  }
+}
+
+@media (hover: none) {
+  .j3w1-recipe .dialog-close:hover {
+    background: transparent;
+  }
+
+  .j3w1-recipe .dialog-button:hover {
+    background: var(--color-action-secondary-bg);
+  }
+
+  .j3w1-recipe .dialog-button-primary:hover {
+    background: var(--color-action-primary-bg);
+  }
+
+  .j3w1-recipe .dialog-button-destructive:hover {
+    background: var(--color-action-destructive-filled-bg);
+    color: var(--color-action-destructive-filled-text);
+  }
+}
+
+@media (max-width: 320px) {
+  .j3w1-recipe .dialog-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+@media (forced-colors: active) {
+  .j3w1-recipe .dialog {
+    border-color: CanvasText;
+  }
+
+  .j3w1-recipe .dialog-close:focus-visible,
+  .j3w1-recipe .dialog-button:focus-visible,
+  .j3w1-recipe .dialog:focus-visible {
+    outline-color: Highlight;
+  }
+}

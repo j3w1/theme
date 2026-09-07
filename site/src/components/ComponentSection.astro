@@ -7,6 +7,7 @@ import { withBase } from "../lib/base";
 import { anchors, coverageLedger, cssVar, defaultTokens, familyList } from "../lib/theme";
 import StateMatrix from "./StateMatrix.astro";
 import { splitVariants } from "../../../scripts/lib/spec.mjs";
+import { RECIPE_IDS } from "../../../schemas/recipe.mjs";
 
 interface Props {
   entry: any;
@@ -34,6 +35,7 @@ const statusTags = [coverage?.specified && "specified", coverage?.demonstrated &
     {c.maturity === "draft" && <li><span class="tag tag-proposed">draft</span></li>}
   </ul>
   <p class="prose">{c.summary}</p>
+  {RECIPE_IDS.includes(c.id) && <p><a href={withBase(`recipes/${c.id}/`)}>View source and copy recipe</a> · <a href={withBase(`exports/recipes/${c.id}/example.html`)} download>Download standalone example</a>{c.id === "dialog" && " — visual-only; modal behavior is host-owned."}</p>}
 
   <div class="block">
     <h4>Tokens</h4>

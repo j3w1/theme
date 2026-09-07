@@ -23,6 +23,8 @@ import { catalogueSchema, screenshotProvenanceSchema, sourcesSchema } from "../.
 import { provenanceExtensionSchema } from "../../schemas/tokens.mjs";
 import { usageSchema, portMappingSchema } from "../../schemas/usage.mjs";
 import { usageGenerator } from "./usage-generator.mjs";
+import { recipeGenerator } from "./recipe-generator.mjs";
+import { recipeDependenciesSchema } from "../../schemas/recipe.mjs";
 
 const write = async (relative, content, { check, changed, files }) => {
   files.push(relative);
@@ -49,6 +51,7 @@ export const schemasGenerator = {
     await emit("eligibility", eligibilitySchema(z));
     await emit("token-usage", usageSchema(z));
     await emit("port-mapping", portMappingSchema(z));
+    await emit("recipe-dependencies", recipeDependenciesSchema(z));
     await emit("verification-evidence", evidenceSchema(z));
     await emit("component-frontmatter", componentSchema(z));
     await emit("port", portSchema(z));
@@ -231,4 +234,4 @@ export const digestsGenerator = {
   },
 };
 
-export const GENERATORS = [schemasGenerator, tokensGenerator, contrastGenerator, componentsGenerator, usageGenerator, docsGenerator, coverageGenerator, readmeGenerator, digestsGenerator];
+export const GENERATORS = [schemasGenerator, tokensGenerator, contrastGenerator, componentsGenerator, usageGenerator, recipeGenerator, docsGenerator, coverageGenerator, readmeGenerator, digestsGenerator];

@@ -1,0 +1,58 @@
+---
+import ToolLayout from "../../layouts/ToolLayout.astro";
+import { withBase } from "../../lib/base";
+import { usageRevision } from "../../lib/usage";
+import { anchorFor } from "../../../../scripts/lib/anchors.mjs";
+import index from "../../../../exports/recipes/index.json";
+export function getStaticPaths() { return index.recipes.map((recipe) => ({ params: { id: recipe.id } })); }
+const id = Astro.params.id!;
+const root = `exports/recipes/${id}/`;
+const files = import.meta.glob("../../../../exports/recipes/**/*", { query: "?raw", import: "default", eager: true }) as Record<string, string>;
+const read = (name: string) => files[`../../../../${root}${name}`];
+const metadata = JSON.parse(read("manifest.json"));
+const sources = ["markup.html", "tokens.css", "foundation.css", "component.css"].map((name) => ({ name, text: read(name) }));
+const template = read("template.html");
+---
+<ToolLayout title={`${id} recipe`} description="A standalone reference generated from the canonical default specimen.">
+  <p><a href={withBase("recipes/")}>All recipes</a> · <a href={`${withBase("")}#${anchorFor.component(id)}`}>Component specification</a></p>
+  <h2>Behavior and limitations</h2>
+  <ul>{metadata.limitations.map((text: string) => <li>{text}</li>)}</ul>
+  <p>Supported visual states: {metadata.states.join(", ")}. No behavior module is supplied.</p>
+  <p><a href={withBase(`${root}example.html`)}>Open standalone example</a> · <a href={withBase(`${root}example.html`)} download>Download standalone HTML</a> · <a href={withBase(`${root}two-instances.html`)}>Two independent instances</a></p>
+  <p><a href={withBase(`${root}manifest.json`)} download>Dependency manifest and digests</a> · <a href={withBase(`${root}README.md`)} download>Integration instructions</a> · <a href={withBase(`${root}LICENSE.md`)} download>Licenses</a></p>
+  <p>Markup: CC BY 4.0, adapted from j3w1 UI Theme Spec. CSS: MIT. Preserve the notices. Fonts are referenced by name and are not bundled.</p>
+  <h2>Copy an instance</h2>
+  <p>Load token CSS, foundation CSS and component CSS in that order. Use a different instance prefix for every copy; all IDs, labels and ARIA references change together. Keep the wrapper and its density attribute. Styles are scoped to the wrapper; rem lengths preserve the specification’s 13px base without changing the host root.</p>
+  <form class="recipe-copy js-only" data-recipe-copy>
+    <label for={anchorFor.recipeSource("prefix")}>Unique instance prefix</label>
+    <input id={anchorFor.recipeSource("prefix")} name="prefix" value={`${id}-one`} required pattern="[a-z][a-z0-9-]{0,63}" maxlength="64" />
+    <button class="btn" type="submit">Copy instance markup</button>
+    <p role="status" data-recipe-status></p>
+  </form>
+  <script type="application/json" id={anchorFor.recipeSource("template")} set:html={JSON.stringify({ template }).replaceAll("<", "\\u003c")} />
+  {sources.map(({ name, text }) => <section class="usage-section" id={anchorFor.recipeSource(name)}>
+    <h2>{name}</h2>
+    <p><a href={withBase(root + name)} download>Download {name}</a> · <button class="btn js-only" type="button" data-copy={text}>Copy {name}</button></p>
+    <pre tabindex="0" role="region" aria-label={`${name} source, scrollable`}><code>{text}</code></pre>
+  </section>)}
+  <h2>Source identity</h2>
+  <p>Version {metadata.version}; profile {metadata.profile}; source digest <code>{metadata.source.digest}</code>. Pin the supplying commit when consuming these files. A version number alone does not identify this artifact.</p>
+  <ul>{Object.keys(metadata.source.files).map((file) => <li>{usageRevision ? <a href={`https://github.com/j3w1/theme/blob/${usageRevision}/${file}`}>{file}</a> : <code>{file}</code>}</li>)}</ul>
+  <script>
+    import { instantiateRecipe } from "../../../../scripts/lib/recipe-markup.mjs";
+    import { anchorFor } from "../../../../scripts/lib/anchors.mjs";
+    const data = JSON.parse(document.getElementById(anchorFor.recipeSource("template"))!.textContent!);
+    const form = document.querySelector<HTMLFormElement>("[data-recipe-copy]")!;
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const status = form.querySelector<HTMLElement>("[data-recipe-status]")!;
+      try {
+        const prefix = new FormData(form).get("prefix") as string;
+        const markup = instantiateRecipe(data.template, prefix);
+        const notice = data.template.match(/^<!--[^]*?-->/)?.[0] ?? "";
+        await navigator.clipboard.writeText(`${notice}\n<div class="j3w1-recipe" data-density="comfortable">\n${markup}</div>\n`);
+        status.textContent = `Copied instance ${prefix}. Use another prefix for the next copy.`;
+      } catch (error) { status.textContent = `Copy failed: ${(error as Error).message}`; }
+    });
+  </script>
+</ToolLayout>

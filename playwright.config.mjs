@@ -4,7 +4,8 @@
 
 import { defineConfig, devices } from "@playwright/test";
 
-const port = 4173;
+const port = Number(process.env.PW_PORT ?? 4173);
+if (!Number.isInteger(port) || port < 1 || port > 65535) throw new Error("PW_PORT must be an integer from 1 to 65535");
 
 export default defineConfig({
   testDir: "./tests/browser",

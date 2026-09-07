@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "0.1.0",
+  "recipes": [
+    {
+      "id": "button",
+      "variant": "default",
+      "manifest": "exports/recipes/button/manifest.json",
+      "sourceDigest": "sha256-qLf7e69YVctcf2JJ5J/05z2V0r6MGwBzPpGPg1bANJs=",
+      "limitations": [
+        "Native button activation only; application actions are supplied by the host.",
+        "aria-busy supplies the loading appearance; the host must suppress repeated activation while busy."
+      ]
+    },
+    {
+      "id": "text-field",
+      "variant": "default",
+      "manifest": "exports/recipes/text-field/manifest.json",
+      "sourceDigest": "sha256-aZ35YoI5Yd5awWgEwovkMe7fpQ9rpB+8rUkwV1CkzI0=",
+      "limitations": [
+        "Native text editing only; validation messages and aria-invalid are managed by the host.",
+        "The default text variant is packaged. Password reveal, search clearing and number steppers are not implemented."
+      ]
+    },
+    {
+      "id": "dialog",
+      "variant": "default",
+      "manifest": "exports/recipes/dialog/manifest.json",
+      "sourceDigest": "sha256-zB8OHCWh9zMniHYO3R/1C3aLlPZEvIkyNenMJH4ITUc=",
+      "limitations": [
+        "Visual-only: the native dialog is open in normal flow with a simulated backdrop.",
+        "No showModal, focus trap, Escape handling, close actions or focus return is supplied. The host owns the complete modal lifecycle and positioning.",
+        "Removing open hides the dialog but does not remove its backdrop wrapper; this is not a complete closed-state implementation."
+      ]
+    }
+  ]
+}

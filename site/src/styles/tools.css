@@ -13,3 +13,7 @@ html.js .usage-filters { display: flex; flex-wrap: wrap; align-items: end; gap: 
 .usage-table td:last-child { min-width: 24ch; }
 .usage-source { overflow-wrap: anywhere; }
 .usage-section [hidden] { display: none !important; }
+html.js .recipe-copy { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-8); }
+.recipe-copy input { min-width: 0; max-width: 100%; font: inherit; color: var(--color-text-default); background: var(--color-surface-input); border: var(--border-width-default) solid var(--color-border-control); border-radius: var(--radius-none); }
+.recipe-copy input:focus-visible { outline: var(--focus-ring); outline-offset: var(--focus-offset); }
+.recipe-copy [role="status"] { flex-basis: 100%; }
