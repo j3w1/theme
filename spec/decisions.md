@@ -218,7 +218,7 @@ not a new palette, semantic role or component geometry rule.
 **Exception.** Every visible CSS hex literal on the spec page receives one
 automatically generated preview. Preserve the literal exactly. The preview is
 16px including its theme-derived 1px boundary, circular at rest, and scales to
-17.4px with radius zero on hover-capable pointers. The fast duration token and
+17.4px with radius zero when CSS `:hover` matches. The fast duration token and
 ease-out govern transform and border-radius; reduced motion removes animation.
 Alpha is composited over a checkerboard made from existing theme tokens.
 Only this preview permits rounded geometry, patterned gradient backgrounds and
@@ -233,7 +233,7 @@ copy fidelity and transparent, dark and light previews in the browser suite.
 ### Follow the pointer hovering effect
 
 The j3w1 specification's inline color circles provide a pointer-following
-exact-value preview on hover-capable pointers. The popup follows the pointer's
+exact-value preview for actual mouse and pen pointer events. The popup follows the pointer's
 position inside the circle with an 8px gap, flips when necessary and stays
 inside an 8px viewport gutter. It disappears immediately when the pointer
 leaves that circle, on an outside press, Escape, or loss of window focus.
@@ -246,3 +246,10 @@ Long previews are bounded by the viewport. No new keyboard stop is introduced.
 Pointer tracking has no animation or easing, including under reduced motion.
 This owner-directed behavior extends the D-014 preview exception only; it
 does not change the general tooltip or focus contract.
+
+**Compatibility clarification.** CSS `:hover` controls the circle-to-square
+morph directly. Mouse and pen pointer events control the popup; touch and
+unknown pointer types do not open it. Neither behavior is gated by `hover`
+or `any-hover` media features: browsers can report no hover capability while
+still delivering mouse input. Reduced motion continues to remove animation,
+and circles and their literal text remain visible without JavaScript.

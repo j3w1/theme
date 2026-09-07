@@ -33,7 +33,7 @@ export const initInspector = (): void => {
   };
   document.addEventListener("pointermove", (event) => {
     const target = event.target instanceof Element ? event.target.closest<HTMLElement>(".hex-swatch[data-token-matches]") : null;
-    if (!target || box.contains(target) || event.pointerType === "touch" || !matchMedia("(hover: hover)").matches) { closePreview(); return; }
+    if (!target || box.contains(target) || !["mouse", "pen"].includes(event.pointerType)) { closePreview(); return; }
     pointer = { x: event.clientX, y: event.clientY };
     if (circle !== target) {
       const matches = data.colorIndex[target.dataset.tokenMatches ?? ""] ?? [];
