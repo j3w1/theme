@@ -33,3 +33,26 @@ paths. An implementation file's presence alone is not a passing result.
 
 | Source revision | Candidate | Result | Scope and limitations |
 | --- | --- | --- | --- |
+| `bbf0cc992588aa6fa22d7294e1e8a09a955af028` | [Initial candidate](task-fixtures/bbf0cc9-2026-09-07-1/review.md) | REJECTED; preserved | Long-content dialog scroller lacked explicit keyboard focusability and the required container ring. Raw and settled results retained; no check weakened. |
+| `bbf0cc992588aa6fa22d7294e1e8a09a955af028` | [Corrected candidate](task-fixtures/bbf0cc9-2026-09-07-2/review.md) | PASS within recorded scope | One consolidated agent correction; separate independent review: 392 checks passed, zero failed. Named scroller, keyboard scrolling, container/forced-color ring, modal lifecycle, native inputs, narrow reflow and settled axe verified in Chromium. Contract ambiguities and untested manual/engine scope remain explicit. |
+
+The source pin is historical acceptance provenance. The subsequent main merge
+adds the owner-directed hex-hover rule; selected component mappings and token
+values are unchanged (generated source digests change). Final CI exercises the
+corrected candidate separately from the original text-field judge. Source tests
+bind the recorded candidate hashes to the independent review and upstream lock.
+
+Three contract findings remain unresolved: non-destructive confirmation tone
+versus alert-dialog prose, primary active-border mapping versus recipe/prose,
+and on-fill focus wording versus explicit component mappings. The consumer's
+choices are disclosed deviations, not new canonical rules or approval. Resolve
+those source contradictions through the repository process before claiming
+unambiguous downstream conformance for the affected mappings.
+
+Archived reviewer runners retain their original sealed-cache input locations;
+they are execution records. Reviewer screenshots named in the original reports
+remain local cache attachments because repository policy excludes images from
+test fixture directories; the raw measurements and findings are committed.
+The maintained repeatable regression is
+`tests/browser/task-consumption.spec.js`, with source provenance checks in
+`tests/task-consumption.test.js`. Rejected records are never counted as passing.

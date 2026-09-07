@@ -5,11 +5,14 @@ import { createHash } from "node:crypto";
 import { z } from "zod";
 import { lockSchema } from "../schemas/lock.mjs";
 
-const directory = "tests/consumption/task-fixtures/bbf0cc9-2026-09-07-1/";
+const directory = "tests/consumption/task-fixtures/bbf0cc9-2026-09-07-2/";
 const json = async (name) => JSON.parse(await readFile(directory + name, "utf8"));
 test("composed acceptance retains the reviewed candidate and upstream lock identity", async () => {
   const manifest = await json("kit-manifest.json");
   const provenance = await json("provenance.json");
+  const review = await json("review.json");
+  assert.equal(review.conclusion, "passed");
+  for (const [file, digest] of Object.entries(review.candidateHashes)) assert.equal(digest, provenance.candidateDigests[file], file);
   const lock = lockSchema(z).parse(await json("theme.lock.json"));
   assert.equal(lock.revision, manifest.source.revision);
   assert.equal(provenance.revision, lock.revision);

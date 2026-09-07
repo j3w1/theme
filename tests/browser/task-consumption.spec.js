@@ -3,7 +3,7 @@ import { pathToFileURL } from "node:url";
 import path from "node:path";
 import AxeBuilder from "@axe-core/playwright";
 
-const candidate = pathToFileURL(path.resolve("tests/consumption/task-fixtures/bbf0cc9-2026-09-07-1/result.html")).href;
+const candidate = pathToFileURL(path.resolve("tests/consumption/task-fixtures/bbf0cc9-2026-09-07-2/result.html")).href;
 const annotation = { type: "verification", description: JSON.stringify({ component: "page", category: "enhancements", states: [], variants: [], note: "Separate sealed task-kit reconstruction: native editing, modal lifecycle, focus return, narrow reflow and axe. Does not claim all component states or manual accessibility acceptance." }) };
 
 test("sealed composed reconstruction retains native controls and modal lifecycle", { annotation }, async ({ page }, testInfo) => {
@@ -40,6 +40,17 @@ test("sealed composed reconstruction retains native controls and modal lifecycle
     expect(await modal.evaluate((node) => node.scrollWidth <= node.clientWidth)).toBe(true);
     if (action === "Escape") {
       await modal.evaluate(async (node) => { await Promise.all(node.getAnimations().map((animation) => animation.finished)); });
+      await page.keyboard.press("Tab");
+      const summary = modal.locator(".dialog-body");
+      await expect(summary).toBeFocused();
+      expect(await summary.evaluate((node) => {
+        const css = getComputedStyle(node);
+        return { width: css.outlineWidth, style: css.outlineStyle, offset: css.outlineOffset };
+      })).toEqual({ width: "2px", style: "solid", offset: "-3px" });
+      if (testInfo.project.name === "narrow") {
+        await page.keyboard.press("PageDown");
+        await expect.poll(() => summary.evaluate((node) => node.scrollTop)).toBeGreaterThan(0);
+      }
       const result = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
       expect(result.violations.map((v) => v.id)).toEqual([]);
     }

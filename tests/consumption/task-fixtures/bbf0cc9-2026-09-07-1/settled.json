@@ -1,0 +1,111 @@
+{
+  "settlement": "Awaited all dialog animations without modifying candidate",
+  "violations": [
+    {
+      "id": "scrollable-region-focusable",
+      "impact": "serious",
+      "tags": [
+        "cat.keyboard",
+        "wcag2a",
+        "wcag211",
+        "wcag213",
+        "TTv5",
+        "TT4.a",
+        "EN-301-549",
+        "EN-9.2.1.1",
+        "EN-9.2.1.3",
+        "RGAAv4",
+        "RGAA-7.3.2"
+      ],
+      "description": "Ensure elements that have scrollable content are accessible by keyboard in Safari",
+      "help": "Scrollable region must have keyboard access",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/scrollable-region-focusable?application=playwright",
+      "nodes": [
+        {
+          "any": [
+            {
+              "id": "focusable-content",
+              "data": null,
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element should have focusable content"
+            },
+            {
+              "id": "focusable-element",
+              "data": null,
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element should be focusable"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<div class=\"dialog-body\">",
+          "target": [
+            ".dialog-body"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+        }
+      ]
+    }
+  ],
+  "incomplete": [],
+  "focusCycle": [
+    {
+      "id": "close",
+      "tag": "BUTTON",
+      "classes": "button button-tertiary"
+    },
+    {
+      "id": "",
+      "tag": "DIV",
+      "classes": "dialog-body"
+    },
+    {
+      "id": "cancel",
+      "tag": "BUTTON",
+      "classes": "button button-secondary"
+    },
+    {
+      "id": "confirm",
+      "tag": "BUTTON",
+      "classes": "button"
+    },
+    {
+      "id": "close",
+      "tag": "BUTTON",
+      "classes": "button button-tertiary"
+    },
+    {
+      "id": "",
+      "tag": "DIV",
+      "classes": "dialog-body"
+    },
+    {
+      "id": "cancel",
+      "tag": "BUTTON",
+      "classes": "button button-secondary"
+    },
+    {
+      "id": "confirm",
+      "tag": "BUTTON",
+      "classes": "button"
+    }
+  ],
+  "focusedBody": {
+    "classes": "dialog-body",
+    "outline": "rgb(238, 238, 238) auto 1px",
+    "offset": "0px"
+  },
+  "keyboardScroll": {
+    "before": 0,
+    "after": 150
+  },
+  "body": {
+    "tabIndex": -1,
+    "clientHeight": 366,
+    "scrollHeight": 516
+  },
+  "opacity": "1"
+}
