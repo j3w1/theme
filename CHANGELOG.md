@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- #5: generate a semantic token usage index with source locations, aliases,
+  declared component/port references and contrast declarations. Add exact
+  filters and persistent token detail pages with a static no-JavaScript path.
+  Downstream: additive schema-version-1 `exports/token-usage.json`; consumers
+  fetch it at the same revision as their existing contracts.
+
 - Keep specification tables compact with readable columns, intact copy labels
   and keyboard-accessible local scrolling, including tables rendered from
   Markdown. Token and component values are unchanged.

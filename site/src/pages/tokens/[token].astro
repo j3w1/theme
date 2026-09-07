@@ -1,0 +1,49 @@
+---
+import ToolLayout from "../../layouts/ToolLayout.astro";
+import SourceLink from "../../components/SourceLink.astro";
+import { usageIndex, tokenUrl } from "../../lib/usage";
+import { withBase } from "../../lib/base";
+import { anchorFor } from "../../../../scripts/lib/anchors.mjs";
+export function getStaticPaths() {
+  return Object.keys(usageIndex.profiles.default.tokens).map((token) => ({ params: { token } }));
+}
+const path = Astro.params.token!;
+const primary = usageIndex.profiles.default.tokens[path];
+---
+<ToolLayout title={path} description={primary.description ?? "Documented token values and dependencies."}>
+  <p><a href={withBase(`tokens/?query=${encodeURIComponent(path)}`)}>Find related usage</a> · <a href={`${withBase("")}#${anchorFor.token(path)}`}>Specification anchor</a> · <a href={`${withBase("")}#contrast-report`}>Measured contrast report (default profile)</a></p>
+  <div class="copy-target"><code>{path}</code><button class="copy-button js-only" type="button" data-copy={path} aria-label={`Copy token path ${path}`}>copy path</button></div>
+  <div class="copy-target"><code>{primary.variable}</code><button class="copy-button js-only" type="button" data-copy={primary.variable} aria-label={`Copy CSS variable ${path}`}>copy variable</button></div>
+  <nav aria-label="Profile details">{Object.keys(usageIndex.profiles).map((profile) => <a href={`#${anchorFor.tokenProfile(path, profile)}`}>{profile} </a>)}</nav>
+  {Object.entries(usageIndex.profiles).map(([profile, data]) => {
+    const token = data.tokens[path];
+    return <section class="usage-section" id={anchorFor.tokenProfile(path, profile)}>
+      <h2>{profile} · {data.status}</h2>
+      <dl class="usage-metadata">
+        <dt>Resolved value</dt><dd><code>{token.css}</code></dd>
+        <dt>Status</dt><dd>{token.status}{token.deprecated && ` · deprecated: ${token.deprecated}`}</dd>
+        <dt>Consumption</dt><dd>{token.eligibility.action} — {token.eligibility.reason}</dd>
+        <dt>Decisions</dt><dd>{token.eligibility.decisionIds.length ? token.eligibility.decisionIds.map((id) => <a href={`${withBase("")}#${anchorFor.decision(id)}`}>{id} </a>) : "None pending."}</dd>
+        <dt>Source</dt><dd><SourceLink source={token.source} /></dd>
+        <dt>Alias chain</dt><dd>{token.aliases.length ? token.aliases.map((alias) => <><a href={tokenUrl(alias)}><code>{alias}</code></a> </>) : "Literal value; no alias dependencies."}</dd>
+        <dt>Used by aliases</dt><dd>{token.usedByAliases.length ? token.usedByAliases.map((alias) => <><a href={tokenUrl(alias)}><code>{alias}</code></a> </>) : "No declared aliases depend on this role."}</dd>
+      </dl>
+      <h3>Provenance and restrictions</h3>
+      <pre><code>{JSON.stringify(token.provenance, null, 2)}</code></pre>
+      <h3>Declared component and port usage</h3>
+      {token.uses.length ? <div class="table-scroll" tabindex="0" role="region" aria-label={`${profile} declared usage`}>
+        <table class="spec-table usage-table"><thead><tr><th scope="col">Consumer / kind</th><th scope="col">Part / variant</th><th scope="col">State / surface</th><th scope="col">Source declaration</th></tr></thead>
+          <tbody>{token.uses.map((use) => <tr>
+            <td>{use.component ? <a href={`${withBase("")}#${anchorFor.component(use.component)}`}>{use.component}</a> : use.port ?? "Shared rule"} · {use.kind}{use.nativeKey && <code>{use.nativeKey}</code>}</td>
+            <td>{use.part ?? "—"}{use.variant && ` · ${use.variant}`}</td>
+            <td>{use.state ?? "—"}{use.surface && <> · <a href={tokenUrl(use.surface)}>{use.surface}</a></>}</td>
+            <td><SourceLink source={use.source} /></td>
+          </tr>)}</tbody>
+        </table>
+      </div> : <p>No declared component or port mapping. Unindexed consumers are unknown.</p>}
+      {token.unmappedPorts.length > 0 && <><h3>Declared unmapped ports</h3><ul>{token.unmappedPorts.map((port) => <li>{port.port}: {port.reason} · <SourceLink source={port.source} /></li>)}</ul></>}
+      <h3>Relevant contrast declarations</h3>
+      {token.contrast.length ? <ul>{token.contrast.map((pair) => <li>{pair.label ?? "Declared pair"}: <a href={tokenUrl(pair.fg)}>{pair.fg}</a> on <a href={tokenUrl(pair.bg)}>{pair.bg}</a> · <SourceLink source={pair.source} /></li>)}</ul> : <p>No contrast pair is declared for this role.</p>}
+    </section>;
+  })}
+</ToolLayout>

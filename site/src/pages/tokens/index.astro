@@ -1,0 +1,36 @@
+---
+import ToolLayout from "../../layouts/ToolLayout.astro";
+import { usageIndex, tokenUrl } from "../../lib/usage";
+import { anchorFor } from "../../../../scripts/lib/anchors.mjs";
+import { queryIndexOf } from "../../../../scripts/lib/usage-query.mjs";
+const tokens = Object.values(usageIndex.profiles.default.tokens);
+const uses = tokens.flatMap((t) => t.uses);
+const values = (key: string) => [...new Set(uses.map((u) => u[key]).filter(Boolean))].sort();
+const fields = { group: [...new Set(tokens.map((t) => t.group))].sort(), component: values("component"), part: values("part"), state: values("state"), variant: values("variant"), surface: values("surface"), status: [...new Set(Object.values(usageIndex.profiles).flatMap((p) => Object.values(p.tokens).map((t) => t.status)))].sort() };
+---
+<ToolLayout title="Token usage" description="Choose roles by their documented component, part, state and surface. Equal colours do not imply interchangeable roles.">
+  <p>Choose a role group, then narrow by component, part or state. Filters use documented relationships; unknown combinations return no match.</p>
+  <form class="usage-filters js-only" id="usage-filters">
+    <label>Path, variable, hex or words<input name="query" type="search" /></label>
+    <div><label for={anchorFor.usageControl("profile")}>Profile</label><select id={anchorFor.usageControl("profile")} name="profile">{Object.keys(usageIndex.profiles).map((id) => <option value={id}>{id}</option>)}</select></div>
+    {Object.entries(fields).map(([name, choices]) => <div><label for={anchorFor.usageControl(name)}>{name}</label><select id={anchorFor.usageControl(name)} name={name}><option value="">All</option>{choices.map((v) => <option value={v}>{v}</option>)}</select></div>)}
+    <label>Permitted roles only<input type="checkbox" name="eligible" /></label>
+    <button type="reset">Reset filters</button>
+  </form>
+  <p id="usage-count" role="status" aria-live="polite"></p>
+  <p id="usage-empty" hidden>No documented match. Clear a facet or consult the component specification; similarity in colour is not a substitute for a documented relationship.</p>
+  {Object.entries(usageIndex.profiles).map(([profile, data]) => <section class="usage-section" data-usage-profile={profile}>
+    <h2>{profile} · {data.status}</h2>
+    <div class="table-scroll" tabindex="0" role="region" aria-label={`${profile} token usage`}>
+      <table class="spec-table usage-table">
+        <thead><tr><th scope="col">Role</th><th scope="col">Value</th><th scope="col">Eligibility</th><th scope="col">Documented use</th></tr></thead>
+        <tbody>{Object.values(data.tokens).map((token) => <tr data-usage-path={token.path}>
+          <td><a href={tokenUrl(token.path)}><code>{token.path}</code></a></td><td><code>{token.css}</code></td>
+          <td>{token.status} · {token.eligibility.action}{token.deprecated && " · deprecated"}</td><td>{token.description ?? "No role description declared."}</td>
+        </tr>)}</tbody>
+      </table>
+    </div>
+  </section>)}
+  <script type="application/json" id="usage-data" set:html={JSON.stringify(queryIndexOf(usageIndex)).replaceAll("<", "\\u003c")} />
+  <script src="../../scripts/usage.ts"></script>
+</ToolLayout>

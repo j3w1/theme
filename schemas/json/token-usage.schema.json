@@ -1,0 +1,502 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "number",
+      "const": 1
+    },
+    "theme": {
+      "type": "string",
+      "const": "j3w1-theme"
+    },
+    "version": {
+      "type": "string"
+    },
+    "sourcePolicy": {
+      "type": "string"
+    },
+    "profiles": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "approved",
+              "proposed",
+              "heritage"
+            ]
+          },
+          "tokens": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "group": {
+                  "type": "string"
+                },
+                "css": {
+                  "type": "string"
+                },
+                "variable": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "observed",
+                    "approved",
+                    "proposed",
+                    "heritage",
+                    "site-specific"
+                  ]
+                },
+                "deprecated": {
+                  "type": [
+                    "boolean",
+                    "string"
+                  ]
+                },
+                "eligibility": {
+                  "type": "object",
+                  "properties": {
+                    "action": {
+                      "type": "string",
+                      "enum": [
+                        "use",
+                        "use-and-report",
+                        "blocked",
+                        "historical-only"
+                      ]
+                    },
+                    "reason": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "decisionIds": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "pattern": "^D-\\d{3}$"
+                      }
+                    }
+                  },
+                  "required": [
+                    "action",
+                    "reason",
+                    "decisionIds"
+                  ],
+                  "additionalProperties": false
+                },
+                "source": {
+                  "type": "object",
+                  "properties": {
+                    "file": {
+                      "type": "string"
+                    },
+                    "pointer": {
+                      "type": "string"
+                    },
+                    "line": {
+                      "anyOf": [
+                        {
+                          "type": "integer",
+                          "exclusiveMinimum": 0,
+                          "maximum": 9007199254740991
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "file",
+                    "pointer",
+                    "line"
+                  ],
+                  "additionalProperties": false
+                },
+                "provenance": {
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "string",
+                          "enum": [
+                            "observed",
+                            "proposed",
+                            "approved",
+                            "site-specific",
+                            "heritage"
+                          ]
+                        },
+                        "origin": {
+                          "type": "object",
+                          "properties": {
+                            "kind": {
+                              "type": "string",
+                              "enum": [
+                                "xresources",
+                                "i3",
+                                "i3status",
+                                "dunst",
+                                "dmenu",
+                                "site",
+                                "gedit",
+                                "intellij",
+                                "proposed",
+                                "derived"
+                              ]
+                            },
+                            "ref": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "key": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "note": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "kind",
+                            "ref"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "approval": {
+                          "type": "object",
+                          "properties": {
+                            "decision": {
+                              "type": "string",
+                              "pattern": "^D-\\d{3}$"
+                            }
+                          },
+                          "required": [
+                            "decision"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "textSafe": {
+                          "type": "string",
+                          "enum": [
+                            "canvas",
+                            "default",
+                            "raised",
+                            "none"
+                          ]
+                        },
+                        "contrast": {
+                          "type": "object",
+                          "propertyNames": {
+                            "type": "string"
+                          },
+                          "additionalProperties": {
+                            "type": "number"
+                          }
+                        },
+                        "forbiddenGroups": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "overlay": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "status"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "aliases": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "usedByAliases": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "unmappedPorts": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "port": {
+                        "type": "string"
+                      },
+                      "reason": {
+                        "type": "string"
+                      },
+                      "source": {
+                        "type": "object",
+                        "properties": {
+                          "file": {
+                            "type": "string"
+                          },
+                          "pointer": {
+                            "type": "string"
+                          },
+                          "line": {
+                            "anyOf": [
+                              {
+                                "type": "integer",
+                                "exclusiveMinimum": 0,
+                                "maximum": 9007199254740991
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          }
+                        },
+                        "required": [
+                          "file",
+                          "pointer",
+                          "line"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "port",
+                      "reason",
+                      "source"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "uses": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "type": "string",
+                        "enum": [
+                          "part",
+                          "state",
+                          "prose",
+                          "contrast",
+                          "port"
+                        ]
+                      },
+                      "component": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "part": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "state": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "variant": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "surface": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "nativeKey": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "port": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "source": {
+                        "type": "object",
+                        "properties": {
+                          "file": {
+                            "type": "string"
+                          },
+                          "pointer": {
+                            "type": "string"
+                          },
+                          "line": {
+                            "anyOf": [
+                              {
+                                "type": "integer",
+                                "exclusiveMinimum": 0,
+                                "maximum": 9007199254740991
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          }
+                        },
+                        "required": [
+                          "file",
+                          "pointer",
+                          "line"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "kind",
+                      "component",
+                      "part",
+                      "state",
+                      "variant",
+                      "surface",
+                      "nativeKey",
+                      "port",
+                      "source"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "contrast": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "fg": {
+                        "type": "string"
+                      },
+                      "bg": {
+                        "type": "string"
+                      },
+                      "label": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "state": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "source": {
+                        "type": "object",
+                        "properties": {
+                          "file": {
+                            "type": "string"
+                          },
+                          "pointer": {
+                            "type": "string"
+                          },
+                          "line": {
+                            "anyOf": [
+                              {
+                                "type": "integer",
+                                "exclusiveMinimum": 0,
+                                "maximum": 9007199254740991
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          }
+                        },
+                        "required": [
+                          "file",
+                          "pointer",
+                          "line"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "fg",
+                      "bg",
+                      "label",
+                      "state",
+                      "source"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "path",
+                "group",
+                "css",
+                "variable",
+                "description",
+                "status",
+                "deprecated",
+                "eligibility",
+                "source",
+                "provenance",
+                "aliases",
+                "usedByAliases",
+                "unmappedPorts",
+                "uses",
+                "contrast"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "status",
+          "tokens"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "theme",
+    "version",
+    "sourcePolicy",
+    "profiles"
+  ],
+  "additionalProperties": false
+}
