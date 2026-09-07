@@ -57,5 +57,7 @@ test("inspector uses generated previews and retains all token matches without ne
   expect(matches.length).toBeGreaterThan(1);
   await swatch.hover();
   await expect(page.locator("#inspector")).toContainText("equality does not assign a role");
-  for (const match of matches) await expect(page.locator("#inspector")).toContainText(match.path);
+  const items = page.locator("#inspector li");
+  await expect(items).toHaveCount(matches.length);
+  expect(await items.allTextContents()).toEqual(matches.map((match) => `${match.profile}: ${match.path}`));
 });
