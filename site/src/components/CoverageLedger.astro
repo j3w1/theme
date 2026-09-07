@@ -17,7 +17,7 @@ const defs = coverageLedger.definitions as Record<string, string>;
     <p>No components are specified yet.</p>
   ) : (
     <div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table">
-      <table class="ledger">
+      <table class="spec-table ledger">
         <thead>
           <tr><th scope="col">Family</th><th scope="col">Total</th><th scope="col">Specified</th><th scope="col">Demonstrated</th><th scope="col">Test implemented</th></tr>
         </thead>
@@ -27,7 +27,7 @@ const defs = coverageLedger.definitions as Record<string, string>;
           ))}
         </tbody>
       </table>
-      <table class="ledger">
+      <table class="spec-table ledger">
         <thead>
           <tr><th scope="col">Component</th><th scope="col">Family</th><th scope="col">Priority</th><th scope="col">Specified</th><th scope="col">Demonstrated</th><th scope="col">Test implemented</th></tr>
         </thead>

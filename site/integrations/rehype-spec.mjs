@@ -52,6 +52,13 @@ export default function rehypeSpec() {
       if (!parent.children) return;
       const next = [];
       for (const child of parent.children) {
+        if (child.type === "element" && child.tagName === "table") {
+          child.properties ??= {};
+          child.properties.className = [...(child.properties.className ?? []), "spec-table"];
+          rewrite(child);
+          next.push({ type: "element", tagName: "div", properties: { className: ["table-scroll"], tabIndex: 0, role: "region", ariaLabel: "Specification table" }, children: [child] });
+          continue;
+        }
         if (child.type === "text" && TOKEN.test(child.value) && parent.tagName !== "code" && parent.tagName !== "pre") {
           TOKEN.lastIndex = 0;
           let last = 0;

@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Keep specification tables compact with readable columns, intact copy labels
+  and keyboard-accessible local scrolling, including tables rendered from
+  Markdown. Token and component values are unchanged.
+
 - #11: preserve test-file coverage and publish separate, digest-bound execution
   evidence with a static matrix, explicit manual gaps and progressive filtering.
   Downstream: schemaVersion 1 coverage adds `testImplemented`; `tested` keeps

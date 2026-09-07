@@ -10,7 +10,7 @@ const waived = pairs.filter((p) => !p.pass && p.waiver).length;
   <h3>Contrast report</h3>
   <p>{pairs.length} declared pairs measured on resolved sRGB values with the WCAG 2.x formula; {waived} waived (decorative only), {failing} failing. A pass is a design target for the named role, not an application-wide conformance claim.</p>
   <div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table">
-    <table>
+    <table class="spec-table contrast-table">
       <thead>
         <tr>
           <th scope="col">Pair</th>
