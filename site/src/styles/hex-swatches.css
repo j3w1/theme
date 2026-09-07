@@ -33,9 +33,7 @@
 .hex-alpha {
   background: conic-gradient(var(--color-text-muted) 25%, var(--color-surface-canvas) 0 50%, var(--color-text-muted) 0 75%, var(--color-surface-canvas) 0) 0 0 / 8px 8px;
 }
-@media (hover: hover) {
-  .hex-swatch:hover { border-radius: 0; transform: scale(1.0875); }
-}
+.hex-swatch:hover { border-radius: 0; transform: scale(1.0875); }
 @media (prefers-reduced-motion: reduce) {
   .hex-swatch { transition: none !important; }
 }

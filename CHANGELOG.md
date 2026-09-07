@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Fix inline swatch interaction when hover media queries report false despite
+  working mouse input. CSS hover controls the morph; mouse and pen events
+  control the popup, excluding touch. Downstream: D-014 compatibility only;
+  the 16px to 17.4px scale and token values are unchanged.
+
 - #13: add a deterministic task-kit builder shared by the browser and CLI,
   with selected contracts, preserved global rules, token closure, pinned
   source hashes and separate derived-file digests. Standard/minimal modes

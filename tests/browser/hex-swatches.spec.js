@@ -1,6 +1,56 @@
 import { test, expect } from "./evidence-fixture.mjs";
 import { openSpec, only } from "./helpers.mjs";
 
+test.describe("actual pointer input without reported hover capability", () => {
+  test.use({ hasTouch: true });
+
+  test("mouse activates morph and popup when both hover queries are false", { annotation: { type: "verification", description: JSON.stringify({ component: "page", category: "enhancements", states: ["hover"], variants: [], note: "Chromium touch-capable emulation reports both hover queries false; real mouse input verifies morph, tracking, leave and scroll. Not physical-device evidence." }) } }, async ({ page }, testInfo) => {
+    test.skip(!only(testInfo, "desktop"), "one explicit false-hover environment");
+    const clean = await openSpec(page);
+    expect(await page.evaluate(() => [matchMedia("(hover: hover)").matches, matchMedia("(any-hover: hover)").matches])).toEqual([false, false]);
+    const circle = page.locator('.hex-swatch[data-hex="#000000"][data-token-matches]').first();
+    await circle.scrollIntoViewIfNeeded();
+    const footprint = () => circle.locator("..").evaluate(el => { const { width, height } = el.getBoundingClientRect(); return { width, height }; });
+    const original = await footprint();
+    await circle.hover();
+    await expect(circle).toHaveCSS("border-radius", "0px");
+    await expect(circle).toHaveCSS("transform", "matrix(1.0875, 0, 0, 1.0875, 0, 0)");
+    expect(await footprint()).toEqual(original);
+    const popup = page.locator("#hex-popup");
+    await expect(popup).toBeVisible();
+    const rect = await circle.boundingBox();
+    await page.mouse.move(rect.x + rect.width / 2, rect.y + rect.height / 2);
+    const before = await popup.boundingBox();
+    await page.mouse.move(rect.x + rect.width / 2 + 2, rect.y + rect.height / 2 + 2);
+    const after = await popup.boundingBox();
+    expect(after.x - before.x).toBe(2);
+    expect(after.y - before.y).toBe(2);
+    await page.mouse.move(1, 1);
+    await expect(popup).toBeHidden();
+    await circle.hover();
+    await page.mouse.wheel(0, 300);
+    await expect(popup).toBeHidden();
+    clean.assertClean();
+  });
+
+  test("touch and unknown input do not open the popup; pen events do", { annotation: { type: "verification", description: JSON.stringify({ component: "page", category: "enhancements", states: ["hover"], variants: [], note: "Chromium touch emulation with real touchscreen tap; dispatched pointermove checks touch/unknown rejection and pen acceptance at event level, not physical pen hardware." }) } }, async ({ page }, testInfo) => {
+    test.skip(!only(testInfo, "desktop"), "one touch-capable input policy check");
+    await openSpec(page);
+    const circle = page.locator('.hex-swatch[data-hex="#000000"][data-token-matches]').first();
+    await circle.tap();
+    const popup = page.locator("#hex-popup");
+    await expect(popup).toBeHidden();
+    const rect = await circle.boundingBox();
+    const position = { clientX: rect.x + rect.width / 2, clientY: rect.y + rect.height / 2 };
+    await circle.dispatchEvent("pointermove", { ...position, pointerType: "pen" });
+    await expect(popup).toBeVisible();
+    await circle.dispatchEvent("pointermove", { ...position, pointerType: "touch" });
+    await expect(popup).toBeHidden();
+    await circle.dispatchEvent("pointermove", { ...position, pointerType: "" });
+    await expect(popup).toBeHidden();
+  });
+});
+
 test("hex previews preserve exact colors, copy text and the no-JS baseline", { annotation: { type: "verification", description: JSON.stringify({"component": "page", "category": "appearance", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }) => {
   await openSpec(page);
   const swatch = page.locator('.hex-swatch[data-hex="#ff0000"]').first();
