@@ -1,5 +1,11 @@
 # Changelog
 
+- #2: add pinned semantic release comparisons, explicit dependency impact,
+  Markdown/JSON migration reports, and static historical specimen comparisons.
+  Missing historical evidence remains unsupported; proposed/heritage status
+  remains visible. Downstream: additive derived report schemas and build-time
+  diagnostics only; no token values, consumer writes or port verification.
+
 ## Unreleased
 
 - #14: generate a capability explorer and shared task-kit mapping catalogue

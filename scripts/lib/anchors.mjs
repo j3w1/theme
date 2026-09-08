@@ -14,6 +14,7 @@ export const anchorFor = {
   recipeSource: (name) => `recipe-source-${name.replaceAll(".", "-")}`,
   kitControl: (name) => `kit-control-${name}`,
   workbench: (component, name) => `workbench-${component}-${name}`,
+  release: (name) => `release-${name}`,
   specimen: (id) => `s-${id}`,
   nonExample: (id) => `x-${id}`,
   fixture: (id) => `fx-${id.toLowerCase()}`,

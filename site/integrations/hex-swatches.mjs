@@ -10,11 +10,11 @@ export default function hexSwatches() {
         const tokens = JSON.parse(await readFile(new URL("../../exports/tokens.resolved.json", import.meta.url), "utf8"));
         const page = new URL("index.html", dir);
         await writeFile(page, decorateHexHtml(await readFile(page, "utf8"), tokenColorIndex(tokens.profiles)));
-        const decorateTools = async (folder) => {
+        const decorateTools = async (folder, index = tokenColorIndex(tokens.profiles)) => {
           for (const entry of await readdir(folder, { withFileTypes: true })) {
             const file = new URL(entry.name + (entry.isDirectory() ? "/" : ""), folder);
-            if (entry.isDirectory()) await decorateTools(file);
-            else if (entry.name.endsWith(".html")) await writeFile(file, decorateHexHtml(await readFile(file, "utf8"), tokenColorIndex(tokens.profiles)));
+            if (entry.isDirectory() && entry.name !== "specimens") await decorateTools(file, index);
+            else if (entry.name.endsWith(".html")) await writeFile(file, decorateHexHtml(await readFile(file, "utf8"), index));
           }
         };
         await decorateTools(new URL("tokens/", dir));
@@ -23,6 +23,9 @@ export default function hexSwatches() {
         await decorateTools(new URL("kit/", dir));
         await decorateTools(new URL("workbench/", dir));
         await decorateTools(new URL("preview/", dir));
+        // Historical literals retain their exact fill without today's token matches.
+        // Reconstructed specimens retain their exact, digest-recorded bytes.
+        await decorateTools(new URL("releases/", dir), {});
       },
     },
   };

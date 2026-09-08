@@ -30,6 +30,7 @@ import { taskInputsSchema, kitRequestSchema } from "../../schemas/task-kit.mjs";
 import { portCapabilitiesSchema, portImportEvidenceSchema } from "../../schemas/port-capabilities.mjs";
 import { portCatalogueGenerator } from "./port-capabilities.mjs";
 import { privateParitySchema } from "../../schemas/private-parity.mjs";
+import { releaseComparisonSchema, releaseCatalogueSchema, releaseMigrationSchema } from "../../schemas/release-comparison.mjs";
 
 const write = async (relative, content, { check, changed, files }) => {
   files.push(relative);
@@ -62,6 +63,9 @@ export const schemasGenerator = {
     await emit("recipe-dependencies", recipeDependenciesSchema(z));
     await emit("task-inputs", taskInputsSchema(z));
     await emit("task-kit-request", kitRequestSchema(z));
+    await emit("release-comparison", releaseComparisonSchema(z));
+    await emit("release-catalogue", releaseCatalogueSchema(z));
+    await emit("release-migration", releaseMigrationSchema(z));
     await emit("verification-evidence", evidenceSchema(z));
     await emit("component-frontmatter", componentSchema(z));
     await emit("port", portSchema(z));

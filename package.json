@@ -23,6 +23,7 @@
     "consumption:kit": "node scripts/consumption-kit.mjs",
     "task:kit": "node scripts/task-kit.mjs",
     "parity:private": "node scripts/private-parity.mjs",
+    "release:compare": "node scripts/release-compare.mjs",
     "consumption:judge": "node scripts/consumption-judge.mjs",
     "verification:report": "node scripts/verification-report.mjs",
     "verification:check": "node --test tests/verification/*.test.js",

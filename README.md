@@ -223,6 +223,52 @@ the [composed task-kit protocol](tests/consumption/TASK-KITS.md) remain separate
 acceptance exercises. A generated kit does not execute an agent or prove that
 the consumer's implementation conforms.
 
+## Pinned release comparison
+
+The [release comparison](https://j3w1.github.io/theme/releases/) compares two
+published revisions from `site/releases.json`. The catalogue pins every tag to
+its dereferenced full commit and distinguishes a release from a published
+commit checkpoint. Builds require those Git objects locally (`fetch-depth: 0`
+in CI); building and viewing the comparison never fetches a moving branch.
+
+```sh
+npm run release:compare -- --from v0.1.0 --to b601998b3711dcd62949d497ed828af2089f9544 --out ../release-comparison
+```
+
+Both arguments accept only release tags or full commits. `--profile` selects
+one common historical profile. The output is a new directory under an existing,
+non-redirected parent, written through the same guarded writer as task kits.
+It contains JSON/Markdown migration reports and reconstructed before/after
+specimens. It never builds historical code, upgrades consumers, or certifies a
+port. An optional `--migrations` JSON file follows the generated
+`release-migration` schema and names both commits plus explicit role renames;
+equal values alone never imply a rename.
+
+The reader verifies each historical export against its own digest ledger.
+Missing or unsupported historical contracts remain unsupported. Missing usage
+indexes are disclosed; available direct component/port mappings still provide
+bounded dependency evidence. Absent historical eligibility fields stay unknown.
+Reports distinguish value, alias, status/decision, component/state, portability
+and appearance-source changes. Known affected means a declared dependency or
+contract changed, not an observed application regression. Unregistered consumers
+remain unknown and an empty port catalogue stays empty.
+
+The visual reference reuses the parsed specimen renderer with historical
+markup/CSS for the workbench's seven components and their variants/states.
+Both sides use 640 × 480 frames, comfortable density, LTR and static motion
+endpoints. No historical JavaScript or remote font/asset requests are allowed.
+Fixture changes are disclosed; fonts depend on the shared browser/machine.
+The frames are reconstructed references, not historical runtime evidence.
+Browser tests capture matching specimens and attach their actual environment;
+the report itself truthfully says visual execution is not run. Other engines,
+physical devices, manual accessibility and unlisted component captures remain
+unverified. Report/specimen outputs live in `dist/releases/`, outside committed
+canonical exports, and are covered by the ordinary built-artifact evidence.
+
+Adding a published revision requires a reviewed catalogue pin and the existing
+generate/check/build/dist/browser/evidence gates. No palette or approval changes
+are implied by adding a comparison. D-016 records the report schema boundary.
+
 ## Repository map
 
 | Path | Owns |

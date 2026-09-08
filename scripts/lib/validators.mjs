@@ -10,6 +10,7 @@ import { portSchema } from "../../schemas/port.mjs";
 import { portCapabilitiesSchema, assertCapabilities } from "../../schemas/port-capabilities.mjs";
 import { safeKitPath } from "../../schemas/task-kit.mjs";
 import { portMappingSchema, assertPortMapping } from "../../schemas/usage.mjs";
+import { releaseCatalogueSchema } from "../../schemas/release-comparison.mjs";
 import { catalogueSchema, screenshotProvenanceSchema, sourcesSchema } from "../../schemas/provenance.mjs";
 import { EXTENSION_ALLOWED_GROUPS, EXTENSION_HUES, HERITAGE_ANSI, REQUIRED_ROLES } from "../../schemas/roles.mjs";
 import { cssVar, extensionOf, loadProfile, loadResolvedProfile, resolveTokens, statusOf } from "./tokens.mjs";
@@ -34,6 +35,7 @@ export const loadManifest = async () => {
 
 export const validateManifest = async () => {
   const manifest = await loadManifest();
+  releaseCatalogueSchema(z).parse(await readJson("site/releases.json"));
   const paths = [
     ...Object.values(manifest.spec),
     ...Object.values(manifest.agents),

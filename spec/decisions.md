@@ -26,6 +26,8 @@ in its `$extensions["io.github.j3w1.theme"].approval.decision`. Agents may open
 | D-011 | Reference screenshots are cropped before publication | proposed | 2026-09-06 | — |
 | D-012 | Exports are committed and drift-checked | proposed | 2026-09-06 | — |
 | D-015 | Clarify component mappings exposed by consumption acceptance | proposed | 2026-09-07 | — |
+| D-016 | Pinned release comparison report and historical rendering | proposed | 2026-09-08 | — |
+
 | D-017 | Private framework parity evidence | proposed | 2026-09-08 | — |
 | D-018 | Declared port capabilities and fresh import evidence | proposed | 2026-09-08 | — |
 
@@ -292,6 +294,34 @@ approval is implied.
 rendered pressed borders and focus colors; or retain the contradictions and
 explicitly mark affected workbench configurations unresolved. Neither is
 silently selected. Historical acceptance reports remain historical evidence.
+
+## D-016 Pinned release comparison report and historical rendering
+
+Status: proposed. Issue #2 authorizes derived release diagnostics; formal
+decision status and all theme approvals remain owner-managed.
+
+**Context.** Release comparison needs a versioned report without putting
+run metadata into deterministic canonical exports or interpreting missing
+historical fields using today's rules.
+
+**Implementation scope.** Schema version 1 records both immutable revisions,
+profile and input digests, separate semantic change categories, explicit
+dependency evidence, and unsupported historical inputs. Reports and historical
+specimen renderings are build artifacts under `dist/releases/`; the canonical
+exports retain their existing contract. Historical data is read from Git, never
+executed as a build or imported as a module. The current shared specimen
+renderer presents each side's maintained markup and styles with a documented
+renderer version and matched conditions. This is a reconstructed visual
+reference, not evidence that an old site's JavaScript or an external port ran.
+Actual browser captures remain run evidence with recorded environment and
+artifact hashes. Missing evidence stays not run. Renames require an explicit
+mapping naming the two revisions; equal values do not establish a rename.
+
+**Alternatives.** A raw file diff loses semantic categories and dependency
+evidence; executing historical applications expands the trust boundary and
+confounds renderer changes with theme changes. Neither is required for this
+bounded comparison. No design values, eligibility rules or verification
+statuses are changed by the report format.
 
 ## D-017 Private framework parity evidence
 
