@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-C3vTYwcS.js";
-import { r as fields } from "../chunks/native-B49Q0p0_.js";
+import { t as J3w1Element } from "../chunks/element-DdnhHcFm.js";
+import { r as fields } from "../chunks/native-B_kM8IJz.js";
 //#region .cache/ui-build/entries/components/search-field.js
 var J3w1SearchField = class extends J3w1Element {
 	static componentId = "search-field";
 	static version = "1.1.0";
-	static implementationId = "sha256-TcNiqlSl1Lu05wAtrORkMp6YmtX0jPl3uwXOC7nnruQ=";
+	static implementationId = "sha256-LFMrmLVD8zsxiLWpzvdhrxjyRNKOpIi7EA+2oLy7dJ0=";
 	static connect = fields;
 	static upgradeProperties = [
 		"disabled",

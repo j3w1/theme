@@ -55,6 +55,8 @@ test('themed single choices preserve native values, constraints, defaults and di
   await chooseOptions(control,'1');await expect(control).toHaveAttribute('aria-invalid','false');
   await control.click();expect((await new AxeBuilder({page}).include('.gallery-card[data-component="select"][data-variant="default"]').analyze()).violations).toEqual([]);await control.press('Escape');
   await root.evaluate(element=>{const form=document.createElement('form');form.id='external-choice-form';element.ownerDocument.body.append(form);element.querySelector('select').setAttribute('form',form.id);element.value='3';form.reset();});await expect(control).toContainText('1: terminal');
+  await root.evaluate(element=>{element.required=false;});await expect(control).toHaveAccessibleName('Workspace');
+  await root.evaluate(element=>{element.required=true;});await expect(control).toHaveAccessibleName('Workspace required');
 });
 
 test('themed multiple choices support independent toggles, select all, dynamic options and reconnect', scope('select',['default','focus-visible','disabled'],['multiple','with-groups'],'Multiple list uses theme-rendered selected fills and check marks; dynamic option and lifecycle behavior are exercised.'), async ({page}) => {
@@ -86,6 +88,9 @@ test('themed date calendar supports typed constraints, keyboard picking and read
   await root.evaluate(element=>{const form=document.createElement('form');form.id='external-date-form';element.ownerDocument.body.append(form);const native=element.querySelector('input[type="date"]');native.name='release';native.setAttribute('form',form.id);});
   await expect(input).toHaveAttribute('form','external-date-form');await input.fill('not-a-date');await input.press('Tab');expect(await page.locator('#external-date-form').evaluate(form=>form.checkValidity())).toBe(false);
   await page.locator('#external-date-form').evaluate(form=>form.reset());await expect(input).toHaveValue('2026-09-06');expect(await page.locator('#external-date-form').evaluate(form=>Object.fromEntries(new FormData(form)))).toEqual({release:'2026-09-06'});
+  await root.evaluate(element=>{const label=document.createElement('span');label.id='alternate-date-label';label.textContent='Alternate date';element.append(label);element.querySelector('input[type="date"]').setAttribute('aria-labelledby',label.id);});
+  await expect(example.locator('.j3w1-temporal-input')).toHaveAccessibleName('Alternate date');
+  await root.evaluate(element=>element.querySelector('input[type="date"]').removeAttribute('aria-labelledby'));await expect(input).toHaveAccessibleName('Release date');
   await root.evaluate(element=>{element.readOnly=true;});await expect(input).toHaveAttribute('readonly','');await expect(example.getByRole('button',{name:'Open calendar',exact:true})).toBeHidden();
   const range=card(page,'date-picker','range');await range.getByRole('textbox',{name:'To',exact:true}).fill('2026-08-31');await range.getByRole('textbox',{name:'To',exact:true}).press('Tab');expect(await range.locator('j3w1-date-picker').evaluate(element=>element.reportValidity())).toBe(false);
 });

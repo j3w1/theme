@@ -17,7 +17,10 @@ moves the native select out of its framework-owned DOM position.
 The standalone `styles/controls.css` is generated from the same canonical
 `site/src/styles/themed-controls.css` used by component/copy distributions. This is necessary because
 component styles are intentionally scoped to their custom-element tag, whereas
-application enhancement is scoped to `data-j3w1-controls`. Destroy disconnects
+application enhancement is scoped to `data-j3w1-controls`.
+Generic control chrome also requires that enhancement boundary in the canonical
+stylesheet, so importing component reference CSS cannot alter unrelated native
+specimens, forced-state examples or standalone recipes. Destroy disconnects
 observers/listeners and restores the native control and label relationship.
 The Vue application and portal consume this public entry rather than maintaining
 separate dropdown implementations. Native no-JavaScript fallbacks remain visible.

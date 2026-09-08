@@ -25,12 +25,12 @@ j3w1-time-picker .sr-only {
   border: 0;
 }
 
-j3w1-time-picker [hidden] { display:none!important; }
-j3w1-time-picker :where(button,input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),textarea) { min-height:var(--density-control-height,32px); padding:var(--space-8) var(--space-12); border:var(--border-width-default) solid var(--color-border-control); border-radius:var(--radius-none); background:var(--color-surface-input); color:var(--color-text-default); font:inherit; }
-j3w1-time-picker :where(button,input,textarea):focus-visible { outline:var(--focus-ring); outline-offset:var(--focus-offset); }
-j3w1-time-picker :where(button,input,textarea):disabled { color:var(--color-text-disabled); background:var(--color-interaction-disabled-bg); border-color:var(--color-border-disabled); opacity:1; }
-j3w1-time-picker :where(input,textarea)::placeholder { color:var(--color-text-placeholder); opacity:1; }
-j3w1-time-picker :where(fieldset) { min-width:0; padding:var(--space-16); border:var(--border-width-default) solid var(--color-border-control); }
+j3w1-time-picker :where([data-j3w1-controls] *)[hidden] { display:none!important; }
+j3w1-time-picker :where([data-j3w1-controls] *):where(button,input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),textarea) { min-height:var(--density-control-height,32px); padding:var(--space-8) var(--space-12); border:var(--border-width-default) solid var(--color-border-control); border-radius:var(--radius-none); background:var(--color-surface-input); color:var(--color-text-default); font:inherit; }
+j3w1-time-picker :where([data-j3w1-controls] *):where(button,input,textarea):focus-visible { outline:var(--focus-ring); outline-offset:var(--focus-offset); }
+j3w1-time-picker :where([data-j3w1-controls] *):where(button,input,textarea):disabled { color:var(--color-text-disabled); background:var(--color-interaction-disabled-bg); border-color:var(--color-border-disabled); opacity:1; }
+j3w1-time-picker :where([data-j3w1-controls] *):where(input,textarea)::placeholder { color:var(--color-text-placeholder); opacity:1; }
+j3w1-time-picker :where([data-j3w1-controls] *):where(fieldset) { min-width:0; padding:var(--space-16); border:var(--border-width-default) solid var(--color-border-control); }
 j3w1-time-picker .j3w1-temporal { display:block; min-width:0; max-width:100%; }
 j3w1-time-picker .j3w1-temporal-row { display:flex; align-items:stretch; min-width:0; border:var(--border-width-default) solid var(--color-border-control); background:var(--color-surface-input); }
 j3w1-time-picker .j3w1-temporal-input { min-width:0; width:100%; padding:var(--space-8) var(--space-12); border:0; border-radius:var(--radius-none); background:var(--color-surface-input); color:var(--color-text-default); font:inherit; }
@@ -78,20 +78,20 @@ j3w1-time-picker .j3w1-choice-group-label { display: block; padding: var(--space
 j3w1-time-picker .j3w1-choice-error { display: block; color: var(--color-status-danger-text); margin-block-start: var(--space-4); }
 j3w1-time-picker .j3w1-choice [aria-invalid="true"] { border: var(--border-width-emphasis) solid var(--color-status-danger-border); }
 j3w1-time-picker .select-root:has(.j3w1-choice) > .select-chevron { display: none; }
-j3w1-time-picker ::selection { color: var(--color-interaction-text-selection-text); background: var(--color-interaction-text-selection-bg); }
-j3w1-time-picker :where(button,input,textarea) { accent-color: var(--color-interaction-selection-bg); font: inherit; border-radius: var(--radius-none); }
-j3w1-time-picker input[type="checkbox"]:not(.checkbox-input),j3w1-time-picker input[type="radio"]:not(.radio-input):not(.radio-group-input) { appearance: none; display: inline-grid; place-content: center; width: var(--icon-size-md); height: var(--icon-size-md); padding: 0; vertical-align: middle; border: var(--border-width-default) solid var(--color-border-control); background: var(--color-surface-input); }
-j3w1-time-picker input[type="checkbox"]:not(.checkbox-input):checked,j3w1-time-picker input[type="radio"]:not(.radio-input):not(.radio-group-input):checked { background: var(--color-interaction-selection-bg); color: var(--color-interaction-selection-text); }
-j3w1-time-picker input[type="checkbox"]:not(.checkbox-input):checked::after { content: '✓'; font-size: var(--font-size-ui-sm); }
-j3w1-time-picker input[type="radio"]:not(.radio-input):not(.radio-group-input):checked::after { content: ''; width: var(--space-8); height: var(--space-8); background: var(--color-interaction-selection-text); }
-j3w1-time-picker input[type="file"]::file-selector-button { font: inherit; padding: var(--space-8) var(--space-12); margin-inline-end: var(--space-12); border: var(--border-width-default) solid var(--color-border-control); border-radius: var(--radius-none); color: var(--color-text-default); background: var(--color-surface-raised); }
-j3w1-time-picker input[type="number"] { appearance: textfield; }
-j3w1-time-picker input[type="number"]::-webkit-inner-spin-button,j3w1-time-picker input[type="number"]::-webkit-outer-spin-button { appearance: none; margin: 0; }
-j3w1-time-picker input[type="range"] { appearance:none; background:var(--color-surface-input); }
-j3w1-time-picker input[type="range"]::-webkit-slider-runnable-track { height:var(--space-4); background:var(--color-border-control); }
-j3w1-time-picker input[type="range"]::-moz-range-track { height:var(--space-4); background:var(--color-border-control); }
-j3w1-time-picker input[type="range"]::-webkit-slider-thumb { appearance:none; width:var(--icon-size-md); height:var(--icon-size-md); margin-top:calc((var(--space-4) - var(--icon-size-md)) / 2); border:var(--border-width-default) solid var(--color-border-control); border-radius:var(--radius-none); background:var(--color-action-primary-bg); }
-j3w1-time-picker input[type="range"]::-moz-range-thumb { width:var(--icon-size-md); height:var(--icon-size-md); border:var(--border-width-default) solid var(--color-border-control); border-radius:var(--radius-none); background:var(--color-action-primary-bg); }
+j3w1-time-picker :where([data-j3w1-controls] *)::selection { color: var(--color-interaction-text-selection-text); background: var(--color-interaction-text-selection-bg); }
+j3w1-time-picker :where([data-j3w1-controls] *):where(button,input,textarea) { accent-color: var(--color-interaction-selection-bg); font: inherit; border-radius: var(--radius-none); }
+j3w1-time-picker input:where([data-j3w1-controls] *)[type="checkbox"]:not(.checkbox-input),j3w1-time-picker input:where([data-j3w1-controls] *)[type="radio"]:not(.radio-input):not(.radio-group-input) { appearance: none; display: inline-grid; place-content: center; width: var(--icon-size-md); height: var(--icon-size-md); padding: 0; vertical-align: middle; border: var(--border-width-default) solid var(--color-border-control); background: var(--color-surface-input); }
+j3w1-time-picker input:where([data-j3w1-controls] *)[type="checkbox"]:not(.checkbox-input):checked,j3w1-time-picker input:where([data-j3w1-controls] *)[type="radio"]:not(.radio-input):not(.radio-group-input):checked { background: var(--color-interaction-selection-bg); color: var(--color-interaction-selection-text); }
+j3w1-time-picker input:where([data-j3w1-controls] *)[type="checkbox"]:not(.checkbox-input):checked::after { content: '✓'; font-size: var(--font-size-ui-sm); }
+j3w1-time-picker input:where([data-j3w1-controls] *)[type="radio"]:not(.radio-input):not(.radio-group-input):checked::after { content: ''; width: var(--space-8); height: var(--space-8); background: var(--color-interaction-selection-text); }
+j3w1-time-picker input:where([data-j3w1-controls] *)[type="file"]::file-selector-button { font: inherit; padding: var(--space-8) var(--space-12); margin-inline-end: var(--space-12); border: var(--border-width-default) solid var(--color-border-control); border-radius: var(--radius-none); color: var(--color-text-default); background: var(--color-surface-raised); }
+j3w1-time-picker input:where([data-j3w1-controls] *)[type="number"] { appearance: textfield; }
+j3w1-time-picker input:where([data-j3w1-controls] *)[type="number"]::-webkit-inner-spin-button,j3w1-time-picker input:where([data-j3w1-controls] *)[type="number"]::-webkit-outer-spin-button { appearance: none; margin: 0; }
+j3w1-time-picker input:where([data-j3w1-controls] *)[type="range"] { appearance:none; background:var(--color-surface-input); }
+j3w1-time-picker input:where([data-j3w1-controls] *)[type="range"]::-webkit-slider-runnable-track { height:var(--space-4); background:var(--color-border-control); }
+j3w1-time-picker input:where([data-j3w1-controls] *)[type="range"]::-moz-range-track { height:var(--space-4); background:var(--color-border-control); }
+j3w1-time-picker input:where([data-j3w1-controls] *)[type="range"]::-webkit-slider-thumb { appearance:none; width:var(--icon-size-md); height:var(--icon-size-md); margin-top:calc((var(--space-4) - var(--icon-size-md)) / 2); border:var(--border-width-default) solid var(--color-border-control); border-radius:var(--radius-none); background:var(--color-action-primary-bg); }
+j3w1-time-picker input:where([data-j3w1-controls] *)[type="range"]::-moz-range-thumb { width:var(--icon-size-md); height:var(--icon-size-md); border:var(--border-width-default) solid var(--color-border-control); border-radius:var(--radius-none); background:var(--color-action-primary-bg); }
 
 j3w1-time-picker .time-picker {
   position: relative;

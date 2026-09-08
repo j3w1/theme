@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-C3vTYwcS.js";
-import { r as fields } from "../chunks/native-B49Q0p0_.js";
+import { t as J3w1Element } from "../chunks/element-DdnhHcFm.js";
+import { r as fields } from "../chunks/native-B_kM8IJz.js";
 //#region .cache/ui-build/entries/components/time-picker.js
 var J3w1TimePicker = class extends J3w1Element {
 	static componentId = "time-picker";
 	static version = "1.1.0";
-	static implementationId = "sha256-U16vSUH9WgEhPyN+mhguvkSSQiectCMPtIcOBy+t/ns=";
+	static implementationId = "sha256-dADWs/Jl5Qj+6FpA3/CUr8TN5nLtjVsTNmQvOC9KFr0=";
 	static connect = fields;
 	static upgradeProperties = [
 		"disabled",

@@ -1,4 +1,4 @@
-import {make,nativeInput,place} from './dom.js';
+import {make,nativeInput,place,controlLabelText} from './dom.js';
 const instances=new WeakMap();let sequence=0;
 export function mountTemporal(input) {
   if(instances.has(input))return instances.get(input);
@@ -34,7 +34,7 @@ export function mountTemporal(input) {
   let touched=false,writing=false,open=false,view=new Date(),activeDay=null,fallbackError='';
   const format=value=>`${String(value.getFullYear()).padStart(4,'0')}-${String(value.getMonth()+1).padStart(2,'0')}-${String(value.getDate()).padStart(2,'0')}`;
   const parse=value=>new Date(`${value}T12:00:00`);
-  const labelText=()=>labels.map(label=>{const copy=label.cloneNode(true);copy.querySelectorAll('input,.j3w1-temporal,[aria-hidden="true"],[hidden]').forEach(node=>node.remove());return copy.textContent.trim();}).join(' ');
+  const labelText=()=>controlLabelText(labels);
   const close=(focus=false)=>{if(popup.matches(':popover-open'))popup.hidePopover();popup.hidden=true;open=false;opener.setAttribute('aria-expanded','false');if(focus)editor.focus();};
   const sync=()=>{
     if(abort.signal.aborted)return;
@@ -43,7 +43,7 @@ export function mountTemporal(input) {
     if(input.hasAttribute('form'))editor.setAttribute('form',input.getAttribute('form'));else editor.removeAttribute('form');
     opener.disabled=editor.disabled||editor.readOnly||!date&&input.step==='any';if(decrease)decrease.disabled=opener.disabled;
     if(opener.disabled)close();
-    const labelled=input.getAttribute('aria-labelledby');if(labelled)editor.setAttribute('aria-labelledby',labelled);else editor.setAttribute('aria-label',input.getAttribute('aria-label')||labelText()||(date?'Date':'Time'));
+    const labelled=input.getAttribute('aria-labelledby');if(labelled){editor.setAttribute('aria-labelledby',labelled);editor.removeAttribute('aria-label');}else{editor.removeAttribute('aria-labelledby');editor.setAttribute('aria-label',input.getAttribute('aria-label')||labelText()||(date?'Date':'Time'));}
     if(!nativeTemporal){if(input.validationMessage===fallbackError)input.setCustomValidity('');fallbackError=constraint(editor.value);if(!input.validationMessage)input.setCustomValidity(fallbackError);}
     const malformed=Boolean(editor.value&&!Number.isFinite(numeric(editor.value)));
     editor.setCustomValidity(malformed?`Enter a valid ${date?'date in YYYY-MM-DD format':'time in HH:MM or HH:MM:SS format'}.`:input.validationMessage);

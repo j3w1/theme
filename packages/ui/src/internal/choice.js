@@ -1,4 +1,4 @@
-import { make, nativeInput, place } from './dom.js';
+import { make, nativeInput, place, controlLabelText } from './dom.js';
 import { mountTemporal } from './temporal.js';
 
 const mounted = new WeakMap();
@@ -29,7 +29,7 @@ export function mountChoice(select) {
   const labels = [...select.labels ?? []];
   control.id = `${id}-control`;
   for (const label of labels) { const previous = label.getAttribute('for'); label.htmlFor = control.id; restorers.push(() => previous === null ? label.removeAttribute('for') : label.setAttribute('for',previous)); }
-  const labelText = () => labels.map(label => { const copy = label.cloneNode(true); copy.querySelectorAll('select,.j3w1-choice,[aria-hidden="true"],[hidden]').forEach(node => node.remove()); return copy.textContent.trim(); }).join(' ');
+  const labelText = () => controlLabelText(labels);
   const close = () => { if (multiple) return; if (list.matches(':popover-open')) list.hidePopover(); list.hidden = true; open = false; control.setAttribute('aria-expanded', 'false'); control.removeAttribute('aria-activedescendant'); };
   const focus = options => { if (!select.matches(':disabled')) control.focus(options); };
   const mark = index => {

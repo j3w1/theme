@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-C3vTYwcS.js";
-import { r as fields } from "../chunks/native-B49Q0p0_.js";
+import { t as J3w1Element } from "../chunks/element-DdnhHcFm.js";
+import { r as fields } from "../chunks/native-B_kM8IJz.js";
 //#region .cache/ui-build/entries/components/number-field.js
 var J3w1NumberField = class extends J3w1Element {
 	static componentId = "number-field";
 	static version = "1.1.0";
-	static implementationId = "sha256-IP0Q6XQlgJ/EBtlRKvZuBr8s8vKeDhoUhQIF/4QNGNg=";
+	static implementationId = "sha256-fec2Fc/Ik1IBLZPe1O6cTbhG2bwB5ZU7z9C4RdIttps=";
 	static connect = fields;
 	static upgradeProperties = [
 		"disabled",

@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-C3vTYwcS.js";
-import { r as menu } from "../chunks/navigation-B2AMi0qO.js";
+import { t as J3w1Element } from "../chunks/element-DdnhHcFm.js";
+import { r as menu } from "../chunks/navigation-BPzB8WCr.js";
 //#region .cache/ui-build/entries/components/menu.js
 var J3w1Menu = class extends J3w1Element {
 	static componentId = "menu";
 	static version = "1.1.0";
-	static implementationId = "sha256-suv6ymtKfOzpbj1esORBVUSPtF7kNbeijFNYX1vsX4Y=";
+	static implementationId = "sha256-mvrShgxBhTwwyMh6bYSxp6ZMaSGKFfiCDH0G9Cu7hxE=";
 	static connect = menu;
 	static upgradeProperties = [
 		"disabled",

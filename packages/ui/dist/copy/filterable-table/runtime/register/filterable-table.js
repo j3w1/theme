@@ -1,4 +1,4 @@
-import { n as registerElement } from "../chunks/element-C3vTYwcS.js";
+import { n as registerElement } from "../chunks/element-DdnhHcFm.js";
 import "./search-field.js";
 import { J3w1FilterableTable } from "../components/filterable-table.js";
 //#region .cache/ui-build/entries/register/filterable-table.js

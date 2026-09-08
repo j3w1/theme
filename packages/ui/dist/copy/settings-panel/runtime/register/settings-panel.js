@@ -1,4 +1,4 @@
-import { n as registerElement } from "../chunks/element-C3vTYwcS.js";
+import { n as registerElement } from "../chunks/element-DdnhHcFm.js";
 import "./switch.js";
 import { J3w1SettingsPanel } from "../components/settings-panel.js";
 //#region .cache/ui-build/entries/register/settings-panel.js

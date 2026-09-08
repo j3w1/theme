@@ -1,4 +1,3 @@
-import { chooseOptions } from "../ui/choice-helper.mjs";
 import { test, expect } from "./evidence-fixture.mjs";
 import AxeBuilder from "@axe-core/playwright";
 import { promises as fs } from "node:fs";
@@ -93,9 +92,9 @@ test.describe("the specification page", () => {
     const context = page.context();
     await context.grantPermissions(["clipboard-read", "clipboard-write"]);
     await openSpec(page);
-    await chooseOptions(page.locator("#density"), "compact");
+    await page.locator("#density").selectOption("compact");
     await expect(page.locator("html")).toHaveAttribute("data-density", "compact");
-    await chooseOptions(page.locator("#profile"), "heritage-ansi");
+    await page.locator("#profile").selectOption("heritage-ansi");
     await expect(page.locator(".ladder").first()).toHaveAttribute("data-profile", "heritage-ansi");
     await page.reload({ waitUntil: "networkidle" });
     await expect(page.locator("html")).toHaveAttribute("data-density", "compact");

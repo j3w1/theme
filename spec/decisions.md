@@ -484,7 +484,7 @@ profile. This refinement ships with the same unreleased 1.0.0 major change.
 
 Status: accepted. After reviewing native blue selections in the work board and
 agent-kit picker, the owner explicitly instructed: "replace mostly all native
-components like <select> we must use all j3w1 themed". The owner also requested a
+components like `<select>` we must use all j3w1 themed". The owner also requested a
 properly proportioned command-search field. This records that authorization.
 
 The maintained select implementation now renders its single-choice popup and
