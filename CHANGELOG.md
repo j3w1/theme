@@ -8,6 +8,10 @@
 
 ## Unreleased
 
+- #3: preserve optional target Sass settings through the private framework
+  style plugin, verify its installed/locked toolchain, and record adapter
+  entry points and aliases for reproducibility.
+
 - #14: generate a capability explorer and shared task-kit mapping catalogue
   from real port inputs. Keep empty catalogues honest, require explicit role
   classifications, separate declared status from fresh import evidence, and

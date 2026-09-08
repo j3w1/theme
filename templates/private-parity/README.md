@@ -32,6 +32,12 @@ checkout. It follows `schemas/json/private-parity.schema.json`:
 - `defaults` and `styles`: copied paths relative to the private `host/`
   directory. Defaults must be a default-exported framework defaults object.
 - `aliases`: host style import aliases mapped to copied `host/` paths.
+- `frameworkStyles`: optional copied Sass settings file when the target uses
+  the framework's Vite style configuration. The harness loads the target's
+  installed style plugin with that private file and verifies both plugin and
+  Sass versions against the package declaration and lock. Omitting this field
+  records package-default framework styling explicitly; it does not imply that
+  a target's configured Sass was applied.
 
 The independent fixture loads actual host defaults/styles and installed
 framework packages. Vite's root and cache are private; no target application
@@ -48,6 +54,8 @@ Records identify the theme revision/profile, template and framework versions,
 dependency/package hashes, exact copied input and native specimen hashes,
 fixture identity, browser/OS/viewport/density/motion settings, observed focus,
 computed properties and capture hashes.
+The adapter's copied entry points, aliases and framework style mode are also
+recorded so that a rerun can reproduce the selected compilation configuration.
 
 Default and representative focus, disabled, invalid, checked or selected
 states are selected only when the canonical component declares them. Native
