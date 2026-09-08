@@ -1,5 +1,5 @@
 import { n as registerElement } from "../chunks/element-C3vTYwcS.js";
-import { t as J3w1FormBuilder } from "../chunks/form-builder-CygUSkNJ.js";
+import { t as J3w1FormBuilder } from "../chunks/form-builder-Mtl7UbUQ.js";
 //#region .cache/ui-build/entries/register/form-builder.js
 var element = registerElement("j3w1-form-builder", J3w1FormBuilder);
 //#endregion

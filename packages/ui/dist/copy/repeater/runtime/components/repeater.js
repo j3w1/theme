@@ -4,7 +4,7 @@ import { r as repeater } from "../chunks/advanced-C1mN-2fa.js";
 var J3w1Repeater = class extends J3w1Element {
 	static componentId = "repeater";
 	static version = "1.1.0";
-	static implementationId = "sha256-+8K9jPzBZ7CXVIM2CmPcWOyQcL9ZNG4QhDeQcqgnBWE=";
+	static implementationId = "sha256-K7DihblnY5yr3hO8PjgEQi/loY/I4ygeOVRIjrGaAnc=";
 	static connect = repeater;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...[

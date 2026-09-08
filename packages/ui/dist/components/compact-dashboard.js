@@ -4,7 +4,7 @@ import { t as dashboard } from "../chunks/compositions-BRBhOvN9.js";
 var J3w1CompactDashboard = class extends J3w1Element {
 	static componentId = "compact-dashboard";
 	static version = "1.1.0";
-	static implementationId = "sha256-FsBdjW77TWnr+p9Od1PC61umfd/eir7H0VDeEP7jg9Y=";
+	static implementationId = "sha256-peMCfetsk48KvaABNXkQ5KcNR4a9ZJD73tih20db2ks=";
 	static connect = dashboard;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

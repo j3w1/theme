@@ -21,6 +21,10 @@ application enhancement is scoped to `data-j3w1-controls`. Destroy disconnects
 observers/listeners and restores the native control and label relationship.
 The Vue application and portal consume this public entry rather than maintaining
 separate dropdown implementations. Native no-JavaScript fallbacks remain visible.
+Historical specimen and private comparison rendering resolve this CSS closure
+from the selected Git revision before applying the existing resource/behavior
+checks. Relative imports stay inside that revision's style tree; external,
+missing, cyclic and escaping dependencies fail closed.
 
 `tokens/` and `spec/` retain design authority. `packages/ui/src/` owns browser
 behavior and public API metadata. The build combines that maintained behavior,

@@ -4,7 +4,7 @@ import { r as fields } from "../chunks/native-B49Q0p0_.js";
 var J3w1DatePicker = class extends J3w1Element {
 	static componentId = "date-picker";
 	static version = "1.1.0";
-	static implementationId = "sha256-lrWXEx/5X0NnftFTtCgVZwtH3vNrdsSDCOCb9fadzmM=";
+	static implementationId = "sha256-U16vSUH9WgEhPyN+mhguvkSSQiectCMPtIcOBy+t/ns=";
 	static connect = fields;
 	static upgradeProperties = [
 		"disabled",

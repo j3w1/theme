@@ -4,7 +4,7 @@ import { t as actions } from "../chunks/native-B49Q0p0_.js";
 var J3w1ButtonGroup = class extends J3w1Element {
 	static componentId = "button-group";
 	static version = "1.1.0";
-	static implementationId = "sha256-6UC6iu7LMYLD2rZRQOw+ms0DXZ2Rfk5TMQkXQf9o8tE=";
+	static implementationId = "sha256-iljdo29aJPlpRcV0JiWsbCyUOdYtiEUupAvVzD66dEI=";
 	static connect = actions;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...[

@@ -4,7 +4,7 @@ import { t as formComposition } from "../chunks/forms-oc7hvM2b.js";
 var J3w1AdminForm = class extends J3w1Element {
 	static componentId = "admin-form";
 	static version = "1.1.0";
-	static implementationId = "sha256-JV5hc8X5qj2dtowrC6gWPlhj8Q3BdQhFugLcsjwex7Q=";
+	static implementationId = "sha256-PHQTH9ZGEUybs8j9NEcN8ZcAU9oncP0CPbPAnXNTNhg=";
 	static connect = formComposition;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

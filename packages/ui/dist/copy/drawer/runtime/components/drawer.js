@@ -4,7 +4,7 @@ import { n as modal } from "../chunks/overlays-B0Pnbu42.js";
 var J3w1Drawer = class extends J3w1Element {
 	static componentId = "drawer";
 	static version = "1.1.0";
-	static implementationId = "sha256-LtRJmh2xFtdl8DD6JoKlKaizCO6a/x3k1o4oH1FUiWs=";
+	static implementationId = "sha256-y5HMhv1ZTj039ZdKVeMYnJQspvkbbZZK6PfbmhOcan0=";
 	static connect = modal;
 	static upgradeProperties = [
 		"disabled",

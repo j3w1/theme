@@ -4,7 +4,7 @@ import { sha256, stableJson } from "./fs.mjs";
 import { init, parse } from "es-module-lexer";
 import postcss from "postcss";
 
-export async function cssSourceClosure(root, entries) {
+export async function cssSourceClosure(root, entries, { read = name => fs.readFile(path.join(root, name), 'utf8') } = {}) {
   const files = new Map(), visiting = new Set();
   const visit = async relative => {
     const name = path.posix.normalize(relative);
@@ -12,7 +12,9 @@ export async function cssSourceClosure(root, entries) {
     if (visiting.has(name)) throw new Error(`Circular CSS dependency: ${name}`);
     if (files.has(name)) return;
     visiting.add(name);
-    const tree = postcss.parse((await fs.readFile(path.join(root, name), "utf8")).replaceAll("\r\n", "\n"));
+    const content = await read(name);
+    if (typeof content !== 'string') throw new Error(`Missing CSS dependency: ${name}`);
+    const tree = postcss.parse(content.replaceAll("\r\n", "\n"));
     const imports = [];
     tree.walkAtRules("import", rule => {
       const match = /^["']([^"']+)["']$/.exec(rule.params);

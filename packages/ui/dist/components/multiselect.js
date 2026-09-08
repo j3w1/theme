@@ -4,7 +4,7 @@ import { n as multiselect } from "../chunks/advanced-C1mN-2fa.js";
 var J3w1Multiselect = class extends J3w1Element {
 	static componentId = "multiselect";
 	static version = "1.1.0";
-	static implementationId = "sha256-A4ei/ogyrPeuQFuqLE8dVs8pDfc4KGMCCgPEVfllAn0=";
+	static implementationId = "sha256-1ElgPlbO1PtTh855YWsXA7YfOFAYol2aGIjwxJMKLLY=";
 	static connect = multiselect;
 	static upgradeProperties = [
 		"disabled",

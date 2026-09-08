@@ -13,7 +13,7 @@ import { renderSpecimenMarkup, stateAttributes } from "./specimen-markup.mjs";
 import { sourceFingerprint } from "./evidence.mjs";
 import { parseFragment } from "parse5";
 import { walkMarkup, attribute } from "./markup.mjs";
-import { assertHistoricalMarkup, assertHistoricalCss } from "./release-rendering.mjs";
+import { assertHistoricalMarkup, historicalStyleClosure } from "./release-rendering.mjs";
 
 export const parityFixtureModel = fragment => {
   const nodes = [];
@@ -107,9 +107,8 @@ export const preparePrivateParity = async input => {
   if (!files["host/" + config.defaults] || !files["host/" + config.styles]) throw new Error("Declared host defaults and style entry must be among the copied inputs");
   if (config.frameworkStyles && !files["host/" + config.frameworkStyles]) throw new Error("Framework Sass configuration must be among the copied inputs");
   const nativeSelectors = { button: ".button", "text-field": ".text-field-input", select: ".select-control", checkbox: ".checkbox-option", tabs: ".tabs", dialog: ".dialog", table: ".table" };
-  const css = [await source.read("site/src/styles/tokens.generated.css"), await source.read("site/src/styles/base.css"), await source.read("site/src/styles/site.css")];
-  for (const id of PARITY_COMPONENTS) css.push(await source.read("site/src/styles/components/" + id + ".css"));
-  files["native.css"] = css.map(assertHistoricalCss).join("\n");
+  const css = ['site/src/styles/tokens.generated.css','site/src/styles/base.css','site/src/styles/site.css',...PARITY_COMPONENTS.map(id=>'site/src/styles/components/'+id+'.css')];
+  files["native.css"] = await historicalStyleClosure(source.read,css);
   files["tokens.css"] = await source.read("exports/tokens.css");
   const cases = [], models = {};
   for (const id of PARITY_COMPONENTS) {
