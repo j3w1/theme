@@ -9,5 +9,6 @@ export const privateParitySchema = z => z.object({
   lock: z.string().refine(safeKitPath),
   sources: z.array(z.object({ from: z.string().refine(privateAssetPath), to: z.string().refine(privateAssetPath) }).strict()).min(1),
   defaults: z.string().refine(privateAssetPath), styles: z.string().refine(privateAssetPath),
+  frameworkStyles: z.string().refine(privateAssetPath).optional(),
   aliases: z.record(z.string().min(1), z.string().refine(privateAssetPath)),
 }).strict();

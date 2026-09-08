@@ -32,10 +32,28 @@ checkout. It follows `schemas/json/private-parity.schema.json`:
 - `defaults` and `styles`: copied paths relative to the private `host/`
   directory. Defaults must be a default-exported framework defaults object.
 - `aliases`: host style import aliases mapped to copied `host/` paths.
+- `frameworkStyles`: optional copied Sass settings file when the target uses
+  the framework's Vite style configuration. The harness loads the target's
+  installed style plugin with that private file and verifies both plugin and
+  Sass versions against the package declaration and lock. Omitting this field
+  records package-default framework styling explicitly; it does not imply that
+  a target's configured Sass was applied.
 
 The independent fixture loads actual host defaults/styles and installed
 framework packages. Vite's root and cache are private; no target application
 scripts, backend, account connection or environment file is executed.
+The style plugin's synchronous factory resolves dependencies in the target's
+directory; the caller's directory is restored before server creation. Failures
+during plugin or server initialization are recorded in the validated private
+output, as are browser and compiler failures. The framework's exported Sass
+settings resolve from the installed target package, including when the private
+output has no local dependency directory.
+Only the specimens' component entry points are imported; unrelated framework
+components are not eagerly compiled through the full component catalogue.
+The canonical font family is set on the fixture page so teleported dialogs
+inherit the same environment as controls inside the main container.
+Capture settles finite transitions before computed styles and geometry are
+measured, so the measurements describe the image rather than a transient frame.
 The browser server listens on loopback and browser requests stay at that
 origin. Selected source files are rehashed after capture to detect mutation.
 
@@ -48,6 +66,8 @@ Records identify the theme revision/profile, template and framework versions,
 dependency/package hashes, exact copied input and native specimen hashes,
 fixture identity, browser/OS/viewport/density/motion settings, observed focus,
 computed properties and capture hashes.
+The adapter's copied entry points, aliases and framework style mode are also
+recorded so that a rerun can reproduce the selected compilation configuration.
 
 Default and representative focus, disabled, invalid, checked or selected
 states are selected only when the canonical component declares them. Native
@@ -65,6 +85,11 @@ synthetic specimens; application data is never loaded. Screenshots are scoped to
 the measured controls. Different host structures or helper scaffolding can
 produce expected differences and are not silently corrected. Complete keyboard
 lifecycle, screen-reader and application-chrome conformance remain unverified.
+Hidden empty/loading table rows are scaffolding, not populated fixture data.
+The base host table has no selection model; its selected-state comparison
+retains the default host table. Host icon configuration and icon-font assets
+are not loaded, so icon-dependent visuals remain unsupported. These limits are
+also recorded in the private report's unsupported mappings.
 Inspect every record before making a narrower compatibility claim.
 
 Keep all output private, including build errors, vendor source and screenshots.

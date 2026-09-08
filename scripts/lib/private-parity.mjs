@@ -24,7 +24,7 @@ export const parityFixtureModel = fragment => {
   const first = name => nodes.find(node => hasClass(node, name));
   const input = nodes.find(node => node.tagName === "input");
   const options = nodes.filter(node => node.tagName === "option").map(node => ({ title: text(node), value: attribute(node, "value") ?? text(node), selected: attribute(node, "selected") !== undefined && attribute(node, "selected") !== null }));
-  const rows = nodes.filter(node => node.tagName === "tr").map(node => (node.childNodes ?? []).filter(child => child.tagName === "td").map(text)).filter(row => row.length);
+  const rows = nodes.filter(node => node.tagName === "tr" && attribute(node, "hidden") == null).map(node => (node.childNodes ?? []).filter(child => child.tagName === "td").map(text)).filter(row => row.length);
   return {
     label: text(first("button-label") ?? first("checkbox-text") ?? nodes.find(node => node.tagName === "label")) || "Example",
     value: attribute(input ?? {}, "value") ?? "", options,
@@ -74,7 +74,7 @@ export const preparePrivateParity = async input => {
   const lock = parseYaml(lockText);
   const requireTarget = createRequire(path.join(target, "package.json"));
   const versions = {};
-  for (const name of ["vue", "vuetify", "vite"]) {
+  for (const name of ["vue", "vuetify", "vite", ...(config.frameworkStyles ? ["vite-plugin-vuetify", "sass"] : [])]) {
     const installed = JSON.parse(await fs.readFile(path.join(target, "node_modules", name, "package.json"), "utf8"));
     const declared = pkg.dependencies?.[name] ?? pkg.devDependencies?.[name];
     const locked = lock.importers?.["."]?.dependencies?.[name]?.version ?? lock.importers?.["."]?.devDependencies?.[name]?.version;
@@ -105,6 +105,7 @@ export const preparePrivateParity = async input => {
   };
   for (const item of config.sources) await copy(item.from, item.to);
   if (!files["host/" + config.defaults] || !files["host/" + config.styles]) throw new Error("Declared host defaults and style entry must be among the copied inputs");
+  if (config.frameworkStyles && !files["host/" + config.frameworkStyles]) throw new Error("Framework Sass configuration must be among the copied inputs");
   const nativeSelectors = { button: ".button", "text-field": ".text-field-input", select: ".select-control", checkbox: ".checkbox-option", tabs: ".tabs", dialog: ".dialog", table: ".table" };
   const css = [await source.read("site/src/styles/tokens.generated.css"), await source.read("site/src/styles/base.css"), await source.read("site/src/styles/site.css")];
   for (const id of PARITY_COMPONENTS) css.push(await source.read("site/src/styles/components/" + id + ".css"));
@@ -129,6 +130,8 @@ export const preparePrivateParity = async input => {
   files["main.mjs"] = 'import defaults from "./host/' + config.defaults + '";\nimport "./host/' + config.styles + '";\nimport "./tokens.css";\nimport { mountParity } from "./App.mjs";\nmountParity(defaults);\n';
   files["index.html"] = '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Private framework parity fixture</title></head><body><div id="app"></div><script type="module" src="./main.mjs"></script></body></html>';
   const metadata = { schemaVersion: 1, result: "prepared; browser checks not run", harnessSourceDigest: await sourceFingerprint(), themeRevision: source.revision, themeProfile: "default", templateVersion: pkg.version, frameworks: versions,
+    adapter: { defaults: config.defaults, styles: config.styles, frameworkStyles: config.frameworkStyles ?? null, aliases: config.aliases },
+    frameworkStyleMode: config.frameworkStyles ? "configured Sass" : "package defaults",
     packageDigest: sha256(packageText), lockDigest: sha256(lockText), targetMetadataDigests: { "package.json": sha256(packageText), [config.lock]: sha256(lockText) },
     inputDigests, canonicalInputs, artifactDigests: Object.fromEntries(Object.entries(files).map(([file, value]) => [file, sha256(value)])), fixtureDigest: sha256(files["App.mjs"] + files["fixture.json"]), cases,
     licenseReview: config.license, limits: "Synthetic fixture, copied host defaults and styles. No application routes, backend, accounts, production data or complete port verification." };
