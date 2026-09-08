@@ -288,6 +288,40 @@ are implied by adding a comparison. D-016 records the report schema boundary.
 
 ## Application ports
 
+The [capability explorer](https://j3w1.github.io/theme/ports/) derives its
+summary, role-to-native-key rows, artifact links and evidence state from the
+same committed port inputs. `exports/port-capabilities.json` is digest-covered
+and included in task kits. It distinguishes mapped, inherited, unsupported,
+out-of-scope and not-implemented roles from import verification. Legacy
+unmapped roles keep their reason without a guessed classification. An empty
+catalogue publishes no application support.
+
+See `ports/README.md` for optional capability metadata and the exact evidence
+fingerprint. A stale artifact token digest hides its claimed resolved values;
+changing targets, mappings, capabilities or artifact bytes invalidates import
+evidence. Static tables and JSON remain available without JavaScript.
+
+### Private framework parity
+
+`npm run parity:private` prints a useful **not run** prerequisite record when
+no licensed target is supplied. Public validation, builds and browser tests
+never require a private target. To run the bounded seven-component experiment,
+follow [the private harness protocol](templates/private-parity/README.md) and
+pass an operator-owned JSON file outside this repository:
+
+```sh
+npm run parity:private -- --config /private/location/parity.json
+```
+
+The protocol validates actual installed versions against the target package
+and lock, copies explicitly selected script/style inputs into a new private
+directory, and captures native references and real framework controls with
+recorded environment, input hashes, property differences and screenshots.
+It never starts the target application's backend or runs its package scripts.
+Completed diagnostics may report differences; they do not certify an
+application port. Private sources, configuration and results stay outside Git
+and the public site, including when verification fails.
+
 <!-- ports:start -->
 No native ports are published yet. Historical implementations are catalogued in `references/` and are not supported downloads.
 <!-- ports:end -->

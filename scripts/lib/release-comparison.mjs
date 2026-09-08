@@ -48,13 +48,16 @@ export const readRelease = async (ref, profile, { source, expectedRevision } = {
     if (docs[id] === null) availability.push(`Missing historical ${id} document.`);
   }
   const ports = {};
+  const capabilityCatalogue = await json("exports/port-capabilities.json");
+  if (capabilityCatalogue && (capabilityCatalogue.schemaVersion !== 1 || !Array.isArray(capabilityCatalogue.ports) || capabilityCatalogue.theme !== manifest?.name || capabilityCatalogue.version !== manifest?.version)) throw new Error("Unsupported historical capability catalogue");
   for (const file of files.filter((f) => /^ports\/[a-z][a-z0-9-]*\/port\.json$/.test(f))) {
     const port = await json(file);
     const mappingFile = file.replace("port.json", "mapping.json");
     const mapping = await json(mappingFile);
-    ports[port.id] = { manifest: port, mapping, file: mappingFile };
+    ports[port.id] = { manifest: port, mapping, file: mappingFile, capabilities: capabilityCatalogue?.ports.find(item => item.id === port.id) ?? null };
     if (!mapping || mapping.schemaVersion !== 1) availability.push(`Unsupported or missing port mapping: ${mappingFile}`);
   }
+  if (capabilityCatalogue?.ports.some(port => !ports[port.id])) throw new Error("Historical capability catalogue names a missing port manifest");
   const appearance = {};
   const appearanceFiles = files.filter((f) => /^site\/src\/styles\/.*\.css$/.test(f) || /^spec\/components\/[a-z][a-z0-9-]*\.demo\.html$/.test(f));
   await Promise.all(appearanceFiles.map(async (file) => { appearance[file] = sha256(await read(file)); }));
@@ -131,7 +134,11 @@ export const compareReleases = (from, to, { migrations = null } = {}) => {
     }
     if (from.docs.portability !== null && to.docs.portability !== null) add("portability", "global portability rules", from.docs.portability, to.docs.portability, "spec/portability.md");
     for (const file of sorted([...Object.keys(from.appearance), ...Object.keys(to.appearance)])) add("appearance-source", file, from.appearance[file], to.appearance[file], file);
-    for (const id of sorted([...Object.keys(from.ports), ...Object.keys(to.ports)])) add("port-mapping", id, from.ports[id], to.ports[id], `ports/${id}/mapping.json`);
+    for (const id of sorted([...Object.keys(from.ports), ...Object.keys(to.ports)])) {
+      const withoutCapabilities = port => { if (!port) return port; const { capabilities, ...data } = port; return data; };
+      add("port-mapping", id, withoutCapabilities(from.ports[id]), withoutCapabilities(to.ports[id]), `ports/${id}/mapping.json`);
+      add("port-mapping", id + ":capabilities", from.ports[id]?.capabilities, to.ports[id]?.capabilities, "exports/port-capabilities.json");
+    }
   }
   const affectedRoles = new Set(changes.filter((c) => c.kind.startsWith("token-")).map((c) => c.key.split(":")[0]));
   for (const row of migrations?.roles ?? []) { affectedRoles.add(row.from); affectedRoles.add(row.to); }
@@ -155,7 +162,8 @@ export const compareReleases = (from, to, { migrations = null } = {}) => {
   for (const id of sorted([...Object.keys(from.ports), ...Object.keys(to.ports)])) {
     const roles = [], sources = [];
     for (const side of [from, to]) for (const role of Object.keys(side.ports[id]?.mapping?.mappings ?? {})) if (affectedRoles.has(role)) { roles.push(role); sources.push(releaseSource(side.metadata.revision, side.ports[id].file, `/mappings/${pointer(role)}`)); }
-    if (roles.length) ports.push({ id, classification: "potentially affected", roles: sorted(roles), sources });
+    const own = changes.filter(change => change.kind === "port-mapping" && (change.key === id || change.key === id + ":capabilities"));
+    if (roles.length || own.length) ports.push({ id, classification: "potentially affected", roles: sorted(roles), sources: [...sources, ...own.flatMap(change => change.sources)] });
   }
   const report = {
     schemaVersion: 1, rendererVersion: RELEASE_RENDERER_VERSION, from: from.metadata, to: to.metadata, semanticStatus, changes,

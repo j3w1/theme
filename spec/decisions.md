@@ -28,6 +28,9 @@ in its `$extensions["io.github.j3w1.theme"].approval.decision`. Agents may open
 | D-015 | Clarify component mappings exposed by consumption acceptance | proposed | 2026-09-07 | — |
 | D-016 | Pinned release comparison report and historical rendering | proposed | 2026-09-08 | — |
 
+| D-017 | Private framework parity evidence | proposed | 2026-09-08 | — |
+| D-018 | Declared port capabilities and fresh import evidence | proposed | 2026-09-08 | — |
+
 ## D-000 Responsibility split
 
 Status: accepted · 2026-09-05 (adopted from the design package `ARCHITECTURE.md`).
@@ -319,3 +322,40 @@ evidence; executing historical applications expands the trust boundary and
 confounds renderer changes with theme changes. Neither is required for this
 bounded comparison. No design values, eligibility rules or verification
 statuses are changed by the report format.
+
+## D-017 Private framework parity evidence
+
+Status: proposed. Issue #3 authorizes an independently authored private harness;
+formal approval statuses and the existing license boundaries are unchanged.
+
+The harness consumes an operator-supplied licensed target and an explicit
+license review. It copies only declared template inputs into a new private
+fixture directory, uses synthetic examples and records the exact theme,
+template, framework, dependency and fixture identities. The original target
+and its application behavior remain outside this experiment's write scope.
+Browser captures, copied vendor inputs and detailed results remain private.
+Missing prerequisites produce not-run output. A successful diagnostic run is
+not a verified port or a claim of complete visual parity.
+
+Alternatives are a public vendor copy (incompatible with the current license
+boundary) or a generic framework mock presented as real template evidence
+(insufficient provenance). Neither is used.
+
+## D-018 Declared port capabilities and fresh import evidence
+
+Status: proposed. Issue #14 authorizes a derived mapping explorer; it does not
+create a port, change host capabilities or approve a profile.
+
+Optional `capabilities.json` metadata refines each existing mapped/unmapped
+role into mapped, inherited, unsupported, out-of-scope or not-implemented,
+with an explicit surface and reason. Legacy unmapped reasons remain
+unclassified; the generator never guesses a more specific state. Import
+verification is separate from mapping state and declared manifest status.
+Verified output requires a recorded real-import protocol bound to current
+target metadata, canonical tokens, mappings, capabilities and artifact bytes.
+Relevant changes make evidence stale; failed or missing checks cannot pass.
+The same generated catalogue supplies summaries, drill-downs and task kits.
+Private parity records are never automatically imported into the catalogue.
+
+Alternatives are a hand-maintained support matrix or treating a successful
+parse as an application import. Both lose the evidence boundary.

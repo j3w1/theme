@@ -1,4 +1,6 @@
 .tool-main { width: 100%; margin-inline: auto; }
+[data-port-content] code { overflow-wrap: anywhere; }
+[data-port-content] [hidden] { display: none !important; }
 .site-header h1 { overflow-wrap: anywhere; }
 .tool-main .copy-target code { overflow-wrap: anywhere; min-width: 0; }
 html.js .usage-filters { display: flex; flex-wrap: wrap; align-items: end; gap: var(--space-8); margin-block: var(--space-16); }

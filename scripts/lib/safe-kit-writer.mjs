@@ -2,6 +2,7 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 import { spawn } from "node:child_process";
 import { safeKitPath } from "../../schemas/task-kit.mjs";
+import { privateAssetPath } from "../../schemas/private-path.mjs";
 
 const ancestors = (directory) => {
   const result = [];
@@ -29,6 +30,14 @@ const checkDirectory = async (directory) => {
   if (process.platform === "win32") await checkWindowsAttributes(paths);
 };
 
+export const assertRealDirectory = checkDirectory;
+export const assertRealFile = async file => {
+  await checkDirectory(path.dirname(file));
+  const stat = await fs.lstat(file);
+  if (!stat.isFile() || stat.isSymbolicLink() || !samePath(await fs.realpath(file), file)) throw new Error("Source must be a regular non-redirected file");
+  if (process.platform === "win32") await checkWindowsAttributes([file]);
+};
+
 export const prepareKitParent = async (directory) => {
   for (const item of ancestors(path.resolve(directory))) {
     try { await fs.lstat(item); }
@@ -43,8 +52,8 @@ export const prepareKitParent = async (directory) => {
 
 /* New directories only. Never recursively erase a destination. The parent is
    user-owned and must not be concurrently replaced by another process. */
-export const writeNewKit = async (destination, files) => {
-  for (const [name, text] of Object.entries(files)) if (!safeKitPath(name) || typeof text !== "string") throw new Error(`Unsafe kit output: ${name}`);
+const writeNew = async (destination, files, validPath) => {
+  for (const [name, text] of Object.entries(files)) if (!validPath(name) || typeof text !== "string") throw new Error(`Unsafe kit output: ${name}`);
   if (new Set(Object.keys(files).map((f) => f.toLowerCase())).size !== Object.keys(files).length) throw new Error("Kit filenames must not collide on case-insensitive filesystems.");
   const target = path.resolve(destination);
   if (target === path.parse(target).root || (process.platform === "win32" && target.startsWith("\\\\"))) throw new Error("Choose a new local kit directory, not a root or device/network path.");
@@ -71,3 +80,6 @@ export const writeNewKit = async (destination, files) => {
   }
   return target;
 };
+
+export const writeNewKit = (destination, files) => writeNew(destination, files, safeKitPath);
+export const writeNewPrivateFiles = (destination, files) => writeNew(destination, files, privateAssetPath);

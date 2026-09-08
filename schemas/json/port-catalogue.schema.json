@@ -1,0 +1,319 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "number",
+      "const": 1
+    },
+    "theme": {
+      "type": "string",
+      "const": "j3w1-theme"
+    },
+    "version": {
+      "type": "string"
+    },
+    "sourcePolicy": {
+      "type": "string"
+    },
+    "ports": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "declaredStatus": {
+            "type": "string",
+            "enum": [
+              "experimental",
+              "verified",
+              "deprecated"
+            ]
+          },
+          "format": {
+            "type": "string"
+          },
+          "integrationKind": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "css-vars",
+                  "vuetify",
+                  "tailwind",
+                  "jetbrains-icls",
+                  "gtk-css",
+                  "terminal-16",
+                  "other"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "themeVersion": {
+            "type": "string"
+          },
+          "themeRevision": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-f0-9]{40}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "profile": {
+            "type": "string"
+          },
+          "targetVersions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "testedVersions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "os": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "verification": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "enum": [
+                  "not verified",
+                  "stale",
+                  "verified"
+                ]
+              },
+              "reason": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "status",
+              "reason"
+            ],
+            "additionalProperties": false
+          },
+          "subjectDigest": {
+            "type": "string",
+            "pattern": "^sha256-"
+          },
+          "evidencePath": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "surfaces": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "state": {
+                  "type": "string",
+                  "enum": [
+                    "supported",
+                    "inherited",
+                    "unsupported",
+                    "out-of-scope",
+                    "not-implemented"
+                  ]
+                },
+                "reason": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "state",
+                "reason"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "files": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "install": {
+                  "type": "string"
+                },
+                "source": {
+                  "type": "string"
+                },
+                "digest": {
+                  "type": "string",
+                  "pattern": "^sha256-"
+                }
+              },
+              "required": [
+                "path",
+                "install",
+                "source",
+                "digest"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "rollback": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "readme": {
+            "type": "string"
+          },
+          "mappings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "role": {
+                  "type": "string"
+                },
+                "nativeKeys": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "value": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "eligibility": {
+                  "type": "object",
+                  "properties": {
+                    "action": {
+                      "type": "string",
+                      "enum": [
+                        "use",
+                        "use-and-report",
+                        "blocked",
+                        "historical-only"
+                      ]
+                    },
+                    "reason": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "decisionIds": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "pattern": "^D-\\d{3}$"
+                      }
+                    }
+                  },
+                  "required": [
+                    "action",
+                    "reason",
+                    "decisionIds"
+                  ],
+                  "additionalProperties": false
+                },
+                "state": {
+                  "type": "string",
+                  "enum": [
+                    "mapped",
+                    "inherited",
+                    "unsupported",
+                    "out-of-scope",
+                    "not-implemented",
+                    "unmapped"
+                  ]
+                },
+                "surface": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "reason": {
+                  "type": "string"
+                },
+                "source": {
+                  "type": "string"
+                },
+                "spec": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "role",
+                "nativeKeys",
+                "value",
+                "eligibility",
+                "state",
+                "surface",
+                "reason",
+                "source",
+                "spec"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "id",
+          "displayName",
+          "declaredStatus",
+          "format",
+          "integrationKind",
+          "themeVersion",
+          "themeRevision",
+          "profile",
+          "targetVersions",
+          "testedVersions",
+          "os",
+          "verification",
+          "subjectDigest",
+          "evidencePath",
+          "surfaces",
+          "files",
+          "rollback",
+          "readme",
+          "mappings"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "theme",
+    "version",
+    "sourcePolicy",
+    "ports"
+  ],
+  "additionalProperties": false
+}

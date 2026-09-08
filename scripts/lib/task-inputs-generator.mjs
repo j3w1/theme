@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { readJson, readText, listFiles, sha256, stableJson, writeOrCheck } from "./fs.mjs";
 import { taskInputsSchema } from "../../schemas/task-kit.mjs";
-export const KIT_SHARED_FILES = ["theme.json", "agents/consume.md", "LICENSE.md", "schemas/json/theme.lock.schema.json", "exports/theme.compact.md", "exports/tokens.resolved.json", "spec/identity.md", "spec/foundations.md", "spec/accessibility.md", "spec/portability.md"];
+export const KIT_SHARED_FILES = ["theme.json", "agents/consume.md", "LICENSE.md", "schemas/json/theme.lock.schema.json", "exports/theme.compact.md", "exports/tokens.resolved.json", "exports/port-capabilities.json", "spec/identity.md", "spec/foundations.md", "spec/accessibility.md", "spec/portability.md"];
 export const taskInputsGenerator = {
   name: "task kit dependency inputs",
   async run({ manifest, defaultId, components, check }) {

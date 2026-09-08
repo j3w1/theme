@@ -1,13 +1,13 @@
 ---
-interface Props {
-  ports: any[];
-}
-
-const { ports } = Astro.props;
+import catalogue from "../../../exports/port-capabilities.json";
+import { withBase } from "../lib/base";
+const ports = catalogue.ports.map(port => ({ data: { ...port, status: port.declaredStatus,
+  surfaces: Object.fromEntries(["supported", "inherited", "unsupported"].map(state => [state, Object.values(port.surfaces).filter(surface => surface.state === state)])) } }));
 ---
 
 <div class="block" id="support-table">
   <h3>Application ports</h3>
+  <p><a href={withBase("ports/")}>Explore capabilities and semantic mappings</a></p>
   {ports.length === 0 ? (
     <p>No native ports are published yet. Historical implementations are catalogued under References and are not supported downloads.</p>
   ) : (
@@ -21,7 +21,7 @@ const { ports } = Astro.props;
             <tr>
               <td>{p.data.displayName}</td>
               <td>{p.data.format}</td>
-              <td><span class={`tag${p.data.status === "verified" ? "" : " tag-proposed"}`}>{p.data.status}</span></td>
+              <td>Declared {p.data.status}; evidence: {p.data.verification.status}</td>
               <td>{p.data.themeVersion}</td>
               <td>{p.data.testedVersions.join(", ") || "—"} ({p.data.os.join(", ")})</td>
               <td>{p.data.surfaces.supported.length} / {p.data.surfaces.inherited.length} / {p.data.surfaces.unsupported.length}</td>

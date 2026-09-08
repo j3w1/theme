@@ -124,6 +124,10 @@
       "type": "string",
       "const": "mapping.json"
     },
+    "capabilitiesPath": {
+      "type": "string",
+      "const": "capabilities.json"
+    },
     "evidence": {
       "type": "array",
       "items": {
