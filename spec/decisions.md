@@ -30,6 +30,9 @@ in its `$extensions["io.github.j3w1.theme"].approval.decision`. Agents may open
 
 | D-017 | Private framework parity evidence | proposed | 2026-09-08 | — |
 | D-018 | Declared port capabilities and fresh import evidence | proposed | 2026-09-08 | — |
+| D-019 | One-way namespaced Figma Variables bridge | proposed | 2026-09-08 | — |
+| D-020 | Bounded local validation and recovery workflow | proposed | 2026-09-08 | — |
+| D-021 | Local form composition with versioned data | proposed | 2026-09-08 | — |
 
 ## D-000 Responsibility split
 
@@ -359,3 +362,52 @@ Private parity records are never automatically imported into the catalogue.
 
 Alternatives are a hand-maintained support matrix or treating a successful
 parse as an application import. Both lose the evidence boundary.
+
+## D-019 One-way namespaced Figma Variables bridge
+
+Status: proposed. Issue #15 authorizes this bounded adapter; approval and
+eligibility statuses remain those of the canonical source.
+
+An explicit pinned revision supplies colors and scalar spacing/radius values.
+Aliases retain their dependency structure; dependency-only primitives are
+hidden from property pickers. Unsupported types and non-approved profiles are
+reported. One collection and one mode avoid assuming paid mode capabilities.
+Dry-run is read-only, apply is explicit, and external import receipts identify
+owned IDs and their last observed values. Conflicts and manual edits stop an
+update or rollback. The bridge does not store ownership in unsupported plugin
+data, overwrite unrelated variables, or write values back to the repository.
+
+Alternatives are manual duplicate maintenance, a paid-only REST workflow, or
+silently flattening aliases/composites. None meets the one-way evidence scope.
+
+## D-020 Bounded local validation and recovery workflow
+
+Status: proposed. Issue #16 authorizes one executable pattern using existing
+admin-form, field, alert and button rules, without adding palette roles.
+
+The workflow has editing, invalid, review, busy and success stages. Validation
+runs on explicit submission, preserves values, and presents linked errors.
+Typing does not rewrite live announcements. Review can return to a field;
+confirm enters busy, and a separate local simulation-completion event enters
+success. No request is made. The existing workstation example's reserved
+name and hostname are explicitly local fixture conflicts, not business policy.
+The pattern contract pins constituent component content digests and reports
+automated evidence separately from manual screen-reader acceptance.
+
+Alternatives are a color-only invalid snapshot, validation on every keystroke,
+or treating a submit click as a successful save. They do not teach recovery.
+
+## D-021 Local form composition with versioned data
+
+Status: proposed. Issue #19 authorizes the deferred form-builder demonstration.
+
+Five canonical field kinds can be added, edited, removed and reordered with
+buttons. Definitions, preview values and validation state are separate. JSON
+imports have closed fields, bounded size/counts and unique stable IDs; failed
+imports leave the current form unchanged. Content identity pins the supplying
+theme and component contracts. Downloads contain definitions, never entered
+values. The builder reuses D-020's field rendering and validation behavior.
+It remains a draft reference component, not a backend platform or native port.
+
+Alternatives are arbitrary HTML/schema execution, a conditional workflow
+engine, and a second visual field implementation. They exceed this task.

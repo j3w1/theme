@@ -452,6 +452,10 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | header rule (decorative) | — | ui | `color.border.strong` #9e231f | `color.surface.default` #160b0b | 2.50 | 1 | pass |
 | panel edge and toolbar separator (decorative) | — | ui | `color.border.default` #531310 | `color.surface.default` #160b0b | 1.35 | 1 | pass |
 | row, toolbar and footer rules (decorative) | — | ui | `color.border.divider` #2b0e0d | `color.surface.default` #160b0b | 1.08 | 1 | pass |
+| form-builder default text | default | text | `color.text.default` #e99499 | `color.surface.default` #160b0b | 8.43 | 4.5 | pass |
+| form-builder default border | default | ui | `color.border.control` #a3676b | `color.surface.default` #160b0b | 4.33 | 3 | pass |
+| Editor text | — | text | `color.text.default` #e99499 | `color.surface.default` #160b0b | 8.43 | 4.5 | pass |
+| Definition status | — | text | `color.text.muted` #bd787d | `color.surface.default` #160b0b | 5.66 | 4.5 | pass |
 | i3-window-frame default text | default | text | `color.text.muted` #bd787d | `color.surface.chrome` #100909 | 5.77 | 4.5 | pass |
 | i3-window-frame focus-visible text | focus-visible | text | `color.text.bright` #ffa2a7 | `color.surface.chrome-alt` #1c0a09 | 10.01 | 4.5 | pass |
 | i3-window-frame focus-visible outline | focus-visible | ui | `color.interaction.focus.ring-container` #ffa2a7 | `color.surface.chrome-alt` #1c0a09 | 10.01 | 3 | pass |

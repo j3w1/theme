@@ -1,0 +1,12 @@
+---
+import ToolLayout from "../../layouts/ToolLayout.astro";
+import { getCollection, render } from "astro:content";
+import { withBase } from "../../lib/base";
+const entry = (await getCollection("docs")).find(item => item.data.id === "figma-bridge");
+const { Content } = await render(entry);
+---
+<ToolLayout title="Figma Variables bridge" description="Pinned source values, explicit diffs and an external receipt for safe one-way import.">
+  <p><a href={withBase("exports/figma/importer.mjs")} download>Download the actual Variables adapter</a> · <a href="https://github.com/j3w1/theme/issues/15">Import verification evidence</a></p>
+  <h2>Mapping, operation and evidence</h2>
+  <Content />
+</ToolLayout>

@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "number",
+      "const": 1
+    },
+    "theme": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "const": "j3w1-theme"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "profile": {
+          "type": "string",
+          "const": "default"
+        },
+        "sourceDigest": {
+          "type": "string",
+          "pattern": "^sha256-[A-Za-z0-9+/]+=*$"
+        }
+      },
+      "required": [
+        "name",
+        "version",
+        "profile",
+        "sourceDigest"
+      ],
+      "additionalProperties": false
+    },
+    "density": {
+      "type": "string",
+      "enum": [
+        "compact",
+        "comfortable"
+      ]
+    },
+    "fields": {
+      "maxItems": 20,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]{0,47}$"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "text",
+              "textarea",
+              "select",
+              "checkbox",
+              "radio"
+            ]
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "help": {
+            "type": "string",
+            "maxLength": 400
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "options": {
+            "maxItems": 20,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9-]{0,47}$"
+                },
+                "label": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 120
+                }
+              },
+              "required": [
+                "id",
+                "label"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "label",
+          "help",
+          "required",
+          "options"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "theme",
+    "density",
+    "fields"
+  ],
+  "additionalProperties": false
+}

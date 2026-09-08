@@ -43,6 +43,8 @@ const description = `${theme.description} One page: foundations, every component
 const tocDocs = [{ id: "identity", title: "Identity" }, { id: "foundations", title: "Foundations" }];
 const tocExtra = [
   { id: "stress-and-non-examples", title: "Stress fixtures and non-examples" },
+  { id: anchors.doc("form-patterns"), title: "Form composition and recovery" },
+  { id: anchors.doc("figma-bridge"), title: "Figma Variables bridge" },
   { id: anchors.doc("accessibility"), title: "Accessibility" },
   { id: anchors.doc("portability"), title: "Portability" },
   { id: "references", title: "References" },
@@ -138,6 +140,8 @@ const tocExtra = [
         <NonExamples />
       </section>
 
+      <DocSection entry={doc("form-patterns")} />
+      <DocSection entry={doc("figma-bridge")} />
       <DocSection entry={doc("accessibility")}>
         <ContrastReport />
       </DocSection>

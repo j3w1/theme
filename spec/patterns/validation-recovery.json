@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "validation-recovery",
+  "decisionId": "D-020",
+  "components": ["admin-form", "text-field", "textarea", "select", "checkbox", "alert", "button", "table"],
+  "stages": ["editing", "invalid", "review", "busy", "success"],
+  "transitions": [
+    {"from": "editing", "event": "submit", "to": ["invalid", "review"]},
+    {"from": "invalid", "event": "submit", "to": ["invalid", "review"]},
+    {"from": "review", "event": "edit", "to": ["editing"]},
+    {"from": "review", "event": "confirm", "to": ["busy"]},
+    {"from": "busy", "event": "complete", "to": ["success"]},
+    {"from": "success", "event": "edit", "to": ["editing"]}
+  ],
+  "fields": [
+    {"id": "name", "type": "text", "label": "Name", "help": "Shown in the example record. The fixture reserves ws-07.", "required": true, "options": []},
+    {"id": "hostname", "type": "text", "label": "Hostname", "help": "Lowercase letters, digits and hyphens. The fixture reserves ws-07.", "required": true, "options": []},
+    {"id": "role", "type": "select", "label": "Role", "help": "An example role, with no account permissions attached.", "required": false, "options": [{"id": "dev", "label": "Development"}, {"id": "build", "label": "Build agent"}, {"id": "kiosk", "label": "Kiosk"}]},
+    {"id": "notes", "type": "textarea", "label": "Notes", "help": "Plain text retained only in this page.", "required": false, "options": []},
+    {"id": "enabled", "type": "checkbox", "label": "Enable after saving", "help": "Demonstrates a boolean value; no real record is enabled.", "required": false, "options": []}
+  ],
+  "fixtures": {
+    "invalid": {"name": "ws-07", "hostname": "ws-07", "role": "dev", "notes": "Keep these notes while correcting the two fields.", "enabled": true},
+    "valid": {"name": "ws-08", "hostname": "ws-08", "role": "dev", "notes": "Keep these notes while correcting the two fields.", "enabled": true}
+  },
+  "validation": "Required values, supported choices, a bounded text length, and explicit local workstation fixture conflicts. Never server-side validation.",
+  "announcements": "Errors update on submit, not on input. The summary receives focus; links focus the named field. Review, busy and success update the status once per transition.",
+  "tests": ["tests/form-model.test.js", "tests/browser/validation-recovery.spec.js"],
+  "limits": ["Local simulation only; no request, account, database or persistence.", "Busy requires an explicit simulation-completion event; a submit click is not success.", "Automated keyboard/DOM/axe evidence does not claim a manual screen-reader or user-research pass."]
+}

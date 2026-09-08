@@ -1,0 +1,268 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "number",
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "const": "validation-recovery"
+    },
+    "decisionId": {
+      "type": "string",
+      "const": "D-020"
+    },
+    "components": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]*$"
+      }
+    },
+    "stages": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "editing",
+          "invalid",
+          "review",
+          "busy",
+          "success"
+        ]
+      }
+    },
+    "transitions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "string",
+            "enum": [
+              "editing",
+              "invalid",
+              "review",
+              "busy",
+              "success"
+            ]
+          },
+          "event": {
+            "type": "string",
+            "enum": [
+              "submit",
+              "edit",
+              "confirm",
+              "complete"
+            ]
+          },
+          "to": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "editing",
+                "invalid",
+                "review",
+                "busy",
+                "success"
+              ]
+            }
+          }
+        },
+        "required": [
+          "from",
+          "event",
+          "to"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "fields": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]{0,47}$"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "text",
+              "textarea",
+              "select",
+              "checkbox",
+              "radio"
+            ]
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "help": {
+            "type": "string",
+            "maxLength": 400
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "options": {
+            "maxItems": 20,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9-]{0,47}$"
+                },
+                "label": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 120
+                }
+              },
+              "required": [
+                "id",
+                "label"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "label",
+          "help",
+          "required",
+          "options"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "fixtures": {
+      "type": "object",
+      "properties": {
+        "invalid": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "type": [
+              "string",
+              "boolean"
+            ]
+          }
+        },
+        "valid": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "type": [
+              "string",
+              "boolean"
+            ]
+          }
+        }
+      },
+      "required": [
+        "invalid",
+        "valid"
+      ],
+      "additionalProperties": false
+    },
+    "validation": {
+      "type": "string",
+      "minLength": 1
+    },
+    "announcements": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tests": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "limits": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "theme": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "const": "j3w1-theme"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "profile": {
+          "type": "string",
+          "const": "default"
+        },
+        "sourceDigest": {
+          "type": "string",
+          "pattern": "^sha256-[A-Za-z0-9+/]+=*$"
+        }
+      },
+      "required": [
+        "name",
+        "version",
+        "profile",
+        "sourceDigest"
+      ],
+      "additionalProperties": false
+    },
+    "componentDigests": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^sha256-[A-Za-z0-9+/]+=*$"
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "id",
+    "decisionId",
+    "components",
+    "stages",
+    "transitions",
+    "fields",
+    "fixtures",
+    "validation",
+    "announcements",
+    "tests",
+    "limits",
+    "version",
+    "theme",
+    "componentDigests"
+  ],
+  "additionalProperties": false
+}

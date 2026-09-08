@@ -1,0 +1,168 @@
+{
+  "schemaVersion": 1,
+  "id": "validation-recovery",
+  "decisionId": "D-020",
+  "components": [
+    "admin-form",
+    "text-field",
+    "textarea",
+    "select",
+    "checkbox",
+    "alert",
+    "button",
+    "table"
+  ],
+  "stages": [
+    "editing",
+    "invalid",
+    "review",
+    "busy",
+    "success"
+  ],
+  "transitions": [
+    {
+      "from": "editing",
+      "event": "submit",
+      "to": [
+        "invalid",
+        "review"
+      ]
+    },
+    {
+      "from": "invalid",
+      "event": "submit",
+      "to": [
+        "invalid",
+        "review"
+      ]
+    },
+    {
+      "from": "review",
+      "event": "edit",
+      "to": [
+        "editing"
+      ]
+    },
+    {
+      "from": "review",
+      "event": "confirm",
+      "to": [
+        "busy"
+      ]
+    },
+    {
+      "from": "busy",
+      "event": "complete",
+      "to": [
+        "success"
+      ]
+    },
+    {
+      "from": "success",
+      "event": "edit",
+      "to": [
+        "editing"
+      ]
+    }
+  ],
+  "fields": [
+    {
+      "id": "name",
+      "type": "text",
+      "label": "Name",
+      "help": "Shown in the example record. The fixture reserves ws-07.",
+      "required": true,
+      "options": []
+    },
+    {
+      "id": "hostname",
+      "type": "text",
+      "label": "Hostname",
+      "help": "Lowercase letters, digits and hyphens. The fixture reserves ws-07.",
+      "required": true,
+      "options": []
+    },
+    {
+      "id": "role",
+      "type": "select",
+      "label": "Role",
+      "help": "An example role, with no account permissions attached.",
+      "required": false,
+      "options": [
+        {
+          "id": "dev",
+          "label": "Development"
+        },
+        {
+          "id": "build",
+          "label": "Build agent"
+        },
+        {
+          "id": "kiosk",
+          "label": "Kiosk"
+        }
+      ]
+    },
+    {
+      "id": "notes",
+      "type": "textarea",
+      "label": "Notes",
+      "help": "Plain text retained only in this page.",
+      "required": false,
+      "options": []
+    },
+    {
+      "id": "enabled",
+      "type": "checkbox",
+      "label": "Enable after saving",
+      "help": "Demonstrates a boolean value; no real record is enabled.",
+      "required": false,
+      "options": []
+    }
+  ],
+  "fixtures": {
+    "invalid": {
+      "name": "ws-07",
+      "hostname": "ws-07",
+      "role": "dev",
+      "notes": "Keep these notes while correcting the two fields.",
+      "enabled": true
+    },
+    "valid": {
+      "name": "ws-08",
+      "hostname": "ws-08",
+      "role": "dev",
+      "notes": "Keep these notes while correcting the two fields.",
+      "enabled": true
+    }
+  },
+  "validation": "Required values, supported choices, a bounded text length, and explicit local workstation fixture conflicts. Never server-side validation.",
+  "announcements": "Errors update on submit, not on input. The summary receives focus; links focus the named field. Review, busy and success update the status once per transition.",
+  "tests": [
+    "tests/form-model.test.js",
+    "tests/browser/validation-recovery.spec.js"
+  ],
+  "limits": [
+    "Local simulation only; no request, account, database or persistence.",
+    "Busy requires an explicit simulation-completion event; a submit click is not success.",
+    "Automated keyboard/DOM/axe evidence does not claim a manual screen-reader or user-research pass."
+  ],
+  "version": "0.1.0",
+  "theme": {
+    "name": "j3w1-theme",
+    "version": "0.1.0",
+    "profile": "default",
+    "sourceDigest": "sha256-Tmzyj8pKVeTNYjtgff07GjXzPYqEAO+uWjBRrkfXmJc="
+  },
+  "componentDigests": {
+    "admin-form": "sha256-W7IZNKEkuHA+nlgdlcqJMmxDrLh4CffqC+nqFJNAi7g=",
+    "alert": "sha256-q3EQI3P9xgXljHJkDnS7ZFbsxgqVGp5Zyiq4vhVrRnc=",
+    "button": "sha256-gnzpVsuIZjRf71auHMqPL2ChMskE21U8oCArrqB71cM=",
+    "checkbox": "sha256-XU/Y04I+NR1G3buBjzkG4BbpgRNO4Io7ezMXfix+Ceo=",
+    "radio-group": "sha256-HSHstQgS0ZKPKPwVJ3tPaczBBcgLNkMP2mah58LnxbY=",
+    "select": "sha256-J+uxrfu1ZnYEDrRYnj9D8V7fKSJlliIkRTQVwMd9o4Q=",
+    "table": "sha256-olEkkcAbcFb/bkWJBDpIJO3l/SZTbmdwraZCfPIbMgU=",
+    "text-field": "sha256-u9jjMwAvwfjuLTS2r+3lxlg4MuWA2CCCxQ+KBHSFfeY=",
+    "textarea": "sha256-jG62w9X1+NLHnjHiXkYsUzg6oAwZLvg8IlPzcSs9vbU="
+  }
+}

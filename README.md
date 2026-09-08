@@ -17,6 +17,16 @@ Use the pinned approved default profile. Pending roles in that profile use-and-r
 Approval and consumption eligibility are separate; see the policy above and
 `spec/decisions.md` D-013.
 
+The [validation and recovery composition](https://j3w1.github.io/theme/patterns/validation-recovery/)
+and [draft form builder](https://j3w1.github.io/theme/builder/) demonstrate local
+form behavior using canonical fields. Definitions are bounded, content-pinned
+JSON; entered values never enter downloads or persistence. The optional
+[Figma Variables bridge](https://j3w1.github.io/theme/figma/) provides a reviewed
+one-way import route with dry-run, explicit apply and rollback receipts. Generate
+its sample with `node scripts/figma-bridge.mjs --ref FULL_COMMIT_OR_RELEASE_TAG`.
+See [form patterns](spec/form-patterns.md), [builder contract](spec/components/form-builder.md)
+and [bridge instructions](spec/figma-bridge.md) for limits and evidence.
+
 ## What this is, and what it is not
 
 `j3w1/theme` **defines** the theme: exact tokens, semantic roles, interaction
@@ -333,6 +343,13 @@ means its demo renders every declared variant on the site; *test implemented* me
 browser test exists for it. Actual outcomes are published separately in the
 linked verification report, with exact scope, configuration and digests. The ledger is generated from the sources.
 
+The shared browser evidence fixture records the actual browser/OS and final
+viewport, plus the page root's declared profile and density at test completion.
+An absent declaration is recorded as `not-declared`; an unavailable page
+context is reported explicitly. These fields do not infer a mode for every
+nested specimen. Protocols that exercise several local modes describe them in
+their verification annotation, rather than labeling every run as comfortable.
+
 <!-- coverage:start -->
 | Component | Family | Priority | Specified | Demonstrated | Test implemented |
 | --- | --- | --- | --- | --- | --- |
@@ -357,6 +374,7 @@ linked verification report, with exact scope, configuration and digests. The led
 | `fieldset` | forms-basic | R1 | yes | yes | — |
 | `file-input` | forms-advanced | R1 | yes | yes | — |
 | `filterable-table` | composed | R1 | yes | yes | — |
+| `form-builder` | forms-advanced | L | yes | yes | yes |
 | `i3-window-frame` | composed | R1 | yes | yes | — |
 | `icon-button` | actions | R1 | yes | yes | — |
 | `link` | actions | R1 | yes | yes | yes |

@@ -8,6 +8,13 @@
 
 ## Unreleased
 
+- #15, #16, #19: add a pinned one-way Figma Variables bridge with external
+  ownership receipts, a local validation/recovery composition, and a draft
+  five-field form builder. Reuse canonical field templates and bounded JSON
+  definitions; preserve values through recovery and exclude them from exports.
+  Publish explicit API, account, no-JS and simulation limits. No token values,
+  profile approvals, native port claims or persistence behavior change.
+
 - #3: preserve optional target Sass settings through the private framework
   style plugin, verify its installed/locked toolchain, and record adapter
   entry points and aliases for reproducibility.

@@ -59,11 +59,11 @@
       "total": 4
     },
     "forms-advanced": {
-      "specified": 5,
-      "demonstrated": 5,
-      "tested": 0,
-      "testImplemented": 0,
-      "total": 5
+      "specified": 6,
+      "demonstrated": 6,
+      "tested": 1,
+      "testImplemented": 1,
+      "total": 6
     }
   },
   "components": {
@@ -276,6 +276,16 @@
       "tested": false,
       "testImplemented": false,
       "states": 5
+    },
+    "form-builder": {
+      "family": "forms-advanced",
+      "priority": "L",
+      "maturity": "draft",
+      "specified": true,
+      "demonstrated": true,
+      "tested": true,
+      "testImplemented": true,
+      "states": 4
     },
     "i3-window-frame": {
       "family": "composed",

@@ -1,0 +1,8 @@
+.form-builder { min-inline-size: 0; max-inline-size: 56rem; padding: var(--space-16); background: var(--color-surface-default); color: var(--color-text-default); border: var(--border-width-default) solid var(--color-border-control); }
+.form-builder-status { color: var(--color-text-muted); }
+.form-builder-editor { display: grid; gap: var(--space-8); }
+.form-builder-editor label { display: grid; gap: var(--space-4); }
+.form-builder-editor :is(input:not([type=checkbox]), textarea, select) { inline-size: 100%; min-inline-size: 0; box-sizing: border-box; background: var(--color-surface-input); color: var(--color-text-default); border: var(--border-width-default) solid var(--color-border-control); padding: var(--space-8); font: inherit; }
+.form-builder-editor label:has(input[type=checkbox]) { display: flex; }
+.form-builder-list { padding-inline-start: var(--space-24); }
+.form-builder-list li { margin-block: var(--space-16); overflow-wrap: anywhere; }
