@@ -6,23 +6,24 @@ import { VApp, VBtn, VTextField, VSelect, VCheckbox, VTabs, VTab, VDialog, VCard
 import "vuetify/styles";
 import fixture from "./fixture.json";
 export const mountParity = defaults => {
-  const { data, tokens } = fixture;
+  const { models, tokens } = fixture;
   const query = new URLSearchParams(location.search);
   const id = query.get("component") || "button", state = query.get("state") || "default";
+  const data = models[id];
   const props = { disabled: state === "disabled", error: state === "invalid", density: "comfortable" };
   const render = () => {
     if (id === "button") return h(VBtn, { ...props, variant: "flat" }, () => data.label);
     if (id === "text-field") return h(VTextField, { ...props, label: data.label, modelValue: data.value });
-    if (id === "select") return h(VSelect, { ...props, label: data.label, items: data.options, modelValue: data.options[0] });
+    if (id === "select") return h(VSelect, { ...props, label: data.label, items: data.options, modelValue: (data.options.find(option => option.selected) ?? data.options[0])?.value });
     if (id === "checkbox") return h(VCheckbox, { ...props, label: data.label, modelValue: state === "checked" || state === "selected" });
-    if (id === "tabs") return h(VTabs, { ...props, modelValue: "one" }, () => data.options.map((label, i) => h(VTab, { value: i ? "two" : "one" }, () => label)));
+    if (id === "tabs") return h(VTabs, { ...props, modelValue: 0 }, () => data.tabs.map((label, i) => h(VTab, { value: i }, () => label)));
     if (id === "dialog") return h(VDialog, { modelValue: true, width: 480, transition: false }, () => h(VCard, {}, { default: () => [
-      h(VCardTitle, {}, () => data.label), h(VCardText, {}, () => data.value),
-      h(VCardActions, {}, () => h(VBtn, props, () => "Close")),
+      h(VCardTitle, {}, () => data.title), h(VCardText, {}, () => data.body),
+      h(VCardActions, {}, () => data.actions.map(label => h(VBtn, props, () => label))),
     ] }));
     return h(VTable, { density: "comfortable" }, () => [
-      h("thead", {}, h("tr", {}, ["Name", "State"].map(value => h("th", {}, value)))),
-      h("tbody", {}, h("tr", {}, data.row.map(value => h("td", {}, value)))),
+      h("thead", {}, h("tr", {}, data.headers.map(value => h("th", {}, value)))),
+      h("tbody", {}, data.rows.map(row => h("tr", {}, row.map(value => h("td", {}, value))))),
     ]);
   };
   const value = role => tokens[role].css;

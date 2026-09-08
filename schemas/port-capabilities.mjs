@@ -1,5 +1,6 @@
 import { INTEGRATION_KINDS } from "./lock.mjs";
 import { safeKitPath } from "./task-kit.mjs";
+import { eligibilitySchema } from "./eligibility.mjs";
 export const MAPPING_STATES = ["mapped", "inherited", "unsupported", "out-of-scope", "not-implemented"];
 export const SURFACE_STATES = ["supported", "inherited", "unsupported", "out-of-scope", "not-implemented"];
 const reason = z => z.string().min(1);
@@ -29,3 +30,22 @@ export const assertCapabilities = (port, capabilities) => {
     if (detail.state === "mapped" && capabilities.surfaces[detail.surface].state !== "supported") throw new Error("Mapped roles require a supported surface");
   }
 };
+
+export const portCatalogueSchema = z => z.object({
+  schemaVersion: z.literal(1), theme: z.literal("j3w1-theme"), version: z.string(), sourcePolicy: z.string(),
+  ports: z.array(z.object({
+    id: z.string(), displayName: z.string(), declaredStatus: z.enum(["experimental", "verified", "deprecated"]),
+    format: z.string(), integrationKind: z.enum(INTEGRATION_KINDS).nullable(),
+    themeVersion: z.string(), themeRevision: z.string().regex(/^[a-f0-9]{40}$/).nullable(), profile: z.string(),
+    targetVersions: z.array(z.string()), testedVersions: z.array(z.string()), os: z.array(z.string()),
+    verification: z.object({ status: z.enum(["not verified", "stale", "verified"]), reason: z.string() }).strict(),
+    subjectDigest: z.string().regex(/^sha256-/), evidencePath: z.string().nullable(),
+    surfaces: z.record(z.string(), z.object({ state: z.enum(SURFACE_STATES), reason: z.string().min(1) }).strict()),
+    files: z.array(z.object({ path: z.string(), install: z.string(), source: z.string(), digest: z.string().regex(/^sha256-/) }).strict()),
+    rollback: z.string().nullable(), readme: z.string(),
+    mappings: z.array(z.object({
+      role: z.string(), nativeKeys: z.array(z.string()), value: z.string().nullable(), eligibility: eligibilitySchema(z),
+      state: z.enum([...MAPPING_STATES, "unmapped"]), surface: z.string().nullable(), reason: z.string(), source: z.string(), spec: z.string(),
+    }).strict()),
+  }).strict()),
+}).strict();

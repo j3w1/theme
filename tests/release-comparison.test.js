@@ -115,3 +115,28 @@ test("registered port impact cites actual mapping edges and never implies verifi
   assert.equal(report.impact.ports[0].classification, "potentially affected");
   assert.equal(report.impact.ports[0].sources[0].pointer, "/mappings/color.text.default");
 });
+
+test("capability-only port changes enter downstream impact with pinned, digest-checked sources", async () => {
+  const before = fixture(), after = fixture(B);
+  const addCatalogue = (input, state) => {
+    input.files["ports/synthetic/port.json"] = stableJson({ id: "synthetic", status: "experimental" });
+    input.files["ports/synthetic/mapping.json"] = stableJson({ schemaVersion: 1, mappings: {}, unmapped: {} });
+    input.files["exports/port-capabilities.json"] = stableJson({ schemaVersion: 1, theme: "j3w1-theme", version: "0.1.0", ports: [{ id: "synthetic", surfaces: { geometry: { state, reason: "Controlled test-only declaration" } } }] });
+    const ledger = JSON.parse(input.files["exports/digests.json"]);
+    ledger.files["exports/port-capabilities.json"] = sha256(input.files["exports/port-capabilities.json"]);
+    input.files["exports/digests.json"] = stableJson(ledger);
+  };
+  addCatalogue(before, "inherited"); addCatalogue(after, "unsupported");
+  const report = compareReleases(await read(before), await read(after));
+  assert.deepEqual(report.changes.map(change => change.key), ["synthetic:capabilities"]);
+  assert.equal(report.impact.ports[0].classification, "potentially affected");
+  assert.deepEqual(report.impact.ports[0].roles, []);
+  assert.ok(report.impact.ports[0].sources.every(source => source.file === "exports/port-capabilities.json" && source.url.includes(source.revision)));
+  after.files["exports/port-capabilities.json"] += " ";
+  await assert.rejects(read(after), /digest mismatch/);
+  delete before.files["ports/synthetic/port.json"];
+  await assert.rejects(read(before), /missing port manifest/);
+  const historical = fixture();
+  historical.files["ports/synthetic/port.json"] = stableJson({ id: "synthetic", status: "experimental" });
+  assert.equal((await read(historical)).ports.synthetic.capabilities, null);
+});

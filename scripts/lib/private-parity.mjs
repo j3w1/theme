@@ -11,6 +11,29 @@ import { pinnedKitSource } from "./task-kit-source.mjs";
 import { splitVariants } from "./spec.mjs";
 import { renderSpecimenMarkup, stateAttributes } from "./specimen-markup.mjs";
 import { sourceFingerprint } from "./evidence.mjs";
+import { parseFragment } from "parse5";
+import { walkMarkup, attribute } from "./markup.mjs";
+import { assertHistoricalMarkup, assertHistoricalCss } from "./release-rendering.mjs";
+
+export const parityFixtureModel = fragment => {
+  const nodes = [];
+  walkMarkup(parseFragment(fragment), node => { if (node.tagName) nodes.push(node); });
+  const raw = node => node ? (node.nodeName === "#text" ? node.value : (node.childNodes ?? []).map(raw).join("")) : "";
+  const text = node => raw(node).replace(/\s+/g, " ").trim();
+  const hasClass = (node, name) => (attribute(node, "class") ?? "").split(/\s+/).includes(name);
+  const first = name => nodes.find(node => hasClass(node, name));
+  const input = nodes.find(node => node.tagName === "input");
+  const options = nodes.filter(node => node.tagName === "option").map(node => ({ title: text(node), value: attribute(node, "value") ?? text(node), selected: attribute(node, "selected") !== undefined && attribute(node, "selected") !== null }));
+  const rows = nodes.filter(node => node.tagName === "tr").map(node => (node.childNodes ?? []).filter(child => child.tagName === "td").map(text)).filter(row => row.length);
+  return {
+    label: text(first("button-label") ?? first("checkbox-text") ?? nodes.find(node => node.tagName === "label")) || "Example",
+    value: attribute(input ?? {}, "value") ?? "", options,
+    tabs: nodes.filter(node => attribute(node, "role") === "tab").map(text),
+    headers: nodes.filter(node => node.tagName === "th").map(text), rows,
+    title: text(first("dialog-title")), body: text(first("dialog-body")),
+    actions: nodes.filter(node => node.tagName === "button").map(text),
+  };
+};
 
 export const parityPrerequisites = input => {
   if (!input) return { result: "not run", missing: ["Operator-supplied licensed checkout", "Applicable license review", "Private output directory and pinned theme"], checks: [] };
@@ -85,28 +108,29 @@ export const preparePrivateParity = async input => {
   const nativeSelectors = { button: ".button", "text-field": ".text-field-input", select: ".select-control", checkbox: ".checkbox-option", tabs: ".tabs", dialog: ".dialog", table: ".table" };
   const css = [await source.read("site/src/styles/tokens.generated.css"), await source.read("site/src/styles/base.css"), await source.read("site/src/styles/site.css")];
   for (const id of PARITY_COMPONENTS) css.push(await source.read("site/src/styles/components/" + id + ".css"));
-  files["native.css"] = css.join("\n");
+  files["native.css"] = css.map(assertHistoricalCss).join("\n");
   files["tokens.css"] = await source.read("exports/tokens.css");
-  const cases = [];
+  const cases = [], models = {};
   for (const id of PARITY_COMPONENTS) {
     const contract = JSON.parse(await source.read("exports/components/" + id + ".json"));
     const demo = await source.read("spec/components/" + id + ".demo.html");
     const variant = contract.variants[0].id;
     const fragment = splitVariants(demo).get(variant);
+    models[id] = parityFixtureModel(fragment);
     for (const state of ["default", "focus-visible", "disabled", "invalid", "checked", "selected"].filter(state => contract.states.includes(state))) {
       const key = id + "/" + state;
-      const markup = renderSpecimenMarkup(fragment, "parity-" + id, { state, inert: false });
+      const markup = renderSpecimenMarkup(assertHistoricalMarkup(fragment), "parity-" + id, { state, inert: false });
       files["native/" + key + ".html"] = '<!doctype html><html lang="en" dir="ltr" data-density="comfortable"><head><meta charset="utf-8"><link rel="stylesheet" href="../../native.css"><title>Private native specimen</title></head><body><main data-parity-native ' + stateAttributes(state) + '>' + markup + '</main></body></html>';
       cases.push({ id, state, variant, key, native: "native/" + key + ".html", nativeSelector: nativeSelectors[id], fixtureDigest: sha256(fragment), contractDigest: sha256(stableJson(contract)) });
     }
   }
-  const data = { label: "Sample", value: "Example", options: ["One", "Two"], row: ["Example", "Ready"] };
-  files["fixture.json"] = stableJson({ cases, data, tokens: profile.tokens });
+  files["fixture.json"] = stableJson({ cases, models, tokens: profile.tokens });
   files["App.mjs"] = await readText("templates/private-parity/App.mjs");
   files["main.mjs"] = 'import defaults from "./host/' + config.defaults + '";\nimport "./host/' + config.styles + '";\nimport "./tokens.css";\nimport { mountParity } from "./App.mjs";\nmountParity(defaults);\n';
   files["index.html"] = '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Private framework parity fixture</title></head><body><div id="app"></div><script type="module" src="./main.mjs"></script></body></html>';
   const metadata = { schemaVersion: 1, result: "prepared; browser checks not run", harnessSourceDigest: await sourceFingerprint(), themeRevision: source.revision, themeProfile: "default", templateVersion: pkg.version, frameworks: versions,
-    packageDigest: sha256(packageText), lockDigest: sha256(lockText), inputDigests, canonicalInputs, fixtureDigest: sha256(files["App.mjs"] + files["fixture.json"]), cases,
+    packageDigest: sha256(packageText), lockDigest: sha256(lockText), targetMetadataDigests: { "package.json": sha256(packageText), [config.lock]: sha256(lockText) },
+    inputDigests, canonicalInputs, artifactDigests: Object.fromEntries(Object.entries(files).map(([file, value]) => [file, sha256(value)])), fixtureDigest: sha256(files["App.mjs"] + files["fixture.json"]), cases,
     licenseReview: config.license, limits: "Synthetic fixture, copied host defaults and styles. No application routes, backend, accounts, production data or complete port verification." };
   files["metadata.json"] = stableJson(metadata);
   await writeNewPrivateFiles(out, files);

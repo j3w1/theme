@@ -18,12 +18,14 @@ export const runPrivateParity = async prepared => {
   const { out, target, requireTarget, config, metadata } = prepared;
   await assertRealDirectory(out);
   const { createServer } = await import(pathToFileURL(requireTarget.resolve("vite")).href);
-  const aliases = Object.fromEntries(Object.entries(config.aliases).map(([key, value]) => [key, path.join(out, "host", value)]));
-  aliases.vue = path.join(target, "node_modules/vue/dist/vue.esm-bundler.js");
-  aliases.vuetify = path.join(target, "node_modules/vuetify");
+  const aliases = [
+    { find: /^vue$/, replacement: requireTarget.resolve("vue/dist/vue.esm-bundler.js") },
+    ...["vuetify", "vuetify/components", "vuetify/styles"].map(name => ({ find: new RegExp("^" + name + "$"), replacement: requireTarget.resolve(name) })),
+    ...Object.entries(config.aliases).map(([find, value]) => ({ find, replacement: path.join(out, "host", value) })),
+  ];
   const server = await createServer({ configFile: false, envFile: false, root: out, publicDir: false, cacheDir: path.join(out, ".cache"),
     resolve: { alias: aliases, dedupe: ["vue"] }, logLevel: "silent",
-    server: { host: "127.0.0.1", port: 0, fs: { strict: true, allow: [out, path.join(target, "node_modules")] } },
+    server: { host: "127.0.0.1", port: 0, fs: { strict: true, allow: [out, await fs.realpath(path.join(target, "node_modules"))] } },
     css: { preprocessorOptions: { scss: { loadPaths: [path.join(target, "node_modules")] } } },
   });
   let browser;
@@ -47,19 +49,6 @@ export const runPrivateParity = async prepared => {
         await page.evaluate(() => document.fonts.ready);
         const locator = page.locator(side === "native" ? entry.nativeSelector : hostSelectors[entry.id]).first();
         await locator.waitFor({ state: "visible" });
-        // Match the bounded control's synthetic data. Surrounding helper prose
-        // remains part of each maintained renderer and is not compared as data.
-        if (side === "native") await page.evaluate(id => {
-          if (id === "button") document.querySelector(".button-label").textContent = "Sample";
-          if (id === "text-field") document.querySelector("input").value = "Example";
-          if (id === "select") document.querySelector("select").replaceChildren(...["One", "Two"].map(text => new Option(text, text)));
-          if (id === "checkbox") document.querySelector(".checkbox-text").textContent = "Sample";
-          if (id === "tabs") document.querySelectorAll('[role="tab"]').forEach((tab, i) => { tab.textContent = i ? "Two" : "One"; });
-          if (id === "table") {
-            document.querySelectorAll("thead th").forEach((cell, i) => { cell.textContent = i ? "State" : "Name"; });
-            const row = document.querySelector("tbody tr"); if (row) { row.querySelectorAll("td").forEach((cell, i) => { cell.textContent = i ? "Ready" : "Example"; }); for (const other of document.querySelectorAll("tbody tr")) if (other !== row) other.remove(); }
-          }
-        }, entry.id);
         if (entry.state === "focus-visible") await page.keyboard.press("Tab");
         const keyboard = await page.evaluate(() => ({ activeTag: document.activeElement?.tagName ?? null, focusVisible: document.activeElement?.matches(":focus-visible") ?? false }));
         measurements[side] = { ...await measure(locator), keyboard };
@@ -79,12 +68,20 @@ export const runPrivateParity = async prepared => {
         inherited: ["component geometry", "state overlays", "focus implementation", "native widget structure"],
         unsupported: ["Complete application chrome, editor and terminal integration are outside this bounded fixture."] } };
     // Confirm the source inputs were unchanged by this experiment.
-    for (const [file, expected] of Object.entries(metadata.inputDigests)) {
+    for (const [file, expected] of Object.entries({ ...metadata.inputDigests, ...metadata.targetMetadataDigests })) {
       const full = path.join(target, file); await assertRealFile(full);
       if (sha256(await fs.readFile(full)) !== expected) throw new Error("Original target input changed during the run");
+    }
+    for (const [file, expected] of Object.entries(metadata.artifactDigests)) {
+      const full = path.join(out, file); await assertRealFile(full);
+      if (sha256(await fs.readFile(full)) !== expected) throw new Error("Prepared specimen bytes changed during the run");
     }
     await assertRealDirectory(out);
     await fs.writeFile(path.join(out, "report.json"), stableJson(output), { flag: "wx" });
     return output;
+  } catch (error) {
+    await assertRealDirectory(out);
+    await fs.writeFile(path.join(out, "failure.json"), stableJson({ result: "failed", errors, message: error.message, records }), { flag: "wx" });
+    throw error;
   } finally { await browser?.close(); await server.close(); }
 };

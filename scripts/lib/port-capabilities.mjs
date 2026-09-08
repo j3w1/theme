@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { readJson, readText, sha256, stableJson, writeOrCheck } from "./fs.mjs";
-import { portCapabilitiesSchema, portImportEvidenceSchema, assertCapabilities } from "../../schemas/port-capabilities.mjs";
+import { portCapabilitiesSchema, portImportEvidenceSchema, portCatalogueSchema, assertCapabilities } from "../../schemas/port-capabilities.mjs";
 
 // This fingerprint binds evidence to the declared target, roles, capabilities,
 // exact import artifacts and current canonical token values. No run data or
@@ -62,9 +62,9 @@ export const portCatalogueGenerator = {
     const ports = [];
     for (const port of await validatePorts()) ports.push(await readPortDescription(port, resolved));
     context.portDescriptions = ports;
-    const catalogue = { schemaVersion: 1, theme: resolved.theme, version: resolved.version,
+    const catalogue = portCatalogueSchema(z).parse({ schemaVersion: 1, theme: resolved.theme, version: resolved.version,
       sourcePolicy: "Relative paths refer to the same pinned revision as this digest-covered export. Historical references and private runs are not published ports.",
-      ports };
+      ports });
     const file = "exports/port-capabilities.json";
     return { files: [file], changed: await writeOrCheck(file, stableJson(catalogue), { check }) ? [file] : [], note: `${ports.length} real ports` };
   },

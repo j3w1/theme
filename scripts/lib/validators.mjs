@@ -7,7 +7,7 @@ import { exists, gitFiles, listFiles, readJson, readText } from "./fs.mjs";
 import { EXTENSIONS_KEY } from "../../schemas/tokens.mjs";
 import { themeSchema } from "../../schemas/theme.mjs";
 import { portSchema } from "../../schemas/port.mjs";
-import { portCapabilitiesSchema, assertCapabilities } from "../../schemas/port-capabilities.mjs";
+import { portCapabilitiesSchema, portImportEvidenceSchema, assertCapabilities } from "../../schemas/port-capabilities.mjs";
 import { safeKitPath } from "../../schemas/task-kit.mjs";
 import { portMappingSchema, assertPortMapping } from "../../schemas/usage.mjs";
 import { releaseCatalogueSchema } from "../../schemas/release-comparison.mjs";
@@ -290,7 +290,11 @@ export const validatePorts = async () => {
     if (port.capabilitiesPath) {
       const capabilities = portCapabilitiesSchema(z).parse(await readJson(`ports/${dir}/${port.capabilitiesPath}`));
       assertCapabilities({ ...port, mapping: mapping.data }, capabilities);
-      if (capabilities.verificationPath && !(await exists(`ports/${dir}/${capabilities.verificationPath}`))) fail(`${file}: import evidence is absent`);
+      if (capabilities.verificationPath) {
+        const evidenceFile = `ports/${dir}/${capabilities.verificationPath}`;
+        if (!(await exists(evidenceFile))) fail(`${file}: import evidence is absent`);
+        portImportEvidenceSchema(z).parse(await readJson(evidenceFile));
+      }
     }
     if (!(await exists(`ports/${dir}/README.md`))) fail(`${file}: README.md is missing`);
     ports.push(port);

@@ -59,8 +59,9 @@ values without a tolerance. Font-family mismatches are environmental limits.
 The intentional-mismatch source regression proves detection logic, not a
 licensed target import.
 
-The native renderer retains its source structure and helper prose; the
-bounded controls receive declared synthetic data. Screenshots are scoped to
+The native renderer retains its source structure and helper prose. Host
+labels, options, rows and actions are parsed from those same maintained
+synthetic specimens; application data is never loaded. Screenshots are scoped to
 the measured controls. Different host structures or helper scaffolding can
 produce expected differences and are not silently corrected. Complete keyboard
 lifecycle, screen-reader and application-chrome conformance remain unverified.
