@@ -5,6 +5,9 @@
    prune what no generator claims. */
 
 import { z } from "zod";
+import { formSchema } from "../../schemas/form-schema.mjs";
+import { patternExportSchema } from "../../schemas/pattern.mjs";
+import { patternGenerator } from "./patterns.mjs";
 import { evidenceSchema } from "../../schemas/evidence.mjs";
 import { eligibilitySchema } from "../../schemas/eligibility.mjs";
 import { POLICY_TEXT, releaseOf, eligibilityOf, eligibilityText } from "./eligibility.mjs";
@@ -54,6 +57,8 @@ export const schemasGenerator = {
     const files = [];
     const emit = async (name, schema) => write(`schemas/json/${name}.schema.json`, stableJson(z.toJSONSchema(schema, { unrepresentable: "any" })), { check, changed, files });
     await emit("theme", themeSchema(z));
+    await emit("form-definition", formSchema(z));
+    await emit("form-pattern", patternExportSchema(z));
     await emit("eligibility", eligibilitySchema(z));
     await emit("token-usage", usageSchema(z));
     await emit("port-mapping", portMappingSchema(z));
@@ -253,4 +258,13 @@ export const digestsGenerator = {
   },
 };
 
-export const GENERATORS = [schemasGenerator, tokensGenerator, contrastGenerator, componentsGenerator, usageGenerator, portCatalogueGenerator, recipeGenerator, docsGenerator, coverageGenerator, readmeGenerator, taskInputsGenerator, digestsGenerator];
+export const figmaGenerator = {
+  name: "Figma Variables adapter",
+  async run({ manifest, check }) {
+    const files = ["exports/figma/importer.mjs"], changed = [];
+    if (await writeOrCheck(files[0], `// j3w1 theme ${manifest.version}; generated from the independently authored Variables adapter.\n` + await readText("scripts/lib/figma-importer.mjs"), { check })) changed.push(files[0]);
+    return { files, changed };
+  },
+};
+
+export const GENERATORS = [schemasGenerator, tokensGenerator, contrastGenerator, componentsGenerator, patternGenerator, figmaGenerator, usageGenerator, portCatalogueGenerator, recipeGenerator, docsGenerator, coverageGenerator, readmeGenerator, taskInputsGenerator, digestsGenerator];

@@ -6928,6 +6928,21 @@
             },
             {
               "kind": "part",
+              "component": "form-builder",
+              "part": "root.border",
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/tokens/root.border",
+                "line": 21
+              }
+            },
+            {
+              "kind": "part",
               "component": "list",
               "part": "root.border",
               "state": null,
@@ -7359,6 +7374,21 @@
                 "file": "spec/components/diff-view.md",
                 "pointer": "/stateTokens/default/border",
                 "line": 63
+              }
+            },
+            {
+              "kind": "state",
+              "component": "form-builder",
+              "part": "border",
+              "state": "default",
+              "variant": null,
+              "surface": "color.surface.default",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/stateTokens/default/border",
+                "line": 24
               }
             },
             {
@@ -8090,6 +8120,17 @@
                 "file": "spec/components/diagnostics.md",
                 "pointer": "/stateTokens/default",
                 "line": 65
+              }
+            },
+            {
+              "fg": "color.border.control",
+              "bg": "color.surface.default",
+              "label": "form-builder default border",
+              "state": "default",
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/stateTokens/default",
+                "line": 24
               }
             },
             {
@@ -41184,6 +41225,36 @@
             },
             {
               "kind": "contrast",
+              "component": "form-builder",
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": "color.surface.default",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/contrast/0",
+                "line": 26
+              }
+            },
+            {
+              "kind": "contrast",
+              "component": "form-builder",
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": "color.surface.default",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/contrast/1",
+                "line": 27
+              }
+            },
+            {
+              "kind": "contrast",
               "component": "icon-button",
               "part": null,
               "state": "toggled",
@@ -42144,6 +42215,21 @@
             },
             {
               "kind": "part",
+              "component": "form-builder",
+              "part": "root.bg",
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/tokens/root.bg",
+                "line": 19
+              }
+            },
+            {
+              "kind": "part",
               "component": "list",
               "part": "root.bg",
               "state": null,
@@ -42879,6 +42965,21 @@
             },
             {
               "kind": "state",
+              "component": "form-builder",
+              "part": "bg",
+              "state": "default",
+              "variant": null,
+              "surface": "color.surface.default",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/stateTokens/default/bg",
+                "line": 24
+              }
+            },
+            {
+              "kind": "state",
               "component": "list",
               "part": "bg",
               "state": "default",
@@ -43357,6 +43458,17 @@
                 "file": "spec/components/diagnostics.md",
                 "pointer": "/stateTokens/default",
                 "line": 65
+              }
+            },
+            {
+              "fg": "color.border.control",
+              "bg": "color.surface.default",
+              "label": "form-builder default border",
+              "state": "default",
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/stateTokens/default",
+                "line": 24
               }
             },
             {
@@ -44561,6 +44673,17 @@
             {
               "fg": "color.text.default",
               "bg": "color.surface.default",
+              "label": "Editor text",
+              "state": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/contrast/0",
+                "line": 26
+              }
+            },
+            {
+              "fg": "color.text.default",
+              "bg": "color.surface.default",
               "label": "field labels inside the group",
               "state": null,
               "source": {
@@ -44589,6 +44712,17 @@
                 "file": "spec/components/filterable-table.md",
                 "pointer": "/stateTokens/focus-visible",
                 "line": 76
+              }
+            },
+            {
+              "fg": "color.text.default",
+              "bg": "color.surface.default",
+              "label": "form-builder default fg",
+              "state": "default",
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/stateTokens/default",
+                "line": 24
               }
             },
             {
@@ -45018,6 +45152,17 @@
                 "file": "spec/components/data-table.md",
                 "pointer": "/stateTokens/loading",
                 "line": 64
+              }
+            },
+            {
+              "fg": "color.text.muted",
+              "bg": "color.surface.default",
+              "label": "Definition status",
+              "state": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/contrast/1",
+                "line": 27
               }
             },
             {
@@ -54346,6 +54491,21 @@
             },
             {
               "kind": "contrast",
+              "component": "form-builder",
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": "color.surface.default",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/contrast/0",
+                "line": 26
+              }
+            },
+            {
+              "kind": "contrast",
               "component": "i3-window-frame",
               "part": null,
               "state": null,
@@ -55002,6 +55162,21 @@
                 "file": "spec/components/filterable-table.md",
                 "pointer": "/tokens/search.text",
                 "line": 38
+              }
+            },
+            {
+              "kind": "part",
+              "component": "form-builder",
+              "part": "root.text",
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/tokens/root.text",
+                "line": 20
               }
             },
             {
@@ -56082,6 +56257,21 @@
                 "file": "spec/components/filterable-table.md",
                 "pointer": "/stateTokens/hover/fg",
                 "line": 75
+              }
+            },
+            {
+              "kind": "state",
+              "component": "form-builder",
+              "part": "fg",
+              "state": "default",
+              "variant": null,
+              "surface": "color.surface.default",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/stateTokens/default/fg",
+                "line": 24
               }
             },
             {
@@ -57927,6 +58117,17 @@
             {
               "fg": "color.text.default",
               "bg": "color.surface.default",
+              "label": "Editor text",
+              "state": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/contrast/0",
+                "line": 26
+              }
+            },
+            {
+              "fg": "color.text.default",
+              "bg": "color.surface.default",
               "label": "field labels inside the group",
               "state": null,
               "source": {
@@ -57955,6 +58156,17 @@
                 "file": "spec/components/filterable-table.md",
                 "pointer": "/stateTokens/focus-visible",
                 "line": 76
+              }
+            },
+            {
+              "fg": "color.text.default",
+              "bg": "color.surface.default",
+              "label": "form-builder default fg",
+              "state": "default",
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/stateTokens/default",
+                "line": 24
               }
             },
             {
@@ -61216,6 +61428,21 @@
             },
             {
               "kind": "contrast",
+              "component": "form-builder",
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": "color.surface.default",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/contrast/1",
+                "line": 27
+              }
+            },
+            {
+              "kind": "contrast",
               "component": "i3-window-frame",
               "part": null,
               "state": null,
@@ -61992,6 +62219,21 @@
                 "file": "spec/components/filterable-table.md",
                 "pointer": "/tokens/empty.text",
                 "line": 66
+              }
+            },
+            {
+              "kind": "part",
+              "component": "form-builder",
+              "part": "status.text",
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/tokens/status.text",
+                "line": 22
               }
             },
             {
@@ -62880,6 +63122,17 @@
                 "file": "spec/components/data-table.md",
                 "pointer": "/stateTokens/loading",
                 "line": 64
+              }
+            },
+            {
+              "fg": "color.text.muted",
+              "bg": "color.surface.default",
+              "label": "Definition status",
+              "state": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/contrast/1",
+                "line": 27
               }
             },
             {
@@ -72595,6 +72848,21 @@
             },
             {
               "kind": "part",
+              "component": "form-builder",
+              "part": "root.border",
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/tokens/root.border",
+                "line": 21
+              }
+            },
+            {
+              "kind": "part",
               "component": "list",
               "part": "root.border",
               "state": null,
@@ -73026,6 +73294,21 @@
                 "file": "spec/components/diff-view.md",
                 "pointer": "/stateTokens/default/border",
                 "line": 63
+              }
+            },
+            {
+              "kind": "state",
+              "component": "form-builder",
+              "part": "border",
+              "state": "default",
+              "variant": null,
+              "surface": "color.surface.default",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/stateTokens/default/border",
+                "line": 24
               }
             },
             {
@@ -73757,6 +74040,17 @@
                 "file": "spec/components/diagnostics.md",
                 "pointer": "/stateTokens/default",
                 "line": 65
+              }
+            },
+            {
+              "fg": "color.border.control",
+              "bg": "color.surface.default",
+              "label": "form-builder default border",
+              "state": "default",
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/stateTokens/default",
+                "line": 24
               }
             },
             {
@@ -106852,6 +107146,36 @@
             },
             {
               "kind": "contrast",
+              "component": "form-builder",
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": "color.surface.default",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/contrast/0",
+                "line": 26
+              }
+            },
+            {
+              "kind": "contrast",
+              "component": "form-builder",
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": "color.surface.default",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/contrast/1",
+                "line": 27
+              }
+            },
+            {
+              "kind": "contrast",
               "component": "icon-button",
               "part": null,
               "state": "toggled",
@@ -107812,6 +108136,21 @@
             },
             {
               "kind": "part",
+              "component": "form-builder",
+              "part": "root.bg",
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/tokens/root.bg",
+                "line": 19
+              }
+            },
+            {
+              "kind": "part",
               "component": "list",
               "part": "root.bg",
               "state": null,
@@ -108547,6 +108886,21 @@
             },
             {
               "kind": "state",
+              "component": "form-builder",
+              "part": "bg",
+              "state": "default",
+              "variant": null,
+              "surface": "color.surface.default",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/stateTokens/default/bg",
+                "line": 24
+              }
+            },
+            {
+              "kind": "state",
               "component": "list",
               "part": "bg",
               "state": "default",
@@ -109025,6 +109379,17 @@
                 "file": "spec/components/diagnostics.md",
                 "pointer": "/stateTokens/default",
                 "line": 65
+              }
+            },
+            {
+              "fg": "color.border.control",
+              "bg": "color.surface.default",
+              "label": "form-builder default border",
+              "state": "default",
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/stateTokens/default",
+                "line": 24
               }
             },
             {
@@ -110229,6 +110594,17 @@
             {
               "fg": "color.text.default",
               "bg": "color.surface.default",
+              "label": "Editor text",
+              "state": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/contrast/0",
+                "line": 26
+              }
+            },
+            {
+              "fg": "color.text.default",
+              "bg": "color.surface.default",
               "label": "field labels inside the group",
               "state": null,
               "source": {
@@ -110257,6 +110633,17 @@
                 "file": "spec/components/filterable-table.md",
                 "pointer": "/stateTokens/focus-visible",
                 "line": 76
+              }
+            },
+            {
+              "fg": "color.text.default",
+              "bg": "color.surface.default",
+              "label": "form-builder default fg",
+              "state": "default",
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/stateTokens/default",
+                "line": 24
               }
             },
             {
@@ -110686,6 +111073,17 @@
                 "file": "spec/components/data-table.md",
                 "pointer": "/stateTokens/loading",
                 "line": 64
+              }
+            },
+            {
+              "fg": "color.text.muted",
+              "bg": "color.surface.default",
+              "label": "Definition status",
+              "state": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/contrast/1",
+                "line": 27
               }
             },
             {
@@ -120014,6 +120412,21 @@
             },
             {
               "kind": "contrast",
+              "component": "form-builder",
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": "color.surface.default",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/contrast/0",
+                "line": 26
+              }
+            },
+            {
+              "kind": "contrast",
               "component": "i3-window-frame",
               "part": null,
               "state": null,
@@ -120670,6 +121083,21 @@
                 "file": "spec/components/filterable-table.md",
                 "pointer": "/tokens/search.text",
                 "line": 38
+              }
+            },
+            {
+              "kind": "part",
+              "component": "form-builder",
+              "part": "root.text",
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/tokens/root.text",
+                "line": 20
               }
             },
             {
@@ -121750,6 +122178,21 @@
                 "file": "spec/components/filterable-table.md",
                 "pointer": "/stateTokens/hover/fg",
                 "line": 75
+              }
+            },
+            {
+              "kind": "state",
+              "component": "form-builder",
+              "part": "fg",
+              "state": "default",
+              "variant": null,
+              "surface": "color.surface.default",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/stateTokens/default/fg",
+                "line": 24
               }
             },
             {
@@ -123595,6 +124038,17 @@
             {
               "fg": "color.text.default",
               "bg": "color.surface.default",
+              "label": "Editor text",
+              "state": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/contrast/0",
+                "line": 26
+              }
+            },
+            {
+              "fg": "color.text.default",
+              "bg": "color.surface.default",
               "label": "field labels inside the group",
               "state": null,
               "source": {
@@ -123623,6 +124077,17 @@
                 "file": "spec/components/filterable-table.md",
                 "pointer": "/stateTokens/focus-visible",
                 "line": 76
+              }
+            },
+            {
+              "fg": "color.text.default",
+              "bg": "color.surface.default",
+              "label": "form-builder default fg",
+              "state": "default",
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/stateTokens/default",
+                "line": 24
               }
             },
             {
@@ -126884,6 +127349,21 @@
             },
             {
               "kind": "contrast",
+              "component": "form-builder",
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": "color.surface.default",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/contrast/1",
+                "line": 27
+              }
+            },
+            {
+              "kind": "contrast",
               "component": "i3-window-frame",
               "part": null,
               "state": null,
@@ -127660,6 +128140,21 @@
                 "file": "spec/components/filterable-table.md",
                 "pointer": "/tokens/empty.text",
                 "line": 66
+              }
+            },
+            {
+              "kind": "part",
+              "component": "form-builder",
+              "part": "status.text",
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/tokens/status.text",
+                "line": 22
               }
             },
             {
@@ -128548,6 +129043,17 @@
                 "file": "spec/components/data-table.md",
                 "pointer": "/stateTokens/loading",
                 "line": 64
+              }
+            },
+            {
+              "fg": "color.text.muted",
+              "bg": "color.surface.default",
+              "label": "Definition status",
+              "state": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/contrast/1",
+                "line": 27
               }
             },
             {
@@ -138260,6 +138766,21 @@
             },
             {
               "kind": "part",
+              "component": "form-builder",
+              "part": "root.border",
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/tokens/root.border",
+                "line": 21
+              }
+            },
+            {
+              "kind": "part",
               "component": "list",
               "part": "root.border",
               "state": null,
@@ -138691,6 +139212,21 @@
                 "file": "spec/components/diff-view.md",
                 "pointer": "/stateTokens/default/border",
                 "line": 63
+              }
+            },
+            {
+              "kind": "state",
+              "component": "form-builder",
+              "part": "border",
+              "state": "default",
+              "variant": null,
+              "surface": "color.surface.default",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/stateTokens/default/border",
+                "line": 24
               }
             },
             {
@@ -139422,6 +139958,17 @@
                 "file": "spec/components/diagnostics.md",
                 "pointer": "/stateTokens/default",
                 "line": 65
+              }
+            },
+            {
+              "fg": "color.border.control",
+              "bg": "color.surface.default",
+              "label": "form-builder default border",
+              "state": "default",
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/stateTokens/default",
+                "line": 24
               }
             },
             {
@@ -172536,6 +173083,36 @@
             },
             {
               "kind": "contrast",
+              "component": "form-builder",
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": "color.surface.default",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/contrast/0",
+                "line": 26
+              }
+            },
+            {
+              "kind": "contrast",
+              "component": "form-builder",
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": "color.surface.default",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/contrast/1",
+                "line": 27
+              }
+            },
+            {
+              "kind": "contrast",
               "component": "icon-button",
               "part": null,
               "state": "toggled",
@@ -173496,6 +174073,21 @@
             },
             {
               "kind": "part",
+              "component": "form-builder",
+              "part": "root.bg",
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/tokens/root.bg",
+                "line": 19
+              }
+            },
+            {
+              "kind": "part",
               "component": "list",
               "part": "root.bg",
               "state": null,
@@ -174231,6 +174823,21 @@
             },
             {
               "kind": "state",
+              "component": "form-builder",
+              "part": "bg",
+              "state": "default",
+              "variant": null,
+              "surface": "color.surface.default",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/stateTokens/default/bg",
+                "line": 24
+              }
+            },
+            {
+              "kind": "state",
               "component": "list",
               "part": "bg",
               "state": "default",
@@ -174709,6 +175316,17 @@
                 "file": "spec/components/diagnostics.md",
                 "pointer": "/stateTokens/default",
                 "line": 65
+              }
+            },
+            {
+              "fg": "color.border.control",
+              "bg": "color.surface.default",
+              "label": "form-builder default border",
+              "state": "default",
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/stateTokens/default",
+                "line": 24
               }
             },
             {
@@ -175913,6 +176531,17 @@
             {
               "fg": "color.text.default",
               "bg": "color.surface.default",
+              "label": "Editor text",
+              "state": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/contrast/0",
+                "line": 26
+              }
+            },
+            {
+              "fg": "color.text.default",
+              "bg": "color.surface.default",
               "label": "field labels inside the group",
               "state": null,
               "source": {
@@ -175941,6 +176570,17 @@
                 "file": "spec/components/filterable-table.md",
                 "pointer": "/stateTokens/focus-visible",
                 "line": 76
+              }
+            },
+            {
+              "fg": "color.text.default",
+              "bg": "color.surface.default",
+              "label": "form-builder default fg",
+              "state": "default",
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/stateTokens/default",
+                "line": 24
               }
             },
             {
@@ -176370,6 +177010,17 @@
                 "file": "spec/components/data-table.md",
                 "pointer": "/stateTokens/loading",
                 "line": 64
+              }
+            },
+            {
+              "fg": "color.text.muted",
+              "bg": "color.surface.default",
+              "label": "Definition status",
+              "state": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/contrast/1",
+                "line": 27
               }
             },
             {
@@ -185794,6 +186445,21 @@
             },
             {
               "kind": "contrast",
+              "component": "form-builder",
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": "color.surface.default",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/contrast/0",
+                "line": 26
+              }
+            },
+            {
+              "kind": "contrast",
               "component": "i3-window-frame",
               "part": null,
               "state": null,
@@ -186450,6 +187116,21 @@
                 "file": "spec/components/filterable-table.md",
                 "pointer": "/tokens/search.text",
                 "line": 38
+              }
+            },
+            {
+              "kind": "part",
+              "component": "form-builder",
+              "part": "root.text",
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/tokens/root.text",
+                "line": 20
               }
             },
             {
@@ -187530,6 +188211,21 @@
                 "file": "spec/components/filterable-table.md",
                 "pointer": "/stateTokens/hover/fg",
                 "line": 75
+              }
+            },
+            {
+              "kind": "state",
+              "component": "form-builder",
+              "part": "fg",
+              "state": "default",
+              "variant": null,
+              "surface": "color.surface.default",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/stateTokens/default/fg",
+                "line": 24
               }
             },
             {
@@ -189375,6 +190071,17 @@
             {
               "fg": "color.text.default",
               "bg": "color.surface.default",
+              "label": "Editor text",
+              "state": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/contrast/0",
+                "line": 26
+              }
+            },
+            {
+              "fg": "color.text.default",
+              "bg": "color.surface.default",
               "label": "field labels inside the group",
               "state": null,
               "source": {
@@ -189403,6 +190110,17 @@
                 "file": "spec/components/filterable-table.md",
                 "pointer": "/stateTokens/focus-visible",
                 "line": 76
+              }
+            },
+            {
+              "fg": "color.text.default",
+              "bg": "color.surface.default",
+              "label": "form-builder default fg",
+              "state": "default",
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/stateTokens/default",
+                "line": 24
               }
             },
             {
@@ -192664,6 +193382,21 @@
             },
             {
               "kind": "contrast",
+              "component": "form-builder",
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": "color.surface.default",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/contrast/1",
+                "line": 27
+              }
+            },
+            {
+              "kind": "contrast",
               "component": "i3-window-frame",
               "part": null,
               "state": null,
@@ -193440,6 +194173,21 @@
                 "file": "spec/components/filterable-table.md",
                 "pointer": "/tokens/empty.text",
                 "line": 66
+              }
+            },
+            {
+              "kind": "part",
+              "component": "form-builder",
+              "part": "status.text",
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/tokens/status.text",
+                "line": 22
               }
             },
             {
@@ -194328,6 +195076,17 @@
                 "file": "spec/components/data-table.md",
                 "pointer": "/stateTokens/loading",
                 "line": 64
+              }
+            },
+            {
+              "fg": "color.text.muted",
+              "bg": "color.surface.default",
+              "label": "Definition status",
+              "state": null,
+              "source": {
+                "file": "spec/components/form-builder.md",
+                "pointer": "/contrast/1",
+                "line": 27
               }
             },
             {

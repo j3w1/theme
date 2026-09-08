@@ -1,0 +1,37 @@
+---
+import ToolLayout from "../../../layouts/ToolLayout.astro";
+import FormWorkflow from "../../../components/FormWorkflow.astro";
+import "../../../styles/form-tools.css";
+import templateExport from "../../../../../exports/forms/templates.json";
+import { renderFields } from "../../../../../scripts/lib/form-fields.mjs";
+import { validateWorkstation } from "../../../../../scripts/lib/validation-recovery.mjs";
+import pattern from "../../../../../exports/patterns/validation-recovery.json";
+import { withBase } from "../../../lib/base";
+import { anchorFor } from "../../../../../scripts/lib/anchors.mjs";
+const templates = templateExport.templates;
+---
+<ToolLayout title="Validation and recovery" description="Enter, correct, review and explicitly complete a local simulated save.">
+  <p>This reference composition follows admin-form. Submit to show a focused error summary; follow its links, correct values and submit again. Errors are not announced on each keystroke. Review keeps your values. Simulate save enters busy; only Complete simulation enters success.</p>
+  <p>Name and Hostname reserve ws-07 in this local fixture. No uniqueness service is contacted. Hostname accepts lowercase letters, digits and hyphen-separated segments.</p>
+  <p><a href={withBase("exports/patterns/validation-recovery.json")} download>Download pattern contract</a> · <a href={withBase("#" + anchorFor.doc("form-patterns"))}>Composition rules and limits</a> · <a href={withBase("verification/")}>Execution evidence</a></p>
+  <FormWorkflow prefix="recovery" templates={templates} />
+  <section class="form-tool" aria-label="Static workflow examples">
+    <h2>Static reference examples</h2>
+    <p>These remain available without JavaScript. The interactive simulation requires JavaScript. The examples do not submit or store data.</p>
+    <h3>Normal</h3><div class="form-tool-fields" set:html={renderFields(pattern.fields, pattern.fixtures.valid, { prefix: "static-normal", templates })} />
+    <h3>Invalid</h3><div class="alert alert-danger"><span class="alert-glyph" aria-hidden="true">✕</span><div class="alert-body"><p class="alert-text">Name and Hostname conflict with the reserved fixture. Preserve notes and choices while correcting them.</p></div></div>
+    <div class="form-tool-fields" set:html={renderFields(pattern.fields, pattern.fixtures.invalid, { prefix: "static-invalid", templates, errors: validateWorkstation(pattern.fields, pattern.fixtures.invalid) })} />
+    <h3>Busy</h3><p>Simulated save pending. Disabled controls express temporary inactivity; they are not a success indication.</p>
+    <fieldset class="form-tool-fields" disabled aria-label="Busy example" aria-busy="true" set:html={renderFields(pattern.fields.slice(0, 1), pattern.fixtures.valid, { prefix: "static-busy", templates, disabled: true })} />
+    <h3>Success</h3><div class="alert alert-success"><span class="alert-glyph" aria-hidden="true">✓</span><div class="alert-body"><p class="alert-text">Simulation completed. No request was sent and no record was stored.</p></div></div>
+  </section>
+  <p>Automated tests cover DOM and keyboard behavior. No manual screen-reader or real persistence pass is claimed. D-020 remains proposed.</p>
+  <script>
+    import pattern from "../../../../../exports/patterns/validation-recovery.json";
+    import { mountWorkflow } from "../../../scripts/form-workflow.mjs";
+    import { validateWorkstation } from "../../../../../scripts/lib/validation-recovery.mjs";
+    const root = document.querySelector('[data-workflow="recovery"]');
+    const templates = Object.fromEntries([...root.querySelectorAll("template[data-field-template]")].map(node => [node.dataset.fieldTemplate, node.innerHTML]));
+    mountWorkflow(root, { fields: pattern.fields, prefix: "recovery", templates, validate: validateWorkstation });
+  </script>
+</ToolLayout>

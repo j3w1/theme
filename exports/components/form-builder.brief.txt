@@ -1,0 +1,30 @@
+j3w1/theme implementation brief — form-builder
+theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-WQ7vLKc83Aaic7PCOlD5et5jDWlBUCyLYQhnrur5sK4=
+pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/form-builder.json
+spec: spec/components/form-builder.md  site: https://j3w1.github.io/theme/#c-form-builder
+maturity: draft  priority: L
+
+Summary: A bounded reference editor for five canonical field kinds, with keyboard ordering, local preview and explicit JSON definition import and export.
+
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
+Tokens (resolved):
+  root.bg      #160b0b  ({color.surface.default})  use
+  root.text    #e99499  ({color.text.default})  use
+  root.border  #a3676b  ({color.border.control})  use-and-report (D-007)
+  status.text  #bd787d  ({color.text.muted})  use
+State dependency disclosures: D-007
+
+States: default, empty, invalid, disabled
+
+Keyboard:
+  Tab / Shift+Tab: Reach add, field editor, ordering, removal, preview and transfer controls in document order.
+  Enter / Space: Activate the focused native button. Move up and Move down preserve stable identity and focus.
+  Arrow keys: Use native select and radio choices in the preview.
+
+ARIA: Native buttons, labelled inputs, fieldsets and ordered field definitions; no drag-only operations.
+Responsive: One column at narrow widths; editor controls and buttons wrap without changing order. Preview supports compact and comfortable density in the default profile.
+Portability: A local reference implementation using existing field contracts. JSON is a theme-pinned definition, not an executable form or backend API.
+  native: No native port or production form platform is claimed.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

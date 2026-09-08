@@ -1,0 +1,198 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "0.1.0",
+  "profile": "default",
+  "profileStatus": "approved",
+  "release": {
+    "version": "0.1.0",
+    "stability": "release",
+    "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
+  },
+  "sourceDigest": "sha256-WQ7vLKc83Aaic7PCOlD5et5jDWlBUCyLYQhnrur5sK4=",
+  "id": "form-builder",
+  "family": "forms-advanced",
+  "maturity": "draft",
+  "priority": "L",
+  "coverage": {
+    "family": "forms-advanced",
+    "priority": "L",
+    "maturity": "draft",
+    "specified": true,
+    "demonstrated": true,
+    "tested": true,
+    "testImplemented": true,
+    "states": 4
+  },
+  "title": "Form builder",
+  "summary": "A bounded reference editor for five canonical field kinds, with keyboard ordering, local preview and explicit JSON definition import and export.",
+  "anchors": {
+    "site": "https://j3w1.github.io/theme/#c-form-builder",
+    "spec": "spec/components/form-builder.md",
+    "brief": "exports/components/form-builder.brief.txt"
+  },
+  "native": true,
+  "aria": {
+    "pattern": "Native buttons, labelled inputs, fieldsets and ordered field definitions; no drag-only operations."
+  },
+  "variants": [
+    {
+      "id": "default",
+      "name": "Reference definition"
+    }
+  ],
+  "sizes": [
+    "compact",
+    "comfortable"
+  ],
+  "states": [
+    "default",
+    "empty",
+    "invalid",
+    "disabled"
+  ],
+  "tokens": {
+    "root.bg": {
+      "alias": "color.surface.default",
+      "value": "#160b0b",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "root.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "root.border": {
+      "alias": "color.border.control",
+      "value": "#a3676b",
+      "status": "proposed",
+      "deprecated": false,
+      "decisionId": "D-007",
+      "eligibility": {
+        "action": "use-and-report",
+        "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
+        "decisionIds": [
+          "D-007"
+        ]
+      }
+    },
+    "status.text": {
+      "alias": "color.text.muted",
+      "value": "#bd787d",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    }
+  },
+  "stateRules": [],
+  "keyboard": [
+    {
+      "key": "Tab / Shift+Tab",
+      "action": "Reach add, field editor, ordering, removal, preview and transfer controls in document order."
+    },
+    {
+      "key": "Enter / Space",
+      "action": "Activate the focused native button. Move up and Move down preserve stable identity and focus."
+    },
+    {
+      "key": "Arrow keys",
+      "action": "Use native select and radio choices in the preview."
+    }
+  ],
+  "responsive": "One column at narrow widths; editor controls and buttons wrap without changing order. Preview supports compact and comfortable density in the default profile.",
+  "portability": {
+    "web": "A local reference implementation using existing field contracts. JSON is a theme-pinned definition, not an executable form or backend API.",
+    "nativeFallbacks": [
+      "No native port or production form platform is claimed."
+    ]
+  },
+  "fixtures": [
+    "FX-360",
+    "FX-ZOOM-200",
+    "FX-DENSITY"
+  ],
+  "related": [
+    "admin-form",
+    "text-field",
+    "textarea",
+    "select",
+    "checkbox",
+    "radio-group",
+    "button"
+  ],
+  "specimens": [],
+  "nonExamples": "A production backend, conditional logic engine, drag-only editor, arbitrary\ncode generator, persistent account form, or native application port.",
+  "contrast": [
+    {
+      "label": "form-builder default text",
+      "state": "default",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.default",
+      "fgHex": "#e99499",
+      "bgHex": "#160b0b",
+      "ratio": 8.43,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "form-builder default border",
+      "state": "default",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.control",
+      "bg": "color.surface.default",
+      "fgHex": "#a3676b",
+      "bgHex": "#160b0b",
+      "ratio": 4.33,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "Editor text",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.default",
+      "fgHex": "#e99499",
+      "bgHex": "#160b0b",
+      "ratio": 8.43,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "Definition status",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.muted",
+      "bg": "color.surface.default",
+      "fgHex": "#bd787d",
+      "bgHex": "#160b0b",
+      "ratio": 5.66,
+      "pass": true,
+      "waiver": null
+    }
+  ]
+}

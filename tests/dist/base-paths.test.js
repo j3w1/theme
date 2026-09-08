@@ -10,7 +10,7 @@ import { listFiles, readJson, readText, repoRoot } from "../../scripts/lib/fs.mj
 
 const manifest = await readJson("theme.json");
 const base = `${manifest.site.base}/`;
-const ALLOWED_HOSTS = ["github.com", "raw.githubusercontent.com", "api.github.com", "www.w3.org", "creativecommons.org", "keepachangelog.com", "www.designtokens.org", "docs.github.com", "docs.astro.build", "code.claude.com", "llmstxt.org", "www.jetbrains.com", "plugins.jetbrains.com"];
+const ALLOWED_HOSTS = ["github.com", "raw.githubusercontent.com", "api.github.com", "www.w3.org", "creativecommons.org", "keepachangelog.com", "www.designtokens.org", "docs.github.com", "docs.astro.build", "code.claude.com", "llmstxt.org", "www.jetbrains.com", "plugins.jetbrains.com", "developers.figma.com", "design-system.service.gov.uk"];
 
 const distFiles = await listFiles("dist");
 assert.ok(distFiles.length > 0, "dist/ is empty — run npm run build first");

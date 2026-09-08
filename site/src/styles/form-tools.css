@@ -1,0 +1,20 @@
+@import "./components/text-field.css";
+@import "./components/textarea.css";
+@import "./components/select.css";
+@import "./components/checkbox.css";
+@import "./components/radio-group.css";
+@import "./components/admin-form.css";
+@import "./components/alert.css";
+@import "./components/button.css";
+@import "./components/table.css";
+.form-tool { inline-size: 100%; max-inline-size: 56rem; min-inline-size: 0; grid-template-columns: minmax(0, 1fr); }
+.form-tool[hidden], .form-tool [hidden] { display: none !important; }
+.form-tool fieldset { min-inline-size: 0; }
+.form-tool-actions { display: flex; flex-wrap: wrap; gap: var(--space-8); margin-block: var(--space-16); }
+.form-tool-fields { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-4); border: 0; padding: 0; margin: 0; }
+.form-field-help { color: var(--color-text-muted); margin: 0; font-size: var(--font-size-ui-sm); }
+.form-tool-summary { margin-block: var(--space-4); }
+.form-tool-summary a { color: inherit; }
+.form-tool table { inline-size: 100%; overflow-wrap: anywhere; }
+.form-tool th, .form-tool td { text-align: start; padding: var(--space-2); }
+.form-tool pre { white-space: pre-wrap; overflow-wrap: anywhere; }

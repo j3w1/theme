@@ -1,0 +1,33 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { createBuilder, changeBuilder, exportDefinition } from "../scripts/lib/form-builder.mjs";
+const theme = { name: "j3w1-theme", version: "0.1.0", profile: "default", sourceDigest: "sha256-YQ==" };
+test("builder orders stable identities, edits choice labels, transfers definitions only and rejects changes atomically", () => {
+  let state = createBuilder(theme);
+  for (const kind of ["text", "textarea", "select", "checkbox", "radio"]) state = changeBuilder(state, { type: "add", kind });
+  const originalIds = state.definition.fields.map(field => field.id);
+  const radio = state.definition.fields[4];
+  state = changeBuilder(state, { type: "edit", id: radio.id, label: "Contact method", help: "Choose one", required: true, options: [{ id: "email", label: "Email" }, { id: "phone", label: "Phone" }] });
+  state = changeBuilder(state, { type: "move", id: radio.id, direction: -1 });
+  assert.deepEqual(state.definition.fields.map(field => field.id), [...originalIds.slice(0, 3), originalIds[4], originalIds[3]]);
+  state.values[originalIds[0]] = "Do not export me";
+  const exported = exportDefinition(state); assert.ok(!exported.includes("Do not export me"));
+  const imported = changeBuilder(state, { type: "import", text: exported });
+  assert.deepEqual(imported.definition, state.definition); assert.equal(imported.values[originalIds[0]], "");
+  const before = structuredClone(state);
+  for (const text of ["not json", " ".repeat(65537), exported.replace('"radio"', '"script"'), exported.replace('"0.1.0"', '"1.0.0"')]) assert.throws(() => changeBuilder(state, { type: "import", text }));
+  assert.deepEqual(state, before);
+  state = changeBuilder(state, { type: "remove", id: radio.id });
+  state = changeBuilder(state, { type: "add", kind: "text" });
+  assert.ok(!originalIds.includes(state.definition.fields.at(-1).id));
+  assert.equal(changeBuilder(state, { type: "reset" }).definition.fields.length, 0);
+});
+test("twenty-field bound and imported field identities do not allow duplicate allocation", () => {
+  let state = createBuilder(theme);
+  for (let i = 0; i < 20; i++) state = changeBuilder(state, { type: "add", kind: "text" });
+  assert.throws(() => changeBuilder(state, { type: "add", kind: "text" }), /20-field/);
+  state = changeBuilder(state, { type: "remove", id: "field-2" });
+  state = changeBuilder(state, { type: "import", text: exportDefinition(state) });
+  state = changeBuilder(state, { type: "add", kind: "text" });
+  assert.equal(new Set(state.definition.fields.map(field => field.id)).size, 20);
+});

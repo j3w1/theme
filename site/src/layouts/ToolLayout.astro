@@ -30,7 +30,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
       <p class="stamp">{usageRevision ? <>Source revision <code>{usageRevision}</code></> : "Local build: source locations are relative to this checkout; no published revision is claimed."}</p>
     </header>
     <main id="main" class="tool-main"><slot /></main>
-    <footer class="tool-main"><a href={withBase("ports/")}>Port capabilities and mapping evidence</a></footer>
+    <footer class="tool-main"><a href={withBase("ports/")}>Port capabilities and mapping evidence</a> · <a href={withBase("patterns/validation-recovery/")}>Validation and recovery</a> · <a href={withBase("builder/")}>Form builder</a> · <a href={withBase("figma/")}>Figma Variables bridge</a></footer>
     <script>
       import { initCopy } from "../scripts/copy";
       document.documentElement.classList.add("js");

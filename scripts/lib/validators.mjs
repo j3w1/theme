@@ -344,6 +344,7 @@ export const validatePrivateMaterial = async () => {
 };
 
 export const validateAll = async () => {
+  await (await import("./patterns.mjs")).validatePatterns();
   const manifest = await validateManifest();
   const decisions = await validateDecisions();
   const tokens = await validateTokens({ manifest, decisions });
@@ -357,6 +358,7 @@ export const validateAll = async () => {
 };
 
 export const VALIDATORS = {
+  patterns: async () => { await (await import("./patterns.mjs")).validatePatterns(); },
   manifest: async () => { await validateManifest(); },
   decisions: async () => { await validateDecisions(); },
   tokens: async () => { await validateTokens(); },
