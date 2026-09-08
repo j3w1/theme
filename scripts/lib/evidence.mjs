@@ -7,7 +7,7 @@ import { evidenceSchema } from "../../schemas/evidence.mjs";
 // Conservative invalidation: every tracked source/dependency input can affect
 // every claim. Run metadata never participates in the source digest.
 export const sourceFingerprint = async () => {
-  const files = [...new Set(gitFiles())].filter((file) => /^(?:tokens\/|references\/|ports\/|templates\/|spec\/|schemas\/|scripts\/|site\/|tests\/|agents\/|\.github\/workflows\/|(?:theme\.json|package(?:-lock)?\.json|astro\.config\.mjs|playwright(?:\.verification)?\.config\.mjs|AGENTS\.md|README\.md)$)/.test(file) && !file.startsWith("schemas/json/") && file !== "site/src/styles/tokens.generated.css");
+  const files = [...new Set(gitFiles())].filter((file) => /^(?:packages\/ui\/src\/|packages\/ui\/package\.json$|apps\/demo\/(?!dist\/|node_modules\/)|tokens\/|references\/|ports\/|templates\/|spec\/|schemas\/|scripts\/|site\/|tests\/|agents\/|\.github\/workflows\/|(?:theme\.json|package(?:-lock)?\.json|astro\.config\.mjs|playwright(?:\.verification|\.ui)?\.config\.mjs|AGENTS\.md|README\.md)$)/.test(file) && !file.startsWith("schemas/json/") && file !== "site/src/styles/tokens.generated.css");
   const digests = {};
   for (const file of files) digests[file] = sha256(await readText(file));
   return sha256(stableJson(digests));

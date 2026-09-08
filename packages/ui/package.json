@@ -1,0 +1,24 @@
+{
+  "name": "@j3w1/ui",
+  "version": "1.0.0",
+  "description": "Native-first j3w1 UI components, complete copy bundles and typed integration APIs.",
+  "type": "module",
+  "license": "MIT",
+  "repository": { "type": "git", "url": "https://github.com/j3w1/theme.git", "directory": "packages/ui" },
+  "files": ["dist", "README.md", "LICENSE.md"],
+  "sideEffects": ["./dist/register.js", "./dist/register/*.js", "./dist/styles/*.css", "./dist/tokens.css"],
+  "exports": {
+    ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" },
+    "./register": "./dist/register.js",
+    "./components/*": { "types": "./dist/components/*.d.ts", "import": "./dist/components/*.js" },
+    "./register/*": "./dist/register/*.js",
+    "./styles.css": "./dist/styles/index.css",
+    "./styles/*": "./dist/styles/*",
+    "./tokens.css": "./dist/tokens.css",
+    "./manifest.json": "./dist/manifest.json",
+    "./examples.json": "./dist/examples.json"
+  },
+  "bin": { "j3w1-ui": "./dist/cli.js" },
+  "scripts": { "build": "node ../../scripts/build-ui.mjs" },
+  "engines": { "node": ">=24" }
+}
