@@ -1,28 +1,28 @@
 {
   "schemaVersion": 1,
   "component": "command-palette",
-  "version": "1.0.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/command-palette.md",
+  "version": "1.1.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/command-palette.md",
   "dependencies": [
     "register/command-palette.js",
-    "chunks/element-B0z6sqq8.js",
+    "chunks/element-DdnhHcFm.js",
+    "chunks/choice-BYcDpKUh.js",
     "components/command-palette.js",
-    "chunks/advanced-CJyaPTcu.js",
-    "chunks/dom-BVXrzskP.js",
+    "chunks/advanced-BhJw9QR4.js",
     "chunks/markup-DeQ4bEMR.js"
   ],
   "files": {
-    "runtime/register/command-palette.js": "sha256-LXklee1R8eWHLYeaKJvQ5w2KuomoLtY3AOj73rqDRpU=",
-    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
-    "runtime/components/command-palette.js": "sha256-iOrZEft4OUC+iylrIxe9P1QnvmbYzfGHCVo6d+1bumg=",
-    "runtime/chunks/advanced-CJyaPTcu.js": "sha256-9M0VmDycGuipmra083eV7okCVauqLrpF4sgz2nuEY/w=",
-    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "runtime/register/command-palette.js": "sha256-gA1SBcF6gc/flAZTO2KWee1Okqn8dDTxUsDyR/wjgl8=",
+    "runtime/chunks/element-DdnhHcFm.js": "sha256-P8IoDXll0lJKcWOXXpHcwqadD7PqHKhMe87UzfiI80g=",
+    "runtime/chunks/choice-BYcDpKUh.js": "sha256-YPGCPBUOkLX215ZCOwxBWWB6d16pSW1hL7sgtPfSWpA=",
+    "runtime/components/command-palette.js": "sha256-ij56Or7UtE1ZjpBLigQTUh+9MAHQQB9n35eSsvofinI=",
+    "runtime/chunks/advanced-BhJw9QR4.js": "sha256-5HuR2YJj7pFjOBQgLX1zDghdCvWI4YsDts7R/lHdo8E=",
     "runtime/chunks/markup-DeQ4bEMR.js": "sha256-Eyyx7MKBoqXK4i2HaVUQhKUM066L2wIggABt6jAdgas=",
     "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
-    "component.css": "sha256-j1E2rj/pcQ+LZEDUZliYskDUn+DoRsuO5tjtnAgkDL0=",
+    "component.css": "sha256-t7Nx5bVz8i3o11i46wST9tQPTbjvJ21yoVfgMSGeZNM=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-mNRkLE+yYA4PARM4rv5bXDj90Oq8yxQLPgoUW8bX6ns=",
     "index.html": "sha256-I5o97Y3ykrn6MCqMmtWvFGTxDBltracgMFnF25iNwZk=",
-    "README.md": "sha256-xUSyvw1hkOOVuuslFk2ciTNY4UINByyVg45qW08SvSM="
+    "README.md": "sha256-vrrB+J+2aLCVpBhq5lh2PLwqvO26EJMWJD1p4RVme6Q="
   }
 }

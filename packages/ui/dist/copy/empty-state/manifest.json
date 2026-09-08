@@ -1,26 +1,26 @@
 {
   "schemaVersion": 1,
   "component": "empty-state",
-  "version": "1.0.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/empty-state.md",
+  "version": "1.1.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/empty-state.md",
   "dependencies": [
     "register/empty-state.js",
-    "chunks/element-B0z6sqq8.js",
+    "chunks/element-DdnhHcFm.js",
+    "chunks/choice-BYcDpKUh.js",
     "components/empty-state.js",
-    "chunks/overlays-DBA40kTs.js",
-    "chunks/dom-BVXrzskP.js"
+    "chunks/overlays-CnOUExZq.js"
   ],
   "files": {
-    "runtime/register/empty-state.js": "sha256-5hUMualsLvso859iZwj+1orHxjY00ac+vcxY50SjtTg=",
-    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
-    "runtime/components/empty-state.js": "sha256-3w7BRyMXgjtpBk0aOSTM1hsyMzW44NiWtT13jZZsToc=",
-    "runtime/chunks/overlays-DBA40kTs.js": "sha256-oxEI9Hm3Ntzowr9QqxqQ28cWdd0ljwViujA+EtHh+Rs=",
-    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "runtime/register/empty-state.js": "sha256-mXWfbHEGuwV/ngwrpEjU222+ky/45LEvvfuchUV8/dE=",
+    "runtime/chunks/element-DdnhHcFm.js": "sha256-P8IoDXll0lJKcWOXXpHcwqadD7PqHKhMe87UzfiI80g=",
+    "runtime/chunks/choice-BYcDpKUh.js": "sha256-YPGCPBUOkLX215ZCOwxBWWB6d16pSW1hL7sgtPfSWpA=",
+    "runtime/components/empty-state.js": "sha256-QxaIf00aGnGnuof5o3J3Can8heB3a1UY0UnG/y43hCU=",
+    "runtime/chunks/overlays-CnOUExZq.js": "sha256-JqE/pM6YNLpLOyMxLhO+dNlymvWl3pOFFyKLWhs9+xk=",
     "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
     "component.css": "sha256-Mdd72ooxolJDcPYScpT7yUM7Uj1SV5nk9LuG9vP0EeA=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-j6rKuP4LmxmaKm47ZcfAqQ0LKMqN7l90HZwvUydHutQ=",
     "index.html": "sha256-rcFm3dTOVu+pB+gds4jp/elaQrgi/1rGF8xpNTCacL4=",
-    "README.md": "sha256-v/7QuZVdwhHnkk4tvpqFl+5+j20a/sb0OY+d1hs+Ui4="
+    "README.md": "sha256-tmB2pd1SLMm/z/x/9y/l3rYv6c+z8ET0R6E1/TS3yNk="
   }
 }

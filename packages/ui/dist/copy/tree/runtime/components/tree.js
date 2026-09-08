@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-B0z6sqq8.js";
-import { i as tree } from "../chunks/advanced-CJyaPTcu.js";
+import { t as J3w1Element } from "../chunks/element-DdnhHcFm.js";
+import { i as tree } from "../chunks/advanced-BhJw9QR4.js";
 //#region .cache/ui-build/entries/components/tree.js
 var J3w1Tree = class extends J3w1Element {
 	static componentId = "tree";
-	static version = "1.0.0";
-	static implementationId = "sha256-9jCD8FDI2oPcrpkx5u1+7URQackE0E93daX0e2PFHcQ=";
+	static version = "1.1.0";
+	static implementationId = "sha256-fGOhZBKGUWTmTwmc5A/JPb5aRVCOTKL/5dtj1Vox6ig=";
 	static connect = tree;
 	static upgradeProperties = [
 		"disabled",

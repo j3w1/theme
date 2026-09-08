@@ -1,4 +1,4 @@
-import { n as registerElement } from "../chunks/element-B0z6sqq8.js";
+import { n as registerElement } from "../chunks/element-DdnhHcFm.js";
 import "./text-field.js";
 import "./textarea.js";
 import "./select.js";

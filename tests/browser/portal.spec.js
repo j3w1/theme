@@ -1,3 +1,4 @@
+import { chooseOptions } from "../ui/choice-helper.mjs";
 import { test, expect } from "./evidence-fixture.mjs";
 import AxeBuilder from "@axe-core/playwright";
 import { openSpec } from "./helpers.mjs";
@@ -109,6 +110,7 @@ test("every Vue destination resolves under the Pages base and graph bars use can
     await expect(page.locator(".demo-topline")).toContainText(`Workspace / ${destination.split('/').filter(Boolean).join(' / ')}`);
     await expect(page.locator("main h1")).toBeVisible();
     await expect(page.locator(".demo-specimen:empty")).toHaveCount(0);
+    await expect(page.locator('select:visible')).toHaveCount(0);
     await page.waitForLoadState("networkidle");
     await expect(page.locator("main")).not.toContainText("Unknown component");
     expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
@@ -129,10 +131,37 @@ test("agent-kit selection prepares bounded framework and mode commands", { annot
   await openSpec(page,"agents/?component=dialog");
   const command=page.locator("[data-kit-command]");
   await expect(command).toContainText("--components dialog --framework vue --mode package");
-  await page.getByRole("combobox",{name:"Framework",exact:true}).selectOption("native");
+  await chooseOptions(page.getByRole("combobox",{name:"Framework",exact:true}), "native");
   await expect(command).toContainText("--framework native --mode mapping");
-  await page.getByRole("combobox",{name:"Framework",exact:true}).selectOption("vue");
-  await page.getByRole("combobox",{name:"Consumption mode",exact:true}).selectOption("copy");
-  await page.getByRole("listbox",{name:"Components",exact:true}).selectOption(["text-field","button"]);
+  await chooseOptions(page.getByRole("combobox",{name:"Framework",exact:true}), "vue");
+  await chooseOptions(page.getByRole("combobox",{name:"Consumption mode",exact:true}), "copy");
+  await chooseOptions(page.getByRole("listbox",{name:"Components",exact:true}), ["text-field","button"]);
   await expect(command).toContainText("--mode copy");await expect(command).not.toContainText("dialog");
+  await expect(page.locator('select:visible')).toHaveCount(0);
+});
+
+test('standalone public control enhancement preserves forms and restores native fallback', {annotation}, async ({page},info) => {
+  test.skip(info.project.name==='nojs','The public enhancement requires JavaScript; static fallback is retained on destruction.');
+  await page.goto('./');
+  await page.setContent(`<html><head><link rel="stylesheet" href="/theme/ui/tokens.css"><link rel="stylesheet" href="/theme/ui/styles/controls.css"><style>select{display:block}</style></head><body><main><form><label for="standalone-choice">Destination</label><select id="standalone-choice" name="destination"><option value="one">First</option><option value="two">Second</option></select><label for="standalone-multiple">Features</label><select id="standalone-multiple" name="features" multiple><option value="a">Alpha</option><option value="b">Beta</option></select></form><button id="destroy" type="button">Restore controls</button></main></body></html>`);
+  await page.evaluate(async()=>{const {enhanceControls}=await import('/theme/ui/enhance/choice.js');const controller=enhanceControls(document.querySelector('main'));document.querySelector('#destroy').addEventListener('click',()=>controller.destroy());});
+  await expect(page.locator('select:visible')).toHaveCount(0);
+  await chooseOptions(page.getByRole('combobox',{name:'Destination',exact:true}),'two');
+  await chooseOptions(page.getByRole('listbox',{name:'Features',exact:true}),['a','b']);
+  expect(await page.locator('form').evaluate(form=>[...new FormData(form)])).toEqual([['destination','two'],['features','a'],['features','b']]);
+  await page.getByRole('button',{name:'Restore controls',exact:true}).click();
+  await expect(page.locator('select:visible')).toHaveCount(2);await expect(page.locator('.j3w1-choice')).toHaveCount(0);
+  await expect(page.getByLabel('Destination',{exact:true})).toHaveValue('two');
+});
+
+test('themed task choices move the card and retain keyboard focus', {annotation}, async ({page},info) => {
+  test.skip(info.project.name==='nojs','The Vue workflow requires JavaScript; native control fallback is verified separately.');
+  const audit=await openSpec(page,'demo/#/apps/kanban');
+  const name='Move Review native form flow';
+  await chooseOptions(page.getByRole('combobox',{name,exact:true}),'Review');
+  await expect(page.locator('.kanban > section').filter({has:page.getByRole('heading',{name:'Review',exact:true,level:2})})).toContainText('Review native form flow');
+  await expect(page.getByRole('combobox',{name,exact:true})).toBeFocused();
+  await page.getByRole('combobox',{name,exact:true}).press('ArrowDown');
+  await expect(page.getByRole('option',{name:'Review',exact:true})).toHaveAttribute('aria-selected','true');
+  await page.keyboard.press('Escape');audit.assertClean();
 });

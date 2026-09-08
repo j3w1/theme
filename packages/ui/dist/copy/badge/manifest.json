@@ -1,26 +1,26 @@
 {
   "schemaVersion": 1,
   "component": "badge",
-  "version": "1.0.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/badge.md",
+  "version": "1.1.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/badge.md",
   "dependencies": [
     "register/badge.js",
-    "chunks/element-B0z6sqq8.js",
+    "chunks/element-DdnhHcFm.js",
+    "chunks/choice-BYcDpKUh.js",
     "components/badge.js",
-    "chunks/native-BFZpUch0.js",
-    "chunks/dom-BVXrzskP.js"
+    "chunks/native-B_kM8IJz.js"
   ],
   "files": {
-    "runtime/register/badge.js": "sha256-Mg+x5InkyeHIXaaF3zRjkO4ji9mg4L5ffX6qvCGm3QY=",
-    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
-    "runtime/components/badge.js": "sha256-4CZMnAU0cJ5EBbA4Iz0HdA8oc3cXBNfU1+NqjV2Bjcs=",
-    "runtime/chunks/native-BFZpUch0.js": "sha256-4FgvJoEfMvTAX/0SiIsk0wfAn46HnBmvIXq6b7hYmV4=",
-    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "runtime/register/badge.js": "sha256-yFwumfM34tKAS0U/BRUcl/23RiR0hpx4QnmhkKCNkQg=",
+    "runtime/chunks/element-DdnhHcFm.js": "sha256-P8IoDXll0lJKcWOXXpHcwqadD7PqHKhMe87UzfiI80g=",
+    "runtime/chunks/choice-BYcDpKUh.js": "sha256-YPGCPBUOkLX215ZCOwxBWWB6d16pSW1hL7sgtPfSWpA=",
+    "runtime/components/badge.js": "sha256-DnEB2bZyHrxYW2O8runttFfudEx7y76yq9HUsuAu+LM=",
+    "runtime/chunks/native-B_kM8IJz.js": "sha256-ksEH0b3bCHels2v1k3A5/HHzX3o0CTGeGjGLZH2WFQc=",
     "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
     "component.css": "sha256-K2TPkFZfKUt35HniL/ub9icdMukZ7wCx0S5+D1FOv8Y=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-rXaOLdDbEK5SMtYsw5TegOMtcnLijmgtU07RVrvJx8o=",
     "index.html": "sha256-adxgp7aQqS8TWwQ8h7ZunxvDdJpxjaS8oGagTh0d+s0=",
-    "README.md": "sha256-CUIcQ2fnCZdlL5yeLx7iUSSz0w01MgE61B8+l6Kx+80="
+    "README.md": "sha256-1envbLQ28FahcjF1v/QTDE9dCQUsk0jPD2stXScDxOI="
   }
 }

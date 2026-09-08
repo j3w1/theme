@@ -1,28 +1,28 @@
 {
   "schemaVersion": 1,
   "component": "i3-window-frame",
-  "version": "1.0.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/i3-window-frame.md",
+  "version": "1.1.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/i3-window-frame.md",
   "dependencies": [
     "register/i3-window-frame.js",
-    "chunks/element-B0z6sqq8.js",
+    "chunks/element-DdnhHcFm.js",
+    "chunks/choice-BYcDpKUh.js",
     "components/i3-window-frame.js",
-    "chunks/compositions-C-7IoRHC.js",
-    "chunks/dom-BVXrzskP.js",
-    "chunks/navigation-CPDNZIIt.js"
+    "chunks/compositions-wYvou_0T.js",
+    "chunks/navigation-BPzB8WCr.js"
   ],
   "files": {
-    "runtime/register/i3-window-frame.js": "sha256-qCzrz8hzQ8jDVSzUwbq9/R2cxGfAoO2Ue8jy80XdjHw=",
-    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
-    "runtime/components/i3-window-frame.js": "sha256-Ao02cBqUKwXIs8krDEIokWsrcbapPu4oLvZ/P13Rm4c=",
-    "runtime/chunks/compositions-C-7IoRHC.js": "sha256-GRIYcEQEaGRJJrMK/2oZP6C8GYMarM/vwVUwAwVA66g=",
-    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
-    "runtime/chunks/navigation-CPDNZIIt.js": "sha256-hvSCgp3WLoCXXZnX8dgEpwxYZjbpAKxYS512EwBSmkU=",
+    "runtime/register/i3-window-frame.js": "sha256-3bHmFCTxG2OzMYM5PSceOVRS825gXMdZ1Kj7ZP9sjTI=",
+    "runtime/chunks/element-DdnhHcFm.js": "sha256-P8IoDXll0lJKcWOXXpHcwqadD7PqHKhMe87UzfiI80g=",
+    "runtime/chunks/choice-BYcDpKUh.js": "sha256-YPGCPBUOkLX215ZCOwxBWWB6d16pSW1hL7sgtPfSWpA=",
+    "runtime/components/i3-window-frame.js": "sha256-/EHGXLhPtFhHO+ixR60/kb+xrM1LnUY3T04RdVrMBQg=",
+    "runtime/chunks/compositions-wYvou_0T.js": "sha256-C/YpUWAbiQY8nMt5cjUgbokCy7bLoNHXyogBKV8LnZ0=",
+    "runtime/chunks/navigation-BPzB8WCr.js": "sha256-udt3eK91aZacfj6pjQ4sZVzQR3HlKRVM/u/2fzJek0Q=",
     "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
     "component.css": "sha256-QljmW58WdoKF6+YBgt70LlUJmwvwqRDo5o6oSTF0nTA=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-nNyvwUVLU3Rdy3x0UcZN+IkCA1+Ot5CVwjUB54GDnq8=",
     "index.html": "sha256-5VNshBKwk0GCY7ID/iL5fiZjb6VRrIZhEdVK/HjtiK0=",
-    "README.md": "sha256-ze95QrLntqW6ikeZ1kJX5RqvkShbfmcSGOOucjoLqOs="
+    "README.md": "sha256-pC1NePn9Lgx8NCqNRh/IO13zfGW6tRFm0up5UzrKTZY="
   }
 }

@@ -1,10 +1,10 @@
 {
   "id": "popover",
   "name": "Popover",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "tag": "j3w1-popover",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/popover.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.0.0/packages/ui/src/behaviors/overlays.js",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/popover.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.1.0/packages/ui/src/behaviors/overlays.js",
   "imports": {
     "class": "@j3w1/ui/components/popover",
     "register": "@j3w1/ui/register/popover",
@@ -335,6 +335,6 @@
   "copy": {
     "directory": "copy/popover/",
     "manifest": "copy/popover/manifest.json",
-    "digest": "sha256-fbyp0WS4agiwFqWtdSS5MSAdugnDt2MbzzlgG7NT0R8="
+    "digest": "sha256-QJMOCikHkw2ZCVnzoiNIFNleBeaYypdezPKDpUx1CuY="
   }
 }

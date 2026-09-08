@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-B0z6sqq8.js";
-import { r as fields } from "../chunks/native-BFZpUch0.js";
+import { t as J3w1Element } from "../chunks/element-DdnhHcFm.js";
+import { r as fields } from "../chunks/native-B_kM8IJz.js";
 //#region .cache/ui-build/entries/components/text-field.js
 var J3w1TextField = class extends J3w1Element {
 	static componentId = "text-field";
-	static version = "1.0.0";
-	static implementationId = "sha256-1TfIy+zVN2nGFu+mSEUfstn3ttRH+CgJZRek3U6LSr4=";
+	static version = "1.1.0";
+	static implementationId = "sha256-fec2Fc/Ik1IBLZPe1O6cTbhG2bwB5ZU7z9C4RdIttps=";
 	static connect = fields;
 	static upgradeProperties = [
 		"disabled",

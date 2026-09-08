@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-B0z6sqq8.js";
-import { a as switchControl } from "../chunks/native-BFZpUch0.js";
+import { t as J3w1Element } from "../chunks/element-DdnhHcFm.js";
+import { a as switchControl } from "../chunks/native-B_kM8IJz.js";
 //#region .cache/ui-build/entries/components/switch.js
 var J3w1Switch = class extends J3w1Element {
 	static componentId = "switch";
-	static version = "1.0.0";
-	static implementationId = "sha256-/y76C/vv+czoqnsvNu574Uw7IlWLAJ+U1pjw3VcWCfU=";
+	static version = "1.1.0";
+	static implementationId = "sha256-mebELT/gPE+Y6TLEhYp21z6UOpf4nOecatipw8z/xwA=";
 	static connect = switchControl;
 	static upgradeProperties = [
 		"disabled",

@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-B0z6sqq8.js";
-import { r as fields } from "../chunks/native-BFZpUch0.js";
+import { t as J3w1Element } from "../chunks/element-DdnhHcFm.js";
+import { r as fields } from "../chunks/native-B_kM8IJz.js";
 //#region .cache/ui-build/entries/components/select.js
 var J3w1Select = class extends J3w1Element {
 	static componentId = "select";
-	static version = "1.0.0";
-	static implementationId = "sha256-Mh0UYONbwMGLcHb1vbrfJfHttL5njahg456Rh+Brk7M=";
+	static version = "1.1.0";
+	static implementationId = "sha256-dHF8fLgwyIoDm2sS7i3efYXEF19EZ+d5fnhgWJ2bz9U=";
 	static connect = fields;
 	static upgradeProperties = [
 		"disabled",

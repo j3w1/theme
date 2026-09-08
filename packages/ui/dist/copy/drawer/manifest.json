@@ -1,26 +1,26 @@
 {
   "schemaVersion": 1,
   "component": "drawer",
-  "version": "1.0.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/drawer.md",
+  "version": "1.1.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/drawer.md",
   "dependencies": [
     "register/drawer.js",
-    "chunks/element-B0z6sqq8.js",
+    "chunks/element-DdnhHcFm.js",
+    "chunks/choice-BYcDpKUh.js",
     "components/drawer.js",
-    "chunks/overlays-DBA40kTs.js",
-    "chunks/dom-BVXrzskP.js"
+    "chunks/overlays-CnOUExZq.js"
   ],
   "files": {
-    "runtime/register/drawer.js": "sha256-eRlAh4I7zRRhOzp6/Q+RHfCV0p3XZ1YYQxrFtJDerfI=",
-    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
-    "runtime/components/drawer.js": "sha256-0oRovF4QEjsGMXJKR60DPpxQf0+z37GDqRNAkiQ6lfg=",
-    "runtime/chunks/overlays-DBA40kTs.js": "sha256-oxEI9Hm3Ntzowr9QqxqQ28cWdd0ljwViujA+EtHh+Rs=",
-    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "runtime/register/drawer.js": "sha256-bpv/xw28IJZ4aROvxClXRlzHR4HWnen70XMi8pcm4/c=",
+    "runtime/chunks/element-DdnhHcFm.js": "sha256-P8IoDXll0lJKcWOXXpHcwqadD7PqHKhMe87UzfiI80g=",
+    "runtime/chunks/choice-BYcDpKUh.js": "sha256-YPGCPBUOkLX215ZCOwxBWWB6d16pSW1hL7sgtPfSWpA=",
+    "runtime/components/drawer.js": "sha256-RRRIKj1OUIcayfAJtJO+VKzsnK2+xeFFqQQ2tkmEHUg=",
+    "runtime/chunks/overlays-CnOUExZq.js": "sha256-JqE/pM6YNLpLOyMxLhO+dNlymvWl3pOFFyKLWhs9+xk=",
     "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
     "component.css": "sha256-39DmGp3B3f8+C/QGAv6xbiVXT7QviSaVCnHk8XpC158=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-RNAiKQJPioHCtfhMtqcsFaQFfwhKvdH+iIfLXOWo6QQ=",
     "index.html": "sha256-CbS/ignNl9YlA8MUwmXMnGVVRk6rR78IN2YGSe3T/OI=",
-    "README.md": "sha256-zXrlZnCg96hxAPG8ZIPyLvvTXJ/XyUyKFStu77G62kg="
+    "README.md": "sha256-UCPe6217ZgQVMTn6g7IigdEn3QvH0ccgPIBRzAQXvBA="
   }
 }

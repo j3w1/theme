@@ -1,10 +1,10 @@
 {
   "id": "file-browser",
   "name": "File browser",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "tag": "j3w1-file-browser",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/file-browser.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.0.0/packages/ui/src/behaviors/compositions.js",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/file-browser.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.1.0/packages/ui/src/behaviors/compositions.js",
   "imports": {
     "class": "@j3w1/ui/components/file-browser",
     "register": "@j3w1/ui/register/file-browser",
@@ -465,6 +465,6 @@
   "copy": {
     "directory": "copy/file-browser/",
     "manifest": "copy/file-browser/manifest.json",
-    "digest": "sha256-U9tfo30l2t0PujejMzthuI4nZLjKoS+b5QvqkICr1Fs="
+    "digest": "sha256-221M+0ltA9NgBP0AoKP5t1+QmNccs6+bxO5h9UKvrLY="
   }
 }

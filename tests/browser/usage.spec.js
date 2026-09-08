@@ -1,3 +1,4 @@
+import { chooseOptions } from "../ui/choice-helper.mjs";
 import { test, expect } from "./evidence-fixture.mjs";
 import AxeBuilder from "@axe-core/playwright";
 import usage from "../../exports/token-usage.json" with { type: "json" };
@@ -10,22 +11,22 @@ test("usage filters require a documented match and preserve profile restrictions
     await expect(page.locator("[data-usage-profile]:visible")).toHaveCount(3);
     await expect(page.locator('[data-usage-profile="extended"]')).toContainText("blocked");
   } else {
-    await page.getByLabel("component", { exact: true }).selectOption("text-field");
-    await page.getByLabel("state", { exact: true }).selectOption("default");
-    await page.getByLabel("part", { exact: true }).selectOption("border");
+    await chooseOptions(page.getByLabel("component", { exact: true }), "text-field");
+    await chooseOptions(page.getByLabel("state", { exact: true }), "default");
+    await chooseOptions(page.getByLabel("part", { exact: true }), "border");
     const rows = page.locator("[data-usage-path]:visible");
     await expect(rows).toHaveCount(1);
     await expect(rows).toContainText("color.border.control");
     await expect(rows).toContainText("use-and-report");
     if (["desktop", "narrow"].includes(testInfo.project.name)) await page.screenshot({ path: `.cache/usage-filtered-${testInfo.project.name}.png`, fullPage: true });
-    await page.getByLabel("Profile", { exact: true }).selectOption("extended");
+    await chooseOptions(page.getByLabel("Profile", { exact: true }), "extended");
     await page.getByLabel("Permitted roles only").check();
     await expect(page.locator("#usage-empty")).toBeVisible();
     await expect(rows).toHaveCount(0);
     await page.getByRole("button", { name: "Reset filters" }).click();
     await expect(rows).toHaveCount(Object.keys(usage.profiles.default.tokens).length);
-    await page.getByLabel("Profile", { exact: true }).selectOption("heritage-ansi");
-    await page.getByLabel("status", { exact: true }).selectOption("heritage");
+    await chooseOptions(page.getByLabel("Profile", { exact: true }), "heritage-ansi");
+    await chooseOptions(page.getByLabel("status", { exact: true }), "heritage");
     await expect(rows.first()).toContainText("heritage");
   }
   expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);

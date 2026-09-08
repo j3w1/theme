@@ -1,10 +1,10 @@
 {
   "id": "kbd",
   "name": "Keyboard key",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "tag": "j3w1-kbd",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/kbd.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.0.0/packages/ui/src/behaviors/native.js",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/kbd.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.1.0/packages/ui/src/behaviors/native.js",
   "imports": {
     "class": "@j3w1/ui/components/kbd",
     "register": "@j3w1/ui/register/kbd",
@@ -253,6 +253,6 @@
   "copy": {
     "directory": "copy/kbd/",
     "manifest": "copy/kbd/manifest.json",
-    "digest": "sha256-1dWrpzUM+CtFevWVQri++aPfnloJX0jJ9v6RUQgy6nY="
+    "digest": "sha256-ChdgbQlD04nqCAUpspT6ARIRM8Oy8vrS7vVFABj3Zsc="
   }
 }

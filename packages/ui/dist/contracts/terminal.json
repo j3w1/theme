@@ -1,10 +1,10 @@
 {
   "id": "terminal",
   "name": "Terminal",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "tag": "j3w1-terminal",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/terminal.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.0.0/packages/ui/src/behaviors/display.js",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/terminal.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.1.0/packages/ui/src/behaviors/display.js",
   "imports": {
     "class": "@j3w1/ui/components/terminal",
     "register": "@j3w1/ui/register/terminal",
@@ -528,6 +528,6 @@
   "copy": {
     "directory": "copy/terminal/",
     "manifest": "copy/terminal/manifest.json",
-    "digest": "sha256-EJQ2i5tQRiGdBNqIBb2C0YajcD/jtfvOZGPTUnVLjcQ="
+    "digest": "sha256-1efG+ZhlXEPISxSA4c8viX7dU+voWsdZljV1obtAVRs="
   }
 }

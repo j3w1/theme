@@ -36,6 +36,7 @@ in its `$extensions["io.github.j3w1.theme"].approval.decision`. Agents may open
 | D-022 | Local visual selection before agent implementation distribution | proposed | 2026-09-08 | — |
 | D-023 | True Black / Rose canonical foundation | accepted | 2026-09-08 | owner (explicit selection of candidate I) |
 | D-024 | Distinguish links from body text and headings | accepted | 2026-09-08 | owner (explicit preview correction) |
+| D-025 | Theme interactive controls throughout the portal and demo | accepted | 2026-09-09 | owner (explicit native-control replacement request) |
 
 ## D-000 Responsibility split
 
@@ -478,3 +479,38 @@ too little separation in the reviewed dashboard. Blue/purple links would
 introduce an unrelated hue. No new primitive, status hue, contrast exception
 or focus rule is introduced. Preserve the old link assignment in the historical
 profile. This refinement ships with the same unreleased 1.0.0 major change.
+
+## D-025 Theme interactive controls throughout the portal and demo
+
+Status: accepted. After reviewing native blue selections in the work board and
+agent-kit picker, the owner explicitly instructed: "replace mostly all native
+components like `<select>` we must use all j3w1 themed". The owner also requested a
+properly proportioned command-search field. This records that authorization.
+
+The maintained select implementation now renders its single-choice popup and
+multiple-choice list in theme-owned DOM using the existing selection, surface,
+text, border and focus roles. The native select remains the form-value and
+constraint source and the no-JavaScript fallback. This supersedes the select
+specification's prohibition on replacing the host popup for web implementations.
+Native ports retain their host-specific mappings. The custom interface follows
+the select-only combobox and multiple listbox keyboard patterns, preserves labels,
+disabled options/fieldsets, native input/change events, defaults and form reset,
+and documents its actual tested scope.
+
+Provide the same supported enhancement for existing application controls, use it
+throughout the portal and Vue demo, and include it in consumption documentation
+and copy closures. Theme ordinary input, button, checkbox, radio, range and file
+control chrome as well. Browser-owned system dialogs and explicit no-JavaScript
+fallbacks remain native; they are not styled by unsupported platform hacks.
+
+Date inputs use a theme-owned text editor and calendar; time inputs use explicit
+text entry and theme-owned step buttons. Their original native inputs retain
+constraints and form values. This supersedes the earlier date/time component
+specifications' host-popup descriptions for enhanced web implementations.
+
+The alternative of advisory option CSS leaves the demonstrated blue host
+selection unchanged. One-off Vue/portal dropdowns duplicate behavior and leave
+agents with inconsistent components. New hues, focus rules, accessibility
+waivers and license changes are not authorized by this correction. The additive
+enhancement and corrected component behavior ship in 1.1.0; existing 1.0.0 pins
+remain immutable. The command field fills its dialog width below its label.

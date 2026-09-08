@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { sha256, stableJson } from "../scripts/lib/fs.mjs";
 import { pinnedKitSource } from "../scripts/lib/task-kit-source.mjs";
 import { readRelease, compareReleases, comparisonMarkdown } from "../scripts/lib/release-comparison.mjs";
-import { assertHistoricalMarkup, assertHistoricalCss, renderReleaseSpecimens } from "../scripts/lib/release-rendering.mjs";
+import { assertHistoricalMarkup, assertHistoricalCss, historicalStyleClosure, renderReleaseSpecimens } from "../scripts/lib/release-rendering.mjs";
 
 const A = "a".repeat(40), B = "b".repeat(40);
 const token = (css, aliasOf = null) => ({ type: "color", value: css, css, aliasOf, description: "Controlled test role", status: "proposed", deprecated: false });
@@ -29,6 +29,20 @@ const fixture = (revision = A, edit = () => {}) => {
   return { files, source: { revision, list: async () => Object.keys(files).sort(), read: async (file) => { assert.ok(file in files); return files[file]; } } };
 };
 const read = (input, profile = "default") => readRelease(input.source.revision, profile, { source: input.source });
+
+test('pinned historical styles resolve shared imports while rejecting escapes, resources and cycles', async()=>{
+  const files={'site/src/styles/components/select.css':'@import "../shared.css"; .select { color:var(--color-text-default) }','site/src/styles/shared.css':'.choice { background:var(--color-surface-input) }'};
+  const requested=[],read=async name=>{requested.push(name);return files[name]??null;};
+  const result=await historicalStyleClosure(read,['site/src/styles/components/select.css']);
+  assert.match(result,/\.choice/);assert.match(result,/\.select/);assert.doesNotMatch(result,/@import/);
+  assert.deepEqual(requested,['site/src/styles/components/select.css','site/src/styles/shared.css']);
+  for(const invalid of ['@import "../../../../outside.css";','@import "https://example.invalid/theme.css";','@import "../missing.css";']){
+    files['site/src/styles/components/select.css']=invalid;await assert.rejects(historicalStyleClosure(read,['site/src/styles/components/select.css']),/Unsafe|Unsupported|Missing/);
+  }
+  files['site/src/styles/components/select.css']='@import "../shared.css";';files['site/src/styles/shared.css']='@import "components/select.css";';
+  await assert.rejects(historicalStyleClosure(read,['site/src/styles/components/select.css']),/Circular/);
+  files['site/src/styles/shared.css']='.choice { background:url(external.png) }';await assert.rejects(historicalStyleClosure(read,['site/src/styles/components/select.css']),/cannot fetch/);
+});
 
 test("identical pinned revisions have an empty semantic diff and byte-identical reconstructed specimens", async () => {
   const a = await read(fixture()), b = await read(fixture());

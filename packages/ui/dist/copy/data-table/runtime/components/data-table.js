@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-B0z6sqq8.js";
-import { n as table } from "../chunks/tables-Bn4nLwtf.js";
+import { t as J3w1Element } from "../chunks/element-DdnhHcFm.js";
+import { n as table } from "../chunks/tables-tuyOwDK1.js";
 //#region .cache/ui-build/entries/components/data-table.js
 var J3w1DataTable = class extends J3w1Element {
 	static componentId = "data-table";
-	static version = "1.0.0";
-	static implementationId = "sha256-BtXu9gq6fFQGyUyIcDiOsvBmGvVu4FjWqZx7SkFhe2o=";
+	static version = "1.1.0";
+	static implementationId = "sha256-Uzelc+43uQiTHeowS/RU20DO357YszivOmpOBAhlTjY=";
 	static connect = table;
 	static upgradeProperties = [
 		"disabled",

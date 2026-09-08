@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-B0z6sqq8.js";
-import { r as fields } from "../chunks/native-BFZpUch0.js";
+import { t as J3w1Element } from "../chunks/element-DdnhHcFm.js";
+import { r as fields } from "../chunks/native-B_kM8IJz.js";
 //#region .cache/ui-build/entries/components/date-picker.js
 var J3w1DatePicker = class extends J3w1Element {
 	static componentId = "date-picker";
-	static version = "1.0.0";
-	static implementationId = "sha256-v4vJ7BGD9rJsPxqF15A5gr1wRnzPFXz6DtV68l3Ef/M=";
+	static version = "1.1.0";
+	static implementationId = "sha256-dADWs/Jl5Qj+6FpA3/CUr8TN5nLtjVsTNmQvOC9KFr0=";
 	static connect = fields;
 	static upgradeProperties = [
 		"disabled",

@@ -6,6 +6,18 @@
   remains visible. Downstream: additive derived report schemas and build-time
   diagnostics only; no token values, consumer writes or port verification.
 
+## [1.1.0] - 2026-09-09
+
+- D-025: theme single and multiple choice controls in the package, portal and
+  Vue demo. Preserve native form ownership, constraints, events and reset behind
+  the themed interface, with the original control as a no-JavaScript fallback.
+  Provide a supported enhancement for existing application controls and document
+  its lifecycle. Keep the immutable 1.0.0 package and tag intact.
+- Give command palettes a full-width search field beneath a clear label.
+- Add a themed date calendar, time editor and step buttons, including explicit
+  parsing and constraint support where the browser treats date/time inputs as text.
+  Theme checkbox, radio, range and file-button chrome with the shared control styles.
+
 ## [1.0.0] - 2026-09-09
 
 - Correct the Vue demo's shared grid minimum size at narrow widths and use

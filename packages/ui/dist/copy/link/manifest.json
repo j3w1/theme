@@ -1,26 +1,26 @@
 {
   "schemaVersion": 1,
   "component": "link",
-  "version": "1.0.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/link.md",
+  "version": "1.1.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/link.md",
   "dependencies": [
     "register/link.js",
-    "chunks/element-B0z6sqq8.js",
+    "chunks/element-DdnhHcFm.js",
+    "chunks/choice-BYcDpKUh.js",
     "components/link.js",
-    "chunks/native-BFZpUch0.js",
-    "chunks/dom-BVXrzskP.js"
+    "chunks/native-B_kM8IJz.js"
   ],
   "files": {
-    "runtime/register/link.js": "sha256-RO13Csz3MH3fWbwJLryEK7wOxMhky3lG45rwlEEyK4g=",
-    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
-    "runtime/components/link.js": "sha256-xRUaJjnpsOtD9Zu/90G7mlM+amoAy2CtEm/ZZbgwioU=",
-    "runtime/chunks/native-BFZpUch0.js": "sha256-4FgvJoEfMvTAX/0SiIsk0wfAn46HnBmvIXq6b7hYmV4=",
-    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "runtime/register/link.js": "sha256-csTIpmgj0uDqGdpdFVRoxNqPSAaMGfIHw/u2aHDgvBM=",
+    "runtime/chunks/element-DdnhHcFm.js": "sha256-P8IoDXll0lJKcWOXXpHcwqadD7PqHKhMe87UzfiI80g=",
+    "runtime/chunks/choice-BYcDpKUh.js": "sha256-YPGCPBUOkLX215ZCOwxBWWB6d16pSW1hL7sgtPfSWpA=",
+    "runtime/components/link.js": "sha256-pZq6yWr/0VsbCHvEHwakhoVz7o5N2oCUgdvWXvts4Zo=",
+    "runtime/chunks/native-B_kM8IJz.js": "sha256-ksEH0b3bCHels2v1k3A5/HHzX3o0CTGeGjGLZH2WFQc=",
     "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
     "component.css": "sha256-DGoFSkdJCjNAJUKGFFjVoJbdHc7Q+2JHMvr6KEfGLQ0=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-I9IW2mf0VnX5LtCoHDI29AJHW7PXUxnRReiAbsbd094=",
     "index.html": "sha256-kh0VS0IbzhJnHVnQwZQ2ZRbX2qADJqm2SjicvR49IB0=",
-    "README.md": "sha256-CjyjwxYXTf8jtG+yDl+JGRBEZHAYhyOFJQenKanJytA="
+    "README.md": "sha256-9KdNxqVrzYBjcWtg0iPFKKDlr3A7V/SFvZ4Ep9bzgG0="
   }
 }

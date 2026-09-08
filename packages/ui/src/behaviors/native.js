@@ -1,4 +1,6 @@
 import { all, enabled, nativeInput, make } from "../internal/dom.js";
+import { mountChoice } from "../internal/choice.js";
+import { mountTemporal } from "../internal/temporal.js";
 
 // Semantic display components deliberately need no invented application behavior.
 export function content() { return {}; }
@@ -16,11 +18,22 @@ export function actions(root, { on }) {
 export function fields(root, { on, signal }) {
   const input = root.querySelector("input,textarea,select");
   if (!input) return {};
+  if (input.tagName === 'SELECT') {
+    const choice = mountChoice(input);
+    return {
+      get values() { return [...input.selectedOptions].map(option => option.value); },
+      set values(values) { if (!Array.isArray(values)) throw new TypeError('values must be an array'); const selected = new Set(values.map(String)); [...input.options].forEach(option => { option.selected = selected.has(option.value); }); choice.sync(); },
+      clear() { if (input.matches(':disabled')) return; input.value = ''; choice.sync(); nativeInput(input); nativeInput(input,'change'); },
+      attributeChanged: choice.sync, valueChanged: choice.sync, cleanup: choice.destroy,
+    };
+  }
   const count = root.querySelector(".textarea-count,output");
+  const temporal = all(root,'input[type="date"],input[type="time"]').map(mountTemporal);
   const clearButtons = all(root, '[data-clear],.search-field-clear,button[aria-label^="Clear"]');
   const sync = () => {
     if (count) count.textContent = input.type === "range" ? input.value : `${input.value.length}${input.maxLength > 0 ? ` / ${input.maxLength}` : ""}`;
     clearButtons.forEach(button => { button.hidden = !input.value; button.disabled = input.disabled || input.readOnly; });
+    temporal.forEach(control=>control.sync());
   };
   const change = () => { sync(); nativeInput(input); nativeInput(input, "change"); };
   const clear = () => { if (!enabled(input) || input.readOnly) return; input.value = ""; change(); input.focus(); };
@@ -48,7 +61,7 @@ export function fields(root, { on, signal }) {
     if (dates.length === 2) dates[1].setCustomValidity(dates[0].value && dates[1].value && dates[1].value < dates[0].value ? "End date must be on or after the start date." : "");
   };
   on(root, "input", () => { sync(); validateRange(); });
-  on(input.form, "reset", () => queueMicrotask(() => { if (!signal.aborted) { sync(); validateRange(); } }));
+  on(root.ownerDocument, "reset", event => { if(event.target===input.form)queueMicrotask(() => { if (!signal.aborted && !event.defaultPrevented) { sync(); validateRange(); } }); },{capture:true});
   sync(); validateRange();
   return {
     clear, stepBy: step,
@@ -58,6 +71,7 @@ export function fields(root, { on, signal }) {
     set values(values) { if (!Array.isArray(values)) throw new TypeError("values must be an array"); const chosen = new Set(values.map(String)); if (input.multiple) [...input.options].forEach(option => { option.selected = chosen.has(option.value); }); else all(root, 'input[type="checkbox"]').forEach(box => { box.checked = chosen.has(box.value); }); },
     attributeChanged() { sync(); validateRange(); },
     valueChanged() { sync(); validateRange(); },
+    cleanup() { temporal.forEach(control=>control.destroy()); },
   };
 }
 

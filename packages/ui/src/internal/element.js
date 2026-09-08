@@ -1,3 +1,4 @@
+import { enhanceControls } from './choice.js';
 // Browser behavior infrastructure. Importing class modules has no registration side effects.
 const HTMLElementBase = globalThis.HTMLElement ?? class {};
 let nextInstance = 0;
@@ -95,7 +96,9 @@ export class J3w1Element extends HTMLElementBase {
     }, { signal });
     const on = (target, type, fn, options = {}) => target?.addEventListener(type, fn, { ...options, signal });
     const connection = this.constructor.connect?.(this, { on, signal });
-    this.#cleanup = typeof connection === "function" ? connection : connection?.cleanup;
+    const cleanup = typeof connection === "function" ? connection : connection?.cleanup;
+    const controls = enhanceControls(this);
+    this.#cleanup = () => { controls.destroy(); cleanup?.(); };
     this._api = typeof connection === "object" ? connection : undefined;
     if (this.#controllerState !== undefined) this._api?.restore?.(this.#controllerState);
     this.#controllerState = undefined;

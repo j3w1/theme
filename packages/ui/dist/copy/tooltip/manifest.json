@@ -1,26 +1,26 @@
 {
   "schemaVersion": 1,
   "component": "tooltip",
-  "version": "1.0.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/tooltip.md",
+  "version": "1.1.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/tooltip.md",
   "dependencies": [
     "register/tooltip.js",
-    "chunks/element-B0z6sqq8.js",
+    "chunks/element-DdnhHcFm.js",
+    "chunks/choice-BYcDpKUh.js",
     "components/tooltip.js",
-    "chunks/overlays-DBA40kTs.js",
-    "chunks/dom-BVXrzskP.js"
+    "chunks/overlays-CnOUExZq.js"
   ],
   "files": {
-    "runtime/register/tooltip.js": "sha256-szCK9bhqlRYAdkTJXk9GpU0aVDsr6ZmIAg6FpszoHoQ=",
-    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
-    "runtime/components/tooltip.js": "sha256-MMFMCT/oEaCRgR3rS+8zUzFKdonScT99upkkX7hKuQU=",
-    "runtime/chunks/overlays-DBA40kTs.js": "sha256-oxEI9Hm3Ntzowr9QqxqQ28cWdd0ljwViujA+EtHh+Rs=",
-    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "runtime/register/tooltip.js": "sha256-W1orlacbxIb+vaa4DoY4EO90R7sVShx/+rzPq5qVTDo=",
+    "runtime/chunks/element-DdnhHcFm.js": "sha256-P8IoDXll0lJKcWOXXpHcwqadD7PqHKhMe87UzfiI80g=",
+    "runtime/chunks/choice-BYcDpKUh.js": "sha256-YPGCPBUOkLX215ZCOwxBWWB6d16pSW1hL7sgtPfSWpA=",
+    "runtime/components/tooltip.js": "sha256-bKSA9b2te1ySWKjf4hPdT6ePmWo3xSRTkgTJ4ObA3/g=",
+    "runtime/chunks/overlays-CnOUExZq.js": "sha256-JqE/pM6YNLpLOyMxLhO+dNlymvWl3pOFFyKLWhs9+xk=",
     "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
     "component.css": "sha256-Skdu3czE82hMaq0VZwtG6ERV4Hud75l3iMhOfMR7K7U=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-+kSohyFbJg7z8/YUnlkzY1UQAu9ZLX7qE1eFLvk/1hI=",
     "index.html": "sha256-E+iyir+kE7FZW4yp4r+zjaBJSIcRsJGbvmwPckUJga0=",
-    "README.md": "sha256-OpXgJ4Gxr+4IlwUePS7Ov7ZkmGmWGPcbJNoR8nDakRQ="
+    "README.md": "sha256-txRW9Uv+DDlJJl3fEnERD2Y4j2qbv2th1fezKxy8PVA="
   }
 }

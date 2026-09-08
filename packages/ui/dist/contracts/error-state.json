@@ -1,10 +1,10 @@
 {
   "id": "error-state",
   "name": "Error state",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "tag": "j3w1-error-state",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/error-state.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.0.0/packages/ui/src/behaviors/overlays.js",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/error-state.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.1.0/packages/ui/src/behaviors/overlays.js",
   "imports": {
     "class": "@j3w1/ui/components/error-state",
     "register": "@j3w1/ui/register/error-state",
@@ -352,6 +352,6 @@
   "copy": {
     "directory": "copy/error-state/",
     "manifest": "copy/error-state/manifest.json",
-    "digest": "sha256-KZXzTI9RzHKKCZkmoJIlEQXgwhFaIn/9ydfZ0zBswgE="
+    "digest": "sha256-i3iM5SI00qWRR5+OaCT4m4dIqauyliC8t31v8S4gcoM="
   }
 }

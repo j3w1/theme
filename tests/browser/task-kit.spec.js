@@ -1,3 +1,4 @@
+import { chooseOptions } from "../ui/choice-helper.mjs";
 import { test, expect } from "./evidence-fixture.mjs";
 import { promises as fs } from "node:fs";
 import path from "node:path";
@@ -24,7 +25,7 @@ test("task kit controls reflow and preserve a no-JS consumption route", { annota
   await configure(page);
   const source = await page.locator(`#${anchorFor.kitControl("data")}`).textContent();
   if (!JSON.parse(source).source) { await expect(page.getByRole("button", { name: "Build kit", exact: true })).toBeDisabled(); return; }
-  await page.getByLabel("Mode", { exact: true }).selectOption("minimal");
+  await chooseOptions(page.getByLabel("Mode", { exact: true }), "minimal");
   await page.getByRole("button", { name: "Build kit", exact: true }).click();
   await expect(page.locator("[data-kit-status]")).toContainText("Kit ready");
   await expect(page.locator("[data-kit-summary]")).toContainText("4 components");

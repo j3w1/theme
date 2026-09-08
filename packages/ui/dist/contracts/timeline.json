@@ -1,10 +1,10 @@
 {
   "id": "timeline",
   "name": "Timeline",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "tag": "j3w1-timeline",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/timeline.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.0.0/packages/ui/src/behaviors/native.js",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/timeline.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.1.0/packages/ui/src/behaviors/native.js",
   "imports": {
     "class": "@j3w1/ui/components/timeline",
     "register": "@j3w1/ui/register/timeline",
@@ -281,6 +281,6 @@
   "copy": {
     "directory": "copy/timeline/",
     "manifest": "copy/timeline/manifest.json",
-    "digest": "sha256-DST3r1VW9PvNJ9NvJmu2XBOzHcxr8zw0oQ4fchziiHE="
+    "digest": "sha256-Et+x5K+ZB+tbU7a0f+g5tFFXa1FMyhYuyF98xP0gHc0="
   }
 }

@@ -1,10 +1,10 @@
 {
   "id": "select",
   "name": "Select",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "tag": "j3w1-select",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/select.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.0.0/packages/ui/src/behaviors/native.js",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/select.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.1.0/packages/ui/src/behaviors/native.js",
   "imports": {
     "class": "@j3w1/ui/components/select",
     "register": "@j3w1/ui/register/select",
@@ -12,7 +12,7 @@
     "tokens": "@j3w1/ui/tokens.css"
   },
   "dom": "light",
-  "domReason": "Visible native controls retain FormData, labels, constraints, disabled fieldsets and reset. No duplicate form-value mechanism is installed.",
+  "domReason": "Theme-owned combobox/listbox presentation backed by the original native select for FormData, constraints, defaults and reset. The native control is visible only before enhancement or without JavaScript.",
   "api": {
     "attributes": [
       {
@@ -192,9 +192,13 @@
     "roles": [
       "border.width.default",
       "border.width.emphasis",
+      "color.action.primary.bg",
       "color.border.active",
       "color.border.control",
       "color.border.disabled",
+      "color.border.divider",
+      "color.border.overlay",
+      "color.border.selected-indicator",
       "color.icon.default",
       "color.interaction.disabled.bg",
       "color.interaction.drop-target",
@@ -213,6 +217,7 @@
       "color.text.default",
       "color.text.disabled",
       "color.text.muted",
+      "color.text.placeholder",
       "density.comfortable.control-height",
       "density.comfortable.control-padding-x",
       "density.comfortable.row-height",
@@ -222,6 +227,7 @@
       "focus.offset",
       "focus.offset-invalid",
       "focus.ring",
+      "focus.ring-container",
       "font.family.mono",
       "font.line-height.ui-md",
       "font.line-height.ui-sm",
@@ -229,17 +235,24 @@
       "font.size.ui-sm",
       "icon.size.md",
       "radius.none",
+      "space.12",
+      "space.16",
       "space.2",
       "space.32",
       "space.4",
+      "space.8",
       "z.popover"
     ],
     "paths": [
       "border.width.default",
       "border.width.emphasis",
+      "color.action.primary.bg",
       "color.border.active",
       "color.border.control",
       "color.border.disabled",
+      "color.border.divider",
+      "color.border.overlay",
+      "color.border.selected-indicator",
       "color.icon.default",
       "color.interaction.disabled.bg",
       "color.interaction.drop-target",
@@ -254,8 +267,10 @@
       "color.primitive.ink.30",
       "color.primitive.ink.40",
       "color.primitive.ink.52",
+      "color.primitive.ink.60",
       "color.primitive.paper.90",
       "color.primitive.red.200",
+      "color.primitive.red.300",
       "color.primitive.red.350",
       "color.primitive.red.800",
       "color.primitive.red.850",
@@ -273,6 +288,7 @@
       "color.text.default",
       "color.text.disabled",
       "color.text.muted",
+      "color.text.placeholder",
       "density.comfortable.control-height",
       "density.comfortable.control-padding-x",
       "density.comfortable.row-height",
@@ -282,6 +298,7 @@
       "focus.offset",
       "focus.offset-invalid",
       "focus.ring",
+      "focus.ring-container",
       "font.family.mono",
       "font.line-height.ui-md",
       "font.line-height.ui-sm",
@@ -289,9 +306,12 @@
       "font.size.ui-sm",
       "icon.size.md",
       "radius.none",
+      "space.12",
+      "space.16",
       "space.2",
       "space.32",
       "space.4",
+      "space.8",
       "z.popover"
     ],
     "eligibility": {
@@ -301,6 +321,11 @@
         "decisionIds": []
       },
       "border.width.emphasis": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.action.primary.bg": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -318,6 +343,25 @@
         ]
       },
       "color.border.disabled": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.border.divider": {
+        "action": "use-and-report",
+        "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
+        "decisionIds": [
+          "D-008"
+        ]
+      },
+      "color.border.overlay": {
+        "action": "use-and-report",
+        "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
+        "decisionIds": [
+          "D-008"
+        ]
+      },
+      "color.border.selected-indicator": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -412,6 +456,11 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "color.text.placeholder": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "density.comfortable.control-height": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -457,6 +506,11 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "focus.ring-container": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "font.family.mono": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -492,6 +546,16 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "space.12": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "space.16": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "space.2": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -507,6 +571,11 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "space.8": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "z.popover": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -518,6 +587,6 @@
   "copy": {
     "directory": "copy/select/",
     "manifest": "copy/select/manifest.json",
-    "digest": "sha256-dMpUtY/jB5ve/zmXNvRmagWmRkEIUWCAQ1MbGznOcd8="
+    "digest": "sha256-qviOA0vPffSHhSIG/iTUNJbxZ7AnwDI1WIw5fMVmm/U="
   }
 }

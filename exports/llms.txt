@@ -1,27 +1,27 @@
 # j3w1 UI Theme Spec
 
-> Versioned design tokens and component rules for the j3w1 identity: True Black / Rose, rose foregrounds, dark-red actions, square borders and monospace typography. Version 1.0.0. Agents: use pinned canonical contracts and official package or complete copy distributions.
+> Versioned design tokens and component rules for the j3w1 identity: True Black / Rose, rose foregrounds, dark-red actions, square borders and monospace typography. Version 1.1.0. Agents: use pinned canonical contracts and official package or complete copy distributions.
 
 Pin a tag or commit and use the same revision for every file. Never read `main`.
 
 ## Start here
 
-- [Reading protocol](https://raw.githubusercontent.com/j3w1/theme/v1.0.0/agents/consume.md): the seven steps, what you may not do, the lock and report formats
-- [Manifest](https://raw.githubusercontent.com/j3w1/theme/v1.0.0/theme.json): profiles, entry points, export paths
-- [Compact spec](https://raw.githubusercontent.com/j3w1/theme/v1.0.0/exports/theme.compact.md): approved values, state rules, ten component briefs
-- [Implementation index](https://raw.githubusercontent.com/j3w1/theme/v1.0.0/packages/ui/dist/index.json): bounded discovery for all 67 official implementations
-- [Consumption guide](https://raw.githubusercontent.com/j3w1/theme/v1.0.0/docs/ui-consumption.md): package, copy and mapping modes in HTML, Vue, React and Astro
-- [Implementation manifest](https://raw.githubusercontent.com/j3w1/theme/v1.0.0/packages/ui/dist/manifest.json): APIs, dependency closures, copy file digests and canonical links; actual execution evidence is separate
+- [Reading protocol](https://raw.githubusercontent.com/j3w1/theme/v1.1.0/agents/consume.md): the seven steps, what you may not do, the lock and report formats
+- [Manifest](https://raw.githubusercontent.com/j3w1/theme/v1.1.0/theme.json): profiles, entry points, export paths
+- [Compact spec](https://raw.githubusercontent.com/j3w1/theme/v1.1.0/exports/theme.compact.md): approved values, state rules, ten component briefs
+- [Implementation index](https://raw.githubusercontent.com/j3w1/theme/v1.1.0/packages/ui/dist/index.json): bounded discovery for all 67 official implementations
+- [Consumption guide](https://raw.githubusercontent.com/j3w1/theme/v1.1.0/docs/ui-consumption.md): package, copy and mapping modes in HTML, Vue, React and Astro
+- [Implementation manifest](https://raw.githubusercontent.com/j3w1/theme/v1.1.0/packages/ui/dist/manifest.json): APIs, dependency closures, copy file digests and canonical links; actual execution evidence is separate
 
 ## Data
 
-- [Resolved tokens](https://raw.githubusercontent.com/j3w1/theme/v1.0.0/exports/tokens.resolved.json): every profile, every alias resolved
-- [Token CSS](https://raw.githubusercontent.com/j3w1/theme/v1.0.0/exports/tokens.css): the same values as custom properties
-- [Component JSON](https://github.com/j3w1/theme/tree/v1.0.0/exports/components): one file per component
-- [Digests](https://raw.githubusercontent.com/j3w1/theme/v1.0.0/exports/digests.json): sha256 per export for theme.lock.json
+- [Resolved tokens](https://raw.githubusercontent.com/j3w1/theme/v1.1.0/exports/tokens.resolved.json): every profile, every alias resolved
+- [Token CSS](https://raw.githubusercontent.com/j3w1/theme/v1.1.0/exports/tokens.css): the same values as custom properties
+- [Component JSON](https://github.com/j3w1/theme/tree/v1.1.0/exports/components): one file per component
+- [Digests](https://raw.githubusercontent.com/j3w1/theme/v1.1.0/exports/digests.json): sha256 per export for theme.lock.json
 
 ## Optional
 
-- [Full spec](https://raw.githubusercontent.com/j3w1/theme/v1.0.0/exports/theme.full.md): everything concatenated
-- [Contrast report](https://raw.githubusercontent.com/j3w1/theme/v1.0.0/exports/contrast.md): every declared pair, unrounded
+- [Full spec](https://raw.githubusercontent.com/j3w1/theme/v1.1.0/exports/theme.full.md): everything concatenated
+- [Contrast report](https://raw.githubusercontent.com/j3w1/theme/v1.1.0/exports/contrast.md): every declared pair, unrounded
 - [Website](https://j3w1.github.io/theme/): rendered specimens for visual confirmation

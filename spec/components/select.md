@@ -6,11 +6,11 @@ maturity: stable
 priority: R1
 since: 0.1.0
 order: 40
-summary: The native single or multiple select in the text-field box with a line-icon chevron; the popup list is host-rendered and outside the theme.
-native: true
+summary: A themed single-choice combobox or multiple-choice list backed by a native select for forms and the no-JavaScript fallback.
+native: false
 aria:
-  pattern: native <select> with <label>
-  apg: https://www.w3.org/WAI/ARIA/apg/practices/forms/
+  pattern: Select-only combobox with listbox popup; multiple variant is a multiselectable listbox
+  apg: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
 variants:
   - id: default
     name: Single
@@ -60,8 +60,8 @@ stateTokens:
   invalid+focus-visible: { fg: color.text.default, bg: color.surface.input, border: color.status.danger.border, outline: color.interaction.focus.ring-container }
 contrast:
   - { fg: color.icon.default, bg: color.surface.input, min: 3, kind: ui, label: "chevron on the input surface" }
-  - { fg: color.text.default, bg: color.surface.raised, label: "option text in the host list" }
-  - { fg: color.text.muted, bg: color.surface.raised, label: "group label in the host list" }
+  - { fg: color.text.default, bg: color.surface.raised, label: "option text in the themed list" }
+  - { fg: color.text.muted, bg: color.surface.raised, label: "group label in the themed list" }
   - { fg: color.interaction.selection.text, bg: color.interaction.selection.bg, label: "selected option" }
   - { fg: color.status.danger.text, bg: color.surface.default, label: "validation message on the panel surface" }
   - { fg: color.text.muted, bg: color.surface.default, label: "help text on the panel surface" }
@@ -73,7 +73,7 @@ anatomy:
   - part: root
     description: The control box, 1px border.control on surface.input, height from the density mode; position relative for the chevron.
   - part: control
-    description: The native <select> with appearance none, text.default, padding-inline-end for the chevron; multiple renders an open listbox.
+    description: The themed combobox trigger or multiple listbox. A hidden native select remains the successful form control; without JavaScript it is visible.
   - part: chevron
     description: A 16px line-icon chevron in icon.default at the inline end; pointer-events none; absent on multiple.
   - part: help
@@ -84,16 +84,18 @@ keyboard:
   - key: Tab / Shift+Tab
     action: Moves focus in and out.
   - key: Space / Alt+Down
-    action: Opens the host popup (native).
+    action: Opens the themed popup without committing a choice.
   - key: Up / Down
-    action: Moves through options; in the closed single select this changes the value directly.
+    action: Opens the single list or moves its active option; Enter or Space commits. In the multiple list, moves the active option.
   - key: Typing
-    action: Jumps to the first option starting with the typed characters (native).
-  - key: Shift+Up / Shift+Down, Ctrl+click
-    action: Extends or toggles the selection in the multiple variant (native).
+    action: Moves to an enabled option starting with the typed characters.
+  - key: Space / click; Shift+Up / Shift+Down; Ctrl+Command+A
+    action: Toggles a multiple option; extends a range; selects or clears all enabled options.
+  - key: Escape / Tab
+    action: Closes the single popup without committing the active option.
 responsive: Fills its field container with min-width 0; the chevron keeps its 16px slot; long option text truncates inside the box with the native ellipsis. RTL moves the chevron to the inline end.
 portability:
-  web: native <select> plus <label>; the closed box is styled with appearance none; the open popup is drawn by the host and receives only option and optgroup colours where the engine honours them; never replaced by a custom listbox (that is the combobox component).
+  web: Native select and label markup progressively enhanced into a theme-owned combobox/listbox. The package owns popup colors; native submission, validation and reset remain intact. The no-JavaScript fallback retains the native control.
   nativeFallbacks:
     - GTK4 DropDown; the popover follows border.overlay on surface.raised.
     - Qt QComboBox stylesheet with the drop-down subcontrol; QListView for multiple.
@@ -108,17 +110,18 @@ compact: true
 
 ## Purpose
 
-Choosing one option, or several, from a short fixed list. The closed control
-is the text-field box with a chevron; the open list is the host's popup and
-is deliberately not restyled beyond option colours. A searchable or
-asynchronous list is the combobox component.
+Choosing one option, or several, from a fixed list. D-025 requires theme-owned
+choice surfaces in web applications. The native select remains the form-value
+and constraint source. A searchable or asynchronous list is the separate
+combobox component.
 
 ## Anatomy
 
-Label above; the box; the native `<select>` inside with the host chevron
-removed and the theme's line-icon chevron drawn at the inline end; help and
-message below. The multiple variant is the same box grown to `size` rows
-with no chevron.
+Label above; a theme-owned trigger and listbox for single choices, or an
+always-visible multiselectable listbox. Each selected option has a check mark
+and the canonical selection fill. The hidden native `<select>` retains its
+name, options, current values and defaults. Help and validation are linked
+to the visible control. Without JavaScript the original native control is visible.
 
 ## States
 
@@ -132,18 +135,19 @@ with no chevron.
 | invalid+focus-visible | the 2px danger border and the ring in {color.interaction.focus.ring-container} at −4px | double boundary |
 | disabled | text and chevron {color.text.disabled}; border {color.border.disabled}; background {color.interaction.disabled.bg} | `disabled`; cursor: not-allowed |
 
-Inside the open list, where the engine honours it, a selected option is
+Inside the theme-owned list, a selected option is
 {color.interaction.selection.bg} with {color.interaction.selection.text} and
 group labels are {color.text.muted} on {color.surface.raised}. Precedence:
 disabled > invalid > hover; focus-visible is always drawn.
 
 ## Keyboard
 
-Native throughout. The closed single select changes its value with the arrow
-keys without opening, which is why a select is never used where changing the
-value has an immediate side effect; a menu or a button is used there. The
-multiple variant relies on Shift and Ctrl and needs its instructions in the
-help text.
+The single control follows the select-only combobox pattern: arrows open and
+move the active option, Home/End reach the ends, typing finds an option, and
+Enter/Space commits. Escape and Tab close without committing. Multiple choices
+use arrows, Space or click to toggle, Shift with arrows for a range, and
+Ctrl/Command+A to select or clear all enabled choices. No modifier is required
+for ordinary multiple selection. The native fallback uses host keyboard behavior.
 
 ## Accessibility
 
@@ -151,19 +155,23 @@ A programmatic label is required; the first option is a real choice or a
 placeholder option that is `disabled` and `selected` with text such as
 "Choose a workspace", never an empty string. `aria-invalid="true"` only after
 interaction or submit. Help and message through `aria-describedby`. The
-popup keeps the host's own contrast; the theme claims nothing about it.
-Contrast: value 8.65:1, chevron 8.65:1, control border 4.45:1, invalid
-border 4.69:1, selected option 7.92:1.
+themed popup uses the declared contrast roles. The visible control receives
+the label, required/invalid state and descriptions. A failed native constraint
+focuses that visible control and exposes a theme-owned error. Disabled options,
+optgroups and fieldsets remain unavailable. Current values and defaults survive
+reconnection, programmatic updates and form reset. Automated evidence records
+its actual environments; it does not imply a manual screen-reader pass.
 
 ## Portability
 
-Border, background, outline and one SVG. Engines that ignore `appearance:
-none` on a select keep their chevron; the theme's chevron is then hidden with
-a feature query and the deviation recorded. Option colours are advisory.
+Use the packaged behavior and complete copy closure for web implementations.
+The supported enhancement can apply the same renderer to existing selects
+without moving them or duplicating form values. Native platforms keep the
+mappings listed above; no-JavaScript pages expose the native fallback.
 
 ## Non-examples
 
-A custom-built dropdown with a styled popup. A background-image chevron in
+An unthemed browser popup presented as a fully themed implementation. A background-image chevron in
 a literal colour. Rounded corners. A select whose first option is blank. A
 select that triggers navigation on change. Invalid shown by colour alone.
 A glow instead of the ring. Disabling by opacity.

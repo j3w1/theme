@@ -1,26 +1,26 @@
 {
   "schemaVersion": 1,
   "component": "sidebar-nav",
-  "version": "1.0.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/sidebar-nav.md",
+  "version": "1.1.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/sidebar-nav.md",
   "dependencies": [
     "register/sidebar-nav.js",
-    "chunks/element-B0z6sqq8.js",
+    "chunks/element-DdnhHcFm.js",
+    "chunks/choice-BYcDpKUh.js",
     "components/sidebar-nav.js",
-    "chunks/navigation-CPDNZIIt.js",
-    "chunks/dom-BVXrzskP.js"
+    "chunks/navigation-BPzB8WCr.js"
   ],
   "files": {
-    "runtime/register/sidebar-nav.js": "sha256-321977yncHXj4yHC8n61oxF/Y1uX7QlUx/u05JTLZ40=",
-    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
-    "runtime/components/sidebar-nav.js": "sha256-DvjnTwI4MekKGo+fHdWK2KkbCHjHNPpgQllQaPwvYRk=",
-    "runtime/chunks/navigation-CPDNZIIt.js": "sha256-hvSCgp3WLoCXXZnX8dgEpwxYZjbpAKxYS512EwBSmkU=",
-    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "runtime/register/sidebar-nav.js": "sha256-NTeA4/0IjUIj/Nv9/rxtDb5MCUBecq0TT+PAuOJnq/0=",
+    "runtime/chunks/element-DdnhHcFm.js": "sha256-P8IoDXll0lJKcWOXXpHcwqadD7PqHKhMe87UzfiI80g=",
+    "runtime/chunks/choice-BYcDpKUh.js": "sha256-YPGCPBUOkLX215ZCOwxBWWB6d16pSW1hL7sgtPfSWpA=",
+    "runtime/components/sidebar-nav.js": "sha256-GDV1hHhfCDPMTlt8kus1PEelD36y8Z6baoksptgjGkE=",
+    "runtime/chunks/navigation-BPzB8WCr.js": "sha256-udt3eK91aZacfj6pjQ4sZVzQR3HlKRVM/u/2fzJek0Q=",
     "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
     "component.css": "sha256-daIsd5K5mOs8Mmspd3m8ktJKgxTzPCRGoQY/6MQCDww=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-LBoiPSLgtVIozM1wEFWbV78DaFWbIW+6OgOjaCSim8g=",
     "index.html": "sha256-iigY56T4Y5udSqoBZloU6658GNUHY+ynrBQSOg/+UIc=",
-    "README.md": "sha256-trGmX9z3vNjrjre9MI/sfCgybE1jx4be8MKLivaozJc="
+    "README.md": "sha256-JB/RobkeqciSPyUdgTEWpi1KfD2ETet15Ixru6y6CWI="
   }
 }

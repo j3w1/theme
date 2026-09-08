@@ -1,26 +1,26 @@
 {
   "schemaVersion": 1,
   "component": "date-picker",
-  "version": "1.0.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/date-picker.md",
+  "version": "1.1.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/date-picker.md",
   "dependencies": [
     "register/date-picker.js",
-    "chunks/element-B0z6sqq8.js",
+    "chunks/element-DdnhHcFm.js",
+    "chunks/choice-BYcDpKUh.js",
     "components/date-picker.js",
-    "chunks/native-BFZpUch0.js",
-    "chunks/dom-BVXrzskP.js"
+    "chunks/native-B_kM8IJz.js"
   ],
   "files": {
-    "runtime/register/date-picker.js": "sha256-NYCjBC0sA6XoU02yzLgXyhdcA03FFlt0kaRgebH4S0w=",
-    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
-    "runtime/components/date-picker.js": "sha256-XDcMNH8hyfte5mWmDp69weEnnkIpUHDxmMwtbYdyago=",
-    "runtime/chunks/native-BFZpUch0.js": "sha256-4FgvJoEfMvTAX/0SiIsk0wfAn46HnBmvIXq6b7hYmV4=",
-    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "runtime/register/date-picker.js": "sha256-HRVVD/3CrEWJn0ekJm3TEmKioTCmnRMNLxgmhsZqo78=",
+    "runtime/chunks/element-DdnhHcFm.js": "sha256-P8IoDXll0lJKcWOXXpHcwqadD7PqHKhMe87UzfiI80g=",
+    "runtime/chunks/choice-BYcDpKUh.js": "sha256-YPGCPBUOkLX215ZCOwxBWWB6d16pSW1hL7sgtPfSWpA=",
+    "runtime/components/date-picker.js": "sha256-ISZW5dSr8iIbNXGyYJHkYBxrs7jB3K5pDDytrk3emEM=",
+    "runtime/chunks/native-B_kM8IJz.js": "sha256-ksEH0b3bCHels2v1k3A5/HHzX3o0CTGeGjGLZH2WFQc=",
     "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
-    "component.css": "sha256-M4VXzL77FggnFaOX3ETKy4rTNgabj3QQm++ANkJA9GM=",
+    "component.css": "sha256-A0FxCyNsCOQH9hJQ2yCuj+YCSJjrfVMqGsio/pTU+GQ=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-Nho5WRdNWOIx9zrVkZR8s5NrC95hgRBVnvDTdnZ7qoo=",
     "index.html": "sha256-eGq952lAjjjM/6cG7o5Rv4hcM4Tuc6zA38HiAPrEevM=",
-    "README.md": "sha256-QTsfDEdNnAVZGlsVtv32h5g4QDy1HA8wA+qobCz7MaU="
+    "README.md": "sha256-NEUbm/S1Q7tWk7w6G7UCreDf5cbBnc8VBryDzcBLLLU="
   }
 }

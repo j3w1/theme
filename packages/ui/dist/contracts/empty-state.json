@@ -1,10 +1,10 @@
 {
   "id": "empty-state",
   "name": "Empty state",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "tag": "j3w1-empty-state",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/empty-state.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.0.0/packages/ui/src/behaviors/overlays.js",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/empty-state.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.1.0/packages/ui/src/behaviors/overlays.js",
   "imports": {
     "class": "@j3w1/ui/components/empty-state",
     "register": "@j3w1/ui/register/empty-state",
@@ -428,6 +428,6 @@
   "copy": {
     "directory": "copy/empty-state/",
     "manifest": "copy/empty-state/manifest.json",
-    "digest": "sha256-uDz1o7KpCxr8MpjE/p3y5CVjO8LNZ8v9osfilVpxIVc="
+    "digest": "sha256-S23rFR6Vf2jllbFF4+ay4wEzSidyrFC4Po2H4pqu+ak="
   }
 }

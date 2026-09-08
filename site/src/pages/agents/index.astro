@@ -13,7 +13,7 @@ const command = `j3w1-ui kit --components text-field,button,dialog --out ./vendo
     <form data-kit-form>
       <div class="portal-actions"><label>Framework <select name="framework"><option value="vue">Vue</option><option value="html">HTML</option><option value="react">React</option><option value="astro">Astro</option><option value="native">Native host</option></select></label><label>Consumption mode <select name="mode"><option value="package">Package</option><option value="copy">Copy source</option><option value="mapping">Map to a host</option></select></label></div>
       <label>Components <select name="components" multiple size="8" required>{index.components.map(({ id, name }) => <option value={id} selected={["text-field", "button", "dialog"].includes(id)}>{name} · {id}</option>)}</select></label>
-      <p>Use Ctrl/Command to select multiple entries, or Shift for a range. Keyboard selection is supported by the native control.</p>
+      <p>Click an entry to toggle it. Use arrow keys to move, Space to select, Shift with arrows for a range, or Ctrl/Command+A to select all. The list uses j3w1 selection colors.</p>
       <div class="portal-actions"><button type="submit">Prepare command</button><button type="button" data-copy-kit>Copy command</button></div>
     </form>
     <pre class="portal-code"><code data-kit-command>{command}</code></pre><p role="status" data-kit-status></p>

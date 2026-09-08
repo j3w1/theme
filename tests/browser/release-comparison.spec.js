@@ -1,3 +1,4 @@
+import { chooseOptions } from "../ui/choice-helper.mjs";
 import { test, expect } from "./evidence-fixture.mjs";
 import AxeBuilder from "@axe-core/playwright";
 import { createHash } from "node:crypto";
@@ -19,17 +20,17 @@ test("release reports and historical links remain readable without JavaScript an
 test("release picker and matched-state controls work with keyboard and preserve a 640 by 480 viewport", { annotation: annotation("keyboard", "Automated desktop keyboard selection, matched historical state controls, actual iframe viewport and axe checks of report/picker chrome; sandboxed historical fixtures have separate limitations and are not certified.") }, async ({ page }, info) => {
   test.skip(info.project.name !== "desktop", "One desktop enhanced-control protocol");
   await page.goto("releases/");
-  await page.getByLabel("Before revision").focus();
+  await page.getByRole('combobox',{name:'Before revision',exact:true}).focus();
   await page.keyboard.press("Tab");
-  await expect(page.getByLabel("After revision")).toBeFocused();
-  await page.getByLabel("After revision").selectOption("workbench");
+  await expect(page.getByRole('combobox',{name:'After revision',exact:true})).toBeFocused();
+  await chooseOptions(page.getByLabel("After revision"), "workbench");
   await page.getByRole("button", { name: "Open comparison" }).focus();
   await page.keyboard.press("Enter");
   await expect(page).toHaveURL(new RegExp(`${pair}$`));
   const component = page.locator('[data-release-component="button"]');
   await component.scrollIntoViewIfNeeded();
-  await component.getByLabel("Variant and visual state").focus();
-  await component.getByLabel("Variant and visual state").selectOption("default/hover");
+  await component.getByRole('combobox',{name:'Variant and visual state',exact:true}).focus();
+  await chooseOptions(component.getByLabel("Variant and visual state"), "default/hover");
   for (const side of ["before", "after"]) {
     const frame = component.locator(`[data-release-side="${side}"]`);
     await expect(frame).toHaveAttribute("src", /button\/default\/hover\.html$/);

@@ -9,8 +9,10 @@ import "@j3w1/ui/register/textarea";
 import "@j3w1/ui/styles/button.css";
 import "@j3w1/ui/styles/text-field.css";
 import "@j3w1/ui/styles/select.css";
+import "@j3w1/ui/styles/controls.css";
 import "@j3w1/ui/styles/textarea.css";
 import "./style.css";
+import { enhanceControls } from '@j3w1/ui/enhance/choice';
 const routes = [
   { path: "/", redirect: "/dashboards/analytics" },
   { path: "/dashboards/:kind", component: () => import("./views/Dashboard.vue") },
@@ -24,3 +26,5 @@ const routes = [
 const router = createRouter({ history: createWebHashHistory(), routes, scrollBehavior: () => ({ top: 0 }) });
 router.afterEach(async (to, from) => { if (!from.matched.length) return; await nextTick(); document.querySelector("main h1")?.focus(); });
 createApp(App).use(router).mount("#app");
+const controls = enhanceControls(document.querySelector('#app'));
+if (import.meta.hot) import.meta.hot.dispose(() => controls.destroy());

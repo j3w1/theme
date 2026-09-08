@@ -1,30 +1,30 @@
 {
   "schemaVersion": 1,
   "component": "toolbar",
-  "version": "1.0.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/toolbar.md",
+  "version": "1.1.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/toolbar.md",
   "dependencies": [
     "register/toolbar.js",
-    "chunks/element-B0z6sqq8.js",
+    "chunks/element-DdnhHcFm.js",
+    "chunks/choice-BYcDpKUh.js",
     "components/toolbar.js",
-    "chunks/navigation-CPDNZIIt.js",
-    "chunks/dom-BVXrzskP.js",
+    "chunks/navigation-BPzB8WCr.js",
     "register/menu.js",
     "components/menu.js"
   ],
   "files": {
-    "runtime/register/toolbar.js": "sha256-UPxHyTTKXTiRoSrqaknCBSjLQhK1mXKBZwTTdwyaevA=",
-    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
-    "runtime/components/toolbar.js": "sha256-NU75HqKF48hgQG7AGb/AjAv2gUSHZNEMp59OogrS4zo=",
-    "runtime/chunks/navigation-CPDNZIIt.js": "sha256-hvSCgp3WLoCXXZnX8dgEpwxYZjbpAKxYS512EwBSmkU=",
-    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
-    "runtime/register/menu.js": "sha256-B/cJwrRRk0TVpw4TRMfyQP4QOKpUOgI+g8stDPkdXSc=",
-    "runtime/components/menu.js": "sha256-Y3aDV09GsoMX++yfADJRaLinCHvZovHiHFpupxdKcEM=",
+    "runtime/register/toolbar.js": "sha256-Y8pQ2TE6WI7e/yPYgH2s41gwBvTTzsE4UQ1USuGmeNQ=",
+    "runtime/chunks/element-DdnhHcFm.js": "sha256-P8IoDXll0lJKcWOXXpHcwqadD7PqHKhMe87UzfiI80g=",
+    "runtime/chunks/choice-BYcDpKUh.js": "sha256-YPGCPBUOkLX215ZCOwxBWWB6d16pSW1hL7sgtPfSWpA=",
+    "runtime/components/toolbar.js": "sha256-u6mfM39/0gLZawHKmXI6FE+DxEQtdXChamGP4A37FAc=",
+    "runtime/chunks/navigation-BPzB8WCr.js": "sha256-udt3eK91aZacfj6pjQ4sZVzQR3HlKRVM/u/2fzJek0Q=",
+    "runtime/register/menu.js": "sha256-T6RkWYwCJcXK01TYbcdUT0SL0nXBvOlrvSA44xP5HPY=",
+    "runtime/components/menu.js": "sha256-W7TmuGn3b0CjxBH6j4hgvy28y7odCEEDLfXozmKaNqE=",
     "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
     "component.css": "sha256-uTfyFdWFrx91RdklrAzqAHNf5B2q1psaqjlF71eT+Xc=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-MRU95stqvOm7gd3wzi8XadrYOLU9MRKqdwFO/bmSaPY=",
     "index.html": "sha256-qzep40OKd67lZTxeQflCRA+sfx2A6/zxVgtV4re8LgY=",
-    "README.md": "sha256-MRoUvY3zbRWUTgNdvWorldPf/5IlYb11mhQUb5rv/uY="
+    "README.md": "sha256-enb7hx3FLsLUvv6A10xYsLtaymGYS+GiwT1ye8Qfs28="
   }
 }

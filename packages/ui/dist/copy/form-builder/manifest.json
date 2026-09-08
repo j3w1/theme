@@ -1,28 +1,30 @@
 {
   "schemaVersion": 1,
   "component": "form-builder",
-  "version": "1.0.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/form-builder.md",
+  "version": "1.1.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/form-builder.md",
   "dependencies": [
     "register/form-builder.js",
-    "chunks/element-B0z6sqq8.js",
-    "chunks/form-builder-pjrUKRld.js",
-    "chunks/form-builder-BtVNteJo.js",
+    "chunks/element-DdnhHcFm.js",
+    "chunks/choice-BYcDpKUh.js",
+    "chunks/form-builder-BbtccqR9.js",
+    "chunks/form-builder-DzmE4VOA.js",
     "chunks/form-workflow-B5efvJ6o.js",
     "chunks/markup-DeQ4bEMR.js"
   ],
   "files": {
-    "runtime/register/form-builder.js": "sha256-0/IohLVUhGT4wuVHxT6H4PCtkH8ywaam6JdpmpV9GaM=",
-    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
-    "runtime/chunks/form-builder-pjrUKRld.js": "sha256-R5m3uPTFcnDgj2JwKDN4ldDF9T4hZ/ZqX8KT/L8CgCw=",
-    "runtime/chunks/form-builder-BtVNteJo.js": "sha256-UxjWL7e5BbJEDoxFgOPcHPG57xbNN6HS4iNQfpyKvyc=",
+    "runtime/register/form-builder.js": "sha256-81FNBiKaFf66IgP3Lz2vQiivU639kx9yoHMQv0TFbpI=",
+    "runtime/chunks/element-DdnhHcFm.js": "sha256-P8IoDXll0lJKcWOXXpHcwqadD7PqHKhMe87UzfiI80g=",
+    "runtime/chunks/choice-BYcDpKUh.js": "sha256-YPGCPBUOkLX215ZCOwxBWWB6d16pSW1hL7sgtPfSWpA=",
+    "runtime/chunks/form-builder-BbtccqR9.js": "sha256-bRC+vthgFRSjJHhLN541piNJXk40a5Oh4boA0DQc77Q=",
+    "runtime/chunks/form-builder-DzmE4VOA.js": "sha256-ipxxY8kjK+GaSwk700gtF+sidE+4hV5/kwJ1ExuverA=",
     "runtime/chunks/form-workflow-B5efvJ6o.js": "sha256-Ispl9MIgzlw6ziGJlKNfpm5sqFpCyyk7gMFjG8ZIwUk=",
     "runtime/chunks/markup-DeQ4bEMR.js": "sha256-Eyyx7MKBoqXK4i2HaVUQhKUM066L2wIggABt6jAdgas=",
     "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
-    "component.css": "sha256-rvphpG0z/gCwA/cM2sN1k2+zgKE/5q3+8TMDjyFAXw0=",
+    "component.css": "sha256-QpO6CtLWFBPuUtFqFjNliwGixtQBFxMbqdrsSRsmqWA=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-vq61pWv0xeMFu0tTsDtRWWpAr16AFefjpz5JTSyF440=",
     "index.html": "sha256-v74xLbiCzhGoMsKDM8vIO3nwDmWQJymihSOqXqvPlkk=",
-    "README.md": "sha256-/Wff301ql9Hc0uJLwFAn0RhkNUJdk4okvnqfPfGiLmI="
+    "README.md": "sha256-LGFTqucx9e9D06ntwqzPW4MEL0rlLwoBKZt/dumk8qc="
   }
 }

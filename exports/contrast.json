@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "theme": "j3w1-theme",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "profile": "default",
   "method": "WCAG 2.x relative luminance on resolved sRGB values; translucent colours composited over the surface; pass decided on the unrounded ratio",
   "pairs": [
@@ -4428,6 +4428,34 @@
       "ratio": 1.17,
       "pass": true,
       "waiver": "read-only fields are identified by the readonly attribute and the absence of a box, not by this edge"
+    },
+    {
+      "source": "date-picker",
+      "label": "calendar text",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.raised",
+      "fgHex": "#e99499",
+      "bgHex": "#241010",
+      "ratio": 7.92,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "source": "date-picker",
+      "label": "selected date",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.interaction.selection.text",
+      "bg": "color.interaction.selection.bg",
+      "fgHex": "#f4eeee",
+      "bgHex": "#911410",
+      "ratio": 7.92,
+      "pass": true,
+      "waiver": null
     },
     {
       "source": "description-list",
@@ -9877,7 +9905,7 @@
     },
     {
       "source": "select",
-      "label": "option text in the host list",
+      "label": "option text in the themed list",
       "state": null,
       "kind": "text",
       "min": 4.5,
@@ -9891,7 +9919,7 @@
     },
     {
       "source": "select",
-      "label": "group label in the host list",
+      "label": "group label in the themed list",
       "state": null,
       "kind": "text",
       "min": 4.5,

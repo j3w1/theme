@@ -11,6 +11,7 @@ import { pinnedKitSource } from "./task-kit-source.mjs";
 import { readRelease, compareReleases, comparisonMarkdown } from "./release-comparison.mjs";
 import { releaseCatalogueSchema } from "../../schemas/release-comparison.mjs";
 import { PREVIEW_IDS } from "../../schemas/playground.mjs";
+import { cssSourceClosure } from './ui-distribution.mjs';
 
 export const assertHistoricalMarkup = (html) => {
   const tree = parseFragment(html);
@@ -33,6 +34,15 @@ export const assertHistoricalCss = (css) => {
   return css;
 };
 
+// Resolve only relative files from the selected revision, then apply the same
+// resource/behavior rejection to the flattened CSS. No live-tree fallback.
+export const historicalStyleClosure = async (read, files) => {
+  const prefix='site/src/styles/';
+  if(files.some(file=>!file.startsWith(prefix)))throw new Error('Historical styles must stay within the pinned style tree');
+  const closure=await cssSourceClosure(prefix,files.map(file=>file.slice(prefix.length)),{read:name=>read(prefix+name)});
+  return [...closure.values()].map(assertHistoricalCss).join('\n');
+};
+
 export const renderReleaseSpecimens = async (snapshot) => {
   const files = {}, cases = [], unavailable = [];
   if (!snapshot.supported) return { files, cases, unavailable: ["Unsupported historical contract."] };
@@ -41,8 +51,8 @@ export const renderReleaseSpecimens = async (snapshot) => {
   for (const file of cssFiles) {
     const content = await snapshot.read(file);
     if (content === null) return { files, cases, unavailable: [`Missing historical appearance input: ${file}`] };
-    css.push(assertHistoricalCss(content));
   }
+  css.push(await historicalStyleClosure(snapshot.read,cssFiles));
   // The shared presentation wrapper freezes only animation/interaction; token
   // values, density, type size and component geometry remain historical inputs.
   files["style.css"] = `${css.join("\n")}\n*, *::before, *::after { animation: none !important; transition: none !important; }\n`;

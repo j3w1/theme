@@ -1,26 +1,26 @@
 {
   "schemaVersion": 1,
   "component": "dialog",
-  "version": "1.0.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/dialog.md",
+  "version": "1.1.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/dialog.md",
   "dependencies": [
     "register/dialog.js",
-    "chunks/element-B0z6sqq8.js",
+    "chunks/element-DdnhHcFm.js",
+    "chunks/choice-BYcDpKUh.js",
     "components/dialog.js",
-    "chunks/overlays-DBA40kTs.js",
-    "chunks/dom-BVXrzskP.js"
+    "chunks/overlays-CnOUExZq.js"
   ],
   "files": {
-    "runtime/register/dialog.js": "sha256-c+uXY7m1VipBKoM2Lt5HfJK7XRvXQFZB1xci0dE1iR0=",
-    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
-    "runtime/components/dialog.js": "sha256-nESvAGPAVyqC8YlCUXW3upq8LBplFMxhqzqPfi4Gjvw=",
-    "runtime/chunks/overlays-DBA40kTs.js": "sha256-oxEI9Hm3Ntzowr9QqxqQ28cWdd0ljwViujA+EtHh+Rs=",
-    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "runtime/register/dialog.js": "sha256-dAstsEz1U+Jk4a+G99ONFW3D5uUEkHHd/pPvtGuDQg0=",
+    "runtime/chunks/element-DdnhHcFm.js": "sha256-P8IoDXll0lJKcWOXXpHcwqadD7PqHKhMe87UzfiI80g=",
+    "runtime/chunks/choice-BYcDpKUh.js": "sha256-YPGCPBUOkLX215ZCOwxBWWB6d16pSW1hL7sgtPfSWpA=",
+    "runtime/components/dialog.js": "sha256-BkLzBCkHcr6cg5ebFoG8zHTsn2vYQgDVNTo/JIVX1OQ=",
+    "runtime/chunks/overlays-CnOUExZq.js": "sha256-JqE/pM6YNLpLOyMxLhO+dNlymvWl3pOFFyKLWhs9+xk=",
     "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
     "component.css": "sha256-d4bh9HaP4YOtfgWmP42qVqw3nqSJ3DF629AWjqoZTn4=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-wFFtRxUFWBTzxYOcblp+JjddYxJQF3QKoOb0/hIuSL0=",
     "index.html": "sha256-cDDMTM4Wj+7faOBKrvRWjGkb2tcMvyJcbhuH6ForsLs=",
-    "README.md": "sha256-fM0U1yWy79OCeLVZOp5RjvtkZaeD7xrBTcinA+XiEyA="
+    "README.md": "sha256-A+/RMJrzI4YnZuhZz1JDvtSppJ0R5O2zevjLwEsjC+I="
   }
 }

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "theme": "j3w1-theme",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "sourcePolicy": "Source locations are relative to the pinned revision supplying this file; JSON pointers identify mappings. No external consumer is inferred.",
   "profiles": {
     "default": {
@@ -6510,7 +6510,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/root.border-focus",
-                "line": 32
+                "line": 34
               }
             },
             {
@@ -6675,7 +6675,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/root.border-focus",
-                "line": 28
+                "line": 30
               }
             },
             {
@@ -6735,7 +6735,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/focus-visible/border",
-                "line": 51
+                "line": 67
               }
             },
             {
@@ -6855,7 +6855,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/focus-visible/border",
-                "line": 42
+                "line": 53
               }
             },
             {
@@ -6960,7 +6960,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 51
+                "line": 65
               }
             },
             {
@@ -7026,7 +7026,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 42
+                "line": 51
               }
             }
           ]
@@ -7720,7 +7720,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/root.border",
-                "line": 30
+                "line": 32
               }
             },
             {
@@ -8245,7 +8245,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/root.border",
-                "line": 26
+                "line": 28
               }
             },
             {
@@ -8545,7 +8545,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/default/border",
-                "line": 49
+                "line": 59
               }
             },
             {
@@ -8560,7 +8560,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/hover/border",
-                "line": 50
+                "line": 63
               }
             },
             {
@@ -9235,7 +9235,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/default/border",
-                "line": 40
+                "line": 45
               }
             },
             {
@@ -9250,7 +9250,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/hover/border",
-                "line": 41
+                "line": 49
               }
             },
             {
@@ -9348,7 +9348,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/hover",
-                "line": 50
+                "line": 61
               }
             },
             {
@@ -9436,7 +9436,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/hover",
-                "line": 41
+                "line": 47
               }
             },
             {
@@ -10107,7 +10107,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/default",
-                "line": 49
+                "line": 57
               }
             },
             {
@@ -10305,7 +10305,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/default",
-                "line": 40
+                "line": 43
               }
             },
             {
@@ -10909,7 +10909,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/3",
-                "line": 59
+                "line": 94
               }
             },
             {
@@ -11089,7 +11089,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/3",
-                "line": 48
+                "line": 72
               }
             },
             {
@@ -11194,7 +11194,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/root.border-disabled",
-                "line": 36
+                "line": 38
               }
             },
             {
@@ -11464,7 +11464,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/root.border-disabled",
-                "line": 31
+                "line": 33
               }
             }
           ],
@@ -11510,7 +11510,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/3",
-                "line": 59
+                "line": 94
               }
             },
             {
@@ -11631,7 +11631,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/3",
-                "line": 48
+                "line": 72
               }
             },
             {
@@ -11758,7 +11758,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/4",
-                "line": 60
+                "line": 101
               }
             },
             {
@@ -12088,7 +12088,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/root.border-readonly",
-                "line": 38
+                "line": 40
               }
             },
             {
@@ -12573,7 +12573,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/4",
-                "line": 60
+                "line": 101
               }
             },
             {
@@ -12840,6 +12840,21 @@
                 "file": "spec/components/command-palette.md",
                 "pointer": "/tokens/dependency.role-color-border-overlay",
                 "line": 36
+              }
+            },
+            {
+              "kind": "part",
+              "component": "date-picker",
+              "part": "calendar.border",
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/tokens/calendar.border",
+                "line": 51
               }
             },
             {
@@ -15814,7 +15829,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/input.caret",
-                "line": 42
+                "line": 44
               }
             },
             {
@@ -15889,7 +15904,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/input.caret",
-                "line": 35
+                "line": 37
               }
             }
           ],
@@ -21216,7 +21231,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/2",
-                "line": 58
+                "line": 88
               }
             },
             {
@@ -21231,7 +21246,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/3",
-                "line": 59
+                "line": 94
               }
             },
             {
@@ -21576,7 +21591,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/2",
-                "line": 47
+                "line": 66
               }
             },
             {
@@ -21591,7 +21606,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/3",
-                "line": 48
+                "line": 72
               }
             },
             {
@@ -21696,7 +21711,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/root.bg-disabled",
-                "line": 37
+                "line": 39
               }
             },
             {
@@ -21966,7 +21981,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/root.bg-disabled",
-                "line": 32
+                "line": 34
               }
             }
           ],
@@ -22012,7 +22027,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/3",
-                "line": 59
+                "line": 94
               }
             },
             {
@@ -22133,7 +22148,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/3",
-                "line": 48
+                "line": 72
               }
             },
             {
@@ -22287,7 +22302,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/2",
-                "line": 58
+                "line": 88
               }
             },
             {
@@ -22353,7 +22368,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/2",
-                "line": 47
+                "line": 66
               }
             },
             {
@@ -22864,7 +22879,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/root.ring",
-                "line": 33
+                "line": 35
               }
             },
             {
@@ -23434,7 +23449,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/root.ring",
-                "line": 29
+                "line": 31
               }
             },
             {
@@ -23629,7 +23644,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/focus-visible/outline",
-                "line": 51
+                "line": 68
               }
             },
             {
@@ -23974,7 +23989,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/focus-visible/outline",
-                "line": 42
+                "line": 54
               }
             },
             {
@@ -24399,7 +24414,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 51
+                "line": 65
               }
             },
             {
@@ -24498,7 +24513,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 42
+                "line": 51
               }
             },
             {
@@ -24841,7 +24856,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/root.ring-invalid",
-                "line": 34
+                "line": 36
               }
             },
             {
@@ -25351,7 +25366,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid+focus-visible/outline",
-                "line": 53
+                "line": 77
               }
             },
             {
@@ -25864,7 +25879,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid+focus-visible",
-                "line": 53
+                "line": 74
               }
             },
             {
@@ -26163,7 +26178,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/root.bg-hover",
-                "line": 31
+                "line": 33
               }
             },
             {
@@ -26478,7 +26493,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/root.bg-hover",
-                "line": 27
+                "line": 29
               }
             },
             {
@@ -26583,7 +26598,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/hover/bg",
-                "line": 50
+                "line": 62
               }
             },
             {
@@ -26823,7 +26838,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/hover/bg",
-                "line": 41
+                "line": 48
               }
             },
             {
@@ -26899,7 +26914,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/hover",
-                "line": 50
+                "line": 61
               }
             },
             {
@@ -26987,7 +27002,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/hover",
-                "line": 41
+                "line": 47
               }
             },
             {
@@ -27053,7 +27068,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/hover",
-                "line": 50
+                "line": 61
               }
             },
             {
@@ -27229,7 +27244,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/hover",
-                "line": 41
+                "line": 47
               }
             },
             {
@@ -28300,6 +28315,21 @@
           "uses": [
             {
               "kind": "contrast",
+              "component": "date-picker",
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": "color.interaction.selection.bg",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/contrast/6",
+                "line": 111
+              }
+            },
+            {
+              "kind": "contrast",
               "component": "diff-view",
               "part": null,
               "state": "focus-visible",
@@ -28506,6 +28536,21 @@
                 "file": "spec/components/data-table.md",
                 "pointer": "/tokens/selected.bg",
                 "line": 44
+              }
+            },
+            {
+              "kind": "part",
+              "component": "date-picker",
+              "part": "calendar.selected-bg",
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/tokens/calendar.selected-bg",
+                "line": 53
               }
             },
             {
@@ -29386,6 +29431,17 @@
             {
               "fg": "color.interaction.selection.text",
               "bg": "color.interaction.selection.bg",
+              "label": "selected date",
+              "state": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/contrast/6",
+                "line": 111
+              }
+            },
+            {
+              "fg": "color.interaction.selection.text",
+              "bg": "color.interaction.selection.bg",
               "label": "selected option",
               "state": null,
               "source": {
@@ -29916,6 +29972,21 @@
           "uses": [
             {
               "kind": "contrast",
+              "component": "date-picker",
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": "color.interaction.selection.bg",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/contrast/6",
+                "line": 111
+              }
+            },
+            {
+              "kind": "contrast",
               "component": "select",
               "part": null,
               "state": null,
@@ -30017,6 +30088,21 @@
                 "file": "spec/components/data-table.md",
                 "pointer": "/tokens/selected.text",
                 "line": 45
+              }
+            },
+            {
+              "kind": "part",
+              "component": "date-picker",
+              "part": "calendar.selected-text",
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/tokens/calendar.selected-text",
+                "line": 54
               }
             },
             {
@@ -30701,6 +30787,17 @@
                 "file": "spec/components/menu.md",
                 "pointer": "/stateTokens/selected",
                 "line": 63
+              }
+            },
+            {
+              "fg": "color.interaction.selection.text",
+              "bg": "color.interaction.selection.bg",
+              "label": "selected date",
+              "state": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/contrast/6",
+                "line": 111
               }
             },
             {
@@ -33466,7 +33563,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/root.border-invalid",
-                "line": 35
+                "line": 37
               }
             },
             {
@@ -33646,7 +33743,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/root.border-invalid",
-                "line": 30
+                "line": 32
               }
             },
             {
@@ -33766,7 +33863,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid/border",
-                "line": 52
+                "line": 72
               }
             },
             {
@@ -33781,7 +33878,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid+focus-visible/border",
-                "line": 53
+                "line": 76
               }
             },
             {
@@ -33976,7 +34073,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/invalid/border",
-                "line": 43
+                "line": 58
               }
             },
             {
@@ -34114,7 +34211,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid",
-                "line": 52
+                "line": 70
               }
             },
             {
@@ -34125,7 +34222,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid+focus-visible",
-                "line": 53
+                "line": 74
               }
             },
             {
@@ -34257,7 +34354,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/invalid",
-                "line": 43
+                "line": 56
               }
             }
           ]
@@ -34912,7 +35009,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/0",
-                "line": 56
+                "line": 82
               }
             },
             {
@@ -35032,7 +35129,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/0",
-                "line": 45
+                "line": 60
               }
             },
             {
@@ -35212,7 +35309,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/message.text",
-                "line": 47
+                "line": 49
               }
             },
             {
@@ -35527,7 +35624,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/message.text",
-                "line": 38
+                "line": 40
               }
             },
             {
@@ -35752,7 +35849,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/0",
-                "line": 56
+                "line": 82
               }
             },
             {
@@ -35763,7 +35860,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/0",
-                "line": 45
+                "line": 60
               }
             },
             {
@@ -40082,7 +40179,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/4",
-                "line": 60
+                "line": 101
               }
             },
             {
@@ -40097,7 +40194,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/0",
-                "line": 56
+                "line": 82
               }
             },
             {
@@ -40112,7 +40209,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/1",
-                "line": 57
+                "line": 85
               }
             },
             {
@@ -40367,7 +40464,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/0",
-                "line": 45
+                "line": 60
               }
             },
             {
@@ -40382,7 +40479,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/1",
-                "line": 46
+                "line": 63
               }
             },
             {
@@ -40892,7 +40989,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/root.bg-readonly",
-                "line": 39
+                "line": 41
               }
             },
             {
@@ -41012,7 +41109,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "body",
-                "line": 83
+                "line": 131
               }
             },
             {
@@ -41027,7 +41124,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/read-only/bg",
-                "line": 54
+                "line": 80
               }
             },
             {
@@ -41594,7 +41691,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/4",
-                "line": 60
+                "line": 101
               }
             },
             {
@@ -41946,7 +42043,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/0",
-                "line": 56
+                "line": 82
               }
             },
             {
@@ -41957,7 +42054,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/0",
-                "line": 45
+                "line": 60
               }
             },
             {
@@ -42100,7 +42197,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/read-only",
-                "line": 54
+                "line": 79
               }
             },
             {
@@ -42331,7 +42428,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/1",
-                "line": 57
+                "line": 85
               }
             },
             {
@@ -42364,7 +42461,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/1",
-                "line": 46
+                "line": 63
               }
             },
             {
@@ -46670,7 +46767,7 @@
               "source": {
                 "file": "spec/components/select.md",
                 "pointer": "body",
-                "line": 108
+                "line": 110
               }
             },
             {
@@ -51408,7 +51505,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/root.bg",
-                "line": 29
+                "line": 31
               }
             },
             {
@@ -51798,7 +51895,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/root.bg",
-                "line": 25
+                "line": 27
               }
             },
             {
@@ -51978,7 +52075,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/default/bg",
-                "line": 49
+                "line": 58
               }
             },
             {
@@ -51993,7 +52090,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/focus-visible/bg",
-                "line": 51
+                "line": 66
               }
             },
             {
@@ -52008,7 +52105,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid/bg",
-                "line": 52
+                "line": 71
               }
             },
             {
@@ -52023,7 +52120,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid+focus-visible/bg",
-                "line": 53
+                "line": 75
               }
             },
             {
@@ -52518,7 +52615,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/default/bg",
-                "line": 40
+                "line": 44
               }
             },
             {
@@ -52533,7 +52630,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/focus-visible/bg",
-                "line": 42
+                "line": 52
               }
             },
             {
@@ -52548,7 +52645,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/invalid/bg",
-                "line": 43
+                "line": 57
               }
             }
           ],
@@ -52605,7 +52702,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 51
+                "line": 65
               }
             },
             {
@@ -52671,7 +52768,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 42
+                "line": 51
               }
             },
             {
@@ -52759,7 +52856,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/default",
-                "line": 49
+                "line": 57
               }
             },
             {
@@ -52957,7 +53054,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/default",
-                "line": 40
+                "line": 43
               }
             },
             {
@@ -53023,7 +53120,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid+focus-visible",
-                "line": 53
+                "line": 74
               }
             },
             {
@@ -53100,7 +53197,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 51
+                "line": 65
               }
             },
             {
@@ -53199,7 +53296,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 42
+                "line": 51
               }
             },
             {
@@ -53243,7 +53340,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid",
-                "line": 52
+                "line": 70
               }
             },
             {
@@ -53254,7 +53351,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid+focus-visible",
-                "line": 53
+                "line": 74
               }
             },
             {
@@ -53386,7 +53483,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/invalid",
-                "line": 43
+                "line": 56
               }
             },
             {
@@ -53452,7 +53549,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/default",
-                "line": 49
+                "line": 57
               }
             },
             {
@@ -53463,7 +53560,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 51
+                "line": 65
               }
             },
             {
@@ -53474,7 +53571,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid",
-                "line": 52
+                "line": 70
               }
             },
             {
@@ -53485,7 +53582,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid+focus-visible",
-                "line": 53
+                "line": 74
               }
             },
             {
@@ -53771,7 +53868,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/default",
-                "line": 40
+                "line": 43
               }
             },
             {
@@ -53782,7 +53879,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 42
+                "line": 51
               }
             },
             {
@@ -53793,7 +53890,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/invalid",
-                "line": 43
+                "line": 56
               }
             },
             {
@@ -54651,6 +54748,21 @@
             },
             {
               "kind": "contrast",
+              "component": "date-picker",
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": "color.surface.raised",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/contrast/5",
+                "line": 108
+              }
+            },
+            {
+              "kind": "contrast",
               "component": "link",
               "part": null,
               "state": null,
@@ -54887,6 +54999,21 @@
                 "file": "spec/components/combobox.md",
                 "pointer": "/tokens/listbox.bg",
                 "line": 51
+              }
+            },
+            {
+              "kind": "part",
+              "component": "date-picker",
+              "part": "calendar.bg",
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/tokens/calendar.bg",
+                "line": 50
               }
             },
             {
@@ -55328,6 +55455,17 @@
             {
               "fg": "color.text.default",
               "bg": "color.surface.raised",
+              "label": "calendar text",
+              "state": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/contrast/5",
+                "line": 108
+              }
+            },
+            {
+              "fg": "color.text.default",
+              "bg": "color.surface.raised",
               "label": "combobox open fg",
               "state": "open",
               "source": {
@@ -55361,7 +55499,7 @@
             {
               "fg": "color.text.default",
               "bg": "color.surface.raised",
-              "label": "option text in the host list",
+              "label": "option text in the themed list",
               "state": null,
               "source": {
                 "file": "spec/components/select.md",
@@ -55427,7 +55565,7 @@
             {
               "fg": "color.text.muted",
               "bg": "color.surface.raised",
-              "label": "group label in the host list",
+              "label": "group label in the themed list",
               "state": null,
               "source": {
                 "file": "spec/components/select.md",
@@ -58884,7 +59022,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/label.text",
-                "line": 43
+                "line": 45
               }
             },
             {
@@ -58899,7 +59037,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/legend.text",
-                "line": 44
+                "line": 46
               }
             },
             {
@@ -59574,7 +59712,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/label.text",
-                "line": 36
+                "line": 38
               }
             },
             {
@@ -60555,6 +60693,21 @@
             },
             {
               "kind": "contrast",
+              "component": "date-picker",
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": "color.surface.raised",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/contrast/5",
+                "line": 108
+              }
+            },
+            {
+              "kind": "contrast",
               "component": "description-list",
               "part": null,
               "state": null,
@@ -61441,6 +61594,21 @@
             {
               "kind": "part",
               "component": "date-picker",
+              "part": "calendar.text",
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/tokens/calendar.text",
+                "line": 52
+              }
+            },
+            {
+              "kind": "part",
+              "component": "date-picker",
               "part": "input.text",
               "state": null,
               "variant": null,
@@ -61450,7 +61618,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/input.text",
-                "line": 40
+                "line": 42
               }
             },
             {
@@ -62245,7 +62413,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/input.text",
-                "line": 33
+                "line": 35
               }
             },
             {
@@ -62695,7 +62863,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/default/fg",
-                "line": 49
+                "line": 57
               }
             },
             {
@@ -62710,7 +62878,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/focus-visible/fg",
-                "line": 51
+                "line": 65
               }
             },
             {
@@ -62725,7 +62893,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/hover/fg",
-                "line": 50
+                "line": 61
               }
             },
             {
@@ -62740,7 +62908,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid/fg",
-                "line": 52
+                "line": 70
               }
             },
             {
@@ -62755,7 +62923,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid+focus-visible/fg",
-                "line": 53
+                "line": 74
               }
             },
             {
@@ -62770,7 +62938,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/read-only/fg",
-                "line": 54
+                "line": 79
               }
             },
             {
@@ -64075,7 +64243,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/default/fg",
-                "line": 40
+                "line": 43
               }
             },
             {
@@ -64090,7 +64258,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/focus-visible/fg",
-                "line": 42
+                "line": 51
               }
             },
             {
@@ -64105,7 +64273,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/hover/fg",
-                "line": 41
+                "line": 47
               }
             },
             {
@@ -64120,7 +64288,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/invalid/fg",
-                "line": 43
+                "line": 56
               }
             },
             {
@@ -64452,7 +64620,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/hover",
-                "line": 50
+                "line": 61
               }
             },
             {
@@ -64628,7 +64796,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/hover",
-                "line": 41
+                "line": 47
               }
             },
             {
@@ -64804,7 +64972,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/read-only",
-                "line": 54
+                "line": 79
               }
             },
             {
@@ -65816,7 +65984,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/default",
-                "line": 49
+                "line": 57
               }
             },
             {
@@ -65827,7 +65995,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 51
+                "line": 65
               }
             },
             {
@@ -65838,7 +66006,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid",
-                "line": 52
+                "line": 70
               }
             },
             {
@@ -65849,7 +66017,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid+focus-visible",
-                "line": 53
+                "line": 74
               }
             },
             {
@@ -66135,7 +66303,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/default",
-                "line": 40
+                "line": 43
               }
             },
             {
@@ -66146,7 +66314,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 42
+                "line": 51
               }
             },
             {
@@ -66157,7 +66325,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/invalid",
-                "line": 43
+                "line": 56
               }
             },
             {
@@ -66251,6 +66419,17 @@
             {
               "fg": "color.text.default",
               "bg": "color.surface.raised",
+              "label": "calendar text",
+              "state": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/contrast/5",
+                "line": 108
+              }
+            },
+            {
+              "fg": "color.text.default",
+              "bg": "color.surface.raised",
               "label": "combobox open fg",
               "state": "open",
               "source": {
@@ -66284,7 +66463,7 @@
             {
               "fg": "color.text.default",
               "bg": "color.surface.raised",
-              "label": "option text in the host list",
+              "label": "option text in the themed list",
               "state": null,
               "source": {
                 "file": "spec/components/select.md",
@@ -66463,7 +66642,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/2",
-                "line": 58
+                "line": 88
               }
             },
             {
@@ -66778,7 +66957,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/2",
-                "line": 47
+                "line": 66
               }
             },
             {
@@ -66943,7 +67122,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/input.text-disabled",
-                "line": 41
+                "line": 43
               }
             },
             {
@@ -67333,7 +67512,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/input.text-disabled",
-                "line": 34
+                "line": 36
               }
             },
             {
@@ -67501,7 +67680,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/2",
-                "line": 58
+                "line": 88
               }
             },
             {
@@ -67567,7 +67746,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/2",
-                "line": 47
+                "line": 66
               }
             },
             {
@@ -68881,7 +69060,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/1",
-                "line": 57
+                "line": 85
               }
             },
             {
@@ -69586,7 +69765,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/1",
-                "line": 46
+                "line": 63
               }
             },
             {
@@ -69916,7 +70095,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/help.text",
-                "line": 46
+                "line": 48
               }
             },
             {
@@ -69931,7 +70110,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/separator.text",
-                "line": 45
+                "line": 47
               }
             },
             {
@@ -70771,7 +70950,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/help.text",
-                "line": 37
+                "line": 39
               }
             },
             {
@@ -71115,7 +71294,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/1",
-                "line": 57
+                "line": 85
               }
             },
             {
@@ -71148,7 +71327,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/1",
-                "line": 46
+                "line": 63
               }
             },
             {
@@ -71781,7 +71960,7 @@
             {
               "fg": "color.text.muted",
               "bg": "color.surface.raised",
-              "label": "group label in the host list",
+              "label": "group label in the themed list",
               "state": null,
               "source": {
                 "file": "spec/components/select.md",
@@ -82756,7 +82935,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/root.border-focus",
-                "line": 32
+                "line": 34
               }
             },
             {
@@ -82921,7 +83100,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/root.border-focus",
-                "line": 28
+                "line": 30
               }
             },
             {
@@ -82981,7 +83160,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/focus-visible/border",
-                "line": 51
+                "line": 67
               }
             },
             {
@@ -83101,7 +83280,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/focus-visible/border",
-                "line": 42
+                "line": 53
               }
             },
             {
@@ -83206,7 +83385,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 51
+                "line": 65
               }
             },
             {
@@ -83272,7 +83451,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 42
+                "line": 51
               }
             }
           ]
@@ -83966,7 +84145,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/root.border",
-                "line": 30
+                "line": 32
               }
             },
             {
@@ -84491,7 +84670,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/root.border",
-                "line": 26
+                "line": 28
               }
             },
             {
@@ -84791,7 +84970,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/default/border",
-                "line": 49
+                "line": 59
               }
             },
             {
@@ -84806,7 +84985,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/hover/border",
-                "line": 50
+                "line": 63
               }
             },
             {
@@ -85481,7 +85660,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/default/border",
-                "line": 40
+                "line": 45
               }
             },
             {
@@ -85496,7 +85675,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/hover/border",
-                "line": 41
+                "line": 49
               }
             },
             {
@@ -85594,7 +85773,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/hover",
-                "line": 50
+                "line": 61
               }
             },
             {
@@ -85682,7 +85861,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/hover",
-                "line": 41
+                "line": 47
               }
             },
             {
@@ -86353,7 +86532,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/default",
-                "line": 49
+                "line": 57
               }
             },
             {
@@ -86551,7 +86730,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/default",
-                "line": 40
+                "line": 43
               }
             },
             {
@@ -87155,7 +87334,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/3",
-                "line": 59
+                "line": 94
               }
             },
             {
@@ -87335,7 +87514,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/3",
-                "line": 48
+                "line": 72
               }
             },
             {
@@ -87440,7 +87619,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/root.border-disabled",
-                "line": 36
+                "line": 38
               }
             },
             {
@@ -87710,7 +87889,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/root.border-disabled",
-                "line": 31
+                "line": 33
               }
             }
           ],
@@ -87756,7 +87935,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/3",
-                "line": 59
+                "line": 94
               }
             },
             {
@@ -87877,7 +88056,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/3",
-                "line": 48
+                "line": 72
               }
             },
             {
@@ -88004,7 +88183,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/4",
-                "line": 60
+                "line": 101
               }
             },
             {
@@ -88334,7 +88513,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/root.border-readonly",
-                "line": 38
+                "line": 40
               }
             },
             {
@@ -88819,7 +88998,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/4",
-                "line": 60
+                "line": 101
               }
             },
             {
@@ -89081,6 +89260,21 @@
                 "file": "spec/components/command-palette.md",
                 "pointer": "/tokens/dependency.role-color-border-overlay",
                 "line": 36
+              }
+            },
+            {
+              "kind": "part",
+              "component": "date-picker",
+              "part": "calendar.border",
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/tokens/calendar.border",
+                "line": 51
               }
             },
             {
@@ -92055,7 +92249,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/input.caret",
-                "line": 42
+                "line": 44
               }
             },
             {
@@ -92130,7 +92324,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/input.caret",
-                "line": 35
+                "line": 37
               }
             }
           ],
@@ -97459,7 +97653,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/2",
-                "line": 58
+                "line": 88
               }
             },
             {
@@ -97474,7 +97668,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/3",
-                "line": 59
+                "line": 94
               }
             },
             {
@@ -97819,7 +98013,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/2",
-                "line": 47
+                "line": 66
               }
             },
             {
@@ -97834,7 +98028,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/3",
-                "line": 48
+                "line": 72
               }
             },
             {
@@ -97939,7 +98133,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/root.bg-disabled",
-                "line": 37
+                "line": 39
               }
             },
             {
@@ -98209,7 +98403,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/root.bg-disabled",
-                "line": 32
+                "line": 34
               }
             }
           ],
@@ -98255,7 +98449,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/3",
-                "line": 59
+                "line": 94
               }
             },
             {
@@ -98376,7 +98570,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/3",
-                "line": 48
+                "line": 72
               }
             },
             {
@@ -98530,7 +98724,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/2",
-                "line": 58
+                "line": 88
               }
             },
             {
@@ -98596,7 +98790,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/2",
-                "line": 47
+                "line": 66
               }
             },
             {
@@ -99107,7 +99301,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/root.ring",
-                "line": 33
+                "line": 35
               }
             },
             {
@@ -99677,7 +99871,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/root.ring",
-                "line": 29
+                "line": 31
               }
             },
             {
@@ -99872,7 +100066,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/focus-visible/outline",
-                "line": 51
+                "line": 68
               }
             },
             {
@@ -100217,7 +100411,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/focus-visible/outline",
-                "line": 42
+                "line": 54
               }
             },
             {
@@ -100642,7 +100836,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 51
+                "line": 65
               }
             },
             {
@@ -100741,7 +100935,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 42
+                "line": 51
               }
             },
             {
@@ -101084,7 +101278,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/root.ring-invalid",
-                "line": 34
+                "line": 36
               }
             },
             {
@@ -101594,7 +101788,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid+focus-visible/outline",
-                "line": 53
+                "line": 77
               }
             },
             {
@@ -102107,7 +102301,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid+focus-visible",
-                "line": 53
+                "line": 74
               }
             },
             {
@@ -102406,7 +102600,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/root.bg-hover",
-                "line": 31
+                "line": 33
               }
             },
             {
@@ -102721,7 +102915,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/root.bg-hover",
-                "line": 27
+                "line": 29
               }
             },
             {
@@ -102826,7 +103020,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/hover/bg",
-                "line": 50
+                "line": 62
               }
             },
             {
@@ -103066,7 +103260,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/hover/bg",
-                "line": 41
+                "line": 48
               }
             },
             {
@@ -103142,7 +103336,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/hover",
-                "line": 50
+                "line": 61
               }
             },
             {
@@ -103230,7 +103424,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/hover",
-                "line": 41
+                "line": 47
               }
             },
             {
@@ -103296,7 +103490,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/hover",
-                "line": 50
+                "line": 61
               }
             },
             {
@@ -103472,7 +103666,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/hover",
-                "line": 41
+                "line": 47
               }
             },
             {
@@ -104543,6 +104737,21 @@
           "uses": [
             {
               "kind": "contrast",
+              "component": "date-picker",
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": "color.interaction.selection.bg",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/contrast/6",
+                "line": 111
+              }
+            },
+            {
+              "kind": "contrast",
               "component": "diff-view",
               "part": null,
               "state": "focus-visible",
@@ -104749,6 +104958,21 @@
                 "file": "spec/components/data-table.md",
                 "pointer": "/tokens/selected.bg",
                 "line": 44
+              }
+            },
+            {
+              "kind": "part",
+              "component": "date-picker",
+              "part": "calendar.selected-bg",
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/tokens/calendar.selected-bg",
+                "line": 53
               }
             },
             {
@@ -105629,6 +105853,17 @@
             {
               "fg": "color.interaction.selection.text",
               "bg": "color.interaction.selection.bg",
+              "label": "selected date",
+              "state": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/contrast/6",
+                "line": 111
+              }
+            },
+            {
+              "fg": "color.interaction.selection.text",
+              "bg": "color.interaction.selection.bg",
               "label": "selected option",
               "state": null,
               "source": {
@@ -106159,6 +106394,21 @@
           "uses": [
             {
               "kind": "contrast",
+              "component": "date-picker",
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": "color.interaction.selection.bg",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/contrast/6",
+                "line": 111
+              }
+            },
+            {
+              "kind": "contrast",
               "component": "select",
               "part": null,
               "state": null,
@@ -106260,6 +106510,21 @@
                 "file": "spec/components/data-table.md",
                 "pointer": "/tokens/selected.text",
                 "line": 45
+              }
+            },
+            {
+              "kind": "part",
+              "component": "date-picker",
+              "part": "calendar.selected-text",
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/tokens/calendar.selected-text",
+                "line": 54
               }
             },
             {
@@ -106944,6 +107209,17 @@
                 "file": "spec/components/menu.md",
                 "pointer": "/stateTokens/selected",
                 "line": 63
+              }
+            },
+            {
+              "fg": "color.interaction.selection.text",
+              "bg": "color.interaction.selection.bg",
+              "label": "selected date",
+              "state": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/contrast/6",
+                "line": 111
               }
             },
             {
@@ -109709,7 +109985,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/root.border-invalid",
-                "line": 35
+                "line": 37
               }
             },
             {
@@ -109889,7 +110165,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/root.border-invalid",
-                "line": 30
+                "line": 32
               }
             },
             {
@@ -110009,7 +110285,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid/border",
-                "line": 52
+                "line": 72
               }
             },
             {
@@ -110024,7 +110300,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid+focus-visible/border",
-                "line": 53
+                "line": 76
               }
             },
             {
@@ -110219,7 +110495,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/invalid/border",
-                "line": 43
+                "line": 58
               }
             },
             {
@@ -110357,7 +110633,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid",
-                "line": 52
+                "line": 70
               }
             },
             {
@@ -110368,7 +110644,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid+focus-visible",
-                "line": 53
+                "line": 74
               }
             },
             {
@@ -110500,7 +110776,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/invalid",
-                "line": 43
+                "line": 56
               }
             }
           ]
@@ -111155,7 +111431,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/0",
-                "line": 56
+                "line": 82
               }
             },
             {
@@ -111275,7 +111551,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/0",
-                "line": 45
+                "line": 60
               }
             },
             {
@@ -111455,7 +111731,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/message.text",
-                "line": 47
+                "line": 49
               }
             },
             {
@@ -111770,7 +112046,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/message.text",
-                "line": 38
+                "line": 40
               }
             },
             {
@@ -111995,7 +112271,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/0",
-                "line": 56
+                "line": 82
               }
             },
             {
@@ -112006,7 +112282,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/0",
-                "line": 45
+                "line": 60
               }
             },
             {
@@ -116326,7 +116602,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/4",
-                "line": 60
+                "line": 101
               }
             },
             {
@@ -116341,7 +116617,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/0",
-                "line": 56
+                "line": 82
               }
             },
             {
@@ -116356,7 +116632,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/1",
-                "line": 57
+                "line": 85
               }
             },
             {
@@ -116611,7 +116887,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/0",
-                "line": 45
+                "line": 60
               }
             },
             {
@@ -116626,7 +116902,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/1",
-                "line": 46
+                "line": 63
               }
             },
             {
@@ -117136,7 +117412,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/root.bg-readonly",
-                "line": 39
+                "line": 41
               }
             },
             {
@@ -117256,7 +117532,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "body",
-                "line": 83
+                "line": 131
               }
             },
             {
@@ -117271,7 +117547,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/read-only/bg",
-                "line": 54
+                "line": 80
               }
             },
             {
@@ -117838,7 +118114,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/4",
-                "line": 60
+                "line": 101
               }
             },
             {
@@ -118190,7 +118466,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/0",
-                "line": 56
+                "line": 82
               }
             },
             {
@@ -118201,7 +118477,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/0",
-                "line": 45
+                "line": 60
               }
             },
             {
@@ -118344,7 +118620,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/read-only",
-                "line": 54
+                "line": 79
               }
             },
             {
@@ -118575,7 +118851,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/1",
-                "line": 57
+                "line": 85
               }
             },
             {
@@ -118608,7 +118884,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/1",
-                "line": 46
+                "line": 63
               }
             },
             {
@@ -122905,7 +123181,7 @@
               "source": {
                 "file": "spec/components/select.md",
                 "pointer": "body",
-                "line": 108
+                "line": 110
               }
             },
             {
@@ -127640,7 +127916,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/root.bg",
-                "line": 29
+                "line": 31
               }
             },
             {
@@ -128030,7 +128306,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/root.bg",
-                "line": 25
+                "line": 27
               }
             },
             {
@@ -128210,7 +128486,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/default/bg",
-                "line": 49
+                "line": 58
               }
             },
             {
@@ -128225,7 +128501,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/focus-visible/bg",
-                "line": 51
+                "line": 66
               }
             },
             {
@@ -128240,7 +128516,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid/bg",
-                "line": 52
+                "line": 71
               }
             },
             {
@@ -128255,7 +128531,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid+focus-visible/bg",
-                "line": 53
+                "line": 75
               }
             },
             {
@@ -128750,7 +129026,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/default/bg",
-                "line": 40
+                "line": 44
               }
             },
             {
@@ -128765,7 +129041,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/focus-visible/bg",
-                "line": 42
+                "line": 52
               }
             },
             {
@@ -128780,7 +129056,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/invalid/bg",
-                "line": 43
+                "line": 57
               }
             }
           ],
@@ -128837,7 +129113,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 51
+                "line": 65
               }
             },
             {
@@ -128903,7 +129179,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 42
+                "line": 51
               }
             },
             {
@@ -128991,7 +129267,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/default",
-                "line": 49
+                "line": 57
               }
             },
             {
@@ -129189,7 +129465,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/default",
-                "line": 40
+                "line": 43
               }
             },
             {
@@ -129255,7 +129531,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid+focus-visible",
-                "line": 53
+                "line": 74
               }
             },
             {
@@ -129332,7 +129608,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 51
+                "line": 65
               }
             },
             {
@@ -129431,7 +129707,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 42
+                "line": 51
               }
             },
             {
@@ -129475,7 +129751,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid",
-                "line": 52
+                "line": 70
               }
             },
             {
@@ -129486,7 +129762,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid+focus-visible",
-                "line": 53
+                "line": 74
               }
             },
             {
@@ -129618,7 +129894,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/invalid",
-                "line": 43
+                "line": 56
               }
             },
             {
@@ -129684,7 +129960,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/default",
-                "line": 49
+                "line": 57
               }
             },
             {
@@ -129695,7 +129971,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 51
+                "line": 65
               }
             },
             {
@@ -129706,7 +129982,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid",
-                "line": 52
+                "line": 70
               }
             },
             {
@@ -129717,7 +129993,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid+focus-visible",
-                "line": 53
+                "line": 74
               }
             },
             {
@@ -130003,7 +130279,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/default",
-                "line": 40
+                "line": 43
               }
             },
             {
@@ -130014,7 +130290,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 42
+                "line": 51
               }
             },
             {
@@ -130025,7 +130301,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/invalid",
-                "line": 43
+                "line": 56
               }
             },
             {
@@ -130883,6 +131159,21 @@
             },
             {
               "kind": "contrast",
+              "component": "date-picker",
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": "color.surface.raised",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/contrast/5",
+                "line": 108
+              }
+            },
+            {
+              "kind": "contrast",
               "component": "link",
               "part": null,
               "state": null,
@@ -131119,6 +131410,21 @@
                 "file": "spec/components/combobox.md",
                 "pointer": "/tokens/listbox.bg",
                 "line": 51
+              }
+            },
+            {
+              "kind": "part",
+              "component": "date-picker",
+              "part": "calendar.bg",
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/tokens/calendar.bg",
+                "line": 50
               }
             },
             {
@@ -131560,6 +131866,17 @@
             {
               "fg": "color.text.default",
               "bg": "color.surface.raised",
+              "label": "calendar text",
+              "state": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/contrast/5",
+                "line": 108
+              }
+            },
+            {
+              "fg": "color.text.default",
+              "bg": "color.surface.raised",
               "label": "combobox open fg",
               "state": "open",
               "source": {
@@ -131593,7 +131910,7 @@
             {
               "fg": "color.text.default",
               "bg": "color.surface.raised",
-              "label": "option text in the host list",
+              "label": "option text in the themed list",
               "state": null,
               "source": {
                 "file": "spec/components/select.md",
@@ -131659,7 +131976,7 @@
             {
               "fg": "color.text.muted",
               "bg": "color.surface.raised",
-              "label": "group label in the host list",
+              "label": "group label in the themed list",
               "state": null,
               "source": {
                 "file": "spec/components/select.md",
@@ -135110,7 +135427,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/label.text",
-                "line": 43
+                "line": 45
               }
             },
             {
@@ -135125,7 +135442,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/legend.text",
-                "line": 44
+                "line": 46
               }
             },
             {
@@ -135800,7 +136117,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/label.text",
-                "line": 36
+                "line": 38
               }
             },
             {
@@ -136781,6 +137098,21 @@
             },
             {
               "kind": "contrast",
+              "component": "date-picker",
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": "color.surface.raised",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/contrast/5",
+                "line": 108
+              }
+            },
+            {
+              "kind": "contrast",
               "component": "description-list",
               "part": null,
               "state": null,
@@ -137667,6 +137999,21 @@
             {
               "kind": "part",
               "component": "date-picker",
+              "part": "calendar.text",
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/tokens/calendar.text",
+                "line": 52
+              }
+            },
+            {
+              "kind": "part",
+              "component": "date-picker",
               "part": "input.text",
               "state": null,
               "variant": null,
@@ -137676,7 +138023,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/input.text",
-                "line": 40
+                "line": 42
               }
             },
             {
@@ -138471,7 +138818,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/input.text",
-                "line": 33
+                "line": 35
               }
             },
             {
@@ -138921,7 +139268,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/default/fg",
-                "line": 49
+                "line": 57
               }
             },
             {
@@ -138936,7 +139283,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/focus-visible/fg",
-                "line": 51
+                "line": 65
               }
             },
             {
@@ -138951,7 +139298,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/hover/fg",
-                "line": 50
+                "line": 61
               }
             },
             {
@@ -138966,7 +139313,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid/fg",
-                "line": 52
+                "line": 70
               }
             },
             {
@@ -138981,7 +139328,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid+focus-visible/fg",
-                "line": 53
+                "line": 74
               }
             },
             {
@@ -138996,7 +139343,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/read-only/fg",
-                "line": 54
+                "line": 79
               }
             },
             {
@@ -140301,7 +140648,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/default/fg",
-                "line": 40
+                "line": 43
               }
             },
             {
@@ -140316,7 +140663,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/focus-visible/fg",
-                "line": 42
+                "line": 51
               }
             },
             {
@@ -140331,7 +140678,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/hover/fg",
-                "line": 41
+                "line": 47
               }
             },
             {
@@ -140346,7 +140693,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/invalid/fg",
-                "line": 43
+                "line": 56
               }
             },
             {
@@ -140678,7 +141025,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/hover",
-                "line": 50
+                "line": 61
               }
             },
             {
@@ -140854,7 +141201,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/hover",
-                "line": 41
+                "line": 47
               }
             },
             {
@@ -141030,7 +141377,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/read-only",
-                "line": 54
+                "line": 79
               }
             },
             {
@@ -142042,7 +142389,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/default",
-                "line": 49
+                "line": 57
               }
             },
             {
@@ -142053,7 +142400,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 51
+                "line": 65
               }
             },
             {
@@ -142064,7 +142411,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid",
-                "line": 52
+                "line": 70
               }
             },
             {
@@ -142075,7 +142422,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid+focus-visible",
-                "line": 53
+                "line": 74
               }
             },
             {
@@ -142361,7 +142708,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/default",
-                "line": 40
+                "line": 43
               }
             },
             {
@@ -142372,7 +142719,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 42
+                "line": 51
               }
             },
             {
@@ -142383,7 +142730,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/invalid",
-                "line": 43
+                "line": 56
               }
             },
             {
@@ -142477,6 +142824,17 @@
             {
               "fg": "color.text.default",
               "bg": "color.surface.raised",
+              "label": "calendar text",
+              "state": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/contrast/5",
+                "line": 108
+              }
+            },
+            {
+              "fg": "color.text.default",
+              "bg": "color.surface.raised",
               "label": "combobox open fg",
               "state": "open",
               "source": {
@@ -142510,7 +142868,7 @@
             {
               "fg": "color.text.default",
               "bg": "color.surface.raised",
-              "label": "option text in the host list",
+              "label": "option text in the themed list",
               "state": null,
               "source": {
                 "file": "spec/components/select.md",
@@ -142689,7 +143047,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/2",
-                "line": 58
+                "line": 88
               }
             },
             {
@@ -143004,7 +143362,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/2",
-                "line": 47
+                "line": 66
               }
             },
             {
@@ -143169,7 +143527,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/input.text-disabled",
-                "line": 41
+                "line": 43
               }
             },
             {
@@ -143559,7 +143917,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/input.text-disabled",
-                "line": 34
+                "line": 36
               }
             },
             {
@@ -143727,7 +144085,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/2",
-                "line": 58
+                "line": 88
               }
             },
             {
@@ -143793,7 +144151,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/2",
-                "line": 47
+                "line": 66
               }
             },
             {
@@ -145104,7 +145462,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/1",
-                "line": 57
+                "line": 85
               }
             },
             {
@@ -145809,7 +146167,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/1",
-                "line": 46
+                "line": 63
               }
             },
             {
@@ -146139,7 +146497,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/help.text",
-                "line": 46
+                "line": 48
               }
             },
             {
@@ -146154,7 +146512,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/separator.text",
-                "line": 45
+                "line": 47
               }
             },
             {
@@ -146994,7 +147352,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/help.text",
-                "line": 37
+                "line": 39
               }
             },
             {
@@ -147338,7 +147696,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/1",
-                "line": 57
+                "line": 85
               }
             },
             {
@@ -147371,7 +147729,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/1",
-                "line": 46
+                "line": 63
               }
             },
             {
@@ -148004,7 +148362,7 @@
             {
               "fg": "color.text.muted",
               "bg": "color.surface.raised",
-              "label": "group label in the host list",
+              "label": "group label in the themed list",
               "state": null,
               "source": {
                 "file": "spec/components/select.md",
@@ -158976,7 +159334,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/root.border-focus",
-                "line": 32
+                "line": 34
               }
             },
             {
@@ -159141,7 +159499,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/root.border-focus",
-                "line": 28
+                "line": 30
               }
             },
             {
@@ -159201,7 +159559,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/focus-visible/border",
-                "line": 51
+                "line": 67
               }
             },
             {
@@ -159321,7 +159679,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/focus-visible/border",
-                "line": 42
+                "line": 53
               }
             },
             {
@@ -159426,7 +159784,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 51
+                "line": 65
               }
             },
             {
@@ -159492,7 +159850,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 42
+                "line": 51
               }
             }
           ]
@@ -160186,7 +160544,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/root.border",
-                "line": 30
+                "line": 32
               }
             },
             {
@@ -160711,7 +161069,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/root.border",
-                "line": 26
+                "line": 28
               }
             },
             {
@@ -161011,7 +161369,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/default/border",
-                "line": 49
+                "line": 59
               }
             },
             {
@@ -161026,7 +161384,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/hover/border",
-                "line": 50
+                "line": 63
               }
             },
             {
@@ -161701,7 +162059,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/default/border",
-                "line": 40
+                "line": 45
               }
             },
             {
@@ -161716,7 +162074,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/hover/border",
-                "line": 41
+                "line": 49
               }
             },
             {
@@ -161814,7 +162172,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/hover",
-                "line": 50
+                "line": 61
               }
             },
             {
@@ -161902,7 +162260,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/hover",
-                "line": 41
+                "line": 47
               }
             },
             {
@@ -162573,7 +162931,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/default",
-                "line": 49
+                "line": 57
               }
             },
             {
@@ -162771,7 +163129,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/default",
-                "line": 40
+                "line": 43
               }
             },
             {
@@ -163375,7 +163733,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/3",
-                "line": 59
+                "line": 94
               }
             },
             {
@@ -163555,7 +163913,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/3",
-                "line": 48
+                "line": 72
               }
             },
             {
@@ -163660,7 +164018,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/root.border-disabled",
-                "line": 36
+                "line": 38
               }
             },
             {
@@ -163930,7 +164288,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/root.border-disabled",
-                "line": 31
+                "line": 33
               }
             }
           ],
@@ -163976,7 +164334,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/3",
-                "line": 59
+                "line": 94
               }
             },
             {
@@ -164097,7 +164455,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/3",
-                "line": 48
+                "line": 72
               }
             },
             {
@@ -164224,7 +164582,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/4",
-                "line": 60
+                "line": 101
               }
             },
             {
@@ -164554,7 +164912,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/root.border-readonly",
-                "line": 38
+                "line": 40
               }
             },
             {
@@ -165039,7 +165397,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/4",
-                "line": 60
+                "line": 101
               }
             },
             {
@@ -165306,6 +165664,21 @@
                 "file": "spec/components/command-palette.md",
                 "pointer": "/tokens/dependency.role-color-border-overlay",
                 "line": 36
+              }
+            },
+            {
+              "kind": "part",
+              "component": "date-picker",
+              "part": "calendar.border",
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/tokens/calendar.border",
+                "line": 51
               }
             },
             {
@@ -168301,7 +168674,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/input.caret",
-                "line": 42
+                "line": 44
               }
             },
             {
@@ -168376,7 +168749,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/input.caret",
-                "line": 35
+                "line": 37
               }
             }
           ],
@@ -173731,7 +174104,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/2",
-                "line": 58
+                "line": 88
               }
             },
             {
@@ -173746,7 +174119,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/3",
-                "line": 59
+                "line": 94
               }
             },
             {
@@ -174091,7 +174464,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/2",
-                "line": 47
+                "line": 66
               }
             },
             {
@@ -174106,7 +174479,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/3",
-                "line": 48
+                "line": 72
               }
             },
             {
@@ -174211,7 +174584,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/root.bg-disabled",
-                "line": 37
+                "line": 39
               }
             },
             {
@@ -174481,7 +174854,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/root.bg-disabled",
-                "line": 32
+                "line": 34
               }
             }
           ],
@@ -174527,7 +174900,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/3",
-                "line": 59
+                "line": 94
               }
             },
             {
@@ -174648,7 +175021,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/3",
-                "line": 48
+                "line": 72
               }
             },
             {
@@ -174802,7 +175175,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/2",
-                "line": 58
+                "line": 88
               }
             },
             {
@@ -174868,7 +175241,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/2",
-                "line": 47
+                "line": 66
               }
             },
             {
@@ -175379,7 +175752,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/root.ring",
-                "line": 33
+                "line": 35
               }
             },
             {
@@ -175949,7 +176322,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/root.ring",
-                "line": 29
+                "line": 31
               }
             },
             {
@@ -176144,7 +176517,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/focus-visible/outline",
-                "line": 51
+                "line": 68
               }
             },
             {
@@ -176489,7 +176862,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/focus-visible/outline",
-                "line": 42
+                "line": 54
               }
             },
             {
@@ -176914,7 +177287,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 51
+                "line": 65
               }
             },
             {
@@ -177013,7 +177386,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 42
+                "line": 51
               }
             },
             {
@@ -177356,7 +177729,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/root.ring-invalid",
-                "line": 34
+                "line": 36
               }
             },
             {
@@ -177866,7 +178239,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid+focus-visible/outline",
-                "line": 53
+                "line": 77
               }
             },
             {
@@ -178379,7 +178752,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid+focus-visible",
-                "line": 53
+                "line": 74
               }
             },
             {
@@ -178678,7 +179051,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/root.bg-hover",
-                "line": 31
+                "line": 33
               }
             },
             {
@@ -178993,7 +179366,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/root.bg-hover",
-                "line": 27
+                "line": 29
               }
             },
             {
@@ -179098,7 +179471,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/hover/bg",
-                "line": 50
+                "line": 62
               }
             },
             {
@@ -179338,7 +179711,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/hover/bg",
-                "line": 41
+                "line": 48
               }
             },
             {
@@ -179414,7 +179787,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/hover",
-                "line": 50
+                "line": 61
               }
             },
             {
@@ -179502,7 +179875,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/hover",
-                "line": 41
+                "line": 47
               }
             },
             {
@@ -179568,7 +179941,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/hover",
-                "line": 50
+                "line": 61
               }
             },
             {
@@ -179744,7 +180117,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/hover",
-                "line": 41
+                "line": 47
               }
             },
             {
@@ -180815,6 +181188,21 @@
           "uses": [
             {
               "kind": "contrast",
+              "component": "date-picker",
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": "color.interaction.selection.bg",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/contrast/6",
+                "line": 111
+              }
+            },
+            {
+              "kind": "contrast",
               "component": "diff-view",
               "part": null,
               "state": "focus-visible",
@@ -181021,6 +181409,21 @@
                 "file": "spec/components/data-table.md",
                 "pointer": "/tokens/selected.bg",
                 "line": 44
+              }
+            },
+            {
+              "kind": "part",
+              "component": "date-picker",
+              "part": "calendar.selected-bg",
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/tokens/calendar.selected-bg",
+                "line": 53
               }
             },
             {
@@ -181901,6 +182304,17 @@
             {
               "fg": "color.interaction.selection.text",
               "bg": "color.interaction.selection.bg",
+              "label": "selected date",
+              "state": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/contrast/6",
+                "line": 111
+              }
+            },
+            {
+              "fg": "color.interaction.selection.text",
+              "bg": "color.interaction.selection.bg",
               "label": "selected option",
               "state": null,
               "source": {
@@ -182431,6 +182845,21 @@
           "uses": [
             {
               "kind": "contrast",
+              "component": "date-picker",
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": "color.interaction.selection.bg",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/contrast/6",
+                "line": 111
+              }
+            },
+            {
+              "kind": "contrast",
               "component": "select",
               "part": null,
               "state": null,
@@ -182532,6 +182961,21 @@
                 "file": "spec/components/data-table.md",
                 "pointer": "/tokens/selected.text",
                 "line": 45
+              }
+            },
+            {
+              "kind": "part",
+              "component": "date-picker",
+              "part": "calendar.selected-text",
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/tokens/calendar.selected-text",
+                "line": 54
               }
             },
             {
@@ -183216,6 +183660,17 @@
                 "file": "spec/components/menu.md",
                 "pointer": "/stateTokens/selected",
                 "line": 63
+              }
+            },
+            {
+              "fg": "color.interaction.selection.text",
+              "bg": "color.interaction.selection.bg",
+              "label": "selected date",
+              "state": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/contrast/6",
+                "line": 111
               }
             },
             {
@@ -185952,7 +186407,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/root.border-invalid",
-                "line": 35
+                "line": 37
               }
             },
             {
@@ -186132,7 +186587,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/root.border-invalid",
-                "line": 30
+                "line": 32
               }
             },
             {
@@ -186252,7 +186707,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid/border",
-                "line": 52
+                "line": 72
               }
             },
             {
@@ -186267,7 +186722,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid+focus-visible/border",
-                "line": 53
+                "line": 76
               }
             },
             {
@@ -186462,7 +186917,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/invalid/border",
-                "line": 43
+                "line": 58
               }
             },
             {
@@ -186600,7 +187055,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid",
-                "line": 52
+                "line": 70
               }
             },
             {
@@ -186611,7 +187066,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid+focus-visible",
-                "line": 53
+                "line": 74
               }
             },
             {
@@ -186743,7 +187198,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/invalid",
-                "line": 43
+                "line": 56
               }
             }
           ]
@@ -187398,7 +187853,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/0",
-                "line": 56
+                "line": 82
               }
             },
             {
@@ -187518,7 +187973,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/0",
-                "line": 45
+                "line": 60
               }
             },
             {
@@ -187698,7 +188153,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/message.text",
-                "line": 47
+                "line": 49
               }
             },
             {
@@ -188013,7 +188468,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/message.text",
-                "line": 38
+                "line": 40
               }
             },
             {
@@ -188238,7 +188693,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/0",
-                "line": 56
+                "line": 82
               }
             },
             {
@@ -188249,7 +188704,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/0",
-                "line": 45
+                "line": 60
               }
             },
             {
@@ -192568,7 +193023,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/4",
-                "line": 60
+                "line": 101
               }
             },
             {
@@ -192583,7 +193038,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/0",
-                "line": 56
+                "line": 82
               }
             },
             {
@@ -192598,7 +193053,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/1",
-                "line": 57
+                "line": 85
               }
             },
             {
@@ -192853,7 +193308,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/0",
-                "line": 45
+                "line": 60
               }
             },
             {
@@ -192868,7 +193323,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/1",
-                "line": 46
+                "line": 63
               }
             },
             {
@@ -193378,7 +193833,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/root.bg-readonly",
-                "line": 39
+                "line": 41
               }
             },
             {
@@ -193498,7 +193953,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "body",
-                "line": 83
+                "line": 131
               }
             },
             {
@@ -193513,7 +193968,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/read-only/bg",
-                "line": 54
+                "line": 80
               }
             },
             {
@@ -194080,7 +194535,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/4",
-                "line": 60
+                "line": 101
               }
             },
             {
@@ -194432,7 +194887,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/0",
-                "line": 56
+                "line": 82
               }
             },
             {
@@ -194443,7 +194898,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/0",
-                "line": 45
+                "line": 60
               }
             },
             {
@@ -194586,7 +195041,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/read-only",
-                "line": 54
+                "line": 79
               }
             },
             {
@@ -194817,7 +195272,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/1",
-                "line": 57
+                "line": 85
               }
             },
             {
@@ -194850,7 +195305,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/1",
-                "line": 46
+                "line": 63
               }
             },
             {
@@ -199156,7 +199611,7 @@
               "source": {
                 "file": "spec/components/select.md",
                 "pointer": "body",
-                "line": 108
+                "line": 110
               }
             },
             {
@@ -203894,7 +204349,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/root.bg",
-                "line": 29
+                "line": 31
               }
             },
             {
@@ -204284,7 +204739,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/root.bg",
-                "line": 25
+                "line": 27
               }
             },
             {
@@ -204464,7 +204919,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/default/bg",
-                "line": 49
+                "line": 58
               }
             },
             {
@@ -204479,7 +204934,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/focus-visible/bg",
-                "line": 51
+                "line": 66
               }
             },
             {
@@ -204494,7 +204949,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid/bg",
-                "line": 52
+                "line": 71
               }
             },
             {
@@ -204509,7 +204964,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid+focus-visible/bg",
-                "line": 53
+                "line": 75
               }
             },
             {
@@ -205004,7 +205459,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/default/bg",
-                "line": 40
+                "line": 44
               }
             },
             {
@@ -205019,7 +205474,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/focus-visible/bg",
-                "line": 42
+                "line": 52
               }
             },
             {
@@ -205034,7 +205489,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/invalid/bg",
-                "line": 43
+                "line": 57
               }
             }
           ],
@@ -205091,7 +205546,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 51
+                "line": 65
               }
             },
             {
@@ -205157,7 +205612,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 42
+                "line": 51
               }
             },
             {
@@ -205245,7 +205700,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/default",
-                "line": 49
+                "line": 57
               }
             },
             {
@@ -205443,7 +205898,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/default",
-                "line": 40
+                "line": 43
               }
             },
             {
@@ -205509,7 +205964,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid+focus-visible",
-                "line": 53
+                "line": 74
               }
             },
             {
@@ -205586,7 +206041,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 51
+                "line": 65
               }
             },
             {
@@ -205685,7 +206140,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 42
+                "line": 51
               }
             },
             {
@@ -205729,7 +206184,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid",
-                "line": 52
+                "line": 70
               }
             },
             {
@@ -205740,7 +206195,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid+focus-visible",
-                "line": 53
+                "line": 74
               }
             },
             {
@@ -205872,7 +206327,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/invalid",
-                "line": 43
+                "line": 56
               }
             },
             {
@@ -205938,7 +206393,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/default",
-                "line": 49
+                "line": 57
               }
             },
             {
@@ -205949,7 +206404,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 51
+                "line": 65
               }
             },
             {
@@ -205960,7 +206415,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid",
-                "line": 52
+                "line": 70
               }
             },
             {
@@ -205971,7 +206426,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid+focus-visible",
-                "line": 53
+                "line": 74
               }
             },
             {
@@ -206257,7 +206712,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/default",
-                "line": 40
+                "line": 43
               }
             },
             {
@@ -206268,7 +206723,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 42
+                "line": 51
               }
             },
             {
@@ -206279,7 +206734,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/invalid",
-                "line": 43
+                "line": 56
               }
             },
             {
@@ -207137,6 +207592,21 @@
             },
             {
               "kind": "contrast",
+              "component": "date-picker",
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": "color.surface.raised",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/contrast/5",
+                "line": 108
+              }
+            },
+            {
+              "kind": "contrast",
               "component": "link",
               "part": null,
               "state": null,
@@ -207373,6 +207843,21 @@
                 "file": "spec/components/combobox.md",
                 "pointer": "/tokens/listbox.bg",
                 "line": 51
+              }
+            },
+            {
+              "kind": "part",
+              "component": "date-picker",
+              "part": "calendar.bg",
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/tokens/calendar.bg",
+                "line": 50
               }
             },
             {
@@ -207814,6 +208299,17 @@
             {
               "fg": "color.text.default",
               "bg": "color.surface.raised",
+              "label": "calendar text",
+              "state": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/contrast/5",
+                "line": 108
+              }
+            },
+            {
+              "fg": "color.text.default",
+              "bg": "color.surface.raised",
               "label": "combobox open fg",
               "state": "open",
               "source": {
@@ -207847,7 +208343,7 @@
             {
               "fg": "color.text.default",
               "bg": "color.surface.raised",
-              "label": "option text in the host list",
+              "label": "option text in the themed list",
               "state": null,
               "source": {
                 "file": "spec/components/select.md",
@@ -207913,7 +208409,7 @@
             {
               "fg": "color.text.muted",
               "bg": "color.surface.raised",
-              "label": "group label in the host list",
+              "label": "group label in the themed list",
               "state": null,
               "source": {
                 "file": "spec/components/select.md",
@@ -211466,7 +211962,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/label.text",
-                "line": 43
+                "line": 45
               }
             },
             {
@@ -211481,7 +211977,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/legend.text",
-                "line": 44
+                "line": 46
               }
             },
             {
@@ -212156,7 +212652,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/label.text",
-                "line": 36
+                "line": 38
               }
             },
             {
@@ -213137,6 +213633,21 @@
             },
             {
               "kind": "contrast",
+              "component": "date-picker",
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": "color.surface.raised",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/contrast/5",
+                "line": 108
+              }
+            },
+            {
+              "kind": "contrast",
               "component": "description-list",
               "part": null,
               "state": null,
@@ -214023,6 +214534,21 @@
             {
               "kind": "part",
               "component": "date-picker",
+              "part": "calendar.text",
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/tokens/calendar.text",
+                "line": 52
+              }
+            },
+            {
+              "kind": "part",
+              "component": "date-picker",
               "part": "input.text",
               "state": null,
               "variant": null,
@@ -214032,7 +214558,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/input.text",
-                "line": 40
+                "line": 42
               }
             },
             {
@@ -214827,7 +215353,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/input.text",
-                "line": 33
+                "line": 35
               }
             },
             {
@@ -215277,7 +215803,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/default/fg",
-                "line": 49
+                "line": 57
               }
             },
             {
@@ -215292,7 +215818,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/focus-visible/fg",
-                "line": 51
+                "line": 65
               }
             },
             {
@@ -215307,7 +215833,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/hover/fg",
-                "line": 50
+                "line": 61
               }
             },
             {
@@ -215322,7 +215848,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid/fg",
-                "line": 52
+                "line": 70
               }
             },
             {
@@ -215337,7 +215863,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid+focus-visible/fg",
-                "line": 53
+                "line": 74
               }
             },
             {
@@ -215352,7 +215878,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/read-only/fg",
-                "line": 54
+                "line": 79
               }
             },
             {
@@ -216657,7 +217183,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/default/fg",
-                "line": 40
+                "line": 43
               }
             },
             {
@@ -216672,7 +217198,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/focus-visible/fg",
-                "line": 42
+                "line": 51
               }
             },
             {
@@ -216687,7 +217213,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/hover/fg",
-                "line": 41
+                "line": 47
               }
             },
             {
@@ -216702,7 +217228,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/invalid/fg",
-                "line": 43
+                "line": 56
               }
             },
             {
@@ -217034,7 +217560,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/hover",
-                "line": 50
+                "line": 61
               }
             },
             {
@@ -217210,7 +217736,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/hover",
-                "line": 41
+                "line": 47
               }
             },
             {
@@ -217386,7 +217912,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/read-only",
-                "line": 54
+                "line": 79
               }
             },
             {
@@ -218398,7 +218924,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/default",
-                "line": 49
+                "line": 57
               }
             },
             {
@@ -218409,7 +218935,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 51
+                "line": 65
               }
             },
             {
@@ -218420,7 +218946,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid",
-                "line": 52
+                "line": 70
               }
             },
             {
@@ -218431,7 +218957,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/stateTokens/invalid+focus-visible",
-                "line": 53
+                "line": 74
               }
             },
             {
@@ -218717,7 +219243,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/default",
-                "line": 40
+                "line": 43
               }
             },
             {
@@ -218728,7 +219254,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/focus-visible",
-                "line": 42
+                "line": 51
               }
             },
             {
@@ -218739,7 +219265,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/stateTokens/invalid",
-                "line": 43
+                "line": 56
               }
             },
             {
@@ -218833,6 +219359,17 @@
             {
               "fg": "color.text.default",
               "bg": "color.surface.raised",
+              "label": "calendar text",
+              "state": null,
+              "source": {
+                "file": "spec/components/date-picker.md",
+                "pointer": "/contrast/5",
+                "line": 108
+              }
+            },
+            {
+              "fg": "color.text.default",
+              "bg": "color.surface.raised",
               "label": "combobox open fg",
               "state": "open",
               "source": {
@@ -218866,7 +219403,7 @@
             {
               "fg": "color.text.default",
               "bg": "color.surface.raised",
-              "label": "option text in the host list",
+              "label": "option text in the themed list",
               "state": null,
               "source": {
                 "file": "spec/components/select.md",
@@ -219045,7 +219582,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/2",
-                "line": 58
+                "line": 88
               }
             },
             {
@@ -219360,7 +219897,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/2",
-                "line": 47
+                "line": 66
               }
             },
             {
@@ -219525,7 +220062,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/input.text-disabled",
-                "line": 41
+                "line": 43
               }
             },
             {
@@ -219915,7 +220452,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/input.text-disabled",
-                "line": 34
+                "line": 36
               }
             },
             {
@@ -220083,7 +220620,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/2",
-                "line": 58
+                "line": 88
               }
             },
             {
@@ -220149,7 +220686,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/2",
-                "line": 47
+                "line": 66
               }
             },
             {
@@ -221463,7 +222000,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/1",
-                "line": 57
+                "line": 85
               }
             },
             {
@@ -222168,7 +222705,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/1",
-                "line": 46
+                "line": 63
               }
             },
             {
@@ -222498,7 +223035,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/help.text",
-                "line": 46
+                "line": 48
               }
             },
             {
@@ -222513,7 +223050,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/tokens/separator.text",
-                "line": 45
+                "line": 47
               }
             },
             {
@@ -223353,7 +223890,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/tokens/help.text",
-                "line": 37
+                "line": 39
               }
             },
             {
@@ -223697,7 +224234,7 @@
               "source": {
                 "file": "spec/components/date-picker.md",
                 "pointer": "/contrast/1",
-                "line": 57
+                "line": 85
               }
             },
             {
@@ -223730,7 +224267,7 @@
               "source": {
                 "file": "spec/components/time-picker.md",
                 "pointer": "/contrast/1",
-                "line": 46
+                "line": 63
               }
             },
             {
@@ -224363,7 +224900,7 @@
             {
               "fg": "color.text.muted",
               "bg": "color.surface.raised",
-              "label": "group label in the host list",
+              "label": "group label in the themed list",
               "state": null,
               "source": {
                 "file": "spec/components/select.md",

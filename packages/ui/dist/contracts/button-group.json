@@ -1,10 +1,10 @@
 {
   "id": "button-group",
   "name": "Button group",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "tag": "j3w1-button-group",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/button-group.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.0.0/packages/ui/src/behaviors/native.js",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/button-group.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.1.0/packages/ui/src/behaviors/native.js",
   "imports": {
     "class": "@j3w1/ui/components/button-group",
     "register": "@j3w1/ui/register/button-group",
@@ -322,6 +322,6 @@
   "copy": {
     "directory": "copy/button-group/",
     "manifest": "copy/button-group/manifest.json",
-    "digest": "sha256-cDwLnCg97uNihoyed+JN/8glm0A9n4+zRM/QL5DaRYg="
+    "digest": "sha256-47zb10NBsJiqt/cxpOBi6iiu1v9bhWbgSefrTeq8YDw="
   }
 }

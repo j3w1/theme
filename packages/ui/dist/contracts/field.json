@@ -1,10 +1,10 @@
 {
   "id": "field",
   "name": "Field",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "tag": "j3w1-field",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/field.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.0.0/packages/ui/src/behaviors/native.js",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/field.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.1.0/packages/ui/src/behaviors/native.js",
   "imports": {
     "class": "@j3w1/ui/components/field",
     "register": "@j3w1/ui/register/field",
@@ -352,6 +352,6 @@
   "copy": {
     "directory": "copy/field/",
     "manifest": "copy/field/manifest.json",
-    "digest": "sha256-3PiFLQ5+zV5JAht3zN5+YTK/CnUmpo32CSC8AnNVyuo="
+    "digest": "sha256-XYTrUGYHBXhBXHgSnxIAoJhVTAwUvikblPzm1ZqnvuI="
   }
 }

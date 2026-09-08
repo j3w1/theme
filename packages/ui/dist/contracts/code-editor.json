@@ -1,10 +1,10 @@
 {
   "id": "code-editor",
   "name": "Code editor",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "tag": "j3w1-code-editor",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/code-editor.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.0.0/packages/ui/src/behaviors/display.js",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/code-editor.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.1.0/packages/ui/src/behaviors/display.js",
   "imports": {
     "class": "@j3w1/ui/components/code-editor",
     "register": "@j3w1/ui/register/code-editor",
@@ -530,6 +530,6 @@
   "copy": {
     "directory": "copy/code-editor/",
     "manifest": "copy/code-editor/manifest.json",
-    "digest": "sha256-3EqrERW+m1VdoRSyu+5dzi2u/uxZ8i6kJ5Njb5jwHEA="
+    "digest": "sha256-MpgnU3YSK+R7yI+Ebd/+5sLQ/gQ8+UD+1fJuFp9VoDQ="
   }
 }

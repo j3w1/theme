@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-B0z6sqq8.js";
-import { n as multiselect } from "../chunks/advanced-CJyaPTcu.js";
+import { t as J3w1Element } from "../chunks/element-DdnhHcFm.js";
+import { n as multiselect } from "../chunks/advanced-BhJw9QR4.js";
 //#region .cache/ui-build/entries/components/multiselect.js
 var J3w1Multiselect = class extends J3w1Element {
 	static componentId = "multiselect";
-	static version = "1.0.0";
-	static implementationId = "sha256-eFJz+horyjGyCoszs8jFJ4OKDLzrzlUUXtsPgvmevsk=";
+	static version = "1.1.0";
+	static implementationId = "sha256-2HpJGVmfwPhdmhj3ooQU/D17AtoU4amrEAIAk1DamFc=";
 	static connect = multiselect;
 	static upgradeProperties = [
 		"disabled",

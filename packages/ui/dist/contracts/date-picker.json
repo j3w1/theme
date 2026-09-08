@@ -1,10 +1,10 @@
 {
   "id": "date-picker",
   "name": "Date picker",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "tag": "j3w1-date-picker",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/date-picker.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.0.0/packages/ui/src/behaviors/native.js",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/date-picker.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.1.0/packages/ui/src/behaviors/native.js",
   "imports": {
     "class": "@j3w1/ui/components/date-picker",
     "register": "@j3w1/ui/register/date-picker",
@@ -12,7 +12,7 @@
     "tokens": "@j3w1/ui/tokens.css"
   },
   "dom": "light",
-  "domReason": "Visible native controls retain FormData, labels, constraints, disabled fieldsets and reset. No duplicate form-value mechanism is installed.",
+  "domReason": "Theme-owned date/time editor and controls backed by the original native input for form values and constraints. Native input is the no-JavaScript fallback.",
   "api": {
     "attributes": [
       {
@@ -165,7 +165,12 @@
     "legend.text": "color.text.bright",
     "separator.text": "color.text.muted",
     "help.text": "color.text.muted",
-    "message.text": "color.status.danger.text"
+    "message.text": "color.status.danger.text",
+    "calendar.bg": "color.surface.raised",
+    "calendar.border": "color.border.overlay",
+    "calendar.text": "color.text.default",
+    "calendar.selected-bg": "color.interaction.selection.bg",
+    "calendar.selected-text": "color.interaction.selection.text"
   },
   "status": {
     "implemented": true,
@@ -177,11 +182,15 @@
     "roles": [
       "border.width.default",
       "border.width.emphasis",
+      "color.action.primary.bg",
       "color.border.active",
       "color.border.control",
       "color.border.disabled",
       "color.border.divider",
+      "color.border.overlay",
+      "color.border.selected-indicator",
       "color.code.caret",
+      "color.icon.default",
       "color.interaction.disabled.bg",
       "color.interaction.drop-target",
       "color.interaction.focus.ring-container",
@@ -194,23 +203,32 @@
       "color.status.danger.text",
       "color.surface.canvas",
       "color.surface.input",
+      "color.surface.raised",
       "color.text.bright",
       "color.text.default",
       "color.text.disabled",
       "color.text.muted",
+      "color.text.placeholder",
       "density.comfortable.control-height",
       "density.comfortable.control-padding-x",
+      "density.comfortable.row-height",
       "density.compact.control-height",
       "density.compact.control-padding-x",
+      "density.compact.row-height",
       "focus.offset",
       "focus.offset-invalid",
       "focus.ring",
+      "focus.ring-container",
       "font.family.mono",
       "font.line-height.ui-md",
       "font.line-height.ui-sm",
       "font.size.ui-md",
       "font.size.ui-sm",
+      "icon.size.md",
       "radius.none",
+      "space.12",
+      "space.16",
+      "space.2",
       "space.32",
       "space.4",
       "space.8",
@@ -219,11 +237,15 @@
     "paths": [
       "border.width.default",
       "border.width.emphasis",
+      "color.action.primary.bg",
       "color.border.active",
       "color.border.control",
       "color.border.disabled",
       "color.border.divider",
+      "color.border.overlay",
+      "color.border.selected-indicator",
       "color.code.caret",
+      "color.icon.default",
       "color.interaction.disabled.bg",
       "color.interaction.drop-target",
       "color.interaction.focus.ring",
@@ -236,9 +258,11 @@
       "color.primitive.ink.0",
       "color.primitive.ink.30",
       "color.primitive.ink.40",
+      "color.primitive.ink.52",
       "color.primitive.ink.60",
       "color.primitive.paper.90",
       "color.primitive.red.200",
+      "color.primitive.red.300",
       "color.primitive.red.350",
       "color.primitive.red.800",
       "color.primitive.red.850",
@@ -251,23 +275,32 @@
       "color.status.danger.text",
       "color.surface.canvas",
       "color.surface.input",
+      "color.surface.raised",
       "color.text.bright",
       "color.text.default",
       "color.text.disabled",
       "color.text.muted",
+      "color.text.placeholder",
       "density.comfortable.control-height",
       "density.comfortable.control-padding-x",
+      "density.comfortable.row-height",
       "density.compact.control-height",
       "density.compact.control-padding-x",
+      "density.compact.row-height",
       "focus.offset",
       "focus.offset-invalid",
       "focus.ring",
+      "focus.ring-container",
       "font.family.mono",
       "font.line-height.ui-md",
       "font.line-height.ui-sm",
       "font.size.ui-md",
       "font.size.ui-sm",
+      "icon.size.md",
       "radius.none",
+      "space.12",
+      "space.16",
+      "space.2",
       "space.32",
       "space.4",
       "space.8",
@@ -280,6 +313,11 @@
         "decisionIds": []
       },
       "border.width.emphasis": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.action.primary.bg": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -308,7 +346,24 @@
           "D-008"
         ]
       },
+      "color.border.overlay": {
+        "action": "use-and-report",
+        "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
+        "decisionIds": [
+          "D-008"
+        ]
+      },
+      "color.border.selected-indicator": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "color.code.caret": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.icon.default": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -373,6 +428,11 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "color.surface.raised": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "color.text.bright": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -393,6 +453,11 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "color.text.placeholder": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "density.comfortable.control-height": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -403,12 +468,22 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "density.comfortable.row-height": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "density.compact.control-height": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
       "density.compact.control-padding-x": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "density.compact.row-height": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -424,6 +499,11 @@
         "decisionIds": []
       },
       "focus.ring": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "focus.ring-container": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -453,7 +533,27 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "icon.size.md": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "radius.none": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "space.12": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "space.16": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "space.2": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -484,6 +584,6 @@
   "copy": {
     "directory": "copy/date-picker/",
     "manifest": "copy/date-picker/manifest.json",
-    "digest": "sha256-/vhacH8aZAGwYnqks9LXFRBmI61KByu0UlocFcu2Y2A="
+    "digest": "sha256-Go+8X5z0kEXch5hpy8hJjUhN0YAfsgOr8bq1QlZxElU="
   }
 }

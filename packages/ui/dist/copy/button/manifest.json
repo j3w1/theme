@@ -1,26 +1,26 @@
 {
   "schemaVersion": 1,
   "component": "button",
-  "version": "1.0.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/button.md",
+  "version": "1.1.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/button.md",
   "dependencies": [
     "register/button.js",
-    "chunks/element-B0z6sqq8.js",
+    "chunks/element-DdnhHcFm.js",
+    "chunks/choice-BYcDpKUh.js",
     "components/button.js",
-    "chunks/native-BFZpUch0.js",
-    "chunks/dom-BVXrzskP.js"
+    "chunks/native-B_kM8IJz.js"
   ],
   "files": {
-    "runtime/register/button.js": "sha256-VkH+HKQs/zEcutL/ZUG4rtLZwzpLyVGXfB8puuKYhNI=",
-    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
-    "runtime/components/button.js": "sha256-0jebfQeZF48tamooKlQCwoGlb6Jw1AEQP9ZGRBZz6/0=",
-    "runtime/chunks/native-BFZpUch0.js": "sha256-4FgvJoEfMvTAX/0SiIsk0wfAn46HnBmvIXq6b7hYmV4=",
-    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "runtime/register/button.js": "sha256-1bOemls7gb02YbNrTsCXr1ofhAC5GmjY0POtrpFgqzg=",
+    "runtime/chunks/element-DdnhHcFm.js": "sha256-P8IoDXll0lJKcWOXXpHcwqadD7PqHKhMe87UzfiI80g=",
+    "runtime/chunks/choice-BYcDpKUh.js": "sha256-YPGCPBUOkLX215ZCOwxBWWB6d16pSW1hL7sgtPfSWpA=",
+    "runtime/components/button.js": "sha256-xtBUE+aAUBUfGtgRl0ZpiVr7JMB57AkI6ohWHr89sKY=",
+    "runtime/chunks/native-B_kM8IJz.js": "sha256-ksEH0b3bCHels2v1k3A5/HHzX3o0CTGeGjGLZH2WFQc=",
     "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
     "component.css": "sha256-79ycU5ojNv1Z2yHzJ6KXDmshFL1we3mQNOoIwfMXnyg=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-kLEcMMhF4Tv+byKkImEgGIqqR+QYh6uOOCz/mg5hkPs=",
     "index.html": "sha256-uj00vnflsiaqN+2apiLHqJpCJQQxYasFb7KAWllw5dM=",
-    "README.md": "sha256-fXo0eTF3cZ8YgQmZ4nIfmciRAems2hkCUFefGK+jYRU="
+    "README.md": "sha256-BdPTg9L1o6SjdXH4RINPVz3gKqiY9I2oKCjgVRjrAzI="
   }
 }

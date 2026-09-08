@@ -1,3 +1,4 @@
+@import "../themed-controls.css";
 /* select — reference CSS. The text-field box around a native <select>
    with the host chevron replaced by a line icon; the open popup stays
    host-rendered. Every real pseudo-class is paired with the forced-state
