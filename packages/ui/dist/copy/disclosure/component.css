@@ -1,0 +1,62 @@
+j3w1-disclosure { display: block; }
+j3w1-disclosure {
+  color-scheme: dark;
+  background: var(--color-surface-canvas);
+  color: var(--color-text-default);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+}
+j3w1-disclosure, j3w1-disclosure *, j3w1-disclosure *::before, j3w1-disclosure *::after { box-sizing: border-box; }
+j3w1-disclosure button, j3w1-disclosure input, j3w1-disclosure select, j3w1-disclosure textarea { font: inherit; }
+j3w1-disclosure ::selection {
+  background: var(--color-interaction-text-selection-bg);
+  color: var(--color-interaction-text-selection-text);
+}
+j3w1-disclosure .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+j3w1-disclosure .disclosure {box-sizing:border-box;display:grid;gap:var(--space-12);min-width:0;padding:var(--space-12);background:var(--color-surface-default);color:var(--color-text-default);border:var(--border-width-default) solid var(--color-border-control);border-radius:var(--radius-none);font:inherit}
+j3w1-disclosure .disclosure-control {font:inherit;min-height:var(--density-control-height);padding:var(--space-8);background:var(--color-surface-input);color:var(--color-text-default);border:var(--border-width-default) solid var(--color-border-control);border-radius:var(--radius-none)}
+j3w1-disclosure .disclosure :focus-visible {outline:var(--border-width-default) dashed var(--color-interaction-focus-ring);outline-offset:var(--space-2)}
+j3w1-disclosure .disclosure :disabled {color:var(--color-text-disabled);background:var(--color-interaction-disabled-bg);border-color:var(--color-border-disabled);opacity:1}
+j3w1-disclosure .disclosure-actions {display:flex;flex-wrap:wrap;gap:var(--space-8)}
+j3w1-disclosure .disclosure summary {cursor:pointer;min-height:var(--density-control-height);padding:var(--space-8)}j3w1-disclosure .disclosure[open] {border-inline-start:var(--border-width-emphasis) solid var(--color-border-active)}j3w1-disclosure .disclosure:not([open])>:not(summary) {display:none}
+
+j3w1-disclosure [hidden] { display: none !important; }
+j3w1-disclosure .j3w1-visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+j3w1-disclosure .j3w1-readonly-text { white-space: pre; overflow: auto; font: inherit; }
+j3w1-disclosure dialog.dialog:modal, j3w1-disclosure dialog.command-palette-dialog:modal {
+  position: fixed; inset: 0; margin: auto;
+  max-width: calc(100vw - var(--space-32)); max-height: calc(100dvh - var(--space-32)); overflow: auto;
+}
+j3w1-disclosure dialog.drawer:modal { position: fixed; inset-block: 0; margin-block: 0; max-height: 100dvh; height: 100dvh; overflow: auto; }
+j3w1-disclosure dialog.drawer-start:modal { inset-inline-start: 0; inset-inline-end: auto; margin-inline: 0; }
+j3w1-disclosure dialog.drawer-end:modal { inset-inline-end: 0; inset-inline-start: auto; margin-inline: 0; }
+j3w1-disclosure .menu-list, j3w1-disclosure .combobox-listbox, j3w1-disclosure .tooltip-popup, j3w1-disclosure .popover-panel { z-index: var(--z-popover); }
+j3w1-disclosure .tooltip-popup:not([hidden]) { display: block; width: max-content; max-width: min(calc(var(--font-size-ui-md) * 24), calc(100vw - var(--space-32))); }
+j3w1-disclosure .combobox-option[aria-selected=true] { background: var(--color-interaction-selection-bg); color: var(--color-interaction-selection-text); }
+j3w1-disclosure .menu-list [role=menu] { min-width: calc(var(--font-size-ui-md) * 10); }
+j3w1-disclosure [data-tree-toggle] { border: 0; padding: 0 var(--space-4); background: transparent; color: inherit; font: inherit; cursor: pointer; }
+j3w1-disclosure .file-input-zone[data-dragging=true] { outline: var(--border-width-emphasis) dashed var(--color-interaction-drop-target); }
+j3w1-disclosure .data-table-resize { cursor: col-resize; touch-action: none; }
+j3w1-disclosure .wizard-panel[hidden] { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  j3w1-disclosure, j3w1-disclosure * { scroll-behavior: auto; animation: none; transition: none; }
+}
+@media (forced-colors: active) {
+  j3w1-disclosure .chart-series { fill: CanvasText; stroke: CanvasText; }
+  j3w1-disclosure [aria-selected=true] { border-inline-start: var(--border-width-emphasis) solid Highlight; }
+}

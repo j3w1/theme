@@ -17,7 +17,7 @@ interface Props {
 }
 
 const { title, description } = Astro.props;
-const canonical = new URL(import.meta.env.BASE_URL.replace(/\/?$/, "/"), Astro.site).href;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const buildCommit = (process.env.GITHUB_SHA ?? "").slice(0, 7);
 const inspectorData = Object.fromEntries(
   Object.entries(profiles).map(([id, p]) => [

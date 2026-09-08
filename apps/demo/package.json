@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "scripts": { "dev": "vite", "build": "vite build" },
+  "scripts": { "dev": "node scripts/prepare.mjs && vite", "build": "node scripts/prepare.mjs && vite build" },
   "dependencies": { "@j3w1/ui": "*", "vue": "3.5.42", "vue-router": "5.3.1" }
 }

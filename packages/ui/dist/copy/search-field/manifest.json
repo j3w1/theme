@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "component": "search-field",
+  "version": "1.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/search-field.md",
+  "dependencies": [
+    "register/search-field.js",
+    "chunks/element-B0z6sqq8.js",
+    "components/search-field.js",
+    "chunks/native-BFZpUch0.js",
+    "chunks/dom-BVXrzskP.js"
+  ],
+  "files": {
+    "runtime/register/search-field.js": "sha256-QgtzciBPOhxXEvzTTOPu4Uu9TMQjo0J31VrXV5k2zjw=",
+    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
+    "runtime/components/search-field.js": "sha256-zGJkc5JUCLoaHcV9odDAyaS/EcqXmkf7DiJJCsgQItk=",
+    "runtime/chunks/native-BFZpUch0.js": "sha256-4FgvJoEfMvTAX/0SiIsk0wfAn46HnBmvIXq6b7hYmV4=",
+    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
+    "component.css": "sha256-LKiZdfWdQXHUoEdFnG1o5Aka8mOS8NP98IdndPFnsbQ=",
+    "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
+    "element.html": "sha256-HUFhtyi3m/bOmHYH5vU0uD/8e/TFVZ6EmUZzoucKCCM=",
+    "index.html": "sha256-pNWMnOcTZTr/TNcGVa53Ac8S3/6iWYnBj5B5CjnTcVI=",
+    "README.md": "sha256-pox6KjstNrokkx3wYp0XpuB+rh4FYYr3rODJOk40Nxk="
+  }
+}

@@ -1,0 +1,6 @@
+import { n as registerElement } from "../chunks/element-B0z6sqq8.js";
+import { J3w1Toast } from "../components/toast.js";
+//#region .cache/ui-build/entries/register/toast.js
+var element = registerElement("j3w1-toast", J3w1Toast);
+//#endregion
+export { element };

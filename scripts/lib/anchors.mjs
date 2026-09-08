@@ -18,10 +18,11 @@ export const anchorFor = {
   pattern: (name) => `pattern-${name}`,
   formField: (prefix, id, part) => `${prefix}-field-${id.length}-${id}-${part}`,
   builder: (name) => `builder-${name}`,
+  uiExample: (prefix, name) => `${prefix}-${name}`,
   figma: (name) => `figma-${name}`,
   specimen: (id) => `s-${id}`,
   nonExample: (id) => `x-${id}`,
   fixture: (id) => `fx-${id.toLowerCase()}`,
 };
 
-export const siteAnchor = (manifest, anchor) => `${manifest.site.url}#${anchor}`;
+export const siteAnchor = (manifest, anchor) => `${manifest.site.url}reference/#${anchor}`;

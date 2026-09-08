@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "component": "command-palette",
+  "version": "1.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/command-palette.md",
+  "dependencies": [
+    "register/command-palette.js",
+    "chunks/element-B0z6sqq8.js",
+    "components/command-palette.js",
+    "chunks/advanced-CMQ72B0K.js",
+    "chunks/dom-BVXrzskP.js",
+    "chunks/markup-DeQ4bEMR.js"
+  ],
+  "files": {
+    "runtime/register/command-palette.js": "sha256-LXklee1R8eWHLYeaKJvQ5w2KuomoLtY3AOj73rqDRpU=",
+    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
+    "runtime/components/command-palette.js": "sha256-ZqesrvNaKOBWmmxFGUxIhlPt6fIyPltbqF1k9wbBi+k=",
+    "runtime/chunks/advanced-CMQ72B0K.js": "sha256-Pk8FkW1j04h2wHiMoLzZ0ltVt+241Dw0hVfGbKBkHH0=",
+    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "runtime/chunks/markup-DeQ4bEMR.js": "sha256-Eyyx7MKBoqXK4i2HaVUQhKUM066L2wIggABt6jAdgas=",
+    "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
+    "component.css": "sha256-zZXOIZ9tKcAmcEX2Gpq9wIRQw2Zua8vMACd3N4opnsg=",
+    "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
+    "element.html": "sha256-mNRkLE+yYA4PARM4rv5bXDj90Oq8yxQLPgoUW8bX6ns=",
+    "index.html": "sha256-I5o97Y3ykrn6MCqMmtWvFGTxDBltracgMFnF25iNwZk=",
+    "README.md": "sha256-xUSyvw1hkOOVuuslFk2ciTNY4UINByyVg45qW08SvSM="
+  }
+}

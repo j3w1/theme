@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "component": "progress",
+  "version": "1.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/progress.md",
+  "dependencies": [
+    "register/progress.js",
+    "chunks/element-B0z6sqq8.js",
+    "components/progress.js",
+    "chunks/native-BFZpUch0.js",
+    "chunks/dom-BVXrzskP.js"
+  ],
+  "files": {
+    "runtime/register/progress.js": "sha256-gH0rzb7ooWfymjjYBT0m/ukP7Dys1EFVefmKgVAz4Q4=",
+    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
+    "runtime/components/progress.js": "sha256-y+U/5J67IgMa33jYJ8C9KjldYiKTRXrCP6ioczKz/yE=",
+    "runtime/chunks/native-BFZpUch0.js": "sha256-4FgvJoEfMvTAX/0SiIsk0wfAn46HnBmvIXq6b7hYmV4=",
+    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
+    "component.css": "sha256-cebHWicmP/JxYj/w4G4zerYVfOxEeiIeGzfFrrWOIXI=",
+    "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
+    "element.html": "sha256-Bm2XYmsDcMrSYl/yKw1emmfA++ea/EjE5wzSjdg0eyw=",
+    "index.html": "sha256-PMCQa/n0AlL1bSbPiT96VPfHTQgJmUowUoHElZGYf5k=",
+    "README.md": "sha256-VBhC41AFqPTIFkolUtyl0qRnKxKKG3pHhjurRPGh43o="
+  }
+}

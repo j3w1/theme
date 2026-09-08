@@ -12,7 +12,13 @@ for (const framework of ["html", "vue", "react", "astro"]) {
     await page.getByRole("button", { name: "Save", exact: true }).click();
     await expect(page.getByRole("status")).toHaveText("Ready");
     expect(await project.evaluate(input => input.validity.valueMissing)).toBe(true);
+    // Dismiss the browser's own validation popup before the next pointer action.
+    await page.keyboard.press("Escape");
     await page.locator("#field").evaluate(element => { element.value = "From the component API"; });
+    // Move real keyboard focus out of the formerly invalid field. Firefox's
+    // native validation UI can consume the first pointer click after Escape.
+    await project.press("Tab");
+    await expect(page.getByLabel("Enabled", { exact: true })).toBeFocused();
     await page.getByLabel("Enabled", { exact: true }).check();
     await page.getByRole("button", { name: "Save", exact: true }).click();
     await expect(page.getByRole("status")).toHaveText('{"project":"From the component API","enabled":"yes"}');

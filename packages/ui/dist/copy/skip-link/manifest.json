@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "component": "skip-link",
+  "version": "1.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/skip-link.md",
+  "dependencies": [
+    "register/skip-link.js",
+    "chunks/element-B0z6sqq8.js",
+    "components/skip-link.js",
+    "chunks/native-BFZpUch0.js",
+    "chunks/dom-BVXrzskP.js"
+  ],
+  "files": {
+    "runtime/register/skip-link.js": "sha256-/wTJGkiY7ClR6zqF08WkftjhXYCXH0oql6qGq/k+814=",
+    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
+    "runtime/components/skip-link.js": "sha256-Zww7508ekFyPHJtibRfUND8l3o2uUrWXCxm34JhOra0=",
+    "runtime/chunks/native-BFZpUch0.js": "sha256-4FgvJoEfMvTAX/0SiIsk0wfAn46HnBmvIXq6b7hYmV4=",
+    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
+    "component.css": "sha256-KCkIExZyQJQhySZCEQIOrm9lPtDzOq95R9+IED0MI8A=",
+    "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
+    "element.html": "sha256-TllH5VfEO0Xn2+KsNK2k/W4RJWPv9CVLWE38btvoOpw=",
+    "index.html": "sha256-/HDnZh+ZTER/j0o82CsKR1s11+5KNWqzGpG3Q+RrG1Q=",
+    "README.md": "sha256-FZNnpyNCS9ZuxXPfvtqqimM7Mc2iK999kcZUp9nUsh0="
+  }
+}

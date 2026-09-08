@@ -67,7 +67,13 @@
 /* visited: only colour may change in a real :visited rule */
 .link:visited,
 [data-state-visited] .link {
-  color: var(--color-text-default);
+  color: var(--color-text-link);
+}
+
+@media (hover: hover) {
+  .link:visited:hover {
+    color: var(--color-text-link-hover);
+  }
 }
 
 /* current: the bar replaces the underline; no hover fill */

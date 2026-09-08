@@ -31,6 +31,9 @@
   vertical-align: middle;
 }
 
+.data-table thead th { color: var(--color-text-bright); }
+.data-table tbody th { color: inherit; font-weight: var(--font-weight-regular); }
+
 .data-table .data-table-header-select,
 .data-table .data-table-cell-select {
   width: var(--density-control-height, 32px);

@@ -1,0 +1,535 @@
+{
+  "id": "code-editor",
+  "name": "Code editor",
+  "version": "1.0.0",
+  "tag": "j3w1-code-editor",
+  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/code-editor.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.0.0/packages/ui/src/behaviors/display.js",
+  "imports": {
+    "class": "@j3w1/ui/components/code-editor",
+    "register": "@j3w1/ui/register/code-editor",
+    "styles": "@j3w1/ui/styles/code-editor.css",
+    "tokens": "@j3w1/ui/tokens.css"
+  },
+  "dom": "light",
+  "domReason": "Light DOM retains static content, native semantics, label relationships and host composition without duplicating controls.",
+  "api": {
+    "attributes": [
+      {
+        "name": "disabled",
+        "description": "Disable the native controls owned by this instance."
+      },
+      {
+        "name": "loading",
+        "description": "Mark the primary control busy and prevent duplicate activation."
+      }
+    ],
+    "properties": [
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "description": "Delegates disabled state to native children.",
+        "controller": false,
+        "readonly": false
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "description": "Native control name; application form keys remain explicit.",
+        "controller": false,
+        "readonly": false
+      }
+    ],
+    "methods": [
+      {
+        "name": "refresh",
+        "signature": "(): void",
+        "description": "Reconnect behavior after replacing native child structure."
+      },
+      {
+        "name": "focus",
+        "signature": "(options?: FocusOptions): void",
+        "description": "Focus the first usable native control."
+      },
+      {
+        "name": "setText",
+        "signature": "(text: string): void",
+        "description": "Replace the bounded read-only text view; no code or shell execution occurs."
+      }
+    ],
+    "events": [
+      {
+        "name": "j3w1-action",
+        "detail": "{ action: string }",
+        "description": "Request a developer-view action; editing and execution belong to the host."
+      }
+    ]
+  },
+  "variants": [
+    {
+      "id": "default",
+      "name": "JavaScript",
+      "description": "Every syntax role in one twelve-line sample."
+    },
+    {
+      "id": "markup",
+      "name": "Markup",
+      "description": "Tags, attributes, an entity escape and a heading."
+    },
+    {
+      "id": "folded",
+      "name": "Folded region",
+      "description": "A collapsed block with its fold marker and skipped line numbers."
+    }
+  ],
+  "states": [
+    "default",
+    "focus-visible",
+    "selected",
+    "selected+container-inactive",
+    "current",
+    "read-only"
+  ],
+  "dependencies": [],
+  "tokens": {
+    "root.bg": "color.code.bg",
+    "root.border": "color.border.control",
+    "root.ring": "color.interaction.focus.ring-container",
+    "gutter.bg": "color.code.gutter-bg",
+    "gutter.rule": "color.code.gutter-rule",
+    "gutter.bg-read-only": "color.surface.sunken",
+    "line-number.text": "color.code.line-number",
+    "line-number.text-active": "color.code.line-number-active",
+    "line.bg-current": "color.code.current-line",
+    "caret.bg": "color.code.caret",
+    "selection.bg": "color.code.selection-bg",
+    "selection.bg-inactive": "color.interaction.selection.inactive-bg",
+    "selection.text-inactive": "color.interaction.selection.inactive-text",
+    "bracket.outline": "color.code.bracket-match",
+    "indent.guide": "color.code.indent-guide",
+    "whitespace.text": "color.code.whitespace",
+    "fold.text": "color.text.muted",
+    "fold.border": "color.border.control",
+    "syntax.keyword": "color.code.syntax.keyword",
+    "syntax.string": "color.code.syntax.string",
+    "syntax.comment": "color.code.syntax.comment",
+    "syntax.number": "color.code.syntax.number",
+    "syntax.constant": "color.code.syntax.constant",
+    "syntax.function": "color.code.syntax.function",
+    "syntax.variable": "color.code.syntax.variable",
+    "syntax.type": "color.code.syntax.type",
+    "syntax.operator": "color.code.syntax.operator",
+    "syntax.punctuation": "color.code.syntax.punctuation",
+    "syntax.property": "color.code.syntax.property",
+    "syntax.heading": "color.code.syntax.heading",
+    "syntax.tag": "color.code.syntax.tag",
+    "syntax.attribute": "color.code.syntax.attribute",
+    "syntax.escape": "color.code.syntax.escape",
+    "syntax.invalid": "color.code.syntax.invalid",
+    "syntax.deprecated": "color.code.syntax.deprecated"
+  },
+  "status": {
+    "implemented": true,
+    "packaged": true,
+    "verification": "See separate revision-aware execution evidence"
+  },
+  "styleDependencies": [],
+  "tokenDependencies": {
+    "roles": [
+      "border.width.default",
+      "border.width.emphasis",
+      "color.border.control",
+      "color.code.bg",
+      "color.code.caret",
+      "color.code.current-line",
+      "color.code.gutter-bg",
+      "color.code.gutter-rule",
+      "color.code.indent-guide",
+      "color.code.line-number",
+      "color.code.line-number-active",
+      "color.code.syntax.attribute",
+      "color.code.syntax.comment",
+      "color.code.syntax.constant",
+      "color.code.syntax.deprecated",
+      "color.code.syntax.escape",
+      "color.code.syntax.function",
+      "color.code.syntax.heading",
+      "color.code.syntax.invalid",
+      "color.code.syntax.keyword",
+      "color.code.syntax.number",
+      "color.code.syntax.operator",
+      "color.code.syntax.property",
+      "color.code.syntax.punctuation",
+      "color.code.syntax.string",
+      "color.code.syntax.tag",
+      "color.code.syntax.type",
+      "color.code.syntax.variable",
+      "color.code.whitespace",
+      "color.interaction.drop-target",
+      "color.interaction.selection.bg",
+      "color.interaction.selection.text",
+      "color.interaction.text-selection.bg",
+      "color.interaction.text-selection.text",
+      "color.surface.canvas",
+      "color.text.default",
+      "color.text.muted",
+      "focus.offset-container",
+      "focus.ring-container",
+      "font.family.mono",
+      "font.line-height.code",
+      "font.line-height.ui-md",
+      "font.size.code",
+      "font.size.ui-md",
+      "font.weight.bold",
+      "font.weight.regular",
+      "radius.none",
+      "space.2",
+      "space.32",
+      "space.4",
+      "space.8",
+      "z.popover"
+    ],
+    "paths": [
+      "border.width.default",
+      "border.width.emphasis",
+      "color.border.control",
+      "color.code.bg",
+      "color.code.caret",
+      "color.code.current-line",
+      "color.code.gutter-bg",
+      "color.code.gutter-rule",
+      "color.code.indent-guide",
+      "color.code.line-number",
+      "color.code.line-number-active",
+      "color.code.syntax.attribute",
+      "color.code.syntax.comment",
+      "color.code.syntax.constant",
+      "color.code.syntax.deprecated",
+      "color.code.syntax.escape",
+      "color.code.syntax.function",
+      "color.code.syntax.heading",
+      "color.code.syntax.invalid",
+      "color.code.syntax.keyword",
+      "color.code.syntax.number",
+      "color.code.syntax.operator",
+      "color.code.syntax.property",
+      "color.code.syntax.punctuation",
+      "color.code.syntax.string",
+      "color.code.syntax.tag",
+      "color.code.syntax.type",
+      "color.code.syntax.variable",
+      "color.code.whitespace",
+      "color.interaction.drop-target",
+      "color.interaction.focus.ring-container",
+      "color.interaction.selection.bg",
+      "color.interaction.selection.text",
+      "color.interaction.text-selection.bg",
+      "color.interaction.text-selection.text",
+      "color.primitive.ink.0",
+      "color.primitive.ink.20",
+      "color.primitive.ink.40",
+      "color.primitive.ink.60",
+      "color.primitive.paper.90",
+      "color.primitive.red.100",
+      "color.primitive.red.200",
+      "color.primitive.red.350",
+      "color.primitive.red.800",
+      "color.primitive.red.850",
+      "color.primitive.rose.350",
+      "color.primitive.rose.450",
+      "color.primitive.rose.550",
+      "color.primitive.rose.600",
+      "color.primitive.rose.650",
+      "color.primitive.rose.700",
+      "color.primitive.rose.800",
+      "color.surface.canvas",
+      "color.text.default",
+      "color.text.muted",
+      "focus.offset-container",
+      "focus.ring-container",
+      "font.family.mono",
+      "font.line-height.code",
+      "font.line-height.ui-md",
+      "font.size.code",
+      "font.size.ui-md",
+      "font.weight.bold",
+      "font.weight.regular",
+      "radius.none",
+      "space.2",
+      "space.32",
+      "space.4",
+      "space.8",
+      "z.popover"
+    ],
+    "eligibility": {
+      "border.width.default": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "border.width.emphasis": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.border.control": {
+        "action": "use-and-report",
+        "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
+        "decisionIds": [
+          "D-007"
+        ]
+      },
+      "color.code.bg": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.code.caret": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.code.current-line": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.code.gutter-bg": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.code.gutter-rule": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.code.indent-guide": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.code.line-number": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.code.line-number-active": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.code.syntax.attribute": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.code.syntax.comment": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.code.syntax.constant": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.code.syntax.deprecated": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.code.syntax.escape": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.code.syntax.function": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.code.syntax.heading": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.code.syntax.invalid": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.code.syntax.keyword": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.code.syntax.number": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.code.syntax.operator": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.code.syntax.property": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.code.syntax.punctuation": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.code.syntax.string": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.code.syntax.tag": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.code.syntax.type": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.code.syntax.variable": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.code.whitespace": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.interaction.drop-target": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.interaction.selection.bg": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.interaction.selection.text": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.interaction.text-selection.bg": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.interaction.text-selection.text": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.surface.canvas": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.text.default": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.text.muted": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "focus.offset-container": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "focus.ring-container": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "font.family.mono": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "font.line-height.code": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "font.line-height.ui-md": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "font.size.code": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "font.size.ui-md": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "font.weight.bold": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "font.weight.regular": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "radius.none": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "space.2": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "space.32": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "space.4": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "space.8": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "z.popover": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    }
+  },
+  "maturity": "stable",
+  "copy": {
+    "directory": "copy/code-editor/",
+    "manifest": "copy/code-editor/manifest.json",
+    "digest": "sha256-DLIHxN5i7qMfa0O/v3ug4Uj1PrG1iHf6Slx/546+eso="
+  }
+}

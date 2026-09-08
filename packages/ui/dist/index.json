@@ -1,0 +1,474 @@
+{
+  "version": "1.0.0",
+  "components": [
+    {
+      "id": "button",
+      "name": "Button",
+      "maturity": "stable",
+      "contract": "contracts/button.json",
+      "examples": "examples/button.json"
+    },
+    {
+      "id": "icon-button",
+      "name": "Icon button",
+      "maturity": "stable",
+      "contract": "contracts/icon-button.json",
+      "examples": "examples/icon-button.json"
+    },
+    {
+      "id": "link",
+      "name": "Link",
+      "maturity": "stable",
+      "contract": "contracts/link.json",
+      "examples": "examples/link.json"
+    },
+    {
+      "id": "button-group",
+      "name": "Button group",
+      "maturity": "stable",
+      "contract": "contracts/button-group.json",
+      "examples": "examples/button-group.json"
+    },
+    {
+      "id": "segmented-control",
+      "name": "Segmented control",
+      "maturity": "stable",
+      "contract": "contracts/segmented-control.json",
+      "examples": "examples/segmented-control.json"
+    },
+    {
+      "id": "field",
+      "name": "Field",
+      "maturity": "stable",
+      "contract": "contracts/field.json",
+      "examples": "examples/field.json"
+    },
+    {
+      "id": "text-field",
+      "name": "Text field",
+      "maturity": "stable",
+      "contract": "contracts/text-field.json",
+      "examples": "examples/text-field.json"
+    },
+    {
+      "id": "textarea",
+      "name": "Textarea",
+      "maturity": "stable",
+      "contract": "contracts/textarea.json",
+      "examples": "examples/textarea.json"
+    },
+    {
+      "id": "select",
+      "name": "Select",
+      "maturity": "stable",
+      "contract": "contracts/select.json",
+      "examples": "examples/select.json"
+    },
+    {
+      "id": "checkbox",
+      "name": "Checkbox",
+      "maturity": "stable",
+      "contract": "contracts/checkbox.json",
+      "examples": "examples/checkbox.json"
+    },
+    {
+      "id": "radio-group",
+      "name": "Radio group",
+      "maturity": "stable",
+      "contract": "contracts/radio-group.json",
+      "examples": "examples/radio-group.json"
+    },
+    {
+      "id": "switch",
+      "name": "Switch",
+      "maturity": "stable",
+      "contract": "contracts/switch.json",
+      "examples": "examples/switch.json"
+    },
+    {
+      "id": "range",
+      "name": "Range",
+      "maturity": "stable",
+      "contract": "contracts/range.json",
+      "examples": "examples/range.json"
+    },
+    {
+      "id": "fieldset",
+      "name": "Fieldset",
+      "maturity": "stable",
+      "contract": "contracts/fieldset.json",
+      "examples": "examples/fieldset.json"
+    },
+    {
+      "id": "number-field",
+      "name": "Number field",
+      "maturity": "stable",
+      "contract": "contracts/number-field.json",
+      "examples": "examples/number-field.json"
+    },
+    {
+      "id": "search-field",
+      "name": "Search field",
+      "maturity": "stable",
+      "contract": "contracts/search-field.json",
+      "examples": "examples/search-field.json"
+    },
+    {
+      "id": "combobox",
+      "name": "Combobox",
+      "maturity": "stable",
+      "contract": "contracts/combobox.json",
+      "examples": "examples/combobox.json"
+    },
+    {
+      "id": "multiselect",
+      "name": "Multiple selection",
+      "maturity": "stable",
+      "contract": "contracts/multiselect.json",
+      "examples": "examples/multiselect.json"
+    },
+    {
+      "id": "date-picker",
+      "name": "Date picker",
+      "maturity": "stable",
+      "contract": "contracts/date-picker.json",
+      "examples": "examples/date-picker.json"
+    },
+    {
+      "id": "time-picker",
+      "name": "Time picker",
+      "maturity": "stable",
+      "contract": "contracts/time-picker.json",
+      "examples": "examples/time-picker.json"
+    },
+    {
+      "id": "file-input",
+      "name": "File input",
+      "maturity": "stable",
+      "contract": "contracts/file-input.json",
+      "examples": "examples/file-input.json"
+    },
+    {
+      "id": "repeater",
+      "name": "Repeater",
+      "maturity": "stable",
+      "contract": "contracts/repeater.json",
+      "examples": "examples/repeater.json"
+    },
+    {
+      "id": "wizard",
+      "name": "Wizard",
+      "maturity": "stable",
+      "contract": "contracts/wizard.json",
+      "examples": "examples/wizard.json"
+    },
+    {
+      "id": "form-builder",
+      "name": "Form builder",
+      "maturity": "draft",
+      "contract": "contracts/form-builder.json",
+      "examples": "examples/form-builder.json"
+    },
+    {
+      "id": "tabs",
+      "name": "Tabs",
+      "maturity": "stable",
+      "contract": "contracts/tabs.json",
+      "examples": "examples/tabs.json"
+    },
+    {
+      "id": "breadcrumbs",
+      "name": "Breadcrumbs",
+      "maturity": "stable",
+      "contract": "contracts/breadcrumbs.json",
+      "examples": "examples/breadcrumbs.json"
+    },
+    {
+      "id": "pagination",
+      "name": "Pagination",
+      "maturity": "stable",
+      "contract": "contracts/pagination.json",
+      "examples": "examples/pagination.json"
+    },
+    {
+      "id": "sidebar-nav",
+      "name": "Sidebar navigation",
+      "maturity": "stable",
+      "contract": "contracts/sidebar-nav.json",
+      "examples": "examples/sidebar-nav.json"
+    },
+    {
+      "id": "toolbar",
+      "name": "Toolbar",
+      "maturity": "stable",
+      "contract": "contracts/toolbar.json",
+      "examples": "examples/toolbar.json"
+    },
+    {
+      "id": "menu",
+      "name": "Menu",
+      "maturity": "stable",
+      "contract": "contracts/menu.json",
+      "examples": "examples/menu.json"
+    },
+    {
+      "id": "command-palette",
+      "name": "Command palette",
+      "maturity": "stable",
+      "contract": "contracts/command-palette.json",
+      "examples": "examples/command-palette.json"
+    },
+    {
+      "id": "tree",
+      "name": "Tree",
+      "maturity": "stable",
+      "contract": "contracts/tree.json",
+      "examples": "examples/tree.json"
+    },
+    {
+      "id": "disclosure",
+      "name": "Disclosure",
+      "maturity": "stable",
+      "contract": "contracts/disclosure.json",
+      "examples": "examples/disclosure.json"
+    },
+    {
+      "id": "skip-link",
+      "name": "Skip link",
+      "maturity": "stable",
+      "contract": "contracts/skip-link.json",
+      "examples": "examples/skip-link.json"
+    },
+    {
+      "id": "card",
+      "name": "Card",
+      "maturity": "stable",
+      "contract": "contracts/card.json",
+      "examples": "examples/card.json"
+    },
+    {
+      "id": "list",
+      "name": "List",
+      "maturity": "stable",
+      "contract": "contracts/list.json",
+      "examples": "examples/list.json"
+    },
+    {
+      "id": "description-list",
+      "name": "Description list",
+      "maturity": "stable",
+      "contract": "contracts/description-list.json",
+      "examples": "examples/description-list.json"
+    },
+    {
+      "id": "badge",
+      "name": "Badge",
+      "maturity": "stable",
+      "contract": "contracts/badge.json",
+      "examples": "examples/badge.json"
+    },
+    {
+      "id": "chip",
+      "name": "Chip",
+      "maturity": "stable",
+      "contract": "contracts/chip.json",
+      "examples": "examples/chip.json"
+    },
+    {
+      "id": "avatar",
+      "name": "Avatar",
+      "maturity": "stable",
+      "contract": "contracts/avatar.json",
+      "examples": "examples/avatar.json"
+    },
+    {
+      "id": "table",
+      "name": "Table",
+      "maturity": "stable",
+      "contract": "contracts/table.json",
+      "examples": "examples/table.json"
+    },
+    {
+      "id": "data-table",
+      "name": "Data table",
+      "maturity": "stable",
+      "contract": "contracts/data-table.json",
+      "examples": "examples/data-table.json"
+    },
+    {
+      "id": "timeline",
+      "name": "Timeline",
+      "maturity": "stable",
+      "contract": "contracts/timeline.json",
+      "examples": "examples/timeline.json"
+    },
+    {
+      "id": "chart",
+      "name": "Chart",
+      "maturity": "stable",
+      "contract": "contracts/chart.json",
+      "examples": "examples/chart.json"
+    },
+    {
+      "id": "kbd",
+      "name": "Keyboard key",
+      "maturity": "stable",
+      "contract": "contracts/kbd.json",
+      "examples": "examples/kbd.json"
+    },
+    {
+      "id": "alert",
+      "name": "Alert",
+      "maturity": "stable",
+      "contract": "contracts/alert.json",
+      "examples": "examples/alert.json"
+    },
+    {
+      "id": "toast",
+      "name": "Toast",
+      "maturity": "stable",
+      "contract": "contracts/toast.json",
+      "examples": "examples/toast.json"
+    },
+    {
+      "id": "progress",
+      "name": "Progress",
+      "maturity": "stable",
+      "contract": "contracts/progress.json",
+      "examples": "examples/progress.json"
+    },
+    {
+      "id": "loading-indicator",
+      "name": "Loading indicator",
+      "maturity": "stable",
+      "contract": "contracts/loading-indicator.json",
+      "examples": "examples/loading-indicator.json"
+    },
+    {
+      "id": "skeleton",
+      "name": "Skeleton",
+      "maturity": "stable",
+      "contract": "contracts/skeleton.json",
+      "examples": "examples/skeleton.json"
+    },
+    {
+      "id": "tooltip",
+      "name": "Tooltip",
+      "maturity": "stable",
+      "contract": "contracts/tooltip.json",
+      "examples": "examples/tooltip.json"
+    },
+    {
+      "id": "popover",
+      "name": "Popover",
+      "maturity": "stable",
+      "contract": "contracts/popover.json",
+      "examples": "examples/popover.json"
+    },
+    {
+      "id": "dialog",
+      "name": "Dialog",
+      "maturity": "stable",
+      "contract": "contracts/dialog.json",
+      "examples": "examples/dialog.json"
+    },
+    {
+      "id": "drawer",
+      "name": "Drawer",
+      "maturity": "stable",
+      "contract": "contracts/drawer.json",
+      "examples": "examples/drawer.json"
+    },
+    {
+      "id": "empty-state",
+      "name": "Empty state",
+      "maturity": "stable",
+      "contract": "contracts/empty-state.json",
+      "examples": "examples/empty-state.json"
+    },
+    {
+      "id": "error-state",
+      "name": "Error state",
+      "maturity": "stable",
+      "contract": "contracts/error-state.json",
+      "examples": "examples/error-state.json"
+    },
+    {
+      "id": "code-editor",
+      "name": "Code editor",
+      "maturity": "stable",
+      "contract": "contracts/code-editor.json",
+      "examples": "examples/code-editor.json"
+    },
+    {
+      "id": "editor-search",
+      "name": "Editor search",
+      "maturity": "stable",
+      "contract": "contracts/editor-search.json",
+      "examples": "examples/editor-search.json"
+    },
+    {
+      "id": "diagnostics",
+      "name": "Diagnostics",
+      "maturity": "stable",
+      "contract": "contracts/diagnostics.json",
+      "examples": "examples/diagnostics.json"
+    },
+    {
+      "id": "diff-view",
+      "name": "Diff view",
+      "maturity": "stable",
+      "contract": "contracts/diff-view.json",
+      "examples": "examples/diff-view.json"
+    },
+    {
+      "id": "terminal",
+      "name": "Terminal",
+      "maturity": "stable",
+      "contract": "contracts/terminal.json",
+      "examples": "examples/terminal.json"
+    },
+    {
+      "id": "settings-panel",
+      "name": "Settings panel",
+      "maturity": "stable",
+      "contract": "contracts/settings-panel.json",
+      "examples": "examples/settings-panel.json"
+    },
+    {
+      "id": "admin-form",
+      "name": "Admin form",
+      "maturity": "stable",
+      "contract": "contracts/admin-form.json",
+      "examples": "examples/admin-form.json"
+    },
+    {
+      "id": "filterable-table",
+      "name": "Filterable table",
+      "maturity": "stable",
+      "contract": "contracts/filterable-table.json",
+      "examples": "examples/filterable-table.json"
+    },
+    {
+      "id": "i3-window-frame",
+      "name": "i3 window frame",
+      "maturity": "stable",
+      "contract": "contracts/i3-window-frame.json",
+      "examples": "examples/i3-window-frame.json"
+    },
+    {
+      "id": "file-browser",
+      "name": "File browser",
+      "maturity": "stable",
+      "contract": "contracts/file-browser.json",
+      "examples": "examples/file-browser.json"
+    },
+    {
+      "id": "compact-dashboard",
+      "name": "Compact dashboard",
+      "maturity": "stable",
+      "contract": "contracts/compact-dashboard.json",
+      "examples": "examples/compact-dashboard.json"
+    }
+  ]
+}

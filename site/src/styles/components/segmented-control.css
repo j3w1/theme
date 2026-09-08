@@ -1,0 +1,11 @@
+@import "./radio-group.css";
+.segmented-control {box-sizing:border-box;display:grid;gap:var(--space-12);min-width:0;padding:var(--space-12);background:var(--color-surface-default);color:var(--color-text-default);border:var(--border-width-default) solid var(--color-border-control);border-radius:var(--radius-none);font:inherit}
+.segmented-control-control {font:inherit;min-height:var(--density-control-height);padding:var(--space-8);background:var(--color-surface-input);color:var(--color-text-default);border:var(--border-width-default) solid var(--color-border-control);border-radius:var(--radius-none)}
+.segmented-control :focus-visible,[data-state-focus-visible] .segmented-control [data-demo-focus-target] {outline:var(--border-width-default) dashed var(--color-interaction-focus-ring);outline-offset:var(--space-2)}
+.segmented-control :disabled,[data-state-disabled] .segmented-control-control {color:var(--color-text-disabled);background:var(--color-interaction-disabled-bg);border-color:var(--color-border-disabled);opacity:1}
+.segmented-control-actions {display:flex;flex-wrap:wrap;gap:var(--space-8)}
+.segmented-control-options {display:flex;flex-wrap:wrap}.segmented-control label {display:flex;align-items:center;gap:var(--space-4);padding:var(--space-8);border:var(--border-width-default) solid var(--color-border-control)}.segmented-control label:has(:checked),[data-state-checked] .segmented-control label:first-child {background:var(--color-interaction-selection-bg);color:var(--color-interaction-selection-text)}.segmented-control input {accent-color:var(--color-action-primary-bg)}
+
+.segmented-control input:checked:focus-visible {outline-color:var(--color-interaction-focus-ring-container)}
+
+[data-state-focus-visible] .segmented-control input:checked {outline-color:var(--color-interaction-focus-ring-container)}

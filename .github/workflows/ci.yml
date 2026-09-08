@@ -64,9 +64,37 @@ jobs:
           retention-days: 7
           include-hidden-files: true
 
-  browser:
+  ui-consumers:
     runs-on: ubuntu-latest
     needs: build
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium firefox webkit
+      - name: Install packed HTML, Vue, React, Astro and copy consumers
+        run: npm run ui:consumers
+      - name: Cross-browser native forms, lifecycle, keyboard and complete copy flows
+        run: npm run test:ui
+      - name: Record package, fixture and protocol identities
+        run: npm run ui:report
+      - uses: actions/upload-artifact@v7
+        with:
+          name: ui-consumer-evidence
+          path: .cache/ui-evidence/report.json
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: ui-consumer-failures
+          path: .cache/ui-evidence/
+          include-hidden-files: true
+
+  browser:
+    runs-on: ubuntu-latest
+    needs: [build, ui-consumers]
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
@@ -78,6 +106,10 @@ jobs:
         with:
           name: site-dist
           path: dist
+      - uses: actions/download-artifact@v8
+        with:
+          name: ui-consumer-evidence
+          path: .cache/ui-evidence
       - run: npx playwright install --with-deps chromium
       - name: Keyboard, axe, reflow, motion, no-JS, enhancements, print
         id: browser-tests
@@ -90,6 +122,8 @@ jobs:
       - name: Validate report, evidence and immutable specimen digest
         if: always()
         run: npm run verification:check
+      - name: Publish matching packed-consumer evidence
+        run: npm run ui:publish-evidence
       - name: Report keyboard, filtering and no-JS checks
         if: always()
         run: npm run test:verification
@@ -124,7 +158,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: [build, browser]
+    needs: [build, ui-consumers, browser]
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     permissions:
       pages: write

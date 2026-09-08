@@ -1,6 +1,11 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import { sha256, stableJson } from "./fs.mjs";
+import { sha256, stableJson, listFiles, readText } from "./fs.mjs";
+
+export async function consumerProtocolDigest() {
+  const files = [...await listFiles("tests/ui"), "tests/browser/evidence-fixture.mjs", "playwright.ui.config.mjs", "scripts/verify-ui-consumers.mjs", "scripts/lib/ui-consumer-examples.mjs", "scripts/lib/ui-evidence.mjs", "scripts/ui-verification-report.mjs"];
+  return sha256(stableJson(Object.fromEntries(await Promise.all(files.sort().map(async file => [file, sha256(await readText(file))])))));
+}
 
 export async function snapshotDirectory(root) {
   const files = {};

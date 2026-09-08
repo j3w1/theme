@@ -1,0 +1,7 @@
+---
+import { getCollection } from "astro:content";
+import PortalLayout from "../../layouts/PortalLayout.astro";
+import DocSection from "../../components/DocSection.astro";
+const docs = await getCollection("docs");
+---
+<PortalLayout title="Foundations" description="True Black / Rose is the permanent default: black canvas, warm dark panels, the original rose foregrounds and dark-red actions. Exact roles and accessibility rules remain authoritative."><div class="portal-prose">{["identity", "foundations", "accessibility"].map(id => <DocSection entry={docs.find(doc => doc.data.id === id)} />)}</div></PortalLayout>

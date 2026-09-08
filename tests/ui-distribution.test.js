@@ -4,7 +4,8 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 import os from "node:os";
 import { execFileSync } from "node:child_process";
-import { moduleClosure } from "../scripts/lib/ui-distribution.mjs";
+import { moduleClosure, cssSourceClosure } from "../scripts/lib/ui-distribution.mjs";
+import { scopeRecipeCss } from "../scripts/lib/recipe-css.mjs";
 import { sha256, repoRoot } from "../scripts/lib/fs.mjs";
 import { registerElement } from "../packages/ui/src/internal/element.js";
 
@@ -55,4 +56,25 @@ test("registration is explicit and repeated registration cannot adopt a foreign 
   assert.equal(registerElement("j3w1-fixture", Component, registry), Component);
   assert.equal(entries.size, 1);
   assert.throws(() => registerElement("j3w1-fixture", class Foreign {}, registry), /different implementation/);
+  class Original { static componentId="copy"; static version="1.0.0"; static implementationId="same-content-digest"; }
+  class Duplicate { static componentId="copy"; static version="1.0.0"; static implementationId="same-content-digest"; }
+  registerElement("j3w1-copy",Original,registry);
+  assert.equal(registerElement("j3w1-copy",Duplicate,registry),Original);
+  class Upgrade extends Duplicate { static version="1.0.1"; }
+  assert.throws(()=>registerElement("j3w1-copy",Upgrade,registry),/different implementation/);
+});
+
+test("CSS dependency closure preserves container rules and rejects external or cyclic imports", async t => {
+  const root = await fs.mkdtemp(path.join(os.tmpdir(), "j3w1-css-closure-"));
+  t.after(() => fs.rm(root, { recursive: true, force: true }));
+  await fs.writeFile(path.join(root,"base.css"), '.control {color:var(--color-text-default)}');
+  await fs.writeFile(path.join(root,"entry.css"), '@import "./base.css"; @container (width < 400px) { .control {display:block} }');
+  const closure=await cssSourceClosure(root,["entry.css"]);
+  assert.deepEqual([...closure.keys()],["base.css","entry.css"]);
+  const scoped=[...closure.values()].map(source=>scopeRecipeCss(source)).join("\n");
+  assert.match(scoped,/@container/);assert.match(scoped,/\.j3w1-recipe \.control/);assert.doesNotMatch(scoped,/@import/);
+  await fs.writeFile(path.join(root,"entry.css"), '@import "https://example.test/external.css";');
+  await assert.rejects(cssSourceClosure(root,["entry.css"]));
+  await fs.writeFile(path.join(root,"entry.css"), '@import "./base.css";');await fs.writeFile(path.join(root,"base.css"),'@import "./entry.css";');
+  await assert.rejects(cssSourceClosure(root,["entry.css"]),/Circular CSS dependency/);
 });

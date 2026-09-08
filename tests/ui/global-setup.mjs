@@ -1,5 +1,9 @@
-import { readJson } from "../../scripts/lib/fs.mjs";
-import { verifyConsumerSubject } from "../../scripts/lib/ui-evidence.mjs";
+import { readJson, stableJson } from "../../scripts/lib/fs.mjs";
+import { promises as fs } from "node:fs";
+import { verifyConsumerSubject, consumerProtocolDigest } from "../../scripts/lib/ui-evidence.mjs";
 export default async function setup() {
-  await verifyConsumerSubject(await readJson(".cache/ui-consumers.json"));
+  const consumer = await readJson(".cache/ui-consumers.json");
+  await verifyConsumerSubject(consumer);
+  await fs.mkdir(".cache/ui-evidence", { recursive: true });
+  await fs.writeFile(".cache/ui-evidence/subject.json", stableJson({ tarballDigest: consumer.tarballDigest, fixturesDigest: consumer.fixtures.digest, protocolDigest: await consumerProtocolDigest() }));
 }

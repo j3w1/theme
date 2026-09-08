@@ -5,36 +5,14 @@ import "../styles/site.css";
 import "../styles/hex-swatches.css";
 import "../styles/print.css";
 import "../styles/tools.css";
+import PortalLayout from "./PortalLayout.astro";
 import { withBase } from "../lib/base";
 import { usageRevision } from "../lib/usage";
 const { title, description } = Astro.props;
-const canonical = new URL(Astro.url.pathname, Astro.site).href;
 ---
-<!doctype html>
-<html lang="en" data-density="compact">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="color-scheme" content="dark" />
-    <title>{title} · j3w1 theme</title>
-    <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
-    <link rel="icon" href={withBase("favicon.svg")} type="image/svg+xml" />
-  </head>
-  <body>
-    <a class="skip-link" href="#main">Skip to content</a>
-    <header class="site-header">
+<PortalLayout title={title} description={description} density="compact">
       <nav aria-label="Theme tools"><a href={withBase("")}>Specification</a> · <a href={withBase("tokens/")}>Token usage</a> · <a href={withBase("recipes/")}>Recipes</a> · <a href={withBase("kit/")}>Task kit</a> · <a href={withBase("workbench/")}>Workbench</a> · <a href={withBase("releases/")}>Release comparison</a></nav>
-      <h1>{title}</h1>
-      <p>{description}</p>
       <p class="stamp">{usageRevision ? <>Source revision <code>{usageRevision}</code></> : "Local build: source locations are relative to this checkout; no published revision is claimed."}</p>
-    </header>
-    <main id="main" class="tool-main"><slot /></main>
+    <div class="tool-main"><slot /></div>
     <footer class="tool-main"><a href={withBase("ports/")}>Port capabilities and mapping evidence</a> · <a href={withBase("patterns/validation-recovery/")}>Validation and recovery</a> · <a href={withBase("builder/")}>Form builder</a> · <a href={withBase("figma/")}>Figma Variables bridge</a></footer>
-    <script>
-      import { initCopy } from "../scripts/copy";
-      document.documentElement.classList.add("js");
-      initCopy();
-    </script>
-  </body>
-</html>
+</PortalLayout>

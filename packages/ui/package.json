@@ -16,7 +16,12 @@
     "./styles/*": "./dist/styles/*",
     "./tokens.css": "./dist/tokens.css",
     "./manifest.json": "./dist/manifest.json",
-    "./examples.json": "./dist/examples.json"
+    "./examples.json": "./dist/examples.json",
+    "./examples/*": "./dist/examples/*",
+    "./contracts/*": "./dist/contracts/*",
+    "./index.json": "./dist/index.json",
+    "./frameworks/*": "./dist/frameworks/*",
+    "./enhance/*": { "types": "./dist/enhance/*.d.ts", "import": "./dist/enhance/*.js" }
   },
   "bin": { "j3w1-ui": "./dist/cli.js" },
   "scripts": { "build": "node ../../scripts/build-ui.mjs" },

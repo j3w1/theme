@@ -4,7 +4,19 @@
    state matrix ([data-state-<part>]) render each state statically. Token
    variables only. */
 
+.diff-view-scroll {
+  position: relative;
+  max-width: 100%;
+  overflow: auto;
+}
+
+.diff-view-scroll:focus-visible {
+  outline: var(--focus-ring-container);
+  outline-offset: var(--focus-offset-container);
+}
+
 .diff-view {
+  position: relative;
   display: table;
   width: 100%;
   min-width: 0;

@@ -1,0 +1,50 @@
+---
+import PortalLayout from "../../layouts/PortalLayout.astro";
+import { withBase } from "../../lib/base";
+import { theme } from "../../lib/theme";
+import index from "../../../../packages/ui/dist/index.json";
+const command = `j3w1-ui kit --components text-field,button,dialog --out ./vendor/j3w1/task`;
+---
+<PortalLayout title="Build with an agent" description="Give your agent a pinned contract and a complete implementation. The primary workflow is discovering, consuming and verifying exact j3w1 artifacts inside another application.">
+  <div class="portal-actions"><a class="portal-primary" href={withBase("ui/index.json")}>Compact implementation index</a><a href={withBase("llms.txt")}>llms.txt</a><a href={withBase("agents/consume.md")}>Canonical consumption contract</a></div>
+  <section class="portal-panel portal-section" data-agent-kit data-version={theme.version}>
+    <h2>Prepare an agent kit</h2>
+    <p>Select the components your task needs. The installed CLI includes their complete dependency closure, canonical contracts, eligibility disclosures and shared rules.</p>
+    <form data-kit-form>
+      <div class="portal-actions"><label>Framework <select name="framework"><option value="vue">Vue</option><option value="html">HTML</option><option value="react">React</option><option value="astro">Astro</option><option value="native">Native host</option></select></label><label>Consumption mode <select name="mode"><option value="package">Package</option><option value="copy">Copy source</option><option value="mapping">Map to a host</option></select></label></div>
+      <label>Components <select name="components" multiple size="8" required>{index.components.map(({ id, name }) => <option value={id} selected={["text-field", "button", "dialog"].includes(id)}>{name} · {id}</option>)}</select></label>
+      <p>Use Ctrl/Command to select multiple entries, or Shift for a range. Keyboard selection is supported by the native control.</p>
+      <div class="portal-actions"><button type="submit">Prepare command</button><button type="button" data-copy-kit>Copy command</button></div>
+    </form>
+    <pre class="portal-code"><code data-kit-command>{command}</code></pre><p role="status" data-kit-status></p>
+    <noscript><p>Use the example command above and replace its component IDs. All canonical instructions remain available below.</p></noscript>
+  </section>
+  <section class="portal-prose"><h2>A bounded consumption workflow</h2><ol><li>Pin one release, currently <code>{theme.version}</code>, and record the artifact digest.</li><li>Read the canonical consumption contract and compact implementation index.</li><li>Select component IDs. Read only their canonical JSON, implementation contract and maintained examples, plus shared accessibility and eligibility rules.</li><li>Prefer package mode in compatible web apps. Use complete copy bundles when source ownership is needed. Use the existing mapping workflow for incompatible/native hosts.</li><li>Integrate the native markup, CSS and registration closure; bind your application data and actions.</li><li>Verify your real form, keyboard, focus and lifecycle behavior. Record actual results separately from implementation availability.</li></ol>
+  <h2>Prepare a copy task</h2><pre class="portal-code"><code>{command}</code></pre><p>Use the installed binary from the exact package or release tarball. The output contains all selected component closures and refuses to overwrite application files. <a href={withBase("implement/")}>Full installation and framework guide →</a></p>
+  <h2>Machine entry points</h2><div class="portal-table-wrap"><table class="portal-table"><thead><tr><th>Need</th><th>Artifact</th></tr></thead><tbody><tr><td>Small discovery request</td><td><a href={withBase("ui/index.json")}>ui/index.json</a></td></tr><tr><td>One implementation/API</td><td><code>ui/contracts/&lt;id&gt;.json</code></td></tr><tr><td>Maintained native markup</td><td><code>ui/examples/&lt;id&gt;.json</code></td></tr><tr><td>Complete copy files and digests</td><td><code>ui/copy/&lt;id&gt;/manifest.json</code></td></tr><tr><td>Canonical meaning and eligibility</td><td><code>exports/components/&lt;id&gt;.json</code></td></tr><tr><td>All implementation metadata</td><td><a href={withBase("ui/manifest.json")}>ui/manifest.json</a></td></tr></tbody></table></div>
+  <p class="portal-note">Site URLs help humans explore the current release. For reproducible agent fetches, use the matching immutable release tag and its published digests. Never combine current-site examples with a different installed version.</p><h2>Mapping compatibility</h2><p>The existing <a href={withBase("kit/")}>canonical task kit</a>, lock format and portability disclosures remain available. An official package dependency is recorded alongside that integration evidence; it does not pretend to be a newly verified native port.</p></section>
+</PortalLayout>
+<script>
+  const root = document.querySelector<HTMLElement>("[data-agent-kit]");
+  if (root) {
+    const form = root.querySelector<HTMLFormElement>("form")!;
+    const components = form.elements.namedItem("components") as HTMLSelectElement;
+    const framework = form.elements.namedItem("framework") as HTMLSelectElement;
+    const mode = form.elements.namedItem("mode") as HTMLSelectElement;
+    const command = root.querySelector<HTMLElement>("[data-kit-command]")!;
+    const status = root.querySelector<HTMLElement>("[data-kit-status]")!;
+    const requested = new URL(location.href).searchParams.getAll("component");
+    if (requested.some(id => [...components.options].some(option => option.value === id))) for (const option of components.options) option.selected = requested.includes(option.value);
+    const prepare = () => {
+      if (framework.value === "native") mode.value = "mapping";
+      if (!form.reportValidity()) return;
+      const ids = [...components.selectedOptions].map(option => option.value);
+      command.textContent = `j3w1-ui kit --components ${ids.join(",")} --framework ${framework.value} --mode ${mode.value} --out ./vendor/j3w1/task`;
+      status.textContent = `${ids.length} selected. Run with @j3w1/ui ${root.dataset.version}; the CLI verifies and writes a new directory.`;
+    };
+    form.addEventListener("submit", event => { event.preventDefault(); prepare(); });
+    form.addEventListener("change", prepare);
+    root.querySelector("[data-copy-kit]")!.addEventListener("click", async () => { try { await navigator.clipboard.writeText(command.textContent!); status.textContent = "Command copied."; } catch { status.textContent = "Select the command above and copy it manually."; } });
+    prepare();
+  }
+</script>

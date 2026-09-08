@@ -1,0 +1,312 @@
+j3w1-diff-view { display: block; }
+j3w1-diff-view {
+  color-scheme: dark;
+  background: var(--color-surface-canvas);
+  color: var(--color-text-default);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+}
+j3w1-diff-view, j3w1-diff-view *, j3w1-diff-view *::before, j3w1-diff-view *::after { box-sizing: border-box; }
+j3w1-diff-view button, j3w1-diff-view input, j3w1-diff-view select, j3w1-diff-view textarea { font: inherit; }
+j3w1-diff-view ::selection {
+  background: var(--color-interaction-text-selection-bg);
+  color: var(--color-interaction-text-selection-text);
+}
+j3w1-diff-view .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+j3w1-diff-view .diff-view-scroll {
+  position: relative;
+  max-width: 100%;
+  overflow: auto;
+}
+
+j3w1-diff-view .diff-view-scroll:focus-visible {
+  outline: var(--focus-ring-container);
+  outline-offset: var(--focus-offset-container);
+}
+
+j3w1-diff-view .diff-view {
+  position: relative;
+  display: table;
+  width: 100%;
+  min-width: 0;
+  border-collapse: collapse;
+  background: var(--color-code-bg);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-code);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--font-line-height-code);
+  tab-size: 2;
+  unicode-bidi: isolate;
+}
+
+j3w1-diff-view .diff-view-row > td {
+  padding: 0;
+  vertical-align: top;
+  border-bottom: var(--border-width-default) solid var(--color-border-divider);
+}
+
+j3w1-diff-view .diff-view-row > .diff-view-ln {
+  min-width: 3ch;
+  padding: 0 var(--space-8);
+  color: var(--color-text-muted);
+  text-align: end;
+  white-space: nowrap;
+  user-select: none;
+}
+
+j3w1-diff-view .diff-view-row > .diff-view-marker {
+  min-width: 1ch;
+  padding: 0 var(--space-4);
+  border-inline-start: var(--border-width-default) solid var(--color-code-gutter-rule);
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  white-space: pre;
+  user-select: none;
+}
+
+j3w1-diff-view .diff-view-row > .diff-view-text {
+  width: 100%;
+  padding: 0 var(--space-8);
+  white-space: pre;
+  direction: ltr;
+}
+
+j3w1-diff-view .diff-view-side-new.diff-view-ln {
+  border-inline-start: var(--border-width-default) solid var(--color-code-gutter-rule);
+}
+
+j3w1-diff-view .diff-view-split .diff-view-text {
+  width: 50%;
+}
+j3w1-diff-view .diff-view-row-added > td,
+j3w1-diff-view .diff-view-cell-added {
+  background: var(--color-diff-added-bg);
+}
+
+j3w1-diff-view .diff-view-row-added .diff-view-marker,
+j3w1-diff-view .diff-view-marker.diff-view-cell-added {
+  color: var(--color-diff-added-gutter);
+}
+
+j3w1-diff-view .diff-view-row-removed > td,
+j3w1-diff-view .diff-view-cell-removed {
+  background: var(--color-diff-removed-bg);
+}
+
+j3w1-diff-view .diff-view-row-removed .diff-view-marker,
+j3w1-diff-view .diff-view-marker.diff-view-cell-removed {
+  color: var(--color-diff-removed-gutter);
+}
+
+j3w1-diff-view .diff-view-row-modified > td {
+  background: var(--color-diff-modified-bg);
+}
+
+j3w1-diff-view .diff-view-row-modified .diff-view-marker {
+  color: var(--color-diff-modified-gutter);
+}
+
+j3w1-diff-view .diff-view-split .diff-view-row-added .diff-view-side-old {
+  background: var(--color-code-bg);
+}
+j3w1-diff-view .diff-view-row-hunk > td {
+  background: var(--color-diff-header-bg);
+  color: var(--color-text-default);
+}
+
+j3w1-diff-view .diff-view-row-hunk .diff-view-marker {
+  color: var(--color-text-muted);
+}
+
+j3w1-diff-view .diff-view-range {
+  color: var(--color-text-muted);
+}
+j3w1-diff-view .diff-view-word-added {
+  background: transparent;
+  color: inherit;
+  text-decoration: underline var(--color-diff-added-emphasis);
+  text-decoration-thickness: var(--border-width-emphasis);
+  text-decoration-skip-ink: none;
+  text-underline-offset: var(--space-2);
+}
+
+j3w1-diff-view .diff-view-word-removed {
+  background: transparent;
+  color: inherit;
+  text-decoration: underline line-through var(--color-diff-removed-emphasis);
+  text-decoration-thickness: var(--border-width-default);
+  text-decoration-skip-ink: none;
+  text-underline-offset: var(--space-2);
+}
+j3w1-diff-view .diff-view-row-conflict > td:first-child {
+  border-inline-start: calc(3 * var(--border-width-default)) double var(--color-diff-conflict-border);
+}
+
+j3w1-diff-view .diff-view-row-conflict > td:last-child {
+  border-inline-end: calc(3 * var(--border-width-default)) double var(--color-diff-conflict-border);
+}
+
+j3w1-diff-view .diff-view-row-conflict-start > td {
+  border-top: calc(3 * var(--border-width-default)) double var(--color-diff-conflict-border);
+}
+
+j3w1-diff-view .diff-view-row-conflict-end > td {
+  border-bottom: calc(3 * var(--border-width-default)) double var(--color-diff-conflict-border);
+}
+
+j3w1-diff-view .diff-view-row-conflict-start > td,
+j3w1-diff-view .diff-view-row-conflict-mid > td,
+j3w1-diff-view .diff-view-row-conflict-end > td {
+  background: var(--color-diff-header-bg);
+  color: var(--color-text-bright);
+  font-weight: var(--font-weight-bold);
+}
+
+j3w1-diff-view .diff-view-row-ours .diff-view-marker {
+  color: var(--color-diff-removed-gutter);
+}
+
+j3w1-diff-view .diff-view-row-theirs .diff-view-marker {
+  color: var(--color-diff-added-gutter);
+}
+j3w1-diff-view .diff-view-row > .diff-view-fold-cell {
+  padding: 0 var(--space-8);
+  background: var(--color-diff-header-bg);
+}
+
+j3w1-diff-view .diff-view-fold {
+  display: inline-flex;
+  gap: var(--space-4);
+  align-items: center;
+  min-height: var(--density-control-height, 32px);
+  padding: 0 var(--space-4);
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-none);
+  color: var(--color-text-link);
+  font: inherit;
+  cursor: pointer;
+}
+
+j3w1-diff-view .diff-view-chevron {
+  flex: none;
+  transition: transform var(--motion-duration-base);
+}
+
+j3w1-diff-view .diff-view-fold-expanded {
+  display: none;
+}
+
+@media (hover: hover) {
+  j3w1-diff-view .diff-view-fold:hover {
+    background: var(--color-interaction-hover-bg-strong);
+    color: var(--color-text-link-hover);
+  }
+}
+
+j3w1-diff-view .diff-view-fold:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+@media (hover: hover) {
+  j3w1-diff-view .diff-view-row:hover > .diff-view-ln,
+  j3w1-diff-view .diff-view-row:hover > .diff-view-marker {
+    background: var(--color-interaction-hover-bg);
+  }
+}
+j3w1-diff-view .diff-view-row[aria-current="true"] > td,
+j3w1-diff-view .diff-view-row:target > td {
+  background: var(--color-interaction-selection-bg);
+  color: var(--color-interaction-selection-text);
+}
+
+j3w1-diff-view .diff-view-row[aria-current="true"] .diff-view-marker,
+j3w1-diff-view .diff-view-row:target .diff-view-marker {
+  color: var(--color-interaction-selection-text);
+}
+j3w1-diff-view .diff-view-row:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+j3w1-diff-view .diff-view-row[aria-current="true"]:focus-visible {
+  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline-offset: var(--focus-offset);
+}
+j3w1-diff-view .diff-view-fold[aria-expanded="true"] .diff-view-chevron {
+  transform: rotate(90deg);
+}
+
+j3w1-diff-view .diff-view-fold[aria-expanded="true"] .diff-view-fold-collapsed {
+  display: none;
+}
+
+j3w1-diff-view .diff-view-fold[aria-expanded="true"] .diff-view-fold-expanded {
+  display: inline;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  j3w1-diff-view .diff-view-chevron {
+    transition-duration: 0.01ms;
+  }
+}
+
+@media (forced-colors: active) {
+  j3w1-diff-view .diff-view-row:focus-visible,
+  j3w1-diff-view .diff-view-fold:focus-visible {
+    outline-color: Highlight;
+  }
+
+  j3w1-diff-view .diff-view-row[aria-current="true"] > td {
+    background: Highlight;
+    color: HighlightText;
+  }
+
+  j3w1-diff-view .diff-view-row-conflict > td {
+    border-color: CanvasText;
+  }
+}
+
+j3w1-diff-view [hidden] { display: none !important; }
+j3w1-diff-view .j3w1-visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+j3w1-diff-view .j3w1-readonly-text { white-space: pre; overflow: auto; font: inherit; }
+j3w1-diff-view dialog.dialog:modal, j3w1-diff-view dialog.command-palette-dialog:modal {
+  position: fixed; inset: 0; margin: auto;
+  max-width: calc(100vw - var(--space-32)); max-height: calc(100dvh - var(--space-32)); overflow: auto;
+}
+j3w1-diff-view dialog.drawer:modal { position: fixed; inset-block: 0; margin-block: 0; max-height: 100dvh; height: 100dvh; overflow: auto; }
+j3w1-diff-view dialog.drawer-start:modal { inset-inline-start: 0; inset-inline-end: auto; margin-inline: 0; }
+j3w1-diff-view dialog.drawer-end:modal { inset-inline-end: 0; inset-inline-start: auto; margin-inline: 0; }
+j3w1-diff-view .menu-list, j3w1-diff-view .combobox-listbox, j3w1-diff-view .tooltip-popup, j3w1-diff-view .popover-panel { z-index: var(--z-popover); }
+j3w1-diff-view .tooltip-popup:not([hidden]) { display: block; width: max-content; max-width: min(calc(var(--font-size-ui-md) * 24), calc(100vw - var(--space-32))); }
+j3w1-diff-view .combobox-option[aria-selected=true] { background: var(--color-interaction-selection-bg); color: var(--color-interaction-selection-text); }
+j3w1-diff-view .menu-list [role=menu] { min-width: calc(var(--font-size-ui-md) * 10); }
+j3w1-diff-view [data-tree-toggle] { border: 0; padding: 0 var(--space-4); background: transparent; color: inherit; font: inherit; cursor: pointer; }
+j3w1-diff-view .file-input-zone[data-dragging=true] { outline: var(--border-width-emphasis) dashed var(--color-interaction-drop-target); }
+j3w1-diff-view .data-table-resize { cursor: col-resize; touch-action: none; }
+j3w1-diff-view .wizard-panel[hidden] { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  j3w1-diff-view, j3w1-diff-view * { scroll-behavior: auto; animation: none; transition: none; }
+}
+@media (forced-colors: active) {
+  j3w1-diff-view .chart-series { fill: CanvasText; stroke: CanvasText; }
+  j3w1-diff-view [aria-selected=true] { border-inline-start: var(--border-width-emphasis) solid Highlight; }
+}

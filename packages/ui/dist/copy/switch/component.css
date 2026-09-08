@@ -1,0 +1,180 @@
+j3w1-switch { display: inline-block; }
+j3w1-switch {
+  color-scheme: dark;
+  background: var(--color-surface-canvas);
+  color: var(--color-text-default);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+}
+j3w1-switch, j3w1-switch *, j3w1-switch *::before, j3w1-switch *::after { box-sizing: border-box; }
+j3w1-switch button, j3w1-switch input, j3w1-switch select, j3w1-switch textarea { font: inherit; }
+j3w1-switch ::selection {
+  background: var(--color-interaction-text-selection-bg);
+  color: var(--color-interaction-text-selection-text);
+}
+j3w1-switch .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+j3w1-switch .switch-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-8);
+  min-width: 0;
+  color: var(--color-text-default);
+}
+
+j3w1-switch .switch-name {
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+}
+
+j3w1-switch .switch {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  min-height: var(--space-24);
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+  font: inherit;
+  cursor: pointer;
+  outline: 0;
+}
+
+j3w1-switch .switch-track {
+  display: flex;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  width: calc(var(--icon-size-md) * 2);
+  height: var(--icon-size-md);
+  padding: var(--space-2);
+  background: var(--color-surface-input);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+}
+
+j3w1-switch .switch-thumb {
+  display: block;
+  width: calc(var(--icon-size-md) - 2 * var(--border-width-default) - 2 * var(--space-2));
+  height: calc(var(--icon-size-md) - 2 * var(--border-width-default) - 2 * var(--space-2));
+  background: var(--color-text-default);
+}
+
+j3w1-switch .switch-state {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+  white-space: nowrap;
+}
+
+j3w1-switch .switch-state-on {
+  display: none;
+}
+@media (hover: hover) {
+  j3w1-switch .switch:hover:not(:disabled) .switch-track {
+    background: var(--color-interaction-hover-bg);
+  }
+
+  j3w1-switch .switch[aria-checked="true"]:hover:not(:disabled) .switch-track {
+    background: var(--color-action-primary-hover-bg);
+  }
+}
+j3w1-switch .switch[aria-checked="true"] .switch-track {
+  justify-content: flex-end;
+  background: var(--color-action-primary-bg);
+}
+
+j3w1-switch .switch[aria-checked="true"] .switch-thumb {
+  background: var(--color-action-primary-text);
+}
+
+j3w1-switch .switch[aria-checked="true"] .switch-state-off {
+  display: none;
+}
+
+j3w1-switch .switch[aria-checked="true"] .switch-state-on {
+  display: inline;
+}
+j3w1-switch .switch:focus-visible .switch-track {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+j3w1-switch .switch[aria-checked="true"]:focus-visible .switch-track {
+  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline-offset: var(--focus-offset);
+}
+j3w1-switch .switch:disabled {
+  cursor: not-allowed;
+}
+
+j3w1-switch .switch:disabled .switch-track {
+  background: var(--color-interaction-disabled-bg);
+  border-color: var(--color-border-disabled);
+}
+
+j3w1-switch .switch:disabled .switch-thumb {
+  background: var(--color-text-disabled);
+}
+
+j3w1-switch .switch-row:has(.switch:disabled) .switch-name,
+j3w1-switch .switch:disabled .switch-state {
+  color: var(--color-text-disabled);
+}
+
+@media (forced-colors: active) {
+  j3w1-switch .switch:focus-visible .switch-track {
+    outline-color: Highlight;
+  }
+
+  j3w1-switch .switch[aria-checked="true"] .switch-track {
+    background: Highlight;
+  }
+
+  j3w1-switch .switch[aria-checked="true"] .switch-thumb {
+    background: HighlightText;
+  }
+}
+
+j3w1-switch [hidden] { display: none !important; }
+j3w1-switch .j3w1-visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+j3w1-switch .j3w1-readonly-text { white-space: pre; overflow: auto; font: inherit; }
+j3w1-switch dialog.dialog:modal, j3w1-switch dialog.command-palette-dialog:modal {
+  position: fixed; inset: 0; margin: auto;
+  max-width: calc(100vw - var(--space-32)); max-height: calc(100dvh - var(--space-32)); overflow: auto;
+}
+j3w1-switch dialog.drawer:modal { position: fixed; inset-block: 0; margin-block: 0; max-height: 100dvh; height: 100dvh; overflow: auto; }
+j3w1-switch dialog.drawer-start:modal { inset-inline-start: 0; inset-inline-end: auto; margin-inline: 0; }
+j3w1-switch dialog.drawer-end:modal { inset-inline-end: 0; inset-inline-start: auto; margin-inline: 0; }
+j3w1-switch .menu-list, j3w1-switch .combobox-listbox, j3w1-switch .tooltip-popup, j3w1-switch .popover-panel { z-index: var(--z-popover); }
+j3w1-switch .tooltip-popup:not([hidden]) { display: block; width: max-content; max-width: min(calc(var(--font-size-ui-md) * 24), calc(100vw - var(--space-32))); }
+j3w1-switch .combobox-option[aria-selected=true] { background: var(--color-interaction-selection-bg); color: var(--color-interaction-selection-text); }
+j3w1-switch .menu-list [role=menu] { min-width: calc(var(--font-size-ui-md) * 10); }
+j3w1-switch [data-tree-toggle] { border: 0; padding: 0 var(--space-4); background: transparent; color: inherit; font: inherit; cursor: pointer; }
+j3w1-switch .file-input-zone[data-dragging=true] { outline: var(--border-width-emphasis) dashed var(--color-interaction-drop-target); }
+j3w1-switch .data-table-resize { cursor: col-resize; touch-action: none; }
+j3w1-switch .wizard-panel[hidden] { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  j3w1-switch, j3w1-switch * { scroll-behavior: auto; animation: none; transition: none; }
+}
+@media (forced-colors: active) {
+  j3w1-switch .chart-series { fill: CanvasText; stroke: CanvasText; }
+  j3w1-switch [aria-selected=true] { border-inline-start: var(--border-width-emphasis) solid Highlight; }
+}

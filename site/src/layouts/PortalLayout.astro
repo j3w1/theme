@@ -1,0 +1,51 @@
+---
+import "../styles/tokens.generated.css";
+import "../styles/base.css";
+import "../styles/hex-swatches.css";
+import "../styles/portal.css";
+import { withBase } from "../lib/base";
+import { theme } from "../lib/theme";
+import { anchorFor } from "../../../scripts/lib/anchors.mjs";
+const { title, description, density = "comfortable" } = Astro.props;
+const navigation = [["", "Overview"], ["foundations/", "Foundations"], ["components/", "Components"], ["patterns/", "Patterns"], ["tokens/", "Tokens"], ["tools/", "Tools"], ["implement/", "Implement"], ["agents/", "For agents"], ["ports/", "Ports"], ["releases/", "Releases"]];
+const commands = [...navigation, ["demo/", "Vue application demo"], ["reference/", "Complete UI theme specification"]];
+const id = (name) => anchorFor.uiExample("portal", name);
+---
+<!doctype html>
+<html lang="en" data-density={density}>
+  <head>
+    <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" /><meta name="description" content={description} />
+    <title>{title} · j3w1 UI Theme Spec</title>
+    <meta property="og:title" content={`${title} · j3w1 UI Theme Spec`} /><meta property="og:description" content={description} /><meta property="og:url" content={new URL(Astro.url.pathname, Astro.site).href} /><meta property="og:type" content="website" />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site).href} />
+    <link rel="icon" href={withBase("favicon.svg")} type="image/svg+xml" />
+    <link rel="alternate" type="text/plain" href={withBase("llms.txt")} title="Agent entry points" />
+    <link rel="stylesheet" href={withBase("ui/styles/command-palette.css")} /><slot name="head" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="portal-shell">
+      <aside class="portal-sidebar" aria-label="Design system navigation">
+        <a class="portal-wordmark" href={withBase("")}>j3w1<span> / theme</span></a>
+        <p class="portal-eyebrow">UI THEME SPEC / {theme.version}</p>
+        <nav>{navigation.map(([path, label], index) => <a href={withBase(path)} aria-current={Astro.url.pathname === withBase(path) ? "page" : undefined}><span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>{label}</a>)}</nav>
+        <div class="portal-sidebar-foot"><span class="portal-eyebrow">TRUE BLACK / ROSE</span><a href={withBase("demo/")}>Open Vue demo ↗</a><a href={withBase("reference/")}>Full specification →</a><a href="https://github.com/j3w1/theme">Source on GitHub ↗</a></div>
+      </aside>
+      <div class="portal-workspace">
+        <header class="portal-topline"><span>j3w1 / {title}</span><span>Vue · HTML · React · Astro</span></header>
+        <main id="main" class="portal-main"><header class="portal-intro"><p class="portal-eyebrow">J3W1 / DESIGN SYSTEM</p><h1>{title}</h1><p>{description}</p></header><slot /></main>
+        <footer class="portal-footer">One versioned specification. Native semantics. Complete source.<br />Code MIT · Specimens and prose CC BY 4.0 · <a href={withBase("agents/")}>Machine-readable entry points</a></footer>
+      </div>
+    </div>
+    <j3w1-command-palette shortcut class="portal-command">
+      <div class="command-palette"><button class="command-palette-control portal-command-trigger" type="button" data-open aria-label="Search the design system">⌘ <kbd>Ctrl K</kbd></button>
+        <dialog class="command-palette-dialog" aria-labelledby={id("command-title")}><h2 id={id("command-title")}>j3w1 / command</h2><label for={id("query")}>Find a destination</label><input class="command-palette-control" id={id("query")} type="search" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-controls={id("results")} autocomplete="off" placeholder="> type a command" />
+          <ul id={id("results")} role="listbox" aria-label="Destinations">{commands.map(([path, label]) => <li role="option" data-action={path || "overview"}><span>{path === "demo/" ? "DEMO" : "SPEC"}</span><a href={withBase(path)} tabindex="-1">{label}</a></li>)}</ul><p role="status" data-command-status></p><button class="command-palette-control" type="button" data-close>Close · Esc</button>
+        </dialog>
+      </div>
+    </j3w1-command-palette>
+    <script type="module" is:inline src={withBase("ui/register/command-palette.js")}></script>
+    <script>import { initCopy } from "../scripts/copy"; document.documentElement.classList.add("js"); initCopy();</script>
+  </body>
+</html>

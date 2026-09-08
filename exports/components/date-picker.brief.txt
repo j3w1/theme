@@ -1,7 +1,7 @@
 j3w1/theme implementation brief — date-picker
-theme: j3w1-theme 1.0.0  profile: default  sourceDigest: sha256-pZuI7JH94R5ihk9Cc/pOkv3+iuDLNbfAhxD7HmHIRdw=
+theme: j3w1-theme 1.0.0  profile: default  sourceDigest: sha256-ZBxaPGMyHoIGQgEd1TPIM+OenmDQ3M0HQ2eDr2AW7oI=
 pin: https://raw.githubusercontent.com/j3w1/theme/v1.0.0/exports/components/date-picker.json
-spec: spec/components/date-picker.md  site: https://j3w1.github.io/theme/#c-date-picker
+spec: spec/components/date-picker.md  site: https://j3w1.github.io/theme/reference/#c-date-picker
 maturity: stable  priority: R1
 
 Summary: A native date input, alone or as a from/to pair; the calendar popup belongs to the host and is styled only through color-scheme.

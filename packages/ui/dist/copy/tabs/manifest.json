@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "component": "tabs",
+  "version": "1.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/tabs.md",
+  "dependencies": [
+    "register/tabs.js",
+    "chunks/element-B0z6sqq8.js",
+    "components/tabs.js",
+    "chunks/navigation-CPDNZIIt.js",
+    "chunks/dom-BVXrzskP.js"
+  ],
+  "files": {
+    "runtime/register/tabs.js": "sha256-yYhkfK9zdFy9w3wtP7KULEbmzmxz2NPXVgMeIFCGjjw=",
+    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
+    "runtime/components/tabs.js": "sha256-zeWRMu8X9m4vskq75KKsgF3wzbS29NFN45F8tJDMwgI=",
+    "runtime/chunks/navigation-CPDNZIIt.js": "sha256-hvSCgp3WLoCXXZnX8dgEpwxYZjbpAKxYS512EwBSmkU=",
+    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
+    "component.css": "sha256-zVXkxQteKGqZmvOgx444SE+3ubxZ6YdRaGci9hT3GeU=",
+    "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
+    "element.html": "sha256-xe4UR+a4C9oNodr9UlW5OGE5DR5R9JErwW0UAalo8oE=",
+    "index.html": "sha256-w1fTqm25U4WCS0w6RvFvuUPfonjfue1T0ZJN83ccPr0=",
+    "README.md": "sha256-p59lagekLLrdeI/EPbMqrpW3k+aTh9gGJP8gP6kyVaI="
+  }
+}

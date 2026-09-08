@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "component": "textarea",
+  "version": "1.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/textarea.md",
+  "dependencies": [
+    "register/textarea.js",
+    "chunks/element-B0z6sqq8.js",
+    "components/textarea.js",
+    "chunks/native-BFZpUch0.js",
+    "chunks/dom-BVXrzskP.js"
+  ],
+  "files": {
+    "runtime/register/textarea.js": "sha256-CnzqgWh0Rb1trt3H99IIDzyHuEnXb9O/7YYLgdhrEnk=",
+    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
+    "runtime/components/textarea.js": "sha256-zG64FvwKO0iBgBe10YlNJRQvGHjo5EKmUqkruzj2Y/8=",
+    "runtime/chunks/native-BFZpUch0.js": "sha256-4FgvJoEfMvTAX/0SiIsk0wfAn46HnBmvIXq6b7hYmV4=",
+    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
+    "component.css": "sha256-BbcGdXHTnD7C55UItp05tibzn6AUyioSMT0hgk45J68=",
+    "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
+    "element.html": "sha256-FrTRU04fY9wZ6rThXepEiAOHAf/WPEcefiPDsYvSLsM=",
+    "index.html": "sha256-xM2w2jkYyi5BE0Nc6YGqICrh5wAW+DKYGmHHjEB1tOM=",
+    "README.md": "sha256-GwXdeVjGAafXv+O+93zY+EFatnxAYysT7ZUrN7q3AmU="
+  }
+}

@@ -21,7 +21,7 @@
     "test:browser": "playwright test",
     "test:all": "npm run check && npm test && npm run build && npm run test:dist && npm run test:browser",
     "dev": "astro dev",
-    "build": "astro build --force",
+    "build": "npm run demo:build && npm run ui:pack && astro build --force",
     "preview": "astro preview",
     "consumption:kit": "node scripts/consumption-kit.mjs",
     "task:kit": "node scripts/task-kit.mjs",
@@ -32,10 +32,12 @@
     "verification:check": "node --test tests/verification/*.test.js",
     "test:verification": "playwright test --config playwright.verification.config.mjs",
     "ui:build": "node scripts/build-ui.mjs",
-    "ui:pack": "npm pack --workspace @j3w1/ui --pack-destination .cache/packages",
+    "ui:pack": "node scripts/pack-ui.mjs",
     "demo:build": "npm run build --workspace @j3w1/demo",
     "ui:consumers": "node scripts/verify-ui-consumers.mjs",
-    "test:ui": "playwright test --config playwright.ui.config.mjs"
+    "test:ui": "playwright test --config playwright.ui.config.mjs",
+    "ui:report": "node scripts/ui-verification-report.mjs",
+    "ui:publish-evidence": "node scripts/ui-verification-report.mjs --publish"
   },
   "devDependencies": {
     "@astrojs/markdown-remark": "7.3.0",

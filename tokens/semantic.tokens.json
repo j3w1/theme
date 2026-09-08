@@ -123,7 +123,7 @@
       },
       "bright": {
         "$value": "{color.primitive.rose.800}",
-        "$description": "Headings, emphasis, links."
+        "$description": "Headings and emphasis. Links use color.text.link."
       },
       "prose": {
         "$value": "{color.primitive.paper.90}",
@@ -170,8 +170,14 @@
         "$description": "Accent text safe on every surface."
       },
       "link": {
-        "$value": "{color.primitive.rose.800}",
-        "$description": "Link text."
+        "$value": "{color.primitive.red.850}",
+        "$description": "Strong red link text, distinct from rose body text and headings; retain the underline.",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "approved",
+            "approval": { "decision": "D-024" }
+          }
+        }
       },
       "link-underline": {
         "$value": "{color.primitive.red.750}",

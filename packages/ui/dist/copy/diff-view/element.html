@@ -1,0 +1,58 @@
+<j3w1-diff-view id="example-diff-view-unified"><div class="diff-view-scroll" tabindex="0" role="region" aria-label="Source differences"><table class="diff-view diff-view-unified">
+  <caption class="sr-only">title.js, old against new, unified</caption>
+  <thead class="sr-only">
+    <tr><th scope="col">Old line</th><th scope="col">New line</th><th scope="col">Change</th><th scope="col">Text</th></tr>
+  </thead>
+  <tbody>
+    <tr class="diff-view-row diff-view-row-hunk">
+      <td class="diff-view-ln"></td><td class="diff-view-ln"></td><td class="diff-view-marker"> </td>
+      <td class="diff-view-text"><span class="diff-view-range">@@ -3,7 +3,8 @@</span> export function title(container)</td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-context">
+      <td class="diff-view-ln">3</td><td class="diff-view-ln">3</td><td class="diff-view-marker"> </td>
+      <td class="diff-view-text">  const name = container.name ?? "untitled";</td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-removed">
+      <td class="diff-view-ln">4</td><td class="diff-view-ln"></td><td class="diff-view-marker">−<span class="sr-only"> removed</span></td>
+      <td class="diff-view-text">  let label = name;</td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-added diff-view-row-active">
+      <td class="diff-view-ln"></td><td class="diff-view-ln">4</td><td class="diff-view-marker">+<span class="sr-only"> added</span></td>
+      <td class="diff-view-text">  let label = `${name} (${container.children.length})`;</td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-context">
+      <td class="diff-view-ln">5</td><td class="diff-view-ln">5</td><td class="diff-view-marker"> </td>
+      <td class="diff-view-text">  if (label.length &gt; MAX_LENGTH) {</td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-modified">
+      <td class="diff-view-ln">6</td><td class="diff-view-ln">6</td><td class="diff-view-marker">~<span class="sr-only"> modified</span></td>
+      <td class="diff-view-text">    label = label.slice(0, MAX_LENGTH) + "…";</td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-context">
+      <td class="diff-view-ln">7</td><td class="diff-view-ln">7</td><td class="diff-view-marker"> </td>
+      <td class="diff-view-text">  }</td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-fold">
+      <td class="diff-view-fold-cell" colspan="4">
+        <button class="diff-view-fold" type="button" aria-expanded="false" aria-controls="example-diff-view-unified-dv-u-fold">
+          <svg class="diff-view-chevron" width="12" height="12" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"></path></svg>
+          <span class="diff-view-fold-collapsed">… 12 unchanged lines</span><span class="diff-view-fold-expanded">Hide 12 unchanged lines</span>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+  <tbody class="diff-view-folded" id="example-diff-view-unified-dv-u-fold" hidden="">
+    <tr class="diff-view-row diff-view-row-context">
+      <td class="diff-view-ln">8</td><td class="diff-view-ln">8</td><td class="diff-view-marker"> </td>
+      <td class="diff-view-text">  return escape(label);</td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-context">
+      <td class="diff-view-ln">9</td><td class="diff-view-ln">9</td><td class="diff-view-marker"> </td>
+      <td class="diff-view-text">}</td>
+    </tr>
+    <tr class="diff-view-row diff-view-row-context">
+      <td class="diff-view-ln">10</td><td class="diff-view-ln">10</td><td class="diff-view-marker"> </td>
+      <td class="diff-view-text">… ten more context lines …</td>
+    </tr>
+  </tbody>
+</table></div></j3w1-diff-view>

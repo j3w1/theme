@@ -2,7 +2,7 @@
 
 j3w1 theme 1.0.0. Markup adapted from j3w1 UI Theme Spec, https://github.com/j3w1/theme, CC BY 4.0: https://creativecommons.org/licenses/by/4.0/. Changes: scoped instance IDs and documentation-only content removed. CSS and generator: MIT; see LICENSE.md.
 
-Version 1.0.0; profile default; source digest sha256-hPgdCvjLCdxni5A42MesjerirhERtzhPHtBEvEDqjdo=. Pin the supplying commit and verify manifest source/file digests; the version alone does not identify a revision.
+Version 1.0.0; profile default; source digest sha256-kOmVe4N8eZfJPlmPqUXtehoArafWLtwraRG9eb8xrWU=. Pin the supplying commit and verify manifest source/file digests; the version alone does not identify a revision.
 
 Open example.html directly, without Astro, network assets or a build step. two-instances.html demonstrates independent IDs. For integration, include tokens.css, foundation.css and component.css in that order, then markup.html. Keep .j3w1-recipe and data-density on the wrapper. The source viewer can make a fresh instance prefix; use a unique prefix for every copy and rewrite all ID references together.
 

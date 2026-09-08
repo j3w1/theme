@@ -44,6 +44,7 @@ test("review entry point and local overlays are absent from public build integra
   const astro = await readText("astro.config.mjs");
   const packageJson = JSON.parse(await readText("package.json"));
   assert.doesNotMatch(astro, /visual-review|phase6a/);
-  assert.equal(packageJson.scripts.build, "astro build --force");
+  assert.equal(packageJson.scripts.build, "npm run demo:build && npm run ui:pack && astro build --force");
+  assert.doesNotMatch(packageJson.scripts["demo:build"] + packageJson.scripts["ui:pack"], /visual-review|phase6a/);
   assert.match(await readText(".gitignore"), /\/\.cache\//);
 });

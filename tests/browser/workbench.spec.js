@@ -120,7 +120,7 @@ test("report drafts carry distinct target context, redact specimen text, and req
     await page.getByRole("button", { name: "Prepare draft for review" }).click();
     const draft = await page.locator("[data-issue-body]").inputValue();
     expect(draft).toContain(`"id": "${id}"`);
-    expect(draft).toContain(`https://j3w1.github.io/theme/#c-${id}`);
+    expect(draft).toContain(`https://j3w1.github.io/theme/reference/#c-${id}`);
     expect(draft).toContain(`"themeVersion": "${manifest.version}"`);
     expect(draft).not.toContain("PRIVATE");
     await expect(page.locator("[data-open-issue]")).not.toHaveAttribute("href");

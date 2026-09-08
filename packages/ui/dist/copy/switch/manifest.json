@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "component": "switch",
+  "version": "1.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/switch.md",
+  "dependencies": [
+    "register/switch.js",
+    "chunks/element-B0z6sqq8.js",
+    "components/switch.js",
+    "chunks/native-BFZpUch0.js",
+    "chunks/dom-BVXrzskP.js"
+  ],
+  "files": {
+    "runtime/register/switch.js": "sha256-u0RAbtCX94v4g6vp5mDVWIOdVjAXTbjwIvFNRxzvFK0=",
+    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
+    "runtime/components/switch.js": "sha256-thYDHdiX/VqNK0qM/XTsku5kS6D1EHqHKOpF42LFgbo=",
+    "runtime/chunks/native-BFZpUch0.js": "sha256-4FgvJoEfMvTAX/0SiIsk0wfAn46HnBmvIXq6b7hYmV4=",
+    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
+    "component.css": "sha256-wQ5f/FFGWolJtnjyPar452XqRgkIhBLJEQbc8ziQvag=",
+    "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
+    "element.html": "sha256-bja8BqOYebPhAJ/84m7EUQysf7pqQJ3wMJ10wj4YBz4=",
+    "index.html": "sha256-UZvqjISxPBGEl7MJkilEMem3b7sjRYRpBJpzJneqq/Q=",
+    "README.md": "sha256-LaT3mg4haoksQ0Oo1PIL8esnER0FzVsY/sjJ01x1iJ0="
+  }
+}

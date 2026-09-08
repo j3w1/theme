@@ -1,5 +1,7 @@
 node_modules/
 /dist/
+/apps/demo/dist/
+/apps/demo/src/generated-loaders.js
 /.astro/
 /.cache/
 /test-results/

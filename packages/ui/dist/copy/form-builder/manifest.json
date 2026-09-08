@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "component": "form-builder",
+  "version": "1.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/form-builder.md",
+  "dependencies": [
+    "register/form-builder.js",
+    "chunks/element-B0z6sqq8.js",
+    "chunks/form-builder-BFHdaV_R.js",
+    "chunks/form-builder-BtVNteJo.js",
+    "chunks/form-workflow-B5efvJ6o.js",
+    "chunks/markup-DeQ4bEMR.js"
+  ],
+  "files": {
+    "runtime/register/form-builder.js": "sha256-xyIOIL3cTzNf1W4tHOKMgvbIsFxkONgqgFgMEGC14o0=",
+    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
+    "runtime/chunks/form-builder-BFHdaV_R.js": "sha256-bV0v3Ic76wIvsKZYJZFG4348VnwvTrX+GZ/WZZgKt1w=",
+    "runtime/chunks/form-builder-BtVNteJo.js": "sha256-UxjWL7e5BbJEDoxFgOPcHPG57xbNN6HS4iNQfpyKvyc=",
+    "runtime/chunks/form-workflow-B5efvJ6o.js": "sha256-Ispl9MIgzlw6ziGJlKNfpm5sqFpCyyk7gMFjG8ZIwUk=",
+    "runtime/chunks/markup-DeQ4bEMR.js": "sha256-Eyyx7MKBoqXK4i2HaVUQhKUM066L2wIggABt6jAdgas=",
+    "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
+    "component.css": "sha256-rvphpG0z/gCwA/cM2sN1k2+zgKE/5q3+8TMDjyFAXw0=",
+    "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
+    "element.html": "sha256-vq61pWv0xeMFu0tTsDtRWWpAr16AFefjpz5JTSyF440=",
+    "index.html": "sha256-v74xLbiCzhGoMsKDM8vIO3nwDmWQJymihSOqXqvPlkk=",
+    "README.md": "sha256-/Wff301ql9Hc0uJLwFAn0RhkNUJdk4okvnqfPfGiLmI="
+  }
+}

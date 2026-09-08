@@ -10,60 +10,60 @@
   },
   "byFamily": {
     "composed": {
-      "specified": 4,
-      "demonstrated": 4,
+      "specified": 6,
+      "demonstrated": 6,
       "tested": 0,
       "testImplemented": 0,
-      "total": 4
+      "total": 6
     },
     "feedback": {
+      "specified": 11,
+      "demonstrated": 11,
+      "tested": 1,
+      "testImplemented": 1,
+      "total": 11
+    },
+    "display": {
+      "specified": 11,
+      "demonstrated": 11,
+      "tested": 1,
+      "testImplemented": 1,
+      "total": 11
+    },
+    "navigation": {
+      "specified": 10,
+      "demonstrated": 10,
+      "tested": 2,
+      "testImplemented": 2,
+      "total": 10
+    },
+    "actions": {
+      "specified": 5,
+      "demonstrated": 5,
+      "tested": 2,
+      "testImplemented": 2,
+      "total": 5
+    },
+    "forms-basic": {
+      "specified": 11,
+      "demonstrated": 11,
+      "tested": 4,
+      "testImplemented": 4,
+      "total": 11
+    },
+    "developer": {
+      "specified": 5,
+      "demonstrated": 5,
+      "tested": 0,
+      "testImplemented": 0,
+      "total": 5
+    },
+    "forms-advanced": {
       "specified": 8,
       "demonstrated": 8,
       "tested": 1,
       "testImplemented": 1,
       "total": 8
-    },
-    "display": {
-      "specified": 6,
-      "demonstrated": 6,
-      "tested": 1,
-      "testImplemented": 1,
-      "total": 6
-    },
-    "navigation": {
-      "specified": 7,
-      "demonstrated": 7,
-      "tested": 2,
-      "testImplemented": 2,
-      "total": 7
-    },
-    "actions": {
-      "specified": 3,
-      "demonstrated": 3,
-      "tested": 2,
-      "testImplemented": 2,
-      "total": 3
-    },
-    "forms-basic": {
-      "specified": 10,
-      "demonstrated": 10,
-      "tested": 4,
-      "testImplemented": 4,
-      "total": 10
-    },
-    "developer": {
-      "specified": 4,
-      "demonstrated": 4,
-      "tested": 0,
-      "testImplemented": 0,
-      "total": 4
-    },
-    "forms-advanced": {
-      "specified": 6,
-      "demonstrated": 6,
-      "tested": 1,
-      "testImplemented": 1,
-      "total": 6
     }
   },
   "components": {
@@ -80,6 +80,16 @@
     "alert": {
       "family": "feedback",
       "priority": "R1",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "testImplemented": false,
+      "states": 3
+    },
+    "avatar": {
+      "family": "display",
+      "priority": "R2",
       "maturity": "stable",
       "specified": true,
       "demonstrated": true,
@@ -107,6 +117,16 @@
       "testImplemented": false,
       "states": 5
     },
+    "button-group": {
+      "family": "actions",
+      "priority": "R2",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "testImplemented": false,
+      "states": 3
+    },
     "button": {
       "family": "actions",
       "priority": "R1",
@@ -126,6 +146,16 @@
       "tested": false,
       "testImplemented": false,
       "states": 5
+    },
+    "chart": {
+      "family": "display",
+      "priority": "R2",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "testImplemented": false,
+      "states": 3
     },
     "checkbox": {
       "family": "forms-basic",
@@ -167,6 +197,26 @@
       "testImplemented": false,
       "states": 10
     },
+    "command-palette": {
+      "family": "navigation",
+      "priority": "R2",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "testImplemented": false,
+      "states": 5
+    },
+    "compact-dashboard": {
+      "family": "composed",
+      "priority": "R2",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "testImplemented": false,
+      "states": 4
+    },
     "data-table": {
       "family": "display",
       "priority": "R1",
@@ -186,6 +236,16 @@
       "tested": false,
       "testImplemented": false,
       "states": 7
+    },
+    "description-list": {
+      "family": "display",
+      "priority": "R2",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "testImplemented": false,
+      "states": 2
     },
     "diagnostics": {
       "family": "developer",
@@ -217,6 +277,16 @@
       "testImplemented": false,
       "states": 6
     },
+    "disclosure": {
+      "family": "navigation",
+      "priority": "R2",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "testImplemented": false,
+      "states": 4
+    },
     "drawer": {
       "family": "feedback",
       "priority": "R1",
@@ -227,6 +297,16 @@
       "testImplemented": false,
       "states": 5
     },
+    "editor-search": {
+      "family": "developer",
+      "priority": "R2",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "testImplemented": false,
+      "states": 4
+    },
     "empty-state": {
       "family": "feedback",
       "priority": "R1",
@@ -236,6 +316,16 @@
       "tested": false,
       "testImplemented": false,
       "states": 1
+    },
+    "error-state": {
+      "family": "feedback",
+      "priority": "R2",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "testImplemented": false,
+      "states": 5
     },
     "field": {
       "family": "forms-basic",
@@ -256,6 +346,16 @@
       "tested": false,
       "testImplemented": false,
       "states": 2
+    },
+    "file-browser": {
+      "family": "composed",
+      "priority": "R2",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "testImplemented": false,
+      "states": 5
     },
     "file-input": {
       "family": "forms-advanced",
@@ -307,6 +407,16 @@
       "testImplemented": false,
       "states": 7
     },
+    "kbd": {
+      "family": "display",
+      "priority": "R2",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "testImplemented": false,
+      "states": 1
+    },
     "link": {
       "family": "actions",
       "priority": "R1",
@@ -347,6 +457,16 @@
       "testImplemented": true,
       "states": 8
     },
+    "multiselect": {
+      "family": "forms-advanced",
+      "priority": "R2",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "testImplemented": false,
+      "states": 5
+    },
     "number-field": {
       "family": "forms-basic",
       "priority": "R1",
@@ -366,6 +486,16 @@
       "tested": false,
       "testImplemented": false,
       "states": 5
+    },
+    "popover": {
+      "family": "feedback",
+      "priority": "R2",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "testImplemented": false,
+      "states": 4
     },
     "progress": {
       "family": "feedback",
@@ -387,6 +517,26 @@
       "testImplemented": true,
       "states": 8
     },
+    "range": {
+      "family": "forms-basic",
+      "priority": "R2",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "testImplemented": false,
+      "states": 3
+    },
+    "repeater": {
+      "family": "forms-advanced",
+      "priority": "R2",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "testImplemented": false,
+      "states": 4
+    },
     "search-field": {
       "family": "forms-basic",
       "priority": "R1",
@@ -396,6 +546,16 @@
       "tested": false,
       "testImplemented": false,
       "states": 8
+    },
+    "segmented-control": {
+      "family": "actions",
+      "priority": "R2",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "testImplemented": false,
+      "states": 4
     },
     "select": {
       "family": "forms-basic",
@@ -426,6 +586,16 @@
       "tested": false,
       "testImplemented": false,
       "states": 8
+    },
+    "skeleton": {
+      "family": "feedback",
+      "priority": "R2",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "testImplemented": false,
+      "states": 3
     },
     "skip-link": {
       "family": "navigation",
@@ -507,6 +677,16 @@
       "testImplemented": false,
       "states": 5
     },
+    "timeline": {
+      "family": "display",
+      "priority": "R2",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "testImplemented": false,
+      "states": 2
+    },
     "toast": {
       "family": "feedback",
       "priority": "R1",
@@ -536,6 +716,16 @@
       "tested": false,
       "testImplemented": false,
       "states": 5
+    },
+    "tree": {
+      "family": "navigation",
+      "priority": "R2",
+      "maturity": "stable",
+      "specified": true,
+      "demonstrated": true,
+      "tested": false,
+      "testImplemented": false,
+      "states": 6
     },
     "wizard": {
       "family": "forms-advanced",

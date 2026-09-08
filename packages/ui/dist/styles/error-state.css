@@ -1,0 +1,59 @@
+j3w1-error-state { display: block; }
+j3w1-error-state {
+  color-scheme: dark;
+  background: var(--color-surface-canvas);
+  color: var(--color-text-default);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+}
+j3w1-error-state, j3w1-error-state *, j3w1-error-state *::before, j3w1-error-state *::after { box-sizing: border-box; }
+j3w1-error-state button, j3w1-error-state input, j3w1-error-state select, j3w1-error-state textarea { font: inherit; }
+j3w1-error-state ::selection {
+  background: var(--color-interaction-text-selection-bg);
+  color: var(--color-interaction-text-selection-text);
+}
+j3w1-error-state .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+j3w1-error-state .error-state {box-sizing:border-box;display:grid;gap:var(--space-12);min-width:0;padding:var(--space-12);background:var(--color-surface-default);color:var(--color-text-default);border:var(--border-width-default) solid var(--color-border-control);border-radius:var(--radius-none);font:inherit}
+j3w1-error-state .error-state :focus-visible {outline:var(--border-width-default) dashed var(--color-interaction-focus-ring);outline-offset:var(--space-2)}
+j3w1-error-state .error-state-control {font:inherit;min-height:var(--density-control-height);padding:var(--space-8);background:var(--color-surface-input);color:var(--color-text-default);border:var(--border-width-default) solid var(--color-border-control);border-radius:var(--radius-none)}j3w1-error-state .error-state :disabled {color:var(--color-text-disabled);background:var(--color-interaction-disabled-bg);border-color:var(--color-border-disabled);opacity:1}j3w1-error-state .error-state {border-inline-start:var(--border-width-emphasis) solid var(--color-status-danger-border)}j3w1-error-state .error-state h3 {color:var(--color-status-danger-text)}j3w1-error-state .error-state[aria-busy=true] {border-block-style:dashed}
+
+j3w1-error-state [hidden] { display: none !important; }
+j3w1-error-state .j3w1-visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+j3w1-error-state .j3w1-readonly-text { white-space: pre; overflow: auto; font: inherit; }
+j3w1-error-state dialog.dialog:modal, j3w1-error-state dialog.command-palette-dialog:modal {
+  position: fixed; inset: 0; margin: auto;
+  max-width: calc(100vw - var(--space-32)); max-height: calc(100dvh - var(--space-32)); overflow: auto;
+}
+j3w1-error-state dialog.drawer:modal { position: fixed; inset-block: 0; margin-block: 0; max-height: 100dvh; height: 100dvh; overflow: auto; }
+j3w1-error-state dialog.drawer-start:modal { inset-inline-start: 0; inset-inline-end: auto; margin-inline: 0; }
+j3w1-error-state dialog.drawer-end:modal { inset-inline-end: 0; inset-inline-start: auto; margin-inline: 0; }
+j3w1-error-state .menu-list, j3w1-error-state .combobox-listbox, j3w1-error-state .tooltip-popup, j3w1-error-state .popover-panel { z-index: var(--z-popover); }
+j3w1-error-state .tooltip-popup:not([hidden]) { display: block; width: max-content; max-width: min(calc(var(--font-size-ui-md) * 24), calc(100vw - var(--space-32))); }
+j3w1-error-state .combobox-option[aria-selected=true] { background: var(--color-interaction-selection-bg); color: var(--color-interaction-selection-text); }
+j3w1-error-state .menu-list [role=menu] { min-width: calc(var(--font-size-ui-md) * 10); }
+j3w1-error-state [data-tree-toggle] { border: 0; padding: 0 var(--space-4); background: transparent; color: inherit; font: inherit; cursor: pointer; }
+j3w1-error-state .file-input-zone[data-dragging=true] { outline: var(--border-width-emphasis) dashed var(--color-interaction-drop-target); }
+j3w1-error-state .data-table-resize { cursor: col-resize; touch-action: none; }
+j3w1-error-state .wizard-panel[hidden] { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  j3w1-error-state, j3w1-error-state * { scroll-behavior: auto; animation: none; transition: none; }
+}
+@media (forced-colors: active) {
+  j3w1-error-state .chart-series { fill: CanvasText; stroke: CanvasText; }
+  j3w1-error-state [aria-selected=true] { border-inline-start: var(--border-width-emphasis) solid Highlight; }
+}

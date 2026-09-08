@@ -8,7 +8,7 @@ createServer(async (request, response) => {
     const url = new URL(request.url, "http://localhost");
     const pathname = decodeURIComponent(url.pathname);
     if (pathname.includes("\\") || pathname.includes("\0") || pathname.split("/").includes("..")) throw new Error();
-    const kind = pathname.startsWith("/astro/") ? "astro" : pathname.startsWith("/copy/") ? "copy" : "web";
+    const kind = ["astro", "copy", "basic", "kit"].find(name => pathname.startsWith(`/${name}/`)) ?? "web";
     const base = path.join(root, "built", kind);
     const relative = kind === "web" ? pathname : pathname.slice(kind.length + 1);
     const file = path.resolve(base, `.${relative}${relative.endsWith("/") ? "index.html" : ""}`);

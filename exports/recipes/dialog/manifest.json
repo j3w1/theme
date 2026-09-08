@@ -11,19 +11,19 @@
       "theme.json": "sha256-487HhFVo7r0lMqF+0kscE1jKvWpPRWzIdOZBMtIFdiw=",
       "site/recipes.json": "sha256-71h0SYIOKbPRh+V/IhtLV7ZGuX90wfmeo84Rx0sm494=",
       "scripts/lib/recipe-generator.mjs": "sha256-73WV6IUzUVgC3oyFESbgawkTU9o6mh+rKtZx8HgdZeA=",
-      "scripts/lib/recipe-css.mjs": "sha256-iZr1hn5OYgtp2GPeonr+JraIFuTMgNu+cE03AYnOYEA=",
+      "scripts/lib/recipe-css.mjs": "sha256-i895fR9Sv8pOMKEawDoDiVklkN9tIeQsDee8YuKLSQ4=",
       "scripts/lib/recipe-markup.mjs": "sha256-pxTFKTEWI1f86ScNw0e2ZfSFkdba5Zs6a7GhmMbIUUQ=",
-      "scripts/lib/markup.mjs": "sha256-kSwHm2X/YW6fF4HQz9CKy6IcTKAdoau4wRtSkdSI3fw=",
+      "scripts/lib/markup.mjs": "sha256-/jd6ncIZAtDpNgML1FKkJn4mFJitU4mSXE9DLLvt2EI=",
       "spec/components/dialog.md": "sha256-zKmPZU3GdJ1IPYbCO6KY7oizbzzKXSdlw3ujXc+R3bE=",
       "spec/components/dialog.demo.html": "sha256-m9m1JcXKJ5j3f0rxR1fojmkYvtgzUnhgWBPA0iI6cSM=",
       "site/src/styles/recipe-foundation.css": "sha256-siLjKAkNj84Wa0+Xz5Vf2yj9DT9k0K/Swy/cwHNrvYo=",
       "site/src/styles/components/dialog.css": "sha256-JYVSY/qlwfi+ygYj4vWspfmxxphd5Oor8V5aF0k94D8=",
-      "LICENSE.md": "sha256-9K+45u2mMtN17qbMfaYXFmwI+1bv0MwpVv4Ef/Onqsg=",
+      "LICENSE.md": "sha256-Ih5+DpqcNXGWJX6BbYgpt6psmJi9lGcXGJzuiU7elE0=",
       "tokens/primitives.tokens.json": "sha256-X/TXFVN+jV4dVkMurNeNtKLmJxQSM7qD/jYQhTwe0aQ=",
-      "tokens/semantic.tokens.json": "sha256-BqDNni1iCkwIgeRW1NT/jDGlW9YYK/2jQGmjH7TYufU=",
+      "tokens/semantic.tokens.json": "sha256-qoLDfOJT1tWh12BqHNOSyY0yLHleXcCOeN2DNhSj+BE=",
       "tokens/foundations.tokens.json": "sha256-6J49wo3x5K8ZyTQ9lNt8AVNeRkPCD8FHiXyesXDVPMc="
     },
-    "digest": "sha256-hPgdCvjLCdxni5A42MesjerirhERtzhPHtBEvEDqjdo=",
+    "digest": "sha256-kOmVe4N8eZfJPlmPqUXtehoArafWLtwraRG9eb8xrWU=",
     "revisionPolicy": "Resolve these paths at the same pinned commit as this manifest. The hosted source viewer identifies its supplying commit; generated source files contain content digests, never a floating revision claim."
   },
   "dependencies": {
@@ -474,7 +474,7 @@
     "component.css": "sha256-TPAJI42leT2GC1uwTb/Ho4m/R7CBV9o8noyIg6xtOQs=",
     "example.html": "sha256-y/hwwo2a/IZa50qtdAVPmSlZ0HRFflLnJpi19oXX4F0=",
     "two-instances.html": "sha256-vMnErWiflC62Bu+/wcwIzG490x3xZltonRpg0XWDpYg=",
-    "LICENSE.md": "sha256-WqGkSUnP034XHxP/MR9HFJReVS5/Q+FM3qkCnR19unE=",
-    "README.md": "sha256-nd/nqznGIM+Kkun+nxC2JbCMKd2ppvDWJjjz+IfHhpY="
+    "LICENSE.md": "sha256-N3C6tkIsXbmSQZrH97Y3E/b9ap6Mf4bW3c0vlYexbdU=",
+    "README.md": "sha256-QO2ccmrN7t8lCedfYlpMCTQbHtgyAjsYz7gZdQiUKgU="
   }
 }

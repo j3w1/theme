@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "component": "kbd",
+  "version": "1.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/kbd.md",
+  "dependencies": [
+    "register/kbd.js",
+    "chunks/element-B0z6sqq8.js",
+    "components/kbd.js",
+    "chunks/native-BFZpUch0.js",
+    "chunks/dom-BVXrzskP.js"
+  ],
+  "files": {
+    "runtime/register/kbd.js": "sha256-cKmjXROluZ5uuZPZqz0bO6HF+aOZzzJYXGf2cit3yB0=",
+    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
+    "runtime/components/kbd.js": "sha256-rvYc7CZ98hvn32Az/aokbWH/1v77RRZA2Gekzhy9Mr8=",
+    "runtime/chunks/native-BFZpUch0.js": "sha256-4FgvJoEfMvTAX/0SiIsk0wfAn46HnBmvIXq6b7hYmV4=",
+    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
+    "component.css": "sha256-sKesLjkvspbpsD6walvgEF0NFv1fsIWXNbBy+hhtAUE=",
+    "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
+    "element.html": "sha256-tpH9QDJi6WP1xXEjkGhicB0miKDe2fe69wAALVp2X5A=",
+    "index.html": "sha256-n95EF5vEOXJJV0vVrIVOke9WC7Ja83CiFAFm4jiOY3w=",
+    "README.md": "sha256-P9hVmECoyowtQRjGuOgiYpY2/WURJBptA/GHRBktEu0="
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "component": "combobox",
+  "version": "1.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/combobox.md",
+  "dependencies": [
+    "register/combobox.js",
+    "chunks/element-B0z6sqq8.js",
+    "components/combobox.js",
+    "chunks/navigation-CPDNZIIt.js",
+    "chunks/dom-BVXrzskP.js"
+  ],
+  "files": {
+    "runtime/register/combobox.js": "sha256-5pjqoszMVH+ENc1STGypG/nUpWvStAZMEAKvh4CEWPo=",
+    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
+    "runtime/components/combobox.js": "sha256-suWF5V0LW6HoXXHRcaXZHMk2iDsUDdbIKCnyEQIyjKc=",
+    "runtime/chunks/navigation-CPDNZIIt.js": "sha256-hvSCgp3WLoCXXZnX8dgEpwxYZjbpAKxYS512EwBSmkU=",
+    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
+    "component.css": "sha256-f4pI9RLIKYsRggzuVcLA2zYdXHZXY3+DbGFjvBCtbSg=",
+    "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
+    "element.html": "sha256-/SDEtn3D/9kfnULtpHPFEgK1FAkmwe+77gdxlWNewhY=",
+    "index.html": "sha256-TgE5FDYDcg51ETqt8UekGbIULwjwCa+CjxGdU63wd/k=",
+    "README.md": "sha256-t40J+quGK/fKwsjaRiLV2EvKcWhcfCOSJBXcxZdlibw="
+  }
+}

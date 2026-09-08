@@ -5,8 +5,10 @@
 This repository is the canonical, versioned specification of the j3w1 visual
 identity, so that people and AI agents can implement it consistently in
 websites, application interfaces, editors, terminals and native theme
-formats. It publishes one long visual reference page at
-**https://j3w1.github.io/theme/** and machine-readable exports for agents.
+formats. It publishes a design-system portal at **https://j3w1.github.io/theme/**,
+the complete static specification at **https://j3w1.github.io/theme/reference/**,
+an independently authored [Vue demo](https://j3w1.github.io/theme/demo/), and
+machine-readable exports for agents.
 
 <!-- version:start -->
 Specification version **1.0.0** (release; default: approved, heritage-ansi: heritage, extended: proposed).
@@ -19,9 +21,9 @@ Approval and consumption eligibility are separate; see the policy above and
 
 The owner selected **True Black / Rose** after the
 [local visual-foundation review](docs/phase6-visual-review.md). D-023 records
-the seven canonical surface changes; foreground and red accent colors remain
-unchanged. See [the migration notes](docs/true-black-rose-migration.md).
-Phase 6 continues with the agent-consumable package, copy recipes and portal.
+the seven canonical surface changes. D-024 records the subsequent owner-requested
+strong-red links. See [the migration notes](docs/true-black-rose-migration.md)
+and [the delivery record](docs/phase6-delivery.md) for verification status.
 
 The [validation and recovery composition](https://j3w1.github.io/theme/patterns/validation-recovery/)
 and [draft form builder](https://j3w1.github.io/theme/builder/) demonstrate local
@@ -37,11 +39,11 @@ and [bridge instructions](spec/figma-bridge.md) for limits and evidence.
 
 `j3w1/theme` **defines** the theme: exact tokens, semantic roles, interaction
 states, accessibility constraints, component specifications and portability
-rules. `j3w1/j3w1.github.io` **demonstrates** it as a working i3-inspired web
-workstation and will later consume a pinned release. This repository is not a
-component library, not a copy of a purchased admin template, and not a backup
-of anyone's dotfiles. A themed table on the site is a specification specimen,
-not a promise to maintain a data-grid product.
+rules. The official `@j3w1/ui` package implements all 67 inventory entries with
+native HTML, typed Custom Elements, per-component imports and complete copy
+distributions. [Consumption instructions](docs/ui-consumption.md) cover package,
+copy and native mapping routes. `j3w1/j3w1.github.io` remains a separate downstream
+application. No purchased template source or assets are included.
 
 ## Where it came from
 
@@ -67,7 +69,7 @@ scheme, tmux, browser extensions) are catalogued in
 | `color.surface.default` | `#100c0c` | approved; use | Panels and cards. |
 | `color.surface.raised` | `#241010` | observed; use | Sticky headers, menus, popovers. |
 | `color.text.default` | `#e99499` | observed; use | Interface and body text. |
-| `color.text.bright` | `#ffa2a7` | observed; use | Headings, emphasis, links. |
+| `color.text.bright` | `#ffa2a7` | observed; use | Headings and emphasis. Links use color.text.link. |
 | `color.text.prose` | `#f4eeee` | observed; use | Long-form reading text. |
 | `color.text.muted` | `#bd787d` | observed; use | Secondary text; the darkest colour permitted for chrome text. |
 | `color.text.subtle` | `#ad7175` | approved; use | Metadata, comments, line numbers. |
@@ -96,15 +98,19 @@ and selections. Syntax highlighting stays monochrome in the default profile.
 
 ## Using the theme
 
-**People:** open the site. Everything normative is on one page: foundations,
-every component with its states, composed specimens, stress fixtures,
-non-examples, the contrast report and the coverage ledger.
+**People:** explore the portal foundations, components, patterns and tools. The
+full static reference retains every state matrix, stress fixture, non-example,
+contrast report and coverage ledger. Old homepage hashes migrate to its sections.
 
-**Agents:** do not read the site. Pin a tag or commit and follow
+**Agents:** consume deterministic artifacts. Pin a tag or commit and follow
 [`agents/consume.md`](agents/consume.md): read `theme.json`, then
 `exports/theme.compact.md`, then the `exports/components/<id>.json` you need,
 record `theme.lock.json`, and report deviations. `exports/llms.txt` is a
-discovery index for tools that look for one.
+discovery index for tools that look for one. For official implementations, read
+`packages/ui/dist/index.json`, then selected `contracts/<id>.json` and
+`examples/<id>.json`. The installed `j3w1-ui kit` command prepares bounded
+framework/package/copy/mapping kits. npm publication remains an owner action;
+the portal also supplies an installable tarball and integrity metadata.
 
 **Contributors:** read [`AGENTS.md`](AGENTS.md). `CLAUDE.md` imports it.
 
@@ -296,7 +302,7 @@ are implied by adding a comparison. D-016 records the report schema boundary.
 | `schemas/` | zod schema factories shared by the scripts and the site; `schemas/json/` is generated |
 | `scripts/` | Validators and generators (`npm run validate`, `npm run generate`, `npm run check`) |
 | `exports/` | Generated, committed: resolved tokens, semantic usage index, CSS custom properties, contrast report, coverage ledger, per-component JSON and briefs, compact and full Markdown, `llms.txt`, digests |
-| `site/` | The Astro source of the single-page specification and token tools, built to `dist/` and deployed to `/theme/` by CI |
+| `site/` | The Astro source of the design-system portal, complete reference and token tools, built to `dist/` and deployed to `/theme/` by CI |
 | `references/` | Pinned provenance, catalogued historical implementations, excerpts, and any reference screenshots with their provenance |
 | `ports/` | Native application ports, when they exist, each with a manifest, mapping, artifacts and evidence |
 | `templates/` | Starting points for a port, a component and the fresh-agent consumption task |
@@ -361,40 +367,57 @@ their verification annotation, rather than labeling every run as comfortable.
 | --- | --- | --- | --- | --- | --- |
 | `admin-form` | composed | R1 | yes | yes | — |
 | `alert` | feedback | R1 | yes | yes | — |
+| `avatar` | display | R2 | yes | yes | — |
 | `badge` | display | R1 | yes | yes | — |
 | `breadcrumbs` | navigation | R1 | yes | yes | — |
+| `button-group` | actions | R2 | yes | yes | — |
 | `button` | actions | R1 | yes | yes | yes |
 | `card` | display | R1 | yes | yes | — |
+| `chart` | display | R2 | yes | yes | — |
 | `checkbox` | forms-basic | R1 | yes | yes | yes |
 | `chip` | display | R1 | yes | yes | — |
 | `code-editor` | developer | R1 | yes | yes | — |
 | `combobox` | forms-advanced | R1 | yes | yes | — |
+| `command-palette` | navigation | R2 | yes | yes | — |
+| `compact-dashboard` | composed | R2 | yes | yes | — |
 | `data-table` | display | R1 | yes | yes | — |
 | `date-picker` | forms-advanced | R1 | yes | yes | — |
+| `description-list` | display | R2 | yes | yes | — |
 | `diagnostics` | developer | R1 | yes | yes | — |
 | `dialog` | feedback | R1 | yes | yes | yes |
 | `diff-view` | developer | R1 | yes | yes | — |
+| `disclosure` | navigation | R2 | yes | yes | — |
 | `drawer` | feedback | R1 | yes | yes | — |
+| `editor-search` | developer | R2 | yes | yes | — |
 | `empty-state` | feedback | R1 | yes | yes | — |
+| `error-state` | feedback | R2 | yes | yes | — |
 | `field` | forms-basic | R1 | yes | yes | — |
 | `fieldset` | forms-basic | R1 | yes | yes | — |
+| `file-browser` | composed | R2 | yes | yes | — |
 | `file-input` | forms-advanced | R1 | yes | yes | — |
 | `filterable-table` | composed | R1 | yes | yes | — |
 | `form-builder` | forms-advanced | L | yes | yes | yes |
 | `i3-window-frame` | composed | R1 | yes | yes | — |
 | `icon-button` | actions | R1 | yes | yes | — |
+| `kbd` | display | R2 | yes | yes | — |
 | `link` | actions | R1 | yes | yes | yes |
 | `list` | display | R1 | yes | yes | — |
 | `loading-indicator` | feedback | R1 | yes | yes | — |
 | `menu` | navigation | R1 | yes | yes | yes |
+| `multiselect` | forms-advanced | R2 | yes | yes | — |
 | `number-field` | forms-basic | R1 | yes | yes | — |
 | `pagination` | navigation | R1 | yes | yes | — |
+| `popover` | feedback | R2 | yes | yes | — |
 | `progress` | feedback | R1 | yes | yes | — |
 | `radio-group` | forms-basic | R1 | yes | yes | yes |
+| `range` | forms-basic | R2 | yes | yes | — |
+| `repeater` | forms-advanced | R2 | yes | yes | — |
 | `search-field` | forms-basic | R1 | yes | yes | — |
+| `segmented-control` | actions | R2 | yes | yes | — |
 | `select` | forms-basic | R1 | yes | yes | yes |
 | `settings-panel` | composed | R1 | yes | yes | — |
 | `sidebar-nav` | navigation | R1 | yes | yes | — |
+| `skeleton` | feedback | R2 | yes | yes | — |
 | `skip-link` | navigation | R1 | yes | yes | — |
 | `switch` | forms-basic | R1 | yes | yes | — |
 | `table` | display | R1 | yes | yes | yes |
@@ -403,9 +426,11 @@ their verification annotation, rather than labeling every run as comfortable.
 | `text-field` | forms-basic | R1 | yes | yes | yes |
 | `textarea` | forms-basic | R1 | yes | yes | — |
 | `time-picker` | forms-advanced | R1 | yes | yes | — |
+| `timeline` | display | R2 | yes | yes | — |
 | `toast` | feedback | R1 | yes | yes | — |
 | `toolbar` | navigation | R1 | yes | yes | — |
 | `tooltip` | feedback | R1 | yes | yes | — |
+| `tree` | navigation | R2 | yes | yes | — |
 | `wizard` | forms-advanced | R1 | yes | yes | — |
 <!-- coverage:end -->
 

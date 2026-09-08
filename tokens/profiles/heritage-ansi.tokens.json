@@ -3,6 +3,11 @@
     "$type": "color",
     "$description": "heritage-ansi profile: the historical assignments, exact, including the ones that fail the contrast floor.",
     "text": {
+      "link": {
+        "$value": "{color.primitive.rose.800}",
+        "$description": "Historical bright-rose link assignment before D-024.",
+        "$extensions": { "io.github.j3w1.theme": { "status": "heritage" } }
+      },
       "subtle": {
         "$value": "{color.primitive.rose.350}",
         "$description": "color15 as the site's --quiet.",

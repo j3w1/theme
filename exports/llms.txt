@@ -1,6 +1,6 @@
 # j3w1 UI Theme Spec
 
-> Versioned design tokens and component rules for the j3w1 identity (warm-black #0c0909 surfaces, rose #e99499 text, red #e53935 focus, dark-red #911410 selection, 1px square borders, zero radii, monospace). Version 1.0.0. Agents: read the compact export and per-component JSON at a pinned tag; the website is confirmation only.
+> Versioned design tokens and component rules for the j3w1 identity: True Black / Rose, rose foregrounds, dark-red actions, square borders and monospace typography. Version 1.0.0. Agents: use pinned canonical contracts and official package or complete copy distributions.
 
 Pin a tag or commit and use the same revision for every file. Never read `main`.
 
@@ -9,6 +9,9 @@ Pin a tag or commit and use the same revision for every file. Never read `main`.
 - [Reading protocol](https://raw.githubusercontent.com/j3w1/theme/v1.0.0/agents/consume.md): the seven steps, what you may not do, the lock and report formats
 - [Manifest](https://raw.githubusercontent.com/j3w1/theme/v1.0.0/theme.json): profiles, entry points, export paths
 - [Compact spec](https://raw.githubusercontent.com/j3w1/theme/v1.0.0/exports/theme.compact.md): approved values, state rules, ten component briefs
+- [Implementation index](https://raw.githubusercontent.com/j3w1/theme/v1.0.0/packages/ui/dist/index.json): bounded discovery for all 67 official implementations
+- [Consumption guide](https://raw.githubusercontent.com/j3w1/theme/v1.0.0/docs/ui-consumption.md): package, copy and mapping modes in HTML, Vue, React and Astro
+- [Implementation manifest](https://raw.githubusercontent.com/j3w1/theme/v1.0.0/packages/ui/dist/manifest.json): APIs, dependency closures, copy file digests and canonical links; actual execution evidence is separate
 
 ## Data
 

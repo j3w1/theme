@@ -1,9 +1,27 @@
 # Phase 6 delivery contract and continuation
 
-This records the owner-directed program scope. It is a delivery plan, not a
-claim that the future package, portal or full demo exists. The owner selected
-True Black / Rose (candidate I); D-023 records that authorization. The active
-checkpoint is canonical foundation validation before package implementation.
+This records the owner-directed program scope and implementation. The owner
+selected True Black / Rose (candidate I); D-023 records that authorization.
+All 67 inventory entries now have canonical contracts, official implementations,
+typed APIs and complete copy distributions. The static portal and full Vue
+showcase are implemented. Acceptance comes from the separate execution records
+for the exact artifact and protocol; this document does not self-accept a release.
+
+During the implementation preview, the owner requested red graphs, distinct
+table column-header/body colors, and stronger title/subtitle and navigation-group
+hierarchy. These use existing approved roles: red `color.chart.series-2`, bright
+rose column headers, regular rose body values, near-white page titles, bright
+section/group headings and muted supporting text. They do not introduce colors
+or alter the retained True Black / Rose foundation. The subsequent owner
+request for a separate link color is recorded in D-024: strong red links with
+persistent underlines and near-white hover text.
+
+The selected foundation passed source validation, generation and drift checks,
+105 source tests, the static build, nine distribution tests, and the configured
+browser suite (204 passed, 124 intentionally skipped). Verification-report
+generation preserved all 1,866 specimen files; its source checks and browser
+checks passed (six browser passes, three intentional skips). This is automated
+foundation evidence, not a claim of package or manual accessibility acceptance.
 
 ## Primary success criterion
 
@@ -139,3 +157,31 @@ routing for the Vue application. If a demonstrated Pages limitation prevents the
 agreed experience, deploy the demo to Vercel and link it from the portal. Hosting
 does not justify reducing the agreed feature scope. Verify deployed bytes against
 the tested artifacts after the visual-selection and quality gates.
+
+## Implemented delivery surfaces and evidence
+
+- `packages/ui/`: modular ESM classes and registration, native forms/lifecycle,
+  generated API and token dependency metadata, complete copy distributions and
+  framework/mode task kits with selected canonical contracts and shared rules.
+- `site/src/pages/`: static portal, all 67 component pages, foundations, patterns,
+  tools, implementation guide, agent kit preparation and complete reference.
+- `apps/demo/`: Vue 3 JavaScript SFCs with hash routing, five dashboard contexts,
+  five record workflows, four productivity apps, forms, developer and utility
+  screens, resettable synthetic data, and the entire component gallery.
+- `docs/ui-consumption.md` and maintained framework sources: installation,
+  binding, lifecycle, native form behavior, copy closure, pinning and migration.
+- `npm run ui:consumers` and `npm run test:ui`: install an actual tarball in
+  isolated HTML/Vue/React/Astro apps, compile declarations and test three engines.
+- `npm run ui:report`: retain sanitized artifact/fixture/protocol identities and
+  recorded environments. `npm run ui:publish-evidence` verifies that report
+  against the downloadable tarball before publishing `verification/ui.json`.
+- The existing specification evidence pipeline retains exact built specimen
+  bytes. CI requires package checks as well as the full site checks before Pages
+  deployment. Failed runs remain evidence of failure; no manual pass is inferred.
+
+The gallery axe protocol respects the already documented decorative whitespace
+waiver in `spec/components/code-editor.md`; real code text remains scanned.
+Native validation tests move keyboard focus out of the invalid field before
+checking pointer activation, because native validation UI can consume a click.
+Payload gates measure initial static-import closure separately from lazy chunks;
+see `docs/ui-architecture.md` for the measured budgets.

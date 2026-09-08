@@ -2,6 +2,29 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 import { sha256, stableJson } from "./fs.mjs";
 import { init, parse } from "es-module-lexer";
+import postcss from "postcss";
+
+export async function cssSourceClosure(root, entries) {
+  const files = new Map(), visiting = new Set();
+  const visit = async relative => {
+    const name = path.posix.normalize(relative);
+    if (name.startsWith("../") || path.posix.isAbsolute(name) || name.includes("\\")) throw new Error(`Unsafe CSS dependency: ${name}`);
+    if (visiting.has(name)) throw new Error(`Circular CSS dependency: ${name}`);
+    if (files.has(name)) return;
+    visiting.add(name);
+    const tree = postcss.parse((await fs.readFile(path.join(root, name), "utf8")).replaceAll("\r\n", "\n"));
+    const imports = [];
+    tree.walkAtRules("import", rule => {
+      const match = /^["']([^"']+)["']$/.exec(rule.params);
+      if (!match || /^(?:[a-z]+:|\/)/i.test(match[1])) throw new Error(`Unsupported CSS import: ${name}: ${rule.params}`);
+      imports.push(path.posix.join(path.posix.dirname(name), match[1])); rule.remove();
+    });
+    for (const dependency of imports) await visit(dependency);
+    visiting.delete(name); files.set(name, tree.toString());
+  };
+  for (const entry of entries) await visit(entry);
+  return files;
+}
 
 // Follow the literal ESM imports emitted by the build, never arbitrary source code.
 export async function moduleClosure(root, entries) {

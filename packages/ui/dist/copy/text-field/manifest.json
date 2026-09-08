@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "component": "text-field",
+  "version": "1.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/text-field.md",
+  "dependencies": [
+    "register/text-field.js",
+    "chunks/element-B0z6sqq8.js",
+    "components/text-field.js",
+    "chunks/native-BFZpUch0.js",
+    "chunks/dom-BVXrzskP.js"
+  ],
+  "files": {
+    "runtime/register/text-field.js": "sha256-C7lj6yumwT+AKDLUVuPqbHvu6+dl53Ht9EZHetPZhZU=",
+    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
+    "runtime/components/text-field.js": "sha256-K4F9lFkxH+6fDo4JbByn9nGzNUbIDBBA63WP4/FWMUo=",
+    "runtime/chunks/native-BFZpUch0.js": "sha256-4FgvJoEfMvTAX/0SiIsk0wfAn46HnBmvIXq6b7hYmV4=",
+    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
+    "component.css": "sha256-Y3xQDYeeCQmNtobwOfTiTh/OVHOCJt5If76c4411/ns=",
+    "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
+    "element.html": "sha256-R8UtNVXLOQSMMT+NPAGht8BHx8b1yIjvTii2pQlPs8k=",
+    "index.html": "sha256-J9hbLzXuEnbSdeQVzpl5q51KXvGGqGz+Y21d3vAb3a4=",
+    "README.md": "sha256-pw2uJfmzO+h9B5IXiDwe5VYlQWc5TKywrnF+PO+4xpU="
+  }
+}

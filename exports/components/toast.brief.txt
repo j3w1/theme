@@ -1,7 +1,7 @@
 j3w1/theme implementation brief — toast
-theme: j3w1-theme 1.0.0  profile: default  sourceDigest: sha256-pZuI7JH94R5ihk9Cc/pOkv3+iuDLNbfAhxD7HmHIRdw=
+theme: j3w1-theme 1.0.0  profile: default  sourceDigest: sha256-ZBxaPGMyHoIGQgEd1TPIM+OenmDQ3M0HQ2eDr2AW7oI=
 pin: https://raw.githubusercontent.com/j3w1/theme/v1.0.0/exports/components/toast.json
-spec: spec/components/toast.md  site: https://j3w1.github.io/theme/#c-toast
+spec: spec/components/toast.md  site: https://j3w1.github.io/theme/reference/#c-toast
 maturity: stable  priority: R1
 
 Summary: A brief notification in a fixed corner stack; canvas surface behind a 1px overlay border, status tints for the four polite statuses and the danger fill for critical ones.
@@ -27,7 +27,7 @@ Tokens (resolved):
   danger.bg               #dc282e  ({color.status.danger.fill})  use
   danger.text             #f9faf9  ({color.status.danger.on-fill})  use
   danger.button-bg-hover  #ae1914  ({color.action.destructive.pressed-bg})  use
-  action.text             #ffa2a7  ({color.text.link})  use
+  action.text             #f73f35  ({color.text.link})  use
   action.bg-hover         #630f0d  ({color.interaction.hover.bg-strong})  use
   action.text-hover       #f4eeee  ({color.text.link-hover})  use
   close.text              #e99499  ({color.action.tertiary.text})  use

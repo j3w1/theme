@@ -1,0 +1,10 @@
+---
+import PortalLayout from "../../layouts/PortalLayout.astro";
+import { withBase } from "../../lib/base";
+import { getCollection } from "astro:content";
+import families from "../../../../spec/families.json";
+const components = (await getCollection("components")).sort((a,b) => a.data.order - b.data.order);
+---
+<PortalLayout title="Components" description="67 official implementations. Inspect live variants, native behavior, exact tokens, typed APIs and complete copy bundles.">
+  {families.filter(f => components.some(c => c.data.family === f.id)).map(family => <section class="portal-section"><h2>{family.title}</h2><div class="portal-grid">{components.filter(c => c.data.family === family.id).map(c => <a class="portal-card" href={withBase(`components/${c.id}/`)}><p class="portal-eyebrow">{c.data.maturity} / {c.id}</p><h3>{c.data.name} →</h3><p>{c.data.summary}</p></a>)}</div></section>)}
+</PortalLayout>

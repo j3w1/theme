@@ -1975,7 +1975,7 @@
           },
           "css": "#ffa2a7",
           "aliasOf": "color.primitive.rose.800",
-          "description": "Headings, emphasis, links.",
+          "description": "Headings and emphasis. Links use color.text.link.",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -2158,19 +2158,19 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              1,
-              0.6353,
-              0.6549
+              0.9686,
+              0.2471,
+              0.2078
             ],
             "alpha": 1,
-            "hex": "#ffa2a7"
+            "hex": "#f73f35"
           },
-          "css": "#ffa2a7",
-          "aliasOf": "color.primitive.rose.800",
-          "description": "Link text.",
-          "status": "observed",
+          "css": "#f73f35",
+          "aliasOf": "color.primitive.red.850",
+          "description": "Strong red link text, distinct from rose body text and headings; retain the underline.",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-024",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -9323,7 +9323,7 @@
           },
           "css": "#ffa2a7",
           "aliasOf": "color.primitive.rose.800",
-          "description": "Headings, emphasis, links.",
+          "description": "Headings and emphasis. Links use color.text.link.",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -9515,8 +9515,8 @@
           },
           "css": "#ffa2a7",
           "aliasOf": "color.primitive.rose.800",
-          "description": "Link text.",
-          "status": "observed",
+          "description": "Historical bright-rose link assignment before D-024.",
+          "status": "heritage",
           "deprecated": false,
           "decisionId": null,
           "eligibility": {
@@ -16669,7 +16669,7 @@
           },
           "css": "#ffa2a7",
           "aliasOf": "color.primitive.rose.800",
-          "description": "Headings, emphasis, links.",
+          "description": "Headings and emphasis. Links use color.text.link.",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -16852,19 +16852,19 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              1,
-              0.6353,
-              0.6549
+              0.9686,
+              0.2471,
+              0.2078
             ],
             "alpha": 1,
-            "hex": "#ffa2a7"
+            "hex": "#f73f35"
           },
-          "css": "#ffa2a7",
-          "aliasOf": "color.primitive.rose.800",
-          "description": "Link text.",
-          "status": "observed",
+          "css": "#f73f35",
+          "aliasOf": "color.primitive.red.850",
+          "description": "Strong red link text, distinct from rose body text and headings; retain the underline.",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-024",
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",

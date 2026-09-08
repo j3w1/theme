@@ -1,0 +1,221 @@
+j3w1-segmented-control { display: block; }
+j3w1-segmented-control {
+  color-scheme: dark;
+  background: var(--color-surface-canvas);
+  color: var(--color-text-default);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+}
+j3w1-segmented-control, j3w1-segmented-control *, j3w1-segmented-control *::before, j3w1-segmented-control *::after { box-sizing: border-box; }
+j3w1-segmented-control button, j3w1-segmented-control input, j3w1-segmented-control select, j3w1-segmented-control textarea { font: inherit; }
+j3w1-segmented-control ::selection {
+  background: var(--color-interaction-text-selection-bg);
+  color: var(--color-interaction-text-selection-text);
+}
+j3w1-segmented-control .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+j3w1-segmented-control .radio-group {
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+  max-width: calc(var(--font-size-ui-md) * 28);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: var(--color-text-default);
+}
+
+j3w1-segmented-control .radio-group-legend {
+  padding: 0;
+  margin-bottom: var(--space-4);
+  color: var(--color-text-bright);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+j3w1-segmented-control .radio-group-required {
+  display: none;
+  color: var(--color-status-danger-text);
+}
+
+j3w1-segmented-control .radio-group-options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+j3w1-segmented-control .radio-group-horizontal .radio-group-options {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-16);
+}
+
+j3w1-segmented-control .radio-group-option {
+  display: grid;
+  grid-template-columns: var(--icon-size-md) minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-8);
+  min-height: var(--space-24);
+  padding: var(--space-4) 0;
+  cursor: pointer;
+}
+
+j3w1-segmented-control .radio-group-control {
+  display: inline-grid;
+  width: var(--icon-size-md);
+  height: var(--icon-size-md);
+}
+
+j3w1-segmented-control .radio-group-control > * {
+  grid-area: 1 / 1;
+}
+
+j3w1-segmented-control .radio-group-input {
+  appearance: none;
+  width: var(--icon-size-md);
+  height: var(--icon-size-md);
+  margin: 0;
+  background: var(--color-surface-input);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+  cursor: pointer;
+  outline: 0;
+}
+
+j3w1-segmented-control .radio-group-dot {
+  display: none;
+  width: var(--space-8);
+  height: var(--space-8);
+  margin: var(--space-4);
+  background: var(--color-action-primary-text);
+  pointer-events: none;
+}
+
+j3w1-segmented-control .radio-group-text {
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+}
+
+j3w1-segmented-control .radio-group-message {
+  display: none;
+  margin: 0;
+  color: var(--color-status-danger-text);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+@media (hover: hover) {
+  j3w1-segmented-control .radio-group-option:hover .radio-group-input:not(:disabled) {
+    background: var(--color-interaction-hover-bg);
+  }
+
+  j3w1-segmented-control .radio-group-option:hover .radio-group-input:checked:not(:disabled) {
+    background: var(--color-action-primary-hover-bg);
+  }
+}
+j3w1-segmented-control .radio-group-input:checked {
+  background: var(--color-action-primary-bg);
+}
+
+j3w1-segmented-control .radio-group-input:checked ~ .radio-group-dot {
+  display: block;
+}
+j3w1-segmented-control .radio-group-input:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+j3w1-segmented-control .radio-group-input:checked:focus-visible {
+  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline-offset: var(--focus-offset);
+}
+j3w1-segmented-control .radio-group:has(.radio-group-input:required) .radio-group-required {
+  display: inline;
+}
+j3w1-segmented-control .radio-group-input[aria-invalid="true"] {
+  border-color: var(--color-status-danger-border);
+  border-width: var(--border-width-emphasis);
+}
+
+j3w1-segmented-control .radio-group:has(.radio-group-input[aria-invalid="true"]) .radio-group-message {
+  display: block;
+}
+j3w1-segmented-control .radio-group-input:disabled {
+  background: var(--color-interaction-disabled-bg);
+  border-color: var(--color-border-disabled);
+  cursor: not-allowed;
+}
+
+j3w1-segmented-control .radio-group-input:disabled ~ .radio-group-dot {
+  background: var(--color-text-disabled);
+}
+
+j3w1-segmented-control .radio-group-option:has(.radio-group-input:disabled) {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+j3w1-segmented-control .radio-group:disabled .radio-group-legend {
+  color: var(--color-text-disabled);
+}
+
+@media (forced-colors: active) {
+  j3w1-segmented-control .radio-group-input:focus-visible {
+    outline-color: Highlight;
+  }
+
+  j3w1-segmented-control .radio-group-input:checked {
+    background: Highlight;
+  }
+
+  j3w1-segmented-control .radio-group-dot {
+    background: HighlightText;
+  }
+}
+
+j3w1-segmented-control .segmented-control {box-sizing:border-box;display:grid;gap:var(--space-12);min-width:0;padding:var(--space-12);background:var(--color-surface-default);color:var(--color-text-default);border:var(--border-width-default) solid var(--color-border-control);border-radius:var(--radius-none);font:inherit}
+j3w1-segmented-control .segmented-control-control {font:inherit;min-height:var(--density-control-height);padding:var(--space-8);background:var(--color-surface-input);color:var(--color-text-default);border:var(--border-width-default) solid var(--color-border-control);border-radius:var(--radius-none)}
+j3w1-segmented-control .segmented-control :focus-visible {outline:var(--border-width-default) dashed var(--color-interaction-focus-ring);outline-offset:var(--space-2)}
+j3w1-segmented-control .segmented-control :disabled {color:var(--color-text-disabled);background:var(--color-interaction-disabled-bg);border-color:var(--color-border-disabled);opacity:1}
+j3w1-segmented-control .segmented-control-actions {display:flex;flex-wrap:wrap;gap:var(--space-8)}
+j3w1-segmented-control .segmented-control-options {display:flex;flex-wrap:wrap}j3w1-segmented-control .segmented-control label {display:flex;align-items:center;gap:var(--space-4);padding:var(--space-8);border:var(--border-width-default) solid var(--color-border-control)}j3w1-segmented-control .segmented-control label:has(:checked) {background:var(--color-interaction-selection-bg);color:var(--color-interaction-selection-text)}j3w1-segmented-control .segmented-control input {accent-color:var(--color-action-primary-bg)}
+
+j3w1-segmented-control .segmented-control input:checked:focus-visible {outline-color:var(--color-interaction-focus-ring-container)}
+
+j3w1-segmented-control [hidden] { display: none !important; }
+j3w1-segmented-control .j3w1-visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+j3w1-segmented-control .j3w1-readonly-text { white-space: pre; overflow: auto; font: inherit; }
+j3w1-segmented-control dialog.dialog:modal, j3w1-segmented-control dialog.command-palette-dialog:modal {
+  position: fixed; inset: 0; margin: auto;
+  max-width: calc(100vw - var(--space-32)); max-height: calc(100dvh - var(--space-32)); overflow: auto;
+}
+j3w1-segmented-control dialog.drawer:modal { position: fixed; inset-block: 0; margin-block: 0; max-height: 100dvh; height: 100dvh; overflow: auto; }
+j3w1-segmented-control dialog.drawer-start:modal { inset-inline-start: 0; inset-inline-end: auto; margin-inline: 0; }
+j3w1-segmented-control dialog.drawer-end:modal { inset-inline-end: 0; inset-inline-start: auto; margin-inline: 0; }
+j3w1-segmented-control .menu-list, j3w1-segmented-control .combobox-listbox, j3w1-segmented-control .tooltip-popup, j3w1-segmented-control .popover-panel { z-index: var(--z-popover); }
+j3w1-segmented-control .tooltip-popup:not([hidden]) { display: block; width: max-content; max-width: min(calc(var(--font-size-ui-md) * 24), calc(100vw - var(--space-32))); }
+j3w1-segmented-control .combobox-option[aria-selected=true] { background: var(--color-interaction-selection-bg); color: var(--color-interaction-selection-text); }
+j3w1-segmented-control .menu-list [role=menu] { min-width: calc(var(--font-size-ui-md) * 10); }
+j3w1-segmented-control [data-tree-toggle] { border: 0; padding: 0 var(--space-4); background: transparent; color: inherit; font: inherit; cursor: pointer; }
+j3w1-segmented-control .file-input-zone[data-dragging=true] { outline: var(--border-width-emphasis) dashed var(--color-interaction-drop-target); }
+j3w1-segmented-control .data-table-resize { cursor: col-resize; touch-action: none; }
+j3w1-segmented-control .wizard-panel[hidden] { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  j3w1-segmented-control, j3w1-segmented-control * { scroll-behavior: auto; animation: none; transition: none; }
+}
+@media (forced-colors: active) {
+  j3w1-segmented-control .chart-series { fill: CanvasText; stroke: CanvasText; }
+  j3w1-segmented-control [aria-selected=true] { border-inline-start: var(--border-width-emphasis) solid Highlight; }
+}

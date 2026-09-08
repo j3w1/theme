@@ -1,0 +1,217 @@
+j3w1-terminal { display: block; }
+j3w1-terminal {
+  color-scheme: dark;
+  background: var(--color-surface-canvas);
+  color: var(--color-text-default);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+}
+j3w1-terminal, j3w1-terminal *, j3w1-terminal *::before, j3w1-terminal *::after { box-sizing: border-box; }
+j3w1-terminal button, j3w1-terminal input, j3w1-terminal select, j3w1-terminal textarea { font: inherit; }
+j3w1-terminal ::selection {
+  background: var(--color-interaction-text-selection-bg);
+  color: var(--color-interaction-text-selection-text);
+}
+j3w1-terminal .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+j3w1-terminal .terminal {
+  display: block;
+  min-width: 0;
+  max-width: 100%;
+  margin: 0;
+  padding: var(--space-8);
+  overflow-x: auto;
+  background: var(--color-terminal-bg);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+  color: var(--color-terminal-fg);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-terminal);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--font-line-height-terminal);
+  letter-spacing: var(--font-letter-spacing-terminal);
+  white-space: pre;
+  tab-size: 8;
+  unicode-bidi: isolate;
+  direction: ltr;
+}
+
+j3w1-terminal .terminal-line {
+  display: inline-block;
+  min-width: 100%;
+  vertical-align: top;
+}
+j3w1-terminal .terminal-prompt-path {
+  background: var(--color-terminal-ansi-4);
+  color: var(--color-terminal-selection-text);
+}
+
+j3w1-terminal .terminal-prompt-arrow-path {
+  background: var(--color-terminal-ansi-3);
+  color: var(--color-terminal-ansi-4);
+}
+
+j3w1-terminal .terminal-prompt-branch {
+  background: var(--color-terminal-ansi-3);
+  color: var(--color-terminal-bg);
+}
+
+j3w1-terminal .terminal-prompt-arrow-branch {
+  color: var(--color-terminal-ansi-3);
+}
+j3w1-terminal .terminal-fg-0 { color: var(--color-terminal-ansi-0); }
+j3w1-terminal .terminal-fg-1 { color: var(--color-terminal-ansi-1); }
+j3w1-terminal .terminal-fg-2 { color: var(--color-terminal-ansi-2); }
+j3w1-terminal .terminal-fg-3 { color: var(--color-terminal-ansi-3); }
+j3w1-terminal .terminal-fg-4 { color: var(--color-terminal-ansi-4); }
+j3w1-terminal .terminal-fg-5 { color: var(--color-terminal-ansi-5); }
+j3w1-terminal .terminal-fg-6 { color: var(--color-terminal-ansi-6); }
+j3w1-terminal .terminal-fg-7 { color: var(--color-terminal-ansi-7); }
+j3w1-terminal .terminal-fg-8 { color: var(--color-terminal-ansi-8); }
+j3w1-terminal .terminal-fg-9 { color: var(--color-terminal-ansi-9); }
+j3w1-terminal .terminal-fg-10 { color: var(--color-terminal-ansi-10); }
+j3w1-terminal .terminal-fg-11 { color: var(--color-terminal-ansi-11); }
+j3w1-terminal .terminal-fg-12 { color: var(--color-terminal-ansi-12); }
+j3w1-terminal .terminal-fg-13 { color: var(--color-terminal-ansi-13); }
+j3w1-terminal .terminal-fg-14 { color: var(--color-terminal-ansi-14); }
+j3w1-terminal .terminal-fg-15 { color: var(--color-terminal-ansi-15); }
+
+j3w1-terminal .terminal-bg-0 { background: var(--color-terminal-ansi-0); color: var(--color-terminal-fg); }
+j3w1-terminal .terminal-bg-1 { background: var(--color-terminal-ansi-1); color: var(--color-terminal-fg); }
+j3w1-terminal .terminal-bg-2 { background: var(--color-terminal-ansi-2); color: var(--color-terminal-fg); }
+j3w1-terminal .terminal-bg-3 { background: var(--color-terminal-ansi-3); color: var(--color-terminal-fg); }
+j3w1-terminal .terminal-bg-4 { background: var(--color-terminal-ansi-4); color: var(--color-terminal-fg); }
+j3w1-terminal .terminal-bg-5 { background: var(--color-terminal-ansi-5); color: var(--color-terminal-fg); }
+j3w1-terminal .terminal-bg-6 { background: var(--color-terminal-ansi-6); color: var(--color-terminal-fg); }
+j3w1-terminal .terminal-bg-7 { background: var(--color-terminal-ansi-7); color: var(--color-terminal-fg); }
+j3w1-terminal .terminal-bg-8 { background: var(--color-terminal-ansi-8); color: var(--color-terminal-fg); }
+j3w1-terminal .terminal-bg-9 { background: var(--color-terminal-ansi-9); color: var(--color-terminal-fg); }
+j3w1-terminal .terminal-bg-10 { background: var(--color-terminal-ansi-10); color: var(--color-terminal-fg); }
+j3w1-terminal .terminal-bg-11 { background: var(--color-terminal-ansi-11); color: var(--color-terminal-fg); }
+j3w1-terminal .terminal-bg-12 { background: var(--color-terminal-ansi-12); color: var(--color-terminal-fg); }
+j3w1-terminal .terminal-bg-13 { background: var(--color-terminal-ansi-13); color: var(--color-terminal-fg); }
+j3w1-terminal .terminal-bg-14 { background: var(--color-terminal-ansi-14); color: var(--color-terminal-fg); }
+j3w1-terminal .terminal-bg-15 { background: var(--color-terminal-ansi-15); color: var(--color-terminal-fg); }
+j3w1-terminal .terminal-label {
+  color: var(--color-text-muted);
+}
+
+j3w1-terminal .terminal-fail {
+  color: var(--color-terminal-fg);
+  font-weight: var(--font-weight-bold);
+}
+j3w1-terminal .terminal-bold { font-weight: var(--font-weight-bold); }
+j3w1-terminal .terminal-dim { color: var(--color-text-muted); }
+j3w1-terminal .terminal-italic { font-style: italic; }
+j3w1-terminal .terminal-underline { text-decoration: underline; text-underline-offset: var(--space-2); }
+j3w1-terminal .terminal-strike { text-decoration: line-through; }
+
+j3w1-terminal .terminal-inverse {
+  background: var(--color-terminal-fg);
+  color: var(--color-terminal-bg);
+}
+j3w1-terminal .terminal-cursor {
+  display: inline-block;
+  min-width: 1ch;
+  outline: var(--border-width-default) solid var(--color-terminal-cursor);
+  outline-offset: calc(-1 * var(--border-width-default));
+  vertical-align: top;
+}
+j3w1-terminal .terminal ::selection,
+j3w1-terminal .terminal::selection {
+  background: var(--color-terminal-selection-bg);
+  color: var(--color-terminal-selection-text);
+}
+j3w1-terminal .terminal:focus-visible {
+  outline: var(--focus-ring-container);
+  outline-offset: var(--focus-offset-container);
+}
+
+j3w1-terminal .terminal:focus-visible .terminal-cursor {
+  outline: 0;
+  background: var(--color-terminal-cursor);
+  color: var(--color-terminal-bg);
+}
+
+j3w1-terminal .terminal:focus:not(:focus-visible) {
+  outline: 0;
+}
+j3w1-terminal .terminal[aria-busy="true"] .terminal-cursor {
+  outline: 0;
+  background: var(--color-terminal-cursor);
+  color: var(--color-terminal-bg);
+}
+j3w1-terminal .terminal[aria-current="true"] .terminal-line-cursor {
+  background: var(--color-code-current-line);
+}
+
+j3w1-terminal .terminal[aria-current="true"] .terminal-cursor {
+  outline: 0;
+  background: var(--color-terminal-cursor);
+  color: var(--color-terminal-bg);
+}
+
+@media (forced-colors: active) {
+  j3w1-terminal .terminal:focus-visible {
+    outline-color: Highlight;
+  }
+
+  j3w1-terminal .terminal-cursor {
+    outline-color: CanvasText;
+  }
+}
+j3w1-terminal .terminal-swatch,
+j3w1-terminal .terminal-swatch-bg {
+  display: inline-block;
+  width: 6ch;
+  height: 1em;
+  vertical-align: text-bottom;
+}
+
+j3w1-terminal .terminal-swatch {
+  background: currentColor;
+}
+
+j3w1-terminal .terminal-swatch-bg {
+  width: 12ch;
+}
+
+j3w1-terminal [hidden] { display: none !important; }
+j3w1-terminal .j3w1-visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+j3w1-terminal .j3w1-readonly-text { white-space: pre; overflow: auto; font: inherit; }
+j3w1-terminal dialog.dialog:modal, j3w1-terminal dialog.command-palette-dialog:modal {
+  position: fixed; inset: 0; margin: auto;
+  max-width: calc(100vw - var(--space-32)); max-height: calc(100dvh - var(--space-32)); overflow: auto;
+}
+j3w1-terminal dialog.drawer:modal { position: fixed; inset-block: 0; margin-block: 0; max-height: 100dvh; height: 100dvh; overflow: auto; }
+j3w1-terminal dialog.drawer-start:modal { inset-inline-start: 0; inset-inline-end: auto; margin-inline: 0; }
+j3w1-terminal dialog.drawer-end:modal { inset-inline-end: 0; inset-inline-start: auto; margin-inline: 0; }
+j3w1-terminal .menu-list, j3w1-terminal .combobox-listbox, j3w1-terminal .tooltip-popup, j3w1-terminal .popover-panel { z-index: var(--z-popover); }
+j3w1-terminal .tooltip-popup:not([hidden]) { display: block; width: max-content; max-width: min(calc(var(--font-size-ui-md) * 24), calc(100vw - var(--space-32))); }
+j3w1-terminal .combobox-option[aria-selected=true] { background: var(--color-interaction-selection-bg); color: var(--color-interaction-selection-text); }
+j3w1-terminal .menu-list [role=menu] { min-width: calc(var(--font-size-ui-md) * 10); }
+j3w1-terminal [data-tree-toggle] { border: 0; padding: 0 var(--space-4); background: transparent; color: inherit; font: inherit; cursor: pointer; }
+j3w1-terminal .file-input-zone[data-dragging=true] { outline: var(--border-width-emphasis) dashed var(--color-interaction-drop-target); }
+j3w1-terminal .data-table-resize { cursor: col-resize; touch-action: none; }
+j3w1-terminal .wizard-panel[hidden] { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  j3w1-terminal, j3w1-terminal * { scroll-behavior: auto; animation: none; transition: none; }
+}
+@media (forced-colors: active) {
+  j3w1-terminal .chart-series { fill: CanvasText; stroke: CanvasText; }
+  j3w1-terminal [aria-selected=true] { border-inline-start: var(--border-width-emphasis) solid Highlight; }
+}

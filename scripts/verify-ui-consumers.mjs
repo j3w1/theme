@@ -4,6 +4,7 @@ import path from "node:path";
 import os from "node:os";
 import { execFileSync } from "node:child_process";
 import { repoRoot, stableJson, sha256 } from "./lib/fs.mjs";
+import { consumerExamples } from './lib/ui-consumer-examples.mjs';
 import { snapshotDirectory } from "./lib/ui-evidence.mjs";
 
 const npm = process.env.npm_execpath;
@@ -15,30 +16,30 @@ const packed = JSON.parse(run(["pack", "--workspace", "@j3w1/ui", "--json", "--p
 const root = await fs.mkdtemp(path.join(os.tmpdir(), "j3w1-consumers-"));
 const put = async (name, content) => { const target = path.join(root, name); await fs.mkdir(path.dirname(target), { recursive: true }); await fs.writeFile(target, content); };
 await put("package.json", stableJson({ private: true, type: "module", dependencies: { "@j3w1/ui": `file:${path.join(packages, packed.filename).split(path.sep).join("/")}`, vue: "3.5.42", react: "19.2.8", "react-dom": "19.2.8", astro: "7.3.1", vite: "8.2.2", "@vitejs/plugin-vue": "6.0.8", typescript: "7.0.2" } }));
-const markup = `<main><h1>Independent consumer</h1><form id="consumer-form"><fieldset id="fields"><j3w1-text-field id="field"><div class="text-field"><label class="text-field-label" for="project">Project</label><input class="text-field-input" id="project" name="project" value="Initial" required></div></j3w1-text-field><j3w1-checkbox id="check"><label class="checkbox"><input class="checkbox-input" type="checkbox" name="enabled" value="yes"><span class="checkbox-text">Enabled</span></label></j3w1-checkbox><j3w1-button><button class="button" type="submit">Save</button></j3w1-button><j3w1-button><button class="button button-secondary" type="reset">Reset</button></j3w1-button></fieldset></form><p role="status" id="result">Ready</p></main>`;
-const imports = `import '@j3w1/ui/register/button';\nimport '@j3w1/ui/register/text-field';\nimport '@j3w1/ui/register/checkbox';\nimport '@j3w1/ui/tokens.css';\nimport '@j3w1/ui/styles/button.css';\nimport '@j3w1/ui/styles/text-field.css';\nimport '@j3w1/ui/styles/checkbox.css';\n`;
-const wire = `document.querySelector('form').addEventListener('submit',event=>{event.preventDefault();document.querySelector('#result').textContent=JSON.stringify(Object.fromEntries(new FormData(event.currentTarget)));});`;
-const html = (body, script) => `<!doctype html><html lang="en" data-density="comfortable"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Independent consumer</title></head><body>${body}<script type="module" src="${script}"></script></body></html>`;
-await put("html/index.html", html(markup, "./main.js"));
-await put("html/main.js", imports + wire);
-await put("vue/index.html", html('<div id="app"></div>', "./main.js"));
-await put("vue/main.js", imports + `import {createApp} from 'vue';import App from './App.vue';createApp(App).mount('#app');`);
-await put("vue/App.vue", `<script setup>\nimport {ref} from 'vue';\nconst result=ref('Ready');\nconst save=event=>{result.value=JSON.stringify(Object.fromEntries(new FormData(event.target)));};\n</script>\n<template>${markup.replace('<form id="consumer-form">','<form id="consumer-form" @submit.prevent="save">').replace('id="result">Ready','id="result">{{ result }}')}</template>\n`);
-await put("react/index.html", html('<div id="app"></div>', "./main.js"));
-await put("react/main.js", imports + `import React from 'react';import {createRoot} from 'react-dom/client';\nfunction App(){const[result,setResult]=React.useState('Ready');return React.createElement('main',null,React.createElement('h1',null,'Independent consumer'),React.createElement('form',{id:'consumer-form',onSubmit:event=>{event.preventDefault();setResult(JSON.stringify(Object.fromEntries(new FormData(event.currentTarget))));}},React.createElement('fieldset',{id:'fields'},React.createElement('j3w1-text-field',{id:'field'},React.createElement('div',{className:'text-field'},React.createElement('label',{className:'text-field-label',htmlFor:'project'},'Project'),React.createElement('input',{className:'text-field-input',id:'project',name:'project',defaultValue:'Initial',required:true}))),React.createElement('j3w1-checkbox',{id:'check'},React.createElement('label',{className:'checkbox'},React.createElement('input',{className:'checkbox-input',type:'checkbox',name:'enabled',value:'yes'}),React.createElement('span',{className:'checkbox-text'},'Enabled'))),React.createElement('j3w1-button',null,React.createElement('button',{className:'button',type:'submit'},'Save')),React.createElement('j3w1-button',null,React.createElement('button',{className:'button button-secondary',type:'reset'},'Reset')))),React.createElement('p',{role:'status',id:'result'},result));}\ncreateRoot(document.querySelector('#app')).render(React.createElement(App));\n`);
-await put("vite.config.js", `import {defineConfig} from 'vite';import vue from '@vitejs/plugin-vue';import path from 'node:path';export default defineConfig({base:'./',plugins:[vue({template:{compilerOptions:{isCustomElement:tag=>tag.startsWith('j3w1-')}}})],build:{outDir:'built/web',rollupOptions:{input:Object.fromEntries(['html','vue','react'].map(name=>[name,path.resolve(name+'/index.html')]))}}});\n`);
-await put("astro.config.mjs", `import {defineConfig} from 'astro/config';export default defineConfig({srcDir:'./astro/src',outDir:'./built/astro',base:'/astro/',output:'static'});\n`);
-await put("astro/src/pages/index.astro", `---\nimport '@j3w1/ui/tokens.css';\nimport '@j3w1/ui/styles/button.css';\nimport '@j3w1/ui/styles/text-field.css';\nimport '@j3w1/ui/styles/checkbox.css';\n---\n<!doctype html><html lang="en" data-density="comfortable"><head><meta charset="utf-8"/><title>Independent consumer</title><meta name="viewport" content="width=device-width,initial-scale=1"/></head><body>${markup}<script>import '@j3w1/ui/register/button';import '@j3w1/ui/register/text-field';import '@j3w1/ui/register/checkbox';${wire}</script></body></html>`);
-await put("types.ts", `import { J3w1Button } from '@j3w1/ui/components/button';\nimport { J3w1TextField } from '@j3w1/ui/components/text-field';\nconst field = document.createElement('j3w1-text-field');\nfield.value='Typed';field.required=true;field.reportValidity();\nconst button:J3w1Button=document.createElement('j3w1-button');button.disabled=true;\nconst typed:J3w1TextField=field;void typed;\n`);
-await put("tsconfig.json", stableJson({ compilerOptions: { target: "ES2022", module: "NodeNext", moduleResolution: "NodeNext", lib: ["ES2022", "DOM"], strict: true, noEmit: true, skipLibCheck: false, types: [] }, files: ["types.ts"] }));
+for (const [name, content] of await consumerExamples()) await put(name, content);
 console.log("Installing packed artifact into independent temporary applications.");
-run(["install", "--ignore-scripts", "--no-audit", "--no-fund"], root);
+run(["install", "--prefer-offline", "--ignore-scripts", "--no-audit", "--no-fund"], root);
 const binary = (name, args) => execFileSync(process.execPath, [path.join(root, "node_modules", name), ...args], { cwd: root, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
 binary("typescript/bin/tsc", ["-p", "tsconfig.json"]);
+// Exercise real ESM exports in Node; declaration checking alone cannot detect
+// an application bundler accidentally dropping public library exports.
+execFileSync(process.execPath, ["--input-type=module", "-e", "import * as ui from '@j3w1/ui'; import { mountBuilder } from '@j3w1/ui/enhance/form-builder'; import { mountWorkflow } from '@j3w1/ui/enhance/form-workflow'; if(Object.keys(ui).length!==67 || typeof mountBuilder!=='function' || typeof mountWorkflow!=='function') throw new Error('Missing packed public exports');"], { cwd: root, stdio: "pipe" });
 binary("vite/bin/vite.js", ["build"]);
 binary("astro/bin/astro.mjs", ["build"]);
 // Copy consumption runs the installed CLI and uses only its packed dependency closure.
 binary("@j3w1/ui/dist/cli.js", ["copy", "dialog", "--out", path.join(root, "built/copy")]);
+binary("@j3w1/ui/dist/cli.js", ["copy", "button", "--out", path.join(root, "built/basic")]);
+binary("@j3w1/ui/dist/cli.js", ["kit", "--components", "text-field,admin-form", "--mode", "copy", "--framework", "html", "--out", path.join(root, "built/kit")]);
+const copyKit = path.join(root, "built/kit");
+const copiedMarkup = await Promise.all(["text-field", "admin-form"].map(id => fs.readFile(path.join(copyKit, id, "element.html"), "utf8")));
+await fs.writeFile(path.join(copyKit, "index.html"), `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Copied composition</title><link rel="stylesheet" href="./text-field/tokens.css"><link rel="stylesheet" href="./text-field/component.css"><link rel="stylesheet" href="./admin-form/component.css"></head><body><main><h1>Copied composition</h1>${copiedMarkup.join("\n")}</main><script type="module">import './text-field/runtime/register/text-field.js';import './admin-form/runtime/register/admin-form.js';</script></body></html>`);
+for (const [framework, mode] of [["vue", "package"], ["native", "mapping"]]) {
+  const destination = path.join(root, `${framework}-kit`);
+  binary("@j3w1/ui/dist/cli.js", ["kit", "--components", "text-field,dialog", "--mode", mode, "--framework", framework, "--out", destination]);
+  const kit = JSON.parse(await fs.readFile(path.join(destination, "kit.json"), "utf8"));
+  if (kit.framework !== framework || kit.mode !== mode || kit.implementations.some(item => item.id === "form-builder")) throw new Error("Task kit was not bounded to the selected dependencies");
+  for (const item of kit.implementations) await fs.access(path.join(destination, "canonical", `${item.id}.json`));
+}
 const tarball = path.join(packages, packed.filename);
 await fs.writeFile(path.join(repoRoot, ".cache/ui-consumers.json"), stableJson({ root, tarball, integrity: packed.integrity, tarballDigest: sha256(await fs.readFile(tarball)), fixtures: await snapshotDirectory(path.join(root, "built")), frameworks: ["html", "vue", "react", "astro"], typeCheck: "passed", build: "passed" }));
 console.log("Packed HTML, Vue, React and Astro consumers and copied dialog built; browser gate is next.");

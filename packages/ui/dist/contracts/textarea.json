@@ -1,0 +1,497 @@
+{
+  "id": "textarea",
+  "name": "Textarea",
+  "version": "1.0.0",
+  "tag": "j3w1-textarea",
+  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/textarea.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.0.0/packages/ui/src/behaviors/native.js",
+  "imports": {
+    "class": "@j3w1/ui/components/textarea",
+    "register": "@j3w1/ui/register/textarea",
+    "styles": "@j3w1/ui/styles/textarea.css",
+    "tokens": "@j3w1/ui/tokens.css"
+  },
+  "dom": "light",
+  "domReason": "Visible native controls retain FormData, labels, constraints, disabled fieldsets and reset. No duplicate form-value mechanism is installed.",
+  "api": {
+    "attributes": [
+      {
+        "name": "disabled",
+        "description": "Disable the native controls owned by this instance."
+      },
+      {
+        "name": "loading",
+        "description": "Mark the primary control busy and prevent duplicate activation."
+      },
+      {
+        "name": "value",
+        "description": "Forwards value to the primary native control."
+      },
+      {
+        "name": "required",
+        "description": "Forwards required to the primary native control."
+      },
+      {
+        "name": "readonly",
+        "description": "Forwards readonly to the primary native control."
+      },
+      {
+        "name": "checked",
+        "description": "Forwards checked to the primary native control."
+      }
+    ],
+    "properties": [
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "description": "Delegates disabled state to native children.",
+        "controller": false,
+        "readonly": false
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "description": "Native control name; application form keys remain explicit.",
+        "controller": false,
+        "readonly": false
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "description": "Primary native value; assignment does not fabricate user events.",
+        "controller": false,
+        "readonly": false
+      },
+      {
+        "name": "checked",
+        "type": "boolean",
+        "description": "Native checkbox state.",
+        "controller": false,
+        "readonly": false
+      },
+      {
+        "name": "required",
+        "type": "boolean",
+        "description": "Native required constraint.",
+        "controller": false,
+        "readonly": false
+      },
+      {
+        "name": "readOnly",
+        "type": "boolean",
+        "description": "Native readonly property.",
+        "controller": false,
+        "readonly": false
+      },
+      {
+        "name": "form",
+        "type": "HTMLFormElement | null",
+        "description": "Owning native form.",
+        "controller": false,
+        "readonly": true
+      }
+    ],
+    "methods": [
+      {
+        "name": "refresh",
+        "signature": "(): void",
+        "description": "Reconnect behavior after replacing native child structure."
+      },
+      {
+        "name": "focus",
+        "signature": "(options?: FocusOptions): void",
+        "description": "Focus the first usable native control."
+      },
+      {
+        "name": "checkValidity",
+        "signature": "(): boolean",
+        "description": "Check owned native constraints."
+      },
+      {
+        "name": "reportValidity",
+        "signature": "(): boolean",
+        "description": "Report the first invalid owned control."
+      },
+      {
+        "name": "clear",
+        "signature": "(): void",
+        "description": "Clear an editable primary input and emit native input/change."
+      }
+    ],
+    "events": [
+      {
+        "name": "j3w1-change",
+        "detail": "{ value: string; checked?: boolean; name: string }",
+        "description": "Native change from an owned control, alongside the original native event."
+      }
+    ]
+  },
+  "variants": [
+    {
+      "id": "default",
+      "name": "Default"
+    },
+    {
+      "id": "with-count",
+      "name": "With character count",
+      "description": "A live count under the box in text.muted."
+    }
+  ],
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "placeholder-shown",
+    "filled",
+    "required",
+    "invalid",
+    "invalid+focus-visible",
+    "disabled",
+    "read-only"
+  ],
+  "dependencies": [],
+  "tokens": {
+    "root.bg": "color.surface.input",
+    "root.border": "color.border.control",
+    "root.bg-hover": "color.interaction.hover.bg",
+    "root.border-focus": "color.border.active",
+    "root.ring": "color.interaction.focus.ring",
+    "root.ring-invalid": "color.interaction.focus.ring-container",
+    "root.border-invalid": "color.status.danger.border",
+    "root.border-disabled": "color.border.disabled",
+    "root.bg-disabled": "color.interaction.disabled.bg",
+    "root.border-readonly": "color.border.divider",
+    "root.bg-readonly": "color.surface.canvas",
+    "input.text": "color.text.default",
+    "input.text-disabled": "color.text.disabled",
+    "input.placeholder": "color.text.placeholder",
+    "input.caret": "color.code.caret",
+    "input.selection-bg": "color.interaction.text-selection.bg",
+    "input.selection-text": "color.interaction.text-selection.text",
+    "label.text": "color.text.bright",
+    "label.required-mark": "color.status.danger.text",
+    "help.text": "color.text.muted",
+    "count.text": "color.text.muted",
+    "count.text-over": "color.status.danger.text",
+    "message.text": "color.status.danger.text"
+  },
+  "status": {
+    "implemented": true,
+    "packaged": true,
+    "verification": "See separate revision-aware execution evidence"
+  },
+  "styleDependencies": [],
+  "tokenDependencies": {
+    "roles": [
+      "border.width.default",
+      "border.width.emphasis",
+      "color.border.active",
+      "color.border.control",
+      "color.border.disabled",
+      "color.border.divider",
+      "color.code.caret",
+      "color.interaction.disabled.bg",
+      "color.interaction.drop-target",
+      "color.interaction.focus.ring-container",
+      "color.interaction.hover.bg",
+      "color.interaction.selection.bg",
+      "color.interaction.selection.text",
+      "color.interaction.text-selection.bg",
+      "color.interaction.text-selection.text",
+      "color.status.danger.border",
+      "color.status.danger.text",
+      "color.surface.canvas",
+      "color.surface.input",
+      "color.text.bright",
+      "color.text.default",
+      "color.text.disabled",
+      "color.text.muted",
+      "color.text.placeholder",
+      "density.comfortable.control-height",
+      "density.comfortable.control-padding-x",
+      "density.compact.control-height",
+      "density.compact.control-padding-x",
+      "focus.offset",
+      "focus.offset-invalid",
+      "focus.ring",
+      "font.family.mono",
+      "font.line-height.ui-md",
+      "font.line-height.ui-sm",
+      "font.size.ui-md",
+      "font.size.ui-sm",
+      "radius.none",
+      "space.32",
+      "space.4",
+      "z.popover"
+    ],
+    "paths": [
+      "border.width.default",
+      "border.width.emphasis",
+      "color.border.active",
+      "color.border.control",
+      "color.border.disabled",
+      "color.border.divider",
+      "color.code.caret",
+      "color.interaction.disabled.bg",
+      "color.interaction.drop-target",
+      "color.interaction.focus.ring",
+      "color.interaction.focus.ring-container",
+      "color.interaction.hover.bg",
+      "color.interaction.selection.bg",
+      "color.interaction.selection.text",
+      "color.interaction.text-selection.bg",
+      "color.interaction.text-selection.text",
+      "color.primitive.ink.0",
+      "color.primitive.ink.30",
+      "color.primitive.ink.40",
+      "color.primitive.ink.60",
+      "color.primitive.paper.90",
+      "color.primitive.red.200",
+      "color.primitive.red.350",
+      "color.primitive.red.800",
+      "color.primitive.red.850",
+      "color.primitive.rose.300",
+      "color.primitive.rose.350",
+      "color.primitive.rose.600",
+      "color.primitive.rose.700",
+      "color.primitive.rose.800",
+      "color.status.danger.border",
+      "color.status.danger.text",
+      "color.surface.canvas",
+      "color.surface.input",
+      "color.text.bright",
+      "color.text.default",
+      "color.text.disabled",
+      "color.text.muted",
+      "color.text.placeholder",
+      "density.comfortable.control-height",
+      "density.comfortable.control-padding-x",
+      "density.compact.control-height",
+      "density.compact.control-padding-x",
+      "focus.offset",
+      "focus.offset-invalid",
+      "focus.ring",
+      "font.family.mono",
+      "font.line-height.ui-md",
+      "font.line-height.ui-sm",
+      "font.size.ui-md",
+      "font.size.ui-sm",
+      "radius.none",
+      "space.32",
+      "space.4",
+      "z.popover"
+    ],
+    "eligibility": {
+      "border.width.default": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "border.width.emphasis": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.border.active": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.border.control": {
+        "action": "use-and-report",
+        "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
+        "decisionIds": [
+          "D-007"
+        ]
+      },
+      "color.border.disabled": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.border.divider": {
+        "action": "use-and-report",
+        "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
+        "decisionIds": [
+          "D-008"
+        ]
+      },
+      "color.code.caret": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.interaction.disabled.bg": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.interaction.drop-target": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.interaction.focus.ring-container": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.interaction.hover.bg": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.interaction.selection.bg": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.interaction.selection.text": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.interaction.text-selection.bg": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.interaction.text-selection.text": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.status.danger.border": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.status.danger.text": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.surface.canvas": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.surface.input": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.text.bright": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.text.default": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.text.disabled": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.text.muted": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.text.placeholder": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "density.comfortable.control-height": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "density.comfortable.control-padding-x": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "density.compact.control-height": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "density.compact.control-padding-x": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "focus.offset": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "focus.offset-invalid": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "focus.ring": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "font.family.mono": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "font.line-height.ui-md": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "font.line-height.ui-sm": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "font.size.ui-md": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "font.size.ui-sm": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "radius.none": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "space.32": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "space.4": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "z.popover": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    }
+  },
+  "maturity": "stable",
+  "copy": {
+    "directory": "copy/textarea/",
+    "manifest": "copy/textarea/manifest.json",
+    "digest": "sha256-b+IezZEPQITEHFf31/ZjUqBTAxHthCzvPwN4NIBoVX8="
+  }
+}

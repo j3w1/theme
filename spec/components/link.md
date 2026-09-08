@@ -28,7 +28,7 @@ tokens:
   root.text-hover: color.text.link-hover
   root.bg-hover: color.interaction.hover.bg-strong
   root.ring: color.interaction.focus.ring
-  root.text-visited: color.text.default
+  root.text-visited: color.text.link
   root.text-current: color.text.bright
   root.indicator: color.border.selected-indicator
   icon.stroke: color.icon.default
@@ -36,12 +36,13 @@ stateTokens:
   default: { fg: color.text.link, bg: color.surface.canvas }
   hover: { fg: color.text.link-hover, bg: color.interaction.hover.bg-strong }
   focus-visible: { fg: color.text.link, bg: color.surface.canvas, outline: color.interaction.focus.ring }
-  visited: { fg: color.text.default, bg: color.surface.canvas }
+  visited: { fg: color.text.link, bg: color.surface.canvas }
   current: { fg: color.text.bright, bg: color.surface.canvas, border: color.border.selected-indicator }
 contrast:
   - { fg: color.text.link-underline, bg: color.surface.canvas, min: 3, kind: ui, label: "underline on the canvas" }
   - { fg: color.text.link-underline, bg: color.surface.default, min: 3, kind: ui, label: "underline on the panel" }
   - { fg: color.text.link, bg: color.surface.default, label: "link text on the panel" }
+  - { fg: color.text.link, bg: color.surface.raised, label: "link text on raised surfaces" }
   - { fg: color.interaction.focus.ring, bg: color.interaction.hover.bg-strong, min: 3, kind: ui, state: hover, label: "ring on the hover fill" }
 anatomy:
   - part: root
@@ -72,8 +73,8 @@ compact: true
 
 Navigation to another document, section or resource. A link never performs
 an action on the current page; that is a button. Links are recognisable by
-the underline, not by colour alone, because {color.text.link} is also the
-heading colour.
+the persistent underline as well as strong red {color.text.link}, distinct
+from rose body text and headings (D-024).
 
 ## Anatomy
 
@@ -89,7 +90,7 @@ replacing the underline.
 | default | {color.text.link}; underline 1px {color.text.link-underline} offset 2px | the underline |
 | hover | background → {color.interaction.hover.bg-strong}; text → {color.text.link-hover}; underline 2px in the text colour | underline thickens 1px → 2px; cursor: pointer |
 | focus-visible | ring 1px dashed {color.interaction.focus.ring} at −2px; no change to the underline | the ring |
-| visited | text → {color.text.default}; underline unchanged | — (browsers restrict `:visited` to colour; visited is informational and the underline still marks the link) |
+| visited | {color.text.link}; underline unchanged | the underline continues to mark navigation; browsing history does not reduce its visibility |
 | current | text → {color.text.bright}; the underline becomes a 2px {color.border.selected-indicator} bottom border; no hover fill | `aria-current="page"`; the bar's 2px weight |
 
 Precedence: current > hover; focus-visible is always drawn.
@@ -105,9 +106,9 @@ focusable.
 The link text describes the destination on its own ("Release notes", never
 "here"). Same destination, same text. `aria-current="page"` marks the
 current document in navigation and nothing else. Links that open a new
-window say so in text. Contrast: text 10.37:1 on the canvas, 10.10:1 on the
-panel; underline 4.14:1 (≥ 3:1); hover 11.41:1 on the strong hover fill;
-ring 4.69:1 at rest and 3.10:1 on the hover fill. Inline targets are exempt
+window say so in text. Link text meets 4.5:1 on canvas, panel and raised
+surfaces; the underline meets 3:1. The generated contrast report records exact
+ratios for the current profile, including hover text and focus. Inline targets are exempt
 from the 24×24 minimum; standalone links reach it through their line box.
 
 ## Portability

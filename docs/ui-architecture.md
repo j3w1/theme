@@ -1,9 +1,8 @@
 # Official web implementation architecture
 
-Status: distribution infrastructure under implementation. Component coverage,
-packed-consumer checks and deployment are outstanding until their recorded gates
-pass. This document describes the implementation contract; it is not release
-evidence.
+Status: all 67 inventory entries, copy distributions, the static portal and Vue
+showcase are implemented. This document describes architecture; consult the
+separate delivery and execution records for actual acceptance and deployment.
 
 ## Ownership
 
@@ -29,7 +28,8 @@ must implement their complete canonical keyboard and accessibility contracts.
 
 Class imports are separate from browser registration. Individual registration
 modules include their component dependencies. Repeating registration with the
-same constructor is safe; an existing foreign definition is an error. Importing
+same constructor or identical generated implementation identity is safe, including
+independent copy directories. A different version or foreign definition is an error. Importing
 the root registration module deliberately registers the complete catalogue.
 Server renderers import class definitions only when needed and register in the
 browser. Native child markup is the static and server-rendered content.
@@ -88,6 +88,17 @@ existing revision-aware site evidence remains tied to exact built specimen
 bytes. Package evidence also identifies the packed tarball and external fixture
 bytes. Manual screen-reader and physical-device results require their own
 recorded protocols; automated browser runs do not establish those results.
+
+## Payload budgets
+
+Distribution checks cap initial Vue JavaScript at 64 KiB gzip, initial portal
+JavaScript at 32 KiB gzip, each lazy Vue chunk at 192 KiB gzip, and the complete
+installable tarball at 2 MiB. Initial measurements were about 46 KiB for the Vue
+entry and 140 KiB for the lazily loaded bounded form builder; the builder includes
+its schema and HTML-parsing dependencies. These are transfer-size estimates,
+not a claim that the static host enables a particular compression setting.
+The test follows static imports while keeping optional dynamic imports separate.
+Per-component imports avoid loading the full catalogue on ordinary pages.
 
 ## Standards consulted
 

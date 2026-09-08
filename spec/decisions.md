@@ -35,6 +35,7 @@ in its `$extensions["io.github.j3w1.theme"].approval.decision`. Agents may open
 | D-021 | Local form composition with versioned data | proposed | 2026-09-08 | — |
 | D-022 | Local visual selection before agent implementation distribution | proposed | 2026-09-08 | — |
 | D-023 | True Black / Rose canonical foundation | accepted | 2026-09-08 | owner (explicit selection of candidate I) |
+| D-024 | Distinguish links from body text and headings | accepted | 2026-09-08 | owner (explicit preview correction) |
 
 ## D-000 Responsibility split
 
@@ -460,3 +461,20 @@ new colors or accessibility waivers. This is the foundation for the Phase 6
 package, copy distributions, static portal and Vue showcase. Existing consumers
 retain their immutable pins; the new surface contract ships in version 1.0.0,
 following the repository's major-version rule for approved value changes.
+
+## D-024 Distinguish links from body text and headings
+
+Status: accepted. During the implementation preview the owner requested links
+that are more distinguishable from normal text, using different colors. This
+is an explicit correction to the foreground-role retention in D-023, limited
+to links. Map `color.text.link` to the existing strong red primitive `#f73f35`,
+retain the persistent red underline, and retain near-white hover text on the
+strong dark-red hover fill. Visited links keep the link color and underline;
+current-page indicators and selected navigation retain their explicit on-fill
+roles. Body text and heading colors remain the True Black / Rose hierarchy.
+
+The alternative of bright-rose links still shares the heading color and gives
+too little separation in the reviewed dashboard. Blue/purple links would
+introduce an unrelated hue. No new primitive, status hue, contrast exception
+or focus rule is introduced. Preserve the old link assignment in the historical
+profile. This refinement ships with the same unreleased 1.0.0 major change.

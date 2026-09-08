@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "component": "button",
+  "version": "1.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/button.md",
+  "dependencies": [
+    "register/button.js",
+    "chunks/element-B0z6sqq8.js",
+    "components/button.js",
+    "chunks/native-BFZpUch0.js",
+    "chunks/dom-BVXrzskP.js"
+  ],
+  "files": {
+    "runtime/register/button.js": "sha256-VkH+HKQs/zEcutL/ZUG4rtLZwzpLyVGXfB8puuKYhNI=",
+    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
+    "runtime/components/button.js": "sha256-5LDf+XnJVxh1CNJ7na2YwWwFelnM/Fh7QLYGxwJDRDc=",
+    "runtime/chunks/native-BFZpUch0.js": "sha256-4FgvJoEfMvTAX/0SiIsk0wfAn46HnBmvIXq6b7hYmV4=",
+    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
+    "component.css": "sha256-79ycU5ojNv1Z2yHzJ6KXDmshFL1we3mQNOoIwfMXnyg=",
+    "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
+    "element.html": "sha256-kLEcMMhF4Tv+byKkImEgGIqqR+QYh6uOOCz/mg5hkPs=",
+    "index.html": "sha256-uj00vnflsiaqN+2apiLHqJpCJQQxYasFb7KAWllw5dM=",
+    "README.md": "sha256-fXo0eTF3cZ8YgQmZ4nIfmciRAems2hkCUFefGK+jYRU="
+  }
+}

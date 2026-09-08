@@ -1,44 +1,19 @@
 ---
 import ToolLayout from "../../layouts/ToolLayout.astro";
-import FormWorkflow from "../../components/FormWorkflow.astro";
+import { builderMarkup } from "../../../../packages/ui/src/examples/form-markup.mjs";
 import templateExport from "../../../../exports/forms/templates.json";
 import "../../styles/form-tools.css";
 import "../../styles/components/form-builder.css";
 import { withBase } from "../../lib/base";
 import { anchorFor } from "../../../../scripts/lib/anchors.mjs";
 import { renderFields } from "../../../../scripts/lib/form-fields.mjs";
-const id = anchorFor.builder;
 const templates = templateExport.templates;
 const sampleFields = ["text", "textarea", "select", "checkbox", "radio"].map(type => ({ id: type, type, label: `Example ${type}`, help: "Static canonical field; no submission.", required: false, options: ["select", "radio"].includes(type) ? [{ id: "one", label: "First option" }, { id: "two", label: "Second option" }] : [] }));
 ---
 <ToolLayout title="Reference form builder" description="Compose five canonical field kinds, try a local preview, and transfer a bounded JSON definition.">
   <p>Draft reference under proposed D-021. Definitions stay in memory. Import validates every field and the theme content identity before replacing your form. Definition changes clear preview values and errors; Download definition excludes entered values.</p>
   <p><a href={withBase("#" + anchorFor.component("form-builder"))}>Component contract</a> · <a href={withBase("patterns/validation-recovery/")}>Validation and recovery</a> · <a href={withBase("exports/forms/identity.json")}>Required theme content identity</a></p>
-  <section class="form-builder form-tool" data-builder hidden aria-label="Form definition editor">
-    <div class="form-builder-editor">
-      <label for={id("kind")}>Field type<select id={id("kind")} data-kind><option value="text">Text</option><option value="textarea">Textarea</option><option value="select">Select</option><option value="checkbox">Checkbox</option><option value="radio">Radio</option></select></label>
-      <button class="button" type="button" data-add>Add field</button>
-      <label for={id("density")}>Preview density<select id={id("density")} data-density-choice><option value="compact">Compact</option><option value="comfortable">Comfortable</option></select></label>
-    </div>
-    <p data-builder-status role="status"></p>
-    <p data-empty>No fields yet. Choose a type and add your first field.</p>
-    <ol class="form-builder-list" data-field-list></ol>
-    <form class="form-builder-editor" data-editor novalidate hidden>
-      <h2>Edit selected field</h2>
-      <label for={id("label")}>Field label<input id={id("label")} name="label" maxlength="120" required /></label>
-      <label for={id("help")}>Field help<textarea id={id("help")} name="help" maxlength="400"></textarea></label>
-      <label for={id("required")}><input id={id("required")} name="required" type="checkbox" />Required field</label>
-      <label for={id("options")} data-options-label>Options JSON<textarea id={id("options")} name="options" rows="6" maxlength="65537" spellcheck="false"></textarea></label>
-      <p>Edit the id and label of each option in the JSON array. Keep each option ID when changing its label. Select and radio fields need 1–20 options.</p>
-      <div class="form-tool-actions"><button class="button" type="submit">Save field definition</button><button class="button button-secondary" type="button" data-cancel>Cancel edit</button></div>
-    </form>
-    <h2>Preview</h2><p>After changing the definition, the preview starts with empty values. Review validates required values and available choices.</p>
-    <div data-preview><FormWorkflow prefix="builder-preview" templates={templates} /></div>
-    <h2>Transfer definition</h2>
-    <p>Schema version 1 accepts at most 64 KiB and 20 fields. Unknown keys, duplicate IDs, unsupported types and a different theme content identity fail without replacing the current definition. JSON contains plain text only; it cannot execute code.</p>
-    <div class="form-builder-editor"><label for={id("json")}>Definition JSON<textarea id={id("json")} data-json rows="10" spellcheck="false" maxlength="65537"></textarea></label></div>
-    <div class="form-tool-actions"><button class="button" type="button" data-export>Show definition JSON</button><button class="button button-secondary" type="button" data-download>Download definition</button><button class="button button-secondary" type="button" data-import>Import definition JSON</button><button class="button button-secondary" type="button" data-reset>Reset builder</button></div>
-  </section>
+  <div set:html={builderMarkup("builder")} />
   <section aria-label="Static builder reference"><h2>Without JavaScript</h2><p>The editor requires JavaScript. The definition format and representative fields remain readable here. A text field has a stable ID, label, help and required flag. A select or radio field also has stable option IDs and labels. Checkboxes hold a boolean preview value. No preview values belong in an exported definition.</p><p><a href={withBase("exports/components/form-builder.json")}>Download the static component contract</a>. Existing text-field, textarea, select, checkbox and radio-group rules remain authoritative. This is not a production backend or native port.</p></section>
   <div class="form-tool form-tool-fields" aria-label="Static representative fields" set:html={renderFields(sampleFields, {}, { templates, prefix: "builder-static" })} />
   <script>

@@ -1,0 +1,55 @@
+j3w1/theme implementation brief — command-palette
+theme: j3w1-theme 1.0.0  profile: default  sourceDigest: sha256-ZBxaPGMyHoIGQgEd1TPIM+OenmDQ3M0HQ2eDr2AW7oI=
+pin: https://raw.githubusercontent.com/j3w1/theme/v1.0.0/exports/components/command-palette.json
+spec: spec/components/command-palette.md  site: https://j3w1.github.io/theme/reference/#c-command-palette
+maturity: stable  priority: R2
+
+Summary: A compact square modal command prompt with local results and category labels.
+
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
+Tokens (resolved):
+  root.bg                                             #100c0c  ({color.surface.default})  use
+  root.text                                           #e99499  ({color.text.default})  use
+  root.border                                         #a3676b  ({color.border.control})  use-and-report (D-007)
+  heading.text                                        #ffa2a7  ({color.text.bright})  use
+  secondary.text                                      #bd787d  ({color.text.muted})  use
+  control.bg                                          #000000  ({color.surface.input})  use
+  control.focus                                       #e53935  ({color.interaction.focus.ring})  use
+  dependency.role-border-width-default                1px  ({border.width.default})  use
+  dependency.role-border-width-emphasis               2px  ({border.width.emphasis})  use
+  dependency.role-color-border-overlay                #e53935  ({color.border.overlay})  use-and-report (D-008)
+  dependency.role-color-border-selected-indicator     #e53935  ({color.border.selected-indicator})  use
+  dependency.role-color-interaction-selection-bg      #911410  ({color.interaction.selection.bg})  use
+  dependency.role-color-interaction-selection-text    #f4eeee  ({color.interaction.selection.text})  use
+  dependency.role-color-surface-backdrop              rgb(0 0 0 / 65%)  ({color.surface.backdrop})  use-and-report (D-008)
+  dependency.role-color-surface-overlay               #241010  ({color.surface.overlay})  use
+  dependency.role-density-comfortable-control-height  32px  ({density.comfortable.control-height})  use
+  dependency.role-density-compact-control-height      24px  ({density.compact.control-height})  use
+  dependency.role-radius-none                         0px  ({radius.none})  use
+  dependency.role-space-12                            12px  ({space.12})  use
+  dependency.role-space-16                            16px  ({space.16})  use
+  dependency.role-space-2                             2px  ({space.2})  use
+  dependency.role-space-8                             8px  ({space.8})  use
+State dependency disclosures: D-007
+
+States: default, open, closed, focus-visible, no-results
+  default: One prompt and dense command rows. [Visible names and categories.]
+  open: Square overlay surface and border. [Native modal dialog and active-descendant relationship.]
+  closed: Panel absent. [Opener remains focusable.]
+  focus-visible: Dashed input ring. [Input retains DOM focus while results change.]
+  no-results: Muted zero-results status. [Explicit result count and no active descendant.]
+
+Keyboard:
+  Ctrl+K / Cmd+K: Open when the host explicitly enables the shortcut.
+  Up / Down: Move the active result while retaining input focus.
+  Enter: Invoke the active enabled result and close.
+  Escape: Close and restore the opener.
+  Tab / Shift+Tab: Cycle through native modal controls.
+
+ARIA: combobox (https://www.w3.org/WAI/ARIA/apg/patterns/combobox/)
+Responsive: Wrap labels and actions without changing source order. Use logical spacing in RTL. Preserve native target sizes at both densities; only bounded data regions may scroll horizontally.
+Portability: Find and invoke local commands from a compact square floating utility panel. One prompt filters dense rows with category labels. Results are caller-supplied links or bounded actions; no remote search occurs. The host may opt into Ctrl+K or Cmd+K.
+  native: Use equivalent native semantics and approved roles; record any unsupported behavior as a mapping deviation.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

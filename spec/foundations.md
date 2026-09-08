@@ -26,7 +26,7 @@ put more red on screen.
 | Role | Value | Contrast on canvas / default / raised | Use |
 | --- | --- | --- | --- |
 | `text.prose` | `#f4eeee` | 18.31 / 16.96 / 15.83 | long-form reading, on-fill text |
-| `text.bright` | `#ffa2a7` | 10.98 / 10.17 / 9.49 | headings, links, emphasis |
+| `text.bright` | `#ffa2a7` | 10.98 / 10.17 / 9.49 | headings and emphasis |
 | `text.default` | `#e99499` | 9.16 / 8.48 / 7.92 | interface and body text |
 | `text.muted` | `#bd787d` | 6.15 / 5.69 / 5.31 | secondary text; the darkest colour permitted for chrome text |
 | `text.subtle` | `#ad7175` | 5.40 / 5.00 / 4.66 | metadata, comments, line numbers |
@@ -152,6 +152,11 @@ selection (`code.selection-bg`, `#420f0c`) muted text stays at 4.71:1 but the
 keyword, type, property and comment roles fall below 4.5:1; a selection is a
 transient state and the limitation is recorded, not hidden. The `extended` overlay
 proposes a semantic sixteen-slot palette that all reaches 4.5:1.
+
+Links use strong red `text.link` (`#f73f35`) and a persistent underline, distinct
+from the rose body and heading ladder (D-024). Hover uses near-white
+`text.link-hover` on `interaction.hover.bg-strong`. Current-page and selected
+navigation use their explicit indicator and on-fill roles.
 
 ## Typography
 
