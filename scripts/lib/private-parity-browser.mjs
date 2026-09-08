@@ -17,25 +17,31 @@ const measure = async locator => locator.evaluate((element, names) => {
 export const runPrivateParity = async prepared => {
   const { out, target, requireTarget, config, metadata } = prepared;
   await assertRealDirectory(out);
-  const { createServer } = await import(pathToFileURL(requireTarget.resolve("vite")).href);
-  const plugins = [];
-  if (config.frameworkStyles) {
-    const { default: frameworkPlugin } = await import(pathToFileURL(requireTarget.resolve("vite-plugin-vuetify")).href);
-    plugins.push(frameworkPlugin({ autoImport: false, styles: { configFile: path.join(out, "host", config.frameworkStyles) } }));
-  }
-  const aliases = [
-    { find: /^vue$/, replacement: requireTarget.resolve("vue/dist/vue.esm-bundler.js") },
-    ...["vuetify", "vuetify/components", "vuetify/styles"].map(name => ({ find: new RegExp("^" + name + "$"), replacement: requireTarget.resolve(name) })),
-    ...Object.entries(config.aliases).map(([find, value]) => ({ find, replacement: path.join(out, "host", value) })),
-  ];
-  const server = await createServer({ configFile: false, envFile: false, root: out, publicDir: false, cacheDir: path.join(out, ".cache"), plugins,
-    resolve: { alias: aliases, dedupe: ["vue"] }, logLevel: "silent",
-    server: { host: "127.0.0.1", port: 0, fs: { strict: true, allow: [out, await fs.realpath(path.join(target, "node_modules"))] } },
-    css: { preprocessorOptions: { scss: { loadPaths: [path.join(target, "node_modules")] } } },
-  });
-  let browser;
+  let server, browser;
   const records = [], errors = [];
   try {
+    const { createServer } = await import(pathToFileURL(requireTarget.resolve("vite")).href);
+    const plugins = [];
+    if (config.frameworkStyles) {
+      const { default: frameworkPlugin } = await import(pathToFileURL(requireTarget.resolve("vite-plugin-vuetify")).href);
+      // The upstream factory resolves its framework peer from cwd. Keep this
+      // synchronous scope narrow; application config and scripts are not loaded.
+      const previousDirectory = process.cwd();
+      try {
+        process.chdir(target);
+        plugins.push(frameworkPlugin({ autoImport: false, styles: { configFile: path.join(out, "host", config.frameworkStyles) } }));
+      } finally { process.chdir(previousDirectory); }
+    }
+    const aliases = [
+      { find: /^vue$/, replacement: requireTarget.resolve("vue/dist/vue.esm-bundler.js") },
+      ...["vuetify", "vuetify/components", "vuetify/styles"].map(name => ({ find: new RegExp("^" + name + "$"), replacement: requireTarget.resolve(name) })),
+      ...Object.entries(config.aliases).map(([find, value]) => ({ find, replacement: path.join(out, "host", value) })),
+    ];
+    server = await createServer({ configFile: false, envFile: false, root: out, publicDir: false, cacheDir: path.join(out, ".cache"), plugins,
+      resolve: { alias: aliases, dedupe: ["vue"] }, logLevel: "silent",
+      server: { host: "127.0.0.1", port: 0, fs: { strict: true, allow: [out, await fs.realpath(path.join(target, "node_modules"))] } },
+      css: { preprocessorOptions: { scss: { loadPaths: [path.join(target, "node_modules")] } } },
+    });
     await server.listen();
     const origin = server.resolvedUrls.local[0];
     browser = await chromium.launch({ headless: true });
@@ -88,5 +94,5 @@ export const runPrivateParity = async prepared => {
     await assertRealDirectory(out);
     await fs.writeFile(path.join(out, "failure.json"), stableJson({ result: "failed", errors, message: error.message, records }), { flag: "wx" });
     throw error;
-  } finally { await browser?.close(); await server.close(); }
+  } finally { await browser?.close(); await server?.close(); }
 };

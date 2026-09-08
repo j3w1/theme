@@ -42,6 +42,10 @@ checkout. It follows `schemas/json/private-parity.schema.json`:
 The independent fixture loads actual host defaults/styles and installed
 framework packages. Vite's root and cache are private; no target application
 scripts, backend, account connection or environment file is executed.
+The style plugin's synchronous factory resolves dependencies in the target's
+directory; the caller's directory is restored before server creation. Failures
+during plugin or server initialization are recorded in the validated private
+output, as are browser failures.
 The browser server listens on loopback and browser requests stay at that
 origin. Selected source files are rehashed after capture to detect mutation.
 
