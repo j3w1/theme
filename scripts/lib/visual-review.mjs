@@ -11,7 +11,7 @@ export const candidateNames = ["A — Conservative refinement", "B — Balanced 
 const change = z.object({ value: z.string().regex(/^#[0-9a-f]{6}$/), reason: z.string().min(12), tradeoff: z.string().min(12) }).strict();
 export const overlaySchema = z.object({
   schemaVersion: z.literal(1), baselineDigest: z.string().startsWith("sha256-"),
-  id: z.enum(candidateIds), summary: z.string().min(20),
+  id: z.enum(candidateIds), name: z.string().min(3).max(80).optional(), summary: z.string().min(20),
   changes: z.record(z.string(), change),
 }).strict();
 
@@ -86,7 +86,7 @@ export const evaluateCandidate = async (baseline, input) => {
   }
   const failures = pairs.filter(p => !p.pass && !p.waiver);
   const semantic = changes.filter(c => !c.role.startsWith("color.primitive."));
-  return { id, resolved, report: { id, name: id === "current" ? "Current" : candidateNames[candidateIds.indexOf(id)],
+  return { id, resolved, report: { id, name: id === "current" ? "Current" : overlay.name ?? candidateNames[candidateIds.indexOf(id)],
     summary: overlay?.summary ?? "Unmodified canonical default on the shared review specimens.",
     baselineDigest: baseline.baselineDigest, overlayDigest: overlay ? sha256(stableJson(overlay)) : null,
     primitiveChanges: changes.length - semantic.length, semanticChanges: semantic.length,

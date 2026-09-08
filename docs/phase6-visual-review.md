@@ -44,7 +44,7 @@ A fresh checkout without those files stops with a prerequisite message.
 Do not silently invent or download candidates. The owner-selected local
 review inputs must be supplied before reproducing this specific review.
 Each input uses `overlaySchema` in `scripts/lib/visual-review.mjs`: version 1,
-the exact baseline digest, candidate ID, summary, and a role-keyed changes
+the exact baseline digest, candidate ID, optional display name, summary, and a role-keyed changes
 object containing an sRGB hex value, rationale and tradeoff. Values replace
 existing opaque color declarations before the canonical alias resolver runs.
 Unknown roles, non-color roles, historical ANSI primitive changes, stale
@@ -85,8 +85,11 @@ All data is synthetic and updates stay in memory. No remote services run.
 
 ## Owner gate and continuation
 
-Present A (Conservative), B (Balanced), C (Maximum legibility), the report,
-matched local review URLs and the evidence-weighted recommendation. Wait for
+Present the three current input names, the report,
+matched local review URLs and the evidence-weighted recommendation. Stable route
+IDs retain their original names across review rounds; display names identify the
+current directions. Archive rejected inputs, output and evidence together before
+replacing them. Never carry a rejected round's recommendation into a new report. Wait for
 explicit selection. A requested hybrid must be consolidated and shown again.
 Do not canonicalize, merge, deploy, tag or publish a candidate before selection.
 
