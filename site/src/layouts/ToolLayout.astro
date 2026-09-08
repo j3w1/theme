@@ -11,8 +11,10 @@ import { usageRevision } from "../lib/usage";
 const { title, description } = Astro.props;
 ---
 <PortalLayout title={title} description={description} density="compact">
-      <nav aria-label="Theme tools"><a href={withBase("")}>Specification</a> · <a href={withBase("tokens/")}>Token usage</a> · <a href={withBase("recipes/")}>Recipes</a> · <a href={withBase("kit/")}>Task kit</a> · <a href={withBase("workbench/")}>Workbench</a> · <a href={withBase("releases/")}>Release comparison</a></nav>
+    <header class="tool-header">
+      <nav aria-label="Theme tools"><a href={withBase("reference/")}>Specification</a> · <a href={withBase("tokens/")}>Token usage</a> · <a href={withBase("recipes/")}>Recipes</a> · <a href={withBase("kit/")}>Task kit</a> · <a href={withBase("workbench/")}>Workbench</a> · <a href={withBase("releases/")}>Release comparison</a></nav>
       <p class="stamp">{usageRevision ? <>Source revision <code>{usageRevision}</code></> : "Local build: source locations are relative to this checkout; no published revision is claimed."}</p>
+    </header>
     <div class="tool-main"><slot /></div>
     <footer class="tool-main"><a href={withBase("ports/")}>Port capabilities and mapping evidence</a> · <a href={withBase("patterns/validation-recovery/")}>Validation and recovery</a> · <a href={withBase("builder/")}>Form builder</a> · <a href={withBase("figma/")}>Figma Variables bridge</a></footer>
 </PortalLayout>

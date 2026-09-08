@@ -4,7 +4,7 @@ import { n as chart } from "../chunks/display-Cg9VLOYZ.js";
 var J3w1Chart = class extends J3w1Element {
 	static componentId = "chart";
 	static version = "1.0.0";
-	static implementationId = "sha256-bn4XjmfBam/FlqX/gWO5JuEPhS+a2aX5LPvZjr7fZAg=";
+	static implementationId = "sha256-aMItVNabOYDcEhfy7v0FBkwJLBsFFRgfkhndCcK67Zg=";
 	static connect = chart;
 	static upgradeProperties = [
 		"disabled",

@@ -6,7 +6,7 @@
   remains visible. Downstream: additive derived report schemas and build-time
   diagnostics only; no token values, consumer writes or port verification.
 
-## [1.0.0] - 2026-09-08
+## [1.0.0] - 2026-09-09
 
 - **#37:** ship all 67 inventory entries through `@j3w1/ui`, with typed modular
   exports, complete standalone copy bundles, framework examples and bounded

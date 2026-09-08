@@ -4,7 +4,7 @@ import { r as fields } from "../chunks/native-BFZpUch0.js";
 var J3w1TextField = class extends J3w1Element {
 	static componentId = "text-field";
 	static version = "1.0.0";
-	static implementationId = "sha256-fyjQKZ8BzPmha6MEGF6vS4wQ760Pcks5D81dyeiDr1I=";
+	static implementationId = "sha256-2EYx9MWqP7LJ/lbQOo7E95zFj0yXtGU3bN7YR+K8GJc=";
 	static connect = fields;
 	static upgradeProperties = [
 		"disabled",

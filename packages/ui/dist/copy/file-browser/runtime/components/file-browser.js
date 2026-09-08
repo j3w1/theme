@@ -4,7 +4,7 @@ import { n as fileBrowser } from "../chunks/compositions-C-7IoRHC.js";
 var J3w1FileBrowser = class extends J3w1Element {
 	static componentId = "file-browser";
 	static version = "1.0.0";
-	static implementationId = "sha256-CeHUCsESGku2zzh4C3/s1FB0eWYE/Abg14NzW5TXxPQ=";
+	static implementationId = "sha256-+jcHCDAOnF/K/y1bacMcFgPD9d6ZcNw7wq21n+w0kuc=";
 	static connect = fileBrowser;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

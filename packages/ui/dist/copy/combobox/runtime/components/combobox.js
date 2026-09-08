@@ -4,7 +4,7 @@ import { t as combobox } from "../chunks/navigation-CPDNZIIt.js";
 var J3w1Combobox = class extends J3w1Element {
 	static componentId = "combobox";
 	static version = "1.0.0";
-	static implementationId = "sha256-de6hJnIphyjJtEWlXmZ4T/T3rSDH3GEJsYYvZ5keEGY=";
+	static implementationId = "sha256-Px/SXopo1vIlJoPz/FoovAZOCIis3cmy59L0w/C4UOc=";
 	static connect = combobox;
 	static upgradeProperties = [
 		"disabled",

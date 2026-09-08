@@ -22,7 +22,7 @@ function formBuilder(root, { signal }) {
 var J3w1FormBuilder = class extends J3w1Element {
 	static componentId = "form-builder";
 	static version = "1.0.0";
-	static implementationId = "sha256-bNu/08kLLkGS4XsNFklpSjps/diDsnCaRHZXLRgk83o=";
+	static implementationId = "sha256-hPhhiB+cuWAnEsZJV+bgg4zSjZX47wsZWF8jiqYZO6Y=";
 	static connect = formBuilder;
 	static upgradeProperties = [
 		"disabled",

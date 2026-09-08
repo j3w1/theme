@@ -24,7 +24,7 @@ test("every workbench declaration matches the canonical contrast engine in every
 test("issue reporting validates targets, preserves public context and handles long encoded drafts", () => {
   const data = { themeVersion: "0.1.0", siteUrl: "https://j3w1.github.io/theme/", revision: "a".repeat(40), sourceDigest: "snapshot", components: ["button", "checkbox"], tokens: ["color.text.default"], profiles: ["default"] };
   const context = reportContext(data, "token", "color.text.default");
-  assert.equal(context.publicAnchor, "https://j3w1.github.io/theme/#t-color-text-default");
+  assert.equal(context.publicAnchor, "https://j3w1.github.io/theme/reference/#t-color-text-default");
   assert.throws(() => reportContext(data, "component", "unknown"));
   assert.throws(() => reportContext(data, "token", "color.text.default", "unknown"));
   const draft = issueDraft({ expected: "A & B", actual: "長".repeat(1600), unrelated: "not collected" }, context);

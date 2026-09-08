@@ -4,7 +4,7 @@ import { i as tooltip } from "../chunks/overlays-DBA40kTs.js";
 var J3w1Tooltip = class extends J3w1Element {
 	static componentId = "tooltip";
 	static version = "1.0.0";
-	static implementationId = "sha256-f6Y53sIPLPvSOglfKBl/SXekCmvvo2OnrM8ebL6HtVU=";
+	static implementationId = "sha256-DjzdtVA0UNFQAh2uLFi9QL81I5vpS9/yNgT6lF19hmI=";
 	static connect = tooltip;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

@@ -4,7 +4,7 @@ import { r as developerView } from "../chunks/display-Cg9VLOYZ.js";
 var J3w1Diagnostics = class extends J3w1Element {
 	static componentId = "diagnostics";
 	static version = "1.0.0";
-	static implementationId = "sha256-NFABvkaFDRCNSAl+wVYey6UaCr11EIT0gL0XsYGJdYQ=";
+	static implementationId = "sha256-GNDXo3E25btPAnawOhps9AGQboy/qabGeDA448cyptA=";
 	static connect = developerView;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

@@ -4,7 +4,7 @@ import { i as tabs } from "../chunks/navigation-CPDNZIIt.js";
 var J3w1Tabs = class extends J3w1Element {
 	static componentId = "tabs";
 	static version = "1.0.0";
-	static implementationId = "sha256-zShdHqOhE0KEDKF/cLrwrOwJoM7DCtSZ1G9vLC4EbSk=";
+	static implementationId = "sha256-qMjv7VF7NHAF6keFUQkcix3+copxnjzzmhMvIY984V4=";
 	static connect = tabs;
 	static upgradeProperties = [
 		"disabled",
