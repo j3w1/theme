@@ -33,6 +33,7 @@ in its `$extensions["io.github.j3w1.theme"].approval.decision`. Agents may open
 | D-019 | One-way namespaced Figma Variables bridge | proposed | 2026-09-08 | — |
 | D-020 | Bounded local validation and recovery workflow | proposed | 2026-09-08 | — |
 | D-021 | Local form composition with versioned data | proposed | 2026-09-08 | — |
+| D-022 | Local visual selection before agent implementation distribution | proposed | 2026-09-08 | — |
 
 ## D-000 Responsibility split
 
@@ -411,3 +412,26 @@ It remains a draft reference component, not a backend platform or native port.
 
 Alternatives are arbitrary HTML/schema execution, a conditional workflow
 engine, and a second visual field implementation. They exceed this task.
+
+## D-022 Local visual selection before agent implementation distribution
+
+Status: proposed. Issue #37 and the owner's implementation instruction authorize
+three local candidate systems before canonicalization. Formal design approval
+remains owner-managed.
+
+The primary outcome is agent consumption of installable or copyable components
+and compositions with complete dependencies and pinned machine contracts. The
+future package, documentation portal and Vue application are consumers of the
+same canonical design language. A local review harness first compares exactly
+three explicit token overlays with Current, using shared specimen rendering and
+an original Vue composition. Overlays, generated reports and review builds stay
+ignored and are never public profiles or delivery artifacts. The existing alias
+resolver and unrounded contrast engine evaluate candidates without changing
+canonical values, historical ANSI slots or waivers. No approval is inferred from
+numerical or browser evidence. The owner must select a concrete candidate before
+foundation freeze, mass productization or deployment. See
+`docs/phase6-visual-review.md` for commands, boundaries and continuation.
+
+Alternatives are productizing the old palette before visual selection, publishing
+unapproved preview profiles, or offering incomplete appearance-only snippets as
+consumable components. None satisfies the authorized sequence and consumption goal.

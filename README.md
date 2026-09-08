@@ -17,6 +17,12 @@ Use the pinned approved default profile. Pending roles in that profile use-and-r
 Approval and consumption eligibility are separate; see the policy above and
 `spec/decisions.md` D-013.
 
+Phase 6 starts with a [local visual-foundation review](docs/phase6-visual-review.md).
+Run `npm run phase6:visual-review` with the review checkout's local candidate
+inputs. The four-view comparison is a temporary Vue preview, not a released
+profile or component package. Owner selection precedes canonicalization and
+the planned agent-consumable package, copy recipes and multi-page portal.
+
 The [validation and recovery composition](https://j3w1.github.io/theme/patterns/validation-recovery/)
 and [draft form builder](https://j3w1.github.io/theme/builder/) demonstrate local
 form behavior using canonical fields. Definitions are bounded, content-pinned
