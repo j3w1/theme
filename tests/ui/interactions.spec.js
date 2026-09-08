@@ -1,7 +1,26 @@
 import { test, expect } from "../browser/evidence-fixture.mjs";
+import AxeBuilder from "@axe-core/playwright";
 const scope = (component, states, variants = ["default"], note = "") => ({ annotation: { type: "verification", description: JSON.stringify({ component, category: "keyboard", states, variants, note: `Isolated packed gallery; scripted interaction and lifecycle scope only. ${note}` }) } });
 const card = (page, id, variant = "default") => page.locator(`.gallery-card[data-component="${id}"][data-variant="${variant}"]`);
 test.beforeEach(async ({ page }) => { await page.goto("/gallery/"); await expect(page.locator(".gallery-card").first()).toBeVisible(); });
+
+test("command palette selects actions and closes a populated search with Escape", scope("command-palette", ["default", "open", "closed", "no-results", "focus-visible"]), async ({ page }) => {
+  const example = card(page, "command-palette"), root = example.locator("j3w1-command-palette"), opener = example.locator("[data-open]");
+  await root.evaluate(element => { element.dataset.lastCommand = ""; element.addEventListener("j3w1-command", event => { element.dataset.lastCommand = event.detail.action; }); });
+  await opener.click();
+  const query = example.getByRole("combobox");
+  await query.fill("components");
+  await expect(example.getByRole("option")).toHaveCount(1);
+  expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
+  await page.keyboard.press("Enter");
+  await expect(root).toHaveAttribute("data-last-command", "components");
+  await expect(opener).toBeFocused();
+  await opener.click(); await query.fill("no-such-command-12345");
+  await expect(example.getByRole("option")).toHaveCount(0);
+  await page.keyboard.press("Escape");
+  await expect(example.locator("dialog")).not.toBeVisible();
+  await expect(opener).toBeFocused();
+});
 
 test("tabs support manual RTL navigation and reconnect without duplicate events", scope("tabs", ["default", "selected", "focus-visible"]), async ({ page }) => {
   const example = card(page, "tabs"), root = example.locator("j3w1-tabs"), tabs = example.getByRole("tab");

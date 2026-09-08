@@ -4,7 +4,7 @@ import { n as disclosure } from "../chunks/navigation-CPDNZIIt.js";
 var J3w1Breadcrumbs = class extends J3w1Element {
 	static componentId = "breadcrumbs";
 	static version = "1.0.0";
-	static implementationId = "sha256-eZ6moGEqa2DnEj2mlAV2IUDk/Jz1Xkk2nDa9lezwh1U=";
+	static implementationId = "sha256-1MboH+lE/C4B0iH8z2yfPEvZRTSX3bwo58xs3H1nlcs=";
 	static connect = disclosure;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

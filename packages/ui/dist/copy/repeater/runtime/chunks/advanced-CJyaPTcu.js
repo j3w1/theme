@@ -303,7 +303,10 @@ function commandPalette(root, { on }) {
 	});
 	on(input, "input", filter);
 	on(input, "keydown", (event) => {
-		if (["ArrowDown", "ArrowUp"].includes(event.key)) {
+		if (event.key === "Escape") {
+			event.preventDefault();
+			close();
+		} else if (["ArrowDown", "ArrowUp"].includes(event.key)) {
 			event.preventDefault();
 			const items = options(), index = items.indexOf(active);
 			if (items.length) select(items[(index + (event.key === "ArrowDown" ? 1 : -1) + items.length) % items.length]);

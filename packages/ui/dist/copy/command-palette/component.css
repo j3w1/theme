@@ -30,6 +30,8 @@ j3w1-command-palette .command-palette-control {font:inherit;min-height:var(--den
 j3w1-command-palette .command-palette :focus-visible {outline:var(--border-width-default) dashed var(--color-interaction-focus-ring);outline-offset:var(--space-2)}
 j3w1-command-palette .command-palette-dialog {width:min(calc(var(--font-size-ui-md) * 36),100%);max-height:80vh;margin:0;padding:var(--space-16);background:var(--color-surface-overlay);color:var(--color-text-default);border:var(--border-width-default) solid var(--color-border-overlay);border-radius:var(--radius-none)}j3w1-command-palette .command-palette [role=listbox] {list-style:none;padding:0;max-height:40vh;overflow:auto}j3w1-command-palette .command-palette [role=option] {display:grid;grid-template-columns:calc(var(--font-size-ui-md) * 5) 1fr;padding:var(--space-8);border-inline-start:var(--border-width-emphasis) solid transparent;cursor:pointer}j3w1-command-palette .command-palette [role=option] span {color:var(--color-text-muted)}j3w1-command-palette .command-palette [aria-selected=true] {background:var(--color-interaction-selection-bg);color:var(--color-interaction-selection-text);border-inline-start-color:var(--color-border-selected-indicator)}j3w1-command-palette .command-palette-dialog::backdrop {background:var(--color-surface-backdrop)}j3w1-command-palette .command-palette-dialog:not([open]) {display:none}j3w1-command-palette .command-palette [data-command-status] {color:var(--color-text-muted)}
 
+j3w1-command-palette .command-palette [role="option"][aria-selected="true"] span { color: inherit; }
+
 j3w1-command-palette [hidden] { display: none !important; }
 j3w1-command-palette .j3w1-visually-hidden {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;

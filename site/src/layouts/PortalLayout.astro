@@ -41,7 +41,7 @@ const id = (name) => anchorFor.uiExample("portal", name);
     <j3w1-command-palette shortcut class="portal-command" data-search-index={withBase("search.json")}>
       <div class="command-palette"><button class="command-palette-control portal-command-trigger" type="button" data-open aria-label="Search the design system">⌘ <kbd>Ctrl K</kbd></button>
         <dialog class="command-palette-dialog" aria-labelledby={id("command-title")}><h2 id={id("command-title")}>j3w1 / command</h2><label for={id("query")}>Find a destination</label><input class="command-palette-control" id={id("query")} type="search" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-controls={id("results")} autocomplete="off" placeholder="> type a command" />
-          <ul id={id("results")} role="listbox" aria-label="Destinations">{commands.map(([path, label]) => <li role="option" data-action={path || "overview"}><span>{path === "demo/" ? "DEMO" : "SPEC"}</span><a href={withBase(path)} tabindex="-1">{label}</a></li>)}</ul><p role="status" data-command-status></p><button class="command-palette-control" type="button" data-close>Close · Esc</button>
+          <ul id={id("results")} role="listbox" aria-label="Destinations">{commands.map(([path, label]) => <li role="option" data-action={withBase(path)}><span class="portal-command-category">{path === "demo/" ? "DEMO" : "SPEC"} </span><span class="portal-command-label">{label}</span></li>)}</ul><p role="status" data-command-status></p><button class="command-palette-control" type="button" data-close>Close · Esc</button>
         </dialog>
       </div>
     </j3w1-command-palette>

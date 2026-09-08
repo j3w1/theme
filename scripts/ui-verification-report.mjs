@@ -32,9 +32,9 @@ if (process.argv.includes("--publish")) {
   visit(raw);
   if (!records.length || raw.errors?.length || records.some(record=>record.result!=="passed")) throw new Error("The packed-consumer suite has incomplete or failed results");
   // This protocol contains four framework form tests, four gallery/copy tests
-  // and eight interaction tests per engine. A filtered run cannot pass as full.
-  for (const browser of ["chromium","firefox","webkit"]) if(records.filter(record=>record.environment.browser===browser).length!==16)throw new Error(`Incomplete ${browser} protocol: expected 16 tests`);
-  if(records.length!==48 || new Set(records.map(record=>`${record.project}/${record.test}`)).size!==48)throw new Error("Incomplete or duplicated packed-consumer protocol");
+  // and nine interaction tests per engine. A filtered run cannot pass as full.
+  for (const browser of ["chromium","firefox","webkit"]) if(records.filter(record=>record.environment.browser===browser).length!==17)throw new Error(`Incomplete ${browser} protocol: expected 17 tests`);
+  if(records.length!==51 || new Set(records.map(record=>`${record.project}/${record.test}`)).size!==51)throw new Error("Incomplete or duplicated packed-consumer protocol");
   const report = { schemaVersion: 1, package: "@j3w1/ui", version: (await readJson("packages/ui/package.json")).version, subject, integrity: consumer.integrity, fixtures: consumer.fixtures, typeCheck: consumer.typeCheck, build: consumer.build, kind: "automated packed consumers", records, limits: "Scripted clean-fixture evidence for these recorded protocols. Not an independent acceptance, blanket component conformance, manual screen-reader or physical-device pass." };
   await fs.writeFile(".cache/ui-evidence/report.json",stableJson(report));
   console.log(`${records.length} packed-consumer passes recorded with artifact, fixture and protocol identities.`);

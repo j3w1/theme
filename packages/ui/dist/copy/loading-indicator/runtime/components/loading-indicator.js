@@ -4,7 +4,7 @@ import { n as content } from "../chunks/native-BFZpUch0.js";
 var J3w1LoadingIndicator = class extends J3w1Element {
 	static componentId = "loading-indicator";
 	static version = "1.0.0";
-	static implementationId = "sha256-MirNgbZcK4gVqfUBrX86QPMcFHw/PG9xpFyeBhSo5Go=";
+	static implementationId = "sha256-skXXVff+2f8kfFK0a4oGAJ2OQCf9O/xLxxxBM4Qjbzw=";
 	static connect = content;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

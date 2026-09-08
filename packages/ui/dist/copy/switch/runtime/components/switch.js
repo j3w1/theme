@@ -4,7 +4,7 @@ import { a as switchControl } from "../chunks/native-BFZpUch0.js";
 var J3w1Switch = class extends J3w1Element {
 	static componentId = "switch";
 	static version = "1.0.0";
-	static implementationId = "sha256-kVrE7boBoFEd5AHoOTR0hsqxVsQ8JD2FAUrUf2rhDHw=";
+	static implementationId = "sha256-/y76C/vv+czoqnsvNu574Uw7IlWLAJ+U1pjw3VcWCfU=";
 	static connect = switchControl;
 	static upgradeProperties = [
 		"disabled",

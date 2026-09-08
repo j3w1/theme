@@ -4,7 +4,7 @@ import { t as feedback } from "../chunks/overlays-DBA40kTs.js";
 var J3w1Toast = class extends J3w1Element {
 	static componentId = "toast";
 	static version = "1.0.0";
-	static implementationId = "sha256-aPduWvZBFNr5pjh/f3Aw2L7tGvEOXvCtk1os93a/Y2I=";
+	static implementationId = "sha256-h4HWe3y0m+RSLlyPLTw8eMNChwACoWhAYYAJ8HIYkwk=";
 	static connect = feedback;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

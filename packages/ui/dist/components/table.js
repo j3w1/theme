@@ -4,7 +4,7 @@ import { n as table } from "../chunks/tables-Bn4nLwtf.js";
 var J3w1Table = class extends J3w1Element {
 	static componentId = "table";
 	static version = "1.0.0";
-	static implementationId = "sha256-8xFg80XmbNaG3zjFquRph5lqUpDoL9WiPAsgT7W+uDM=";
+	static implementationId = "sha256-twRJ67HuxplT1LJNeBTD8ZsEHxQyCVGuV/AQw7sASgA=";
 	static connect = table;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

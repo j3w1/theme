@@ -1,10 +1,10 @@
 import { t as J3w1Element } from "../chunks/element-B0z6sqq8.js";
-import { t as commandPalette } from "../chunks/advanced-CMQ72B0K.js";
+import { t as commandPalette } from "../chunks/advanced-CJyaPTcu.js";
 //#region .cache/ui-build/entries/components/command-palette.js
 var J3w1CommandPalette = class extends J3w1Element {
 	static componentId = "command-palette";
 	static version = "1.0.0";
-	static implementationId = "sha256-/JeVbdQG+aoFanHolDmYw5B2Igf2hNyVCQiSrchASPY=";
+	static implementationId = "sha256-W8xy9eljQBoMZueJKOlIF1LQ4PbyURZPIl5xbf8nmSo=";
 	static connect = commandPalette;
 	static upgradeProperties = [
 		"disabled",

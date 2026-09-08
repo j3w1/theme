@@ -137,7 +137,7 @@ export function commandPalette(root, { on }) {
   };
   on(root, "click", event => { const trigger = event.target.closest("[data-open]"); if (trigger) show(trigger); else if (event.target.closest("[data-close]")) close(); else { const option = event.target.closest('[role="option"]'); if (option) { event.preventDefault(); invoke(option); } } });
   on(input, "input", filter);
-  on(input, "keydown", event => { if (["ArrowDown", "ArrowUp"].includes(event.key)) { event.preventDefault(); const items = options(), index = items.indexOf(active); if (items.length) select(items[(index + (event.key === "ArrowDown" ? 1 : -1) + items.length) % items.length]); } else if (event.key === "Enter") { event.preventDefault(); invoke(active); } });
+  on(input, "keydown", event => { if (event.key === "Escape") { event.preventDefault(); close(); } else if (["ArrowDown", "ArrowUp"].includes(event.key)) { event.preventDefault(); const items = options(), index = items.indexOf(active); if (items.length) select(items[(index + (event.key === "ArrowDown" ? 1 : -1) + items.length) % items.length]); } else if (event.key === "Enter") { event.preventDefault(); invoke(active); } });
   on(dialog, "close", () => { if (opener?.isConnected) opener.focus(); });
   on(root.ownerDocument, "keydown", event => { if (root.hasAttribute("shortcut") && (event.ctrlKey || event.metaKey) && !event.altKey && event.key.toLowerCase() === "k" && !event.defaultPrevented) { event.preventDefault(); dialog.open ? close() : show(); } });
   return { show, close, get open() { return dialog.open; }, set open(value) { value ? show() : close(); }, cleanup: close };

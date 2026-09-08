@@ -1,10 +1,10 @@
 import { t as J3w1Element } from "../chunks/element-B0z6sqq8.js";
-import { r as repeater } from "../chunks/advanced-CMQ72B0K.js";
+import { r as repeater } from "../chunks/advanced-CJyaPTcu.js";
 //#region .cache/ui-build/entries/components/repeater.js
 var J3w1Repeater = class extends J3w1Element {
 	static componentId = "repeater";
 	static version = "1.0.0";
-	static implementationId = "sha256-kGLnmdOayDRp50aZchXUR3o9qowF3c8JFu4PuALNvUc=";
+	static implementationId = "sha256-Zintiqipt6rX+61oi6HXE9ZwakN7DIQ3uHprrOncSfs=";
 	static connect = repeater;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...[

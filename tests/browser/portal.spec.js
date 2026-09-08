@@ -45,6 +45,7 @@ test("global command search loads once and finds components, token swatches and 
   await expect(token).toContainText("#e99499");
   await expect(token.locator(".hex-swatch")).toHaveCount(1);
   await expect(query).toHaveAttribute("aria-activedescendant", await token.getAttribute("id"));
+  if (info.project.name === "desktop") expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
   await query.fill("D-024");
   await expect(dialog.getByRole("option")).toHaveCount(1);
   await expect(dialog.getByRole("option")).toContainText("Distinguish links");
