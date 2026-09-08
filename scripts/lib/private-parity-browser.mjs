@@ -20,7 +20,7 @@ export const runPrivateParity = async prepared => {
   let server, browser;
   const records = [], errors = [];
   try {
-    const { createServer } = await import(pathToFileURL(requireTarget.resolve("vite")).href);
+    const { createServer, createLogger } = await import(pathToFileURL(requireTarget.resolve("vite")).href);
     const plugins = [];
     if (config.frameworkStyles) {
       const { default: frameworkPlugin } = await import(pathToFileURL(requireTarget.resolve("vite-plugin-vuetify")).href);
@@ -35,12 +35,18 @@ export const runPrivateParity = async prepared => {
     const aliases = [
       { find: /^vue$/, replacement: requireTarget.resolve("vue/dist/vue.esm-bundler.js") },
       ...["vuetify", "vuetify/components", "vuetify/styles"].map(name => ({ find: new RegExp("^" + name + "$"), replacement: requireTarget.resolve(name) })),
+      { find: /^vuetify\/components\/[A-Za-z]+$/, replacement: "$&", customResolver: id => requireTarget.resolve(id) },
+      ...(config.frameworkStyles ? [{ find: /^vuetify\/settings$/, replacement: requireTarget.resolve("vuetify/_settings.scss") }] : []),
       ...Object.entries(config.aliases).map(([find, value]) => ({ find, replacement: path.join(out, "host", value) })),
     ];
+    const logger = createLogger("silent");
+    // Compiler diagnostics can contain licensed source; retain them only in
+    // the private report, never the public CLI's output.
+    logger.error = message => errors.push(message);
     server = await createServer({ configFile: false, envFile: false, root: out, publicDir: false, cacheDir: path.join(out, ".cache"), plugins,
-      resolve: { alias: aliases, dedupe: ["vue"] }, logLevel: "silent",
+      resolve: { alias: aliases, dedupe: ["vue"] }, customLogger: logger,
       server: { host: "127.0.0.1", port: 0, fs: { strict: true, allow: [out, await fs.realpath(path.join(target, "node_modules"))] } },
-      css: { preprocessorOptions: { scss: { loadPaths: [path.join(target, "node_modules")] } } },
+      css: { preprocessorOptions: Object.fromEntries(["scss", "sass"].map(syntax => [syntax, { loadPaths: [path.join(target, "node_modules")] }])) },
     });
     await server.listen();
     const origin = server.resolvedUrls.local[0];
@@ -49,6 +55,7 @@ export const runPrivateParity = async prepared => {
     await context.route("**/*", route => new URL(route.request().url()).origin === new URL(origin).origin ? route.continue() : route.abort());
     const page = await context.newPage();
     page.on("pageerror", error => errors.push(error.message));
+    page.on("console", message => { if (message.type() === "error") errors.push(message.text()); });
     await fs.mkdir(path.join(out, "captures"));
     const environment = { browser: "chromium", browserVersion: browser.version(), os: os.type() + " " + os.release() + " " + os.arch(),
       viewport: { width: 800, height: 600 }, deviceScaleFactor: 1, locale: "en-US", reducedMotion: "reduce", density: "comfortable", javaScript: true };

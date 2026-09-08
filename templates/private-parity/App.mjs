@@ -2,7 +2,15 @@
 // privately at runtime; no purchased template implementation is distributed.
 import { createApp, h } from "vue";
 import { createVuetify } from "vuetify";
-import { VApp, VBtn, VTextField, VSelect, VCheckbox, VTabs, VTab, VDialog, VCard, VCardTitle, VCardText, VCardActions, VTable } from "vuetify/components";
+import { VApp } from "vuetify/components/VApp";
+import { VBtn } from "vuetify/components/VBtn";
+import { VTextField } from "vuetify/components/VTextField";
+import { VSelect } from "vuetify/components/VSelect";
+import { VCheckbox } from "vuetify/components/VCheckbox";
+import { VTabs, VTab } from "vuetify/components/VTabs";
+import { VDialog } from "vuetify/components/VDialog";
+import { VCard, VCardTitle, VCardText, VCardActions } from "vuetify/components/VCard";
+import { VTable } from "vuetify/components/VTable";
 import "vuetify/styles";
 import fixture from "./fixture.json";
 export const mountParity = defaults => {
@@ -27,12 +35,14 @@ export const mountParity = defaults => {
     ]);
   };
   const value = role => tokens[role].css;
+  // Overlays teleport outside main, so shared typography belongs on the page.
+  document.body.style.fontFamily = value("font.family.mono");
   const vuetify = createVuetify({ defaults, theme: { defaultTheme: "parity", themes: { parity: { dark: true, colors: {
     primary: value("color.action.primary.bg"), "on-primary": value("color.action.primary.text"),
     background: value("color.surface.canvas"), "on-background": value("color.text.default"),
     surface: value("color.surface.default"), "on-surface": value("color.text.default"),
     error: value("color.status.danger.text"),
   } } } } });
-  createApp({ render: () => h(VApp, {}, () => h("main", { "data-parity-host": "", style: { fontFamily: value("font.family.mono"), padding: value("space.16") } }, [render()])) }).use(vuetify).mount("#app");
+  createApp({ render: () => h(VApp, {}, () => h("main", { "data-parity-host": "", style: { padding: value("space.16") } }, [render()])) }).use(vuetify).mount("#app");
   document.documentElement.dataset.parityReady = "true";
 };

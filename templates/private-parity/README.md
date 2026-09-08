@@ -45,7 +45,13 @@ scripts, backend, account connection or environment file is executed.
 The style plugin's synchronous factory resolves dependencies in the target's
 directory; the caller's directory is restored before server creation. Failures
 during plugin or server initialization are recorded in the validated private
-output, as are browser failures.
+output, as are browser and compiler failures. The framework's exported Sass
+settings resolve from the installed target package, including when the private
+output has no local dependency directory.
+Only the specimens' component entry points are imported; unrelated framework
+components are not eagerly compiled through the full component catalogue.
+The canonical font family is set on the fixture page so teleported dialogs
+inherit the same environment as controls inside the main container.
 The browser server listens on loopback and browser requests stay at that
 origin. Selected source files are rehashed after capture to detect mutation.
 
