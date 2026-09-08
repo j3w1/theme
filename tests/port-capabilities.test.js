@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { z } from "zod";
 import { readJson } from "../scripts/lib/fs.mjs";
 import { describePort, portSubject } from "../scripts/lib/port-capabilities.mjs";
-import { portCapabilitiesSchema, assertCapabilities, MAPPING_STATES } from "../schemas/port-capabilities.mjs";
+import { portCapabilitiesSchema, portCatalogueSchema, assertCapabilities, MAPPING_STATES } from "../schemas/port-capabilities.mjs";
 import { fixture } from "./fixtures/port-capabilities.mjs";
 import { renderPortCatalogue } from "../scripts/lib/port-presentation.mjs";
 test("the real catalogue is empty and synthetic mapping states never become published support", async () => {
@@ -11,6 +11,7 @@ test("the real catalogue is empty and synthetic mapping states never become publ
   const input = fixture();
   portCapabilitiesSchema(z).parse(input.capabilities);
   const described = describePort(input);
+  portCatalogueSchema(z).parse({ schemaVersion: 1, theme: "j3w1-theme", version: "0.1.0", sourcePolicy: "Synthetic only", ports: [described] });
   assert.deepEqual(described.mappings.map(row => row.state), MAPPING_STATES);
   assert.equal(described.verification.status, "not verified");
   assert.equal(described.mappings[0].nativeKeys[0], "native.fg");
@@ -21,7 +22,7 @@ test("the real catalogue is empty and synthetic mapping states never become publ
 test("verified imports require an exact subject and stale claims do not survive relevant changes", () => {
   const input = fixture();
   const evidence = { schemaVersion: 1, method: "real-import", result: "passed", subjectDigest: portSubject(input),
-    applicationVersion: "1", os: "fixture", protocol: "Synthetic fixture, never real target evidence.", limits: "Test fixture only.",
+    applicationVersion: "1", platform: "linux", os: "Synthetic Linux fixture", protocol: "Synthetic fixture, never real target evidence.", limits: "Test fixture only.",
     checks: [{ name: "Synthetic import", result: "passed", note: "Test only." }] };
   assert.equal(describePort({ ...input, evidence }).verification.status, "verified");
   for (const change of [
@@ -32,6 +33,7 @@ test("verified imports require an exact subject and stale claims do not survive 
     { port: { ...input.port, targetVersions: ["2"] } },
   ]) assert.equal(describePort({ ...input, ...change, evidence }).verification.status, "stale");
   assert.equal(describePort({ ...input, evidence: { ...evidence, result: "failed" } }).verification.status, "not verified");
+  assert.equal(describePort({ ...input, evidence: { ...evidence, platform: "windows" } }).verification.status, "not verified");
   assert.equal(describePort({ ...input, tokenDigest: "changed", evidence }).mappings[0].value, null);
   assert.equal(describePort({ ...input, port: { ...input.port, status: "experimental" }, evidence }).verification.status, "not verified");
 });

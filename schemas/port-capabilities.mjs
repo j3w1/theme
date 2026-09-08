@@ -16,7 +16,7 @@ export const portCapabilitiesSchema = z => z.object({
 export const portImportEvidenceSchema = z => z.object({
   schemaVersion: z.literal(1), method: z.literal("real-import"),
   result: z.enum(["passed", "failed", "not run"]), subjectDigest: z.string().regex(/^sha256-/),
-  applicationVersion: z.string().min(1), os: z.string().min(1), protocol: z.string().min(1),
+  applicationVersion: z.string().min(1), platform: z.enum(["windows", "linux", "macos"]), os: z.string().min(1), protocol: z.string().min(1),
   checks: z.array(z.object({ name: z.string().min(1), result: z.enum(["passed", "failed", "not run"]), note: z.string().min(1) }).strict()).min(1),
   limits: z.string().min(1),
 }).strict();

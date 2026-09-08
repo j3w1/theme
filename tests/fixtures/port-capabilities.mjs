@@ -1,6 +1,6 @@
 import { MAPPING_STATES } from "../../schemas/port-capabilities.mjs";
 export const fixture = () => {
-  const tokens = Object.fromEntries(MAPPING_STATES.map((state, i) => ["role." + i, { css: String(i), eligibility: { action: "use" } }]));
+  const tokens = Object.fromEntries(MAPPING_STATES.map((state, i) => ["role." + i, { css: String(i), eligibility: { action: "use", reason: "Synthetic test fixture", decisionIds: [] } }]));
   const capabilities = { schemaVersion: 1, integrationKind: "other", themeRevision: "a".repeat(40),
     surfaces: { chrome: { state: "supported", reason: "Synthetic mapping exercise only." } },
     roles: Object.fromEntries(MAPPING_STATES.map((state, i) => ["role." + i, { state, surface: "chrome", reason: "Synthetic " + state }])),

@@ -37,14 +37,16 @@ valid, but the explorer reports unclassified unmapped roles and missing pins.
 
 An optional `verificationPath` identifies a real-import JSON protocol under
 `evidence/`, validated by `schemas/json/port-import-evidence.schema.json`.
-Record the application version, OS, actual checks, outcomes, protocol and
+Record the application version, platform (`windows`, `linux` or `macos`),
+actual OS version, checks, outcomes, protocol and
 limits. Compute `subjectDigest` with `portSubject` in
 `scripts/lib/port-capabilities.mjs` over the manifest (excluding its claimed
 status and evidence list), mapping, capabilities (excluding the report path),
 exact artifact hashes, current resolved profile tokens and the token-export
 digest. Records can be marked verified only when that subject still matches,
 the manifest declares verified, target/tested versions include the recorded
-version, and all recorded checks actually passed. A parse or synthetic fixture
+version, the recorded platform is a declared target, and all recorded checks
+actually passed. A parse or synthetic fixture
 cannot supply a real-import protocol.
 
 The generator writes `exports/port-capabilities.json`; summaries, detail rows

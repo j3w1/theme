@@ -19,6 +19,7 @@ export const describePort = ({ port, mapping, capabilities = null, evidence = nu
     if (evidence.subjectDigest !== subjectDigest || port.tokenDigest !== tokenDigest) verification = { status: "stale", reason: "Target, mapping, capabilities, tokens or artifact bytes changed since the recorded import." };
     else if (evidence.result !== "passed" || evidence.checks.some(check => check.result !== "passed")) verification = { status: "not verified", reason: "The import protocol includes failed or not-run checks." };
     else if (!port.testedVersions.includes(evidence.applicationVersion) || !port.targetVersions.includes(evidence.applicationVersion)) verification = { status: "not verified", reason: "The recorded application version is not declared as both targeted and tested." };
+    else if (!port.os.includes("any") && !port.os.includes(evidence.platform)) verification = { status: "not verified", reason: "The recorded import platform is outside the declared target operating systems." };
     else if (port.status !== "verified") verification = { status: "not verified", reason: "Matching import evidence exists; the manifest does not declare verified status." };
     else verification = { status: "verified", reason: evidence.limits };
   }
