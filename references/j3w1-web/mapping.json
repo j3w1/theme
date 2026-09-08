@@ -3,10 +3,10 @@
   "note": "Every legacy site variable maps to a token whose resolved value equals the observed snapshot unless a divergence is recorded. tests/references.test.js enforces this.",
   "map": {
     "--desktop": { "token": "color.surface.desktop" },
-    "--terminal": { "token": "color.surface.canvas" },
-    "--chrome": { "token": "color.surface.chrome" },
+    "--terminal": { "token": "color.surface.canvas", "divergence": "D-023: owner-selected true-black canvas; the observed value remains in the heritage profile and historical primitive." },
+    "--chrome": { "token": "color.surface.chrome", "divergence": "D-023: owner-selected near-black chrome; the historical assignment remains in the heritage profile." },
     "--chrome-alt": { "token": "color.surface.chrome-alt" },
-    "--surface": { "token": "color.surface.default" },
+    "--surface": { "token": "color.surface.default", "divergence": "D-023: owner-selected near-black panels; the historical assignment remains in the heritage profile." },
     "--surface-raised": { "token": "color.surface.raised" },
     "--selection": { "token": "color.interaction.selection.bg" },
     "--selection-dark": { "token": "color.interaction.hover.bg-strong" },

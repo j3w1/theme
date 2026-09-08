@@ -108,6 +108,71 @@
           }
         }
       }
+    },
+    "surface": {
+      "canvas": {
+        "$value": "{color.primitive.ink.20}",
+        "$description": "Historical surface assignment retained across D-023.",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "heritage"
+          }
+        }
+      },
+      "sunken": {
+        "$value": "{color.primitive.ink.15}",
+        "$description": "Historical surface assignment retained across D-023.",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "heritage"
+          }
+        }
+      },
+      "input": {
+        "$value": "{color.primitive.ink.20}",
+        "$description": "Historical surface assignment retained across D-023.",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "heritage"
+          }
+        }
+      },
+      "code": {
+        "$value": "{color.primitive.ink.20}",
+        "$description": "Historical surface assignment retained across D-023.",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "heritage"
+          }
+        }
+      },
+      "terminal": {
+        "$value": "{color.primitive.ink.20}",
+        "$description": "Historical surface assignment retained across D-023.",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "heritage"
+          }
+        }
+      },
+      "chrome": {
+        "$value": "{color.primitive.ink.25}",
+        "$description": "Historical surface assignment retained across D-023.",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "heritage"
+          }
+        }
+      },
+      "default": {
+        "$value": "{color.primitive.ink.30}",
+        "$description": "Historical surface assignment retained across D-023.",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "heritage"
+          }
+        }
+      }
     }
   }
 }

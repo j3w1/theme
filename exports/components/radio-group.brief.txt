@@ -1,6 +1,6 @@
 j3w1/theme implementation brief — radio-group
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-6QDP2p3yrJbF5RMucJ2eOLQ+sO21nJNrqs3tEUZzVLI=
-pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/radio-group.json
+theme: j3w1-theme 1.0.0  profile: default  sourceDigest: sha256-pZuI7JH94R5ihk9Cc/pOkv3+iuDLNbfAhxD7HmHIRdw=
+pin: https://raw.githubusercontent.com/j3w1/theme/v1.0.0/exports/components/radio-group.json
 spec: spec/components/radio-group.md  site: https://j3w1.github.io/theme/#c-radio-group
 maturity: stable  priority: R1
 
@@ -8,7 +8,7 @@ Summary: A fieldset of native radios for one exclusive choice; each radio is a 1
 
 Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  box.bg                #0c0909  ({color.surface.input})  use
+  box.bg                #000000  ({color.surface.input})  use
   box.border            #a3676b  ({color.border.control})  use-and-report (D-007)
   box.bg-hover          #1c0a09  ({color.interaction.hover.bg})  use
   box.ring              #e53935  ({color.interaction.focus.ring})  use

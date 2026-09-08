@@ -34,6 +34,7 @@ in its `$extensions["io.github.j3w1.theme"].approval.decision`. Agents may open
 | D-020 | Bounded local validation and recovery workflow | proposed | 2026-09-08 | — |
 | D-021 | Local form composition with versioned data | proposed | 2026-09-08 | — |
 | D-022 | Local visual selection before agent implementation distribution | proposed | 2026-09-08 | — |
+| D-023 | True Black / Rose canonical foundation | accepted | 2026-09-08 | owner (explicit selection of candidate I) |
 
 ## D-000 Responsibility split
 
@@ -435,3 +436,27 @@ foundation freeze, mass productization or deployment. See
 Alternatives are productizing the old palette before visual selection, publishing
 unapproved preview profiles, or offering incomplete appearance-only snippets as
 consumable components. None satisfies the authorized sequence and consumption goal.
+
+## D-023 True Black / Rose canonical foundation
+
+Status: accepted. The owner explicitly selected the reviewed candidate I:
+"use the True Black / Rose theme and make it permanent for j3w1/theme",
+and authorized continuing the remaining Phase 6 implementation.
+
+The approved change is confined to seven surface assignments: canvas, sunken,
+input, code and terminal use the existing pure black primitive; chrome uses
+`#090707`; default panels use `#100c0c`. Add the two selected values as
+`color.primitive.ink.14` and `color.primitive.ink.28`, preserving the luminance
+ordering and all historical primitives. Keep every other color assignment,
+including rose/white foreground, red actions, focus, borders, selections,
+status and chart roles, exactly as reviewed. Raised/overlay surfaces remain
+`#241010`; alternate chrome remains `#1c0a09`. Preserve the complete historical
+profile by explicitly retaining its previous surface assignments.
+
+The rejected A/B/C, revised D/E/F and final G/H/I reviews are historical local
+evidence. Their temporary inputs are not public profiles. Selection approves
+these specific surface values and assignments, not unrelated pending decisions,
+new colors or accessibility waivers. This is the foundation for the Phase 6
+package, copy distributions, static portal and Vue showcase. Existing consumers
+retain their immutable pins; the new surface contract ships in version 1.0.0,
+following the repository's major-version rule for approved value changes.

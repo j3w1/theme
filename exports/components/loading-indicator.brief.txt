@@ -1,6 +1,6 @@
 j3w1/theme implementation brief — loading-indicator
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-6QDP2p3yrJbF5RMucJ2eOLQ+sO21nJNrqs3tEUZzVLI=
-pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/loading-indicator.json
+theme: j3w1-theme 1.0.0  profile: default  sourceDigest: sha256-pZuI7JH94R5ihk9Cc/pOkv3+iuDLNbfAhxD7HmHIRdw=
+pin: https://raw.githubusercontent.com/j3w1/theme/v1.0.0/exports/components/loading-indicator.json
 spec: spec/components/loading-indicator.md  site: https://j3w1.github.io/theme/#c-loading-indicator
 maturity: stable  priority: R1
 
@@ -10,7 +10,7 @@ Use the pinned approved default profile. Pending roles in that profile use-and-r
 Tokens (resolved):
   glyph.text    #bd787d  ({color.text.muted})  use
   label.text    #e99499  ({color.text.default})  use
-  block.bg      #160b0b  ({color.surface.default})  use
+  block.bg      #100c0c  ({color.surface.default})  use
   block.border  #2b0e0d  ({color.border.divider})  use-and-report (D-008)
 
 States: default, reduced-motion

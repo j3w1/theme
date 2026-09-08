@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
   "theme": "j3w1-theme",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "component": "dialog",
   "variant": "default",
   "profile": "default",
   "source": {
     "algorithm": "sha256 over LF file bytes, base64",
     "files": {
-      "theme.json": "sha256-betbOh4Db3EdSjpz7NhtFmMt+NMtEQP3B0FAXH2lwq4=",
+      "theme.json": "sha256-487HhFVo7r0lMqF+0kscE1jKvWpPRWzIdOZBMtIFdiw=",
       "site/recipes.json": "sha256-71h0SYIOKbPRh+V/IhtLV7ZGuX90wfmeo84Rx0sm494=",
       "scripts/lib/recipe-generator.mjs": "sha256-73WV6IUzUVgC3oyFESbgawkTU9o6mh+rKtZx8HgdZeA=",
       "scripts/lib/recipe-css.mjs": "sha256-iZr1hn5OYgtp2GPeonr+JraIFuTMgNu+cE03AYnOYEA=",
@@ -19,11 +19,11 @@
       "site/src/styles/recipe-foundation.css": "sha256-siLjKAkNj84Wa0+Xz5Vf2yj9DT9k0K/Swy/cwHNrvYo=",
       "site/src/styles/components/dialog.css": "sha256-JYVSY/qlwfi+ygYj4vWspfmxxphd5Oor8V5aF0k94D8=",
       "LICENSE.md": "sha256-9K+45u2mMtN17qbMfaYXFmwI+1bv0MwpVv4Ef/Onqsg=",
-      "tokens/primitives.tokens.json": "sha256-NhEa+8gXBRRPgiiv9KbFilhmh28YE2GsxqZRsvHh60Q=",
-      "tokens/semantic.tokens.json": "sha256-6UpLwWBR+ST3wYPjmc3OEYjK5JBBlVifQAWoFYm07Ro=",
+      "tokens/primitives.tokens.json": "sha256-X/TXFVN+jV4dVkMurNeNtKLmJxQSM7qD/jYQhTwe0aQ=",
+      "tokens/semantic.tokens.json": "sha256-BqDNni1iCkwIgeRW1NT/jDGlW9YYK/2jQGmjH7TYufU=",
       "tokens/foundations.tokens.json": "sha256-6J49wo3x5K8ZyTQ9lNt8AVNeRkPCD8FHiXyesXDVPMc="
     },
-    "digest": "sha256-H5K2i6tnubQb6mBDV35hqd7qFHPGoIShzhuNGffJmYU=",
+    "digest": "sha256-hPgdCvjLCdxni5A42MesjerirhERtzhPHtBEvEDqjdo=",
     "revisionPolicy": "Resolve these paths at the same pinned commit as this manifest. The hosted source viewer identifies its supplying commit; generated source files contain content digests, never a floating revision claim."
   },
   "dependencies": {
@@ -62,7 +62,7 @@
     "color.interaction.text-selection.text",
     "color.primitive.alpha.black-65",
     "color.primitive.alpha.transparent",
-    "color.primitive.ink.20",
+    "color.primitive.ink.0",
     "color.primitive.ink.40",
     "color.primitive.ink.52",
     "color.primitive.paper.100",
@@ -464,17 +464,17 @@
   "licenses": {
     "markup": "CC-BY-4.0",
     "css": "MIT",
-    "notice": "j3w1 theme 0.1.0. Markup adapted from j3w1 UI Theme Spec, https://github.com/j3w1/theme, CC BY 4.0: https://creativecommons.org/licenses/by/4.0/. Changes: scoped instance IDs and documentation-only content removed. CSS and generator: MIT; see LICENSE.md."
+    "notice": "j3w1 theme 1.0.0. Markup adapted from j3w1 UI Theme Spec, https://github.com/j3w1/theme, CC BY 4.0: https://creativecommons.org/licenses/by/4.0/. Changes: scoped instance IDs and documentation-only content removed. CSS and generator: MIT; see LICENSE.md."
   },
   "files": {
-    "markup.html": "sha256-qytOkH2ekFV3bH9siTQz3ILLyayEg8UGbjgUTfUP4DA=",
-    "template.html": "sha256-/WTgle+rwCQH55LuFxF1a0TzF0lbopbAOsJ8l9Nj4Gc=",
-    "tokens.css": "sha256-5auQZHKUTRfdWAGR6Jf8kSxETfdQzEJHSJtcCkYPxrA=",
-    "foundation.css": "sha256-yb1H0v78r2Og+RVIUuAqgSwBiuNeTBAR+SN0EisL0Ok=",
-    "component.css": "sha256-imf4DDnYsHKrUtNxEHLkoJyCHKEry3jM/W4NdwxtC0w=",
-    "example.html": "sha256-or0VcNRl1DMVFc8OxgKVc36mU2zojhTfm4ACAg+93ks=",
-    "two-instances.html": "sha256-z6Z2PccXAw+bVkYOLKHGf2vJa+r+0YkRWHNA142SKC8=",
-    "LICENSE.md": "sha256-UOZ5qD7UTl2rwGfUTSZ/1vPjFc0kQNy4YPwSUEiTRcI=",
-    "README.md": "sha256-xs9wuKtgUfl0/8g+9NhEd39e14TJa0JwyDAVFpO1JjE="
+    "markup.html": "sha256-QEGUSVgjt/chnuFDGRg2HkUVCM5wvfcTXycB01Wvp/U=",
+    "template.html": "sha256-Zh0KyBZoMcerYynfZelhgw6YXkIpWrLbN/tHM8ugJ4Y=",
+    "tokens.css": "sha256-GD04IgxeYPYAZ9qTbsqbO6434sOW+G8YOFAZ45keYPo=",
+    "foundation.css": "sha256-km6ODPCONO/Qwi4OHBmEWdZwyj4mBZlIhm87xT+Pt0s=",
+    "component.css": "sha256-TPAJI42leT2GC1uwTb/Ho4m/R7CBV9o8noyIg6xtOQs=",
+    "example.html": "sha256-y/hwwo2a/IZa50qtdAVPmSlZ0HRFflLnJpi19oXX4F0=",
+    "two-instances.html": "sha256-vMnErWiflC62Bu+/wcwIzG490x3xZltonRpg0XWDpYg=",
+    "LICENSE.md": "sha256-WqGkSUnP034XHxP/MR9HFJReVS5/Q+FM3qkCnR19unE=",
+    "README.md": "sha256-nd/nqznGIM+Kkun+nxC2JbCMKd2ppvDWJjjz+IfHhpY="
   }
 }

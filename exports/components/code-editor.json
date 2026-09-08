@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "theme": "j3w1-theme",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "profile": "default",
   "profileStatus": "approved",
   "release": {
-    "version": "0.1.0",
+    "version": "1.0.0",
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-6QDP2p3yrJbF5RMucJ2eOLQ+sO21nJNrqs3tEUZzVLI=",
+  "sourceDigest": "sha256-pZuI7JH94R5ihk9Cc/pOkv3+iuDLNbfAhxD7HmHIRdw=",
   "id": "code-editor",
   "family": "developer",
   "maturity": "stable",
@@ -131,16 +131,14 @@
     },
     "gutter.bg-read-only": {
       "alias": "color.surface.sunken",
-      "value": "#0a0707",
-      "status": "proposed",
+      "value": "#000000",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": "D-008",
+      "decisionId": "D-023",
       "eligibility": {
-        "action": "use-and-report",
-        "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
-        "decisionIds": [
-          "D-008"
-        ]
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
       }
     },
     "line-number.text": {
@@ -707,16 +705,14 @@
         },
         "bg": {
           "alias": "color.surface.sunken",
-          "value": "#0a0707",
-          "status": "proposed",
+          "value": "#000000",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": "D-008",
+          "decisionId": "D-023",
           "eligibility": {
-            "action": "use-and-report",
-            "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
-            "decisionIds": [
-              "D-008"
-            ]
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
           }
         }
       }
@@ -877,8 +873,8 @@
       "fg": "color.code.line-number",
       "bg": "color.surface.sunken",
       "fgHex": "#ad7175",
-      "bgHex": "#0a0707",
-      "ratio": 5.16,
+      "bgHex": "#000000",
+      "ratio": 5.4,
       "pass": true,
       "waiver": null
     },

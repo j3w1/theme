@@ -1,6 +1,6 @@
 j3w1/theme implementation brief — dialog
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-6QDP2p3yrJbF5RMucJ2eOLQ+sO21nJNrqs3tEUZzVLI=
-pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/dialog.json
+theme: j3w1-theme 1.0.0  profile: default  sourceDigest: sha256-pZuI7JH94R5ihk9Cc/pOkv3+iuDLNbfAhxD7HmHIRdw=
+pin: https://raw.githubusercontent.com/j3w1/theme/v1.0.0/exports/components/dialog.json
 spec: spec/components/dialog.md  site: https://j3w1.github.io/theme/#c-dialog
 maturity: stable  priority: R1
 
@@ -27,7 +27,7 @@ Tokens (resolved):
   destructive.bg        #dc282e  ({color.action.destructive.filled-bg})  use
   destructive.text      #f9faf9  ({color.action.destructive.filled-text})  use
   destructive.bg-hover  #dc282e  ({color.action.destructive.hover-bg})  use
-  field.bg              #0c0909  ({color.surface.input})  use
+  field.bg              #000000  ({color.surface.input})  use
   field.border          #a3676b  ({color.border.control})  use-and-report (D-007)
   field.label           #ffa2a7  ({color.text.bright})  use
   note.text             #bd787d  ({color.text.muted})  use

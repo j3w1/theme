@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "theme": "j3w1-theme",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "profile": "default",
   "profileStatus": "approved",
   "release": {
-    "version": "0.1.0",
+    "version": "1.0.0",
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-6QDP2p3yrJbF5RMucJ2eOLQ+sO21nJNrqs3tEUZzVLI=",
+  "sourceDigest": "sha256-pZuI7JH94R5ihk9Cc/pOkv3+iuDLNbfAhxD7HmHIRdw=",
   "id": "toolbar",
   "family": "navigation",
   "maturity": "stable",
@@ -62,10 +62,10 @@
   "tokens": {
     "root.bg": {
       "alias": "color.surface.chrome",
-      "value": "#100909",
-      "status": "observed",
+      "value": "#090707",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-023",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -227,10 +227,10 @@
         },
         "bg": {
           "alias": "color.surface.chrome",
-          "value": "#100909",
-          "status": "observed",
+          "value": "#090707",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-023",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -289,10 +289,10 @@
         },
         "bg": {
           "alias": "color.surface.chrome",
-          "value": "#100909",
-          "status": "observed",
+          "value": "#090707",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-023",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -425,8 +425,8 @@
       "fg": "color.text.default",
       "bg": "color.surface.chrome",
       "fgHex": "#e99499",
-      "bgHex": "#100909",
-      "ratio": 8.6,
+      "bgHex": "#090707",
+      "ratio": 8.77,
       "pass": true,
       "waiver": null
     },
@@ -451,8 +451,8 @@
       "fg": "color.text.default",
       "bg": "color.surface.chrome",
       "fgHex": "#e99499",
-      "bgHex": "#100909",
-      "ratio": 8.6,
+      "bgHex": "#090707",
+      "ratio": 8.77,
       "pass": true,
       "waiver": null
     },
@@ -464,8 +464,8 @@
       "fg": "color.interaction.focus.ring",
       "bg": "color.surface.chrome",
       "fgHex": "#e53935",
-      "bgHex": "#100909",
-      "ratio": 4.66,
+      "bgHex": "#090707",
+      "ratio": 4.75,
       "pass": true,
       "waiver": null
     },
@@ -503,8 +503,8 @@
       "fg": "color.text.disabled",
       "bg": "color.surface.chrome",
       "fgHex": "#8a5559",
-      "bgHex": "#100909",
-      "ratio": 3.31,
+      "bgHex": "#090707",
+      "ratio": 3.37,
       "pass": true,
       "waiver": null
     },
@@ -516,8 +516,8 @@
       "fg": "color.border.default",
       "bg": "color.surface.chrome",
       "fgHex": "#531310",
-      "bgHex": "#100909",
-      "ratio": 1.38,
+      "bgHex": "#090707",
+      "ratio": 1.41,
       "pass": true,
       "waiver": "the separator groups controls that are already distinct targets; it is not a control boundary"
     },
@@ -529,8 +529,8 @@
       "fg": "color.border.divider",
       "bg": "color.surface.chrome",
       "fgHex": "#2b0e0d",
-      "bgHex": "#100909",
-      "ratio": 1.1,
+      "bgHex": "#090707",
+      "ratio": 1.12,
       "pass": true,
       "waiver": "the edge separates chrome from content; the controls are the boundaries"
     }

@@ -22,7 +22,7 @@ const makeApi = () => {
 test("pinned payload is deterministic, preserves alias dependencies and reports unsupported types and profiles", async () => {
   const a = await buildFigmaPayload(source), b = await buildFigmaPayload(source);
   assert.deepEqual(a, b); assert.equal(a.variables.length, 6);
-  assert.equal(a.variables.find(item => item.id === "color.surface.default").value.alias, "color.primitive.ink.30");
+  assert.equal(a.variables.find(item => item.id === "color.surface.default").value.alias, "color.primitive.ink.28");
   assert.deepEqual(a.variables.find(item => item.dependencyOnly).scopes, []);
   const unsupported = await buildFigmaPayload(source, ["font.family.mono", "shadow.floating"]);
   assert.equal(unsupported.variables.length, 0); assert.equal(unsupported.unsupported.length, 2);

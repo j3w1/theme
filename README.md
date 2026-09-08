@@ -1,6 +1,6 @@
 # j3w1 UI Theme Spec
 
-**Warm-black surfaces. Rose text. Red focus. One monospace family. Square components.**
+**True-black canvas. Near-black surfaces. Rose text. Red focus. Square components.**
 
 This repository is the canonical, versioned specification of the j3w1 visual
 identity, so that people and AI agents can implement it consistently in
@@ -9,7 +9,7 @@ formats. It publishes one long visual reference page at
 **https://j3w1.github.io/theme/** and machine-readable exports for agents.
 
 <!-- version:start -->
-Specification version **0.1.0** (release; default: approved, heritage-ansi: heritage, extended: proposed).
+Specification version **1.0.0** (release; default: approved, heritage-ansi: heritage, extended: proposed).
 
 Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 <!-- version:end -->
@@ -17,11 +17,11 @@ Use the pinned approved default profile. Pending roles in that profile use-and-r
 Approval and consumption eligibility are separate; see the policy above and
 `spec/decisions.md` D-013.
 
-Phase 6 starts with a [local visual-foundation review](docs/phase6-visual-review.md).
-Run `npm run phase6:visual-review` with the review checkout's local candidate
-inputs. The four-view comparison is a temporary Vue preview, not a released
-profile or component package. Owner selection precedes canonicalization and
-the planned agent-consumable package, copy recipes and multi-page portal.
+The owner selected **True Black / Rose** after the
+[local visual-foundation review](docs/phase6-visual-review.md). D-023 records
+the seven canonical surface changes; foreground and red accent colors remain
+unchanged. See [the migration notes](docs/true-black-rose-migration.md).
+Phase 6 continues with the agent-consumable package, copy recipes and portal.
 
 The [validation and recovery composition](https://j3w1.github.io/theme/patterns/validation-recovery/)
 and [draft form builder](https://j3w1.github.io/theme/builder/) demonstrate local
@@ -63,14 +63,14 @@ scheme, tmux, browser extensions) are catalogued in
 <!-- tokens:start -->
 | Role | Value | Status | Use |
 | --- | --- | --- | --- |
-| `color.surface.canvas` | `#0c0909` | observed; use | Page and terminal background. |
-| `color.surface.default` | `#160b0b` | observed; use | Panels and cards. |
+| `color.surface.canvas` | `#000000` | approved; use | Page and terminal background. |
+| `color.surface.default` | `#100c0c` | approved; use | Panels and cards. |
 | `color.surface.raised` | `#241010` | observed; use | Sticky headers, menus, popovers. |
-| `color.text.default` | `#e99499` | observed; use | Interface and body text (8.65:1 on canvas). |
+| `color.text.default` | `#e99499` | observed; use | Interface and body text. |
 | `color.text.bright` | `#ffa2a7` | observed; use | Headings, emphasis, links. |
 | `color.text.prose` | `#f4eeee` | observed; use | Long-form reading text. |
-| `color.text.muted` | `#bd787d` | observed; use | Secondary text; the darkest colour permitted for chrome text (5.81:1). |
-| `color.text.subtle` | `#ad7175` | approved; use | Metadata, comments, line numbers (5.10:1). |
+| `color.text.muted` | `#bd787d` | observed; use | Secondary text; the darkest colour permitted for chrome text. |
+| `color.text.subtle` | `#ad7175` | approved; use | Metadata, comments, line numbers. |
 | `color.border.control` | `#a3676b` | proposed; use-and-report (D-007) | Form-control boundary (4.45:1, meets the 3:1 non-text minimum). |
 | `color.border.default` | `#531310` | observed; use | Decorative border (1.39:1; never the only edge of a control). |
 | `color.interaction.focus.ring` | `#e53935` | observed; use | 1px dashed focus ring on controls and rows. |

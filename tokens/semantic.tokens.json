@@ -8,32 +8,56 @@
         "$description": "Behind every window."
       },
       "canvas": {
-        "$value": "{color.primitive.ink.20}",
-        "$description": "Page and terminal background."
+        "$value": "{color.primitive.ink.0}",
+        "$description": "Page and terminal background.",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "approved",
+            "approval": {
+              "decision": "D-023"
+            }
+          }
+        }
       },
       "chrome": {
-        "$value": "{color.primitive.ink.25}",
-        "$description": "Window chrome, title bars, bars."
+        "$value": "{color.primitive.ink.14}",
+        "$description": "Window chrome, title bars, bars.",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "approved",
+            "approval": {
+              "decision": "D-023"
+            }
+          }
+        }
       },
       "chrome-alt": {
         "$value": "{color.primitive.ink.40}",
         "$description": "Alternate chrome."
       },
       "sunken": {
-        "$value": "{color.primitive.ink.15}",
+        "$value": "{color.primitive.ink.0}",
         "$description": "Reading and detail panes set below the canvas.",
         "$extensions": {
           "io.github.j3w1.theme": {
-            "status": "proposed",
+            "status": "approved",
             "approval": {
-              "decision": "D-008"
+              "decision": "D-023"
             }
           }
         }
       },
       "default": {
-        "$value": "{color.primitive.ink.30}",
-        "$description": "Panels and cards."
+        "$value": "{color.primitive.ink.28}",
+        "$description": "Panels and cards.",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "approved",
+            "approval": {
+              "decision": "D-023"
+            }
+          }
+        }
       },
       "raised": {
         "$value": "{color.primitive.ink.52}",
@@ -44,8 +68,16 @@
         "$description": "Dialogs and drawers."
       },
       "input": {
-        "$value": "{color.primitive.ink.20}",
-        "$description": "Form-control fill."
+        "$value": "{color.primitive.ink.0}",
+        "$description": "Form-control fill.",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "approved",
+            "approval": {
+              "decision": "D-023"
+            }
+          }
+        }
       },
       "backdrop": {
         "$value": "{color.primitive.alpha.black-65}",
@@ -60,18 +92,34 @@
         }
       },
       "code": {
-        "$value": "{color.primitive.ink.20}",
-        "$description": "Editor background."
+        "$value": "{color.primitive.ink.0}",
+        "$description": "Editor background.",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "approved",
+            "approval": {
+              "decision": "D-023"
+            }
+          }
+        }
       },
       "terminal": {
-        "$value": "{color.primitive.ink.20}",
-        "$description": "Terminal background."
+        "$value": "{color.primitive.ink.0}",
+        "$description": "Terminal background.",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "approved",
+            "approval": {
+              "decision": "D-023"
+            }
+          }
+        }
       }
     },
     "text": {
       "default": {
         "$value": "{color.primitive.rose.700}",
-        "$description": "Interface and body text (8.65:1 on canvas)."
+        "$description": "Interface and body text."
       },
       "bright": {
         "$value": "{color.primitive.rose.800}",
@@ -83,11 +131,11 @@
       },
       "muted": {
         "$value": "{color.primitive.rose.600}",
-        "$description": "Secondary text; the darkest colour permitted for chrome text (5.81:1)."
+        "$description": "Secondary text; the darkest colour permitted for chrome text."
       },
       "subtle": {
         "$value": "{color.primitive.rose.450}",
-        "$description": "Metadata, comments, line numbers (5.10:1).",
+        "$description": "Metadata, comments, line numbers.",
         "$extensions": {
           "io.github.j3w1.theme": {
             "status": "approved",
@@ -99,7 +147,7 @@
       },
       "disabled": {
         "$value": "{color.primitive.rose.300}",
-        "$description": "Disabled control text (3.33:1; exempt, at least 3:1 by policy).",
+        "$description": "Disabled control text.",
         "$extensions": {
           "io.github.j3w1.theme": {
             "status": "approved",
@@ -115,11 +163,11 @@
       },
       "accent": {
         "$value": "{color.primitive.red.800}",
-        "$description": "Accent text on canvas and default surfaces only (4.30:1 on raised fails)."
+        "$description": "Accent text on canvas and default surfaces only."
       },
       "accent-strong": {
         "$value": "{color.primitive.red.850}",
-        "$description": "Accent text safe on every surface (4.94:1 on raised)."
+        "$description": "Accent text safe on every surface."
       },
       "link": {
         "$value": "{color.primitive.rose.800}",
@@ -135,15 +183,15 @@
       },
       "on-selection": {
         "$value": "{color.primitive.paper.90}",
-        "$description": "Text on the selection fill (7.92:1)."
+        "$description": "Text on the selection fill."
       },
       "on-action": {
         "$value": "{color.primitive.paper.90}",
-        "$description": "Text on the primary action fill (8.17:1)."
+        "$description": "Text on the primary action fill."
       },
       "on-danger": {
         "$value": "{color.primitive.paper.100}",
-        "$description": "Text on the danger fill (4.58:1)."
+        "$description": "Text on the danger fill."
       },
       "on-light": {
         "$value": "{color.primitive.ink.20}",

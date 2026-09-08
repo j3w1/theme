@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "theme": "j3w1-theme",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "profile": "default",
   "profileStatus": "approved",
   "release": {
-    "version": "0.1.0",
+    "version": "1.0.0",
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-6QDP2p3yrJbF5RMucJ2eOLQ+sO21nJNrqs3tEUZzVLI=",
+  "sourceDigest": "sha256-pZuI7JH94R5ihk9Cc/pOkv3+iuDLNbfAhxD7HmHIRdw=",
   "id": "combobox",
   "family": "forms-advanced",
   "maturity": "stable",
@@ -70,10 +70,10 @@
   "tokens": {
     "root.bg": {
       "alias": "color.surface.input",
-      "value": "#0c0909",
-      "status": "observed",
+      "value": "#000000",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-023",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -443,10 +443,10 @@
         },
         "bg": {
           "alias": "color.surface.input",
-          "value": "#0c0909",
-          "status": "observed",
+          "value": "#000000",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-023",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -519,10 +519,10 @@
         },
         "bg": {
           "alias": "color.surface.input",
-          "value": "#0c0909",
-          "status": "observed",
+          "value": "#000000",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-023",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -668,10 +668,10 @@
         },
         "bg": {
           "alias": "color.surface.input",
-          "value": "#0c0909",
-          "status": "observed",
+          "value": "#000000",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-023",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -711,10 +711,10 @@
         },
         "bg": {
           "alias": "color.surface.input",
-          "value": "#0c0909",
-          "status": "observed",
+          "value": "#000000",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-023",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -867,8 +867,8 @@
       "fg": "color.text.default",
       "bg": "color.surface.input",
       "fgHex": "#e99499",
-      "bgHex": "#0c0909",
-      "ratio": 8.65,
+      "bgHex": "#000000",
+      "ratio": 9.16,
       "pass": true,
       "waiver": null
     },
@@ -880,8 +880,8 @@
       "fg": "color.border.control",
       "bg": "color.surface.input",
       "fgHex": "#a3676b",
-      "bgHex": "#0c0909",
-      "ratio": 4.45,
+      "bgHex": "#000000",
+      "ratio": 4.71,
       "pass": true,
       "waiver": null
     },
@@ -906,8 +906,8 @@
       "fg": "color.text.default",
       "bg": "color.surface.input",
       "fgHex": "#e99499",
-      "bgHex": "#0c0909",
-      "ratio": 8.65,
+      "bgHex": "#000000",
+      "ratio": 9.16,
       "pass": true,
       "waiver": null
     },
@@ -919,8 +919,8 @@
       "fg": "color.border.active",
       "bg": "color.surface.input",
       "fgHex": "#e53935",
-      "bgHex": "#0c0909",
-      "ratio": 4.69,
+      "bgHex": "#000000",
+      "ratio": 4.97,
       "pass": true,
       "waiver": null
     },
@@ -932,8 +932,8 @@
       "fg": "color.interaction.focus.ring",
       "bg": "color.surface.input",
       "fgHex": "#e53935",
-      "bgHex": "#0c0909",
-      "ratio": 4.69,
+      "bgHex": "#000000",
+      "ratio": 4.97,
       "pass": true,
       "waiver": null
     },
@@ -997,8 +997,8 @@
       "fg": "color.text.default",
       "bg": "color.surface.input",
       "fgHex": "#e99499",
-      "bgHex": "#0c0909",
-      "ratio": 8.65,
+      "bgHex": "#000000",
+      "ratio": 9.16,
       "pass": true,
       "waiver": null
     },
@@ -1010,8 +1010,8 @@
       "fg": "color.status.danger.border",
       "bg": "color.surface.input",
       "fgHex": "#e53935",
-      "bgHex": "#0c0909",
-      "ratio": 4.69,
+      "bgHex": "#000000",
+      "ratio": 4.97,
       "pass": true,
       "waiver": null
     },
@@ -1023,8 +1023,8 @@
       "fg": "color.text.default",
       "bg": "color.surface.input",
       "fgHex": "#e99499",
-      "bgHex": "#0c0909",
-      "ratio": 8.65,
+      "bgHex": "#000000",
+      "ratio": 9.16,
       "pass": true,
       "waiver": null
     },
@@ -1036,8 +1036,8 @@
       "fg": "color.status.danger.border",
       "bg": "color.surface.input",
       "fgHex": "#e53935",
-      "bgHex": "#0c0909",
-      "ratio": 4.69,
+      "bgHex": "#000000",
+      "ratio": 4.97,
       "pass": true,
       "waiver": null
     },
@@ -1049,8 +1049,8 @@
       "fg": "color.interaction.focus.ring-container",
       "bg": "color.surface.input",
       "fgHex": "#ffa2a7",
-      "bgHex": "#0c0909",
-      "ratio": 10.37,
+      "bgHex": "#000000",
+      "ratio": 10.98,
       "pass": true,
       "waiver": null
     },
@@ -1101,8 +1101,8 @@
       "fg": "color.status.danger.text",
       "bg": "color.surface.canvas",
       "fgHex": "#f73f35",
-      "bgHex": "#0c0909",
-      "ratio": 5.4,
+      "bgHex": "#000000",
+      "ratio": 5.72,
       "pass": true,
       "waiver": null
     },
@@ -1114,8 +1114,8 @@
       "fg": "color.text.muted",
       "bg": "color.surface.canvas",
       "fgHex": "#bd787d",
-      "bgHex": "#0c0909",
-      "ratio": 5.81,
+      "bgHex": "#000000",
+      "ratio": 6.15,
       "pass": true,
       "waiver": null
     },

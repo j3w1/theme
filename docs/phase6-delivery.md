@@ -1,8 +1,9 @@
 # Phase 6 delivery contract and continuation
 
 This records the owner-directed program scope. It is a delivery plan, not a
-claim that the future package, portal or full demo exists. The active checkpoint
-is the local visual selection in `phase6-visual-review.md` and issue #37.
+claim that the future package, portal or full demo exists. The owner selected
+True Black / Rose (candidate I); D-023 records that authorization. The active
+checkpoint is canonical foundation validation before package implementation.
 
 ## Primary success criterion
 

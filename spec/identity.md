@@ -6,7 +6,7 @@ summary: What the j3w1 theme is, where it came from, and the five rules that kee
 ---
 
 <!-- @compact:start -->
-Warm-black surfaces with a faint red cast (`#0c0909`, never pure grey), rose interface text (`#e99499`), near-white reading text (`#f4eeee`), dark-red selections (`#911410`), a bright red focus ring (`#e53935`), 1px square borders, zero radii, one monospace family for chrome, reading and code. Red marks *interaction*: focus, selection, active borders, primary actions. It is not a decoration and it is not applied to everything. Darkness is the canvas; readable content is the priority.
+True-black canvas (`#000000`), near-black panels (`#100c0c`) and chrome (`#090707`), with dark-red raised layers, rose interface text (`#e99499`), near-white reading text (`#f4eeee`), dark-red selections (`#911410`), a bright red focus ring (`#e53935`), 1px square borders, zero radii, one monospace family for chrome, reading and code. Red marks *interaction*: focus, selection, active borders, primary actions. It is not a decoration and it is not applied to everything. Darkness is the canvas; readable content is the priority.
 
 Five rules keep an implementation recognisable:
 

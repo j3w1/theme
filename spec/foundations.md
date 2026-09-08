@@ -10,10 +10,9 @@ may be used. Every rule below is normative for the `default` profile.
 
 ## Surfaces
 
-`surface.desktop` (`#000000`) is only what shows behind windows. Everything
-readable sits on `surface.canvas` (`#0c0909`) or above it: `default`
-(`#160b0b`) for panels and cards, `raised` (`#241010`) for sticky headers,
-menus and popovers, `overlay` for dialogs and drawers, `sunken` (`#0a0707`)
+`surface.desktop` and `surface.canvas` use true black (`#000000`). Readable
+content sits on the canvas or `default` (`#100c0c`) panels and cards, `raised` (`#241010`) for sticky headers,
+menus and popovers, `overlay` for dialogs and drawers, `sunken` (`#000000`)
 for reading and detail panes, `input` for form-control fills, `chrome` and
 `chrome-alt` for window frames and bars. Layering is subtle by design; it may
 not erase the boundary of a control, which is why controls also carry
@@ -26,17 +25,18 @@ put more red on screen.
 
 | Role | Value | Contrast on canvas / default / raised | Use |
 | --- | --- | --- | --- |
-| `text.prose` | `#f4eeee` | 17.30 / 16.85 / 15.83 | long-form reading, on-fill text |
-| `text.bright` | `#ffa2a7` | 10.37 / 10.10 / 9.49 | headings, links, emphasis |
-| `text.default` | `#e99499` | 8.65 / 8.43 / 7.92 | interface and body text |
-| `text.muted` | `#bd787d` | 5.81 / 5.66 / 5.31 | secondary text; the darkest colour permitted for chrome text |
-| `text.subtle` | `#ad7175` | 5.10 / 4.96 / 4.67 | metadata, comments, line numbers |
-| `text.disabled` | `#8a5559` | 3.33 / 3.24 / 3.05 | disabled controls only (exempt under WCAG 1.4.3; at least 3:1 by policy) |
-| `text.accent` | `#e53935` | 4.69 / 4.57 / 4.30 | accent text on canvas and default surfaces only |
-| `text.accent-strong` | `#f73f35` | 5.40 / 5.26 / 4.94 | accent text safe on every surface |
+| `text.prose` | `#f4eeee` | 18.31 / 16.96 / 15.83 | long-form reading, on-fill text |
+| `text.bright` | `#ffa2a7` | 10.98 / 10.17 / 9.49 | headings, links, emphasis |
+| `text.default` | `#e99499` | 9.16 / 8.48 / 7.92 | interface and body text |
+| `text.muted` | `#bd787d` | 6.15 / 5.69 / 5.31 | secondary text; the darkest colour permitted for chrome text |
+| `text.subtle` | `#ad7175` | 5.40 / 5.00 / 4.66 | metadata, comments, line numbers |
+| `text.disabled` | `#8a5559` | 3.52 / 3.26 / 3.05 | disabled controls only (exempt under WCAG 1.4.3; at least 3:1 by policy) |
+| `text.accent` | `#e53935` | 4.97 / 4.60 / 4.30 | accent text on canvas and default surfaces only |
+| `text.accent-strong` | `#f73f35` | 5.72 / 5.29 / 4.94 | accent text safe on every surface |
 
 Ordinary text must reach 4.5:1 against its actual background in every state.
-`#a3676b` (4.45:1) and `#7d1310` (1.86:1) are never text in `default`; they
+`#a3676b` and `#7d1310` are never text roles in `default`, even when a
+particular darker background improves their ratio; they
 remain in service as `border.control`, `icon.decorative`, `status.neutral.fill`
 and `border.disabled`. Metadata and comments that a person needs to read are
 not decorative and use `text.subtle`, not a graphic colour.
@@ -51,7 +51,7 @@ Every border is 1px (`border.width.default`); 2px (`border.width.emphasis`) is
 reserved for the selected indicator bar, the sticky-header rule and the invalid
 border. `border.divider` (`#2b0e0d`) separates rows and sections;
 `border.default` (`#531310`) is decorative and may never be the only visible
-edge of a control; `border.control` (`#a3676b`, 4.45:1) is the boundary of
+edge of a control; `border.control` (`#a3676b`, 4.71:1) is the boundary of
 every form control at rest; `border.active` (`#e53935`) marks the focused or
 active control; `border.overlay` (`#e53935`) frames every floating layer.
 Styles: solid by default; dashed only for focus, drop targets and read-only

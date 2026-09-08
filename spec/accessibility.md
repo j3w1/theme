@@ -23,7 +23,7 @@ listed at the end of this document.
 - Control boundaries, focus rings, meaningful icons and chart marks: at least
   3:1 (WCAG 1.4.11).
 - Disabled text is exempt under WCAG 1.4.3 but must still reach 3:1 by house
-  policy (`text.disabled` `#8a5559`, 3.33:1).
+  policy (`text.disabled` `#8a5559`, 3.52:1 on the true-black canvas).
 - Never round a value into a pass. The report keeps the unrounded ratio and
   displays two decimals; `4.4996` reads 4.50 and fails.
 - Heritage values that fail (`#a3676b` as text, `#7d1310` anywhere as text)
@@ -103,7 +103,7 @@ it silently.
   rule sets. It does not evaluate every success criterion, and manual checks
   (keyboard walks, screen-reader reading, zoom) require separate execution
   evidence. Missing protocols remain not run, not implied by the scan.
-- `text.disabled` at 3.33:1 is below the ordinary-text floor by design and
+- `text.disabled` at 3.52:1 on canvas is below the ordinary-text floor by design and
   relies on the WCAG exemption for inactive controls.
 - Heritage ANSI slots 1, 4, 6, 8, 9, 10, 12, 13, 14 and 15 fail 4.5:1 on the
   terminal background (slot 0 is the background). Programs that render errors

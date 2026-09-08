@@ -8,6 +8,13 @@
 
 ## Unreleased
 
+- **1.0.0 / #37 / D-023:** adopt the owner-selected True Black / Rose foundation.
+  Canvas, sunken, input, surface-code and surface-terminal become true black;
+  chrome becomes `#090707` and panels become `#100c0c`. Preserve original
+  foreground, red accents, other semantic colors and historical ANSI profile.
+  This is a major contract change. Existing pinned consumers do not update
+  automatically; see `docs/true-black-rose-migration.md` for the exact impact.
+
 - #15, #16, #19: add a pinned one-way Figma Variables bridge with external
   ownership receipts, a local validation/recovery composition, and a draft
   five-field form builder. Reuse canonical field templates and bounded JSON

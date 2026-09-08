@@ -1,4 +1,4 @@
-Recipe distribution for j3w1 theme 0.1.0. Source license text follows unchanged.
+Recipe distribution for j3w1 theme 1.0.0. Source license text follows unchanged.
 
 # Licenses
 

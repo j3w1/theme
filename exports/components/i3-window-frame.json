@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "theme": "j3w1-theme",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "profile": "default",
   "profileStatus": "approved",
   "release": {
-    "version": "0.1.0",
+    "version": "1.0.0",
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-6QDP2p3yrJbF5RMucJ2eOLQ+sO21nJNrqs3tEUZzVLI=",
+  "sourceDigest": "sha256-pZuI7JH94R5ihk9Cc/pOkv3+iuDLNbfAhxD7HmHIRdw=",
   "id": "i3-window-frame",
   "family": "composed",
   "maturity": "stable",
@@ -91,10 +91,10 @@
     },
     "bar.bg": {
       "alias": "color.surface.chrome",
-      "value": "#100909",
-      "status": "observed",
+      "value": "#090707",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-023",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -273,10 +273,10 @@
     },
     "window.bg": {
       "alias": "color.surface.canvas",
-      "value": "#0c0909",
-      "status": "observed",
+      "value": "#000000",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-023",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -321,10 +321,10 @@
     },
     "title.bg": {
       "alias": "color.surface.chrome",
-      "value": "#100909",
-      "status": "observed",
+      "value": "#090707",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-023",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -474,10 +474,10 @@
         },
         "bg": {
           "alias": "color.surface.chrome",
-          "value": "#100909",
-          "status": "observed",
+          "value": "#090707",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-023",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -579,10 +579,10 @@
         },
         "bg": {
           "alias": "color.surface.chrome",
-          "value": "#100909",
-          "status": "observed",
+          "value": "#090707",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-023",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -677,8 +677,8 @@
       "fg": "color.text.muted",
       "bg": "color.surface.chrome",
       "fgHex": "#bd787d",
-      "bgHex": "#100909",
-      "ratio": 5.77,
+      "bgHex": "#090707",
+      "ratio": 5.88,
       "pass": true,
       "waiver": null
     },
@@ -729,8 +729,8 @@
       "fg": "color.text.muted",
       "bg": "color.surface.chrome",
       "fgHex": "#bd787d",
-      "bgHex": "#100909",
-      "ratio": 5.77,
+      "bgHex": "#090707",
+      "ratio": 5.88,
       "pass": true,
       "waiver": null
     },
@@ -755,8 +755,8 @@
       "fg": "color.text.default",
       "bg": "color.surface.chrome",
       "fgHex": "#e99499",
-      "bgHex": "#100909",
-      "ratio": 8.6,
+      "bgHex": "#090707",
+      "ratio": 8.77,
       "pass": true,
       "waiver": null
     },
@@ -768,8 +768,8 @@
       "fg": "color.text.bright",
       "bg": "color.surface.chrome",
       "fgHex": "#ffa2a7",
-      "bgHex": "#100909",
-      "ratio": 10.31,
+      "bgHex": "#090707",
+      "ratio": 10.5,
       "pass": true,
       "waiver": null
     },
@@ -820,8 +820,8 @@
       "fg": "color.interaction.focus.ring-container",
       "bg": "color.surface.canvas",
       "fgHex": "#ffa2a7",
-      "bgHex": "#0c0909",
-      "ratio": 10.37,
+      "bgHex": "#000000",
+      "ratio": 10.98,
       "pass": true,
       "waiver": null
     },
@@ -833,8 +833,8 @@
       "fg": "color.interaction.focus.ring",
       "bg": "color.surface.chrome",
       "fgHex": "#e53935",
-      "bgHex": "#100909",
-      "ratio": 4.66,
+      "bgHex": "#090707",
+      "ratio": 4.75,
       "pass": true,
       "waiver": null
     },
@@ -846,8 +846,8 @@
       "fg": "color.border.selected-indicator",
       "bg": "color.surface.chrome",
       "fgHex": "#e53935",
-      "bgHex": "#100909",
-      "ratio": 4.66,
+      "bgHex": "#090707",
+      "ratio": 4.75,
       "pass": true,
       "waiver": null
     },
@@ -859,8 +859,8 @@
       "fg": "color.status.danger.fill",
       "bg": "color.surface.chrome",
       "fgHex": "#dc282e",
-      "bgHex": "#100909",
-      "ratio": 4.12,
+      "bgHex": "#090707",
+      "ratio": 4.2,
       "pass": true,
       "waiver": null
     },
@@ -872,8 +872,8 @@
       "fg": "color.interaction.selection.bg",
       "bg": "color.surface.chrome",
       "fgHex": "#911410",
-      "bgHex": "#100909",
-      "ratio": 2.17,
+      "bgHex": "#090707",
+      "ratio": 2.21,
       "pass": true,
       "waiver": "the fill is identified by its on-fill text (7.92:1) and aria-selected, as every selection fill in the theme"
     },
@@ -885,8 +885,8 @@
       "fg": "color.border.selected-indicator-inactive",
       "bg": "color.surface.chrome",
       "fgHex": "#9e231f",
-      "bgHex": "#100909",
-      "ratio": 2.55,
+      "bgHex": "#090707",
+      "ratio": 2.6,
       "pass": true,
       "waiver": "an unfocused container's indicator is informative only; the visible tab is still named by aria-selected and bright text is withheld on purpose"
     },
@@ -911,8 +911,8 @@
       "fg": "color.text.muted",
       "bg": "color.surface.chrome",
       "fgHex": "#bd787d",
-      "bgHex": "#100909",
-      "ratio": 5.77,
+      "bgHex": "#090707",
+      "ratio": 5.88,
       "pass": true,
       "waiver": "the separators only space blocks that are already distinct text"
     },
@@ -924,8 +924,8 @@
       "fg": "color.icon.decorative",
       "bg": "color.surface.chrome",
       "fgHex": "#a3676b",
-      "bgHex": "#100909",
-      "ratio": 4.42,
+      "bgHex": "#090707",
+      "ratio": 4.51,
       "pass": true,
       "waiver": "every glyph is followed by its label; the glyphs are aria-hidden"
     }

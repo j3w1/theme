@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "theme": "j3w1-theme",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "profile": "default",
   "profileStatus": "approved",
   "release": {
-    "version": "0.1.0",
+    "version": "1.0.0",
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-6QDP2p3yrJbF5RMucJ2eOLQ+sO21nJNrqs3tEUZzVLI=",
+  "sourceDigest": "sha256-pZuI7JH94R5ihk9Cc/pOkv3+iuDLNbfAhxD7HmHIRdw=",
   "id": "form-builder",
   "family": "forms-advanced",
   "maturity": "draft",
@@ -54,10 +54,10 @@
   "tokens": {
     "root.bg": {
       "alias": "color.surface.default",
-      "value": "#160b0b",
-      "status": "observed",
+      "value": "#100c0c",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-023",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -150,8 +150,8 @@
       "fg": "color.text.default",
       "bg": "color.surface.default",
       "fgHex": "#e99499",
-      "bgHex": "#160b0b",
-      "ratio": 8.43,
+      "bgHex": "#100c0c",
+      "ratio": 8.48,
       "pass": true,
       "waiver": null
     },
@@ -163,8 +163,8 @@
       "fg": "color.border.control",
       "bg": "color.surface.default",
       "fgHex": "#a3676b",
-      "bgHex": "#160b0b",
-      "ratio": 4.33,
+      "bgHex": "#100c0c",
+      "ratio": 4.36,
       "pass": true,
       "waiver": null
     },
@@ -176,8 +176,8 @@
       "fg": "color.text.default",
       "bg": "color.surface.default",
       "fgHex": "#e99499",
-      "bgHex": "#160b0b",
-      "ratio": 8.43,
+      "bgHex": "#100c0c",
+      "ratio": 8.48,
       "pass": true,
       "waiver": null
     },
@@ -189,8 +189,8 @@
       "fg": "color.text.muted",
       "bg": "color.surface.default",
       "fgHex": "#bd787d",
-      "bgHex": "#160b0b",
-      "ratio": 5.66,
+      "bgHex": "#100c0c",
+      "ratio": 5.69,
       "pass": true,
       "waiver": null
     }
