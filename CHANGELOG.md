@@ -8,6 +8,11 @@
 
 ## [1.0.0] - 2026-09-09
 
+- Correct the Vue demo's shared grid minimum size at narrow widths and use
+  semantic command actions for its navigation palette. Verify every demo
+  destination at desktop, narrow and zoom widths. This website correction
+  leaves the versioned component package and canonical token values unchanged.
+
 - **#37:** ship all 67 inventory entries through `@j3w1/ui`, with typed modular
   exports, complete standalone copy bundles, framework examples and bounded
   package/copy/mapping task kits. Agents can consume the release tarball without

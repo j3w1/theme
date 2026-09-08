@@ -90,7 +90,7 @@ test("Vue records support list, edit, validation, detail and reset", { annotatio
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);audit.assertClean();
 });
 test("every Vue destination resolves under the Pages base and graph bars use canonical red", { annotation }, async ({ page }, info) => {
-  test.skip(info.project.name!=="desktop", "Complete route traversal uses one desktop configuration; representative narrow flows are separate.");
+  test.skip(info.project.name==="nojs", "The Vue application requires JavaScript; all desktop, narrow and zoom configurations traverse its destinations.");
   const audit=await openSpec(page,"demo/#/dashboards/analytics");
   const tokens=await readJson("exports/tokens.resolved.json");
   const red=tokens.profiles[tokens.defaultProfile].tokens["color.chart.series-2"].css;
@@ -105,11 +105,22 @@ test("every Vue destination resolves under the Pages base and graph bars use can
   await expect(page.locator("j3w1-chart tbody th").first()).toHaveCSS("color",color("color.text.default"));
   await link.hover();await expect(link).toHaveCSS("color",color("color.text.link-hover"));
   for(const destination of hashDestinations) {
-    await page.goto(`demo/#${destination}`);await expect(page.locator("main h1")).toBeVisible();
+    await page.goto(`demo/#${destination}`);
+    await expect(page.locator(".demo-topline")).toContainText(`Workspace / ${destination.split('/').filter(Boolean).join(' / ')}`);
+    await expect(page.locator("main h1")).toBeVisible();
+    await expect(page.locator(".demo-specimen:empty")).toHaveCount(0);
     await page.waitForLoadState("networkidle");
     await expect(page.locator("main")).not.toContainText("Unknown component");
+    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
     for(const href of await page.locator('.demo-sidebar nav a').evaluateAll(nodes=>nodes.map(node=>node.href)))expect(new URL(href).pathname).toBe("/theme/demo/");
   }
+  await page.locator('.demo-command [data-open]').click();
+  const command = page.locator('.demo-command').getByRole('dialog');
+  await command.getByRole('combobox').fill('analytics');
+  await expect(command.getByRole('option')).toHaveCount(1);
+  if (info.project.name === 'desktop') expect((await new AxeBuilder({page}).analyze()).violations).toEqual([]);
+  await page.keyboard.press('Enter');
+  await expect(page.locator('.demo-topline')).toContainText('Workspace / dashboards / analytics');
   audit.assertClean();
 });
 

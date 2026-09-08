@@ -1,12 +1,12 @@
 <script setup>
 import { computed, ref } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { state, reset } from './store.js';
 import { groups } from './navigation.js';
 import UiSpecimen from './UiSpecimen.vue';
-const route = useRoute(), navigationOpen = ref(false);
+const route = useRoute(), router = useRouter(), navigationOpen = ref(false);
 const breadcrumb = computed(() => route.path.split('/').filter(Boolean).join(' / '));
-function palette(root) { root.setAttribute('shortcut', ''); const list = root.querySelector('[role="listbox"]'); list.replaceChildren(); for (const group of groups) for (const [path, name] of group.links) { const item = document.createElement('li'); item.setAttribute('role','option'); const category = document.createElement('span'); category.textContent = group.title.split(' ')[0]; const link = document.createElement('a'); link.href = `#${path}`; link.textContent = name; link.tabIndex = -1; item.append(category, link); list.append(item); } root.refresh(); }
+function palette(root) { root.setAttribute('shortcut', ''); const list = root.querySelector('[role="listbox"]'); list.replaceChildren(); for (const group of groups) for (const [path, name] of group.links) { const item = document.createElement('li'); item.setAttribute('role','option'); item.dataset.action = path; const category = document.createElement('span'); category.textContent = group.title.split(' ')[0] + ' '; const label = document.createElement('span'); label.className = 'command-label'; label.textContent = name; item.append(category, label); list.append(item); } root.addEventListener('j3w1-command', event => { const target = event.detail.action; if (groups.some(group => group.links.some(([path]) => path === target))) { event.preventDefault(); router.push(target); } }); root.refresh(); }
 </script>
 <template>
   <a class="skip-link" href="#demo-main">Skip to content</a>
