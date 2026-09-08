@@ -1,10 +1,10 @@
 {
   "id": "combobox",
   "name": "Combobox",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "tag": "j3w1-combobox",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/combobox.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.0.0/packages/ui/src/behaviors/navigation.js",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/combobox.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.1.0/packages/ui/src/behaviors/navigation.js",
   "imports": {
     "class": "@j3w1/ui/components/combobox",
     "register": "@j3w1/ui/register/combobox",
@@ -548,6 +548,6 @@
   "copy": {
     "directory": "copy/combobox/",
     "manifest": "copy/combobox/manifest.json",
-    "digest": "sha256-dQZKsE05UQ2oVqrDGeiQM4F5Z4/RqUW8H56sV5RurX8="
+    "digest": "sha256-d8CNtQbgODX+tGzv3AI9yA14E8MZTjH0DUuulalm/Bo="
   }
 }

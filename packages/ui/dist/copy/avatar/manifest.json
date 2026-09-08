@@ -1,26 +1,26 @@
 {
   "schemaVersion": 1,
   "component": "avatar",
-  "version": "1.0.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/avatar.md",
+  "version": "1.1.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/avatar.md",
   "dependencies": [
     "register/avatar.js",
-    "chunks/element-B0z6sqq8.js",
+    "chunks/element-C3vTYwcS.js",
+    "chunks/choice-40bzCHdX.js",
     "components/avatar.js",
-    "chunks/display-Cg9VLOYZ.js",
-    "chunks/dom-BVXrzskP.js"
+    "chunks/display-JEHZe9kB.js"
   ],
   "files": {
-    "runtime/register/avatar.js": "sha256-2BXWp8rRwSHHH54TH/LVJlKjbYvSYDTE5FVkzMb9di0=",
-    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
-    "runtime/components/avatar.js": "sha256-GOpbWQx6HgWvVa9T4z7QXPflJH8YjsWYrqzVWtiIB8E=",
-    "runtime/chunks/display-Cg9VLOYZ.js": "sha256-bQA907mIA00ZSmhBbqsjGxJoa6v9+t/gIfm+f8TnZTY=",
-    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "runtime/register/avatar.js": "sha256-d2WRQUCyQa4B9VamfIPavqJgUsmteb10ZBCXD4A963s=",
+    "runtime/chunks/element-C3vTYwcS.js": "sha256-WyFn6jrDTLh3zTHZOXo2VONKQHFz8jiBSmDRqnV+/Aw=",
+    "runtime/chunks/choice-40bzCHdX.js": "sha256-ly8Xah7OBtXIG/ajH4KaBWCYHbrcGFYO6OjT880Jabc=",
+    "runtime/components/avatar.js": "sha256-6PG8qXk9pZBFDtlc0teYVqII1P9B2nLdqJ6ynnZB7PA=",
+    "runtime/chunks/display-JEHZe9kB.js": "sha256-JtWV8BiBv/y0dE42bmBkSTPdJrH/qBahNgsS62bq+w8=",
     "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
     "component.css": "sha256-XYCR7yVoWMnpJrQG4A+pL3xESyHR6OKMuwJfZGgDpKA=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-R1Q+6UFu76jOlVP9cadBrMxVS3+Yb2JgIDkcnKxWvtk=",
     "index.html": "sha256-6wIoUvdBP1c8DCQbO8yN3AbgSvI4jPyNvKs6IYYA/7o=",
-    "README.md": "sha256-360ulxgOCRcFFKFQEpfTJGHnrWX1omLlBh9xFeo4psU="
+    "README.md": "sha256-RkWpkW4Pq+JKyqolbeB53p1WdofFqlctYk3s6i2Eokw="
   }
 }

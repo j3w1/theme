@@ -1,48 +1,4 @@
-# @j3w1/ui
-
-All 67 inventory entries have maintained implementations, typed APIs and complete
-copy distributions. Implementation availability and actual execution evidence are
-separate facts; consult the release evidence for the tested artifact.
-
-## Install and pin
-
-Run `npm install --save-exact @j3w1/ui@1.0.0` after registry publication. npm
-publication is an owner action. Before publication, install the release tarball
-with `npm install --save-exact ./j3w1-ui-1.0.0.tgz` after verifying its release.json
-digest. Keep the package-manager lockfile and one version per document.
-
-The official web implementation of the j3w1 UI Theme Spec. Native HTML remains
-the content and form interface; custom elements add the specified interactions.
-The package uses True Black / Rose semantic tokens and ships no font binaries.
-
-The root class entry has no registration side effects. Import individual
-`@j3w1/ui/register/<component>` modules to register only what a page needs.
-`@j3w1/ui/register` is the explicit complete registration bundle.
-
-Load `@j3w1/ui/tokens.css` and the selected component styles. Keep labels, native
-controls and ARIA relationships in the supplied markup. Components use light DOM
-for static content, native form ownership and cross-framework composition;
-documented semantic variables and anatomy classes are styling extension points.
-Host CSS must not override those intentional component rules accidentally.
-
-Use `j3w1-ui list` for machine-readable discovery. `j3w1-ui copy button --out
-./button-copy` writes a complete independently runnable component directory.
-`j3w1-ui kit --components button,dialog --out ./settings-kit` copies each selected
-component with its full dependency closure. Existing destinations are refused.
-
-The generated manifest, API tables, framework examples and copy manifests define
-the actual available component entry points. They are built from maintained
-implementations and canonical contracts; runtime evidence is published separately.
-
-JavaScript class imports are safe during server rendering. Register elements in
-the browser. Native child markup remains visible and usable without registration;
-custom widget behavior requires the corresponding module.
-
-## Complete integration guide
-
-The following guide is maintained at docs/ui-consumption.md. Runnable framework
-sources ship in dist/frameworks/ and are exercised against the packed artifact.
-
+# Consuming j3w1 components
 
 Use `@j3w1/ui` for web applications with Custom Elements support. Its native
 children remain real HTML: labels, form ownership, validation, fieldsets and
@@ -57,7 +13,7 @@ upgrade from 0.1.0. Review `docs/true-black-rose-migration.md` before replacing 
 Keep the exact package version and your package-manager lockfile in source control.
 
 ```sh
-npm install --save-exact @j3w1/ui@1.0.0
+npm install --save-exact @j3w1/ui@1.1.0
 ```
 
 That command requires npm publication, which is an owner release action. Before
@@ -65,7 +21,7 @@ publication, download the release tarball, verify its published digest and insta
 the local file instead:
 
 ```sh
-npm install --save-exact ./j3w1-ui-1.0.0.tgz
+npm install --save-exact ./j3w1-ui-1.1.0.tgz
 ```
 
 The repository prepares this same artifact with `npm run ui:build` and
@@ -73,6 +29,59 @@ The repository prepares this same artifact with `npm run ui:build` and
 Do not assume a package is published merely because this documentation exists.
 
 ## Load one component
+
+Version 1.1.0 adds theme-owned single and multiple choices under D-025. Use
+`j3w1-select` when the open list must use j3w1 colors; a bare native select is
+only the no-JavaScript fallback. The component retains its native select for
+FormData, required validation, defaults, disabled fieldsets and reset. Its visible
+control is a select-only combobox or multiselectable listbox. Use the separate
+`j3w1-combobox` when users need to type and filter suggestions.
+
+For existing application markup, the supported enhancement applies the same
+choice renderer without moving the native controls or changing their names:
+
+```js
+import '@j3w1/ui/tokens.css';
+import '@j3w1/ui/styles/controls.css';
+import { enhanceControls } from '@j3w1/ui/enhance/choice';
+
+const controls = enhanceControls(document.querySelector('#application'));
+// On application unmount:
+controls.destroy();
+```
+
+It observes inserted and removed controls inside that explicit root. Vue and
+other frameworks keep ownership of their native selects and option values;
+their normal value bindings and change handlers continue to work. In Vue, call
+the enhancement after mount and destroy it in `onBeforeUnmount`. The official
+demo uses this path. Complete `select` copy bundles include the same renderer.
+Do not hand-roll a different dropdown in each consuming application.
+
+Single-choice keys: Enter/Space or arrows open, arrows and Home/End move,
+typing finds an option, Enter/Space commits, and Escape/Tab close. Multiple
+choices use arrows to move, Space or click to toggle, Shift with arrows for a
+range, and Ctrl/Command+A to select or clear all enabled options. The open list,
+selected fill, check mark, focus boundary and error message are theme-rendered.
+The visible control receives the original accessible label and descriptions.
+Date and time inputs also receive a themed editor. Dates use explicit YYYY-MM-DD
+entry and a calendar with arrow navigation, Home/End within a week, PageUp/Down
+between months, Enter/Space to choose, and Escape to close. The calendar follows
+the native min, max and step constraints. Times use HH:MM or HH:MM:SS entry and
+buttons that apply the native step; step="any" disables stepping. Labels, native
+constraints, defaults, reset and read-only/disabled states remain connected to
+the original inputs. The original controls remain the no-JavaScript fallback.
+If an engine exposes date/time inputs as text, the enhancement supplies ISO
+parsing, range/step validation and time stepping itself. The same form value,
+visible validation and reset contract applies in that engine.
+The stylesheet also themes ordinary checkbox, radio, range and file-button
+chrome within the enhanced root and removes browser number spinners; use the
+Number field's explicit step controls. Browser-owned file/system dialogs remain
+host UI.
+
+The original native form element remains queryable for data integration, but
+browser tests should interact with the visible combobox/listbox. A hidden native
+select passed to Playwright `selectOption` does not verify the rendered choice
+menu. Exercise actual option clicks and keyboard selection instead.
 
 ```js
 import '@j3w1/ui/tokens.css';
@@ -191,8 +200,8 @@ behavior. Scope an intentional host override and record it in your integration.
 ## Copy a complete bundle
 
 ```sh
-npx --package=@j3w1/ui@1.0.0 j3w1-ui copy dialog --out ./vendor/j3w1/dialog
-npx --package=@j3w1/ui@1.0.0 j3w1-ui kit --components text-field,button,dialog --out ./vendor/j3w1/task
+npx --package=@j3w1/ui@1.1.0 j3w1-ui copy dialog --out ./vendor/j3w1/dialog
+npx --package=@j3w1/ui@1.1.0 j3w1-ui kit --components text-field,button,dialog --out ./vendor/j3w1/task
 ```
 
 When installed from a tarball, use the installed `j3w1-ui` binary instead of asking

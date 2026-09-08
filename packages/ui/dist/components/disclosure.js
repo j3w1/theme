@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-B0z6sqq8.js";
-import { n as disclosure } from "../chunks/navigation-CPDNZIIt.js";
+import { t as J3w1Element } from "../chunks/element-C3vTYwcS.js";
+import { n as disclosure } from "../chunks/navigation-B2AMi0qO.js";
 //#region .cache/ui-build/entries/components/disclosure.js
 var J3w1Disclosure = class extends J3w1Element {
 	static componentId = "disclosure";
-	static version = "1.0.0";
-	static implementationId = "sha256-ydO92YIJWkyVhEHNxrP0Gt/QZTLxTVrU5P61xo+/8xE=";
+	static version = "1.1.0";
+	static implementationId = "sha256-YA0nA2dCH6UOXmNvGFEgI2tPs+ZRdictNDf9k7ibpcY=";
 	static connect = disclosure;
 	static upgradeProperties = [
 		"disabled",

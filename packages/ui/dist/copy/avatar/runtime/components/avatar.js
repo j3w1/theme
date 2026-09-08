@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-B0z6sqq8.js";
-import { t as avatar } from "../chunks/display-Cg9VLOYZ.js";
+import { t as J3w1Element } from "../chunks/element-C3vTYwcS.js";
+import { t as avatar } from "../chunks/display-JEHZe9kB.js";
 //#region .cache/ui-build/entries/components/avatar.js
 var J3w1Avatar = class extends J3w1Element {
 	static componentId = "avatar";
-	static version = "1.0.0";
-	static implementationId = "sha256-DBotJNb3cVwKhTzwYqDpPSTS5SsqN/WTN2IXltFVRG0=";
+	static version = "1.1.0";
+	static implementationId = "sha256-Ir9Y4H3+ujvXgXONbJwuEduUM7xRJLv5tQn/ubAEcd4=";
 	static connect = avatar;
 	static upgradeProperties = [
 		"disabled",

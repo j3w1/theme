@@ -1,4 +1,4 @@
-// j3w1 theme 1.0.0; generated from the independently authored Variables adapter.
+// j3w1 theme 1.1.0; generated from the independently authored Variables adapter.
 // Independently authored Variables API adapter. No network, plugin data or implicit apply.
 // Keep the returned receipt outside the document and pass it back explicitly.
 export async function importFigmaVariables(figma, { payload, receipt = null, action = "dry-run", documentKey }) {

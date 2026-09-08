@@ -1,26 +1,26 @@
 {
   "schemaVersion": 1,
   "component": "progress",
-  "version": "1.0.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/progress.md",
+  "version": "1.1.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/progress.md",
   "dependencies": [
     "register/progress.js",
-    "chunks/element-B0z6sqq8.js",
+    "chunks/element-C3vTYwcS.js",
+    "chunks/choice-40bzCHdX.js",
     "components/progress.js",
-    "chunks/native-BFZpUch0.js",
-    "chunks/dom-BVXrzskP.js"
+    "chunks/native-B49Q0p0_.js"
   ],
   "files": {
-    "runtime/register/progress.js": "sha256-gH0rzb7ooWfymjjYBT0m/ukP7Dys1EFVefmKgVAz4Q4=",
-    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
-    "runtime/components/progress.js": "sha256-SGS4NAhfoCAVqUa6hYNMFn7A6IgvOiw6FV6Znd7zp2M=",
-    "runtime/chunks/native-BFZpUch0.js": "sha256-4FgvJoEfMvTAX/0SiIsk0wfAn46HnBmvIXq6b7hYmV4=",
-    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "runtime/register/progress.js": "sha256-L+UQOXpZoWCZLq8rfd2UEFew7nGlsnMscKXB4CL0K8w=",
+    "runtime/chunks/element-C3vTYwcS.js": "sha256-WyFn6jrDTLh3zTHZOXo2VONKQHFz8jiBSmDRqnV+/Aw=",
+    "runtime/chunks/choice-40bzCHdX.js": "sha256-ly8Xah7OBtXIG/ajH4KaBWCYHbrcGFYO6OjT880Jabc=",
+    "runtime/components/progress.js": "sha256-lwl4Hy9P5DIkhn/PfIIb3wXmiy1VF/xZ3991cFAFXY4=",
+    "runtime/chunks/native-B49Q0p0_.js": "sha256-CG5HtuiRc818+zVofZRYCfRWMQv2NEeZDnoMReW8gu0=",
     "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
     "component.css": "sha256-cebHWicmP/JxYj/w4G4zerYVfOxEeiIeGzfFrrWOIXI=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-Bm2XYmsDcMrSYl/yKw1emmfA++ea/EjE5wzSjdg0eyw=",
     "index.html": "sha256-PMCQa/n0AlL1bSbPiT96VPfHTQgJmUowUoHElZGYf5k=",
-    "README.md": "sha256-VBhC41AFqPTIFkolUtyl0qRnKxKKG3pHhjurRPGh43o="
+    "README.md": "sha256-OFUPniQRr03Y0R3KYD0Qs0jNNJeeLOVvGYYGNKPAPL4="
   }
 }

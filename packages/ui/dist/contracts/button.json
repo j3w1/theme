@@ -1,10 +1,10 @@
 {
   "id": "button",
   "name": "Button",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "tag": "j3w1-button",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/button.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.0.0/packages/ui/src/behaviors/native.js",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/button.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.1.0/packages/ui/src/behaviors/native.js",
   "imports": {
     "class": "@j3w1/ui/components/button",
     "register": "@j3w1/ui/register/button",
@@ -508,6 +508,6 @@
   "copy": {
     "directory": "copy/button/",
     "manifest": "copy/button/manifest.json",
-    "digest": "sha256-fReGCNolWgeERZyqwQ9mPpitqhm4BXRgr3aySSy9YNI="
+    "digest": "sha256-6LHe7pMr6IN4VRoPfEU7ufDmUCcZA/bLbEfIpg4WwSQ="
   }
 }

@@ -11,7 +11,7 @@ an independently authored [Vue demo](https://j3w1.github.io/theme/demo/), and
 machine-readable exports for agents.
 
 <!-- version:start -->
-Specification version **1.0.0** (release; default: approved, heritage-ansi: heritage, extended: proposed).
+Specification version **1.1.0** (release; default: approved, heritage-ansi: heritage, extended: proposed).
 
 Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 <!-- version:end -->
@@ -24,6 +24,12 @@ The owner selected **True Black / Rose** after the
 the seven canonical surface changes. D-024 records the subsequent owner-requested
 strong-red links. See [the migration notes](docs/true-black-rose-migration.md)
 and [the delivery record](docs/phase6-delivery.md) for verification status.
+
+D-025 records the owner's subsequent requirement for themed controls throughout
+the portal and Vue demo. Version 1.1.0 renders single and multiple choices using
+j3w1 surfaces and selection colors, preserves their native form data and fallback,
+and provides a supported enhancement for existing application markup. The shared
+command palette now places a full-width search field beneath its label.
 
 The [validation and recovery composition](https://j3w1.github.io/theme/patterns/validation-recovery/)
 and [draft form builder](https://j3w1.github.io/theme/builder/) demonstrate local

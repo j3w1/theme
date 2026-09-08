@@ -1,10 +1,10 @@
 {
   "id": "segmented-control",
   "name": "Segmented control",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "tag": "j3w1-segmented-control",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/segmented-control.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.0.0/packages/ui/src/behaviors/native.js",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/segmented-control.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.1.0/packages/ui/src/behaviors/native.js",
   "imports": {
     "class": "@j3w1/ui/components/segmented-control",
     "register": "@j3w1/ui/register/segmented-control",
@@ -443,6 +443,6 @@
   "copy": {
     "directory": "copy/segmented-control/",
     "manifest": "copy/segmented-control/manifest.json",
-    "digest": "sha256-C5J6SgjAvvcAt8LY5DAMHtdbsDkoqegirY9DAoAR+N8="
+    "digest": "sha256-zdWwFCyZ94JjNjCY7cYnRgCzR0LNcrOx60GWmkPhMOc="
   }
 }

@@ -1,26 +1,26 @@
 {
   "schemaVersion": 1,
   "component": "popover",
-  "version": "1.0.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/popover.md",
+  "version": "1.1.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/popover.md",
   "dependencies": [
     "register/popover.js",
-    "chunks/element-B0z6sqq8.js",
+    "chunks/element-C3vTYwcS.js",
+    "chunks/choice-40bzCHdX.js",
     "components/popover.js",
-    "chunks/overlays-DBA40kTs.js",
-    "chunks/dom-BVXrzskP.js"
+    "chunks/overlays-B0Pnbu42.js"
   ],
   "files": {
-    "runtime/register/popover.js": "sha256-RHD2lgYUofLGwSmtV2r6G/9u1VXD5NwsPSoOESDwV7A=",
-    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
-    "runtime/components/popover.js": "sha256-xNtQoyDya18IbNZhN6sMPxTbVJmK4n8eaiK5JlRWuHA=",
-    "runtime/chunks/overlays-DBA40kTs.js": "sha256-oxEI9Hm3Ntzowr9QqxqQ28cWdd0ljwViujA+EtHh+Rs=",
-    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "runtime/register/popover.js": "sha256-sU6KVZrkj1sQFavQe1WphM0W8GHX2mKkaD/6HcgfXOc=",
+    "runtime/chunks/element-C3vTYwcS.js": "sha256-WyFn6jrDTLh3zTHZOXo2VONKQHFz8jiBSmDRqnV+/Aw=",
+    "runtime/chunks/choice-40bzCHdX.js": "sha256-ly8Xah7OBtXIG/ajH4KaBWCYHbrcGFYO6OjT880Jabc=",
+    "runtime/components/popover.js": "sha256-yVzXzXRuZbC0p79aJpFT6gTgUCYClCLxewpgETF43OE=",
+    "runtime/chunks/overlays-B0Pnbu42.js": "sha256-+adGbn/b2/En3vLM3qnc1kYmBrV2gBXSOJTJ5xpmzgg=",
     "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
     "component.css": "sha256-53zGKZZyZMB+sdGIbnQk30oFXcLvjoplsW7FfQ9W0u0=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-tBbkSUEedfklBWmTm/lh13o3rlYHe/9AGgvmXp+p/Lo=",
     "index.html": "sha256-qj6qyYYBmNfnfn4cPT10GeMQN/ToGtN/ZB6H3yjUV/g=",
-    "README.md": "sha256-i3slpN3Wu2QKRMjAJFrseODKTvvB3DMrcEsMLJTOml4="
+    "README.md": "sha256-j+hDL+uk4aiF61oCuxVmX0HtPy8kPS1ovmzOObw4SwI="
   }
 }

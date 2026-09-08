@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "theme": "j3w1-theme",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "profile": "default",
   "profileStatus": "approved",
   "release": {
-    "version": "1.0.0",
+    "version": "1.1.0",
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-ZBxaPGMyHoIGQgEd1TPIM+OenmDQ3M0HQ2eDr2AW7oI=",
+  "sourceDigest": "sha256-O6QTOVDp1shJrvUW1Uu7vjMVslQz5fKbS6l4G043PQs=",
   "id": "date-picker",
   "family": "forms-advanced",
   "maturity": "stable",
@@ -25,16 +25,16 @@
     "states": 7
   },
   "title": "Date picker",
-  "summary": "A native date input, alone or as a from/to pair; the calendar popup belongs to the host and is styled only through color-scheme.",
+  "summary": "A themed date editor and calendar, alone or as a from/to pair, backed by native form values and constraints.",
   "anchors": {
     "site": "https://j3w1.github.io/theme/reference/#c-date-picker",
     "spec": "spec/components/date-picker.md",
     "brief": "exports/components/date-picker.brief.txt"
   },
-  "native": true,
+  "native": false,
   "aria": {
-    "pattern": "native <input type=date> with <label>; a from/to pair inside a <fieldset>",
-    "apg": "https://www.w3.org/WAI/ARIA/apg/practices/forms/"
+    "pattern": "Labeled textbox with calendar dialog and roving date grid; native backing input",
+    "apg": "https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/examples/datepicker-dialog/"
   },
   "variants": [
     {
@@ -291,13 +291,75 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       }
+    },
+    "calendar.bg": {
+      "alias": "color.surface.raised",
+      "value": "#241010",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "calendar.border": {
+      "alias": "color.border.overlay",
+      "value": "#e53935",
+      "status": "proposed",
+      "deprecated": false,
+      "decisionId": "D-008",
+      "eligibility": {
+        "action": "use-and-report",
+        "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
+        "decisionIds": [
+          "D-008"
+        ]
+      }
+    },
+    "calendar.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "calendar.selected-bg": {
+      "alias": "color.interaction.selection.bg",
+      "value": "#911410",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "calendar.selected-text": {
+      "alias": "color.interaction.selection.text",
+      "value": "#f4eeee",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
     }
   },
   "stateRules": [
     {
       "state": "default",
-      "visual": "1px {color.border.control} on {color.surface.input}; text {color.text.default}, tabular figures",
-      "channel": "—",
+      "visual": "Input surface, default text and control border.",
+      "channel": "",
       "tokens": {
         "fg": {
           "alias": "color.text.default",
@@ -341,8 +403,8 @@
     },
     {
       "state": "hover",
-      "visual": "background → {color.interaction.hover.bg}; border unchanged",
-      "channel": "cursor: text",
+      "visual": "The declared hover fill.",
+      "channel": "",
       "tokens": {
         "fg": {
           "alias": "color.text.default",
@@ -386,8 +448,8 @@
     },
     {
       "state": "focus-visible",
-      "visual": "border → {color.border.active}; ring 1px dashed {color.interaction.focus.ring} at −2px",
-      "channel": "the ring",
+      "visual": "Active border and the canonical focus ring.",
+      "channel": "",
       "tokens": {
         "fg": {
           "alias": "color.text.default",
@@ -441,8 +503,8 @@
     },
     {
       "state": "invalid",
-      "visual": "border 2px {color.status.danger.border}; message with the ✕ glyph",
-      "channel": "border width 1 → 2px; glyph; `aria-invalid`",
+      "visual": "Danger border and a linked message.",
+      "channel": "",
       "tokens": {
         "fg": {
           "alias": "color.text.default",
@@ -484,8 +546,8 @@
     },
     {
       "state": "invalid+focus-visible",
-      "visual": "the 2px danger border and the ring in {color.interaction.focus.ring-container} at −4px",
-      "channel": "double boundary",
+      "visual": "Danger border plus the container focus ring.",
+      "channel": "",
       "tokens": {
         "fg": {
           "alias": "color.text.default",
@@ -539,14 +601,14 @@
     },
     {
       "state": "disabled",
-      "visual": "text {color.text.disabled}; border {color.border.disabled}; background {color.interaction.disabled.bg}; no hover",
-      "channel": "`disabled`; cursor: not-allowed",
+      "visual": "Disabled colors; editor and calendar actions unavailable.",
+      "channel": "",
       "tokens": {}
     },
     {
       "state": "read-only",
-      "visual": "no box: 1px dotted {color.border.divider} bottom edge on {color.surface.canvas}; focusable and selectable",
-      "channel": "`readonly`; dotted edge",
+      "visual": "Readable canvas text and bottom edge; calendar action unavailable.",
+      "channel": "",
       "tokens": {
         "fg": {
           "alias": "color.text.default",
@@ -578,24 +640,32 @@
   "keyboard": [
     {
       "key": "Tab / Shift+Tab",
-      "action": "Moves between the date segments and then out of the control (host behaviour); the range pair is two tab stops."
+      "action": "Moves through the editor, calendar trigger and other controls."
     },
     {
-      "key": "Up / Down",
-      "action": "Steps the focused segment (host behaviour)."
+      "key": "Alt+Down",
+      "action": "Opens the calendar from the editor."
     },
     {
-      "key": "Space / Alt+Down",
-      "action": "Opens the host calendar where one exists; Escape closes it."
+      "key": "Arrows / Home / End",
+      "action": "Moves among dates; Home and End reach the beginning and end of the week."
     },
     {
-      "key": "Enter",
-      "action": "Submits the owning form (native)."
+      "key": "PageUp / PageDown",
+      "action": "Moves to the previous or next month."
+    },
+    {
+      "key": "Enter / Space",
+      "action": "Chooses a focused calendar date or activates a month button."
+    },
+    {
+      "key": "Escape",
+      "action": "Closes the calendar and returns focus to the editor."
     }
   ],
   "responsive": "The box fills its field container with min-width 0; the range pair sits side by side and wraps to two rows below 320px; the label is always stacked above. RTL keeps the from/to order of reading and mirrors the separator.",
   "portability": {
-    "web": "native <input type=date>; hosts without a date type fall back to a text field with a pattern and a format hint in the help text; color-scheme dark keeps the host popup on a dark surface.",
+    "web": "Theme-owned editor and calendar backed by a native date input. Keep native min/max/step, labels, form ownership and reset. Without JavaScript the original native control is visible.",
     "nativeFallbacks": [
       "GTK4 Calendar in a Popover opened from an Entry; the entry carries the field styling.",
       "Qt QDateEdit with calendarPopup; the popup frame through the QCalendarWidget stylesheet.",
@@ -622,7 +692,7 @@
     "admin-form",
     "filterable-table"
   ],
-  "nonExamples": "A custom calendar drawn where the host has one. Rounded corners. An icon-only\ncalendar button with no text input. Placeholder text pretending to be a\nformat hint. A floating label. Disabling by opacity. A hover that changes the\ntext colour. A red border with no message.",
+  "nonExamples": "An unthemed host popup presented as fully themed. A second named input that duplicates form values. Discarding native constraints, labels or reset behavior. Literal colors, rounded corners, or a selected fill with no distinguishable focus boundary.",
   "contrast": [
     {
       "label": "date-picker default text",
@@ -857,6 +927,32 @@
       "ratio": 1.17,
       "pass": true,
       "waiver": "read-only fields are identified by the readonly attribute and the absence of a box, not by this edge"
+    },
+    {
+      "label": "calendar text",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.raised",
+      "fgHex": "#e99499",
+      "bgHex": "#241010",
+      "ratio": 7.92,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "selected date",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.interaction.selection.text",
+      "bg": "color.interaction.selection.bg",
+      "fgHex": "#f4eeee",
+      "bgHex": "#911410",
+      "ratio": 7.92,
+      "pass": true,
+      "waiver": null
     }
   ]
 }

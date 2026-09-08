@@ -1,3 +1,4 @@
+import { chooseOptions } from "../ui/choice-helper.mjs";
 import { test, expect } from "./evidence-fixture.mjs";
 import AxeBuilder from "@axe-core/playwright";
 import manifest from "../../theme.json" with { type: "json" };
@@ -7,7 +8,7 @@ const open = async (page, id) => {
   await expect(page.locator("[data-viewport-report]")).toContainText("Actual viewport:");
   return page.frameLocator("[data-workbench-frame]");
 };
-const choice = (page, name, value) => page.locator(`[data-workbench-controls] [name="${name}"]`).selectOption(value);
+const choice = (page, name, value) => chooseOptions(page.locator(`[data-workbench-controls] [name="${name}"]`), value);
 const localBox = (locator) => locator.evaluate(el => { const box = el.getBoundingClientRect(); return { x: box.x + scrollX, y: box.y + scrollY, width: box.width, height: box.height }; });
 
 test("workbench preserves canonical content and direct reporting without JavaScript", { annotation }, async ({ page }, info) => {
@@ -31,7 +32,7 @@ test("workbench uses real viewport widths and reports measured mismatches withou
   await choice(page, "part", "root");
   await expect(page.locator("[data-measurements]")).toContainText("matches");
   expect(await localBox(frame.locator(".button"))).toEqual(withoutOverlay);
-  await page.locator("[data-width-preset]").selectOption("320");
+  await chooseOptions(page.locator("[data-width-preset]"), "320");
   await expect(page.locator("[data-viewport-report]")).toContainText("320 × 560");
   const before = await localBox(frame.locator(".button"));
   await expect(frame.locator("[data-part-overlay]")).toHaveCSS("pointer-events", "none");
@@ -43,8 +44,8 @@ test("workbench uses real viewport widths and reports measured mismatches withou
   await frame.locator("[data-preview-root]").evaluate(el => { const probe = document.createElement("div"); probe.style.width = "1700px"; probe.textContent = "Controlled overflow probe"; el.append(probe); window.dispatchEvent(new Event("resize")); });
   await expect(page.locator("[data-viewport-report]")).not.toContainText("Outer horizontal overflow: 0 px");
   await page.locator("[data-compare-enabled]").check();
-  await page.locator("[data-compare-width]").selectOption("360");
-  await page.locator("[data-compare-direction]").selectOption("rtl");
+  await chooseOptions(page.locator("[data-compare-width]"), "360");
+  await chooseOptions(page.locator("[data-compare-direction]"), "rtl");
   await expect(page.locator("[data-comparison-report]")).toContainText("360 × 560");
   await expect(page.frameLocator("[data-comparison-frame]").locator("[data-preview-root]")).toHaveAttribute("dir", "rtl");
   await expect(frame.locator("[data-preview-root]")).toHaveAttribute("dir", "ltr");
@@ -167,7 +168,7 @@ test("viewport fixtures exercise all laboratory components and preserve the appr
   for (const id of ["text-field", "tabs", "table", "dialog", "sidebar-nav"]) {
     const frame = await open(page, id);
     for (const width of ["320", "360", "640", "1280"]) {
-      await page.locator("[data-width-preset]").selectOption(width);
+      await chooseOptions(page.locator("[data-width-preset]"), width);
       await expect(page.locator("[data-viewport-report]")).toContainText(`${width} × 560`);
       expect(await frame.locator("html").evaluate(() => innerWidth)).toBe(Number(width));
       if (id === "table" && width === "320") await expect(page.locator("[data-viewport-report]")).not.toContainText("Inner scrolling regions: none");

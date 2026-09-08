@@ -4,3 +4,9 @@
 .command-palette-dialog,[data-state-open] .command-palette-dialog {width:min(36rem,100%);max-height:80vh;margin:0;padding:var(--space-16);background:var(--color-surface-overlay);color:var(--color-text-default);border:var(--border-width-default) solid var(--color-border-overlay);border-radius:var(--radius-none)}.command-palette [role=listbox] {list-style:none;padding:0;max-height:40vh;overflow:auto}.command-palette [role=option] {display:grid;grid-template-columns:5rem 1fr;padding:var(--space-8);border-inline-start:var(--border-width-emphasis) solid transparent;cursor:pointer}.command-palette [role=option] span {color:var(--color-text-muted)}.command-palette [aria-selected=true] {background:var(--color-interaction-selection-bg);color:var(--color-interaction-selection-text);border-inline-start-color:var(--color-border-selected-indicator)}.command-palette-dialog::backdrop {background:var(--color-surface-backdrop)}.command-palette-dialog:not([open]),[data-state-closed] .command-palette-dialog {display:none}.command-palette [data-command-status],[data-state-no-results] .command-palette [data-command-status] {color:var(--color-text-muted)}
 
 .command-palette [role="option"][aria-selected="true"] span { color: inherit; }
+
+.command-palette-dialog > h2 { margin: 0 0 var(--space-16); color: var(--color-text-prose); }
+.command-palette-dialog > label { display: block; margin-block-end: var(--space-8); color: var(--color-text-bright); font-size: var(--font-size-ui-sm); }
+.command-palette-dialog > input[role="combobox"] { display: block; box-sizing: border-box; width: 100%; min-width: 0; min-height: var(--space-48); padding: var(--space-12) var(--space-16); }
+.command-palette-dialog > [role="listbox"] { margin-block: var(--space-16); }
+.command-palette-dialog > input[role="combobox"]::placeholder { color: var(--color-text-placeholder); opacity: 1; }

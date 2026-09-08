@@ -1,3 +1,4 @@
+@import "../themed-controls.css";
 /* date-picker — reference CSS. The box is the text-field box; the calendar
    popup is the host's and only receives color-scheme. Every real pseudo-class
    is paired with the forced-state attribute the state matrix emits. */

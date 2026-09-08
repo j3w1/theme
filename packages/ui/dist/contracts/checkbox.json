@@ -1,10 +1,10 @@
 {
   "id": "checkbox",
   "name": "Checkbox",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "tag": "j3w1-checkbox",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/checkbox.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.0.0/packages/ui/src/behaviors/native.js",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/checkbox.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.1.0/packages/ui/src/behaviors/native.js",
   "imports": {
     "class": "@j3w1/ui/components/checkbox",
     "register": "@j3w1/ui/register/checkbox",
@@ -469,6 +469,6 @@
   "copy": {
     "directory": "copy/checkbox/",
     "manifest": "copy/checkbox/manifest.json",
-    "digest": "sha256-HS7F51rRVZ77BxKolVGufdg63mwcVvsA+IZeuU9UMM8="
+    "digest": "sha256-2maaPgrhZkgZ8raZMZ3vWnwk0jv25cVUbSHppueXM4U="
   }
 }

@@ -1,10 +1,10 @@
 j3w1/theme implementation brief — time-picker
-theme: j3w1-theme 1.0.0  profile: default  sourceDigest: sha256-ZBxaPGMyHoIGQgEd1TPIM+OenmDQ3M0HQ2eDr2AW7oI=
-pin: https://raw.githubusercontent.com/j3w1/theme/v1.0.0/exports/components/time-picker.json
+theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-O6QTOVDp1shJrvUW1Uu7vjMVslQz5fKbS6l4G043PQs=
+pin: https://raw.githubusercontent.com/j3w1/theme/v1.1.0/exports/components/time-picker.json
 spec: spec/components/time-picker.md  site: https://j3w1.github.io/theme/reference/#c-time-picker
 maturity: stable  priority: R1
 
-Summary: A native time input in the text-field box; segment editing and any clock popup belong to the host.
+Summary: A themed time editor with explicit step buttons, backed by native time values and constraints.
 
 Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
@@ -25,21 +25,20 @@ Tokens (resolved):
 State dependency disclosures: D-007
 
 States: default, hover, focus-visible, invalid, disabled
-  default: 1px {color.border.control} on {color.surface.input}; text {color.text.default}, tabular figures [—]
-  hover: background → {color.interaction.hover.bg}; border unchanged [cursor: text]
-  focus-visible: border → {color.border.active}; ring 1px dashed {color.interaction.focus.ring} at −2px [the ring]
-  invalid: border 2px {color.status.danger.border}; message with the ✕ glyph [border width 1 → 2px; glyph; `aria-invalid`]
-  disabled: text {color.text.disabled}; border {color.border.disabled}; background {color.interaction.disabled.bg}; no hover [`disabled`; cursor: not-allowed]
+  default: Input surface, default text and control border.
+  hover: The declared hover fill.
+  focus-visible: Active border and the canonical focus ring.
+  invalid: Danger border and a linked message.
+  disabled: Disabled colors; editor and step actions unavailable.
 
 Keyboard:
-  Tab / Shift+Tab: Moves between hour, minute and any meridiem segment, then out of the control (host behaviour).
-  Up / Down: Steps the focused segment by one, minutes by the step attribute (host behaviour).
-  Space / Alt+Down: Opens the host clock where one exists; Escape closes it.
-  Enter: Submits the owning form (native).
+  Tab / Shift+Tab: Moves between the time editor, step buttons and other controls.
+  Typing: Edits HH:MM or HH:MM:SS text; native min, max and step validate it.
+  Enter / Space on a step button: Increases or decreases by the native step. With step=any, buttons are disabled.
 
-ARIA: native <input type=time> with <label> (https://www.w3.org/WAI/ARIA/apg/practices/forms/)
+ARIA: Labeled textbox with native time constraints and named step buttons (https://www.w3.org/WAI/ARIA/apg/practices/forms/)
 Responsive: Fits its content (about 8ch) and never grows to fill the container; at 320px the box, help and message stack without clipping. RTL keeps the segments in the locale order the host chooses.
-Portability: native <input type=time> with step; hosts without a time type fall back to a text field with a pattern and a format hint; color-scheme dark keeps any host popup on a dark surface.
+Portability: Theme-owned editor and step buttons backed by a native time input. Keep native min/max/step, labels, form ownership and reset. Without JavaScript the original native control is visible.
   native: GTK4 SpinButton pair for hours and minutes inside one box.
   native: Qt QTimeEdit; section navigation is native.
   native: Terminal UI: a masked line editor (HH:MM); no popup.

@@ -1,26 +1,26 @@
 {
   "schemaVersion": 1,
   "component": "diff-view",
-  "version": "1.0.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/diff-view.md",
+  "version": "1.1.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/diff-view.md",
   "dependencies": [
     "register/diff-view.js",
-    "chunks/element-B0z6sqq8.js",
+    "chunks/element-C3vTYwcS.js",
+    "chunks/choice-40bzCHdX.js",
     "components/diff-view.js",
-    "chunks/display-Cg9VLOYZ.js",
-    "chunks/dom-BVXrzskP.js"
+    "chunks/display-JEHZe9kB.js"
   ],
   "files": {
-    "runtime/register/diff-view.js": "sha256-Kmz8QhBDFrIjZMSK7CQClGlCieW0n4qcfVltKfHjGEc=",
-    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
-    "runtime/components/diff-view.js": "sha256-0cXYpdOuXMDARNxfRwRJTIJocLtkzj1O2NnTqAiSUew=",
-    "runtime/chunks/display-Cg9VLOYZ.js": "sha256-bQA907mIA00ZSmhBbqsjGxJoa6v9+t/gIfm+f8TnZTY=",
-    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "runtime/register/diff-view.js": "sha256-8CB5VslGxyX89Qpwnj1iFvPc8kayoMdSPsDpTpafNZM=",
+    "runtime/chunks/element-C3vTYwcS.js": "sha256-WyFn6jrDTLh3zTHZOXo2VONKQHFz8jiBSmDRqnV+/Aw=",
+    "runtime/chunks/choice-40bzCHdX.js": "sha256-ly8Xah7OBtXIG/ajH4KaBWCYHbrcGFYO6OjT880Jabc=",
+    "runtime/components/diff-view.js": "sha256-zvFUZTgxxoCDw6OQvRgcmRtIsrc4myR1U9BU+3pIURs=",
+    "runtime/chunks/display-JEHZe9kB.js": "sha256-JtWV8BiBv/y0dE42bmBkSTPdJrH/qBahNgsS62bq+w8=",
     "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
     "component.css": "sha256-mibFUolrx0OWHlYNpEFTvfkMI0c6h4CUv7SWJ4eQVns=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-t7cx4Y+4qhIPiwFbRPz+6U12N/CFATPTfG7/iZf85zs=",
     "index.html": "sha256-EYPYe3QVJkVBz7byssoY6NHiAMZc9tW/oSLut2DPrX4=",
-    "README.md": "sha256-Lmm62CRjooLHokK649yOjF0AGHgIPsxX9lSIYtcPtX0="
+    "README.md": "sha256-JUNwpm+hXaOayi8Pews59tbPKv80dRN9ZCSgfiRkLfc="
   }
 }

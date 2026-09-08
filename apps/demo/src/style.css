@@ -14,3 +14,5 @@ main h3 { color: var(--color-text-default); font-weight: var(--font-weight-bold)
 .demo-sidebar nav a.router-link-active:focus-visible { outline: var(--focus-ring-container); outline-offset: var(--focus-offset-container); }
 .gallery-link h2 { color: var(--color-text-link); text-decoration: underline; text-decoration-color: var(--color-text-link-underline); text-underline-offset: var(--space-4); }
 .gallery-link:hover h2 { color: var(--color-text-link-hover); text-decoration-color: currentColor; }
+
+.demo-command > .command-palette { display: contents; }

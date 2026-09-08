@@ -1,10 +1,10 @@
 {
   "id": "file-input",
   "name": "File input",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "tag": "j3w1-file-input",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/file-input.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.0.0/packages/ui/src/behaviors/native.js",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/file-input.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.1.0/packages/ui/src/behaviors/native.js",
   "imports": {
     "class": "@j3w1/ui/components/file-input",
     "register": "@j3w1/ui/register/file-input",
@@ -522,6 +522,6 @@
   "copy": {
     "directory": "copy/file-input/",
     "manifest": "copy/file-input/manifest.json",
-    "digest": "sha256-dNLGNaqAhyiNkSnvcbFrz+ER15rGrKq+yDLNAzVLZHo="
+    "digest": "sha256-1sjr3Lp1J7tUGJzDCnFFyG6sYH3e41XfstlA8FMFjDU="
   }
 }

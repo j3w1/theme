@@ -1,26 +1,26 @@
 {
   "schemaVersion": 1,
   "component": "breadcrumbs",
-  "version": "1.0.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/breadcrumbs.md",
+  "version": "1.1.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/breadcrumbs.md",
   "dependencies": [
     "register/breadcrumbs.js",
-    "chunks/element-B0z6sqq8.js",
+    "chunks/element-C3vTYwcS.js",
+    "chunks/choice-40bzCHdX.js",
     "components/breadcrumbs.js",
-    "chunks/navigation-CPDNZIIt.js",
-    "chunks/dom-BVXrzskP.js"
+    "chunks/navigation-B2AMi0qO.js"
   ],
   "files": {
-    "runtime/register/breadcrumbs.js": "sha256-9qcc4tfN4huO5e0O+l25B1DUQ7DF+RLaNWANzY7DOoo=",
-    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
-    "runtime/components/breadcrumbs.js": "sha256-30mRfkmQlp0FaYVjaJCLndvWB6Rl7fFKlPcW5DMPKGk=",
-    "runtime/chunks/navigation-CPDNZIIt.js": "sha256-hvSCgp3WLoCXXZnX8dgEpwxYZjbpAKxYS512EwBSmkU=",
-    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "runtime/register/breadcrumbs.js": "sha256-evY3onbiqESX2ikZAOIXI09JQkl1lOUr30SHb8hkYeQ=",
+    "runtime/chunks/element-C3vTYwcS.js": "sha256-WyFn6jrDTLh3zTHZOXo2VONKQHFz8jiBSmDRqnV+/Aw=",
+    "runtime/chunks/choice-40bzCHdX.js": "sha256-ly8Xah7OBtXIG/ajH4KaBWCYHbrcGFYO6OjT880Jabc=",
+    "runtime/components/breadcrumbs.js": "sha256-ahBCcekwOKK2lp4soHn0DG3ZReCoy3sVIAwyzQWAwow=",
+    "runtime/chunks/navigation-B2AMi0qO.js": "sha256-PM/QuMDlbSYWjjWDOVhlOxdgHVGurNXMQdAJIZOc5kc=",
     "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
     "component.css": "sha256-pJjvksTD6NTZ2QRx/SBxS4j7xy1rVLprovo5OnTOafs=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-W9qk0XtcetNK1me7748lByEMSMUZyP6NT//vet/Kt0I=",
     "index.html": "sha256-OWJN8qhGZ4YIN1OKUp03drZk8CY4D66GaO0t6LtKvJs=",
-    "README.md": "sha256-yhW2Uhodf2Dr8q37U3czk0BN66T1BfBhWzoCkMbinq0="
+    "README.md": "sha256-25XYuQTzf9to8X2U4RYdP0x+nagNrRZD20Qpd5G9hnk="
   }
 }

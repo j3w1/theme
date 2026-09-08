@@ -1,10 +1,10 @@
 {
   "id": "badge",
   "name": "Badge",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "tag": "j3w1-badge",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/badge.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.0.0/packages/ui/src/behaviors/native.js",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/badge.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.1.0/packages/ui/src/behaviors/native.js",
   "imports": {
     "class": "@j3w1/ui/components/badge",
     "register": "@j3w1/ui/register/badge",
@@ -450,6 +450,6 @@
   "copy": {
     "directory": "copy/badge/",
     "manifest": "copy/badge/manifest.json",
-    "digest": "sha256-YHZZqrRhWPQl/rrvUDdQLW6guYBpLQrLWB+Vhqt5S00="
+    "digest": "sha256-SHbn/96gtXFeb8hlcDmEb549BvKIyLs+urtWqZgYMzw="
   }
 }

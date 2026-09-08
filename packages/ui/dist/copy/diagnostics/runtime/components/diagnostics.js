@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-B0z6sqq8.js";
-import { r as developerView } from "../chunks/display-Cg9VLOYZ.js";
+import { t as J3w1Element } from "../chunks/element-C3vTYwcS.js";
+import { r as developerView } from "../chunks/display-JEHZe9kB.js";
 //#region .cache/ui-build/entries/components/diagnostics.js
 var J3w1Diagnostics = class extends J3w1Element {
 	static componentId = "diagnostics";
-	static version = "1.0.0";
-	static implementationId = "sha256-JkWFKQVvJOXyRgAL5ShfsihwyT7j5mFcw7kl/ptlANM=";
+	static version = "1.1.0";
+	static implementationId = "sha256-FRzowT/jF7PWvJNGRQNQ/7QJWSQrCfC02i52IB8chC4=";
 	static connect = developerView;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

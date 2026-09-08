@@ -1,10 +1,10 @@
 {
   "id": "admin-form",
   "name": "Admin form",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "tag": "j3w1-admin-form",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/admin-form.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.0.0/packages/ui/src/behaviors/forms.js",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/admin-form.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.1.0/packages/ui/src/behaviors/forms.js",
   "imports": {
     "class": "@j3w1/ui/components/admin-form",
     "register": "@j3w1/ui/register/admin-form",
@@ -167,6 +167,8 @@
       "color.border.default",
       "color.border.disabled",
       "color.border.divider",
+      "color.border.overlay",
+      "color.border.selected-indicator",
       "color.border.strong",
       "color.code.caret",
       "color.icon.default",
@@ -215,6 +217,7 @@
       "focus.offset",
       "focus.offset-invalid",
       "focus.ring",
+      "focus.ring-container",
       "font.family.mono",
       "font.line-height.h2",
       "font.line-height.ui-md",
@@ -264,6 +267,8 @@
       "color.border.default",
       "color.border.disabled",
       "color.border.divider",
+      "color.border.overlay",
+      "color.border.selected-indicator",
       "color.border.strong",
       "color.code.caret",
       "color.icon.default",
@@ -343,6 +348,7 @@
       "focus.offset",
       "focus.offset-invalid",
       "focus.ring",
+      "focus.ring-container",
       "font.family.mono",
       "font.line-height.h2",
       "font.line-height.ui-md",
@@ -499,6 +505,18 @@
         "decisionIds": [
           "D-008"
         ]
+      },
+      "color.border.overlay": {
+        "action": "use-and-report",
+        "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
+        "decisionIds": [
+          "D-008"
+        ]
+      },
+      "color.border.selected-indicator": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
       },
       "color.border.strong": {
         "action": "use",
@@ -740,6 +758,11 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "focus.ring-container": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "font.family.mono": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -851,6 +874,6 @@
   "copy": {
     "directory": "copy/admin-form/",
     "manifest": "copy/admin-form/manifest.json",
-    "digest": "sha256-HQcjsrMy9tFPJ0YAaNIu94K2aw0hSE49WEScOIV48z0="
+    "digest": "sha256-0JxCyFbrF0hiTaE5gUAgL1sMlvkUPhuBBmWpv6K5ZPk="
   }
 }

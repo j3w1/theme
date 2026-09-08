@@ -1,4 +1,4 @@
-import { n as registerElement } from "../chunks/element-B0z6sqq8.js";
+import { n as registerElement } from "../chunks/element-C3vTYwcS.js";
 import "./tree.js";
 import { J3w1FileBrowser } from "../components/file-browser.js";
 //#region .cache/ui-build/entries/register/file-browser.js

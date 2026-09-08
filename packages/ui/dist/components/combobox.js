@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-B0z6sqq8.js";
-import { t as combobox } from "../chunks/navigation-CPDNZIIt.js";
+import { t as J3w1Element } from "../chunks/element-C3vTYwcS.js";
+import { t as combobox } from "../chunks/navigation-B2AMi0qO.js";
 //#region .cache/ui-build/entries/components/combobox.js
 var J3w1Combobox = class extends J3w1Element {
 	static componentId = "combobox";
-	static version = "1.0.0";
-	static implementationId = "sha256-6vktS7X+mTD/nSddqeXzFTpC/OgO1jfZBXNLydpPnIg=";
+	static version = "1.1.0";
+	static implementationId = "sha256-LUavTUJ9UlzC+UZfi+qKymAwYxsZ1uE6ZKg6X1dsN7E=";
 	static connect = combobox;
 	static upgradeProperties = [
 		"disabled",

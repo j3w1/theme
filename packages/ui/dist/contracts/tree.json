@@ -1,10 +1,10 @@
 {
   "id": "tree",
   "name": "Tree",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "tag": "j3w1-tree",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/tree.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.0.0/packages/ui/src/behaviors/advanced.js",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/tree.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.1.0/packages/ui/src/behaviors/advanced.js",
   "imports": {
     "class": "@j3w1/ui/components/tree",
     "register": "@j3w1/ui/register/tree",
@@ -346,6 +346,6 @@
   "copy": {
     "directory": "copy/tree/",
     "manifest": "copy/tree/manifest.json",
-    "digest": "sha256-4PqawprCwp2edas23hHH/btE55XemWN6lo0oWv10uOo="
+    "digest": "sha256-ZyAfYuqGMgD6B78EBFpVzo5JRhg9pR7sozkCu3+FlNs="
   }
 }

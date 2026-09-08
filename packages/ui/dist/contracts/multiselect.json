@@ -1,10 +1,10 @@
 {
   "id": "multiselect",
   "name": "Multiple selection",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "tag": "j3w1-multiselect",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/multiselect.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.0.0/packages/ui/src/behaviors/advanced.js",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/multiselect.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.1.0/packages/ui/src/behaviors/advanced.js",
   "imports": {
     "class": "@j3w1/ui/components/multiselect",
     "register": "@j3w1/ui/register/multiselect",
@@ -468,6 +468,6 @@
   "copy": {
     "directory": "copy/multiselect/",
     "manifest": "copy/multiselect/manifest.json",
-    "digest": "sha256-Jh2GH9HOqr/f/pxadg/snAc77AE3+EYvs8X5QEhOkIM="
+    "digest": "sha256-zL0/E4ur9SwWQj/JrIYmCyzpTAoi5ys3UjH1OK+8bSc="
   }
 }

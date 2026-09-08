@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-B0z6sqq8.js";
-import { i as tooltip } from "../chunks/overlays-DBA40kTs.js";
+import { t as J3w1Element } from "../chunks/element-C3vTYwcS.js";
+import { i as tooltip } from "../chunks/overlays-B0Pnbu42.js";
 //#region .cache/ui-build/entries/components/tooltip.js
 var J3w1Tooltip = class extends J3w1Element {
 	static componentId = "tooltip";
-	static version = "1.0.0";
-	static implementationId = "sha256-FHcyvhKfiRdMlGu0eZ/hVS4Bz6WGWtcrRUlQBVINZEM=";
+	static version = "1.1.0";
+	static implementationId = "sha256-d2/aSVu1FSTB1OKy/HZO7maVLL/gcAyGsIjA8CD/EIk=";
 	static connect = tooltip;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

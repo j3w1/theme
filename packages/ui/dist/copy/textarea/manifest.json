@@ -1,26 +1,26 @@
 {
   "schemaVersion": 1,
   "component": "textarea",
-  "version": "1.0.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/textarea.md",
+  "version": "1.1.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/textarea.md",
   "dependencies": [
     "register/textarea.js",
-    "chunks/element-B0z6sqq8.js",
+    "chunks/element-C3vTYwcS.js",
+    "chunks/choice-40bzCHdX.js",
     "components/textarea.js",
-    "chunks/native-BFZpUch0.js",
-    "chunks/dom-BVXrzskP.js"
+    "chunks/native-B49Q0p0_.js"
   ],
   "files": {
-    "runtime/register/textarea.js": "sha256-CnzqgWh0Rb1trt3H99IIDzyHuEnXb9O/7YYLgdhrEnk=",
-    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
-    "runtime/components/textarea.js": "sha256-jh9Z0XQMDwvthvdEfLgrBXQPtEpzT3KtX6lUSG5LHaw=",
-    "runtime/chunks/native-BFZpUch0.js": "sha256-4FgvJoEfMvTAX/0SiIsk0wfAn46HnBmvIXq6b7hYmV4=",
-    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "runtime/register/textarea.js": "sha256-ophvDibRGYrGOIA8rbxXwwqN/0BV6gQwPrmb6Howmjc=",
+    "runtime/chunks/element-C3vTYwcS.js": "sha256-WyFn6jrDTLh3zTHZOXo2VONKQHFz8jiBSmDRqnV+/Aw=",
+    "runtime/chunks/choice-40bzCHdX.js": "sha256-ly8Xah7OBtXIG/ajH4KaBWCYHbrcGFYO6OjT880Jabc=",
+    "runtime/components/textarea.js": "sha256-o7eTFosg50WoW8sf2ZliJbVCEcoSCNMNX4PuCbUeN7k=",
+    "runtime/chunks/native-B49Q0p0_.js": "sha256-CG5HtuiRc818+zVofZRYCfRWMQv2NEeZDnoMReW8gu0=",
     "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
     "component.css": "sha256-BbcGdXHTnD7C55UItp05tibzn6AUyioSMT0hgk45J68=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-FrTRU04fY9wZ6rThXepEiAOHAf/WPEcefiPDsYvSLsM=",
     "index.html": "sha256-xM2w2jkYyi5BE0Nc6YGqICrh5wAW+DKYGmHHjEB1tOM=",
-    "README.md": "sha256-GwXdeVjGAafXv+O+93zY+EFatnxAYysT7ZUrN7q3AmU="
+    "README.md": "sha256-eWCOomJxDXtthkDY/V3dZyS9x0C/Jwqn8PAWya+fF38="
   }
 }

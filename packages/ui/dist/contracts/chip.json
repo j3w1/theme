@@ -1,10 +1,10 @@
 {
   "id": "chip",
   "name": "Chip",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "tag": "j3w1-chip",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/chip.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.0.0/packages/ui/src/behaviors/overlays.js",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/chip.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.1.0/packages/ui/src/behaviors/overlays.js",
   "imports": {
     "class": "@j3w1/ui/components/chip",
     "register": "@j3w1/ui/register/chip",
@@ -385,6 +385,6 @@
   "copy": {
     "directory": "copy/chip/",
     "manifest": "copy/chip/manifest.json",
-    "digest": "sha256-jIfJBDIOnkoDYZkLHTX6zjbg82y2N1+bjkA5HfCrGkU="
+    "digest": "sha256-knJTPHcnM/80C7Jwff7FMUzAXQFrTGc+ZvaDAZwlVik="
   }
 }

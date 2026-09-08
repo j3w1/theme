@@ -1,4 +1,4 @@
-import { n as registerElement } from "../chunks/element-B0z6sqq8.js";
+import { n as registerElement } from "../chunks/element-C3vTYwcS.js";
 import { J3w1Toolbar } from "../components/toolbar.js";
 import "./menu.js";
 //#region .cache/ui-build/entries/register/toolbar.js

@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "theme": "j3w1-theme",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "profile": "default",
   "profileStatus": "approved",
   "release": {
-    "version": "1.0.0",
+    "version": "1.1.0",
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-ZBxaPGMyHoIGQgEd1TPIM+OenmDQ3M0HQ2eDr2AW7oI=",
+  "sourceDigest": "sha256-O6QTOVDp1shJrvUW1Uu7vjMVslQz5fKbS6l4G043PQs=",
   "id": "select",
   "family": "forms-basic",
   "maturity": "stable",
@@ -25,16 +25,16 @@
     "states": 7
   },
   "title": "Select",
-  "summary": "The native single or multiple select in the text-field box with a line-icon chevron; the popup list is host-rendered and outside the theme.",
+  "summary": "A themed single-choice combobox or multiple-choice list backed by a native select for forms and the no-JavaScript fallback.",
   "anchors": {
     "site": "https://j3w1.github.io/theme/reference/#c-select",
     "spec": "spec/components/select.md",
     "brief": "exports/components/select.brief.txt"
   },
-  "native": true,
+  "native": false,
   "aria": {
-    "pattern": "native <select> with <label>",
-    "apg": "https://www.w3.org/WAI/ARIA/apg/practices/forms/"
+    "pattern": "Select-only combobox with listbox popup; multiple variant is a multiselectable listbox",
+    "apg": "https://www.w3.org/WAI/ARIA/apg/patterns/combobox/"
   },
   "variants": [
     {
@@ -624,24 +624,28 @@
     },
     {
       "key": "Space / Alt+Down",
-      "action": "Opens the host popup (native)."
+      "action": "Opens the themed popup without committing a choice."
     },
     {
       "key": "Up / Down",
-      "action": "Moves through options; in the closed single select this changes the value directly."
+      "action": "Opens the single list or moves its active option; Enter or Space commits. In the multiple list, moves the active option."
     },
     {
       "key": "Typing",
-      "action": "Jumps to the first option starting with the typed characters (native)."
+      "action": "Moves to an enabled option starting with the typed characters."
     },
     {
-      "key": "Shift+Up / Shift+Down, Ctrl+click",
-      "action": "Extends or toggles the selection in the multiple variant (native)."
+      "key": "Space / click; Shift+Up / Shift+Down; Ctrl+Command+A",
+      "action": "Toggles a multiple option; extends a range; selects or clears all enabled options."
+    },
+    {
+      "key": "Escape / Tab",
+      "action": "Closes the single popup without committing the active option."
     }
   ],
   "responsive": "Fills its field container with min-width 0; the chevron keeps its 16px slot; long option text truncates inside the box with the native ellipsis. RTL moves the chevron to the inline end.",
   "portability": {
-    "web": "native <select> plus <label>; the closed box is styled with appearance none; the open popup is drawn by the host and receives only option and optgroup colours where the engine honours them; never replaced by a custom listbox (that is the combobox component).",
+    "web": "Native select and label markup progressively enhanced into a theme-owned combobox/listbox. The package owns popup colors; native submission, validation and reset remain intact. The no-JavaScript fallback retains the native control.",
     "nativeFallbacks": [
       "GTK4 DropDown; the popover follows border.overlay on surface.raised.",
       "Qt QComboBox stylesheet with the drop-down subcontrol; QListView for multiple.",
@@ -672,7 +676,7 @@
     "admin-form",
     "filterable-table"
   ],
-  "nonExamples": "A custom-built dropdown with a styled popup. A background-image chevron in\na literal colour. Rounded corners. A select whose first option is blank. A\nselect that triggers navigation on change. Invalid shown by colour alone.\nA glow instead of the ring. Disabling by opacity.",
+  "nonExamples": "An unthemed browser popup presented as a fully themed implementation. A background-image chevron in\na literal colour. Rounded corners. A select whose first option is blank. A\nselect that triggers navigation on change. Invalid shown by colour alone.\nA glow instead of the ring. Disabling by opacity.",
   "contrast": [
     {
       "label": "select default text",
@@ -870,7 +874,7 @@
       "waiver": null
     },
     {
-      "label": "option text in the host list",
+      "label": "option text in the themed list",
       "state": null,
       "kind": "text",
       "min": 4.5,
@@ -883,7 +887,7 @@
       "waiver": null
     },
     {
-      "label": "group label in the host list",
+      "label": "group label in the themed list",
       "state": null,
       "kind": "text",
       "min": 4.5,

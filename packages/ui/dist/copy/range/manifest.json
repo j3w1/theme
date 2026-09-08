@@ -1,26 +1,26 @@
 {
   "schemaVersion": 1,
   "component": "range",
-  "version": "1.0.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/range.md",
+  "version": "1.1.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/range.md",
   "dependencies": [
     "register/range.js",
-    "chunks/element-B0z6sqq8.js",
+    "chunks/element-C3vTYwcS.js",
+    "chunks/choice-40bzCHdX.js",
     "components/range.js",
-    "chunks/native-BFZpUch0.js",
-    "chunks/dom-BVXrzskP.js"
+    "chunks/native-B49Q0p0_.js"
   ],
   "files": {
-    "runtime/register/range.js": "sha256-TiRGeShQq2ZihllhLsA0JvO2ezNqPb7ErYeifgJXlRQ=",
-    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
-    "runtime/components/range.js": "sha256-e0Ph/ulKmyFILIplCSMvip6xXluGyv6nb/EPEAXvK2Y=",
-    "runtime/chunks/native-BFZpUch0.js": "sha256-4FgvJoEfMvTAX/0SiIsk0wfAn46HnBmvIXq6b7hYmV4=",
-    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "runtime/register/range.js": "sha256-b8dYHHaq/vwxFcZTqBNBRR0eCU4sVP6cqHkE5M4IVZs=",
+    "runtime/chunks/element-C3vTYwcS.js": "sha256-WyFn6jrDTLh3zTHZOXo2VONKQHFz8jiBSmDRqnV+/Aw=",
+    "runtime/chunks/choice-40bzCHdX.js": "sha256-ly8Xah7OBtXIG/ajH4KaBWCYHbrcGFYO6OjT880Jabc=",
+    "runtime/components/range.js": "sha256-H0s4LZTErD5vs7rETTHkLMY5TQmIzcwwdEX8languuk=",
+    "runtime/chunks/native-B49Q0p0_.js": "sha256-CG5HtuiRc818+zVofZRYCfRWMQv2NEeZDnoMReW8gu0=",
     "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
-    "component.css": "sha256-7eXrKSg29+o4/GZEavmedt81uSQVg6HTCd7uIJgjHQk=",
+    "component.css": "sha256-Si4KvV4Y8W4s40vGWCT0/phUILpIrzsbkv248GNgRKo=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-F3TYZf5Pysp2EfVbSAxBHmgiviXyRS3/dKjUdvZrzF0=",
     "index.html": "sha256-xuKPgkTCOPNTZ8muQffKPJpVLWZpA03yfkf+90bVZmw=",
-    "README.md": "sha256-1O0uvdCk0MWd5BgCnenVFtqQLD7CGqD9rylp7khISkU="
+    "README.md": "sha256-YHX2Ssv48lCQmj6ajpgIFZLsa0jVJ9UR2KbiPXcv7bA="
   }
 }

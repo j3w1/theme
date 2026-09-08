@@ -1,10 +1,10 @@
 {
   "id": "command-palette",
   "name": "Command palette",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "tag": "j3w1-command-palette",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/command-palette.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.0.0/packages/ui/src/behaviors/advanced.js",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/command-palette.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.1.0/packages/ui/src/behaviors/advanced.js",
   "imports": {
     "class": "@j3w1/ui/components/command-palette",
     "register": "@j3w1/ui/register/command-palette",
@@ -143,19 +143,24 @@
       "color.surface.default",
       "color.surface.input",
       "color.surface.overlay",
+      "color.text.bright",
       "color.text.default",
       "color.text.muted",
+      "color.text.placeholder",
+      "color.text.prose",
       "density.comfortable.control-height",
       "density.compact.control-height",
       "font.family.mono",
       "font.line-height.ui-md",
       "font.size.ui-md",
+      "font.size.ui-sm",
       "radius.none",
       "space.12",
       "space.16",
       "space.2",
       "space.32",
       "space.4",
+      "space.48",
       "space.8",
       "z.popover"
     ],
@@ -181,24 +186,30 @@
       "color.primitive.rose.350",
       "color.primitive.rose.600",
       "color.primitive.rose.700",
+      "color.primitive.rose.800",
       "color.surface.backdrop",
       "color.surface.canvas",
       "color.surface.default",
       "color.surface.input",
       "color.surface.overlay",
+      "color.text.bright",
       "color.text.default",
       "color.text.muted",
+      "color.text.placeholder",
+      "color.text.prose",
       "density.comfortable.control-height",
       "density.compact.control-height",
       "font.family.mono",
       "font.line-height.ui-md",
       "font.size.ui-md",
+      "font.size.ui-sm",
       "radius.none",
       "space.12",
       "space.16",
       "space.2",
       "space.32",
       "space.4",
+      "space.48",
       "space.8",
       "z.popover"
     ],
@@ -289,12 +300,27 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "color.text.bright": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "color.text.default": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
       "color.text.muted": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.text.placeholder": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.text.prose": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -320,6 +346,11 @@
         "decisionIds": []
       },
       "font.size.ui-md": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "font.size.ui-sm": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -354,6 +385,11 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "space.48": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "space.8": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -370,6 +406,6 @@
   "copy": {
     "directory": "copy/command-palette/",
     "manifest": "copy/command-palette/manifest.json",
-    "digest": "sha256-v/ymTHSKD38bowLVMiCAtBPJErcxU5FktSdGHkzXLJM="
+    "digest": "sha256-a/4GU6p6obOoC7cQ0YgwAWSHLLfcyhZaOe31J6FmqKg="
   }
 }

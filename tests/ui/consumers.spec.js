@@ -20,6 +20,7 @@ for (const framework of ["html", "vue", "react", "astro"]) {
     await project.press("Tab");
     await expect(page.getByLabel("Enabled", { exact: true })).toBeFocused();
     await page.getByLabel("Enabled", { exact: true }).check();
+    await expect(page.locator('#check .checkbox-check')).toBeVisible();
     await page.getByRole("button", { name: "Save", exact: true }).click();
     await expect(page.getByRole("status")).toHaveText('{"project":"From the component API","enabled":"yes"}');
     await page.locator("#fields").evaluate(fieldset => { fieldset.disabled = true; });

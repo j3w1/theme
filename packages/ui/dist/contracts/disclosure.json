@@ -1,10 +1,10 @@
 {
   "id": "disclosure",
   "name": "Disclosure",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "tag": "j3w1-disclosure",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/disclosure.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.0.0/packages/ui/src/behaviors/navigation.js",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/disclosure.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.1.0/packages/ui/src/behaviors/navigation.js",
   "imports": {
     "class": "@j3w1/ui/components/disclosure",
     "register": "@j3w1/ui/register/disclosure",
@@ -334,6 +334,6 @@
   "copy": {
     "directory": "copy/disclosure/",
     "manifest": "copy/disclosure/manifest.json",
-    "digest": "sha256-ZwafMtVSarNM/0pmu8owjzGUi4a16QfAaMbhOw7ZpeI="
+    "digest": "sha256-CvxSgMcUacQ4K7j+YnM5xkgoU5pBPPUNPWGoHh91zVg="
   }
 }

@@ -1,26 +1,26 @@
 {
   "schemaVersion": 1,
   "component": "icon-button",
-  "version": "1.0.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/icon-button.md",
+  "version": "1.1.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/icon-button.md",
   "dependencies": [
     "register/icon-button.js",
-    "chunks/element-B0z6sqq8.js",
+    "chunks/element-C3vTYwcS.js",
+    "chunks/choice-40bzCHdX.js",
     "components/icon-button.js",
-    "chunks/native-BFZpUch0.js",
-    "chunks/dom-BVXrzskP.js"
+    "chunks/native-B49Q0p0_.js"
   ],
   "files": {
-    "runtime/register/icon-button.js": "sha256-FKk6fmzPoZOnVpGik5uFbvs4vbbOEI6bab84HXzNb8g=",
-    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
-    "runtime/components/icon-button.js": "sha256-FpOzcgitiPqIp+IcTdsQOnp5sOoxdUdc+6FFeMXuSj8=",
-    "runtime/chunks/native-BFZpUch0.js": "sha256-4FgvJoEfMvTAX/0SiIsk0wfAn46HnBmvIXq6b7hYmV4=",
-    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "runtime/register/icon-button.js": "sha256-TKsRsbQO0pFPd8PdeWNtpI/i7Az4Zf5tgxL2wzPxRyE=",
+    "runtime/chunks/element-C3vTYwcS.js": "sha256-WyFn6jrDTLh3zTHZOXo2VONKQHFz8jiBSmDRqnV+/Aw=",
+    "runtime/chunks/choice-40bzCHdX.js": "sha256-ly8Xah7OBtXIG/ajH4KaBWCYHbrcGFYO6OjT880Jabc=",
+    "runtime/components/icon-button.js": "sha256-XINGceItQU4XNzy6elcHavbYJEzRApLk+aXKyJWq/FA=",
+    "runtime/chunks/native-B49Q0p0_.js": "sha256-CG5HtuiRc818+zVofZRYCfRWMQv2NEeZDnoMReW8gu0=",
     "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
     "component.css": "sha256-oGnsvpT9vCQjmmGSRaHOeQIJDUE5f5LrSWgR9jdM6/s=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-Zd5z+/mavK2J24Rl+RQLGhMT+nTLwoOf3bAJevwrz7s=",
     "index.html": "sha256-1y5bo9Aq1K+z6CIM0Ef/YeTqqv1dTsU0UQCeeo8cxrs=",
-    "README.md": "sha256-fD+8QOkeeCj3e9vaN2lwc9cUmV7Uw700tgo8H7aBTi8="
+    "README.md": "sha256-hfVvM14z1zrCONp7XhhS3MzNGCPb3a1OuEp/uuLuT9E="
   }
 }

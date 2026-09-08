@@ -1,10 +1,10 @@
 {
   "id": "settings-panel",
   "name": "Settings panel",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "tag": "j3w1-settings-panel",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/settings-panel.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.0.0/packages/ui/src/behaviors/forms.js",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/settings-panel.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.1.0/packages/ui/src/behaviors/forms.js",
   "imports": {
     "class": "@j3w1/ui/components/settings-panel",
     "register": "@j3w1/ui/register/settings-panel",
@@ -152,6 +152,7 @@
       "color.border.default",
       "color.border.disabled",
       "color.border.divider",
+      "color.border.overlay",
       "color.border.selected-indicator",
       "color.code.caret",
       "color.icon.decorative",
@@ -192,6 +193,7 @@
       "focus.offset",
       "focus.offset-invalid",
       "focus.ring",
+      "focus.ring-container",
       "font.family.mono",
       "font.line-height.h2",
       "font.line-height.ui-md",
@@ -242,6 +244,7 @@
       "color.border.default",
       "color.border.disabled",
       "color.border.divider",
+      "color.border.overlay",
       "color.border.selected-indicator",
       "color.code.caret",
       "color.icon.decorative",
@@ -307,6 +310,7 @@
       "focus.offset",
       "focus.offset-invalid",
       "focus.ring",
+      "focus.ring-container",
       "font.family.mono",
       "font.line-height.h2",
       "font.line-height.ui-md",
@@ -459,6 +463,13 @@
         "decisionIds": []
       },
       "color.border.divider": {
+        "action": "use-and-report",
+        "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
+        "decisionIds": [
+          "D-008"
+        ]
+      },
+      "color.border.overlay": {
         "action": "use-and-report",
         "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
         "decisionIds": [
@@ -665,6 +676,11 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "focus.ring-container": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "font.family.mono": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -781,6 +797,6 @@
   "copy": {
     "directory": "copy/settings-panel/",
     "manifest": "copy/settings-panel/manifest.json",
-    "digest": "sha256-cq3D08puSIQPl3aquYiuUaL0yItGiQBDH4t8MC9zRj4="
+    "digest": "sha256-tysjsUBM2cnhsQoZI32ZCv3Mp6jkRlxkffrk6wZ42n4="
   }
 }

@@ -1,28 +1,28 @@
 {
   "schemaVersion": 1,
   "component": "repeater",
-  "version": "1.0.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/repeater.md",
+  "version": "1.1.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/repeater.md",
   "dependencies": [
     "register/repeater.js",
-    "chunks/element-B0z6sqq8.js",
+    "chunks/element-C3vTYwcS.js",
+    "chunks/choice-40bzCHdX.js",
     "components/repeater.js",
-    "chunks/advanced-CJyaPTcu.js",
-    "chunks/dom-BVXrzskP.js",
+    "chunks/advanced-C1mN-2fa.js",
     "chunks/markup-DeQ4bEMR.js"
   ],
   "files": {
-    "runtime/register/repeater.js": "sha256-xtnc+NnibEppyZEBAPRP9BXqYhoY8ZFuKk08bJH1lcg=",
-    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
-    "runtime/components/repeater.js": "sha256-hyUMddVaoZrfkiXOTGtR5rfYIU1vFTRdZddYEY+teCo=",
-    "runtime/chunks/advanced-CJyaPTcu.js": "sha256-9M0VmDycGuipmra083eV7okCVauqLrpF4sgz2nuEY/w=",
-    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "runtime/register/repeater.js": "sha256-Fg52rNxb/mygoHagC8yKwBf+PVCziZQqwvTwvM/JswA=",
+    "runtime/chunks/element-C3vTYwcS.js": "sha256-WyFn6jrDTLh3zTHZOXo2VONKQHFz8jiBSmDRqnV+/Aw=",
+    "runtime/chunks/choice-40bzCHdX.js": "sha256-ly8Xah7OBtXIG/ajH4KaBWCYHbrcGFYO6OjT880Jabc=",
+    "runtime/components/repeater.js": "sha256-7NS40JSlXMMJFFxLsa9pXgHRYwkXnly+VHbBHTVeH/o=",
+    "runtime/chunks/advanced-C1mN-2fa.js": "sha256-Igl5ciFTxMp2UiS57duoSlv5gksBXzWZbF38vliTgGA=",
     "runtime/chunks/markup-DeQ4bEMR.js": "sha256-Eyyx7MKBoqXK4i2HaVUQhKUM066L2wIggABt6jAdgas=",
     "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
     "component.css": "sha256-IEhREL5vlXFRdDmE8HHaqwhAbMJ8feOqTJ5MMrQGztk=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-DSCQzrRbDwFOKtw5YmpR+3oYWMIBJFIPnJpes5bSMPY=",
     "index.html": "sha256-c0jxp+wZ+Fh6pdflIdXG673av6oOTGx7HobpD63O2Sk=",
-    "README.md": "sha256-tiNPPD6SsT/yGwEiHGCs1WcyMFopMBWSv7nqZceitjw="
+    "README.md": "sha256-n6LbXfVE+54U3TJUCDgQHj3CqJZIMrrn0tv0hBzzKQ8="
   }
 }

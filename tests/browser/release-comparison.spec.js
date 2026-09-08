@@ -1,3 +1,4 @@
+import { chooseOptions } from "../ui/choice-helper.mjs";
 import { test, expect } from "./evidence-fixture.mjs";
 import AxeBuilder from "@axe-core/playwright";
 import { createHash } from "node:crypto";
@@ -22,14 +23,14 @@ test("release picker and matched-state controls work with keyboard and preserve 
   await page.getByLabel("Before revision").focus();
   await page.keyboard.press("Tab");
   await expect(page.getByLabel("After revision")).toBeFocused();
-  await page.getByLabel("After revision").selectOption("workbench");
+  await chooseOptions(page.getByLabel("After revision"), "workbench");
   await page.getByRole("button", { name: "Open comparison" }).focus();
   await page.keyboard.press("Enter");
   await expect(page).toHaveURL(new RegExp(`${pair}$`));
   const component = page.locator('[data-release-component="button"]');
   await component.scrollIntoViewIfNeeded();
   await component.getByLabel("Variant and visual state").focus();
-  await component.getByLabel("Variant and visual state").selectOption("default/hover");
+  await chooseOptions(component.getByLabel("Variant and visual state"), "default/hover");
   for (const side of ["before", "after"]) {
     const frame = component.locator(`[data-release-side="${side}"]`);
     await expect(frame).toHaveAttribute("src", /button\/default\/hover\.html$/);

@@ -61,3 +61,5 @@ a.portal-card:hover h2, a.portal-card:hover h3 { color: var(--color-text-link-ho
 .skip-link:focus { top: 12px; }
 @media (max-width: 850px) { .portal-shell { grid-template-columns: minmax(0, 1fr); } .portal-sidebar { padding: 18px; gap: 12px; } .portal-sidebar nav { grid-template-columns: repeat(3, minmax(0,1fr)); } .portal-sidebar nav a { padding: 8px 2px; gap: 6px; font-size: 12px; } .portal-sidebar-foot { display: none; } .portal-topline { padding: 16px; } .portal-topline span:last-child { display: none; } .portal-main { padding: 28px 18px; } .portal-footer { padding: 24px 18px 90px; } }
 @media print { .portal-sidebar, .portal-command, .portal-copy { display: none; } .portal-shell { display: block; } .portal-main { padding: 0; } }
+
+.portal-command > .command-palette { display: contents; }

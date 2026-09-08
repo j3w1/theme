@@ -3,6 +3,8 @@ import "../styles/tokens.generated.css";
 import "../styles/base.css";
 import "../styles/hex-swatches.css";
 import "../styles/portal.css";
+import "@j3w1/ui/styles/select.css";
+import "@j3w1/ui/styles/controls.css";
 import { withBase } from "../lib/base";
 import { theme } from "../lib/theme";
 import { anchorFor } from "../../../scripts/lib/anchors.mjs";
@@ -46,6 +48,6 @@ const id = (name) => anchorFor.uiExample("portal", name);
       </div>
     </j3w1-command-palette>
     <script type="module" is:inline src={withBase("ui/register/command-palette.js")}></script>
-    <script>import { initCopy } from "../scripts/copy"; import "../scripts/portal-search"; document.documentElement.classList.add("js"); initCopy();</script>
+    <script>import { initCopy } from "../scripts/copy"; import "../scripts/portal-search"; import { enhanceControls } from '@j3w1/ui/enhance/choice'; document.documentElement.classList.add("js"); initCopy(); enhanceControls(document.body);</script>
   </body>
 </html>

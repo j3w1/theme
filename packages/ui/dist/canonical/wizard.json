@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "theme": "j3w1-theme",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "profile": "default",
   "profileStatus": "approved",
   "release": {
-    "version": "1.0.0",
+    "version": "1.1.0",
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-ZBxaPGMyHoIGQgEd1TPIM+OenmDQ3M0HQ2eDr2AW7oI=",
+  "sourceDigest": "sha256-O6QTOVDp1shJrvUW1Uu7vjMVslQz5fKbS6l4G043PQs=",
   "id": "wizard",
   "family": "forms-advanced",
   "maturity": "stable",

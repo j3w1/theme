@@ -1,3 +1,4 @@
+import { chooseOptions } from "../../ui/choice-helper.mjs";
 import { test, expect } from "../evidence-fixture.mjs";
 import AxeBuilder from "@axe-core/playwright";
 const annotation = { type: "verification", description: JSON.stringify({ component: "form-builder", category: "enhancements", states: ["default", "empty", "invalid", "disabled"], variants: ["default"], note: "Five field kinds, keyboard add/edit/order, required validation, both densities, bounded atomic import, explicit definition-only download, reset and no-JS. Automated DOM/axe; no native port or manual screen-reader claim." }) };
@@ -24,7 +25,8 @@ test("compose all five fields, reorder, validate, transfer and reject invalid im
   // Establish the entry point once; composition through download then uses only keyboard events.
   await palette.focus();
   for (const kind of ["text", "textarea", "select", "checkbox", "radio"]) {
-    await tabTo(palette, true); await page.keyboard.press(kind === "text" ? "Home" : "ArrowDown"); await expect(palette).toHaveValue(kind);
+    await tabTo(palette, true); await page.keyboard.press('Enter'); await page.keyboard.press(kind === "text" ? "Home" : "ArrowDown"); await page.keyboard.press('Enter');
+    await expect(root.locator('select[data-kind]')).toHaveValue(kind);
     await page.keyboard.press("Tab"); await expect(root.getByRole("button", { name: "Add field", exact: true })).toBeFocused(); await page.keyboard.press("Enter");
     await expect(root.getByLabel("Field label", { exact: true })).toBeFocused();
     await type(`Example ${kind}`); await page.keyboard.press("Tab"); await expect(root.getByLabel("Field help", { exact: true })).toBeFocused(); await type("Local example help");
@@ -42,7 +44,7 @@ test("compose all five fields, reorder, validate, transfer and reject invalid im
   await expect(preview.locator("[data-errors]")).toBeFocused(); await page.keyboard.press("Tab"); await page.keyboard.press("Enter");
   await expect(preview.getByRole("textbox", { name: "Example text required", exact: true })).toBeFocused(); await type("Never export this value");
   await page.keyboard.press("Tab"); await expect(preview.getByRole("textbox", { name: "Example textarea required", exact: true })).toBeFocused(); await type("Notes");
-  await page.keyboard.press("Tab"); await expect(preview.getByRole("combobox", { name: "Example select required", exact: true })).toBeFocused(); await page.keyboard.press("ArrowDown");
+  await page.keyboard.press("Tab"); await expect(preview.getByRole("combobox", { name: "Example select required", exact: true })).toBeFocused(); await page.keyboard.press('Enter'); await page.keyboard.press('Home'); await page.keyboard.press("ArrowDown"); await page.keyboard.press('Enter');
   await page.keyboard.press("Tab"); await expect(preview.getByRole("radio", { name: "First option", exact: true })).toBeFocused(); await page.keyboard.press("Space");
   await page.keyboard.press("Tab"); await expect(preview.getByRole("checkbox")).toBeFocused(); await page.keyboard.press("Space");
   await page.keyboard.press("Tab"); await expect(preview.getByRole("button", { name: "Review values", exact: true })).toBeFocused(); await page.keyboard.press("Enter");
@@ -59,7 +61,7 @@ test("compose all five fields, reorder, validate, transfer and reject invalid im
   await root.getByLabel("Definition JSON", { exact: true }).fill(JSON.stringify(definition));
   await root.getByRole("button", { name: "Import definition JSON", exact: true }).click();
   await expect(preview.locator("img")).toHaveCount(0); await expect(preview.locator("input[type=text]")).toHaveValue("");
-  for (const density of ["comfortable", "compact"]) { await root.getByRole("combobox", { name: "Preview density", exact: true }).selectOption(density); await expect(root.locator("[data-preview]")).toHaveAttribute("data-density", density); }
+  for (const density of ["comfortable", "compact"]) { await chooseOptions(root.getByRole("combobox", { name: "Preview density", exact: true }), density); await expect(root.locator("[data-preview]")).toHaveAttribute("data-density", density); }
   if (info.project.name === "desktop") expect((await new AxeBuilder({ page }).include("[data-builder]").analyze()).violations).toEqual([]);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true); expect(requests).toEqual([]);
   await root.locator('[data-field-id="field-1"]').getByRole("button", { name: "Remove field", exact: true }).focus(); await page.keyboard.press("Enter");

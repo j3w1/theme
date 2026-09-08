@@ -1,10 +1,10 @@
 {
   "id": "skip-link",
   "name": "Skip link",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "tag": "j3w1-skip-link",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/skip-link.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.0.0/packages/ui/src/behaviors/native.js",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/skip-link.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.1.0/packages/ui/src/behaviors/native.js",
   "imports": {
     "class": "@j3w1/ui/components/skip-link",
     "register": "@j3w1/ui/register/skip-link",
@@ -288,6 +288,6 @@
   "copy": {
     "directory": "copy/skip-link/",
     "manifest": "copy/skip-link/manifest.json",
-    "digest": "sha256-9RzkLO8Fox3sXA0CXgpwg9i2dVkF6mqRiM2m0HlYNmc="
+    "digest": "sha256-PvDHyqKAnRZrPwuqBBUn1j96xfPo3snp5ozQDuAaN/k="
   }
 }

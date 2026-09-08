@@ -6,6 +6,22 @@ separate delivery and execution records for actual acceptance and deployment.
 
 ## Ownership
 
+D-025 makes theme-rendered choices the default web implementation. The shared
+`internal/choice.js` renderer presents single comboboxes and multiple listboxes
+while the original select retains FormData, constraints, defaults and events.
+The package Select uses it directly; component compositions enhance their own
+bare controls. The public `enhance/choice` entry observes only the supplied
+application root and skips controls owned by another j3w1 component. It never
+moves the native select out of its framework-owned DOM position.
+
+The standalone `styles/controls.css` is generated from the same canonical
+`site/src/styles/themed-controls.css` used by component/copy distributions. This is necessary because
+component styles are intentionally scoped to their custom-element tag, whereas
+application enhancement is scoped to `data-j3w1-controls`. Destroy disconnects
+observers/listeners and restores the native control and label relationship.
+The Vue application and portal consume this public entry rather than maintaining
+separate dropdown implementations. Native no-JavaScript fallbacks remain visible.
+
 `tokens/` and `spec/` retain design authority. `packages/ui/src/` owns browser
 behavior and public API metadata. The build combines that maintained behavior,
 canonical component styles and maintained usage examples into the package and

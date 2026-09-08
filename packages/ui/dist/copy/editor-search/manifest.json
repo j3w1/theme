@@ -1,26 +1,26 @@
 {
   "schemaVersion": 1,
   "component": "editor-search",
-  "version": "1.0.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/editor-search.md",
+  "version": "1.1.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/editor-search.md",
   "dependencies": [
     "register/editor-search.js",
-    "chunks/element-B0z6sqq8.js",
+    "chunks/element-C3vTYwcS.js",
+    "chunks/choice-40bzCHdX.js",
     "components/editor-search.js",
-    "chunks/display-Cg9VLOYZ.js",
-    "chunks/dom-BVXrzskP.js"
+    "chunks/display-JEHZe9kB.js"
   ],
   "files": {
-    "runtime/register/editor-search.js": "sha256-SwfTDCZCHBKpc1SVGkxkaJPCuFPQFg13/xXgWdT+vtg=",
-    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
-    "runtime/components/editor-search.js": "sha256-MNrayJmmbl3H4HQ6CehHjRqF3135ETk5/z2FTa1lR5s=",
-    "runtime/chunks/display-Cg9VLOYZ.js": "sha256-bQA907mIA00ZSmhBbqsjGxJoa6v9+t/gIfm+f8TnZTY=",
-    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "runtime/register/editor-search.js": "sha256-lruIZX0UP28/p8ffEgWUBwYmEoZRHE5OEEQfpZtsT9U=",
+    "runtime/chunks/element-C3vTYwcS.js": "sha256-WyFn6jrDTLh3zTHZOXo2VONKQHFz8jiBSmDRqnV+/Aw=",
+    "runtime/chunks/choice-40bzCHdX.js": "sha256-ly8Xah7OBtXIG/ajH4KaBWCYHbrcGFYO6OjT880Jabc=",
+    "runtime/components/editor-search.js": "sha256-rSI9fXtucjFHJ/8QEJtWsdeOabwkGxBuGYhrcTUSlig=",
+    "runtime/chunks/display-JEHZe9kB.js": "sha256-JtWV8BiBv/y0dE42bmBkSTPdJrH/qBahNgsS62bq+w8=",
     "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
     "component.css": "sha256-M0SrYSnjmhmwR0wfAiNg1VU3bXhEQkYknaGRLw0fWMM=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-d4aAYzdcDHNmdiry3w1Y3xEHMEA6MELYHpoj25fZY7M=",
     "index.html": "sha256-nzYqIKBlE7peT4onxSzqAj0mwZHNcvHOF2jIuZV5iKo=",
-    "README.md": "sha256-VO4el8V/rJTC1X5AXHia5wzeE9zLHflBBN/GFrbzXXE="
+    "README.md": "sha256-7jaX3lAOuPJQJhYMooVM1Q4+sTyBs4eb75ujSFm4VE8="
   }
 }

@@ -32,6 +32,12 @@ j3w1-command-palette .command-palette-dialog {width:min(calc(var(--font-size-ui-
 
 j3w1-command-palette .command-palette [role="option"][aria-selected="true"] span { color: inherit; }
 
+j3w1-command-palette .command-palette-dialog > h2 { margin: 0 0 var(--space-16); color: var(--color-text-prose); }
+j3w1-command-palette .command-palette-dialog > label { display: block; margin-block-end: var(--space-8); color: var(--color-text-bright); font-size: var(--font-size-ui-sm); }
+j3w1-command-palette .command-palette-dialog > input[role="combobox"] { display: block; box-sizing: border-box; width: 100%; min-width: 0; min-height: var(--space-48); padding: var(--space-12) var(--space-16); }
+j3w1-command-palette .command-palette-dialog > [role="listbox"] { margin-block: var(--space-16); }
+j3w1-command-palette .command-palette-dialog > input[role="combobox"]::placeholder { color: var(--color-text-placeholder); opacity: 1; }
+
 j3w1-command-palette [hidden] { display: none !important; }
 j3w1-command-palette .j3w1-visually-hidden {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;

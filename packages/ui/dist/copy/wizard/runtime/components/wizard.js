@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-B0z6sqq8.js";
-import { n as wizard } from "../chunks/forms-SeL1z-yZ.js";
+import { t as J3w1Element } from "../chunks/element-C3vTYwcS.js";
+import { n as wizard } from "../chunks/forms-oc7hvM2b.js";
 //#region .cache/ui-build/entries/components/wizard.js
 var J3w1Wizard = class extends J3w1Element {
 	static componentId = "wizard";
-	static version = "1.0.0";
-	static implementationId = "sha256-rv98TJm77jyc9g8RBv/A7kAFH68djtl/+4xR7WztB7Y=";
+	static version = "1.1.0";
+	static implementationId = "sha256-CpJLQHPL7c1va4njwBfXtljGsC7IJ+UKhK9TCT4/+EU=";
 	static connect = wizard;
 	static upgradeProperties = [
 		"disabled",

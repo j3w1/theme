@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-B0z6sqq8.js";
-import { t as actions } from "../chunks/native-BFZpUch0.js";
+import { t as J3w1Element } from "../chunks/element-C3vTYwcS.js";
+import { t as actions } from "../chunks/native-B49Q0p0_.js";
 //#region .cache/ui-build/entries/components/button.js
 var J3w1Button = class extends J3w1Element {
 	static componentId = "button";
-	static version = "1.0.0";
-	static implementationId = "sha256-OpCSiXz4FIcvqIZZz7eOhZ0sfI0GStLRatmdejVD68I=";
+	static version = "1.1.0";
+	static implementationId = "sha256-6UC6iu7LMYLD2rZRQOw+ms0DXZ2Rfk5TMQkXQf9o8tE=";
 	static connect = actions;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...[

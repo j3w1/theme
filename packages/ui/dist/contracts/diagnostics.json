@@ -1,10 +1,10 @@
 {
   "id": "diagnostics",
   "name": "Diagnostics",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "tag": "j3w1-diagnostics",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/diagnostics.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.0.0/packages/ui/src/behaviors/display.js",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/diagnostics.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.1.0/packages/ui/src/behaviors/display.js",
   "imports": {
     "class": "@j3w1/ui/components/diagnostics",
     "register": "@j3w1/ui/register/diagnostics",
@@ -567,6 +567,6 @@
   "copy": {
     "directory": "copy/diagnostics/",
     "manifest": "copy/diagnostics/manifest.json",
-    "digest": "sha256-RBsPDObN3kdZk2HMJxU0Rr/EzXZZiToss0sCxPdj1+A="
+    "digest": "sha256-1+P2osbdrn5hBnaYZ/SXLqYfrZDJ0eW4p+3LK1wO10o="
   }
 }

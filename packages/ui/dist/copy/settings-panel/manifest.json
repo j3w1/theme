@@ -1,32 +1,32 @@
 {
   "schemaVersion": 1,
   "component": "settings-panel",
-  "version": "1.0.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/settings-panel.md",
+  "version": "1.1.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/settings-panel.md",
   "dependencies": [
     "register/settings-panel.js",
-    "chunks/element-B0z6sqq8.js",
+    "chunks/element-C3vTYwcS.js",
+    "chunks/choice-40bzCHdX.js",
     "register/switch.js",
     "components/switch.js",
-    "chunks/native-BFZpUch0.js",
-    "chunks/dom-BVXrzskP.js",
+    "chunks/native-B49Q0p0_.js",
     "components/settings-panel.js",
-    "chunks/forms-SeL1z-yZ.js"
+    "chunks/forms-oc7hvM2b.js"
   ],
   "files": {
-    "runtime/register/settings-panel.js": "sha256-vwmZrM8bGdVFeosgBdGMNhTlM4LGOrf1JuVnQir92ks=",
-    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
-    "runtime/register/switch.js": "sha256-u0RAbtCX94v4g6vp5mDVWIOdVjAXTbjwIvFNRxzvFK0=",
-    "runtime/components/switch.js": "sha256-BH9Dt0MyH1zwbwDUAy3HEWGvgVzRjKxQJc6AOOlCpQo=",
-    "runtime/chunks/native-BFZpUch0.js": "sha256-4FgvJoEfMvTAX/0SiIsk0wfAn46HnBmvIXq6b7hYmV4=",
-    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
-    "runtime/components/settings-panel.js": "sha256-7wVzSfoRJUNHxx6BE5TR0IxizOr5wdfc6clNgxbrsFE=",
-    "runtime/chunks/forms-SeL1z-yZ.js": "sha256-5Gu4G/d3Vp1QkQfcF2zBC5Rk3y2BbafvQElCWytNt3k=",
+    "runtime/register/settings-panel.js": "sha256-OaJn2sT6sw3kWDqZ0Lefp0oFpRiJpfCzEZUsyRW4S/I=",
+    "runtime/chunks/element-C3vTYwcS.js": "sha256-WyFn6jrDTLh3zTHZOXo2VONKQHFz8jiBSmDRqnV+/Aw=",
+    "runtime/chunks/choice-40bzCHdX.js": "sha256-ly8Xah7OBtXIG/ajH4KaBWCYHbrcGFYO6OjT880Jabc=",
+    "runtime/register/switch.js": "sha256-O1BMD3vPa1znR7En0mQaCGaX0ulqSQlp4D8hGFslZYM=",
+    "runtime/components/switch.js": "sha256-0EsQ77ke/mXq4DlCLf7+P6hDbWEADNU5ue/+fHNh0r8=",
+    "runtime/chunks/native-B49Q0p0_.js": "sha256-CG5HtuiRc818+zVofZRYCfRWMQv2NEeZDnoMReW8gu0=",
+    "runtime/components/settings-panel.js": "sha256-D/2i2dx/APHSYqwPov9hfMBhQEbtnDJwp1nphdqzCOM=",
+    "runtime/chunks/forms-oc7hvM2b.js": "sha256-4+v8KHyQZuVc/5qc/2Ed6HuwtmM9gyyDwBUGESFGsDI=",
     "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
-    "component.css": "sha256-ANharudrxLzLccmHNRrQx7u9dCGoR3eV8WIazA98L80=",
+    "component.css": "sha256-O77Gp+Fv14aiUFifJ8GmoSpkqJsJVAFY0iyCvnuXUdU=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-Z1ZqDdIXySN8gWG0bvhT8iMaa+GaOyHy/vumYpCsYt8=",
     "index.html": "sha256-jGGdyR2U7IytSpOvqtrVJUJKtnNfW/khN9J+vCUatNM=",
-    "README.md": "sha256-f+P9erXBtLTUXPxi0UOdghd5EED3qb3oLY2r/jekc0k="
+    "README.md": "sha256-g4lIDJnrwkG0NUQg2uSmNO/FLOFVYKG2Mn7N72WM6TQ="
   }
 }

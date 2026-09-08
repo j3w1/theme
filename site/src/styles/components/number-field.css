@@ -1,3 +1,4 @@
+@import "../themed-controls.css";
 /* number-field — reference CSS. The text-field box around a native number
    input, the host spinner hidden and replaced by two square stepper
    buttons. Every real pseudo-class is paired with the forced-state

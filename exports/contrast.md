@@ -1,4 +1,4 @@
-# Contrast report (1.0.0, profile: default)
+# Contrast report (1.1.0, profile: default)
 
 Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a design target for the named role, not an application-wide conformance claim. Waived pairs are listed with their reason.
 
@@ -320,6 +320,8 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | disabled text (exempt; house floor 3:1) | disabled | ui | `color.text.disabled` #8a5559 | `color.interaction.disabled.bg` #160b0b | 3.24 | 3 | pass |
 | disabled border (exempt) | disabled | ui | `color.border.disabled` #7d1310 | `color.interaction.disabled.bg` #160b0b | 1.82 | 1 | pass |
 | read-only bottom edge (decorative; the field has no box) | read-only | ui | `color.border.divider` #2b0e0d | `color.surface.canvas` #000000 | 1.17 | 1 | pass |
+| calendar text | — | text | `color.text.default` #e99499 | `color.surface.raised` #241010 | 7.92 | 4.5 | pass |
+| selected date | — | text | `color.interaction.selection.text` #f4eeee | `color.interaction.selection.bg` #911410 | 7.92 | 4.5 | pass |
 | description-list default text | default | text | `color.text.default` #e99499 | `color.surface.default` #100c0c | 8.48 | 4.5 | pass |
 | description-list default border | default | ui | `color.border.control` #a3676b | `color.surface.default` #100c0c | 4.36 | 3 | pass |
 | Primary content | — | text | `color.text.default` #e99499 | `color.surface.default` #100c0c | 8.48 | 4.5 | pass |
@@ -709,8 +711,8 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | select invalid+focus-visible border | invalid+focus-visible | ui | `color.status.danger.border` #e53935 | `color.surface.input` #000000 | 4.97 | 3 | pass |
 | select invalid+focus-visible outline | invalid+focus-visible | ui | `color.interaction.focus.ring-container` #ffa2a7 | `color.surface.input` #000000 | 10.98 | 3 | pass |
 | chevron on the input surface | — | ui | `color.icon.default` #e99499 | `color.surface.input` #000000 | 9.16 | 3 | pass |
-| option text in the host list | — | text | `color.text.default` #e99499 | `color.surface.raised` #241010 | 7.92 | 4.5 | pass |
-| group label in the host list | — | text | `color.text.muted` #bd787d | `color.surface.raised` #241010 | 5.31 | 4.5 | pass |
+| option text in the themed list | — | text | `color.text.default` #e99499 | `color.surface.raised` #241010 | 7.92 | 4.5 | pass |
+| group label in the themed list | — | text | `color.text.muted` #bd787d | `color.surface.raised` #241010 | 5.31 | 4.5 | pass |
 | selected option | — | text | `color.interaction.selection.text` #f4eeee | `color.interaction.selection.bg` #911410 | 7.92 | 4.5 | pass |
 | validation message on the panel surface | — | text | `color.status.danger.text` #f73f35 | `color.surface.default` #100c0c | 5.29 | 4.5 | pass |
 | help text on the panel surface | — | text | `color.text.muted` #bd787d | `color.surface.default` #100c0c | 5.69 | 4.5 | pass |

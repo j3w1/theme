@@ -1,3 +1,4 @@
+import { chooseOptions } from "./choice-helper.mjs";
 import { test, expect } from "../browser/evidence-fixture.mjs";
 import AxeBuilder from "@axe-core/playwright";
 const scope = (component, states, variants = ["default"], note = "") => ({ annotation: { type: "verification", description: JSON.stringify({ component, category: "keyboard", states, variants, note: `Isolated packed gallery; scripted interaction and lifecycle scope only. ${note}` }) } });
@@ -9,6 +10,8 @@ test("command palette selects actions and closes a populated search with Escape"
   await root.evaluate(element => { element.dataset.lastCommand = ""; element.addEventListener("j3w1-command", event => { element.dataset.lastCommand = event.detail.action; }); });
   await opener.click();
   const query = example.getByRole("combobox");
+  const layout = await query.evaluate(input => { const field=input.getBoundingClientRect(), label=input.previousElementSibling.getBoundingClientRect(), dialog=input.closest('dialog').getBoundingClientRect(); return {below:field.top>=label.bottom,wide:field.width>dialog.width*.8}; });
+  expect(layout).toEqual({below:true,wide:true});
   await query.fill("components");
   await expect(example.getByRole("option")).toHaveCount(1);
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
@@ -31,6 +34,71 @@ test("tabs support manual RTL navigation and reconnect without duplicate events"
   await root.evaluate(element => { const parent = element.parentElement; element.remove(); parent.append(element); });
   await tabs.nth(2).click(); await expect(root).toHaveAttribute("data-select-count", "2");
   await expect(example.getByRole("tabpanel")).toContainText("Bindings");
+});
+
+test('themed single choices preserve native values, constraints, defaults and disabled fieldsets', scope('select',['default','focus-visible','required','invalid','disabled'],['default'],'The theme owns the open list; actual option clicks and keyboard commands exercise the native form bridge.'), async ({page}) => {
+  const example=card(page,'select'), root=example.locator('j3w1-select');
+  await root.evaluate(element=>{const form=document.createElement('form'), fieldset=document.createElement('fieldset');form.dataset.choiceTest='';element.before(form);form.append(fieldset);fieldset.append(element);element.querySelector('select').name='workspace';element.dataset.changes='0';element.addEventListener('j3w1-change',()=>{element.dataset.changes=String(Number(element.dataset.changes)+1);});});
+  const control=example.getByRole('combobox');await expect(control).toContainText('1: terminal');
+  await control.press('ArrowDown');await expect(control).toHaveAttribute('aria-expanded','true');
+  await control.press('3');expect(await root.evaluate(element=>element.value)).toBe('1');
+  await control.press('Escape');expect(await root.evaluate(element=>element.value)).toBe('1');
+  await chooseOptions(control,'2');await expect(root).toHaveAttribute('data-changes','1');
+  expect(await example.locator('form').evaluate(form=>Object.fromEntries(new FormData(form)))).toEqual({workspace:'2'});
+  await root.evaluate(element=>{element.value='3';});await expect(control).toContainText('3: browser');
+  await example.locator('form').evaluate(form=>form.reset());await expect(control).toContainText('1: terminal');
+  await example.locator('fieldset').evaluate(fieldset=>{fieldset.disabled=true;});await expect(control).toBeDisabled();
+  expect(await example.locator('form').evaluate(form=>[...new FormData(form)])).toEqual([]);
+  await example.locator('fieldset').evaluate(fieldset=>{fieldset.disabled=false;});await expect(control).toBeEnabled();
+  await root.evaluate(element=>{element.required=true;element.value='';});
+  expect(await root.evaluate(element=>element.reportValidity())).toBe(false);await expect(control).toBeFocused();await expect(control).toHaveAttribute('aria-invalid','true');
+  await chooseOptions(control,'1');await expect(control).toHaveAttribute('aria-invalid','false');
+  await control.click();expect((await new AxeBuilder({page}).include('.gallery-card[data-component="select"][data-variant="default"]').analyze()).violations).toEqual([]);await control.press('Escape');
+  await root.evaluate(element=>{const form=document.createElement('form');form.id='external-choice-form';element.ownerDocument.body.append(form);element.querySelector('select').setAttribute('form',form.id);element.value='3';form.reset();});await expect(control).toContainText('1: terminal');
+});
+
+test('themed multiple choices support independent toggles, select all, dynamic options and reconnect', scope('select',['default','focus-visible','disabled'],['multiple','with-groups'],'Multiple list uses theme-rendered selected fills and check marks; dynamic option and lifecycle behavior are exercised.'), async ({page}) => {
+  const example=card(page,'select','multiple'), root=example.locator('j3w1-select'), list=example.getByRole('listbox');
+  await expect(list).toHaveAttribute('aria-multiselectable','true');
+  await chooseOptions(list,['hdmi','edp']);expect(await root.evaluate(element=>element.values)).toEqual(['hdmi','edp']);
+  await list.press('ControlOrMeta+a');expect(await root.evaluate(element=>element.values)).toHaveLength(4);
+  await list.press('ControlOrMeta+a');expect(await root.evaluate(element=>element.values)).toEqual([]);
+  await list.press('Home');await list.press(' ');expect(await root.evaluate(element=>element.values)).toEqual(['dp1']);
+  await list.press('Shift+ArrowDown');expect(await root.evaluate(element=>element.values)).toEqual(['dp1','dp2']);
+  await root.evaluate(element=>{const option=new Option('Additional output','extra');element.querySelector('select').append(option);});await expect(list.getByRole('option')).toHaveCount(5);
+  await root.evaluate(element=>{element.values=['extra'];});await expect(list.locator('[data-choice-value="extra"]')).toHaveAttribute('aria-selected','true');
+  await root.evaluate(element=>{const parent=element.parentElement;element.remove();parent.append(element);});await expect(example.getByRole('listbox')).toHaveCount(1);expect(await root.evaluate(element=>element.values)).toEqual(['extra']);
+  const grouped=card(page,'select','with-groups'), groupedRoot=grouped.locator('j3w1-select');
+  await groupedRoot.evaluate(element=>{element.querySelector('optgroup').disabled=true;});await grouped.getByRole('combobox').click();
+  await expect(grouped.locator('[role="group"]').first().getByRole('option').first()).toHaveAttribute('aria-disabled','true');
+  await grouped.getByRole('combobox').press('Escape');
+});
+
+test('themed date calendar supports typed constraints, keyboard picking and read-only state', scope('date-picker',['default','focus-visible','invalid','read-only'],['default','range'],'Theme-owned date editor and calendar; native limits and date-range ordering remain authoritative.'), async ({page}) => {
+  const example=card(page,'date-picker'), root=example.locator('j3w1-date-picker'), input=example.getByRole('textbox',{name:'Release date',exact:true});
+  await expect(input).toHaveValue('2026-09-06');await expect(example.locator('input[type="date"]')).toBeHidden();
+  await input.press('Alt+ArrowDown');const calendar=example.getByRole('dialog',{name:'Choose date',exact:true});await expect(calendar).toBeVisible();
+  await expect(calendar.locator('[data-date="2026-09-06"]')).toBeFocused();await page.keyboard.press('ArrowRight');await page.keyboard.press('Enter');await expect(input).toHaveValue('2026-09-07');await expect(input).toBeFocused();
+  expect(await root.evaluate(element=>element.value)).toBe('2026-09-07');
+  await input.fill('2027-01-01');await input.press('Tab');expect(await root.evaluate(element=>element.reportValidity())).toBe(false);await expect(input).toHaveAttribute('aria-invalid','true');
+  await input.fill('2026-09-08');await input.press('Tab');expect(await root.evaluate(element=>element.reportValidity())).toBe(true);
+  await input.press('Alt+ArrowDown');expect((await new AxeBuilder({page}).include('.gallery-card[data-component="date-picker"][data-variant="default"]').analyze()).violations).toEqual([]);await page.keyboard.press('Escape');await expect(input).toBeFocused();
+  await root.evaluate(element=>{const form=document.createElement('form');form.id='external-date-form';element.ownerDocument.body.append(form);const native=element.querySelector('input[type="date"]');native.name='release';native.setAttribute('form',form.id);});
+  await expect(input).toHaveAttribute('form','external-date-form');await input.fill('not-a-date');await input.press('Tab');expect(await page.locator('#external-date-form').evaluate(form=>form.checkValidity())).toBe(false);
+  await page.locator('#external-date-form').evaluate(form=>form.reset());await expect(input).toHaveValue('2026-09-06');expect(await page.locator('#external-date-form').evaluate(form=>Object.fromEntries(new FormData(form)))).toEqual({release:'2026-09-06'});
+  await root.evaluate(element=>{element.readOnly=true;});await expect(input).toHaveAttribute('readonly','');await expect(example.getByRole('button',{name:'Open calendar',exact:true})).toBeHidden();
+  const range=card(page,'date-picker','range');await range.getByRole('textbox',{name:'To',exact:true}).fill('2026-08-31');await range.getByRole('textbox',{name:'To',exact:true}).press('Tab');expect(await range.locator('j3w1-date-picker').evaluate(element=>element.reportValidity())).toBe(false);
+});
+
+test('themed time entry applies native step and rejects invalid or out-of-range text', scope('time-picker',['default','invalid','disabled'],['default'],'No native clock popup; typed values and themed step buttons retain native constraints.'), async ({page}) => {
+  const example=card(page,'time-picker'), root=example.locator('j3w1-time-picker'), input=example.getByRole('textbox',{name:'Start time',exact:true});
+  await expect(input).toHaveValue('09:30');await expect(example.locator('input[type="time"]')).toBeHidden();
+  await example.getByRole('button',{name:'Increase time',exact:true}).click();await expect(input).toHaveValue('09:35');
+  await example.getByRole('button',{name:'Decrease time',exact:true}).click();await expect(input).toHaveValue('09:30');
+  await input.fill('25:99');await input.press('Tab');expect(await root.evaluate(element=>element.reportValidity())).toBe(false);await expect(input).toHaveAttribute('aria-invalid','true');
+  await input.fill('09:32');await input.press('Tab');expect(await root.evaluate(element=>element.reportValidity())).toBe(false);
+  await input.fill('10:00');await input.press('Tab');expect(await root.evaluate(element=>element.reportValidity())).toBe(true);expect(await root.evaluate(element=>element.value)).toBe('10:00');
+  await root.evaluate(element=>{element.disabled=true;});await expect(input).toBeDisabled();await expect(example.getByRole('button',{name:'Increase time',exact:true})).toBeDisabled();
 });
 
 test("menu submenu checks retain focus and Escape unwinds one level at a time", scope("menu", ["default", "open", "closed", "checked"], ["with-submenu"]), async ({ page }) => {
@@ -110,7 +178,7 @@ test("data-table selection, sort and keyboard width menus operate on real rows",
 
 test("the bounded builder exports definitions and rejects invalid imports without mutation", scope("form-builder", ["default", "empty", "invalid"], ["default"], "Uses the maintained canonical five-kind builder; no backend or general schema engine."), async ({ page }) => {
   const example = card(page, "form-builder"), root = example.locator("j3w1-form-builder");
-  for (const kind of ["text", "textarea", "select", "checkbox", "radio"]) { await example.getByRole("combobox", { name: "Field type", exact: true }).selectOption(kind); await example.getByRole("button", { name: "Add field", exact: true }).click(); await example.getByRole("button", { name: "Save field definition", exact: true }).click(); }
+  for (const kind of ["text", "textarea", "select", "checkbox", "radio"]) { await chooseOptions(example.getByRole("combobox", { name: "Field type", exact: true }), kind); await example.getByRole("button", { name: "Add field", exact: true }).click(); await example.getByRole("button", { name: "Save field definition", exact: true }).click(); }
   const before = await root.evaluate(element => element.exportDefinition());
   expect(JSON.parse(before).fields.map(field => field.type)).toEqual(["text", "textarea", "select", "checkbox", "radio"]);
   expect(await root.evaluate(element => element.importDefinition('{"unsupported":true}'))).toBe(false);

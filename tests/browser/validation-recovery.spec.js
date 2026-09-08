@@ -1,3 +1,4 @@
+import { chooseOptions } from "../ui/choice-helper.mjs";
 import { test, expect } from "./evidence-fixture.mjs";
 import AxeBuilder from "@axe-core/playwright";
 const annotation = { type: "verification", description: JSON.stringify({ component: "admin-form", category: "enhancements", states: ["default", "invalid", "busy"], variants: ["default"], note: "Local composed workflow: keyboard submit, summary navigation, correction, retained values, review, explicit busy completion, no data requests. Automated DOM/axe; no manual screen-reader or persistence claim." }) };
@@ -16,7 +17,7 @@ test("correct and review with keyboard, preserve values, and explicitly complete
   await root.getByRole("textbox", { name: "Name required", exact: true }).fill("ws-07");
   await root.getByRole("textbox", { name: "Hostname required", exact: true }).fill("ws-07");
   await root.getByRole("textbox", { name: "Notes", exact: true }).fill("Preserve these notes");
-  await root.getByRole("combobox", { name: "Role", exact: true }).selectOption("dev");
+  await chooseOptions(root.getByRole("combobox", { name: "Role", exact: true }), "dev");
   await root.getByRole("checkbox").check();
   await root.getByRole("button", { name: "Review values", exact: true }).focus(); await page.keyboard.press("Enter");
   await expect(root.locator("[data-errors]")).toBeFocused();

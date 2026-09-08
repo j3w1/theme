@@ -1,10 +1,10 @@
 {
   "id": "filterable-table",
   "name": "Filterable table",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "tag": "j3w1-filterable-table",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/filterable-table.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.0.0/packages/ui/src/behaviors/tables.js",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/filterable-table.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.1.0/packages/ui/src/behaviors/tables.js",
   "imports": {
     "class": "@j3w1/ui/components/filterable-table",
     "register": "@j3w1/ui/register/filterable-table",
@@ -179,6 +179,7 @@
       "color.border.disabled",
       "color.border.divider",
       "color.border.overlay",
+      "color.border.selected-indicator",
       "color.border.strong",
       "color.code.caret",
       "color.icon.decorative",
@@ -234,6 +235,7 @@
       "icon.stroke",
       "motion.duration.fast",
       "radius.none",
+      "space.12",
       "space.16",
       "space.2",
       "space.24",
@@ -257,6 +259,7 @@
       "color.border.disabled",
       "color.border.divider",
       "color.border.overlay",
+      "color.border.selected-indicator",
       "color.border.strong",
       "color.code.caret",
       "color.icon.decorative",
@@ -334,6 +337,7 @@
       "icon.stroke",
       "motion.duration.fast",
       "radius.none",
+      "space.12",
       "space.16",
       "space.2",
       "space.24",
@@ -414,6 +418,11 @@
         "decisionIds": [
           "D-008"
         ]
+      },
+      "color.border.selected-indicator": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
       },
       "color.border.strong": {
         "action": "use",
@@ -690,6 +699,11 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "space.12": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "space.16": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -736,6 +750,6 @@
   "copy": {
     "directory": "copy/filterable-table/",
     "manifest": "copy/filterable-table/manifest.json",
-    "digest": "sha256-BZGEBYEBZ0CElaCbLTcPn7yBg1rW/ljGcZ34eMFbISE="
+    "digest": "sha256-uyJY0z2nylrjQIjnE+zkkWtyDy8VUtxu7Rm5FaFiFLI="
   }
 }

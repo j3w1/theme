@@ -1,26 +1,26 @@
 {
   "schemaVersion": 1,
   "component": "diagnostics",
-  "version": "1.0.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/diagnostics.md",
+  "version": "1.1.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/diagnostics.md",
   "dependencies": [
     "register/diagnostics.js",
-    "chunks/element-B0z6sqq8.js",
+    "chunks/element-C3vTYwcS.js",
+    "chunks/choice-40bzCHdX.js",
     "components/diagnostics.js",
-    "chunks/display-Cg9VLOYZ.js",
-    "chunks/dom-BVXrzskP.js"
+    "chunks/display-JEHZe9kB.js"
   ],
   "files": {
-    "runtime/register/diagnostics.js": "sha256-7e6R840wC8iyFEekkmTtOaS097vjqxPuoRjXFyqmk/Q=",
-    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
-    "runtime/components/diagnostics.js": "sha256-8wYgwhxqH3hpymXy831VZTl8Yqm55521R1b++y7hdXM=",
-    "runtime/chunks/display-Cg9VLOYZ.js": "sha256-bQA907mIA00ZSmhBbqsjGxJoa6v9+t/gIfm+f8TnZTY=",
-    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "runtime/register/diagnostics.js": "sha256-AeRzwRig3q7QEj0wb0wv/BMOj4loJjmDnUiYjVLVs3o=",
+    "runtime/chunks/element-C3vTYwcS.js": "sha256-WyFn6jrDTLh3zTHZOXo2VONKQHFz8jiBSmDRqnV+/Aw=",
+    "runtime/chunks/choice-40bzCHdX.js": "sha256-ly8Xah7OBtXIG/ajH4KaBWCYHbrcGFYO6OjT880Jabc=",
+    "runtime/components/diagnostics.js": "sha256-DeVfndjZotSz6PPpCp8y4JsUAXSwxd7mrdXIvrJSDl8=",
+    "runtime/chunks/display-JEHZe9kB.js": "sha256-JtWV8BiBv/y0dE42bmBkSTPdJrH/qBahNgsS62bq+w8=",
     "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
     "component.css": "sha256-1uXLsplg978riCNhv/v5p+RvR0hW6fVdRnKgNUo+IYs=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-oPPp/R+dnwC1tnH/Td+Hlrs3CRODUkA4Bvq/HK/fAUU=",
     "index.html": "sha256-Tq03gSM/g1JYQlO5vswlLUOSXHf9l2bEjBuZbLQpK1E=",
-    "README.md": "sha256-+rtsPrLeA4dTbY/BxvaYcWgcpuCv40DdcFDo9Nfxk+w="
+    "README.md": "sha256-imGMxGeEAGXWqIcjUKHV/XK6wynoCiRSjPOu5rTrBYY="
   }
 }

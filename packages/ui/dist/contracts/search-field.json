@@ -1,10 +1,10 @@
 {
   "id": "search-field",
   "name": "Search field",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "tag": "j3w1-search-field",
-  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/search-field.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.0.0/packages/ui/src/behaviors/native.js",
+  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/search-field.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.1.0/packages/ui/src/behaviors/native.js",
   "imports": {
     "class": "@j3w1/ui/components/search-field",
     "register": "@j3w1/ui/register/search-field",
@@ -484,6 +484,6 @@
   "copy": {
     "directory": "copy/search-field/",
     "manifest": "copy/search-field/manifest.json",
-    "digest": "sha256-p8tp+QVe26CxJPGx5gCLPR9GNtGSx5PKop/z6mEQMF8="
+    "digest": "sha256-IyqBlxtckf47RN3RbpsmkdHJ1nqMVnNZaX10CbqYcl8="
   }
 }
