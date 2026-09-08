@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import path from "node:path";
-import { parityPrerequisites, compareProperties, assertPrivateDestination } from "../scripts/lib/private-parity.mjs";
+import { parityPrerequisites, compareProperties, assertPrivateDestination, parityFixtureModel } from "../scripts/lib/private-parity.mjs";
 import { privateAssetPath } from "../schemas/private-path.mjs";
 import { safeKitPath } from "../schemas/task-kit.mjs";
 import { repoRoot } from "../scripts/lib/fs.mjs";
@@ -18,6 +18,12 @@ test("missing licensed inputs produce a prerequisite record without an execution
 
 test("the independently authored framework fixture parses without a licensed dependency", () => {
   assert.doesNotThrow(() => execFileSync(process.execPath, ["--check", "templates/private-parity/App.mjs"], { cwd: repoRoot, stdio: "pipe" }));
+});
+
+test("private table data excludes hidden empty and loading scaffolding from the populated specimen", async () => {
+  const demo = await fs.readFile(path.join(repoRoot, "spec/components/table.demo.html"), "utf8");
+  const model = parityFixtureModel(demo.split("<!-- @variant")[0]);
+  assert.deepEqual(model.rows, [["tabs", "navigation", "R1", "7"], ["menu", "navigation", "R1", "8"], ["table", "display", "R1", "8"], ["chart", "display", "R2", "0"]]);
 });
 
 test("private preparation pins native specimens, verifies installed/locked versions and leaves its source unchanged", async () => {

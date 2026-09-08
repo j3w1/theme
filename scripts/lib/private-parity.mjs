@@ -24,7 +24,7 @@ export const parityFixtureModel = fragment => {
   const first = name => nodes.find(node => hasClass(node, name));
   const input = nodes.find(node => node.tagName === "input");
   const options = nodes.filter(node => node.tagName === "option").map(node => ({ title: text(node), value: attribute(node, "value") ?? text(node), selected: attribute(node, "selected") !== undefined && attribute(node, "selected") !== null }));
-  const rows = nodes.filter(node => node.tagName === "tr").map(node => (node.childNodes ?? []).filter(child => child.tagName === "td").map(text)).filter(row => row.length);
+  const rows = nodes.filter(node => node.tagName === "tr" && attribute(node, "hidden") == null).map(node => (node.childNodes ?? []).filter(child => child.tagName === "td").map(text)).filter(row => row.length);
   return {
     label: text(first("button-label") ?? first("checkbox-text") ?? nodes.find(node => node.tagName === "label")) || "Example",
     value: attribute(input ?? {}, "value") ?? "", options,

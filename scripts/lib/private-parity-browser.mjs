@@ -91,7 +91,9 @@ export const runPrivateParity = async prepared => {
     const output = { ...metadata, result: errors.length ? "failed" : "completed", environment, records, errors,
       mapping: { mapped: ["primary fill", "on-primary text", "surface", "background", "default text", "error text"],
         inherited: ["component geometry", "state overlays", "focus implementation", "native widget structure"],
-        unsupported: ["Complete application chrome, editor and terminal integration are outside this bounded fixture."] } };
+        unsupported: ["Complete application chrome, editor and terminal integration are outside this bounded fixture.",
+          "The base host table has no row-selection model; its selected-state comparison retains the default host table.",
+          "Host icon configuration and icon-font assets are not loaded; icon-dependent visuals remain unsupported."] } };
     // Confirm the source inputs were unchanged by this experiment.
     for (const [file, expected] of Object.entries({ ...metadata.inputDigests, ...metadata.targetMetadataDigests })) {
       const full = path.join(target, file); await assertRealFile(full);

@@ -85,6 +85,11 @@ synthetic specimens; application data is never loaded. Screenshots are scoped to
 the measured controls. Different host structures or helper scaffolding can
 produce expected differences and are not silently corrected. Complete keyboard
 lifecycle, screen-reader and application-chrome conformance remain unverified.
+Hidden empty/loading table rows are scaffolding, not populated fixture data.
+The base host table has no selection model; its selected-state comparison
+retains the default host table. Host icon configuration and icon-font assets
+are not loaded, so icon-dependent visuals remain unsupported. These limits are
+also recorded in the private report's unsupported mappings.
 Inspect every record before making a narrower compatibility claim.
 
 Keep all output private, including build errors, vendor source and screenshots.
