@@ -343,6 +343,13 @@ means its demo renders every declared variant on the site; *test implemented* me
 browser test exists for it. Actual outcomes are published separately in the
 linked verification report, with exact scope, configuration and digests. The ledger is generated from the sources.
 
+The shared browser evidence fixture records the actual browser/OS and final
+viewport, plus the page root's declared profile and density at test completion.
+An absent declaration is recorded as `not-declared`; an unavailable page
+context is reported explicitly. These fields do not infer a mode for every
+nested specimen. Protocols that exercise several local modes describe them in
+their verification annotation, rather than labeling every run as comfortable.
+
 <!-- coverage:start -->
 | Component | Family | Priority | Specified | Demonstrated | Test implemented |
 | --- | --- | --- | --- | --- | --- |
