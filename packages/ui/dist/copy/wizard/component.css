@@ -1,0 +1,475 @@
+j3w1-wizard { display: block; }
+j3w1-wizard {
+  color-scheme: dark;
+  background: var(--color-surface-canvas);
+  color: var(--color-text-default);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+}
+j3w1-wizard, j3w1-wizard *, j3w1-wizard *::before, j3w1-wizard *::after { box-sizing: border-box; }
+j3w1-wizard button, j3w1-wizard input, j3w1-wizard select, j3w1-wizard textarea { font: inherit; }
+j3w1-wizard ::selection {
+  background: var(--color-interaction-text-selection-bg);
+  color: var(--color-interaction-text-selection-text);
+}
+j3w1-wizard .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+j3w1-wizard .wizard {
+  display: grid;
+  gap: var(--space-8);
+  min-width: 0;
+  max-width: calc(var(--font-size-ui-md) * 36);
+  color: var(--color-text-default);
+}
+
+j3w1-wizard .wizard-steps {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-bottom: var(--border-width-default) solid var(--color-border-divider);
+}
+
+j3w1-wizard .wizard-step {
+  flex: 1 1 calc(var(--font-size-ui-md) * 8);
+  min-width: 0;
+}
+
+j3w1-wizard .wizard-step-button {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  width: 100%;
+  min-height: var(--density-row-height, 36px);
+  padding: 0 var(--density-control-padding-x, 12px);
+  background: transparent;
+  border: 0;
+  border-bottom: var(--border-width-emphasis) solid transparent;
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+
+j3w1-wizard .wizard-step-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--icon-size-lg);
+  font-variant-numeric: tabular-nums;
+}
+
+j3w1-wizard .wizard-step-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+j3w1-wizard .wizard-step-complete .wizard-step-marker,
+j3w1-wizard .wizard-step-done {
+  color: var(--color-status-success-text);
+}
+
+j3w1-wizard .wizard-panel {
+  padding: var(--space-12);
+  background: var(--color-surface-default);
+  border: var(--border-width-default) solid var(--color-border-default);
+}
+
+j3w1-wizard .wizard-title {
+  margin: 0 0 var(--space-8);
+  color: var(--color-text-bright);
+  font-size: var(--font-size-h3);
+  line-height: var(--font-line-height-h3);
+  font-weight: var(--font-weight-bold);
+}
+
+j3w1-wizard .wizard-text {
+  margin: 0;
+}
+
+j3w1-wizard .wizard-message {
+  display: none;
+  margin: var(--space-8) 0 0;
+  color: var(--color-status-danger-text);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+j3w1-wizard .wizard-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-8);
+}
+
+j3w1-wizard .wizard-back,
+j3w1-wizard .wizard-next {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  min-height: var(--density-control-height, 32px);
+  padding: 0 var(--density-control-padding-x, 12px);
+  border: var(--border-width-default) solid;
+  border-radius: var(--radius-none);
+  font: inherit;
+  cursor: pointer;
+}
+
+j3w1-wizard .wizard-back {
+  background: var(--color-action-secondary-bg);
+  border-color: var(--color-action-secondary-border);
+  color: var(--color-action-secondary-text);
+}
+
+j3w1-wizard .wizard-next {
+  background: var(--color-action-primary-bg);
+  border-color: var(--color-action-primary-border);
+  color: var(--color-action-primary-text);
+}
+
+j3w1-wizard .wizard-busy {
+  display: none;
+}
+j3w1-wizard .wizard-step-button:hover:not(:disabled) {
+  background: var(--color-interaction-hover-bg);
+}
+
+j3w1-wizard .wizard-back:hover:not(:disabled) {
+  background: var(--color-action-secondary-hover-bg);
+}
+
+j3w1-wizard .wizard-next:hover:not(:disabled) {
+  background: var(--color-action-primary-hover-bg);
+}
+
+j3w1-wizard .wizard-back:active {
+  background: var(--color-action-secondary-pressed-bg);
+  border-color: var(--color-border-active);
+}
+
+j3w1-wizard .wizard-next:active {
+  background: var(--color-action-primary-pressed-bg);
+}
+j3w1-wizard .wizard-step-button:focus-visible,
+j3w1-wizard .wizard-back:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+j3w1-wizard .wizard-next:focus-visible {
+  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline-offset: var(--focus-offset);
+}
+j3w1-wizard .wizard-step-button[aria-current="step"] {
+  border-bottom-color: var(--color-border-selected-indicator);
+  color: var(--color-text-bright);
+}
+j3w1-wizard .wizard-step-button:disabled {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+j3w1-wizard .wizard-step-button:disabled .wizard-step-marker,
+j3w1-wizard .wizard-step-button:disabled .wizard-step-done {
+  color: var(--color-text-disabled);
+}
+
+j3w1-wizard .wizard-back:disabled {
+  background: var(--color-interaction-disabled-bg);
+  border-color: var(--color-border-disabled);
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+j3w1-wizard .wizard-next:disabled {
+  background: var(--color-interaction-disabled-bg);
+  border-color: var(--color-border-disabled);
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+j3w1-wizard .wizard[aria-busy="true"] .wizard-busy {
+  display: inline;
+}
+
+j3w1-wizard .wizard[aria-busy="true"] .wizard-next {
+  cursor: progress;
+}
+
+@media (hover: none) {
+  j3w1-wizard .wizard-step-button:hover:not(:disabled) {
+    background: transparent;
+  }
+
+  j3w1-wizard .wizard-back:hover:not(:disabled) {
+    background: var(--color-action-secondary-bg);
+  }
+
+  j3w1-wizard .wizard-next:hover:not(:disabled) {
+    background: var(--color-action-primary-bg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  j3w1-wizard .wizard-step-button,
+  j3w1-wizard .wizard-back,
+  j3w1-wizard .wizard-next {
+    transition: background-color var(--motion-duration-fast);
+  }
+}
+
+@media (max-width: 600px) {
+  j3w1-wizard .wizard-steps {
+    flex-direction: column;
+  }
+}
+
+@media (forced-colors: active) {
+  j3w1-wizard .wizard-step-button:focus-visible,
+  j3w1-wizard .wizard-back:focus-visible,
+  j3w1-wizard .wizard-next:focus-visible {
+    outline-color: Highlight;
+  }
+
+  j3w1-wizard .wizard-step-button[aria-current="step"] {
+    border-bottom-color: Highlight;
+  }
+}
+
+j3w1-wizard .text-field {
+  position: relative;
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+  max-width: calc(var(--font-size-ui-md) * 28);
+  color: var(--color-text-default);
+}
+
+j3w1-wizard .text-field-label {
+  color: var(--color-text-bright);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+j3w1-wizard .text-field-required {
+  display: none;
+  color: var(--color-status-danger-text);
+}
+
+j3w1-wizard .text-field-root {
+  display: flex;
+  min-width: 0;
+  align-items: stretch;
+  min-height: var(--density-control-height, 32px);
+  background: var(--color-surface-input);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+}
+
+j3w1-wizard .text-field-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0 var(--density-control-padding-x, 12px);
+  background: transparent;
+  border: 0;
+  color: var(--color-text-default);
+  caret-color: var(--color-code-caret);
+  font: inherit;
+  outline: 0;
+}
+
+j3w1-wizard .text-field-input::placeholder {
+  color: var(--color-text-placeholder);
+  font-style: italic;
+  opacity: 1;
+}
+
+j3w1-wizard .text-field-input::selection {
+  background: var(--color-interaction-text-selection-bg);
+  color: var(--color-interaction-text-selection-text);
+}
+
+j3w1-wizard .text-field-input-numeric {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+j3w1-wizard .text-field-input::-webkit-search-cancel-button,
+j3w1-wizard .text-field-input::-webkit-inner-spin-button,
+j3w1-wizard .text-field-input::-webkit-outer-spin-button {
+  appearance: none;
+  display: none;
+}
+
+j3w1-wizard .text-field-affix {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  padding: 0 var(--space-8);
+  color: var(--color-text-muted);
+  border-inline-end: var(--border-width-default) solid var(--color-border-divider);
+}
+
+j3w1-wizard .text-field-input ~ .text-field-affix {
+  border-inline-end: 0;
+  border-inline-start: var(--border-width-default) solid var(--color-border-divider);
+}
+
+j3w1-wizard .text-field-action {
+  padding: 0 var(--space-8);
+  white-space: nowrap;
+  background: transparent;
+  border: 0;
+  border-inline-start: var(--border-width-default) solid var(--color-border-divider);
+  color: var(--color-action-tertiary-text);
+  font: inherit;
+  cursor: pointer;
+}
+
+j3w1-wizard .text-field-action:hover {
+  background: var(--color-action-tertiary-hover-bg);
+}
+
+j3w1-wizard .text-field-action:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+j3w1-wizard .text-field-stepper {
+  display: flex;
+}
+
+j3w1-wizard .text-field-loading {
+  display: none;
+  align-items: center;
+  padding: 0 var(--space-8);
+  color: var(--color-text-muted);
+}
+
+j3w1-wizard .text-field-help {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+j3w1-wizard .text-field-message {
+  display: none;
+  margin: 0;
+  color: var(--color-status-danger-text);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+j3w1-wizard .text-field-root:hover {
+  background: var(--color-interaction-hover-bg);
+}
+j3w1-wizard .text-field-root:has(.text-field-input:focus-visible) {
+  border-color: var(--color-border-active);
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+j3w1-wizard .text-field:has(.text-field-input:required) .text-field-required {
+  display: inline;
+}
+j3w1-wizard .text-field-root:has(.text-field-input[aria-invalid="true"]),
+j3w1-wizard .text-field-root:has(.text-field-input:user-invalid) {
+  border-color: var(--color-status-danger-border);
+  border-width: var(--border-width-emphasis);
+}
+
+j3w1-wizard .text-field:has(.text-field-input[aria-invalid="true"]) .text-field-message,
+j3w1-wizard .text-field:has(.text-field-input:user-invalid) .text-field-message {
+  display: block;
+}
+
+j3w1-wizard .text-field:has(.text-field-input[aria-invalid="true"]) .text-field-help {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+j3w1-wizard .text-field-root:has(.text-field-input[aria-invalid="true"]:focus-visible) {
+  border-color: var(--color-status-danger-border);
+  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline-offset: var(--focus-offset-invalid);
+}
+j3w1-wizard .text-field-root:has(.text-field-input:disabled) {
+  background: var(--color-interaction-disabled-bg);
+  border-color: var(--color-border-disabled);
+  cursor: not-allowed;
+}
+
+j3w1-wizard .text-field-input:disabled {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+j3w1-wizard .text-field-root:has(.text-field-input:disabled):hover {
+  background: var(--color-interaction-disabled-bg);
+}
+j3w1-wizard .text-field-root:has(.text-field-input:read-only:not(:disabled)) {
+  background: var(--color-surface-canvas);
+  border-color: transparent;
+  border-bottom: var(--border-width-default) dotted var(--color-border-divider);
+}
+
+j3w1-wizard .text-field-root:has(.text-field-input:read-only:focus-visible) {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+j3w1-wizard .text-field-root[aria-busy="true"] .text-field-loading {
+  display: inline-flex;
+}
+
+@media (hover: none) {
+  j3w1-wizard .text-field-root:hover {
+    background: var(--color-surface-input);
+  }
+}
+
+@media (forced-colors: active) {
+  j3w1-wizard .text-field-root:has(.text-field-input:focus-visible) {
+    outline-color: Highlight;
+  }
+}
+
+j3w1-wizard [hidden] { display: none !important; }
+j3w1-wizard .j3w1-visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+j3w1-wizard .j3w1-readonly-text { white-space: pre; overflow: auto; font: inherit; }
+j3w1-wizard dialog.dialog:modal, j3w1-wizard dialog.command-palette-dialog:modal {
+  position: fixed; inset: 0; margin: auto;
+  max-width: calc(100vw - var(--space-32)); max-height: calc(100dvh - var(--space-32)); overflow: auto;
+}
+j3w1-wizard dialog.drawer:modal { position: fixed; inset-block: 0; margin-block: 0; max-height: 100dvh; height: 100dvh; overflow: auto; }
+j3w1-wizard dialog.drawer-start:modal { inset-inline-start: 0; inset-inline-end: auto; margin-inline: 0; }
+j3w1-wizard dialog.drawer-end:modal { inset-inline-end: 0; inset-inline-start: auto; margin-inline: 0; }
+j3w1-wizard .menu-list, j3w1-wizard .combobox-listbox, j3w1-wizard .tooltip-popup, j3w1-wizard .popover-panel { z-index: var(--z-popover); }
+j3w1-wizard .tooltip-popup:not([hidden]) { display: block; width: max-content; max-width: min(calc(var(--font-size-ui-md) * 24), calc(100vw - var(--space-32))); }
+j3w1-wizard .combobox-option[aria-selected=true] { background: var(--color-interaction-selection-bg); color: var(--color-interaction-selection-text); }
+j3w1-wizard .menu-list [role=menu] { min-width: calc(var(--font-size-ui-md) * 10); }
+j3w1-wizard [data-tree-toggle] { border: 0; padding: 0 var(--space-4); background: transparent; color: inherit; font: inherit; cursor: pointer; }
+j3w1-wizard .file-input-zone[data-dragging=true] { outline: var(--border-width-emphasis) dashed var(--color-interaction-drop-target); }
+j3w1-wizard .data-table-resize { cursor: col-resize; touch-action: none; }
+j3w1-wizard .wizard-panel[hidden] { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  j3w1-wizard, j3w1-wizard * { scroll-behavior: auto; animation: none; transition: none; }
+}
+@media (forced-colors: active) {
+  j3w1-wizard .chart-series { fill: CanvasText; stroke: CanvasText; }
+  j3w1-wizard [aria-selected=true] { border-inline-start: var(--border-width-emphasis) solid Highlight; }
+}

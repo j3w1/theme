@@ -1,0 +1,469 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "1.0.0",
+  "profile": "default",
+  "profileStatus": "approved",
+  "release": {
+    "version": "1.0.0",
+    "stability": "release",
+    "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
+  },
+  "sourceDigest": "sha256-ZBxaPGMyHoIGQgEd1TPIM+OenmDQ3M0HQ2eDr2AW7oI=",
+  "id": "error-state",
+  "family": "feedback",
+  "maturity": "stable",
+  "priority": "R2",
+  "coverage": {
+    "family": "feedback",
+    "priority": "R2",
+    "maturity": "stable",
+    "specified": true,
+    "demonstrated": true,
+    "tested": false,
+    "testImplemented": false,
+    "states": 5
+  },
+  "title": "Error state",
+  "summary": "A specific failure explanation with an explicit recovery request.",
+  "anchors": {
+    "site": "https://j3w1.github.io/theme/reference/#c-error-state",
+    "spec": "spec/components/error-state.md",
+    "brief": "exports/components/error-state.brief.txt"
+  },
+  "native": true,
+  "aria": {
+    "pattern": "Named section and native retry button"
+  },
+  "variants": [
+    {
+      "id": "default",
+      "name": "Default"
+    }
+  ],
+  "sizes": [
+    "compact",
+    "comfortable"
+  ],
+  "states": [
+    "default",
+    "error",
+    "loading",
+    "disabled",
+    "focus-visible"
+  ],
+  "tokens": {
+    "root.bg": {
+      "alias": "color.surface.default",
+      "value": "#100c0c",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-023",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "root.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "root.border": {
+      "alias": "color.border.control",
+      "value": "#a3676b",
+      "status": "proposed",
+      "deprecated": false,
+      "decisionId": "D-007",
+      "eligibility": {
+        "action": "use-and-report",
+        "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
+        "decisionIds": [
+          "D-007"
+        ]
+      }
+    },
+    "heading.text": {
+      "alias": "color.text.bright",
+      "value": "#ffa2a7",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "secondary.text": {
+      "alias": "color.text.muted",
+      "value": "#bd787d",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "control.bg": {
+      "alias": "color.surface.input",
+      "value": "#000000",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-023",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "control.focus": {
+      "alias": "color.interaction.focus.ring",
+      "value": "#e53935",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "dependency.role-border-width-default": {
+      "alias": "border.width.default",
+      "value": "1px",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "dependency.role-border-width-emphasis": {
+      "alias": "border.width.emphasis",
+      "value": "2px",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "dependency.role-color-border-disabled": {
+      "alias": "color.border.disabled",
+      "value": "#7d1310",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "dependency.role-color-interaction-disabled-bg": {
+      "alias": "color.interaction.disabled.bg",
+      "value": "#160b0b",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "dependency.role-color-status-danger-border": {
+      "alias": "color.status.danger.border",
+      "value": "#e53935",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "dependency.role-color-status-danger-text": {
+      "alias": "color.status.danger.text",
+      "value": "#f73f35",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "dependency.role-color-text-disabled": {
+      "alias": "color.text.disabled",
+      "value": "#8a5559",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-003",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "dependency.role-density-comfortable-control-height": {
+      "alias": "density.comfortable.control-height",
+      "value": "32px",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "dependency.role-density-compact-control-height": {
+      "alias": "density.compact.control-height",
+      "value": "24px",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "dependency.role-radius-none": {
+      "alias": "radius.none",
+      "value": "0px",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "dependency.role-space-12": {
+      "alias": "space.12",
+      "value": "12px",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "dependency.role-space-2": {
+      "alias": "space.2",
+      "value": "2px",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "dependency.role-space-8": {
+      "alias": "space.8",
+      "value": "8px",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    }
+  },
+  "stateRules": [
+    {
+      "state": "default",
+      "visual": "Danger border and text heading.",
+      "channel": "Specific written explanation and error glyph.",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed",
+          "deprecated": false,
+          "decisionId": null,
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
+        },
+        "bg": {
+          "alias": "color.surface.default",
+          "value": "#100c0c",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-023",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
+        },
+        "border": {
+          "alias": "color.border.control",
+          "value": "#a3676b",
+          "status": "proposed",
+          "deprecated": false,
+          "decisionId": "D-007",
+          "eligibility": {
+            "action": "use-and-report",
+            "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
+            "decisionIds": [
+              "D-007"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "state": "error",
+      "visual": "Same explicit failure treatment.",
+      "channel": "Failure text remains available.",
+      "tokens": {}
+    },
+    {
+      "state": "loading",
+      "visual": "Busy status accompanies the existing explanation.",
+      "channel": "aria-busy and host-provided pending text.",
+      "tokens": {}
+    },
+    {
+      "state": "disabled",
+      "visual": "Disabled roles at full opacity.",
+      "channel": "Native retry button is disabled.",
+      "tokens": {}
+    },
+    {
+      "state": "focus-visible",
+      "visual": "Dashed ring.",
+      "channel": "Native keyboard focus.",
+      "tokens": {}
+    }
+  ],
+  "keyboard": [
+    {
+      "key": "Tab / Shift+Tab",
+      "action": "Reach the recovery action."
+    },
+    {
+      "key": "Enter / Space",
+      "action": "Request a retry without moving focus."
+    }
+  ],
+  "responsive": "Wrap labels and actions without changing source order. Use logical spacing in RTL. Preserve native target sizes at both densities; only bounded data regions may scroll horizontally.",
+  "portability": {
+    "web": "Explain a failed operation and offer a bounded recovery action. Retrying emits a request; the component does not claim that a service recovered. The host updates content when the actual operation completes.",
+    "nativeFallbacks": [
+      "Use equivalent native semantics and approved roles; record any unsupported behavior as a mapping deviation."
+    ]
+  },
+  "fixtures": [
+    "FX-320",
+    "FX-360",
+    "FX-ZOOM-200",
+    "FX-I18N",
+    "FX-RTL",
+    "FX-RM",
+    "FX-HC",
+    "FX-TOUCH",
+    "FX-DENSITY",
+    "FX-STATE-MATRIX"
+  ],
+  "related": [],
+  "specimens": [],
+  "nonExamples": "Unlabelled controls, color-only status, drag-only operations, hidden required instructions, stolen focus or an invented service success.",
+  "contrast": [
+    {
+      "label": "error-state default text",
+      "state": "default",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.default",
+      "fgHex": "#e99499",
+      "bgHex": "#100c0c",
+      "ratio": 8.48,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "error-state default border",
+      "state": "default",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.control",
+      "bg": "color.surface.default",
+      "fgHex": "#a3676b",
+      "bgHex": "#100c0c",
+      "ratio": 4.36,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "Primary content",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.default",
+      "fgHex": "#e99499",
+      "bgHex": "#100c0c",
+      "ratio": 8.48,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "Supporting content",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.muted",
+      "bg": "color.surface.default",
+      "fgHex": "#bd787d",
+      "bgHex": "#100c0c",
+      "ratio": 5.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "Control boundary",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.control",
+      "bg": "color.surface.default",
+      "fgHex": "#a3676b",
+      "bgHex": "#100c0c",
+      "ratio": 4.36,
+      "pass": true,
+      "waiver": null
+    }
+  ]
+}

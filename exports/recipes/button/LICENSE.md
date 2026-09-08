@@ -1,4 +1,4 @@
-Recipe distribution for j3w1 theme 0.1.0. Source license text follows unchanged.
+Recipe distribution for j3w1 theme 1.0.0. Source license text follows unchanged.
 
 # Licenses
 
@@ -7,8 +7,8 @@ reference material is listed at the end and is **not** relicensed here.
 
 | Material | License |
 | --- | --- |
-| Code, schemas, scripts, tests, site source (`scripts/`, `schemas/`, `tests/`, `site/`, `astro.config.mjs`, `playwright.config.mjs`), design tokens (`tokens/`), generated machine exports (`exports/*.json`, `exports/*.css`, `exports/digests.json`), port manifests and generated port artifacts (`ports/**`), templates (`templates/`) | MIT (below) |
-| Specification prose and specimens (`spec/**`, `agents/**`, `README.md`, `AGENTS.md`, `CHANGELOG.md`, `exports/*.md`, `exports/llms.txt`, `exports/components/*.brief.txt`) | [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/) |
+| Code, schemas, scripts, tests, site source (`packages/`, `apps/`, `scripts/`, `schemas/`, `tests/`, `site/`, `astro.config.mjs`, `playwright.config.mjs`), design tokens (`tokens/`), generated machine exports (`exports/*.json`, `exports/*.css`, `exports/digests.json`), port manifests and generated port artifacts (`ports/**`), templates (`templates/`) | MIT (below) |
+| Specification prose and specimens (`docs/**`, `spec/**`, `agents/**`, `README.md`, `AGENTS.md`, `CHANGELOG.md`, `exports/*.md`, `exports/llms.txt`, `exports/components/*.brief.txt`) | [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/) |
 | Screenshots and captures under `references/**` | All rights reserved by the repository owner. Reference only; not licensed for reuse or redistribution. |
 | Excerpts and catalogue entries pointing at `j3w1/1w3j` and `j3w1/j3w1.github.io` | As licensed in the source repository at the pinned revision. Nothing is relicensed by being catalogued here. |
 | Fonts | Not distributed. The recommended family (Source Code Pro / SauceCodePro Nerd Font) is referenced by name; obtain it from its publisher under the SIL Open Font License. |

@@ -1,4 +1,5 @@
 .tool-main { width: 100%; margin-inline: auto; }
+.tool-header .stamp { overflow-wrap: anywhere; }
 [data-port-content] code { overflow-wrap: anywhere; }
 [data-port-content] [hidden] { display: none !important; }
 .site-header h1 { overflow-wrap: anywhere; }

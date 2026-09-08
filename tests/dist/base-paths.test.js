@@ -7,6 +7,9 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 import test from "node:test";
 import { listFiles, readJson, readText, repoRoot } from "../../scripts/lib/fs.mjs";
+import { hashDestinations } from "../../apps/demo/src/navigation.js";
+import { parse } from "parse5";
+import { walkMarkup } from "../../scripts/lib/markup.mjs";
 
 const manifest = await readJson("theme.json");
 const base = `${manifest.site.base}/`;
@@ -15,12 +18,18 @@ const ALLOWED_HOSTS = ["github.com", "raw.githubusercontent.com", "api.github.co
 const distFiles = await listFiles("dist");
 assert.ok(distFiles.length > 0, "dist/ is empty — run npm run build first");
 
-const attrValues = (html) => {
+const attrValues = (text, css = false) => {
   const out = [];
-  for (const m of html.matchAll(/\s(?:href|src|srcset|action|poster|data-copy-brief)="([^"]*)"/g)) out.push(m[1]);
-  /* meta content is only a URL when it looks like one (og:url); other meta text is prose */
-  for (const m of html.matchAll(/\scontent="((?:https?:\/\/|\/)[^"]*)"/g)) out.push(m[1]);
-  for (const m of html.matchAll(/url\(\s*["']?([^"')]+)["']?\s*\)/g)) out.push(m[1]);
+  const cssValues = source => { for (const m of source.matchAll(/url\(\s*["']?([^"')]+)["']?\s*\)/g)) out.push(m[1]); };
+  if (css) cssValues(text);
+  else walkMarkup(parse(text),node=>{
+    for (const {name,value} of node.attrs??[]) {
+      if (["href","src","srcset","action","poster","data-copy-brief"].includes(name)) out.push(value);
+      if (node.tagName==="meta" && name==="content" && /^(https?:\/\/|\/)/.test(value))out.push(value);
+      if (name==="style")cssValues(value);
+    }
+    if(node.tagName==="style")cssValues((node.childNodes??[]).map(child=>child.value??"").join(""));
+  });
   return out;
 };
 
@@ -37,7 +46,7 @@ test("no root-absolute URL escapes the base path, and every internal reference r
   const problems = [];
   for (const file of distFiles.filter((f) => f.endsWith(".html") || f.endsWith(".css"))) {
     const text = await readText(file);
-    for (const raw of attrValues(text)) {
+    for (const raw of attrValues(text, file.endsWith(".css"))) {
       const value = raw.trim();
       if (!value || value.startsWith("#") || value.startsWith("mailto:")) continue;
       if (/^https?:\/\//.test(value)) {
@@ -69,6 +78,10 @@ test("no root-absolute URL escapes the base path, and every internal reference r
     const text = await readText(file);
     for (const m of text.matchAll(/["'`](\/(?!theme\/)[a-z0-9_./-]+)["'`]/gi)) {
       if (m[1].startsWith("/theme")) continue;
+      // The Vue Router bundle contains registered hash destinations and its
+      // protocol-relative URL sentinel. These are not HTTP resource requests.
+      // portal.spec.js visits every destination and asserts actual request paths.
+      if (file.startsWith("dist/demo/assets/") && (hashDestinations.includes(m[1]) || m[1] === "//")) continue;
       problems.push(`${file}: string literal ${m[1]} looks root-absolute`);
     }
   }

@@ -1,0 +1,11 @@
+import { promises as fs } from "node:fs";
+import { execFileSync } from "node:child_process";
+import path from "node:path";
+import { repoRoot, sha256, stableJson } from "./lib/fs.mjs";
+if (!process.env.npm_execpath) throw new Error("Run through npm run ui:pack or npm run build");
+const directory = path.join(repoRoot, ".cache/packages");
+await fs.mkdir(directory, { recursive: true });
+const [result] = JSON.parse(execFileSync(process.execPath, [process.env.npm_execpath, "pack", "--workspace", "@j3w1/ui", "--pack-destination", directory, "--json"], { cwd: repoRoot, encoding: "utf8" }));
+const bytes = await fs.readFile(path.join(directory, result.filename));
+await fs.writeFile(path.join(directory, "release.json"), stableJson({ name: result.name, version: result.version, file: result.filename, integrity: result.integrity, sha256: sha256(bytes), bytes: bytes.length, npmPublication: "Owner release action; this artifact does not assert registry publication" }));
+console.log(`Prepared ${result.filename}: ${bytes.length} bytes`);

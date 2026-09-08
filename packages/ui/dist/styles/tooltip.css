@@ -1,0 +1,137 @@
+j3w1-tooltip { display: inline-block; }
+j3w1-tooltip {
+  color-scheme: dark;
+  background: var(--color-surface-canvas);
+  color: var(--color-text-default);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+}
+j3w1-tooltip, j3w1-tooltip *, j3w1-tooltip *::before, j3w1-tooltip *::after { box-sizing: border-box; }
+j3w1-tooltip button, j3w1-tooltip input, j3w1-tooltip select, j3w1-tooltip textarea { font: inherit; }
+j3w1-tooltip ::selection {
+  background: var(--color-interaction-text-selection-bg);
+  color: var(--color-interaction-text-selection-text);
+}
+j3w1-tooltip .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+j3w1-tooltip .tooltip {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-4);
+  min-width: 0;
+  color: var(--color-text-default);
+}
+
+j3w1-tooltip .tooltip-trigger {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--density-control-height, 32px);
+  padding: 0 var(--density-control-padding-x, 12px);
+  background: transparent;
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+  color: var(--color-action-tertiary-text);
+  font: inherit;
+  cursor: pointer;
+}
+
+j3w1-tooltip .tooltip-popup {
+  z-index: var(--z-popover);
+  max-width: min(calc(var(--font-size-ui-md) * 24), 100%);
+  padding: var(--space-4) var(--space-8);
+  background: var(--color-surface-raised);
+  border: var(--border-width-default) solid var(--color-border-overlay);
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+  overflow-wrap: anywhere;
+}
+
+j3w1-tooltip .tooltip-popup[hidden] {
+  display: none;
+}
+
+j3w1-tooltip .tooltip-shortcut {
+  margin-inline-start: var(--space-4);
+  padding: 0 var(--space-4);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+  color: var(--color-text-bright);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-ui-sm);
+  white-space: nowrap;
+}
+j3w1-tooltip .tooltip-trigger:hover {
+  background: var(--color-action-tertiary-hover-bg);
+}
+j3w1-tooltip .tooltip-trigger:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+j3w1-tooltip .tooltip-trigger:hover + .tooltip-popup,
+j3w1-tooltip .tooltip-trigger:focus-visible + .tooltip-popup {
+  display: block;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  j3w1-tooltip .tooltip-popup {
+    transition: opacity var(--motion-duration-fast);
+  }
+}
+
+@media (hover: none) {
+  j3w1-tooltip .tooltip-trigger:hover {
+    background: transparent;
+  }
+}
+
+@media (forced-colors: active) {
+  j3w1-tooltip .tooltip-popup {
+    border-color: CanvasText;
+  }
+
+  j3w1-tooltip .tooltip-trigger:focus-visible {
+    outline-color: Highlight;
+  }
+}
+
+j3w1-tooltip [hidden] { display: none !important; }
+j3w1-tooltip .j3w1-visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+j3w1-tooltip .j3w1-readonly-text { white-space: pre; overflow: auto; font: inherit; }
+j3w1-tooltip dialog.dialog:modal, j3w1-tooltip dialog.command-palette-dialog:modal {
+  position: fixed; inset: 0; margin: auto;
+  max-width: calc(100vw - var(--space-32)); max-height: calc(100dvh - var(--space-32)); overflow: auto;
+}
+j3w1-tooltip dialog.drawer:modal { position: fixed; inset-block: 0; margin-block: 0; max-height: 100dvh; height: 100dvh; overflow: auto; }
+j3w1-tooltip dialog.drawer-start:modal { inset-inline-start: 0; inset-inline-end: auto; margin-inline: 0; }
+j3w1-tooltip dialog.drawer-end:modal { inset-inline-end: 0; inset-inline-start: auto; margin-inline: 0; }
+j3w1-tooltip .menu-list, j3w1-tooltip .combobox-listbox, j3w1-tooltip .tooltip-popup, j3w1-tooltip .popover-panel { z-index: var(--z-popover); }
+j3w1-tooltip .tooltip-popup:not([hidden]) { display: block; width: max-content; max-width: min(calc(var(--font-size-ui-md) * 24), calc(100vw - var(--space-32))); }
+j3w1-tooltip .combobox-option[aria-selected=true] { background: var(--color-interaction-selection-bg); color: var(--color-interaction-selection-text); }
+j3w1-tooltip .menu-list [role=menu] { min-width: calc(var(--font-size-ui-md) * 10); }
+j3w1-tooltip [data-tree-toggle] { border: 0; padding: 0 var(--space-4); background: transparent; color: inherit; font: inherit; cursor: pointer; }
+j3w1-tooltip .file-input-zone[data-dragging=true] { outline: var(--border-width-emphasis) dashed var(--color-interaction-drop-target); }
+j3w1-tooltip .data-table-resize { cursor: col-resize; touch-action: none; }
+j3w1-tooltip .wizard-panel[hidden] { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  j3w1-tooltip, j3w1-tooltip * { scroll-behavior: auto; animation: none; transition: none; }
+}
+@media (forced-colors: active) {
+  j3w1-tooltip .chart-series { fill: CanvasText; stroke: CanvasText; }
+  j3w1-tooltip [aria-selected=true] { border-inline-start: var(--border-width-emphasis) solid Highlight; }
+}

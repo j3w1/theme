@@ -1,0 +1,62 @@
+j3w1-command-palette { display: block; }
+j3w1-command-palette {
+  color-scheme: dark;
+  background: var(--color-surface-canvas);
+  color: var(--color-text-default);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+}
+j3w1-command-palette, j3w1-command-palette *, j3w1-command-palette *::before, j3w1-command-palette *::after { box-sizing: border-box; }
+j3w1-command-palette button, j3w1-command-palette input, j3w1-command-palette select, j3w1-command-palette textarea { font: inherit; }
+j3w1-command-palette ::selection {
+  background: var(--color-interaction-text-selection-bg);
+  color: var(--color-interaction-text-selection-text);
+}
+j3w1-command-palette .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+j3w1-command-palette .command-palette {box-sizing:border-box;display:grid;gap:var(--space-12);min-width:0;padding:var(--space-12);background:var(--color-surface-default);color:var(--color-text-default);border:var(--border-width-default) solid var(--color-border-control);border-radius:var(--radius-none);font:inherit}
+j3w1-command-palette .command-palette-control {font:inherit;min-height:var(--density-control-height);padding:var(--space-8);background:var(--color-surface-input);color:var(--color-text-default);border:var(--border-width-default) solid var(--color-border-control);border-radius:var(--radius-none)}
+j3w1-command-palette .command-palette :focus-visible {outline:var(--border-width-default) dashed var(--color-interaction-focus-ring);outline-offset:var(--space-2)}
+j3w1-command-palette .command-palette-dialog {width:min(calc(var(--font-size-ui-md) * 36),100%);max-height:80vh;margin:0;padding:var(--space-16);background:var(--color-surface-overlay);color:var(--color-text-default);border:var(--border-width-default) solid var(--color-border-overlay);border-radius:var(--radius-none)}j3w1-command-palette .command-palette [role=listbox] {list-style:none;padding:0;max-height:40vh;overflow:auto}j3w1-command-palette .command-palette [role=option] {display:grid;grid-template-columns:calc(var(--font-size-ui-md) * 5) 1fr;padding:var(--space-8);border-inline-start:var(--border-width-emphasis) solid transparent;cursor:pointer}j3w1-command-palette .command-palette [role=option] span {color:var(--color-text-muted)}j3w1-command-palette .command-palette [aria-selected=true] {background:var(--color-interaction-selection-bg);color:var(--color-interaction-selection-text);border-inline-start-color:var(--color-border-selected-indicator)}j3w1-command-palette .command-palette-dialog::backdrop {background:var(--color-surface-backdrop)}j3w1-command-palette .command-palette-dialog:not([open]) {display:none}j3w1-command-palette .command-palette [data-command-status] {color:var(--color-text-muted)}
+
+j3w1-command-palette .command-palette [role="option"][aria-selected="true"] span { color: inherit; }
+
+j3w1-command-palette [hidden] { display: none !important; }
+j3w1-command-palette .j3w1-visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+j3w1-command-palette .j3w1-readonly-text { white-space: pre; overflow: auto; font: inherit; }
+j3w1-command-palette dialog.dialog:modal, j3w1-command-palette dialog.command-palette-dialog:modal {
+  position: fixed; inset: 0; margin: auto;
+  max-width: calc(100vw - var(--space-32)); max-height: calc(100dvh - var(--space-32)); overflow: auto;
+}
+j3w1-command-palette dialog.drawer:modal { position: fixed; inset-block: 0; margin-block: 0; max-height: 100dvh; height: 100dvh; overflow: auto; }
+j3w1-command-palette dialog.drawer-start:modal { inset-inline-start: 0; inset-inline-end: auto; margin-inline: 0; }
+j3w1-command-palette dialog.drawer-end:modal { inset-inline-end: 0; inset-inline-start: auto; margin-inline: 0; }
+j3w1-command-palette .menu-list, j3w1-command-palette .combobox-listbox, j3w1-command-palette .tooltip-popup, j3w1-command-palette .popover-panel { z-index: var(--z-popover); }
+j3w1-command-palette .tooltip-popup:not([hidden]) { display: block; width: max-content; max-width: min(calc(var(--font-size-ui-md) * 24), calc(100vw - var(--space-32))); }
+j3w1-command-palette .combobox-option[aria-selected=true] { background: var(--color-interaction-selection-bg); color: var(--color-interaction-selection-text); }
+j3w1-command-palette .menu-list [role=menu] { min-width: calc(var(--font-size-ui-md) * 10); }
+j3w1-command-palette [data-tree-toggle] { border: 0; padding: 0 var(--space-4); background: transparent; color: inherit; font: inherit; cursor: pointer; }
+j3w1-command-palette .file-input-zone[data-dragging=true] { outline: var(--border-width-emphasis) dashed var(--color-interaction-drop-target); }
+j3w1-command-palette .data-table-resize { cursor: col-resize; touch-action: none; }
+j3w1-command-palette .wizard-panel[hidden] { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  j3w1-command-palette, j3w1-command-palette * { scroll-behavior: auto; animation: none; transition: none; }
+}
+@media (forced-colors: active) {
+  j3w1-command-palette .chart-series { fill: CanvasText; stroke: CanvasText; }
+  j3w1-command-palette [aria-selected=true] { border-inline-start: var(--border-width-emphasis) solid Highlight; }
+}

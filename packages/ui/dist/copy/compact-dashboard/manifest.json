@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "component": "compact-dashboard",
+  "version": "1.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/compact-dashboard.md",
+  "dependencies": [
+    "register/compact-dashboard.js",
+    "chunks/element-B0z6sqq8.js",
+    "register/chart.js",
+    "components/chart.js",
+    "chunks/display-Cg9VLOYZ.js",
+    "chunks/dom-BVXrzskP.js",
+    "components/compact-dashboard.js",
+    "chunks/compositions-C-7IoRHC.js",
+    "chunks/navigation-CPDNZIIt.js"
+  ],
+  "files": {
+    "runtime/register/compact-dashboard.js": "sha256-BDdSXpfMCPVKj/nI3pnTWKOrHCr9GLR33GDu6o2O3/Y=",
+    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
+    "runtime/register/chart.js": "sha256-O9Oy0JHA5nh83a8yVozobMYLzafLP2ubuN204W0YcF0=",
+    "runtime/components/chart.js": "sha256-6zE+/Tt96D8JxPe97PD+GNMFnMBU8wCZlOHfvmZqOwI=",
+    "runtime/chunks/display-Cg9VLOYZ.js": "sha256-bQA907mIA00ZSmhBbqsjGxJoa6v9+t/gIfm+f8TnZTY=",
+    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "runtime/components/compact-dashboard.js": "sha256-DW2T0NQmYaaC3GhTLoGcPOJ83ovSpMemYGOCuEZiGIE=",
+    "runtime/chunks/compositions-C-7IoRHC.js": "sha256-GRIYcEQEaGRJJrMK/2oZP6C8GYMarM/vwVUwAwVA66g=",
+    "runtime/chunks/navigation-CPDNZIIt.js": "sha256-hvSCgp3WLoCXXZnX8dgEpwxYZjbpAKxYS512EwBSmkU=",
+    "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
+    "component.css": "sha256-voNytl3CeKABRvDOG2Lq4G+RAuFL/2A/Jy2VLgqdODg=",
+    "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
+    "element.html": "sha256-I++zY2714BqcfCh02WgcXCFwujrwXLK4TwP9wII+QE4=",
+    "index.html": "sha256-3/JWb8Uk24wjHBuQjWRaXDvwfUi9Mp9wjh4uYtdNxQ4=",
+    "README.md": "sha256-1AGP1mjEdaS2Wc1/MJWJE0Zy0l60jw5J9Rxckh+84nw="
+  }
+}

@@ -1,0 +1,6 @@
+.button-group {box-sizing:border-box;display:grid;gap:var(--space-12);min-width:0;padding:var(--space-12);background:var(--color-surface-default);color:var(--color-text-default);border:var(--border-width-default) solid var(--color-border-control);border-radius:var(--radius-none);font:inherit}
+.button-group-control {font:inherit;min-height:var(--density-control-height);padding:var(--space-8);background:var(--color-surface-input);color:var(--color-text-default);border:var(--border-width-default) solid var(--color-border-control);border-radius:var(--radius-none)}
+.button-group :focus-visible,[data-state-focus-visible] .button-group [data-demo-focus-target] {outline:var(--border-width-default) dashed var(--color-interaction-focus-ring);outline-offset:var(--space-2)}
+.button-group :disabled,[data-state-disabled] .button-group-control {color:var(--color-text-disabled);background:var(--color-interaction-disabled-bg);border-color:var(--color-border-disabled);opacity:1}
+.button-group-actions {display:flex;flex-wrap:wrap;gap:var(--space-8)}
+.button-group {display:flex;flex-wrap:wrap;gap:var(--space-4)}

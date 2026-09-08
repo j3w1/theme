@@ -1,0 +1,186 @@
+j3w1-pagination { display: block; }
+j3w1-pagination {
+  color-scheme: dark;
+  background: var(--color-surface-canvas);
+  color: var(--color-text-default);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+}
+j3w1-pagination, j3w1-pagination *, j3w1-pagination *::before, j3w1-pagination *::after { box-sizing: border-box; }
+j3w1-pagination button, j3w1-pagination input, j3w1-pagination select, j3w1-pagination textarea { font: inherit; }
+j3w1-pagination ::selection {
+  background: var(--color-interaction-text-selection-bg);
+  color: var(--color-interaction-text-selection-text);
+}
+j3w1-pagination .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+j3w1-pagination .pagination {
+  min-width: 0;
+  color: var(--color-text-default);
+  background: var(--color-surface-default);
+}
+
+j3w1-pagination .pagination-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--density-gap, 4px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+j3w1-pagination .pagination-compact .pagination-list {
+  flex-wrap: nowrap;
+}
+
+j3w1-pagination .pagination-item {
+  display: inline-flex;
+  min-width: 0;
+}
+
+j3w1-pagination .pagination-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--density-control-height, 32px);
+  min-height: var(--density-control-height, 32px);
+  padding: 0 var(--space-8);
+  background: transparent;
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+  text-decoration: none;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+j3w1-pagination .pagination-edge {
+  padding: 0 var(--density-control-padding-x, 12px);
+}
+
+j3w1-pagination .pagination-glyph {
+  padding-inline: var(--space-2);
+}
+
+j3w1-pagination .pagination-gap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--density-control-height, 32px);
+  min-height: var(--density-control-height, 32px);
+  color: var(--color-text-muted);
+  user-select: none;
+}
+
+j3w1-pagination .pagination-status {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--density-control-height, 32px);
+  padding: 0 var(--space-8);
+  color: var(--color-text-default);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+j3w1-pagination .pagination-status-current {
+  padding-inline-end: var(--space-4);
+  color: var(--color-text-bright);
+  font-weight: var(--font-weight-bold);
+}
+j3w1-pagination .pagination-link:hover {
+  background: var(--color-interaction-hover-bg);
+}
+j3w1-pagination .pagination-link:active {
+  background: var(--color-interaction-pressed-bg);
+}
+j3w1-pagination .pagination-link:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+j3w1-pagination .pagination-link:focus:not(:focus-visible) {
+  outline: 0;
+}
+j3w1-pagination .pagination-link[aria-current="page"] {
+  background: var(--color-interaction-selection-bg);
+  color: var(--color-text-on-selection);
+}
+
+j3w1-pagination .pagination-link[aria-current="page"]:hover {
+  background: var(--color-interaction-selection-bg);
+}
+
+j3w1-pagination .pagination-link[aria-current="page"]:focus-visible {
+  outline-color: var(--color-interaction-focus-ring-container);
+}
+j3w1-pagination .pagination-link[aria-disabled="true"] {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+j3w1-pagination .pagination-link[aria-disabled="true"]:hover {
+  background: transparent;
+}
+
+@media (hover: none) {
+  j3w1-pagination .pagination-link:hover {
+    background: transparent;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  j3w1-pagination .pagination-link {
+    transition: background-color var(--motion-duration-fast);
+  }
+}
+
+@media (forced-colors: active) {
+  j3w1-pagination .pagination-link:focus-visible {
+    outline-color: Highlight;
+  }
+
+  j3w1-pagination .pagination-link[aria-current="page"] {
+    background: Highlight;
+    color: HighlightText;
+  }
+}
+
+j3w1-pagination [hidden] { display: none !important; }
+j3w1-pagination .j3w1-visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+j3w1-pagination .j3w1-readonly-text { white-space: pre; overflow: auto; font: inherit; }
+j3w1-pagination dialog.dialog:modal, j3w1-pagination dialog.command-palette-dialog:modal {
+  position: fixed; inset: 0; margin: auto;
+  max-width: calc(100vw - var(--space-32)); max-height: calc(100dvh - var(--space-32)); overflow: auto;
+}
+j3w1-pagination dialog.drawer:modal { position: fixed; inset-block: 0; margin-block: 0; max-height: 100dvh; height: 100dvh; overflow: auto; }
+j3w1-pagination dialog.drawer-start:modal { inset-inline-start: 0; inset-inline-end: auto; margin-inline: 0; }
+j3w1-pagination dialog.drawer-end:modal { inset-inline-end: 0; inset-inline-start: auto; margin-inline: 0; }
+j3w1-pagination .menu-list, j3w1-pagination .combobox-listbox, j3w1-pagination .tooltip-popup, j3w1-pagination .popover-panel { z-index: var(--z-popover); }
+j3w1-pagination .tooltip-popup:not([hidden]) { display: block; width: max-content; max-width: min(calc(var(--font-size-ui-md) * 24), calc(100vw - var(--space-32))); }
+j3w1-pagination .combobox-option[aria-selected=true] { background: var(--color-interaction-selection-bg); color: var(--color-interaction-selection-text); }
+j3w1-pagination .menu-list [role=menu] { min-width: calc(var(--font-size-ui-md) * 10); }
+j3w1-pagination [data-tree-toggle] { border: 0; padding: 0 var(--space-4); background: transparent; color: inherit; font: inherit; cursor: pointer; }
+j3w1-pagination .file-input-zone[data-dragging=true] { outline: var(--border-width-emphasis) dashed var(--color-interaction-drop-target); }
+j3w1-pagination .data-table-resize { cursor: col-resize; touch-action: none; }
+j3w1-pagination .wizard-panel[hidden] { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  j3w1-pagination, j3w1-pagination * { scroll-behavior: auto; animation: none; transition: none; }
+}
+@media (forced-colors: active) {
+  j3w1-pagination .chart-series { fill: CanvasText; stroke: CanvasText; }
+  j3w1-pagination [aria-selected=true] { border-inline-start: var(--border-width-emphasis) solid Highlight; }
+}

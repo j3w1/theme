@@ -27,6 +27,32 @@
             }
           }
         },
+        "14": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.03529411764705882,
+              0.027450980392156862,
+              0.027450980392156862
+            ],
+            "alpha": 1,
+            "hex": "#090707"
+          },
+          "$description": "True Black / Rose surface primitive; D-023.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "origin": {
+                "kind": "derived",
+                "ref": "spec/decisions.md#d-023",
+                "note": "Owner-selected True Black / Rose candidate I."
+              },
+              "approval": {
+                "decision": "D-023"
+              }
+            }
+          }
+        },
         "15": {
           "$value": {
             "colorSpace": "srgb",
@@ -95,6 +121,32 @@
                 "kind": "site",
                 "ref": "j3w1/j3w1.github.io@ffa81225149e6b6e26d0b4a850223a1781c3b973 assets/css/site.css",
                 "key": "--chrome"
+              }
+            }
+          }
+        },
+        "28": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.06274509803921569,
+              0.047058823529411764,
+              0.047058823529411764
+            ],
+            "alpha": 1,
+            "hex": "#100c0c"
+          },
+          "$description": "True Black / Rose surface primitive; D-023.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "origin": {
+                "kind": "derived",
+                "ref": "spec/decisions.md#d-023",
+                "note": "Owner-selected True Black / Rose candidate I."
+              },
+              "approval": {
+                "decision": "D-023"
               }
             }
           }

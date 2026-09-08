@@ -1,0 +1,29 @@
+/* Shared implementation rules. Forced specimen selectors are never shipped. */
+[hidden] { display: none !important; }
+.j3w1-visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+.j3w1-readonly-text { white-space: pre; overflow: auto; font: inherit; }
+dialog.dialog:modal, dialog.command-palette-dialog:modal {
+  position: fixed; inset: 0; margin: auto;
+  max-width: calc(100vw - var(--space-32)); max-height: calc(100dvh - var(--space-32)); overflow: auto;
+}
+dialog.drawer:modal { position: fixed; inset-block: 0; margin-block: 0; max-height: 100dvh; height: 100dvh; overflow: auto; }
+dialog.drawer-start:modal { inset-inline-start: 0; inset-inline-end: auto; margin-inline: 0; }
+dialog.drawer-end:modal { inset-inline-end: 0; inset-inline-start: auto; margin-inline: 0; }
+.menu-list, .combobox-listbox, .tooltip-popup, .popover-panel { z-index: var(--z-popover); }
+.tooltip-popup:not([hidden]) { display: block; width: max-content; max-width: min(24rem, calc(100vw - var(--space-32))); }
+.combobox-option[aria-selected=true] { background: var(--color-interaction-selection-bg); color: var(--color-interaction-selection-text); }
+.menu-list [role=menu] { min-width: 10rem; }
+[data-tree-toggle] { border: 0; padding: 0 var(--space-4); background: transparent; color: inherit; font: inherit; cursor: pointer; }
+.file-input-zone[data-dragging=true] { outline: var(--border-width-emphasis) dashed var(--color-interaction-drop-target); }
+.data-table-resize { cursor: col-resize; touch-action: none; }
+.wizard-panel[hidden] { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  &, * { scroll-behavior: auto; animation: none; transition: none; }
+}
+@media (forced-colors: active) {
+  .chart-series { fill: CanvasText; stroke: CanvasText; }
+  [aria-selected=true] { border-inline-start: var(--border-width-emphasis) solid Highlight; }
+}

@@ -1,0 +1,188 @@
+j3w1-list { display: block; }
+j3w1-list {
+  color-scheme: dark;
+  background: var(--color-surface-canvas);
+  color: var(--color-text-default);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+}
+j3w1-list, j3w1-list *, j3w1-list *::before, j3w1-list *::after { box-sizing: border-box; }
+j3w1-list button, j3w1-list input, j3w1-list select, j3w1-list textarea { font: inherit; }
+j3w1-list ::selection {
+  background: var(--color-interaction-text-selection-bg);
+  color: var(--color-interaction-text-selection-text);
+}
+j3w1-list .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+j3w1-list .list {
+  min-width: 0;
+  max-width: calc(var(--font-size-ui-md) * 28);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: var(--color-surface-default);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+}
+
+j3w1-list .list-option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  min-height: var(--density-row-height, 36px);
+  padding: var(--space-2) var(--density-control-padding-x, 12px);
+  box-sizing: border-box;
+  border-top: var(--border-width-default) solid var(--color-border-divider);
+  color: var(--color-text-default);
+  cursor: pointer;
+}
+
+j3w1-list .list-option:first-child {
+  border-top: 0;
+}
+
+j3w1-list .list-check {
+  display: inline-flex;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: var(--density-icon, 16px);
+  color: var(--color-interaction-selection-text);
+  visibility: hidden;
+}
+
+j3w1-list .list-label {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+j3w1-list .list-meta {
+  flex: 0 0 auto;
+  padding-inline-start: var(--space-12);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+  font-variant-numeric: tabular-nums;
+}
+j3w1-list .list-option:hover {
+  background: var(--color-interaction-hover-bg);
+}
+j3w1-list .list-option:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+j3w1-list .list-option:focus:not(:focus-visible) {
+  outline: 0;
+}
+j3w1-list .list-option[aria-selected="true"] {
+  background: var(--color-interaction-selection-bg);
+  color: var(--color-interaction-selection-text);
+}
+
+j3w1-list .list-option[aria-selected="true"] .list-check {
+  visibility: visible;
+}
+
+j3w1-list .list-option[aria-selected="true"] .list-meta {
+  color: var(--color-interaction-selection-text);
+}
+
+j3w1-list .list-option[aria-selected="true"]:hover {
+  background: var(--color-interaction-selection-bg);
+}
+j3w1-list .list-option[aria-selected="true"]:focus-visible {
+  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline-offset: var(--focus-offset);
+}
+j3w1-list .list[data-container-inactive] .list-option[aria-selected="true"] {
+  background: var(--color-interaction-selection-inactive-bg);
+  color: var(--color-interaction-selection-inactive-text);
+  outline: 0;
+}
+
+j3w1-list .list[data-container-inactive] .list-option[aria-selected="true"] .list-check,
+j3w1-list .list[data-container-inactive] .list-option[aria-selected="true"] .list-meta {
+  color: var(--color-interaction-selection-inactive-text);
+}
+j3w1-list .list-option[aria-disabled="true"] {
+  background: transparent;
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+j3w1-list .list-option[aria-disabled="true"] .list-meta {
+  color: var(--color-text-disabled);
+}
+
+j3w1-list .list-option[aria-disabled="true"]:hover {
+  background: transparent;
+}
+
+@media (hover: none) {
+  j3w1-list .list-option:hover {
+    background: transparent;
+  }
+
+  j3w1-list .list-option[aria-selected="true"]:hover {
+    background: var(--color-interaction-selection-bg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  j3w1-list .list-option {
+    transition: background-color var(--motion-duration-fast);
+  }
+}
+
+@media (forced-colors: active) {
+  j3w1-list .list-option:focus-visible {
+    outline-color: Highlight;
+  }
+
+  j3w1-list .list-option[aria-selected="true"] {
+    background: Highlight;
+    color: HighlightText;
+  }
+}
+
+j3w1-list [hidden] { display: none !important; }
+j3w1-list .j3w1-visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+j3w1-list .j3w1-readonly-text { white-space: pre; overflow: auto; font: inherit; }
+j3w1-list dialog.dialog:modal, j3w1-list dialog.command-palette-dialog:modal {
+  position: fixed; inset: 0; margin: auto;
+  max-width: calc(100vw - var(--space-32)); max-height: calc(100dvh - var(--space-32)); overflow: auto;
+}
+j3w1-list dialog.drawer:modal { position: fixed; inset-block: 0; margin-block: 0; max-height: 100dvh; height: 100dvh; overflow: auto; }
+j3w1-list dialog.drawer-start:modal { inset-inline-start: 0; inset-inline-end: auto; margin-inline: 0; }
+j3w1-list dialog.drawer-end:modal { inset-inline-end: 0; inset-inline-start: auto; margin-inline: 0; }
+j3w1-list .menu-list, j3w1-list .combobox-listbox, j3w1-list .tooltip-popup, j3w1-list .popover-panel { z-index: var(--z-popover); }
+j3w1-list .tooltip-popup:not([hidden]) { display: block; width: max-content; max-width: min(calc(var(--font-size-ui-md) * 24), calc(100vw - var(--space-32))); }
+j3w1-list .combobox-option[aria-selected=true] { background: var(--color-interaction-selection-bg); color: var(--color-interaction-selection-text); }
+j3w1-list .menu-list [role=menu] { min-width: calc(var(--font-size-ui-md) * 10); }
+j3w1-list [data-tree-toggle] { border: 0; padding: 0 var(--space-4); background: transparent; color: inherit; font: inherit; cursor: pointer; }
+j3w1-list .file-input-zone[data-dragging=true] { outline: var(--border-width-emphasis) dashed var(--color-interaction-drop-target); }
+j3w1-list .data-table-resize { cursor: col-resize; touch-action: none; }
+j3w1-list .wizard-panel[hidden] { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  j3w1-list, j3w1-list * { scroll-behavior: auto; animation: none; transition: none; }
+}
+@media (forced-colors: active) {
+  j3w1-list .chart-series { fill: CanvasText; stroke: CanvasText; }
+  j3w1-list [aria-selected=true] { border-inline-start: var(--border-width-emphasis) solid Highlight; }
+}

@@ -1,9 +1,9 @@
-import { anchorFor } from "./anchors.mjs";
+import { anchorFor, siteAnchor } from "./anchors.mjs";
 
 export const reportContext = (data, kind, id, profile = "default") => {
   if (!["component", "token"].includes(kind) || !data[kind === "component" ? "components" : "tokens"].includes(id)) throw new Error("Unknown report target");
   if (!data.profiles.includes(profile)) throw new Error("Unknown report profile");
-  return { themeVersion: data.themeVersion, revision: data.revision ?? "local unpinned build", sourceDigest: data.sourceDigest, kind, id, profile, publicAnchor: `${data.siteUrl}#${anchorFor[kind](id)}` };
+  return { themeVersion: data.themeVersion, revision: data.revision ?? "local unpinned build", sourceDigest: data.sourceDigest, kind, id, profile, publicAnchor: siteAnchor({ site: { url: data.siteUrl } }, anchorFor[kind](id)) };
 };
 export const issueDraft = (fields, context) => {
   const sections = [["Expected", "expected"], ["Actual", "actual"], ["Steps to reproduce", "steps"], ["Evidence notes", "evidence"]].map(([title, name]) => `## ${title}\n\n${String(fields[name] ?? "").trim().slice(0, 1600) || "(Please describe.)"}`).join("\n\n");

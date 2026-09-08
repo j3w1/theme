@@ -1,0 +1,4 @@
+{
+  "inline": "<j3w1-loading-indicator id=\"example-loading-indicator-inline\"><span class=\"loading-indicator loading-indicator-inline\" role=\"status\" aria-busy=\"true\"><span class=\"loading-indicator-glyph\" aria-hidden=\"true\">⋯</span><span class=\"loading-indicator-label\">Loading fonts</span></span></j3w1-loading-indicator>",
+  "block": "<j3w1-loading-indicator id=\"example-loading-indicator-block\"><div class=\"loading-indicator loading-indicator-block\" role=\"status\" aria-busy=\"true\">\n  <span class=\"loading-indicator-glyph\" aria-hidden=\"true\">⋯</span>\n  <span class=\"loading-indicator-label\">Loading the component list</span>\n</div></j3w1-loading-indicator>"
+}

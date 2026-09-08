@@ -33,6 +33,9 @@ in its `$extensions["io.github.j3w1.theme"].approval.decision`. Agents may open
 | D-019 | One-way namespaced Figma Variables bridge | proposed | 2026-09-08 | — |
 | D-020 | Bounded local validation and recovery workflow | proposed | 2026-09-08 | — |
 | D-021 | Local form composition with versioned data | proposed | 2026-09-08 | — |
+| D-022 | Local visual selection before agent implementation distribution | proposed | 2026-09-08 | — |
+| D-023 | True Black / Rose canonical foundation | accepted | 2026-09-08 | owner (explicit selection of candidate I) |
+| D-024 | Distinguish links from body text and headings | accepted | 2026-09-08 | owner (explicit preview correction) |
 
 ## D-000 Responsibility split
 
@@ -411,3 +414,67 @@ It remains a draft reference component, not a backend platform or native port.
 
 Alternatives are arbitrary HTML/schema execution, a conditional workflow
 engine, and a second visual field implementation. They exceed this task.
+
+## D-022 Local visual selection before agent implementation distribution
+
+Status: proposed. Issue #37 and the owner's implementation instruction authorize
+three local candidate systems before canonicalization. Formal design approval
+remains owner-managed.
+
+The primary outcome is agent consumption of installable or copyable components
+and compositions with complete dependencies and pinned machine contracts. The
+future package, documentation portal and Vue application are consumers of the
+same canonical design language. A local review harness first compares exactly
+three explicit token overlays with Current, using shared specimen rendering and
+an original Vue composition. Overlays, generated reports and review builds stay
+ignored and are never public profiles or delivery artifacts. The existing alias
+resolver and unrounded contrast engine evaluate candidates without changing
+canonical values, historical ANSI slots or waivers. No approval is inferred from
+numerical or browser evidence. The owner must select a concrete candidate before
+foundation freeze, mass productization or deployment. See
+`docs/phase6-visual-review.md` for commands, boundaries and continuation.
+
+Alternatives are productizing the old palette before visual selection, publishing
+unapproved preview profiles, or offering incomplete appearance-only snippets as
+consumable components. None satisfies the authorized sequence and consumption goal.
+
+## D-023 True Black / Rose canonical foundation
+
+Status: accepted. The owner explicitly selected the reviewed candidate I:
+"use the True Black / Rose theme and make it permanent for j3w1/theme",
+and authorized continuing the remaining Phase 6 implementation.
+
+The approved change is confined to seven surface assignments: canvas, sunken,
+input, code and terminal use the existing pure black primitive; chrome uses
+`#090707`; default panels use `#100c0c`. Add the two selected values as
+`color.primitive.ink.14` and `color.primitive.ink.28`, preserving the luminance
+ordering and all historical primitives. Keep every other color assignment,
+including rose/white foreground, red actions, focus, borders, selections,
+status and chart roles, exactly as reviewed. Raised/overlay surfaces remain
+`#241010`; alternate chrome remains `#1c0a09`. Preserve the complete historical
+profile by explicitly retaining its previous surface assignments.
+
+The rejected A/B/C, revised D/E/F and final G/H/I reviews are historical local
+evidence. Their temporary inputs are not public profiles. Selection approves
+these specific surface values and assignments, not unrelated pending decisions,
+new colors or accessibility waivers. This is the foundation for the Phase 6
+package, copy distributions, static portal and Vue showcase. Existing consumers
+retain their immutable pins; the new surface contract ships in version 1.0.0,
+following the repository's major-version rule for approved value changes.
+
+## D-024 Distinguish links from body text and headings
+
+Status: accepted. During the implementation preview the owner requested links
+that are more distinguishable from normal text, using different colors. This
+is an explicit correction to the foreground-role retention in D-023, limited
+to links. Map `color.text.link` to the existing strong red primitive `#f73f35`,
+retain the persistent red underline, and retain near-white hover text on the
+strong dark-red hover fill. Visited links keep the link color and underline;
+current-page indicators and selected navigation retain their explicit on-fill
+roles. Body text and heading colors remain the True Black / Rose hierarchy.
+
+The alternative of bright-rose links still shares the heading color and gives
+too little separation in the reviewed dashboard. Blue/purple links would
+introduce an unrelated hue. No new primitive, status hue, contrast exception
+or focus rule is introduced. Preserve the old link assignment in the historical
+profile. This refinement ships with the same unreleased 1.0.0 major change.

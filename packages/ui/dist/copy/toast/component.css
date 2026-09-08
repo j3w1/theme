@@ -1,0 +1,223 @@
+j3w1-toast { display: block; }
+j3w1-toast {
+  color-scheme: dark;
+  background: var(--color-surface-canvas);
+  color: var(--color-text-default);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+}
+j3w1-toast, j3w1-toast *, j3w1-toast *::before, j3w1-toast *::after { box-sizing: border-box; }
+j3w1-toast button, j3w1-toast input, j3w1-toast select, j3w1-toast textarea { font: inherit; }
+j3w1-toast ::selection {
+  background: var(--color-interaction-text-selection-bg);
+  color: var(--color-interaction-text-selection-text);
+}
+j3w1-toast .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+j3w1-toast .toast-stack {
+  display: grid;
+  gap: var(--space-8);
+  width: min(calc(var(--font-size-ui-md) * 24), 100%);
+  min-width: 0;
+  z-index: var(--z-toast);
+}
+
+j3w1-toast .toast {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-8);
+  min-width: 0;
+  padding: var(--space-8) var(--space-12);
+  background: var(--color-surface-canvas);
+  border: var(--border-width-default) solid var(--color-border-overlay);
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+  --_glyph: var(--color-status-info-text);
+  --_button-text: var(--color-action-tertiary-text);
+  --_button-hover: var(--color-action-tertiary-hover-bg);
+  --_ring: var(--color-interaction-focus-ring);
+}
+
+j3w1-toast .toast-warning {
+  background: var(--color-status-warning-tint);
+  border-color: var(--color-status-warning-border);
+  --_glyph: var(--color-status-warning-text);
+}
+
+j3w1-toast .toast-success {
+  background: var(--color-status-success-tint);
+  border-color: var(--color-status-success-border);
+  --_glyph: var(--color-status-success-text);
+}
+
+j3w1-toast .toast-info {
+  background: var(--color-status-info-tint);
+  border-color: var(--color-status-info-border);
+  --_glyph: var(--color-status-info-text);
+}
+
+j3w1-toast .toast-neutral {
+  background: var(--color-status-neutral-tint);
+  border-color: var(--color-status-neutral-border);
+  --_glyph: var(--color-status-neutral-text);
+}
+j3w1-toast .toast-danger {
+  background: var(--color-status-danger-fill);
+  border-color: var(--color-status-danger-border);
+  color: var(--color-status-danger-on-fill);
+  --_glyph: var(--color-status-danger-on-fill);
+  --_button-text: var(--color-status-danger-on-fill);
+  --_button-hover: var(--color-action-destructive-pressed-bg);
+  --_ring: var(--color-status-danger-on-fill);
+}
+
+j3w1-toast .toast-glyph {
+  flex: 0 0 auto;
+  min-width: var(--icon-size-md);
+  color: var(--_glyph);
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+}
+
+j3w1-toast .toast-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+j3w1-toast .toast-action,
+j3w1-toast .toast-close {
+  flex: 0 0 auto;
+  min-width: 24px;
+  min-height: 24px;
+  margin-top: calc(-1 * var(--space-2));
+  padding: 0 var(--space-4);
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-none);
+  color: var(--_button-text);
+  font: inherit;
+  cursor: pointer;
+}
+
+j3w1-toast .toast-action {
+  color: var(--color-text-link);
+  text-decoration: underline;
+  text-decoration-color: var(--color-text-link-underline);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+j3w1-toast .toast-danger .toast-action {
+  color: var(--color-status-danger-on-fill);
+  text-decoration-color: currentColor;
+}
+
+j3w1-toast .toast-count {
+  display: none;
+  align-self: center;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+j3w1-toast .toast-danger .toast-count {
+  color: var(--color-status-danger-on-fill);
+}
+j3w1-toast .toast-close:hover {
+  background: var(--_button-hover);
+}
+
+j3w1-toast .toast-action:hover {
+  background: var(--color-interaction-hover-bg-strong);
+  color: var(--color-text-link-hover);
+  text-decoration-thickness: 2px;
+}
+
+j3w1-toast .toast-danger .toast-action:hover {
+  background: var(--color-action-destructive-pressed-bg);
+  color: var(--color-status-danger-on-fill);
+}
+j3w1-toast .toast-action:focus-visible,
+j3w1-toast .toast-close:focus-visible {
+  outline: var(--border-width-default) dashed var(--_ring);
+  outline-offset: var(--focus-offset);
+}
+@media (prefers-reduced-motion: no-preference) {
+  j3w1-toast .toast {
+    transition: opacity var(--motion-duration-slow);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  j3w1-toast .toast {
+    transition: none;
+  }
+}
+
+@media (hover: none) {
+  j3w1-toast .toast-close:hover {
+    background: transparent;
+  }
+
+  j3w1-toast .toast-action:hover {
+    background: transparent;
+    color: var(--color-text-link);
+    text-decoration-thickness: 1px;
+  }
+}
+
+@media (forced-colors: active) {
+  j3w1-toast .toast {
+    border-color: CanvasText;
+  }
+
+  j3w1-toast .toast-action:focus-visible,
+  j3w1-toast .toast-close:focus-visible {
+    outline-color: Highlight;
+  }
+}
+
+j3w1-toast [hidden] { display: none !important; }
+j3w1-toast .j3w1-visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+j3w1-toast .j3w1-readonly-text { white-space: pre; overflow: auto; font: inherit; }
+j3w1-toast dialog.dialog:modal, j3w1-toast dialog.command-palette-dialog:modal {
+  position: fixed; inset: 0; margin: auto;
+  max-width: calc(100vw - var(--space-32)); max-height: calc(100dvh - var(--space-32)); overflow: auto;
+}
+j3w1-toast dialog.drawer:modal { position: fixed; inset-block: 0; margin-block: 0; max-height: 100dvh; height: 100dvh; overflow: auto; }
+j3w1-toast dialog.drawer-start:modal { inset-inline-start: 0; inset-inline-end: auto; margin-inline: 0; }
+j3w1-toast dialog.drawer-end:modal { inset-inline-end: 0; inset-inline-start: auto; margin-inline: 0; }
+j3w1-toast .menu-list, j3w1-toast .combobox-listbox, j3w1-toast .tooltip-popup, j3w1-toast .popover-panel { z-index: var(--z-popover); }
+j3w1-toast .tooltip-popup:not([hidden]) { display: block; width: max-content; max-width: min(calc(var(--font-size-ui-md) * 24), calc(100vw - var(--space-32))); }
+j3w1-toast .combobox-option[aria-selected=true] { background: var(--color-interaction-selection-bg); color: var(--color-interaction-selection-text); }
+j3w1-toast .menu-list [role=menu] { min-width: calc(var(--font-size-ui-md) * 10); }
+j3w1-toast [data-tree-toggle] { border: 0; padding: 0 var(--space-4); background: transparent; color: inherit; font: inherit; cursor: pointer; }
+j3w1-toast .file-input-zone[data-dragging=true] { outline: var(--border-width-emphasis) dashed var(--color-interaction-drop-target); }
+j3w1-toast .data-table-resize { cursor: col-resize; touch-action: none; }
+j3w1-toast .wizard-panel[hidden] { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  j3w1-toast, j3w1-toast * { scroll-behavior: auto; animation: none; transition: none; }
+}
+@media (forced-colors: active) {
+  j3w1-toast .chart-series { fill: CanvasText; stroke: CanvasText; }
+  j3w1-toast [aria-selected=true] { border-inline-start: var(--border-width-emphasis) solid Highlight; }
+}

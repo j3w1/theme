@@ -1,0 +1,4 @@
+{
+  "default": "<j3w1-tooltip id=\"example-tooltip-default\"><div class=\"tooltip\">\n  <button class=\"tooltip-trigger\" type=\"button\" aria-describedby=\"example-tooltip-default-tt-reload\">Reload</button>\n  <div class=\"tooltip-popup\" role=\"tooltip\" id=\"example-tooltip-default-tt-reload\">Reload the window and keep the layout.</div>\n</div></j3w1-tooltip>",
+  "with-shortcut": "<j3w1-tooltip id=\"example-tooltip-with-shortcut\"><div class=\"tooltip\">\n  <button class=\"tooltip-trigger\" type=\"button\" aria-describedby=\"example-tooltip-with-shortcut-tt-split\">Split</button>\n  <div class=\"tooltip-popup\" role=\"tooltip\" id=\"example-tooltip-with-shortcut-tt-split\">Split the focused container horizontally <kbd class=\"tooltip-shortcut\">Mod+h</kbd></div>\n</div></j3w1-tooltip>"
+}

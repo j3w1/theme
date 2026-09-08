@@ -1,0 +1,7 @@
+---
+import PortalLayout from "../../layouts/PortalLayout.astro";
+import { withBase } from "../../lib/base";
+import { getCollection } from "astro:content";
+const entries = (await getCollection("components")).filter(c => ["patterns", "compositions"].includes(c.data.family) || ["admin-form", "settings-panel", "filterable-table", "compact-dashboard", "file-browser", "i3-chrome"].includes(c.id));
+---
+<PortalLayout title="Application patterns" description="Compose native controls into complete workflows. Each pattern includes its behavior, nested component registrations, styles and token dependencies."><div class="portal-grid">{entries.map(c => <a class="portal-card" href={withBase(`components/${c.id}/`)}><h2>{c.data.name} →</h2><p>{c.data.summary}</p></a>)}<a class="portal-card" href={withBase("patterns/validation-recovery/")}><h2>Validation and recovery →</h2><p>Errors, review, correction and confirmation across a native form.</p></a></div></PortalLayout>

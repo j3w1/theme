@@ -1,0 +1,29 @@
+---
+import { getCollection, render } from "astro:content";
+import PortalLayout from "../../layouts/PortalLayout.astro";
+import { withBase } from "../../lib/base";
+import { anchorFor } from "../../../../scripts/lib/anchors.mjs";
+import implementations from "../../../../packages/ui/dist/manifest.json";
+import examples from "../../../../packages/ui/dist/examples.json";
+export async function getStaticPaths() { return (await getCollection("components")).map(entry => ({ params: { id: entry.id }, props: { entry } })); }
+const { entry } = Astro.props;
+const id = entry.id, item = implementations.components.find(c => c.id === id)!;
+const { Content } = await render(entry);
+const variants = examples[id];
+const imports = `import '@j3w1/ui/tokens.css';\nimport '@j3w1/ui/styles/${id}.css';\nimport '@j3w1/ui/register/${id}';`;
+const install = `npm install --save-exact @j3w1/ui@${item.version}`;
+const copy = `npx --package=@j3w1/ui@${item.version} j3w1-ui copy ${id} --out ./vendor/j3w1/${id}`;
+---
+<PortalLayout title={item.name} description={entry.data.summary}>
+  <Fragment slot="head"><link rel="stylesheet" href={withBase(`ui/styles/${id}.css`)} /></Fragment>
+  <p class="portal-eyebrow">{entry.data.maturity} · LIGHT DOM · {item.version}</p>
+  <p class="portal-note">{item.domReason} {id === "form-builder" && "The bounded form-builder contract remains draft; D-021 has not been promoted."}</p>
+  <div class="portal-actions"><a href={withBase(`ui/copy/${id}/index.html`)}>Standalone example ↗</a><a href={withBase(`ui/copy/${id}/manifest.json`)}>Copy file manifest</a><a href={withBase(`exports/components/${id}.json`)}>Canonical JSON</a><a href={withBase(`demo/#/components/${id}`)}>Vue gallery ↗</a><a href={withBase(`agents/?component=${id}`)}>Prepare an agent kit →</a></div>
+  <section class="portal-section"><h2>Live variants</h2>{Object.entries(variants).map(([variant, markup]) => <section class="portal-section"><h3>{variant}</h3><div class="portal-example" set:html={markup}></div><p><button class="portal-copy" type="button" data-copy={markup}>Copy markup</button></p><pre class="portal-code"><code>{markup}</code></pre></section>)}</section>
+  <section class="portal-section"><h2>Install and register</h2><p>Use the exact version. If npm publication is pending, install the release tarball from the <a href={withBase("implement/")}>installation guide</a>.</p><pre class="portal-code"><code>{install}</code></pre><pre class="portal-code"><code>{imports}</code></pre><p>Insert the maintained markup above after loading these imports. Its native children provide accessible names and form behavior; the empty custom tag alone does not create a control.</p><p><a href={withBase("implement/")}>Vue SFC, React, Astro and plain HTML integration →</a></p></section>
+  <section class="portal-section"><h2>Copy the complete implementation</h2><pre class="portal-code"><code>{copy}</code></pre><p>The CLI verifies every file before writing and refuses overwrites. Serve the output over HTTP and open <code>index.html</code>. Keep its modules, CSS, tokens and licence notices together.</p></section>
+  <section class="portal-section"><h2>Public API</h2>{["attributes", "properties", "methods", "events"].map(kind => <><h3>{kind}</h3><div class="portal-table-wrap"><table class="portal-table"><thead><tr><th>Name</th><th>Type / signature</th><th>Meaning</th></tr></thead><tbody>{(item.api[kind] ?? []).map(row => <tr><td><code>{row.name}</code></td><td><code>{row.type ?? row.signature ?? "CustomEvent"}</code></td><td>{row.description ?? row.detail ?? "See the canonical interaction contract below."}{row.readonly && " Read only."}</td></tr>)}</tbody></table></div></>)}</section>
+  <section class="portal-section"><h2>Dependencies and verification</h2><p>Registered components: {item.dependencies.length ? item.dependencies.join(", ") : "none"}. Style dependencies: {item.styleDependencies.length ? item.styleDependencies.join(", ") : "none"}.</p><p>Package presence establishes an available implementation. Actual passes depend on the tested artifact and environment. <a href={withBase(`verification/#${anchorFor.verification(id)}`)}>Read specification execution evidence</a>; <a href={withBase("verification/ui.json")}>read packed-consumer evidence</a>; <a href={withBase(`reference/#${anchorFor.component(id)}`)}>inspect the complete state matrix</a>.</p><p><a href={withBase("ui/manifest.json")}>Full implementation manifest, API and token dependency closure</a></p></section>
+  <section class="portal-prose" id={anchorFor.component(id)}><h2>Canonical specification</h2><Content /></section>
+  <script type="module" is:inline src={withBase(`ui/register/${id}.js`)}></script>
+</PortalLayout>

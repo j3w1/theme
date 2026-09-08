@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "component": "time-picker",
+  "version": "1.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/time-picker.md",
+  "dependencies": [
+    "register/time-picker.js",
+    "chunks/element-B0z6sqq8.js",
+    "components/time-picker.js",
+    "chunks/native-BFZpUch0.js",
+    "chunks/dom-BVXrzskP.js"
+  ],
+  "files": {
+    "runtime/register/time-picker.js": "sha256-21gJm8wP/6wk9RJ3xRGFWEXemSDUpaAx+WwWUmxhxHI=",
+    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
+    "runtime/components/time-picker.js": "sha256-5w8iPrBkvSlze4avqa/gUPA8U4K5hnE6Mg4JoLf6vBU=",
+    "runtime/chunks/native-BFZpUch0.js": "sha256-4FgvJoEfMvTAX/0SiIsk0wfAn46HnBmvIXq6b7hYmV4=",
+    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
+    "component.css": "sha256-ojUALAW1RAx0qdALbjJe/oE8EUC/yXP6KQOhLOtjlqc=",
+    "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
+    "element.html": "sha256-RLfLhDEtkzyeISgOb1Njmp8QsxMKjIUzebwrMAg9GNk=",
+    "index.html": "sha256-0uRkUg8W3uzjOeM45/CL0JXuey7R36hf4eL2pcTXKZY=",
+    "README.md": "sha256-dvqTIG29W8N4WbrR0nyp3NuTpdpdtdy1mGh+uKEQGxk="
+  }
+}

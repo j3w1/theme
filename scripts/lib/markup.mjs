@@ -4,6 +4,7 @@ export const IDREFS = new Set(["for", "form", "list", "aria-labelledby", "aria-d
 export const walkMarkup = (node, visit) => {
   visit(node);
   for (const child of node.childNodes ?? []) walkMarkup(child, visit);
+  if (node.tagName === "template" && node.content) walkMarkup(node.content, visit);
 };
 export const attribute = (node, name) => node.attrs?.find((a) => a.name === name)?.value;
 export const setAttribute = (node, name, value = "") => {

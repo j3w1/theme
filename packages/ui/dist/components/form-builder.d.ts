@@ -1,0 +1,9 @@
+import { J3w1Element } from '../element.js';
+export declare class J3w1FormBuilder extends J3w1Element { static readonly componentId: 'form-builder'; static readonly version: '1.0.0';
+  refresh(): void;
+  focus(options?: FocusOptions): void;
+  exportDefinition(): string;
+  importDefinition(json: string): boolean;
+  definitionJson: string;
+}
+declare global { interface HTMLElementTagNameMap { 'j3w1-form-builder': J3w1FormBuilder; } }

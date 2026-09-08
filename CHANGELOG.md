@@ -6,7 +6,34 @@
   remains visible. Downstream: additive derived report schemas and build-time
   diagnostics only; no token values, consumer writes or port verification.
 
-## Unreleased
+## [1.0.0] - 2026-09-09
+
+- **#37:** ship all 67 inventory entries through `@j3w1/ui`, with typed modular
+  exports, complete standalone copy bundles, framework examples and bounded
+  package/copy/mapping task kits. Agents can consume the release tarball without
+  reconstructing component behavior or dependencies. npm publication remains an
+  owner release action.
+- Replace the homepage with a static design-system portal and retain the full
+  specification at `/theme/reference/`. Add the Vue 3 JavaScript demo at
+  `/theme/demo/`, with resettable synthetic workflows and complete component
+  discovery. Document installation, copying, native forms, framework binding,
+  lifecycle, dependency closure, migration and artifact verification.
+- **D-024:** give links the existing strong red `#f73f35` role, persistent
+  underlines and near-white hover text. Preserve the heritage link assignment.
+  Use existing approved roles for red graphs, bright rose table headings,
+  regular rose table values, near-white page titles and muted supporting text.
+  Downstream: update token and component styles together; pinned consumers retain
+  their previous appearance until they deliberately upgrade.
+- Add isolated packed HTML/Vue/React/Astro consumers, cross-browser runtime and
+  copy checks, payload budgets, and evidence tied to the exact tarball and
+  verification protocol. CI requires these checks before Pages deployment.
+
+- **1.0.0 / #37 / D-023:** adopt the owner-selected True Black / Rose foundation.
+  Canvas, sunken, input, surface-code and surface-terminal become true black;
+  chrome becomes `#090707` and panels become `#100c0c`. Preserve original
+  foreground, red accents, other semantic colors and historical ANSI profile.
+  This is a major contract change. Existing pinned consumers do not update
+  automatically; see `docs/true-black-rose-migration.md` for the exact impact.
 
 - #15, #16, #19: add a pinned one-way Figma Variables bridge with external
   ownership receipts, a local validation/recovery composition, and a draft
@@ -94,8 +121,6 @@ All notable changes to the j3w1 theme specification. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versions follow the
 policy in `README.md` (roles and approved values are the public contract).
 
-## [Unreleased]
-
 ## [0.1.0] - 2026-09-06
 
 The first public specification: the j3w1 identity as versioned tokens,
@@ -133,3 +158,4 @@ component rules, one generated page and machine exports for agents.
   implemented as listed and named in the compact export.
 
 [0.1.0]: https://github.com/j3w1/theme/releases/tag/v0.1.0
+[1.0.0]: https://github.com/j3w1/theme/releases/tag/v1.0.0

@@ -4,7 +4,7 @@ import { parse } from "parse5";
 import { readText } from "../../scripts/lib/fs.mjs";
 
 test("every eligible built-page literal has one adjacent swatch and matching fill", async () => {
-  const tree = parse(await readText("dist/index.html"));
+  const tree = parse(await readText("dist/reference/index.html"));
   let text = "";
   const previews = [];
   const attr = (n, key) => n.attrs?.find((a) => a.name === key)?.value;

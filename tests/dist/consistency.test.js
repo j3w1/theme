@@ -7,7 +7,7 @@ import { listFiles, readJson, readText } from "../../scripts/lib/fs.mjs";
 import { listComponentFiles, componentIdOf } from "../../scripts/lib/spec.mjs";
 import { anchorFor } from "../../scripts/lib/anchors.mjs";
 
-const html = await readText("dist/index.html");
+const html = await readText("dist/reference/index.html");
 const resolved = await readJson("exports/tokens.resolved.json");
 const tokenPaths = new Set(Object.keys(resolved.profiles[resolved.defaultProfile].tokens));
 

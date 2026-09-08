@@ -1,0 +1,4 @@
+{
+  "default": "<j3w1-icon-button id=\"example-icon-button-default\"><button class=\"icon-button\" type=\"button\" aria-label=\"Close panel\">\n  <svg class=\"icon-button-icon\" aria-hidden=\"true\" focusable=\"false\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"square\"><path d=\"M3.5 3.5l9 9M12.5 3.5l-9 9\"></path></svg>\n</button></j3w1-icon-button>",
+  "toggle": "<j3w1-icon-button id=\"example-icon-button-toggle\"><button class=\"icon-button\" type=\"button\" aria-label=\"Pin window\" aria-pressed=\"false\">\n  <svg class=\"icon-button-icon\" aria-hidden=\"true\" focusable=\"false\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linejoin=\"miter\"><path d=\"M6 2h4v4l2 2v2H4V8l2-2z\"></path><path d=\"M8 10v4\"></path></svg>\n</button></j3w1-icon-button>"
+}

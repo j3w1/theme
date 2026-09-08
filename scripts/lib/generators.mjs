@@ -5,6 +5,7 @@
    prune what no generator claims. */
 
 import { z } from "zod";
+import { buildUI } from "../build-ui.mjs";
 import { formSchema } from "../../schemas/form-schema.mjs";
 import { patternExportSchema } from "../../schemas/pattern.mjs";
 import { patternGenerator } from "./patterns.mjs";
@@ -267,4 +268,4 @@ export const figmaGenerator = {
   },
 };
 
-export const GENERATORS = [schemasGenerator, tokensGenerator, contrastGenerator, componentsGenerator, patternGenerator, figmaGenerator, usageGenerator, portCatalogueGenerator, recipeGenerator, docsGenerator, coverageGenerator, readmeGenerator, taskInputsGenerator, digestsGenerator];
+export const GENERATORS = [schemasGenerator, tokensGenerator, contrastGenerator, componentsGenerator, patternGenerator, figmaGenerator, usageGenerator, portCatalogueGenerator, recipeGenerator, docsGenerator, coverageGenerator, readmeGenerator, { name: "official UI distribution", run: buildUI }, taskInputsGenerator, digestsGenerator];

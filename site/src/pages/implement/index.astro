@@ -1,0 +1,12 @@
+---
+import PortalLayout from "../../layouts/PortalLayout.astro";
+import Guide from "../../../../docs/ui-consumption.md";
+import { withBase } from "../../lib/base";
+import { theme } from "../../lib/theme";
+import { consumerExamples } from "../../../../scripts/lib/ui-consumer-examples.mjs";
+const files = await consumerExamples();
+const frameworkFiles = ["html/index.html", "html/main.js", "vue/App.vue", "vue/main.js", "vite.config.js", "react/main.js", "astro/src/pages/index.astro", "astro.config.mjs"];
+---
+<PortalLayout title="Implement the theme" description="Install exact artifacts, preserve native semantics and bring j3w1 components into Vue, React, Astro or plain HTML."><div class="portal-actions"><a href={withBase(`downloads/j3w1-ui-${theme.version}.tgz`)}>Download the package tarball</a><a href={withBase("downloads/release.json")}>Artifact digest and publication status</a></div><div class="portal-prose"><Guide /></div>
+  <section class="portal-section"><h2>Maintained framework examples</h2><p>These exact source files are compiled and exercised against the packed artifact in isolated HTML, Vue, React and Astro fixtures. They demonstrate native submission, validation, reset and disabled fieldsets. Use the component pages for the native markup and API of other controls.</p>{frameworkFiles.map(file => <section class="portal-section"><h3>{file}</h3><p><a href={withBase(`ui/frameworks/${file}`)}>Download source</a></p><pre class="portal-code"><code>{files.get(file)}</code></pre><button class="portal-copy" data-copy={files.get(file)} type="button">Copy source</button></section>)}</section>
+</PortalLayout>

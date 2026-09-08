@@ -1,0 +1,189 @@
+j3w1-chip { display: block; }
+j3w1-chip {
+  color-scheme: dark;
+  background: var(--color-surface-canvas);
+  color: var(--color-text-default);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+}
+j3w1-chip, j3w1-chip *, j3w1-chip *::before, j3w1-chip *::after { box-sizing: border-box; }
+j3w1-chip button, j3w1-chip input, j3w1-chip select, j3w1-chip textarea { font: inherit; }
+j3w1-chip ::selection {
+  background: var(--color-interaction-text-selection-bg);
+  color: var(--color-interaction-text-selection-text);
+}
+j3w1-chip .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+j3w1-chip .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  vertical-align: middle;
+  min-height: var(--density-control-height, 32px);
+  padding: 0 var(--space-8);
+  box-sizing: border-box;
+  background: var(--color-surface-default);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+  color: var(--color-text-default);
+  font: inherit;
+  white-space: nowrap;
+}
+
+j3w1-chip .chip-filter {
+  cursor: pointer;
+}
+
+j3w1-chip .chip-check {
+  display: none;
+  flex: 0 0 auto;
+}
+
+j3w1-chip .chip-label {
+  flex: 0 0 auto;
+}
+
+j3w1-chip .chip-removable {
+  padding-inline-end: 0;
+}
+
+j3w1-chip .chip-remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  min-width: calc(var(--density-control-height, 32px) - var(--border-width-emphasis));
+  padding: 0 var(--space-4);
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-none);
+  color: var(--color-text-muted);
+  font: inherit;
+  cursor: pointer;
+}
+j3w1-chip .chip-filter:hover {
+  background: var(--color-interaction-hover-bg);
+}
+
+j3w1-chip .chip-remove:hover {
+  background: var(--color-interaction-hover-bg-strong);
+  color: var(--color-text-bright);
+}
+j3w1-chip .chip-filter:active {
+  background: var(--color-interaction-pressed-bg);
+}
+j3w1-chip .chip-filter:focus-visible,
+j3w1-chip .chip-remove:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+j3w1-chip .chip-filter:focus:not(:focus-visible),
+j3w1-chip .chip-remove:focus:not(:focus-visible) {
+  outline: 0;
+}
+j3w1-chip .chip-filter[aria-pressed="true"] {
+  background: var(--color-interaction-selection-bg);
+  border-color: var(--color-interaction-selection-bg);
+  color: var(--color-interaction-selection-text);
+}
+
+j3w1-chip .chip-filter[aria-pressed="true"] .chip-check {
+  display: inline-flex;
+}
+
+j3w1-chip .chip-filter[aria-pressed="true"]:hover {
+  background: var(--color-interaction-selection-bg);
+}
+j3w1-chip .chip-filter[aria-pressed="true"]:focus-visible {
+  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline-offset: var(--focus-offset);
+}
+j3w1-chip .chip-filter:disabled,
+j3w1-chip .chip:has(.chip-remove:disabled) {
+  background: var(--color-interaction-disabled-bg);
+  border-color: var(--color-border-disabled);
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+j3w1-chip .chip-remove:disabled {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+j3w1-chip .chip-filter:disabled:hover,
+j3w1-chip .chip-remove:disabled:hover {
+  background: var(--color-interaction-disabled-bg);
+  color: var(--color-text-disabled);
+}
+
+@media (hover: none) {
+  j3w1-chip .chip-filter:hover {
+    background: var(--color-surface-default);
+  }
+
+  j3w1-chip .chip-remove:hover {
+    background: transparent;
+    color: var(--color-text-muted);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  j3w1-chip .chip-filter,
+  j3w1-chip .chip-remove {
+    transition: background-color var(--motion-duration-fast);
+  }
+}
+
+@media (forced-colors: active) {
+  j3w1-chip .chip-filter:focus-visible,
+  j3w1-chip .chip-remove:focus-visible {
+    outline-color: Highlight;
+  }
+
+  j3w1-chip .chip-filter[aria-pressed="true"] {
+    background: Highlight;
+    color: HighlightText;
+  }
+}
+
+j3w1-chip [hidden] { display: none !important; }
+j3w1-chip .j3w1-visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+j3w1-chip .j3w1-readonly-text { white-space: pre; overflow: auto; font: inherit; }
+j3w1-chip dialog.dialog:modal, j3w1-chip dialog.command-palette-dialog:modal {
+  position: fixed; inset: 0; margin: auto;
+  max-width: calc(100vw - var(--space-32)); max-height: calc(100dvh - var(--space-32)); overflow: auto;
+}
+j3w1-chip dialog.drawer:modal { position: fixed; inset-block: 0; margin-block: 0; max-height: 100dvh; height: 100dvh; overflow: auto; }
+j3w1-chip dialog.drawer-start:modal { inset-inline-start: 0; inset-inline-end: auto; margin-inline: 0; }
+j3w1-chip dialog.drawer-end:modal { inset-inline-end: 0; inset-inline-start: auto; margin-inline: 0; }
+j3w1-chip .menu-list, j3w1-chip .combobox-listbox, j3w1-chip .tooltip-popup, j3w1-chip .popover-panel { z-index: var(--z-popover); }
+j3w1-chip .tooltip-popup:not([hidden]) { display: block; width: max-content; max-width: min(calc(var(--font-size-ui-md) * 24), calc(100vw - var(--space-32))); }
+j3w1-chip .combobox-option[aria-selected=true] { background: var(--color-interaction-selection-bg); color: var(--color-interaction-selection-text); }
+j3w1-chip .menu-list [role=menu] { min-width: calc(var(--font-size-ui-md) * 10); }
+j3w1-chip [data-tree-toggle] { border: 0; padding: 0 var(--space-4); background: transparent; color: inherit; font: inherit; cursor: pointer; }
+j3w1-chip .file-input-zone[data-dragging=true] { outline: var(--border-width-emphasis) dashed var(--color-interaction-drop-target); }
+j3w1-chip .data-table-resize { cursor: col-resize; touch-action: none; }
+j3w1-chip .wizard-panel[hidden] { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  j3w1-chip, j3w1-chip * { scroll-behavior: auto; animation: none; transition: none; }
+}
+@media (forced-colors: active) {
+  j3w1-chip .chart-series { fill: CanvasText; stroke: CanvasText; }
+  j3w1-chip [aria-selected=true] { border-inline-start: var(--border-width-emphasis) solid Highlight; }
+}

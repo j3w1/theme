@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "component": "code-editor",
+  "version": "1.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/code-editor.md",
+  "dependencies": [
+    "register/code-editor.js",
+    "chunks/element-B0z6sqq8.js",
+    "components/code-editor.js",
+    "chunks/display-Cg9VLOYZ.js",
+    "chunks/dom-BVXrzskP.js"
+  ],
+  "files": {
+    "runtime/register/code-editor.js": "sha256-/HR5X9W/A3NMPFEv2p/1D/F6Sf0qzRLdnxTkc3UoRzw=",
+    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
+    "runtime/components/code-editor.js": "sha256-bqMRK1sO0GtYg2jT+zCyXODDLOGyglDylyB5pTcdg1w=",
+    "runtime/chunks/display-Cg9VLOYZ.js": "sha256-bQA907mIA00ZSmhBbqsjGxJoa6v9+t/gIfm+f8TnZTY=",
+    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
+    "component.css": "sha256-X9h2Mxr0yLKLoKffZDsC55HBiRmSX+SuRQkjkcxerOo=",
+    "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
+    "element.html": "sha256-aD+1gDxKB5fijO+A+hjuTqChvHPDv5zp5tK9UPZhwLc=",
+    "index.html": "sha256-Dn2d67XC/1eO3QNVfsBf4pv4f2WuhBmmk1fFbSiGnWY=",
+    "README.md": "sha256-ZMt+IwTJo+DW8Gf3lpJI4w3hv9tknJ+YDeVR5+W0Z4o="
+  }
+}

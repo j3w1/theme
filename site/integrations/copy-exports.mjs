@@ -26,6 +26,12 @@ export default function copyExports() {
       "astro:build:done": async ({ dir }) => {
         const out = fileURLToPath(dir);
         await copyDir(path.join(repoRoot, "exports"), path.join(out, "exports"));
+        await copyDir(path.join(repoRoot, "packages/ui/dist"), path.join(out, "ui"));
+        await copyDir(path.join(repoRoot, "apps/demo/dist"), path.join(out, "demo"));
+        const release = JSON.parse(await fs.readFile(path.join(repoRoot, ".cache/packages/release.json"), "utf8"));
+        await fs.mkdir(path.join(out, "downloads"), { recursive: true });
+        await fs.copyFile(path.join(repoRoot, ".cache/packages", release.file), path.join(out, "downloads", release.file));
+        await fs.copyFile(path.join(repoRoot, ".cache/packages/release.json"), path.join(out, "downloads/release.json"));
         await fs.mkdir(path.join(out, "agents"), { recursive: true });
         await fs.copyFile(path.join(repoRoot, "agents", "consume.md"), path.join(out, "agents", "consume.md"));
         await fs.copyFile(path.join(repoRoot, "theme.json"), path.join(out, "theme.json"));

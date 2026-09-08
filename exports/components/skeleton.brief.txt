@@ -1,0 +1,41 @@
+j3w1/theme implementation brief — skeleton
+theme: j3w1-theme 1.0.0  profile: default  sourceDigest: sha256-ZBxaPGMyHoIGQgEd1TPIM+OenmDQ3M0HQ2eDr2AW7oI=
+pin: https://raw.githubusercontent.com/j3w1/theme/v1.0.0/exports/components/skeleton.json
+spec: spec/components/skeleton.md  site: https://j3w1.github.io/theme/reference/#c-skeleton
+maturity: stable  priority: R2
+
+Summary: Static layout placeholders with a named loading status.
+
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
+Tokens (resolved):
+  root.bg                               #100c0c  ({color.surface.default})  use
+  root.text                             #e99499  ({color.text.default})  use
+  root.border                           #a3676b  ({color.border.control})  use-and-report (D-007)
+  heading.text                          #ffa2a7  ({color.text.bright})  use
+  secondary.text                        #bd787d  ({color.text.muted})  use
+  control.bg                            #000000  ({color.surface.input})  use
+  control.focus                         #e53935  ({color.interaction.focus.ring})  use
+  dependency.role-border-width-default  1px  ({border.width.default})  use
+  dependency.role-color-border-divider  #2b0e0d  ({color.border.divider})  use-and-report (D-008)
+  dependency.role-color-surface-raised  #241010  ({color.surface.raised})  use
+  dependency.role-radius-none           0px  ({radius.none})  use
+  dependency.role-space-12              12px  ({space.12})  use
+  dependency.role-space-16              16px  ({space.16})  use
+  dependency.role-space-2               2px  ({space.2})  use
+State dependency disclosures: D-007
+
+States: default, loading, reduced-motion
+  default: Static decorative blocks. [Named loading status.]
+  loading: Raised surface blocks; no opacity fade. [aria-busy on the region.]
+  reduced-motion: Same static presentation. [No information depends on movement.]
+
+Keyboard:
+  Tab: No new tab stops or focus capture.
+
+ARIA: Native status text with aria-hidden decorative blocks
+Responsive: Wrap labels and actions without changing source order. Use logical spacing in RTL. Preserve native target sizes at both densities; only bounded data regions may scroll horizontally.
+Portability: Reserve approximate layout space while a named region loads. Decorative blocks are hidden from accessibility APIs. A separate status describes loading. The skeleton is static and never shimmers.
+  native: Use equivalent native semantics and approved roles; record any unsupported behavior as a mapping deviation.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

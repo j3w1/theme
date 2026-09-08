@@ -1,0 +1,485 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "1.0.0",
+  "profile": "default",
+  "profileStatus": "approved",
+  "release": {
+    "version": "1.0.0",
+    "stability": "release",
+    "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
+  },
+  "sourceDigest": "sha256-ZBxaPGMyHoIGQgEd1TPIM+OenmDQ3M0HQ2eDr2AW7oI=",
+  "id": "tree",
+  "family": "navigation",
+  "maturity": "stable",
+  "priority": "R2",
+  "coverage": {
+    "family": "navigation",
+    "priority": "R2",
+    "maturity": "stable",
+    "specified": true,
+    "demonstrated": true,
+    "tested": false,
+    "testImplemented": false,
+    "states": 6
+  },
+  "title": "Tree",
+  "summary": "Hierarchical navigation with explicit expansion and one roving tab stop.",
+  "anchors": {
+    "site": "https://j3w1.github.io/theme/reference/#c-tree",
+    "spec": "spec/components/tree.md",
+    "brief": "exports/components/tree.brief.txt"
+  },
+  "native": false,
+  "aria": {
+    "pattern": "treeview",
+    "apg": "https://www.w3.org/WAI/ARIA/apg/patterns/treeview/"
+  },
+  "variants": [
+    {
+      "id": "default",
+      "name": "Default"
+    }
+  ],
+  "sizes": [
+    "compact",
+    "comfortable"
+  ],
+  "states": [
+    "default",
+    "selected",
+    "expanded",
+    "collapsed",
+    "focus-visible",
+    "disabled"
+  ],
+  "tokens": {
+    "root.bg": {
+      "alias": "color.surface.default",
+      "value": "#100c0c",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-023",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "root.text": {
+      "alias": "color.text.default",
+      "value": "#e99499",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "root.border": {
+      "alias": "color.border.control",
+      "value": "#a3676b",
+      "status": "proposed",
+      "deprecated": false,
+      "decisionId": "D-007",
+      "eligibility": {
+        "action": "use-and-report",
+        "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
+        "decisionIds": [
+          "D-007"
+        ]
+      }
+    },
+    "heading.text": {
+      "alias": "color.text.bright",
+      "value": "#ffa2a7",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "secondary.text": {
+      "alias": "color.text.muted",
+      "value": "#bd787d",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "control.bg": {
+      "alias": "color.surface.input",
+      "value": "#000000",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-023",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "control.focus": {
+      "alias": "color.interaction.focus.ring",
+      "value": "#e53935",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "dependency.role-border-width-default": {
+      "alias": "border.width.default",
+      "value": "1px",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "dependency.role-border-width-emphasis": {
+      "alias": "border.width.emphasis",
+      "value": "2px",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "dependency.role-color-border-selected-indicator": {
+      "alias": "color.border.selected-indicator",
+      "value": "#e53935",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "dependency.role-color-interaction-selection-bg": {
+      "alias": "color.interaction.selection.bg",
+      "value": "#911410",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "dependency.role-color-interaction-selection-text": {
+      "alias": "color.interaction.selection.text",
+      "value": "#f4eeee",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "dependency.role-color-text-disabled": {
+      "alias": "color.text.disabled",
+      "value": "#8a5559",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-003",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "dependency.role-density-comfortable-control-height": {
+      "alias": "density.comfortable.control-height",
+      "value": "32px",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "dependency.role-density-compact-control-height": {
+      "alias": "density.compact.control-height",
+      "value": "24px",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "dependency.role-radius-none": {
+      "alias": "radius.none",
+      "value": "0px",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "dependency.role-space-12": {
+      "alias": "space.12",
+      "value": "12px",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "dependency.role-space-16": {
+      "alias": "space.16",
+      "value": "16px",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "dependency.role-space-2": {
+      "alias": "space.2",
+      "value": "2px",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "dependency.role-space-8": {
+      "alias": "space.8",
+      "value": "8px",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    }
+  },
+  "stateRules": [
+    {
+      "state": "default",
+      "visual": "Visible named tree items.",
+      "channel": "Tree and group hierarchy.",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed",
+          "deprecated": false,
+          "decisionId": null,
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
+        },
+        "bg": {
+          "alias": "color.surface.default",
+          "value": "#100c0c",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-023",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
+        },
+        "border": {
+          "alias": "color.border.control",
+          "value": "#a3676b",
+          "status": "proposed",
+          "deprecated": false,
+          "decisionId": "D-007",
+          "eligibility": {
+            "action": "use-and-report",
+            "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
+            "decisionIds": [
+              "D-007"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "state": "selected",
+      "visual": "Selected fill, text and start indicator.",
+      "channel": "aria-selected.",
+      "tokens": {}
+    },
+    {
+      "state": "expanded",
+      "visual": "Downward marker and visible children.",
+      "channel": "aria-expanded=true.",
+      "tokens": {}
+    },
+    {
+      "state": "collapsed",
+      "visual": "Side marker and hidden children.",
+      "channel": "aria-expanded=false; children leave focus order.",
+      "tokens": {}
+    },
+    {
+      "state": "focus-visible",
+      "visual": "Dashed ring on the item's own label.",
+      "channel": "Roving native focus.",
+      "tokens": {}
+    },
+    {
+      "state": "disabled",
+      "visual": "Disabled text at full opacity.",
+      "channel": "aria-disabled blocks selection.",
+      "tokens": {}
+    }
+  ],
+  "keyboard": [
+    {
+      "key": "Up / Down / Home / End",
+      "action": "Move through visible items in source order."
+    },
+    {
+      "key": "Right / Left",
+      "action": "Expand or enter a parent, collapse it or return to its parent. Mirror these keys in RTL."
+    },
+    {
+      "key": "Enter / Space",
+      "action": "Select the focused enabled item."
+    },
+    {
+      "key": "Typing",
+      "action": "Move to the next visible label starting with the character."
+    }
+  ],
+  "responsive": "Wrap labels and actions without changing source order. Use logical spacing in RTL. Preserve native target sizes at both densities; only bounded data regions may scroll horizontally.",
+  "portability": {
+    "web": "Navigate hierarchical items with explicit expansion and a single roving tab stop. Selection differs from expansion. Caller-supplied nodes represent identities; activation emits an event and never invents file access.",
+    "nativeFallbacks": [
+      "Use equivalent native semantics and approved roles; record any unsupported behavior as a mapping deviation."
+    ]
+  },
+  "fixtures": [
+    "FX-320",
+    "FX-360",
+    "FX-ZOOM-200",
+    "FX-I18N",
+    "FX-RTL",
+    "FX-RM",
+    "FX-HC",
+    "FX-TOUCH",
+    "FX-DENSITY",
+    "FX-STATE-MATRIX"
+  ],
+  "related": [],
+  "specimens": [],
+  "nonExamples": "Unlabelled controls, color-only status, drag-only operations, hidden required instructions, stolen focus or an invented service success.",
+  "contrast": [
+    {
+      "label": "tree default text",
+      "state": "default",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.default",
+      "fgHex": "#e99499",
+      "bgHex": "#100c0c",
+      "ratio": 8.48,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "tree default border",
+      "state": "default",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.control",
+      "bg": "color.surface.default",
+      "fgHex": "#a3676b",
+      "bgHex": "#100c0c",
+      "ratio": 4.36,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "Primary content",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.default",
+      "fgHex": "#e99499",
+      "bgHex": "#100c0c",
+      "ratio": 8.48,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "Supporting content",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.muted",
+      "bg": "color.surface.default",
+      "fgHex": "#bd787d",
+      "bgHex": "#100c0c",
+      "ratio": 5.69,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "Control boundary",
+      "state": null,
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.border.control",
+      "bg": "color.surface.default",
+      "fgHex": "#a3676b",
+      "bgHex": "#100c0c",
+      "ratio": 4.36,
+      "pass": true,
+      "waiver": null
+    }
+  ]
+}

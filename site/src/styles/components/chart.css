@@ -1,0 +1,6 @@
+.chart {box-sizing:border-box;display:grid;gap:var(--space-12);min-width:0;padding:var(--space-12);background:var(--color-surface-default);color:var(--color-text-default);border:var(--border-width-default) solid var(--color-border-control);border-radius:var(--radius-none);font:inherit}
+.chart :focus-visible,[data-state-focus-visible] .chart {outline:var(--border-width-default) dashed var(--color-interaction-focus-ring);outline-offset:var(--space-2)}
+.chart {margin:0;min-width:0}.chart svg {width:100%;max-height:16rem}.chart-series {fill:var(--color-chart-series-2);stroke:var(--color-chart-axis);stroke-width:1}.chart table {width:100%;border-collapse:collapse}.chart th,.chart td {text-align:start;padding:var(--space-8);border-bottom:var(--border-width-default) solid var(--color-chart-grid)}.chart caption {text-align:start;color:var(--color-chart-label)}.chart [data-chart-empty],[data-state-empty] .chart [data-chart-empty] {color:var(--color-text-muted)}.chart[aria-busy=true],[data-state-loading] .chart {border-style:dashed}
+.chart thead th {color:var(--color-text-bright);font-weight:var(--font-weight-bold)}
+.chart tbody {color:var(--color-text-default)}
+.chart tbody th {font-weight:var(--font-weight-regular)}

@@ -1,6 +1,6 @@
 {
   "name": "j3w1-theme",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "description": "j3w1 UI Theme Spec: canonical design tokens, component rules, a generated single-page visual specification, and machine exports for agents. The repository owns the theme; j3w1.github.io demonstrates it.",
@@ -8,6 +8,9 @@
     "node": "24.x"
   },
   "scripts": {
+    "phase6:visual-review": "node scripts/phase6-visual-review.mjs",
+    "phase6:visual-build": "node scripts/phase6-visual-review.mjs --build",
+    "phase6:visual-test": "playwright test --config playwright.visual-review.config.mjs",
     "validate": "node scripts/validate.mjs",
     "tokens:validate": "node scripts/validate.mjs tokens",
     "spec:validate": "node scripts/validate.mjs spec ports references",
@@ -18,7 +21,7 @@
     "test:browser": "playwright test",
     "test:all": "npm run check && npm test && npm run build && npm run test:dist && npm run test:browser",
     "dev": "astro dev",
-    "build": "astro build --force",
+    "build": "npm run demo:build && npm run ui:pack && astro build --force",
     "preview": "astro preview",
     "consumption:kit": "node scripts/consumption-kit.mjs",
     "task:kit": "node scripts/task-kit.mjs",
@@ -27,18 +30,39 @@
     "consumption:judge": "node scripts/consumption-judge.mjs",
     "verification:report": "node scripts/verification-report.mjs",
     "verification:check": "node --test tests/verification/*.test.js",
-    "test:verification": "playwright test --config playwright.verification.config.mjs"
+    "test:verification": "playwright test --config playwright.verification.config.mjs",
+    "ui:build": "node scripts/build-ui.mjs",
+    "ui:pack": "node scripts/pack-ui.mjs",
+    "demo:build": "npm run build --workspace @j3w1/demo",
+    "ui:consumers": "node scripts/verify-ui-consumers.mjs",
+    "test:ui": "playwright test --config playwright.ui.config.mjs",
+    "ui:report": "node scripts/ui-verification-report.mjs",
+    "ui:publish-evidence": "node scripts/ui-verification-report.mjs --publish"
   },
   "devDependencies": {
     "@astrojs/markdown-remark": "7.3.0",
     "@axe-core/playwright": "4.13.0",
     "@playwright/test": "1.63.0",
+    "@vitejs/plugin-vue": "6.0.8",
     "astro": "7.3.1",
+    "es-module-lexer": "2.3.2",
     "fflate": "0.8.3",
     "parse5": "7.3.0",
     "postcss": "8.5.28",
     "postcss-value-parser": "4.2.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "typescript": "7.0.2",
+    "vite": "8.2.2",
+    "vue": "3.5.42",
     "yaml": "2.9.0",
     "zod": "4.5.4"
+  },
+  "workspaces": [
+    "packages/ui",
+    "apps/demo"
+  ],
+  "dependencies": {
+    "@j3w1/ui": "*"
   }
 }

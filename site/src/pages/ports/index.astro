@@ -8,7 +8,7 @@ const source = (file) => usageRevision ? `https://github.com/j3w1/theme/blob/${u
 ---
 <ToolLayout title="Port capabilities" description="Declared native mappings, supported surfaces and evidence for published application ports.">
   <p>Mapped roles describe an implementation. Verified means a real import with matching target, token, mapping and artifact evidence. Inherited, unsupported, out-of-scope, not-implemented and not verified remain separate.</p>
-  <p><a href={withBase("exports/port-capabilities.json")} download>Download mapping JSON</a> · <a href={withBase("#portability")}>Portability rules</a>{source("ports/README.md") && <> · <a href={source("ports/README.md")}>Contribute a port</a></>}</p>
+  <p><a href={withBase("exports/port-capabilities.json")} download>Download mapping JSON</a> · <a href={withBase("reference/#portability")}>Portability rules</a>{source("ports/README.md") && <> · <a href={source("ports/README.md")}>Contribute a port</a></>}</p>
   <div data-port-content set:html={renderPortCatalogue(catalogue, { base: withBase(""), revision: usageRevision })} />
   <script>
     const form = document.querySelector<HTMLFormElement>("[data-port-filter]");

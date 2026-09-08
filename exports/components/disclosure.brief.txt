@@ -1,0 +1,48 @@
+j3w1/theme implementation brief — disclosure
+theme: j3w1-theme 1.0.0  profile: default  sourceDigest: sha256-ZBxaPGMyHoIGQgEd1TPIM+OenmDQ3M0HQ2eDr2AW7oI=
+pin: https://raw.githubusercontent.com/j3w1/theme/v1.0.0/exports/components/disclosure.json
+spec: spec/components/disclosure.md  site: https://j3w1.github.io/theme/reference/#c-disclosure
+maturity: stable  priority: R2
+
+Summary: Native details and summary for supporting content.
+
+Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
+Tokens (resolved):
+  root.bg                                             #100c0c  ({color.surface.default})  use
+  root.text                                           #e99499  ({color.text.default})  use
+  root.border                                         #a3676b  ({color.border.control})  use-and-report (D-007)
+  heading.text                                        #ffa2a7  ({color.text.bright})  use
+  secondary.text                                      #bd787d  ({color.text.muted})  use
+  control.bg                                          #000000  ({color.surface.input})  use
+  control.focus                                       #e53935  ({color.interaction.focus.ring})  use
+  dependency.role-border-width-default                1px  ({border.width.default})  use
+  dependency.role-border-width-emphasis               2px  ({border.width.emphasis})  use
+  dependency.role-color-border-active                 #e53935  ({color.border.active})  use
+  dependency.role-color-border-disabled               #7d1310  ({color.border.disabled})  use
+  dependency.role-color-interaction-disabled-bg       #160b0b  ({color.interaction.disabled.bg})  use
+  dependency.role-color-text-disabled                 #8a5559  ({color.text.disabled})  use
+  dependency.role-density-comfortable-control-height  32px  ({density.comfortable.control-height})  use
+  dependency.role-density-compact-control-height      24px  ({density.compact.control-height})  use
+  dependency.role-radius-none                         0px  ({radius.none})  use
+  dependency.role-space-12                            12px  ({space.12})  use
+  dependency.role-space-2                             2px  ({space.2})  use
+  dependency.role-space-8                             8px  ({space.8})  use
+State dependency disclosures: D-007
+
+States: default, expanded, collapsed, focus-visible
+  default: Named content on the default surface. [Native text and structure.]
+  expanded: Expanded content and native marker. [Native open state exposes the content.]
+  collapsed: Only the summary remains visible. [Native closed content leaves the focus order.]
+  focus-visible: Dashed focus ring. [Native keyboard focus position.]
+
+Keyboard:
+  Tab / Shift+Tab: Reach the summary and expanded interactive content.
+  Enter / Space: Toggle native details.
+
+ARIA: Native details and summary
+Responsive: Wrap labels and actions without changing source order. Use logical spacing in RTL. Preserve native target sizes at both densities; only bounded data regions may scroll horizontally.
+Portability: Reveal supporting content with native details and summary. Essential instructions stay outside a collapsed disclosure. The summary supplies a complete accessible name; content remains in normal reading order.
+  native: Use equivalent native semantics and approved roles; record any unsupported behavior as a mapping deviation.
+
+Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
+do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

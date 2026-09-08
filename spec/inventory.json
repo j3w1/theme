@@ -1,5 +1,5 @@
 {
-  "$comment": "The finite component inventory approved for the first release (decision D-002). R1 ships in v0.1.0 specified and demonstrated; R2 and L are deferred. A component may only be specified if it is listed here; adding an entry is a decision.",
+  "$comment": "The finite component inventory approved by D-002. R1 shipped specified and demonstrated in v0.1.0; the owner-directed Phase 6 program specifies and productizes all 67 entries for v1.0.0, including the formerly deferred R2/L entries. Priority preserves the original inventory classification. Adding an entry remains a decision.",
   "components": [
     { "id": "button", "family": "actions", "priority": "R1" },
     { "id": "icon-button", "family": "actions", "priority": "R1" },

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "component": "timeline",
+  "version": "1.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/timeline.md",
+  "dependencies": [
+    "register/timeline.js",
+    "chunks/element-B0z6sqq8.js",
+    "components/timeline.js",
+    "chunks/native-BFZpUch0.js",
+    "chunks/dom-BVXrzskP.js"
+  ],
+  "files": {
+    "runtime/register/timeline.js": "sha256-02dWwET1bTCIEfGqP5bm1zJ9kcu/Tf+Yu5lzIBrxbAg=",
+    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
+    "runtime/components/timeline.js": "sha256-X5menvNbNsyIeFovsUvgVIdGhR18EGPKhC1K9r4jjW4=",
+    "runtime/chunks/native-BFZpUch0.js": "sha256-4FgvJoEfMvTAX/0SiIsk0wfAn46HnBmvIXq6b7hYmV4=",
+    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
+    "component.css": "sha256-VnvBxMC1c6IWen0gQ3RLi0m3FOelH4E8j4xG+B5Zoas=",
+    "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
+    "element.html": "sha256-pj/LmsP7e5l3NZI2ZWOLcerU4j0Vn1w2EloUpExz0nw=",
+    "index.html": "sha256-Ob/LUhVAfw+2yZ5HV+/MpGcf5gBqNfOvKXpabGlMOEs=",
+    "README.md": "sha256-FawGmTnOFFuyzfFAY0t3g1yoKCFXea1XFidnH9SohVU="
+  }
+}

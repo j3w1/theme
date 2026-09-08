@@ -172,7 +172,10 @@ loses its diff fill but never its marker, which is why the marker is content.
 
 ## Keyboard
 
-A plain table has no row focus; the fold buttons are the only stops and
+A plain table has no row focus. The official web distribution places it in a
+named, focusable scroll region so keyboard users can inspect wide lines without
+page overflow. The region uses the canonical container focus ring. Within the
+table, the fold buttons are the only stops and
 toggle with Enter or Space, the chevron turning within the motion budget.
 Hosts that expose the diff as a grid own row navigation and draw the ring on
 the focused row; the theme adds no binding of its own.

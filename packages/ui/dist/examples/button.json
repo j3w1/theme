@@ -1,0 +1,6 @@
+{
+  "default": "<j3w1-button id=\"example-button-default\"><button class=\"button\" type=\"button\">\n  <svg class=\"button-icon\" aria-hidden=\"true\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"square\"><path d=\"M3 8.5l3 3 7-7\"></path></svg>\n  <span class=\"button-loading\" aria-hidden=\"true\">⋯</span>\n  <span class=\"button-label\">Save changes</span>\n</button></j3w1-button>",
+  "secondary": "<j3w1-button id=\"example-button-secondary\"><button class=\"button button-secondary\" type=\"button\">\n  <span class=\"button-loading\" aria-hidden=\"true\">⋯</span>\n  <span class=\"button-label\">Preview</span>\n</button></j3w1-button>",
+  "tertiary": "<j3w1-button id=\"example-button-tertiary\"><button class=\"button button-tertiary\" type=\"button\">\n  <span class=\"button-loading\" aria-hidden=\"true\">⋯</span>\n  <span class=\"button-label\">Cancel</span>\n</button></j3w1-button>",
+  "destructive": "<j3w1-button id=\"example-button-destructive\"><button class=\"button button-destructive\" type=\"button\">\n  <span class=\"button-loading\" aria-hidden=\"true\">⋯</span>\n  <span class=\"button-label\">Delete workspace</span>\n</button></j3w1-button>"
+}

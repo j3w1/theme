@@ -1,29 +1,29 @@
 {
   "schemaVersion": 1,
   "theme": "j3w1-theme",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "component": "text-field",
   "variant": "default",
   "profile": "default",
   "source": {
     "algorithm": "sha256 over LF file bytes, base64",
     "files": {
-      "theme.json": "sha256-betbOh4Db3EdSjpz7NhtFmMt+NMtEQP3B0FAXH2lwq4=",
+      "theme.json": "sha256-487HhFVo7r0lMqF+0kscE1jKvWpPRWzIdOZBMtIFdiw=",
       "site/recipes.json": "sha256-71h0SYIOKbPRh+V/IhtLV7ZGuX90wfmeo84Rx0sm494=",
       "scripts/lib/recipe-generator.mjs": "sha256-73WV6IUzUVgC3oyFESbgawkTU9o6mh+rKtZx8HgdZeA=",
-      "scripts/lib/recipe-css.mjs": "sha256-iZr1hn5OYgtp2GPeonr+JraIFuTMgNu+cE03AYnOYEA=",
+      "scripts/lib/recipe-css.mjs": "sha256-i895fR9Sv8pOMKEawDoDiVklkN9tIeQsDee8YuKLSQ4=",
       "scripts/lib/recipe-markup.mjs": "sha256-pxTFKTEWI1f86ScNw0e2ZfSFkdba5Zs6a7GhmMbIUUQ=",
-      "scripts/lib/markup.mjs": "sha256-kSwHm2X/YW6fF4HQz9CKy6IcTKAdoau4wRtSkdSI3fw=",
+      "scripts/lib/markup.mjs": "sha256-/jd6ncIZAtDpNgML1FKkJn4mFJitU4mSXE9DLLvt2EI=",
       "spec/components/text-field.md": "sha256-nLOL2IloE3AKZ7EqGA0iIBUVuEZf+iVcTJcBn0x8y2Y=",
       "spec/components/text-field.demo.html": "sha256-ZB5xDObbSUC3QCuqccJpd3EmQ5YJQhJ74BCTur+xwa4=",
       "site/src/styles/recipe-foundation.css": "sha256-siLjKAkNj84Wa0+Xz5Vf2yj9DT9k0K/Swy/cwHNrvYo=",
       "site/src/styles/components/text-field.css": "sha256-/kKVqES+lIgSlMzei+bu09SI6o6KeVaz7c1qSlKH0A4=",
-      "LICENSE.md": "sha256-9K+45u2mMtN17qbMfaYXFmwI+1bv0MwpVv4Ef/Onqsg=",
-      "tokens/primitives.tokens.json": "sha256-NhEa+8gXBRRPgiiv9KbFilhmh28YE2GsxqZRsvHh60Q=",
-      "tokens/semantic.tokens.json": "sha256-6UpLwWBR+ST3wYPjmc3OEYjK5JBBlVifQAWoFYm07Ro=",
+      "LICENSE.md": "sha256-Ih5+DpqcNXGWJX6BbYgpt6psmJi9lGcXGJzuiU7elE0=",
+      "tokens/primitives.tokens.json": "sha256-X/TXFVN+jV4dVkMurNeNtKLmJxQSM7qD/jYQhTwe0aQ=",
+      "tokens/semantic.tokens.json": "sha256-qoLDfOJT1tWh12BqHNOSyY0yLHleXcCOeN2DNhSj+BE=",
       "tokens/foundations.tokens.json": "sha256-6J49wo3x5K8ZyTQ9lNt8AVNeRkPCD8FHiXyesXDVPMc="
     },
-    "digest": "sha256-r4Tc49AhImBA69oqbiUbuCBZSVU5Q5t3iWBAewcqR4Q=",
+    "digest": "sha256-kKAkOT34XyEqtVpsWSRgvf6Zl0hJQ10jimgu9r2Tytc=",
     "revisionPolicy": "Resolve these paths at the same pinned commit as this manifest. The hosted source viewer identifies its supplying commit; generated source files contain content digests, never a floating revision claim."
   },
   "dependencies": {
@@ -50,7 +50,7 @@
     "color.interaction.hover.bg",
     "color.interaction.text-selection.bg",
     "color.interaction.text-selection.text",
-    "color.primitive.ink.20",
+    "color.primitive.ink.0",
     "color.primitive.ink.30",
     "color.primitive.ink.40",
     "color.primitive.ink.60",
@@ -348,17 +348,17 @@
   "licenses": {
     "markup": "CC-BY-4.0",
     "css": "MIT",
-    "notice": "j3w1 theme 0.1.0. Markup adapted from j3w1 UI Theme Spec, https://github.com/j3w1/theme, CC BY 4.0: https://creativecommons.org/licenses/by/4.0/. Changes: scoped instance IDs and documentation-only content removed. CSS and generator: MIT; see LICENSE.md."
+    "notice": "j3w1 theme 1.0.0. Markup adapted from j3w1 UI Theme Spec, https://github.com/j3w1/theme, CC BY 4.0: https://creativecommons.org/licenses/by/4.0/. Changes: scoped instance IDs and documentation-only content removed. CSS and generator: MIT; see LICENSE.md."
   },
   "files": {
-    "markup.html": "sha256-beUpqqGjajxUDU7Ns8glTzu5F0pOktQ9Hy81UayLDqA=",
-    "template.html": "sha256-FNo+wtBvkttaDYQKtyagUxx1eE2aFmleHcFhBWfb3oc=",
-    "tokens.css": "sha256-9OGDafaLFrjmrjU2OaJw9dYWaKLX23XBwLI4naa8ixY=",
-    "foundation.css": "sha256-yb1H0v78r2Og+RVIUuAqgSwBiuNeTBAR+SN0EisL0Ok=",
-    "component.css": "sha256-gFyjkx4Qk59zySjrfsaWnUh0YGewTEhNnS/gvpJxO1A=",
-    "example.html": "sha256-XrCYGMEDfPqPU16VoWDw0iC2qDvwicgZPZ8wDhHFSNY=",
-    "two-instances.html": "sha256-uoX13O+aeWRSub5bZLdlqICPpoIRvTl86xqshgC96qk=",
-    "LICENSE.md": "sha256-UOZ5qD7UTl2rwGfUTSZ/1vPjFc0kQNy4YPwSUEiTRcI=",
-    "README.md": "sha256-wmWOk2znQzi4nOKoFuYqZnFhGP40iKrEHrcsh5B7H8w="
+    "markup.html": "sha256-r1Zp99h8ta2rUmPzdEnpvf4A8BWN/4kePKUcYAzL2uw=",
+    "template.html": "sha256-HWEO3mivaBh9eFY+sO0FcFbAzluULbnQ97ww4La9DI0=",
+    "tokens.css": "sha256-HiCYek4M35qEswxc5RUomaoCso1suk45sOfQd3bZ39s=",
+    "foundation.css": "sha256-km6ODPCONO/Qwi4OHBmEWdZwyj4mBZlIhm87xT+Pt0s=",
+    "component.css": "sha256-m1kvwzW29se5Mc2bGT1UN3LjFbliV0Uo90zRRgV+0jg=",
+    "example.html": "sha256-iha/I5322LlfiY6jnGpNYDY5Esft3akHiTRTSgNL3Eg=",
+    "two-instances.html": "sha256-IEuAK0FXU74ASzxTfrijGQJIdpxwx8T/yfn/oYiZaPs=",
+    "LICENSE.md": "sha256-N3C6tkIsXbmSQZrH97Y3E/b9ap6Mf4bW3c0vlYexbdU=",
+    "README.md": "sha256-Jv4dDYcekO1PNFMeazsZRmIlvMqolw09Ii/W+C9royI="
   }
 }

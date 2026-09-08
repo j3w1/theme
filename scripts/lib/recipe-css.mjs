@@ -8,7 +8,7 @@ export const scopeRecipeCss = (source, { removeClasses = [] } = {}) => {
   const root = postcss.parse(source);
   root.walkComments((comment) => comment.remove());
   root.walkAtRules((rule) => {
-    if (!["media", "supports"].includes(rule.name)) throw new Error(`Unsupported recipe CSS dependency: @${rule.name}`);
+    if (!["media", "supports", "container"].includes(rule.name)) throw new Error(`Unsupported recipe CSS dependency: @${rule.name}`);
   });
   root.walkRules((rule) => {
     const selectors = rule.selectors.filter((s) => !s.includes("[data-state-") && !removeClasses.some((name) => s.includes(`.${name}`)));

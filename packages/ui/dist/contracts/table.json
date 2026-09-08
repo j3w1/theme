@@ -1,0 +1,440 @@
+{
+  "id": "table",
+  "name": "Table",
+  "version": "1.0.0",
+  "tag": "j3w1-table",
+  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/table.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.0.0/packages/ui/src/behaviors/tables.js",
+  "imports": {
+    "class": "@j3w1/ui/components/table",
+    "register": "@j3w1/ui/register/table",
+    "styles": "@j3w1/ui/styles/table.css",
+    "tokens": "@j3w1/ui/tokens.css"
+  },
+  "dom": "light",
+  "domReason": "Light DOM retains static content, native semantics, label relationships and host composition without duplicating controls.",
+  "api": {
+    "attributes": [
+      {
+        "name": "disabled",
+        "description": "Disable the native controls owned by this instance."
+      },
+      {
+        "name": "loading",
+        "description": "Mark the primary control busy and prevent duplicate activation."
+      }
+    ],
+    "properties": [
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "description": "Delegates disabled state to native children.",
+        "controller": false,
+        "readonly": false
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "description": "Native control name; application form keys remain explicit.",
+        "controller": false,
+        "readonly": false
+      }
+    ],
+    "methods": [
+      {
+        "name": "refresh",
+        "signature": "(): void",
+        "description": "Reconnect behavior after replacing native child structure."
+      },
+      {
+        "name": "focus",
+        "signature": "(options?: FocusOptions): void",
+        "description": "Focus the first usable native control."
+      },
+      {
+        "name": "sort",
+        "signature": "(column: number, direction?: 'ascending' | 'descending'): void",
+        "description": "Sort existing native rows by a column."
+      },
+      {
+        "name": "filter",
+        "signature": "(query: string): void",
+        "description": "Filter existing rows by literal text."
+      }
+    ],
+    "events": [
+      {
+        "name": "j3w1-sort",
+        "detail": "{ column: number; direction: string }",
+        "description": "The user requested sorting."
+      },
+      {
+        "name": "j3w1-selection",
+        "detail": "{ ids: string[] }",
+        "description": "Selected row identities changed."
+      }
+    ]
+  },
+  "variants": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "A 1px border.strong header rule on the panel surface."
+    },
+    {
+      "id": "sticky-header",
+      "name": "Sticky header",
+      "description": "The header stays at the top of the scroll container with a 2px border.strong rule."
+    },
+    {
+      "id": "numeric",
+      "name": "Numeric",
+      "description": "Right-aligned tabular numbers in numeric columns."
+    },
+    {
+      "id": "with-caption",
+      "name": "With caption",
+      "description": "A visible caption above the table that names it."
+    }
+  ],
+  "states": [
+    "default",
+    "hover",
+    "selected",
+    "selected+focus-visible",
+    "selected+container-inactive",
+    "sorted",
+    "empty",
+    "loading"
+  ],
+  "dependencies": [],
+  "tokens": {
+    "root.bg": "color.surface.default",
+    "header.text": "color.text.bright",
+    "header.bg": "color.surface.default",
+    "header.rule": "color.border.strong",
+    "header.bg-sticky": "color.surface.raised",
+    "sort.glyph": "color.text.bright",
+    "sort.ring": "color.interaction.focus.ring",
+    "row.text": "color.text.default",
+    "row.divider": "color.border.divider",
+    "row.bg-hover": "color.interaction.hover.bg",
+    "selected.bg": "color.interaction.selection.bg",
+    "selected.text": "color.interaction.selection.text",
+    "selected.ring": "color.interaction.focus.ring-container",
+    "selected.inactive-bg": "color.interaction.selection.inactive-bg",
+    "selected.inactive-text": "color.interaction.selection.inactive-text",
+    "caption.text": "color.text.muted",
+    "empty.text": "color.text.muted",
+    "loading.glyph": "color.text.muted"
+  },
+  "status": {
+    "implemented": true,
+    "packaged": true,
+    "verification": "See separate revision-aware execution evidence"
+  },
+  "styleDependencies": [],
+  "tokenDependencies": {
+    "roles": [
+      "border.width.default",
+      "border.width.emphasis",
+      "color.border.divider",
+      "color.border.strong",
+      "color.interaction.drop-target",
+      "color.interaction.focus.ring-container",
+      "color.interaction.hover.bg",
+      "color.interaction.selection.bg",
+      "color.interaction.selection.inactive-bg",
+      "color.interaction.selection.inactive-text",
+      "color.interaction.selection.text",
+      "color.interaction.text-selection.bg",
+      "color.interaction.text-selection.text",
+      "color.surface.canvas",
+      "color.surface.default",
+      "color.surface.raised",
+      "color.text.bright",
+      "color.text.default",
+      "color.text.muted",
+      "density.comfortable.control-height",
+      "density.comfortable.control-padding-x",
+      "density.comfortable.row-height",
+      "density.compact.control-height",
+      "density.compact.control-padding-x",
+      "density.compact.row-height",
+      "focus.offset",
+      "focus.ring",
+      "font.family.mono",
+      "font.line-height.ui-md",
+      "font.size.ui-md",
+      "font.weight.bold",
+      "font.weight.regular",
+      "motion.duration.fast",
+      "radius.none",
+      "space.32",
+      "space.4",
+      "space.8",
+      "z.popover",
+      "z.raised"
+    ],
+    "paths": [
+      "border.width.default",
+      "border.width.emphasis",
+      "color.border.divider",
+      "color.border.strong",
+      "color.interaction.drop-target",
+      "color.interaction.focus.ring",
+      "color.interaction.focus.ring-container",
+      "color.interaction.hover.bg",
+      "color.interaction.selection.bg",
+      "color.interaction.selection.inactive-bg",
+      "color.interaction.selection.inactive-text",
+      "color.interaction.selection.text",
+      "color.interaction.text-selection.bg",
+      "color.interaction.text-selection.text",
+      "color.primitive.ink.0",
+      "color.primitive.ink.28",
+      "color.primitive.ink.40",
+      "color.primitive.ink.52",
+      "color.primitive.ink.60",
+      "color.primitive.paper.90",
+      "color.primitive.red.350",
+      "color.primitive.red.400",
+      "color.primitive.red.50",
+      "color.primitive.red.800",
+      "color.primitive.rose.600",
+      "color.primitive.rose.700",
+      "color.primitive.rose.800",
+      "color.surface.canvas",
+      "color.surface.default",
+      "color.surface.raised",
+      "color.text.bright",
+      "color.text.default",
+      "color.text.muted",
+      "density.comfortable.control-height",
+      "density.comfortable.control-padding-x",
+      "density.comfortable.row-height",
+      "density.compact.control-height",
+      "density.compact.control-padding-x",
+      "density.compact.row-height",
+      "focus.offset",
+      "focus.ring",
+      "font.family.mono",
+      "font.line-height.ui-md",
+      "font.size.ui-md",
+      "font.weight.bold",
+      "font.weight.regular",
+      "motion.duration.fast",
+      "radius.none",
+      "space.32",
+      "space.4",
+      "space.8",
+      "z.popover",
+      "z.raised"
+    ],
+    "eligibility": {
+      "border.width.default": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "border.width.emphasis": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.border.divider": {
+        "action": "use-and-report",
+        "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
+        "decisionIds": [
+          "D-008"
+        ]
+      },
+      "color.border.strong": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.interaction.drop-target": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.interaction.focus.ring-container": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.interaction.hover.bg": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.interaction.selection.bg": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.interaction.selection.inactive-bg": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.interaction.selection.inactive-text": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.interaction.selection.text": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.interaction.text-selection.bg": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.interaction.text-selection.text": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.surface.canvas": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.surface.default": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.surface.raised": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.text.bright": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.text.default": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.text.muted": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "density.comfortable.control-height": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "density.comfortable.control-padding-x": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "density.comfortable.row-height": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "density.compact.control-height": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "density.compact.control-padding-x": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "density.compact.row-height": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "focus.offset": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "focus.ring": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "font.family.mono": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "font.line-height.ui-md": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "font.size.ui-md": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "font.weight.bold": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "font.weight.regular": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "motion.duration.fast": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "radius.none": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "space.32": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "space.4": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "space.8": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "z.popover": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "z.raised": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    }
+  },
+  "maturity": "stable",
+  "copy": {
+    "directory": "copy/table/",
+    "manifest": "copy/table/manifest.json",
+    "digest": "sha256-E3tMMqV7Fj7kqO/wlU1lp3Qbc1DwK6smUSQkKYHiQVY="
+  }
+}

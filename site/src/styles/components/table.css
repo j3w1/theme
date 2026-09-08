@@ -29,6 +29,9 @@
   caption-side: top;
 }
 
+.table thead th { color: var(--color-text-bright); }
+.table tbody th { color: inherit; font-weight: var(--font-weight-regular); }
+
 .table .table-header {
   position: static;
   height: var(--density-row-height, 36px);

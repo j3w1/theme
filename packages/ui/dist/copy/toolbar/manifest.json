@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "component": "toolbar",
+  "version": "1.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/toolbar.md",
+  "dependencies": [
+    "register/toolbar.js",
+    "chunks/element-B0z6sqq8.js",
+    "components/toolbar.js",
+    "chunks/navigation-CPDNZIIt.js",
+    "chunks/dom-BVXrzskP.js",
+    "register/menu.js",
+    "components/menu.js"
+  ],
+  "files": {
+    "runtime/register/toolbar.js": "sha256-UPxHyTTKXTiRoSrqaknCBSjLQhK1mXKBZwTTdwyaevA=",
+    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
+    "runtime/components/toolbar.js": "sha256-NU75HqKF48hgQG7AGb/AjAv2gUSHZNEMp59OogrS4zo=",
+    "runtime/chunks/navigation-CPDNZIIt.js": "sha256-hvSCgp3WLoCXXZnX8dgEpwxYZjbpAKxYS512EwBSmkU=",
+    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "runtime/register/menu.js": "sha256-B/cJwrRRk0TVpw4TRMfyQP4QOKpUOgI+g8stDPkdXSc=",
+    "runtime/components/menu.js": "sha256-Y3aDV09GsoMX++yfADJRaLinCHvZovHiHFpupxdKcEM=",
+    "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
+    "component.css": "sha256-uTfyFdWFrx91RdklrAzqAHNf5B2q1psaqjlF71eT+Xc=",
+    "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
+    "element.html": "sha256-MRU95stqvOm7gd3wzi8XadrYOLU9MRKqdwFO/bmSaPY=",
+    "index.html": "sha256-qzep40OKd67lZTxeQflCRA+sfx2A6/zxVgtV4re8LgY=",
+    "README.md": "sha256-MRoUvY3zbRWUTgNdvWorldPf/5IlYb11mhQUb5rv/uY="
+  }
+}

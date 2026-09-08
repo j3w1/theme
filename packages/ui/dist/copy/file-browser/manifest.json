@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "component": "file-browser",
+  "version": "1.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.0.0/spec/components/file-browser.md",
+  "dependencies": [
+    "register/file-browser.js",
+    "chunks/element-B0z6sqq8.js",
+    "register/tree.js",
+    "components/tree.js",
+    "chunks/advanced-CJyaPTcu.js",
+    "chunks/dom-BVXrzskP.js",
+    "chunks/markup-DeQ4bEMR.js",
+    "components/file-browser.js",
+    "chunks/compositions-C-7IoRHC.js",
+    "chunks/navigation-CPDNZIIt.js"
+  ],
+  "files": {
+    "runtime/register/file-browser.js": "sha256-fmsVrn+AwB+vILw+3/wdmQ38t98h48KQoybYF6vLWb8=",
+    "runtime/chunks/element-B0z6sqq8.js": "sha256-Sqkune7fSNP1JUlw0ARZ3xbBdTmvDLrn6IDGDs6ybDE=",
+    "runtime/register/tree.js": "sha256-NvB+9WAGcSZsATdszK4fdr0J44csiiTuH0J49sKWwcA=",
+    "runtime/components/tree.js": "sha256-XX2kHDdApDHAYnvf+MyXkJmWRWfNz02zrlzPyO3CfLU=",
+    "runtime/chunks/advanced-CJyaPTcu.js": "sha256-9M0VmDycGuipmra083eV7okCVauqLrpF4sgz2nuEY/w=",
+    "runtime/chunks/dom-BVXrzskP.js": "sha256-XI1n6HBSbGqXd1m2t2wWrHvAIynvPgfgb+5ay82Oldo=",
+    "runtime/chunks/markup-DeQ4bEMR.js": "sha256-Eyyx7MKBoqXK4i2HaVUQhKUM066L2wIggABt6jAdgas=",
+    "runtime/components/file-browser.js": "sha256-UCdEXUPUMX/zvwyPyIjq+WZT+h7hsGKHWr9oMji3HH0=",
+    "runtime/chunks/compositions-C-7IoRHC.js": "sha256-GRIYcEQEaGRJJrMK/2oZP6C8GYMarM/vwVUwAwVA66g=",
+    "runtime/chunks/navigation-CPDNZIIt.js": "sha256-hvSCgp3WLoCXXZnX8dgEpwxYZjbpAKxYS512EwBSmkU=",
+    "tokens.css": "sha256-sWAvj3k49sCyMRylbbna9AnFjPkLOg6AVogBfir/e3s=",
+    "component.css": "sha256-AuzZDek8L2yaOUS0MjNCZepYS88A1JIK+SG2p9qEK1I=",
+    "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
+    "element.html": "sha256-TbSmPr7cV31g3WqgPi6LboOGQdmgxz/89Tf/3ld2pfU=",
+    "index.html": "sha256-68VZEF9M4ZFNgI9IZ7yrpktM4/9dA+GR/D6aTo6ocn0=",
+    "README.md": "sha256-6AiWaMyC4M76ruoc7bR+czB5cAWN1QOLYP4aagloHZM="
+  }
+}

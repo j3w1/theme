@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en" data-density="comfortable" style="background:var(--color-surface-canvas)"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tabs · j3w1</title><link rel="stylesheet" href="./tokens.css"><link rel="stylesheet" href="./component.css"></head><body><j3w1-tabs id="example-tabs-default"><div class="tabs">
+  <div class="tabs-list" role="tablist" aria-label="Settings sections">
+    <button class="tabs-tab" role="tab" type="button" id="example-tabs-default-tabs-general" aria-selected="true" aria-controls="example-tabs-default-tabs-panel-general" tabindex="0">General</button>
+    <button class="tabs-tab tabs-tab-demo-target" role="tab" type="button" id="example-tabs-default-tabs-appearance" aria-selected="false" aria-controls="example-tabs-default-tabs-panel-appearance" tabindex="-1">Appearance</button>
+    <button class="tabs-tab" role="tab" type="button" id="example-tabs-default-tabs-keys" aria-selected="false" aria-controls="example-tabs-default-tabs-panel-keys" tabindex="-1">Keys</button>
+  </div>
+  <div class="tabs-panel" role="tabpanel" id="example-tabs-default-tabs-panel-general" aria-labelledby="example-tabs-default-tabs-general" tabindex="0">
+    <p class="tabs-panel-text">Window gaps, bar height and the focus follows mouse setting.</p>
+  </div>
+  <div class="tabs-panel" role="tabpanel" id="example-tabs-default-tabs-panel-appearance" aria-labelledby="example-tabs-default-tabs-appearance" hidden="">
+    <p class="tabs-panel-text">Profile, font and density.</p>
+  </div>
+  <div class="tabs-panel" role="tabpanel" id="example-tabs-default-tabs-panel-keys" aria-labelledby="example-tabs-default-tabs-keys" hidden="">
+    <p class="tabs-panel-text">Bindings for the window manager and the editor.</p>
+  </div>
+</div></j3w1-tabs><script type="module" src="./runtime/register/tabs.js"></script></body></html>

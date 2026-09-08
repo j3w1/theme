@@ -1,7 +1,7 @@
 j3w1/theme implementation brief — dialog
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-WQ7vLKc83Aaic7PCOlD5et5jDWlBUCyLYQhnrur5sK4=
-pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/dialog.json
-spec: spec/components/dialog.md  site: https://j3w1.github.io/theme/#c-dialog
+theme: j3w1-theme 1.0.0  profile: default  sourceDigest: sha256-ZBxaPGMyHoIGQgEd1TPIM+OenmDQ3M0HQ2eDr2AW7oI=
+pin: https://raw.githubusercontent.com/j3w1/theme/v1.0.0/exports/components/dialog.json
+spec: spec/components/dialog.md  site: https://j3w1.github.io/theme/reference/#c-dialog
 maturity: stable  priority: R1
 
 Summary: A native dialog on the overlay surface behind a 1px overlay border and the backdrop; modal when shown, with trapped focus and Escape to close.
@@ -27,7 +27,7 @@ Tokens (resolved):
   destructive.bg        #dc282e  ({color.action.destructive.filled-bg})  use
   destructive.text      #f9faf9  ({color.action.destructive.filled-text})  use
   destructive.bg-hover  #dc282e  ({color.action.destructive.hover-bg})  use
-  field.bg              #0c0909  ({color.surface.input})  use
+  field.bg              #000000  ({color.surface.input})  use
   field.border          #a3676b  ({color.border.control})  use-and-report (D-007)
   field.label           #ffa2a7  ({color.text.bright})  use
   note.text             #bd787d  ({color.text.muted})  use

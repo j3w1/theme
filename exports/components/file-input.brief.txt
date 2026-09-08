@@ -1,7 +1,7 @@
 j3w1/theme implementation brief — file-input
-theme: j3w1-theme 0.1.0  profile: default  sourceDigest: sha256-WQ7vLKc83Aaic7PCOlD5et5jDWlBUCyLYQhnrur5sK4=
-pin: https://raw.githubusercontent.com/j3w1/theme/v0.1.0/exports/components/file-input.json
-spec: spec/components/file-input.md  site: https://j3w1.github.io/theme/#c-file-input
+theme: j3w1-theme 1.0.0  profile: default  sourceDigest: sha256-ZBxaPGMyHoIGQgEd1TPIM+OenmDQ3M0HQ2eDr2AW7oI=
+pin: https://raw.githubusercontent.com/j3w1/theme/v1.0.0/exports/components/file-input.json
+spec: spec/components/file-input.md  site: https://j3w1.github.io/theme/reference/#c-file-input
 maturity: stable  priority: R1
 
 Summary: A native file input behind a label styled as a secondary button, optionally inside a drop zone, with a list of chosen files and per-file errors.

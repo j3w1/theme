@@ -1,4 +1,4 @@
-import { anchorFor } from "./anchors.mjs";
+import { anchorFor, siteAnchor } from "./anchors.mjs";
 import { playgroundPayload, validatePlaygroundConfig } from "../../schemas/playground.mjs";
 
 const revisionPattern = /^(?:[a-f0-9]{40}|v\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?)$/;
@@ -17,7 +17,7 @@ export const decodeWorkbenchLink = (hash, data) => {
 };
 
 export const reproductionPayload = (config, data, measurements = null) => ({
-  version: 1, themeVersion: data.themeVersion, id: config.component, kind: "component", profile: config.profile, publicAnchor: `${data.siteUrl}#${anchorFor.component(config.component)}`, permalink: `${data.siteUrl}workbench/${config.component}/${encodeWorkbenchLink(config, data)}`, revision: data.revision ?? "local unpinned build", sourceDigest: data.sourceDigest,
+  version: 1, themeVersion: data.themeVersion, id: config.component, kind: "component", profile: config.profile, publicAnchor: siteAnchor({ site: { url: data.siteUrl } }, anchorFor.component(config.component)), permalink: `${data.siteUrl}workbench/${config.component}/${encodeWorkbenchLink(config, data)}`, revision: data.revision ?? "local unpinned build", sourceDigest: data.sourceDigest,
   config: playgroundPayload(config, data.contract, data.profiles),
   viewport: measurements ? { width: measurements.width, height: measurements.height, outerOverflow: measurements.outerOverflow, innerOverflow: measurements.innerOverflow } : null,
 });
