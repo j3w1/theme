@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "revisions": [
+    { "id": "v0-1-0", "label": "v0.1.0 release", "ref": "v0.1.0", "revision": "328076217d2728ee7dc2aea01c2f71452dbfc9c5" },
+    { "id": "workbench", "label": "Published workbench revision", "ref": "b601998b3711dcd62949d497ed828af2089f9544", "revision": "b601998b3711dcd62949d497ed828af2089f9544" }
+  ],
+  "profiles": ["default", "heritage-ansi", "extended"]
+}

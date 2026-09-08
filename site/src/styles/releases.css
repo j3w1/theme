@@ -1,0 +1,17 @@
+.release-picker { gap: var(--space-8); align-items: center; margin-block: var(--space-16); }
+html.js .release-picker { display: flex; flex-wrap: wrap; }
+.release-picker select, .release-component select { font: inherit; max-width: 100%; min-height: var(--density-comfortable-control-height); color: var(--color-text-default); background: var(--color-surface-input); border: var(--border-width-default) solid var(--color-border-control); border-radius: var(--radius-none); }
+.release-picker :focus-visible, .release-component :focus-visible, .release-scroll:focus-visible { outline: var(--focus-ring); outline-offset: var(--focus-offset); }
+.release-metadata { display: grid; grid-template-columns: minmax(0, 16ch) minmax(0, 1fr); gap: var(--space-8); }
+.release-metadata dd { margin: 0; overflow-wrap: anywhere; }
+.release-scroll, .release-frame-scroll { max-width: 100%; overflow-x: auto; }
+.release-scroll table { min-width: 70ch; }
+.release-scroll :is(td, th) { max-width: 48ch; overflow-wrap: anywhere; vertical-align: top; }
+.release-frames { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 44ch), 1fr)); gap: var(--space-16); }
+.release-frames figure { min-width: 0; margin: 0; }
+.release-frames iframe { display: block; width: 640px; min-width: 640px; height: 480px; border: 0; outline: var(--border-width-default) solid var(--color-border-default); outline-offset: calc(-1 * var(--border-width-default)); }
+.release-component { margin-block: var(--space-24); }
+.release-component h3 { margin-block-end: var(--space-8); }
+.release-case-links { columns: 3 24ch; }
+.release-case-links li { break-inside: avoid; }
+.tool-main { overflow-wrap: anywhere; min-width: 0; }
