@@ -26,6 +26,7 @@ export const portSchema = (z) =>
         .strict(),
       files: z.array(z.object({ path: z.string().regex(/^dist\//), install: z.string().min(1) }).strict()).min(1),
       mappingPath: z.literal("mapping.json"),
+      capabilitiesPath: z.literal("capabilities.json").optional(),
       evidence: z
         .array(
           z

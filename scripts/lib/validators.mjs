@@ -7,6 +7,8 @@ import { exists, gitFiles, listFiles, readJson, readText } from "./fs.mjs";
 import { EXTENSIONS_KEY } from "../../schemas/tokens.mjs";
 import { themeSchema } from "../../schemas/theme.mjs";
 import { portSchema } from "../../schemas/port.mjs";
+import { portCapabilitiesSchema, assertCapabilities } from "../../schemas/port-capabilities.mjs";
+import { safeKitPath } from "../../schemas/task-kit.mjs";
 import { portMappingSchema, assertPortMapping } from "../../schemas/usage.mjs";
 import { catalogueSchema, screenshotProvenanceSchema, sourcesSchema } from "../../schemas/provenance.mjs";
 import { EXTENSION_ALLOWED_GROUPS, EXTENSION_HUES, HERITAGE_ANSI, REQUIRED_ROLES } from "../../schemas/roles.mjs";
@@ -275,14 +277,19 @@ export const validatePorts = async () => {
     if (!parsed.success) fail(`${file}:\n${formatIssues(parsed.error.issues)}`);
     const port = parsed.data;
     if (port.id !== dir) fail(`${file}: id ${port.id} must equal the directory name`);
-    for (const f of port.files) if (!(await exists(`ports/${dir}/${f.path}`))) fail(`${file}: ${f.path} does not exist`);
-    for (const e of port.evidence) if (!(await exists(`ports/${dir}/${e.path}`))) fail(`${file}: evidence ${e.path} does not exist`);
+    for (const f of port.files) if (!safeKitPath(f.path) || !(await exists(`ports/${dir}/${f.path}`))) fail(`${file}: artifact path is unsafe or absent`);
+    for (const e of port.evidence) if (!safeKitPath(e.path) || !(await exists(`ports/${dir}/${e.path}`))) fail(`${file}: evidence path is unsafe or absent`);
     if (!(await exists(`ports/${dir}/mapping.json`))) fail(`${file}: mapping.json is missing`);
     const mapping = portMappingSchema(z).safeParse(await readJson(`ports/${dir}/mapping.json`));
     if (!mapping.success) fail(`${file}: invalid mapping.json: ${formatIssues(mapping.error.issues)}`);
     const profile = (await loadManifest()).profiles.find((p) => p.id === port.profile);
     if (!profile) fail(`${file}: unknown profile ${port.profile}`);
     assertPortMapping({ ...port, mapping: mapping.data }, (await loadResolvedProfile(profile.tokens)).keys());
+    if (port.capabilitiesPath) {
+      const capabilities = portCapabilitiesSchema(z).parse(await readJson(`ports/${dir}/${port.capabilitiesPath}`));
+      assertCapabilities({ ...port, mapping: mapping.data }, capabilities);
+      if (capabilities.verificationPath && !(await exists(`ports/${dir}/${capabilities.verificationPath}`))) fail(`${file}: import evidence is absent`);
+    }
     if (!(await exists(`ports/${dir}/README.md`))) fail(`${file}: README.md is missing`);
     ports.push(port);
   }

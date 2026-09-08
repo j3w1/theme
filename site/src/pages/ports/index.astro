@@ -1,0 +1,37 @@
+---
+import ToolLayout from "../../layouts/ToolLayout.astro";
+import { renderPortCatalogue } from "../../../../scripts/lib/port-presentation.mjs";
+import catalogue from "../../../../exports/port-capabilities.json";
+import { withBase } from "../../lib/base";
+import { usageRevision } from "../../lib/usage";
+const source = (file) => usageRevision ? `https://github.com/j3w1/theme/blob/${usageRevision}/${file}` : null;
+---
+<ToolLayout title="Port capabilities" description="Declared native mappings, supported surfaces and evidence for published application ports.">
+  <p>Mapped roles describe an implementation. Verified means a real import with matching target, token, mapping and artifact evidence. Inherited, unsupported, out-of-scope, not-implemented and not verified remain separate.</p>
+  <p><a href={withBase("exports/port-capabilities.json")} download>Download mapping JSON</a> · <a href={withBase("#portability")}>Portability rules</a>{source("ports/README.md") && <> · <a href={source("ports/README.md")}>Contribute a port</a></>}</p>
+  <div data-port-content set:html={renderPortCatalogue(catalogue, { base: withBase(""), revision: usageRevision })} />
+  <script>
+    const form = document.querySelector<HTMLFormElement>("[data-port-filter]");
+    if (form) {
+      form.hidden = false;
+      const input = form.elements.namedItem("query") as HTMLInputElement;
+      const apply = () => {
+        const query = input.value.trim().toLowerCase();
+        let count = 0;
+        for (const section of document.querySelectorAll<HTMLElement>("[data-port-entry]")) {
+          const portMatch = section.querySelector("h2")?.textContent?.toLowerCase().includes(query);
+          let visible = 0;
+          for (const row of section.querySelectorAll<HTMLElement>("[data-port-row]")) {
+            row.hidden = !portMatch && !row.textContent?.toLowerCase().includes(query);
+            if (!row.hidden) visible++;
+          }
+          section.hidden = visible === 0; count += visible;
+        }
+        form.querySelector("[data-port-count]")!.textContent = count + " mappings shown";
+      };
+      form.addEventListener("input", apply);
+      form.addEventListener("reset", () => { input.value = ""; apply(); });
+      apply();
+    }
+  </script>
+</ToolLayout>

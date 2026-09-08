@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+- #14: generate a capability explorer and shared task-kit mapping catalogue
+  from real port inputs. Keep empty catalogues honest, require explicit role
+  classifications, separate declared status from fresh import evidence, and
+  withhold resolved artifact values when their token digest is stale.
+- #3: add an independently authored private framework diagnostic command.
+  Licensed prerequisites and results stay private; public checks exercise
+  prerequisite reporting, exact mismatch detection and guarded preparation.
+  A completed diagnostic run does not certify an application port.
+
 - #6, #8, #9, #10, #12, #17, #18: add bounded component workbenches,
   isolated revision-aware previews, real viewport comparisons, anatomy
   measurements, contrast and motion inspection, and reviewed public issue

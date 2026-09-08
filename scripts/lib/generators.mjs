@@ -27,6 +27,9 @@ import { recipeGenerator } from "./recipe-generator.mjs";
 import { recipeDependenciesSchema } from "../../schemas/recipe.mjs";
 import { taskInputsGenerator } from "./task-inputs-generator.mjs";
 import { taskInputsSchema, kitRequestSchema } from "../../schemas/task-kit.mjs";
+import { portCapabilitiesSchema, portImportEvidenceSchema } from "../../schemas/port-capabilities.mjs";
+import { portCatalogueGenerator } from "./port-capabilities.mjs";
+import { privateParitySchema } from "../../schemas/private-parity.mjs";
 
 const write = async (relative, content, { check, changed, files }) => {
   files.push(relative);
@@ -53,6 +56,9 @@ export const schemasGenerator = {
     await emit("eligibility", eligibilitySchema(z));
     await emit("token-usage", usageSchema(z));
     await emit("port-mapping", portMappingSchema(z));
+    await emit("port-capabilities", portCapabilitiesSchema(z));
+    await emit("port-import-evidence", portImportEvidenceSchema(z));
+    await emit("private-parity", privateParitySchema(z));
     await emit("recipe-dependencies", recipeDependenciesSchema(z));
     await emit("task-inputs", taskInputsSchema(z));
     await emit("task-kit-request", kitRequestSchema(z));
@@ -163,7 +169,7 @@ export const docsGenerator = {
     const contrastPairs = context.contrastPairs ?? (await loadDeclaredPairs({ profiles, defaultId, components }));
     const docs = await validateDocs(manifest);
     const families = await loadFamilies();
-    const ports = await validatePorts();
+    const ports = (await validatePorts()).map(port => ({ ...port, verification: context.portDescriptions.find(item => item.id === port.id).verification }));
     const { catalogue } = await validateReferences();
     const decisionsMarkdown = (await readText("spec/decisions.md")).replace(/^---\n[\s\S]*?\n---\n/, "");
     const compact = buildCompact({ manifest, profileId: defaultId, sourceDigest, resolved, docs, components, coverage });
@@ -238,4 +244,4 @@ export const digestsGenerator = {
   },
 };
 
-export const GENERATORS = [schemasGenerator, tokensGenerator, contrastGenerator, componentsGenerator, usageGenerator, recipeGenerator, docsGenerator, coverageGenerator, readmeGenerator, taskInputsGenerator, digestsGenerator];
+export const GENERATORS = [schemasGenerator, tokensGenerator, contrastGenerator, componentsGenerator, usageGenerator, portCatalogueGenerator, recipeGenerator, docsGenerator, coverageGenerator, readmeGenerator, taskInputsGenerator, digestsGenerator];

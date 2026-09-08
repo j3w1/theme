@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "number",
+      "const": 1
+    },
+    "integrationKind": {
+      "type": "string",
+      "enum": [
+        "css-vars",
+        "vuetify",
+        "tailwind",
+        "jetbrains-icls",
+        "gtk-css",
+        "terminal-16",
+        "other"
+      ]
+    },
+    "themeRevision": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "surfaces": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]*$"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "state": {
+            "type": "string",
+            "enum": [
+              "supported",
+              "inherited",
+              "unsupported",
+              "out-of-scope",
+              "not-implemented"
+            ]
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "state",
+          "reason"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "roles": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "state": {
+            "type": "string",
+            "enum": [
+              "mapped",
+              "inherited",
+              "unsupported",
+              "out-of-scope",
+              "not-implemented"
+            ]
+          },
+          "surface": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "state",
+          "surface",
+          "reason"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "rollback": {
+      "type": "string",
+      "minLength": 1
+    },
+    "verificationPath": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "integrationKind",
+    "themeRevision",
+    "surfaces",
+    "roles",
+    "rollback"
+  ],
+  "additionalProperties": false
+}
