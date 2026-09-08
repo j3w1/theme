@@ -39,8 +39,11 @@ a.portal-card:hover h2, a.portal-card:hover h3 { color: var(--color-text-link-ho
 .portal-footer { padding: 32px 40px 80px; border-top: 1px solid var(--color-border-default); color: var(--color-text-muted); line-height: 1.8; }
 .portal-command-trigger { position: fixed; inset-inline-end: 24px; bottom: 24px; z-index: 20; }
 .portal-command .command-palette-dialog:modal { width: min(520px, calc(100vw - 32px)); inset: 15vh auto auto 50%; transform: translateX(-50%); max-height: 70vh; }
-.portal-command [role="option"] { display: grid; grid-template-columns: 58px 1fr; gap: 12px; padding: 8px; }
+.portal-command [role="option"] { display: grid; grid-template-columns: 8ch minmax(0, 1fr); gap: 12px; padding: 8px; }
 .portal-command [role="option"] a { color: inherit; text-decoration: none; }
+.portal-command [role="option"] a { overflow-wrap: anywhere; }
+.portal-command-value { display: block; }
+.portal-command [aria-selected="true"] .portal-command-category { color: inherit; }
 .portal-prose { max-width: 90ch; line-height: 1.8; }
 .portal-prose h2, .portal-prose h3 { margin-top: 32px; margin-bottom: 14px; }
 .portal-prose table, .portal-table { border-collapse: collapse; width: 100%; margin-block: 16px; }

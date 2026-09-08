@@ -165,6 +165,10 @@ the tested artifacts after the visual-selection and quality gates.
   framework/mode task kits with selected canonical contracts and shared rules.
 - `site/src/pages/`: static portal, all 67 component pages, foundations, patterns,
   tools, implementation guide, agent kit preparation and complete reference.
+  The packaged command palette loads its generated navigation index on first
+  use and searches components, token values, canonical documents, decisions,
+  tools, patterns, agent routes, ports and releases. Token values use the shared
+  inline hex presentation; static section navigation remains the fallback.
 - `apps/demo/`: Vue 3 JavaScript SFCs with hash routing, five dashboard contexts,
   five record workflows, four productivity apps, forms, developer and utility
   screens, resettable synthetic data, and the entire component gallery.

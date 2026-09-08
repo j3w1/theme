@@ -28,6 +28,39 @@ test("legacy homepage hashes migrate to the complete reference", { annotation },
   await expect(page).toHaveURL(/\/reference\/#c-dialog$/);
   await expect(page.locator("#c-dialog")).toBeVisible();
 });
+
+test("global command search loads once and finds components, token swatches and decisions", { annotation }, async ({ page }, info) => {
+  test.skip(info.project.name === "nojs", "The enhanced search requires scripts; static navigation remains available.");
+  let indexRequests = 0;
+  page.on("request", request => { if (request.url().endsWith("/theme/search.json")) indexRequests++; });
+  await page.goto("./", { waitUntil: "networkidle" });
+  expect(indexRequests).toBe(0);
+  const opener = page.getByRole("button", { name: "Search the design system", exact: true });
+  await opener.focus();
+  await page.keyboard.press("Control+k");
+  const dialog = page.getByRole("dialog");
+  const query = dialog.getByRole("combobox");
+  await query.fill("color.text.default");
+  const token = dialog.getByRole("option", { name: /color.text.default/ });
+  await expect(token).toContainText("#e99499");
+  await expect(token.locator(".hex-swatch")).toHaveCount(1);
+  await expect(query).toHaveAttribute("aria-activedescendant", await token.getAttribute("id"));
+  await query.fill("D-024");
+  await expect(dialog.getByRole("option")).toHaveCount(1);
+  await expect(dialog.getByRole("option")).toContainText("Distinguish links");
+  await query.fill("no-such-command-12345");
+  await expect(dialog.getByRole("option")).toHaveCount(0);
+  await expect(dialog.getByRole("status")).toHaveText("0 commands");
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await page.keyboard.press("Escape");
+  await expect(opener).toBeFocused();
+  await opener.click();
+  await query.fill("text-field");
+  await expect(dialog.getByRole("option")).toHaveCount(1);
+  await page.keyboard.press("Enter");
+  await expect(page).toHaveURL(/\/components\/text-field\/$/);
+  expect(indexRequests).toBe(1);
+});
 test("a component page exposes live behavior, API and canonical rules without catalogue-wide scripts", { annotation }, async ({ page }, info) => {
   const requests = []; page.on("request", request => requests.push(request.url()));
   const audit = await openSpec(page, "components/dialog/");
