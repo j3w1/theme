@@ -14,6 +14,13 @@ const measure = async locator => locator.evaluate((element, names) => {
     box: { x: box.x, y: box.y, width: box.width, height: box.height }, text: element.textContent.trim() };
 }, properties);
 
+export const capturePrivateMeasurement = async (locator, capturePath) => {
+  // Screenshot capture settles finite transitions. Measure afterwards so the
+  // recorded properties describe the captured state, not an intermediate frame.
+  const bytes = await locator.screenshot({ path: capturePath, animations: "disabled" });
+  return { measurement: await measure(locator), bytes };
+};
+
 export const runPrivateParity = async prepared => {
   const { out, target, requireTarget, config, metadata } = prepared;
   await assertRealDirectory(out);
@@ -69,9 +76,9 @@ export const runPrivateParity = async prepared => {
         await locator.waitFor({ state: "visible" });
         if (entry.state === "focus-visible") await page.keyboard.press("Tab");
         const keyboard = await page.evaluate(() => ({ activeTag: document.activeElement?.tagName ?? null, focusVisible: document.activeElement?.matches(":focus-visible") ?? false }));
-        measurements[side] = { ...await measure(locator), keyboard };
         const capture = path.join(out, "captures", entry.id + "-" + entry.state + "-" + side + ".png");
-        const bytes = await locator.screenshot({ path: capture, animations: "disabled" });
+        const { measurement, bytes } = await capturePrivateMeasurement(locator, capture);
+        measurements[side] = { ...measurement, keyboard };
         measurements[side].capture = { file: path.relative(out, capture).replaceAll(path.sep, "/"), digest: sha256(bytes) };
       }
       const differences = compareProperties(measurements.native.styles, measurements.host.styles);

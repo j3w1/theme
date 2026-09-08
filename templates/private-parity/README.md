@@ -52,6 +52,8 @@ Only the specimens' component entry points are imported; unrelated framework
 components are not eagerly compiled through the full component catalogue.
 The canonical font family is set on the fixture page so teleported dialogs
 inherit the same environment as controls inside the main container.
+Capture settles finite transitions before computed styles and geometry are
+measured, so the measurements describe the image rather than a transient frame.
 The browser server listens on loopback and browser requests stay at that
 origin. Selected source files are rehashed after capture to detect mutation.
 
