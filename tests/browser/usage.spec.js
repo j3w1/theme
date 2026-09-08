@@ -1,5 +1,6 @@
 import { test, expect } from "./evidence-fixture.mjs";
 import AxeBuilder from "@axe-core/playwright";
+import usage from "../../exports/token-usage.json" with { type: "json" };
 const annotation = { type: "verification", description: JSON.stringify({ component: "page", category: "enhancements", states: [], variants: [], note: "Semantic usage filters, persistent static details, clipboard and reflow on the token tool pages." }) };
 
 test("usage filters require a documented match and preserve profile restrictions", { annotation }, async ({ page }, testInfo) => {
@@ -22,7 +23,7 @@ test("usage filters require a documented match and preserve profile restrictions
     await expect(page.locator("#usage-empty")).toBeVisible();
     await expect(rows).toHaveCount(0);
     await page.getByRole("button", { name: "Reset filters" }).click();
-    await expect(rows).toHaveCount(321);
+    await expect(rows).toHaveCount(Object.keys(usage.profiles.default.tokens).length);
     await page.getByLabel("Profile", { exact: true }).selectOption("heritage-ansi");
     await page.getByLabel("status", { exact: true }).selectOption("heritage");
     await expect(rows.first()).toContainText("heritage");

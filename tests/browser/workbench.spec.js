@@ -1,5 +1,6 @@
 import { test, expect } from "./evidence-fixture.mjs";
 import AxeBuilder from "@axe-core/playwright";
+import manifest from "../../theme.json" with { type: "json" };
 const annotation = { type: "verification", description: JSON.stringify({ component: "page", category: "enhancements", states: [], variants: [], note: "Phase 3 workbench: isolated native controls, real viewport comparison, measurements, private-text exclusion, reviewed reporting and reduced motion. Diagnostic tooling does not establish component acceptance." }) };
 const open = async (page, id) => {
   await page.goto(`workbench/${id}/`);
@@ -120,7 +121,7 @@ test("report drafts carry distinct target context, redact specimen text, and req
     const draft = await page.locator("[data-issue-body]").inputValue();
     expect(draft).toContain(`"id": "${id}"`);
     expect(draft).toContain(`https://j3w1.github.io/theme/#c-${id}`);
-    expect(draft).toContain('"themeVersion": "0.1.0"');
+    expect(draft).toContain(`"themeVersion": "${manifest.version}"`);
     expect(draft).not.toContain("PRIVATE");
     await expect(page.locator("[data-open-issue]")).not.toHaveAttribute("href");
     await page.locator("[data-review-issue]").check();
