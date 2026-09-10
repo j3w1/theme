@@ -1,0 +1,274 @@
+/* Chrome for the local comparison screen. The tool is not the specification;
+   it borrows the theme's own roles from exports/tokens.css so it never states
+   a value of its own. Square, 1px, no radius — the same identity rules. */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+/* Without this every native control renders in light chrome, the way the site
+   itself declares it in base.css. */
+:root { color-scheme: dark; }
+
+/* Controls carry a display of their own, which would otherwise win over the
+   hidden attribute the mode switch relies on. */
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  background: var(--color-surface-canvas);
+  color: var(--color-text-default);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+:where(button, select, input):focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* ---- bar --------------------------------------------------------------- */
+
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: var(--space-16);
+  padding: var(--space-12) var(--space-16);
+  background: var(--color-surface-chrome);
+  border-bottom: var(--border-width-default) solid var(--color-border-default);
+}
+
+.wordmark {
+  margin: 0;
+  align-self: center;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-bright);
+}
+
+.wordmark span { color: var(--color-text-muted); font-weight: var(--font-weight-regular); }
+
+.control {
+  display: grid;
+  gap: var(--space-4);
+  font-size: var(--font-size-caption);
+  color: var(--color-text-muted);
+}
+
+.control.check, .modes label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  color: var(--color-text-default);
+  font-size: var(--font-size-ui-sm);
+}
+
+.control input[type="text"], .control select {
+  font: inherit;
+  font-size: var(--font-size-ui-sm);
+  color: var(--color-text-default);
+  background: var(--color-surface-input);
+  border: var(--border-width-default) solid var(--color-border-control);
+  padding: var(--space-4) var(--space-8);
+  min-width: 14ch;
+}
+
+.control input[type="text"] { min-width: 22ch; }
+
+.slider input { inline-size: 12ch; accent-color: var(--color-interaction-focus-ring); }
+
+.modes {
+  display: flex;
+  gap: var(--space-12);
+  margin: 0;
+  padding: var(--space-4) var(--space-12);
+  border: var(--border-width-default) solid var(--color-border-default);
+}
+
+.modes input { accent-color: var(--color-interaction-focus-ring); }
+
+.bar-actions { display: flex; gap: var(--space-8); margin-inline-start: auto; }
+
+.bar-actions button {
+  font: inherit;
+  font-size: var(--font-size-ui-sm);
+  color: var(--color-text-default);
+  background: var(--color-surface-default);
+  border: var(--border-width-default) solid var(--color-border-control);
+  padding: var(--space-8) var(--space-12);
+  cursor: pointer;
+}
+
+.bar-actions button:hover { background: var(--color-interaction-hover-bg); }
+.bar-actions button[aria-expanded="true"] { background: var(--color-interaction-selection-bg); color: var(--color-interaction-selection-text); }
+
+.status {
+  margin: 0;
+  padding: var(--space-8) var(--space-16);
+  font-size: var(--font-size-ui-sm);
+  color: var(--color-text-muted);
+  background: var(--color-surface-chrome-alt);
+  border-bottom: var(--border-width-default) solid var(--color-border-divider);
+}
+
+.status:empty { display: none; }
+.status[data-busy="true"] { color: var(--color-text-accent); }
+
+/* ---- stage ------------------------------------------------------------- */
+
+.stage {
+  position: relative;
+  min-height: 0;
+  overflow: auto;
+  padding: var(--space-16);
+  background: var(--color-surface-desktop);
+  --frame-width: 1440px;
+  --frame-height: 1000px;
+  --scale: 1;
+  --split: 50;
+  --blend: 50;
+}
+
+.pane { display: grid; gap: var(--space-8); min-width: 0; margin: 0; }
+
+.pane-label {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.pane-label span { color: var(--color-text-subtle); font-weight: var(--font-weight-regular); letter-spacing: normal; text-transform: none; }
+
+.viewport {
+  position: relative;
+  inline-size: calc(var(--frame-width) * var(--scale));
+  block-size: calc(var(--frame-height) * var(--scale));
+  overflow: hidden;
+  border: var(--border-width-default) solid var(--color-border-default);
+  background: var(--color-surface-canvas);
+}
+
+.viewport iframe {
+  inline-size: var(--frame-width);
+  block-size: var(--frame-height);
+  border: 0;
+  display: block;
+  transform: scale(var(--scale));
+  transform-origin: top left;
+}
+
+/* Side by side: two real viewports, laid out at their true CSS widths. */
+.stage[data-mode="side"] { display: flex; gap: var(--space-16); align-items: start; }
+
+/* The overlay modes stack the two panes so one can be revealed through the
+   other. Only the after pane moves; the before pane stays the reference.
+   Stacked frames hide the fact that there are two, so the pane labels give way
+   to a legend that names both sides and the mode. */
+.stage:not([data-mode="side"]) { display: grid; justify-content: start; grid-template-rows: auto 1fr; }
+.stage:not([data-mode="side"]) .pane { grid-row: 2; grid-column: 1; }
+.stage:not([data-mode="side"]) .pane-label { display: none; }
+
+.overlay-legend {
+  grid-row: 1;
+  grid-column: 1;
+  margin: 0 0 var(--space-8);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.overlay-legend b { color: var(--color-text-bright); }
+.overlay-legend .dim { color: var(--color-text-subtle); font-weight: var(--font-weight-regular); letter-spacing: normal; text-transform: none; }
+
+.stage[data-mode="swipe"] .pane[data-side="after"] .viewport { clip-path: inset(0 0 0 calc(var(--split) * 1%)); }
+.stage[data-mode="blend"] .pane[data-side="after"] .viewport { opacity: calc(var(--blend) / 100); }
+.stage[data-mode="blink"][data-blink="before"] .pane[data-side="after"] { visibility: hidden; }
+
+/* Inside the before viewport, which is never clipped, so the after side's
+   clip-path cannot cut the seam away. The percentage then resolves against the
+   frame itself rather than against whichever is wider, label or viewport. */
+.divider {
+  position: absolute;
+  inset-block: 0;
+  left: calc(var(--split) * 1%);
+  inline-size: var(--border-width-emphasis);
+  background: var(--color-interaction-focus-ring);
+  cursor: col-resize;
+  z-index: 3;
+}
+
+/* A 2px seam is too thin to grab; the hit area is wider than the line. */
+.divider::before {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  inset-inline: -8px;
+}
+
+.stage[data-dragging="true"] iframe { pointer-events: none; }
+
+/* ---- ledger ------------------------------------------------------------ */
+
+.ledger {
+  position: fixed;
+  inset-block: 0;
+  inset-inline-end: 0;
+  inline-size: min(420px, 100vw);
+  z-index: 20;
+  overflow: auto;
+  padding: var(--space-24);
+  background: var(--color-surface-overlay);
+  border-inline-start: var(--border-width-default) solid var(--color-border-overlay);
+}
+
+.ledger-head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-16); margin-block-end: var(--space-16); }
+.ledger-head h2 { margin: 0; font-size: var(--font-size-h3); color: var(--color-text-bright); }
+
+.ledger-head button {
+  font: inherit;
+  font-size: var(--font-size-ui-sm);
+  color: var(--color-text-default);
+  background: var(--color-surface-default);
+  border: var(--border-width-default) solid var(--color-border-control);
+  padding: var(--space-4) var(--space-8);
+  cursor: pointer;
+}
+
+.ledger-head button:hover { background: var(--color-interaction-hover-bg); }
+.ledger ol { margin: 0; padding-inline-start: var(--space-24); display: grid; gap: var(--space-12); }
+.ledger li { line-height: var(--font-line-height-reading); }
+.ledger-empty { color: var(--color-text-muted); }
+
+.entry-class {
+  display: inline-block;
+  margin-inline-end: var(--space-8);
+  padding: 0 var(--space-4);
+  font-size: var(--font-size-caption);
+  color: var(--color-text-on-selection);
+  background: var(--color-interaction-selection-bg);
+}
+
+.entry-class[data-class="page-local"] { background: var(--color-surface-raised); color: var(--color-text-muted); }
+.entry-class[data-class="unclassified"] { background: var(--color-status-warning-fill); color: var(--color-status-warning-on-fill); }
+
+.entry-files { display: block; margin-block-start: var(--space-4); color: var(--color-text-subtle); font-size: var(--font-size-caption); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition-duration: 0.01ms !important; }
+}
