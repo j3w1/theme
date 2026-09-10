@@ -4,7 +4,7 @@ import { a as toolbar } from "../chunks/navigation-Dt8ap-9J.js";
 var J3w1Toolbar = class extends J3w1Element {
 	static componentId = "toolbar";
 	static version = "1.1.0";
-	static implementationId = "sha256-RWdo2jktJUEuUXLAzGCLDyFC+xxoq6WUv/gSvMbV15U=";
+	static implementationId = "sha256-aAcMDVyNq0ai0Wkm40N+J30i8WDzYs/2sFKo+cBDRBo=";
 	static connect = toolbar;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

@@ -572,6 +572,14 @@ recessed value measures less again. Selection is carried by the 2px
 Both are unchanged. The full report still shows 954 pairs, 17 waived and none
 failing; no waiver is added or widened.
 
+This supersedes part of D-023. `surface.raised` (`#241010`) and
+`interaction.selection.bg` (`#911410`) were among the values the owner selected
+in that accepted decision, and `tests/foundation-selection.test.js` guards them
+by name. That guard now records the recessed values instead; every other
+surface in it is still the D-023 selection, untouched. Until this entry is
+accepted, the repository asserts two values that no accepted decision covers —
+accepting it, or reverting these two roles, is the only way to close that.
+
 The darker fill also settles the ring on a selected row. D-006 recolours the
 ring on filled surfaces because `#e53935` measured 2.15:1 on the old
 `#911410`; on `#531310` it measures 3.38:1, past the 3:1 minimum, so a

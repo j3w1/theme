@@ -4,7 +4,7 @@ import { i as tabs } from "../chunks/navigation-Dt8ap-9J.js";
 var J3w1Tabs = class extends J3w1Element {
 	static componentId = "tabs";
 	static version = "1.1.0";
-	static implementationId = "sha256-sRC3f4gLP0c8s0xNv1eyOwx+1W+yNDvb70iHTeyq+UU=";
+	static implementationId = "sha256-7QFqpdOIe/Dd979NxQpqq1IYGEgNI/D5NH4frEJRRGA=";
 	static connect = tabs;
 	static upgradeProperties = [
 		"disabled",

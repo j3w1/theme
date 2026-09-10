@@ -4,7 +4,7 @@ import { t as commandPalette } from "../chunks/advanced-DCpe8Ndv.js";
 var J3w1CommandPalette = class extends J3w1Element {
 	static componentId = "command-palette";
 	static version = "1.1.0";
-	static implementationId = "sha256-W5gUGDp0HFe+HnsYZQ1UNeGL2cZmee0MnklNG/81luQ=";
+	static implementationId = "sha256-IVvHmKmzYrcL4KA9ZKy8789+cKJ7q/GBF7eSyOH+PGI=";
 	static connect = commandPalette;
 	static upgradeProperties = [
 		"disabled",

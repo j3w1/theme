@@ -2,43 +2,124 @@
   "source": "references/j3w1-web/custom-properties.json",
   "note": "Every legacy site variable maps to a token whose resolved value equals the observed snapshot unless a divergence is recorded. tests/references.test.js enforces this.",
   "map": {
-    "--desktop": { "token": "color.surface.desktop" },
-    "--terminal": { "token": "color.surface.canvas", "divergence": "D-023: owner-selected true-black canvas; the observed value remains in the heritage profile and historical primitive." },
-    "--chrome": { "token": "color.surface.chrome", "divergence": "D-023: owner-selected near-black chrome; the historical assignment remains in the heritage profile." },
-    "--chrome-alt": { "token": "color.surface.chrome-alt" },
-    "--surface": { "token": "color.surface.default", "divergence": "D-023: owner-selected near-black panels; the historical assignment remains in the heritage profile." },
-    "--surface-raised": { "token": "color.surface.raised" },
-    "--selection": { "token": "color.interaction.selection.bg" },
-    "--selection-dark": { "token": "color.interaction.hover.bg-strong" },
-    "--selection-soft": { "token": "color.interaction.selection.inactive-bg" },
-    "--button": { "token": "color.action.primary.bg" },
-    "--focus": { "token": "color.interaction.focus.ring" },
-    "--focus-dim": { "token": "color.text.link-underline" },
-    "--foreground": { "token": "color.text.default" },
-    "--foreground-bright": { "token": "color.text.bright" },
-    "--prose": { "token": "color.text.prose" },
-    "--muted": { "token": "color.text.muted" },
-    "--quiet": { "token": "color.text.subtle", "divergence": "D-003: #a3676b measured 4.45:1 as text; text.subtle is #ad7175. The observed value survives as color.border.control and color.icon.decorative." },
-    "--inactive": { "token": "color.border.disabled" },
-    "--border": { "token": "color.border.default" },
-    "--border-strong": { "token": "color.border.strong" },
-    "--border-active": { "token": "color.border.active" },
-    "--color0": { "token": "color.primitive.ansi.0" },
-    "--color1": { "token": "color.primitive.ansi.1" },
-    "--color2": { "token": "color.primitive.ansi.2" },
-    "--color3": { "token": "color.primitive.ansi.3" },
-    "--color4": { "token": "color.primitive.ansi.4" },
-    "--color5": { "token": "color.primitive.ansi.5" },
-    "--color6": { "token": "color.primitive.ansi.6" },
-    "--color7": { "token": "color.primitive.ansi.7" },
-    "--color8": { "token": "color.primitive.ansi.8" },
-    "--color9": { "token": "color.primitive.ansi.9" },
-    "--color10": { "token": "color.primitive.ansi.10" },
-    "--color11": { "token": "color.primitive.ansi.11" },
-    "--color12": { "token": "color.primitive.ansi.12" },
-    "--color13": { "token": "color.primitive.ansi.13" },
-    "--color14": { "token": "color.primitive.ansi.14" },
-    "--color15": { "token": "color.primitive.ansi.15" }
+    "--desktop": {
+      "token": "color.surface.desktop"
+    },
+    "--terminal": {
+      "token": "color.surface.canvas",
+      "divergence": "D-023: owner-selected true-black canvas; the observed value remains in the heritage profile and historical primitive."
+    },
+    "--chrome": {
+      "token": "color.surface.chrome",
+      "divergence": "D-023: owner-selected near-black chrome; the historical assignment remains in the heritage profile."
+    },
+    "--chrome-alt": {
+      "token": "color.surface.chrome-alt"
+    },
+    "--surface": {
+      "token": "color.surface.default",
+      "divergence": "D-023: owner-selected near-black panels; the historical assignment remains in the heritage profile."
+    },
+    "--surface-raised": {
+      "token": "color.surface.raised",
+      "divergence": "D-027: recessed so an open list reads as depth rather than a lighter panel; the observed value remains in the historical primitive."
+    },
+    "--selection": {
+      "token": "color.interaction.selection.bg",
+      "divergence": "D-027: recessed selection fill; the check glyph and the 2px indicator carry selection, and the observed value remains in the historical primitive."
+    },
+    "--selection-dark": {
+      "token": "color.interaction.hover.bg-strong"
+    },
+    "--selection-soft": {
+      "token": "color.interaction.selection.inactive-bg"
+    },
+    "--button": {
+      "token": "color.action.primary.bg",
+      "divergence": "D-026: darkened off heritage ANSI 12, which keeps the observed value and stays fixed in every profile."
+    },
+    "--focus": {
+      "token": "color.interaction.focus.ring"
+    },
+    "--focus-dim": {
+      "token": "color.text.link-underline"
+    },
+    "--foreground": {
+      "token": "color.text.default"
+    },
+    "--foreground-bright": {
+      "token": "color.text.bright"
+    },
+    "--prose": {
+      "token": "color.text.prose"
+    },
+    "--muted": {
+      "token": "color.text.muted"
+    },
+    "--quiet": {
+      "token": "color.text.subtle",
+      "divergence": "D-003: #a3676b measured 4.45:1 as text; text.subtle is #ad7175. The observed value survives as color.border.control and color.icon.decorative."
+    },
+    "--inactive": {
+      "token": "color.border.disabled"
+    },
+    "--border": {
+      "token": "color.border.default"
+    },
+    "--border-strong": {
+      "token": "color.border.strong"
+    },
+    "--border-active": {
+      "token": "color.border.active"
+    },
+    "--color0": {
+      "token": "color.primitive.ansi.0"
+    },
+    "--color1": {
+      "token": "color.primitive.ansi.1"
+    },
+    "--color2": {
+      "token": "color.primitive.ansi.2"
+    },
+    "--color3": {
+      "token": "color.primitive.ansi.3"
+    },
+    "--color4": {
+      "token": "color.primitive.ansi.4"
+    },
+    "--color5": {
+      "token": "color.primitive.ansi.5"
+    },
+    "--color6": {
+      "token": "color.primitive.ansi.6"
+    },
+    "--color7": {
+      "token": "color.primitive.ansi.7"
+    },
+    "--color8": {
+      "token": "color.primitive.ansi.8"
+    },
+    "--color9": {
+      "token": "color.primitive.ansi.9"
+    },
+    "--color10": {
+      "token": "color.primitive.ansi.10"
+    },
+    "--color11": {
+      "token": "color.primitive.ansi.11"
+    },
+    "--color12": {
+      "token": "color.primitive.ansi.12"
+    },
+    "--color13": {
+      "token": "color.primitive.ansi.13"
+    },
+    "--color14": {
+      "token": "color.primitive.ansi.14"
+    },
+    "--color15": {
+      "token": "color.primitive.ansi.15"
+    }
   },
   "siteSpecific": {
     "--bar-height": "i3 bar geometry; not a cross-application token",
