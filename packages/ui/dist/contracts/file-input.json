@@ -213,9 +213,9 @@
       "color.primitive.ink.40",
       "color.primitive.ink.60",
       "color.primitive.paper.90",
+      "color.primitive.red.100",
       "color.primitive.red.150",
       "color.primitive.red.200",
-      "color.primitive.red.300",
       "color.primitive.red.350",
       "color.primitive.red.50",
       "color.primitive.red.800",
@@ -522,6 +522,6 @@
   "copy": {
     "directory": "copy/file-input/",
     "manifest": "copy/file-input/manifest.json",
-    "digest": "sha256-CiD0TzljtDr6wzkSNeofuxOyw3/1U2BGZOF00/Ou+tI="
+    "digest": "sha256-5Gzjr6xcgN7gBVNG2NJq6q/qmXv6BcB2rzhCJdBzZro="
   }
 }

@@ -49,7 +49,8 @@ and consumer rules remain as written.
 
 Every border is 1px (`border.width.default`); 2px (`border.width.emphasis`) is
 reserved for the selected indicator bar, the sticky-header rule and the invalid
-border. `border.divider` (`#2b0e0d`) separates rows and sections;
+border. The quote rule is the one wider edge, at twice the emphasis width,
+because it marks a block rather than bounding a control. `border.divider` (`#2b0e0d`) separates rows and sections;
 `border.default` (`#531310`) is decorative and may never be the only visible
 edge of a control; `border.control` (`#a3676b`, 4.71:1) is the boundary of
 every form control at rest; `border.active` (`#e53935`) marks the focused or
@@ -66,7 +67,7 @@ Every interactive component declares which of these apply and demonstrates every
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
 | default | rest tokens | — |
-| hover (`@media (hover: hover)` only) | background → `interaction.hover.bg`; links and menu items → `interaction.hover.bg-strong` with `text.link-hover` | link underline thickens 1px → 2px; cursor |
+| hover (`@media (hover: hover)` only) | background → `interaction.hover.bg`; links use it too with `text.link-hover`, menu items → `interaction.hover.bg-strong` | link underline thickens 1px → 2px; cursor |
 | active / pressed | background → `interaction.pressed.bg`; border → `border.active` | border change; no translation |
 | focus-visible | the ring (below) | the ring itself; never a glow or a colour shift alone |
 | selected | fill `interaction.selection.bg` with `interaction.selection.text`; tabs and navigation use a 2px `border.selected-indicator` | `aria-selected` / `aria-current`; a check glyph in lists |
@@ -85,8 +86,8 @@ Every interactive component declares which of these apply and demonstrates every
 
 Rules that apply everywhere:
 
-1. **Selection is a fill; focus is a ring.** Neither borrows the other's form. `#e53935` on `#911410` measures 2.15:1, which is why the ring recolours on fills instead of relying on hue.
-2. **Focus ring (D-006; component mapping clarification D-015).** Controls and rows: `outline: 1px dashed {color.interaction.focus.ring}; outline-offset: -2px`. Focusable containers (panes, windows, dialogs, cards): `outline: 2px solid {color.interaction.focus.ring-container}; outline-offset: -3px`. On filled surfaces use the component's explicit ring mapping: primary buttons and checked controls use `interaction.focus.ring-container` where declared; destructive buttons use their declared on-fill text role. Selection uses its declared on-fill ring. Keep the control or container geometry independently of the colour mapping. `:focus:not(:focus-visible)` draws nothing. Forced-colors mode uses `Highlight`. A host focus indicator is never removed without this replacement.
+1. **Selection is a fill; focus is a ring.** Neither borrows the other's form. A ring still has to be visible on whatever it sits over: `#e53935` measures 2.52:1 on `action.primary.bg` and 1.13:1 on `status.danger.fill`, which is why the ring recolours on those fills instead of relying on hue. It measures 3.38:1 on the `interaction.selection.bg` recessed by D-027, so a selected row keeps the ordinary control ring.
+2. **Focus ring (D-006; component mapping clarification D-015).** Controls and rows: `outline: 1px dashed {color.interaction.focus.ring}; outline-offset: -2px`. Focusable containers (panes, windows, dialogs, cards): `outline: 2px solid {color.interaction.focus.ring-container}; outline-offset: -3px`. On filled surfaces use the component's explicit ring mapping: primary buttons and checked controls use `interaction.focus.ring-container` where declared; destructive buttons use their declared on-fill text role. The selection fill is the exception and takes the ordinary ring, on the measurement in rule 1. Keep the control or container geometry independently of the colour mapping. `:focus:not(:focus-visible)` draws nothing. Forced-colors mode uses `Highlight`. A host focus indicator is never removed without this replacement.
 3. **Never colour-only.** Every state and every status carries a second channel: a glyph (`✕ ! ✓ i ·`), a border width, an underline pattern, or an ARIA state. Charts carry pattern fills.
 4. **Hover changes fills and borders, never text colour alone**, and only on hover-capable pointers.
 5. **Disabled never uses opacity.** Opacity leaks the background and breaks contrast accounting.
@@ -155,7 +156,8 @@ proposes a semantic sixteen-slot palette that all reaches 4.5:1.
 
 Links use strong red `text.link` (`#f73f35`) and a persistent underline, distinct
 from the rose body and heading ladder (D-024). Hover uses near-white
-`text.link-hover` on `interaction.hover.bg-strong`. Current-page and selected
+`text.link-hover` on `interaction.hover.bg` (D-027; the strong fill read louder
+than the link itself and stays with menu items). Current-page and selected
 navigation use their explicit indicator and on-fill roles.
 
 ## Typography
@@ -177,7 +179,10 @@ with `data-density` on any subtree: `compact` (control 24px, row 28px, `ui-sm`
 type, 8px horizontal padding, 2px gaps) matches the workstation; `comfortable`
 (control 32px, row 36px, `ui-md` type, 12px padding, 4px gaps) suits everyday
 applications. Both meet the 24×24 CSS-pixel target minimum; `compact` requires
-4px between adjacent targets. The site's 3px i3 gap, 14/−2 window gaps and
+4px between adjacent targets. Table rows are exempt and always take the
+comfortable row height: a data row is content rather than chrome, and
+compacting it costs scannability where it is needed most. Controls inside a
+row still follow the page density. The site's 3px i3 gap, 14/−2 window gaps and
 28px bar are window-manager geometry, not theme tokens.
 
 ## Elevation and layering
@@ -187,6 +192,19 @@ on the i3 floating-window specimen. Floating layers are a 1px `border.overlay`
 on `surface.raised`; modals add `surface.backdrop` (`rgb(0 0 0 / 65%)`).
 Stacking: canvas 0 < raised 1 < popover 10 < drawer 20 < dialog 30 < toast 40 <
 skip link 1000.
+
+A popup opened by hovering follows the pointer: it sits 8px from the cursor,
+flips to the other side of it rather than crossing a viewport edge, keeps an
+8px margin from every edge, and is repositioned on pointer move, scroll and
+resize. A popup with nothing to operate takes no pointer events, so it cannot
+stand between the cursor and what opened it; one that carries a control or a
+link stays reachable and holds while the pointer is inside it. Either closes
+when the pointer leaves both the trigger and the popup.
+
+The same popup opened from the keyboard anchors to its trigger instead —
+below it, or above when there is no room below — because focus has no pointer
+to follow. This is a placement rule only: what opens a popup, and whether it
+is a tooltip, a preview or an inspector, is the component's own contract.
 
 ## Icons
 

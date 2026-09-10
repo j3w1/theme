@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — dialog
-theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-dVVXuyfmUjNjfan99PHe+fKFlhOD0dRrre2xK1AvSJg=
+theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-fIloSx2SvKOhZQqPq7ZfXqBVLqILUVu4kML4c5uMPlo=
 pin: https://raw.githubusercontent.com/j3w1/theme/v1.1.0/exports/components/dialog.json
 spec: spec/components/dialog.md  site: https://j3w1.github.io/theme/reference/#c-dialog
 maturity: stable  priority: R1
@@ -21,7 +21,7 @@ Tokens (resolved):
   button.text           #ffa2a7  ({color.action.secondary.text})  use
   button.border         #a3676b  ({color.action.secondary.border})  use
   button.bg-hover       #630f0d  ({color.action.secondary.hover-bg})  use
-  primary.bg            #871f19  ({color.action.primary.bg})  use
+  primary.bg            #7d1310  ({color.action.primary.bg})  use
   primary.text          #f4eeee  ({color.action.primary.text})  use
   primary.bg-hover      #911410  ({color.action.primary.hover-bg})  use
   destructive.bg        #dc282e  ({color.action.destructive.filled-bg})  use

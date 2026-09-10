@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — command-palette
-theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-dVVXuyfmUjNjfan99PHe+fKFlhOD0dRrre2xK1AvSJg=
+theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-fIloSx2SvKOhZQqPq7ZfXqBVLqILUVu4kML4c5uMPlo=
 pin: https://raw.githubusercontent.com/j3w1/theme/v1.1.0/exports/components/command-palette.json
 spec: spec/components/command-palette.md  site: https://j3w1.github.io/theme/reference/#c-command-palette
 maturity: stable  priority: R2
@@ -19,7 +19,7 @@ Tokens (resolved):
   dependency.role-border-width-emphasis               2px  ({border.width.emphasis})  use
   dependency.role-color-border-overlay                #e53935  ({color.border.overlay})  use-and-report (D-008)
   dependency.role-color-border-selected-indicator     #e53935  ({color.border.selected-indicator})  use
-  dependency.role-color-interaction-selection-bg      #911410  ({color.interaction.selection.bg})  use
+  dependency.role-color-interaction-selection-bg      #531310  ({color.interaction.selection.bg})  use
   dependency.role-color-interaction-selection-text    #f4eeee  ({color.interaction.selection.text})  use
   dependency.role-color-surface-backdrop              rgb(0 0 0 / 65%)  ({color.surface.backdrop})  use-and-report (D-008)
   dependency.role-color-surface-overlay               #241010  ({color.surface.overlay})  use

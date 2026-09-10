@@ -33,7 +33,7 @@ test("approved corrections and extension hues carry the expected values", async 
   assert.equal(d.get("color.status.success.text").resolved.hex, "#86a46f");
   assert.equal(d.get("color.status.info.text").resolved.hex, "#7e9ebb");
   assert.equal(d.get("color.interaction.focus.ring").resolved.hex, "#e53935");
-  assert.equal(d.get("color.interaction.selection.bg").resolved.hex, "#911410");
+  assert.equal(d.get("color.interaction.selection.bg").resolved.hex, "#531310");
   assert.equal(d.get("radius.none").resolved.value, 0);
   assert.equal(toCss("border", d.get("focus.ring").resolved), "1px dashed #e53935");
   const h = profiles.get("heritage-ansi");

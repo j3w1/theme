@@ -28,7 +28,7 @@ j3w1-field .sr-only {
 j3w1-field .field {
   position: relative;
   display: grid;
-  gap: var(--space-4);
+  gap: var(--space-2);
   min-width: 0;
   max-width: calc(var(--font-size-ui-md) * 28);
   color: var(--color-text-default);
@@ -71,16 +71,16 @@ j3w1-field .field-input:focus-visible {
 j3w1-field .field-help {
   margin: 0;
   color: var(--color-text-muted);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
+  font-size: var(--font-size-caption);
+  line-height: var(--font-line-height-caption);
 }
 
 j3w1-field .field-message {
   display: none;
   margin: 0;
   color: var(--color-status-danger-text);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
+  font-size: var(--font-size-caption);
+  line-height: var(--font-line-height-caption);
 }
 j3w1-field .field:has(:required) .field-required {
   display: inline;

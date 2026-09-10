@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — wizard
-theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-dVVXuyfmUjNjfan99PHe+fKFlhOD0dRrre2xK1AvSJg=
+theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-fIloSx2SvKOhZQqPq7ZfXqBVLqILUVu4kML4c5uMPlo=
 pin: https://raw.githubusercontent.com/j3w1/theme/v1.1.0/exports/components/wizard.json
 spec: spec/components/wizard.md  site: https://j3w1.github.io/theme/reference/#c-wizard
 maturity: stable  priority: R1
@@ -23,7 +23,7 @@ Tokens (resolved):
   title.text              #ffa2a7  ({color.text.bright})  use
   text.text               #e99499  ({color.text.default})  use
   message.text            #f73f35  ({color.status.danger.text})  use
-  next.bg                 #871f19  ({color.action.primary.bg})  use
+  next.bg                 #7d1310  ({color.action.primary.bg})  use
   next.text               #f4eeee  ({color.action.primary.text})  use
   next.bg-hover           #911410  ({color.action.primary.hover-bg})  use
   next.bg-pressed         #630f0d  ({color.action.primary.pressed-bg})  use

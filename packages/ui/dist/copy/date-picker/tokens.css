@@ -77,7 +77,7 @@
   --color-surface-chrome-alt: #1c0a09;
   --color-surface-sunken: #000000;
   --color-surface-default: #100c0c;
-  --color-surface-raised: #241010;
+  --color-surface-raised: #160b0b;
   --color-surface-overlay: #241010;
   --color-surface-input: #000000;
   --color-surface-backdrop: rgb(0 0 0 / 65%);
@@ -89,7 +89,7 @@
   --color-text-muted: #bd787d;
   --color-text-subtle: #ad7175;
   --color-text-disabled: #8a5559;
-  --color-text-placeholder: #bd787d;
+  --color-text-placeholder: #a3676b;
   --color-text-accent: #e53935;
   --color-text-accent-strong: #f73f35;
   --color-text-link: #f73f35;
@@ -111,7 +111,7 @@
   --color-border-selected-indicator-inactive: #9e231f;
   --color-interaction-focus-ring: #e53935;
   --color-interaction-focus-ring-container: #ffa2a7;
-  --color-interaction-selection-bg: #911410;
+  --color-interaction-selection-bg: #531310;
   --color-interaction-selection-text: #f4eeee;
   --color-interaction-selection-inactive-bg: #420f0c;
   --color-interaction-selection-inactive-text: #e99499;
@@ -126,7 +126,7 @@
   --color-interaction-scrollbar-track: #0c0909;
   --color-interaction-scrollbar-thumb: #420f0c;
   --color-interaction-scrollbar-thumb-hover: #911410;
-  --color-action-primary-bg: #871f19;
+  --color-action-primary-bg: #7d1310;
   --color-action-primary-text: #f4eeee;
   --color-action-primary-hover-bg: #911410;
   --color-action-primary-pressed-bg: #630f0d;
@@ -292,7 +292,7 @@
   --density-compact-control-height: 24px;
   --density-compact-row-height: 28px;
   --density-compact-control-padding-x: 8px;
-  --density-compact-icon: 16px;
+  --density-compact-icon: 12px;
   --density-compact-gap: 2px;
   --density-comfortable-control-height: 32px;
   --density-comfortable-row-height: 36px;
@@ -331,7 +331,7 @@
   --density-control-height: 24px;
   --density-row-height: 28px;
   --density-control-padding-x: 8px;
-  --density-icon: 16px;
+  --density-icon: 12px;
   --density-gap: 2px;
 }
 [data-density="comfortable"] {

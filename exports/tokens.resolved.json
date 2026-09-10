@@ -1796,16 +1796,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.1412,
-              0.0627,
-              0.0627
+              0.0863,
+              0.0431,
+              0.0431
             ],
             "alpha": 1,
-            "hex": "#241010"
+            "hex": "#160b0b"
           },
-          "css": "#241010",
-          "aliasOf": "color.primitive.ink.52",
-          "description": "Sticky headers, menus, popovers.",
+          "css": "#160b0b",
+          "aliasOf": "color.primitive.ink.30",
+          "description": "Sticky headers, menus, popovers; D-027 recessed it so an open list reads as depth rather than a lighter panel.",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -2086,16 +2086,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.7412,
-              0.4706,
-              0.4902
+              0.6392,
+              0.4039,
+              0.4196
             ],
             "alpha": 1,
-            "hex": "#bd787d"
+            "hex": "#a3676b"
           },
-          "css": "#bd787d",
-          "aliasOf": "color.primitive.rose.600",
-          "description": "Placeholder text, italic.",
+          "css": "#a3676b",
+          "aliasOf": "color.primitive.rose.350",
+          "description": "Placeholder text, italic; D-027 darkened it to 4.71:1, just clear of the 4.5:1 floor.",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -2620,16 +2620,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.5686,
-              0.0784,
+              0.3255,
+              0.0745,
               0.0627
             ],
             "alpha": 1,
-            "hex": "#911410"
+            "hex": "#531310"
           },
-          "css": "#911410",
-          "aliasOf": "color.primitive.red.350",
-          "description": "Selected row, tab, workspace.",
+          "css": "#531310",
+          "aliasOf": "color.primitive.red.100",
+          "description": "Selected row, tab, workspace; D-027 recessed the fill, leaving the 2px indicator and the check to carry selection.",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -2980,16 +2980,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.5294,
-              0.1216,
-              0.098
+              0.4902,
+              0.0745,
+              0.0627
             ],
             "alpha": 1,
-            "hex": "#871f19"
+            "hex": "#7d1310"
           },
-          "css": "#871f19",
-          "aliasOf": "color.primitive.red.300",
-          "description": "Primary button fill (color12).",
+          "css": "#7d1310",
+          "aliasOf": "color.primitive.red.200",
+          "description": "Primary button fill; D-026 darkened it off color12, which stays fixed as heritage ANSI 12.",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -3013,7 +3013,7 @@
           },
           "css": "#f4eeee",
           "aliasOf": "color.primitive.paper.90",
-          "description": "Primary button text (8.17:1).",
+          "description": "Primary button text (9.28:1).",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -6721,10 +6721,10 @@
         "density.compact.icon": {
           "type": "dimension",
           "value": {
-            "value": 16,
+            "value": 12,
             "unit": "px"
           },
-          "css": "16px",
+          "css": "12px",
           "aliasOf": null,
           "description": null,
           "status": "observed",
@@ -9144,16 +9144,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.1412,
-              0.0627,
-              0.0627
+              0.0863,
+              0.0431,
+              0.0431
             ],
             "alpha": 1,
-            "hex": "#241010"
+            "hex": "#160b0b"
           },
-          "css": "#241010",
-          "aliasOf": "color.primitive.ink.52",
-          "description": "Sticky headers, menus, popovers.",
+          "css": "#160b0b",
+          "aliasOf": "color.primitive.ink.30",
+          "description": "Sticky headers, menus, popovers; D-027 recessed it so an open list reads as depth rather than a lighter panel.",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -9434,16 +9434,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.7412,
-              0.4706,
-              0.4902
+              0.6392,
+              0.4039,
+              0.4196
             ],
             "alpha": 1,
-            "hex": "#bd787d"
+            "hex": "#a3676b"
           },
-          "css": "#bd787d",
-          "aliasOf": "color.primitive.rose.600",
-          "description": "Placeholder text, italic.",
+          "css": "#a3676b",
+          "aliasOf": "color.primitive.rose.350",
+          "description": "Placeholder text, italic; D-027 darkened it to 4.71:1, just clear of the 4.5:1 floor.",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -9966,16 +9966,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.5686,
-              0.0784,
+              0.3255,
+              0.0745,
               0.0627
             ],
             "alpha": 1,
-            "hex": "#911410"
+            "hex": "#531310"
           },
-          "css": "#911410",
-          "aliasOf": "color.primitive.red.350",
-          "description": "Selected row, tab, workspace.",
+          "css": "#531310",
+          "aliasOf": "color.primitive.red.100",
+          "description": "Selected row, tab, workspace; D-027 recessed the fill, leaving the 2px indicator and the check to carry selection.",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -10326,16 +10326,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.5294,
-              0.1216,
-              0.098
+              0.4902,
+              0.0745,
+              0.0627
             ],
             "alpha": 1,
-            "hex": "#871f19"
+            "hex": "#7d1310"
           },
-          "css": "#871f19",
-          "aliasOf": "color.primitive.red.300",
-          "description": "Primary button fill (color12).",
+          "css": "#7d1310",
+          "aliasOf": "color.primitive.red.200",
+          "description": "Primary button fill; D-026 darkened it off color12, which stays fixed as heritage ANSI 12.",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -10359,7 +10359,7 @@
           },
           "css": "#f4eeee",
           "aliasOf": "color.primitive.paper.90",
-          "description": "Primary button text (8.17:1).",
+          "description": "Primary button text (9.28:1).",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -14067,10 +14067,10 @@
         "density.compact.icon": {
           "type": "dimension",
           "value": {
-            "value": 16,
+            "value": 12,
             "unit": "px"
           },
-          "css": "16px",
+          "css": "12px",
           "aliasOf": null,
           "description": null,
           "status": "observed",
@@ -16490,16 +16490,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.1412,
-              0.0627,
-              0.0627
+              0.0863,
+              0.0431,
+              0.0431
             ],
             "alpha": 1,
-            "hex": "#241010"
+            "hex": "#160b0b"
           },
-          "css": "#241010",
-          "aliasOf": "color.primitive.ink.52",
-          "description": "Sticky headers, menus, popovers.",
+          "css": "#160b0b",
+          "aliasOf": "color.primitive.ink.30",
+          "description": "Sticky headers, menus, popovers; D-027 recessed it so an open list reads as depth rather than a lighter panel.",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -16780,16 +16780,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.7412,
-              0.4706,
-              0.4902
+              0.6392,
+              0.4039,
+              0.4196
             ],
             "alpha": 1,
-            "hex": "#bd787d"
+            "hex": "#a3676b"
           },
-          "css": "#bd787d",
-          "aliasOf": "color.primitive.rose.600",
-          "description": "Placeholder text, italic.",
+          "css": "#a3676b",
+          "aliasOf": "color.primitive.rose.350",
+          "description": "Placeholder text, italic; D-027 darkened it to 4.71:1, just clear of the 4.5:1 floor.",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -17314,16 +17314,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.5686,
-              0.0784,
+              0.3255,
+              0.0745,
               0.0627
             ],
             "alpha": 1,
-            "hex": "#911410"
+            "hex": "#531310"
           },
-          "css": "#911410",
-          "aliasOf": "color.primitive.red.350",
-          "description": "Selected row, tab, workspace.",
+          "css": "#531310",
+          "aliasOf": "color.primitive.red.100",
+          "description": "Selected row, tab, workspace; D-027 recessed the fill, leaving the 2px indicator and the check to carry selection.",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -17674,16 +17674,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.5294,
-              0.1216,
-              0.098
+              0.4902,
+              0.0745,
+              0.0627
             ],
             "alpha": 1,
-            "hex": "#871f19"
+            "hex": "#7d1310"
           },
-          "css": "#871f19",
-          "aliasOf": "color.primitive.red.300",
-          "description": "Primary button fill (color12).",
+          "css": "#7d1310",
+          "aliasOf": "color.primitive.red.200",
+          "description": "Primary button fill; D-026 darkened it off color12, which stays fixed as heritage ANSI 12.",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -17707,7 +17707,7 @@
           },
           "css": "#f4eeee",
           "aliasOf": "color.primitive.paper.90",
-          "description": "Primary button text (8.17:1).",
+          "description": "Primary button text (9.28:1).",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -19192,23 +19192,25 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              1,
-              0.6353,
-              0.6549
+              0.7882,
+              0.5922,
+              0.2471
             ],
             "alpha": 1,
-            "hex": "#ffa2a7"
+            "hex": "#c9973f"
           },
-          "css": "#ffa2a7",
-          "aliasOf": "color.primitive.rose.800",
-          "description": "Function names and calls (color7 lineage).",
-          "status": "observed",
+          "css": "#c9973f",
+          "aliasOf": "color.primitive.amber.500",
+          "description": "Function and method names in amber, distinct from the identifiers they act on.",
+          "status": "proposed",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-001",
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",
-            "decisionIds": []
+            "decisionIds": [
+              "D-001"
+            ]
           }
         },
         "color.code.syntax.variable": {
@@ -19266,23 +19268,25 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9137,
-              0.5804,
-              0.6
+              1,
+              0.6353,
+              0.6549
             ],
             "alpha": 1,
-            "hex": "#e99499"
+            "hex": "#ffa2a7"
           },
-          "css": "#e99499",
-          "aliasOf": "color.primitive.rose.700",
-          "description": "Operators.",
-          "status": "observed",
+          "css": "#ffa2a7",
+          "aliasOf": "color.primitive.rose.800",
+          "description": "Operators in bright rose, separated from plain identifiers.",
+          "status": "proposed",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-001",
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",
-            "decisionIds": []
+            "decisionIds": [
+              "D-001"
+            ]
           }
         },
         "color.code.syntax.punctuation": {
@@ -19290,23 +19294,25 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9137,
-              0.5804,
-              0.6
+              0.702,
+              0.4431,
+              0.4588
             ],
             "alpha": 1,
-            "hex": "#e99499"
+            "hex": "#b37175"
           },
-          "css": "#e99499",
-          "aliasOf": "color.primitive.rose.700",
-          "description": "Punctuation.",
-          "status": "observed",
+          "css": "#b37175",
+          "aliasOf": "color.primitive.rose.550",
+          "description": "Punctuation recedes; it is structure, not content.",
+          "status": "proposed",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-001",
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",
-            "decisionIds": []
+            "decisionIds": [
+              "D-001"
+            ]
           }
         },
         "color.code.syntax.property": {
@@ -19314,23 +19320,25 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.898,
-              0.2235,
-              0.2078
+              0.4941,
+              0.6196,
+              0.7333
             ],
             "alpha": 1,
-            "hex": "#e53935"
+            "hex": "#7e9ebb"
           },
-          "css": "#e53935",
-          "aliasOf": "color.primitive.red.800",
-          "description": "Properties and keys (site .syntax-key).",
-          "status": "observed",
+          "css": "#7e9ebb",
+          "aliasOf": "color.primitive.blue.500",
+          "description": "Object properties in blue, matching the type family they belong to.",
+          "status": "proposed",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-001",
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",
-            "decisionIds": []
+            "decisionIds": [
+              "D-001"
+            ]
           }
         },
         "color.code.syntax.heading": {
@@ -19386,23 +19394,25 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.8314,
-              0.5255,
-              0.5451
+              0.7882,
+              0.5922,
+              0.2471
             ],
             "alpha": 1,
-            "hex": "#d4868b"
+            "hex": "#c9973f"
           },
-          "css": "#d4868b",
-          "aliasOf": "color.primitive.rose.650",
-          "description": "Markup attributes.",
-          "status": "observed",
+          "css": "#c9973f",
+          "aliasOf": "color.primitive.amber.500",
+          "description": "Markup attribute names in amber, against red tags.",
+          "status": "proposed",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-001",
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",
-            "decisionIds": []
+            "decisionIds": [
+              "D-001"
+            ]
           }
         },
         "color.code.syntax.escape": {
@@ -19410,23 +19420,25 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.8314,
-              0.5255,
-              0.5451
+              0.7882,
+              0.5922,
+              0.2471
             ],
             "alpha": 1,
-            "hex": "#d4868b"
+            "hex": "#c9973f"
           },
-          "css": "#d4868b",
-          "aliasOf": "color.primitive.rose.650",
-          "description": "Escape sequences and regex, bold.",
-          "status": "observed",
+          "css": "#c9973f",
+          "aliasOf": "color.primitive.amber.500",
+          "description": "Escapes in amber so they read out of the green string around them.",
+          "status": "proposed",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-001",
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",
-            "decisionIds": []
+            "decisionIds": [
+              "D-001"
+            ]
           }
         },
         "color.code.syntax.invalid": {
@@ -21461,10 +21473,10 @@
         "density.compact.icon": {
           "type": "dimension",
           "value": {
-            "value": 16,
+            "value": 12,
             "unit": "px"
           },
-          "css": "16px",
+          "css": "12px",
           "aliasOf": null,
           "description": null,
           "status": "observed",

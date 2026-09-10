@@ -32,6 +32,19 @@ export function make(root, tag, attrs = {}, text) {
   if (text !== undefined) node.textContent = String(text);
   return node;
 }
+
+// A line icon on the same 16px grid the canonical components draw on. A text
+// glyph cannot be centred reliably: it sits wherever the font puts it inside
+// its em box, which is why the themed chevron read as low against its label.
+export function makeIcon(root, d, attrs = {}) {
+  const ns = 'http://www.w3.org/2000/svg';
+  const svg = root.ownerDocument.createElementNS(ns, 'svg');
+  for (const [key, value] of Object.entries({ viewBox: '0 0 16 16', width: '16', height: '16', 'aria-hidden': 'true', focusable: 'false', ...attrs })) svg.setAttribute(key, String(value));
+  const path = root.ownerDocument.createElementNS(ns, 'path');
+  for (const [key, value] of Object.entries({ d, fill: 'none', stroke: 'currentColor', 'stroke-width': '1.5' })) path.setAttribute(key, value);
+  svg.append(path);
+  return svg;
+}
 export function place(trigger, popup) {
   const r = trigger.getBoundingClientRect(), p = popup.getBoundingClientRect();
   const doc = trigger.ownerDocument.documentElement;

@@ -7,7 +7,7 @@ import { readJson } from "../../scripts/lib/fs.mjs";
 const annotation = { type: "verification", description: JSON.stringify({ component: "page", category: "enhancements", states: [], variants: [], note: "Portal navigation, canonical reference migration, per-component runtime loading, static normative content, and local Vue workflows. Automated desktop/narrow/no-JS scopes only; no manual accessibility claim." }) };
 test("portal retains specification content and opens its compact command utility", { annotation }, async ({ page }, info) => {
   const audit = await openSpec(page, "./");
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("True Black. Rose foregrounds.");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("The j3w1 UI theme");
   await expect(page.getByRole("link", { name: "Explore components →", exact: true })).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBe(true);
   if (info.project.name !== "nojs") {

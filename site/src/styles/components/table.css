@@ -4,6 +4,9 @@
    matrix emits. Cell rules carry the root class so they outrank the site's
    own matrix table rules when the demo is nested. Token variables only. */
 
+/* Rows are exempt from compact: a data row is content, not chrome, and
+   shrinking it costs scannability where it matters most. Controls inside a
+   row still follow the page density. */
 .table {
   width: 100%;
   min-width: 0;
@@ -17,7 +20,7 @@
 }
 
 .table-scroller {
-  max-height: calc(var(--density-row-height, 36px) * 4);
+  max-height: calc(var(--density-comfortable-row-height, 36px) * 4);
   overflow: auto;
   min-width: 0;
 }
@@ -34,7 +37,7 @@
 
 .table .table-header {
   position: static;
-  height: var(--density-row-height, 36px);
+  height: var(--density-comfortable-row-height, 36px);
   min-width: 0;
   padding: 0 var(--density-control-padding-x, 12px);
   background: var(--color-surface-default);
@@ -79,7 +82,7 @@
 }
 
 .table .table-row {
-  height: var(--density-row-height, 36px);
+  height: var(--density-comfortable-row-height, 36px);
   background: transparent;
   border-top: var(--border-width-default) solid var(--color-border-divider);
 }

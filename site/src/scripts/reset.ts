@@ -3,18 +3,18 @@
 
 import { clearAll } from "./storage";
 import { apply as applyProfile } from "./profile";
+import { DEFAULT_DENSITY } from "./density";
 
 export const initReset = (): void => {
   const button = document.getElementById("reset");
   if (!button) return;
   button.addEventListener("click", () => {
-    clearAll();
-    document.documentElement.setAttribute("data-density", "comfortable");
+    document.documentElement.setAttribute("data-density", DEFAULT_DENSITY);
     applyProfile("default");
     const density = document.getElementById("density") as HTMLSelectElement | null;
-    if (density) density.value = "comfortable";
+    if (density) { density.value = DEFAULT_DENSITY; density.dispatchEvent(new Event("change", { bubbles: true })); }
     const profile = document.getElementById("profile") as HTMLSelectElement | null;
-    if (profile) profile.value = "default";
+    if (profile) { profile.value = "default"; profile.dispatchEvent(new Event("change", { bubbles: true })); }
     const search = document.getElementById("search") as HTMLInputElement | null;
     if (search) {
       search.value = "";
@@ -27,6 +27,9 @@ export const initReset = (): void => {
       el.hidden = false;
       if (el.parentElement && el.hasAttribute("data-toc-component")) el.parentElement.hidden = false;
     });
+    /* Last, so the change events above can settle the themed controls without
+       leaving anything of theirs behind in storage. */
+    clearAll();
     const url = new URL(location.href);
     url.search = "";
     history.replaceState(null, "", url);

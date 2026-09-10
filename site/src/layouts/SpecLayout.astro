@@ -5,6 +5,8 @@ import "../styles/site.css";
 import "../styles/hex-swatches.css";
 import "../styles/print.css";
 import "../styles/workbench.css";
+import "@j3w1/ui/styles/select.css";
+import "@j3w1/ui/styles/controls.css";
 /* Reference CSS for every specified component; the glob is a side-effect import. */
 import.meta.glob("../styles/components/*.css", { eager: true });
 import { tokenColorIndex } from "../../../scripts/lib/hex-literals.mjs";
@@ -28,7 +30,7 @@ const inspectorData = Object.fromEntries(
 ---
 
 <!doctype html>
-<html lang="en" data-density="comfortable">
+<html lang="en" data-density="compact">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />

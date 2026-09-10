@@ -6,6 +6,22 @@ import { openSpec, only, rgbToHex } from "./helpers.mjs";
 const resolved = JSON.parse(await fs.readFile(new URL("../../exports/tokens.resolved.json", import.meta.url), "utf8"));
 const token = (path) => resolved.profiles[resolved.defaultProfile].tokens[path].css;
 
+/* The page's own selects are themed, so the native control is hidden and the
+   visible combobox is what a reader operates. Driven by keyboard: it is a real
+   user path, and it does not depend on a control handle staying valid across
+   the re-render each choice triggers. */
+const chooseThemed = async (page, selectId, value) => {
+  const shell = `#${selectId} + .j3w1-choice`;
+  const trigger = page.locator(`${shell} [role="combobox"]`);
+  await expect(trigger).toBeVisible();
+  await trigger.focus();
+  await page.keyboard.press("Enter");
+  const option = page.locator(`${shell} [role="option"][data-choice-value="${value}"]`);
+  await expect(option).toBeVisible();
+  await option.click();
+  await expect(page.locator(`#${selectId}`)).toHaveValue(value);
+};
+
 test.describe("the specification page", () => {
   test("loads under /theme/ with no errors, no requests outside the base, and the theme applied", { annotation: { type: "verification", description: JSON.stringify({"component": "page", "category": "appearance", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }, testInfo) => {
     const spec = await openSpec(page);
@@ -89,15 +105,25 @@ test.describe("the specification page", () => {
 
   test("enhancements: search narrows the contents, family filter hides sections, density and profile persist, reset clears", { annotation: { type: "verification", description: JSON.stringify({"component": "page", "category": "enhancements", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }, testInfo) => {
     test.skip(!only(testInfo, "desktop"), "scripts on desktop");
+    /* Two themed comboboxes and a reload of a 4.4MB page do not fit the default
+       budget; the axe scan raises its own for the same reason. No assertion is
+       relaxed. */
+    test.setTimeout(120_000);
     const context = page.context();
     await context.grantPermissions(["clipboard-read", "clipboard-write"]);
     await openSpec(page);
-    await page.locator("#density").selectOption("compact");
-    await expect(page.locator("html")).toHaveAttribute("data-density", "compact");
-    await page.locator("#profile").selectOption("heritage-ansi");
+    /* The page's own controls are themed, so the native select is hidden and
+       the visible combobox is what a reader operates. Enhancement is the last
+       thing this page's script does, so wait for it rather than racing it.
+       Compact is the default now, so comfortable is the choice that proves the
+       setting persists. */
+    await expect(page.locator("#controls .j3w1-choice-trigger").first()).toBeVisible({ timeout: 30_000 });
+    await chooseThemed(page, "density", "comfortable");
+    await expect(page.locator("html")).toHaveAttribute("data-density", "comfortable");
+    await chooseThemed(page, "profile", "heritage-ansi");
     await expect(page.locator(".ladder").first()).toHaveAttribute("data-profile", "heritage-ansi");
     await page.reload({ waitUntil: "networkidle" });
-    await expect(page.locator("html")).toHaveAttribute("data-density", "compact");
+    await expect(page.locator("html")).toHaveAttribute("data-density", "comfortable");
     const keys = await page.evaluate(() => Object.keys(localStorage));
     expect(keys.every((k) => k.startsWith("j3w1-theme:"))).toBe(true);
     await page.locator("#search").fill("focus ring");
@@ -109,7 +135,8 @@ test.describe("the specification page", () => {
     await page.locator("#reset").click();
     expect(await page.evaluate(() => Object.keys(localStorage).filter((k) => k.startsWith("j3w1-theme:")))).toEqual([]);
     expect(new URL(page.url()).search).toBe("");
-    await expect(page.locator("html")).toHaveAttribute("data-density", "comfortable");
+    /* Back to the page's default, which is compact. */
+    await expect(page.locator("html")).toHaveAttribute("data-density", "compact");
     await expect(firstFamily).toBeChecked();
     const copy = page.locator("button[data-copy]").first();
     await copy.click();

@@ -16,7 +16,9 @@
   text-decoration: underline;
   text-decoration-color: var(--color-text-link-underline);
   text-decoration-thickness: var(--border-width-default);
-  text-underline-offset: var(--space-2);
+  /* One scale step clear of the baseline: at --space-2 the rule sat close
+     enough to the descenders to read as attached to the word. */
+  text-underline-offset: var(--space-4);
   border-radius: var(--radius-none);
   cursor: pointer;
   outline: 0;

@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-dVVXuyfmUjNjfan99PHe+fKFlhOD0dRrre2xK1AvSJg=",
+  "sourceDigest": "sha256-fIloSx2SvKOhZQqPq7ZfXqBVLqILUVu4kML4c5uMPlo=",
   "id": "data-table",
   "family": "display",
   "maturity": "stable",
@@ -169,7 +169,7 @@
     },
     "selected.bg": {
       "alias": "color.interaction.selection.bg",
-      "value": "#911410",
+      "value": "#531310",
       "status": "observed",
       "deprecated": false,
       "decisionId": null,
@@ -231,7 +231,7 @@
     },
     "checkbox.checked-bg": {
       "alias": "color.action.primary.bg",
-      "value": "#871f19",
+      "value": "#7d1310",
       "status": "observed",
       "deprecated": false,
       "decisionId": null,
@@ -427,7 +427,7 @@
         },
         "bg": {
           "alias": "color.interaction.selection.bg",
-          "value": "#911410",
+          "value": "#531310",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -458,7 +458,7 @@
         },
         "bg": {
           "alias": "color.interaction.selection.bg",
-          "value": "#911410",
+          "value": "#531310",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -532,7 +532,7 @@
         },
         "bg": {
           "alias": "color.action.primary.bg",
-          "value": "#871f19",
+          "value": "#7d1310",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -732,8 +732,8 @@
       "fg": "color.interaction.selection.text",
       "bg": "color.interaction.selection.bg",
       "fgHex": "#f4eeee",
-      "bgHex": "#911410",
-      "ratio": 7.92,
+      "bgHex": "#531310",
+      "ratio": 12.47,
       "pass": true,
       "waiver": null
     },
@@ -745,8 +745,8 @@
       "fg": "color.interaction.selection.text",
       "bg": "color.interaction.selection.bg",
       "fgHex": "#f4eeee",
-      "bgHex": "#911410",
-      "ratio": 7.92,
+      "bgHex": "#531310",
+      "ratio": 12.47,
       "pass": true,
       "waiver": null
     },
@@ -758,8 +758,8 @@
       "fg": "color.interaction.focus.ring-container",
       "bg": "color.interaction.selection.bg",
       "fgHex": "#ffa2a7",
-      "bgHex": "#911410",
-      "ratio": 4.75,
+      "bgHex": "#531310",
+      "ratio": 7.48,
       "pass": true,
       "waiver": null
     },
@@ -784,8 +784,8 @@
       "fg": "color.action.primary.text",
       "bg": "color.action.primary.bg",
       "fgHex": "#f4eeee",
-      "bgHex": "#871f19",
-      "ratio": 8.17,
+      "bgHex": "#7d1310",
+      "ratio": 9.28,
       "pass": true,
       "waiver": null
     },
@@ -848,9 +848,9 @@
       "min": 1,
       "fg": "color.action.primary.bg",
       "bg": "color.surface.default",
-      "fgHex": "#871f19",
+      "fgHex": "#7d1310",
       "bgHex": "#100c0c",
-      "ratio": 2.07,
+      "ratio": 1.83,
       "pass": true,
       "waiver": "the mixed and checked states are the – and ✓ glyphs on the fill plus aria-checked; the fill's own edge is not the boundary"
     },

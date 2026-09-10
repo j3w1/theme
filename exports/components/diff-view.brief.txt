@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — diff-view
-theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-dVVXuyfmUjNjfan99PHe+fKFlhOD0dRrre2xK1AvSJg=
+theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-fIloSx2SvKOhZQqPq7ZfXqBVLqILUVu4kML4c5uMPlo=
 pin: https://raw.githubusercontent.com/j3w1/theme/v1.1.0/exports/components/diff-view.json
 spec: spec/components/diff-view.md  site: https://j3w1.github.io/theme/reference/#c-diff-view
 maturity: stable  priority: R1
@@ -31,7 +31,7 @@ Tokens (resolved):
   fold.bg-hover      #630f0d  ({color.interaction.hover.bg-strong})  use
   row.bg-hover       #1c0a09  ({color.interaction.hover.bg})  use
   row.ring           #e53935  ({color.interaction.focus.ring})  use
-  row.bg-selected    #911410  ({color.interaction.selection.bg})  use
+  row.bg-selected    #531310  ({color.interaction.selection.bg})  use
   row.text-selected  #f4eeee  ({color.interaction.selection.text})  use
   row.ring-selected  #ffa2a7  ({color.interaction.focus.ring-container})  use
 State dependency disclosures: D-007

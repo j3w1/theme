@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-DdnhHcFm.js";
-import { i as tabs } from "../chunks/navigation-BPzB8WCr.js";
+import { t as J3w1Element } from "../chunks/element-C1XeXVYC.js";
+import { i as tabs } from "../chunks/navigation-Dt8ap-9J.js";
 //#region .cache/ui-build/entries/components/tabs.js
 var J3w1Tabs = class extends J3w1Element {
 	static componentId = "tabs";
 	static version = "1.1.0";
-	static implementationId = "sha256-3UDZN7T2jnjynUKU1MlRwYooyXep9hyljoRja26uIqM=";
+	static implementationId = "sha256-7QFqpdOIe/Dd979NxQpqq1IYGEgNI/D5NH4frEJRRGA=";
 	static connect = tabs;
 	static upgradeProperties = [
 		"disabled",

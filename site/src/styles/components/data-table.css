@@ -18,7 +18,7 @@
 
 .data-table .data-table-header {
   position: relative;
-  height: var(--density-row-height, 36px);
+  height: var(--density-comfortable-row-height, 36px);
   min-width: 0;
   padding: 0 var(--density-control-padding-x, 12px);
   background: var(--color-surface-default);
@@ -109,12 +109,12 @@
 .data-table-checkbox:checked::before {
   content: "✓";
   color: var(--color-action-primary-text);
-  font-size: var(--font-size-ui-sm);
+  font-size: calc(var(--density-icon, 16px) * 0.75);
   line-height: 1;
 }
 
 .data-table .data-table-row {
-  height: var(--density-row-height, 36px);
+  height: var(--density-comfortable-row-height, 36px);
   background: transparent;
   border-top: var(--border-width-default) solid var(--color-border-divider);
 }
@@ -217,7 +217,7 @@
 [data-state-selected] .data-table-row-demo-target .data-table-checkbox::before {
   content: "✓";
   color: var(--color-action-primary-text);
-  font-size: var(--font-size-ui-sm);
+  font-size: calc(var(--density-icon, 16px) * 0.75);
   line-height: 1;
 }
 

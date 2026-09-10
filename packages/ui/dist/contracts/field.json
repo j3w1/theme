@@ -115,11 +115,14 @@
       "focus.offset",
       "focus.ring",
       "font.family.mono",
+      "font.line-height.caption",
       "font.line-height.ui-md",
       "font.line-height.ui-sm",
+      "font.size.caption",
       "font.size.ui-md",
       "font.size.ui-sm",
       "radius.none",
+      "space.2",
       "space.32",
       "space.4",
       "z.popover"
@@ -140,6 +143,7 @@
       "color.primitive.ink.0",
       "color.primitive.ink.30",
       "color.primitive.paper.90",
+      "color.primitive.red.100",
       "color.primitive.red.200",
       "color.primitive.red.350",
       "color.primitive.red.800",
@@ -164,11 +168,14 @@
       "focus.offset",
       "focus.ring",
       "font.family.mono",
+      "font.line-height.caption",
       "font.line-height.ui-md",
       "font.line-height.ui-sm",
+      "font.size.caption",
       "font.size.ui-md",
       "font.size.ui-sm",
       "radius.none",
+      "space.2",
       "space.32",
       "space.4",
       "z.popover"
@@ -306,12 +313,22 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "font.line-height.caption": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "font.line-height.ui-md": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
       "font.line-height.ui-sm": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "font.size.caption": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -327,6 +344,11 @@
         "decisionIds": []
       },
       "radius.none": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "space.2": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -352,6 +374,6 @@
   "copy": {
     "directory": "copy/field/",
     "manifest": "copy/field/manifest.json",
-    "digest": "sha256-XYTrUGYHBXhBXHgSnxIAoJhVTAwUvikblPzm1ZqnvuI="
+    "digest": "sha256-yb/lJap3j+gArbv+QBwBexbANci4vZs4ofymsXmXzRo="
   }
 }

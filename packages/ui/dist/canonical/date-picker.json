@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-dVVXuyfmUjNjfan99PHe+fKFlhOD0dRrre2xK1AvSJg=",
+  "sourceDigest": "sha256-fIloSx2SvKOhZQqPq7ZfXqBVLqILUVu4kML4c5uMPlo=",
   "id": "date-picker",
   "family": "forms-advanced",
   "maturity": "stable",
@@ -294,7 +294,7 @@
     },
     "calendar.bg": {
       "alias": "color.surface.raised",
-      "value": "#241010",
+      "value": "#160b0b",
       "status": "observed",
       "deprecated": false,
       "decisionId": null,
@@ -332,7 +332,7 @@
     },
     "calendar.selected-bg": {
       "alias": "color.interaction.selection.bg",
-      "value": "#911410",
+      "value": "#531310",
       "status": "observed",
       "deprecated": false,
       "decisionId": null,
@@ -936,8 +936,8 @@
       "fg": "color.text.default",
       "bg": "color.surface.raised",
       "fgHex": "#e99499",
-      "bgHex": "#241010",
-      "ratio": 7.92,
+      "bgHex": "#160b0b",
+      "ratio": 8.43,
       "pass": true,
       "waiver": null
     },
@@ -949,8 +949,8 @@
       "fg": "color.interaction.selection.text",
       "bg": "color.interaction.selection.bg",
       "fgHex": "#f4eeee",
-      "bgHex": "#911410",
-      "ratio": 7.92,
+      "bgHex": "#531310",
+      "ratio": 12.47,
       "pass": true,
       "waiver": null
     }

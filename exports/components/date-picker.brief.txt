@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — date-picker
-theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-dVVXuyfmUjNjfan99PHe+fKFlhOD0dRrre2xK1AvSJg=
+theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-fIloSx2SvKOhZQqPq7ZfXqBVLqILUVu4kML4c5uMPlo=
 pin: https://raw.githubusercontent.com/j3w1/theme/v1.1.0/exports/components/date-picker.json
 spec: spec/components/date-picker.md  site: https://j3w1.github.io/theme/reference/#c-date-picker
 maturity: stable  priority: R1
@@ -27,10 +27,10 @@ Tokens (resolved):
   separator.text          #bd787d  ({color.text.muted})  use
   help.text               #bd787d  ({color.text.muted})  use
   message.text            #f73f35  ({color.status.danger.text})  use
-  calendar.bg             #241010  ({color.surface.raised})  use
+  calendar.bg             #160b0b  ({color.surface.raised})  use
   calendar.border         #e53935  ({color.border.overlay})  use-and-report (D-008)
   calendar.text           #e99499  ({color.text.default})  use
-  calendar.selected-bg    #911410  ({color.interaction.selection.bg})  use
+  calendar.selected-bg    #531310  ({color.interaction.selection.bg})  use
   calendar.selected-text  #f4eeee  ({color.interaction.selection.text})  use
 State dependency disclosures: D-007
 

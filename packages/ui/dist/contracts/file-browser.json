@@ -136,7 +136,6 @@
       "density.comfortable.row-height",
       "density.compact.control-height",
       "density.compact.control-padding-x",
-      "density.compact.row-height",
       "focus.offset",
       "focus.ring",
       "font.family.mono",
@@ -174,10 +173,11 @@
       "color.interaction.text-selection.text",
       "color.primitive.ink.0",
       "color.primitive.ink.28",
+      "color.primitive.ink.30",
       "color.primitive.ink.40",
-      "color.primitive.ink.52",
       "color.primitive.ink.60",
       "color.primitive.paper.90",
+      "color.primitive.red.100",
       "color.primitive.red.350",
       "color.primitive.red.400",
       "color.primitive.red.50",
@@ -200,7 +200,6 @@
       "density.comfortable.row-height",
       "density.compact.control-height",
       "density.compact.control-padding-x",
-      "density.compact.row-height",
       "focus.offset",
       "focus.ring",
       "font.family.mono",
@@ -369,11 +368,6 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
-      "density.compact.row-height": {
-        "action": "use",
-        "reason": "Use within the role's documented scope and restrictions.",
-        "decisionIds": []
-      },
       "focus.offset": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -465,6 +459,6 @@
   "copy": {
     "directory": "copy/file-browser/",
     "manifest": "copy/file-browser/manifest.json",
-    "digest": "sha256-221M+0ltA9NgBP0AoKP5t1+QmNccs6+bxO5h9UKvrLY="
+    "digest": "sha256-f51RCGaYJzIh2qiictqQtsqyMMoF8LaW58ttYc6h0o4="
   }
 }

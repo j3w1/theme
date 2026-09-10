@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-dVVXuyfmUjNjfan99PHe+fKFlhOD0dRrre2xK1AvSJg=",
+  "sourceDigest": "sha256-fIloSx2SvKOhZQqPq7ZfXqBVLqILUVu4kML4c5uMPlo=",
   "id": "table",
   "family": "display",
   "maturity": "stable",
@@ -122,7 +122,7 @@
     },
     "header.bg-sticky": {
       "alias": "color.surface.raised",
-      "value": "#241010",
+      "value": "#160b0b",
       "status": "observed",
       "deprecated": false,
       "decisionId": null,
@@ -196,7 +196,7 @@
     },
     "selected.bg": {
       "alias": "color.interaction.selection.bg",
-      "value": "#911410",
+      "value": "#531310",
       "status": "observed",
       "deprecated": false,
       "decisionId": null,
@@ -373,7 +373,7 @@
         },
         "bg": {
           "alias": "color.interaction.selection.bg",
-          "value": "#911410",
+          "value": "#531310",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -404,7 +404,7 @@
         },
         "bg": {
           "alias": "color.interaction.selection.bg",
-          "value": "#911410",
+          "value": "#531310",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -631,8 +631,8 @@
       "fg": "color.interaction.selection.text",
       "bg": "color.interaction.selection.bg",
       "fgHex": "#f4eeee",
-      "bgHex": "#911410",
-      "ratio": 7.92,
+      "bgHex": "#531310",
+      "ratio": 12.47,
       "pass": true,
       "waiver": null
     },
@@ -644,8 +644,8 @@
       "fg": "color.interaction.selection.text",
       "bg": "color.interaction.selection.bg",
       "fgHex": "#f4eeee",
-      "bgHex": "#911410",
-      "ratio": 7.92,
+      "bgHex": "#531310",
+      "ratio": 12.47,
       "pass": true,
       "waiver": null
     },
@@ -657,8 +657,8 @@
       "fg": "color.interaction.focus.ring-container",
       "bg": "color.interaction.selection.bg",
       "fgHex": "#ffa2a7",
-      "bgHex": "#911410",
-      "ratio": 4.75,
+      "bgHex": "#531310",
+      "ratio": 7.48,
       "pass": true,
       "waiver": null
     },
@@ -735,8 +735,8 @@
       "fg": "color.text.bright",
       "bg": "color.surface.raised",
       "fgHex": "#ffa2a7",
-      "bgHex": "#241010",
-      "ratio": 9.49,
+      "bgHex": "#160b0b",
+      "ratio": 10.1,
       "pass": true,
       "waiver": null
     },

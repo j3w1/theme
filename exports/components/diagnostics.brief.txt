@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — diagnostics
-theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-dVVXuyfmUjNjfan99PHe+fKFlhOD0dRrre2xK1AvSJg=
+theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-fIloSx2SvKOhZQqPq7ZfXqBVLqILUVu4kML4c5uMPlo=
 pin: https://raw.githubusercontent.com/j3w1/theme/v1.1.0/exports/components/diagnostics.json
 spec: spec/components/diagnostics.md  site: https://j3w1.github.io/theme/reference/#c-diagnostics
 maturity: stable  priority: R1
@@ -33,7 +33,7 @@ Tokens (resolved):
   row.divider        #2b0e0d  ({color.border.divider})  use-and-report (D-008)
   row.bg-hover       #1c0a09  ({color.interaction.hover.bg})  use
   row.ring           #e53935  ({color.interaction.focus.ring})  use
-  row.bg-selected    #911410  ({color.interaction.selection.bg})  use
+  row.bg-selected    #531310  ({color.interaction.selection.bg})  use
   row.text-selected  #f4eeee  ({color.interaction.selection.text})  use
   row.ring-selected  #ffa2a7  ({color.interaction.focus.ring-container})  use
   header.text        #ffa2a7  ({color.text.bright})  use

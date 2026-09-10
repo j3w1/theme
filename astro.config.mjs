@@ -9,6 +9,7 @@ import rehypeSpec from "./site/integrations/rehype-spec.mjs";
 import verification from "./site/integrations/verification.mjs";
 import hexSwatches from "./site/integrations/hex-swatches.mjs";
 import releaseComparisons from "./site/integrations/release-comparisons.mjs";
+import { shikiTheme } from "./site/integrations/shiki-theme.mjs";
 import manifest from "./theme.json" with { type: "json" };
 
 const siteUrl = new URL(manifest.site.url);
@@ -28,6 +29,8 @@ export default defineConfig({
   devToolbar: { enabled: false },
   // The unified processor (pinned @astrojs/markdown-remark) so the heading-
   // shift and token-reference plugin can run on the spec Markdown.
-  markdown: { processor: unified({ rehypePlugins: [rehypeSpec] }) },
+  // Code blocks render in the theme the site documents; the default bundled
+  // theme shipped a foreign palette as inline style attributes.
+  markdown: { processor: unified({ rehypePlugins: [rehypeSpec] }), shikiConfig: { theme: shikiTheme() } },
   integrations: [copyExports(), releaseComparisons(), hexSwatches(), verification()],
 });

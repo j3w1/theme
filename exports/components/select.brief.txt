@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — select
-theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-dVVXuyfmUjNjfan99PHe+fKFlhOD0dRrre2xK1AvSJg=
+theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-fIloSx2SvKOhZQqPq7ZfXqBVLqILUVu4kML4c5uMPlo=
 pin: https://raw.githubusercontent.com/j3w1/theme/v1.1.0/exports/components/select.json
 spec: spec/components/select.md  site: https://j3w1.github.io/theme/reference/#c-select
 maturity: stable  priority: R1
@@ -20,9 +20,9 @@ Tokens (resolved):
   control.text           #e99499  ({color.text.default})  use
   control.text-disabled  #8a5559  ({color.text.disabled})  use
   chevron.stroke         #e99499  ({color.icon.default})  use
-  option.bg              #241010  ({color.surface.raised})  use
+  option.bg              #160b0b  ({color.surface.raised})  use
   option.text            #e99499  ({color.text.default})  use
-  option.bg-selected     #911410  ({color.interaction.selection.bg})  use
+  option.bg-selected     #531310  ({color.interaction.selection.bg})  use
   option.text-selected   #f4eeee  ({color.interaction.selection.text})  use
   group.text             #bd787d  ({color.text.muted})  use
   label.text             #ffa2a7  ({color.text.bright})  use

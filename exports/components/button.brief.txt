@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — button
-theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-dVVXuyfmUjNjfan99PHe+fKFlhOD0dRrre2xK1AvSJg=
+theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-fIloSx2SvKOhZQqPq7ZfXqBVLqILUVu4kML4c5uMPlo=
 pin: https://raw.githubusercontent.com/j3w1/theme/v1.1.0/exports/components/button.json
 spec: spec/components/button.md  site: https://j3w1.github.io/theme/reference/#c-button
 maturity: stable  priority: R1
@@ -8,7 +8,7 @@ Summary: The native push button in the four action tones; primary is the only fi
 
 Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  root.bg                    #871f19  ({color.action.primary.bg})  use
+  root.bg                    #7d1310  ({color.action.primary.bg})  use
   root.text                  #f4eeee  ({color.action.primary.text})  use
   root.border                #9e231f  ({color.action.primary.border})  use
   root.bg-hover              #911410  ({color.action.primary.hover-bg})  use

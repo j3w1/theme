@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — list
-theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-dVVXuyfmUjNjfan99PHe+fKFlhOD0dRrre2xK1AvSJg=
+theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-fIloSx2SvKOhZQqPq7ZfXqBVLqILUVu4kML4c5uMPlo=
 pin: https://raw.githubusercontent.com/j3w1/theme/v1.1.0/exports/components/list.json
 spec: spec/components/list.md  site: https://j3w1.github.io/theme/reference/#c-list
 maturity: stable  priority: R1
@@ -15,7 +15,7 @@ Tokens (resolved):
   row.divider             #2b0e0d  ({color.border.divider})  use-and-report (D-008)
   row.ring                #e53935  ({color.interaction.focus.ring})  use
   row.text-disabled       #8a5559  ({color.text.disabled})  use
-  selected.bg             #911410  ({color.interaction.selection.bg})  use
+  selected.bg             #531310  ({color.interaction.selection.bg})  use
   selected.text           #f4eeee  ({color.interaction.selection.text})  use
   selected.ring           #ffa2a7  ({color.interaction.focus.ring-container})  use
   selected.inactive-bg    #420f0c  ({color.interaction.selection.inactive-bg})  use

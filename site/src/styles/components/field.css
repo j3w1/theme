@@ -6,7 +6,7 @@
 .field {
   position: relative; /* the visually hidden help text in the invalid state stays inside the component */
   display: grid;
-  gap: var(--space-4);
+  gap: var(--space-2);
   min-width: 0;
   max-width: 28rem;
   color: var(--color-text-default);
@@ -49,16 +49,16 @@
 .field-help {
   margin: 0;
   color: var(--color-text-muted);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
+  font-size: var(--font-size-caption);
+  line-height: var(--font-line-height-caption);
 }
 
 .field-message {
   display: none;
   margin: 0;
   color: var(--color-status-danger-text);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
+  font-size: var(--font-size-caption);
+  line-height: var(--font-line-height-caption);
 }
 
 /* required: the mark exists in the markup and shows with the attribute */

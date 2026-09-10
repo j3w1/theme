@@ -213,6 +213,7 @@
       "color.surface.canvas",
       "color.surface.input",
       "color.surface.raised",
+      "color.text.accent",
       "color.text.bright",
       "color.text.default",
       "color.text.disabled",
@@ -220,9 +221,11 @@
       "color.text.placeholder",
       "density.comfortable.control-height",
       "density.comfortable.control-padding-x",
+      "density.comfortable.icon",
       "density.comfortable.row-height",
       "density.compact.control-height",
       "density.compact.control-padding-x",
+      "density.compact.icon",
       "density.compact.row-height",
       "focus.offset",
       "focus.offset-invalid",
@@ -266,11 +269,10 @@
       "color.primitive.ink.0",
       "color.primitive.ink.30",
       "color.primitive.ink.40",
-      "color.primitive.ink.52",
       "color.primitive.ink.60",
       "color.primitive.paper.90",
+      "color.primitive.red.100",
       "color.primitive.red.200",
-      "color.primitive.red.300",
       "color.primitive.red.350",
       "color.primitive.red.800",
       "color.primitive.red.850",
@@ -284,6 +286,7 @@
       "color.surface.canvas",
       "color.surface.input",
       "color.surface.raised",
+      "color.text.accent",
       "color.text.bright",
       "color.text.default",
       "color.text.disabled",
@@ -291,9 +294,11 @@
       "color.text.placeholder",
       "density.comfortable.control-height",
       "density.comfortable.control-padding-x",
+      "density.comfortable.icon",
       "density.comfortable.row-height",
       "density.compact.control-height",
       "density.compact.control-padding-x",
+      "density.compact.icon",
       "density.compact.row-height",
       "focus.offset",
       "focus.offset-invalid",
@@ -436,6 +441,11 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "color.text.accent": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "color.text.bright": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -471,6 +481,11 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "density.comfortable.icon": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "density.comfortable.row-height": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -482,6 +497,11 @@
         "decisionIds": []
       },
       "density.compact.control-padding-x": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "density.compact.icon": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -587,6 +607,6 @@
   "copy": {
     "directory": "copy/select/",
     "manifest": "copy/select/manifest.json",
-    "digest": "sha256-qviOA0vPffSHhSIG/iTUNJbxZ7AnwDI1WIw5fMVmm/U="
+    "digest": "sha256-ScI8P9oPexvc8b7sW4ai8QRsGISG4y6AIVCEAUkJdts="
   }
 }

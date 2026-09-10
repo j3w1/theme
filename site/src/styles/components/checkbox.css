@@ -29,18 +29,18 @@
 
 .checkbox-option {
   display: grid;
-  grid-template-columns: var(--icon-size-md) minmax(0, 1fr);
-  align-items: start;
-  gap: var(--space-8);
+  grid-template-columns: var(--density-icon, 16px) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-4);
   min-height: var(--space-24);
-  padding: var(--space-4) 0;
+  padding: var(--space-2) 0;
   cursor: pointer;
 }
 
 .checkbox-control {
   display: inline-grid;
-  width: var(--icon-size-md);
-  height: var(--icon-size-md);
+  width: var(--density-icon, 16px);
+  height: var(--density-icon, 16px);
   color: var(--color-action-primary-text);
 }
 
@@ -50,8 +50,8 @@
 
 .checkbox-input {
   appearance: none;
-  width: var(--icon-size-md);
-  height: var(--icon-size-md);
+  width: var(--density-icon, 16px);
+  height: var(--density-icon, 16px);
   margin: 0;
   background: var(--color-surface-input);
   border: var(--border-width-default) solid var(--color-border-control);
@@ -63,24 +63,24 @@
 .checkbox-check,
 .checkbox-dash {
   display: none;
-  width: var(--icon-size-md);
-  height: var(--icon-size-md);
+  width: var(--density-icon, 16px);
+  height: var(--density-icon, 16px);
   stroke: currentColor;
   fill: none;
   pointer-events: none;
 }
 
 .checkbox-text {
-  font-size: var(--font-size-ui-md);
-  line-height: var(--font-line-height-ui-md);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
 }
 
 .checkbox-message {
   display: none;
   margin: 0;
   color: var(--color-status-danger-text);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
+  font-size: var(--font-size-caption);
+  line-height: var(--font-line-height-caption);
 }
 
 /* hover: the box fill only, on hover-capable pointers */

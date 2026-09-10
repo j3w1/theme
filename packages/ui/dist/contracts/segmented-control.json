@@ -141,7 +141,9 @@
       "color.text.default",
       "color.text.disabled",
       "density.comfortable.control-height",
+      "density.comfortable.icon",
       "density.compact.control-height",
+      "density.compact.icon",
       "focus.offset",
       "focus.ring",
       "font.family.mono",
@@ -149,7 +151,6 @@
       "font.line-height.ui-sm",
       "font.size.ui-md",
       "font.size.ui-sm",
-      "icon.size.md",
       "radius.none",
       "space.12",
       "space.16",
@@ -182,8 +183,8 @@
       "color.primitive.ink.30",
       "color.primitive.ink.40",
       "color.primitive.paper.90",
+      "color.primitive.red.100",
       "color.primitive.red.200",
-      "color.primitive.red.300",
       "color.primitive.red.350",
       "color.primitive.red.800",
       "color.primitive.red.850",
@@ -200,7 +201,9 @@
       "color.text.default",
       "color.text.disabled",
       "density.comfortable.control-height",
+      "density.comfortable.icon",
       "density.compact.control-height",
+      "density.compact.icon",
       "focus.offset",
       "focus.ring",
       "font.family.mono",
@@ -208,7 +211,6 @@
       "font.line-height.ui-sm",
       "font.size.ui-md",
       "font.size.ui-sm",
-      "icon.size.md",
       "radius.none",
       "space.12",
       "space.16",
@@ -347,7 +349,17 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "density.comfortable.icon": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "density.compact.control-height": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "density.compact.icon": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -383,11 +395,6 @@
         "decisionIds": []
       },
       "font.size.ui-sm": {
-        "action": "use",
-        "reason": "Use within the role's documented scope and restrictions.",
-        "decisionIds": []
-      },
-      "icon.size.md": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -443,6 +450,6 @@
   "copy": {
     "directory": "copy/segmented-control/",
     "manifest": "copy/segmented-control/manifest.json",
-    "digest": "sha256-6jVExHGlhoV8osjfvIq9idFSXYuUQFC9iEwWQa0hhu4="
+    "digest": "sha256-bnTv1H7P7je/idhkvJ+AA2+QBi3mhhdcKQUUUcrWWYI="
   }
 }

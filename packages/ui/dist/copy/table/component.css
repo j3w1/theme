@@ -38,7 +38,7 @@ j3w1-table .table {
 }
 
 j3w1-table .table-scroller {
-  max-height: calc(var(--density-row-height, 36px) * 4);
+  max-height: calc(var(--density-comfortable-row-height, 36px) * 4);
   overflow: auto;
   min-width: 0;
 }
@@ -55,7 +55,7 @@ j3w1-table .table tbody th { color: inherit; font-weight: var(--font-weight-regu
 
 j3w1-table .table .table-header {
   position: static;
-  height: var(--density-row-height, 36px);
+  height: var(--density-comfortable-row-height, 36px);
   min-width: 0;
   padding: 0 var(--density-control-padding-x, 12px);
   background: var(--color-surface-default);
@@ -100,7 +100,7 @@ j3w1-table .table-sort-glyph {
 }
 
 j3w1-table .table .table-row {
-  height: var(--density-row-height, 36px);
+  height: var(--density-comfortable-row-height, 36px);
   background: transparent;
   border-top: var(--border-width-default) solid var(--color-border-divider);
 }

@@ -1,4 +1,4 @@
-import { n as registerElement } from "../chunks/element-DdnhHcFm.js";
+import { n as registerElement } from "../chunks/element-C1XeXVYC.js";
 import { J3w1SearchField } from "../components/search-field.js";
 //#region .cache/ui-build/entries/register/search-field.js
 var element = registerElement("j3w1-search-field", J3w1SearchField);

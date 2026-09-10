@@ -188,7 +188,7 @@
 [data-state-selected] .filterable-table .filterable-table-row-selected .data-table-checkbox::before {
   content: "✓";
   color: var(--color-action-primary-text);
-  font-size: var(--font-size-ui-sm);
+  font-size: calc(var(--density-icon, 16px) * 0.75);
   line-height: 1;
 }
 

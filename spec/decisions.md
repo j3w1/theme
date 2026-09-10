@@ -37,6 +37,8 @@ in its `$extensions["io.github.j3w1.theme"].approval.decision`. Agents may open
 | D-023 | True Black / Rose canonical foundation | accepted | 2026-09-08 | owner (explicit selection of candidate I) |
 | D-024 | Distinguish links from body text and headings | accepted | 2026-09-08 | owner (explicit preview correction) |
 | D-025 | Theme interactive controls throughout the portal and demo | accepted | 2026-09-09 | owner (explicit native-control replacement request) |
+| D-026 | Primary action fill darkens off heritage ANSI 12 | proposed | 2026-09-10 | — |
+| D-027 | Recede the interactive chrome | proposed | 2026-09-10 | — |
 
 ## D-000 Responsibility split
 
@@ -514,3 +516,82 @@ agents with inconsistent components. New hues, focus rules, accessibility
 waivers and license changes are not authorized by this correction. The additive
 enhancement and corrected component behavior ship in 1.1.0; existing 1.0.0 pins
 remain immutable. The command field fills its dialog width below its label.
+
+## D-026 Primary action fill darkens off heritage ANSI 12
+
+Status: proposed. The owner asked for a slightly darker fill on primary
+actions such as the portal's `Explore components` button.
+
+`color.action.primary.bg` aliased `color.primitive.red.300`, which is also
+`color.primitive.ansi.12` and `color.terminal.ansi.12`. `schemas/roles.mjs`
+fixes every `color.primitive.ansi.<i>` to its heritage value byte for byte in
+every profile, so darkening that primitive is not available: it would fail
+validation and silently repaint the terminal's bright red.
+
+The role therefore aliases `color.primitive.red.200` (`#7d1310`), a value
+already in the palette, rather than minting a new colour. Label contrast rises
+from 8.17:1 to 9.28:1 and the focus ring over the fill from 4.90:1 to 5.57:1;
+both were already passing. The state ladder stays ordered — pressed `#630f0d`
+below the fill, hover `#911410` above it.
+
+The declared pair `primary fill against the panel` is a recorded decorative
+waiver at 2.07:1 and moves further from 3:1. It is listed as decorative
+because the label identifies the button; this decision does not change that
+reasoning, and no waiver is added or widened.
+
+Alternatives: mint a new primitive at the exact requested value, which adds a
+colour to the palette for a difference of about one step and no measurable
+gain; or leave the fill and darken only the portal button, which would put a
+value in a stylesheet that is not in `tokens/`, against the confirmation-only
+rule in `theme.json`.
+
+## D-027 Recede the interactive chrome
+
+Status: proposed. The owner found the open list, its selected row, the
+placeholder text and the link hover fill all louder than the content they sit
+against, and asked for a darker treatment across the set.
+
+Four roles move, all onto values already in the palette; no colour is minted.
+
+- `surface.raised` takes `ink.30` (`#160b0b`) instead of `ink.52`. An open list
+  now reads as depth rather than as a lighter panel, and stays distinct from
+  `surface.default` (`#100c0c`).
+- `interaction.selection.bg` takes `red.100` (`#531310`) instead of `red.350`.
+  Text on the fill improves from 7.92:1 to 12.47:1.
+- `text.placeholder` takes `rose.350` (`#a3676b`) instead of `rose.600`,
+  measuring 4.71:1 on `surface.input` — darker, and still clear of the 4.5:1
+  floor without a waiver.
+- Links hover on `interaction.hover.bg` rather than `interaction.hover.bg-strong`.
+  Menu items keep the strong fill, so the two remain distinguishable.
+
+The selection fill was never what carried selection: at `#911410` it measured
+2.00:1 against the raised surface, below the 3:1 non-text minimum, and the
+recessed value measures less again. Selection is carried by the 2px
+`border.selected-indicator` and the check glyph, which is what
+`spec/foundations.md` requires when a state would otherwise be colour-only.
+Both are unchanged. The full report still shows 954 pairs, 17 waived and none
+failing; no waiver is added or widened.
+
+This supersedes part of D-023. `surface.raised` (`#241010`) and
+`interaction.selection.bg` (`#911410`) were among the values the owner selected
+in that accepted decision, and `tests/foundation-selection.test.js` guards them
+by name. That guard now records the recessed values instead; every other
+surface in it is still the D-023 selection, untouched. Until this entry is
+accepted, the repository asserts two values that no accepted decision covers —
+accepting it, or reverting these two roles, is the only way to close that.
+
+The darker fill also settles the ring on a selected row. D-006 recolours the
+ring on filled surfaces because `#e53935` measured 2.15:1 on the old
+`#911410`; on `#531310` it measures 3.38:1, past the 3:1 minimum, so a
+selected row now takes the ordinary 1px dashed control ring instead of the 2px
+solid container ring. That is the only fill this reaches: the ring still
+measures 2.52:1 on `action.primary.bg` and 1.13:1 on `status.danger.fill`, and
+both keep their recoloured ring. `spec/foundations.md` carried the stale 2.15:1
+figure as its stated reason and has been corrected; D-006's own record is left
+as written, since it describes what was true when it was opened.
+
+Alternatives: keep the fills and darken only the components the owner pointed
+at, which would put presentation in a stylesheet rather than in the roles and
+leave selection meaning two different things; or introduce new primitives at
+intermediate values, which adds colours to the palette for differences the
+existing steps already cover.

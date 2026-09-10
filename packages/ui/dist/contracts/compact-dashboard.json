@@ -137,7 +137,6 @@
       "density.comfortable.row-height",
       "density.compact.control-height",
       "density.compact.control-padding-x",
-      "density.compact.row-height",
       "focus.offset",
       "focus.ring",
       "font.family.mono",
@@ -179,10 +178,11 @@
       "color.primitive.ink.0",
       "color.primitive.ink.14",
       "color.primitive.ink.28",
+      "color.primitive.ink.30",
       "color.primitive.ink.40",
-      "color.primitive.ink.52",
       "color.primitive.ink.60",
       "color.primitive.paper.90",
+      "color.primitive.red.100",
       "color.primitive.red.350",
       "color.primitive.red.400",
       "color.primitive.red.50",
@@ -205,7 +205,6 @@
       "density.comfortable.row-height",
       "density.compact.control-height",
       "density.compact.control-padding-x",
-      "density.compact.row-height",
       "focus.offset",
       "focus.ring",
       "font.family.mono",
@@ -389,11 +388,6 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
-      "density.compact.row-height": {
-        "action": "use",
-        "reason": "Use within the role's documented scope and restrictions.",
-        "decisionIds": []
-      },
       "focus.offset": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -485,6 +479,6 @@
   "copy": {
     "directory": "copy/compact-dashboard/",
     "manifest": "copy/compact-dashboard/manifest.json",
-    "digest": "sha256-cJQ/b0d+yyqVK0xCu0HLmWc08qfw9x6b+XCTUkanzc4="
+    "digest": "sha256-Z3Hd7aJGcEW0Zdf2IGCdv3w7wr84yiBfvTVfztEknnM="
   }
 }

@@ -31,7 +31,7 @@ a.portal-card:hover h2, a.portal-card:hover h3 { color: var(--color-text-link-ho
 .portal-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-block: 20px; }
 .portal-actions a, .portal-actions button, .portal-copy { border: 1px solid var(--color-border-control); padding: 10px 14px; background: var(--color-surface-default); color: var(--color-text-default); text-decoration: none; font: inherit; cursor: pointer; }
 .portal-actions .portal-primary { background: var(--color-action-primary-bg); color: var(--color-action-primary-text); }
-.portal-actions a:not(.portal-primary) { color: var(--color-text-link); text-decoration: underline; text-underline-offset: var(--space-2); }
+.portal-actions a:not(.portal-primary) { color: var(--color-text-link); text-decoration: underline; }
 .portal-actions a:not(.portal-primary):hover { color: var(--color-text-link-hover); background: var(--color-interaction-hover-bg-strong); }
 .portal-metric { font-size: 32px; color: var(--color-text-bright); display: block; margin-block: 8px; }
 .portal-swatches { display: grid; grid-template-columns: repeat(auto-fit,minmax(150px,1fr)); gap: 16px; }
