@@ -57,8 +57,9 @@
 .j3w1-choice-option[aria-selected="true"] .j3w1-choice-check { visibility: visible; }
 .j3w1-choice-option[data-active],.j3w1-choice-option:hover { outline: var(--focus-ring); outline-offset: calc(-1 * var(--space-2)); }
 /* The selected row takes the ordinary control ring, not the recoloured
-   container ring. D-027 darkened the selection fill to #531310, where
-   focus.ring measures 3.38:1 — past the 3:1 minimum that forced the swap. */
+   container ring. D-027 recessed the selection fill far enough that
+   focus.ring measures 3.38:1 on it — past the 3:1 minimum that forced the
+   swap. Values belong in tokens/, including in a comment. */
 .j3w1-choice-option[aria-selected="true"][data-active],.j3w1-choice-option[aria-selected="true"]:hover { outline: var(--focus-ring); }
 .j3w1-choice-option[aria-disabled="true"] { color: var(--color-text-disabled); cursor: not-allowed; }
 .j3w1-choice-trigger:disabled,.j3w1-choice-list[aria-disabled="true"] { color: var(--color-text-disabled); background: var(--color-interaction-disabled-bg); border-color: var(--color-border-disabled); cursor: not-allowed; }
