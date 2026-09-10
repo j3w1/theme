@@ -40,13 +40,15 @@
   font-variant-numeric: tabular-nums;
 }
 
+/* A narrow plain rule: the track is the unfilled remainder and the fill is
+   the action red. No border and no second hue — the bar is the whole chrome. */
 .progress-bar {
   display: block;
   width: 100%;
-  height: var(--space-8);
+  height: var(--space-4);
   appearance: none;
   background: var(--color-interaction-pressed-bg);
-  border: var(--border-width-default) solid var(--color-border-control);
+  border: 0;
   border-radius: var(--radius-none);
   color: var(--color-action-primary-bg);
   overflow: hidden;

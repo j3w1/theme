@@ -48,7 +48,7 @@ j3w1-file-browser .table {
 }
 
 j3w1-file-browser .table-scroller {
-  max-height: calc(var(--density-row-height, 36px) * 4);
+  max-height: calc(var(--density-comfortable-row-height, 36px) * 4);
   overflow: auto;
   min-width: 0;
 }
@@ -65,7 +65,7 @@ j3w1-file-browser .table tbody th { color: inherit; font-weight: var(--font-weig
 
 j3w1-file-browser .table .table-header {
   position: static;
-  height: var(--density-row-height, 36px);
+  height: var(--density-comfortable-row-height, 36px);
   min-width: 0;
   padding: 0 var(--density-control-padding-x, 12px);
   background: var(--color-surface-default);
@@ -110,7 +110,7 @@ j3w1-file-browser .table-sort-glyph {
 }
 
 j3w1-file-browser .table .table-row {
-  height: var(--density-row-height, 36px);
+  height: var(--density-comfortable-row-height, 36px);
   background: transparent;
   border-top: var(--border-width-default) solid var(--color-border-divider);
 }
@@ -239,7 +239,7 @@ j3w1-file-browser .tree {box-sizing:border-box;display:grid;gap:var(--space-12);
 j3w1-file-browser .tree-control {font:inherit;min-height:var(--density-control-height);padding:var(--space-8);background:var(--color-surface-input);color:var(--color-text-default);border:var(--border-width-default) solid var(--color-border-control);border-radius:var(--radius-none)}
 j3w1-file-browser .tree,j3w1-file-browser .tree [role=group] {list-style:none;padding:0;margin:0}j3w1-file-browser .tree [role=group] {padding-inline-start:var(--space-16)}j3w1-file-browser .tree [data-tree-label] {display:block;padding:var(--space-8);border-inline-start:var(--border-width-emphasis) solid transparent}j3w1-file-browser .tree [aria-expanded]>[data-tree-label]::before {content:'▸ '}j3w1-file-browser .tree [aria-expanded=true]>[data-tree-label]::before {content:'▾ '}j3w1-file-browser .tree [aria-selected=true]>[data-tree-label] {background:var(--color-interaction-selection-bg);color:var(--color-interaction-selection-text);border-inline-start-color:var(--color-border-selected-indicator)}j3w1-file-browser .tree [role=treeitem]:focus-visible>[data-tree-label] {outline:var(--border-width-default) dashed var(--color-interaction-focus-ring);outline-offset:var(--space-2)}j3w1-file-browser .tree [aria-expanded=false]>[role=group] {display:none}j3w1-file-browser .tree [aria-disabled=true]>[data-tree-label] {color:var(--color-text-disabled)}
 
-j3w1-file-browser .tree [aria-selected=true]:focus-visible>[data-tree-label] {outline-color:var(--color-interaction-focus-ring-container)}
+j3w1-file-browser .tree [aria-selected=true]:focus-visible>[data-tree-label] {outline-color:var(--color-interaction-focus-ring)}
 
 j3w1-file-browser [hidden] { display: none !important; }
 j3w1-file-browser .j3w1-visually-hidden {

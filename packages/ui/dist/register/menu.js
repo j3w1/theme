@@ -1,4 +1,4 @@
-import { n as registerElement } from "../chunks/element-DdnhHcFm.js";
+import { n as registerElement } from "../chunks/element-C1XeXVYC.js";
 import { J3w1Menu } from "../components/menu.js";
 //#region .cache/ui-build/entries/register/menu.js
 var element = registerElement("j3w1-menu", J3w1Menu);

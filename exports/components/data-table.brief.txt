@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — data-table
-theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-dVVXuyfmUjNjfan99PHe+fKFlhOD0dRrre2xK1AvSJg=
+theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-wVIkiAFnphXij22L7uySrvm8/3bNoqB5m/3AlY/pnQI=
 pin: https://raw.githubusercontent.com/j3w1/theme/v1.1.0/exports/components/data-table.json
 spec: spec/components/data-table.md  site: https://j3w1.github.io/theme/reference/#c-data-table
 maturity: stable  priority: R1
@@ -16,12 +16,12 @@ Tokens (resolved):
   row.divider          #2b0e0d  ({color.border.divider})  use-and-report (D-008)
   row.bg-hover         #1c0a09  ({color.interaction.hover.bg})  use
   row.ring             #e53935  ({color.interaction.focus.ring})  use
-  selected.bg          #911410  ({color.interaction.selection.bg})  use
+  selected.bg          #531310  ({color.interaction.selection.bg})  use
   selected.text        #f4eeee  ({color.interaction.selection.text})  use
   selected.ring        #ffa2a7  ({color.interaction.focus.ring-container})  use
   checkbox.bg          #000000  ({color.surface.input})  use
   checkbox.border      #a3676b  ({color.border.control})  use-and-report (D-007)
-  checkbox.checked-bg  #871f19  ({color.action.primary.bg})  use
+  checkbox.checked-bg  #7d1310  ({color.action.primary.bg})  use
   checkbox.glyph       #f4eeee  ({color.action.primary.text})  use
   resize.handle        #531310  ({color.border.default})  use
   resize.handle-hover  #e53935  ({color.border.active})  use

@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — combobox
-theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-dVVXuyfmUjNjfan99PHe+fKFlhOD0dRrre2xK1AvSJg=
+theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-wVIkiAFnphXij22L7uySrvm8/3bNoqB5m/3AlY/pnQI=
 pin: https://raw.githubusercontent.com/j3w1/theme/v1.1.0/exports/components/combobox.json
 spec: spec/components/combobox.md  site: https://j3w1.github.io/theme/reference/#c-combobox
 maturity: stable  priority: R1
@@ -19,17 +19,17 @@ Tokens (resolved):
   root.bg-disabled      #160b0b  ({color.interaction.disabled.bg})  use
   input.text            #e99499  ({color.text.default})  use
   input.text-disabled   #8a5559  ({color.text.disabled})  use
-  input.placeholder     #bd787d  ({color.text.placeholder})  use
+  input.placeholder     #a3676b  ({color.text.placeholder})  use
   input.caret           #e99499  ({color.code.caret})  use
   toggle.text           #e99499  ({color.action.tertiary.text})  use
   toggle.bg-hover       #1c0a09  ({color.action.tertiary.hover-bg})  use
   label.text            #ffa2a7  ({color.text.bright})  use
-  listbox.bg            #241010  ({color.surface.raised})  use
+  listbox.bg            #160b0b  ({color.surface.raised})  use
   listbox.border        #e53935  ({color.border.overlay})  use-and-report (D-008)
   option.text           #e99499  ({color.text.default})  use
   option.bg-hover       #630f0d  ({color.interaction.hover.bg-strong})  use
   option.text-hover     #f4eeee  ({color.text.link-hover})  use
-  option.bg-selected    #911410  ({color.interaction.selection.bg})  use
+  option.bg-selected    #531310  ({color.interaction.selection.bg})  use
   option.text-selected  #f4eeee  ({color.interaction.selection.text})  use
   option.ring-selected  #ffa2a7  ({color.interaction.focus.ring-container})  use
   group.text            #ad7175  ({color.text.subtle})  use

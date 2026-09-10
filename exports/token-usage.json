@@ -1437,9 +1437,9 @@
         "color.action.primary.bg": {
           "path": "color.action.primary.bg",
           "group": "action",
-          "css": "#871f19",
+          "css": "#7d1310",
           "variable": "--color-action-primary-bg",
-          "description": "Primary button fill (color12).",
+          "description": "Primary button fill; D-026 darkened it off color12, which stays fixed as heritage ANSI 12.",
           "status": "observed",
           "deprecated": false,
           "eligibility": {
@@ -1454,7 +1454,7 @@
           },
           "provenance": null,
           "aliases": [
-            "color.primitive.red.300"
+            "color.primitive.red.200"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -2911,7 +2911,7 @@
           "group": "action",
           "css": "#f4eeee",
           "variable": "--color-action-primary-text",
-          "description": "Primary button text (8.17:1).",
+          "description": "Primary button text (9.28:1).",
           "status": "observed",
           "deprecated": false,
           "eligibility": {
@@ -28291,9 +28291,9 @@
         "color.interaction.selection.bg": {
           "path": "color.interaction.selection.bg",
           "group": "interaction",
-          "css": "#911410",
+          "css": "#531310",
           "variable": "--color-interaction-selection-bg",
-          "description": "Selected row, tab, workspace.",
+          "description": "Selected row, tab, workspace; D-027 recessed the fill, leaving the 2px indicator and the check to carry selection.",
           "status": "observed",
           "deprecated": false,
           "eligibility": {
@@ -28308,7 +28308,7 @@
           },
           "provenance": null,
           "aliases": [
-            "color.primitive.red.350"
+            "color.primitive.red.100"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -32194,7 +32194,8 @@
           },
           "aliases": [],
           "usedByAliases": [
-            "color.interaction.disabled.bg"
+            "color.interaction.disabled.bg",
+            "color.surface.raised"
           ],
           "unmappedPorts": [],
           "uses": [],
@@ -32267,8 +32268,7 @@
           "usedByAliases": [
             "color.diff.header-bg",
             "color.status.neutral.tint",
-            "color.surface.overlay",
-            "color.surface.raised"
+            "color.surface.overlay"
           ],
           "unmappedPorts": [],
           "uses": [],
@@ -32425,7 +32425,8 @@
           "aliases": [],
           "usedByAliases": [
             "color.border.default",
-            "color.code.indent-guide"
+            "color.code.indent-guide",
+            "color.interaction.selection.bg"
           ],
           "unmappedPorts": [],
           "uses": [],
@@ -32496,6 +32497,7 @@
           },
           "aliases": [],
           "usedByAliases": [
+            "color.action.primary.bg",
             "color.border.disabled",
             "color.code.whitespace",
             "color.primitive.ansi.8",
@@ -32568,7 +32570,6 @@
           },
           "aliases": [],
           "usedByAliases": [
-            "color.action.primary.bg",
             "color.primitive.ansi.12",
             "color.terminal.ansi.12"
           ],
@@ -32606,7 +32607,6 @@
           "usedByAliases": [
             "color.action.primary.hover-bg",
             "color.interaction.scrollbar.thumb-hover",
-            "color.interaction.selection.bg",
             "color.interaction.text-selection.bg",
             "color.terminal.selection-bg"
           ],
@@ -33137,7 +33137,8 @@
             "color.primitive.ansi.15",
             "color.status.neutral.border",
             "color.status.neutral.fill",
-            "color.terminal.ansi.15"
+            "color.terminal.ansi.15",
+            "color.text.placeholder"
           ],
           "unmappedPorts": [],
           "uses": [],
@@ -33257,8 +33258,7 @@
             "color.primitive.ansi.2",
             "color.status.neutral.text",
             "color.terminal.ansi.2",
-            "color.text.muted",
-            "color.text.placeholder"
+            "color.text.muted"
           ],
           "unmappedPorts": [],
           "uses": [],
@@ -54694,9 +54694,9 @@
         "color.surface.raised": {
           "path": "color.surface.raised",
           "group": "surface",
-          "css": "#241010",
+          "css": "#160b0b",
           "variable": "--color-surface-raised",
-          "description": "Sticky headers, menus, popovers.",
+          "description": "Sticky headers, menus, popovers; D-027 recessed it so an open list reads as depth rather than a lighter panel.",
           "status": "observed",
           "deprecated": false,
           "eligibility": {
@@ -54711,7 +54711,7 @@
           },
           "provenance": null,
           "aliases": [
-            "color.primitive.ink.52"
+            "color.primitive.ink.30"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -72157,9 +72157,9 @@
         "color.text.placeholder": {
           "path": "color.text.placeholder",
           "group": "text",
-          "css": "#bd787d",
+          "css": "#a3676b",
           "variable": "--color-text-placeholder",
-          "description": "Placeholder text, italic.",
+          "description": "Placeholder text, italic; D-027 darkened it to 4.71:1, just clear of the 4.5:1 floor.",
           "status": "observed",
           "deprecated": false,
           "eligibility": {
@@ -72174,7 +72174,7 @@
           },
           "provenance": null,
           "aliases": [
-            "color.primitive.rose.600"
+            "color.primitive.rose.350"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -73262,7 +73262,7 @@
         "density.compact.icon": {
           "path": "density.compact.icon",
           "group": "density",
-          "css": "16px",
+          "css": "12px",
           "variable": "--density-compact-icon",
           "description": null,
           "status": "observed",
@@ -77862,9 +77862,9 @@
         "color.action.primary.bg": {
           "path": "color.action.primary.bg",
           "group": "action",
-          "css": "#871f19",
+          "css": "#7d1310",
           "variable": "--color-action-primary-bg",
-          "description": "Primary button fill (color12).",
+          "description": "Primary button fill; D-026 darkened it off color12, which stays fixed as heritage ANSI 12.",
           "status": "observed",
           "deprecated": false,
           "eligibility": {
@@ -77879,7 +77879,7 @@
           },
           "provenance": null,
           "aliases": [
-            "color.primitive.red.300"
+            "color.primitive.red.200"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -79336,7 +79336,7 @@
           "group": "action",
           "css": "#f4eeee",
           "variable": "--color-action-primary-text",
-          "description": "Primary button text (8.17:1).",
+          "description": "Primary button text (9.28:1).",
           "status": "observed",
           "deprecated": false,
           "eligibility": {
@@ -104713,9 +104713,9 @@
         "color.interaction.selection.bg": {
           "path": "color.interaction.selection.bg",
           "group": "interaction",
-          "css": "#911410",
+          "css": "#531310",
           "variable": "--color-interaction-selection-bg",
-          "description": "Selected row, tab, workspace.",
+          "description": "Selected row, tab, workspace; D-027 recessed the fill, leaving the 2px indicator and the check to carry selection.",
           "status": "observed",
           "deprecated": false,
           "eligibility": {
@@ -104730,7 +104730,7 @@
           },
           "provenance": null,
           "aliases": [
-            "color.primitive.red.350"
+            "color.primitive.red.100"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -108616,7 +108616,8 @@
           "aliases": [],
           "usedByAliases": [
             "color.interaction.disabled.bg",
-            "color.surface.default"
+            "color.surface.default",
+            "color.surface.raised"
           ],
           "unmappedPorts": [],
           "uses": [],
@@ -108689,8 +108690,7 @@
           "usedByAliases": [
             "color.diff.header-bg",
             "color.status.neutral.tint",
-            "color.surface.overlay",
-            "color.surface.raised"
+            "color.surface.overlay"
           ],
           "unmappedPorts": [],
           "uses": [],
@@ -108847,7 +108847,8 @@
           "aliases": [],
           "usedByAliases": [
             "color.border.default",
-            "color.code.indent-guide"
+            "color.code.indent-guide",
+            "color.interaction.selection.bg"
           ],
           "unmappedPorts": [],
           "uses": [],
@@ -108918,6 +108919,7 @@
           },
           "aliases": [],
           "usedByAliases": [
+            "color.action.primary.bg",
             "color.border.disabled",
             "color.code.line-number",
             "color.code.syntax.comment",
@@ -108992,7 +108994,6 @@
           },
           "aliases": [],
           "usedByAliases": [
-            "color.action.primary.bg",
             "color.primitive.ansi.12",
             "color.terminal.ansi.12"
           ],
@@ -109030,7 +109031,6 @@
           "usedByAliases": [
             "color.action.primary.hover-bg",
             "color.interaction.scrollbar.thumb-hover",
-            "color.interaction.selection.bg",
             "color.interaction.text-selection.bg",
             "color.terminal.selection-bg"
           ],
@@ -109562,6 +109562,7 @@
             "color.status.neutral.border",
             "color.status.neutral.fill",
             "color.terminal.ansi.15",
+            "color.text.placeholder",
             "color.text.subtle"
           ],
           "unmappedPorts": [],
@@ -109679,8 +109680,7 @@
             "color.primitive.ansi.2",
             "color.status.neutral.text",
             "color.terminal.ansi.2",
-            "color.text.muted",
-            "color.text.placeholder"
+            "color.text.muted"
           ],
           "unmappedPorts": [],
           "uses": [],
@@ -131105,9 +131105,9 @@
         "color.surface.raised": {
           "path": "color.surface.raised",
           "group": "surface",
-          "css": "#241010",
+          "css": "#160b0b",
           "variable": "--color-surface-raised",
-          "description": "Sticky headers, menus, popovers.",
+          "description": "Sticky headers, menus, popovers; D-027 recessed it so an open list reads as depth rather than a lighter panel.",
           "status": "observed",
           "deprecated": false,
           "eligibility": {
@@ -131122,7 +131122,7 @@
           },
           "provenance": null,
           "aliases": [
-            "color.primitive.ink.52"
+            "color.primitive.ink.30"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -148559,9 +148559,9 @@
         "color.text.placeholder": {
           "path": "color.text.placeholder",
           "group": "text",
-          "css": "#bd787d",
+          "css": "#a3676b",
           "variable": "--color-text-placeholder",
-          "description": "Placeholder text, italic.",
+          "description": "Placeholder text, italic; D-027 darkened it to 4.71:1, just clear of the 4.5:1 floor.",
           "status": "observed",
           "deprecated": false,
           "eligibility": {
@@ -148576,7 +148576,7 @@
           },
           "provenance": null,
           "aliases": [
-            "color.primitive.rose.600"
+            "color.primitive.rose.350"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -149661,7 +149661,7 @@
         "density.compact.icon": {
           "path": "density.compact.icon",
           "group": "density",
-          "css": "16px",
+          "css": "12px",
           "variable": "--density-compact-icon",
           "description": null,
           "status": "observed",
@@ -154261,9 +154261,9 @@
         "color.action.primary.bg": {
           "path": "color.action.primary.bg",
           "group": "action",
-          "css": "#871f19",
+          "css": "#7d1310",
           "variable": "--color-action-primary-bg",
-          "description": "Primary button fill (color12).",
+          "description": "Primary button fill; D-026 darkened it off color12, which stays fixed as heritage ANSI 12.",
           "status": "observed",
           "deprecated": false,
           "eligibility": {
@@ -154278,7 +154278,7 @@
           },
           "provenance": null,
           "aliases": [
-            "color.primitive.red.300"
+            "color.primitive.red.200"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -155735,7 +155735,7 @@
           "group": "action",
           "css": "#f4eeee",
           "variable": "--color-action-primary-text",
-          "description": "Primary button text (8.17:1).",
+          "description": "Primary button text (9.28:1).",
           "status": "observed",
           "deprecated": false,
           "eligibility": {
@@ -167258,7 +167258,7 @@
           "source": {
             "file": "tokens/profiles/extended.tokens.json",
             "pointer": "/color/chart/series-2",
-            "line": 260
+            "line": 332
           },
           "provenance": {
             "status": "proposed",
@@ -167308,7 +167308,7 @@
           "source": {
             "file": "tokens/profiles/extended.tokens.json",
             "pointer": "/color/chart/series-3",
-            "line": 272
+            "line": 344
           },
           "provenance": {
             "status": "proposed",
@@ -167342,7 +167342,7 @@
           "source": {
             "file": "tokens/profiles/extended.tokens.json",
             "pointer": "/color/chart/series-4",
-            "line": 284
+            "line": 356
           },
           "provenance": {
             "status": "proposed",
@@ -169846,24 +169846,31 @@
         "color.code.syntax.attribute": {
           "path": "color.code.syntax.attribute",
           "group": "code",
-          "css": "#d4868b",
+          "css": "#c9973f",
           "variable": "--color-code-syntax-attribute",
-          "description": "Markup attributes.",
-          "status": "observed",
+          "description": "Markup attribute names in amber, against red tags.",
+          "status": "proposed",
           "deprecated": false,
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",
-            "decisionIds": []
+            "decisionIds": [
+              "D-001"
+            ]
           },
           "source": {
-            "file": "tokens/semantic.tokens.json",
+            "file": "tokens/profiles/extended.tokens.json",
             "pointer": "/color/code/syntax/attribute",
-            "line": 801
+            "line": 85
           },
-          "provenance": null,
+          "provenance": {
+            "status": "proposed",
+            "approval": {
+              "decision": "D-001"
+            }
+          },
           "aliases": [
-            "color.primitive.rose.650"
+            "color.primitive.amber.500"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -170178,24 +170185,31 @@
         "color.code.syntax.escape": {
           "path": "color.code.syntax.escape",
           "group": "code",
-          "css": "#d4868b",
+          "css": "#c9973f",
           "variable": "--color-code-syntax-escape",
-          "description": "Escape sequences and regex, bold.",
-          "status": "observed",
+          "description": "Escapes in amber so they read out of the green string around them.",
+          "status": "proposed",
           "deprecated": false,
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",
-            "decisionIds": []
+            "decisionIds": [
+              "D-001"
+            ]
           },
           "source": {
-            "file": "tokens/semantic.tokens.json",
+            "file": "tokens/profiles/extended.tokens.json",
             "pointer": "/color/code/syntax/escape",
-            "line": 805
+            "line": 97
           },
-          "provenance": null,
+          "provenance": {
+            "status": "proposed",
+            "approval": {
+              "decision": "D-001"
+            }
+          },
           "aliases": [
-            "color.primitive.rose.650"
+            "color.primitive.amber.500"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -170221,24 +170235,31 @@
         "color.code.syntax.function": {
           "path": "color.code.syntax.function",
           "group": "code",
-          "css": "#ffa2a7",
+          "css": "#c9973f",
           "variable": "--color-code-syntax-function",
-          "description": "Function names and calls (color7 lineage).",
-          "status": "observed",
+          "description": "Function and method names in amber, distinct from the identifiers they act on.",
+          "status": "proposed",
           "deprecated": false,
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",
-            "decisionIds": []
+            "decisionIds": [
+              "D-001"
+            ]
           },
           "source": {
-            "file": "tokens/semantic.tokens.json",
+            "file": "tokens/profiles/extended.tokens.json",
             "pointer": "/color/code/syntax/function",
-            "line": 769
+            "line": 61
           },
-          "provenance": null,
+          "provenance": {
+            "status": "proposed",
+            "approval": {
+              "decision": "D-001"
+            }
+          },
           "aliases": [
-            "color.primitive.rose.800"
+            "color.primitive.amber.500"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -170550,24 +170571,31 @@
         "color.code.syntax.operator": {
           "path": "color.code.syntax.operator",
           "group": "code",
-          "css": "#e99499",
+          "css": "#ffa2a7",
           "variable": "--color-code-syntax-operator",
-          "description": "Operators.",
-          "status": "observed",
+          "description": "Operators in bright rose, separated from plain identifiers.",
+          "status": "proposed",
           "deprecated": false,
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",
-            "decisionIds": []
+            "decisionIds": [
+              "D-001"
+            ]
           },
           "source": {
-            "file": "tokens/semantic.tokens.json",
+            "file": "tokens/profiles/extended.tokens.json",
             "pointer": "/color/code/syntax/operator",
-            "line": 781
+            "line": 109
           },
-          "provenance": null,
+          "provenance": {
+            "status": "proposed",
+            "approval": {
+              "decision": "D-001"
+            }
+          },
           "aliases": [
-            "color.primitive.rose.700"
+            "color.primitive.rose.800"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -170593,24 +170621,31 @@
         "color.code.syntax.property": {
           "path": "color.code.syntax.property",
           "group": "code",
-          "css": "#e53935",
+          "css": "#7e9ebb",
           "variable": "--color-code-syntax-property",
-          "description": "Properties and keys (site .syntax-key).",
-          "status": "observed",
+          "description": "Object properties in blue, matching the type family they belong to.",
+          "status": "proposed",
           "deprecated": false,
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",
-            "decisionIds": []
+            "decisionIds": [
+              "D-001"
+            ]
           },
           "source": {
-            "file": "tokens/semantic.tokens.json",
+            "file": "tokens/profiles/extended.tokens.json",
             "pointer": "/color/code/syntax/property",
-            "line": 789
+            "line": 73
           },
-          "provenance": null,
+          "provenance": {
+            "status": "proposed",
+            "approval": {
+              "decision": "D-001"
+            }
+          },
           "aliases": [
-            "color.primitive.red.800"
+            "color.primitive.blue.500"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -170663,24 +170698,31 @@
         "color.code.syntax.punctuation": {
           "path": "color.code.syntax.punctuation",
           "group": "code",
-          "css": "#e99499",
+          "css": "#b37175",
           "variable": "--color-code-syntax-punctuation",
-          "description": "Punctuation.",
-          "status": "observed",
+          "description": "Punctuation recedes; it is structure, not content.",
+          "status": "proposed",
           "deprecated": false,
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",
-            "decisionIds": []
+            "decisionIds": [
+              "D-001"
+            ]
           },
           "source": {
-            "file": "tokens/semantic.tokens.json",
+            "file": "tokens/profiles/extended.tokens.json",
             "pointer": "/color/code/syntax/punctuation",
-            "line": 785
+            "line": 121
           },
-          "provenance": null,
+          "provenance": {
+            "status": "proposed",
+            "approval": {
+              "decision": "D-001"
+            }
+          },
           "aliases": [
-            "color.primitive.rose.700"
+            "color.primitive.rose.550"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -181164,9 +181206,9 @@
         "color.interaction.selection.bg": {
           "path": "color.interaction.selection.bg",
           "group": "interaction",
-          "css": "#911410",
+          "css": "#531310",
           "variable": "--color-interaction-selection-bg",
-          "description": "Selected row, tab, workspace.",
+          "description": "Selected row, tab, workspace; D-027 recessed the fill, leaving the 2px indicator and the check to carry selection.",
           "status": "observed",
           "deprecated": false,
           "eligibility": {
@@ -181181,7 +181223,7 @@
           },
           "provenance": null,
           "aliases": [
-            "color.primitive.red.350"
+            "color.primitive.red.100"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -184049,7 +184091,10 @@
           "aliases": [],
           "usedByAliases": [
             "color.chart.series-3",
+            "color.code.syntax.attribute",
             "color.code.syntax.constant",
+            "color.code.syntax.escape",
+            "color.code.syntax.function",
             "color.code.syntax.number",
             "color.diagnostic.warning.stripe",
             "color.diagnostic.warning.text",
@@ -184599,6 +184644,7 @@
           "aliases": [],
           "usedByAliases": [
             "color.chart.series-4",
+            "color.code.syntax.property",
             "color.code.syntax.type",
             "color.diagnostic.info.text",
             "color.diagnostic.info.underline",
@@ -185051,7 +185097,8 @@
           },
           "aliases": [],
           "usedByAliases": [
-            "color.interaction.disabled.bg"
+            "color.interaction.disabled.bg",
+            "color.surface.raised"
           ],
           "unmappedPorts": [],
           "uses": [],
@@ -185124,8 +185171,7 @@
           "usedByAliases": [
             "color.diff.header-bg",
             "color.status.neutral.tint",
-            "color.surface.overlay",
-            "color.surface.raised"
+            "color.surface.overlay"
           ],
           "unmappedPorts": [],
           "uses": [],
@@ -185283,7 +185329,8 @@
           "aliases": [],
           "usedByAliases": [
             "color.border.default",
-            "color.code.indent-guide"
+            "color.code.indent-guide",
+            "color.interaction.selection.bg"
           ],
           "unmappedPorts": [],
           "uses": [],
@@ -185354,6 +185401,7 @@
           },
           "aliases": [],
           "usedByAliases": [
+            "color.action.primary.bg",
             "color.border.disabled",
             "color.code.whitespace",
             "color.primitive.ansi.8"
@@ -185424,7 +185472,6 @@
           },
           "aliases": [],
           "usedByAliases": [
-            "color.action.primary.bg",
             "color.primitive.ansi.12"
           ],
           "unmappedPorts": [],
@@ -185461,7 +185508,6 @@
           "usedByAliases": [
             "color.action.primary.hover-bg",
             "color.interaction.scrollbar.thumb-hover",
-            "color.interaction.selection.bg",
             "color.interaction.text-selection.bg",
             "color.terminal.selection-bg"
           ],
@@ -185820,7 +185866,6 @@
             "color.code.bracket-match",
             "color.code.syntax.heading",
             "color.code.syntax.invalid",
-            "color.code.syntax.property",
             "color.diagnostic.error.stripe",
             "color.diagnostic.error.underline",
             "color.diff.removed.emphasis",
@@ -185984,7 +186029,8 @@
             "color.icon.decorative",
             "color.primitive.ansi.15",
             "color.status.neutral.border",
-            "color.status.neutral.fill"
+            "color.status.neutral.fill",
+            "color.text.placeholder"
           ],
           "unmappedPorts": [],
           "uses": [],
@@ -186061,6 +186107,7 @@
           },
           "aliases": [],
           "usedByAliases": [
+            "color.code.syntax.punctuation",
             "color.primitive.ansi.11",
             "color.terminal.ansi.5"
           ],
@@ -186102,8 +186149,7 @@
             "color.primitive.ansi.2",
             "color.status.neutral.text",
             "color.terminal.ansi.6",
-            "color.text.muted",
-            "color.text.placeholder"
+            "color.text.muted"
           ],
           "unmappedPorts": [],
           "uses": [],
@@ -186138,8 +186184,6 @@
           },
           "aliases": [],
           "usedByAliases": [
-            "color.code.syntax.attribute",
-            "color.code.syntax.escape",
             "color.primitive.ansi.3",
             "color.terminal.ansi.13"
           ],
@@ -186179,8 +186223,6 @@
             "color.action.tertiary.text",
             "color.code.caret",
             "color.code.line-number-active",
-            "color.code.syntax.operator",
-            "color.code.syntax.punctuation",
             "color.code.syntax.variable",
             "color.icon.default",
             "color.interaction.selection.inactive-text",
@@ -186225,7 +186267,7 @@
             "color.action.secondary.text",
             "color.chart.series-1",
             "color.code.search-current-bg",
-            "color.code.syntax.function",
+            "color.code.syntax.operator",
             "color.interaction.focus.ring-container",
             "color.primitive.ansi.7",
             "color.terminal.ansi.14",
@@ -207538,9 +207580,9 @@
         "color.surface.raised": {
           "path": "color.surface.raised",
           "group": "surface",
-          "css": "#241010",
+          "css": "#160b0b",
           "variable": "--color-surface-raised",
-          "description": "Sticky headers, menus, popovers.",
+          "description": "Sticky headers, menus, popovers; D-027 recessed it so an open list reads as depth rather than a lighter panel.",
           "status": "observed",
           "deprecated": false,
           "eligibility": {
@@ -207555,7 +207597,7 @@
           },
           "provenance": null,
           "aliases": [
-            "color.primitive.ink.52"
+            "color.primitive.ink.30"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -208614,7 +208656,7 @@
           "source": {
             "file": "tokens/profiles/extended.tokens.json",
             "pointer": "/color/terminal/ansi/0",
-            "line": 65
+            "line": 137
           },
           "provenance": {
             "status": "proposed",
@@ -208691,7 +208733,7 @@
           "source": {
             "file": "tokens/profiles/extended.tokens.json",
             "pointer": "/color/terminal/ansi/1",
-            "line": 77
+            "line": 149
           },
           "provenance": {
             "status": "proposed",
@@ -208768,7 +208810,7 @@
           "source": {
             "file": "tokens/profiles/extended.tokens.json",
             "pointer": "/color/terminal/ansi/10",
-            "line": 185
+            "line": 257
           },
           "provenance": {
             "status": "proposed",
@@ -208845,7 +208887,7 @@
           "source": {
             "file": "tokens/profiles/extended.tokens.json",
             "pointer": "/color/terminal/ansi/11",
-            "line": 197
+            "line": 269
           },
           "provenance": {
             "status": "proposed",
@@ -208922,7 +208964,7 @@
           "source": {
             "file": "tokens/profiles/extended.tokens.json",
             "pointer": "/color/terminal/ansi/12",
-            "line": 209
+            "line": 281
           },
           "provenance": {
             "status": "proposed",
@@ -208999,7 +209041,7 @@
           "source": {
             "file": "tokens/profiles/extended.tokens.json",
             "pointer": "/color/terminal/ansi/13",
-            "line": 221
+            "line": 293
           },
           "provenance": {
             "status": "proposed",
@@ -209076,7 +209118,7 @@
           "source": {
             "file": "tokens/profiles/extended.tokens.json",
             "pointer": "/color/terminal/ansi/14",
-            "line": 233
+            "line": 305
           },
           "provenance": {
             "status": "proposed",
@@ -209153,7 +209195,7 @@
           "source": {
             "file": "tokens/profiles/extended.tokens.json",
             "pointer": "/color/terminal/ansi/15",
-            "line": 245
+            "line": 317
           },
           "provenance": {
             "status": "proposed",
@@ -209230,7 +209272,7 @@
           "source": {
             "file": "tokens/profiles/extended.tokens.json",
             "pointer": "/color/terminal/ansi/2",
-            "line": 89
+            "line": 161
           },
           "provenance": {
             "status": "proposed",
@@ -209307,7 +209349,7 @@
           "source": {
             "file": "tokens/profiles/extended.tokens.json",
             "pointer": "/color/terminal/ansi/3",
-            "line": 101
+            "line": 173
           },
           "provenance": {
             "status": "proposed",
@@ -209425,7 +209467,7 @@
           "source": {
             "file": "tokens/profiles/extended.tokens.json",
             "pointer": "/color/terminal/ansi/4",
-            "line": 113
+            "line": 185
           },
           "provenance": {
             "status": "proposed",
@@ -209569,7 +209611,7 @@
           "source": {
             "file": "tokens/profiles/extended.tokens.json",
             "pointer": "/color/terminal/ansi/5",
-            "line": 125
+            "line": 197
           },
           "provenance": {
             "status": "proposed",
@@ -209646,7 +209688,7 @@
           "source": {
             "file": "tokens/profiles/extended.tokens.json",
             "pointer": "/color/terminal/ansi/6",
-            "line": 137
+            "line": 209
           },
           "provenance": {
             "status": "proposed",
@@ -209723,7 +209765,7 @@
           "source": {
             "file": "tokens/profiles/extended.tokens.json",
             "pointer": "/color/terminal/ansi/7",
-            "line": 149
+            "line": 221
           },
           "provenance": {
             "status": "proposed",
@@ -209800,7 +209842,7 @@
           "source": {
             "file": "tokens/profiles/extended.tokens.json",
             "pointer": "/color/terminal/ansi/8",
-            "line": 161
+            "line": 233
           },
           "provenance": {
             "status": "proposed",
@@ -209877,7 +209919,7 @@
           "source": {
             "file": "tokens/profiles/extended.tokens.json",
             "pointer": "/color/terminal/ansi/9",
-            "line": 173
+            "line": 245
           },
           "provenance": {
             "status": "proposed",
@@ -225097,9 +225139,9 @@
         "color.text.placeholder": {
           "path": "color.text.placeholder",
           "group": "text",
-          "css": "#bd787d",
+          "css": "#a3676b",
           "variable": "--color-text-placeholder",
-          "description": "Placeholder text, italic.",
+          "description": "Placeholder text, italic; D-027 darkened it to 4.71:1, just clear of the 4.5:1 floor.",
           "status": "observed",
           "deprecated": false,
           "eligibility": {
@@ -225114,7 +225156,7 @@
           },
           "provenance": null,
           "aliases": [
-            "color.primitive.rose.600"
+            "color.primitive.rose.350"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -226202,7 +226244,7 @@
         "density.compact.icon": {
           "path": "density.compact.icon",
           "group": "density",
-          "css": "16px",
+          "css": "12px",
           "variable": "--density-compact-icon",
           "description": null,
           "status": "observed",

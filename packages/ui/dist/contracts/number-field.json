@@ -196,7 +196,6 @@
       "color.border.overlay",
       "color.border.selected-indicator",
       "color.code.caret",
-      "color.icon.default",
       "color.interaction.disabled.bg",
       "color.interaction.drop-target",
       "color.interaction.focus.ring-container",
@@ -210,6 +209,7 @@
       "color.surface.canvas",
       "color.surface.input",
       "color.surface.raised",
+      "color.text.accent",
       "color.text.bright",
       "color.text.default",
       "color.text.disabled",
@@ -217,10 +217,10 @@
       "color.text.placeholder",
       "density.comfortable.control-height",
       "density.comfortable.control-padding-x",
-      "density.comfortable.row-height",
+      "density.comfortable.icon",
       "density.compact.control-height",
       "density.compact.control-padding-x",
-      "density.compact.row-height",
+      "density.compact.icon",
       "focus.offset",
       "focus.offset-invalid",
       "focus.ring",
@@ -254,7 +254,6 @@
       "color.border.overlay",
       "color.border.selected-indicator",
       "color.code.caret",
-      "color.icon.default",
       "color.interaction.disabled.bg",
       "color.interaction.drop-target",
       "color.interaction.focus.ring",
@@ -267,11 +266,10 @@
       "color.primitive.ink.0",
       "color.primitive.ink.30",
       "color.primitive.ink.40",
-      "color.primitive.ink.52",
       "color.primitive.ink.60",
       "color.primitive.paper.90",
+      "color.primitive.red.100",
       "color.primitive.red.200",
-      "color.primitive.red.300",
       "color.primitive.red.350",
       "color.primitive.red.800",
       "color.primitive.red.850",
@@ -285,6 +283,7 @@
       "color.surface.canvas",
       "color.surface.input",
       "color.surface.raised",
+      "color.text.accent",
       "color.text.bright",
       "color.text.default",
       "color.text.disabled",
@@ -292,10 +291,10 @@
       "color.text.placeholder",
       "density.comfortable.control-height",
       "density.comfortable.control-padding-x",
-      "density.comfortable.row-height",
+      "density.comfortable.icon",
       "density.compact.control-height",
       "density.compact.control-padding-x",
-      "density.compact.row-height",
+      "density.compact.icon",
       "focus.offset",
       "focus.offset-invalid",
       "focus.ring",
@@ -383,11 +382,6 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
-      "color.icon.default": {
-        "action": "use",
-        "reason": "Use within the role's documented scope and restrictions.",
-        "decisionIds": []
-      },
       "color.interaction.disabled.bg": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -453,6 +447,11 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "color.text.accent": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "color.text.bright": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -488,7 +487,7 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
-      "density.comfortable.row-height": {
+      "density.comfortable.icon": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -503,7 +502,7 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
-      "density.compact.row-height": {
+      "density.compact.icon": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -609,6 +608,6 @@
   "copy": {
     "directory": "copy/number-field/",
     "manifest": "copy/number-field/manifest.json",
-    "digest": "sha256-ZpnqmpjrV86C0WDvWc08BEJQEfgnoXBPOjmuSw/+03o="
+    "digest": "sha256-8CWipgKIJOxEViSfVjq7KCNL9m8PbO5uabko0V3oOFI="
   }
 }

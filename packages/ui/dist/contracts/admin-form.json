@@ -203,6 +203,7 @@
       "color.surface.default",
       "color.surface.input",
       "color.surface.raised",
+      "color.text.accent",
       "color.text.bright",
       "color.text.default",
       "color.text.disabled",
@@ -210,18 +211,22 @@
       "color.text.placeholder",
       "density.comfortable.control-height",
       "density.comfortable.control-padding-x",
+      "density.comfortable.icon",
       "density.comfortable.row-height",
       "density.compact.control-height",
       "density.compact.control-padding-x",
+      "density.compact.icon",
       "density.compact.row-height",
       "focus.offset",
       "focus.offset-invalid",
       "focus.ring",
       "focus.ring-container",
       "font.family.mono",
+      "font.line-height.caption",
       "font.line-height.h2",
       "font.line-height.ui-md",
       "font.line-height.ui-sm",
+      "font.size.caption",
       "font.size.h2",
       "font.size.ui-md",
       "font.size.ui-sm",
@@ -302,7 +307,6 @@
       "color.primitive.red.100",
       "color.primitive.red.150",
       "color.primitive.red.200",
-      "color.primitive.red.300",
       "color.primitive.red.350",
       "color.primitive.red.400",
       "color.primitive.red.50",
@@ -334,6 +338,7 @@
       "color.surface.default",
       "color.surface.input",
       "color.surface.raised",
+      "color.text.accent",
       "color.text.bright",
       "color.text.default",
       "color.text.disabled",
@@ -341,18 +346,22 @@
       "color.text.placeholder",
       "density.comfortable.control-height",
       "density.comfortable.control-padding-x",
+      "density.comfortable.icon",
       "density.comfortable.row-height",
       "density.compact.control-height",
       "density.compact.control-padding-x",
+      "density.compact.icon",
       "density.compact.row-height",
       "focus.offset",
       "focus.offset-invalid",
       "focus.ring",
       "focus.ring-container",
       "font.family.mono",
+      "font.line-height.caption",
       "font.line-height.h2",
       "font.line-height.ui-md",
       "font.line-height.ui-sm",
+      "font.size.caption",
       "font.size.h2",
       "font.size.ui-md",
       "font.size.ui-sm",
@@ -688,6 +697,11 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "color.text.accent": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "color.text.bright": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -723,6 +737,11 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "density.comfortable.icon": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "density.comfortable.row-height": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -734,6 +753,11 @@
         "decisionIds": []
       },
       "density.compact.control-padding-x": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "density.compact.icon": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -768,6 +792,11 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "font.line-height.caption": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "font.line-height.h2": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -779,6 +808,11 @@
         "decisionIds": []
       },
       "font.line-height.ui-sm": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "font.size.caption": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -874,6 +908,6 @@
   "copy": {
     "directory": "copy/admin-form/",
     "manifest": "copy/admin-form/manifest.json",
-    "digest": "sha256-7GJqnA3kZOVExeY5r24cevqpgjvj0oQK4BqAjjhXqM8="
+    "digest": "sha256-P49Z7tTALZ8PDXv1wAHOG7MWY1hKQ9N9KNsx+BlyMQw="
   }
 }

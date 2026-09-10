@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — textarea
-theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-dVVXuyfmUjNjfan99PHe+fKFlhOD0dRrre2xK1AvSJg=
+theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-wVIkiAFnphXij22L7uySrvm8/3bNoqB5m/3AlY/pnQI=
 pin: https://raw.githubusercontent.com/j3w1/theme/v1.1.0/exports/components/textarea.json
 spec: spec/components/textarea.md  site: https://j3w1.github.io/theme/reference/#c-textarea
 maturity: stable  priority: R1
@@ -21,7 +21,7 @@ Tokens (resolved):
   root.bg-readonly      #000000  ({color.surface.canvas})  use
   input.text            #e99499  ({color.text.default})  use
   input.text-disabled   #8a5559  ({color.text.disabled})  use
-  input.placeholder     #bd787d  ({color.text.placeholder})  use
+  input.placeholder     #a3676b  ({color.text.placeholder})  use
   input.caret           #e99499  ({color.code.caret})  use
   input.selection-bg    #911410  ({color.interaction.text-selection.bg})  use
   input.selection-text  #f4eeee  ({color.interaction.text-selection.text})  use

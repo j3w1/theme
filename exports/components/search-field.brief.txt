@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — search-field
-theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-dVVXuyfmUjNjfan99PHe+fKFlhOD0dRrre2xK1AvSJg=
+theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-wVIkiAFnphXij22L7uySrvm8/3bNoqB5m/3AlY/pnQI=
 pin: https://raw.githubusercontent.com/j3w1/theme/v1.1.0/exports/components/search-field.json
 spec: spec/components/search-field.md  site: https://j3w1.github.io/theme/reference/#c-search-field
 maturity: stable  priority: R1
@@ -17,7 +17,7 @@ Tokens (resolved):
   root.bg-disabled      #160b0b  ({color.interaction.disabled.bg})  use
   input.text            #e99499  ({color.text.default})  use
   input.text-disabled   #8a5559  ({color.text.disabled})  use
-  input.placeholder     #bd787d  ({color.text.placeholder})  use
+  input.placeholder     #a3676b  ({color.text.placeholder})  use
   input.caret           #e99499  ({color.code.caret})  use
   icon.stroke           #e99499  ({color.icon.default})  use
   loading.glyph         #bd787d  ({color.text.muted})  use

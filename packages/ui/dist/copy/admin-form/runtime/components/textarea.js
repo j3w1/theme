@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-DdnhHcFm.js";
-import { r as fields } from "../chunks/native-B_kM8IJz.js";
+import { t as J3w1Element } from "../chunks/element-C1XeXVYC.js";
+import { r as fields } from "../chunks/native-CAzZmDKR.js";
 //#region .cache/ui-build/entries/components/textarea.js
 var J3w1Textarea = class extends J3w1Element {
 	static componentId = "textarea";
 	static version = "1.1.0";
-	static implementationId = "sha256-LFMrmLVD8zsxiLWpzvdhrxjyRNKOpIi7EA+2oLy7dJ0=";
+	static implementationId = "sha256-/dj89zxP9OxHXaHd20EGwtrHdoqPgsRN0J8EXYbXMlQ=";
 	static connect = fields;
 	static upgradeProperties = [
 		"disabled",

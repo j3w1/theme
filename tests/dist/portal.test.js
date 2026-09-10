@@ -18,7 +18,7 @@ test("every inventory entry has a static portal contract and byte-identical comp
 });
 test("the portal retains the complete reference, canonical palette and installable download", async () => {
   const home=await readText("dist/index.html"),reference=await readText("dist/reference/index.html");
-  assert.ok(home.includes("True Black. Rose foregrounds."));
+  assert.ok(home.includes("The j3w1 UI theme"));
   assert.ok(reference.includes('id="c-dialog"')&&reference.includes('id="d-accessibility"'));
   const release=await readJson("dist/downloads/release.json");
   assert.equal(sha256(await fs.readFile(`dist/downloads/${release.file}`)),release.sha256);

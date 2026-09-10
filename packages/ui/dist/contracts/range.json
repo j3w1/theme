@@ -175,7 +175,6 @@
       "color.border.divider",
       "color.border.overlay",
       "color.border.selected-indicator",
-      "color.icon.default",
       "color.interaction.disabled.bg",
       "color.interaction.drop-target",
       "color.interaction.focus.ring",
@@ -190,15 +189,18 @@
       "color.surface.default",
       "color.surface.input",
       "color.surface.raised",
+      "color.text.accent",
       "color.text.bright",
       "color.text.default",
       "color.text.disabled",
       "color.text.muted",
       "color.text.placeholder",
       "density.comfortable.control-height",
-      "density.comfortable.row-height",
+      "density.comfortable.control-padding-x",
+      "density.comfortable.icon",
       "density.compact.control-height",
-      "density.compact.row-height",
+      "density.compact.control-padding-x",
+      "density.compact.icon",
       "focus.offset",
       "focus.ring",
       "focus.ring-container",
@@ -226,7 +228,6 @@
       "color.border.divider",
       "color.border.overlay",
       "color.border.selected-indicator",
-      "color.icon.default",
       "color.interaction.disabled.bg",
       "color.interaction.drop-target",
       "color.interaction.focus.ring",
@@ -240,11 +241,10 @@
       "color.primitive.ink.28",
       "color.primitive.ink.30",
       "color.primitive.ink.40",
-      "color.primitive.ink.52",
       "color.primitive.ink.60",
       "color.primitive.paper.90",
+      "color.primitive.red.100",
       "color.primitive.red.200",
-      "color.primitive.red.300",
       "color.primitive.red.350",
       "color.primitive.red.800",
       "color.primitive.red.850",
@@ -259,15 +259,18 @@
       "color.surface.default",
       "color.surface.input",
       "color.surface.raised",
+      "color.text.accent",
       "color.text.bright",
       "color.text.default",
       "color.text.disabled",
       "color.text.muted",
       "color.text.placeholder",
       "density.comfortable.control-height",
-      "density.comfortable.row-height",
+      "density.comfortable.control-padding-x",
+      "density.comfortable.icon",
       "density.compact.control-height",
-      "density.compact.row-height",
+      "density.compact.control-padding-x",
+      "density.compact.icon",
       "focus.offset",
       "focus.ring",
       "focus.ring-container",
@@ -333,11 +336,6 @@
         ]
       },
       "color.border.selected-indicator": {
-        "action": "use",
-        "reason": "Use within the role's documented scope and restrictions.",
-        "decisionIds": []
-      },
-      "color.icon.default": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -412,6 +410,11 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "color.text.accent": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "color.text.bright": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -442,7 +445,12 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
-      "density.comfortable.row-height": {
+      "density.comfortable.control-padding-x": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "density.comfortable.icon": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -452,7 +460,12 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
-      "density.compact.row-height": {
+      "density.compact.control-padding-x": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "density.compact.icon": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -543,6 +556,6 @@
   "copy": {
     "directory": "copy/range/",
     "manifest": "copy/range/manifest.json",
-    "digest": "sha256-iXXqYlIW8+NrIMJBiasbV9plaZJiHIBx+6BDIsREqjQ="
+    "digest": "sha256-otp5DJhMUKQw+raGWngzOmIgW2rp/ONYxIBU0MRq7j0="
   }
 }

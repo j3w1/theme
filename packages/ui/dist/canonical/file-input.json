@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-dVVXuyfmUjNjfan99PHe+fKFlhOD0dRrre2xK1AvSJg=",
+  "sourceDigest": "sha256-wVIkiAFnphXij22L7uySrvm8/3bNoqB5m/3AlY/pnQI=",
   "id": "file-input",
   "family": "forms-advanced",
   "maturity": "stable",
@@ -332,7 +332,7 @@
     },
     "progress.stripe": {
       "alias": "color.action.primary.bg",
-      "value": "#871f19",
+      "value": "#7d1310",
       "status": "observed",
       "deprecated": false,
       "decisionId": null,
@@ -874,9 +874,9 @@
       "min": 1,
       "fg": "color.action.primary.bg",
       "bg": "color.interaction.pressed.bg",
-      "fgHex": "#871f19",
+      "fgHex": "#7d1310",
       "bgHex": "#420f0c",
-      "ratio": 1.72,
+      "ratio": 1.51,
       "pass": true,
       "waiver": "the stripes are a pattern, not a boundary; the loading state is carried by aria-busy and the visible status text"
     }

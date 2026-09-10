@@ -25,12 +25,24 @@ export const initInspector = (): void => {
   let pointer = { x: 0, y: 0 };
   let frame = 0;
   const closePreview = () => { preview.hidden = true; circle = null; };
-  const placePreview = () => {
-    const { width, height } = preview.getBoundingClientRect();
-    const place = (point: number, size: number, limit: number) => Math.max(8, Math.min(point + 8 + size <= limit - 8 ? point + 8 : point - size - 8, limit - size - 8));
-    preview.style.left = `${place(pointer.x, width, innerWidth)}px`;
-    preview.style.top = `${place(pointer.y, height, innerHeight)}px`;
+
+  /* One placement rule for every hover popup on the page: sit beside the
+     pointer, flip to the other side when the popup would leave the viewport,
+     and never touch the edge. A popup opened from the keyboard has no pointer
+     and anchors to its element instead — see placeByElement. */
+  const axis = (point: number, size: number, limit: number) => Math.max(8, Math.min(point + 8 + size <= limit - 8 ? point + 8 : point - size - 8, limit - size - 8));
+  const placeByPointer = (popup: HTMLElement, at: { x: number; y: number }) => {
+    const { width, height } = popup.getBoundingClientRect();
+    popup.style.left = `${axis(at.x, width, innerWidth)}px`;
+    popup.style.top = `${axis(at.y, height, innerHeight)}px`;
   };
+  const placeByElement = (popup: HTMLElement, target: HTMLElement) => {
+    const rect = target.getBoundingClientRect();
+    const width = Math.min(384, innerWidth - 16);
+    popup.style.left = `${Math.max(8, Math.min(rect.left, innerWidth - width - 8))}px`;
+    popup.style.top = `${rect.bottom + 6 + popup.offsetHeight > innerHeight ? Math.max(8, rect.top - popup.offsetHeight - 6) : rect.bottom + 6}px`;
+  };
+  const placePreview = () => placeByPointer(preview, pointer);
   document.addEventListener("pointermove", (event) => {
     const target = event.target instanceof Element ? event.target.closest<HTMLElement>(".hex-swatch[data-token-matches]") : null;
     if (!target || box.contains(target) || !["mouse", "pen"].includes(event.pointerType)) { closePreview(); return; }
@@ -67,7 +79,7 @@ export const initInspector = (): void => {
   let current: HTMLElement | null = null;
   const text = (value: string) => renderHexText(value, data.colorIndex);
 
-  const show = (target: HTMLElement) => {
+  const show = (target: HTMLElement, byPointer = false) => {
     if (box.contains(target)) return;
     const path = target.dataset.token ?? "";
     const profiles = Object.entries(data.profiles);
@@ -86,11 +98,9 @@ export const initInspector = (): void => {
       link.textContent = "Full usage and source details";
       box.append(link);
     }
-    const rect = target.getBoundingClientRect();
     box.hidden = false;
-    const width = Math.min(384, window.innerWidth - 16);
-    box.style.left = `${Math.max(8, Math.min(rect.left, window.innerWidth - width - 8))}px`;
-    box.style.top = `${rect.bottom + 6 + box.offsetHeight > window.innerHeight ? Math.max(8, rect.top - box.offsetHeight - 6) : rect.bottom + 6}px`;
+    if (byPointer) placeByPointer(box, pointer);
+    else placeByElement(box, target);
     current = target;
   };
 
@@ -99,10 +109,16 @@ export const initInspector = (): void => {
     current = null;
   };
 
-  document.addEventListener("mouseover", (event) => {
+  /* Hover follows the pointer, so the panel tracks the cursor across a wide
+     token table rather than pinning to wherever the row happens to start. */
+  document.addEventListener("pointermove", (event) => {
+    if (!["mouse", "pen"].includes(event.pointerType)) return;
     if ((event.target as HTMLElement).closest(".hex-swatch")) return;
     const target = (event.target as HTMLElement).closest<HTMLElement>("[data-token]");
-    if (target) show(target);
+    if (!target) return;
+    pointer = { x: event.clientX, y: event.clientY };
+    if (target === current) placeByPointer(box, pointer);
+    else show(target, true);
   });
   document.addEventListener("mouseout", (event) => {
     const target = (event.target as HTMLElement).closest<HTMLElement>("[data-token]");
@@ -110,7 +126,8 @@ export const initInspector = (): void => {
   });
   document.addEventListener("focusin", (event) => {
     const target = (event.target as HTMLElement).closest<HTMLElement>("[data-token]");
-    if (target) show(target);
+    /* Keyboard focus has no pointer to follow; anchor to the element. */
+    if (target) show(target, false);
     else if (!box.contains(event.target as Node)) hide();
   });
   document.addEventListener("keydown", (event) => {

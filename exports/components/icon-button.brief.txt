@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — icon-button
-theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-dVVXuyfmUjNjfan99PHe+fKFlhOD0dRrre2xK1AvSJg=
+theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-wVIkiAFnphXij22L7uySrvm8/3bNoqB5m/3AlY/pnQI=
 pin: https://raw.githubusercontent.com/j3w1/theme/v1.1.0/exports/components/icon-button.json
 spec: spec/components/icon-button.md  site: https://j3w1.github.io/theme/reference/#c-icon-button
 maturity: stable  priority: R1
@@ -14,7 +14,7 @@ Tokens (resolved):
   root.bg-active        #420f0c  ({color.interaction.pressed.bg})  use
   root.border-active    #e53935  ({color.border.active})  use
   root.ring             #e53935  ({color.interaction.focus.ring})  use
-  root.bg-toggled       #911410  ({color.interaction.selection.bg})  use
+  root.bg-toggled       #531310  ({color.interaction.selection.bg})  use
   root.text-toggled     #f4eeee  ({color.interaction.selection.text})  use
   root.border-toggled   #e53935  ({color.border.selected-indicator})  use
   root.ring-toggled     #ffa2a7  ({color.interaction.focus.ring-container})  use

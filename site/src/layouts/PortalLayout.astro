@@ -8,7 +8,7 @@ import "@j3w1/ui/styles/controls.css";
 import { withBase } from "../lib/base";
 import { theme } from "../lib/theme";
 import { anchorFor } from "../../../scripts/lib/anchors.mjs";
-const { title, description, density = "comfortable" } = Astro.props;
+const { title, description, density = "compact" } = Astro.props;
 const navigation = [["", "Overview"], ["foundations/", "Foundations"], ["components/", "Components"], ["patterns/", "Patterns"], ["tokens/", "Tokens"], ["tools/", "Tools"], ["implement/", "Implement"], ["agents/", "For agents"], ["ports/", "Ports"], ["releases/", "Releases"]];
 const commands = [...navigation, ["demo/", "Vue application demo"], ["reference/", "Complete UI theme specification"]];
 const id = (name) => anchorFor.uiExample("portal", name);

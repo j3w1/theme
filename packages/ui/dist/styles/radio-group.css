@@ -63,7 +63,7 @@ j3w1-radio-group .radio-group-horizontal .radio-group-options {
 
 j3w1-radio-group .radio-group-option {
   display: grid;
-  grid-template-columns: var(--icon-size-md) minmax(0, 1fr);
+  grid-template-columns: var(--density-icon, 16px) minmax(0, 1fr);
   align-items: start;
   gap: var(--space-8);
   min-height: var(--space-24);
@@ -73,8 +73,8 @@ j3w1-radio-group .radio-group-option {
 
 j3w1-radio-group .radio-group-control {
   display: inline-grid;
-  width: var(--icon-size-md);
-  height: var(--icon-size-md);
+  width: var(--density-icon, 16px);
+  height: var(--density-icon, 16px);
 }
 
 j3w1-radio-group .radio-group-control > * {
@@ -83,8 +83,8 @@ j3w1-radio-group .radio-group-control > * {
 
 j3w1-radio-group .radio-group-input {
   appearance: none;
-  width: var(--icon-size-md);
-  height: var(--icon-size-md);
+  width: var(--density-icon, 16px);
+  height: var(--density-icon, 16px);
   margin: 0;
   background: var(--color-surface-input);
   border: var(--border-width-default) solid var(--color-border-control);

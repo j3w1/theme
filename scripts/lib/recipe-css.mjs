@@ -57,7 +57,15 @@ export const recipeTokenCss = (styles, resolved, profile) => {
   const density = [];
   for (const variable of [...used].sort()) {
     if (defined.has(variable)) continue;
-    if (variable.startsWith("--density-")) {
+    /* A mode-qualified density variable such as --density-comfortable-row-height
+       names a role in its own right, and a component may pin to it deliberately
+       — a table row stays comfortable whatever the page density. Resolve any
+       variable that is a real role before falling back to the per-mode
+       expansion, which is only for the unqualified --density-<key> aliases. */
+    if (byVariable.has(variable)) {
+      const path = byVariable.get(variable);
+      roles.add(path); add(path);
+    } else if (variable.startsWith("--density-")) {
       for (const mode of ["compact", "comfortable"]) {
         const path = `density.${mode}.${variable.slice("--density-".length)}`;
         roles.add(path); add(path);

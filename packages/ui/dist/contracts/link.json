@@ -124,7 +124,6 @@
       "font.size.ui-md",
       "icon.size.md",
       "radius.none",
-      "space.2",
       "space.32",
       "space.4",
       "z.popover"
@@ -142,6 +141,7 @@
       "color.interaction.text-selection.text",
       "color.primitive.ink.0",
       "color.primitive.paper.90",
+      "color.primitive.red.100",
       "color.primitive.red.150",
       "color.primitive.red.350",
       "color.primitive.red.750",
@@ -166,7 +166,6 @@
       "font.size.ui-md",
       "icon.size.md",
       "radius.none",
-      "space.2",
       "space.32",
       "space.4",
       "z.popover"
@@ -302,11 +301,6 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
-      "space.2": {
-        "action": "use",
-        "reason": "Use within the role's documented scope and restrictions.",
-        "decisionIds": []
-      },
       "space.32": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -328,6 +322,6 @@
   "copy": {
     "directory": "copy/link/",
     "manifest": "copy/link/manifest.json",
-    "digest": "sha256-8qReXpiWqi/h3c4XOyLzyu0Y6jKiJgSKygyRHhiq9gA="
+    "digest": "sha256-54UHs87BSRXj8tfxCCTKAMxpjoXVg8Widge1obkjwJg="
   }
 }

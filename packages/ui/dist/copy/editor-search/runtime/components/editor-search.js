@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-DdnhHcFm.js";
-import { i as editorSearch } from "../chunks/display-D5cQPyZu.js";
+import { t as J3w1Element } from "../chunks/element-C1XeXVYC.js";
+import { i as editorSearch } from "../chunks/display-dj9YaBfn.js";
 //#region .cache/ui-build/entries/components/editor-search.js
 var J3w1EditorSearch = class extends J3w1Element {
 	static componentId = "editor-search";
 	static version = "1.1.0";
-	static implementationId = "sha256-zTVIvRvNXkvZ9Ugr2sJ63QvNLc6qRxQSqyCB/IZhzcY=";
+	static implementationId = "sha256-YbAkzU1jIAMWP7bHk9wlpy3NeK6i0ltMkJPzP/rBdUE=";
 	static connect = editorSearch;
 	static upgradeProperties = [
 		"disabled",

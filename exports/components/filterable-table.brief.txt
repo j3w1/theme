@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — filterable-table
-theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-dVVXuyfmUjNjfan99PHe+fKFlhOD0dRrre2xK1AvSJg=
+theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-wVIkiAFnphXij22L7uySrvm8/3bNoqB5m/3AlY/pnQI=
 pin: https://raw.githubusercontent.com/j3w1/theme/v1.1.0/exports/components/filterable-table.json
 spec: spec/components/filterable-table.md  site: https://j3w1.github.io/theme/reference/#c-filterable-table
 maturity: stable  priority: R1
@@ -16,11 +16,11 @@ Tokens (resolved):
   search.bg                #000000  ({color.surface.input})  use
   search.border            #a3676b  ({color.border.control})  use-and-report (D-007)
   search.text              #e99499  ({color.text.default})  use
-  search.placeholder       #bd787d  ({color.text.placeholder})  use
+  search.placeholder       #a3676b  ({color.text.placeholder})  use
   search.icon              #e99499  ({color.icon.default})  use
   filter.text              #e99499  ({color.text.default})  use
   filter.border            #a3676b  ({color.border.control})  use-and-report (D-007)
-  new.bg                   #871f19  ({color.action.primary.bg})  use
+  new.bg                   #7d1310  ({color.action.primary.bg})  use
   new.text                 #f4eeee  ({color.action.primary.text})  use
   chip.bg                  #100c0c  ({color.surface.default})  use
   chip.border              #a3676b  ({color.border.control})  use-and-report (D-007)
@@ -32,12 +32,12 @@ Tokens (resolved):
   row.rule                 #2b0e0d  ({color.border.divider})  use-and-report (D-008)
   row.bg-hover             #1c0a09  ({color.interaction.hover.bg})  use
   row.ring                 #e53935  ({color.interaction.focus.ring})  use
-  row.selected-bg          #911410  ({color.interaction.selection.bg})  use
+  row.selected-bg          #531310  ({color.interaction.selection.bg})  use
   row.selected-text        #f4eeee  ({color.interaction.selection.text})  use
   row.ring-on-selection    #ffa2a7  ({color.interaction.focus.ring-container})  use
   check.bg                 #000000  ({color.surface.input})  use
   check.border             #a3676b  ({color.border.control})  use-and-report (D-007)
-  check.checked-bg         #871f19  ({color.action.primary.bg})  use
+  check.checked-bg         #7d1310  ({color.action.primary.bg})  use
   check.glyph              #f4eeee  ({color.action.primary.text})  use
   badge.tested-fill        #86a46f  ({color.status.success.fill})  use
   badge.tested-text        #0c0909  ({color.status.success.on-fill})  use

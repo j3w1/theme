@@ -1,4 +1,4 @@
-import { make, nativeInput, place, controlLabelText } from './dom.js';
+import { make, makeIcon, nativeInput, place, controlLabelText } from './dom.js';
 import { mountTemporal } from './temporal.js';
 
 const mounted = new WeakMap();
@@ -18,7 +18,7 @@ export function mountChoice(select) {
   const value = make(select, 'span', { class: 'j3w1-choice-value' });
   const message = make(select, 'span', { class: 'j3w1-choice-error', id: `${id}-error`, role: 'status', hidden: '' });
   if (multiple) { list.setAttribute('aria-multiselectable', 'true'); list.tabIndex = 0; }
-  else { control.append(value, make(select, 'span', { 'aria-hidden': 'true', class: 'j3w1-choice-chevron' }, '⌄')); list.hidden = true; list.setAttribute('popover', 'manual'); shell.append(control); }
+  else { control.append(value, makeIcon(select, 'M3.5 6 8 10.5 12.5 6', { class: 'j3w1-choice-chevron' })); list.hidden = true; list.setAttribute('popover', 'manual'); shell.append(control); }
   shell.append(list, message);
   select.after(shell);
   const saved = new Map(['hidden','aria-hidden','tabindex'].map(name => [name, select.getAttribute(name)]));

@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-dVVXuyfmUjNjfan99PHe+fKFlhOD0dRrre2xK1AvSJg=",
+  "sourceDigest": "sha256-wVIkiAFnphXij22L7uySrvm8/3bNoqB5m/3AlY/pnQI=",
   "id": "skip-link",
   "family": "navigation",
   "maturity": "stable",
@@ -52,7 +52,7 @@
   "tokens": {
     "root.bg": {
       "alias": "color.surface.raised",
-      "value": "#241010",
+      "value": "#160b0b",
       "status": "observed",
       "deprecated": false,
       "decisionId": null,
@@ -121,7 +121,7 @@
         },
         "bg": {
           "alias": "color.surface.raised",
-          "value": "#241010",
+          "value": "#160b0b",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -166,7 +166,7 @@
         },
         "bg": {
           "alias": "color.surface.raised",
-          "value": "#241010",
+          "value": "#160b0b",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -255,8 +255,8 @@
       "fg": "color.text.bright",
       "bg": "color.surface.raised",
       "fgHex": "#ffa2a7",
-      "bgHex": "#241010",
-      "ratio": 9.49,
+      "bgHex": "#160b0b",
+      "ratio": 10.1,
       "pass": true,
       "waiver": null
     },
@@ -268,8 +268,8 @@
       "fg": "color.border.overlay",
       "bg": "color.surface.raised",
       "fgHex": "#e53935",
-      "bgHex": "#241010",
-      "ratio": 4.3,
+      "bgHex": "#160b0b",
+      "ratio": 4.57,
       "pass": true,
       "waiver": null
     },
@@ -281,8 +281,8 @@
       "fg": "color.text.bright",
       "bg": "color.surface.raised",
       "fgHex": "#ffa2a7",
-      "bgHex": "#241010",
-      "ratio": 9.49,
+      "bgHex": "#160b0b",
+      "ratio": 10.1,
       "pass": true,
       "waiver": null
     },
@@ -294,8 +294,8 @@
       "fg": "color.border.overlay",
       "bg": "color.surface.raised",
       "fgHex": "#e53935",
-      "bgHex": "#241010",
-      "ratio": 4.3,
+      "bgHex": "#160b0b",
+      "ratio": 4.57,
       "pass": true,
       "waiver": null
     },
@@ -307,8 +307,8 @@
       "fg": "color.interaction.focus.ring",
       "bg": "color.surface.raised",
       "fgHex": "#e53935",
-      "bgHex": "#241010",
-      "ratio": 4.3,
+      "bgHex": "#160b0b",
+      "ratio": 4.57,
       "pass": true,
       "waiver": null
     },
@@ -320,8 +320,8 @@
       "fg": "color.interaction.focus.ring",
       "bg": "color.surface.raised",
       "fgHex": "#e53935",
-      "bgHex": "#241010",
-      "ratio": 4.3,
+      "bgHex": "#160b0b",
+      "ratio": 4.57,
       "pass": true,
       "waiver": null
     }

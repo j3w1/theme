@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — table
-theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-dVVXuyfmUjNjfan99PHe+fKFlhOD0dRrre2xK1AvSJg=
+theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-wVIkiAFnphXij22L7uySrvm8/3bNoqB5m/3AlY/pnQI=
 pin: https://raw.githubusercontent.com/j3w1/theme/v1.1.0/exports/components/table.json
 spec: spec/components/table.md  site: https://j3w1.github.io/theme/reference/#c-table
 maturity: stable  priority: R1
@@ -12,13 +12,13 @@ Tokens (resolved):
   header.text             #ffa2a7  ({color.text.bright})  use
   header.bg               #100c0c  ({color.surface.default})  use
   header.rule             #9e231f  ({color.border.strong})  use
-  header.bg-sticky        #241010  ({color.surface.raised})  use
+  header.bg-sticky        #160b0b  ({color.surface.raised})  use
   sort.glyph              #ffa2a7  ({color.text.bright})  use
   sort.ring               #e53935  ({color.interaction.focus.ring})  use
   row.text                #e99499  ({color.text.default})  use
   row.divider             #2b0e0d  ({color.border.divider})  use-and-report (D-008)
   row.bg-hover            #1c0a09  ({color.interaction.hover.bg})  use
-  selected.bg             #911410  ({color.interaction.selection.bg})  use
+  selected.bg             #531310  ({color.interaction.selection.bg})  use
   selected.text           #f4eeee  ({color.interaction.selection.text})  use
   selected.ring           #ffa2a7  ({color.interaction.focus.ring-container})  use
   selected.inactive-bg    #420f0c  ({color.interaction.selection.inactive-bg})  use

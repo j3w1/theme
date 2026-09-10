@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — segmented-control
-theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-dVVXuyfmUjNjfan99PHe+fKFlhOD0dRrre2xK1AvSJg=
+theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-wVIkiAFnphXij22L7uySrvm8/3bNoqB5m/3AlY/pnQI=
 pin: https://raw.githubusercontent.com/j3w1/theme/v1.1.0/exports/components/segmented-control.json
 spec: spec/components/segmented-control.md  site: https://j3w1.github.io/theme/reference/#c-segmented-control
 maturity: stable  priority: R2
@@ -17,14 +17,14 @@ Tokens (resolved):
   control.focus                                           #e53935  ({color.interaction.focus.ring})  use
   dependency.role-border-width-default                    1px  ({border.width.default})  use
   dependency.role-border-width-emphasis                   2px  ({border.width.emphasis})  use
-  dependency.role-color-action-primary-bg                 #871f19  ({color.action.primary.bg})  use
+  dependency.role-color-action-primary-bg                 #7d1310  ({color.action.primary.bg})  use
   dependency.role-color-action-primary-hover-bg           #911410  ({color.action.primary.hover-bg})  use
   dependency.role-color-action-primary-text               #f4eeee  ({color.action.primary.text})  use
   dependency.role-color-border-disabled                   #7d1310  ({color.border.disabled})  use
   dependency.role-color-interaction-disabled-bg           #160b0b  ({color.interaction.disabled.bg})  use
   dependency.role-color-interaction-focus-ring-container  #ffa2a7  ({color.interaction.focus.ring-container})  use
   dependency.role-color-interaction-hover-bg              #1c0a09  ({color.interaction.hover.bg})  use
-  dependency.role-color-interaction-selection-bg          #911410  ({color.interaction.selection.bg})  use
+  dependency.role-color-interaction-selection-bg          #531310  ({color.interaction.selection.bg})  use
   dependency.role-color-interaction-selection-text        #f4eeee  ({color.interaction.selection.text})  use
   dependency.role-color-status-danger-border              #e53935  ({color.status.danger.border})  use
   dependency.role-color-status-danger-text                #f73f35  ({color.status.danger.text})  use

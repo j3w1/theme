@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — progress
-theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-dVVXuyfmUjNjfan99PHe+fKFlhOD0dRrre2xK1AvSJg=
+theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-wVIkiAFnphXij22L7uySrvm8/3bNoqB5m/3AlY/pnQI=
 pin: https://raw.githubusercontent.com/j3w1/theme/v1.1.0/exports/components/progress.json
 spec: spec/components/progress.md  site: https://j3w1.github.io/theme/reference/#c-progress
 maturity: stable  priority: R1
@@ -10,9 +10,9 @@ Use the pinned approved default profile. Pending roles in that profile use-and-r
 Tokens (resolved):
   track.bg        #420f0c  ({color.interaction.pressed.bg})  use
   track.border    #a3676b  ({color.border.control})  use-and-report (D-007)
-  value.bg        #871f19  ({color.action.primary.bg})  use
+  value.bg        #7d1310  ({color.action.primary.bg})  use
   value.bg-error  #dc282e  ({color.status.danger.fill})  use
-  stripe.a        #871f19  ({color.action.primary.bg})  use
+  stripe.a        #7d1310  ({color.action.primary.bg})  use
   stripe.b        #420f0c  ({color.interaction.pressed.bg})  use
   label.text      #ffa2a7  ({color.text.bright})  use
   value.text      #e99499  ({color.text.default})  use

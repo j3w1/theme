@@ -202,6 +202,7 @@
       "color.surface.default",
       "color.surface.input",
       "color.surface.raised",
+      "color.text.accent",
       "color.text.bright",
       "color.text.default",
       "color.text.disabled",
@@ -281,13 +282,11 @@
       "color.primitive.ink.28",
       "color.primitive.ink.30",
       "color.primitive.ink.40",
-      "color.primitive.ink.52",
       "color.primitive.ink.60",
       "color.primitive.paper.90",
       "color.primitive.red.100",
       "color.primitive.red.150",
       "color.primitive.red.200",
-      "color.primitive.red.300",
       "color.primitive.red.350",
       "color.primitive.red.400",
       "color.primitive.red.50",
@@ -304,6 +303,7 @@
       "color.surface.default",
       "color.surface.input",
       "color.surface.raised",
+      "color.text.accent",
       "color.text.bright",
       "color.text.default",
       "color.text.disabled",
@@ -534,6 +534,11 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "color.text.accent": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "color.text.bright": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -750,6 +755,6 @@
   "copy": {
     "directory": "copy/filterable-table/",
     "manifest": "copy/filterable-table/manifest.json",
-    "digest": "sha256-k68/u7RVZFUUeUuuZfHNtSfeRhkCKTN7MVXwxoQ4WGg="
+    "digest": "sha256-szfDVjFX3lxjC8IuczF7JoMr/4TKs6nl6w7AFOSr8mA="
   }
 }

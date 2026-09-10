@@ -57,6 +57,78 @@
               }
             }
           }
+        },
+        "function": {
+          "$value": "{color.primitive.amber.500}",
+          "$description": "Function and method names in amber, distinct from the identifiers they act on.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "proposed",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "property": {
+          "$value": "{color.primitive.blue.500}",
+          "$description": "Object properties in blue, matching the type family they belong to.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "proposed",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "attribute": {
+          "$value": "{color.primitive.amber.500}",
+          "$description": "Markup attribute names in amber, against red tags.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "proposed",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "escape": {
+          "$value": "{color.primitive.amber.500}",
+          "$description": "Escapes in amber so they read out of the green string around them.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "proposed",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "operator": {
+          "$value": "{color.primitive.rose.800}",
+          "$description": "Operators in bright rose, separated from plain identifiers.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "proposed",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
+        },
+        "punctuation": {
+          "$value": "{color.primitive.rose.550}",
+          "$description": "Punctuation recedes; it is structure, not content.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "proposed",
+              "approval": {
+                "decision": "D-001"
+              }
+            }
+          }
         }
       }
     },

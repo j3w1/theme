@@ -117,14 +117,24 @@ a {
   color: var(--color-text-link);
   text-decoration: underline;
   text-decoration-color: var(--color-text-link-underline);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 2px;
+  text-decoration-thickness: var(--border-width-default);
+  /* One scale step off the baseline rather than a bare 2px: the underline sat
+     close enough to the descenders to read as attached to the text. */
+  text-underline-offset: var(--space-4);
 }
 
+/* Prose list markers carry the accent, not the body rose, so a list reads as
+   structure at a glance. Component lists set their own list-style. */
+:where(ul, ol) > li::marker {
+  color: var(--color-text-accent-strong);
+}
+
+/* D-027: the plain hover fill, not the strong one. A link used to take a
+   bright red block on hover, which read louder than the link itself. */
 a:hover {
   color: var(--color-text-link-hover);
-  background: var(--color-interaction-hover-bg-strong);
-  text-decoration-thickness: 2px;
+  background: var(--color-interaction-hover-bg);
+  text-decoration-thickness: var(--border-width-emphasis);
 }
 
 a:focus-visible,
@@ -194,9 +204,11 @@ tbody tr:hover {
   background: var(--color-interaction-hover-bg);
 }
 
+/* Twice the emphasis width: the quote rule is a block marker, not a control
+   edge, and at 2px it read as a hairline beside the text it carries. */
 blockquote {
   padding: var(--space-8) var(--space-12);
-  border-left: var(--border-width-emphasis) solid var(--color-border-strong);
+  border-left: calc(var(--border-width-emphasis) * 2) solid var(--color-border-strong);
   color: var(--color-text-prose);
 }
 

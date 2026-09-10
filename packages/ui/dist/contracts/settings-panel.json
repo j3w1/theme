@@ -175,6 +175,7 @@
       "color.surface.default",
       "color.surface.input",
       "color.surface.raised",
+      "color.text.accent",
       "color.text.bright",
       "color.text.default",
       "color.text.disabled",
@@ -195,9 +196,11 @@
       "focus.ring",
       "focus.ring-container",
       "font.family.mono",
+      "font.line-height.caption",
       "font.line-height.h2",
       "font.line-height.ui-md",
       "font.line-height.ui-sm",
+      "font.size.caption",
       "font.size.h2",
       "font.size.ui-md",
       "font.size.ui-sm",
@@ -266,14 +269,12 @@
       "color.primitive.ink.28",
       "color.primitive.ink.30",
       "color.primitive.ink.40",
-      "color.primitive.ink.52",
       "color.primitive.ink.60",
       "color.primitive.paper.100",
       "color.primitive.paper.90",
       "color.primitive.red.100",
       "color.primitive.red.150",
       "color.primitive.red.200",
-      "color.primitive.red.300",
       "color.primitive.red.350",
       "color.primitive.red.400",
       "color.primitive.red.50",
@@ -292,6 +293,7 @@
       "color.surface.default",
       "color.surface.input",
       "color.surface.raised",
+      "color.text.accent",
       "color.text.bright",
       "color.text.default",
       "color.text.disabled",
@@ -312,9 +314,11 @@
       "focus.ring",
       "focus.ring-container",
       "font.family.mono",
+      "font.line-height.caption",
       "font.line-height.h2",
       "font.line-height.ui-md",
       "font.line-height.ui-sm",
+      "font.size.caption",
       "font.size.h2",
       "font.size.ui-md",
       "font.size.ui-sm",
@@ -586,6 +590,11 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "color.text.accent": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "color.text.bright": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -686,6 +695,11 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "font.line-height.caption": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "font.line-height.h2": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -697,6 +711,11 @@
         "decisionIds": []
       },
       "font.line-height.ui-sm": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "font.size.caption": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -797,6 +816,6 @@
   "copy": {
     "directory": "copy/settings-panel/",
     "manifest": "copy/settings-panel/manifest.json",
-    "digest": "sha256-kbiplxUQOSfGRmXEDvk+qhZ0+SbRMWOx+jg9GRb8tAw="
+    "digest": "sha256-KziDQ3UcTaM6w4IrY5OnANEMZ5E2+kmPpNegHTavcXs="
   }
 }

@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — menu
-theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-dVVXuyfmUjNjfan99PHe+fKFlhOD0dRrre2xK1AvSJg=
+theme: j3w1-theme 1.1.0  profile: default  sourceDigest: sha256-wVIkiAFnphXij22L7uySrvm8/3bNoqB5m/3AlY/pnQI=
 pin: https://raw.githubusercontent.com/j3w1/theme/v1.1.0/exports/components/menu.json
 spec: spec/components/menu.md  site: https://j3w1.github.io/theme/reference/#c-menu
 maturity: stable  priority: R1
@@ -15,13 +15,13 @@ Tokens (resolved):
   button.bg-open      #420f0c  ({color.interaction.pressed.bg})  use
   button.border-open  #e53935  ({color.border.active})  use
   button.ring         #e53935  ({color.interaction.focus.ring})  use
-  surface.bg          #241010  ({color.surface.raised})  use
+  surface.bg          #160b0b  ({color.surface.raised})  use
   surface.border      #e53935  ({color.border.overlay})  use-and-report (D-008)
   item.text           #e99499  ({color.text.default})  use
   item.bg-hover       #630f0d  ({color.interaction.hover.bg-strong})  use
   item.text-hover     #f4eeee  ({color.text.link-hover})  use
   item.text-disabled  #8a5559  ({color.text.disabled})  use
-  active.bg           #911410  ({color.interaction.selection.bg})  use
+  active.bg           #531310  ({color.interaction.selection.bg})  use
   active.text         #f4eeee  ({color.interaction.selection.text})  use
   active.ring         #ffa2a7  ({color.interaction.focus.ring-container})  use
   check.glyph         #ffa2a7  ({color.text.bright})  use
