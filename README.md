@@ -73,7 +73,7 @@ scheme, tmux, browser extensions) are catalogued in
 | --- | --- | --- | --- |
 | `color.surface.canvas` | `#000000` | approved; use | Page and terminal background. |
 | `color.surface.default` | `#100c0c` | approved; use | Panels and cards. |
-| `color.surface.raised` | `#160b0b` | observed; use | Sticky headers, menus, popovers; D-027 recessed it so an open list reads as depth rather than a lighter panel. |
+| `color.surface.raised` | `#160b0b` | approved; use | Sticky headers, menus, popovers; D-027 recessed it so an open list reads as depth rather than a lighter panel. |
 | `color.text.default` | `#e99499` | observed; use | Interface and body text. |
 | `color.text.bright` | `#ffa2a7` | observed; use | Headings and emphasis. Links use color.text.link. |
 | `color.text.prose` | `#f4eeee` | observed; use | Long-form reading text. |
@@ -82,8 +82,8 @@ scheme, tmux, browser extensions) are catalogued in
 | `color.border.control` | `#a3676b` | proposed; use-and-report (D-007) | Form-control boundary (4.45:1, meets the 3:1 non-text minimum). |
 | `color.border.default` | `#531310` | observed; use | Decorative border (1.39:1; never the only edge of a control). |
 | `color.interaction.focus.ring` | `#e53935` | observed; use | 1px dashed focus ring on controls and rows. |
-| `color.interaction.selection.bg` | `#531310` | observed; use | Selected row, tab, workspace; D-027 recessed the fill, leaving the 2px indicator and the check to carry selection. |
-| `color.action.primary.bg` | `#7d1310` | observed; use | Primary button fill; D-026 darkened it off color12, which stays fixed as heritage ANSI 12. |
+| `color.interaction.selection.bg` | `#531310` | approved; use | Selected row, tab, workspace; D-027 recessed the fill, leaving the 2px indicator and the check to carry selection. |
+| `color.action.primary.bg` | `#7d1310` | approved; use | Primary button fill; D-026 darkened it off color12, which stays fixed as heritage ANSI 12. |
 | `color.status.danger.text` | `#f73f35` | observed; use | Danger text (5.40:1). |
 | `color.status.warning.text` | `#c9973f` | approved; use | Warning text (7.54:1). |
 | `color.status.success.text` | `#86a46f` | approved; use | Success text (7.13:1). |

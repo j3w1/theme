@@ -112,8 +112,8 @@ button itself binds nothing.
 the same text and is not the name. The SVG is `aria-hidden="true"` and
 `focusable="false"`. A toggle uses `aria-pressed`, whose value is announced;
 the name never changes with the state ("Mute", not "Mute" / "Unmute").
-Contrast: icon 8.65:1 at rest, 7.92:1 on the selection fill; ring 4.69:1,
-container ring 7.92:1 on the selection fill. Target ≥ 24×24 CSS pixels with
+Contrast: icon 8.65:1 at rest, 12.47:1 on the selection fill; ring 4.69:1,
+container ring 7.48:1 on the selection fill. Target ≥ 24×24 CSS pixels with
 4px between neighbours in `compact` density.
 
 ## Portability

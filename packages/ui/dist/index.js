@@ -21,7 +21,7 @@ import { J3w1TimePicker } from "./components/time-picker.js";
 import { J3w1FileInput } from "./components/file-input.js";
 import { J3w1Repeater } from "./components/repeater.js";
 import { J3w1Wizard } from "./components/wizard.js";
-import { t as J3w1FormBuilder } from "./chunks/form-builder-C2rqzuGI.js";
+import { t as J3w1FormBuilder } from "./chunks/form-builder-D3EeVrSU.js";
 import { J3w1Tabs } from "./components/tabs.js";
 import { J3w1Breadcrumbs } from "./components/breadcrumbs.js";
 import { J3w1Pagination } from "./components/pagination.js";

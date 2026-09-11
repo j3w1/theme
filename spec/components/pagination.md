@@ -119,8 +119,8 @@ remains a link to itself so a keyboard user can reload it.
 gets a distinct label. Previous and next carry a visible word, not just a
 glyph, and `aria-label` gives the target page number when it is known
 ("Previous page, 2"). The gap is `aria-hidden`; the list count tells a screen
-reader how many links follow. Contrast: link text 8.43:1, current text 7.92:1
-on the selection fill, ring-container 4.75:1 on the fill, disabled 3.24:1
+reader how many links follow. Contrast: link text 8.43:1, current text 12.47:1
+on the selection fill, ring-container 7.48:1 on the fill, disabled 3.24:1
 (exempt). Targets are at least 24×24 CSS pixels in `compact` density.
 
 ## Portability

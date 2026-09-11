@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-fIloSx2SvKOhZQqPq7ZfXqBVLqILUVu4kML4c5uMPlo=",
+  "sourceDigest": "sha256-F7+Dg7G4tdc9Bjv8EG+UVwRjlF4Awi8HvZvLg9fZXgE=",
   "id": "combobox",
   "family": "forms-advanced",
   "maturity": "stable",
@@ -205,9 +205,9 @@
     "input.placeholder": {
       "alias": "color.text.placeholder",
       "value": "#a3676b",
-      "status": "observed",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-027",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -265,9 +265,9 @@
     "listbox.bg": {
       "alias": "color.surface.raised",
       "value": "#160b0b",
-      "status": "observed",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-027",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -327,9 +327,9 @@
     "option.bg-selected": {
       "alias": "color.interaction.selection.bg",
       "value": "#531310",
-      "status": "observed",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-027",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -575,9 +575,9 @@
         "bg": {
           "alias": "color.surface.raised",
           "value": "#160b0b",
-          "status": "observed",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-027",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -626,9 +626,9 @@
         "bg": {
           "alias": "color.interaction.selection.bg",
           "value": "#531310",
-          "status": "observed",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-027",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -773,9 +773,9 @@
         "bg": {
           "alias": "color.surface.raised",
           "value": "#160b0b",
-          "status": "observed",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-027",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",

@@ -61,7 +61,15 @@
       },
       "raised": {
         "$value": "{color.primitive.ink.30}",
-        "$description": "Sticky headers, menus, popovers; D-027 recessed it so an open list reads as depth rather than a lighter panel."
+        "$description": "Sticky headers, menus, popovers; D-027 recessed it so an open list reads as depth rather than a lighter panel.",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "approved",
+            "approval": {
+              "decision": "D-027"
+            }
+          }
+        }
       },
       "overlay": {
         "$value": "{color.primitive.ink.52}",
@@ -159,7 +167,15 @@
       },
       "placeholder": {
         "$value": "{color.primitive.rose.350}",
-        "$description": "Placeholder text, italic; D-027 darkened it to 4.71:1, just clear of the 4.5:1 floor."
+        "$description": "Placeholder text, italic; D-027 darkened it to 4.71:1, just clear of the 4.5:1 floor.",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "approved",
+            "approval": {
+              "decision": "D-027"
+            }
+          }
+        }
       },
       "accent": {
         "$value": "{color.primitive.red.800}",
@@ -284,7 +300,15 @@
       "selection": {
         "bg": {
           "$value": "{color.primitive.red.100}",
-          "$description": "Selected row, tab, workspace; D-027 recessed the fill, leaving the 2px indicator and the check to carry selection."
+          "$description": "Selected row, tab, workspace; D-027 recessed the fill, leaving the 2px indicator and the check to carry selection.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-027"
+              }
+            }
+          }
         },
         "text": {
           "$value": "{color.primitive.paper.90}",
@@ -316,7 +340,7 @@
         },
         "bg-strong": {
           "$value": "{color.primitive.red.150}",
-          "$description": "Hover on links and menu items."
+          "$description": "Hover on menu items; D-027 moved links to interaction.hover.bg."
         }
       },
       "pressed": {
@@ -358,7 +382,15 @@
       "primary": {
         "bg": {
           "$value": "{color.primitive.red.200}",
-          "$description": "Primary button fill; D-026 darkened it off color12, which stays fixed as heritage ANSI 12."
+          "$description": "Primary button fill; D-026 darkened it off color12, which stays fixed as heritage ANSI 12.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-026"
+              }
+            }
+          }
         },
         "text": {
           "$value": "{color.primitive.paper.90}",

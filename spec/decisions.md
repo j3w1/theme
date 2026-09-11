@@ -37,8 +37,8 @@ in its `$extensions["io.github.j3w1.theme"].approval.decision`. Agents may open
 | D-023 | True Black / Rose canonical foundation | accepted | 2026-09-08 | owner (explicit selection of candidate I) |
 | D-024 | Distinguish links from body text and headings | accepted | 2026-09-08 | owner (explicit preview correction) |
 | D-025 | Theme interactive controls throughout the portal and demo | accepted | 2026-09-09 | owner (explicit native-control replacement request) |
-| D-026 | Primary action fill darkens off heritage ANSI 12 | proposed | 2026-09-10 | — |
-| D-027 | Recede the interactive chrome | proposed | 2026-09-10 | — |
+| D-026 | Primary action fill darkens off heritage ANSI 12 | accepted | 2026-09-11 | owner (explicit acceptance after visual review) |
+| D-027 | Recede the interactive chrome | accepted | 2026-09-11 | owner (explicit acceptance after visual review) |
 
 ## D-000 Responsibility split
 
@@ -465,6 +465,17 @@ package, copy distributions, static portal and Vue showcase. Existing consumers
 retain their immutable pins; the new surface contract ships in version 1.0.0,
 following the repository's major-version rule for approved value changes.
 
+Superseded in part, and only in part. Three later accepted decisions each
+replace one or more of the role assignments above, and leave everything else
+here standing: D-024 replaces `text.link`; D-026 replaces
+`action.primary.bg`; D-027 replaces `surface.raised`,
+`interaction.selection.bg` and `text.placeholder`. Every other value and rule
+recorded in this decision — the seven surface assignments, the two new
+primitives, the luminance ordering, the remaining foreground, red action,
+focus, border, selection, status and chart roles, overlay `#241010`, alternate
+chrome `#1c0a09`, and the retained historical profile — stands as accepted.
+This decision keeps its `accepted` status; it is not superseded as a whole.
+
 ## D-024 Distinguish links from body text and headings
 
 Status: accepted. During the implementation preview the owner requested links
@@ -519,8 +530,9 @@ remain immutable. The command field fills its dialog width below its label.
 
 ## D-026 Primary action fill darkens off heritage ANSI 12
 
-Status: proposed. The owner asked for a slightly darker fill on primary
-actions such as the portal's `Explore components` button.
+Status: accepted. The owner asked for a slightly darker fill on primary
+actions such as the portal's `Explore components` button, and accepted this
+entry as implemented after reviewing it.
 
 `color.action.primary.bg` aliased `color.primitive.red.300`, which is also
 `color.primitive.ansi.12` and `color.terminal.ansi.12`. `schemas/roles.mjs`
@@ -535,9 +547,17 @@ both were already passing. The state ladder stays ordered — pressed `#630f0d`
 below the fill, hover `#911410` above it.
 
 The declared pair `primary fill against the panel` is a recorded decorative
-waiver at 2.07:1 and moves further from 3:1. It is listed as decorative
-because the label identifies the button; this decision does not change that
-reasoning, and no waiver is added or widened.
+waiver. It measured 2.07:1 before this change and measures 1.83:1 after it,
+further from 3:1. It is listed as decorative because the label identifies the
+button; this decision does not change that reasoning, and no waiver is added
+or widened.
+
+This supersedes part of D-023, and only this part. `action.primary.bg`
+(`#871f19`) was one of the assignments that decision kept "exactly as
+reviewed" under its red actions clause; this entry replaces that single role
+and nothing else in D-023. The primitive is untouched, so
+`color.primitive.red.300`, `color.primitive.ansi.12` and
+`color.terminal.ansi.12` all still carry the heritage value.
 
 Alternatives: mint a new primitive at the exact requested value, which adds a
 colour to the palette for a difference of about one step and no measurable
@@ -547,9 +567,10 @@ rule in `theme.json`.
 
 ## D-027 Recede the interactive chrome
 
-Status: proposed. The owner found the open list, its selected row, the
+Status: accepted. The owner found the open list, its selected row, the
 placeholder text and the link hover fill all louder than the content they sit
-against, and asked for a darker treatment across the set.
+against, and asked for a darker treatment across the set, then accepted this
+entry as implemented after reviewing it.
 
 Four roles move, all onto values already in the palette; no colour is minted.
 
@@ -572,13 +593,16 @@ recessed value measures less again. Selection is carried by the 2px
 Both are unchanged. The full report still shows 954 pairs, 17 waived and none
 failing; no waiver is added or widened.
 
-This supersedes part of D-023. `surface.raised` (`#241010`) and
-`interaction.selection.bg` (`#911410`) were among the values the owner selected
-in that accepted decision, and `tests/foundation-selection.test.js` guards them
-by name. That guard now records the recessed values instead; every other
-surface in it is still the D-023 selection, untouched. Until this entry is
-accepted, the repository asserts two values that no accepted decision covers —
-accepting it, or reverting these two roles, is the only way to close that.
+This supersedes part of D-023, and only this part. `surface.raised`
+(`#241010`) and `interaction.selection.bg` (`#911410`) were among the values
+the owner selected in that accepted decision, and `text.placeholder`
+(`#bd787d`) fell under the same decision's instruction to keep the foreground
+roles exactly as reviewed. This entry replaces those three role assignments
+and nothing else in D-023: every other surface, foreground, focus, border,
+selection, status and chart role it approved stands as accepted, as does its
+historical-profile retention. `tests/foundation-selection.test.js` guards the
+set by name and now records the recessed values; every other surface in it is
+still the D-023 selection, untouched.
 
 The darker fill also settles the ring on a selected row. D-006 recolours the
 ring on filled surfaces because `#e53935` measured 2.15:1 on the old

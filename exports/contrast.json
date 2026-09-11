@@ -2131,7 +2131,7 @@
       "bgHex": "#100c0c",
       "ratio": 1.83,
       "pass": false,
-      "waiver": "the fill is not the boundary of the control; the label text at 8.17:1 identifies it, and hover, active and focus each add a second channel"
+      "waiver": "the fill is not the boundary of the control; the label text at 9.28:1 identifies it, and hover, active and focus each add a second channel"
     },
     {
       "source": "button",
@@ -7283,7 +7283,7 @@
       "bgHex": "#090707",
       "ratio": 1.41,
       "pass": true,
-      "waiver": "the fill is identified by its on-fill text (7.92:1) and aria-selected, as every selection fill in the theme"
+      "waiver": "the fill is identified by its on-fill text (12.47:1) and aria-selected, as every selection fill in the theme"
     },
     {
       "source": "i3-window-frame",
@@ -8921,7 +8921,7 @@
       "bgHex": "#420f0c",
       "ratio": 1.51,
       "pass": false,
-      "waiver": "the fill measures 1.72:1 against the track; the value is carried by the visible percentage text and the native value, and the track boundary (border.control, 4.45:1) marks the full extent"
+      "waiver": "the fill measures 1.51:1 against the track; the value is carried by the visible percentage text and the native value, and the track boundary (border.control, 4.45:1) marks the full extent"
     },
     {
       "source": "progress",
@@ -13331,7 +13331,7 @@
       "bgHex": "#000000",
       "ratio": 2.71,
       "pass": false,
-      "waiver": "the primary button is identified by its text at 8.17:1 on its fill and by its position; the fill measures 2.12:1 and its border 2.56:1 against the canvas, a documented property of the actions family, not of the wizard"
+      "waiver": "the primary button is identified by its text at 9.28:1 on its fill and by its position; the fill measures 1.86:1 and its border 2.56:1 against the canvas, a documented property of the actions family, not of the wizard"
     },
     {
       "source": "wizard",

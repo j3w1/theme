@@ -4,7 +4,7 @@ import { r as fields } from "../chunks/native-CAzZmDKR.js";
 var J3w1Select = class extends J3w1Element {
 	static componentId = "select";
 	static version = "1.1.0";
-	static implementationId = "sha256-vJajbWYpHDrijx3TUFIAqsJt413rT/eRVOxculDZvFM=";
+	static implementationId = "sha256-mcaYhqlgn7+y6YUuD1P5NVYhH+jDLFgvrj1esAaEPsg=";
 	static connect = fields;
 	static upgradeProperties = [
 		"disabled",

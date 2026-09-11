@@ -599,7 +599,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/destructive/border",
-            "line": 417
+            "line": 449
           },
           "provenance": null,
           "aliases": [
@@ -684,7 +684,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/destructive/filled-bg",
-            "line": 433
+            "line": 465
           },
           "provenance": null,
           "aliases": [
@@ -847,7 +847,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/destructive/filled-text",
-            "line": 437
+            "line": 469
           },
           "provenance": null,
           "aliases": [
@@ -984,7 +984,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/destructive/hover-bg",
-            "line": 421
+            "line": 453
           },
           "provenance": null,
           "aliases": [
@@ -1121,7 +1121,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/destructive/hover-text",
-            "line": 425
+            "line": 457
           },
           "provenance": null,
           "aliases": [
@@ -1269,7 +1269,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/destructive/pressed-bg",
-            "line": 429
+            "line": 461
           },
           "provenance": null,
           "aliases": [
@@ -1354,7 +1354,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/destructive/text",
-            "line": 413
+            "line": 445
           },
           "provenance": null,
           "aliases": [
@@ -1440,7 +1440,7 @@
           "css": "#7d1310",
           "variable": "--color-action-primary-bg",
           "description": "Primary button fill; D-026 darkened it off color12, which stays fixed as heritage ANSI 12.",
-          "status": "observed",
+          "status": "approved",
           "deprecated": false,
           "eligibility": {
             "action": "use",
@@ -1450,9 +1450,14 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/primary/bg",
-            "line": 359
+            "line": 383
           },
-          "provenance": null,
+          "provenance": {
+            "status": "approved",
+            "approval": {
+              "decision": "D-026"
+            }
+          },
           "aliases": [
             "color.primitive.red.200"
           ],
@@ -2458,7 +2463,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/primary/border",
-            "line": 375
+            "line": 407
           },
           "provenance": null,
           "aliases": [
@@ -2558,7 +2563,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/primary/hover-bg",
-            "line": 367
+            "line": 399
           },
           "provenance": null,
           "aliases": [
@@ -2837,7 +2842,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/primary/pressed-bg",
-            "line": 371
+            "line": 403
           },
           "provenance": null,
           "aliases": [
@@ -2922,7 +2927,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/primary/text",
-            "line": 363
+            "line": 395
           },
           "provenance": null,
           "aliases": [
@@ -3860,7 +3865,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/secondary/bg",
-            "line": 381
+            "line": 413
           },
           "provenance": null,
           "aliases": [
@@ -4127,7 +4132,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/secondary/border",
-            "line": 389
+            "line": 421
           },
           "provenance": null,
           "aliases": [
@@ -4521,7 +4526,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/secondary/hover-bg",
-            "line": 393
+            "line": 425
           },
           "provenance": null,
           "aliases": [
@@ -4703,7 +4708,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/secondary/pressed-bg",
-            "line": 397
+            "line": 429
           },
           "provenance": null,
           "aliases": [
@@ -4788,7 +4793,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/secondary/text",
-            "line": 385
+            "line": 417
           },
           "provenance": null,
           "aliases": [
@@ -5208,7 +5213,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/tertiary/hover-bg",
-            "line": 407
+            "line": 439
           },
           "provenance": null,
           "aliases": [
@@ -5614,7 +5619,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/tertiary/text",
-            "line": 403
+            "line": 435
           },
           "provenance": null,
           "aliases": [
@@ -6384,7 +6389,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/border/active",
-            "line": 244
+            "line": 260
           },
           "provenance": null,
           "aliases": [
@@ -7049,7 +7054,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/border/control",
-            "line": 232
+            "line": 248
           },
           "provenance": {
             "status": "proposed",
@@ -10359,7 +10364,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/border/default",
-            "line": 224
+            "line": 240
           },
           "provenance": null,
           "aliases": [
@@ -10813,7 +10818,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/border/disabled",
-            "line": 260
+            "line": 276
           },
           "provenance": null,
           "aliases": [
@@ -11687,7 +11692,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/border/divider",
-            "line": 212
+            "line": 228
           },
           "provenance": {
             "status": "proposed",
@@ -12783,7 +12788,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/border/overlay",
-            "line": 248
+            "line": 264
           },
           "provenance": {
             "status": "proposed",
@@ -13476,7 +13481,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/border/selected-indicator",
-            "line": 264
+            "line": 280
           },
           "provenance": null,
           "aliases": [
@@ -13904,7 +13909,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/border/selected-indicator-inactive",
-            "line": 268
+            "line": 284
           },
           "provenance": null,
           "aliases": [
@@ -14030,7 +14035,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/border/strong",
-            "line": 228
+            "line": 244
           },
           "provenance": null,
           "aliases": [
@@ -14249,7 +14254,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/axis",
-            "line": 1108
+            "line": 1140
           },
           "provenance": null,
           "aliases": [
@@ -14292,7 +14297,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/grid",
-            "line": 1112
+            "line": 1144
           },
           "provenance": null,
           "aliases": [
@@ -14335,7 +14340,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/label",
-            "line": 1116
+            "line": 1148
           },
           "provenance": null,
           "aliases": [
@@ -14405,7 +14410,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/series-1",
-            "line": 1092
+            "line": 1124
           },
           "provenance": null,
           "aliases": [
@@ -14432,7 +14437,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/series-2",
-            "line": 1096
+            "line": 1128
           },
           "provenance": null,
           "aliases": [
@@ -14475,7 +14480,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/series-3",
-            "line": 1100
+            "line": 1132
           },
           "provenance": null,
           "aliases": [
@@ -14502,7 +14507,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/series-4",
-            "line": 1104
+            "line": 1136
           },
           "provenance": null,
           "aliases": [
@@ -14557,7 +14562,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/bg",
-            "line": 676
+            "line": 708
           },
           "provenance": null,
           "aliases": [
@@ -15626,7 +15631,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/bracket-match",
-            "line": 728
+            "line": 760
           },
           "provenance": null,
           "aliases": [
@@ -15748,7 +15753,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/caret",
-            "line": 708
+            "line": 740
           },
           "provenance": null,
           "aliases": [
@@ -15949,7 +15954,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/current-line",
-            "line": 680
+            "line": 712
           },
           "provenance": null,
           "aliases": [
@@ -16201,7 +16206,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/gutter-bg",
-            "line": 684
+            "line": 716
           },
           "provenance": null,
           "aliases": [
@@ -16271,7 +16276,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/gutter-rule",
-            "line": 704
+            "line": 736
           },
           "provenance": null,
           "aliases": [
@@ -16371,7 +16376,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/indent-guide",
-            "line": 732
+            "line": 764
           },
           "provenance": null,
           "aliases": [
@@ -16441,7 +16446,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/line-number",
-            "line": 688
+            "line": 720
           },
           "provenance": {
             "status": "approved",
@@ -16598,7 +16603,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/line-number-active",
-            "line": 700
+            "line": 732
           },
           "provenance": null,
           "aliases": [
@@ -16668,7 +16673,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/search-current-bg",
-            "line": 720
+            "line": 752
           },
           "provenance": null,
           "aliases": [
@@ -16738,7 +16743,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/search-current-text",
-            "line": 724
+            "line": 756
           },
           "provenance": null,
           "aliases": [
@@ -16808,7 +16813,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/search-match-bg",
-            "line": 716
+            "line": 748
           },
           "provenance": null,
           "aliases": [
@@ -16851,7 +16856,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/selection-bg",
-            "line": 712
+            "line": 744
           },
           "provenance": null,
           "aliases": [
@@ -17014,7 +17019,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/syntax/attribute",
-            "line": 801
+            "line": 833
           },
           "provenance": null,
           "aliases": [
@@ -17084,7 +17089,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/syntax/comment",
-            "line": 749
+            "line": 781
           },
           "provenance": {
             "status": "approved",
@@ -17185,7 +17190,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/syntax/constant",
-            "line": 765
+            "line": 797
           },
           "provenance": null,
           "aliases": [
@@ -17228,7 +17233,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/syntax/deprecated",
-            "line": 813
+            "line": 845
           },
           "provenance": null,
           "aliases": [
@@ -17339,7 +17344,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/syntax/escape",
-            "line": 805
+            "line": 837
           },
           "provenance": null,
           "aliases": [
@@ -17382,7 +17387,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/syntax/function",
-            "line": 769
+            "line": 801
           },
           "provenance": null,
           "aliases": [
@@ -17452,7 +17457,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/syntax/heading",
-            "line": 793
+            "line": 825
           },
           "provenance": null,
           "aliases": [
@@ -17495,7 +17500,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/syntax/invalid",
-            "line": 809
+            "line": 841
           },
           "provenance": null,
           "aliases": [
@@ -17538,7 +17543,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/syntax/keyword",
-            "line": 741
+            "line": 773
           },
           "provenance": null,
           "aliases": [
@@ -17634,7 +17639,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/syntax/number",
-            "line": 761
+            "line": 793
           },
           "provenance": null,
           "aliases": [
@@ -17704,7 +17709,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/syntax/operator",
-            "line": 781
+            "line": 813
           },
           "provenance": null,
           "aliases": [
@@ -17747,7 +17752,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/syntax/property",
-            "line": 789
+            "line": 821
           },
           "provenance": null,
           "aliases": [
@@ -17817,7 +17822,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/syntax/punctuation",
-            "line": 785
+            "line": 817
           },
           "provenance": null,
           "aliases": [
@@ -17860,7 +17865,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/syntax/string",
-            "line": 745
+            "line": 777
           },
           "provenance": null,
           "aliases": [
@@ -17982,7 +17987,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/syntax/tag",
-            "line": 797
+            "line": 829
           },
           "provenance": null,
           "aliases": [
@@ -18052,7 +18057,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/syntax/type",
-            "line": 777
+            "line": 809
           },
           "provenance": null,
           "aliases": [
@@ -18148,7 +18153,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/syntax/variable",
-            "line": 773
+            "line": 805
           },
           "provenance": null,
           "aliases": [
@@ -18296,7 +18301,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/whitespace",
-            "line": 736
+            "line": 768
           },
           "provenance": null,
           "aliases": [
@@ -18366,7 +18371,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diagnostic/error/bg",
-            "line": 833
+            "line": 865
           },
           "provenance": null,
           "aliases": [
@@ -18488,7 +18493,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diagnostic/error/stripe",
-            "line": 829
+            "line": 861
           },
           "provenance": null,
           "aliases": [
@@ -18558,7 +18563,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diagnostic/error/text",
-            "line": 825
+            "line": 857
           },
           "provenance": null,
           "aliases": [
@@ -18706,7 +18711,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diagnostic/error/underline",
-            "line": 821
+            "line": 853
           },
           "provenance": null,
           "aliases": [
@@ -18802,7 +18807,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diagnostic/hint/underline",
-            "line": 903
+            "line": 935
           },
           "provenance": null,
           "aliases": [
@@ -18872,7 +18877,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diagnostic/info/text",
-            "line": 889
+            "line": 921
           },
           "provenance": {
             "status": "approved",
@@ -18999,7 +19004,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diagnostic/info/underline",
-            "line": 877
+            "line": 909
           },
           "provenance": {
             "status": "approved",
@@ -19074,7 +19079,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diagnostic/unused/text",
-            "line": 909
+            "line": 941
           },
           "provenance": null,
           "aliases": [
@@ -19144,7 +19149,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diagnostic/warning/stripe",
-            "line": 863
+            "line": 895
           },
           "provenance": {
             "status": "approved",
@@ -19219,7 +19224,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diagnostic/warning/text",
-            "line": 851
+            "line": 883
           },
           "provenance": {
             "status": "approved",
@@ -19320,7 +19325,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diagnostic/warning/underline",
-            "line": 839
+            "line": 871
           },
           "provenance": {
             "status": "approved",
@@ -19421,7 +19426,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diff/added/bg",
-            "line": 917
+            "line": 949
           },
           "provenance": {
             "status": "approved",
@@ -19626,7 +19631,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diff/added/emphasis",
-            "line": 941
+            "line": 973
           },
           "provenance": {
             "status": "approved",
@@ -19701,7 +19706,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diff/added/gutter",
-            "line": 929
+            "line": 961
           },
           "provenance": {
             "status": "approved",
@@ -19776,7 +19781,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diff/conflict-border",
-            "line": 994
+            "line": 1026
           },
           "provenance": null,
           "aliases": [
@@ -19846,7 +19851,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diff/header-bg",
-            "line": 998
+            "line": 1030
           },
           "provenance": null,
           "aliases": [
@@ -20046,7 +20051,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diff/modified/bg",
-            "line": 969
+            "line": 1001
           },
           "provenance": {
             "status": "approved",
@@ -20225,7 +20230,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diff/modified/gutter",
-            "line": 981
+            "line": 1013
           },
           "provenance": {
             "status": "approved",
@@ -20300,7 +20305,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diff/removed/bg",
-            "line": 955
+            "line": 987
           },
           "provenance": null,
           "aliases": [
@@ -20500,7 +20505,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diff/removed/emphasis",
-            "line": 963
+            "line": 995
           },
           "provenance": null,
           "aliases": [
@@ -20570,7 +20575,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diff/removed/gutter",
-            "line": 959
+            "line": 991
           },
           "provenance": null,
           "aliases": [
@@ -20640,7 +20645,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/icon/decorative",
-            "line": 1126
+            "line": 1158
           },
           "provenance": null,
           "aliases": [
@@ -20889,7 +20894,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/icon/default",
-            "line": 1122
+            "line": 1154
           },
           "provenance": null,
           "aliases": [
@@ -21060,7 +21065,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/disabled/bg",
-            "line": 329
+            "line": 353
           },
           "provenance": null,
           "aliases": [
@@ -22400,7 +22405,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/drop-target",
-            "line": 338
+            "line": 362
           },
           "provenance": null,
           "aliases": [
@@ -22496,7 +22501,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/focus/ring",
-            "line": 275
+            "line": 291
           },
           "provenance": null,
           "aliases": [
@@ -24578,7 +24583,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/focus/ring-container",
-            "line": 279
+            "line": 295
           },
           "provenance": null,
           "aliases": [
@@ -25977,7 +25982,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/hover/bg",
-            "line": 313
+            "line": 337
           },
           "provenance": null,
           "aliases": [
@@ -27298,7 +27303,7 @@
           "group": "interaction",
           "css": "#630f0d",
           "variable": "--color-interaction-hover-bg-strong",
-          "description": "Hover on links and menu items.",
+          "description": "Hover on menu items; D-027 moved links to interaction.hover.bg.",
           "status": "observed",
           "deprecated": false,
           "eligibility": {
@@ -27309,7 +27314,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/hover/bg-strong",
-            "line": 317
+            "line": 341
           },
           "provenance": null,
           "aliases": [
@@ -27666,7 +27671,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/marquee",
-            "line": 334
+            "line": 358
           },
           "provenance": null,
           "aliases": [
@@ -27747,7 +27752,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/pressed/bg",
-            "line": 323
+            "line": 347
           },
           "provenance": null,
           "aliases": [
@@ -28223,7 +28228,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/scrollbar/thumb",
-            "line": 347
+            "line": 371
           },
           "provenance": null,
           "aliases": [
@@ -28250,7 +28255,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/scrollbar/thumb-hover",
-            "line": 351
+            "line": 375
           },
           "provenance": null,
           "aliases": [
@@ -28277,7 +28282,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/scrollbar/track",
-            "line": 343
+            "line": 367
           },
           "provenance": null,
           "aliases": [
@@ -28294,7 +28299,7 @@
           "css": "#531310",
           "variable": "--color-interaction-selection-bg",
           "description": "Selected row, tab, workspace; D-027 recessed the fill, leaving the 2px indicator and the check to carry selection.",
-          "status": "observed",
+          "status": "approved",
           "deprecated": false,
           "eligibility": {
             "action": "use",
@@ -28304,9 +28309,14 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/selection/bg",
-            "line": 285
+            "line": 301
           },
-          "provenance": null,
+          "provenance": {
+            "status": "approved",
+            "approval": {
+              "decision": "D-027"
+            }
+          },
           "aliases": [
             "color.primitive.red.100"
           ],
@@ -29523,7 +29533,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/selection/inactive-bg",
-            "line": 293
+            "line": 317
           },
           "provenance": null,
           "aliases": [
@@ -29742,7 +29752,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/selection/inactive-text",
-            "line": 297
+            "line": 321
           },
           "provenance": null,
           "aliases": [
@@ -29961,7 +29971,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/selection/text",
-            "line": 289
+            "line": 313
           },
           "provenance": null,
           "aliases": [
@@ -30873,7 +30883,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/text-selection/bg",
-            "line": 303
+            "line": 327
           },
           "provenance": null,
           "aliases": [
@@ -30931,7 +30941,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/text-selection/text",
-            "line": 307
+            "line": 331
           },
           "provenance": null,
           "aliases": [
@@ -33407,7 +33417,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/danger/border",
-            "line": 461
+            "line": 493
           },
           "provenance": null,
           "aliases": [
@@ -34375,7 +34385,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/danger/fill",
-            "line": 449
+            "line": 481
           },
           "provenance": null,
           "aliases": [
@@ -34724,7 +34734,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/danger/on-fill",
-            "line": 453
+            "line": 485
           },
           "provenance": null,
           "aliases": [
@@ -34928,7 +34938,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/danger/text",
-            "line": 445
+            "line": 477
           },
           "provenance": null,
           "aliases": [
@@ -36035,7 +36045,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/danger/tint",
-            "line": 457
+            "line": 489
           },
           "provenance": null,
           "aliases": [
@@ -36246,7 +36256,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/info/border",
-            "line": 639
+            "line": 671
           },
           "provenance": {
             "status": "approved",
@@ -36418,7 +36428,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/info/fill",
-            "line": 603
+            "line": 635
           },
           "provenance": {
             "status": "approved",
@@ -36586,7 +36596,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/info/on-fill",
-            "line": 615
+            "line": 647
           },
           "provenance": {
             "status": "approved",
@@ -36728,7 +36738,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/info/text",
-            "line": 591
+            "line": 623
           },
           "provenance": {
             "status": "approved",
@@ -37019,7 +37029,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/info/tint",
-            "line": 627
+            "line": 659
           },
           "provenance": {
             "status": "approved",
@@ -37421,7 +37431,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/neutral/border",
-            "line": 669
+            "line": 701
           },
           "provenance": null,
           "aliases": [
@@ -37573,7 +37583,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/neutral/fill",
-            "line": 657
+            "line": 689
           },
           "provenance": null,
           "aliases": [
@@ -37695,7 +37705,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/neutral/on-fill",
-            "line": 661
+            "line": 693
           },
           "provenance": null,
           "aliases": [
@@ -37791,7 +37801,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/neutral/text",
-            "line": 653
+            "line": 685
           },
           "provenance": null,
           "aliases": [
@@ -37943,7 +37953,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/neutral/tint",
-            "line": 665
+            "line": 697
           },
           "provenance": null,
           "aliases": [
@@ -38158,7 +38168,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/success/border",
-            "line": 577
+            "line": 609
           },
           "provenance": {
             "status": "approved",
@@ -38315,7 +38325,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/success/fill",
-            "line": 541
+            "line": 573
           },
           "provenance": {
             "status": "approved",
@@ -38483,7 +38493,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/success/on-fill",
-            "line": 553
+            "line": 585
           },
           "provenance": {
             "status": "approved",
@@ -38625,7 +38635,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/success/text",
-            "line": 529
+            "line": 561
           },
           "provenance": {
             "status": "approved",
@@ -38957,7 +38967,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/success/tint",
-            "line": 565
+            "line": 597
           },
           "provenance": {
             "status": "approved",
@@ -39203,7 +39213,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/warning/border",
-            "line": 515
+            "line": 547
           },
           "provenance": {
             "status": "approved",
@@ -39360,7 +39370,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/warning/fill",
-            "line": 479
+            "line": 511
           },
           "provenance": {
             "status": "approved",
@@ -39487,7 +39497,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/warning/on-fill",
-            "line": 491
+            "line": 523
           },
           "provenance": {
             "status": "approved",
@@ -39588,7 +39598,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/warning/text",
-            "line": 467
+            "line": 499
           },
           "provenance": {
             "status": "approved",
@@ -39797,7 +39807,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/warning/tint",
-            "line": 503
+            "line": 535
           },
           "provenance": {
             "status": "approved",
@@ -40045,7 +40055,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/surface/backdrop",
-            "line": 82
+            "line": 90
           },
           "provenance": {
             "status": "proposed",
@@ -43243,7 +43253,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/surface/code",
-            "line": 94
+            "line": 102
           },
           "provenance": {
             "status": "approved",
@@ -51119,7 +51129,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/surface/input",
-            "line": 70
+            "line": 78
           },
           "provenance": {
             "status": "approved",
@@ -53977,7 +53987,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/surface/overlay",
-            "line": 66
+            "line": 74
           },
           "provenance": null,
           "aliases": [
@@ -54697,7 +54707,7 @@
           "css": "#160b0b",
           "variable": "--color-surface-raised",
           "description": "Sticky headers, menus, popovers; D-027 recessed it so an open list reads as depth rather than a lighter panel.",
-          "status": "observed",
+          "status": "approved",
           "deprecated": false,
           "eligibility": {
             "action": "use",
@@ -54709,7 +54719,12 @@
             "pointer": "/color/surface/raised",
             "line": 62
           },
-          "provenance": null,
+          "provenance": {
+            "status": "approved",
+            "approval": {
+              "decision": "D-027"
+            }
+          },
           "aliases": [
             "color.primitive.ink.30"
           ],
@@ -55736,7 +55751,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/surface/terminal",
-            "line": 106
+            "line": 114
           },
           "provenance": {
             "status": "approved",
@@ -55768,7 +55783,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/0",
-            "line": 1025
+            "line": 1057
           },
           "provenance": null,
           "aliases": [
@@ -55839,7 +55854,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/1",
-            "line": 1029
+            "line": 1061
           },
           "provenance": null,
           "aliases": [
@@ -55910,7 +55925,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/10",
-            "line": 1065
+            "line": 1097
           },
           "provenance": null,
           "aliases": [
@@ -55981,7 +55996,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/11",
-            "line": 1069
+            "line": 1101
           },
           "provenance": null,
           "aliases": [
@@ -56052,7 +56067,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/12",
-            "line": 1073
+            "line": 1105
           },
           "provenance": null,
           "aliases": [
@@ -56123,7 +56138,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/13",
-            "line": 1077
+            "line": 1109
           },
           "provenance": null,
           "aliases": [
@@ -56194,7 +56209,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/14",
-            "line": 1081
+            "line": 1113
           },
           "provenance": null,
           "aliases": [
@@ -56265,7 +56280,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/15",
-            "line": 1085
+            "line": 1117
           },
           "provenance": null,
           "aliases": [
@@ -56336,7 +56351,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/2",
-            "line": 1033
+            "line": 1065
           },
           "provenance": null,
           "aliases": [
@@ -56407,7 +56422,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/3",
-            "line": 1037
+            "line": 1069
           },
           "provenance": null,
           "aliases": [
@@ -56519,7 +56534,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/4",
-            "line": 1041
+            "line": 1073
           },
           "provenance": null,
           "aliases": [
@@ -56657,7 +56672,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/5",
-            "line": 1045
+            "line": 1077
           },
           "provenance": null,
           "aliases": [
@@ -56728,7 +56743,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/6",
-            "line": 1049
+            "line": 1081
           },
           "provenance": null,
           "aliases": [
@@ -56799,7 +56814,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/7",
-            "line": 1053
+            "line": 1085
           },
           "provenance": null,
           "aliases": [
@@ -56870,7 +56885,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/8",
-            "line": 1057
+            "line": 1089
           },
           "provenance": null,
           "aliases": [
@@ -56941,7 +56956,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/9",
-            "line": 1061
+            "line": 1093
           },
           "provenance": null,
           "aliases": [
@@ -57012,7 +57027,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/bg",
-            "line": 1004
+            "line": 1036
           },
           "provenance": null,
           "aliases": [
@@ -57788,7 +57803,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/cursor",
-            "line": 1012
+            "line": 1044
           },
           "provenance": null,
           "aliases": [
@@ -57910,7 +57925,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/fg",
-            "line": 1008
+            "line": 1040
           },
           "provenance": null,
           "aliases": [
@@ -58129,7 +58144,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/selection-bg",
-            "line": 1016
+            "line": 1048
           },
           "provenance": null,
           "aliases": [
@@ -58199,7 +58214,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/selection-text",
-            "line": 1020
+            "line": 1052
           },
           "provenance": null,
           "aliases": [
@@ -58310,7 +58325,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/accent",
-            "line": 164
+            "line": 180
           },
           "provenance": null,
           "aliases": [
@@ -58391,7 +58406,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/accent-strong",
-            "line": 168
+            "line": 184
           },
           "provenance": null,
           "aliases": [
@@ -58446,7 +58461,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/bright",
-            "line": 124
+            "line": 132
           },
           "provenance": null,
           "aliases": [
@@ -60487,7 +60502,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/default",
-            "line": 120
+            "line": 128
           },
           "provenance": null,
           "aliases": [
@@ -66511,7 +66526,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/disabled",
-            "line": 148
+            "line": 156
           },
           "provenance": {
             "status": "approved",
@@ -67932,7 +67947,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/inverse",
-            "line": 206
+            "line": 222
           },
           "provenance": null,
           "aliases": [
@@ -67959,7 +67974,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/link",
-            "line": 172
+            "line": 188
           },
           "provenance": {
             "status": "approved",
@@ -68421,7 +68436,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/link-hover",
-            "line": 186
+            "line": 202
           },
           "provenance": null,
           "aliases": [
@@ -68722,7 +68737,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/link-underline",
-            "line": 182
+            "line": 198
           },
           "provenance": null,
           "aliases": [
@@ -68859,7 +68874,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/muted",
-            "line": 132
+            "line": 140
           },
           "provenance": null,
           "aliases": [
@@ -72019,7 +72034,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/on-action",
-            "line": 194
+            "line": 210
           },
           "provenance": null,
           "aliases": [
@@ -72046,7 +72061,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/on-danger",
-            "line": 198
+            "line": 214
           },
           "provenance": null,
           "aliases": [
@@ -72073,7 +72088,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/on-light",
-            "line": 202
+            "line": 218
           },
           "provenance": null,
           "aliases": [
@@ -72100,7 +72115,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/on-selection",
-            "line": 190
+            "line": 206
           },
           "provenance": null,
           "aliases": [
@@ -72160,7 +72175,7 @@
           "css": "#a3676b",
           "variable": "--color-text-placeholder",
           "description": "Placeholder text, italic; D-027 darkened it to 4.71:1, just clear of the 4.5:1 floor.",
-          "status": "observed",
+          "status": "approved",
           "deprecated": false,
           "eligibility": {
             "action": "use",
@@ -72170,9 +72185,14 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/placeholder",
-            "line": 160
+            "line": 168
           },
-          "provenance": null,
+          "provenance": {
+            "status": "approved",
+            "approval": {
+              "decision": "D-027"
+            }
+          },
           "aliases": [
             "color.primitive.rose.350"
           ],
@@ -72378,7 +72398,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/prose",
-            "line": 128
+            "line": 136
           },
           "provenance": null,
           "aliases": [
@@ -72459,7 +72479,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/subtle",
-            "line": 136
+            "line": 144
           },
           "provenance": {
             "status": "approved",
@@ -77024,7 +77044,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/destructive/border",
-            "line": 417
+            "line": 449
           },
           "provenance": null,
           "aliases": [
@@ -77109,7 +77129,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/destructive/filled-bg",
-            "line": 433
+            "line": 465
           },
           "provenance": null,
           "aliases": [
@@ -77272,7 +77292,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/destructive/filled-text",
-            "line": 437
+            "line": 469
           },
           "provenance": null,
           "aliases": [
@@ -77409,7 +77429,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/destructive/hover-bg",
-            "line": 421
+            "line": 453
           },
           "provenance": null,
           "aliases": [
@@ -77546,7 +77566,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/destructive/hover-text",
-            "line": 425
+            "line": 457
           },
           "provenance": null,
           "aliases": [
@@ -77694,7 +77714,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/destructive/pressed-bg",
-            "line": 429
+            "line": 461
           },
           "provenance": null,
           "aliases": [
@@ -77779,7 +77799,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/destructive/text",
-            "line": 413
+            "line": 445
           },
           "provenance": null,
           "aliases": [
@@ -77865,7 +77885,7 @@
           "css": "#7d1310",
           "variable": "--color-action-primary-bg",
           "description": "Primary button fill; D-026 darkened it off color12, which stays fixed as heritage ANSI 12.",
-          "status": "observed",
+          "status": "approved",
           "deprecated": false,
           "eligibility": {
             "action": "historical-only",
@@ -77875,9 +77895,14 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/primary/bg",
-            "line": 359
+            "line": 383
           },
-          "provenance": null,
+          "provenance": {
+            "status": "approved",
+            "approval": {
+              "decision": "D-026"
+            }
+          },
           "aliases": [
             "color.primitive.red.200"
           ],
@@ -78883,7 +78908,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/primary/border",
-            "line": 375
+            "line": 407
           },
           "provenance": null,
           "aliases": [
@@ -78983,7 +79008,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/primary/hover-bg",
-            "line": 367
+            "line": 399
           },
           "provenance": null,
           "aliases": [
@@ -79262,7 +79287,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/primary/pressed-bg",
-            "line": 371
+            "line": 403
           },
           "provenance": null,
           "aliases": [
@@ -79347,7 +79372,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/primary/text",
-            "line": 363
+            "line": 395
           },
           "provenance": null,
           "aliases": [
@@ -80285,7 +80310,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/secondary/bg",
-            "line": 381
+            "line": 413
           },
           "provenance": null,
           "aliases": [
@@ -80552,7 +80577,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/secondary/border",
-            "line": 389
+            "line": 421
           },
           "provenance": null,
           "aliases": [
@@ -80946,7 +80971,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/secondary/hover-bg",
-            "line": 393
+            "line": 425
           },
           "provenance": null,
           "aliases": [
@@ -81128,7 +81153,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/secondary/pressed-bg",
-            "line": 397
+            "line": 429
           },
           "provenance": null,
           "aliases": [
@@ -81213,7 +81238,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/secondary/text",
-            "line": 385
+            "line": 417
           },
           "provenance": null,
           "aliases": [
@@ -81633,7 +81658,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/tertiary/hover-bg",
-            "line": 407
+            "line": 439
           },
           "provenance": null,
           "aliases": [
@@ -82039,7 +82064,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/tertiary/text",
-            "line": 403
+            "line": 435
           },
           "provenance": null,
           "aliases": [
@@ -82809,7 +82834,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/border/active",
-            "line": 244
+            "line": 260
           },
           "provenance": null,
           "aliases": [
@@ -83474,7 +83499,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/border/control",
-            "line": 232
+            "line": 248
           },
           "provenance": {
             "status": "proposed",
@@ -86784,7 +86809,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/border/default",
-            "line": 224
+            "line": 240
           },
           "provenance": null,
           "aliases": [
@@ -87238,7 +87263,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/border/disabled",
-            "line": 260
+            "line": 276
           },
           "provenance": null,
           "aliases": [
@@ -88112,7 +88137,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/border/divider",
-            "line": 212
+            "line": 228
           },
           "provenance": {
             "status": "proposed",
@@ -89896,7 +89921,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/border/selected-indicator",
-            "line": 264
+            "line": 280
           },
           "provenance": null,
           "aliases": [
@@ -90324,7 +90349,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/border/selected-indicator-inactive",
-            "line": 268
+            "line": 284
           },
           "provenance": null,
           "aliases": [
@@ -90450,7 +90475,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/border/strong",
-            "line": 228
+            "line": 244
           },
           "provenance": null,
           "aliases": [
@@ -90669,7 +90694,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/axis",
-            "line": 1108
+            "line": 1140
           },
           "provenance": null,
           "aliases": [
@@ -90712,7 +90737,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/grid",
-            "line": 1112
+            "line": 1144
           },
           "provenance": null,
           "aliases": [
@@ -90755,7 +90780,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/label",
-            "line": 1116
+            "line": 1148
           },
           "provenance": null,
           "aliases": [
@@ -90825,7 +90850,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/series-1",
-            "line": 1092
+            "line": 1124
           },
           "provenance": null,
           "aliases": [
@@ -90852,7 +90877,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/series-2",
-            "line": 1096
+            "line": 1128
           },
           "provenance": null,
           "aliases": [
@@ -90895,7 +90920,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/series-3",
-            "line": 1100
+            "line": 1132
           },
           "provenance": null,
           "aliases": [
@@ -90922,7 +90947,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/series-4",
-            "line": 1104
+            "line": 1136
           },
           "provenance": null,
           "aliases": [
@@ -90977,7 +91002,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/bg",
-            "line": 676
+            "line": 708
           },
           "provenance": null,
           "aliases": [
@@ -92046,7 +92071,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/bracket-match",
-            "line": 728
+            "line": 760
           },
           "provenance": null,
           "aliases": [
@@ -92168,7 +92193,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/caret",
-            "line": 708
+            "line": 740
           },
           "provenance": null,
           "aliases": [
@@ -92369,7 +92394,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/current-line",
-            "line": 680
+            "line": 712
           },
           "provenance": null,
           "aliases": [
@@ -92621,7 +92646,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/gutter-bg",
-            "line": 684
+            "line": 716
           },
           "provenance": null,
           "aliases": [
@@ -92691,7 +92716,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/gutter-rule",
-            "line": 704
+            "line": 736
           },
           "provenance": null,
           "aliases": [
@@ -92791,7 +92816,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/indent-guide",
-            "line": 732
+            "line": 764
           },
           "provenance": null,
           "aliases": [
@@ -93015,7 +93040,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/line-number-active",
-            "line": 700
+            "line": 732
           },
           "provenance": null,
           "aliases": [
@@ -93085,7 +93110,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/search-current-bg",
-            "line": 720
+            "line": 752
           },
           "provenance": null,
           "aliases": [
@@ -93155,7 +93180,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/search-current-text",
-            "line": 724
+            "line": 756
           },
           "provenance": null,
           "aliases": [
@@ -93225,7 +93250,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/search-match-bg",
-            "line": 716
+            "line": 748
           },
           "provenance": null,
           "aliases": [
@@ -93268,7 +93293,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/selection-bg",
-            "line": 712
+            "line": 744
           },
           "provenance": null,
           "aliases": [
@@ -93431,7 +93456,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/syntax/attribute",
-            "line": 801
+            "line": 833
           },
           "provenance": null,
           "aliases": [
@@ -93599,7 +93624,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/syntax/constant",
-            "line": 765
+            "line": 797
           },
           "provenance": null,
           "aliases": [
@@ -93642,7 +93667,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/syntax/deprecated",
-            "line": 813
+            "line": 845
           },
           "provenance": null,
           "aliases": [
@@ -93753,7 +93778,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/syntax/escape",
-            "line": 805
+            "line": 837
           },
           "provenance": null,
           "aliases": [
@@ -93868,7 +93893,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/syntax/heading",
-            "line": 793
+            "line": 825
           },
           "provenance": null,
           "aliases": [
@@ -93911,7 +93936,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/syntax/invalid",
-            "line": 809
+            "line": 841
           },
           "provenance": null,
           "aliases": [
@@ -93954,7 +93979,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/syntax/keyword",
-            "line": 741
+            "line": 773
           },
           "provenance": null,
           "aliases": [
@@ -94050,7 +94075,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/syntax/number",
-            "line": 761
+            "line": 793
           },
           "provenance": null,
           "aliases": [
@@ -94165,7 +94190,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/syntax/property",
-            "line": 789
+            "line": 821
           },
           "provenance": null,
           "aliases": [
@@ -94280,7 +94305,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/syntax/string",
-            "line": 745
+            "line": 777
           },
           "provenance": null,
           "aliases": [
@@ -94402,7 +94427,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/syntax/tag",
-            "line": 797
+            "line": 829
           },
           "provenance": null,
           "aliases": [
@@ -94472,7 +94497,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/syntax/type",
-            "line": 777
+            "line": 809
           },
           "provenance": null,
           "aliases": [
@@ -94718,7 +94743,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/whitespace",
-            "line": 736
+            "line": 768
           },
           "provenance": null,
           "aliases": [
@@ -94788,7 +94813,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diagnostic/error/bg",
-            "line": 833
+            "line": 865
           },
           "provenance": null,
           "aliases": [
@@ -94910,7 +94935,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diagnostic/error/stripe",
-            "line": 829
+            "line": 861
           },
           "provenance": null,
           "aliases": [
@@ -94980,7 +95005,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diagnostic/error/text",
-            "line": 825
+            "line": 857
           },
           "provenance": null,
           "aliases": [
@@ -95128,7 +95153,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diagnostic/error/underline",
-            "line": 821
+            "line": 853
           },
           "provenance": null,
           "aliases": [
@@ -95224,7 +95249,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diagnostic/hint/underline",
-            "line": 903
+            "line": 935
           },
           "provenance": null,
           "aliases": [
@@ -95294,7 +95319,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diagnostic/info/text",
-            "line": 889
+            "line": 921
           },
           "provenance": {
             "status": "approved",
@@ -95421,7 +95446,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diagnostic/info/underline",
-            "line": 877
+            "line": 909
           },
           "provenance": {
             "status": "approved",
@@ -95496,7 +95521,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diagnostic/unused/text",
-            "line": 909
+            "line": 941
           },
           "provenance": null,
           "aliases": [
@@ -95566,7 +95591,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diagnostic/warning/stripe",
-            "line": 863
+            "line": 895
           },
           "provenance": {
             "status": "approved",
@@ -95641,7 +95666,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diagnostic/warning/text",
-            "line": 851
+            "line": 883
           },
           "provenance": {
             "status": "approved",
@@ -95742,7 +95767,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diagnostic/warning/underline",
-            "line": 839
+            "line": 871
           },
           "provenance": {
             "status": "approved",
@@ -95843,7 +95868,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diff/added/bg",
-            "line": 917
+            "line": 949
           },
           "provenance": {
             "status": "approved",
@@ -96048,7 +96073,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diff/added/emphasis",
-            "line": 941
+            "line": 973
           },
           "provenance": {
             "status": "approved",
@@ -96123,7 +96148,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diff/added/gutter",
-            "line": 929
+            "line": 961
           },
           "provenance": {
             "status": "approved",
@@ -96198,7 +96223,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diff/conflict-border",
-            "line": 994
+            "line": 1026
           },
           "provenance": null,
           "aliases": [
@@ -96268,7 +96293,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diff/header-bg",
-            "line": 998
+            "line": 1030
           },
           "provenance": null,
           "aliases": [
@@ -96468,7 +96493,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diff/modified/bg",
-            "line": 969
+            "line": 1001
           },
           "provenance": {
             "status": "approved",
@@ -96647,7 +96672,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diff/modified/gutter",
-            "line": 981
+            "line": 1013
           },
           "provenance": {
             "status": "approved",
@@ -96722,7 +96747,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diff/removed/bg",
-            "line": 955
+            "line": 987
           },
           "provenance": null,
           "aliases": [
@@ -96922,7 +96947,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diff/removed/emphasis",
-            "line": 963
+            "line": 995
           },
           "provenance": null,
           "aliases": [
@@ -96992,7 +97017,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diff/removed/gutter",
-            "line": 959
+            "line": 991
           },
           "provenance": null,
           "aliases": [
@@ -97062,7 +97087,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/icon/decorative",
-            "line": 1126
+            "line": 1158
           },
           "provenance": null,
           "aliases": [
@@ -97311,7 +97336,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/icon/default",
-            "line": 1122
+            "line": 1154
           },
           "provenance": null,
           "aliases": [
@@ -97482,7 +97507,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/disabled/bg",
-            "line": 329
+            "line": 353
           },
           "provenance": null,
           "aliases": [
@@ -98822,7 +98847,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/drop-target",
-            "line": 338
+            "line": 362
           },
           "provenance": null,
           "aliases": [
@@ -98918,7 +98943,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/focus/ring",
-            "line": 275
+            "line": 291
           },
           "provenance": null,
           "aliases": [
@@ -101000,7 +101025,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/focus/ring-container",
-            "line": 279
+            "line": 295
           },
           "provenance": null,
           "aliases": [
@@ -102399,7 +102424,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/hover/bg",
-            "line": 313
+            "line": 337
           },
           "provenance": null,
           "aliases": [
@@ -103720,7 +103745,7 @@
           "group": "interaction",
           "css": "#630f0d",
           "variable": "--color-interaction-hover-bg-strong",
-          "description": "Hover on links and menu items.",
+          "description": "Hover on menu items; D-027 moved links to interaction.hover.bg.",
           "status": "observed",
           "deprecated": false,
           "eligibility": {
@@ -103731,7 +103756,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/hover/bg-strong",
-            "line": 317
+            "line": 341
           },
           "provenance": null,
           "aliases": [
@@ -104088,7 +104113,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/marquee",
-            "line": 334
+            "line": 358
           },
           "provenance": null,
           "aliases": [
@@ -104169,7 +104194,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/pressed/bg",
-            "line": 323
+            "line": 347
           },
           "provenance": null,
           "aliases": [
@@ -104645,7 +104670,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/scrollbar/thumb",
-            "line": 347
+            "line": 371
           },
           "provenance": null,
           "aliases": [
@@ -104672,7 +104697,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/scrollbar/thumb-hover",
-            "line": 351
+            "line": 375
           },
           "provenance": null,
           "aliases": [
@@ -104699,7 +104724,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/scrollbar/track",
-            "line": 343
+            "line": 367
           },
           "provenance": null,
           "aliases": [
@@ -104716,7 +104741,7 @@
           "css": "#531310",
           "variable": "--color-interaction-selection-bg",
           "description": "Selected row, tab, workspace; D-027 recessed the fill, leaving the 2px indicator and the check to carry selection.",
-          "status": "observed",
+          "status": "approved",
           "deprecated": false,
           "eligibility": {
             "action": "historical-only",
@@ -104726,9 +104751,14 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/selection/bg",
-            "line": 285
+            "line": 301
           },
-          "provenance": null,
+          "provenance": {
+            "status": "approved",
+            "approval": {
+              "decision": "D-027"
+            }
+          },
           "aliases": [
             "color.primitive.red.100"
           ],
@@ -105945,7 +105975,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/selection/inactive-bg",
-            "line": 293
+            "line": 317
           },
           "provenance": null,
           "aliases": [
@@ -106164,7 +106194,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/selection/inactive-text",
-            "line": 297
+            "line": 321
           },
           "provenance": null,
           "aliases": [
@@ -106383,7 +106413,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/selection/text",
-            "line": 289
+            "line": 313
           },
           "provenance": null,
           "aliases": [
@@ -107295,7 +107325,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/text-selection/bg",
-            "line": 303
+            "line": 327
           },
           "provenance": null,
           "aliases": [
@@ -107353,7 +107383,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/text-selection/text",
-            "line": 307
+            "line": 331
           },
           "provenance": null,
           "aliases": [
@@ -109829,7 +109859,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/danger/border",
-            "line": 461
+            "line": 493
           },
           "provenance": null,
           "aliases": [
@@ -110797,7 +110827,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/danger/fill",
-            "line": 449
+            "line": 481
           },
           "provenance": null,
           "aliases": [
@@ -111146,7 +111176,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/danger/on-fill",
-            "line": 453
+            "line": 485
           },
           "provenance": null,
           "aliases": [
@@ -111350,7 +111380,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/danger/text",
-            "line": 445
+            "line": 477
           },
           "provenance": null,
           "aliases": [
@@ -112457,7 +112487,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/danger/tint",
-            "line": 457
+            "line": 489
           },
           "provenance": null,
           "aliases": [
@@ -112668,7 +112698,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/info/border",
-            "line": 639
+            "line": 671
           },
           "provenance": {
             "status": "approved",
@@ -112840,7 +112870,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/info/fill",
-            "line": 603
+            "line": 635
           },
           "provenance": {
             "status": "approved",
@@ -113008,7 +113038,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/info/on-fill",
-            "line": 615
+            "line": 647
           },
           "provenance": {
             "status": "approved",
@@ -113150,7 +113180,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/info/text",
-            "line": 591
+            "line": 623
           },
           "provenance": {
             "status": "approved",
@@ -113441,7 +113471,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/info/tint",
-            "line": 627
+            "line": 659
           },
           "provenance": {
             "status": "approved",
@@ -113843,7 +113873,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/neutral/border",
-            "line": 669
+            "line": 701
           },
           "provenance": null,
           "aliases": [
@@ -114217,7 +114247,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/neutral/text",
-            "line": 653
+            "line": 685
           },
           "provenance": null,
           "aliases": [
@@ -114369,7 +114399,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/neutral/tint",
-            "line": 665
+            "line": 697
           },
           "provenance": null,
           "aliases": [
@@ -114584,7 +114614,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/success/border",
-            "line": 577
+            "line": 609
           },
           "provenance": {
             "status": "approved",
@@ -114741,7 +114771,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/success/fill",
-            "line": 541
+            "line": 573
           },
           "provenance": {
             "status": "approved",
@@ -114909,7 +114939,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/success/on-fill",
-            "line": 553
+            "line": 585
           },
           "provenance": {
             "status": "approved",
@@ -115051,7 +115081,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/success/text",
-            "line": 529
+            "line": 561
           },
           "provenance": {
             "status": "approved",
@@ -115383,7 +115413,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/success/tint",
-            "line": 565
+            "line": 597
           },
           "provenance": {
             "status": "approved",
@@ -115629,7 +115659,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/warning/border",
-            "line": 515
+            "line": 547
           },
           "provenance": {
             "status": "approved",
@@ -115786,7 +115816,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/warning/fill",
-            "line": 479
+            "line": 511
           },
           "provenance": {
             "status": "approved",
@@ -115913,7 +115943,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/warning/on-fill",
-            "line": 491
+            "line": 523
           },
           "provenance": {
             "status": "approved",
@@ -116014,7 +116044,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/warning/text",
-            "line": 467
+            "line": 499
           },
           "provenance": {
             "status": "approved",
@@ -116223,7 +116253,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/warning/tint",
-            "line": 503
+            "line": 535
           },
           "provenance": {
             "status": "approved",
@@ -116471,7 +116501,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/surface/backdrop",
-            "line": 82
+            "line": 90
           },
           "provenance": {
             "status": "proposed",
@@ -130388,7 +130418,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/surface/overlay",
-            "line": 66
+            "line": 74
           },
           "provenance": null,
           "aliases": [
@@ -131108,7 +131138,7 @@
           "css": "#160b0b",
           "variable": "--color-surface-raised",
           "description": "Sticky headers, menus, popovers; D-027 recessed it so an open list reads as depth rather than a lighter panel.",
-          "status": "observed",
+          "status": "approved",
           "deprecated": false,
           "eligibility": {
             "action": "historical-only",
@@ -131120,7 +131150,12 @@
             "pointer": "/color/surface/raised",
             "line": 62
           },
-          "provenance": null,
+          "provenance": {
+            "status": "approved",
+            "approval": {
+              "decision": "D-027"
+            }
+          },
           "aliases": [
             "color.primitive.ink.30"
           ],
@@ -132173,7 +132208,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/0",
-            "line": 1025
+            "line": 1057
           },
           "provenance": null,
           "aliases": [
@@ -132244,7 +132279,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/1",
-            "line": 1029
+            "line": 1061
           },
           "provenance": null,
           "aliases": [
@@ -132315,7 +132350,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/10",
-            "line": 1065
+            "line": 1097
           },
           "provenance": null,
           "aliases": [
@@ -132386,7 +132421,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/11",
-            "line": 1069
+            "line": 1101
           },
           "provenance": null,
           "aliases": [
@@ -132457,7 +132492,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/12",
-            "line": 1073
+            "line": 1105
           },
           "provenance": null,
           "aliases": [
@@ -132528,7 +132563,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/13",
-            "line": 1077
+            "line": 1109
           },
           "provenance": null,
           "aliases": [
@@ -132599,7 +132634,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/14",
-            "line": 1081
+            "line": 1113
           },
           "provenance": null,
           "aliases": [
@@ -132670,7 +132705,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/15",
-            "line": 1085
+            "line": 1117
           },
           "provenance": null,
           "aliases": [
@@ -132741,7 +132776,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/2",
-            "line": 1033
+            "line": 1065
           },
           "provenance": null,
           "aliases": [
@@ -132812,7 +132847,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/3",
-            "line": 1037
+            "line": 1069
           },
           "provenance": null,
           "aliases": [
@@ -132924,7 +132959,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/4",
-            "line": 1041
+            "line": 1073
           },
           "provenance": null,
           "aliases": [
@@ -133062,7 +133097,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/5",
-            "line": 1045
+            "line": 1077
           },
           "provenance": null,
           "aliases": [
@@ -133133,7 +133168,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/6",
-            "line": 1049
+            "line": 1081
           },
           "provenance": null,
           "aliases": [
@@ -133204,7 +133239,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/7",
-            "line": 1053
+            "line": 1085
           },
           "provenance": null,
           "aliases": [
@@ -133275,7 +133310,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/8",
-            "line": 1057
+            "line": 1089
           },
           "provenance": null,
           "aliases": [
@@ -133346,7 +133381,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/9",
-            "line": 1061
+            "line": 1093
           },
           "provenance": null,
           "aliases": [
@@ -133417,7 +133452,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/bg",
-            "line": 1004
+            "line": 1036
           },
           "provenance": null,
           "aliases": [
@@ -134193,7 +134228,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/cursor",
-            "line": 1012
+            "line": 1044
           },
           "provenance": null,
           "aliases": [
@@ -134315,7 +134350,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/fg",
-            "line": 1008
+            "line": 1040
           },
           "provenance": null,
           "aliases": [
@@ -134534,7 +134569,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/selection-bg",
-            "line": 1016
+            "line": 1048
           },
           "provenance": null,
           "aliases": [
@@ -134604,7 +134639,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/selection-text",
-            "line": 1020
+            "line": 1052
           },
           "provenance": null,
           "aliases": [
@@ -134715,7 +134750,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/accent",
-            "line": 164
+            "line": 180
           },
           "provenance": null,
           "aliases": [
@@ -134796,7 +134831,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/accent-strong",
-            "line": 168
+            "line": 184
           },
           "provenance": null,
           "aliases": [
@@ -134851,7 +134886,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/bright",
-            "line": 124
+            "line": 132
           },
           "provenance": null,
           "aliases": [
@@ -136892,7 +136927,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/default",
-            "line": 120
+            "line": 128
           },
           "provenance": null,
           "aliases": [
@@ -142916,7 +142951,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/disabled",
-            "line": 148
+            "line": 156
           },
           "provenance": {
             "status": "approved",
@@ -144337,7 +144372,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/inverse",
-            "line": 206
+            "line": 222
           },
           "provenance": null,
           "aliases": [
@@ -144823,7 +144858,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/link-hover",
-            "line": 186
+            "line": 202
           },
           "provenance": null,
           "aliases": [
@@ -145124,7 +145159,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/link-underline",
-            "line": 182
+            "line": 198
           },
           "provenance": null,
           "aliases": [
@@ -145261,7 +145296,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/muted",
-            "line": 132
+            "line": 140
           },
           "provenance": null,
           "aliases": [
@@ -148421,7 +148456,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/on-action",
-            "line": 194
+            "line": 210
           },
           "provenance": null,
           "aliases": [
@@ -148448,7 +148483,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/on-danger",
-            "line": 198
+            "line": 214
           },
           "provenance": null,
           "aliases": [
@@ -148475,7 +148510,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/on-light",
-            "line": 202
+            "line": 218
           },
           "provenance": null,
           "aliases": [
@@ -148502,7 +148537,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/on-selection",
-            "line": 190
+            "line": 206
           },
           "provenance": null,
           "aliases": [
@@ -148562,7 +148597,7 @@
           "css": "#a3676b",
           "variable": "--color-text-placeholder",
           "description": "Placeholder text, italic; D-027 darkened it to 4.71:1, just clear of the 4.5:1 floor.",
-          "status": "observed",
+          "status": "approved",
           "deprecated": false,
           "eligibility": {
             "action": "historical-only",
@@ -148572,9 +148607,14 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/placeholder",
-            "line": 160
+            "line": 168
           },
-          "provenance": null,
+          "provenance": {
+            "status": "approved",
+            "approval": {
+              "decision": "D-027"
+            }
+          },
           "aliases": [
             "color.primitive.rose.350"
           ],
@@ -148780,7 +148820,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/prose",
-            "line": 128
+            "line": 136
           },
           "provenance": null,
           "aliases": [
@@ -153423,7 +153463,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/destructive/border",
-            "line": 417
+            "line": 449
           },
           "provenance": null,
           "aliases": [
@@ -153508,7 +153548,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/destructive/filled-bg",
-            "line": 433
+            "line": 465
           },
           "provenance": null,
           "aliases": [
@@ -153671,7 +153711,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/destructive/filled-text",
-            "line": 437
+            "line": 469
           },
           "provenance": null,
           "aliases": [
@@ -153808,7 +153848,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/destructive/hover-bg",
-            "line": 421
+            "line": 453
           },
           "provenance": null,
           "aliases": [
@@ -153945,7 +153985,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/destructive/hover-text",
-            "line": 425
+            "line": 457
           },
           "provenance": null,
           "aliases": [
@@ -154093,7 +154133,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/destructive/pressed-bg",
-            "line": 429
+            "line": 461
           },
           "provenance": null,
           "aliases": [
@@ -154178,7 +154218,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/destructive/text",
-            "line": 413
+            "line": 445
           },
           "provenance": null,
           "aliases": [
@@ -154264,7 +154304,7 @@
           "css": "#7d1310",
           "variable": "--color-action-primary-bg",
           "description": "Primary button fill; D-026 darkened it off color12, which stays fixed as heritage ANSI 12.",
-          "status": "observed",
+          "status": "approved",
           "deprecated": false,
           "eligibility": {
             "action": "blocked",
@@ -154274,9 +154314,14 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/primary/bg",
-            "line": 359
+            "line": 383
           },
-          "provenance": null,
+          "provenance": {
+            "status": "approved",
+            "approval": {
+              "decision": "D-026"
+            }
+          },
           "aliases": [
             "color.primitive.red.200"
           ],
@@ -155282,7 +155327,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/primary/border",
-            "line": 375
+            "line": 407
           },
           "provenance": null,
           "aliases": [
@@ -155382,7 +155427,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/primary/hover-bg",
-            "line": 367
+            "line": 399
           },
           "provenance": null,
           "aliases": [
@@ -155661,7 +155706,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/primary/pressed-bg",
-            "line": 371
+            "line": 403
           },
           "provenance": null,
           "aliases": [
@@ -155746,7 +155791,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/primary/text",
-            "line": 363
+            "line": 395
           },
           "provenance": null,
           "aliases": [
@@ -156684,7 +156729,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/secondary/bg",
-            "line": 381
+            "line": 413
           },
           "provenance": null,
           "aliases": [
@@ -156951,7 +156996,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/secondary/border",
-            "line": 389
+            "line": 421
           },
           "provenance": null,
           "aliases": [
@@ -157345,7 +157390,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/secondary/hover-bg",
-            "line": 393
+            "line": 425
           },
           "provenance": null,
           "aliases": [
@@ -157527,7 +157572,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/secondary/pressed-bg",
-            "line": 397
+            "line": 429
           },
           "provenance": null,
           "aliases": [
@@ -157612,7 +157657,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/secondary/text",
-            "line": 385
+            "line": 417
           },
           "provenance": null,
           "aliases": [
@@ -158032,7 +158077,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/tertiary/hover-bg",
-            "line": 407
+            "line": 439
           },
           "provenance": null,
           "aliases": [
@@ -158438,7 +158483,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/action/tertiary/text",
-            "line": 403
+            "line": 435
           },
           "provenance": null,
           "aliases": [
@@ -159208,7 +159253,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/border/active",
-            "line": 244
+            "line": 260
           },
           "provenance": null,
           "aliases": [
@@ -159873,7 +159918,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/border/control",
-            "line": 232
+            "line": 248
           },
           "provenance": {
             "status": "proposed",
@@ -163183,7 +163228,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/border/default",
-            "line": 224
+            "line": 240
           },
           "provenance": null,
           "aliases": [
@@ -163637,7 +163682,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/border/disabled",
-            "line": 260
+            "line": 276
           },
           "provenance": null,
           "aliases": [
@@ -164511,7 +164556,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/border/divider",
-            "line": 212
+            "line": 228
           },
           "provenance": {
             "status": "proposed",
@@ -165607,7 +165652,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/border/overlay",
-            "line": 248
+            "line": 264
           },
           "provenance": {
             "status": "proposed",
@@ -166300,7 +166345,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/border/selected-indicator",
-            "line": 264
+            "line": 280
           },
           "provenance": null,
           "aliases": [
@@ -166728,7 +166773,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/border/selected-indicator-inactive",
-            "line": 268
+            "line": 284
           },
           "provenance": null,
           "aliases": [
@@ -166854,7 +166899,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/border/strong",
-            "line": 228
+            "line": 244
           },
           "provenance": null,
           "aliases": [
@@ -167073,7 +167118,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/axis",
-            "line": 1108
+            "line": 1140
           },
           "provenance": null,
           "aliases": [
@@ -167116,7 +167161,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/grid",
-            "line": 1112
+            "line": 1144
           },
           "provenance": null,
           "aliases": [
@@ -167159,7 +167204,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/label",
-            "line": 1116
+            "line": 1148
           },
           "provenance": null,
           "aliases": [
@@ -167229,7 +167274,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/series-1",
-            "line": 1092
+            "line": 1124
           },
           "provenance": null,
           "aliases": [
@@ -167402,7 +167447,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/bg",
-            "line": 676
+            "line": 708
           },
           "provenance": null,
           "aliases": [
@@ -168471,7 +168516,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/bracket-match",
-            "line": 728
+            "line": 760
           },
           "provenance": null,
           "aliases": [
@@ -168593,7 +168638,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/caret",
-            "line": 708
+            "line": 740
           },
           "provenance": null,
           "aliases": [
@@ -168794,7 +168839,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/current-line",
-            "line": 680
+            "line": 712
           },
           "provenance": null,
           "aliases": [
@@ -169046,7 +169091,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/gutter-bg",
-            "line": 684
+            "line": 716
           },
           "provenance": null,
           "aliases": [
@@ -169116,7 +169161,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/gutter-rule",
-            "line": 704
+            "line": 736
           },
           "provenance": null,
           "aliases": [
@@ -169216,7 +169261,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/indent-guide",
-            "line": 732
+            "line": 764
           },
           "provenance": null,
           "aliases": [
@@ -169286,7 +169331,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/line-number",
-            "line": 688
+            "line": 720
           },
           "provenance": {
             "status": "approved",
@@ -169443,7 +169488,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/line-number-active",
-            "line": 700
+            "line": 732
           },
           "provenance": null,
           "aliases": [
@@ -169513,7 +169558,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/search-current-bg",
-            "line": 720
+            "line": 752
           },
           "provenance": null,
           "aliases": [
@@ -169583,7 +169628,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/search-current-text",
-            "line": 724
+            "line": 756
           },
           "provenance": null,
           "aliases": [
@@ -169653,7 +169698,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/search-match-bg",
-            "line": 716
+            "line": 748
           },
           "provenance": null,
           "aliases": [
@@ -169696,7 +169741,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/selection-bg",
-            "line": 712
+            "line": 744
           },
           "provenance": null,
           "aliases": [
@@ -169936,7 +169981,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/syntax/comment",
-            "line": 749
+            "line": 781
           },
           "provenance": {
             "status": "approved",
@@ -170087,7 +170132,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/syntax/deprecated",
-            "line": 813
+            "line": 845
           },
           "provenance": null,
           "aliases": [
@@ -170325,7 +170370,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/syntax/heading",
-            "line": 793
+            "line": 825
           },
           "provenance": null,
           "aliases": [
@@ -170368,7 +170413,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/syntax/invalid",
-            "line": 809
+            "line": 841
           },
           "provenance": null,
           "aliases": [
@@ -170411,7 +170456,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/syntax/keyword",
-            "line": 741
+            "line": 773
           },
           "provenance": null,
           "aliases": [
@@ -170890,7 +170935,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/syntax/tag",
-            "line": 797
+            "line": 829
           },
           "provenance": null,
           "aliases": [
@@ -171063,7 +171108,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/syntax/variable",
-            "line": 773
+            "line": 805
           },
           "provenance": null,
           "aliases": [
@@ -171211,7 +171256,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/code/whitespace",
-            "line": 736
+            "line": 768
           },
           "provenance": null,
           "aliases": [
@@ -171281,7 +171326,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diagnostic/error/bg",
-            "line": 833
+            "line": 865
           },
           "provenance": null,
           "aliases": [
@@ -171403,7 +171448,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diagnostic/error/stripe",
-            "line": 829
+            "line": 861
           },
           "provenance": null,
           "aliases": [
@@ -171473,7 +171518,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diagnostic/error/text",
-            "line": 825
+            "line": 857
           },
           "provenance": null,
           "aliases": [
@@ -171621,7 +171666,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diagnostic/error/underline",
-            "line": 821
+            "line": 853
           },
           "provenance": null,
           "aliases": [
@@ -171717,7 +171762,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diagnostic/hint/underline",
-            "line": 903
+            "line": 935
           },
           "provenance": null,
           "aliases": [
@@ -171787,7 +171832,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diagnostic/info/text",
-            "line": 889
+            "line": 921
           },
           "provenance": {
             "status": "approved",
@@ -171914,7 +171959,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diagnostic/info/underline",
-            "line": 877
+            "line": 909
           },
           "provenance": {
             "status": "approved",
@@ -171989,7 +172034,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diagnostic/unused/text",
-            "line": 909
+            "line": 941
           },
           "provenance": null,
           "aliases": [
@@ -172059,7 +172104,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diagnostic/warning/stripe",
-            "line": 863
+            "line": 895
           },
           "provenance": {
             "status": "approved",
@@ -172134,7 +172179,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diagnostic/warning/text",
-            "line": 851
+            "line": 883
           },
           "provenance": {
             "status": "approved",
@@ -172235,7 +172280,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diagnostic/warning/underline",
-            "line": 839
+            "line": 871
           },
           "provenance": {
             "status": "approved",
@@ -172336,7 +172381,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diff/added/bg",
-            "line": 917
+            "line": 949
           },
           "provenance": {
             "status": "approved",
@@ -172541,7 +172586,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diff/added/emphasis",
-            "line": 941
+            "line": 973
           },
           "provenance": {
             "status": "approved",
@@ -172616,7 +172661,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diff/added/gutter",
-            "line": 929
+            "line": 961
           },
           "provenance": {
             "status": "approved",
@@ -172691,7 +172736,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diff/conflict-border",
-            "line": 994
+            "line": 1026
           },
           "provenance": null,
           "aliases": [
@@ -172761,7 +172806,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diff/header-bg",
-            "line": 998
+            "line": 1030
           },
           "provenance": null,
           "aliases": [
@@ -172961,7 +173006,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diff/modified/bg",
-            "line": 969
+            "line": 1001
           },
           "provenance": {
             "status": "approved",
@@ -173140,7 +173185,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diff/modified/gutter",
-            "line": 981
+            "line": 1013
           },
           "provenance": {
             "status": "approved",
@@ -173215,7 +173260,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diff/removed/bg",
-            "line": 955
+            "line": 987
           },
           "provenance": null,
           "aliases": [
@@ -173415,7 +173460,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diff/removed/emphasis",
-            "line": 963
+            "line": 995
           },
           "provenance": null,
           "aliases": [
@@ -173485,7 +173530,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/diff/removed/gutter",
-            "line": 959
+            "line": 991
           },
           "provenance": null,
           "aliases": [
@@ -173555,7 +173600,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/icon/decorative",
-            "line": 1126
+            "line": 1158
           },
           "provenance": null,
           "aliases": [
@@ -173804,7 +173849,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/icon/default",
-            "line": 1122
+            "line": 1154
           },
           "provenance": null,
           "aliases": [
@@ -173975,7 +174020,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/disabled/bg",
-            "line": 329
+            "line": 353
           },
           "provenance": null,
           "aliases": [
@@ -175315,7 +175360,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/drop-target",
-            "line": 338
+            "line": 362
           },
           "provenance": null,
           "aliases": [
@@ -175411,7 +175456,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/focus/ring",
-            "line": 275
+            "line": 291
           },
           "provenance": null,
           "aliases": [
@@ -177493,7 +177538,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/focus/ring-container",
-            "line": 279
+            "line": 295
           },
           "provenance": null,
           "aliases": [
@@ -178892,7 +178937,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/hover/bg",
-            "line": 313
+            "line": 337
           },
           "provenance": null,
           "aliases": [
@@ -180213,7 +180258,7 @@
           "group": "interaction",
           "css": "#630f0d",
           "variable": "--color-interaction-hover-bg-strong",
-          "description": "Hover on links and menu items.",
+          "description": "Hover on menu items; D-027 moved links to interaction.hover.bg.",
           "status": "observed",
           "deprecated": false,
           "eligibility": {
@@ -180224,7 +180269,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/hover/bg-strong",
-            "line": 317
+            "line": 341
           },
           "provenance": null,
           "aliases": [
@@ -180581,7 +180626,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/marquee",
-            "line": 334
+            "line": 358
           },
           "provenance": null,
           "aliases": [
@@ -180662,7 +180707,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/pressed/bg",
-            "line": 323
+            "line": 347
           },
           "provenance": null,
           "aliases": [
@@ -181138,7 +181183,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/scrollbar/thumb",
-            "line": 347
+            "line": 371
           },
           "provenance": null,
           "aliases": [
@@ -181165,7 +181210,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/scrollbar/thumb-hover",
-            "line": 351
+            "line": 375
           },
           "provenance": null,
           "aliases": [
@@ -181192,7 +181237,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/scrollbar/track",
-            "line": 343
+            "line": 367
           },
           "provenance": null,
           "aliases": [
@@ -181209,7 +181254,7 @@
           "css": "#531310",
           "variable": "--color-interaction-selection-bg",
           "description": "Selected row, tab, workspace; D-027 recessed the fill, leaving the 2px indicator and the check to carry selection.",
-          "status": "observed",
+          "status": "approved",
           "deprecated": false,
           "eligibility": {
             "action": "blocked",
@@ -181219,9 +181264,14 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/selection/bg",
-            "line": 285
+            "line": 301
           },
-          "provenance": null,
+          "provenance": {
+            "status": "approved",
+            "approval": {
+              "decision": "D-027"
+            }
+          },
           "aliases": [
             "color.primitive.red.100"
           ],
@@ -182438,7 +182488,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/selection/inactive-bg",
-            "line": 293
+            "line": 317
           },
           "provenance": null,
           "aliases": [
@@ -182657,7 +182707,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/selection/inactive-text",
-            "line": 297
+            "line": 321
           },
           "provenance": null,
           "aliases": [
@@ -182876,7 +182926,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/selection/text",
-            "line": 289
+            "line": 313
           },
           "provenance": null,
           "aliases": [
@@ -183788,7 +183838,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/text-selection/bg",
-            "line": 303
+            "line": 327
           },
           "provenance": null,
           "aliases": [
@@ -183846,7 +183896,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/interaction/text-selection/text",
-            "line": 307
+            "line": 331
           },
           "provenance": null,
           "aliases": [
@@ -186293,7 +186343,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/danger/border",
-            "line": 461
+            "line": 493
           },
           "provenance": null,
           "aliases": [
@@ -187261,7 +187311,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/danger/fill",
-            "line": 449
+            "line": 481
           },
           "provenance": null,
           "aliases": [
@@ -187610,7 +187660,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/danger/on-fill",
-            "line": 453
+            "line": 485
           },
           "provenance": null,
           "aliases": [
@@ -187814,7 +187864,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/danger/text",
-            "line": 445
+            "line": 477
           },
           "provenance": null,
           "aliases": [
@@ -188921,7 +188971,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/danger/tint",
-            "line": 457
+            "line": 489
           },
           "provenance": null,
           "aliases": [
@@ -189132,7 +189182,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/info/border",
-            "line": 639
+            "line": 671
           },
           "provenance": {
             "status": "approved",
@@ -189304,7 +189354,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/info/fill",
-            "line": 603
+            "line": 635
           },
           "provenance": {
             "status": "approved",
@@ -189472,7 +189522,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/info/on-fill",
-            "line": 615
+            "line": 647
           },
           "provenance": {
             "status": "approved",
@@ -189614,7 +189664,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/info/text",
-            "line": 591
+            "line": 623
           },
           "provenance": {
             "status": "approved",
@@ -189905,7 +189955,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/info/tint",
-            "line": 627
+            "line": 659
           },
           "provenance": {
             "status": "approved",
@@ -190307,7 +190357,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/neutral/border",
-            "line": 669
+            "line": 701
           },
           "provenance": null,
           "aliases": [
@@ -190459,7 +190509,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/neutral/fill",
-            "line": 657
+            "line": 689
           },
           "provenance": null,
           "aliases": [
@@ -190581,7 +190631,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/neutral/on-fill",
-            "line": 661
+            "line": 693
           },
           "provenance": null,
           "aliases": [
@@ -190677,7 +190727,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/neutral/text",
-            "line": 653
+            "line": 685
           },
           "provenance": null,
           "aliases": [
@@ -190829,7 +190879,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/neutral/tint",
-            "line": 665
+            "line": 697
           },
           "provenance": null,
           "aliases": [
@@ -191044,7 +191094,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/success/border",
-            "line": 577
+            "line": 609
           },
           "provenance": {
             "status": "approved",
@@ -191201,7 +191251,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/success/fill",
-            "line": 541
+            "line": 573
           },
           "provenance": {
             "status": "approved",
@@ -191369,7 +191419,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/success/on-fill",
-            "line": 553
+            "line": 585
           },
           "provenance": {
             "status": "approved",
@@ -191511,7 +191561,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/success/text",
-            "line": 529
+            "line": 561
           },
           "provenance": {
             "status": "approved",
@@ -191843,7 +191893,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/success/tint",
-            "line": 565
+            "line": 597
           },
           "provenance": {
             "status": "approved",
@@ -192089,7 +192139,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/warning/border",
-            "line": 515
+            "line": 547
           },
           "provenance": {
             "status": "approved",
@@ -192246,7 +192296,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/warning/fill",
-            "line": 479
+            "line": 511
           },
           "provenance": {
             "status": "approved",
@@ -192373,7 +192423,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/warning/on-fill",
-            "line": 491
+            "line": 523
           },
           "provenance": {
             "status": "approved",
@@ -192474,7 +192524,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/warning/text",
-            "line": 467
+            "line": 499
           },
           "provenance": {
             "status": "approved",
@@ -192683,7 +192733,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/status/warning/tint",
-            "line": 503
+            "line": 535
           },
           "provenance": {
             "status": "approved",
@@ -192931,7 +192981,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/surface/backdrop",
-            "line": 82
+            "line": 90
           },
           "provenance": {
             "status": "proposed",
@@ -196129,7 +196179,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/surface/code",
-            "line": 94
+            "line": 102
           },
           "provenance": {
             "status": "approved",
@@ -204005,7 +204055,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/surface/input",
-            "line": 70
+            "line": 78
           },
           "provenance": {
             "status": "approved",
@@ -206863,7 +206913,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/surface/overlay",
-            "line": 66
+            "line": 74
           },
           "provenance": null,
           "aliases": [
@@ -207583,7 +207633,7 @@
           "css": "#160b0b",
           "variable": "--color-surface-raised",
           "description": "Sticky headers, menus, popovers; D-027 recessed it so an open list reads as depth rather than a lighter panel.",
-          "status": "observed",
+          "status": "approved",
           "deprecated": false,
           "eligibility": {
             "action": "blocked",
@@ -207595,7 +207645,12 @@
             "pointer": "/color/surface/raised",
             "line": 62
           },
-          "provenance": null,
+          "provenance": {
+            "status": "approved",
+            "approval": {
+              "decision": "D-027"
+            }
+          },
           "aliases": [
             "color.primitive.ink.30"
           ],
@@ -208622,7 +208677,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/surface/terminal",
-            "line": 106
+            "line": 114
           },
           "provenance": {
             "status": "approved",
@@ -209994,7 +210049,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/bg",
-            "line": 1004
+            "line": 1036
           },
           "provenance": null,
           "aliases": [
@@ -210770,7 +210825,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/cursor",
-            "line": 1012
+            "line": 1044
           },
           "provenance": null,
           "aliases": [
@@ -210892,7 +210947,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/fg",
-            "line": 1008
+            "line": 1040
           },
           "provenance": null,
           "aliases": [
@@ -211111,7 +211166,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/selection-bg",
-            "line": 1016
+            "line": 1048
           },
           "provenance": null,
           "aliases": [
@@ -211181,7 +211236,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/selection-text",
-            "line": 1020
+            "line": 1052
           },
           "provenance": null,
           "aliases": [
@@ -211292,7 +211347,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/accent",
-            "line": 164
+            "line": 180
           },
           "provenance": null,
           "aliases": [
@@ -211373,7 +211428,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/accent-strong",
-            "line": 168
+            "line": 184
           },
           "provenance": null,
           "aliases": [
@@ -211428,7 +211483,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/bright",
-            "line": 124
+            "line": 132
           },
           "provenance": null,
           "aliases": [
@@ -213469,7 +213524,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/default",
-            "line": 120
+            "line": 128
           },
           "provenance": null,
           "aliases": [
@@ -219493,7 +219548,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/disabled",
-            "line": 148
+            "line": 156
           },
           "provenance": {
             "status": "approved",
@@ -220914,7 +220969,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/inverse",
-            "line": 206
+            "line": 222
           },
           "provenance": null,
           "aliases": [
@@ -220941,7 +220996,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/link",
-            "line": 172
+            "line": 188
           },
           "provenance": {
             "status": "approved",
@@ -221403,7 +221458,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/link-hover",
-            "line": 186
+            "line": 202
           },
           "provenance": null,
           "aliases": [
@@ -221704,7 +221759,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/link-underline",
-            "line": 182
+            "line": 198
           },
           "provenance": null,
           "aliases": [
@@ -221841,7 +221896,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/muted",
-            "line": 132
+            "line": 140
           },
           "provenance": null,
           "aliases": [
@@ -225001,7 +225056,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/on-action",
-            "line": 194
+            "line": 210
           },
           "provenance": null,
           "aliases": [
@@ -225028,7 +225083,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/on-danger",
-            "line": 198
+            "line": 214
           },
           "provenance": null,
           "aliases": [
@@ -225055,7 +225110,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/on-light",
-            "line": 202
+            "line": 218
           },
           "provenance": null,
           "aliases": [
@@ -225082,7 +225137,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/on-selection",
-            "line": 190
+            "line": 206
           },
           "provenance": null,
           "aliases": [
@@ -225142,7 +225197,7 @@
           "css": "#a3676b",
           "variable": "--color-text-placeholder",
           "description": "Placeholder text, italic; D-027 darkened it to 4.71:1, just clear of the 4.5:1 floor.",
-          "status": "observed",
+          "status": "approved",
           "deprecated": false,
           "eligibility": {
             "action": "blocked",
@@ -225152,9 +225207,14 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/placeholder",
-            "line": 160
+            "line": 168
           },
-          "provenance": null,
+          "provenance": {
+            "status": "approved",
+            "approval": {
+              "decision": "D-027"
+            }
+          },
           "aliases": [
             "color.primitive.rose.350"
           ],
@@ -225360,7 +225420,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/prose",
-            "line": 128
+            "line": 136
           },
           "provenance": null,
           "aliases": [
@@ -225441,7 +225501,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/text/subtle",
-            "line": 136
+            "line": 144
           },
           "provenance": {
             "status": "approved",

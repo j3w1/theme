@@ -155,7 +155,7 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | button focus-visible outline | focus-visible | ui | `color.interaction.focus.ring-container` #ffa2a7 | `color.action.primary.bg` #7d1310 | 5.57 | 3 | pass |
 | button active text | active | text | `color.action.primary.text` #f4eeee | `color.action.primary.pressed-bg` #630f0d | 11.41 | 4.5 | pass |
 | button loading text | loading | text | `color.action.primary.text` #f4eeee | `color.action.primary.bg` #7d1310 | 9.28 | 4.5 | pass |
-| primary fill against the panel (decorative; the label identifies the button) | — | ui | `color.action.primary.bg` #7d1310 | `color.surface.default` #100c0c | 1.83 | 3 | waived: the fill is not the boundary of the control; the label text at 8.17:1 identifies it, and hover, active and focus each add a second channel |
+| primary fill against the panel (decorative; the label identifies the button) | — | ui | `color.action.primary.bg` #7d1310 | `color.surface.default` #100c0c | 1.83 | 3 | waived: the fill is not the boundary of the control; the label text at 9.28:1 identifies it, and hover, active and focus each add a second channel |
 | secondary text at rest | — | text | `color.action.secondary.text` #ffa2a7 | `color.action.secondary.bg` #000000 | 10.98 | 4.5 | pass |
 | secondary border at rest | — | ui | `color.action.secondary.border` #a3676b | `color.action.secondary.bg` #000000 | 4.71 | 3 | pass |
 | secondary text on the hover fill | hover | text | `color.action.secondary.text` #ffa2a7 | `color.action.secondary.hover-bg` #630f0d | 6.84 | 4.5 | pass |
@@ -640,7 +640,7 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | progress error border | error | ui | `color.status.danger.border` #e53935 | `color.surface.canvas` #000000 | 4.97 | 3 | pass |
 | label on the canvas | — | text | `color.text.bright` #ffa2a7 | `color.surface.canvas` #000000 | 10.98 | 4.5 | pass |
 | detail line on the canvas | — | text | `color.text.muted` #bd787d | `color.surface.canvas` #000000 | 6.15 | 4.5 | pass |
-| value fill against the track | — | ui | `color.action.primary.bg` #7d1310 | `color.interaction.pressed.bg` #420f0c | 1.51 | 3 | waived: the fill measures 1.72:1 against the track; the value is carried by the visible percentage text and the native value, and the track boundary (border.control, 4.45:1) marks the full extent |
+| value fill against the track | — | ui | `color.action.primary.bg` #7d1310 | `color.interaction.pressed.bg` #420f0c | 1.51 | 3 | waived: the fill measures 1.51:1 against the track; the value is carried by the visible percentage text and the native value, and the track boundary (border.control, 4.45:1) marks the full extent |
 | stripes (decorative pattern) | busy | ui | `color.action.primary.bg` #7d1310 | `color.interaction.pressed.bg` #420f0c | 1.51 | 1 | pass |
 | error fill against the track | error | ui | `color.status.danger.fill` #dc282e | `color.interaction.pressed.bg` #420f0c | 3.36 | 3 | pass |
 | radio-group default border | default | ui | `color.border.control` #a3676b | `color.surface.input` #000000 | 4.71 | 3 | pass |
@@ -955,6 +955,6 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | panel edge (decorative) | — | ui | `color.border.default` #531310 | `color.surface.canvas` #000000 | 1.47 | 1 | pass |
 | back button text | — | text | `color.action.secondary.text` #ffa2a7 | `color.surface.canvas` #000000 | 10.98 | 4.5 | pass |
 | back button boundary | — | ui | `color.action.secondary.border` #a3676b | `color.surface.canvas` #000000 | 4.71 | 3 | pass |
-| next button boundary | — | ui | `color.action.primary.border` #9e231f | `color.surface.canvas` #000000 | 2.71 | 3 | waived: the primary button is identified by its text at 8.17:1 on its fill and by its position; the fill measures 2.12:1 and its border 2.56:1 against the canvas, a documented property of the actions family, not of the wizard |
+| next button boundary | — | ui | `color.action.primary.border` #9e231f | `color.surface.canvas` #000000 | 2.71 | 3 | waived: the primary button is identified by its text at 9.28:1 on its fill and by its position; the fill measures 1.86:1 and its border 2.56:1 against the canvas, a documented property of the actions family, not of the wizard |
 | ring on the next button's fill | focus-visible | ui | `color.interaction.focus.ring-container` #ffa2a7 | `color.action.primary.bg` #7d1310 | 5.57 | 3 | pass |
 | future step text (exempt; house floor 3:1) | disabled | ui | `color.text.disabled` #8a5559 | `color.surface.canvas` #000000 | 3.52 | 3 | pass |

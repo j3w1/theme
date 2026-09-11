@@ -64,7 +64,7 @@ stateTokens:
   active: { fg: color.action.primary.text, bg: color.action.primary.pressed-bg }
   loading: { fg: color.action.primary.text, bg: color.action.primary.bg }
 contrast:
-  - { fg: color.action.primary.bg, bg: color.surface.default, min: 3, kind: ui, label: "primary fill against the panel (decorative; the label identifies the button)", waiver: "the fill is not the boundary of the control; the label text at 8.17:1 identifies it, and hover, active and focus each add a second channel" }
+  - { fg: color.action.primary.bg, bg: color.surface.default, min: 3, kind: ui, label: "primary fill against the panel (decorative; the label identifies the button)", waiver: "the fill is not the boundary of the control; the label text at 9.28:1 identifies it, and hover, active and focus each add a second channel" }
   - { fg: color.action.secondary.text, bg: color.action.secondary.bg, label: "secondary text at rest" }
   - { fg: color.action.secondary.border, bg: color.action.secondary.bg, min: 3, kind: ui, label: "secondary border at rest" }
   - { fg: color.action.secondary.text, bg: color.action.secondary.hover-bg, state: hover, label: "secondary text on the hover fill" }
@@ -162,7 +162,7 @@ The accessible name is the label text; an icon-only button is the
 icon-button component. Never `aria-disabled` on a button that should be
 skipped, and never `disabled` on a button whose reason a user needs to
 discover: prefer keeping it enabled and explaining on activation. Contrast:
-primary 8.17:1, secondary 10.37:1, tertiary 8.65:1, destructive 5.40:1 at
+primary 9.28:1, secondary 10.37:1, tertiary 8.65:1, destructive 5.40:1 at
 rest and 4.58:1 on the hover fill; every outline border ≥ 4.45:1; rings ≥
 3:1 on every fill they sit on. The target is at least 24×24 CSS pixels in
 `compact` density with 4px between neighbours.

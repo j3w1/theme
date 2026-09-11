@@ -131,8 +131,8 @@ A static card is an `article` with a heading when it stands alone, or a
 title comes first so it is read first. Selectable cards are `role="option"`
 inside `role="listbox"` with `aria-label`; `aria-selected` on each option.
 Contrast: title 10.10:1, body 8.43:1, metadata 5.66:1 on the card; on the
-selection fill every line switches to the on-fill text (7.92:1) because muted
-text would fall to 2.66:1. The ring is 10.10:1 on the card and 4.75:1 on the
+selection fill every line switches to the on-fill text (12.47:1) because muted
+text would fall to 4.19:1. The ring is 10.10:1 on the card and 7.48:1 on the
 fill.
 
 ## Portability

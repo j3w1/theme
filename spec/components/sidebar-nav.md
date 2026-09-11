@@ -146,7 +146,7 @@ listbox with `aria-selected` instead of links. Group buttons carry
 so its links leave the tab order. Collapsed labels use a clip-rect hiding, not
 `display: none`, so names survive; icon-only links also get a `title`.
 Contrast: text 8.43:1, current text 10.10:1, indicator 4.57:1, selection text
-7.92:1 on the fill, inactive selection 7.02:1. Rows are at least 24 CSS pixels
+12.47:1 on the fill, inactive selection 7.02:1. Rows are at least 24 CSS pixels
 tall in `compact` density.
 
 ## Portability

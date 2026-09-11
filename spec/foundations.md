@@ -11,7 +11,7 @@ may be used. Every rule below is normative for the `default` profile.
 ## Surfaces
 
 `surface.desktop` and `surface.canvas` use true black (`#000000`). Readable
-content sits on the canvas or `default` (`#100c0c`) panels and cards, `raised` (`#241010`) for sticky headers,
+content sits on the canvas or `default` (`#100c0c`) panels and cards, `raised` (`#160b0b`) for sticky headers,
 menus and popovers, `overlay` for dialogs and drawers, `sunken` (`#000000`)
 for reading and detail panes, `input` for form-control fills, `chrome` and
 `chrome-alt` for window frames and bars. Layering is subtle by design; it may
@@ -71,7 +71,7 @@ Every interactive component declares which of these apply and demonstrates every
 | active / pressed | background → `interaction.pressed.bg`; border → `border.active` | border change; no translation |
 | focus-visible | the ring (below) | the ring itself; never a glow or a colour shift alone |
 | selected | fill `interaction.selection.bg` with `interaction.selection.text`; tabs and navigation use a 2px `border.selected-indicator` | `aria-selected` / `aria-current`; a check glyph in lists |
-| selected + focus-visible | the selection fill **and** a ring in the fill's on-fill colour (`interaction.focus.ring-container`, 7.92:1 on the selection) | both visible at once |
+| selected + focus-visible | the selection fill **and** a ring in the fill's on-fill colour (`interaction.focus.ring-container`, 7.48:1 on the selection) | both visible at once |
 | selected, container inactive | `interaction.selection.inactive-bg` with `interaction.selection.inactive-text`; no ring | lightness drop between the two fills |
 | disabled | `text.disabled`, `border.disabled`, `interaction.disabled.bg`; no hover or pressed styling; still focusable when `aria-disabled` | `disabled` / `aria-disabled`; `cursor: not-allowed`; never opacity |
 | invalid | border → `status.danger.border` at 2px; message in `status.danger.text` with the `✕` glyph; `aria-invalid`; `aria-describedby` | border width 1 → 2px; glyph; message |
@@ -98,7 +98,7 @@ Rules that apply everywhere:
 ## Actions
 
 Four button tones. `primary` is the only filled button at rest
-(`action.primary.bg` `#871f19` with `text.prose`, 8.17:1); `secondary` is an
+(`action.primary.bg` `#7d1310` with `text.prose`, 9.28:1); `secondary` is an
 outline (`border.control`, text `text.bright`); `tertiary` is a ghost or icon
 button (`text.default`, hover `interaction.hover.bg`); `destructive` is an
 outline in `action.destructive.text` (`#f73f35`) that fills with

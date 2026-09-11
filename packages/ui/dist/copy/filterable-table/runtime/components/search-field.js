@@ -4,7 +4,7 @@ import { r as fields } from "../chunks/native-CAzZmDKR.js";
 var J3w1SearchField = class extends J3w1Element {
 	static componentId = "search-field";
 	static version = "1.1.0";
-	static implementationId = "sha256-aK5yg5quPvu83z0nbwN4KbKUq1zFMMBpO5CgM1AGUSc=";
+	static implementationId = "sha256-+Vm5BK7ZU22aQPLwYrAxaa0h34CE4jDReJYS5fDWNxc=";
 	static connect = fields;
 	static upgradeProperties = [
 		"disabled",

@@ -134,7 +134,7 @@ The name states what is on ("Wrap long lines"), never the current value;
 the "Off" / "On" word is `aria-hidden` because assistive technology reads
 `aria-checked`. The state is also carried by thumb position and, in the
 with-labels variant, the word. Contrast: thumb 8.65:1 on the off track,
-8.17:1 on the on track; track edge 4.45:1; ring 4.69:1 off, 4.90:1 on.
+9.28:1 on the on track; track edge 4.45:1; ring 4.69:1 off, 5.57:1 on.
 
 ## Portability
 

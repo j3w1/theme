@@ -178,10 +178,10 @@ is active, `aria-activedescendant`. The listbox has an accessible name
 with `aria-selected` on the active one only; groups are `role="group"` with
 `aria-labelledby` their heading. The empty row is a disabled option so the
 list is never empty; the zero-match count is announced through the same polite
-live region as every other count. Contrast: option text 7.92:1 on the
-raised surface, selection text 7.92:1 on the selection fill, the selection ring
-4.75:1 on the fill, the list border 4.30:1 on the raised surface, group
-headings 4.67:1.
+live region as every other count. Contrast: option text 8.43:1 on the
+raised surface, selection text 12.47:1 on the selection fill, the selection ring
+7.48:1 on the fill, the list border 4.57:1 on the raised surface, group
+headings 4.96:1.
 
 ## Portability
 
