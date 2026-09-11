@@ -147,9 +147,9 @@ The text is the label through the wrapping `<label>`; a group has its
 legend read before each option. `indeterminate` is a DOM property with no
 attribute, so the host mirrors it to `data-state-mixed` for styling and the
 state reads as "mixed" natively. A required group marks the legend, not
-every option, and validates on submit. Contrast: text 8.43:1, glyph 8.17:1
+every option, and validates on submit. Contrast: text 8.43:1, glyph 9.28:1
 on the fill, box edge 4.45:1 on the input surface and 4.33:1 against the
-panel when checked, ring 4.69:1, container ring 4.90:1 on the fill.
+panel when checked, ring 4.69:1, container ring 5.57:1 on the fill.
 
 ## Portability
 

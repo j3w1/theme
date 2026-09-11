@@ -159,8 +159,8 @@ The button carries `aria-haspopup="menu"`, `aria-expanded` and
 button. Items are `role="menuitem"` or `role="menuitemcheckbox"` with
 `aria-checked`; disabled items use `aria-disabled` so they remain reachable
 and announced. Shortcut hints are text, not `aria-keyshortcuts` alone.
-Contrast: item text 7.92:1 and shortcut 5.31:1 on the raised surface, active
-text 7.92:1 on the fill, the frame 4.30:1, ring-container 4.75:1 on the fill.
+Contrast: item text 8.43:1 and shortcut 5.66:1 on the raised surface, active
+text 12.47:1 on the fill, the frame 4.57:1, ring-container 7.48:1 on the fill.
 Items are the row height, at least 24 CSS pixels in `compact` density.
 
 ## Portability

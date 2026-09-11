@@ -77,7 +77,7 @@ contrast:
   - { fg: color.interaction.focus.ring, bg: color.surface.chrome, min: 3, kind: ui, label: "ring on a workspace or tab" }
   - { fg: color.border.selected-indicator, bg: color.surface.chrome, min: 3, kind: ui, label: "visible-tab indicator on the title row" }
   - { fg: color.status.danger.fill, bg: color.surface.chrome, min: 3, kind: ui, state: error, label: "urgent fill against the bar" }
-  - { fg: color.interaction.selection.bg, bg: color.surface.chrome, min: 1, kind: ui, label: "visible-workspace fill against the bar", waiver: "the fill is identified by its on-fill text (7.92:1) and aria-selected, as every selection fill in the theme" }
+  - { fg: color.interaction.selection.bg, bg: color.surface.chrome, min: 1, kind: ui, label: "visible-workspace fill against the bar", waiver: "the fill is identified by its on-fill text (12.47:1) and aria-selected, as every selection fill in the theme" }
   - { fg: color.border.selected-indicator-inactive, bg: color.surface.chrome, min: 1, kind: ui, state: container-inactive, label: "inactive tab indicator", waiver: "an unfocused container's indicator is informative only; the visible tab is still named by aria-selected and bright text is withheld on purpose" }
   - { fg: color.border.default, bg: color.surface.desktop, min: 1, kind: ui, label: "unfocused window frames (decorative)", waiver: "an unfocused window is identified by its title bar and its client; the 1px frame only separates it from the desktop, as pixel borders do in i3" }
   - { fg: color.text.muted, bg: color.surface.chrome, min: 1, kind: ui, label: "status block separators (decorative)", waiver: "the separators only space blocks that are already distinct text" }

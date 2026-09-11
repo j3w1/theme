@@ -86,8 +86,8 @@ The link text names the destination ("Skip to content"), translated. Hiding
 uses position only, so the link remains in the accessibility tree; `display:
 none`, `visibility: hidden` and `aria-hidden` all defeat it. The reveal is an
 instant position change: nothing slides, so reduced motion needs no special
-case. Contrast: text 9.49:1 on the raised surface, frame 4.30:1,
-ring 4.30:1. The visible target is at least 24 CSS pixels tall.
+case. Contrast: text 10.10:1 on the raised surface, frame 4.57:1,
+ring 4.57:1. The visible target is at least 24 CSS pixels tall.
 
 ## Portability
 

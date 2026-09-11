@@ -129,7 +129,7 @@ Filter chips expose `aria-pressed` and keep the same label in both states;
 the ✓ glyph is `aria-hidden`. The remove button is named "Remove <value>" so
 it is unambiguous out of context, and removing a chip moves focus to the
 next chip or the field. Contrast: text 8.43:1, border 4.33:1, selected text
-7.92:1 on the fill, ring 4.57:1 on the surface and 4.75:1 on the fill,
+12.47:1 on the fill, ring 4.57:1 on the surface and 7.48:1 on the fill,
 remove glyph 5.66:1. Chips and remove buttons are at least 24×24 CSS pixels
 in `compact` density with 4px between neighbours.
 

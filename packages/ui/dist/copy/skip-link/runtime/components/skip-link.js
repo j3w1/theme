@@ -4,7 +4,7 @@ import { n as content } from "../chunks/native-CAzZmDKR.js";
 var J3w1SkipLink = class extends J3w1Element {
 	static componentId = "skip-link";
 	static version = "1.1.0";
-	static implementationId = "sha256-EngrU7rqjLHy1dBCo1o2nXAxHOHOUqMSGdcxh0A2IdQ=";
+	static implementationId = "sha256-g9kjsJVHofhzwTlNGrntTRTGmCdY3ryLTx6Maz7++og=";
 	static connect = content;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

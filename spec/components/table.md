@@ -155,7 +155,7 @@ header and `scope="row"` on a row header column. `aria-sort` on the sorted
 loading rows are real rows so the table stays a table; `aria-busy="true"`
 on the table while loading and a live region for the outcome. Contrast:
 body text 8.43:1, header 10.10:1, caption and empty message 5.66:1, selected
-text 7.92:1 on the fill, inactive 7.02:1, ring 4.75:1 on the fill, sort ring
+text 12.47:1 on the fill, inactive 7.02:1, ring 7.48:1 on the fill, sort ring
 4.57:1. Rows are at least 24 CSS pixels tall; sort buttons fill the header
 cell.
 

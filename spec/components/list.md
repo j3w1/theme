@@ -145,8 +145,8 @@ are reachable and announced, never skipped silently.
 when several may be chosen; `aria-selected` on every option, including
 `"false"`. The ✓ glyph is `aria-hidden`; `aria-selected` is the state.
 Metadata is inside the option so it is read with the label. Contrast: text
-8.43:1, metadata 5.66:1, selected text 7.92:1 on the fill, inactive selection
-7.02:1, ring 4.57:1 on the surface and 4.75:1 on the fill, frame 4.33:1. Rows
+8.43:1, metadata 5.66:1, selected text 12.47:1 on the fill, inactive selection
+7.02:1, ring 4.57:1 on the surface and 7.48:1 on the fill, frame 4.33:1. Rows
 are at least 24 CSS pixels tall with the check gutter as the leading target
 area.
 

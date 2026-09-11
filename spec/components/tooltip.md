@@ -114,8 +114,8 @@ It opens on hover and on focus, stays open while the pointer is over the
 trigger or the popup (WCAG 1.4.13: hoverable, dismissible, persistent), and
 closes on Escape. The trigger has its own accessible name; the tooltip never
 supplies it. Touch has no hover: the description is available through a
-long-press or is shown inline. Contrast: text 7.92:1 on the raised surface,
-shortcut 9.49:1, border 4.30:1.
+long-press or is shown inline. Contrast: text 8.43:1 on the raised surface,
+shortcut 10.10:1, border 4.57:1.
 
 ## Portability
 

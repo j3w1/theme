@@ -4,7 +4,7 @@ import { i as tooltip } from "../chunks/overlays-C6nlCHqg.js";
 var J3w1Tooltip = class extends J3w1Element {
 	static componentId = "tooltip";
 	static version = "1.1.0";
-	static implementationId = "sha256-eUI20/h2SQBb2QFXqY57F8azcBYm2TjqXZdvd3Bd9oA=";
+	static implementationId = "sha256-ONXubrz2yyDn2biZGzij0nuLAsPGaZcL4ZOYw8s4HcE=";
 	static connect = tooltip;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

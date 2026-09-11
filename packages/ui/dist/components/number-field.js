@@ -4,7 +4,7 @@ import { r as fields } from "../chunks/native-CAzZmDKR.js";
 var J3w1NumberField = class extends J3w1Element {
 	static componentId = "number-field";
 	static version = "1.1.0";
-	static implementationId = "sha256-yRqHnqXPd7/eyY1N+5ec4TE86X08Bn/+qkE409BGyRA=";
+	static implementationId = "sha256-xNigW1Av6gvwJjBSwlSHl6MwST/Aa675NJQRv/F+tjY=";
 	static connect = fields;
 	static upgradeProperties = [
 		"disabled",

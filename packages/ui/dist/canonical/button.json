@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-fIloSx2SvKOhZQqPq7ZfXqBVLqILUVu4kML4c5uMPlo=",
+  "sourceDigest": "sha256-F7+Dg7G4tdc9Bjv8EG+UVwRjlF4Awi8HvZvLg9fZXgE=",
   "id": "button",
   "family": "actions",
   "maturity": "stable",
@@ -74,9 +74,9 @@
     "root.bg": {
       "alias": "color.action.primary.bg",
       "value": "#7d1310",
-      "status": "observed",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-026",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -453,9 +453,9 @@
         "bg": {
           "alias": "color.action.primary.bg",
           "value": "#7d1310",
-          "status": "observed",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-026",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -515,9 +515,9 @@
         "bg": {
           "alias": "color.action.primary.bg",
           "value": "#7d1310",
-          "status": "observed",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-026",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -595,9 +595,9 @@
         "bg": {
           "alias": "color.action.primary.bg",
           "value": "#7d1310",
-          "status": "observed",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-026",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -741,7 +741,7 @@
       "bgHex": "#100c0c",
       "ratio": 1.83,
       "pass": false,
-      "waiver": "the fill is not the boundary of the control; the label text at 8.17:1 identifies it, and hover, active and focus each add a second channel"
+      "waiver": "the fill is not the boundary of the control; the label text at 9.28:1 identifies it, and hover, active and focus each add a second channel"
     },
     {
       "label": "secondary text at rest",

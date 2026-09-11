@@ -168,8 +168,8 @@ Every row checkbox is labelled by the row's first data cell
 row mirrors its checkbox. Sorted headers carry `aria-sort`; the table
 carries `aria-busy` while loading; the count of selected rows is announced
 through a live region owned by the surrounding toolbar. Contrast: text
-8.43:1, header 10.10:1, selected text 7.92:1 on the fill, ring 4.57:1 on the
-surface and 4.75:1 on the fill, checkbox boundary 4.33:1, check glyph 8.17:1
+8.43:1, header 10.10:1, selected text 12.47:1 on the fill, ring 4.57:1 on the
+surface and 7.48:1 on the fill, checkbox boundary 4.33:1, check glyph 9.28:1
 on the primary fill. Checkboxes and handles are at least 24 CSS pixels tall
 in `compact` density.
 

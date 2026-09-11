@@ -147,9 +147,9 @@ The legend is read before each option and is the group's name. Options
 share a `name`. The message is linked with `aria-describedby` on the
 fieldset and `aria-invalid` is set on the inputs after submit. A group with
 no default checked radio must have a required mark or a "none" option, so
-the empty state is intentional. Contrast: text 8.43:1, inner square 8.17:1
+the empty state is intentional. Contrast: text 8.43:1, inner square 9.28:1
 on the fill, box edge 4.45:1 on the input surface and 4.33:1 against the
-panel when checked, ring 4.69:1, container ring 4.90:1.
+panel when checked, ring 4.69:1, container ring 5.57:1.
 
 ## Portability
 

@@ -41,7 +41,7 @@ stateTokens:
 contrast:
   - { fg: color.text.bright, bg: color.surface.canvas, label: "label on the canvas" }
   - { fg: color.text.muted, bg: color.surface.canvas, label: "detail line on the canvas" }
-  - { fg: color.action.primary.bg, bg: color.interaction.pressed.bg, min: 3, kind: ui, label: "value fill against the track", waiver: "the fill measures 1.72:1 against the track; the value is carried by the visible percentage text and the native value, and the track boundary (border.control, 4.45:1) marks the full extent" }
+  - { fg: color.action.primary.bg, bg: color.interaction.pressed.bg, min: 3, kind: ui, label: "value fill against the track", waiver: "the fill measures 1.51:1 against the track; the value is carried by the visible percentage text and the native value, and the track boundary (border.control, 4.45:1) marks the full extent" }
   - { fg: color.action.primary.bg, bg: color.interaction.pressed.bg, min: 1, kind: ui, state: busy, label: "stripes (decorative pattern)", waiver: "the stripes are a pattern, not a boundary; busy is carried by aria-busy and aria-valuetext" }
   - { fg: color.status.danger.fill, bg: color.interaction.pressed.bg, min: 3, kind: ui, state: error, label: "error fill against the track" }
 anatomy:
@@ -114,7 +114,7 @@ Indeterminate bars set `aria-valuetext` ("Preparing"), and the container sets
 `aria-busy` for the duration. Completion and failure are announced through a
 polite live region, not by the bar. Contrast: label 10.37:1, value 8.65:1,
 detail 5.81:1, track boundary 4.45:1, error fill 3.36:1 against the track.
-The primary fill against the track measures 1.72:1 and is waived because the
+The primary fill against the track measures 1.51:1 and is waived because the
 value is stated in text; a host that must meet 3:1 graphically raises the
 track to {color.surface.canvas}.
 

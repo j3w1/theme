@@ -184,7 +184,7 @@ through `aria-labelledby` on the row checkbox; the select-all is a
 checkbox-role button whose mixed state carries the – glyph. Badges carry
 their glyphs so status survives without colour. Contrast: toolbar text
 8.60:1 on the chrome surface, boundaries 4.42:1, headers 10.10:1, badges
-7.08:1 and 7.13:1 on their fills, the ring 4.75:1 on the selection fill.
+7.08:1 and 7.13:1 on their fills, the ring 7.48:1 on the selection fill.
 
 ## Portability
 
