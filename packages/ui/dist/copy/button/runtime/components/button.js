@@ -4,7 +4,7 @@ import { t as actions } from "../chunks/native-CAzZmDKR.js";
 var J3w1Button = class extends J3w1Element {
 	static componentId = "button";
 	static version = "1.1.0";
-	static implementationId = "sha256-N62UF4qznse4V8h+CkmzUCCH+nShm2mqTt+VJeENCT0=";
+	static implementationId = "sha256-sA1T81veDNiCdSk7tt17ddpDajRCIYUrSZRkvf/RMOI=";
 	static connect = actions;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...[
