@@ -32,17 +32,42 @@ tokens is a defect to resolve, not a choice to make.
 
 ## The check loop
 
+Three tiers, and they are not interchangeable (D-028).
+
+**Required before a merge.** These are what the `main` ruleset enforces on
+every pull request, and they take a few minutes.
+
 ```
 npm run validate      # sources only: manifest, decisions, tokens, docs, spec, contrast, ports, references, private material
 npm run generate      # rewrite every generated artifact
 npm run check         # CI mode: generated artifacts must be current, no orphans
 npm test              # node --test over the sources and exports
 npm run build && npm run test:dist   # the site under /theme/, base paths, consistency
-npm run test:browser  # keyboard, axe, reflow, motion, no-JS, enhancements, print
+npm run test:smoke    # the built site loads, renders from the tokens, takes a keyboard
 ```
 
-Finish with all of the above green. Report checks that were not run
-separately from checks that passed.
+Run `npm run generate` first whenever you changed a source; `npm run check`
+only reports drift, it does not fix it.
+
+**Recommended before a push.** `npm run test:all` runs everything below in the
+order continuous integration runs it, and takes roughly half an hour. Nothing
+verifies that you ran it. Run it when you changed rendering, tokens,
+components or the package, and say in the pull request that you did.
+
+**Mandatory before deployment.** The exhaustive suite runs on `main` and gates
+`deploy`, and can be started against any branch from the Actions tab through
+the workflow dispatch.
+
+```
+npm run ui:consumers && npm run test:ui && npm run ui:report   # packed HTML, Vue, React, Astro consumers on three engines
+npm run test:browser  # keyboard, axe, reflow, motion, no-JS, enhancements, print, four environments
+```
+
+`npm run test:smoke` is a named subset of the browser suite and reports as
+one. It is never a coverage claim, and it never writes execution evidence.
+Coverage and the published matrix come only from the full suite.
+
+Report checks that were not run separately from checks that passed.
 
 ## What you may do without a decision
 

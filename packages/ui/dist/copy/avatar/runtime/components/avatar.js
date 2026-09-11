@@ -4,7 +4,7 @@ import { t as avatar } from "../chunks/display-dj9YaBfn.js";
 var J3w1Avatar = class extends J3w1Element {
 	static componentId = "avatar";
 	static version = "1.1.0";
-	static implementationId = "sha256-JIa4sPcOlTgrAYKT7ktp0ZF7UgHvLdx5K0cg+oT8Oys=";
+	static implementationId = "sha256-CbFGgqElGDivXRzSN2pLbPXlo4KgGVbw9Iga5eslbi8=";
 	static connect = avatar;
 	static upgradeProperties = [
 		"disabled",

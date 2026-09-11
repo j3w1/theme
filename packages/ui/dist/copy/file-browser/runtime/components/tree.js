@@ -4,7 +4,7 @@ import { i as tree } from "../chunks/advanced-DCpe8Ndv.js";
 var J3w1Tree = class extends J3w1Element {
 	static componentId = "tree";
 	static version = "1.1.0";
-	static implementationId = "sha256-3W28PTztg5f/UsSvDP4Ue0ioChXm0WEoSiVIct4BPK4=";
+	static implementationId = "sha256-BVe1UfBSpO5RVd3tMQ5/EktgtCV1uqEKtBBA3ulDHJg=";
 	static connect = tree;
 	static upgradeProperties = [
 		"disabled",

@@ -1,14 +1,24 @@
 name: ci
 
-# validate → build (+dist gates) → browser → deploy. The dist the browser job
-# tests stays byte-identical; only verification/ is added before deployment.
-# PRs get specimens and evidence as downloadable artifacts and
-# never deploy. Pages is configured to deploy from Actions (D-010).
+# Two paths, one workflow (D-028).
+#
+# Every pull request: validate → build (+dist gates) → smoke. A few minutes,
+# and enough to catch a broken source, a broken build, or a page that no longer
+# renders from the tokens or takes a keyboard.
+#
+# Before deployment, and on demand: the same three, plus the exhaustive
+# packed-consumer and browser suites, then deploy. The full matrix is a
+# deployment gate, not a merge gate. Run it on a branch with the workflow
+# dispatch, or locally with `npm run test:all`.
+#
+# The dist the browser job tests stays byte-identical; only verification/ is
+# added before deployment. Pages is configured to deploy from Actions (D-010).
 
 on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -64,9 +74,40 @@ jobs:
           retention-days: 7
           include-hidden-files: true
 
+  # The merge gate. A named subset, reported with the plain list reporter so it
+  # can never publish a partial evidence matrix.
+  smoke:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@v8
+        with:
+          name: site-dist
+          path: dist
+      - run: npx playwright install --with-deps chromium
+      - name: The built site loads, renders from the tokens and takes a keyboard
+        run: npm run test:smoke
+        env:
+          CI: "1"
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: smoke-results
+          path: |
+            test-results/
+            playwright-report/
+          if-no-files-found: ignore
+
   ui-consumers:
     runs-on: ubuntu-latest
     needs: build
+    if: github.event_name != 'pull_request'
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
@@ -95,6 +136,7 @@ jobs:
   browser:
     runs-on: ubuntu-latest
     needs: [build, ui-consumers]
+    if: github.event_name != 'pull_request'
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
