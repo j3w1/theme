@@ -200,7 +200,10 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: [build, ui-consumers, browser]
+    # smoke is a subset of the browser suite today, so this is redundant on
+    # paper. It is listed anyway: the redundancy is what keeps "nothing red on
+    # main is published" true if the subset ever stops holding.
+    needs: [build, smoke, ui-consumers, browser]
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     permissions:
       pages: write
