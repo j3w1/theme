@@ -44,23 +44,23 @@
     "ui:publish-evidence": "node scripts/ui-verification-report.mjs --publish"
   },
   "devDependencies": {
-    "@astrojs/markdown-remark": "7.3.0",
+    "@astrojs/markdown-remark": "7.3.1",
     "@axe-core/playwright": "4.13.0",
     "@playwright/test": "1.63.0",
     "@vitejs/plugin-vue": "6.0.8",
-    "astro": "7.3.1",
+    "astro": "7.3.2",
     "es-module-lexer": "2.3.2",
     "fflate": "0.8.3",
     "parse5": "7.3.0",
     "postcss": "8.5.28",
     "postcss-value-parser": "4.2.0",
-    "react": "19.2.8",
-    "react-dom": "19.2.8",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
     "typescript": "7.0.2",
     "vite": "8.2.2",
     "vue": "3.5.42",
     "yaml": "2.9.0",
-    "zod": "4.5.4"
+    "zod": "4.6.1"
   },
   "workspaces": [
     "packages/ui",
