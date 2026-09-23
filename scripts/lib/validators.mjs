@@ -13,7 +13,9 @@ import { portMappingSchema, assertPortMapping } from "../../schemas/usage.mjs";
 import { releaseCatalogueSchema } from "../../schemas/release-comparison.mjs";
 import { catalogueSchema, screenshotProvenanceSchema, sourcesSchema } from "../../schemas/provenance.mjs";
 import { EXTENSION_ALLOWED_GROUPS, EXTENSION_HUES, HERITAGE_ANSI, REQUIRED_ROLES } from "../../schemas/roles.mjs";
-import { cssVar, extensionOf, loadProfile, loadResolvedProfile, resolveTokens, statusOf } from "./tokens.mjs";
+import { cssVar, extensionOf, loadProfile, loadProfiles, loadResolvedProfile, resolveTokens, statusOf } from "./tokens.mjs";
+import { formatIssues } from "./schema-issues.mjs";
+import { validatePatterns } from "./patterns.mjs";
 import { evaluatePair } from "./contrast.mjs";
 import { loadComponents, loadDecisions, loadDoc, loadFamilies, listDocs, splitVariants, tokenRefsOf } from "./spec.mjs";
 import { scanFiles } from "./private-material.mjs";
@@ -23,8 +25,6 @@ export class ValidationError extends Error {}
 const fail = (message) => {
   throw new ValidationError(message);
 };
-
-const formatIssues = (issues) => issues.map((i) => `  ${i.path.join(".") || "(root)"}: ${i.message}`).join("\n");
 
 export const loadManifest = async () => {
   const raw = await readJson("theme.json");
@@ -62,13 +62,6 @@ export const validateDecisions = async () => {
   const decisions = await loadDecisions();
   if (!decisions.size) fail("spec/decisions.md has no decision rows");
   return decisions;
-};
-
-/* Loads and resolves every profile; returns Map id → resolved. */
-export const loadProfiles = async (manifest) => {
-  const profiles = new Map();
-  for (const profile of manifest.profiles) profiles.set(profile.id, await loadResolvedProfile(profile.tokens));
-  return profiles;
 };
 
 export const validateTokens = async ({ manifest, decisions } = {}) => {
@@ -343,30 +336,35 @@ export const validatePrivateMaterial = async () => {
   if (findings.length) fail(`private material:\n  ${findings.map((f) => `${f.file}: ${f.problem}`).join("\n  ")}`);
 };
 
-export const validateAll = async () => {
-  await (await import("./patterns.mjs")).validatePatterns();
-  const manifest = await validateManifest();
-  const decisions = await validateDecisions();
-  const tokens = await validateTokens({ manifest, decisions });
-  await validateDocs(manifest);
-  const components = await validateSpec(tokens);
-  await validateContrast({ ...tokens, components });
-  await validatePorts();
-  await validateReferences();
-  await validatePrivateMaterial();
-  return { manifest, decisions, ...tokens, components };
-};
-
-export const VALIDATORS = {
-  patterns: async () => { await (await import("./patterns.mjs")).validatePatterns(); },
-  manifest: async () => { await validateManifest(); },
-  decisions: async () => { await validateDecisions(); },
-  tokens: async () => { await validateTokens(); },
-  docs: async () => { await validateDocs(); },
-  spec: async () => { const t = await validateTokens(); const components = await validateSpec(t); await validateContrast({ ...t, components }); },
+/* The validation sequence, in dependency order. Each step reads what the
+   earlier steps put into the shared context and loads it itself when run
+   alone, so `npm run validate spec` and a full run agree. */
+const STEPS = {
+  patterns: async () => { await validatePatterns(); },
+  manifest: async (context) => { context.manifest = await validateManifest(); },
+  decisions: async (context) => { context.decisions = await validateDecisions(); },
+  tokens: async (context) => { Object.assign(context, await validateTokens(context)); },
+  docs: async (context) => { await validateDocs(context.manifest); },
+  spec: async (context) => {
+    const tokens = context.profiles ? { profiles: context.profiles, defaultId: context.defaultId } : await validateTokens();
+    const components = await validateSpec(tokens);
+    await validateContrast({ ...tokens, components });
+    context.components = components;
+  },
   ports: async () => { await validatePorts(); },
   references: async () => { await validateReferences(); },
   private: async () => { await validatePrivateMaterial(); },
 };
 
-export { resolveTokens, EXTENSIONS_KEY, loadFamilies };
+/* Each validator on its own, for scripts/validate.mjs. */
+export const VALIDATORS = Object.fromEntries(Object.entries(STEPS).map(([name, step]) => [name, () => step({})]));
+
+/* Every validator in order; returns the context the generators build from. */
+export const validateAll = async () => {
+  const context = {};
+  for (const step of Object.values(STEPS)) await step(context);
+  const { manifest, decisions, profiles, defaultId, components } = context;
+  return { manifest, decisions, profiles, defaultId, components };
+};
+
+export { resolveTokens, EXTENSIONS_KEY, loadFamilies, loadProfiles };

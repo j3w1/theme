@@ -4,7 +4,7 @@ import { n as content } from "../chunks/native-CAzZmDKR.js";
 var J3w1Card = class extends J3w1Element {
 	static componentId = "card";
 	static version = "1.1.0";
-	static implementationId = "sha256-WSFy2uactXF0hwTgsdXbkfBz/Vk9ICDxb8vzPXGPIUk=";
+	static implementationId = "sha256-Xeq7c4IzpTK4EGmzkydG/wqMlsXKpxebluelT4eq5AQ=";
 	static connect = content;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

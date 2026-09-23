@@ -1,6 +1,7 @@
 /* The generator registry. Each generator receives the validated context
-   (manifest, decisions, profiles, defaultId, components, check, produced)
-   and returns { files, changed, orphans?, note? }. Files it produces are
+   (manifest, decisions, profiles, defaultId, components, check), may add
+   what it computed for later generators, and returns
+   { files, changed, orphans?, note? }. Files it produces are
    listed so the digests generator can hash them and orphan detection can
    prune what no generator claims. */
 
@@ -12,7 +13,7 @@ import { patternGenerator } from "./patterns.mjs";
 import { evidenceSchema } from "../../schemas/evidence.mjs";
 import { eligibilitySchema } from "../../schemas/eligibility.mjs";
 import { POLICY_TEXT, releaseOf, eligibilityOf, eligibilityText } from "./eligibility.mjs";
-import { exists, listFiles, pruneOrphans, readText, replaceMarkerBlock, sha256, stableJson, writeOrCheck } from "./fs.mjs";
+import { digestMap, exists, listFiles, pruneOrphans, readJson, readText, replaceMarkerBlock, stableJson, writeOrCheck } from "./fs.mjs";
 import { statusOf, toCss, toResolvedExport } from "./tokens.mjs";
 import { buildCss, buildDensityCss } from "./css.mjs";
 import { loadDeclaredPairs, validateDocs, validatePorts, validateReferences } from "./validators.mjs";
@@ -252,8 +253,7 @@ export const digestsGenerator = {
   async run({ manifest, check }) {
     const changed = [];
     const files = [];
-    const entries = {};
-    for (const file of await listFiles("exports", { filter: (f) => f !== "exports/digests.json" })) entries[file] = sha256(await readText(file));
+    const entries = await digestMap(await listFiles("exports", { filter: (f) => f !== "exports/digests.json" }));
     await write("exports/digests.json", stableJson({ schemaVersion: 1, theme: manifest.name, version: manifest.version, algorithm: "sha256 over the file bytes with LF line endings, base64", files: entries }), { check, changed, files });
     return { files, changed, note: `${Object.keys(entries).length} files` };
   },
