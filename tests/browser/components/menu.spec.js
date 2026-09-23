@@ -1,15 +1,14 @@
 import { test, expect } from "../evidence-fixture.mjs";
-import { promises as fs } from "node:fs";
+import { token } from "../tokens.mjs";
+import { verification } from "../verification.mjs";
 import { openSpec, only, rgbToHex } from "../helpers.mjs";
 
-const resolved = JSON.parse(await fs.readFile(new URL("../../../exports/tokens.resolved.json", import.meta.url), "utf8"));
-const token = (path) => resolved.profiles[resolved.defaultProfile].tokens[path].css;
 
 const STATES = ["default", "hover", "focus-visible", "open", "closed", "disabled", "checked", "selected"];
 const VARIANTS = 3;
 
 test.describe("menu", () => {
-  test("the state matrix renders every declared state for every variant", { annotation: { type: "verification", description: JSON.stringify({"component": "menu", "category": "rendering", "states": ["default", "hover", "focus-visible", "open", "closed", "disabled", "checked", "selected"], "variants": ["default", "with-submenu", "with-checks"], "note": "Presence and selected structural assertions only; not behavioral verification of every state."}) } }, async ({ page }) => {
+  test("the state matrix renders every declared state for every variant", verification({component: "menu", category: "rendering", states: ["default", "hover", "focus-visible", "open", "closed", "disabled", "checked", "selected"], variants: ["default", "with-submenu", "with-checks"], note: "Presence and selected structural assertions only; not behavioral verification of every state."}), async ({ page }) => {
     await openSpec(page, "#c-menu");
     for (const state of STATES) {
       const cells = page.locator(`#menu-states [data-state="${state}"]`);
@@ -22,7 +21,7 @@ test.describe("menu", () => {
     expect(check).toBe("visible");
   });
 
-  test("the menu surface, the active item fill and the ring on the button", { annotation: { type: "verification", description: JSON.stringify({"component": "menu", "category": "appearance", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }, testInfo) => {
+  test("the menu surface, the active item fill and the ring on the button", verification({component: "menu", category: "appearance", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {
     test.skip(only(testInfo, "nojs"), "computed styles are the same without scripts; keep one run");
     await openSpec(page, "#c-menu");
     const live = page.locator('#menu-states [data-state="default"]').first();
@@ -65,7 +64,7 @@ test.describe("menu", () => {
     expect(rgbToHex(ring.bg)).toBe(token("color.interaction.pressed.bg"));
   });
 
-  test("structure: the button owns the menu and one item is in the tab order", { annotation: { type: "verification", description: JSON.stringify({"component": "menu", "category": "structure", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }, testInfo) => {
+  test("structure: the button owns the menu and one item is in the tab order", verification({component: "menu", category: "structure", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {
     test.skip(only(testInfo, "narrow", "zoom200"), "one structural check");
     await openSpec(page, "#c-menu");
     const live = page.locator('#menu-states [data-state="default"]').first();

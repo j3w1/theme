@@ -7,8 +7,8 @@ import { safeKitPath } from "../schemas/task-kit.mjs";
 import { repoRoot } from "../scripts/lib/fs.mjs";
 import { preparePrivateParity } from "../scripts/lib/private-parity.mjs";
 import { runPrivateParity } from "../scripts/lib/private-parity-browser.mjs";
+import { withScratch } from "./helpers/scratch.mjs";
 import { promises as fs } from "node:fs";
-import os from "node:os";
 import { execFileSync } from "node:child_process";
 test("missing licensed inputs produce a prerequisite record without an execution pass", () => {
   const result = parityPrerequisites(null);
@@ -27,24 +27,23 @@ test("private table data excludes hidden empty and loading scaffolding from the 
 });
 
 test("private preparation pins native specimens, verifies installed/locked versions and leaves its source unchanged", async () => {
-  const root = await fs.mkdtemp(path.join(os.tmpdir(), "theme-parity-test-"));
-  const target = path.join(root, "synthetic-source");
-  await fs.mkdir(target);
-  const pkg = JSON.stringify({ version: "1.0.0", dependencies: { vue: "1.0.0", vuetify: "1.0.0", vite: "1.0.0", "vite-plugin-vuetify": "1.0.0", sass: "1.0.0" } });
-  await fs.writeFile(path.join(target, "package.json"), pkg);
-  const lock = "lockfileVersion: '9.0'\nimporters:\n  .:\n    dependencies:\n      vue: { version: '1.0.0' }\n      vuetify: { version: '1.0.0' }\n      vite: { version: '1.0.0' }\n      vite-plugin-vuetify: { version: '1.0.0' }\n      sass: { version: '1.0.0' }\n";
-  await fs.writeFile(path.join(target, "pnpm-lock.yaml"), lock);
-  for (const name of ["vue", "vuetify", "vite", "vite-plugin-vuetify", "sass"]) {
-    await fs.mkdir(path.join(target, "node_modules", name), { recursive: true });
-    await fs.writeFile(path.join(target, "node_modules", name, "package.json"), JSON.stringify({ version: "1.0.0" }));
-  }
-  await fs.writeFile(path.join(target, "defaults.js"), "export default {};\n");
-  await fs.writeFile(path.join(target, "_style.scss"), "/* synthetic styles only */\n");
-  const config = { schemaVersion: 1, target, out: path.join(root, "prepared"), themeRef: execFileSync("git", ["rev-parse", "HEAD"], { cwd: repoRoot, encoding: "utf8" }).trim(), templateVersion: "1.0.0",
-    license: { type: "regular", reference: "Synthetic unit fixture; no licensed content or real import.", reviewed: true },
-    lock: "pnpm-lock.yaml", sources: [{ from: "defaults.js", to: "defaults.js" }, { from: "_style.scss", to: "_style.scss" }],
-    defaults: "defaults.js", styles: "_style.scss", frameworkStyles: "_style.scss", aliases: {} };
-  try {
+  await withScratch("theme-parity-test-", async (root) => {
+    const target = path.join(root, "synthetic-source");
+    await fs.mkdir(target);
+    const pkg = JSON.stringify({ version: "1.0.0", dependencies: { vue: "1.0.0", vuetify: "1.0.0", vite: "1.0.0", "vite-plugin-vuetify": "1.0.0", sass: "1.0.0" } });
+    await fs.writeFile(path.join(target, "package.json"), pkg);
+    const lock = "lockfileVersion: '9.0'\nimporters:\n  .:\n    dependencies:\n      vue: { version: '1.0.0' }\n      vuetify: { version: '1.0.0' }\n      vite: { version: '1.0.0' }\n      vite-plugin-vuetify: { version: '1.0.0' }\n      sass: { version: '1.0.0' }\n";
+    await fs.writeFile(path.join(target, "pnpm-lock.yaml"), lock);
+    for (const name of ["vue", "vuetify", "vite", "vite-plugin-vuetify", "sass"]) {
+      await fs.mkdir(path.join(target, "node_modules", name), { recursive: true });
+      await fs.writeFile(path.join(target, "node_modules", name, "package.json"), JSON.stringify({ version: "1.0.0" }));
+    }
+    await fs.writeFile(path.join(target, "defaults.js"), "export default {};\n");
+    await fs.writeFile(path.join(target, "_style.scss"), "/* synthetic styles only */\n");
+    const config = { schemaVersion: 1, target, out: path.join(root, "prepared"), themeRef: execFileSync("git", ["rev-parse", "HEAD"], { cwd: repoRoot, encoding: "utf8" }).trim(), templateVersion: "1.0.0",
+      license: { type: "regular", reference: "Synthetic unit fixture; no licensed content or real import.", reviewed: true },
+      lock: "pnpm-lock.yaml", sources: [{ from: "defaults.js", to: "defaults.js" }, { from: "_style.scss", to: "_style.scss" }],
+      defaults: "defaults.js", styles: "_style.scss", frameworkStyles: "_style.scss", aliases: {} };
     const result = await preparePrivateParity(config);
     assert.equal(result.result, "prepared");
     assert.equal(new Set(result.metadata.cases.map(entry => entry.id)).size, 7);
@@ -68,10 +67,7 @@ test("private preparation pins native specimens, verifies installed/locked versi
     await assert.rejects(preparePrivateParity({ ...config, templateVersion: "wrong" }), /Template version/);
     await fs.writeFile(path.join(target, "node_modules", "vite-plugin-vuetify", "package.json"), JSON.stringify({ version: "2.0.0" }));
     await assert.rejects(preparePrivateParity(config), /must agree exactly/);
-  } finally {
-    assert.ok(path.resolve(root).startsWith(path.resolve(os.tmpdir()) + path.sep));
-    await fs.rm(root, { recursive: true, force: true });
-  }
+  });
 });
 test("intentional property mismatches are detected exactly and explained", () => {
   const result = compareProperties({ padding: "16px", color: "rgb(1, 2, 3)" }, { padding: "17px", color: "rgb(1, 2, 3)" });

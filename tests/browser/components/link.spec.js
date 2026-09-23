@@ -1,9 +1,8 @@
 import { test, expect } from "../evidence-fixture.mjs";
-import { promises as fs } from "node:fs";
+import { token } from "../tokens.mjs";
+import { verification } from "../verification.mjs";
 import { openSpec, only, rgbToHex } from "../helpers.mjs";
 
-const resolved = JSON.parse(await fs.readFile(new URL("../../../exports/tokens.resolved.json", import.meta.url), "utf8"));
-const token = (path) => resolved.profiles[resolved.defaultProfile].tokens[path].css;
 
 const STATES = ["default", "hover", "focus-visible", "visited", "current"];
 const VARIANTS = ["default", "standalone", "current"];
@@ -27,7 +26,7 @@ const paint = (locator) =>
   });
 
 test.describe("link", () => {
-  test("the state matrix renders every declared state for every variant", { annotation: { type: "verification", description: JSON.stringify({"component": "link", "category": "rendering", "states": ["default", "hover", "focus-visible", "visited", "current"], "variants": ["default", "standalone", "current"], "note": "Presence and selected structural assertions only; not behavioral verification of every state."}) } }, async ({ page }) => {
+  test("the state matrix renders every declared state for every variant", verification({component: "link", category: "rendering", states: ["default", "hover", "focus-visible", "visited", "current"], variants: ["default", "standalone", "current"], note: "Presence and selected structural assertions only; not behavioral verification of every state."}), async ({ page }) => {
     await openSpec(page, "#c-link");
     for (const state of STATES) {
       await expect(page.locator(`#link-states [data-state="${state}"]`)).toHaveCount(VARIANTS.length);
@@ -35,7 +34,7 @@ test.describe("link", () => {
     await expect(page.locator('#link-states [data-state="default"] a.link[aria-current="page"]')).toHaveCount(1);
   });
 
-  test("the live inline link: text, underline, hover, ring", { annotation: { type: "verification", description: JSON.stringify({"component": "link", "category": "appearance", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }, testInfo) => {
+  test("the live inline link: text, underline, hover, ring", verification({component: "link", category: "appearance", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {
     test.skip(only(testInfo, "nojs"), "computed styles are the same without scripts; keep one run");
     await openSpec(page, "#c-link");
     const live = page.locator('#link-states [data-state="default"]').first();
@@ -60,7 +59,7 @@ test.describe("link", () => {
     expect(rgbToHex(focused.outlineColor)).toBe(token("color.interaction.focus.ring"));
   });
 
-  test("the current link swaps the underline for the 2px indicator bar", { annotation: { type: "verification", description: JSON.stringify({"component": "link", "category": "appearance", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }, testInfo) => {
+  test("the current link swaps the underline for the 2px indicator bar", verification({component: "link", category: "appearance", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {
     test.skip(only(testInfo, "nojs"), "one run");
     await openSpec(page, "#c-link");
     const current = await paint(page.locator('#link-states [data-state="default"] a.link[aria-current="page"]'));
@@ -70,7 +69,7 @@ test.describe("link", () => {
     expect(rgbToHex(current.bottomColor)).toBe(token("color.border.selected-indicator"));
   });
 
-  test("keyboard: Tab reaches the live link and shows the ring", { annotation: { type: "verification", description: JSON.stringify({"component": "link", "category": "keyboard", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }, testInfo) => {
+  test("keyboard: Tab reaches the live link and shows the ring", verification({component: "link", category: "keyboard", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {
     test.skip(only(testInfo, "nojs", "narrow", "zoom200"), "one keyboard walk");
     await openSpec(page, "#c-link");
     const link = page.locator('#link-states [data-state="default"][data-state-default] a.link').first();

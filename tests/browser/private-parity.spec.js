@@ -1,9 +1,8 @@
 import { test, expect } from "./evidence-fixture.mjs";
+import { verification } from "./verification.mjs";
 import { capturePrivateMeasurement } from "../../scripts/lib/private-parity-browser.mjs";
 
-test("private capture measurements describe the settled image rather than a transition frame", { annotation: {
-  type: "verification", description: JSON.stringify({ component: "page", category: "appearance", states: [], variants: [], note: "Synthetic finite width transition exercises the independently authored private capture helper. Exact final measurement and repeated PNG equality; no licensed source, framework import, or component conformance claim." }),
-} }, async ({ page }, info) => {
+test("private capture measurements describe the settled image rather than a transition frame", verification({ component: "page", category: "appearance", states: [], variants: [], note: "Synthetic finite width transition exercises the independently authored private capture helper. Exact final measurement and repeated PNG equality; no licensed source, framework import, or component conformance claim." }), async ({ page }, info) => {
   test.skip(info.project.name !== "desktop", "One synthetic capture protocol; no licensed dependency");
   const captures = [];
   for (let attempt = 0; attempt < 2; attempt++) {

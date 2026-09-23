@@ -1,8 +1,9 @@
 import { chooseOptions } from "../ui/choice-helper.mjs";
+import { verification } from "./verification.mjs";
 import { test, expect } from "./evidence-fixture.mjs";
 import AxeBuilder from "@axe-core/playwright";
 import usage from "../../exports/token-usage.json" with { type: "json" };
-const annotation = { type: "verification", description: JSON.stringify({ component: "page", category: "enhancements", states: [], variants: [], note: "Semantic usage filters, persistent static details, clipboard and reflow on the token tool pages." }) };
+const { annotation } = verification({ component: "page", category: "enhancements", states: [], variants: [], note: "Semantic usage filters, persistent static details, clipboard and reflow on the token tool pages." });
 
 test("usage filters require a documented match and preserve profile restrictions", { annotation }, async ({ page }, testInfo) => {
   await page.goto("tokens/", { waitUntil: "networkidle" });
@@ -32,7 +33,7 @@ test("usage filters require a documented match and preserve profile restrictions
   expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
 });
 
-test("usage index controls and default results have no automated accessibility violations", { annotation: { type: "verification", description: JSON.stringify({ component: "page", category: "axe", states: [], variants: [], note: "Token usage index controls and default-profile result table; a scan is not a conformance claim." }) } }, async ({ page }, testInfo) => {
+test("usage index controls and default results have no automated accessibility violations", verification({ component: "page", category: "axe", states: [], variants: [], note: "Token usage index controls and default-profile result table; a scan is not a conformance claim." }), async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== "desktop", "one index scan is enough");
   test.setTimeout(600_000);
   await page.goto("tokens/", { waitUntil: "networkidle" });

@@ -1,6 +1,7 @@
 import { test, expect } from "../browser/evidence-fixture.mjs";
+import { verification } from "../browser/verification.mjs";
 import AxeBuilder from "@axe-core/playwright";
-const annotation = { type: "verification", description: JSON.stringify({ component: "page", category: "enhancements", states: ["default"], variants: [], note: "Instantiates every maintained package variant in an isolated packed consumer. Checks registration and uncaught runtime errors; does not assert every interaction, state or accessibility requirement." }) };
+const { annotation } = verification({ component: "page", category: "enhancements", states: ["default"], variants: [], note: "Instantiates every maintained package variant in an isolated packed consumer. Checks registration and uncaught runtime errors; does not assert every interaction, state or accessibility requirement." });
 test("every packed component variant connects without runtime errors", { annotation }, async ({ page }) => {
   const errors = [];
   page.on("pageerror", error => errors.push(error.message));
@@ -27,7 +28,7 @@ test("copied basic controls and overlapping composition dependencies work withou
   expect(errors).toEqual([]);
 });
 
-test("packed variants meet the automated accessibility scan and reflow at narrow width", { annotation: { type: "verification", description: JSON.stringify({ component: "page", category: "enhancements", states: ["default"], variants: [], note: "All maintained packed variants: axe WCAG A/AA, 320px reflow, forced-colors and reduced-motion rendering. The existing code-editor decorative whitespace waiver excludes only aria-hidden whitespace glyphs from text contrast; real code text remains scanned. No manual screen-reader claim." }) } }, async ({ page }) => {
+test("packed variants meet the automated accessibility scan and reflow at narrow width", verification({ component: "page", category: "enhancements", states: ["default"], variants: [], note: "All maintained packed variants: axe WCAG A/AA, 320px reflow, forced-colors and reduced-motion rendering. The existing code-editor decorative whitespace waiver excludes only aria-hidden whitespace glyphs from text contrast; real code text remains scanned. No manual screen-reader claim." }), async ({ page }) => {
   await page.goto("/gallery/");await expect(page.locator(".gallery-card").last()).toBeVisible();
   // Canonical code-editor contrast[] explicitly waives these duplicated,
   // aria-hidden whitespace glyphs as decorative. No content is excluded.
@@ -38,7 +39,7 @@ test("packed variants meet the automated accessibility scan and reflow at narrow
   await expect(page.locator(".gallery-card").first()).toBeVisible();
 });
 
-test("a copied dialog retains native modal focus and keyboard return", { annotation: { type: "verification", description: JSON.stringify({ component: "dialog", category: "keyboard", states: ["default", "open", "closed", "focus-trapped"], variants: ["default"], note: "Installed CLI copy with no workspace runtime access; real opener, keyboard Escape and focus return. Native form validation is covered separately by packed form fixtures." }) } }, async ({ page }) => {
+test("a copied dialog retains native modal focus and keyboard return", verification({ component: "dialog", category: "keyboard", states: ["default", "open", "closed", "focus-trapped"], variants: ["default"], note: "Installed CLI copy with no workspace runtime access; real opener, keyboard Escape and focus return. Native form validation is covered separately by packed form fixtures." }), async ({ page }) => {
   const errors = []; page.on("pageerror", error => errors.push(error.message));
   await page.goto("/copy/");
   const opener = page.getByRole("button", { name: "Open dialog", exact: true });

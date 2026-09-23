@@ -1,7 +1,8 @@
 import { test, expect } from "./evidence-fixture.mjs";
+import { verification } from "./verification.mjs";
 import { openSpec } from "./helpers.mjs";
 
-test("documentation tables keep readable columns and compact copy controls", { annotation: { type: "verification", description: JSON.stringify({ component: "page", category: "reflow", states: [], variants: [], note: "Documentation table sizing, contained horizontal overflow and single-line controls; component specimen geometry is checked by its own tests." }) } }, async ({ page }, testInfo) => {
+test("documentation tables keep readable columns and compact copy controls", verification({ component: "page", category: "reflow", states: [], variants: [], note: "Documentation table sizing, contained horizontal overflow and single-line controls; component specimen geometry is checked by its own tests." }), async ({ page }, testInfo) => {
   if (testInfo.project.name === "desktop") await page.setViewportSize({ width: 980, height: 1000 });
   await openSpec(page);
   const border = page.locator("#t-color-border .profile-token-table");

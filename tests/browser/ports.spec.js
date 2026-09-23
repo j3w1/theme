@@ -1,9 +1,10 @@
 import { test, expect } from "./evidence-fixture.mjs";
+import { verification } from "./verification.mjs";
 import AxeBuilder from "@axe-core/playwright";
 import { renderPortCatalogue } from "../../scripts/lib/port-presentation.mjs";
 import { describePort } from "../../scripts/lib/port-capabilities.mjs";
 import { fixture } from "../fixtures/port-capabilities.mjs";
-const annotation = { type: "verification", description: JSON.stringify({ component: "page", category: "enhancements", states: [], variants: [], note: "Real empty port catalogue, static JSON, navigation, narrow/no-JS access. Synthetic state/evidence coverage is in source tests, not a real import claim." }) };
+const { annotation } = verification({ component: "page", category: "enhancements", states: [], variants: [], note: "Real empty port catalogue, static JSON, navigation, narrow/no-JS access. Synthetic state/evidence coverage is in source tests, not a real import claim." });
 test("port explorer truthfully exposes the empty catalogue and contribution route", { annotation }, async ({ page }) => {
   await page.goto("ports/");
   await expect(page.locator("[data-port-empty]")).toContainText("No native ports");
@@ -22,7 +23,7 @@ test("port explorer navigation is keyboard accessible with no axe violations", {
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
 });
 
-test("synthetic mapping states use the real renderer and keyboard search without publishing a port", { annotation: { type: "verification", description: JSON.stringify({ component: "page", category: "enhancements", states: [], variants: [], note: "Request-intercepted, explicitly synthetic port data exercises the real static renderer, mapping classifications, search/reset and no-JS. Never a real port or import result." }) } }, async ({ page }, info) => {
+test("synthetic mapping states use the real renderer and keyboard search without publishing a port", verification({ component: "page", category: "enhancements", states: [], variants: [], note: "Request-intercepted, explicitly synthetic port data exercises the real static renderer, mapping classifications, search/reset and no-JS. Never a real port or import result." }), async ({ page }, info) => {
   const port = describePort(fixture());
   const rendered = renderPortCatalogue({ ports: [port] }, { revision: "a".repeat(40) });
   await page.route("**/theme/ports/", async route => {

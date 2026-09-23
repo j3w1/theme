@@ -1,7 +1,8 @@
 import { test, expect } from "./evidence-fixture.mjs";
+import { verification } from "./verification.mjs";
 import { openSpec } from "./helpers.mjs";
 
-test("profile columns and pending decision links agree with consumption policy", { annotation: { type: "verification", description: JSON.stringify({ component: "page", category: "structure", states: [], variants: [], note: "Consumption policy and per-profile role eligibility, including no-JS access." }) } }, async ({ page }) => {
+test("profile columns and pending decision links agree with consumption policy", verification({ component: "page", category: "structure", states: [], variants: [], note: "Consumption policy and per-profile role eligibility, including no-JS access." }), async ({ page }) => {
   await openSpec(page);
   await expect(page.locator("#consumption-policy")).toContainText("use-and-report");
   await expect(page.locator("#consumption-policy")).not.toContainText("Pre-release");

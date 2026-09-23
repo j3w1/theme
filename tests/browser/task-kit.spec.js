@@ -1,14 +1,15 @@
 import { chooseOptions } from "../ui/choice-helper.mjs";
+import { verification } from "./verification.mjs";
 import { test, expect } from "./evidence-fixture.mjs";
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import os from "node:os";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { unzipSync, strFromU8 } from "fflate";
 import AxeBuilder from "@axe-core/playwright";
 import { anchorFor } from "../../scripts/lib/anchors.mjs";
-const annotation = { type: "verification", description: JSON.stringify({ component: "page", category: "enhancements", states: [], variants: [], note: "Task kit selection, digest validation, no-JS guidance, reflow and deterministic browser/CLI packaging; downstream implementation acceptance is separate." }) };
+import { withScratch } from "../helpers/scratch.mjs";
+const { annotation } = verification({ component: "page", category: "enhancements", states: [], variants: [], note: "Task kit selection, digest validation, no-JS guidance, reflow and deterministic browser/CLI packaging; downstream implementation acceptance is separate." });
 const configure = async (page) => {
   await page.getByRole("button", { name: "Use settings-form selection" }).click();
   await page.getByLabel("Implementation task", { exact: true }).fill("Implement a settings form.");
@@ -50,8 +51,7 @@ test("browser ZIP and CLI directory agree byte-for-byte at the same pin", { anno
   await page.getByRole("link", { name: "Download ZIP", exact: true }).click();
   const download = await waiting;
   const files = Object.fromEntries(Object.entries(unzipSync(await fs.readFile(await download.path()))).map(([name, bytes]) => [name, strFromU8(bytes)]));
-  const root = await fs.mkdtemp(path.join(os.tmpdir(), "j3w1-browser-cli-"));
-  try {
+  await withScratch("j3w1-browser-cli-", async (root) => {
     const out = path.join(root, "kit");
     await promisify(execFile)(process.execPath, ["scripts/task-kit.mjs", "--ref", source.revision, "--components", "text-field,checkbox,button,dialog", "--task", "Implement a settings form.", "--integration-id", "acceptance-form", "--integration-version", "1", "--out", out]);
     const actual = {};
@@ -60,7 +60,7 @@ test("browser ZIP and CLI directory agree byte-for-byte at the same pin", { anno
     const kit = JSON.parse(files["KIT.json"]);
     expect(kit.source.revision).toBe(source.revision);
     expect(kit.request.components).toEqual(["button", "checkbox", "dialog", "text-field"]);
-  } finally { expect(path.resolve(root).startsWith(path.resolve(os.tmpdir()) + path.sep)).toBe(true); await fs.rm(root, { recursive: true, force: true }); }
+  });
 });
 
 test("mixed deployment inputs fail closed and task text remains local data", { annotation }, async ({ page }, testInfo) => {

@@ -1,10 +1,11 @@
 import { chooseOptions } from "../ui/choice-helper.mjs";
+import { verification } from "./verification.mjs";
 import { test, expect } from "./evidence-fixture.mjs";
 import AxeBuilder from "@axe-core/playwright";
 import { openSpec } from "./helpers.mjs";
 import { hashDestinations } from "../../apps/demo/src/navigation.js";
 import { readJson } from "../../scripts/lib/fs.mjs";
-const annotation = { type: "verification", description: JSON.stringify({ component: "page", category: "enhancements", states: [], variants: [], note: "Portal navigation, canonical reference migration, per-component runtime loading, static normative content, and local Vue workflows. Automated desktop/narrow/no-JS scopes only; no manual accessibility claim." }) };
+const { annotation } = verification({ component: "page", category: "enhancements", states: [], variants: [], note: "Portal navigation, canonical reference migration, per-component runtime loading, static normative content, and local Vue workflows. Automated desktop/narrow/no-JS scopes only; no manual accessibility claim." });
 test("portal retains specification content and opens its compact command utility", { annotation }, async ({ page }, info) => {
   const audit = await openSpec(page, "./");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("The j3w1 UI theme");

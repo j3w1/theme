@@ -1,6 +1,7 @@
 import { test, expect } from "./evidence-fixture.mjs";
+import { verification } from "./verification.mjs";
 import AxeBuilder from "@axe-core/playwright";
-const annotation = { type: "verification", description: JSON.stringify({ component: "page", category: "enhancements", states: [], variants: [], note: "Standalone recipes: source copying, native controls, two instances, scoped styles and canonical default appearance. Dialog modal behavior is not supplied or claimed." }) };
+const { annotation } = verification({ component: "page", category: "enhancements", states: [], variants: [], note: "Standalone recipes: source copying, native controls, two instances, scoped styles and canonical default appearance. Dialog modal behavior is not supplied or claimed." });
 const selectors = { button: [".button", ".button-icon"], "text-field": [".text-field", ".text-field-label", ".text-field-root", ".text-field-input", ".text-field-help"], dialog: [".dialog", ".dialog-title", ".dialog-text", ".dialog-close", ".dialog-button"] };
 const appearance = (locator) => locator.evaluate((el) => {
   const s = getComputedStyle(el);

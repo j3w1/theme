@@ -1,5 +1,6 @@
 import { test, expect } from "../browser/evidence-fixture.mjs";
-const annotation = { type: "verification", description: JSON.stringify({ component: "text-field", category: "enhancements", states: ["default", "required", "invalid", "disabled", "filled"], variants: ["default"], note: "Packed artifact in isolated HTML, Vue, React and Astro applications. Native submission, validation, reset, disabled fieldset, custom-element properties and retained labels; not blanket component or manual accessibility conformance." }) };
+import { verification } from "../browser/verification.mjs";
+const { annotation } = verification({ component: "text-field", category: "enhancements", states: ["default", "required", "invalid", "disabled", "filled"], variants: ["default"], note: "Packed artifact in isolated HTML, Vue, React and Astro applications. Native submission, validation, reset, disabled fieldset, custom-element properties and retained labels; not blanket component or manual accessibility conformance." });
 for (const framework of ["html", "vue", "react", "astro"]) {
   test(`${framework} installs the actual packed controls and retains native form behavior`, { annotation }, async ({ page }) => {
     const errors = [];

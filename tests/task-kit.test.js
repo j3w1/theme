@@ -2,12 +2,12 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import os from "node:os";
 import { execFileSync } from "node:child_process";
 import { unzipSync, strFromU8 } from "fflate";
 import { readJson, readText, repoRoot } from "../scripts/lib/fs.mjs";
 import { buildTaskKit, kitDigest, zipTaskKit } from "../scripts/lib/task-kit.mjs";
 import { writeNewKit } from "../scripts/lib/safe-kit-writer.mjs";
+import { withScratch } from "./helpers/scratch.mjs";
 const index = await readJson("exports/task-inputs.json");
 const request = { revision: "a".repeat(40), resolvedAt: "2026-01-01T00:00:00.000Z", profile: "default", components: ["text-field", "checkbox", "button", "dialog"], mode: "standard", task: "Implement a settings form.", integration: { id: "acceptance-form", version: "1", kind: "css-vars" } };
 const build = (change = {}, read = readText) => buildTaskKit({ index, request: { ...request, ...change }, read });
@@ -62,8 +62,7 @@ test("kits reject mixed source bytes, unknown components and blocked profiles; t
 });
 
 test("safe writer preserves existing destinations and rejects path and link boundaries", async () => {
-  const root = await fs.mkdtemp(path.join(os.tmpdir(), "j3w1-kit-writer-"));
-  try {
+  await withScratch("j3w1-kit-writer-", async (root) => {
     const target = path.join(root, "new-kit");
     await writeNewKit(target, { "a/file.md": "original\n" });
     await assert.rejects(writeNewKit(target, { "a/file.md": "replacement" }), /already exists/);
@@ -74,16 +73,11 @@ test("safe writer preserves existing destinations and rejects path and link boun
     await fs.symlink(target, link, process.platform === "win32" ? "junction" : "dir");
     await assert.rejects(writeNewKit(path.join(link, "redirected"), { "x.md": "x" }), /ancestors|reparse/i);
     await assert.rejects(fs.stat(path.join(target, "redirected")), { code: "ENOENT" });
-  } finally {
-    // root is the exact directory returned by mkdtemp, never a caller path.
-    assert.ok(path.resolve(root).startsWith(path.resolve(os.tmpdir()) + path.sep));
-    await fs.rm(root, { recursive: true, force: true });
-  }
+  });
 });
 
 test("legacy standard and strict kits retain their sealed file contract and refuse replacement", async () => {
-  const root = await fs.mkdtemp(path.join(os.tmpdir(), "j3w1-legacy-kit-"));
-  try {
+  await withScratch("j3w1-legacy-kit-", async (root) => {
     for (const strict of [false, true]) {
       const out = path.join(root, strict ? "strict" : "standard");
       const args = ["scripts/consumption-kit.mjs", "text-field", ...(strict ? ["--strict"] : []), "--out", out];
@@ -94,5 +88,5 @@ test("legacy standard and strict kits retain their sealed file contract and refu
       assert.equal(await fs.readFile(path.join(out, "components/text-field.json"), "utf8"), await readText("exports/components/text-field.json"));
       assert.throws(() => execFileSync(process.execPath, args, { cwd: repoRoot, stdio: "pipe" }));
     }
-  } finally { assert.ok(path.resolve(root).startsWith(path.resolve(os.tmpdir()) + path.sep)); await fs.rm(root, { recursive: true, force: true }); }
+  });
 });

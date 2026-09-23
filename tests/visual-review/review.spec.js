@@ -1,8 +1,9 @@
 import { test, expect } from "../browser/evidence-fixture.mjs";
+import { verification } from "../browser/verification.mjs";
 import { promises as fs } from "node:fs";
 import AxeBuilder from "@axe-core/playwright";
 const ids = ["current", "conservative", "balanced", "maximum-legibility"];
-const annotation = (category, states, note) => ({ annotation: { type: "verification", description: JSON.stringify({ component: "visual-review", category, states, variants: ids, note }) } });
+const annotation = (category, states, note) => (verification({ component: "visual-review", category, states, variants: ids, note }));
 
 test("local Vue frames synchronize actual filters and maintain equal specimen identities", annotation("enhancements", ["default", "filled"], "Local candidate preview, not package conformance."), async ({ page }) => {
   await page.goto("/review/compare/");
