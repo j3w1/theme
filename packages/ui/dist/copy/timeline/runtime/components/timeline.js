@@ -4,7 +4,7 @@ import { n as content } from "../chunks/native-CAzZmDKR.js";
 var J3w1Timeline = class extends J3w1Element {
 	static componentId = "timeline";
 	static version = "1.1.0";
-	static implementationId = "sha256-Xeq7c4IzpTK4EGmzkydG/wqMlsXKpxebluelT4eq5AQ=";
+	static implementationId = "sha256-gci1955ZIZTHX2+guqPSLTeAm5FBurCFjhAjspYyOVk=";
 	static connect = content;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

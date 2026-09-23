@@ -4,7 +4,7 @@ import { t as formComposition } from "../chunks/forms-BT3z7lNC.js";
 var J3w1SettingsPanel = class extends J3w1Element {
 	static componentId = "settings-panel";
 	static version = "1.1.0";
-	static implementationId = "sha256-q/iQELVosHq4ilEcqm+oXRc/vHRaFqI5KoHSofpHXxY=";
+	static implementationId = "sha256-H/wxxr5Vj70JwdsAxyNcn99sKQHUV6makgM/4awwjiw=";
 	static connect = formComposition;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];
