@@ -41,10 +41,11 @@ export async function moduleClosure(root, entries) {
     const text = await fs.readFile(path.join(root, name), "utf8");
     files.set(name, text);
     for (const dependency of parse(text, name)[0]) {
-      if (dependency.d === -2) continue; // import.meta is not a module dependency.
-      if (!dependency.n) throw new Error(`Non-literal runtime dependency: ${name}`);
-      if (!dependency.n.startsWith(".")) throw new Error(`Unbundled runtime dependency: ${name}: ${dependency.n}`);
-      await visit(path.posix.join(path.posix.dirname(name), dependency.n));
+      if (dependency.type === "import-meta") continue; // import.meta is not a module dependency.
+      // A template-literal import() reports a glob such as "./x/*.js": not a literal module.
+      if (!dependency.specifier || dependency.glob) throw new Error(`Non-literal runtime dependency: ${name}`);
+      if (!dependency.specifier.startsWith(".")) throw new Error(`Unbundled runtime dependency: ${name}: ${dependency.specifier}`);
+      await visit(path.posix.join(path.posix.dirname(name), dependency.specifier));
     }
   };
   for (const entry of entries) await visit(entry);

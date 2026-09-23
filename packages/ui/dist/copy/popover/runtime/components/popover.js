@@ -4,7 +4,7 @@ import { r as popover } from "../chunks/overlays-C6nlCHqg.js";
 var J3w1Popover = class extends J3w1Element {
 	static componentId = "popover";
 	static version = "1.1.0";
-	static implementationId = "sha256-bvTWxHHJpPD9iGEM++pcPwURtqwvPsdDNpbEzM5urU4=";
+	static implementationId = "sha256-7Xctm1gk70uAMrFFXBYnjqC/nRNvRSz98j4FscEEkv4=";
 	static connect = popover;
 	static upgradeProperties = [
 		"disabled",

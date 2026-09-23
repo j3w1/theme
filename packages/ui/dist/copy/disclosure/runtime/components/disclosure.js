@@ -4,7 +4,7 @@ import { n as disclosure } from "../chunks/navigation-Dt8ap-9J.js";
 var J3w1Disclosure = class extends J3w1Element {
 	static componentId = "disclosure";
 	static version = "1.1.0";
-	static implementationId = "sha256-qmEx9t4gSYWKWsQmQpqkPKESmovmBQoykkVgZ3Kadx4=";
+	static implementationId = "sha256-kbwFHRSP233hFMAuZ5zp8emsqD8tLAEX6UNy8q9deNQ=";
 	static connect = disclosure;
 	static upgradeProperties = [
 		"disabled",
