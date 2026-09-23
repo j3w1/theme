@@ -2,7 +2,7 @@
    they can be tested with node --test. scripts/design-mode.mjs wires them
    to the real processes, ports and file system. */
 
-import { promises as fs } from "node:fs";
+import { promises as fs, watch } from "node:fs";
 import path from "node:path";
 import { npmExecPath } from "./npm.mjs";
 
@@ -43,6 +43,27 @@ export const discoverRoutes = async (baselineDir, skip = NON_PAGE_DIRECTORIES) =
     }
   } catch { /* no baseline yet */ }
   return routes;
+};
+
+/* ---- source watching --------------------------------------------------- */
+
+/* Calls onChange(relativePath) for every change under `root`. It watches
+   each directory on its own rather than using fs.watch's recursive mode:
+   on Linux the recursive watcher follows file inodes, so once an editor
+   saves by writing a temporary file and renaming it over the original
+   (vim, JetBrains safe write, sed -i) that file never reports again. A
+   directory watch reports its children however they are replaced.
+   Directories created after the watch starts are not followed. */
+export const watchTree = async (root, onChange) => {
+  const watchers = [];
+  const add = async (dir) => {
+    const watcher = watch(dir, (event, name) => { if (name) onChange(path.relative(root, path.join(dir, String(name))).split(path.sep).join("/")); });
+    watcher.on("error", () => {});
+    watchers.push(watcher);
+    for (const entry of await fs.readdir(dir, { withFileTypes: true })) if (entry.isDirectory()) await add(path.join(dir, entry.name));
+  };
+  await add(root);
+  return { close: () => { for (const watcher of watchers) watcher.close(); } };
 };
 
 /* ---- frame agent ------------------------------------------------------- */

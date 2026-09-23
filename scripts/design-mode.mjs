@@ -21,7 +21,7 @@
      node scripts/design-mode.mjs --note "..."   append a change to the ledger
      node scripts/design-mode.mjs --exit         print the parsed session report */
 
-import { promises as fs, watch } from "node:fs";
+import { promises as fs } from "node:fs";
 import { createServer } from "node:http";
 import { connect as netConnect, createServer as createNetServer } from "node:net";
 import { spawn, execFile } from "node:child_process";
@@ -38,7 +38,7 @@ import { controlsCss } from "./lib/ui-distribution.mjs";
 import { parseArgs, runCli } from "./tooling/cli.mjs";
 import { head, branch, isDirty } from "./tooling/git.mjs";
 import { contentType, listen, requestPath, send, sendFile, serveTree } from "./tooling/static-server.mjs";
-import { checkPrerequisites, createLedger, derivePorts, discoverRoutes, formatReport, injectAgent, readBaselineMeta, resolvePackageManager, routeOf, writeBaselineMeta } from "./tooling/design-mode.mjs";
+import { checkPrerequisites, createLedger, derivePorts, discoverRoutes, formatReport, injectAgent, readBaselineMeta, resolvePackageManager, routeOf, watchTree, writeBaselineMeta } from "./tooling/design-mode.mjs";
 
 const cache = path.join(repoRoot, ".cache/design-mode");
 const baselineDir = path.join(cache, "baseline");
@@ -329,8 +329,8 @@ const startDev = async () => {
 /* Debounced so an editor's write-then-rename does not run it twice. */
 const watchFor = (dir, task, label) => {
   let pending = null;
-  watch(path.join(repoRoot, dir), { recursive: true }, (event, name) => {
-    if (name && !task.matches(String(name))) return;
+  return watchTree(path.join(repoRoot, dir), (name) => {
+    if (!task.matches(name)) return;
     clearTimeout(pending);
     pending = setTimeout(() => {
       task.go()
@@ -340,11 +340,11 @@ const watchFor = (dir, task, label) => {
   });
 };
 
-const watchSources = () => {
-  watchFor("tokens", { matches: () => true, go: async () => (await regenerateTokens()).join(", ") }, "regenerated the token stylesheet and exports");
+const watchSources = async () => {
+  await watchFor("tokens", { matches: () => true, go: async () => (await regenerateTokens()).join(", ") }, "regenerated the token stylesheet and exports");
   /* Only the two files controls.css is built from; every other stylesheet
      under site/src is served straight to the dev server and needs nothing. */
-  watchFor("site/src/styles", {
+  await watchFor("site/src/styles", {
     matches: (name) => name.endsWith("themed-controls.css") || name.endsWith("recipe-foundation.css"),
     go: async () => (await regenerateControls()) && "rebuilt the themed controls stylesheet",
   }, "rebuilt the themed controls stylesheet");
@@ -367,7 +367,7 @@ const enter = async () => {
   await startDev();
   devReady = true;
   console.log("design mode: the live side is live");
-  watchSources();
+  await watchSources();
 };
 
 if (process.argv[1] && path.resolve(process.argv[1]) === path.join(repoRoot, "scripts/design-mode.mjs")) {

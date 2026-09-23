@@ -8,7 +8,7 @@ import path from "node:path";
 import { withScratch } from "./helpers/scratch.mjs";
 import { resolveWithin } from "../scripts/lib/fs.mjs";
 import { hexIndexForRoute } from "../scripts/lib/hex-routes.mjs";
-import { CHANGE_CLASSES, checkPrerequisites, createLedger, derivePorts, discoverRoutes, formatReport, injectAgent, readBaselineMeta, resolvePackageManager, routeOf, writeBaselineMeta } from "../scripts/tooling/design-mode.mjs";
+import { CHANGE_CLASSES, checkPrerequisites, createLedger, derivePorts, discoverRoutes, formatReport, injectAgent, readBaselineMeta, resolvePackageManager, routeOf, watchTree, writeBaselineMeta } from "../scripts/tooling/design-mode.mjs";
 
 test("the four ports derive from DESIGN_PORT and only the dev port can move on its own", () => {
   assert.deepEqual(derivePorts({}), { compare: 4400, before: 4401, after: 4402, dev: 4403 });
@@ -126,4 +126,33 @@ test("the prerequisite check names every missing piece with its fix", async () =
   assert.equal(checks.filter((c) => c.startsWith("packages/ui/dist")).length, 3);
   assert.ok(broken.problems.every((p) => p.fix.length > 10));
   assert.match(broken.problems.find((p) => p.check.startsWith("packages/ui/dist")).fix, /npm run generate/);
+});
+
+test("source watching survives an editor replacing a file by renaming over it", async () => {
+  await withScratch("j3w1-design-watch-", async (root) => {
+    await fs.mkdir(path.join(root, "profiles"));
+    const file = path.join(root, "profiles/extended.tokens.json");
+    await fs.writeFile(file, "{}\n");
+    const seen = [];
+    const watcher = await watchTree(root, (name) => seen.push(name));
+    const settle = () => new Promise((resolve) => setTimeout(resolve, 200));
+    const saw = async (label) => {
+      for (let i = 0; i < 25 && !seen.length; i++) await settle();
+      assert.ok(seen.includes("profiles/extended.tokens.json"), `${label}: saw ${JSON.stringify(seen)}`);
+      seen.length = 0;
+    };
+    try {
+      await fs.writeFile(file, "{ }\n");
+      await saw("in-place write");
+      await fs.writeFile(`${file}.tmp`, "{  }\n");
+      await fs.rename(`${file}.tmp`, file);
+      await saw("rename over the original");
+      await settle();
+      seen.length = 0;
+      await fs.writeFile(file, "{   }\n");
+      await saw("write after the rename");
+    } finally {
+      watcher.close();
+    }
+  });
 });
