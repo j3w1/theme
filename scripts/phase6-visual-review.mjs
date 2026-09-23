@@ -8,6 +8,7 @@ import { buildCss, buildDensityCss } from "./lib/css.mjs";
 import { renderSpecimenMarkup, stateAttributes } from "./lib/specimen-markup.mjs";
 import { splitVariants } from "./lib/spec.mjs";
 import { decorateHexHtml } from "./lib/hex-html.mjs";
+import { parseArgs, portFromEnv, runCli } from "./tooling/cli.mjs";
 
 const root = path.join(repoRoot, ".cache/phase6a");
 const output = path.join(root, "site");
@@ -89,10 +90,10 @@ export const serveReview = (port) => {
 };
 
 if (process.argv[1] && path.resolve(process.argv[1]) === path.join(repoRoot, "scripts/phase6-visual-review.mjs")) {
-  const args = process.argv.slice(2);
-  const port = Number(process.env.REVIEW_PORT ?? 4322);
-  if (!Number.isInteger(port) || port < 1024 || port > 65535) throw new Error("REVIEW_PORT must be an integer between 1024 and 65535");
-  if (args.some(a => !["--build", "--serve"].includes(a))) throw new Error("Use --build or --serve");
-  if (!args.includes("--serve")) await buildReview();
-  if (!args.includes("--build")) serveReview(port);
+  await runCli(async () => {
+    const { values } = parseArgs({ options: { build: { type: "boolean", default: false }, serve: { type: "boolean", default: false } } });
+    const port = portFromEnv("REVIEW_PORT", 4322);
+    if (!values.serve) await buildReview();
+    if (!values.build) serveReview(port);
+  });
 }

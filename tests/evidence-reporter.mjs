@@ -2,8 +2,8 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 import os from "node:os";
 import { createHash } from "node:crypto";
-import { execFileSync } from "node:child_process";
 import { repoRoot, stableJson } from "../scripts/lib/fs.mjs";
+import { git, REVISION } from "../scripts/tooling/git.mjs";
 import { subjectOfBuild, validateEvidence } from "../scripts/lib/evidence.mjs";
 
 export default class EvidenceReporter {
@@ -16,9 +16,9 @@ export default class EvidenceReporter {
     this.collectionErrors = [];
     this.tests = suite.allTests();
     this.seen = new Set();
-    const revision = execFileSync("git", ["rev-parse", "HEAD"], { cwd: repoRoot, encoding: "utf8" }).trim();
-    const dirty = execFileSync("git", ["status", "--porcelain", "--untracked-files=normal"], { cwd: repoRoot, encoding: "utf8" }).trim();
-    this.revision = !dirty && /^[a-f0-9]{40}$/.test(revision) ? revision : null;
+    const revision = git(["rev-parse", "HEAD"]);
+    const dirty = git(["status", "--porcelain", "--untracked-files=normal"]);
+    this.revision = !dirty && REVISION.test(revision) ? revision : null;
     this.reference = process.env.GITHUB_ACTIONS === "true" && /^\d+$/.test(process.env.GITHUB_RUN_ID ?? "") ? `https://github.com/j3w1/theme/actions/runs/${process.env.GITHUB_RUN_ID}` : "local Playwright run; see recorded digests";
   }
 

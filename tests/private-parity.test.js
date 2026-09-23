@@ -7,6 +7,7 @@ import { safeKitPath } from "../schemas/task-kit.mjs";
 import { repoRoot } from "../scripts/lib/fs.mjs";
 import { preparePrivateParity } from "../scripts/lib/private-parity.mjs";
 import { runPrivateParity } from "../scripts/lib/private-parity-browser.mjs";
+import { git } from "../scripts/tooling/git.mjs";
 import { withScratch } from "./helpers/scratch.mjs";
 import { promises as fs } from "node:fs";
 import { execFileSync } from "node:child_process";
@@ -40,7 +41,7 @@ test("private preparation pins native specimens, verifies installed/locked versi
     }
     await fs.writeFile(path.join(target, "defaults.js"), "export default {};\n");
     await fs.writeFile(path.join(target, "_style.scss"), "/* synthetic styles only */\n");
-    const config = { schemaVersion: 1, target, out: path.join(root, "prepared"), themeRef: execFileSync("git", ["rev-parse", "HEAD"], { cwd: repoRoot, encoding: "utf8" }).trim(), templateVersion: "1.0.0",
+    const config = { schemaVersion: 1, target, out: path.join(root, "prepared"), themeRef: git(["rev-parse", "HEAD"]), templateVersion: "1.0.0",
       license: { type: "regular", reference: "Synthetic unit fixture; no licensed content or real import.", reviewed: true },
       lock: "pnpm-lock.yaml", sources: [{ from: "defaults.js", to: "defaults.js" }, { from: "_style.scss", to: "_style.scss" }],
       defaults: "defaults.js", styles: "_style.scss", frameworkStyles: "_style.scss", aliases: {} };
