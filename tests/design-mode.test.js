@@ -137,7 +137,8 @@ test("source watching survives an editor replacing a file by renaming over it", 
     const watcher = await watchTree(root, (name) => seen.push(name));
     const settle = () => new Promise((resolve) => setTimeout(resolve, 200));
     const saw = async (label) => {
-      for (let i = 0; i < 25 && !seen.length; i++) await settle();
+      /* Wait for this file's own event: the temporary file reports first. */
+      for (let i = 0; i < 25 && !seen.includes("profiles/extended.tokens.json"); i++) await settle();
       assert.ok(seen.includes("profiles/extended.tokens.json"), `${label}: saw ${JSON.stringify(seen)}`);
       seen.length = 0;
     };
