@@ -4,7 +4,7 @@ import { r as windowFrame } from "../chunks/compositions-d6BkKTYf.js";
 var J3w1I3WindowFrame = class extends J3w1Element {
 	static componentId = "i3-window-frame";
 	static version = "1.1.0";
-	static implementationId = "sha256-JDFJWAZq4QeLaf+wdI6OvBpLZOalwsw18sIJyxt9goQ=";
+	static implementationId = "sha256-8/Z4psxzfQPrDit3HFM7nqY+9B5Go9qaQwmyU+kJlZg=";
 	static connect = windowFrame;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];
