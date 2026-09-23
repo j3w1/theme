@@ -14,7 +14,7 @@ import { initToc } from "./toc";
 import { initWorkbenchEntry } from "./workbench-entry";
 import { enhanceControls } from "@j3w1/ui/enhance/choice";
 
-document.documentElement.classList.add("js");
+/* SpecLayout's pre-paint inline script has already marked <html> with .js. */
 
 initDensity();
 initProfile();

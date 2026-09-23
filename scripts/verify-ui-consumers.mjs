@@ -6,13 +6,14 @@ import { execFileSync } from "node:child_process";
 import { repoRoot, stableJson, sha256 } from "./lib/fs.mjs";
 import { consumerExamples } from './lib/ui-consumer-examples.mjs';
 import { snapshotDirectory } from "./lib/ui-evidence.mjs";
+import { packedPackage } from "./tooling/npm.mjs";
 
 const npm = process.env.npm_execpath;
 if (!npm || !path.isAbsolute(npm)) throw new Error("Run this check with npm run ui:consumers.");
 const run = (args, cwd) => execFileSync(process.execPath, [npm, ...args], { cwd, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
 const packages = path.join(repoRoot, ".cache/packages");
 await fs.mkdir(packages, { recursive: true });
-const packed = JSON.parse(run(["pack", "--workspace", "@j3w1/ui", "--json", "--pack-destination", packages], repoRoot))[0];
+const packed = packedPackage(run(["pack", "--workspace", "@j3w1/ui", "--json", "--pack-destination", packages], repoRoot), "@j3w1/ui");
 const root = await fs.mkdtemp(path.join(os.tmpdir(), "j3w1-consumers-"));
 const put = async (name, content) => { const target = path.join(root, name); await fs.mkdir(path.dirname(target), { recursive: true }); await fs.writeFile(target, content); };
 await put("package.json", stableJson({ private: true, type: "module", dependencies: { "@j3w1/ui": `file:${path.join(packages, packed.filename).split(path.sep).join("/")}`, vue: "3.5.42", react: "19.2.8", "react-dom": "19.2.8", astro: "7.3.1", vite: "8.2.2", "@vitejs/plugin-vue": "6.0.8", typescript: "7.0.2" } }));

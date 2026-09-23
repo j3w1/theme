@@ -3,6 +3,7 @@ import IssueDraft from "./IssueDraft.astro";
 import { anchorFor } from "../../../scripts/lib/anchors.mjs";
 import { renderSpecimenMarkup, stateAttributes } from "../../../scripts/lib/specimen-markup.mjs";
 import { withBase } from "../lib/base";
+import { newIssueUrl } from "../lib/revision";
 const { data } = Astro.props;
 const c = data.contract;
 const { fragments, ...metadata } = data;
@@ -13,7 +14,7 @@ const colors = Object.entries(data.tokens.default).filter(([, token]: any) => to
   <p><a href={`${withBase("")}#${anchorFor.component(c.id)}`}>Component specification</a> · <a href={withBase(`preview/${c.id}/`)} data-open-preview>Open isolated preview</a></p>
   <p>Controls use maintained specimens. A forced focus ring is a visual simulation; it does not move keyboard focus. Profile previews keep their published approval status. Sample text stays in this page unless explicitly included in a shared link.</p>
   <p data-revision-status role="status">{data.revision ? `Actual build: ${data.revision}` : "Actual build: local and unpinned."} Source snapshot: <code>{data.sourceDigest}</code></p>
-  <p><a href={withBase(`exports/components/${c.id}.json`)}>Machine contract</a> · <a href={`https://github.com/j3w1/theme/issues/new?title=${encodeURIComponent(`${c.id}: describe the issue`)}`}>Report an issue without JavaScript</a></p>
+  <p><a href={withBase(`exports/components/${c.id}.json`)}>Machine contract</a> · <a href={newIssueUrl(`${c.id}: describe the issue`)}>Report an issue without JavaScript</a></p>
   <div class="workbench-fallback"><h2>Canonical specimen</h2><div data-density="compact" data-profile="default" set:html={renderSpecimenMarkup(fragments.default, `workbench-static-${c.id}`)} /><p>JavaScript adds the controls below; the complete specification and this specimen remain available without it.</p></div>
   <form class="workbench-controls js-only" data-workbench-controls>
     <label for={key("variant")}>Variant<select id={key("variant")} name="variant">{c.variants.map((v: any) => <option value={v.id}>{v.name}</option>)}</select></label>

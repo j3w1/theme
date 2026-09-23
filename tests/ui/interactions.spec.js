@@ -1,7 +1,8 @@
 import { chooseOptions } from "./choice-helper.mjs";
+import { verification } from "../browser/verification.mjs";
 import { test, expect } from "../browser/evidence-fixture.mjs";
 import AxeBuilder from "@axe-core/playwright";
-const scope = (component, states, variants = ["default"], note = "") => ({ annotation: { type: "verification", description: JSON.stringify({ component, category: "keyboard", states, variants, note: `Isolated packed gallery; scripted interaction and lifecycle scope only. ${note}` }) } });
+const scope = (component, states, variants = ["default"], note = "") => (verification({ component, category: "keyboard", states, variants, note: `Isolated packed gallery; scripted interaction and lifecycle scope only. ${note}` }));
 const card = (page, id, variant = "default") => page.locator(`.gallery-card[data-component="${id}"][data-variant="${variant}"]`);
 test.beforeEach(async ({ page }) => { await page.goto("/gallery/"); await expect(page.locator(".gallery-card").first()).toBeVisible(); });
 

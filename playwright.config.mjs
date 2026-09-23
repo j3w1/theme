@@ -3,9 +3,9 @@
 // and nojs (JavaScript disabled: everything normative must still be there).
 
 import { defineConfig, devices } from "@playwright/test";
+import { portFromEnv } from "./scripts/tooling/cli.mjs";
 
-const port = Number(process.env.PW_PORT ?? 4173);
-if (!Number.isInteger(port) || port < 1 || port > 65535) throw new Error("PW_PORT must be an integer from 1 to 65535");
+const port = portFromEnv("PW_PORT", 4173, { min: 1 });
 
 export default defineConfig({
   testDir: "./tests/browser",

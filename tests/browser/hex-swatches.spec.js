@@ -1,10 +1,11 @@
 import { test, expect } from "./evidence-fixture.mjs";
+import { verification } from "./verification.mjs";
 import { openSpec, only } from "./helpers.mjs";
 
 test.describe("actual pointer input without reported hover capability", () => {
   test.use({ hasTouch: true });
 
-  test("mouse activates morph and popup when both hover queries are false", { annotation: { type: "verification", description: JSON.stringify({ component: "page", category: "enhancements", states: ["hover"], variants: [], note: "Chromium touch-capable emulation reports both hover queries false; real mouse input verifies morph, tracking, leave and scroll. Not physical-device evidence." }) } }, async ({ page }, testInfo) => {
+  test("mouse activates morph and popup when both hover queries are false", verification({ component: "page", category: "enhancements", states: ["hover"], variants: [], note: "Chromium touch-capable emulation reports both hover queries false; real mouse input verifies morph, tracking, leave and scroll. Not physical-device evidence." }), async ({ page }, testInfo) => {
     test.skip(!only(testInfo, "desktop"), "one explicit false-hover environment");
     const clean = await openSpec(page);
     expect(await page.evaluate(() => [matchMedia("(hover: hover)").matches, matchMedia("(any-hover: hover)").matches])).toEqual([false, false]);
@@ -33,7 +34,7 @@ test.describe("actual pointer input without reported hover capability", () => {
     clean.assertClean();
   });
 
-  test("touch and unknown input do not open the popup; pen events do", { annotation: { type: "verification", description: JSON.stringify({ component: "page", category: "enhancements", states: ["hover"], variants: [], note: "Chromium touch emulation with real touchscreen tap; dispatched pointermove checks touch/unknown rejection and pen acceptance at event level, not physical pen hardware." }) } }, async ({ page }, testInfo) => {
+  test("touch and unknown input do not open the popup; pen events do", verification({ component: "page", category: "enhancements", states: ["hover"], variants: [], note: "Chromium touch emulation with real touchscreen tap; dispatched pointermove checks touch/unknown rejection and pen acceptance at event level, not physical pen hardware." }), async ({ page }, testInfo) => {
     test.skip(!only(testInfo, "desktop"), "one touch-capable input policy check");
     await openSpec(page);
     const circle = page.locator('.hex-swatch[data-hex="#000000"][data-token-matches]').first();
@@ -51,7 +52,7 @@ test.describe("actual pointer input without reported hover capability", () => {
   });
 });
 
-test("hex previews preserve exact colors, copy text and the no-JS baseline", { annotation: { type: "verification", description: JSON.stringify({"component": "page", "category": "appearance", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }) => {
+test("hex previews preserve exact colors, copy text and the no-JS baseline", verification({component: "page", category: "appearance", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }) => {
   await openSpec(page);
   const swatch = page.locator('.hex-swatch[data-hex="#ff0000"]').first();
   await expect(swatch).toHaveCount(1);
@@ -74,7 +75,7 @@ test("hex previews preserve exact colors, copy text and the no-JS baseline", { a
   expect(await page.locator(".hex-swatch[tabindex]").count()).toBe(0);
 });
 
-test("hover grows visually by 1.4px without reflow", { annotation: { type: "verification", description: JSON.stringify({"component": "page", "category": "motion", "states": [], "variants": [], "note": "Pointer hover: exact circle-to-square scale, fast duration and unchanged adjacent geometry."}) } }, async ({ page }, testInfo) => {
+test("hover grows visually by 1.4px without reflow", verification({component: "page", category: "motion", states: [], variants: [], note: "Pointer hover: exact circle-to-square scale, fast duration and unchanged adjacent geometry."}), async ({ page }, testInfo) => {
   test.skip(!only(testInfo, "desktop"), "one hover-capable layout");
   await openSpec(page);
   const swatch = page.locator('.hex-swatch[data-hex="#ff0000"]').first();
@@ -89,7 +90,7 @@ test("hover grows visually by 1.4px without reflow", { annotation: { type: "veri
   expect(await geometry()).toEqual(before);
 });
 
-test("reduced-motion previews change instantly", { annotation: { type: "verification", description: JSON.stringify({ component: "page", category: "motion", states: [], variants: [], note: "Reduced-motion media enabled before loading; hover enlargement has no transition." }) } }, async ({ page }, testInfo) => {
+test("reduced-motion previews change instantly", verification({ component: "page", category: "motion", states: [], variants: [], note: "Reduced-motion media enabled before loading; hover enlargement has no transition." }), async ({ page }, testInfo) => {
   test.skip(!only(testInfo, "desktop"), "one reduced-motion preview check");
   await page.emulateMedia({ reducedMotion: "reduce" });
   await openSpec(page);
@@ -99,7 +100,7 @@ test("reduced-motion previews change instantly", { annotation: { type: "verifica
   await expect(swatch).toHaveCSS("transform", "matrix(1.0875, 0, 0, 1.0875, 0, 0)");
 });
 
-test("forced-colors previews preserve literal color data", { annotation: { type: "verification", description: JSON.stringify({ component: "page", category: "appearance", states: [], variants: [], note: "Forced-colors media enabled before loading; the decorative preview retains its exact fill." }) } }, async ({ page }, testInfo) => {
+test("forced-colors previews preserve literal color data", verification({ component: "page", category: "appearance", states: [], variants: [], note: "Forced-colors media enabled before loading; the decorative preview retains its exact fill." }), async ({ page }, testInfo) => {
   test.skip(!only(testInfo, "desktop"), "one forced-colors preview check");
   await page.emulateMedia({ forcedColors: "active" });
   await openSpec(page);
@@ -108,7 +109,7 @@ test("forced-colors previews preserve literal color data", { annotation: { type:
   expect(await swatch.evaluate((el) => getComputedStyle(el, "::after").backgroundColor)).toBe("rgb(255, 0, 0)");
 });
 
-test("printed previews request exact colors", { annotation: { type: "verification", description: JSON.stringify({ component: "page", category: "print", states: [], variants: [], note: "Print media enabled before loading; previews request exact color preservation." }) } }, async ({ page }, testInfo) => {
+test("printed previews request exact colors", verification({ component: "page", category: "print", states: [], variants: [], note: "Print media enabled before loading; previews request exact color preservation." }), async ({ page }, testInfo) => {
   test.skip(!only(testInfo, "desktop"), "one print preview check");
   await page.emulateMedia({ media: "print" });
   await openSpec(page);
@@ -116,7 +117,7 @@ test("printed previews request exact colors", { annotation: { type: "verificatio
   expect(await swatch.evaluate((el) => getComputedStyle(el).printColorAdjust)).toBe("exact");
 });
 
-test("inspector uses generated previews and retains all token matches without new tab stops", { annotation: { type: "verification", description: JSON.stringify({"component": "page", "category": "enhancements", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }, testInfo) => {
+test("inspector uses generated previews and retains all token matches without new tab stops", verification({component: "page", category: "enhancements", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {
   test.skip(!only(testInfo, "desktop"), "one enhanced inspector");
   await openSpec(page);
   await page.locator('[data-token="color.interaction.focus.ring"]').first().focus();
@@ -133,7 +134,7 @@ test("inspector uses generated previews and retains all token matches without ne
   expect(await items.allTextContents()).toEqual(matches.map((match) => `${match.profile}: ${match.path}`));
 });
 
-test("color popup follows only its circle and revalidates stationary hover on scroll", { annotation: { type: "verification", description: JSON.stringify({ component: "page", category: "enhancements", states: ["hover"], variants: [], note: "Mouse tracking, leave, outside press, scroll hit testing and viewport bounds on desktop; no manual accessibility claim." }) } }, async ({ page }, testInfo) => {
+test("color popup follows only its circle and revalidates stationary hover on scroll", verification({ component: "page", category: "enhancements", states: ["hover"], variants: [], note: "Mouse tracking, leave, outside press, scroll hit testing and viewport bounds on desktop; no manual accessibility claim." }), async ({ page }, testInfo) => {
   test.skip(!only(testInfo, "desktop"), "mouse lifecycle on desktop");
   const clean = await openSpec(page);
   const swatch = page.locator('.hex-swatch[data-hex="#000000"][data-token-matches]').first();

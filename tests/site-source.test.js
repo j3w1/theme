@@ -40,7 +40,6 @@ test("templates never hard-code the base path or root-absolute links", async () 
     const text = await readText(file);
     if (file.endsWith("lib/base.ts")) continue;
     assert.doesNotMatch(text, /href="\/(?!\/)|src="\/(?!\/)/, `${file} root-absolute attribute`);
-    if (file.endsWith("scripts/search.ts")) continue;
     assert.doesNotMatch(text, /["'`]\/theme\//, `${file} hard-codes /theme/ (use withBase)`);
   }
 });

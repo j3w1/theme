@@ -1,4 +1,5 @@
 ---
+import { buildCommit } from "../lib/revision";
 /* The one long page. Order: identity → foundations → every family → accessibility
    (with the contrast report) → portability (support table, coverage ledger)
    → references → for agents → decisions. Everything normative is in the
@@ -36,7 +37,6 @@ const familiesWithComponents = familyList
   .map((f) => ({ ...f, entries: components.filter((c) => c.data.family === f.id) }))
   .filter((f) => f.entries.length > 0);
 
-const buildCommit = (process.env.GITHUB_SHA ?? "").slice(0, 7);
 const repositories = referenceSources.repositories as Record<string, { repo: string; revision: string }>;
 const title = theme.displayName;
 const description = `${theme.description} One page: foundations, every component with its states, composed specimens, accessibility and portability rules, and exports for agents.`;

@@ -4,13 +4,13 @@ import path from "node:path";
 import { pathToFileURL, fileURLToPath } from "node:url";
 import { build } from "vite";
 import { parseFragment } from "parse5";
-import { repoRoot, readJson, readText, listFiles, sha256, stableJson } from "./lib/fs.mjs";
+import { repoRoot, readJson, readText, listFiles, sha256, stableJson, writeFileEnsured } from "./lib/fs.mjs";
 import { loadComponents } from "./lib/spec.mjs";
 import { loadProfile, resolveTokens } from "./lib/tokens.mjs";
 import { buildCss, buildDensityCss } from "./lib/css.mjs";
 import { scopeRecipeCss, recipeTokenCss, RECIPE_SCOPE } from "./lib/recipe-css.mjs";
 import { walkMarkup, attribute } from "./lib/markup.mjs";
-import { writeCopyBundle, cssSourceClosure } from "./lib/ui-distribution.mjs";
+import { writeCopyBundle, cssSourceClosure, controlsCss } from "./lib/ui-distribution.mjs";
 import { consumerExamples } from "./lib/ui-consumer-examples.mjs";
 
 export async function buildUI({ check = false } = {}) {
@@ -27,7 +27,7 @@ export async function buildUI({ check = false } = {}) {
   await fs.rm(stage, { force: true, recursive: true });
   await fs.mkdir(stage, { recursive: true });
   const output = path.join(stage, "dist"), entries = path.join(stage, "entries");
-  const put = async (root, file, text) => { const target = path.join(root, file); await fs.mkdir(path.dirname(target), { recursive: true }); await fs.writeFile(target, text); };
+  const put = (root, file, text) => writeFileEnsured(path.join(root, file), text);
   const input = {};
   const types = new Map();
   const index = [], register = [];
@@ -82,7 +82,7 @@ export async function buildUI({ check = false } = {}) {
   const foundation = await readText("site/src/styles/recipe-foundation.css");
   const shared = await readText("packages/ui/src/styles/behavior.css");
   const choiceStyles = await readText('site/src/styles/themed-controls.css');
-  await put(output, 'styles/controls.css', scopeRecipeCss(foundation + '\n' + choiceStyles).replaceAll(RECIPE_SCOPE, '[data-j3w1-controls]'));
+  await put(output, "styles/controls.css", controlsCss(foundation, choiceStyles));
   const thirdParty = (await Promise.all(["zod", "parse5", "entities"].map(async name => `## Bundled dependency: ${name}\n\n${await readText(`node_modules/${name}/LICENSE`)}\n`))).join("\n");
   const notices = await readText("LICENSE.md") + "\n## Distribution attribution\n\nExamples adapt j3w1 UI Theme Spec specimens under CC BY 4.0. Package behavior and generated code remain MIT. Keep these notices when copying. No fonts or external template material are bundled.\n\n" + thirdParty;
   await put(output, "LICENSE.md", notices);
@@ -136,7 +136,7 @@ export async function buildUI({ check = false } = {}) {
     const text = await fs.readFile(path.join(repoRoot, file));
     let previous; try { previous = await fs.readFile(path.join(repoRoot, target)); } catch {}
     files.push(target);
-    if (!previous?.equals(text)) { changed.push(target); if (!check) { await fs.mkdir(path.dirname(path.join(repoRoot, target)), { recursive: true }); await fs.writeFile(path.join(repoRoot, target), text); } }
+    if (!previous?.equals(text)) { changed.push(target); if (!check) await writeFileEnsured(path.join(repoRoot, target), text); }
   }
   const orphans = (await listFiles("packages/ui/dist")).filter(file => !files.includes(file));
   if (!check) for (const file of orphans) await fs.unlink(path.join(repoRoot, file));

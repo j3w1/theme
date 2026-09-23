@@ -24,27 +24,4 @@ const command = `j3w1-ui kit --components text-field,button,dialog --out ./vendo
   <h2>Machine entry points</h2><div class="portal-table-wrap"><table class="portal-table"><thead><tr><th>Need</th><th>Artifact</th></tr></thead><tbody><tr><td>Small discovery request</td><td><a href={withBase("ui/index.json")}>ui/index.json</a></td></tr><tr><td>One implementation/API</td><td><code>ui/contracts/&lt;id&gt;.json</code></td></tr><tr><td>Maintained native markup</td><td><code>ui/examples/&lt;id&gt;.json</code></td></tr><tr><td>Complete copy files and digests</td><td><code>ui/copy/&lt;id&gt;/manifest.json</code></td></tr><tr><td>Canonical meaning and eligibility</td><td><code>exports/components/&lt;id&gt;.json</code></td></tr><tr><td>All implementation metadata</td><td><a href={withBase("ui/manifest.json")}>ui/manifest.json</a></td></tr></tbody></table></div>
   <p class="portal-note">Site URLs help humans explore the current release. For reproducible agent fetches, use the matching immutable release tag and its published digests. Never combine current-site examples with a different installed version.</p><h2>Mapping compatibility</h2><p>The existing <a href={withBase("kit/")}>canonical task kit</a>, lock format and portability disclosures remain available. An official package dependency is recorded alongside that integration evidence; it does not pretend to be a newly verified native port.</p></section>
 </PortalLayout>
-<script>
-  const root = document.querySelector<HTMLElement>("[data-agent-kit]");
-  if (root) {
-    const form = root.querySelector<HTMLFormElement>("form")!;
-    const components = form.elements.namedItem("components") as HTMLSelectElement;
-    const framework = form.elements.namedItem("framework") as HTMLSelectElement;
-    const mode = form.elements.namedItem("mode") as HTMLSelectElement;
-    const command = root.querySelector<HTMLElement>("[data-kit-command]")!;
-    const status = root.querySelector<HTMLElement>("[data-kit-status]")!;
-    const requested = new URL(location.href).searchParams.getAll("component");
-    if (requested.some(id => [...components.options].some(option => option.value === id))) for (const option of components.options) option.selected = requested.includes(option.value);
-    const prepare = () => {
-      if (framework.value === "native") mode.value = "mapping";
-      if (!form.reportValidity()) return;
-      const ids = [...components.selectedOptions].map(option => option.value);
-      command.textContent = `j3w1-ui kit --components ${ids.join(",")} --framework ${framework.value} --mode ${mode.value} --out ./vendor/j3w1/task`;
-      status.textContent = `${ids.length} selected. Run with @j3w1/ui ${root.dataset.version}; the CLI verifies and writes a new directory.`;
-    };
-    form.addEventListener("submit", event => { event.preventDefault(); prepare(); });
-    form.addEventListener("change", prepare);
-    root.querySelector("[data-copy-kit]")!.addEventListener("click", async () => { try { await navigator.clipboard.writeText(command.textContent!); status.textContent = "Command copied."; } catch { status.textContent = "Select the command above and copy it manually."; } });
-    prepare();
-  }
-</script>
+<script>import "../../scripts/agent-kit";</script>

@@ -2,12 +2,14 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 import { createServer } from "node:http";
 import { build } from "vite";
-import { repoRoot, readText, listFiles, stableJson, sha256 } from "./lib/fs.mjs";
+import { repoRoot, readText, listFiles, stableJson, sha256, resolveWithin } from "./lib/fs.mjs";
 import { reviewBaseline, evaluateCandidate, candidateIds } from "./lib/visual-review.mjs";
 import { buildCss, buildDensityCss } from "./lib/css.mjs";
 import { renderSpecimenMarkup, stateAttributes } from "./lib/specimen-markup.mjs";
 import { splitVariants } from "./lib/spec.mjs";
 import { decorateHexHtml } from "./lib/hex-html.mjs";
+import { parseArgs, portFromEnv, runCli } from "./tooling/cli.mjs";
+import { requestPath, send, sendFile } from "./tooling/static-server.mjs";
 
 const root = path.join(repoRoot, ".cache/phase6a");
 const output = path.join(root, "site");
@@ -69,19 +71,15 @@ export const buildReview = async () => {
 };
 
 export const serveReview = (port) => {
-  const types = { ".html": "text/html; charset=utf-8", ".css": "text/css", ".js": "text/javascript", ".json": "application/json" };
   const server = createServer(async (req, res) => {
     try {
-      const url = new URL(req.url, "http://localhost");
-      if (url.pathname === "/") { res.writeHead(302, { Location: "/review/compare/" }); res.end(); return; }
-      const pathname = decodeURIComponent(url.pathname);
-      if (pathname.includes("\\") || pathname.includes("\0") || pathname.split("/").includes("..")) throw new Error("Invalid route");
-      const file = path.resolve(output, `.${pathname}${pathname.endsWith("/") ? "index.html" : ""}`);
-      if (!file.startsWith(`${output}${path.sep}`)) throw new Error("Outside review output");
-      const bytes = await fs.readFile(file);
-      res.writeHead(200, { "Content-Type": types[path.extname(file)] ?? "application/octet-stream", "Cache-Control": "no-store", "X-Content-Type-Options": "nosniff" });
-      res.end(bytes);
-    } catch { res.writeHead(404); res.end("Review route not found"); }
+      const pathname = requestPath(req);
+      if (pathname === null) throw new Error("Invalid route");
+      if (pathname === "/") { send(res, 302, null, "", { Location: "/review/compare/" }); return; }
+      const file = resolveWithin(output, `.${pathname}${pathname.endsWith("/") ? "index.html" : ""}`);
+      if (!file) throw new Error("Outside review output");
+      await sendFile(res, file, { headers: { "X-Content-Type-Options": "nosniff" } });
+    } catch { send(res, 404, null, "Review route not found"); }
   });
   server.on("error", error => { console.error(`Cannot serve local review: ${error.message}`); process.exitCode = 1; });
   server.listen(port, "127.0.0.1", () => console.log(`Visual review: http://127.0.0.1:${port}/review/compare/`));
@@ -89,10 +87,10 @@ export const serveReview = (port) => {
 };
 
 if (process.argv[1] && path.resolve(process.argv[1]) === path.join(repoRoot, "scripts/phase6-visual-review.mjs")) {
-  const args = process.argv.slice(2);
-  const port = Number(process.env.REVIEW_PORT ?? 4322);
-  if (!Number.isInteger(port) || port < 1024 || port > 65535) throw new Error("REVIEW_PORT must be an integer between 1024 and 65535");
-  if (args.some(a => !["--build", "--serve"].includes(a))) throw new Error("Use --build or --serve");
-  if (!args.includes("--serve")) await buildReview();
-  if (!args.includes("--build")) serveReview(port);
+  await runCli(async () => {
+    const { values } = parseArgs({ options: { build: { type: "boolean", default: false }, serve: { type: "boolean", default: false } } });
+    const port = portFromEnv("REVIEW_PORT", 4322);
+    if (!values.serve) await buildReview();
+    if (!values.build) serveReview(port);
+  });
 }

@@ -32,5 +32,5 @@ const fields = { group: [...new Set(tokens.map((t) => t.group))].sort(), compone
     </div>
   </section>)}
   <script type="application/json" id="usage-data" set:html={JSON.stringify(queryIndexOf(usageIndex)).replaceAll("<", "\\u003c")} />
-  <script src="../../scripts/usage.ts"></script>
+  <script>import "../../scripts/usage";</script>
 </ToolLayout>
