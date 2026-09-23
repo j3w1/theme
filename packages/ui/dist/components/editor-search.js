@@ -4,7 +4,7 @@ import { i as editorSearch } from "../chunks/display-dj9YaBfn.js";
 var J3w1EditorSearch = class extends J3w1Element {
 	static componentId = "editor-search";
 	static version = "1.1.0";
-	static implementationId = "sha256-YQTeZFSHk5FncPqI/GhoIOLA5rpErwOF2uuPPowaFGg=";
+	static implementationId = "sha256-wHCKtneEMFSEn7Kv91esgjpMxlwq/sJCgneoL0nHGz8=";
 	static connect = editorSearch;
 	static upgradeProperties = [
 		"disabled",

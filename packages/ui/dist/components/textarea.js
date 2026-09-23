@@ -4,7 +4,7 @@ import { r as fields } from "../chunks/native-CAzZmDKR.js";
 var J3w1Textarea = class extends J3w1Element {
 	static componentId = "textarea";
 	static version = "1.1.0";
-	static implementationId = "sha256-VreG7LoGEOK+DiFAsiI3DTFk9s4vHVpz+zO8+HQgl1g=";
+	static implementationId = "sha256-Kz7ZVrp8yvETT6PdZf+QsZ4oReOPQUulCJRj8QtCSus=";
 	static connect = fields;
 	static upgradeProperties = [
 		"disabled",

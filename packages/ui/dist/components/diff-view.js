@@ -4,7 +4,7 @@ import { r as developerView } from "../chunks/display-dj9YaBfn.js";
 var J3w1DiffView = class extends J3w1Element {
 	static componentId = "diff-view";
 	static version = "1.1.0";
-	static implementationId = "sha256-iRjH4tpexECTMBDbWcsW1nZfOs0J2OXcKAkBoNdVEOY=";
+	static implementationId = "sha256-dzUfQgVnt9UZ3aLP1s572I6ftpo9d2ekI29IrJlxJs0=";
 	static connect = developerView;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

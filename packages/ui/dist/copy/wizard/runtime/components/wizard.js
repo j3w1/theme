@@ -4,7 +4,7 @@ import { n as wizard } from "../chunks/forms-BT3z7lNC.js";
 var J3w1Wizard = class extends J3w1Element {
 	static componentId = "wizard";
 	static version = "1.1.0";
-	static implementationId = "sha256-KzAlxMJFZFwJs4a0/LtG2uJcGUbykMFNQ+f6jI3EjHQ=";
+	static implementationId = "sha256-ROLGt2pUlcwBM2cgWEF4oNMucYqJS5fZKcehGoJOn7w=";
 	static connect = wizard;
 	static upgradeProperties = [
 		"disabled",

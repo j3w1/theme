@@ -4,7 +4,7 @@ import { n as table } from "../chunks/tables-B25ydUHs.js";
 var J3w1FilterableTable = class extends J3w1Element {
 	static componentId = "filterable-table";
 	static version = "1.1.0";
-	static implementationId = "sha256-vMU7/FuQJFKL+9Vwd7+s9z+2A7FX0TRqYarMphvLuxw=";
+	static implementationId = "sha256-HxVNJffBzcU1S1SNfX1QtlMCoUlEGmtCZ78OvIEsj+0=";
 	static connect = table;
 	static upgradeProperties = [
 		"disabled",
