@@ -4,7 +4,7 @@ import { r as menu } from "../chunks/navigation-Dt8ap-9J.js";
 var J3w1Menu = class extends J3w1Element {
 	static componentId = "menu";
 	static version = "1.1.0";
-	static implementationId = "sha256-O3kKGLVweWosIM+iS1b4UlTsP9JxIGBim+IiUmFov7M=";
+	static implementationId = "sha256-5l69OqZY6S3ODTgyy6VJBx1KiDQGmGbnze+EykEHgDE=";
 	static connect = menu;
 	static upgradeProperties = [
 		"disabled",

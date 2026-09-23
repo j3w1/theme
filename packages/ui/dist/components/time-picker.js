@@ -4,7 +4,7 @@ import { r as fields } from "../chunks/native-CAzZmDKR.js";
 var J3w1TimePicker = class extends J3w1Element {
 	static componentId = "time-picker";
 	static version = "1.1.0";
-	static implementationId = "sha256-a4g+6Odp2dz75/iOn3gpfGgkGLv+8tAHsB6fmq16yr4=";
+	static implementationId = "sha256-zOZ2K4ANKCNLF99hsTFQSrQCuK6XdM3A5vx6ttdW40Y=";
 	static connect = fields;
 	static upgradeProperties = [
 		"disabled",
