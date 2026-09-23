@@ -4,7 +4,7 @@ import { i as fileInput } from "../chunks/native-CAzZmDKR.js";
 var J3w1FileInput = class extends J3w1Element {
 	static componentId = "file-input";
 	static version = "1.1.0";
-	static implementationId = "sha256-ff8pwTELNSzLICV+ioyjs4ZAfe4F4CUZyU39V5dkmTw=";
+	static implementationId = "sha256-EjDG53tONe0uvGgqyz4XlVRI3G2EuI4/hnxLzI+pTxE=";
 	static connect = fileInput;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

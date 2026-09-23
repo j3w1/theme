@@ -22,6 +22,8 @@ test("copy dependency traversal includes reexports and side effects and rejects 
   await assert.rejects(moduleClosure(root, ["index.js"]), /Unbundled runtime dependency/);
   await fs.writeFile(path.join(root, "index.js"), 'const name="./parts/value.js"; import(name);');
   await assert.rejects(moduleClosure(root, ["index.js"]), /Non-literal runtime dependency/);
+  await fs.writeFile(path.join(root, "index.js"), 'const part="value"; import(`./parts/${part}.js`);');
+  await assert.rejects(moduleClosure(root, ["index.js"]), /Non-literal runtime dependency/);
   await fs.writeFile(path.join(root, "index.js"), 'import /* supported comment */ ("./parts/value.js");');
   assert.equal((await moduleClosure(root, ["index.js"])).size, 2);
 });
