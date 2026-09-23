@@ -1,12 +1,13 @@
 ---
 import { anchorFor } from "../../../scripts/lib/anchors.mjs";
+import { issueSearchUrl, newIssueUrl } from "../lib/revision";
 const { id, context = null } = Astro.props;
 const key = (name: string) => anchorFor.workbench(id, `report-${name}`);
 ---
 <section data-issue-draft data-report-context={JSON.stringify(context)}>
   <h2>Prepare a public issue draft</h2>
   <p>Describe the problem and review the resulting draft. Entered specimen text, storage, screenshots, and unrelated URLs are not collected. No issue is submitted automatically.</p>
-  <p><a href={`https://github.com/j3w1/theme/issues/new?title=${encodeURIComponent(`${id}: describe the issue`)}`}>Open GitHub directly (also works without JavaScript)</a> · <a href={`https://github.com/j3w1/theme/issues?q=${encodeURIComponent(`is:issue ${id}`)}`}>Search existing issues</a></p>
+  <p><a href={newIssueUrl(`${id}: describe the issue`)}>Open GitHub directly (also works without JavaScript)</a> · <a href={issueSearchUrl(`is:issue ${id}`)}>Search existing issues</a></p>
   <form class="issue-draft js-only" data-issue-form>
     {[["expected", "Expected"], ["actual", "Actual"], ["steps", "Steps to reproduce"], ["evidence", "Evidence notes"]].map(([name, label]) => <label for={key(name)}>{label}<textarea id={key(name)} name={name} maxlength="1600" rows="2"></textarea></label>)}
     <button type="submit" class="btn">Prepare draft for review</button>

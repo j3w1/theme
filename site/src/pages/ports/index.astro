@@ -3,8 +3,8 @@ import ToolLayout from "../../layouts/ToolLayout.astro";
 import { renderPortCatalogue } from "../../../../scripts/lib/port-presentation.mjs";
 import catalogue from "../../../../exports/port-capabilities.json";
 import { withBase } from "../../lib/base";
-import { usageRevision } from "../../lib/usage";
-const source = (file) => usageRevision ? `https://github.com/j3w1/theme/blob/${usageRevision}/${file}` : null;
+import { blobUrl, usageRevision } from "../../lib/revision";
+const source = (file) => blobUrl(file);
 ---
 <ToolLayout title="Port capabilities" description="Declared native mappings, supported surfaces and evidence for published application ports.">
   <p>Mapped roles describe an implementation. Verified means a real import with matching target, token, mapping and artifact evidence. Inherited, unsupported, out-of-scope, not-implemented and not verified remain separate.</p>

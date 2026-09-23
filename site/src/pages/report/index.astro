@@ -4,8 +4,9 @@ import IssueDraft from "../../components/IssueDraft.astro";
 import { theme, coverageLedger, defaultTokens } from "../../lib/theme";
 import { sha256 } from "../../../../scripts/lib/fs.mjs";
 import { anchorFor } from "../../../../scripts/lib/anchors.mjs";
+import { usageRevision } from "../../lib/revision";
 import "../../styles/workbench.css";
-const data = { themeVersion: theme.version, siteUrl: theme.site.url, revision: /^[a-f0-9]{40}$/.test(process.env.GITHUB_SHA ?? "") ? process.env.GITHUB_SHA : null, sourceDigest: sha256(JSON.stringify({ theme, coverageLedger, defaultTokens })), components: Object.keys(coverageLedger.components), tokens: Object.keys(defaultTokens), profiles: theme.profiles.map(p => p.id) };
+const data = { themeVersion: theme.version, siteUrl: theme.site.url, revision: usageRevision, sourceDigest: sha256(JSON.stringify({ theme, coverageLedger, defaultTokens })), components: Object.keys(coverageLedger.components), tokens: Object.keys(defaultTokens), profiles: theme.profiles.map(p => p.id) };
 ---
 <ToolLayout title="Report a specification issue" description="Prepare and review a public issue for a component or token.">
   <div class="workbench" data-report-page data-report-data={JSON.stringify(data)}>

@@ -1,7 +1,7 @@
 ---
 import ToolLayout from "../../layouts/ToolLayout.astro";
 import { withBase } from "../../lib/base";
-import { usageRevision } from "../../lib/usage";
+import { blobUrl } from "../../lib/revision";
 import { anchorFor } from "../../../../scripts/lib/anchors.mjs";
 import index from "../../../../exports/recipes/index.json";
 export function getStaticPaths() { return index.recipes.map((recipe) => ({ params: { id: recipe.id } })); }
@@ -37,7 +37,7 @@ const template = read("template.html");
   </section>)}
   <h2>Source identity</h2>
   <p>Version {metadata.version}; profile {metadata.profile}; source digest <code>{metadata.source.digest}</code>. Pin the supplying commit when consuming these files. A version number alone does not identify this artifact.</p>
-  <ul>{Object.keys(metadata.source.files).map((file) => <li>{usageRevision ? <a href={`https://github.com/j3w1/theme/blob/${usageRevision}/${file}`}>{file}</a> : <code>{file}</code>}</li>)}</ul>
+  <ul>{Object.keys(metadata.source.files).map((file) => <li>{blobUrl(file) ? <a href={blobUrl(file)}>{file}</a> : <code>{file}</code>}</li>)}</ul>
   <script>
     import { instantiateRecipe } from "../../../../scripts/lib/recipe-markup.mjs";
     import { anchorFor } from "../../../../scripts/lib/anchors.mjs";

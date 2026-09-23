@@ -1,4 +1,5 @@
 ---
+import { buildCommit } from "../lib/revision";
 import "../styles/tokens.generated.css";
 import "../styles/base.css";
 import "../styles/site.css";
@@ -20,7 +21,6 @@ interface Props {
 
 const { title, description } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
-const buildCommit = (process.env.GITHUB_SHA ?? "").slice(0, 7);
 const inspectorData = Object.fromEntries(
   Object.entries(profiles).map(([id, p]) => [
     id,
