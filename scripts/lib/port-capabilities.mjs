@@ -1,5 +1,7 @@
 import { z } from "zod";
-import { readJson, readText, sha256, stableJson, writeOrCheck } from "./fs.mjs";
+import path from "node:path";
+import { readJson, readText, repoRoot, sha256, sha256File, stableJson, writeOrCheck } from "./fs.mjs";
+import { validatePorts } from "./validators.mjs";
 import { portCapabilitiesSchema, portImportEvidenceSchema, portCatalogueSchema, assertCapabilities } from "../../schemas/port-capabilities.mjs";
 
 // This fingerprint binds evidence to the declared target, roles, capabilities,
@@ -47,10 +49,7 @@ export const readPortDescription = async (port, resolved) => {
   const evidence = capabilities?.verificationPath ? await readJson(base + capabilities.verificationPath) : null;
   const artifactDigests = {};
   // Importable files can be binary; normalized text hashes are inappropriate.
-  const { readFile } = await import("node:fs/promises");
-  const { repoRoot } = await import("./fs.mjs");
-  const { default: path } = await import("node:path");
-  for (const file of port.files) artifactDigests[file.path] = sha256(await readFile(path.join(repoRoot, base, file.path)));
+  for (const file of port.files) artifactDigests[file.path] = await sha256File(path.join(repoRoot, base, file.path));
   return describePort({ port, mapping, capabilities, evidence, artifactDigests,
     tokens: resolved.profiles[port.profile].tokens, tokenDigest: sha256(await readText("exports/tokens.resolved.json")) });
 };
@@ -58,7 +57,6 @@ export const portCatalogueGenerator = {
   name: "port capability catalogue",
   async run(context) {
     const { check } = context;
-    const { validatePorts } = await import("./validators.mjs");
     const resolved = await readJson("exports/tokens.resolved.json");
     const ports = [];
     for (const port of await validatePorts()) ports.push(await readPortDescription(port, resolved));

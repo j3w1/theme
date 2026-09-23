@@ -1,11 +1,11 @@
 ---
+import { buildCommit } from "../lib/revision";
 import "../styles/tokens.generated.css";
 import "../styles/base.css";
 import "../styles/site.css";
 import "../styles/hex-swatches.css";
 import "../styles/print.css";
 import "../styles/workbench.css";
-import "@j3w1/ui/styles/select.css";
 import "@j3w1/ui/styles/controls.css";
 /* Reference CSS for every specified component; the glob is a side-effect import. */
 import.meta.glob("../styles/components/*.css", { eager: true });
@@ -20,7 +20,6 @@ interface Props {
 
 const { title, description } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
-const buildCommit = (process.env.GITHUB_SHA ?? "").slice(0, 7);
 const inspectorData = Object.fromEntries(
   Object.entries(profiles).map(([id, p]) => [
     id,

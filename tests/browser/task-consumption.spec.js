@@ -1,10 +1,11 @@
 import { test, expect } from "./evidence-fixture.mjs";
+import { verification } from "./verification.mjs";
 import { pathToFileURL } from "node:url";
 import path from "node:path";
 import AxeBuilder from "@axe-core/playwright";
 
 const candidate = pathToFileURL(path.resolve("tests/consumption/task-fixtures/bbf0cc9-2026-09-07-2/result.html")).href;
-const annotation = { type: "verification", description: JSON.stringify({ component: "page", category: "enhancements", states: [], variants: [], note: "Separate sealed task-kit reconstruction: native editing, modal lifecycle, focus return, narrow reflow and axe. Does not claim all component states or manual accessibility acceptance." }) };
+const { annotation } = verification({ component: "page", category: "enhancements", states: [], variants: [], note: "Separate sealed task-kit reconstruction: native editing, modal lifecycle, focus return, narrow reflow and axe. Does not claim all component states or manual accessibility acceptance." });
 
 test("sealed composed reconstruction retains native controls and modal lifecycle", { annotation }, async ({ page }, testInfo) => {
   const errors = [];

@@ -1,9 +1,10 @@
 import { chooseOptions } from "../ui/choice-helper.mjs";
+import { verification } from "./verification.mjs";
 import { test, expect } from "./evidence-fixture.mjs";
 import AxeBuilder from "@axe-core/playwright";
 import { createHash } from "node:crypto";
 
-const annotation = (category, note) => ({ type: "verification", description: JSON.stringify({ component: "page", category, states: [], variants: [], note }) });
+const annotation = (category, note) => verification({ component: "page", category, states: [], variants: [], note }).annotation;
 const pair = "releases/v0-1-0/workbench/default/";
 
 test("release reports and historical links remain readable without JavaScript and without page overflow", { annotation: annotation("reflow", "Release picker/report static content and bounded frame scroll regions in each configured viewport; frames are reconstructed visual references, not historical JavaScript or manual accessibility evidence.") }, async ({ page }) => {

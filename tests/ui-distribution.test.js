@@ -2,16 +2,15 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import os from "node:os";
 import { execFileSync } from "node:child_process";
 import { moduleClosure, cssSourceClosure } from "../scripts/lib/ui-distribution.mjs";
 import { scopeRecipeCss } from "../scripts/lib/recipe-css.mjs";
 import { sha256, repoRoot } from "../scripts/lib/fs.mjs";
+import { scratchDir } from "./helpers/scratch.mjs";
 import { registerElement } from "../packages/ui/src/internal/element.js";
 
 test("copy dependency traversal includes reexports and side effects and rejects escapes and unresolved packages", async t => {
-  const root = await fs.mkdtemp(path.join(os.tmpdir(), "j3w1-closure-"));
-  t.after(() => fs.rm(root, { recursive: true, force: true }));
+  const root = await scratchDir(t, "j3w1-closure-");
   await fs.mkdir(path.join(root, "parts"));
   await fs.writeFile(path.join(root, "index.js"), 'import "./parts/behavior.js"; export { value } from "./parts/value.js";');
   await fs.writeFile(path.join(root, "parts/behavior.js"), 'import "./value.js";');
@@ -28,8 +27,7 @@ test("copy dependency traversal includes reexports and side effects and rejects 
 });
 
 test("copy CLI verifies the entire distribution before writing and preserves existing destinations", async t => {
-  const root = await fs.mkdtemp(path.join(os.tmpdir(), "j3w1-copy-"));
-  t.after(() => fs.rm(root, { recursive: true, force: true }));
+  const root = await scratchDir(t, "j3w1-copy-");
   await fs.writeFile(path.join(root, "package.json"), '{"type":"module"}');
   await fs.copyFile(path.join(repoRoot, "packages/ui/src/cli.js"), path.join(root, "cli.js"));
   const content = '<button type="button">Example</button>\n';
@@ -65,8 +63,7 @@ test("registration is explicit and repeated registration cannot adopt a foreign 
 });
 
 test("CSS dependency closure preserves container rules and rejects external or cyclic imports", async t => {
-  const root = await fs.mkdtemp(path.join(os.tmpdir(), "j3w1-css-closure-"));
-  t.after(() => fs.rm(root, { recursive: true, force: true }));
+  const root = await scratchDir(t, "j3w1-css-closure-");
   await fs.writeFile(path.join(root,"base.css"), '.control {color:var(--color-text-default)}');
   await fs.writeFile(path.join(root,"entry.css"), '@import "./base.css"; @container (width < 400px) { .control {display:block} }');
   const closure=await cssSourceClosure(root,["entry.css"]);

@@ -1,7 +1,8 @@
 import { chooseOptions } from "../../ui/choice-helper.mjs";
+import { verification } from "../verification.mjs";
 import { test, expect } from "../evidence-fixture.mjs";
 import AxeBuilder from "@axe-core/playwright";
-const annotation = { type: "verification", description: JSON.stringify({ component: "form-builder", category: "enhancements", states: ["default", "empty", "invalid", "disabled"], variants: ["default"], note: "Five field kinds, keyboard add/edit/order, required validation, both densities, bounded atomic import, explicit definition-only download, reset and no-JS. Automated DOM/axe; no native port or manual screen-reader claim." }) };
+const { annotation } = verification({ component: "form-builder", category: "enhancements", states: ["default", "empty", "invalid", "disabled"], variants: ["default"], note: "Five field kinds, keyboard add/edit/order, required validation, both densities, bounded atomic import, explicit definition-only download, reset and no-JS. Automated DOM/axe; no native port or manual screen-reader claim." });
 test("builder contract and static reference remain available without JavaScript", { annotation }, async ({ page }, info) => {
   await page.goto("builder/");
   await expect(page.getByRole("heading", { name: "Without JavaScript" })).toBeVisible();

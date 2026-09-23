@@ -5,7 +5,12 @@
    CI runs --check so they cannot drift.
 
    Order matters: tokens feed contrast and components, components feed docs
-   and coverage, everything feeds digests, and README blocks come last. */
+   and coverage, everything feeds digests, and README blocks come last. The
+   generators share one context: what an earlier generator computed (source
+   digest, coverage, contrast pairs, ports) is read by the later ones.
+
+   --only=<name> runs a single generator for a quick local look. Its output
+   is not a complete regeneration: the digests are stale until a full run. */
 
 import { validateAll } from "./lib/validators.mjs";
 import { GENERATORS } from "./lib/generators.mjs";
@@ -20,16 +25,15 @@ try {
   console.error(error.message);
   process.exit(1);
 }
+context.check = check;
 
 let failures = 0;
-const produced = [];
 for (const generator of GENERATORS) {
   if (only && generator.name !== only) continue;
   try {
-    const result = await generator.run({ ...context, check, produced });
+    const result = await generator.run(context);
     const changed = result?.changed ?? [];
     const orphans = result?.orphans ?? [];
-    if (result?.files) produced.push(...result.files);
     const note = [result?.note, changed.length ? `${changed.length} ${check ? "stale" : "written"}` : null, orphans.length ? `${orphans.length} orphan${check ? "" : " removed"}` : null].filter(Boolean).join(", ");
     console.log(`${check ? "checked" : "generated"} ${generator.name}${note ? `: ${note}` : ""}`);
     if (check && (changed.length || orphans.length)) {
@@ -42,5 +46,6 @@ for (const generator of GENERATORS) {
     console.error(`${generator.name}: ${error.message}`);
   }
 }
+if (only && !check) console.error(`only ${only} ran; run npm run generate to bring the digests back in line`);
 if (check && failures) console.error("generated files are out of date — run npm run generate");
 process.exit(failures ? 1 : 0);

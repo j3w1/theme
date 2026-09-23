@@ -1,9 +1,8 @@
 import { test, expect } from "../evidence-fixture.mjs";
-import { promises as fs } from "node:fs";
+import { token } from "../tokens.mjs";
+import { verification } from "../verification.mjs";
 import { openSpec, only, rgbToHex } from "../helpers.mjs";
 
-const resolved = JSON.parse(await fs.readFile(new URL("../../../exports/tokens.resolved.json", import.meta.url), "utf8"));
-const token = (path) => resolved.profiles[resolved.defaultProfile].tokens[path].css;
 
 /* "rgb(0 0 0 / 65%)" and "rgba(0, 0, 0, 0.65)" both become [0, 0, 0, 0.65]. */
 const channels = (css) => {
@@ -14,7 +13,7 @@ const channels = (css) => {
 };
 
 test.describe("dialog", () => {
-  test("the state matrix renders every declared state for every variant, closed cells hide the dialog", { annotation: { type: "verification", description: JSON.stringify({"component": "dialog", "category": "rendering", "states": ["default", "open", "closed", "focus-trapped", "hover", "focus-visible", "reduced-motion"], "variants": ["default", "alert-dialog", "form"], "note": "Presence and selected structural assertions only; not behavioral verification of every state."}) } }, async ({ page }) => {
+  test("the state matrix renders every declared state for every variant, closed cells hide the dialog", verification({component: "dialog", category: "rendering", states: ["default", "open", "closed", "focus-trapped", "hover", "focus-visible", "reduced-motion"], variants: ["default", "alert-dialog", "form"], note: "Presence and selected structural assertions only; not behavioral verification of every state."}), async ({ page }) => {
     await openSpec(page, "#c-dialog");
     const matrix = page.locator("#dialog-states");
     const variants = (await matrix.locator("thead th").count()) - 1;
@@ -32,7 +31,7 @@ test.describe("dialog", () => {
     await expect(matrix.locator('[data-state="default"] dialog[role="alertdialog"] .dialog-button-destructive')).toHaveCount(1);
   });
 
-  test("the live dialog draws the overlay border on the overlay surface, the backdrop, no radius, and the ring on its first button", { annotation: { type: "verification", description: JSON.stringify({"component": "dialog", "category": "appearance", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }, testInfo) => {
+  test("the live dialog draws the overlay border on the overlay surface, the backdrop, no radius, and the ring on its first button", verification({component: "dialog", category: "appearance", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {
     test.skip(only(testInfo, "nojs"), "computed styles are the same without scripts; keep one run");
     await openSpec(page, "#c-dialog");
     const live = page.locator('#dialog-states [data-state="default"]').first();
@@ -67,7 +66,7 @@ test.describe("dialog", () => {
     expect(ring.radius).toBe("0px");
   });
 
-  test("keyboard: Tab walks Close, then the actions, and the ring recolours on the primary fill", { annotation: { type: "verification", description: JSON.stringify({"component": "dialog", "category": "keyboard", "states": [], "variants": [], "note": "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}) } }, async ({ page }, testInfo) => {
+  test("keyboard: Tab walks Close, then the actions, and the ring recolours on the primary fill", verification({component: "dialog", category: "keyboard", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {
     test.skip(only(testInfo, "nojs", "narrow", "zoom200"), "one keyboard walk");
     await openSpec(page, "#c-dialog");
     const live = page.locator('#dialog-states [data-state="default"]').first();

@@ -1,8 +1,9 @@
 import { chooseOptions } from "../ui/choice-helper.mjs";
+import { verification } from "./verification.mjs";
 import { test, expect } from "./evidence-fixture.mjs";
 import AxeBuilder from "@axe-core/playwright";
 import manifest from "../../theme.json" with { type: "json" };
-const annotation = { type: "verification", description: JSON.stringify({ component: "page", category: "enhancements", states: [], variants: [], note: "Phase 3 workbench: isolated native controls, real viewport comparison, measurements, private-text exclusion, reviewed reporting and reduced motion. Diagnostic tooling does not establish component acceptance." }) };
+const { annotation } = verification({ component: "page", category: "enhancements", states: [], variants: [], note: "Phase 3 workbench: isolated native controls, real viewport comparison, measurements, private-text exclusion, reviewed reporting and reduced motion. Diagnostic tooling does not establish component acceptance." });
 const open = async (page, id) => {
   await page.goto(`workbench/${id}/`);
   await expect(page.locator("[data-viewport-report]")).toContainText("Actual viewport:");

@@ -4,13 +4,9 @@
    filtered view can be shared. Without JavaScript the contents and the
    browser's own find remain. */
 
-type Entry = { kind: string; id: string; anchor: string; title: string; family: string | null; text: string };
+import { withBase } from "../lib/base";
 
-const base = (): string => {
-  const link = document.querySelector<HTMLLinkElement>('link[rel="alternate"][type="text/markdown"]');
-  const href = link?.getAttribute("href") ?? "/theme/exports/theme.compact.md";
-  return href.replace(/exports\/theme\.compact\.md$/, "");
-};
+type Entry = { kind: string; id: string; anchor: string; title: string; family: string | null; text: string };
 
 export const initSearch = (): void => {
   const input = document.getElementById("search") as HTMLInputElement | null;
@@ -21,7 +17,7 @@ export const initSearch = (): void => {
 
   const load = (): Promise<Entry[]> => {
     if (entries) return Promise.resolve(entries);
-    loading ??= fetch(`${base()}search-index.json`)
+    loading ??= fetch(withBase("search-index.json"))
       .then((r) => r.json())
       .then((json: { entries: Entry[] }) => (entries = json.entries));
     return loading;

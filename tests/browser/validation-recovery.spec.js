@@ -1,7 +1,8 @@
 import { chooseOptions } from "../ui/choice-helper.mjs";
+import { verification } from "./verification.mjs";
 import { test, expect } from "./evidence-fixture.mjs";
 import AxeBuilder from "@axe-core/playwright";
-const annotation = { type: "verification", description: JSON.stringify({ component: "admin-form", category: "enhancements", states: ["default", "invalid", "busy"], variants: ["default"], note: "Local composed workflow: keyboard submit, summary navigation, correction, retained values, review, explicit busy completion, no data requests. Automated DOM/axe; no manual screen-reader or persistence claim." }) };
+const { annotation } = verification({ component: "admin-form", category: "enhancements", states: ["default", "invalid", "busy"], variants: ["default"], note: "Local composed workflow: keyboard submit, summary navigation, correction, retained values, review, explicit busy completion, no data requests. Automated DOM/axe; no manual screen-reader or persistence claim." });
 test("validation reference remains useful without JavaScript and fits narrow layouts", { annotation }, async ({ page }, info) => {
   await page.goto("patterns/validation-recovery/");
   for (const name of ["Normal", "Invalid", "Busy", "Success"]) await expect(page.getByRole("heading", { name, exact: true })).toBeVisible();

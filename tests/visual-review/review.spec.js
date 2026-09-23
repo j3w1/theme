@@ -1,8 +1,10 @@
 import { test, expect } from "../browser/evidence-fixture.mjs";
+import { verification } from "../browser/verification.mjs";
 import { promises as fs } from "node:fs";
 import AxeBuilder from "@axe-core/playwright";
+import { readJson } from "../../scripts/lib/fs.mjs";
 const ids = ["current", "conservative", "balanced", "maximum-legibility"];
-const annotation = (category, states, note) => ({ annotation: { type: "verification", description: JSON.stringify({ component: "visual-review", category, states, variants: ids, note }) } });
+const annotation = (category, states, note) => (verification({ component: "visual-review", category, states, variants: ids, note }));
 
 test("local Vue frames synchronize actual filters and maintain equal specimen identities", annotation("enhancements", ["default", "filled"], "Local candidate preview, not package conformance."), async ({ page }) => {
   await page.goto("/review/compare/");
@@ -91,7 +93,7 @@ test("static board, local report, forced colors and reduced motion stay separate
   const context = await browser.newContext({ javaScriptEnabled: false });
   const staticPage = await context.newPage();
   await staticPage.goto("http://127.0.0.1:" + (process.env.REVIEW_PORT ?? 4322) + "/review/balanced/components/");
-  await expect(staticPage.locator(".review-component")).toHaveCount(48);
+  await expect(staticPage.locator(".review-component")).toHaveCount((await readJson("spec/inventory.json")).components.length);
   await expect(staticPage.locator("#c-form-builder")).toBeVisible();
   await context.close();
   await page.emulateMedia({ reducedMotion: "reduce", forcedColors: "active" });

@@ -4,6 +4,7 @@
 import { parse as parseYaml } from "yaml";
 import { z } from "zod";
 import { exists, listFiles, readJson, readText } from "./fs.mjs";
+import { formatIssues } from "./schema-issues.mjs";
 import { BODY_SECTIONS, componentSchema } from "../../schemas/component.mjs";
 import { docSchema, familySchema } from "../../schemas/doc.mjs";
 
@@ -20,8 +21,6 @@ export const splitFrontmatter = (source, file) => {
   }
   return { data, body: match[2] };
 };
-
-const formatIssues = (issues) => issues.map((i) => `  ${i.path.join(".") || "(root)"}: ${i.message}`).join("\n");
 
 export const loadFamilies = async () => {
   const raw = await readJson("spec/families.json");

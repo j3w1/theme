@@ -2,11 +2,11 @@
 /* Legacy sealed single-component reconstruction kit. --strict still omits
    tokens.resolved.json. Existing output directories are never replaced. */
 import path from "node:path";
-import { parseArgs } from "node:util";
+import { parseArgs, runCli } from "./tooling/cli.mjs";
 import { readJson, readText, repoRoot } from "./lib/fs.mjs";
 import { prepareKitParent, writeNewKit } from "./lib/safe-kit-writer.mjs";
 
-try {
+await runCli(async () => {
   const { values, positionals } = parseArgs({ options: { strict: { type: "boolean", default: false }, out: { type: "string" } }, allowPositionals: true });
   const [id] = positionals;
   if (positionals.length !== 1 || !/^[a-z][a-z0-9-]*$/.test(id ?? "")) throw new Error("usage: node scripts/consumption-kit.mjs COMPONENT [--strict] [--out NEW_DIRECTORY]");
@@ -24,4 +24,4 @@ try {
   const out = values.out ?? path.join(repoRoot, ".cache", "consumption", id);
   if (!values.out) await prepareKitParent(path.dirname(out));
   console.log(`kit for ${id} (${values.strict ? "strict" : "standard"}) written to ${await writeNewKit(out, files)}`);
-} catch (error) { console.error(error.message); process.exitCode = 1; }
+});

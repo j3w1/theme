@@ -9,6 +9,7 @@
 
 import { z } from "zod";
 import { readJson } from "./fs.mjs";
+import { formatIssues } from "./schema-issues.mjs";
 import { ALIAS, EXTENSIONS_KEY, TOKEN_TYPES, tokenFileSchema, valueSchemaFor } from "../../schemas/tokens.mjs";
 import { eligibilityOf } from "./eligibility.mjs";
 
@@ -49,8 +50,7 @@ export const loadTokenFile = async (relative) => {
   const raw = await readJson(relative);
   const parsed = tokenFileSchema(z).safeParse(raw);
   if (!parsed.success) {
-    const issues = parsed.error.issues.map((i) => `  ${i.path.join(".") || "(root)"}: ${i.message}`).join("\n");
-    throw new TokenError(`${relative} is not a valid token file:\n${issues}`);
+    throw new TokenError(`${relative} is not a valid token file:\n${formatIssues(parsed.error.issues)}`);
   }
   return flattenTree(raw, relative);
 };
@@ -126,6 +126,13 @@ export const resolveTokens = (flat) => {
 };
 
 export const loadResolvedProfile = async (files) => resolveTokens(await loadProfile(files));
+
+/* Loads and resolves every profile the manifest declares; Map id → resolved. */
+export const loadProfiles = async (manifest) => {
+  const profiles = new Map();
+  for (const profile of manifest.profiles) profiles.set(profile.id, await loadResolvedProfile(profile.tokens));
+  return profiles;
+};
 
 /* Provenance extension helper. */
 export const extensionOf = (token) => token.extensions?.[EXTENSIONS_KEY] ?? null;

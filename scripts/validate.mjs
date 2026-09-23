@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /* Validates the hand-authored sources without writing anything.
 
-   Usage: node scripts/validate.mjs [manifest|decisions|tokens|docs|spec|ports|references|private ...]
+   Usage: node scripts/validate.mjs [patterns|manifest|decisions|tokens|docs|spec|ports|references|private ...]
    With no arguments every validator runs. Exit code 1 on the first failure
    of each requested validator; all requested validators run. */
 

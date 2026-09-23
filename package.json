@@ -5,8 +5,10 @@
   "type": "module",
   "description": "j3w1 UI Theme Spec: canonical design tokens, component rules, a generated single-page visual specification, and machine exports for agents. The repository owns the theme; j3w1.github.io demonstrates it.",
   "engines": {
-    "node": "24.x"
+    "node": "24.x",
+    "npm": ">=10"
   },
+  "packageManager": "npm@12.1.0",
   "scripts": {
     "phase6:visual-review": "node scripts/phase6-visual-review.mjs",
     "phase6:visual-build": "node scripts/phase6-visual-review.mjs --build",
@@ -14,6 +16,7 @@
     "design": "node scripts/design-mode.mjs",
     "design:baseline": "node scripts/design-mode.mjs --baseline",
     "design:exit": "node scripts/design-mode.mjs --exit",
+    "design:doctor": "node scripts/design-mode.mjs --doctor",
     "validate": "node scripts/validate.mjs",
     "tokens:validate": "node scripts/validate.mjs tokens",
     "spec:validate": "node scripts/validate.mjs spec ports references",
