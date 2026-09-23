@@ -69,6 +69,11 @@ Coverage and the published matrix come only from the full suite.
 
 Report checks that were not run separately from checks that passed.
 
+**Design mode is a working tool, not a gate.** `npm run design` compares the
+site at an anchored commit with the live dev server (`docs/design-mode.md`).
+Nothing it shows is evidence, and it approves nothing: the tiers above still
+decide whether a change can merge.
+
 ## What you may do without a decision
 
 Fix generation, mapping, rendering, test and documentation defects within the

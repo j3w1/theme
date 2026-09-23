@@ -19,6 +19,11 @@ Use the pinned approved default profile. Pending roles in that profile use-and-r
 Approval and consumption eligibility are separate; see the policy above and
 `spec/decisions.md` D-013.
 
+Changing how the theme looks has a local loop:
+[design mode](docs/design-mode.md) (`npm run design`) shows the real site as
+built at an anchored commit next to the live dev server, so a change is judged
+against what it replaces. It is a working tool, not a gate.
+
 The owner selected **True Black / Rose** after the
 [local visual-foundation review](docs/phase6-visual-review.md). D-023 records
 the seven canonical surface changes. D-024 records the subsequent owner-requested
@@ -306,7 +311,7 @@ are implied by adding a comparison. D-016 records the report schema boundary.
 | `spec/` | Identity, foundations, accessibility, portability, the decision log, `families.json`, `contrast.json`, and one Markdown file plus one demo fragment per component |
 | `agents/consume.md` | How to apply the theme elsewhere |
 | `schemas/` | zod schema factories shared by the scripts and the site; `schemas/json/` is generated |
-| `scripts/` | Validators and generators (`npm run validate`, `npm run generate`, `npm run check`) |
+| `scripts/` | Validators and generators (`npm run validate`, `npm run generate`, `npm run check`); `scripts/lib/` is hashed into the package identities, `scripts/tooling/` holds local-tooling helpers that are not |
 | `exports/` | Generated, committed: resolved tokens, semantic usage index, CSS custom properties, contrast report, coverage ledger, per-component JSON and briefs, compact and full Markdown, `llms.txt`, digests |
 | `site/` | The Astro source of the design-system portal, complete reference and token tools, built to `dist/` and deployed to `/theme/` by CI |
 | `references/` | Pinned provenance, catalogued historical implementations, excerpts, and any reference screenshots with their provenance |

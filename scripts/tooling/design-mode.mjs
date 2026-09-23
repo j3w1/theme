@@ -139,8 +139,8 @@ export const resolvePackageManager = (env = process.env, { execPath = process.ex
   const execpath = npmExecPath(env);
   if (agent === "npm" && execpath) return { name: "npm", command: execPath, args: [execpath], shell: false, warning: null };
   const warning = agent && agent !== "npm"
-    ? `design mode was started through ${agent}; the baseline build runs npm from PATH because the workspace and its pack script are npm-specific`
-    : "design mode was started outside npm; the baseline build runs npm from PATH";
+    ? `started through ${agent}; the baseline build runs npm from PATH because the workspace and its pack script are npm-specific`
+    : "started outside npm; the baseline build runs npm from PATH";
   return { name: "npm", command: "npm", args: [], shell: platform === "win32", warning };
 };
 

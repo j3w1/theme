@@ -16,16 +16,18 @@
 
    Usage:
      node scripts/design-mode.mjs                enter design mode
+     node scripts/design-mode.mjs --doctor       check the prerequisites and stop
      node scripts/design-mode.mjs --baseline     re-anchor "before" to the working tree
      node scripts/design-mode.mjs --note "..."   append a change to the ledger
      node scripts/design-mode.mjs --exit         print the parsed session report */
 
 import { promises as fs, watch } from "node:fs";
 import { createServer } from "node:http";
-import { connect as netConnect } from "node:net";
-import { spawn } from "node:child_process";
+import { connect as netConnect, createServer as createNetServer } from "node:net";
+import { spawn, execFile } from "node:child_process";
+import { createRequire } from "node:module";
 import path from "node:path";
-import { dev } from "astro";
+import { promisify } from "node:util";
 import { repoRoot, readJson, readText, resolveWithin } from "./lib/fs.mjs";
 import { loadProfiles, toResolvedExport } from "./lib/tokens.mjs";
 import { tokensGenerator } from "./lib/generators.mjs";
@@ -36,7 +38,7 @@ import { controlsCss } from "./lib/ui-distribution.mjs";
 import { parseArgs, runCli } from "./tooling/cli.mjs";
 import { head, branch, isDirty } from "./tooling/git.mjs";
 import { contentType, listen, requestPath, send, sendFile, serveTree } from "./tooling/static-server.mjs";
-import { createLedger, derivePorts, discoverRoutes, formatReport, injectAgent, readBaselineMeta, routeOf, writeBaselineMeta } from "./tooling/design-mode.mjs";
+import { checkPrerequisites, createLedger, derivePorts, discoverRoutes, formatReport, injectAgent, readBaselineMeta, resolvePackageManager, routeOf, writeBaselineMeta } from "./tooling/design-mode.mjs";
 
 const cache = path.join(repoRoot, ".cache/design-mode");
 const baselineDir = path.join(cache, "baseline");
@@ -46,6 +48,15 @@ const uiDir = path.join(repoRoot, "packages/ui/dist");
 const manifest = await readJson("theme.json");
 const base = `${manifest.site.base}/`;
 const ports = derivePorts();
+
+/* The project is an npm workspace with an npm-specific pack script, so the
+   baseline build runs npm: the one that started design mode when there is
+   one, otherwise npm from PATH. Astro's telemetry is off for every process
+   design mode starts; a local tool never phones home, and the telemetry
+   store lives outside the checkout where it may not be writable. */
+const packageManager = resolvePackageManager();
+process.env.ASTRO_TELEMETRY_DISABLED ??= "1";
+const childEnv = { ...process.env, ASTRO_TELEMETRY_DISABLED: process.env.ASTRO_TELEMETRY_DISABLED };
 
 const ledger = createLedger({ file: path.join(cache, "session.json"), git: { head, branch } });
 
@@ -91,7 +102,8 @@ export const ensureBaseline = async ({ force = false } = {}) => {
   baselinePhase = "building";
   try {
     console.log("design mode: building the baseline (npm run build) — the one slow step");
-    await run("npm", ["run", "build"]);
+    if (packageManager.warning) console.warn(`design mode: ${packageManager.warning}`);
+    await run(packageManager.command, [...packageManager.args, "run", "build"], { shell: packageManager.shell, env: childEnv });
     baselinePhase = "copying";
     await replaceBaseline();
     const next = { commit, dirty: isDirty(), anchoredAt: new Date().toISOString() };
@@ -141,14 +153,18 @@ export const regenerateControls = async () => {
 
 /* ---- the frozen side --------------------------------------------------- */
 
-const NOT_IN_BASELINE = '<!doctype html><meta charset="utf-8"><title>Not in the baseline</title><body style="font:14px system-ui;padding:24px"><p>This route is not in the frozen build. It is probably new in the working tree.</p></body>';
+const notice = (title, text) => `<!doctype html><meta charset="utf-8"><title>${title}</title><body style="font:14px system-ui;padding:24px"><p>${text}</p></body>`;
+const NOT_IN_BASELINE = notice("Not in the baseline", "This route is not in the frozen build. It is probably new in the working tree.");
+/* On a first entry the frozen side has nothing yet; saying the route is new
+   would be wrong for every route. */
+const BASELINE_BUILDING = notice("Building the baseline", "The frozen build is still being made (npm run build). This frame reloads when it is ready.");
 
 /* Already decorated by the build; it only needs the agent. */
 const serveBaseline = () => serveTree({
   root: baselineDir,
   base,
   decorate: (html) => injectAgent(html, "before"),
-  notFound: (res) => send(res, 404, "text/html; charset=utf-8", injectAgent(NOT_IN_BASELINE, "before")),
+  notFound: (res) => send(res, 404, "text/html; charset=utf-8", injectAgent(baselinePhase ? BASELINE_BUILDING : NOT_IN_BASELINE, "before")),
 });
 
 /* ---- the live side ----------------------------------------------------- */
@@ -210,6 +226,7 @@ const serveLive = () => createServer(async (req, res) => {
   if (file) {
     try { return await sendFile(res, file, { headers: { "x-design-mode": "baseline-fallback" }, decorate: (html) => injectAgent(html, "after") }); } catch { /* neither side has it */ }
   }
+  if (!devReady && !upstream) return send(res, 503, "text/html; charset=utf-8", injectAgent(notice("Starting", "The dev server has not started yet; it follows the baseline build. This frame reloads when the live side is ready."), "after"));
   send(res, upstream?.status ?? 502, "text/plain; charset=utf-8", `Neither the dev server nor the frozen build answered ${pathname}`);
 });
 
@@ -238,7 +255,7 @@ const serveCompare = () => createServer(async (req, res) => {
       const session = await ledger.read();
       return send(res, 200, "application/json; charset=utf-8", JSON.stringify({
         base, before: `http://localhost:${ports.before}`, after: `http://localhost:${ports.after}`,
-        routes: await discoverRoutes(baselineDir), baseline: await readBaselineMeta(cache), baselineBuilding: baselinePhase !== null, baselinePhase,
+        routes: await discoverRoutes(baselineDir), baseline: await readBaselineMeta(cache), baselineBuilding: baselinePhase !== null, baselinePhase, devReady,
         ledger: session?.entries ?? [], branch: session?.branch ?? null, version: manifest.version,
       }));
     }
@@ -264,12 +281,44 @@ const serveCompare = () => createServer(async (req, res) => {
 
 /* ---- entry ------------------------------------------------------------- */
 
+/* The screen reports both slow phases: the baseline build and the dev
+   server's first content sync, during which the live side answers from the
+   frozen build. */
+let devReady = false;
+
+/* What has to be true before entering, each failure with its fix, so a
+   fresh checkout learns what to run instead of watching a build fail. */
+const doctor = async () => {
+  const require = createRequire(import.meta.url);
+  const probes = {
+    nodeVersion: () => process.version,
+    resolvable: async (name) => { try { require.resolve(name); return true; } catch { return false; } },
+    exists: (file) => fs.access(path.join(repoRoot, file)).then(() => true, () => false),
+    gitHead: () => head(),
+    portFree: (port) => new Promise((resolve) => {
+      const probe = createNetServer();
+      probe.once("error", () => resolve(false));
+      probe.listen(port, "127.0.0.1", () => probe.close(() => resolve(true)));
+    }),
+    runner: async () => {
+      try { return (await promisify(execFile)(packageManager.command, [...packageManager.args, "--version"], { cwd: repoRoot, shell: packageManager.shell, env: childEnv })).stdout.trim(); } catch { return null; }
+    },
+    writable: (dir) => fs.mkdir(path.join(repoRoot, dir), { recursive: true }).then(() => fs.access(path.join(repoRoot, dir), fs.constants.W_OK)).then(() => true, () => false),
+  };
+  const result = await checkPrerequisites({ ports, probes });
+  for (const problem of result.problems) console.error(`design mode: ✗ ${problem.check}\n    ${problem.fix}`);
+  if (result.ok) console.log(`design mode: prerequisites ok (Node ${process.version}, ${packageManager.name} via ${packageManager.args[0] ?? "PATH"}, ports ${ports.compare}-${ports.dev})`);
+  if (packageManager.warning) console.warn(`design mode: ${packageManager.warning}`);
+  return result.ok;
+};
+
 /* Astro's own `astro dev` cannot start this project: the CLI forks the dev
    server and gives it 30s to report ready, and syncing 67 component
    collections takes longer than that on a cold cache. The JS API runs the
    server in this process instead, with no such deadline. */
 const startDev = async () => {
   console.log("design mode: starting the dev server (the first content sync takes about a minute)");
+  const { dev } = await import("astro");
   const server = await dev({ root: repoRoot, server: { port: ports.dev, host: "127.0.0.1" }, logLevel: "warn" });
   const stop = () => { server.stop?.().catch(() => {}); };
   process.on("SIGINT", () => { stop(); process.exit(0); });
@@ -301,32 +350,38 @@ const watchSources = () => {
   }, "rebuilt the themed controls stylesheet");
 };
 
+/* The servers listen first, so the screen is there for the whole of the
+   baseline build and the content sync and can say which is running,
+   instead of a blank minute or two before the first URL appears. */
 const enter = async () => {
+  if (!(await doctor())) throw new Error("design mode cannot enter until the checks above pass");
+  await listen(serveBaseline(), ports.before, "127.0.0.1", "The frozen side");
+  proxyHmr(await listen(serveLive(), ports.after, "127.0.0.1", "The live side"));
+  await listen(serveCompare(), ports.compare, "127.0.0.1", "The comparison screen");
+  console.log(`\ndesign mode: http://localhost:${ports.compare}/\n  before  http://localhost:${ports.before}${base}\n  after   http://localhost:${ports.after}${base}\nStop with Ctrl+C.\n`);
+
   await ensureBaseline();
   await regenerateTokens();
   await regenerateControls();
   await ledger.init();
-
-  await listen(serveBaseline(), ports.before, "127.0.0.1", "The frozen side");
-  proxyHmr(await listen(serveLive(), ports.after, "127.0.0.1", "The live side"));
-  await listen(serveCompare(), ports.compare, "127.0.0.1", "The comparison screen");
   await startDev();
+  devReady = true;
+  console.log("design mode: the live side is live");
   watchSources();
-
-  console.log(`\ndesign mode: http://localhost:${ports.compare}/\n  before  http://localhost:${ports.before}${base}\n  after   http://localhost:${ports.after}${base}\nStop with Ctrl+C.\n`);
 };
 
 if (process.argv[1] && path.resolve(process.argv[1]) === path.join(repoRoot, "scripts/design-mode.mjs")) {
   await runCli(async () => {
     const { values } = parseArgs({ options: {
-      exit: { type: "boolean", default: false }, baseline: { type: "boolean", default: false },
+      exit: { type: "boolean", default: false }, baseline: { type: "boolean", default: false }, doctor: { type: "boolean", default: false },
       note: { type: "string" }, class: { type: "string" }, files: { type: "string" },
     } });
     if (values.exit) console.log(formatReport(await ledger.read()).join("\n"));
     else if (values.note !== undefined || values.class !== undefined || values.files !== undefined) {
       const session = await ledger.append({ note: values.note, changeClass: values.class, files: values.files?.split(",").map((file) => file.trim()).filter(Boolean) });
       console.log(`recorded change ${session.entries.length} (${session.entries.at(-1).changeClass})`);
-    } else if (values.baseline) await ensureBaseline({ force: true });
+    } else if (values.doctor) { if (!(await doctor())) process.exitCode = 1; }
+    else if (values.baseline) await ensureBaseline({ force: true });
     else await enter();
   });
 }

@@ -11,7 +11,7 @@ const STORE = "j3w1-design:view";
 /* Seeded from this page's own port the way the server derives them, so the
    frames still load if /api/state fails. */
 const origin = (offset) => `${location.protocol}//${location.hostname}:${Number(location.port || 4400) + offset}`;
-const state = { base: "/theme/", before: origin(1), after: origin(2), routes: [""], ledger: [], baseline: null, baselineBuilding: false };
+const state = { base: "/theme/", before: origin(1), after: origin(2), routes: [""], ledger: [], baseline: null, baselineBuilding: false, baselinePhase: null, devReady: false };
 const view = { route: "", width: "1440x1000", zoom: "fit", mode: "side", split: 50, blend: 50, sync: true };
 
 try { Object.assign(view, JSON.parse(localStorage.getItem(STORE) ?? "{}")); } catch { /* first run, or storage refused */ }
@@ -176,14 +176,25 @@ const renderStatus = () => {
   const status = $("status");
   if (state.baselinePhase) {
     status.dataset.busy = "true";
+    /* On a first entry there is no previous build to keep serving, and the
+       dev server starts only after this one finishes. */
+    const first = !state.baseline;
     status.textContent = state.baselinePhase === "copying"
-      ? "Copying the new build into place. The frozen side keeps serving the previous one until the swap."
-      : "Rebuilding the frozen side (npm run build, about a minute). The live side keeps working throughout.";
+      ? (first ? "Copying the first build into place. The live side starts next." : "Copying the new build into place. The frozen side keeps serving the previous one until the swap.")
+      : (first ? "Building the frozen side for the first time (npm run build). The live side starts after it." : "Rebuilding the frozen side (npm run build, about a minute). The live side keeps working throughout.");
+    return;
+  }
+  const anchored = state.baseline?.commit?.slice(0, 12);
+  $("before-note").textContent = anchored ? `${anchored}${state.baseline.dirty ? " + working tree" : ""}` : "unanchored";
+  /* Until the dev server has synced, the after frame answers from the frozen
+     build; without saying so, the two sides look identical for a reason the
+     session did not cause. */
+  if (!state.devReady) {
+    status.dataset.busy = "true";
+    status.textContent = "The live side is still syncing (about a minute on a cold cache). After shows the frozen build until then.";
     return;
   }
   status.dataset.busy = "false";
-  const anchored = state.baseline?.commit?.slice(0, 12);
-  $("before-note").textContent = anchored ? `${anchored}${state.baseline.dirty ? " + working tree" : ""}` : "unanchored";
   status.textContent = "";
 };
 
@@ -212,13 +223,14 @@ const renderRoutes = () => {
 const refresh = async () => {
   const next = await (await fetch("/api/state")).json();
   const wasBuilding = state.baselineBuilding;
+  const wasReady = state.devReady;
   Object.assign(state, next);
   renderRoutes();
   renderLedger();
   renderStatus();
   renderLegend();
-  if (wasBuilding && !state.baselineBuilding) load();
-  if (state.baselineBuilding) setTimeout(refresh, 2000);
+  if ((wasBuilding && !state.baselineBuilding) || (!wasReady && state.devReady)) load();
+  if (state.baselineBuilding || !state.devReady) setTimeout(refresh, 2000);
 };
 
 /* ---- controls ---------------------------------------------------------- */

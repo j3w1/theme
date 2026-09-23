@@ -10,24 +10,62 @@ it approves nothing.
 
 ## Run it
 
-Node 24 and `npm ci`, then:
+The repository is an npm workspace, and design mode is run through npm:
 
 ```
+npm ci
+npm run design:doctor   # optional: checks the prerequisites below and stops
 npm run design
 ```
 
 The comparison screen is `http://localhost:4400/`. `DESIGN_PORT` moves it; the
-frozen side, the live side and the dev server take the next three ports.
-Stop with Ctrl+C.
+frozen side, the live side and the dev server take the next three ports
+(`DESIGN_DEV_PORT` moves only the last). Stop with Ctrl+C.
 
-The first entry builds the baseline (`npm run build`, about a minute) and starts
-the dev server (the first content sync takes about as long again). Later entries
-reuse the baseline when `HEAD` has not moved and the working tree was clean when
-it was anchored.
+The three servers listen first, so the screen answers at once. Behind it, the
+first entry builds the baseline (`npm run build`) and then starts the dev
+server, whose first content sync can take about a minute on a cold cache. The
+status line under the controls names whichever is running. Until the dev
+server is ready the after frame shows the frozen build, and both frames reload
+when it is.
 
-`npm run design:baseline` re-anchors the frozen side to the working tree, which
-is also what the **Re-anchor before** button does. Use it to chain comparisons
-across a long session instead of always diffing against where it started.
+Later entries reuse the baseline whenever `.cache/design-mode/baseline/` and
+its `baseline.json` exist, wherever `HEAD` has moved since. That is deliberate:
+a session commits a checkpoint after each accepted change, and rebuilding
+"before" each time would destroy what is being compared against. The label on
+the before frame names the commit it was anchored at, plus "working tree" when
+the tree was dirty then. `npm run design:baseline` re-anchors the frozen side to
+the working tree, which is also what the **Re-anchor before** button does. Use
+it to chain comparisons across a long session instead of always diffing
+against where it started.
+
+### Prerequisites
+
+`npm run design:doctor` checks each of these and names the fix for any that
+fails; `npm run design` runs the same check before it starts anything.
+
+- Node 24 (`engines` in `package.json`).
+- `npm ci` has run, so Astro and Vite resolve.
+- `packages/ui/dist` holds the package the screen and the live side load
+  (`index.json`, `styles/controls.css`, `enhance/choice.js`). It is committed;
+  `npm run generate` rebuilds it.
+- `site/src/styles/tokens.generated.css` exists (`npm run generate`).
+- git answers inside the checkout; "before" records the commit it came from.
+- The four ports are free.
+- npm answers, and `.cache/` is writable.
+
+### Package manager
+
+`package.json` declares `"packageManager": "npm@…"`. pnpm and Yarn read that
+field and refuse to install into or run scripts in this repository, which keeps
+a second lockfile from appearing next to `package-lock.json`. The baseline build
+always runs npm, because the workspace layout and `scripts/pack-ui.mjs`
+(`npm pack --workspace … --json`) are npm-specific. When design mode is started
+through `npm run`, the build runs that same npm directly (no `PATH` lookup, no
+shell). Started any other way, for example with `node scripts/design-mode.mjs`,
+it runs `npm` from `PATH` and says so.
+
+Astro's telemetry is disabled for design mode and the processes it starts.
 
 ## What the two sides are
 
@@ -118,6 +156,18 @@ node scripts/design-mode.mjs --note "warm the panel surface" --class token --fil
 
 `npm run design:exit` prints the session grouped by class, and names how many
 changes still owe a reconciliation.
+
+## Where the code is
+
+`scripts/design-mode.mjs` wires the servers, the live proxy, the HMR upgrade,
+the watchers and the regeneration. The units that need no server live in
+`scripts/tooling/design-mode.mjs` and are covered by `tests/design-mode.test.js`:
+port derivation, route mapping, the frame agent, baseline metadata, route
+discovery, the ledger and its report, the package-manager choice and the
+prerequisite check. Neither file is under `scripts/lib`, so changing design mode
+does not change the package identities `scripts/build-ui.mjs` hashes. The route
+list the live side decorates comes from `scripts/lib/hex-routes.mjs`, the same
+list the build's hex-swatch integration reads.
 
 ## Limits
 
