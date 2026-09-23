@@ -158,7 +158,7 @@ for (const root of document.querySelectorAll<HTMLElement>("[data-workbench]")) {
   window.addEventListener("popstate", fromUrl);
   window.addEventListener("hashchange", fromUrl);
   window.addEventListener("pagehide", () => { visibility.disconnect(); post({ type: "theme:stop" }); comparePost({ type: "theme:stop" }); });
-  document.documentElement.classList.add("js");
+  // PortalLayout marks <html> with .js; the workbench only runs inside it.
   setPair(); fromUrl();
   frame.src = root.dataset.previewUrl!;
 }

@@ -24,13 +24,5 @@ const routes = comparisons.map((entry) => entry.path);
   <h2>Compare another pinned pair locally</h2>
   <pre><code>npm run release:compare -- --from v0.1.0 --to b601998b3711dcd62949d497ed828af2089f9544 --out ../release-comparison</code></pre>
   <p>The output directory must be new and have an existing, non-redirected parent. The command reads local Git objects without building historical code or fetching a branch. Missing historical exports remain unsupported; missing reverse indexes are reported, with direct mappings used where available.</p>
-  <script>
-    const form = document.querySelector<HTMLFormElement>("[data-release-picker]")!;
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      const data = new FormData(form);
-      const route = ["from", "to", "profile"].map((name) => data.get(name)).join("/");
-      if ((JSON.parse(form.dataset.routes!) as string[]).includes(route)) location.assign(`${form.dataset.base}${route}/`);
-    });
-  </script>
+  <script>import "../../scripts/release-picker";</script>
 </ToolLayout>

@@ -26,12 +26,5 @@ const templates = templateExport.templates;
     <h3>Success</h3><div class="alert alert-success"><span class="alert-glyph" aria-hidden="true">✓</span><div class="alert-body"><p class="alert-text">Simulation completed. No request was sent and no record was stored.</p></div></div>
   </section>
   <p>Automated tests cover DOM and keyboard behavior. No manual screen-reader or real persistence pass is claimed. D-020 remains proposed.</p>
-  <script>
-    import pattern from "../../../../../exports/patterns/validation-recovery.json";
-    import { mountWorkflow } from "../../../scripts/form-workflow.mjs";
-    import { validateWorkstation } from "../../../../../scripts/lib/validation-recovery.mjs";
-    const root = document.querySelector('[data-workflow="recovery"]');
-    const templates = Object.fromEntries([...root.querySelectorAll("template[data-field-template]")].map(node => [node.dataset.fieldTemplate, node.innerHTML]));
-    mountWorkflow(root, { fields: pattern.fields, prefix: "recovery", templates, validate: validateWorkstation });
-  </script>
+  <script>import "../../../scripts/validation-recovery";</script>
 </ToolLayout>
