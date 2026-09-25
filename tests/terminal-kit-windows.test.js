@@ -4,11 +4,16 @@
    Orca's running state and the installed fonts from variables and refuses
    the network, so every read and write stays inside the scratch root; HOME,
    TMPDIR and the XDG folders of pwsh itself are pointed there too.
-   Without pwsh the suite skips locally and fails in CI. */
+   Expected values and the Ghostty reference are read through git at the
+   pinned revision, never from HEAD, so a release bump or a token change on
+   HEAD does not break these tests (CI checks out with fetch-depth 0).
+   Without pwsh or the pinned commit the suite skips locally and fails in
+   CI. */
 
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
-import { existsSync, promises as fs, readdirSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { existsSync, lstatSync, promises as fs, readdirSync } from "node:fs";
 import path from "node:path";
 import test from "node:test";
 import { readJson, repoRoot } from "../scripts/lib/fs.mjs";
@@ -34,17 +39,45 @@ const findPwsh = () => {
   return null;
 };
 const pwsh = findPwsh();
-const skip = pwsh ? false : "PowerShell 7.4+ (pwsh) not found; put it on PATH or set J3W1_PWSH";
-if (!pwsh && process.env.CI) {
-  test("PowerShell 7.4+ is available for the Windows kit tests", () => assert.fail(skip));
+const noPwsh = pwsh ? false : "PowerShell 7.4+ (pwsh) not found; put it on PATH or set J3W1_PWSH";
+if (noPwsh && process.env.CI) {
+  test("PowerShell 7.4+ is available for the Windows kit tests", () => assert.fail(noPwsh));
 }
 
 const roles = await readJson("tools/terminal-kit/roles/terminal.json");
 const kit = await readJson("tools/terminal-kit/kit.json");
-const tokens = (await readJson("exports/tokens.resolved.json")).profiles.default.tokens;
+
+/* One file at the pinned revision, from git objects; null when absent. */
+const atPin = (file) => {
+  const result = spawnSync("git", ["-C", repoRoot, "cat-file", "blob", `${kit.theme.revision}:${file}`], { maxBuffer: 64 * 1024 * 1024 });
+  return result.status === 0 ? result.stdout : null;
+};
+const pinnedTokensBytes = atPin(kit.exports.tokens);
+const noPin = pinnedTokensBytes ? false : `the pinned commit ${kit.theme.revision} is not in this clone; fetch it (git fetch --tags)`;
+if (noPin && process.env.CI) {
+  test("the pinned commit is in the clone for the Windows kit tests", () => assert.fail(noPin));
+}
+const skip = noPwsh || noPin;
+
+const digestOf = (bytes) => `sha256-${createHash("sha256").update(bytes).digest("base64")}`;
+const pinnedDigests = noPin ? { files: {} } : JSON.parse(atPin(kit.exports.digests).toString("utf8"));
+const tokens = noPin ? {} : JSON.parse(pinnedTokensBytes.toString("utf8")).profiles.default.tokens;
 const color = (id) => tokens[id].css.toLowerCase();
-const expectedOverrides = Object.fromEntries(Object.entries(roles.orca.terminalColorOverrides).map(([key, id]) => [key, color(id)]));
+const expectedOverrides = noPin ? {} : Object.fromEntries(Object.entries(roles.orca.terminalColorOverrides).map(([key, id]) => [key, color(id)]));
 const managedKeys = ["terminalColorOverrides", ...Object.keys(roles.orca.settings)];
+/* Every value the kit sets except the font size (a preference): what Orca
+   holds after the GUI steps (Import from Ghostty, Color Contrast Off, Match
+   Terminal). */
+const kitSettings = () => {
+  const values = { terminalColorOverrides: expectedOverrides };
+  for (const [key, rule] of Object.entries(roles.orca.settings)) {
+    if (rule.preference) continue;
+    if ("value" in rule) values[key] = rule.value;
+    else if (tokens[rule.token].type === "fontFamily") values[key] = tokens[rule.token].value[0];
+    else values[key] = color(rule.token);
+  }
+  return values;
+};
 
 /* The child sees a PATH without any claude binary, so the kit's Claude Code
    probe never starts a real client from the tests. */
@@ -130,6 +163,34 @@ const run = (tree, script, args = [], env = {}) => {
 };
 
 const apply = (tree, args = [], env = {}) => run(tree, "Apply-J3w1OrcaTheme.ps1", ["-SourceRoot", repoRoot, ...args], env);
+const restore = (tree, args = [], env = {}) => run(tree, "Restore-J3w1OrcaTheme.ps1", args, env);
+const verify = (tree, args = []) => run(tree, "Test-J3w1OrcaTheme.ps1", ["-SourceRoot", repoRoot, "-NoSpecimen", ...args]);
+const WORKTREE = { J3W1_KIT_TEST_SOURCE: "worktree" };
+/* A plain folder with the pinned export (optionally edited), for the seam's
+   working-tree source and for the cache. `recompute` rewrites digests.json
+   to match the edited export, as a consistent tamper would. */
+const exportFolder = async (folder, { edit = (text) => text, recompute = false } = {}) => {
+  await fs.mkdir(path.join(folder, "exports"), { recursive: true });
+  const text = edit(pinnedTokensBytes.toString("utf8"));
+  const digests = structuredClone(pinnedDigests);
+  if (recompute) digests.files[kit.exports.tokens] = digestOf(Buffer.from(text));
+  await fs.writeFile(path.join(folder, kit.exports.tokens), text);
+  await fs.writeFile(path.join(folder, kit.exports.digests), recompute ? JSON.stringify(digests, null, 2) : atPin(kit.exports.digests));
+  return folder;
+};
+const git = (args, cwd) => {
+  const result = spawnSync("git", ["-c", "user.name=kit-test", "-c", "user.email=kit-test@example.invalid", "-c", "commit.gpgsign=false", "-c", "tag.gpgsign=false", ...args], { cwd, encoding: "utf8" });
+  assert.equal(result.status, 0, `git ${args.join(" ")}\n${result.stderr}`);
+  return result.stdout.trim();
+};
+/* Slot 1 of the pinned export changed to another colour (its hex digits
+   reversed), as a tampered or moved-on export would carry. */
+const slotOne = () => tokens["color.terminal.ansi.1"].css;
+const otherSlotOne = () => `#${[...slotOne().slice(1)].reverse().join("")}`.toLowerCase();
+const changeSlotOne = (text) => {
+  assert.notEqual(otherSlotOne(), slotOne().toLowerCase(), "the changed colour differs");
+  return text.split(slotOne()).join(otherSlotOne());
+};
 const readFileJson = async (file) => JSON.parse(await fs.readFile(file, "utf8"));
 const readStore = (tree) => readFileJson(tree.store);
 const backups = (tree) => (existsSync(path.join(tree.state, "backups")) ? readdirSync(path.join(tree.state, "backups")).sort() : []);
@@ -152,7 +213,7 @@ test("the generated Ghostty block equals the Orca port except font-size", { skip
   ok(apply(tree), "apply succeeds");
   const written = await fs.readFile(tree.ghostty, "utf8");
   assert.ok(written.startsWith(GHOSTTY), "every line outside the block is kept, byte for byte");
-  const port = settingLines(await fs.readFile(path.join(repoRoot, "ports/orca/dist/config.ghostty"), "utf8"));
+  const port = settingLines(atPin("ports/orca/dist/config.ghostty").toString("utf8"));
   const block = settingLines(managedBlock(written));
   const isSize = (line) => line.startsWith("font-size");
   assert.deepEqual(block.filter((line) => !isSize(line)), port.filter((line) => !isSize(line)));
@@ -287,6 +348,153 @@ test("restore deletes a Ghostty file the kit created and refuses the store while
   assert.deepEqual(await readStore(tree), JSON.parse(STORE));
 });
 
+test("Orca open, then Import from Ghostty in the GUI, then apply with Orca closed: restore returns the pre-kit values", { skip }, async (t) => {
+  const tree = await makeTree(t);
+  ok(apply(tree, [], { J3W1_KIT_TEST_ORCA_RUNNING: "1" }), "apply while Orca runs");
+  const first = await readFileJson(path.join(tree.state, "current", "manifest.json"));
+  // The owner does the printed GUI steps: Orca writes the kit's values.
+  const imported = JSON.parse(STORE);
+  Object.assign(imported.settings, kitSettings());
+  await fs.writeFile(tree.store, JSON.stringify(imported, null, 2));
+  ok(apply(tree), "apply with Orca closed");
+  const restored = restore(tree);
+  ok(restored, "restore succeeds");
+  assert.match(restored.stdout, /Result: restored/);
+  assert.deepEqual(await readStore(tree), JSON.parse(STORE), "every managed key has its pre-kit value again");
+  assert.deepEqual(await fs.readFile(tree.ghostty), Buffer.from(GHOSTTY));
+  assert.equal(first.storeWritten, false);
+  assert.deepEqual(first.observed.find((entry) => entry.key === "leftSidebarAppearanceMode"), { key: "leftSidebarAppearanceMode", value: "custom", equalsKit: false }, "observed although not written");
+});
+
+test("a key whose only records already hold the kit's value from an import is left, said so, and the restore exits non-zero", { skip }, async (t) => {
+  const tree = await makeTree(t);
+  ok(apply(tree, [], { J3W1_KIT_TEST_ORCA_RUNNING: "1" }), "apply while Orca runs");
+  // Import from Ghostty and Color Contrast Off, but not Match Terminal.
+  const imported = JSON.parse(STORE);
+  const values = kitSettings();
+  delete values.leftSidebarAppearanceMode;
+  Object.assign(imported.settings, values);
+  await fs.writeFile(tree.store, JSON.stringify(imported, null, 2));
+  // The kit's records are lost (a cleaned LOCALAPPDATA); the next apply only
+  // finds the kit's values and the managed block.
+  await fs.rm(tree.state, { recursive: true, force: true });
+  ok(apply(tree), "apply with Orca closed writes the sidebar mode");
+  const result = restore(tree);
+  assert.equal(result.status, 3, result.output);
+  assert.match(result.stdout, /terminalColorOverrides\s+left as .*cannot know the pre-kit value/);
+  assert.match(result.stdout, /terminalFontFamily\s+left as .*cannot know the pre-kit value/);
+  assert.match(result.stdout, /Cannot know the pre-kit value of /);
+  assert.doesNotMatch(result.stdout, /Result: restored/);
+  const store = await readStore(tree);
+  assert.equal(store.settings.leftSidebarAppearanceMode, "custom", "a key with a known pre-kit value is restored");
+  assert.deepEqual(store.settings.terminalColorOverrides, expectedOverrides, "an unknown key is left as it is");
+  assert.equal(store.settings.terminalFontSize, 14, "the font size is the owner's, never unknown");
+  const ghostty = await fs.readFile(tree.ghostty, "utf8");
+  assert.ok(!ghostty.includes(BLOCK_START) && ghostty.startsWith(GHOSTTY), "the managed block is removed, the rest kept");
+});
+
+test("restore undoes only what was applied since the last restore", { skip }, async (t) => {
+  const tree = await makeTree(t);
+  ok(apply(tree), "first apply");
+  ok(restore(tree), "first restore");
+  const owner = await readStore(tree);
+  owner.settings.terminalFontFamily = "Iosevka Term";
+  await fs.writeFile(tree.store, JSON.stringify(owner, null, 2));
+  ok(apply(tree), "second apply");
+  assert.notEqual((await readStore(tree)).settings.terminalFontFamily, "Iosevka Term");
+  const second = restore(tree);
+  ok(second, "second restore");
+  assert.equal((await readStore(tree)).settings.terminalFontFamily, "Iosevka Term", "the owner's font from between the runs is back");
+  assert.deepEqual(await fs.readFile(tree.ghostty), Buffer.from(GHOSTTY));
+  assert.match(restore(tree).stdout, /nothing to restore; no apply or update since the restore/);
+});
+
+test("restore removes only the managed block of an edited config.ghostty and warns about the edit", { skip }, async (t) => {
+  const tree = await makeTree(t);
+  ok(apply(tree), "apply succeeds");
+  const keybind = "keybind = ctrl+a=select_all\n";
+  await fs.appendFile(tree.ghostty, keybind);
+  const plan = restore(tree, ["-WhatIf"]);
+  ok(plan, "-WhatIf succeeds");
+  ok(restore(tree), "restore succeeds");
+  const text = await fs.readFile(tree.ghostty, "utf8");
+  assert.equal(text.includes(BLOCK_START), false, "the block is gone");
+  assert.ok(text.startsWith(GHOSTTY), "the lines before the block are kept");
+  assert.ok(text.endsWith(keybind), "the owner's later line is kept");
+  assert.deepEqual(await readStore(tree), JSON.parse(STORE));
+  assert.match(plan.stdout, /WARNING: .*config\.ghostty changed since the kit last wrote it/);
+  assert.match(plan.stdout, /remove the managed block; every byte outside it is kept/);
+});
+
+test("a symlinked config.ghostty is written through and stays a link", { skip }, async (t) => {
+  const tree = await makeTree(t, { ghostty: null });
+  const dotfile = path.join(tree.root, "dotfiles", "config.ghostty");
+  await fs.mkdir(path.dirname(dotfile));
+  await fs.writeFile(dotfile, GHOSTTY);
+  try {
+    await fs.symlink(dotfile, tree.ghostty);
+  } catch (error) {
+    return t.skip(`cannot create a symlink here: ${error.code}`);
+  }
+  ok(apply(tree), "apply succeeds");
+  assert.ok(lstatSync(tree.ghostty).isSymbolicLink(), "still a link after apply");
+  managedBlock(await fs.readFile(dotfile, "utf8"));
+  ok(restore(tree), "restore succeeds");
+  assert.ok(lstatSync(tree.ghostty).isSymbolicLink(), "still a link after restore");
+  assert.equal(await fs.readFile(dotfile, "utf8"), GHOSTTY);
+});
+
+test("a font size changed after apply is a warning, not a failure", { skip }, async (t) => {
+  const tree = await makeTree(t);
+  ok(apply(tree), "apply succeeds");
+  const store = await readStore(tree);
+  store.settings.terminalFontSize = 16;
+  await fs.writeFile(tree.store, JSON.stringify(store, null, 2));
+  await fs.writeFile(tree.ghostty, (await fs.readFile(tree.ghostty, "utf8")).replace("font-size = 14", "font-size = 16"));
+  const checked = verify(tree);
+  ok(checked, "Test passes");
+  assert.match(checked.stdout, /WARN\s+terminalFontSize\s+observed 16/);
+  assert.match(checked.stdout, /PASS\s+ghostty block/);
+});
+
+test("the store is copied whole exactly once, before the kit first writes it", { skip }, async (t) => {
+  const tree = await makeTree(t);
+  const first = apply(tree);
+  ok(first, "first apply");
+  const preKit = path.join(tree.state, "pre-kit", "orca-data.json");
+  assert.ok(first.stdout.includes(preKit), "the first write names the full copy");
+  const owner = await readStore(tree);
+  owner.settings.terminalFontFamily = "Iosevka Term";
+  await fs.writeFile(tree.store, JSON.stringify(owner, null, 2));
+  ok(apply(tree), "second apply writes the store again");
+  ok(restore(tree), "restore writes the store again");
+  assert.equal(await fs.readFile(preKit, "utf8"), STORE, "the one full copy is the pre-kit store");
+  const names = backups(tree);
+  assert.equal(names.length, 3);
+  for (const name of names) {
+    assert.equal(existsSync(path.join(tree.state, "backups", name, "orca-data.json")), false, `${name} holds no store copy`);
+  }
+});
+
+test("a store that cannot be serialised stops the run before any backup or manifest", { skip }, async (t) => {
+  const tree = await makeTree(t);
+  const broken = STORE.replace('"ratio": 1.5e-7', '"ratio": 1.5e-7,\n    "note": "\\ud800"');
+  assert.notEqual(broken, STORE);
+  await fs.writeFile(tree.store, broken);
+  const result = apply(tree);
+  assert.notEqual(result.status, 0, result.output);
+  assert.equal(await fs.readFile(tree.store, "utf8"), broken);
+  assert.equal(await fs.readFile(tree.ghostty, "utf8"), GHOSTTY);
+  assert.equal(existsSync(tree.state), false, "no backup folder, no manifest, no state");
+});
+
+test("HEAD's exports have moved past the pin (a warning only, never a failure)", { skip: noPin }, async (t) => {
+  const head = await fs.readFile(path.join(repoRoot, kit.exports.tokens));
+  if (Buffer.compare(head, pinnedTokensBytes) === 0) return t.diagnostic(`HEAD's export equals the pinned ${kit.theme.ref}`);
+  const version = JSON.parse(head.toString("utf8")).version;
+  t.diagnostic(`WARN: HEAD's ${kit.exports.tokens} (version ${version}) differs from the pinned ${kit.theme.ref} @ ${kit.theme.revision}; the kit keeps applying the pin until kit.json moves to a release tag.`);
+});
+
 test("Test passes after apply, renders the specimen, and fails after a manual tamper", { skip }, async (t) => {
   const tree = await makeTree(t);
   ok(apply(tree), "apply succeeds");
@@ -323,10 +531,13 @@ test("manifests name only managed and preserved keys; the lock follows its schem
   for (const file of [path.join(tree.state, "current", "manifest.json"), path.join(tree.state, "backups", backup, "manifest.json")]) {
     const text = await fs.readFile(file, "utf8");
     const manifest = JSON.parse(text);
-    assert.deepEqual(Object.keys(manifest).sort(), ["claudeCodeVersion", "deviations", "disclosures", "files", "kit", "operation", "orcaVersion", "preferences", "preserved", "schemaVersion", "settings", "storeWritten", "theme", "timestamp"]);
+    assert.deepEqual(Object.keys(manifest).sort(), ["claudeCodeVersion", "deviations", "disclosures", "files", "ghosttyBlockBefore", "kit", "observed", "operation", "orcaVersion", "preferences", "preserved", "schemaVersion", "settings", "source", "storeWritten", "theme", "timestamp"]);
     assert.equal(manifest.kit, kit.id);
     assert.deepEqual(manifest.theme, { name: kit.theme.name, version: kit.theme.version, ref: kit.theme.ref, revision: kit.theme.revision, profile: kit.theme.profile });
+    assert.deepEqual(manifest.source, { kind: "git", pinVerified: true });
     for (const entry of manifest.settings) assert.ok(managedKeys.includes(entry.key), `${entry.key} is managed`);
+    assert.deepEqual(manifest.observed.map((entry) => entry.key).sort(), [...managedKeys].sort(), "every managed key is observed");
+    assert.deepEqual(manifest.observed.find((entry) => entry.key === "terminalColorOverrides").value, { foreground: "tomato" });
     assert.deepEqual(manifest.preserved.map((entry) => entry.key), roles.orca.preserve);
     assert.deepEqual(manifest.settings.find((entry) => entry.key === "terminalMinimumContrastRatio").before, { absent: true });
     assert.deepEqual(manifest.deviations, roles.deviations);
@@ -343,25 +554,103 @@ test("manifests name only managed and preserved keys; the lock follows its schem
   assert.deepEqual(lock.integration, roles.integration);
   assert.deepEqual(lock.components, roles.components);
   assert.deepEqual(lock.deviations, roles.deviations);
-  const digests = await readJson("exports/digests.json");
   assert.deepEqual(Object.keys(lock.exports), ["exports/tokens.resolved.json", "exports/digests.json"]);
-  assert.equal(lock.exports["exports/tokens.resolved.json"], digests.files["exports/tokens.resolved.json"]);
+  assert.equal(lock.exports["exports/tokens.resolved.json"], pinnedDigests.files["exports/tokens.resolved.json"]);
+  assert.equal(lock.exports["exports/tokens.resolved.json"], kit.exports.tokensDigest, "the digest kit.json pins");
   for (const value of Object.values(lock.exports)) assert.match(value, /^sha256-[A-Za-z0-9+/=]+$/);
 });
 
-test("a digest mismatch in -SourceRoot is refused before anything is written", { skip }, async (t) => {
+test("an export that differs from its digests is refused before anything is written", { skip }, async (t) => {
   const tree = await makeTree(t);
-  const source = path.join(tree.root, "source");
-  await fs.mkdir(path.join(source, "exports"), { recursive: true });
-  const original = await fs.readFile(path.join(repoRoot, "exports/tokens.resolved.json"), "utf8");
-  await fs.writeFile(path.join(source, "exports/tokens.resolved.json"), original.replace("Terminal background.", "Terminal background!"));
-  await fs.copyFile(path.join(repoRoot, "exports/digests.json"), path.join(source, "exports/digests.json"));
-  const result = run(tree, "Apply-J3w1OrcaTheme.ps1", ["-SourceRoot", source]);
+  const source = await exportFolder(path.join(tree.root, "source"), { edit: (text) => text.replace("Terminal background.", "Terminal background!") });
+  const result = run(tree, "Apply-J3w1OrcaTheme.ps1", ["-SourceRoot", source], WORKTREE);
   assert.notEqual(result.status, 0);
   assert.match(result.stderr, /Digest mismatch for exports\/tokens\.resolved\.json/);
   assert.equal(await fs.readFile(tree.store, "utf8"), STORE);
   assert.equal(await fs.readFile(tree.ghostty, "utf8"), GHOSTTY);
   assert.equal(existsSync(tree.state), false);
+});
+
+test("a consistent tamper (export and digests.json rewritten together) is refused by kit.json's pinned digest", { skip }, async (t) => {
+  const tree = await makeTree(t);
+  const source = await exportFolder(path.join(tree.root, "source"), { edit: changeSlotOne, recompute: true });
+  const result = run(tree, "Apply-J3w1OrcaTheme.ps1", ["-SourceRoot", source], WORKTREE);
+  assert.notEqual(result.status, 0, result.output);
+  assert.match(result.stderr, /kit\.json exports\.tokensDigest pins/);
+  assert.equal(await fs.readFile(tree.store, "utf8"), STORE);
+  assert.equal(existsSync(tree.state), false);
+});
+
+test("the cache is re-verified against the pinned digest on every run", { skip }, async (t) => {
+  const tree = await makeTree(t);
+  const cache = path.join(tree.state, "cache", kit.theme.revision);
+  await exportFolder(cache, { edit: changeSlotOne, recompute: true });
+  const refused = run(tree, "Apply-J3w1OrcaTheme.ps1");
+  assert.notEqual(refused.status, 0, refused.output);
+  assert.match(refused.stderr, /kit\.json exports\.tokensDigest pins/);
+  assert.match(refused.stderr, /cached copy was removed/);
+  assert.equal(existsSync(path.join(cache, kit.exports.tokens)), false, "the bad copy is gone");
+  assert.equal(await fs.readFile(tree.store, "utf8"), STORE);
+
+  await exportFolder(cache);
+  const cached = run(tree, "Apply-J3w1OrcaTheme.ps1");
+  ok(cached, "a good cached copy applies without the network");
+  assert.match(cached.stdout, /cache of [0-9a-f]{40}; pinned digest verified/);
+  assert.equal((await readStore(tree)).settings.terminalColorOverrides.red, slotOne().toLowerCase());
+});
+
+test("-SourceRoot must be a git checkout holding the pinned commit; its working tree is never read", { skip }, async (t) => {
+  const tree = await makeTree(t);
+  const plain = await exportFolder(path.join(tree.root, "plain"));
+  const notGit = run(tree, "Apply-J3w1OrcaTheme.ps1", ["-SourceRoot", plain]);
+  assert.notEqual(notGit.status, 0);
+  assert.match(notGit.stderr, /is not a git checkout/);
+  const notGitTest = run(tree, "Test-J3w1OrcaTheme.ps1", ["-SourceRoot", plain, "-NoSpecimen"]);
+  assert.notEqual(notGitTest.status, 0);
+  assert.match(notGitTest.stderr, /is not a git checkout/);
+
+  const other = path.join(tree.root, "other");
+  await fs.mkdir(other);
+  git(["init", "--quiet"], other);
+  await fs.writeFile(path.join(other, "README"), "unrelated\n");
+  git(["add", "README"], other);
+  git(["commit", "--quiet", "-m", "unrelated"], other);
+  const missing = run(tree, "Apply-J3w1OrcaTheme.ps1", ["-SourceRoot", other]);
+  assert.notEqual(missing.status, 0);
+  assert.match(missing.stderr, new RegExp(`does not contain the pinned commit ${kit.theme.revision}`));
+  assert.equal(await fs.readFile(tree.store, "utf8"), STORE);
+  assert.equal(existsSync(tree.state), false, "nothing written by a refused source");
+
+  // A clone whose working tree carries another slot 1 (and a digests.json to
+  // match): the kit reads git objects at the pin and writes the pinned value.
+  const clone = path.join(tree.root, "clone");
+  git(["clone", "--quiet", "--shared", "--no-checkout", repoRoot, clone], tree.root);
+  await exportFolder(clone, { edit: changeSlotOne, recompute: true });
+  ok(run(tree, "Apply-J3w1OrcaTheme.ps1", ["-SourceRoot", clone]), "apply from the clone");
+  assert.equal((await readStore(tree)).settings.terminalColorOverrides.red, slotOne().toLowerCase(), "the pinned slot 1, not the working tree's");
+  const lock = await readFileJson(path.join(tree.state, "current", "theme.lock.orca.json"));
+  assert.equal(lock.revision, kit.theme.revision);
+  assert.equal(lock.exports[kit.exports.tokens], kit.exports.tokensDigest);
+  ok(run(tree, "Test-J3w1OrcaTheme.ps1", ["-SourceRoot", clone, "-NoSpecimen"]), "Test reads the same pinned objects");
+
+  // A local tag of the pinned name that points elsewhere is refused.
+  git(["update-ref", `refs/tags/${kit.theme.ref}`, git(["rev-parse", "HEAD"], clone)], clone);
+  if (git(["rev-parse", `${kit.theme.ref}^{commit}`], clone) !== kit.theme.revision) {
+    const moved = run(tree, "Test-J3w1OrcaTheme.ps1", ["-SourceRoot", clone, "-NoSpecimen"]);
+    assert.notEqual(moved.status, 0);
+    assert.match(moved.stderr, new RegExp(`Tag ${kit.theme.ref.replace(/\./g, "\\.")} resolves to [0-9a-f]{40} in .*, not the pinned`));
+  }
+});
+
+test("a working-tree source exists only inside the test seam, and never records the pin as verified", { skip }, async (t) => {
+  const tree = await makeTree(t);
+  const source = await exportFolder(path.join(tree.root, "source"));
+  const result = run(tree, "Apply-J3w1OrcaTheme.ps1", ["-SourceRoot", source], WORKTREE);
+  ok(result, "apply from a folder inside the seam");
+  assert.match(result.stdout, /the pin is NOT verified/);
+  const manifest = await readFileJson(path.join(tree.state, "current", "manifest.json"));
+  assert.deepEqual(manifest.source, { kind: "worktree", pinVerified: false });
+  assert.equal(existsSync(path.join(tree.state, "current", "theme.lock.orca.json")), false, "no lock claims the pin");
 });
 
 test("the seam never reaches the network, and without it the kit refuses a non-Windows host", { skip }, async (t) => {
@@ -395,19 +684,25 @@ test("Update takes only an exact release tag", { skip }, async (t) => {
   assert.equal((await readFileJson(path.join(tree.state, "current", "manifest.json"))).operation, "update");
 });
 
-test("Get-J3w1Kit takes only a full commit SHA", { skip }, async (t) => {
+test("Get-J3w1Kit takes only a full commit SHA and reads it from git", { skip }, async (t) => {
   const tree = await makeTree(t);
   for (const revision of ["main", "latest", "v1.2.0", kit.theme.revision.slice(0, 12), kit.theme.revision.toUpperCase()]) {
     const result = run(tree, "Get-J3w1Kit.ps1", ["-Revision", revision, "-SourceRoot", repoRoot]);
     assert.notEqual(result.status, 0, revision);
     assert.match(result.stderr, /full 40-character lowercase commit SHA/, revision);
   }
-  const revision = "0".repeat(40);
+  const absent = run(tree, "Get-J3w1Kit.ps1", ["-Revision", "0".repeat(40), "-SourceRoot", repoRoot]);
+  assert.notEqual(absent.status, 0);
+  assert.match(absent.stderr, /does not contain commit/);
+  const revision = git(["rev-parse", "HEAD"], repoRoot);
+  const listed = spawnSync("git", ["-C", repoRoot, "cat-file", "-e", `${revision}:tools/terminal-kit/windows/Get-J3w1Kit.ps1`]);
+  if (listed.status !== 0) return t.diagnostic("HEAD has no committed kit; the copy path was not exercised");
   const fetched = run(tree, "Get-J3w1Kit.ps1", ["-Revision", revision, "-SourceRoot", repoRoot]);
   ok(fetched, "copies the kit");
   const target = path.join(tree.root, "AppData", "Local", "j3w1-theme", "kit", revision);
   for (const file of ["kit.json", "roles/terminal.json", "specimen.json", "windows/J3w1Kit.psm1", "windows/Apply-J3w1OrcaTheme.ps1"]) {
-    assert.ok(existsSync(path.join(target, file)), file);
+    const committed = spawnSync("git", ["-C", repoRoot, "cat-file", "blob", `${revision}:tools/terminal-kit/${file}`], { maxBuffer: 16 * 1024 * 1024 }).stdout;
+    assert.deepEqual(await fs.readFile(path.join(target, file)), committed, `${file} is the committed blob`);
   }
   assert.ok(fetched.stdout.includes(path.join(target, "windows", "Apply-J3w1OrcaTheme.ps1")), "prints the next command");
 });

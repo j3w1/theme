@@ -4,7 +4,8 @@
 # code path.
 #
 # Values come only from the pinned export (exports/tokens.resolved.json at the
-# revision kit.json names, verified against exports/digests.json). This file
+# revision kit.json names, verified against kit.json's exports.tokensDigest
+# and exports/digests.json). This file
 # holds no colour values. orca-data.json is edited losslessly with
 # System.Text.Json.Nodes: ConvertFrom-Json would coerce ISO dates, round large
 # numbers and truncate deep objects, so it is never used on Orca's store.
@@ -32,7 +33,9 @@ function Get-J3w1Environment {
   <# Resolves the folders the kit reads and writes. The test seam
      (J3W1_KIT_TEST_ROOT) maps APPDATA and LOCALAPPDATA under one fake root,
      reads Orca's running state and the installed fonts from variables, and
-     disables the network. It is never active otherwise. #>
+     disables the network. Inside the seam only, J3W1_KIT_TEST_SOURCE=worktree
+     lets -SourceRoot be a plain folder; such a run never counts the pin as
+     verified. The seam is never active otherwise. #>
   $testRoot = $env:J3W1_KIT_TEST_ROOT
   $seam = -not [string]::IsNullOrWhiteSpace($testRoot)
   if ($seam) {
@@ -50,16 +53,10 @@ function Get-J3w1Environment {
   }
   return @{
     TestSeam = $seam
+    SourceWorktree = $seam -and $env:J3W1_KIT_TEST_SOURCE -eq 'worktree'
     AppData = $appData
     LocalAppData = $localAppData
     StateRoot = Join-J3w1Path $localAppData 'j3w1-theme/orca'
-  }
-}
-
-function Assert-J3w1SourceAllowed {
-  param($Environment, [string]$SourceRoot)
-  if ($Environment.TestSeam -and [string]::IsNullOrWhiteSpace($SourceRoot)) {
-    throw 'Test seam active (J3W1_KIT_TEST_ROOT): the network is disabled, pass -SourceRoot.'
   }
 }
 
@@ -207,8 +204,12 @@ function Format-J3w1Value {
 
 function Write-J3w1Bytes {
   <# Writes through a temporary file in the same folder, then replaces, so a
-     crash never leaves a half-written file. #>
+     crash never leaves a half-written file. A symbolic link is written
+     through: the final target gets the bytes and the link stays a link. #>
   param([string]$Path, [byte[]]$Bytes)
+  if ($null -ne [System.IO.FileInfo]::new($Path).LinkTarget) {
+    $Path = [System.IO.File]::ResolveLinkTarget($Path, $true).FullName
+  }
   $folder = Split-Path -Parent $Path
   if (-not (Test-Path -LiteralPath $folder)) { [void](New-Item -ItemType Directory -Path $folder -Force) }
   $temporary = "$Path.j3w1-tmp"
@@ -238,14 +239,14 @@ function Format-J3w1Number {
 function Read-J3w1KitBytes {
   <# One kit file (a path relative to tools/terminal-kit). $Source is
      @{ Root } for a kit folder on disk, or @{ Environment; Kit; Pin;
-     SourceRoot; FromGit } for the kit published at a theme revision. #>
+     SourceRoot; NoCache } for the kit published at a theme revision. #>
   param([hashtable]$Source, [string]$Path)
   if ($Source.Contains('Root')) {
     $file = Join-J3w1Path $Source.Root $Path
     if (-not (Test-Path -LiteralPath $file -PathType Leaf)) { return $null }
     return , [System.IO.File]::ReadAllBytes($file)
   }
-  return , (Get-J3w1SourceBytes -Environment $Source.Environment -Kit $Source.Kit -Pin $Source.Pin -Path "tools/terminal-kit/$Path" -SourceRoot $Source.SourceRoot -FromGit:$Source.FromGit -AllowNotFound -NoCache:$Source.NoCache)
+  return , (Get-J3w1SourceBytes -Environment $Source.Environment -Kit $Source.Kit -Pin $Source.Pin -Path "tools/terminal-kit/$Path" -SourceRoot $Source.SourceRoot -AllowNotFound -NoCache:$Source.NoCache)
 }
 
 function Read-J3w1KitFiles {
@@ -292,6 +293,20 @@ function Get-J3w1Pin {
   return $pin
 }
 
+function Get-J3w1PinnedDigest {
+  <# The sha256 of tokens.resolved.json that a kit.json pins for this
+     revision (exports.tokensDigest next to theme.revision), from the first of
+     $Kits that pins exactly this revision; $null when none does. #>
+  param($Pin, [object[]]$Kits)
+  foreach ($kit in $Kits) {
+    if ($null -eq $kit -or $null -eq $kit.theme -or $null -eq $kit.exports) { continue }
+    if ([string]$kit.theme.revision -ne $Pin.Revision) { continue }
+    $digest = [string]$kit.exports['tokensDigest']
+    if ($digest -match '^sha256-[A-Za-z0-9+/=]+$') { return @{ Digest = $digest; Source = "kit.json exports.tokensDigest" } }
+  }
+  return $null
+}
+
 function Expand-J3w1Url {
   param([string]$Template, [hashtable]$Values)
   $url = $Template
@@ -304,7 +319,7 @@ function Invoke-J3w1Http {
      -AllowNotFound. A GITHUB_TOKEN, if set, is sent to api.github.com only
      and never printed. #>
   param($Environment, [string]$Url, [switch]$AllowNotFound)
-  if ($Environment.TestSeam) { throw "Test seam active: refusing network access to $Url" }
+  if ($Environment.TestSeam) { throw "Test seam active (J3W1_KIT_TEST_ROOT): the network is disabled, pass -SourceRoot. Refused: $Url" }
   if ($Url -notmatch '^https://(api\.github\.com|raw\.githubusercontent\.com)/') { throw "Refusing an unexpected URL: $Url" }
   $client = [System.Net.Http.HttpClient]::new()
   try {
@@ -333,7 +348,7 @@ function Invoke-J3w1Git {
   $info.RedirectStandardOutput = $true
   $info.RedirectStandardError = $true
   $info.UseShellExecute = $false
-  try { $process = [System.Diagnostics.Process]::Start($info) } catch { throw 'git is required for -SourceRoot with Update; it was not found on PATH.' }
+  try { $process = [System.Diagnostics.Process]::Start($info) } catch { throw 'git is required for -SourceRoot; it was not found on PATH.' }
   $buffer = [System.IO.MemoryStream]::new()
   $errors = $process.StandardError.ReadToEndAsync()
   $process.StandardOutput.BaseStream.CopyTo($buffer)
@@ -343,6 +358,25 @@ function Invoke-J3w1Git {
     throw "git $($Arguments -join ' ') failed: $($errors.Result.Trim())"
   }
   return , $buffer.ToArray()
+}
+
+function Assert-J3w1GitSource {
+  <# -SourceRoot must be a git checkout that holds the pinned commit; files
+     are then read from git objects at that commit, never from the working
+     tree. A local tag of the pinned name must resolve to the same commit.
+     Returns how the pin was checked. #>
+  param([string]$SourceRoot, $Pin)
+  if ($null -eq (Invoke-J3w1Git -Arguments @('-C', $SourceRoot, 'rev-parse', '--git-dir') -AllowFailure)) {
+    throw "-SourceRoot $SourceRoot is not a git checkout. The kit reads git objects at the pinned commit $($Pin.Revision), never a folder's files; pass a clone of $($Pin.Repository)."
+  }
+  if ($null -eq (Invoke-J3w1Git -Arguments @('-C', $SourceRoot, 'cat-file', '-e', "$($Pin.Revision)^{commit}") -AllowFailure)) {
+    throw "-SourceRoot $SourceRoot does not contain the pinned commit $($Pin.Revision) ($($Pin.Ref)). Fetch it (git -C `"$SourceRoot`" fetch --tags origin) and rerun."
+  }
+  $tag = Invoke-J3w1Git -Arguments @('-C', $SourceRoot, 'rev-parse', '--verify', '--quiet', "refs/tags/$($Pin.Ref)^{commit}") -AllowFailure
+  if ($null -eq $tag) { return "commit $($Pin.Revision) read from git; tag $($Pin.Ref) is not in this checkout" }
+  $resolved = (ConvertFrom-J3w1Bytes $tag).Trim()
+  if ($resolved -ne $Pin.Revision) { throw "Tag $($Pin.Ref) resolves to $resolved in $SourceRoot, not the pinned $($Pin.Revision). Refusing." }
+  return "tag $($Pin.Ref) resolves to the pinned commit in git"
 }
 
 function Resolve-J3w1TagRevision {
@@ -371,12 +405,13 @@ function Resolve-J3w1TagRevision {
 }
 
 function Get-J3w1SourceBytes {
-  <# One repository file at the pinned revision: from -SourceRoot (a working
-     tree, or git objects when -FromGit), from the cache, or from
-     raw.githubusercontent.com at the revision SHA (never a branch). #>
-  param($Environment, $Kit, $Pin, [string]$Path, [string]$SourceRoot, [switch]$FromGit, [switch]$AllowNotFound, [switch]$NoCache)
+  <# One repository file at the pinned revision: from -SourceRoot (git
+     objects at the revision; a plain folder only inside the test seam),
+     from the cache, or from raw.githubusercontent.com at the revision SHA
+     (never a branch). #>
+  param($Environment, $Kit, $Pin, [string]$Path, [string]$SourceRoot, [switch]$AllowNotFound, [switch]$NoCache)
   if (-not [string]::IsNullOrWhiteSpace($SourceRoot)) {
-    if ($FromGit) {
+    if (-not $Environment.SourceWorktree) {
       $bytes = Invoke-J3w1Git -Arguments @('-C', $SourceRoot, 'cat-file', 'blob', "$($Pin.Revision):$Path") -AllowFailure
       if ($null -eq $bytes -and -not $AllowNotFound) { throw "$Path does not exist at $($Pin.Revision) in $SourceRoot." }
       return , $bytes
@@ -397,50 +432,87 @@ function Get-J3w1SourceBytes {
 }
 
 function Get-J3w1Export {
-  <# Fetches and verifies the pinned export. The tag must resolve to the
-     pinned revision (checked whenever the network is used), and
-     tokens.resolved.json must match its entry in digests.json - nothing
-     else is trusted as its digest. #>
-  param($Environment, $Kit, $Pin, [string]$SourceRoot, [switch]$FromGit, [switch]$NoCache, [switch]$SkipPinCheck)
-  Assert-J3w1SourceAllowed $Environment $SourceRoot
+  <# Reads and verifies the pinned export. Where it comes from:
+       -SourceRoot  git objects at the pinned commit; the checkout must hold
+                    it, and a local tag of that name must resolve to it.
+       cache        a copy fetched on an earlier run, re-verified every time.
+       network      the tag must resolve to the pinned commit (GitHub API),
+                    then raw files at that commit SHA.
+     On every path tokens.resolved.json must equal the digest kit.json pins
+     for the revision ($PinnedDigest) and its entry in digests.json. The copy
+     is cached only after it passed. #>
+  param($Environment, $Kit, $Pin, [string]$SourceRoot, [switch]$NoCache, [switch]$SkipPinCheck, $PinnedDigest)
   $tokensPath = $Kit.exports.tokens
   $digestsPath = $Kit.exports.digests
-  $cachedTokens = Join-J3w1Path $Environment.StateRoot "cache/$($Pin.Revision)/$tokensPath"
-  $pinCheck = 'local source'
-  if ([string]::IsNullOrWhiteSpace($SourceRoot)) {
-    if (Test-Path -LiteralPath $cachedTokens -PathType Leaf) {
-      $pinCheck = 'cache (verified when fetched)'
-    } elseif ($SkipPinCheck) {
-      $pinCheck = 'tag resolved by the caller'
+  $cacheRoot = Join-J3w1Path $Environment.StateRoot "cache/$($Pin.Revision)"
+  $cachedTokens = Join-J3w1Path $cacheRoot $tokensPath
+  $cachedDigests = Join-J3w1Path $cacheRoot $digestsPath
+  $pinVerified = $true
+  $fromCache = $false
+  $kind = 'network'
+  if (-not [string]::IsNullOrWhiteSpace($SourceRoot)) {
+    if ($Environment.SourceWorktree) {
+      $kind = 'worktree'
+      $pinVerified = $false
+      $pinCheck = 'working tree (test seam): the pin is NOT verified'
     } else {
-      $resolved = Resolve-J3w1TagRevision -Environment $Environment -Kit $Kit -Ref $Pin.Ref
-      if ($resolved -ne $Pin.Revision) { throw "Tag $($Pin.Ref) resolves to $resolved, not the pinned $($Pin.Revision). Refusing." }
-      $pinCheck = "tag $($Pin.Ref) resolves to the pinned revision"
+      $kind = 'git'
+      $pinCheck = Assert-J3w1GitSource -SourceRoot $SourceRoot -Pin $Pin
     }
-  } elseif ($FromGit) {
-    $pinCheck = "tag $($Pin.Ref) resolved by git"
+  } elseif ((Test-Path -LiteralPath $cachedTokens -PathType Leaf) -and (Test-Path -LiteralPath $cachedDigests -PathType Leaf)) {
+    $kind = 'cache'
+    $fromCache = $true
+    $pinCheck = "cache of $($Pin.Revision)"
+  } elseif ($SkipPinCheck) {
+    $pinCheck = 'tag resolved by the caller'
+  } else {
+    $resolved = Resolve-J3w1TagRevision -Environment $Environment -Kit $Kit -Ref $Pin.Ref
+    if ($resolved -ne $Pin.Revision) { throw "Tag $($Pin.Ref) resolves to $resolved, not the pinned $($Pin.Revision). Refusing." }
+    $pinCheck = "tag $($Pin.Ref) resolves to the pinned revision"
   }
-  $digestsBytes = Get-J3w1SourceBytes -Environment $Environment -Kit $Kit -Pin $Pin -Path $digestsPath -SourceRoot $SourceRoot -FromGit:$FromGit -NoCache:$NoCache
-  $tokensBytes = Get-J3w1SourceBytes -Environment $Environment -Kit $Kit -Pin $Pin -Path $tokensPath -SourceRoot $SourceRoot -FromGit:$FromGit -NoCache:$NoCache
+  if ($fromCache) {
+    $digestsBytes = [System.IO.File]::ReadAllBytes($cachedDigests)
+    $tokensBytes = [System.IO.File]::ReadAllBytes($cachedTokens)
+  } else {
+    $digestsBytes = Get-J3w1SourceBytes -Environment $Environment -Kit $Kit -Pin $Pin -Path $digestsPath -SourceRoot $SourceRoot -NoCache
+    $tokensBytes = Get-J3w1SourceBytes -Environment $Environment -Kit $Kit -Pin $Pin -Path $tokensPath -SourceRoot $SourceRoot -NoCache
+  }
+  $refuse = {
+    param([string]$Message)
+    if ($fromCache) {
+      foreach ($file in $cachedTokens, $cachedDigests) { Remove-Item -LiteralPath $file -Force -ErrorAction SilentlyContinue }
+      $Message += ' The cached copy was removed.'
+    }
+    throw $Message
+  }
+  $actual = Get-J3w1Digest $tokensBytes
+  if ($null -ne $PinnedDigest) {
+    if ($actual -ne $PinnedDigest.Digest) { & $refuse "Digest mismatch for ${tokensPath}: $($PinnedDigest.Source) pins $($PinnedDigest.Digest), got $actual. Refusing to use it." }
+    $pinCheck += '; pinned digest verified'
+  } else {
+    $pinCheck += '; no kit.json pins a digest for this revision, digests.json only'
+  }
   $digests = ConvertFrom-Json -InputObject (ConvertFrom-J3w1Bytes $digestsBytes) -AsHashtable
   $expected = $digests.files[$tokensPath]
-  if ([string]::IsNullOrWhiteSpace($expected)) { throw "$digestsPath lists no digest for $tokensPath. Refusing." }
-  $actual = Get-J3w1Digest $tokensBytes
-  if ($actual -ne $expected) {
-    if ([string]::IsNullOrWhiteSpace($SourceRoot)) { Remove-Item -LiteralPath $cachedTokens -Force -ErrorAction SilentlyContinue }
-    throw "Digest mismatch for ${tokensPath}: expected $expected from $digestsPath, got $actual. Refusing to use it."
-  }
+  if ([string]::IsNullOrWhiteSpace($expected)) { & $refuse "$digestsPath lists no digest for $tokensPath. Refusing." }
+  if ($actual -ne $expected) { & $refuse "Digest mismatch for ${tokensPath}: expected $expected from $digestsPath, got $actual. Refusing to use it." }
   $tokens = ConvertFrom-Json -InputObject (ConvertFrom-J3w1Bytes $tokensBytes) -AsHashtable
   if ([string]$tokens.version -ne $Pin.Version) { throw "The export is version $($tokens.version), the pin says $($Pin.Version). Refusing." }
   $profile = $tokens.profiles[$Pin.Profile]
   if ($null -eq $profile) { throw "Profile '$($Pin.Profile)' is not in the export." }
   if ($profile.status -ne 'approved') { throw "Profile '$($Pin.Profile)' is $($profile.status); only an approved profile is delivered." }
+  if ($kind -eq 'network' -and -not $NoCache) {
+    Write-J3w1Bytes -Path $cachedDigests -Bytes $digestsBytes
+    Write-J3w1Bytes -Path $cachedTokens -Bytes $tokensBytes
+  }
   return @{
     Pin = $Pin
     Tokens = $profile.tokens
     Eligibility = $Kit.eligibility
     Digests = [ordered]@{ $tokensPath = $actual; $digestsPath = (Get-J3w1Digest $digestsBytes) }
     PinCheck = $pinCheck
+    PinVerified = $pinVerified
+    SourceKind = $kind
   }
 }
 
@@ -548,17 +620,16 @@ function Get-J3w1BlockPattern {
   return '(?m)^' + [regex]::Escape($script:BlockStart) + '[^\n]*\n[\s\S]*?^' + [regex]::Escape($script:BlockEnd) + '[^\n]*(\n|$)'
 }
 
-function Read-J3w1Ghostty {
-  <# config.ghostty as text, with the managed block located. A UTF-8 BOM is
-     kept as it was; every byte outside the block is preserved. #>
-  param([string]$Path)
+function ConvertTo-J3w1GhosttyState {
+  <# config.ghostty bytes (or $null for a missing file) as text, with the
+     managed block located. A UTF-8 BOM is kept as it was. #>
+  param([string]$Path, [byte[]]$Bytes)
   $state = @{ Path = $Path; Exists = $false; Bom = $false; Text = ''; NewLine = "`n"; Match = $null; Bytes = $null }
-  if (Test-Path -LiteralPath $Path -PathType Leaf) {
-    $bytes = [System.IO.File]::ReadAllBytes($Path)
+  if ($null -ne $Bytes) {
     $state.Exists = $true
-    $state.Bytes = $bytes
-    $state.Bom = $bytes.Length -ge 3 -and $bytes[0] -eq 0xEF -and $bytes[1] -eq 0xBB -and $bytes[2] -eq 0xBF
-    $state.Text = ConvertFrom-J3w1Bytes $bytes
+    $state.Bytes = $Bytes
+    $state.Bom = $Bytes.Length -ge 3 -and $Bytes[0] -eq 0xEF -and $Bytes[1] -eq 0xBB -and $Bytes[2] -eq 0xBF
+    $state.Text = ConvertFrom-J3w1Bytes $Bytes
     if ($state.Text.Contains("`r`n")) { $state.NewLine = "`r`n" }
     $match = [regex]::Match($state.Text, (Get-J3w1BlockPattern))
     if ($match.Success) { $state.Match = $match }
@@ -566,22 +637,42 @@ function Read-J3w1Ghostty {
   return $state
 }
 
+function Read-J3w1Ghostty {
+  <# config.ghostty as text, with the managed block located. #>
+  param([string]$Path)
+  $bytes = if (Test-Path -LiteralPath $Path -PathType Leaf) { [System.IO.File]::ReadAllBytes($Path) } else { $null }
+  return ConvertTo-J3w1GhosttyState -Path $Path -Bytes $bytes
+}
+
+function Get-J3w1GhosttyText {
+  <# The text with the managed block set to $Block (replaced in place, or
+     appended after a blank line), or removed when $Block is $null. Every
+     character outside the block is kept. #>
+  param($State, $Block)
+  $text = $State.Text
+  if ($null -ne $Block) { $Block = $Block.Replace("`r`n", "`n").Replace("`n", $State.NewLine) }
+  if ($null -ne $State.Match) {
+    $replacement = if ($null -eq $Block) { '' } else { $Block }
+    return $text.Substring(0, $State.Match.Index) + $replacement + $text.Substring($State.Match.Index + $State.Match.Length)
+  }
+  if ($null -eq $Block) { return $text }
+  if ($text.Length -eq 0) { return $Block }
+  if (-not $text.EndsWith("`n")) { $text += $State.NewLine }
+  return $text + $State.NewLine + $Block
+}
+
+function ConvertTo-J3w1GhosttyBytes {
+  param($State, [string]$Text)
+  $bytes = $script:Utf8.GetBytes($Text)
+  if ($State.Bom) { $bytes = [byte[]](@(0xEF, 0xBB, 0xBF) + $bytes) }
+  return , $bytes
+}
+
 function Get-J3w1GhosttyUpdate {
   <# The new config.ghostty bytes: the block replaced in place, or appended. #>
   param($State, $Pin, $Expected)
-  $block = Get-J3w1GhosttyBlock -Pin $Pin -Expected $Expected -NewLine $State.NewLine
-  $text = $State.Text
-  if ($null -ne $State.Match) {
-    $text = $text.Substring(0, $State.Match.Index) + $block + $text.Substring($State.Match.Index + $State.Match.Length)
-  } elseif ($text.Length -eq 0) {
-    $text = $block
-  } else {
-    if (-not $text.EndsWith("`n")) { $text += $State.NewLine }
-    $text += $State.NewLine + $block
-  }
-  $bytes = $script:Utf8.GetBytes($text)
-  if ($State.Bom) { $bytes = [byte[]](@(0xEF, 0xBB, 0xBF) + $bytes) }
-  return , $bytes
+  $block = Get-J3w1GhosttyBlock -Pin $Pin -Expected $Expected
+  return , (ConvertTo-J3w1GhosttyBytes $State (Get-J3w1GhosttyText $State $block))
 }
 
 function Get-J3w1GhosttyEntries {
@@ -771,15 +862,20 @@ function Get-J3w1FontFix {
 # ---------------------------------------------------------------------------
 
 function New-J3w1Context {
-  <# Everything a run needs: folders, kit maps, the verified export. #>
-  param([string]$KitRoot, [string]$SourceRoot, $Pin, $KitFiles, [switch]$FromGit, [switch]$NoCache, [switch]$SkipPinCheck)
+  <# Everything a run needs: folders, kit maps, the verified export. The
+     digest the export must match comes from the first kit.json (the run's
+     own maps, then -Kits) that pins exactly this revision, else from
+     -PinnedDigest. #>
+  param([string]$KitRoot, [string]$SourceRoot, $Pin, $KitFiles, [object[]]$Kits, $PinnedDigest, [switch]$NoCache, [switch]$SkipPinCheck)
   $environment = Get-J3w1Environment
   if ($null -eq $KitFiles) { $KitFiles = Read-J3w1KitFiles $KitRoot }
   if ($null -eq $Pin) { $Pin = Get-J3w1Pin $KitFiles.Kit }
   if (-not [string]::IsNullOrWhiteSpace($SourceRoot)) {
     $SourceRoot = (Resolve-Path -LiteralPath $SourceRoot).Path
   }
-  $export = Get-J3w1Export -Environment $environment -Kit $KitFiles.Kit -Pin $Pin -SourceRoot $SourceRoot -FromGit:$FromGit -NoCache:$NoCache -SkipPinCheck:$SkipPinCheck
+  $pinned = Get-J3w1PinnedDigest -Pin $Pin -Kits (@($KitFiles.Kit) + @($Kits))
+  if ($null -eq $pinned) { $pinned = $PinnedDigest }
+  $export = Get-J3w1Export -Environment $environment -Kit $KitFiles.Kit -Pin $Pin -SourceRoot $SourceRoot -NoCache:$NoCache -SkipPinCheck:$SkipPinCheck -PinnedDigest $pinned
   return @{ Environment = $environment; KitFiles = $KitFiles; Pin = $Pin; Export = $export; SourceRoot = $SourceRoot }
 }
 
@@ -811,10 +907,38 @@ function New-J3w1BackupFolder {
   return @{ Name = $candidate; Path = $path }
 }
 
+function Get-J3w1PreKitStorePath {
+  param($Environment)
+  return Join-J3w1Path $Environment.StateRoot 'pre-kit/orca-data.json'
+}
+
+function Test-J3w1SameValue {
+  <# Equal JSON values, with strings compared case-insensitively (Orca may
+     write a colour in another case) and numbers by value. #>
+  param($A, $B)
+  if ($null -eq $A -or $null -eq $B) { return $null -eq $A -and $null -eq $B }
+  if ($A -is [System.Text.Json.Nodes.JsonObject] -and $B -is [System.Text.Json.Nodes.JsonObject]) {
+    if ($A.Count -ne $B.Count) { return $false }
+    foreach ($pair in $A) {
+      if (-not $B.ContainsKey($pair.Key)) { return $false }
+      if (-not (Test-J3w1SameValue $pair.Value $B[$pair.Key])) { return $false }
+    }
+    return $true
+  }
+  $kindA = $A.GetValueKind()
+  if ($kindA -ne $B.GetValueKind()) { return $false }
+  if ($kindA -eq [System.Text.Json.JsonValueKind]::String) { return $A.GetValue[string]().ToLowerInvariant() -eq $B.GetValue[string]().ToLowerInvariant() }
+  if ($kindA -eq [System.Text.Json.JsonValueKind]::Number) { return $A.GetValue[double]() -eq $B.GetValue[double]() }
+  return Test-J3w1NodeEqual $A $B
+}
+
 function New-J3w1Manifest {
   <# The record of one run. It names only the kit's own keys and files: no
-     other Orca state and no secrets. #>
-  param($Context, [string]$Operation, [string]$Timestamp, [string]$OrcaVersion, $ClaudeVersion, $Files, $Settings, $Preserved, $Disclosures, [bool]$StoreWritten, $FontSize)
+     other Orca state and no secrets. observed[] holds the value (or
+     absence) of every managed key as this run found it, whether or not the
+     store was written; equalsKit marks a value that already was the kit's
+     (a preference such as the font size never is: the kit keeps it). #>
+  param($Context, [string]$Operation, [string]$Timestamp, [string]$OrcaVersion, $ClaudeVersion, $Files, $Settings, $Observed, $Preserved, $Disclosures, [bool]$StoreWritten, [bool]$GhosttyBlockBefore, $FontSize)
   $pin = $Context.Pin
   $manifest = [System.Text.Json.Nodes.JsonObject]::new()
   $manifest['schemaVersion'] = New-J3w1JsonNode 1
@@ -824,7 +948,9 @@ function New-J3w1Manifest {
   $manifest['orcaVersion'] = New-J3w1JsonNode $OrcaVersion
   $manifest['claudeCodeVersion'] = if ($null -eq $ClaudeVersion) { $null } else { New-J3w1JsonNode $ClaudeVersion }
   $manifest['theme'] = New-J3w1JsonNode ([ordered]@{ name = $pin.Name; version = $pin.Version; ref = $pin.Ref; revision = $pin.Revision; profile = $pin.Profile })
+  $manifest['source'] = New-J3w1JsonNode ([ordered]@{ kind = $Context.Export.SourceKind; pinVerified = [bool]$Context.Export.PinVerified })
   $manifest['storeWritten'] = New-J3w1JsonNode $StoreWritten
+  $manifest['ghosttyBlockBefore'] = New-J3w1JsonNode $GhosttyBlockBefore
   $manifest['preferences'] = New-J3w1JsonNode ([ordered]@{ terminalFontSize = $FontSize })
   $manifest['files'] = [System.Text.Json.Nodes.JsonArray]::new()
   foreach ($file in $Files) {
@@ -832,6 +958,14 @@ function New-J3w1Manifest {
       path = $file.Path; role = $file.Role; backupFile = $file.BackupFile
       existedBefore = $file.ExistedBefore; sha256Before = $file.Sha256Before; sha256After = $file.Sha256After
     })))
+  }
+  $manifest['observed'] = [System.Text.Json.Nodes.JsonArray]::new()
+  foreach ($item in $Observed) {
+    $entry = [System.Text.Json.Nodes.JsonObject]::new()
+    $entry['key'] = New-J3w1JsonNode $item.Key
+    $entry['value'] = if ($item.Slot.Present) { New-J3w1JsonNode $item.Slot.Node } else { Get-J3w1AbsentNode }
+    $entry['equalsKit'] = New-J3w1JsonNode ([bool]$item.EqualsKit)
+    $manifest['observed'].Add($entry)
   }
   $manifest['settings'] = [System.Text.Json.Nodes.JsonArray]::new()
   foreach ($change in $Settings) {
@@ -985,6 +1119,13 @@ function Invoke-J3w1OrcaApply {
     $after = @{ Present = $true; Node = (New-J3w1JsonNode $expected.Settings[$key]) }
     $changes.Add(@{ Key = $key; Before = $before; After = $after; Differs = -not ($before.Present -and (Test-J3w1NodeEqual $before.Node $after.Node)) })
   }
+  # Every managed key as found, written or not: Restore needs the value
+  # from before the kit even when Orca (running now) writes the kit's
+  # values later through Import from Ghostty.
+  $observed = foreach ($change in $changes) {
+    $isPreference = $roles.orca.settings.Contains($change.Key) -and $roles.orca.settings[$change.Key].Contains('preference')
+    @{ Key = $change.Key; Slot = $change.Before; EqualsKit = (-not $isPreference) -and $change.Before.Present -and (Test-J3w1SameValue $change.Before.Node $change.After.Node) }
+  }
   $pending = @($changes | Where-Object { $_.Differs })
   $running = Test-J3w1OrcaRunning $environment
   $writeStore = $pending.Count -gt 0 -and -not $running
@@ -1043,29 +1184,38 @@ function Invoke-J3w1OrcaApply {
     return $result
   }
 
-  # Back up every file about to change, then write.
+  # Plan and serialise everything first: a failure here leaves no backup
+  # folder, no manifest and no changed file.
   $timestamp = Get-J3w1Timestamp
-  $backup = New-J3w1BackupFolder $environment
   $files = [System.Collections.Generic.List[object]]::new()
   $storeText = $null
   if ($writeStore) {
-    [System.IO.File]::WriteAllBytes((Join-J3w1Path $backup.Path 'orca-data.json'), $storeBytes)
     foreach ($change in $pending) { Set-J3w1NodeAt $store $change.Key $change.After.Node }
     $storeText = ConvertTo-J3w1JsonText $store
-    $files.Add(@{ Path = $paths.Settings; Role = 'store'; BackupFile = 'orca-data.json'; ExistedBefore = $true; Sha256Before = (Get-J3w1Digest $storeBytes); Sha256After = (Get-J3w1Digest $script:Utf8.GetBytes($storeText)) })
+    # No per-run copy of the store: the manifest keeps every managed key
+    # before and after, and one full pre-kit copy is kept (see below).
+    $files.Add(@{ Path = $paths.Settings; Role = 'store'; BackupFile = $null; ExistedBefore = $true; Sha256Before = (Get-J3w1Digest $storeBytes); Sha256After = (Get-J3w1Digest $script:Utf8.GetBytes($storeText)) })
   }
   if ($writeGhostty) {
-    $backupFile = $null
-    if ($ghostty.Exists) {
-      $backupFile = 'config.ghostty'
-      [System.IO.File]::WriteAllBytes((Join-J3w1Path $backup.Path $backupFile), $ghostty.Bytes)
-    }
+    $backupFile = if ($ghostty.Exists) { 'config.ghostty' } else { $null }
     $files.Add(@{ Path = $paths.Ghostty; Role = 'ghostty'; BackupFile = $backupFile; ExistedBefore = $ghostty.Exists; Sha256Before = $(if ($ghostty.Exists) { Get-J3w1Digest $ghostty.Bytes } else { $null }); Sha256After = (Get-J3w1Digest $ghosttyBytes) })
   }
   $written = if ($writeStore) { $pending } else { @() }
   $manifest = New-J3w1Manifest -Context $Context -Operation $Operation -Timestamp $timestamp -OrcaVersion $orcaVersion -ClaudeVersion $claudeVersion `
-    -Files $files -Settings $written -Preserved $preserved -Disclosures $expected.Disclosures -StoreWritten:$writeStore -FontSize $expected.FontSize
+    -Files $files -Settings $written -Observed $observed -Preserved $preserved -Disclosures $expected.Disclosures -StoreWritten:$writeStore `
+    -GhosttyBlockBefore:($null -ne $ghostty.Match) -FontSize $expected.FontSize
   $manifestText = ConvertTo-J3w1JsonText $manifest
+  $blockText = Get-J3w1GhosttyBlock -Pin $Context.Pin -Expected $expected
+  # The lock claims the pin; a run whose pin was not verified writes none.
+  $lockText = if ($Context.Export.PinVerified) { New-J3w1Lock -Context $Context -Timestamp $timestamp } else { $null }
+  $preKit = Get-J3w1PreKitStorePath $environment
+  $savePreKit = $writeStore -and -not (Test-Path -LiteralPath $preKit -PathType Leaf)
+  if ($writeStore -and (Test-J3w1OrcaRunning $environment)) { throw 'Orca started during the run; nothing was written. Quit Orca (tray too) and rerun.' }
+
+  # Back up, then write.
+  $backup = New-J3w1BackupFolder $environment
+  if ($savePreKit) { Write-J3w1Bytes -Path $preKit -Bytes $storeBytes }
+  if ($writeGhostty -and $ghostty.Exists) { [System.IO.File]::WriteAllBytes((Join-J3w1Path $backup.Path 'config.ghostty'), $ghostty.Bytes) }
   Write-J3w1Text (Join-J3w1Path $backup.Path 'manifest.json') $manifestText
 
   if ($writeGhostty) { Write-J3w1Bytes -Path $paths.Ghostty -Bytes $ghosttyBytes }
@@ -1075,8 +1225,9 @@ function Invoke-J3w1OrcaApply {
   }
   $current = Join-J3w1Path $environment.StateRoot 'current'
   Write-J3w1Text (Join-J3w1Path $current 'manifest.json') $manifestText
-  Write-J3w1Text (Join-J3w1Path $current 'config.ghostty.block') (Get-J3w1GhosttyBlock -Pin $Context.Pin -Expected $expected)
-  Write-J3w1Text (Join-J3w1Path $current 'theme.lock.orca.json') (New-J3w1Lock -Context $Context -Timestamp $timestamp)
+  Write-J3w1Text (Join-J3w1Path $current 'config.ghostty.block') $blockText
+  $lockPath = Join-J3w1Path $current 'theme.lock.orca.json'
+  if ($null -ne $lockText) { Write-J3w1Text $lockPath $lockText } else { Remove-Item -LiteralPath $lockPath -Force -ErrorAction SilentlyContinue }
 
   $result.Changed = $true
   $result.StoreWritten = $writeStore
@@ -1084,6 +1235,8 @@ function Invoke-J3w1OrcaApply {
   Write-Host ''
   Write-Host "Result: applied. Backup: $($backup.Path)"
   if ($writeStore) { Write-Host 'Orca settings written; start Orca to see the terminal colours.' }
+  if ($savePreKit) { Write-Host "Full pre-kit copy of Orca's store (it holds the whole private store; kept once, never overwritten): $preKit" }
+  if ($null -eq $lockText) { Write-Host 'The pin was not verified (working tree source), so no theme.lock.orca.json was written.' }
   if ($result.StorePending) { Write-J3w1GuiSteps }
   if ($ghostty.Exists -eq $false -or $writeGhostty) { Write-Host "Ghostty block: $($paths.Ghostty)" }
   return $result
@@ -1100,13 +1253,13 @@ function Invoke-J3w1OrcaUpdate {
     throw "-Version must be an exact release tag such as v1.2.0; '$Version' is refused (branches, 'main' and 'latest' are never followed)."
   }
   $environment = Get-J3w1Environment
-  Assert-J3w1SourceAllowed $environment $SourceRoot
   $fromGit = -not [string]::IsNullOrWhiteSpace($SourceRoot)
+  if ($fromGit -and $environment.SourceWorktree) { throw 'Update reads git objects at the tag only; unset J3W1_KIT_TEST_SOURCE.' }
   if ($fromGit) { $SourceRoot = (Resolve-Path -LiteralPath $SourceRoot).Path }
   $local = Read-J3w1KitFiles -KitRoot $KitRoot
   $revision = Resolve-J3w1TagRevision -Environment $environment -Kit $local.Kit -Ref $Version -SourceRoot $SourceRoot
   $pin = Get-J3w1Pin $local.Kit @{ version = $Version.Substring(1); ref = $Version; revision = $revision; profile = $local.Kit.theme.profile }
-  $source = @{ Environment = $environment; Kit = $local.Kit; Pin = $pin; SourceRoot = $SourceRoot; FromGit = $fromGit; NoCache = [bool]$PlanOnly }
+  $source = @{ Environment = $environment; Kit = $local.Kit; Pin = $pin; SourceRoot = $SourceRoot; NoCache = [bool]$PlanOnly }
   $kitFiles = Read-J3w1KitFiles -Source $source
   if ($null -eq $kitFiles) {
     Write-Warning "$Version publishes no tools/terminal-kit; using this kit's role maps ($($local.Label)) with the $Version export."
@@ -1115,8 +1268,8 @@ function Invoke-J3w1OrcaUpdate {
     throw "The kit at $Version names another repository ($($kitFiles.Kit.theme.repository)). Refusing."
   }
   if ($fromGit) { $pinCheck = "tag $Version resolved by git in $SourceRoot" } else { $pinCheck = "tag $Version resolved through the GitHub API" }
-  $context = New-J3w1Context -SourceRoot $SourceRoot -Pin $pin -KitFiles $kitFiles -FromGit:$fromGit -NoCache:$PlanOnly -SkipPinCheck
-  $context.Export.PinCheck = $pinCheck
+  $context = New-J3w1Context -SourceRoot $SourceRoot -Pin $pin -KitFiles $kitFiles -Kits @($local.Kit) -NoCache:$PlanOnly -SkipPinCheck
+  $context.Export.PinCheck = $pinCheck + ($context.Export.PinCheck -replace '^[^;]*', '')
   $result = Invoke-J3w1OrcaApply -Context $context -Operation 'update' -PlanOnly:$PlanOnly -SkipFontCheck:$SkipFontCheck -ShowDiff
   if ($PlanOnly) { return 0 }
   Write-Host ''
@@ -1127,7 +1280,9 @@ function Invoke-J3w1OrcaUpdate {
 
 function New-J3w1VerifyContext {
   <# Test checks what was last applied: the manifest's theme pin and, when an
-     update fetched them, that revision's kit maps. #>
+     update fetched them, that revision's kit maps. The export is verified
+     against the digest kit.json pins for that revision, else the digest the
+     last apply recorded in its lock. #>
   param([string]$KitRoot, [string]$SourceRoot)
   $environment = Get-J3w1Environment
   $local = Read-J3w1KitFiles -KitRoot $KitRoot
@@ -1137,16 +1292,22 @@ function New-J3w1VerifyContext {
   $theme = $manifest['theme']
   $pin = Get-J3w1Pin $local.Kit @{ version = $theme['version'].ToString(); ref = $theme['ref'].ToString(); revision = $theme['revision'].ToString(); profile = $theme['profile'].ToString() }
   if ($pin.Revision -eq $localPin.Revision) { return New-J3w1Context -SourceRoot $SourceRoot -Pin $pin -KitFiles $local }
-  $fromGit = -not [string]::IsNullOrWhiteSpace($SourceRoot)
   $kitFiles = $null
-  if (-not $fromGit) {
+  if ([string]::IsNullOrWhiteSpace($SourceRoot)) {
     $cached = Join-J3w1Path $environment.StateRoot "cache/$($pin.Revision)/tools/terminal-kit"
     if (Test-Path -LiteralPath (Join-J3w1Path $cached 'kit.json') -PathType Leaf) { $kitFiles = Read-J3w1KitFiles -KitRoot $cached }
   } else {
-    $kitFiles = Read-J3w1KitFiles -Source @{ Environment = $environment; Kit = $local.Kit; Pin = $pin; SourceRoot = (Resolve-Path -LiteralPath $SourceRoot).Path; FromGit = $true; NoCache = $true }
+    $kitFiles = Read-J3w1KitFiles -Source @{ Environment = $environment; Kit = $local.Kit; Pin = $pin; SourceRoot = (Resolve-Path -LiteralPath $SourceRoot).Path; NoCache = $true }
   }
   if ($null -eq $kitFiles) { $kitFiles = $local }
-  return New-J3w1Context -SourceRoot $SourceRoot -Pin $pin -KitFiles $kitFiles -FromGit:$fromGit -SkipPinCheck:$fromGit
+  $recorded = $null
+  $lockPath = Join-J3w1Path $environment.StateRoot 'current/theme.lock.orca.json'
+  if (Test-Path -LiteralPath $lockPath -PathType Leaf) {
+    $lock = Read-J3w1Data $lockPath
+    $digest = [string]$lock.exports[$kitFiles.Kit.exports.tokens]
+    if ($lock.revision -eq $pin.Revision -and $digest) { $recorded = @{ Digest = $digest; Source = 'the last apply (theme.lock.orca.json)' } }
+  }
+  return New-J3w1Context -SourceRoot $SourceRoot -Pin $pin -KitFiles $kitFiles -Kits @($local.Kit) -PinnedDigest $recorded
 }
 
 # ---------------------------------------------------------------------------
@@ -1321,8 +1482,13 @@ function Invoke-J3w1OrcaVerify {
   if ($null -eq $ghostty.Match) {
     & $add 'FAIL' 'ghostty block' "no managed block in $($paths.Ghostty)"
   } else {
-    $diff = @(Compare-J3w1Lines (Get-J3w1GhosttyLines $ghostty.Match.Value) $expected.GhosttyLines)
-    if ($diff.Count -eq 0) { & $add 'PASS' 'ghostty block' "$($expected.GhosttyLines.Count) lines equal the generated text" }
+    # font-size is the owner's preference, not a theme value: not compared.
+    $isSize = { param($line) $line -like 'font-size = *' }
+    $blockLines = Get-J3w1GhosttyLines $ghostty.Match.Value
+    $found = @($blockLines | Where-Object { -not (& $isSize $_) })
+    $want = @($expected.GhosttyLines | Where-Object { -not (& $isSize $_) })
+    $diff = @(Compare-J3w1Lines $found $want)
+    if ($diff.Count -eq 0) { & $add 'PASS' 'ghostty block' "$($want.Count) lines equal the generated text (font-size not compared)" }
     else { & $add 'FAIL' 'ghostty block' ("differs (- found, + expected): " + ($diff -join '; ')) }
   }
   $conflicts = Get-J3w1GhosttyConflicts $kitFiles $environment
@@ -1356,8 +1522,14 @@ function Invoke-J3w1OrcaVerify {
         $ok = $slot.Node.GetValueKind() -eq $want.GetValueKind() -and $slot.Node.ToString().ToLowerInvariant() -eq $want.ToString().ToLowerInvariant()
       }
     }
-    $label = if ($roles.orca.settings[$key].Contains('preference')) { 'the preference' } else { 'expected' }
-    & $add $(if ($ok) { 'PASS' } else { 'FAIL' }) $key "observed $(Format-J3w1Value $slot), $label $(ConvertTo-J3w1Compact $want)"
+    if ($roles.orca.settings[$key].Contains('preference')) {
+      # The owner may change the size after apply; the kit keeps any size.
+      $detail = "observed $(Format-J3w1Value $slot), $(ConvertTo-J3w1Compact $want) at the last apply"
+      if (-not $ok) { $detail += '; changed since, which the kit allows (the size is yours)' }
+      & $add $(if ($ok) { 'PASS' } else { 'WARN' }) $key $detail
+      continue
+    }
+    & $add $(if ($ok) { 'PASS' } else { 'FAIL' }) $key "observed $(Format-J3w1Value $slot), expected $(ConvertTo-J3w1Compact $want)"
   }
 
   # Preserved keys against the last manifest, and the owner's preferences.
@@ -1404,11 +1576,17 @@ function Invoke-J3w1OrcaVerify {
 # ---------------------------------------------------------------------------
 
 function Get-J3w1Backups {
+  <# Every backup folder with a manifest, oldest first. Folders are named
+     yyyyMMddTHHmmssZ, with -1, -2 ... for runs within the same second. #>
   param($Environment)
   $root = Join-J3w1Path $Environment.StateRoot 'backups'
   $list = [System.Collections.Generic.List[object]]::new()
   if (-not (Test-Path -LiteralPath $root)) { return , $list }
-  foreach ($dir in (Get-ChildItem -LiteralPath $root -Directory | Sort-Object Name)) {
+  $order = @(
+    @{ Expression = { ($_.Name -split '-', 2)[0] } },
+    @{ Expression = { $parts = $_.Name -split '-', 2; if ($parts.Count -gt 1 -and $parts[1] -match '^\d+$') { [int]$parts[1] } else { 0 } } }
+  )
+  foreach ($dir in (Get-ChildItem -LiteralPath $root -Directory | Sort-Object -Property $order)) {
     $manifestPath = Join-J3w1Path $dir.FullName 'manifest.json'
     if (-not (Test-Path -LiteralPath $manifestPath -PathType Leaf)) { continue }
     $list.Add(@{ Name = $dir.Name; Path = $dir.FullName; Manifest = (Read-J3w1JsonNode $manifestPath) })
@@ -1416,79 +1594,195 @@ function Get-J3w1Backups {
   return , $list
 }
 
+function Get-J3w1ManifestText {
+  param($Manifest, [string]$Name)
+  $node = $Manifest[$Name]
+  if ($null -eq $node) { return $null }
+  return $node.ToString()
+}
+
+function Get-J3w1ManifestBool {
+  param($Manifest, [string]$Name, [bool]$Default)
+  $node = $Manifest[$Name]
+  if ($null -eq $node) { return $Default }
+  return $node.GetValue[bool]()
+}
+
+function Get-J3w1RestoreTargets {
+  <# The value each managed key had before one run: observed[] (every key,
+     written or not), else settings[].before (a restore, or a manifest from
+     before observed[] existed). #>
+  param($Manifest)
+  $map = [ordered]@{}
+  $observed = $Manifest['observed']
+  if ($null -ne $observed) {
+    foreach ($entry in $observed) { $map[$entry['key'].ToString()] = @{ Value = $entry['value']; EqualsKit = $entry['equalsKit'].GetValue[bool]() } }
+  } else {
+    foreach ($entry in $Manifest['settings']) { $map[$entry['key'].ToString()] = @{ Value = $entry['before']; EqualsKit = $false } }
+  }
+  return $map
+}
+
+function Get-J3w1GhosttyRestorePlan {
+  <# What config.ghostty gets back. $Target is the file before the chosen
+     run ($null when no run in the window wrote it). Without a block to put
+     back, only the managed block is removed and every byte outside it is
+     kept; the target's exact bytes (or the deletion of a file the kit
+     created) are used only when nothing outside the block changed since. #>
+  param($Current, $Target, [switch]$KeepTargetBlock)
+  if (-not $Current.Exists) {
+    if ($null -ne $Target -and $Target.Exists) { return @{ Action = 'gone'; Note = 'missing now; left missing (it was removed after the kit wrote it)' } }
+    return @{ Action = 'none' }
+  }
+  $rest = Get-J3w1GhosttyText $Current $null
+  $targetBlock = if ($KeepTargetBlock -and $null -ne $Target -and $null -ne $Target.Match) { $Target.Match.Value } else { $null }
+  if ($null -ne $targetBlock) {
+    if ($rest -ceq (Get-J3w1GhosttyText $Target $null)) {
+      $plan = @{ Action = 'write'; Bytes = $Target.Bytes; Note = 'restore the backed-up bytes (nothing outside the managed block changed)' }
+    } else {
+      $plan = @{ Action = 'write'; Bytes = (ConvertTo-J3w1GhosttyBytes $Current (Get-J3w1GhosttyText $Current $targetBlock)); Note = "put back the backup's managed block; every other line is kept" }
+    }
+  } elseif ($null -ne $Target -and $null -eq $Target.Match -and $rest -ceq (Get-J3w1GhosttyText $Target '')) {
+    if ($Target.Exists) {
+      $plan = @{ Action = 'write'; Bytes = $Target.Bytes; Note = 'restore the pre-kit bytes (nothing outside the managed block changed)' }
+    } else {
+      $plan = @{ Action = 'delete'; Note = 'delete (the kit created it and nothing else was added)' }
+    }
+  } else {
+    $plan = @{ Action = 'write'; Bytes = (ConvertTo-J3w1GhosttyBytes $Current $rest); Note = 'remove the managed block; every byte outside it is kept' }
+  }
+  if ($plan.Action -eq 'write' -and [System.Linq.Enumerable]::SequenceEqual([byte[]]$Current.Bytes, [byte[]]$plan.Bytes)) { return @{ Action = 'none' } }
+  return $plan
+}
+
 function Invoke-J3w1OrcaRestore {
-  <# Key-level restore. Default: every key and file back to the value it had
-     before the kit first changed it (the pre-kit state). -Backup names one
-     backup, -Latest takes the most recent apply or update. #>
+  <# Key-level restore. Default: undo every apply and update since the last
+     complete default restore (or since the first run): per key the earliest
+     value observed in that window, per file its state before the earliest
+     run in the window that wrote it. A key whose earliest observation
+     already held the kit's value while config.ghostty already held the
+     managed block may have been written by Orca's Import from Ghostty; its
+     pre-kit value is unknown, so it is left as it is and the run exits 3.
+     -Latest undoes the most recent apply or update; -Backup returns to the
+     state before one backup. The store is written only while Orca is not
+     running (exit 2 otherwise). #>
   param($Environment, $KitFiles, [string]$Backup, [switch]$Latest, [switch]$PlanOnly)
   $backups = Get-J3w1Backups $Environment
-  $applies = @($backups | Where-Object { @('apply', 'update') -contains $_.Manifest['operation'].ToString() })
-  if ($applies.Count -eq 0) { throw "No kit backups under $(Join-J3w1Path $Environment.StateRoot 'backups'); nothing to restore." }
+  $isRun = { param($item) @('apply', 'update') -contains $item.Manifest['operation'].ToString() }
+  $runs = @($backups | Where-Object { & $isRun $_ })
+  if ($runs.Count -eq 0) { throw "No kit backups under $(Join-J3w1Path $Environment.StateRoot 'backups'); nothing to restore." }
+  $mode = 'default'
+  $since = $null
   if ($Backup) {
     $chosen = @($backups | Where-Object { $_.Name -eq $Backup })
     if ($chosen.Count -eq 0) { throw "No backup named '$Backup'. Available: $(($backups | ForEach-Object { $_.Name }) -join ', ')" }
-    $label = "backup $Backup"
+    $mode = 'backup'
+    $label = "the state before backup $Backup"
   } elseif ($Latest) {
-    $chosen = @($applies[-1])
-    $label = "the latest apply ($($applies[-1].Name))"
+    $chosen = @($runs[-1])
+    $mode = 'latest'
+    $label = "the state before the latest apply or update ($($runs[-1].Name))"
   } else {
-    $chosen = $applies
-    $label = "the state before the kit's first change (from $($applies.Count) backup(s))"
-  }
-
-  # Earliest recorded "before" per key and per ghostty file.
-  $keys = [ordered]@{}
-  $files = [ordered]@{}
-  foreach ($entry in $chosen) {
-    foreach ($setting in $entry.Manifest['settings']) {
-      $key = $setting['key'].ToString()
-      if (-not $keys.Contains($key)) { $keys[$key] = $setting['before'] }
+    $start = 0
+    for ($i = $backups.Count - 1; $i -ge 0; $i--) {
+      $m = $backups[$i].Manifest
+      if ($m['operation'].ToString() -ne 'restore') { continue }
+      if (@($null, 'default') -notcontains (Get-J3w1ManifestText $m 'mode')) { continue }
+      if (Get-J3w1ManifestBool $m 'refused' $false) { continue }
+      $start = $i + 1
+      $since = $backups[$i].Name
+      break
     }
-    foreach ($file in $entry.Manifest['files']) {
-      if ($file['role'].ToString() -ne 'ghostty') { continue }
-      $path = $file['path'].ToString()
-      if ($files.Contains($path)) { continue }
-      $source = if ($null -ne $file['backupFile']) { Join-J3w1Path $entry.Path $file['backupFile'].ToString() } else { $null }
-      $files[$path] = @{ Existed = $file['existedBefore'].GetValue[bool](); Source = $source }
-    }
+    $chosen = @(for ($i = $start; $i -lt $backups.Count; $i++) { if (& $isRun $backups[$i]) { $backups[$i] } })
+    $label = if ($since) { "the state before the first apply or update since the restore $since" } else { "the state before the kit's first change" }
+    $label += " ($($chosen.Count) run(s))"
   }
-  $managed = Get-J3w1ManagedKeys $KitFiles
-  foreach ($key in $keys.Keys) { if ($managed -notcontains $key) { throw "Backup manifest names '$key', which the kit never manages. Refusing." } }
 
   $paths = Get-J3w1OrcaPaths $Environment
   $running = Test-J3w1OrcaRunning $Environment
   Write-Host 'j3w1 terminal kit: Orca (restore)'
   Write-Host "  target       $label"
   Write-Host "  settings     $($paths.Settings)"
+  if ($chosen.Count -eq 0) {
+    Write-Host ''
+    Write-Host "Result: nothing to restore; no apply or update since the restore $since."
+    return 0
+  }
+
+  # Per key: the earliest value in the chosen runs.
+  $keys = [ordered]@{}
+  foreach ($entry in $chosen) {
+    $blockBefore = Get-J3w1ManifestBool $entry.Manifest 'ghosttyBlockBefore' $false
+    $targets = Get-J3w1RestoreTargets $entry.Manifest
+    foreach ($key in $targets.Keys) {
+      if ($keys.Contains($key)) { continue }
+      $keys[$key] = @{ Value = $targets[$key].Value; Unknown = ($mode -eq 'default' -and $blockBefore -and $targets[$key].EqualsKit); From = $entry.Name }
+    }
+  }
+  $managed = Get-J3w1ManagedKeys $KitFiles
+  foreach ($key in $keys.Keys) { if ($managed -notcontains $key) { throw "Backup manifest names '$key', which the kit never manages. Refusing." } }
+
+  # config.ghostty: its state before the earliest chosen run that wrote it.
+  $record = $null
+  foreach ($entry in $chosen) {
+    foreach ($file in $entry.Manifest['files']) {
+      if ($null -ne $record -or $file['role'].ToString() -ne 'ghostty') { continue }
+      $source = if ($null -ne $file['backupFile']) { Join-J3w1Path $entry.Path $file['backupFile'].ToString() } else { $null }
+      $record = @{ Path = $file['path'].ToString(); Existed = $file['existedBefore'].GetValue[bool](); Source = $source }
+    }
+  }
+  $ghosttyPath = if ($null -ne $record) { $record.Path } else { $paths.Ghostty }
+  $target = $null
+  if ($null -ne $record) {
+    if ($record.Existed) {
+      if ($null -eq $record.Source -or -not (Test-Path -LiteralPath $record.Source -PathType Leaf)) { throw "The backup copy of $ghosttyPath is missing ($($record.Source))." }
+      $target = ConvertTo-J3w1GhosttyState -Path $ghosttyPath -Bytes ([System.IO.File]::ReadAllBytes($record.Source))
+    } else {
+      $target = ConvertTo-J3w1GhosttyState -Path $ghosttyPath -Bytes $null
+    }
+  }
+  $ghostty = Read-J3w1Ghostty $ghosttyPath
+  $filePlan = Get-J3w1GhosttyRestorePlan -Current $ghostty -Target $target -KeepTargetBlock:($mode -ne 'default')
+
+  # What the kit last wrote, to tell the owner about later edits.
+  $lastWritten = @{}
+  foreach ($item in $backups) {
+    foreach ($file in $item.Manifest['files']) {
+      $after = $file['sha256After']
+      $lastWritten[$file['role'].ToString()] = @{ Digest = $(if ($null -eq $after) { $null } else { $after.ToString() }); Name = $item.Name }
+    }
+  }
 
   $storeBytes = [System.IO.File]::ReadAllBytes($paths.Settings)
   $store = Read-J3w1JsonNode $paths.Settings
   $changes = [System.Collections.Generic.List[object]]::new()
+  $unknown = [System.Collections.Generic.List[object]]::new()
   foreach ($key in $keys.Keys) {
     $before = Get-J3w1NodeAt $store $key
-    $target = $keys[$key]
-    $after = if (Test-J3w1AbsentNode $target) { @{ Present = $false; Node = $null } } else { @{ Present = $true; Node = $target } }
+    if ($keys[$key].Unknown) { $unknown.Add(@{ Key = $key; Current = $before; From = $keys[$key].From }); continue }
+    $value = $keys[$key].Value
+    $after = if (Test-J3w1AbsentNode $value) { @{ Present = $false; Node = $null } } else { @{ Present = $true; Node = $value } }
     $same = if ($after.Present) { $before.Present -and (Test-J3w1NodeEqual $before.Node $after.Node) } else { -not $before.Present }
     if (-not $same) { $changes.Add(@{ Key = $key; Before = $before; After = $after }) }
-  }
-  $fileChanges = [System.Collections.Generic.List[object]]::new()
-  foreach ($path in $files.Keys) {
-    $plan = $files[$path]
-    $exists = Test-Path -LiteralPath $path -PathType Leaf
-    if ($plan.Existed) {
-      if ($null -eq $plan.Source -or -not (Test-Path -LiteralPath $plan.Source -PathType Leaf)) { throw "The backup copy of $path is missing ($($plan.Source))." }
-      $wantBytes = [System.IO.File]::ReadAllBytes($plan.Source)
-      if ($exists -and [System.Linq.Enumerable]::SequenceEqual([byte[]][System.IO.File]::ReadAllBytes($path), [byte[]]$wantBytes)) { continue }
-      $fileChanges.Add(@{ Path = $path; Bytes = $wantBytes; Delete = $false; Exists = $exists })
-    } elseif ($exists) {
-      $fileChanges.Add(@{ Path = $path; Bytes = $null; Delete = $true; Exists = $true })
-    }
   }
 
   Write-Host ''
   Write-Host 'Plan:'
-  foreach ($change in $fileChanges) { Write-Host "  $($change.Path): $(if ($change.Delete) { 'delete (it did not exist before the kit)' } else { 'restore the backed-up bytes' })" }
+  if ($filePlan.Action -ne 'none') { Write-Host "  $($ghosttyPath): $($filePlan.Note)" }
   foreach ($change in $changes) { Write-Host ("  {0,-30} {1} -> {2}" -f $change.Key, (Format-J3w1Value $change.Before), (Format-J3w1Value $change.After)) }
+  foreach ($item in $unknown) { Write-Host ("  {0,-30} left as {1}: cannot know the pre-kit value" -f $item.Key, (Format-J3w1Value $item.Current)) }
+  if ($ghostty.Exists -and $lastWritten.Contains('ghostty') -and $lastWritten['ghostty'].Digest -ne (Get-J3w1Digest $ghostty.Bytes)) {
+    Write-Warning "$ghosttyPath changed since the kit last wrote it (backup $($lastWritten['ghostty'].Name)). Only the managed block is taken out; every other line stays."
+  }
+  if ($lastWritten.Contains('store') -and $lastWritten['store'].Digest -ne (Get-J3w1Digest $storeBytes)) {
+    Write-Warning "$($paths.Settings) changed since the kit last wrote it (backup $($lastWritten['store'].Name)); Orca rewrites it on every change, so this is expected. Only the managed keys are restored; every other value stays."
+  }
+  if ($unknown.Count -gt 0) {
+    Write-Host ''
+    Write-Host "Cannot know the pre-kit value of $(($unknown | ForEach-Object { $_.Key }) -join ', '): the earliest kit record"
+    Write-Host "($($unknown[0].From)) already found the kit's value while config.ghostty held the managed block, which is"
+    Write-Host "what Orca's Import from Ghostty writes. These keys are left as they are; set them in Orca if you want other values."
+  }
   $storeRefused = $changes.Count -gt 0 -and $running
   if ($storeRefused) {
     Write-Host ''
@@ -1496,10 +1790,14 @@ function Invoke-J3w1OrcaRestore {
     Write-Host 'the file; quit Orca (tray too) and rerun to restore those keys. Ghostty files are restored now.'
   }
   $doStore = $changes.Count -gt 0 -and -not $running
-  if (-not $doStore -and $fileChanges.Count -eq 0) {
+  $doFile = @('write', 'delete') -contains $filePlan.Action
+  $code = if ($storeRefused) { 2 } elseif ($unknown.Count -gt 0) { 3 } else { 0 }
+  if (-not $doStore -and -not $doFile) {
     Write-Host ''
-    Write-Host 'Result: nothing to restore.'
-    return 0
+    if ($unknown.Count -gt 0) { Write-Host "Result: nothing restored; $($unknown.Count) key(s) left as they are because their pre-kit value is unknown." }
+    elseif ($storeRefused) { Write-Host 'Result: nothing written; quit Orca (tray too) and rerun.' }
+    else { Write-Host 'Result: nothing to restore.' }
+    return $code
   }
   if ($PlanOnly) {
     Write-Host ''
@@ -1507,36 +1805,31 @@ function Invoke-J3w1OrcaRestore {
     return 0
   }
 
-  # Back up the current state first.
-  $snapshot = New-J3w1BackupFolder $Environment
+  # Plan and serialise everything first: a failure here leaves no backup
+  # folder, no manifest and no changed file.
   $records = [System.Collections.Generic.List[object]]::new()
+  $storeText = $null
   if ($doStore) {
-    [System.IO.File]::WriteAllBytes((Join-J3w1Path $snapshot.Path 'orca-data.json'), $storeBytes)
     foreach ($change in $changes) {
       if ($change.After.Present) { Set-J3w1NodeAt $store $change.Key $change.After.Node } else { Remove-J3w1NodeAt $store $change.Key }
     }
     $storeText = ConvertTo-J3w1JsonText $store
-    $records.Add(@{ Path = $paths.Settings; Role = 'store'; BackupFile = 'orca-data.json'; ExistedBefore = $true; Sha256Before = (Get-J3w1Digest $storeBytes); Sha256After = (Get-J3w1Digest $script:Utf8.GetBytes($storeText)) })
+    $records.Add(@{ Path = $paths.Settings; Role = 'store'; BackupFile = $null; ExistedBefore = $true; Sha256Before = (Get-J3w1Digest $storeBytes); Sha256After = (Get-J3w1Digest $script:Utf8.GetBytes($storeText)) })
   }
-  foreach ($change in $fileChanges) {
-    $name = $null
-    $beforeDigest = $null
-    if ($change.Exists) {
-      $name = Split-Path -Leaf $change.Path
-      $current = [System.IO.File]::ReadAllBytes($change.Path)
-      [System.IO.File]::WriteAllBytes((Join-J3w1Path $snapshot.Path $name), $current)
-      $beforeDigest = Get-J3w1Digest $current
-    }
-    $afterDigest = if ($change.Delete) { $null } else { Get-J3w1Digest $change.Bytes }
-    $records.Add(@{ Path = $change.Path; Role = 'ghostty'; BackupFile = $name; ExistedBefore = $change.Exists; Sha256Before = $beforeDigest; Sha256After = $afterDigest })
+  if ($doFile) {
+    $afterDigest = if ($filePlan.Action -eq 'delete') { $null } else { Get-J3w1Digest $filePlan.Bytes }
+    $records.Add(@{ Path = $ghosttyPath; Role = 'ghostty'; BackupFile = 'config.ghostty'; ExistedBefore = $true; Sha256Before = (Get-J3w1Digest $ghostty.Bytes); Sha256After = $afterDigest })
   }
   $manifest = [System.Text.Json.Nodes.JsonObject]::new()
   $manifest['schemaVersion'] = New-J3w1JsonNode 1
   $manifest['kit'] = New-J3w1JsonNode $KitFiles.Kit.id
   $manifest['operation'] = New-J3w1JsonNode 'restore'
   $manifest['timestamp'] = New-J3w1JsonNode (Get-J3w1Timestamp)
+  $manifest['mode'] = New-J3w1JsonNode $mode
   $manifest['restoredTo'] = New-J3w1JsonNode $label
   $manifest['storeWritten'] = New-J3w1JsonNode $doStore
+  $manifest['refused'] = New-J3w1JsonNode $storeRefused
+  $manifest['unknown'] = New-J3w1JsonNode @($unknown | ForEach-Object { $_.Key })
   $manifest['files'] = New-J3w1JsonNode @($records | ForEach-Object {
     [ordered]@{ path = $_.Path; role = $_.Role; backupFile = $_.BackupFile; existedBefore = $_.ExistedBefore; sha256Before = $_.Sha256Before; sha256After = $_.Sha256After }
   })
@@ -1550,11 +1843,18 @@ function Invoke-J3w1OrcaRestore {
       $manifest['settings'].Add($entry)
     }
   }
-  Write-J3w1Text (Join-J3w1Path $snapshot.Path 'manifest.json') (ConvertTo-J3w1JsonText $manifest)
+  $manifestText = ConvertTo-J3w1JsonText $manifest
+  $preKit = Get-J3w1PreKitStorePath $Environment
+  $savePreKit = $doStore -and -not (Test-Path -LiteralPath $preKit -PathType Leaf)
+  if ($doStore -and (Test-J3w1OrcaRunning $Environment)) { throw 'Orca started during the restore; nothing was written. Quit Orca (tray too) and rerun.' }
 
-  foreach ($change in $fileChanges) {
-    if ($change.Delete) { Remove-Item -LiteralPath $change.Path -Force } else { Write-J3w1Bytes -Path $change.Path -Bytes $change.Bytes }
-  }
+  # Back up the current state, then write.
+  $snapshot = New-J3w1BackupFolder $Environment
+  if ($savePreKit) { Write-J3w1Bytes -Path $preKit -Bytes $storeBytes }
+  if ($doFile) { [System.IO.File]::WriteAllBytes((Join-J3w1Path $snapshot.Path 'config.ghostty'), $ghostty.Bytes) }
+  Write-J3w1Text (Join-J3w1Path $snapshot.Path 'manifest.json') $manifestText
+  if ($filePlan.Action -eq 'delete') { Remove-Item -LiteralPath $ghosttyPath -Force }
+  elseif ($doFile) { Write-J3w1Bytes -Path $ghosttyPath -Bytes $filePlan.Bytes }
   if ($doStore) {
     if (Test-J3w1OrcaRunning $Environment) { throw 'Orca started during the restore; the store was not written. Quit Orca (tray too) and rerun.' }
     Write-J3w1Text $paths.Settings $storeText
@@ -1567,8 +1867,15 @@ function Invoke-J3w1OrcaRestore {
     }
   }
   Write-Host ''
-  Write-Host "Result: restored. The state before the restore is in $($snapshot.Path)"
-  return $(if ($storeRefused) { 2 } else { 0 })
+  if ($unknown.Count -gt 0) {
+    Write-Host "Result: done, except $($unknown.Count) key(s) left as they are because their pre-kit value is unknown: $(($unknown | ForEach-Object { $_.Key }) -join ', ')."
+    Write-Host "The state before this run is in $($snapshot.Path)"
+  } elseif ($storeRefused) {
+    Write-Host "Result: config.ghostty done; the store part waits until Orca is closed. The state before this run is in $($snapshot.Path)"
+  } else {
+    Write-Host "Result: restored. The state before the restore is in $($snapshot.Path)"
+  }
+  return $code
 }
 
 Export-ModuleMember -Function *-J3w1*

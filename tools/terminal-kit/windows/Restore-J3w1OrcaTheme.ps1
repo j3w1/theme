@@ -3,18 +3,31 @@
 Restores what the kit changed, key by key.
 
 .DESCRIPTION
-By default every managed Orca setting returns to the value it had before the
-kit first changed it (removed again if it was absent), and config.ghostty
-returns byte for byte to its pre-kit copy (deleted if it did not exist).
-Nothing else in Orca's store is touched. The current state is backed up first.
-While Orca runs the store part is refused (Orca would overwrite it); the
-Ghostty file is still restored.
+By default it undoes every apply and update since the last restore (since the
+first apply when there was none): every managed Orca setting returns to the
+earliest value the kit observed in that window (removed again if it was
+absent). Apply records what it observes even while Orca runs, so values Orca
+wrote later through Import from Ghostty are undone too. When the earliest
+record already found the kit's value while config.ghostty held the managed
+block, the pre-kit value is unknown: that key is left as it is, the run says
+so and exits 3.
+
+config.ghostty loses only the managed block; every byte outside it is kept.
+Its pre-kit bytes come back exactly (or the file is deleted when the kit
+created it) only when nothing outside the block changed since. The plan warns
+when a file changed since the kit last wrote it. Nothing else in Orca's store
+is touched. The current state is backed up first. While Orca runs the store
+part is refused (Orca would overwrite it) and the exit code is 2; the Ghostty
+file is still restored.
 
 .PARAMETER Backup
 Restore to the state before one backup (its folder name, yyyyMMddTHHmmssZ).
 
 .PARAMETER Latest
 Undo only the most recent apply or update.
+
+.PARAMETER WhatIf
+Print the plan and write nothing.
 
 .EXAMPLE
 pwsh -NoProfile -File .\Restore-J3w1OrcaTheme.ps1 -WhatIf

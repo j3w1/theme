@@ -17,8 +17,9 @@ Run it without saving it first:
 The kit commit (40 lowercase hex characters).
 
 .PARAMETER SourceRoot
-Copy from a local checkout's working tree instead of the network (offline use
-and tests).
+Copy from a local git checkout of j3w1/theme instead of the network (offline
+use): the files are read from git objects at -Revision, never from the
+working tree, and a checkout without that commit is refused.
 #>
 [CmdletBinding()]
 param(
@@ -58,7 +59,10 @@ if ($Revision -cnotmatch '^[0-9a-f]{40}$') {
   throw "-Revision must be a full 40-character lowercase commit SHA; '$Revision' is refused (branches, tags and 'latest' can move)."
 }
 $testRoot = $env:J3W1_KIT_TEST_ROOT
+$worktree = $false
 if (-not [string]::IsNullOrWhiteSpace($testRoot)) {
+  # Only inside the test seam may -SourceRoot be a plain folder.
+  $worktree = $env:J3W1_KIT_TEST_SOURCE -eq 'worktree'
   if ([string]::IsNullOrWhiteSpace($SourceRoot)) { throw 'Test seam active (J3W1_KIT_TEST_ROOT): the network is disabled, pass -SourceRoot.' }
   $localAppData = Join-Path (Join-Path $testRoot 'AppData') 'Local'
 } else {
@@ -66,6 +70,26 @@ if (-not [string]::IsNullOrWhiteSpace($testRoot)) {
   $localAppData = $env:LOCALAPPDATA
 }
 $target = (Join-Path $localAppData "j3w1-theme/kit/$Revision").Replace('/', [System.IO.Path]::DirectorySeparatorChar)
+
+$readGit = {
+  param([string[]]$Arguments)
+  $info = [System.Diagnostics.ProcessStartInfo]::new('git')
+  foreach ($argument in $Arguments) { $info.ArgumentList.Add($argument) }
+  $info.RedirectStandardOutput = $true
+  $info.RedirectStandardError = $true
+  $info.UseShellExecute = $false
+  try { $process = [System.Diagnostics.Process]::Start($info) } catch { throw 'git is required for -SourceRoot; it was not found on PATH.' }
+  $buffer = [System.IO.MemoryStream]::new()
+  $null = $process.StandardError.ReadToEndAsync()
+  $process.StandardOutput.BaseStream.CopyTo($buffer)
+  $process.WaitForExit()
+  if ($process.ExitCode -ne 0) { return $null }
+  return , $buffer.ToArray()
+}
+if (-not [string]::IsNullOrWhiteSpace($SourceRoot) -and -not $worktree) {
+  if ($null -eq (& $readGit @('-C', $SourceRoot, 'rev-parse', '--git-dir'))) { throw "-SourceRoot $SourceRoot is not a git checkout; the kit is read from git objects at -Revision." }
+  if ($null -eq (& $readGit @('-C', $SourceRoot, 'cat-file', '-e', "$Revision^{commit}"))) { throw "-SourceRoot $SourceRoot does not contain commit $Revision. Fetch it and rerun." }
+}
 
 $client = $null
 if ([string]::IsNullOrWhiteSpace($SourceRoot)) {
@@ -76,7 +100,10 @@ if ([string]::IsNullOrWhiteSpace($SourceRoot)) {
 try {
   foreach ($file in $files) {
     $path = "$prefix/$file"
-    if ($null -eq $client) {
+    if ($null -eq $client -and -not $worktree) {
+      $bytes = & $readGit @('-C', $SourceRoot, 'cat-file', 'blob', "${Revision}:$path")
+      if ($null -eq $bytes) { throw "Commit $Revision has no $path in $SourceRoot; is it a kit commit?" }
+    } elseif ($null -eq $client) {
       $local = Join-Path $SourceRoot $path
       if (-not (Test-Path -LiteralPath $local -PathType Leaf)) { throw "Missing $path under -SourceRoot $SourceRoot." }
       $bytes = [System.IO.File]::ReadAllBytes($local)

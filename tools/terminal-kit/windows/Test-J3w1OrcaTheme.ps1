@@ -8,12 +8,14 @@ Claude Code roles) with the expected hex and contrast beside each slot, then
 checks the Ghostty block, later Ghostty overrides, every managed Orca setting,
 the preserved keys against the last apply and the owner's expected
 preferences. Each check prints PASS, FAIL, WARN or SKIP with the observed
-value. Exit code 0 only when nothing FAILs. The documented deviations and the
+value. The terminal font size is yours: a size changed after apply is a WARN,
+and the Ghostty block is compared without its font-size line. Exit code 0 only when nothing FAILs. The documented deviations and the
 use-and-report disclosures are printed every time.
 
 .PARAMETER SourceRoot
-A local checkout of j3w1/theme to read the export from instead of the cache
-or the network.
+A local git checkout of j3w1/theme to read the export from instead of the
+cache or the network: git objects at the pinned commit, never the working
+tree.
 
 .PARAMETER NoSpecimen
 Checks only.

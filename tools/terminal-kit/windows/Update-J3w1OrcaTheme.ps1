@@ -5,7 +5,8 @@ Moves the Orca terminal palette to another j3w1/theme release.
 .DESCRIPTION
 Resolves the release tag to its commit through the GitHub API (or git in
 -SourceRoot), takes the kit role maps published at that commit (this kit's own
-when that commit has none), downloads and verifies that commit's export, shows
+when that commit has none), downloads and verifies that commit's export (against the digest a kit.json
+pins for that commit when one does, and always against its digests.json), shows
 a before/after diff of every managed value, backs up, applies through the same
 path as Apply-J3w1OrcaTheme.ps1 and runs the checks. It never follows a branch:
 "main", "latest" and anything that is not an exact tag are refused.
@@ -16,6 +17,12 @@ The release tag, for example v1.2.0.
 .PARAMETER SourceRoot
 A local git checkout of j3w1/theme that has the tag; files are read from git
 objects at the tag's commit, never from the working tree.
+
+.PARAMETER SkipFontCheck
+Continue when the terminal font is not installed.
+
+.PARAMETER WhatIf
+Print the plan and the before/after diff and write nothing.
 
 .EXAMPLE
 pwsh -NoProfile -File .\Update-J3w1OrcaTheme.ps1 -Version v1.2.0 -WhatIf
