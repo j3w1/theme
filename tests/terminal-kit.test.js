@@ -39,7 +39,7 @@ const OBSERVED_CLAUDE_ROLES = [
 ];
 
 /* The pending decisions the kit's role maps disclose. */
-const DISCLOSED = { "color.border.divider": ["D-008"] };
+const DISCLOSED = { "color.border.divider": ["D-008"], "color.border.overlay": ["D-008"] };
 
 let context;
 const ctx = async () => (context ??= await loadContext({ sourceRoot: repoRoot, offline: true }));

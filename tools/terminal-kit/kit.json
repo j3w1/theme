@@ -12,6 +12,7 @@
   },
   "exports": {
     "tokens": "exports/tokens.resolved.json",
+    "tokensDigest": "sha256-ewtsMMkPT+PGzEwK1TgPlUDKYkjMVbO0bpmxM3qvoTY=",
     "digests": "exports/digests.json"
   },
   "urls": {
@@ -19,8 +20,13 @@
     "raw": "https://raw.githubusercontent.com/{repository}/{revision}/{path}"
   },
   "eligibility": {
-    "allowedActions": ["use", "use-and-report"],
-    "forbiddenPrefixes": ["color.primitive."],
+    "allowedActions": [
+      "use",
+      "use-and-report"
+    ],
+    "forbiddenPrefixes": [
+      "color.primitive."
+    ],
     "note": "Consume roles within their documented scope, never primitives (agents/consume.md). use-and-report roles are disclosed with their decision ids."
   },
   "integrations": {

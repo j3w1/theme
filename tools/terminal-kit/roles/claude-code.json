@@ -44,8 +44,8 @@
       "why": "Background-task labels are a text accent, one rung above body text."
     },
     "bashBorder": {
-      "token": "color.interaction.focus.ring-container",
-      "why": "Shell mode is the terminal-like input; the terminal container ring colour (D-015)."
+      "token": "color.border.active",
+      "why": "The shell-mode input still holds focus: the active border. The `!` marker, not a second border colour, carries the mode (see deviations)."
     },
     "bashMessageBackgroundColor": {
       "token": "color.surface.default",
@@ -53,7 +53,7 @@
     },
     "blue_FOR_SUBAGENTS_ONLY": {
       "token": "color.text.subtle",
-      "why": "Subagent names are text; seven distinct text roles, no hue outside status roles (D-001)."
+      "why": "Subagent names are text; seven distinct text roles for eight names, no hue outside status roles (D-001)."
     },
     "briefLabelClaude": {
       "token": "color.text.accent",
@@ -96,8 +96,8 @@
       "why": "The fullscreen sidebar is window chrome."
     },
     "cyan_FOR_SUBAGENTS_ONLY": {
-      "token": "color.text.link-hover",
-      "why": "Subagent names are text; seven distinct text roles, no hue outside status roles (D-001)."
+      "token": "color.text.bright",
+      "why": "Subagent names are text; the text roles give seven distinct readable values for eight names, so cyan shares pink's (see deviations)."
     },
     "diffAdded": {
       "token": "color.diff.added.bg",
@@ -141,7 +141,7 @@
     },
     "green_FOR_SUBAGENTS_ONLY": {
       "token": "color.text.prose",
-      "why": "Subagent names are text; seven distinct text roles, no hue outside status roles (D-001)."
+      "why": "Subagent names are text; seven distinct text roles for eight names, no hue outside status roles (D-001)."
     },
     "ide": {
       "token": "color.text.muted",
@@ -169,11 +169,11 @@
     },
     "orange_FOR_SUBAGENTS_ONLY": {
       "token": "color.text.accent",
-      "why": "Subagent names are text; seven distinct text roles, no hue outside status roles (D-001)."
+      "why": "Subagent names are text; seven distinct text roles for eight names, no hue outside status roles (D-001)."
     },
     "permission": {
-      "token": "color.border.active",
-      "why": "Dialog and permission borders mark the active container."
+      "token": "color.border.overlay",
+      "why": "Permission prompts and pickers are floating layers: the overlay border (use-and-report, D-008)."
     },
     "permissionShimmer": {
       "token": "color.text.accent-strong",
@@ -181,7 +181,7 @@
     },
     "pink_FOR_SUBAGENTS_ONLY": {
       "token": "color.text.bright",
-      "why": "Subagent names are text; seven distinct text roles, no hue outside status roles (D-001)."
+      "why": "Subagent names are text; seven distinct text roles for eight names, no hue outside status roles (D-001)."
     },
     "planMode": {
       "token": "color.status.info.text",
@@ -201,7 +201,7 @@
     },
     "purple_FOR_SUBAGENTS_ONLY": {
       "token": "color.text.muted",
-      "why": "Subagent names are text; seven distinct text roles, no hue outside status roles (D-001)."
+      "why": "Subagent names are text; seven distinct text roles for eight names, no hue outside status roles (D-001)."
     },
     "rainbow_blue": {
       "token": "color.text.accent",
@@ -269,15 +269,15 @@
     },
     "red_FOR_SUBAGENTS_ONLY": {
       "token": "color.text.accent-strong",
-      "why": "Subagent names are text; seven distinct text roles, no hue outside status roles (D-001)."
+      "why": "Subagent names are text; seven distinct text roles for eight names, no hue outside status roles (D-001)."
     },
     "remember": {
       "token": "color.text.bright",
       "why": "Memory and CLAUDE.md indicators read as a label, one rung above body text."
     },
     "selectionBg": {
-      "token": "color.interaction.text-selection.bg",
-      "why": "Mouse text selection is a fill (D-015)."
+      "token": "color.code.selection-bg",
+      "why": "Mouse selection keeps each span's own colour (Claude has no selection-text token), which is the editor-selection case: text stays readable on it (spec/foundations.md, Code and terminal)."
     },
     "skill": {
       "token": "color.text.bright",
@@ -292,8 +292,8 @@
       "why": "Status success (D-001)."
     },
     "suggestion": {
-      "token": "color.border.selected-indicator",
-      "why": "The selection highlight in pickers is the selected indicator of menus and lists."
+      "token": "color.interaction.selection.text",
+      "why": "The selected picker item takes the menu's selected-item text; Claude cannot paint the selection fill (see deviations)."
     },
     "text": {
       "token": "color.text.default",
@@ -317,7 +317,7 @@
     },
     "yellow_FOR_SUBAGENTS_ONLY": {
       "token": "color.text.default",
-      "why": "Subagent names are text; seven distinct text roles, no hue outside status roles (D-001)."
+      "why": "Subagent names are text; seven distinct text roles for eight names, no hue outside status roles (D-001)."
     }
   },
   "deviations": [
@@ -354,12 +354,44 @@
       "reason": "Claude Code can only paint word changes as a background; the emphasis colours fail text contrast as fills."
     },
     {
+      "component": "menu",
+      "target": "picker selection",
+      "kind": "substituted",
+      "specValue": "color.interaction.selection.bg fill with color.interaction.selection.text",
+      "applied": "color.interaction.selection.text on the default background",
+      "reason": "Claude Code colours the selected item's text only; it has no selection-fill token for pickers."
+    },
+    {
+      "component": "textarea",
+      "target": "shell-mode input border",
+      "kind": "substituted",
+      "specValue": "a distinct border for a distinct input mode",
+      "applied": "color.border.active, as in normal mode",
+      "reason": "j3w1 defines one focused-input border; the `!` prompt marker carries the mode."
+    },
+    {
+      "component": "code",
+      "target": "inline code",
+      "kind": "substituted",
+      "specValue": "code roles",
+      "applied": "color.border.overlay",
+      "reason": "Claude Code draws inline code in its permission colour, which the kit maps to the overlay border for dialogs."
+    },
+    {
+      "component": "subagent labels",
+      "target": "eight categorical name colours",
+      "kind": "substituted",
+      "specValue": "eight distinct colours",
+      "applied": "seven distinct text roles; cyan shares pink's value",
+      "reason": "j3w1 has no categorical text palette and permits no hue outside status roles (D-001)."
+    },
+    {
       "component": "terminal",
-      "target": "selected text colour",
-      "kind": "unsupported",
-      "specValue": "color.interaction.text-selection.text",
-      "applied": null,
-      "reason": "Claude Code has a selection background token only."
+      "target": "mouse selection",
+      "kind": "substituted",
+      "specValue": "color.interaction.text-selection.bg with color.interaction.text-selection.text",
+      "applied": "color.code.selection-bg; spans keep their own colour",
+      "reason": "Claude Code has a selection background token only, so the editor-selection role keeps text readable."
     }
   ]
 }

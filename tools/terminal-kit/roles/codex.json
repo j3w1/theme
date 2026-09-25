@@ -26,16 +26,14 @@
   },
   "globals": {
     "background": "color.code.bg",
-    "foreground": "color.text.default",
+    "foreground": "color.code.syntax.variable",
     "caret": "color.code.caret",
     "selection": "color.code.selection-bg",
-    "selectionForeground": "color.interaction.selection.text",
     "lineHighlight": "color.code.current-line",
     "invisibles": "color.code.whitespace",
     "gutter": "color.code.gutter-bg",
     "gutterForeground": "color.code.line-number",
-    "findHighlight": "color.code.search-match-bg",
-    "bracketsForeground": "color.code.bracket-match"
+    "findHighlight": "color.code.search-match-bg"
   },
   "scopes": [
     {
@@ -62,7 +60,8 @@
     {
       "name": "Escape",
       "scope": "constant.character.escape, constant.character, string.regexp",
-      "foreground": "color.code.syntax.escape"
+      "foreground": "color.code.syntax.escape",
+      "fontStyle": "bold"
     },
     {
       "name": "Keyword",
@@ -124,8 +123,7 @@
     {
       "name": "Deprecated",
       "scope": "invalid.deprecated",
-      "foreground": "color.code.syntax.deprecated",
-      "fontStyle": "italic"
+      "foreground": "color.code.syntax.deprecated"
     },
     {
       "name": "Link",
@@ -146,13 +144,11 @@
     {
       "name": "Inserted",
       "scope": "markup.inserted",
-      "foreground": "color.diff.added.emphasis",
       "background": "color.diff.added.bg"
     },
     {
       "name": "Deleted",
       "scope": "markup.deleted",
-      "foreground": "color.diff.removed.emphasis",
       "background": "color.diff.removed.bg"
     },
     {
@@ -207,6 +203,14 @@
       "specValue": "color.diff.modified.bg",
       "applied": null,
       "reason": "Codex reads backgrounds only for markup.inserted and markup.deleted."
+    },
+    {
+      "component": "diff-view",
+      "target": "added and removed line text",
+      "kind": "substituted",
+      "specValue": "row text color.text.default with an emphasis underline",
+      "applied": "syntax colours on the line tint",
+      "reason": "Codex keeps syntax colours inside diff lines and draws no underlines; the tmTheme sets only the line backgrounds."
     }
   ]
 }
