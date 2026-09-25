@@ -13,6 +13,15 @@ import { walkMarkup, attribute } from "./lib/markup.mjs";
 import { writeCopyBundle, cssSourceClosure, controlsCss, assignImplementationIds, implementationPlaceholder } from "./lib/ui-distribution.mjs";
 import { consumerExamples } from "./lib/ui-consumer-examples.mjs";
 
+// Node's lookup: the nearest node_modules/<name> at or above `from`.
+async function packageDir(name, from) {
+  for (let dir = from; ; dir = path.dirname(dir)) {
+    const candidate = path.join(dir, "node_modules", name);
+    try { await fs.access(path.join(candidate, "package.json")); return candidate; } catch {}
+    if (dir === path.dirname(dir) || !dir.startsWith(repoRoot)) throw new Error(`Cannot resolve bundled package ${name}`);
+  }
+}
+
 export async function buildUI({ check = false } = {}) {
   const manifest = await readJson("theme.json");
   const inventory = await readJson("spec/inventory.json");
@@ -81,7 +90,11 @@ export async function buildUI({ check = false } = {}) {
   const shared = await readText("packages/ui/src/styles/behavior.css");
   const choiceStyles = await readText('site/src/styles/themed-controls.css');
   await put(output, "styles/controls.css", controlsCss(foundation, choiceStyles));
-  const thirdParty = (await Promise.all(["zod", "parse5", "entities"].map(async name => `## Bundled dependency: ${name}\n\n${await readText(`node_modules/${name}/LICENSE`)}\n`))).join("\n");
+  // Attribute the copy each bundled package actually resolves: entities comes
+  // through parse5, which may nest its own version below node_modules/parse5.
+  const parse5 = await packageDir("parse5", repoRoot);
+  const bundled = [["zod", await packageDir("zod", repoRoot)], ["parse5", parse5], ["entities", await packageDir("entities", parse5)]];
+  const thirdParty = (await Promise.all(bundled.map(async ([name, dir]) => `## Bundled dependency: ${name}\n\n${(await fs.readFile(path.join(dir, "LICENSE"), "utf8")).replaceAll("\r\n", "\n")}\n`))).join("\n");
   const notices = await readText("LICENSE.md") + "\n## Distribution attribution\n\nExamples adapt j3w1 UI Theme Spec specimens under CC BY 4.0. Package behavior and generated code remain MIT. Keep these notices when copying. No fonts or external template material are bundled.\n\n" + thirdParty;
   await put(output, "LICENSE.md", notices);
   const implementations = [], examples = {};
