@@ -16,8 +16,9 @@ The kit is a consumer of this repository and follows `agents/consume.md`:
   `kit.json` (`v1.2.0`, commit `0838171…`), after checking that the tag still
   resolves to that commit and that the file matches `exports/digests.json`.
 - It maps roles, never primitives, and only roles whose eligibility is `use` or
-  `use-and-report`. The one `use-and-report` role, `color.border.divider`
-  (D-008), is disclosed on every run.
+  `use-and-report`. The `use-and-report` roles, `color.border.divider` (the
+  Orca pane divider) and `color.border.overlay` (Claude Code's dialog border),
+  both pending under D-008, are disclosed on every run.
 - It writes a `theme.lock.<integration>.json` and prints its deviations.
 - It has no colour values of its own; `tests/terminal-kit.test.js` fails on
   any hex literal under this directory.
@@ -53,19 +54,22 @@ node tools/terminal-kit/devbox/j3w1-terminal.mjs test
 
 | Command | What it does |
 | --- | --- |
-| `apply [--claude] [--codex] [--dry-run]` | Backs up, writes both theme files, sets the two keys. Makes no backup when nothing changes. |
+| `apply [--claude] [--codex] [--dry-run]` | Plans every change, backs up, then writes both theme files and sets the two keys. Uses the installed pin once there is one. Makes no backup when nothing changes. |
 | `test [--no-specimen]` | Renders the specimen, then prints PASS/FAIL/WARN for every managed file and key. |
-| `update --version vX.Y.Z` | Moves to an explicit release tag; never follows a branch. |
-| `restore [--backup <ts> \| --latest] [--dry-run]` | Returns each key to its pre-kit value (or removes it) and deletes the theme files the kit created. |
+| `update --version vX.Y.Z` | Moves to an explicit release tag and records the new pin; never follows a branch. |
+| `restore [--backup <ts> \| --latest] [--dry-run]` | Undoes every apply and update since the last restore: each key returns to its earlier value (or is removed), and theme files the kit created are deleted. It warns before touching a file changed since the kit wrote it. |
 | `specimen` | Renders the specimen only. |
 
 `--help` lists every option.
 
 - **State directory.** The kit keeps backups and manifests in
-  `${XDG_STATE_HOME:-~/.local/state}/j3w1-theme/devbox`. On the CE devbox that
-  location is read-only for new folders, so set
-  `J3W1_TERMINAL_KIT_STATE_DIR=~/archive/theme/terminal-kit-state` (or pass
-  `--state-dir`).
+  `${XDG_STATE_HOME:-~/.local/state}/j3w1-theme/devbox`. Where that location is
+  not writable (on the CE devbox, `~/.local/state` admits only registered tool
+  folders), set `J3W1_TERMINAL_KIT_STATE_DIR` or pass `--state-dir`; the kit
+  stops before changing anything if it cannot write its state.
+- **Run it against the right account.** The CLI follows `CLAUDE_CONFIG_DIR`
+  and `HOME`, so inside an agent session it acts on that session's
+  configuration.
 - **Restart once.** Running Claude Code sessions need one restart the first
   time, because `themes/` did not exist when they started. After that, edits
   reload live.
@@ -85,12 +89,17 @@ Follow [`windows/README.md`](windows/README.md). In short:
 
 If Orca is running, Apply writes only the Ghostty block and prints the three
 Settings steps that finish the job (Import from Ghostty, Color Contrast Off,
-Left Sidebar Appearance Match Terminal). `Restore-J3w1OrcaTheme.ps1` returns
-every touched key to its pre-kit value.
+Left Sidebar Appearance Match Terminal). `Restore-J3w1OrcaTheme.ps1` undoes
+every apply and update since the last restore, key by key; when the kit never
+saw a key's earlier value (because Orca wrote it during a Ghostty import), it
+says so instead of guessing.
 
-The scripts never change your interface theme, IDE font, zoom, line height,
-cursor, shell or any other Orca preference. They record those values in the
-manifest and warn if they differ from `orca.expectedPreferences`.
+Besides the terminal colours, contrast, divider and terminal font, the kit sets
+Left Sidebar Appearance to Match Terminal, because you asked for it. It keeps the
+terminal font size you already use (it sets one only when Orca has none) and
+never changes your interface theme, IDE font, zoom, line height, cursor, shell
+or any other Orca preference; it records those values in the
+manifest and warns if they differ from `orca.expectedPreferences`.
 
 ## What stays manual
 
