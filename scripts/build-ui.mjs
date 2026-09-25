@@ -4,14 +4,23 @@ import path from "node:path";
 import { pathToFileURL, fileURLToPath } from "node:url";
 import { build } from "vite";
 import { parseFragment } from "parse5";
-import { repoRoot, readJson, readText, listFiles, sha256, stableJson, writeFileEnsured } from "./lib/fs.mjs";
+import { repoRoot, readJson, readText, listFiles, stableJson, writeFileEnsured } from "./lib/fs.mjs";
 import { loadComponents } from "./lib/spec.mjs";
 import { loadProfile, resolveTokens } from "./lib/tokens.mjs";
 import { buildCss, buildDensityCss } from "./lib/css.mjs";
 import { scopeRecipeCss, recipeTokenCss, RECIPE_SCOPE } from "./lib/recipe-css.mjs";
 import { walkMarkup, attribute } from "./lib/markup.mjs";
-import { writeCopyBundle, cssSourceClosure, controlsCss } from "./lib/ui-distribution.mjs";
+import { writeCopyBundle, cssSourceClosure, controlsCss, assignImplementationIds, implementationPlaceholder } from "./lib/ui-distribution.mjs";
 import { consumerExamples } from "./lib/ui-consumer-examples.mjs";
+
+// Node's lookup: the nearest node_modules/<name> at or above `from`.
+async function packageDir(name, from) {
+  for (let dir = from; ; dir = path.dirname(dir)) {
+    const candidate = path.join(dir, "node_modules", name);
+    try { await fs.access(path.join(candidate, "package.json")); return candidate; } catch {}
+    if (dir === path.dirname(dir) || !dir.startsWith(repoRoot)) throw new Error(`Cannot resolve bundled package ${name}`);
+  }
+}
 
 export async function buildUI({ check = false } = {}) {
   const manifest = await readJson("theme.json");
@@ -32,11 +41,9 @@ export async function buildUI({ check = false } = {}) {
   const types = new Map();
   const index = [], register = [];
   const packageRoot = path.join(repoRoot, "packages/ui/src");
-  // Conservative identity includes reused form/schema modules and locked bundled
-  // dependencies, so separate copy directories cannot silently mix builds.
-  const runtimeSources = [...await listFiles("packages/ui/src"), ...await listFiles("scripts/lib"), ...await listFiles("schemas")].filter(file => /\.m?js$/.test(file));
-  runtimeSources.push("scripts/build-ui.mjs", "package-lock.json", ...await listFiles("exports/forms"));
-  const runtimeIdentity = (await Promise.all(runtimeSources.sort().map(async file => `${file}\n${await readText(file)}`))).join("\n");
+  // Each class carries a placeholder; assignImplementationIds replaces it with a
+  // hash of the component's definition and its exact emitted module closure, so
+  // separate copy directories share an id only when their runtime code is identical.
   const baseImport = path.relative(path.join(entries, "components"), path.join(packageRoot, "internal/element.js")).split(path.sep).join("/");
   for (const id of ids) {
     const d = definitions[id];
@@ -46,8 +53,7 @@ export async function buildUI({ check = false } = {}) {
     const api = d.api ?? {};
     const methods = (api.methods ?? []).filter(method => !["refresh", "focus", "checkValidity", "reportValidity"].includes(method.name)).map(method => `  ${method.name}(...args) { if (!this._api?.${method.name}) throw new Error('Connect the component before calling ${method.name}'); return this._api.${method.name}(...args); }`).join("\n");
     const properties = (api.properties ?? []).filter(p => p.controller).map(p => `  get ${p.name}() { return this._api?.${p.name}; }${p.readonly ? "" : `\n  set ${p.name}(value) { if (this._api) this._api.${p.name} = value; else Object.defineProperty(this, '${p.name}', { value, configurable: true, writable: true }); }`}`).join("\n");
-    const implementationId = sha256(runtimeIdentity + stableJson(d));
-    const entry = `import { J3w1Element } from ${JSON.stringify(baseImport)};\nimport { ${d.behavior} } from ${JSON.stringify(behaviorImport)};\nexport class ${className} extends J3w1Element {\n  static componentId = ${JSON.stringify(id)};\n  static version = ${JSON.stringify(manifest.version)};\n  static implementationId = ${JSON.stringify(implementationId)};\n  static connect = ${d.behavior};\n  static upgradeProperties = ${JSON.stringify((api.properties ?? []).filter(p => !p.readonly).map(p => p.name))};\n  static observedAttributes = [...J3w1Element.observedAttributes, ...${JSON.stringify((api.attributes ?? []).map(p => p.name))}];\n${methods}\n${properties}\n}\n`;
+    const entry = `import { J3w1Element } from ${JSON.stringify(baseImport)};\nimport { ${d.behavior} } from ${JSON.stringify(behaviorImport)};\nexport class ${className} extends J3w1Element {\n  static componentId = ${JSON.stringify(id)};\n  static version = ${JSON.stringify(manifest.version)};\n  static implementationId = ${JSON.stringify(implementationPlaceholder(id))};\n  static connect = ${d.behavior};\n  static upgradeProperties = ${JSON.stringify((api.properties ?? []).filter(p => !p.readonly).map(p => p.name))};\n  static observedAttributes = [...J3w1Element.observedAttributes, ...${JSON.stringify((api.attributes ?? []).map(p => p.name))}];\n${methods}\n${properties}\n}\n`;
     await put(entries, `components/${id}.js`, entry);
     const registryImport = path.relative(path.join(entries, "register"), path.join(packageRoot, "internal/element.js")).split(path.sep).join("/");
     await put(entries, `register/${id}.js`, `${(d.dependencies ?? []).map(dep => `import './${dep}.js';`).join("\n")}\nimport { ${className} } from '../components/${id}.js';\nimport { registerElement } from ${JSON.stringify(registryImport)};\nexport const element = registerElement('j3w1-${id}', ${className});\n`);
@@ -67,6 +73,7 @@ export async function buildUI({ check = false } = {}) {
     input[`enhance/${id}`] = path.join(entries, `enhance/${id}.js`);
   }
   await build({ configFile: false, root: repoRoot, logLevel: "warn", build: { outDir: output, emptyOutDir: true, target: "es2022", minify: false, sourcemap: false, rollupOptions: { preserveEntrySignatures: "strict", input, output: { format: "es", entryFileNames: "[name].js", chunkFileNames: "chunks/[name]-[hash].js" } } } });
+  await assignImplementationIds(output, definitions, ids);
   for (const [file, text] of types) await put(output, file, text);
   await put(output, "index.d.ts", index.join("\n") + "\n");
   await put(output, "element.d.ts", await readText("packages/ui/src/internal/element.d.ts"));
@@ -83,7 +90,11 @@ export async function buildUI({ check = false } = {}) {
   const shared = await readText("packages/ui/src/styles/behavior.css");
   const choiceStyles = await readText('site/src/styles/themed-controls.css');
   await put(output, "styles/controls.css", controlsCss(foundation, choiceStyles));
-  const thirdParty = (await Promise.all(["zod", "parse5", "entities"].map(async name => `## Bundled dependency: ${name}\n\n${await readText(`node_modules/${name}/LICENSE`)}\n`))).join("\n");
+  // Attribute the copy each bundled package actually resolves: entities comes
+  // through parse5, which may nest its own version below node_modules/parse5.
+  const parse5 = await packageDir("parse5", repoRoot);
+  const bundled = [["zod", await packageDir("zod", repoRoot)], ["parse5", parse5], ["entities", await packageDir("entities", parse5)]];
+  const thirdParty = (await Promise.all(bundled.map(async ([name, dir]) => `## Bundled dependency: ${name}\n\n${(await fs.readFile(path.join(dir, "LICENSE"), "utf8")).replaceAll("\r\n", "\n")}\n`))).join("\n");
   const notices = await readText("LICENSE.md") + "\n## Distribution attribution\n\nExamples adapt j3w1 UI Theme Spec specimens under CC BY 4.0. Package behavior and generated code remain MIT. Keep these notices when copying. No fonts or external template material are bundled.\n\n" + thirdParty;
   await put(output, "LICENSE.md", notices);
   const implementations = [], examples = {};
