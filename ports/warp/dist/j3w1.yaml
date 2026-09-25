@@ -1,9 +1,11 @@
-# j3w1 theme 1.2.0, default profile, for Orca (terminal theme YAML).
-# Generated from ports/orca/mapping.json by npm run generate; do not edit.
+# j3w1 theme 1.2.0, default profile, for Warp theme YAML (also Orca's Import from YAML).
+# Generated from ports/warp/mapping.json by npm run generate; do not edit.
 name: j3w1 theme
+accent: "#e53935"
+cursor: "#e99499"
 background: "#0c0909"
 foreground: "#e99499"
-cursor: "#e99499"
+details: darker
 terminal_colors:
   normal:
     black: "#0c0909"

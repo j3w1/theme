@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "ghostty",
+  "displayName": "Ghostty theme",
+  "status": "experimental",
+  "themeVersion": "1.2.0",
+  "tokenDigest": "sha256-ewtsMMkPT+PGzEwK1TgPlUDKYkjMVbO0bpmxM3qvoTY=",
+  "profile": "default",
+  "format": "ghostty-config",
+  "targetVersions": [
+    "1.x"
+  ],
+  "testedVersions": [],
+  "os": [
+    "macos",
+    "linux"
+  ],
+  "surfaces": {
+    "supported": [
+      "terminal-colours",
+      "terminal-selection",
+      "pane-divider"
+    ],
+    "inherited": [
+      "terminal-font"
+    ],
+    "unsupported": [
+      "light-mode"
+    ]
+  },
+  "files": [
+    {
+      "path": "dist/j3w1",
+      "install": "Save as ~/.config/ghostty/themes/j3w1 and add `theme = j3w1` to your Ghostty config."
+    }
+  ],
+  "mappingPath": "mapping.json",
+  "capabilitiesPath": "capabilities.json",
+  "evidence": []
+}

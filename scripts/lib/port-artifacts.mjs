@@ -1,5 +1,5 @@
 /* Writes each port's importable files from its mapping and the resolved
-   profile, so a hex in ports/<id>/dist/ is never hand-edited
+   profile, so a value in ports/<id>/dist/ is never hand-edited
    (spec/portability.md). Emitters are keyed by the manifest's `format`; a
    port whose format has no emitter keeps its committed files as they are.
    Runs before the port catalogue, which hashes these bytes. */
@@ -11,35 +11,73 @@ import { validatePorts } from "./validators.mjs";
 
 const ANSI = ["black", "red", "green", "yellow", "blue", "magenta", "cyan", "white"];
 
-// The keys Orca's Import from YAML reads, in the order the file lists them.
-export const WARP_YAML_KEYS = ["background", "foreground", "cursor",
+// The keys each emitter writes, in the order the file lists them.
+export const WARP_YAML_KEYS = ["accent", "cursor", "background", "foreground",
   ...ANSI.map((slot) => `terminal_colors.normal.${slot}`), ...ANSI.map((slot) => `terminal_colors.bright.${slot}`)];
+export const GHOSTTY_KEYS = ["background", "foreground", "cursor-color", "cursor-text", "selection-background", "selection-foreground",
+  ...Array.from({ length: 16 }, (_, i) => `palette[${i}]`), "split-divider-color", "font-family", "font-size"];
 
-const warpYaml = ({ manifest, port, mapping, resolved }) => {
+// Relative luminance of a #rrggbb colour, as Warp and Orca use it to tell dark from light.
+export const luminance = (hex) => [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255).reduce((sum, c, i) => sum + c * [0.2126, 0.7152, 0.0722][i], 0);
+
+/* Native key → value, for the keys an emitter knows, each written once.
+   `convert` turns a resolved token into the native value or throws. */
+const nativeValues = ({ port, mapping, resolved }, keys, convert) => {
   const values = new Map();
-  for (const [role, keys] of Object.entries(mapping.mappings)) {
+  for (const [role, native] of Object.entries(mapping.mappings)) {
     const token = resolved.get(role);
-    if (!token || token.type !== "color") throw new Error(`ports/${port.id}: ${role} is not a colour role`);
-    for (const key of keys) {
-      if (!WARP_YAML_KEYS.includes(key)) throw new Error(`ports/${port.id}: ${key} is not a key the ${port.format} emitter writes`);
+    if (!token) throw new Error(`ports/${port.id}: ${role} is not in the ${port.profile} profile`);
+    for (const key of native) {
+      if (!keys.includes(key)) throw new Error(`ports/${port.id}: ${key} is not a key the ${port.format} emitter writes`);
       if (values.has(key)) throw new Error(`ports/${port.id}: ${key} is mapped twice`);
-      values.set(key, toCss(token.type, token.resolved));
+      values.set(key, convert(key, token, role));
     }
   }
+  return values;
+};
+const hexOf = (port, role, token) => {
+  const value = token.type === "color" ? toCss(token.type, token.resolved) : null;
+  if (!/^#[0-9a-f]{6}$/.test(value ?? "")) throw new Error(`ports/${port.id}: ${role} is not an opaque colour`);
+  return value;
+};
+const header = (manifest, port, mark = "#") =>
+  `${mark} j3w1 theme ${manifest.version}, ${port.profile} profile, for ${port.displayName}.\n` +
+  `${mark} Generated from ports/${port.id}/mapping.json by npm run generate; do not edit.\n`;
+
+const warpYaml = ({ manifest, port, mapping, resolved }) => {
+  const values = nativeValues({ port, mapping, resolved }, WARP_YAML_KEYS, (key, token, role) => hexOf(port, role, token));
   const theme = { name: "j3w1 theme" };
   for (const key of WARP_YAML_KEYS) {
     if (!values.has(key)) continue;
+    if (key === "terminal_colors.normal.black") theme.details = luminance(values.get("background")) < 0.5 ? "darker" : "lighter";
     const parts = key.split(".");
     let node = theme;
     for (const part of parts.slice(0, -1)) node = node[part] ??= {};
     node[parts.at(-1)] = values.get(key);
   }
-  return `# j3w1 theme ${manifest.version}, ${port.profile} profile, for ${port.displayName}.\n` +
-    `# Generated from ports/${port.id}/mapping.json by npm run generate; do not edit.\n` +
-    stringify(theme, { lineWidth: 0 });
+  return header(manifest, port) + stringify(theme, { lineWidth: 0 });
 };
 
-export const PORT_EMITTERS = { "warp-yaml": warpYaml };
+const ghosttyConfig = ({ manifest, port, mapping, resolved }) => {
+  const values = nativeValues({ port, mapping, resolved }, GHOSTTY_KEYS, (key, token, role) => {
+    if (key === "font-family") {
+      if (token.type !== "fontFamily") throw new Error(`ports/${port.id}: ${role} is not a font family`);
+      return [token.resolved].flat()[0];
+    }
+    if (key === "font-size") {
+      if (token.type !== "dimension" || token.resolved.unit !== "px") throw new Error(`ports/${port.id}: ${role} is not a px size`);
+      return String(token.resolved.value);
+    }
+    return hexOf(port, role, token);
+  });
+  const lines = GHOSTTY_KEYS.filter((key) => values.has(key)).map((key) => {
+    const palette = /^palette\[(\d+)\]$/.exec(key);
+    return palette ? `palette = ${palette[1]}=${values.get(key)}` : `${key} = ${values.get(key)}`;
+  });
+  return header(manifest, port) + lines.join("\n") + "\n";
+};
+
+export const PORT_EMITTERS = { "warp-yaml": warpYaml, "ghostty-config": ghosttyConfig };
 
 export const portArtifactsGenerator = {
   name: "port artifacts",

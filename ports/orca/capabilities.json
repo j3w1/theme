@@ -5,589 +5,593 @@
   "surfaces": {
     "terminal-colours": {
       "state": "supported",
-      "reason": "Import from YAML applies the background, foreground, cursor and all sixteen ANSI slots to Orca's dark-mode terminal."
+      "reason": "Import from Ghostty writes background, foreground, cursor, cursor text and all sixteen palette slots as Orca colour overrides."
     },
     "terminal-selection": {
-      "state": "unsupported",
-      "reason": "Orca's YAML import keeps no selection colours; selection stays at Orca's own default."
+      "state": "supported",
+      "reason": "Import from Ghostty writes the selection background and foreground overrides."
     },
     "pane-divider": {
-      "state": "unsupported",
-      "reason": "Orca stores the split divider as a separate setting that a theme file cannot carry; the README gives the value to enter by hand."
+      "state": "supported",
+      "reason": "Import from Ghostty writes split-divider-color to Orca's dark and light divider colours."
     },
     "terminal-font": {
+      "state": "supported",
+      "reason": "Import from Ghostty writes the terminal font family and size (px)."
+    },
+    "terminal-line-height": {
       "state": "inherited",
-      "reason": "Orca keeps its own terminal font family, size and spacing settings; the theme file carries colours only."
+      "reason": "Orca keeps its own line height and letter spacing."
     },
     "light-mode": {
       "state": "unsupported",
-      "reason": "The theme has no light profile; Orca's light-mode terminal theme is left unchanged."
+      "reason": "The theme has no light profile. Orca's colour overrides apply whatever terminal theme is selected, so they are a dark theme in either mode."
     },
     "outside-terminal": {
       "state": "out-of-scope",
-      "reason": "Orca's window, sidebar and settings chrome are not themed by a terminal theme file."
+      "reason": "Application window, sidebar and settings chrome are not themed by a terminal theme file."
     }
   },
   "roles": {
     "border.width.default": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "border.width.emphasis": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "breakpoint.lg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "breakpoint.md": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "breakpoint.sm": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "breakpoint.xs": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "color.action.destructive.border": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.action.destructive.filled-bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.action.destructive.filled-text": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.action.destructive.hover-bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.action.destructive.hover-text": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.action.destructive.pressed-bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.action.destructive.text": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.action.primary.bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.action.primary.border": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.action.primary.hover-bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.action.primary.pressed-bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.action.primary.text": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.action.secondary.bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.action.secondary.border": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.action.secondary.hover-bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.action.secondary.pressed-bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.action.secondary.text": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.action.tertiary.hover-bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.action.tertiary.text": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.border.active": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.border.control": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.border.default": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.border.disabled": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.border.divider": {
-      "state": "unsupported",
+      "state": "mapped",
       "surface": "pane-divider",
-      "reason": "Not in the theme file; set Settings → Terminal → Dark Divider Color to this value by hand."
+      "reason": "Written to the file's split-divider-color key."
     },
     "color.border.overlay": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.border.selected-indicator": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.border.selected-indicator-inactive": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.border.strong": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.chart.axis": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.chart.grid": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.chart.label": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.chart.series-1": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.chart.series-2": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.chart.series-3": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.chart.series-4": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.code.bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.code.bracket-match": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.code.caret": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.code.current-line": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.code.gutter-bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.code.gutter-rule": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.code.indent-guide": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.code.line-number": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.code.line-number-active": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.code.search-current-bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.code.search-current-text": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.code.search-match-bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.code.selection-bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.code.syntax.attribute": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.code.syntax.comment": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.code.syntax.constant": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.code.syntax.deprecated": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.code.syntax.escape": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.code.syntax.function": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.code.syntax.heading": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.code.syntax.invalid": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.code.syntax.keyword": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.code.syntax.number": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.code.syntax.operator": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.code.syntax.property": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.code.syntax.punctuation": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.code.syntax.string": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.code.syntax.tag": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.code.syntax.type": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.code.syntax.variable": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.code.whitespace": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.diagnostic.error.bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.diagnostic.error.stripe": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.diagnostic.error.text": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.diagnostic.error.underline": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.diagnostic.hint.underline": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.diagnostic.info.text": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.diagnostic.info.underline": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.diagnostic.unused.text": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.diagnostic.warning.stripe": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.diagnostic.warning.text": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.diagnostic.warning.underline": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.diff.added.bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.diff.added.emphasis": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.diff.added.gutter": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.diff.conflict-border": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.diff.header-bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.diff.modified.bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.diff.modified.gutter": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.diff.removed.bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.diff.removed.emphasis": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.diff.removed.gutter": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.icon.decorative": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.icon.default": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.interaction.disabled.bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.interaction.drop-target": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.interaction.focus.ring": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.interaction.focus.ring-container": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.interaction.hover.bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.interaction.hover.bg-strong": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.interaction.marquee": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.interaction.pressed.bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.interaction.scrollbar.thumb": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.interaction.scrollbar.thumb-hover": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.interaction.scrollbar.track": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.interaction.selection.bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.interaction.selection.inactive-bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.interaction.selection.inactive-text": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.interaction.selection.text": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.interaction.text-selection.bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.interaction.text-selection.text": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.primitive.alpha.black-55": {
       "state": "out-of-scope",
@@ -932,718 +936,718 @@
     "color.status.danger.border": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.status.danger.fill": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.status.danger.on-fill": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.status.danger.text": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.status.danger.tint": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.status.info.border": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.status.info.fill": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.status.info.on-fill": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.status.info.text": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.status.info.tint": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.status.neutral.border": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.status.neutral.fill": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.status.neutral.on-fill": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.status.neutral.text": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.status.neutral.tint": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.status.success.border": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.status.success.fill": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.status.success.on-fill": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.status.success.text": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.status.success.tint": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.status.warning.border": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.status.warning.fill": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.status.warning.on-fill": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.status.warning.text": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.status.warning.tint": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.surface.backdrop": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.surface.canvas": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.surface.chrome": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.surface.chrome-alt": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.surface.code": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.surface.default": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.surface.desktop": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.surface.input": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.surface.overlay": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.surface.raised": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.surface.sunken": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.surface.terminal": {
       "state": "unsupported",
       "surface": "terminal-colours",
-      "reason": "The file has one background key, which carries color.terminal.bg (equal to ANSI 0); the pane surface has no separate key."
+      "reason": "The config has one background key, which carries color.terminal.bg (equal to ANSI 0); the pane surface has no separate key."
     },
     "color.terminal.ansi.0": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the theme file's terminal_colors.normal.black key."
+      "reason": "Written to the file's palette[0] key."
     },
     "color.terminal.ansi.1": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the theme file's terminal_colors.normal.red key."
+      "reason": "Written to the file's palette[1] key."
     },
     "color.terminal.ansi.10": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the theme file's terminal_colors.bright.green key."
+      "reason": "Written to the file's palette[10] key."
     },
     "color.terminal.ansi.11": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the theme file's terminal_colors.bright.yellow key."
+      "reason": "Written to the file's palette[11] key."
     },
     "color.terminal.ansi.12": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the theme file's terminal_colors.bright.blue key."
+      "reason": "Written to the file's palette[12] key."
     },
     "color.terminal.ansi.13": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the theme file's terminal_colors.bright.magenta key."
+      "reason": "Written to the file's palette[13] key."
     },
     "color.terminal.ansi.14": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the theme file's terminal_colors.bright.cyan key."
+      "reason": "Written to the file's palette[14] key."
     },
     "color.terminal.ansi.15": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the theme file's terminal_colors.bright.white key."
+      "reason": "Written to the file's palette[15] key."
     },
     "color.terminal.ansi.2": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the theme file's terminal_colors.normal.green key."
+      "reason": "Written to the file's palette[2] key."
     },
     "color.terminal.ansi.3": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the theme file's terminal_colors.normal.yellow key."
+      "reason": "Written to the file's palette[3] key."
     },
     "color.terminal.ansi.4": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the theme file's terminal_colors.normal.blue key."
+      "reason": "Written to the file's palette[4] key."
     },
     "color.terminal.ansi.5": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the theme file's terminal_colors.normal.magenta key."
+      "reason": "Written to the file's palette[5] key."
     },
     "color.terminal.ansi.6": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the theme file's terminal_colors.normal.cyan key."
+      "reason": "Written to the file's palette[6] key."
     },
     "color.terminal.ansi.7": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the theme file's terminal_colors.normal.white key."
+      "reason": "Written to the file's palette[7] key."
     },
     "color.terminal.ansi.8": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the theme file's terminal_colors.bright.black key."
+      "reason": "Written to the file's palette[8] key."
     },
     "color.terminal.ansi.9": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the theme file's terminal_colors.bright.red key."
+      "reason": "Written to the file's palette[9] key."
     },
     "color.terminal.bg": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the theme file's background key."
+      "reason": "Written to the file's background and cursor-text keys."
     },
     "color.terminal.cursor": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the theme file's cursor key."
+      "reason": "Written to the file's cursor-color key."
     },
     "color.terminal.fg": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the theme file's foreground key."
+      "reason": "Written to the file's foreground key."
     },
     "color.terminal.selection-bg": {
-      "state": "unsupported",
+      "state": "mapped",
       "surface": "terminal-selection",
-      "reason": "Orca's YAML import drops selection colours."
+      "reason": "Written to the file's selection-background key."
     },
     "color.terminal.selection-text": {
-      "state": "unsupported",
+      "state": "mapped",
       "surface": "terminal-selection",
-      "reason": "Orca's YAML import drops selection colours."
+      "reason": "Written to the file's selection-foreground key."
     },
     "color.text.accent": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.text.accent-strong": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.text.bright": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.text.default": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.text.disabled": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.text.inverse": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.text.link": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.text.link-hover": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.text.link-underline": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.text.muted": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.text.on-action": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.text.on-danger": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.text.on-light": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.text.on-selection": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.text.placeholder": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.text.prose": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "color.text.subtle": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only."
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
     "density.comfortable.control-height": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "density.comfortable.control-padding-x": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "density.comfortable.gap": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "density.comfortable.icon": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "density.comfortable.row-height": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "density.compact.control-height": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "density.compact.control-padding-x": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "density.compact.gap": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "density.compact.icon": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "density.compact.row-height": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "focus.offset": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "focus.offset-container": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "focus.offset-invalid": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "focus.ring": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "focus.ring-container": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "font.family.mono": {
-      "state": "inherited",
+      "state": "mapped",
       "surface": "terminal-font",
-      "reason": "Orca's own terminal font setting; choose this family there by hand."
+      "reason": "Written to the file's font-family key."
     },
     "font.letter-spacing.terminal": {
       "state": "inherited",
-      "surface": "terminal-font",
-      "reason": "Orca's own terminal letter-spacing setting."
+      "surface": "terminal-line-height",
+      "reason": "Neither the Ghostty config nor Orca's import has a letter-spacing key."
     },
     "font.line-height.caption": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "font.line-height.code": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "font.line-height.h1": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "font.line-height.h2": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "font.line-height.h3": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "font.line-height.reading": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "font.line-height.terminal": {
       "state": "inherited",
-      "surface": "terminal-font",
-      "reason": "Orca's own terminal line-height setting."
+      "surface": "terminal-line-height",
+      "reason": "Ghostty's adjust-cell-height, which Orca imports, is relative to the font's own cell height; a pixel line height has no exact conversion. Orca keeps its line-height setting."
     },
     "font.line-height.ui-lg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "font.line-height.ui-md": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "font.line-height.ui-sm": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "font.size.caption": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "font.size.code": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "font.size.h1": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "font.size.h2": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "font.size.h3": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "font.size.reading": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "font.size.terminal": {
-      "state": "inherited",
+      "state": "mapped",
       "surface": "terminal-font",
-      "reason": "Orca's own terminal font size setting."
+      "reason": "Written to the file's font-size key."
     },
     "font.size.ui-lg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "font.size.ui-md": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "font.size.ui-sm": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "font.weight.bold": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "font.weight.regular": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "icon.size.lg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "icon.size.md": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "icon.size.sm": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "icon.stroke": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "layout.app-max": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "layout.content-max": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "layout.measure": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "motion.duration.base": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "motion.duration.fast": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "motion.duration.slow": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "radius.none": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "shadow.floating": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "space.0": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "space.1": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "space.12": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "space.16": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "space.2": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "space.24": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "space.32": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "space.4": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "space.48": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "space.8": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "z.canvas": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "z.dialog": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "z.drawer": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "z.popover": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "z.raised": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "z.skip-link": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "z.toast": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Not a colour; Orca's terminal theme file carries colours only."
+      "reason": "Not a colour; a terminal theme file carries colours only."
     }
   },
-  "rollback": "In Orca, open Settings → Terminal Themes, select the dark theme you used before, then remove the imported \"j3w1 theme\" entry. Reset Dark Divider Color if you changed it."
+  "rollback": "In Orca, open Settings → Terminal and choose \"Reset all color overrides\"; set the font family, font size and divider colours back to your previous values. Remove or rename %APPDATA%\\ghostty\\config.ghostty so a later Ghostty import does not re-apply it."
 }

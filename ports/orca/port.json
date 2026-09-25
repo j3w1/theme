@@ -1,21 +1,41 @@
 {
   "schemaVersion": 1,
   "id": "orca",
-  "displayName": "Orca (terminal theme YAML)",
+  "displayName": "Orca (Ghostty config import)",
   "status": "experimental",
   "themeVersion": "1.2.0",
   "tokenDigest": "sha256-ewtsMMkPT+PGzEwK1TgPlUDKYkjMVbO0bpmxM3qvoTY=",
   "profile": "default",
-  "format": "warp-yaml",
-  "targetVersions": ["1.4.209"],
+  "format": "ghostty-config",
+  "targetVersions": [
+    "1.4.209"
+  ],
   "testedVersions": [],
-  "os": ["linux", "macos", "windows"],
+  "os": [
+    "windows",
+    "macos",
+    "linux"
+  ],
   "surfaces": {
-    "supported": ["terminal-colours"],
-    "inherited": ["terminal-font"],
-    "unsupported": ["terminal-selection", "pane-divider", "light-mode"]
+    "supported": [
+      "terminal-colours",
+      "terminal-selection",
+      "pane-divider",
+      "terminal-font"
+    ],
+    "inherited": [
+      "terminal-line-height"
+    ],
+    "unsupported": [
+      "light-mode"
+    ]
   },
-  "files": [{ "path": "dist/j3w1-theme.yaml", "install": "Orca → Settings → Terminal Themes → Import from YAML, then select \"j3w1 theme\" as the Dark Theme." }],
+  "files": [
+    {
+      "path": "dist/config.ghostty",
+      "install": "Save as %APPDATA%\\ghostty\\config.ghostty (Windows) or ~/.config/ghostty/config.ghostty, then Orca → Settings → Terminal → Import from Ghostty → Apply Changes."
+    }
+  ],
   "mappingPath": "mapping.json",
   "capabilitiesPath": "capabilities.json",
   "evidence": []

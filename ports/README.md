@@ -2,8 +2,11 @@
 
 Published ports:
 
-- `orca/`: Orca's dark-mode terminal colours as a Warp-format YAML for
-  **Import from YAML**. Experimental.
+- `orca/`: Orca's terminal colours, selection, pane divider and font, as a
+  Ghostty-format config for Orca's **Import from Ghostty**. Experimental.
+- `warp/`: a Warp custom theme in YAML, which Orca's **Import from YAML** and
+  **Import from Warp** also read (colours only). Experimental.
+- `ghostty/`: a Ghostty theme file (colours, selection, divider). Experimental.
 
 Every port's importable files are listed with download links in the
 repository README (pinned to the release tag) and on the site's Ports page.

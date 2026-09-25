@@ -2,11 +2,19 @@
 
 ## [1.2.0] - 2026-09-25
 
-- Add the first application port, `ports/orca/`, which is experimental. It holds
-  the default profile's terminal background, foreground, cursor and sixteen ANSI
-  slots as a Warp-format YAML for Orca's **Import from YAML**. Selection, divider,
-  font and light mode are recorded as unsupported or inherited, each with a reason.
-  No real import is recorded yet, so the port is not verified.
+- Add the first application ports, all experimental, for the default profile's
+  terminal colours:
+  - `ports/orca/`: a Ghostty-format config for Orca's **Import from Ghostty**.
+    It carries the colours, selection, pane divider, and the terminal font
+    family and size. That import has no parse time limit, unlike Orca's YAML
+    import, which can time out on slower Windows machines.
+  - `ports/warp/`: a Warp custom theme, which Orca's **Import from YAML** and
+    **Import from Warp** also read.
+  - `ports/ghostty/`: a Ghostty theme file.
+
+  Each role a format cannot carry is recorded with a reason. The files pass
+  Orca 1.4.209's own parsers, but no real import is recorded yet, so none is
+  verified.
 - `npm run generate` now writes port files from their mappings
   (`scripts/lib/port-artifacts.mjs`), so no port hex is hand-edited.
 - Make theme files easy to download:

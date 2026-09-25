@@ -4,36 +4,55 @@ Status: experimental until a real import into the recorded version is
 evidenced. See `port.json` for scope, `mapping.json` for every native key and
 `capabilities.json` for the reason behind each role that is not mapped.
 
-`dist/j3w1-theme.yaml` is generated from `mapping.json` and the default profile
-by `npm run generate`; never edit it by hand. It uses the Warp theme format
-that Orca's **Import from YAML** reads. This port targets Orca only and makes no
-claim about Warp itself.
+`dist/config.ghostty` is generated from `mapping.json` and the default profile
+by `npm run generate`; never edit it by hand. It is written in Ghostty's config
+format because Orca's **Import from Ghostty** is the Orca import that carries
+the whole terminal look. That covers colours, selection, the pane divider and
+the font. It reads the file directly, with no time limit.
 
 ## What it themes, and what it does not
 
-- Supported: the dark-mode terminal background (`color.terminal.bg`),
-  foreground, cursor and all sixteen ANSI slots, normal and bright.
-- Inherited from Orca: terminal font family, size, line height and letter
-  spacing. Set `SauceCodePro NFM`, 13px, if you want the theme's typography.
-- Unsupported:
-  - Selection colours: Orca's YAML import drops them.
-  - The pane divider: a separate Orca setting (see Install, step 4).
-  - Light mode: the theme has no light profile.
+- Supported, written as Orca terminal settings:
+  - Terminal background (`color.terminal.bg`), foreground, cursor and cursor text.
+  - Selection background and text.
+  - All sixteen ANSI slots.
+  - The pane divider (`color.border.divider`, use-and-report under D-008),
+    applied to both of Orca's divider colours.
+  - Terminal font family `SauceCodePro NFM` and size `13` px.
+- Inherited from Orca: line height and letter spacing. Ghostty's
+  `adjust-cell-height` is relative to the font's own cell height, so a pixel
+  line height has no exact conversion.
+- Unsupported: light mode. Orca stores these colours as overrides that apply
+  whichever terminal theme is selected, so they stay dark in both modes.
 - Out of scope: Orca's window, sidebar and settings chrome.
 
 ## Prerequisites
 
-Orca 1.4.209 or later, on any platform Orca runs on.
+- Orca 1.4.209 or later, on Windows, macOS or Linux.
+- The `SauceCodePro NFM` font, from the Nerd Fonts SauceCodePro release, if you
+  want the theme's typography. Otherwise pick another font in Orca after
+  importing.
 
-## Install
+## Install on Windows
 
-1. Download `j3w1-theme.yaml` from the Downloads table in the repository README.
-   Use the link for the theme version you want, never a branch.
-2. In Orca, open **Settings → Terminal Themes → Import from YAML** and choose
-   the file.
-3. With **Theme Mode** on Dark, select **j3w1 theme** under Dark Theme. Importing
-   adds an entry and overwrites no built-in theme.
-4. Optional: set **Dark Divider Color** to `#2b0e0d` (`color.border.divider`).
+1. Download `config.ghostty` from the Downloads table in the repository README
+   (use the link for the theme version you want, never a branch).
+2. Open `%APPDATA%` in Explorer (type it in the address bar). Create a folder
+   named `ghostty` if there isn't one, and save the file there as
+   `%APPDATA%\ghostty\config.ghostty`. If that folder already holds a
+   `config.ghostty` or `config`, back it up first: Orca merges every Ghostty
+   config it finds.
+3. In Orca, open **Settings → Terminal** and click **Import from Ghostty**.
+   Review the listed changes and click **Apply Changes**.
+
+On macOS or Linux, save the file as `~/.config/ghostty/config.ghostty` instead.
+Don't overwrite a real Ghostty config there; add the lines to it, or use the
+`ghostty` port's theme file.
+
+The Warp-format YAML in `ports/warp/` also imports through Orca's **Import from
+YAML**. That route carries only the terminal colours, and Orca gives each file
+one second to parse, counting the parser's start-up. If it reports "took too long
+to parse", retry, or use this port.
 
 ## Verify
 
@@ -51,6 +70,7 @@ A parse check is not an import.
 
 ## Roll back
 
-In **Settings → Terminal Themes**, select the dark theme you used before and
-remove the imported **j3w1 theme** entry. If you changed **Dark Divider Color**,
-reset it.
+In **Settings → Terminal**, choose **Reset all color overrides**. Then set the
+font family, font size and divider colours back to your previous values.
+Remove or rename `%APPDATA%\ghostty\config.ghostty` so a later Ghostty import
+does not apply it again.
