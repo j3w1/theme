@@ -27,7 +27,7 @@ commands
 
 options
   --source-root <checkout>    read the export from this checkout only (no network)
-  --state-dir <dir>           default \${XDG_STATE_HOME:-~/.local/state}/j3w1-theme/devbox
+  --state-dir <dir>           default $J3W1_TERMINAL_KIT_STATE_DIR, else \${XDG_STATE_HOME:-~/.local/state}/j3w1-theme/devbox
   --claude-config-dir <dir>   default $CLAUDE_CONFIG_DIR, else ~/.claude
   --codex-home <dir>          default ~/.codex ($CODEX_HOME is ignored: in Orca it is the runtime copy)
   --orca-runtime-home <dir>   default \${XDG_CONFIG_HOME:-~/.config}/orca/codex-runtime-home/home (read only)

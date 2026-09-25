@@ -375,6 +375,32 @@ test("the Orca runtime home is checked read-only through Orca's themes link", as
   assert.match(linked.stdout, /PASS Orca runtime config tui.theme = "j3w1"/);
 });
 
+test("an unwritable state directory stops apply before any file changes", async (t) => {
+  const h = await setupHome(t);
+  const locked = path.join(h.home, "locked");
+  await fs.mkdir(locked, { mode: 0o500 });
+  const state = path.join(locked, "j3w1-theme");
+  let result;
+  try {
+    result = await cli(h.home, ["apply"], { J3W1_TERMINAL_KIT_STATE_DIR: state });
+  } finally {
+    await fs.chmod(locked, 0o700);
+  }
+  assert.equal(result.code, 1, result.stderr);
+  assert.match(result.stderr, /is not writable .*nothing was changed/);
+  assert.ok(!existsSync(state) && !existsSync(h.claudeTheme) && !existsSync(h.codexTheme));
+  assert.equal(await fs.readFile(h.settings, "utf8"), SETTINGS);
+  assert.equal(await fs.readFile(h.config, "utf8"), CONFIG);
+});
+
+test("J3W1_TERMINAL_KIT_STATE_DIR moves the state directory", async (t) => {
+  const h = await setupHome(t);
+  const state = path.join(h.home, "elsewhere");
+  const result = await cli(h.home, ["apply"], { J3W1_TERMINAL_KIT_STATE_DIR: state });
+  assert.equal(result.code, 0, result.stderr);
+  assert.ok(existsSync(path.join(state, "current", "manifest.json")) && !existsSync(h.state));
+});
+
 test("update takes explicit release tags only", async (t) => {
   const h = await setupHome(t);
   for (const ref of ["main", "latest", "1.2.0", "0838171cb6907f21f91f45ac9f7a992d7164a4eb"]) {

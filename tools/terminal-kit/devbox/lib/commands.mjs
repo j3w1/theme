@@ -30,7 +30,7 @@ export const resolvePaths = (opts, env = process.env) => {
     claudeDir: opts.claudeConfigDir ?? env.CLAUDE_CONFIG_DIR ?? path.join(home, ".claude"),
     codexHome: opts.codexHome ?? path.join(home, ".codex"),
     orcaRuntimeHome: opts.orcaRuntimeHome ?? path.join(xdgConfig, "orca", "codex-runtime-home", "home"),
-    stateRoot: opts.stateDir ?? path.join(xdgState, "j3w1-theme", "devbox"),
+    stateRoot: opts.stateDir ?? (env.J3W1_TERMINAL_KIT_STATE_DIR ? path.resolve(env.J3W1_TERMINAL_KIT_STATE_DIR) : path.join(xdgState, "j3w1-theme", "devbox")),
   };
 };
 
@@ -167,7 +167,14 @@ const baseManifest = (ctx, command, iso, versions) => ({
 const writeTargets = async ({ ctx, paths, command, plan, integrations, versions, log }) => {
   const iso = now();
   const createdDirs = missingDirs(plan.filter((t) => t.changed));
-  const backup = await newBackupDir(paths, iso);
+  /* The backup comes first, so a state directory the host will not let us
+     create stops the run before any managed file changes. */
+  let backup;
+  try {
+    backup = await newBackupDir(paths, iso);
+  } catch (error) {
+    throw new KitError(`state directory ${paths.stateRoot} is not writable (${error.code ?? error.message}); nothing was changed. Pass --state-dir <dir> or set J3W1_TERMINAL_KIT_STATE_DIR.`);
+  }
   const files = [];
   const settings = [];
   for (const t of plan) {
