@@ -1,0 +1,195 @@
+{
+  "schemaVersion": 1,
+  "integration": {
+    "id": "codex-tmtheme",
+    "version": "1",
+    "kind": "other"
+  },
+  "components": [
+    "code-editor",
+    "diff-view"
+  ],
+  "host": {
+    "name": "Codex CLI",
+    "observedVersions": [
+      "0.156.1"
+    ],
+    "setting": "tui.theme",
+    "themesDir": "$CODEX_HOME/themes",
+    "configFile": "$CODEX_HOME/config.toml"
+  },
+  "theme": {
+    "name": "j3w1",
+    "file": "j3w1.tmTheme",
+    "uuid": "6a0c3b8e-2f4d-4c1a-9b7e-1d5f0e3a7c21"
+  },
+  "globals": {
+    "background": "color.code.bg",
+    "foreground": "color.text.default",
+    "caret": "color.code.caret",
+    "selection": "color.code.selection-bg",
+    "selectionForeground": "color.interaction.selection.text",
+    "lineHighlight": "color.code.current-line",
+    "invisibles": "color.code.whitespace",
+    "gutter": "color.code.gutter-bg",
+    "gutterForeground": "color.code.line-number",
+    "findHighlight": "color.code.search-match-bg",
+    "bracketsForeground": "color.code.bracket-match"
+  },
+  "scopes": [
+    {
+      "name": "Comment",
+      "scope": "comment, punctuation.definition.comment",
+      "foreground": "color.code.syntax.comment",
+      "fontStyle": "italic"
+    },
+    {
+      "name": "String",
+      "scope": "string, string.quoted, markup.raw.inline, markup.inline.raw",
+      "foreground": "color.code.syntax.string"
+    },
+    {
+      "name": "Number",
+      "scope": "constant.numeric",
+      "foreground": "color.code.syntax.number"
+    },
+    {
+      "name": "Constant",
+      "scope": "constant.language, constant.other, support.constant, variable.other.constant",
+      "foreground": "color.code.syntax.constant"
+    },
+    {
+      "name": "Escape",
+      "scope": "constant.character.escape, constant.character, string.regexp",
+      "foreground": "color.code.syntax.escape"
+    },
+    {
+      "name": "Keyword",
+      "scope": "keyword, keyword.control, storage, storage.type, storage.modifier",
+      "foreground": "color.code.syntax.keyword"
+    },
+    {
+      "name": "Operator",
+      "scope": "keyword.operator",
+      "foreground": "color.code.syntax.operator"
+    },
+    {
+      "name": "Function",
+      "scope": "entity.name.function, support.function, meta.function-call entity.name.function, variable.function",
+      "foreground": "color.code.syntax.function"
+    },
+    {
+      "name": "Variable",
+      "scope": "variable, variable.parameter, variable.other",
+      "foreground": "color.code.syntax.variable"
+    },
+    {
+      "name": "Type",
+      "scope": "entity.name.type, entity.name.class, entity.other.inherited-class, support.type, support.class",
+      "foreground": "color.code.syntax.type"
+    },
+    {
+      "name": "Property",
+      "scope": "variable.other.property, variable.other.member, support.variable.property, meta.object-literal.key, entity.name.tag.yaml",
+      "foreground": "color.code.syntax.property"
+    },
+    {
+      "name": "Tag",
+      "scope": "entity.name.tag, punctuation.definition.tag",
+      "foreground": "color.code.syntax.tag"
+    },
+    {
+      "name": "Attribute",
+      "scope": "entity.other.attribute-name",
+      "foreground": "color.code.syntax.attribute"
+    },
+    {
+      "name": "Heading",
+      "scope": "markup.heading, entity.name.section",
+      "foreground": "color.code.syntax.heading",
+      "fontStyle": "bold"
+    },
+    {
+      "name": "Punctuation",
+      "scope": "punctuation, meta.brace",
+      "foreground": "color.code.syntax.punctuation"
+    },
+    {
+      "name": "Invalid",
+      "scope": "invalid, invalid.illegal",
+      "foreground": "color.code.syntax.invalid",
+      "fontStyle": "underline"
+    },
+    {
+      "name": "Deprecated",
+      "scope": "invalid.deprecated",
+      "foreground": "color.code.syntax.deprecated",
+      "fontStyle": "italic"
+    },
+    {
+      "name": "Link",
+      "scope": "markup.underline.link, string.other.link, meta.link",
+      "foreground": "color.text.link",
+      "fontStyle": "underline"
+    },
+    {
+      "name": "Bold",
+      "scope": "markup.bold",
+      "fontStyle": "bold"
+    },
+    {
+      "name": "Italic",
+      "scope": "markup.italic",
+      "fontStyle": "italic"
+    },
+    {
+      "name": "Inserted",
+      "scope": "markup.inserted",
+      "foreground": "color.diff.added.emphasis",
+      "background": "color.diff.added.bg"
+    },
+    {
+      "name": "Deleted",
+      "scope": "markup.deleted",
+      "foreground": "color.diff.removed.emphasis",
+      "background": "color.diff.removed.bg"
+    },
+    {
+      "name": "Changed",
+      "scope": "markup.changed",
+      "foreground": "color.diff.modified.gutter",
+      "background": "color.diff.modified.bg"
+    },
+    {
+      "name": "Codex accent",
+      "scope": "codex.accent",
+      "foreground": "color.text.accent"
+    }
+  ],
+  "deviations": [
+    {
+      "component": "terminal",
+      "target": "status, diff signs, brand and status line",
+      "kind": "unsupported",
+      "specValue": "status and diff roles",
+      "applied": "ANSI slots 1-6 chosen by Codex",
+      "reason": "Codex names these colours by ANSI slot; a theme cannot remap them, and the terminal spec lets programs choose slot semantics."
+    },
+    {
+      "component": "textarea",
+      "target": "prompt and composer fills",
+      "kind": "unsupported",
+      "specValue": "color.surface.raised",
+      "applied": "the terminal background blended toward white by Codex",
+      "reason": "Codex computes these fills from the terminal background; no setting reaches them."
+    },
+    {
+      "component": "code-editor",
+      "target": "deprecated text",
+      "kind": "substituted",
+      "specValue": "line-through",
+      "applied": "italic",
+      "reason": "The tmTheme renderer Codex uses supports bold, italic and underline only."
+    }
+  ]
+}
