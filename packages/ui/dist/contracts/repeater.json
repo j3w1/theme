@@ -1,10 +1,10 @@
 {
   "id": "repeater",
   "name": "Repeater",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "tag": "j3w1-repeater",
-  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/repeater.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.1.0/packages/ui/src/behaviors/advanced.js",
+  "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/repeater.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/advanced.js",
   "imports": {
     "class": "@j3w1/ui/components/repeater",
     "register": "@j3w1/ui/register/repeater",
@@ -361,6 +361,6 @@
   "copy": {
     "directory": "copy/repeater/",
     "manifest": "copy/repeater/manifest.json",
-    "digest": "sha256-BaUhQGaNBY6UTQnbJWyIC3sQZBLrRIHuvBJ6kMypK/Y="
+    "digest": "sha256-73KShMozPV8e62zeS2s06vunuxm55XpNkKR2t1w5yro="
   }
 }

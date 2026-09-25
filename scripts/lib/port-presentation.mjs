@@ -1,4 +1,7 @@
 import { escapeHtml as esc } from "./hex-literals.mjs";
+// Where the site serves a port's importable file, relative to the site base:
+// ports/<id>/<file name>. The README table and the Ports page share it.
+export const portDownloadPath = (id, file) => `ports/${id}/${file.split("/").at(-1)}`;
 export const renderPortCatalogue = (catalogue, { base = "/theme/", revision = null } = {}) => {
   if (revision !== null && !/^[a-f0-9]{40}$/.test(revision)) throw new Error("Port source links need an immutable revision");
   const source = (file, raw = false) => revision ? (raw ? "https://raw.githubusercontent.com/j3w1/theme/" : "https://github.com/j3w1/theme/blob/") + revision + "/" + file.split("/").map(encodeURIComponent).join("/") : null;
@@ -12,7 +15,7 @@ export const renderPortCatalogue = (catalogue, { base = "/theme/", revision = nu
 <p>Evidence subject: <code>${esc(port.subjectDigest)}</code></p>
 <p>${link("Installation and scope", port.readme)}${port.evidencePath ? " · " + link("Recorded import evidence", port.evidencePath) : ""}</p>
 <p>Rollback: ${esc(port.rollback ?? "No separate rollback procedure recorded; consult the port README before installation.")}</p>
-<ul>${port.files.map(file => "<li>" + link(file.path, file.source, true) + " — " + esc(file.install) + " — <code>" + esc(file.digest) + "</code></li>").join("")}</ul>
+<ul>${port.files.map(file => '<li><a href="' + esc(base + portDownloadPath(port.id, file.path)) + '" download>Download ' + esc(file.path.split("/").at(-1)) + "</a> (" + link("source at this revision", file.source, true) + ") — " + esc(file.install) + " — <code>" + esc(file.digest) + "</code></li>").join("")}</ul>
 <h3>Surfaces</h3><ul>${Object.entries(port.surfaces).map(([surface, detail]) => "<li>" + esc(surface) + ": " + esc(detail.state) + " — " + esc(detail.reason) + "</li>").join("")}</ul>
 <h3>Semantic mappings</h3>
 <div class="table-scroll" tabindex="0" role="region" aria-label="${esc(port.displayName)} mappings"><table class="spec-table">

@@ -1,10 +1,10 @@
 {
   "id": "textarea",
   "name": "Textarea",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "tag": "j3w1-textarea",
-  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/textarea.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.1.0/packages/ui/src/behaviors/native.js",
+  "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/textarea.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/native.js",
   "imports": {
     "class": "@j3w1/ui/components/textarea",
     "register": "@j3w1/ui/register/textarea",
@@ -493,6 +493,6 @@
   "copy": {
     "directory": "copy/textarea/",
     "manifest": "copy/textarea/manifest.json",
-    "digest": "sha256-J0195jiNCo7tCsuOMc1sSFPd+91yxYZ0Vug4xYXQy8o="
+    "digest": "sha256-W4Id+Pb3P1JpGVYNU+RqtkjKvS5OXxkBfL9xY31Zn90="
   }
 }

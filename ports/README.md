@@ -1,15 +1,27 @@
 # Application ports
 
-No native ports are published yet. Historical implementations (the owner's
-gedit scheme, IntelliJ scheme, tmux and browser-extension colours) are
-catalogued in `references/catalogue.json`; they are evidence of origin, not
-supported downloads.
+Published ports:
+
+- `orca/`: Orca's terminal colours, selection, pane divider and font, as a
+  Ghostty-format config for Orca's **Import from Ghostty**. Experimental.
+- `warp/`: a Warp custom theme in YAML, which Orca's **Import from YAML** and
+  **Import from Warp** also read (colours only). Experimental.
+- `ghostty/`: a Ghostty theme file (colours, selection, divider). Experimental.
+
+Every port's importable files are listed with download links in the
+repository README (pinned to the release tag) and on the site's Ports page.
+
+Historical implementations (the owner's gedit scheme, IntelliJ scheme, tmux
+and browser-extension colours) are catalogued in `references/catalogue.json`;
+they are evidence of origin, not supported downloads.
 
 A port is created under `ports/<slug>/` only when implementation work begins,
 from `templates/port/`. Each port carries `port.json` (validated by
 `schemas/port.mjs`), `mapping.json` (spec role → native key, with every
 unmapped role listed), `src/` (generator inputs), `dist/` (committed importable
-files) and `evidence/` (real captures with application version, OS and date).
+files, written by `npm run generate` when the port's `format` has an emitter in
+`scripts/lib/port-artifacts.mjs`; create the file empty once so validation can
+find it) and `evidence/` (real captures with application version, OS and date).
 
 Statuses: `experimental` (artifacts exist, checks pass, real-target verification
 incomplete), `verified` (imported into the recorded target with matching

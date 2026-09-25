@@ -7,6 +7,7 @@ import { sha256 } from "./fs.mjs";
 import { extensionOf, toCss, statusOf } from "./tokens.mjs";
 import { anchorFor, siteAnchor } from "./anchors.mjs";
 import { sections, splitVariants } from "./spec.mjs";
+import { portDownloadPath } from "./port-presentation.mjs";
 
 const RAW = (manifest, rev) => manifest.sourceRevision.rawBase.replace("{rev}", rev);
 
@@ -265,7 +266,7 @@ export const buildFull = ({ manifest, profileId, sourceDigest, profiles, docs, c
     }
   }
   out.push("## Coverage ledger", "", ...coverageTable(components, coverage), "");
-  out.push("## Application ports", "", ...portsTable(ports), "");
+  out.push("## Application ports", "", ...portsTable(ports), "", "### Downloads", "", ...downloadsTable(manifest, ports), "");
   out.push("## Decisions", "", shiftHeadings(decisionsMarkdown.trim()), "");
   out.push("## References", "", ...catalogueTable(catalogue), "");
   return `${out.join("\n")}\n`;
@@ -295,6 +296,17 @@ export const portsTable = (ports) =>
         ...ports.map((p) => `| ${p.displayName} | ${p.format} | ${p.status} | ${p.verification?.status ?? "not verified"} | ${p.themeVersion} | ${p.testedVersions.join(", ") || "—"} (${p.os.join(", ")}) | ${p.surfaces.supported.length} / ${p.surfaces.inherited.length} / ${p.surfaces.unsupported.length} |`),
       ]
     : ["No native ports are published yet. Historical implementations are catalogued in `references/` and are not supported downloads."];
+
+/* One row per importable file: a raw link pinned to this version's tag and
+   the copy the site serves. Neither ever names a branch. */
+export const downloadsTable = (manifest, ports) =>
+  ports.some((p) => p.files.length)
+    ? [
+        `| Application | File (theme ${manifest.version}) | Also on the site | Install | Status |`,
+        "| --- | --- | --- | --- | --- |",
+        ...ports.flatMap((p) => p.files.map((f) => `| ${p.displayName} | [${f.path.split("/").at(-1)}](${RAW(manifest, tagFor(manifest))}ports/${p.id}/${f.path}) | [download](${manifest.site.url}${portDownloadPath(p.id, f.path)}) | ${f.install} | ${p.status}; import evidence ${p.verification?.status ?? "not verified"} |`)),
+      ]
+    : ["No application theme files are published yet."];
 
 export const catalogueTable = (catalogue) => [
   "| Reference | Kind | Where | What it does not prove |",

@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "component": "button-group",
-  "version": "1.1.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/button-group.md",
+  "version": "1.2.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/button-group.md",
   "dependencies": [
     "register/button-group.js",
     "chunks/element-C1XeXVYC.js",
@@ -14,13 +14,13 @@
     "runtime/register/button-group.js": "sha256-iOfzUy8ZfhYmriDjbhxJtVBL2w+EPgppfO8UNoOm6QM=",
     "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
     "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-    "runtime/components/button-group.js": "sha256-ot2K+hIUSxq1aetHKnBBYBuEbRkyNK3SW9E9RINkobw=",
+    "runtime/components/button-group.js": "sha256-orLE/OjeQFKWIsNw8U88GWPqdJn0HtMeyQEs0I9XJKc=",
     "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
     "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
     "component.css": "sha256-f5VJ2bwUNXUnsb5AcdxUYbcOC7PeghM/cnXvDSuGuMs=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-4NLobHuAfZnWUQDNQ3ENH9ucyjTTUTD6gk0XV7SHGng=",
     "index.html": "sha256-jp7d1/nw1z4Jpji1Vc8gp8BdBvkGTLC7tdVzkGSKG28=",
-    "README.md": "sha256-paD9ItYCNSFokVTPbUOPhYPEt6PDWMoSCnnTw8G1orw="
+    "README.md": "sha256-AfZL1Bgkes0/zInp92PEZp4BarJwidh03IGxRmrE+FI="
   }
 }

@@ -6,8 +6,14 @@ import { describePort, portSubject } from "../scripts/lib/port-capabilities.mjs"
 import { portCapabilitiesSchema, portCatalogueSchema, assertCapabilities, MAPPING_STATES } from "../schemas/port-capabilities.mjs";
 import { fixture } from "./fixtures/port-capabilities.mjs";
 import { renderPortCatalogue } from "../scripts/lib/port-presentation.mjs";
-test("the real catalogue is empty and synthetic mapping states never become published support", async () => {
-  assert.deepEqual((await readJson("exports/port-capabilities.json")).ports, []);
+import { validatePorts } from "../scripts/lib/validators.mjs";
+test("the real catalogue lists exactly the ports on disk, none verified without evidence, and synthetic mapping states never become published support", async () => {
+  const { ports } = await readJson("exports/port-capabilities.json");
+  assert.deepEqual(ports.map(port => port.id), (await validatePorts()).map(port => port.id));
+  for (const port of ports) {
+    if (!port.evidencePath) assert.equal(port.verification.status, "not verified", port.id);
+    assert.ok(port.mappings.filter(row => row.state === "mapped").every(row => row.value !== null), `${port.id} token digest is current`);
+  }
   const input = fixture();
   portCapabilitiesSchema(z).parse(input.capabilities);
   const described = describePort(input);
@@ -47,6 +53,8 @@ test("port presentation escapes source data and preserves explicit mapping disti
   for (const state of MAPPING_STATES) assert.ok(html.includes(state));
   assert.match(html, /raw.githubusercontent.com/);
   assert.throws(() => renderPortCatalogue({ ports: [port] }, { revision: "main" }), /immutable/);
+  assert.match(renderPortCatalogue({ ports: [] }), /data-port-empty/);
+  assert.match(html, /<a href="\/theme\/ports\/test-only\/test\.json" download>Download test\.json<\/a>/);
 });
 test("legacy mappings stay unclassified and malformed capabilities cannot invent support", () => {
   const input = fixture();

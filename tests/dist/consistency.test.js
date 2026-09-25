@@ -6,6 +6,7 @@ import test from "node:test";
 import { listFiles, readJson, readText } from "../../scripts/lib/fs.mjs";
 import { listComponentFiles, componentIdOf } from "../../scripts/lib/spec.mjs";
 import { anchorFor } from "../../scripts/lib/anchors.mjs";
+import { portDownloadPath } from "../../scripts/lib/port-presentation.mjs";
 
 const html = await readText("dist/reference/index.html");
 const resolved = await readJson("exports/tokens.resolved.json");
@@ -44,6 +45,17 @@ test("every token reference on the page resolves, and every export is served byt
   assert.equal(await readText("dist/agents/consume.md"), await readText("agents/consume.md"));
   assert.equal(await readText("dist/theme.json"), await readText("theme.json"));
   assert.equal(await readText("dist/llms.txt"), await readText("exports/llms.txt"));
+});
+
+test("every port file is served byte-identical under /theme/ports/ and linked from the Ports page", async () => {
+  const { ports } = await readJson("exports/port-capabilities.json");
+  const page = await readText("dist/ports/index.html");
+  const served = ports.flatMap((port) => port.files.map((file) => [portDownloadPath(port.id, file.path), file.source]));
+  assert.ok(served.length > 0, "the catalogue publishes at least one port file");
+  for (const [target, source] of served) {
+    assert.equal(await readText(`dist/${target}`), await readText(source), target);
+    assert.ok(page.includes(`href="/theme/${target}" download`), `Ports page links ${target}`);
+  }
 });
 
 test("ids are unique, every contents link has a target, and nothing normative hides inside details", () => {

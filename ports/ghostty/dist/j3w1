@@ -1,0 +1,25 @@
+# j3w1 theme 1.2.0, default profile, for Ghostty theme.
+# Generated from ports/ghostty/mapping.json by npm run generate; do not edit.
+background = #0c0909
+foreground = #e99499
+cursor-color = #e99499
+cursor-text = #0c0909
+selection-background = #911410
+selection-foreground = #f4eeee
+palette = 0=#0c0909
+palette = 1=#c81a1a
+palette = 2=#bd787d
+palette = 3=#d4868b
+palette = 4=#8c1212
+palette = 5=#f73f35
+palette = 6=#9e474a
+palette = 7=#ffa2a7
+palette = 8=#7d1310
+palette = 9=#ab1612
+palette = 10=#ad2721
+palette = 11=#b37175
+palette = 12=#871f19
+palette = 13=#e82132
+palette = 14=#e0292f
+palette = 15=#a3676b
+split-divider-color = #2b0e0d

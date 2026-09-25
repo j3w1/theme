@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "component": "number-field",
-  "version": "1.1.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/number-field.md",
+  "version": "1.2.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/number-field.md",
   "dependencies": [
     "register/number-field.js",
     "chunks/element-C1XeXVYC.js",
@@ -14,13 +14,13 @@
     "runtime/register/number-field.js": "sha256-jCevLNvnx84VrjcqcaLN+LoayqMvlOZqbeB0vfcKCTw=",
     "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
     "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-    "runtime/components/number-field.js": "sha256-Cn+6Q5EpbBOzTyNr6GAt8AavpKXzDM+n9Fbo72TEphA=",
+    "runtime/components/number-field.js": "sha256-3/Wuxam1WdxXHpdg/EeveziRbtBlBtz8RNRaUzbuafo=",
     "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
     "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
     "component.css": "sha256-agyrkFz7FiKZpcU4J9QsaeTNRYBw7yWJQcMOdSd8SPc=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-wabUKPjMJ+zn/+oKJMogtcDlppICQ8zTGXEbhGwm+iQ=",
     "index.html": "sha256-yH23EzsY61NhYO5ZTaRXcpIb2OUYezkZl+VlqSSVS/M=",
-    "README.md": "sha256-nluSuDc0lewNu5sgAVKmSAKzsd8MHjPCoAGoLGsRkY0="
+    "README.md": "sha256-Kha/axcVWw48Qo4p/Skv2GNuZjlMzAfdU8PCyeMVU9U="
   }
 }

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "warp",
+  "displayName": "Warp theme YAML (also Orca's Import from YAML)",
+  "status": "experimental",
+  "themeVersion": "1.2.0",
+  "tokenDigest": "sha256-ewtsMMkPT+PGzEwK1TgPlUDKYkjMVbO0bpmxM3qvoTY=",
+  "profile": "default",
+  "format": "warp-yaml",
+  "targetVersions": [
+    "Orca 1.4.209"
+  ],
+  "testedVersions": [],
+  "os": [
+    "windows",
+    "macos",
+    "linux"
+  ],
+  "surfaces": {
+    "supported": [
+      "terminal-colours"
+    ],
+    "inherited": [
+      "terminal-font"
+    ],
+    "unsupported": [
+      "terminal-selection",
+      "pane-divider",
+      "light-mode"
+    ]
+  },
+  "files": [
+    {
+      "path": "dist/j3w1.yaml",
+      "install": "Orca → Settings → Terminal Themes → Import from YAML (or save into %APPDATA%\\warp\\Warp\\data\\themes\\ and use Import from Warp), then select \"j3w1 theme\" as the Dark Theme. Warp: save into its themes folder."
+    }
+  ],
+  "mappingPath": "mapping.json",
+  "capabilitiesPath": "capabilities.json",
+  "evidence": []
+}

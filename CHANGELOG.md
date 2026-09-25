@@ -1,5 +1,29 @@
 # Changelog
 
+## [1.2.0] - 2026-09-25
+
+- Add the first application ports, all experimental, for the default profile's
+  terminal colours:
+  - `ports/orca/`: a Ghostty-format config for Orca's **Import from Ghostty**.
+    It carries the colours, selection, pane divider, and the terminal font
+    family and size. That import has no parse time limit, unlike Orca's YAML
+    import, which can time out on slower Windows machines.
+  - `ports/warp/`: a Warp custom theme, which Orca's **Import from YAML** and
+    **Import from Warp** also read.
+  - `ports/ghostty/`: a Ghostty theme file.
+
+  Each role a format cannot carry is recorded with a reason. The files pass
+  Orca 1.4.209's own parsers, but no real import is recorded yet, so none is
+  verified.
+- `npm run generate` now writes port files from their mappings
+  (`scripts/lib/port-artifacts.mjs`), so no port hex is hand-edited.
+- Make theme files easy to download:
+  - a generated Downloads table in the README with links pinned to the release tag
+  - a copy of each file served at `/theme/ports/<id>/<file>`
+  - a download link on the Ports page
+- Downstream: no token values change. The version moves to 1.2.0, so
+  version-stamped exports regenerate.
+
 - #2: add pinned semantic release comparisons, explicit dependency impact,
   Markdown/JSON migration reports, and static historical specimen comparisons.
   Missing historical evidence remains unsupported; proposed/heritage status
