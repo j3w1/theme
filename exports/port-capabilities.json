@@ -1,7 +1,4962 @@
 {
   "schemaVersion": 1,
   "theme": "j3w1-theme",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "sourcePolicy": "Relative paths refer to the same pinned revision as this digest-covered export. Historical references and private runs are not published ports.",
-  "ports": []
+  "ports": [
+    {
+      "id": "orca",
+      "displayName": "Orca (terminal theme YAML)",
+      "declaredStatus": "experimental",
+      "format": "warp-yaml",
+      "integrationKind": "terminal-16",
+      "themeVersion": "1.2.0",
+      "themeRevision": "7b045d1a7bc32fddc7c9946e7084ffe74f62b5b5",
+      "profile": "default",
+      "targetVersions": [
+        "1.4.209"
+      ],
+      "testedVersions": [],
+      "os": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "verification": {
+        "status": "not verified",
+        "reason": "No recorded real-import protocol bound to this subject."
+      },
+      "subjectDigest": "sha256-5Lf1s1D3Rb4bkIFf+GAVXkVVNRrgRog+8BRIcY5f3qc=",
+      "evidencePath": null,
+      "surfaces": {
+        "terminal-colours": {
+          "state": "supported",
+          "reason": "Import from YAML applies the background, foreground, cursor and all sixteen ANSI slots to Orca's dark-mode terminal."
+        },
+        "terminal-selection": {
+          "state": "unsupported",
+          "reason": "Orca's YAML import keeps no selection colours; selection stays at Orca's own default."
+        },
+        "pane-divider": {
+          "state": "unsupported",
+          "reason": "Orca stores the split divider as a separate setting that a theme file cannot carry; the README gives the value to enter by hand."
+        },
+        "terminal-font": {
+          "state": "inherited",
+          "reason": "Orca keeps its own terminal font family, size and spacing settings; the theme file carries colours only."
+        },
+        "light-mode": {
+          "state": "unsupported",
+          "reason": "The theme has no light profile; Orca's light-mode terminal theme is left unchanged."
+        },
+        "outside-terminal": {
+          "state": "out-of-scope",
+          "reason": "Orca's window, sidebar and settings chrome are not themed by a terminal theme file."
+        }
+      },
+      "files": [
+        {
+          "path": "dist/j3w1-theme.yaml",
+          "install": "Orca → Settings → Terminal Themes → Import from YAML, then select \"j3w1 theme\" as the Dark Theme.",
+          "source": "ports/orca/dist/j3w1-theme.yaml",
+          "digest": "sha256-/CoEGACdcENYCOWJXJWC2VM5xHTmKQ99uYqwxRO//mI="
+        }
+      ],
+      "rollback": "In Orca, open Settings → Terminal Themes, select the dark theme you used before, then remove the imported \"j3w1 theme\" entry. Reset Dark Divider Color if you changed it.",
+      "readme": "ports/orca/README.md",
+      "mappings": [
+        {
+          "role": "border.width.default",
+          "nativeKeys": [],
+          "value": "1px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "border.width.emphasis",
+          "nativeKeys": [],
+          "value": "2px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "breakpoint.lg",
+          "nativeKeys": [],
+          "value": "1280px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "breakpoint.md",
+          "nativeKeys": [],
+          "value": "900px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "breakpoint.sm",
+          "nativeKeys": [],
+          "value": "600px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "breakpoint.xs",
+          "nativeKeys": [],
+          "value": "320px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.action.destructive.border",
+          "nativeKeys": [],
+          "value": "#e53935",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.action.destructive.filled-bg",
+          "nativeKeys": [],
+          "value": "#dc282e",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.action.destructive.filled-text",
+          "nativeKeys": [],
+          "value": "#f9faf9",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.action.destructive.hover-bg",
+          "nativeKeys": [],
+          "value": "#dc282e",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.action.destructive.hover-text",
+          "nativeKeys": [],
+          "value": "#f9faf9",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.action.destructive.pressed-bg",
+          "nativeKeys": [],
+          "value": "#ae1914",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.action.destructive.text",
+          "nativeKeys": [],
+          "value": "#f73f35",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.action.primary.bg",
+          "nativeKeys": [],
+          "value": "#7d1310",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.action.primary.border",
+          "nativeKeys": [],
+          "value": "#9e231f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.action.primary.hover-bg",
+          "nativeKeys": [],
+          "value": "#911410",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.action.primary.pressed-bg",
+          "nativeKeys": [],
+          "value": "#630f0d",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.action.primary.text",
+          "nativeKeys": [],
+          "value": "#f4eeee",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.action.secondary.bg",
+          "nativeKeys": [],
+          "value": "rgb(0 0 0 / 0%)",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.action.secondary.border",
+          "nativeKeys": [],
+          "value": "#a3676b",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.action.secondary.hover-bg",
+          "nativeKeys": [],
+          "value": "#630f0d",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.action.secondary.pressed-bg",
+          "nativeKeys": [],
+          "value": "#420f0c",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.action.secondary.text",
+          "nativeKeys": [],
+          "value": "#ffa2a7",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.action.tertiary.hover-bg",
+          "nativeKeys": [],
+          "value": "#1c0a09",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.action.tertiary.text",
+          "nativeKeys": [],
+          "value": "#e99499",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.border.active",
+          "nativeKeys": [],
+          "value": "#e53935",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.border.control",
+          "nativeKeys": [],
+          "value": "#a3676b",
+          "eligibility": {
+            "action": "use-and-report",
+            "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
+            "decisionIds": [
+              "D-007"
+            ]
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.border.default",
+          "nativeKeys": [],
+          "value": "#531310",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.border.disabled",
+          "nativeKeys": [],
+          "value": "#7d1310",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.border.divider",
+          "nativeKeys": [],
+          "value": "#2b0e0d",
+          "eligibility": {
+            "action": "use-and-report",
+            "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
+            "decisionIds": [
+              "D-008"
+            ]
+          },
+          "state": "unsupported",
+          "surface": "pane-divider",
+          "reason": "Not in the theme file; set Settings → Terminal → Dark Divider Color to this value by hand.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.border.overlay",
+          "nativeKeys": [],
+          "value": "#e53935",
+          "eligibility": {
+            "action": "use-and-report",
+            "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
+            "decisionIds": [
+              "D-008"
+            ]
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.border.selected-indicator",
+          "nativeKeys": [],
+          "value": "#e53935",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.border.selected-indicator-inactive",
+          "nativeKeys": [],
+          "value": "#9e231f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.border.strong",
+          "nativeKeys": [],
+          "value": "#9e231f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.chart.axis",
+          "nativeKeys": [],
+          "value": "#9e231f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.chart.grid",
+          "nativeKeys": [],
+          "value": "#2b0e0d",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.chart.label",
+          "nativeKeys": [],
+          "value": "#bd787d",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.chart.series-1",
+          "nativeKeys": [],
+          "value": "#ffa2a7",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.chart.series-2",
+          "nativeKeys": [],
+          "value": "#f73f35",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.chart.series-3",
+          "nativeKeys": [],
+          "value": "#bd787d",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.chart.series-4",
+          "nativeKeys": [],
+          "value": "#a3676b",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.bg",
+          "nativeKeys": [],
+          "value": "#0c0909",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.bracket-match",
+          "nativeKeys": [],
+          "value": "#e53935",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.caret",
+          "nativeKeys": [],
+          "value": "#e99499",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.current-line",
+          "nativeKeys": [],
+          "value": "#1c0a09",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.gutter-bg",
+          "nativeKeys": [],
+          "value": "#0c0909",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.gutter-rule",
+          "nativeKeys": [],
+          "value": "#2b0e0d",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.indent-guide",
+          "nativeKeys": [],
+          "value": "#531310",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.line-number",
+          "nativeKeys": [],
+          "value": "#ad7175",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.line-number-active",
+          "nativeKeys": [],
+          "value": "#e99499",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.search-current-bg",
+          "nativeKeys": [],
+          "value": "#ffa2a7",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.search-current-text",
+          "nativeKeys": [],
+          "value": "#0c0909",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.search-match-bg",
+          "nativeKeys": [],
+          "value": "#630f0d",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.selection-bg",
+          "nativeKeys": [],
+          "value": "#420f0c",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.syntax.attribute",
+          "nativeKeys": [],
+          "value": "#d4868b",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.syntax.comment",
+          "nativeKeys": [],
+          "value": "#ad7175",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.syntax.constant",
+          "nativeKeys": [],
+          "value": "#d4868b",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.syntax.deprecated",
+          "nativeKeys": [],
+          "value": "#ad7175",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.syntax.escape",
+          "nativeKeys": [],
+          "value": "#d4868b",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.syntax.function",
+          "nativeKeys": [],
+          "value": "#ffa2a7",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.syntax.heading",
+          "nativeKeys": [],
+          "value": "#e53935",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.syntax.invalid",
+          "nativeKeys": [],
+          "value": "#e53935",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.syntax.keyword",
+          "nativeKeys": [],
+          "value": "#f73f35",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.syntax.number",
+          "nativeKeys": [],
+          "value": "#d4868b",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.syntax.operator",
+          "nativeKeys": [],
+          "value": "#e99499",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.syntax.property",
+          "nativeKeys": [],
+          "value": "#e53935",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.syntax.punctuation",
+          "nativeKeys": [],
+          "value": "#e99499",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.syntax.string",
+          "nativeKeys": [],
+          "value": "#bd787d",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.syntax.tag",
+          "nativeKeys": [],
+          "value": "#f73f35",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.syntax.type",
+          "nativeKeys": [],
+          "value": "#b37175",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.syntax.variable",
+          "nativeKeys": [],
+          "value": "#e99499",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.whitespace",
+          "nativeKeys": [],
+          "value": "#7d1310",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.diagnostic.error.bg",
+          "nativeKeys": [],
+          "value": "#2b0e0d",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.diagnostic.error.stripe",
+          "nativeKeys": [],
+          "value": "#e53935",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.diagnostic.error.text",
+          "nativeKeys": [],
+          "value": "#f73f35",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.diagnostic.error.underline",
+          "nativeKeys": [],
+          "value": "#e53935",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.diagnostic.hint.underline",
+          "nativeKeys": [],
+          "value": "#ad7175",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.diagnostic.info.text",
+          "nativeKeys": [],
+          "value": "#7e9ebb",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.diagnostic.info.underline",
+          "nativeKeys": [],
+          "value": "#7e9ebb",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.diagnostic.unused.text",
+          "nativeKeys": [],
+          "value": "#bd787d",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.diagnostic.warning.stripe",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.diagnostic.warning.text",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.diagnostic.warning.underline",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.diff.added.bg",
+          "nativeKeys": [],
+          "value": "#0f1a0e",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.diff.added.emphasis",
+          "nativeKeys": [],
+          "value": "#86a46f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.diff.added.gutter",
+          "nativeKeys": [],
+          "value": "#86a46f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.diff.conflict-border",
+          "nativeKeys": [],
+          "value": "#f73f35",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.diff.header-bg",
+          "nativeKeys": [],
+          "value": "#241010",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.diff.modified.bg",
+          "nativeKeys": [],
+          "value": "#1f1a0c",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.diff.modified.gutter",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.diff.removed.bg",
+          "nativeKeys": [],
+          "value": "#2b0e0d",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.diff.removed.emphasis",
+          "nativeKeys": [],
+          "value": "#e53935",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.diff.removed.gutter",
+          "nativeKeys": [],
+          "value": "#e53935",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.icon.decorative",
+          "nativeKeys": [],
+          "value": "#a3676b",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.icon.default",
+          "nativeKeys": [],
+          "value": "#e99499",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.interaction.disabled.bg",
+          "nativeKeys": [],
+          "value": "#160b0b",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.interaction.drop-target",
+          "nativeKeys": [],
+          "value": "#e53935",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.interaction.focus.ring",
+          "nativeKeys": [],
+          "value": "#e53935",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.interaction.focus.ring-container",
+          "nativeKeys": [],
+          "value": "#ffa2a7",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.interaction.hover.bg",
+          "nativeKeys": [],
+          "value": "#1c0a09",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.interaction.hover.bg-strong",
+          "nativeKeys": [],
+          "value": "#630f0d",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.interaction.marquee",
+          "nativeKeys": [],
+          "value": "rgb(145 20 16 / 12%)",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.interaction.pressed.bg",
+          "nativeKeys": [],
+          "value": "#420f0c",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.interaction.scrollbar.thumb",
+          "nativeKeys": [],
+          "value": "#420f0c",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.interaction.scrollbar.thumb-hover",
+          "nativeKeys": [],
+          "value": "#911410",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.interaction.scrollbar.track",
+          "nativeKeys": [],
+          "value": "#0c0909",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.interaction.selection.bg",
+          "nativeKeys": [],
+          "value": "#531310",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.interaction.selection.inactive-bg",
+          "nativeKeys": [],
+          "value": "#420f0c",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.interaction.selection.inactive-text",
+          "nativeKeys": [],
+          "value": "#e99499",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.interaction.selection.text",
+          "nativeKeys": [],
+          "value": "#f4eeee",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.interaction.text-selection.bg",
+          "nativeKeys": [],
+          "value": "#911410",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.interaction.text-selection.text",
+          "nativeKeys": [],
+          "value": "#f4eeee",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.alpha.black-55",
+          "nativeKeys": [],
+          "value": "rgb(0 0 0 / 55%)",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.alpha.black-65",
+          "nativeKeys": [],
+          "value": "rgb(0 0 0 / 65%)",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.alpha.red-12",
+          "nativeKeys": [],
+          "value": "rgb(145 20 16 / 12%)",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.alpha.red-6",
+          "nativeKeys": [],
+          "value": "rgb(145 20 16 / 6%)",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.alpha.transparent",
+          "nativeKeys": [],
+          "value": "rgb(0 0 0 / 0%)",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.amber.500",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.amber.600",
+          "nativeKeys": [],
+          "value": "#d6a24b",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.amber.tint",
+          "nativeKeys": [],
+          "value": "#1f1a0c",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi.0",
+          "nativeKeys": [],
+          "value": "#0c0909",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi.1",
+          "nativeKeys": [],
+          "value": "#c81a1a",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi.10",
+          "nativeKeys": [],
+          "value": "#ad2721",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi.11",
+          "nativeKeys": [],
+          "value": "#b37175",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi.12",
+          "nativeKeys": [],
+          "value": "#871f19",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi.13",
+          "nativeKeys": [],
+          "value": "#e82132",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi.14",
+          "nativeKeys": [],
+          "value": "#e0292f",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi.15",
+          "nativeKeys": [],
+          "value": "#a3676b",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi.2",
+          "nativeKeys": [],
+          "value": "#bd787d",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi.3",
+          "nativeKeys": [],
+          "value": "#d4868b",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi.4",
+          "nativeKeys": [],
+          "value": "#8c1212",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi.5",
+          "nativeKeys": [],
+          "value": "#f73f35",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi.6",
+          "nativeKeys": [],
+          "value": "#9e474a",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi.7",
+          "nativeKeys": [],
+          "value": "#ffa2a7",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi.8",
+          "nativeKeys": [],
+          "value": "#7d1310",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi.9",
+          "nativeKeys": [],
+          "value": "#ab1612",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.blue.500",
+          "nativeKeys": [],
+          "value": "#7e9ebb",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.blue.600",
+          "nativeKeys": [],
+          "value": "#9ab3c9",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.blue.tint",
+          "nativeKeys": [],
+          "value": "#0f141c",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.green.500",
+          "nativeKeys": [],
+          "value": "#86a46f",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.green.600",
+          "nativeKeys": [],
+          "value": "#7fbf7a",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.green.tint",
+          "nativeKeys": [],
+          "value": "#0f1a0e",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ink.0",
+          "nativeKeys": [],
+          "value": "#000000",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ink.14",
+          "nativeKeys": [],
+          "value": "#090707",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ink.15",
+          "nativeKeys": [],
+          "value": "#0a0707",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ink.20",
+          "nativeKeys": [],
+          "value": "#0c0909",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ink.25",
+          "nativeKeys": [],
+          "value": "#100909",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ink.28",
+          "nativeKeys": [],
+          "value": "#100c0c",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ink.30",
+          "nativeKeys": [],
+          "value": "#160b0b",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ink.40",
+          "nativeKeys": [],
+          "value": "#1c0a09",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ink.52",
+          "nativeKeys": [],
+          "value": "#241010",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ink.60",
+          "nativeKeys": [],
+          "value": "#2b0e0d",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.paper.100",
+          "nativeKeys": [],
+          "value": "#f9faf9",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.paper.90",
+          "nativeKeys": [],
+          "value": "#f4eeee",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.red.100",
+          "nativeKeys": [],
+          "value": "#531310",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.red.150",
+          "nativeKeys": [],
+          "value": "#630f0d",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.red.200",
+          "nativeKeys": [],
+          "value": "#7d1310",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.red.250",
+          "nativeKeys": [],
+          "value": "#8c1212",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.red.300",
+          "nativeKeys": [],
+          "value": "#871f19",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.red.350",
+          "nativeKeys": [],
+          "value": "#911410",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.red.400",
+          "nativeKeys": [],
+          "value": "#9e231f",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.red.450",
+          "nativeKeys": [],
+          "value": "#ab1612",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.red.50",
+          "nativeKeys": [],
+          "value": "#420f0c",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.red.500",
+          "nativeKeys": [],
+          "value": "#ad2721",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.red.550",
+          "nativeKeys": [],
+          "value": "#ae1914",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.red.650",
+          "nativeKeys": [],
+          "value": "#c81a1a",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.red.750",
+          "nativeKeys": [],
+          "value": "#dc282e",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.red.760",
+          "nativeKeys": [],
+          "value": "#e0292f",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.red.770",
+          "nativeKeys": [],
+          "value": "#e82132",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.red.800",
+          "nativeKeys": [],
+          "value": "#e53935",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.red.850",
+          "nativeKeys": [],
+          "value": "#f73f35",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.rose.300",
+          "nativeKeys": [],
+          "value": "#8a5559",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.rose.320",
+          "nativeKeys": [],
+          "value": "#9e474a",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.rose.350",
+          "nativeKeys": [],
+          "value": "#a3676b",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.rose.450",
+          "nativeKeys": [],
+          "value": "#ad7175",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.rose.550",
+          "nativeKeys": [],
+          "value": "#b37175",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.rose.600",
+          "nativeKeys": [],
+          "value": "#bd787d",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.rose.650",
+          "nativeKeys": [],
+          "value": "#d4868b",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.rose.700",
+          "nativeKeys": [],
+          "value": "#e99499",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.rose.800",
+          "nativeKeys": [],
+          "value": "#ffa2a7",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.status.danger.border",
+          "nativeKeys": [],
+          "value": "#e53935",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.status.danger.fill",
+          "nativeKeys": [],
+          "value": "#dc282e",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.status.danger.on-fill",
+          "nativeKeys": [],
+          "value": "#f9faf9",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.status.danger.text",
+          "nativeKeys": [],
+          "value": "#f73f35",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.status.danger.tint",
+          "nativeKeys": [],
+          "value": "#2b0e0d",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.status.info.border",
+          "nativeKeys": [],
+          "value": "#7e9ebb",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.status.info.fill",
+          "nativeKeys": [],
+          "value": "#7e9ebb",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.status.info.on-fill",
+          "nativeKeys": [],
+          "value": "#0c0909",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.status.info.text",
+          "nativeKeys": [],
+          "value": "#7e9ebb",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.status.info.tint",
+          "nativeKeys": [],
+          "value": "#0f141c",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.status.neutral.border",
+          "nativeKeys": [],
+          "value": "#a3676b",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.status.neutral.fill",
+          "nativeKeys": [],
+          "value": "#a3676b",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.status.neutral.on-fill",
+          "nativeKeys": [],
+          "value": "#000000",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.status.neutral.text",
+          "nativeKeys": [],
+          "value": "#bd787d",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.status.neutral.tint",
+          "nativeKeys": [],
+          "value": "#241010",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.status.success.border",
+          "nativeKeys": [],
+          "value": "#86a46f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.status.success.fill",
+          "nativeKeys": [],
+          "value": "#86a46f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.status.success.on-fill",
+          "nativeKeys": [],
+          "value": "#0c0909",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.status.success.text",
+          "nativeKeys": [],
+          "value": "#86a46f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.status.success.tint",
+          "nativeKeys": [],
+          "value": "#0f1a0e",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.status.warning.border",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.status.warning.fill",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.status.warning.on-fill",
+          "nativeKeys": [],
+          "value": "#0c0909",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.status.warning.text",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.status.warning.tint",
+          "nativeKeys": [],
+          "value": "#1f1a0c",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.surface.backdrop",
+          "nativeKeys": [],
+          "value": "rgb(0 0 0 / 65%)",
+          "eligibility": {
+            "action": "use-and-report",
+            "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
+            "decisionIds": [
+              "D-008"
+            ]
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.surface.canvas",
+          "nativeKeys": [],
+          "value": "#000000",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.surface.chrome",
+          "nativeKeys": [],
+          "value": "#090707",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.surface.chrome-alt",
+          "nativeKeys": [],
+          "value": "#1c0a09",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.surface.code",
+          "nativeKeys": [],
+          "value": "#000000",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.surface.default",
+          "nativeKeys": [],
+          "value": "#100c0c",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.surface.desktop",
+          "nativeKeys": [],
+          "value": "#000000",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.surface.input",
+          "nativeKeys": [],
+          "value": "#000000",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.surface.overlay",
+          "nativeKeys": [],
+          "value": "#241010",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.surface.raised",
+          "nativeKeys": [],
+          "value": "#160b0b",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.surface.sunken",
+          "nativeKeys": [],
+          "value": "#000000",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.surface.terminal",
+          "nativeKeys": [],
+          "value": "#000000",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "unsupported",
+          "surface": "terminal-colours",
+          "reason": "The file has one background key, which carries color.terminal.bg (equal to ANSI 0); the pane surface has no separate key.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.terminal.ansi.0",
+          "nativeKeys": [
+            "terminal_colors.normal.black"
+          ],
+          "value": "#0c0909",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "mapped",
+          "surface": "terminal-colours",
+          "reason": "Written to the theme file's terminal_colors.normal.black key.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.terminal.ansi.1",
+          "nativeKeys": [
+            "terminal_colors.normal.red"
+          ],
+          "value": "#c81a1a",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "mapped",
+          "surface": "terminal-colours",
+          "reason": "Written to the theme file's terminal_colors.normal.red key.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.terminal.ansi.10",
+          "nativeKeys": [
+            "terminal_colors.bright.green"
+          ],
+          "value": "#ad2721",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "mapped",
+          "surface": "terminal-colours",
+          "reason": "Written to the theme file's terminal_colors.bright.green key.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.terminal.ansi.11",
+          "nativeKeys": [
+            "terminal_colors.bright.yellow"
+          ],
+          "value": "#b37175",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "mapped",
+          "surface": "terminal-colours",
+          "reason": "Written to the theme file's terminal_colors.bright.yellow key.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.terminal.ansi.12",
+          "nativeKeys": [
+            "terminal_colors.bright.blue"
+          ],
+          "value": "#871f19",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "mapped",
+          "surface": "terminal-colours",
+          "reason": "Written to the theme file's terminal_colors.bright.blue key.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.terminal.ansi.13",
+          "nativeKeys": [
+            "terminal_colors.bright.magenta"
+          ],
+          "value": "#e82132",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "mapped",
+          "surface": "terminal-colours",
+          "reason": "Written to the theme file's terminal_colors.bright.magenta key.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.terminal.ansi.14",
+          "nativeKeys": [
+            "terminal_colors.bright.cyan"
+          ],
+          "value": "#e0292f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "mapped",
+          "surface": "terminal-colours",
+          "reason": "Written to the theme file's terminal_colors.bright.cyan key.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.terminal.ansi.15",
+          "nativeKeys": [
+            "terminal_colors.bright.white"
+          ],
+          "value": "#a3676b",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "mapped",
+          "surface": "terminal-colours",
+          "reason": "Written to the theme file's terminal_colors.bright.white key.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.terminal.ansi.2",
+          "nativeKeys": [
+            "terminal_colors.normal.green"
+          ],
+          "value": "#bd787d",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "mapped",
+          "surface": "terminal-colours",
+          "reason": "Written to the theme file's terminal_colors.normal.green key.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.terminal.ansi.3",
+          "nativeKeys": [
+            "terminal_colors.normal.yellow"
+          ],
+          "value": "#d4868b",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "mapped",
+          "surface": "terminal-colours",
+          "reason": "Written to the theme file's terminal_colors.normal.yellow key.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.terminal.ansi.4",
+          "nativeKeys": [
+            "terminal_colors.normal.blue"
+          ],
+          "value": "#8c1212",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "mapped",
+          "surface": "terminal-colours",
+          "reason": "Written to the theme file's terminal_colors.normal.blue key.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.terminal.ansi.5",
+          "nativeKeys": [
+            "terminal_colors.normal.magenta"
+          ],
+          "value": "#f73f35",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "mapped",
+          "surface": "terminal-colours",
+          "reason": "Written to the theme file's terminal_colors.normal.magenta key.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.terminal.ansi.6",
+          "nativeKeys": [
+            "terminal_colors.normal.cyan"
+          ],
+          "value": "#9e474a",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "mapped",
+          "surface": "terminal-colours",
+          "reason": "Written to the theme file's terminal_colors.normal.cyan key.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.terminal.ansi.7",
+          "nativeKeys": [
+            "terminal_colors.normal.white"
+          ],
+          "value": "#ffa2a7",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "mapped",
+          "surface": "terminal-colours",
+          "reason": "Written to the theme file's terminal_colors.normal.white key.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.terminal.ansi.8",
+          "nativeKeys": [
+            "terminal_colors.bright.black"
+          ],
+          "value": "#7d1310",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "mapped",
+          "surface": "terminal-colours",
+          "reason": "Written to the theme file's terminal_colors.bright.black key.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.terminal.ansi.9",
+          "nativeKeys": [
+            "terminal_colors.bright.red"
+          ],
+          "value": "#ab1612",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "mapped",
+          "surface": "terminal-colours",
+          "reason": "Written to the theme file's terminal_colors.bright.red key.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.terminal.bg",
+          "nativeKeys": [
+            "background"
+          ],
+          "value": "#0c0909",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "mapped",
+          "surface": "terminal-colours",
+          "reason": "Written to the theme file's background key.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.terminal.cursor",
+          "nativeKeys": [
+            "cursor"
+          ],
+          "value": "#e99499",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "mapped",
+          "surface": "terminal-colours",
+          "reason": "Written to the theme file's cursor key.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.terminal.fg",
+          "nativeKeys": [
+            "foreground"
+          ],
+          "value": "#e99499",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "mapped",
+          "surface": "terminal-colours",
+          "reason": "Written to the theme file's foreground key.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.terminal.selection-bg",
+          "nativeKeys": [],
+          "value": "#911410",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "unsupported",
+          "surface": "terminal-selection",
+          "reason": "Orca's YAML import drops selection colours.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.terminal.selection-text",
+          "nativeKeys": [],
+          "value": "#f4eeee",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "unsupported",
+          "surface": "terminal-selection",
+          "reason": "Orca's YAML import drops selection colours.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.text.accent",
+          "nativeKeys": [],
+          "value": "#e53935",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.text.accent-strong",
+          "nativeKeys": [],
+          "value": "#f73f35",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.text.bright",
+          "nativeKeys": [],
+          "value": "#ffa2a7",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.text.default",
+          "nativeKeys": [],
+          "value": "#e99499",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.text.disabled",
+          "nativeKeys": [],
+          "value": "#8a5559",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.text.inverse",
+          "nativeKeys": [],
+          "value": "#0c0909",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.text.link",
+          "nativeKeys": [],
+          "value": "#f73f35",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.text.link-hover",
+          "nativeKeys": [],
+          "value": "#f4eeee",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.text.link-underline",
+          "nativeKeys": [],
+          "value": "#dc282e",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.text.muted",
+          "nativeKeys": [],
+          "value": "#bd787d",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.text.on-action",
+          "nativeKeys": [],
+          "value": "#f4eeee",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.text.on-danger",
+          "nativeKeys": [],
+          "value": "#f9faf9",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.text.on-light",
+          "nativeKeys": [],
+          "value": "#0c0909",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.text.on-selection",
+          "nativeKeys": [],
+          "value": "#f4eeee",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.text.placeholder",
+          "nativeKeys": [],
+          "value": "#a3676b",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.text.prose",
+          "nativeKeys": [],
+          "value": "#f4eeee",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.text.subtle",
+          "nativeKeys": [],
+          "value": "#ad7175",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "density.comfortable.control-height",
+          "nativeKeys": [],
+          "value": "32px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "density.comfortable.control-padding-x",
+          "nativeKeys": [],
+          "value": "12px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "density.comfortable.gap",
+          "nativeKeys": [],
+          "value": "4px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "density.comfortable.icon",
+          "nativeKeys": [],
+          "value": "16px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "density.comfortable.row-height",
+          "nativeKeys": [],
+          "value": "36px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "density.compact.control-height",
+          "nativeKeys": [],
+          "value": "24px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "density.compact.control-padding-x",
+          "nativeKeys": [],
+          "value": "8px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "density.compact.gap",
+          "nativeKeys": [],
+          "value": "2px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "density.compact.icon",
+          "nativeKeys": [],
+          "value": "12px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "density.compact.row-height",
+          "nativeKeys": [],
+          "value": "28px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "focus.offset",
+          "nativeKeys": [],
+          "value": "-2px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "focus.offset-container",
+          "nativeKeys": [],
+          "value": "-3px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "focus.offset-invalid",
+          "nativeKeys": [],
+          "value": "-4px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "focus.ring",
+          "nativeKeys": [],
+          "value": "1px dashed #e53935",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "focus.ring-container",
+          "nativeKeys": [],
+          "value": "2px solid #ffa2a7",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "font.family.mono",
+          "nativeKeys": [],
+          "value": "\"SauceCodePro NFM\", \"Source Code Pro\", \"Cascadia Mono\", \"Consolas\", \"Liberation Mono\", \"DejaVu Sans Mono\", monospace",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "inherited",
+          "surface": "terminal-font",
+          "reason": "Orca's own terminal font setting; choose this family there by hand.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "font.letter-spacing.terminal",
+          "nativeKeys": [],
+          "value": "-0.5px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "inherited",
+          "surface": "terminal-font",
+          "reason": "Orca's own terminal letter-spacing setting.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "font.line-height.caption",
+          "nativeKeys": [],
+          "value": "16px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "font.line-height.code",
+          "nativeKeys": [],
+          "value": "19px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "font.line-height.h1",
+          "nativeKeys": [],
+          "value": "28px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "font.line-height.h2",
+          "nativeKeys": [],
+          "value": "24px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "font.line-height.h3",
+          "nativeKeys": [],
+          "value": "18px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "font.line-height.reading",
+          "nativeKeys": [],
+          "value": "24px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "font.line-height.terminal",
+          "nativeKeys": [],
+          "value": "19px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "inherited",
+          "surface": "terminal-font",
+          "reason": "Orca's own terminal line-height setting.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "font.line-height.ui-lg",
+          "nativeKeys": [],
+          "value": "20px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "font.line-height.ui-md",
+          "nativeKeys": [],
+          "value": "18px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "font.line-height.ui-sm",
+          "nativeKeys": [],
+          "value": "16px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "font.size.caption",
+          "nativeKeys": [],
+          "value": "11px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "font.size.code",
+          "nativeKeys": [],
+          "value": "13px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "font.size.h1",
+          "nativeKeys": [],
+          "value": "20px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "font.size.h2",
+          "nativeKeys": [],
+          "value": "16px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "font.size.h3",
+          "nativeKeys": [],
+          "value": "13px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "font.size.reading",
+          "nativeKeys": [],
+          "value": "15px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "font.size.terminal",
+          "nativeKeys": [],
+          "value": "13px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "inherited",
+          "surface": "terminal-font",
+          "reason": "Orca's own terminal font size setting.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "font.size.ui-lg",
+          "nativeKeys": [],
+          "value": "14px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "font.size.ui-md",
+          "nativeKeys": [],
+          "value": "13px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "font.size.ui-sm",
+          "nativeKeys": [],
+          "value": "12px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "font.weight.bold",
+          "nativeKeys": [],
+          "value": "700",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "font.weight.regular",
+          "nativeKeys": [],
+          "value": "400",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "icon.size.lg",
+          "nativeKeys": [],
+          "value": "20px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "icon.size.md",
+          "nativeKeys": [],
+          "value": "16px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "icon.size.sm",
+          "nativeKeys": [],
+          "value": "12px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "icon.stroke",
+          "nativeKeys": [],
+          "value": "1.5px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "layout.app-max",
+          "nativeKeys": [],
+          "value": "1440px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "layout.content-max",
+          "nativeKeys": [],
+          "value": "680px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "layout.measure",
+          "nativeKeys": [],
+          "value": "72",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "motion.duration.base",
+          "nativeKeys": [],
+          "value": "120ms",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "motion.duration.fast",
+          "nativeKeys": [],
+          "value": "80ms",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "motion.duration.slow",
+          "nativeKeys": [],
+          "value": "150ms",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "radius.none",
+          "nativeKeys": [],
+          "value": "0px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "shadow.floating",
+          "nativeKeys": [],
+          "value": "0px 6px 22px 0px rgb(0 0 0 / 55%)",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "space.0",
+          "nativeKeys": [],
+          "value": "0px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "space.1",
+          "nativeKeys": [],
+          "value": "1px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "space.12",
+          "nativeKeys": [],
+          "value": "12px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "space.16",
+          "nativeKeys": [],
+          "value": "16px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "space.2",
+          "nativeKeys": [],
+          "value": "2px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "space.24",
+          "nativeKeys": [],
+          "value": "24px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "space.32",
+          "nativeKeys": [],
+          "value": "32px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "space.4",
+          "nativeKeys": [],
+          "value": "4px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "space.48",
+          "nativeKeys": [],
+          "value": "48px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "space.8",
+          "nativeKeys": [],
+          "value": "8px",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "z.canvas",
+          "nativeKeys": [],
+          "value": "0",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "z.dialog",
+          "nativeKeys": [],
+          "value": "30",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "z.drawer",
+          "nativeKeys": [],
+          "value": "20",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "z.popover",
+          "nativeKeys": [],
+          "value": "10",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "z.raised",
+          "nativeKeys": [],
+          "value": "1",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "z.skip-link",
+          "nativeKeys": [],
+          "value": "1000",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "z.toast",
+          "nativeKeys": [],
+          "value": "40",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        }
+      ]
+    }
+  ]
 }

@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
   "theme": "j3w1-theme",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "component": "dialog",
   "variant": "default",
   "profile": "default",
   "source": {
     "algorithm": "sha256 over LF file bytes, base64",
     "files": {
-      "theme.json": "sha256-FjbxWNVmq54PfYyfbDpWLo/fnejhJJ7pXq9enbf9hr4=",
+      "theme.json": "sha256-PgwQSIhLlMuJPXP0oVYytRk1bc0n8B0e1w8nT+S/hX8=",
       "site/recipes.json": "sha256-71h0SYIOKbPRh+V/IhtLV7ZGuX90wfmeo84Rx0sm494=",
       "scripts/lib/recipe-generator.mjs": "sha256-73WV6IUzUVgC3oyFESbgawkTU9o6mh+rKtZx8HgdZeA=",
       "scripts/lib/recipe-css.mjs": "sha256-dA/5L61Tsn+Gkmz/syAd689Z5IyuShpluZ1NfgXcZ/c=",
@@ -23,7 +23,7 @@
       "tokens/semantic.tokens.json": "sha256-PZV4Bw5OnUmdCmmWavhJ/vap7UW6nl9zqAWH3xIcYrc=",
       "tokens/foundations.tokens.json": "sha256-/gYmJavPwEyem7mpNRhaBa8jjyuPKnSisugGky3PdCY="
     },
-    "digest": "sha256-GrszyrRLp8eBf/MXc30+61R2ymrIyCL9kuGNlKdQe6k=",
+    "digest": "sha256-+7m4pGDbEqUfFzA0213HEe7nox9MYwvmjEaXDduJcYg=",
     "revisionPolicy": "Resolve these paths at the same pinned commit as this manifest. The hosted source viewer identifies its supplying commit; generated source files contain content digests, never a floating revision claim."
   },
   "dependencies": {
@@ -464,17 +464,17 @@
   "licenses": {
     "markup": "CC-BY-4.0",
     "css": "MIT",
-    "notice": "j3w1 theme 1.1.0. Markup adapted from j3w1 UI Theme Spec, https://github.com/j3w1/theme, CC BY 4.0: https://creativecommons.org/licenses/by/4.0/. Changes: scoped instance IDs and documentation-only content removed. CSS and generator: MIT; see LICENSE.md."
+    "notice": "j3w1 theme 1.2.0. Markup adapted from j3w1 UI Theme Spec, https://github.com/j3w1/theme, CC BY 4.0: https://creativecommons.org/licenses/by/4.0/. Changes: scoped instance IDs and documentation-only content removed. CSS and generator: MIT; see LICENSE.md."
   },
   "files": {
-    "markup.html": "sha256-tCW7Mk5+tWzhzYyjqUoeq0n4NvSo7BcQgPnRkWJlJa0=",
-    "template.html": "sha256-wEyjdrOAEi5Nl9GacE9OJuowVldq8liSa3zH00D2f6Q=",
-    "tokens.css": "sha256-KCtQwhDrjHSJHIR24p/TwKJon91BLxTG+AAhTK9ds5w=",
-    "foundation.css": "sha256-XnPSougMR18bXbLygw4BzvGWpztDG6Tevc3aj4Hl0c8=",
-    "component.css": "sha256-IcICdoO42oFKbkTx19yQ8a46dkR94d3zQHyoEQXuBCY=",
-    "example.html": "sha256-Yll2MxHT4IFJ2+jGgpYfggVP5Xk8c8d+VBMY84Ck++c=",
-    "two-instances.html": "sha256-tZ18gGVz+iXxkvcB2ogY1SpqBi4NRUCkqSFH6UbtYHo=",
-    "LICENSE.md": "sha256-MJ1znn/zrFKHnYMcN32dOINis+ZRx00QVkU/dNLNFtE=",
-    "README.md": "sha256-gS0AfHkpkp97f/ANUvRI9tzAjCrRAyhx6WzcHWdq+Sc="
+    "markup.html": "sha256-ZPH34gG5P0DmzaW71tqEAaDRjfKb1dVYWBZezqEHV8Y=",
+    "template.html": "sha256-1iOTHhtW5UxJKrSgo8K4er5ijYOworO+0NW+QllbW9k=",
+    "tokens.css": "sha256-AlW7YLYreVOMDA0mCktbq1/fYc2XjhaDIud5zq3xl1Q=",
+    "foundation.css": "sha256-ULXWjDeQQsTqjqAkGwrBlgQD0pjXoV0ybwnhRsyWcZU=",
+    "component.css": "sha256-uK/EF+OBfj5DIZAxhO6LwDZz+VX21rNjH83DxX2s5e0=",
+    "example.html": "sha256-8mhJBx+K77MK47zteKKrNf1CLGlChZnCN5PFwXOVy0o=",
+    "two-instances.html": "sha256-4FlMzN6GWy+Zx74UHqJajyzrfCcd/jqDfSX8s5NetUo=",
+    "LICENSE.md": "sha256-Ha+Xei/5Bzm1/CK7IqxrhRmEePiWsQZJeug5qWqzD28=",
+    "README.md": "sha256-iEWQlzjqfzkJmJUpKdirjoKJcrv+SHcrfF9cx98RJfQ="
   }
 }

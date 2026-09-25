@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.2.0] - 2026-09-25
+
+- Add the first application port, `ports/orca/`, which is experimental. It holds
+  the default profile's terminal background, foreground, cursor and sixteen ANSI
+  slots as a Warp-format YAML for Orca's **Import from YAML**. Selection, divider,
+  font and light mode are recorded as unsupported or inherited, each with a reason.
+  No real import is recorded yet, so the port is not verified.
+- `npm run generate` now writes port files from their mappings
+  (`scripts/lib/port-artifacts.mjs`), so no port hex is hand-edited.
+- Make theme files easy to download:
+  - a generated Downloads table in the README with links pinned to the release tag
+  - a copy of each file served at `/theme/ports/<id>/<file>`
+  - a download link on the Ports page
+- Downstream: no token values change. The version moves to 1.2.0, so
+  version-stamped exports regenerate.
+
 - #2: add pinned semantic release comparisons, explicit dependency impact,
   Markdown/JSON migration reports, and static historical specimen comparisons.
   Missing historical evidence remains unsupported; proposed/heritage status

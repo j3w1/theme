@@ -59,7 +59,11 @@ implementations and roadmap candidates are not statuses. `verified` requires a
 real import into the recorded application version with matching evidence and a
 token digest equal to the current default profile. A successful XML or JSON
 parse is a structural pass, not verification. Never hand-edit a generated hex;
-fix the mapping or the approved token and regenerate.
+fix the mapping or the approved token and regenerate. `npm run generate` writes
+`dist/` for every port whose `format` has an emitter in
+`scripts/lib/port-artifacts.mjs` (`warp-yaml` today). The README downloads table
+links each file at the release tag, and the site serves a copy at
+`ports/<slug>/<file>`.
 
 For JetBrains, an editor scheme (`.icls`) and a UI theme plugin are separate
 capabilities; the scheme alone does not recolour toolbars or dialogs. For

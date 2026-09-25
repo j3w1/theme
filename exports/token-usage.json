@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "theme": "j3w1-theme",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "sourcePolicy": "Source locations are relative to the pinned revision supplying this file; JSON pointers identify mappings. No external consumer is inferred.",
   "profiles": {
     "default": {
@@ -30,7 +30,17 @@
           "usedByAliases": [
             "focus.ring"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/border.width.default",
+                "line": 63
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -343,7 +353,17 @@
           "usedByAliases": [
             "focus.ring-container"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/border.width.emphasis",
+                "line": 64
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -504,7 +524,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/breakpoint.lg",
+                "line": 65
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -529,7 +559,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/breakpoint.md",
+                "line": 66
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -554,7 +594,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/breakpoint.sm",
+                "line": 67
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -579,7 +629,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/breakpoint.xs",
+                "line": 68
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -606,7 +666,17 @@
             "color.primitive.red.800"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.action.destructive.border",
+                "line": 69
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -691,7 +761,17 @@
             "color.primitive.red.750"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.action.destructive.filled-bg",
+                "line": 70
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -854,7 +934,17 @@
             "color.primitive.paper.100"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.action.destructive.filled-text",
+                "line": 71
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -991,7 +1081,17 @@
             "color.primitive.red.750"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.action.destructive.hover-bg",
+                "line": 72
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -1128,7 +1228,17 @@
             "color.primitive.paper.100"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.action.destructive.hover-text",
+                "line": 73
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -1276,7 +1386,17 @@
             "color.primitive.red.550"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.action.destructive.pressed-bg",
+                "line": 74
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -1361,7 +1481,17 @@
             "color.primitive.red.850"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.action.destructive.text",
+                "line": 75
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -1462,7 +1592,17 @@
             "color.primitive.red.200"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.action.primary.bg",
+                "line": 76
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -2470,7 +2610,17 @@
             "color.primitive.red.400"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.action.primary.border",
+                "line": 77
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -2570,7 +2720,17 @@
             "color.primitive.red.350"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.action.primary.hover-bg",
+                "line": 78
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -2849,7 +3009,17 @@
             "color.primitive.red.150"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.action.primary.pressed-bg",
+                "line": 79
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -2934,7 +3104,17 @@
             "color.primitive.paper.90"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.action.primary.text",
+                "line": 80
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -3872,7 +4052,17 @@
             "color.primitive.alpha.transparent"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.action.secondary.bg",
+                "line": 81
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -4139,7 +4329,17 @@
             "color.primitive.rose.350"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.action.secondary.border",
+                "line": 82
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -4533,7 +4733,17 @@
             "color.primitive.red.150"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.action.secondary.hover-bg",
+                "line": 83
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -4715,7 +4925,17 @@
             "color.primitive.red.50"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.action.secondary.pressed-bg",
+                "line": 84
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -4800,7 +5020,17 @@
             "color.primitive.rose.800"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.action.secondary.text",
+                "line": 85
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -5220,7 +5450,17 @@
             "color.primitive.ink.40"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.action.tertiary.hover-bg",
+                "line": 86
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -5626,7 +5866,17 @@
             "color.primitive.rose.700"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.action.tertiary.text",
+                "line": 87
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -6396,7 +6646,17 @@
             "color.primitive.red.800"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.border.active",
+                "line": 88
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -7066,7 +7326,17 @@
             "color.primitive.rose.350"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.border.control",
+                "line": 89
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -10371,7 +10641,17 @@
             "color.primitive.red.100"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.border.default",
+                "line": 90
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -10825,7 +11105,17 @@
             "color.primitive.red.200"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.border.disabled",
+                "line": 91
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -11704,7 +11994,17 @@
             "color.primitive.ink.60"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not in the theme file; set Settings → Terminal → Dark Divider Color to this value by hand.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.border.divider",
+                "line": 92
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -12800,7 +13100,17 @@
             "color.primitive.red.800"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.border.overlay",
+                "line": 93
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -13488,7 +13798,17 @@
             "color.primitive.red.800"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.border.selected-indicator",
+                "line": 94
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -13916,7 +14236,17 @@
             "color.primitive.red.400"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.border.selected-indicator-inactive",
+                "line": 95
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -14042,7 +14372,17 @@
             "color.primitive.red.400"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.border.strong",
+                "line": 96
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -14261,7 +14601,17 @@
             "color.primitive.red.400"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.chart.axis",
+                "line": 97
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -14304,7 +14654,17 @@
             "color.primitive.ink.60"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.chart.grid",
+                "line": 98
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -14347,7 +14707,17 @@
             "color.primitive.rose.600"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.chart.label",
+                "line": 99
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -14417,7 +14787,17 @@
             "color.primitive.rose.800"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.chart.series-1",
+                "line": 100
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -14444,7 +14824,17 @@
             "color.primitive.red.850"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.chart.series-2",
+                "line": 101
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -14487,7 +14877,17 @@
             "color.primitive.rose.600"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.chart.series-3",
+                "line": 102
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -14514,7 +14914,17 @@
             "color.primitive.rose.350"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.chart.series-4",
+                "line": 103
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -14569,7 +14979,17 @@
             "color.primitive.ink.20"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.code.bg",
+                "line": 104
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -15638,7 +16058,17 @@
             "color.primitive.red.800"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.code.bracket-match",
+                "line": 105
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -15760,7 +16190,17 @@
             "color.primitive.rose.700"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.code.caret",
+                "line": 106
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -15961,7 +16401,17 @@
             "color.primitive.ink.40"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.code.current-line",
+                "line": 107
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -16213,7 +16663,17 @@
             "color.primitive.ink.20"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.code.gutter-bg",
+                "line": 108
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -16283,7 +16743,17 @@
             "color.primitive.ink.60"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.code.gutter-rule",
+                "line": 109
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -16383,7 +16853,17 @@
             "color.primitive.red.100"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.code.indent-guide",
+                "line": 110
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -16458,7 +16938,17 @@
             "color.primitive.rose.450"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.code.line-number",
+                "line": 111
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -16610,7 +17100,17 @@
             "color.primitive.rose.700"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.code.line-number-active",
+                "line": 112
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -16680,7 +17180,17 @@
             "color.primitive.rose.800"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.code.search-current-bg",
+                "line": 113
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -16750,7 +17260,17 @@
             "color.primitive.ink.20"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.code.search-current-text",
+                "line": 114
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -16820,7 +17340,17 @@
             "color.primitive.red.150"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.code.search-match-bg",
+                "line": 115
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -16863,7 +17393,17 @@
             "color.primitive.red.50"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.code.selection-bg",
+                "line": 116
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -17026,7 +17566,17 @@
             "color.primitive.rose.650"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.code.syntax.attribute",
+                "line": 117
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -17101,7 +17651,17 @@
             "color.primitive.rose.450"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.code.syntax.comment",
+                "line": 118
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -17197,7 +17757,17 @@
             "color.primitive.rose.650"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.code.syntax.constant",
+                "line": 119
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -17240,7 +17810,17 @@
             "color.primitive.rose.450"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.code.syntax.deprecated",
+                "line": 120
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -17351,7 +17931,17 @@
             "color.primitive.rose.650"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.code.syntax.escape",
+                "line": 121
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -17394,7 +17984,17 @@
             "color.primitive.rose.800"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.code.syntax.function",
+                "line": 122
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -17464,7 +18064,17 @@
             "color.primitive.red.800"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.code.syntax.heading",
+                "line": 123
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -17507,7 +18117,17 @@
             "color.primitive.red.800"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.code.syntax.invalid",
+                "line": 124
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -17550,7 +18170,17 @@
             "color.primitive.red.850"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.code.syntax.keyword",
+                "line": 125
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -17646,7 +18276,17 @@
             "color.primitive.rose.650"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.code.syntax.number",
+                "line": 126
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -17716,7 +18356,17 @@
             "color.primitive.rose.700"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.code.syntax.operator",
+                "line": 127
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -17759,7 +18409,17 @@
             "color.primitive.red.800"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.code.syntax.property",
+                "line": 128
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -17829,7 +18489,17 @@
             "color.primitive.rose.700"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.code.syntax.punctuation",
+                "line": 129
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -17872,7 +18542,17 @@
             "color.primitive.rose.600"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.code.syntax.string",
+                "line": 130
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -17994,7 +18674,17 @@
             "color.primitive.red.850"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.code.syntax.tag",
+                "line": 131
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -18064,7 +18754,17 @@
             "color.primitive.rose.550"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.code.syntax.type",
+                "line": 132
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -18160,7 +18860,17 @@
             "color.primitive.rose.700"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.code.syntax.variable",
+                "line": 133
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -18308,7 +19018,17 @@
             "color.primitive.red.200"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.code.whitespace",
+                "line": 134
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -18378,7 +19098,17 @@
             "color.primitive.ink.60"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.diagnostic.error.bg",
+                "line": 135
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -18500,7 +19230,17 @@
             "color.primitive.red.800"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.diagnostic.error.stripe",
+                "line": 136
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -18570,7 +19310,17 @@
             "color.primitive.red.850"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.diagnostic.error.text",
+                "line": 137
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -18718,7 +19468,17 @@
             "color.primitive.red.800"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.diagnostic.error.underline",
+                "line": 138
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -18814,7 +19574,17 @@
             "color.primitive.rose.450"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.diagnostic.hint.underline",
+                "line": 139
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -18889,7 +19659,17 @@
             "color.primitive.blue.500"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.diagnostic.info.text",
+                "line": 140
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -19016,7 +19796,17 @@
             "color.primitive.blue.500"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.diagnostic.info.underline",
+                "line": 141
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -19086,7 +19876,17 @@
             "color.primitive.rose.600"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.diagnostic.unused.text",
+                "line": 142
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -19161,7 +19961,17 @@
             "color.primitive.amber.500"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.diagnostic.warning.stripe",
+                "line": 143
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -19236,7 +20046,17 @@
             "color.primitive.amber.500"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.diagnostic.warning.text",
+                "line": 144
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -19337,7 +20157,17 @@
             "color.primitive.amber.500"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.diagnostic.warning.underline",
+                "line": 145
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -19438,7 +20268,17 @@
             "color.primitive.green.tint"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.diff.added.bg",
+                "line": 146
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -19643,7 +20483,17 @@
             "color.primitive.green.500"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.diff.added.emphasis",
+                "line": 147
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -19718,7 +20568,17 @@
             "color.primitive.green.500"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.diff.added.gutter",
+                "line": 148
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -19788,7 +20648,17 @@
             "color.primitive.red.850"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.diff.conflict-border",
+                "line": 149
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -19858,7 +20728,17 @@
             "color.primitive.ink.52"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.diff.header-bg",
+                "line": 150
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -20063,7 +20943,17 @@
             "color.primitive.amber.tint"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.diff.modified.bg",
+                "line": 151
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -20242,7 +21132,17 @@
             "color.primitive.amber.500"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.diff.modified.gutter",
+                "line": 152
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -20312,7 +21212,17 @@
             "color.primitive.ink.60"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.diff.removed.bg",
+                "line": 153
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -20512,7 +21422,17 @@
             "color.primitive.red.800"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.diff.removed.emphasis",
+                "line": 154
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -20582,7 +21502,17 @@
             "color.primitive.red.800"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.diff.removed.gutter",
+                "line": 155
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -20652,7 +21582,17 @@
             "color.primitive.rose.350"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.icon.decorative",
+                "line": 156
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -20901,7 +21841,17 @@
             "color.primitive.rose.700"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.icon.default",
+                "line": 157
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -21072,7 +22022,17 @@
             "color.primitive.ink.30"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.interaction.disabled.bg",
+                "line": 158
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -22412,7 +23372,17 @@
             "color.primitive.red.800"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.interaction.drop-target",
+                "line": 159
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -22510,7 +23480,17 @@
           "usedByAliases": [
             "focus.ring"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.interaction.focus.ring",
+                "line": 160
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -24592,7 +25572,17 @@
           "usedByAliases": [
             "focus.ring-container"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.interaction.focus.ring-container",
+                "line": 161
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -25989,7 +26979,17 @@
             "color.primitive.ink.40"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.interaction.hover.bg",
+                "line": 162
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -27321,7 +28321,17 @@
             "color.primitive.red.150"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.interaction.hover.bg-strong",
+                "line": 163
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -27678,7 +28688,17 @@
             "color.primitive.alpha.red-12"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.interaction.marquee",
+                "line": 164
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -27759,7 +28779,17 @@
             "color.primitive.red.50"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.interaction.pressed.bg",
+                "line": 165
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -28235,7 +29265,17 @@
             "color.primitive.red.50"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.interaction.scrollbar.thumb",
+                "line": 166
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -28262,7 +29302,17 @@
             "color.primitive.red.350"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.interaction.scrollbar.thumb-hover",
+                "line": 167
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -28289,7 +29339,17 @@
             "color.primitive.ink.20"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.interaction.scrollbar.track",
+                "line": 168
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -28321,7 +29381,17 @@
             "color.primitive.red.100"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.interaction.selection.bg",
+                "line": 169
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -29540,7 +30610,17 @@
             "color.primitive.red.50"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.interaction.selection.inactive-bg",
+                "line": 170
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -29759,7 +30839,17 @@
             "color.primitive.rose.700"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.interaction.selection.inactive-text",
+                "line": 171
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -29978,7 +31068,17 @@
             "color.primitive.paper.90"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.interaction.selection.text",
+                "line": 172
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -30890,7 +31990,17 @@
             "color.primitive.red.350"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.interaction.text-selection.bg",
+                "line": 173
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -30948,7 +32058,17 @@
             "color.primitive.paper.90"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.interaction.text-selection.text",
+                "line": 174
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -31013,7 +32133,17 @@
           "usedByAliases": [
             "shadow.floating"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.alpha.black-55",
+                "line": 175
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -31050,7 +32180,17 @@
           "usedByAliases": [
             "color.surface.backdrop"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.alpha.black-65",
+                "line": 176
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -31084,7 +32224,17 @@
           "usedByAliases": [
             "color.interaction.marquee"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.alpha.red-12",
+                "line": 177
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -31116,7 +32266,17 @@
           },
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.alpha.red-6",
+                "line": 178
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -31150,7 +32310,17 @@
           "usedByAliases": [
             "color.action.secondary.bg"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.alpha.transparent",
+                "line": 179
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -31193,7 +32363,17 @@
             "color.status.warning.fill",
             "color.status.warning.text"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.amber.500",
+                "line": 180
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -31225,7 +32405,17 @@
           },
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.amber.600",
+                "line": 181
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -31262,7 +32452,17 @@
             "color.diff.modified.bg",
             "color.status.warning.tint"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.amber.tint",
+                "line": 182
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -31291,7 +32491,17 @@
           "usedByAliases": [
             "color.terminal.ansi.0"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.ansi.0",
+                "line": 183
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -31320,7 +32530,17 @@
           "usedByAliases": [
             "color.terminal.ansi.1"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.ansi.1",
+                "line": 184
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -31349,7 +32569,17 @@
           "usedByAliases": [
             "color.terminal.ansi.10"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.ansi.10",
+                "line": 185
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -31378,7 +32608,17 @@
           "usedByAliases": [
             "color.terminal.ansi.11"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.ansi.11",
+                "line": 186
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -31407,7 +32647,17 @@
           "usedByAliases": [
             "color.terminal.ansi.12"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.ansi.12",
+                "line": 187
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -31436,7 +32686,17 @@
           "usedByAliases": [
             "color.terminal.ansi.13"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.ansi.13",
+                "line": 188
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -31465,7 +32725,17 @@
           "usedByAliases": [
             "color.terminal.ansi.14"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.ansi.14",
+                "line": 189
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -31494,7 +32764,17 @@
           "usedByAliases": [
             "color.terminal.ansi.15"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.ansi.15",
+                "line": 190
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -31523,7 +32803,17 @@
           "usedByAliases": [
             "color.terminal.ansi.2"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.ansi.2",
+                "line": 191
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -31552,7 +32842,17 @@
           "usedByAliases": [
             "color.terminal.ansi.3"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.ansi.3",
+                "line": 192
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -31581,7 +32881,17 @@
           "usedByAliases": [
             "color.terminal.ansi.4"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.ansi.4",
+                "line": 193
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -31610,7 +32920,17 @@
           "usedByAliases": [
             "color.terminal.ansi.5"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.ansi.5",
+                "line": 194
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -31639,7 +32959,17 @@
           "usedByAliases": [
             "color.terminal.ansi.6"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.ansi.6",
+                "line": 195
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -31668,7 +32998,17 @@
           "usedByAliases": [
             "color.terminal.ansi.7"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.ansi.7",
+                "line": 196
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -31697,7 +33037,17 @@
           "usedByAliases": [
             "color.terminal.ansi.8"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.ansi.8",
+                "line": 197
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -31726,7 +33076,17 @@
           "usedByAliases": [
             "color.terminal.ansi.9"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.ansi.9",
+                "line": 198
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -31767,7 +33127,17 @@
             "color.status.info.fill",
             "color.status.info.text"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.blue.500",
+                "line": 199
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -31799,7 +33169,17 @@
           },
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.blue.600",
+                "line": 200
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -31835,7 +33215,17 @@
           "usedByAliases": [
             "color.status.info.tint"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.blue.tint",
+                "line": 201
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -31876,7 +33266,17 @@
             "color.status.success.fill",
             "color.status.success.text"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.green.500",
+                "line": 202
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -31909,7 +33309,17 @@
           },
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.green.600",
+                "line": 203
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -31946,7 +33356,17 @@
             "color.diff.added.bg",
             "color.status.success.tint"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.green.tint",
+                "line": 204
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -31986,7 +33406,17 @@
             "color.surface.sunken",
             "color.surface.terminal"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.ink.0",
+                "line": 205
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -32023,7 +33453,17 @@
           "usedByAliases": [
             "color.surface.chrome"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.ink.14",
+                "line": 206
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -32058,7 +33498,17 @@
           },
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.ink.15",
+                "line": 207
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -32103,7 +33553,17 @@
             "color.text.inverse",
             "color.text.on-light"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.ink.20",
+                "line": 208
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -32135,7 +33595,17 @@
           },
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.ink.25",
+                "line": 209
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -32172,7 +33642,17 @@
           "usedByAliases": [
             "color.surface.default"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.ink.28",
+                "line": 210
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -32207,7 +33687,17 @@
             "color.interaction.disabled.bg",
             "color.surface.raised"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.ink.30",
+                "line": 211
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -32244,7 +33734,17 @@
             "color.interaction.hover.bg",
             "color.surface.chrome-alt"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.ink.40",
+                "line": 212
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -32280,7 +33780,17 @@
             "color.status.neutral.tint",
             "color.surface.overlay"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.ink.52",
+                "line": 213
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -32322,7 +33832,17 @@
             "color.diff.removed.bg",
             "color.status.danger.tint"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.ink.60",
+                "line": 214
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -32360,7 +33880,17 @@
             "color.status.danger.on-fill",
             "color.text.on-danger"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.paper.100",
+                "line": 215
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -32402,7 +33932,17 @@
             "color.text.on-selection",
             "color.text.prose"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.paper.90",
+                "line": 216
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -32438,7 +33978,17 @@
             "color.code.indent-guide",
             "color.interaction.selection.bg"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.red.100",
+                "line": 217
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -32475,7 +34025,17 @@
             "color.code.search-match-bg",
             "color.interaction.hover.bg-strong"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.red.150",
+                "line": 218
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -32513,7 +34073,17 @@
             "color.primitive.ansi.8",
             "color.terminal.ansi.8"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.red.200",
+                "line": 219
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -32548,7 +34118,17 @@
             "color.primitive.ansi.4",
             "color.terminal.ansi.4"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.red.250",
+                "line": 220
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -32583,7 +34163,17 @@
             "color.primitive.ansi.12",
             "color.terminal.ansi.12"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.red.300",
+                "line": 221
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -32620,7 +34210,17 @@
             "color.interaction.text-selection.bg",
             "color.terminal.selection-bg"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.red.350",
+                "line": 222
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -32657,7 +34257,17 @@
             "color.border.strong",
             "color.chart.axis"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.red.400",
+                "line": 223
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -32692,7 +34302,17 @@
             "color.primitive.ansi.9",
             "color.terminal.ansi.9"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.red.450",
+                "line": 224
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -32730,7 +34350,17 @@
             "color.interaction.scrollbar.thumb",
             "color.interaction.selection.inactive-bg"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.red.50",
+                "line": 225
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -32765,7 +34395,17 @@
             "color.primitive.ansi.10",
             "color.terminal.ansi.10"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.red.500",
+                "line": 226
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -32799,7 +34439,17 @@
           "usedByAliases": [
             "color.action.destructive.pressed-bg"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.red.550",
+                "line": 227
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -32834,7 +34484,17 @@
             "color.primitive.ansi.1",
             "color.terminal.ansi.1"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.red.650",
+                "line": 228
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -32871,7 +34531,17 @@
             "color.status.danger.fill",
             "color.text.link-underline"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.red.750",
+                "line": 229
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -32906,7 +34576,17 @@
             "color.primitive.ansi.14",
             "color.terminal.ansi.14"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.red.760",
+                "line": 230
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -32941,7 +34621,17 @@
             "color.primitive.ansi.13",
             "color.terminal.ansi.13"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.red.770",
+                "line": 231
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -32990,7 +34680,17 @@
             "color.status.danger.border",
             "color.text.accent"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.red.800",
+                "line": 232
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -33034,7 +34734,17 @@
             "color.text.accent-strong",
             "color.text.link"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.red.850",
+                "line": 233
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -33071,7 +34781,17 @@
           "usedByAliases": [
             "color.text.disabled"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.rose.300",
+                "line": 234
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -33107,7 +34827,17 @@
             "color.primitive.ansi.6",
             "color.terminal.ansi.6"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.rose.320",
+                "line": 235
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -33150,7 +34880,17 @@
             "color.terminal.ansi.15",
             "color.text.placeholder"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.rose.350",
+                "line": 236
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -33191,7 +34931,17 @@
             "color.diagnostic.hint.underline",
             "color.text.subtle"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.rose.450",
+                "line": 237
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -33228,7 +34978,17 @@
             "color.primitive.ansi.11",
             "color.terminal.ansi.11"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.rose.550",
+                "line": 238
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -33270,7 +35030,17 @@
             "color.terminal.ansi.2",
             "color.text.muted"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.rose.600",
+                "line": 239
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -33310,7 +35080,17 @@
             "color.primitive.ansi.3",
             "color.terminal.ansi.3"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.rose.650",
+                "line": 240
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -33355,7 +35135,17 @@
             "color.terminal.fg",
             "color.text.default"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.rose.700",
+                "line": 241
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -33397,7 +35187,17 @@
             "color.terminal.ansi.7",
             "color.text.bright"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.rose.800",
+                "line": 242
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -33424,7 +35224,17 @@
             "color.primitive.red.800"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.status.danger.border",
+                "line": 243
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -34392,7 +36202,17 @@
             "color.primitive.red.750"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.status.danger.fill",
+                "line": 244
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -34741,7 +36561,17 @@
             "color.primitive.paper.100"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.status.danger.on-fill",
+                "line": 245
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -34945,7 +36775,17 @@
             "color.primitive.red.850"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.status.danger.text",
+                "line": 246
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -36052,7 +37892,17 @@
             "color.primitive.ink.60"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.status.danger.tint",
+                "line": 247
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -36268,7 +38118,17 @@
             "color.primitive.blue.500"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.status.info.border",
+                "line": 248
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -36440,7 +38300,17 @@
             "color.primitive.blue.500"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.status.info.fill",
+                "line": 249
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -36608,7 +38478,17 @@
             "color.primitive.ink.20"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.status.info.on-fill",
+                "line": 250
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -36750,7 +38630,17 @@
             "color.primitive.blue.500"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.status.info.text",
+                "line": 251
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -37041,7 +38931,17 @@
             "color.primitive.blue.tint"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.status.info.tint",
+                "line": 252
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -37438,7 +39338,17 @@
             "color.primitive.rose.350"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.status.neutral.border",
+                "line": 253
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -37590,7 +39500,17 @@
             "color.primitive.rose.350"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.status.neutral.fill",
+                "line": 254
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -37712,7 +39632,17 @@
             "color.primitive.ink.0"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.status.neutral.on-fill",
+                "line": 255
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -37808,7 +39738,17 @@
             "color.primitive.rose.600"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.status.neutral.text",
+                "line": 256
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -37960,7 +39900,17 @@
             "color.primitive.ink.52"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.status.neutral.tint",
+                "line": 257
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -38180,7 +40130,17 @@
             "color.primitive.green.500"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.status.success.border",
+                "line": 258
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -38337,7 +40297,17 @@
             "color.primitive.green.500"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.status.success.fill",
+                "line": 259
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -38505,7 +40475,17 @@
             "color.primitive.ink.20"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.status.success.on-fill",
+                "line": 260
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -38647,7 +40627,17 @@
             "color.primitive.green.500"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.status.success.text",
+                "line": 261
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -38979,7 +40969,17 @@
             "color.primitive.green.tint"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.status.success.tint",
+                "line": 262
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -39225,7 +41225,17 @@
             "color.primitive.amber.500"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.status.warning.border",
+                "line": 263
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -39382,7 +41392,17 @@
             "color.primitive.amber.500"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.status.warning.fill",
+                "line": 264
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -39509,7 +41529,17 @@
             "color.primitive.ink.20"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.status.warning.on-fill",
+                "line": 265
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -39610,7 +41640,17 @@
             "color.primitive.amber.500"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.status.warning.text",
+                "line": 266
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -39819,7 +41859,17 @@
             "color.primitive.amber.tint"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.status.warning.tint",
+                "line": 267
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -40067,7 +42117,17 @@
             "color.primitive.alpha.black-65"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.surface.backdrop",
+                "line": 268
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -40145,7 +42205,17 @@
             "color.primitive.ink.0"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.surface.canvas",
+                "line": 269
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -42570,7 +44640,17 @@
             "color.primitive.ink.14"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.surface.chrome",
+                "line": 270
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -43153,7 +45233,17 @@
             "color.primitive.ink.40"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.surface.chrome-alt",
+                "line": 271
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -43265,7 +45355,17 @@
             "color.primitive.ink.0"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.surface.code",
+                "line": 272
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -43313,7 +45413,17 @@
             "color.primitive.ink.28"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.surface.default",
+                "line": 273
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -50999,7 +53109,17 @@
             "color.primitive.ink.0"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.surface.desktop",
+                "line": 274
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -51141,7 +53261,17 @@
             "color.primitive.ink.0"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.surface.input",
+                "line": 275
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -53994,7 +56124,17 @@
             "color.primitive.ink.52"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.surface.overlay",
+                "line": 276
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -54729,7 +56869,17 @@
             "color.primitive.ink.30"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.surface.raised",
+                "line": 277
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -55662,7 +57812,17 @@
             "color.primitive.ink.0"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.surface.sunken",
+                "line": 278
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -55763,7 +57923,17 @@
             "color.primitive.ink.0"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "The file has one background key, which carries color.terminal.bg (equal to ANSI 0); the pane surface has no separate key.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.surface.terminal",
+                "line": 279
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -55821,6 +57991,21 @@
                 "file": "spec/components/terminal.md",
                 "pointer": "/tokens/slot.ansi-0",
                 "line": 50
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "terminal_colors.normal.black",
+              "port": "orca",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/mappings/color.terminal.ansi.0/0",
+                "line": 5
               }
             }
           ],
@@ -55893,6 +58078,21 @@
                 "pointer": "/tokens/slot.ansi-1",
                 "line": 51
               }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "terminal_colors.normal.red",
+              "port": "orca",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/mappings/color.terminal.ansi.1/0",
+                "line": 8
+              }
             }
           ],
           "contrast": [
@@ -55963,6 +58163,21 @@
                 "file": "spec/components/terminal.md",
                 "pointer": "/tokens/slot.ansi-10",
                 "line": 60
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "terminal_colors.bright.green",
+              "port": "orca",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/mappings/color.terminal.ansi.10/0",
+                "line": 11
               }
             }
           ],
@@ -56035,6 +58250,21 @@
                 "pointer": "/tokens/slot.ansi-11",
                 "line": 61
               }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "terminal_colors.bright.yellow",
+              "port": "orca",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/mappings/color.terminal.ansi.11/0",
+                "line": 14
+              }
             }
           ],
           "contrast": [
@@ -56105,6 +58335,21 @@
                 "file": "spec/components/terminal.md",
                 "pointer": "/tokens/slot.ansi-12",
                 "line": 62
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "terminal_colors.bright.blue",
+              "port": "orca",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/mappings/color.terminal.ansi.12/0",
+                "line": 17
               }
             }
           ],
@@ -56177,6 +58422,21 @@
                 "pointer": "/tokens/slot.ansi-13",
                 "line": 63
               }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "terminal_colors.bright.magenta",
+              "port": "orca",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/mappings/color.terminal.ansi.13/0",
+                "line": 20
+              }
             }
           ],
           "contrast": [
@@ -56247,6 +58507,21 @@
                 "file": "spec/components/terminal.md",
                 "pointer": "/tokens/slot.ansi-14",
                 "line": 64
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "terminal_colors.bright.cyan",
+              "port": "orca",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/mappings/color.terminal.ansi.14/0",
+                "line": 23
               }
             }
           ],
@@ -56319,6 +58594,21 @@
                 "pointer": "/tokens/slot.ansi-15",
                 "line": 65
               }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "terminal_colors.bright.white",
+              "port": "orca",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/mappings/color.terminal.ansi.15/0",
+                "line": 26
+              }
             }
           ],
           "contrast": [
@@ -56389,6 +58679,21 @@
                 "file": "spec/components/terminal.md",
                 "pointer": "/tokens/slot.ansi-2",
                 "line": 52
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "terminal_colors.normal.green",
+              "port": "orca",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/mappings/color.terminal.ansi.2/0",
+                "line": 29
               }
             }
           ],
@@ -56490,6 +58795,21 @@
                 "file": "spec/components/terminal.md",
                 "pointer": "/tokens/slot.ansi-3",
                 "line": 53
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "terminal_colors.normal.yellow",
+              "port": "orca",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/mappings/color.terminal.ansi.3/0",
+                "line": 32
               }
             }
           ],
@@ -56618,6 +58938,21 @@
                 "pointer": "/tokens/slot.ansi-4",
                 "line": 54
               }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "terminal_colors.normal.blue",
+              "port": "orca",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/mappings/color.terminal.ansi.4/0",
+                "line": 35
+              }
             }
           ],
           "contrast": [
@@ -56711,6 +59046,21 @@
                 "pointer": "/tokens/slot.ansi-5",
                 "line": 55
               }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "terminal_colors.normal.magenta",
+              "port": "orca",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/mappings/color.terminal.ansi.5/0",
+                "line": 38
+              }
             }
           ],
           "contrast": [
@@ -56781,6 +59131,21 @@
                 "file": "spec/components/terminal.md",
                 "pointer": "/tokens/slot.ansi-6",
                 "line": 56
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "terminal_colors.normal.cyan",
+              "port": "orca",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/mappings/color.terminal.ansi.6/0",
+                "line": 41
               }
             }
           ],
@@ -56853,6 +59218,21 @@
                 "pointer": "/tokens/slot.ansi-7",
                 "line": 57
               }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "terminal_colors.normal.white",
+              "port": "orca",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/mappings/color.terminal.ansi.7/0",
+                "line": 44
+              }
             }
           ],
           "contrast": [
@@ -56924,6 +59304,21 @@
                 "pointer": "/tokens/slot.ansi-8",
                 "line": 58
               }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "terminal_colors.bright.black",
+              "port": "orca",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/mappings/color.terminal.ansi.8/0",
+                "line": 47
+              }
             }
           ],
           "contrast": [
@@ -56994,6 +59389,21 @@
                 "file": "spec/components/terminal.md",
                 "pointer": "/tokens/slot.ansi-9",
                 "line": 59
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "terminal_colors.bright.red",
+              "port": "orca",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/mappings/color.terminal.ansi.9/0",
+                "line": 50
               }
             }
           ],
@@ -57442,6 +59852,21 @@
               }
             },
             {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "background",
+              "port": "orca",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/mappings/color.terminal.bg/0",
+                "line": 53
+              }
+            },
+            {
               "kind": "state",
               "component": "terminal",
               "part": "bg",
@@ -57858,6 +60283,21 @@
               }
             },
             {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "cursor",
+              "port": "orca",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/mappings/color.terminal.cursor/0",
+                "line": 56
+              }
+            },
+            {
               "kind": "state",
               "component": "terminal",
               "part": "bg",
@@ -58025,6 +60465,21 @@
               }
             },
             {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "foreground",
+              "port": "orca",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/mappings/color.terminal.fg/0",
+                "line": 59
+              }
+            },
+            {
               "kind": "state",
               "component": "terminal",
               "part": "fg",
@@ -58151,7 +60606,17 @@
             "color.primitive.red.350"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Orca's YAML import drops selection colours.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.terminal.selection-bg",
+                "line": 280
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -58221,7 +60686,17 @@
             "color.primitive.paper.90"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Orca's YAML import drops selection colours.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.terminal.selection-text",
+                "line": 281
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -58332,7 +60807,17 @@
             "color.primitive.red.800"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.text.accent",
+                "line": 282
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -58413,7 +60898,17 @@
             "color.primitive.red.850"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.text.accent-strong",
+                "line": 283
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -58468,7 +60963,17 @@
             "color.primitive.rose.800"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.text.bright",
+                "line": 284
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -60509,7 +63014,17 @@
             "color.primitive.rose.700"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.text.default",
+                "line": 285
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -66538,7 +69053,17 @@
             "color.primitive.rose.300"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.text.disabled",
+                "line": 286
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -67954,7 +70479,17 @@
             "color.primitive.ink.20"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.text.inverse",
+                "line": 287
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -67986,7 +70521,17 @@
             "color.primitive.red.850"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.text.link",
+                "line": 288
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -68443,7 +70988,17 @@
             "color.primitive.paper.90"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.text.link-hover",
+                "line": 289
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -68744,7 +71299,17 @@
             "color.primitive.red.750"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.text.link-underline",
+                "line": 290
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -68881,7 +71446,17 @@
             "color.primitive.rose.600"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.text.muted",
+                "line": 291
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -72041,7 +74616,17 @@
             "color.primitive.paper.90"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.text.on-action",
+                "line": 292
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -72068,7 +74653,17 @@
             "color.primitive.paper.100"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.text.on-danger",
+                "line": 293
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -72095,7 +74690,17 @@
             "color.primitive.ink.20"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.text.on-light",
+                "line": 294
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -72122,7 +74727,17 @@
             "color.primitive.paper.90"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.text.on-selection",
+                "line": 295
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -72197,7 +74812,17 @@
             "color.primitive.rose.350"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.text.placeholder",
+                "line": 296
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -72405,7 +75030,17 @@
             "color.primitive.paper.90"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.text.prose",
+                "line": 297
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -72491,7 +75126,17 @@
             "color.primitive.rose.450"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Interface colour role; Orca's terminal theme file carries terminal colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.text.subtle",
+                "line": 298
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "contrast",
@@ -72708,7 +75353,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/density.comfortable.control-height",
+                "line": 299
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -72929,7 +75584,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/density.comfortable.control-padding-x",
+                "line": 300
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -72954,7 +75619,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/density.comfortable.gap",
+                "line": 301
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -72979,7 +75654,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/density.comfortable.icon",
+                "line": 302
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -73004,7 +75689,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/density.comfortable.row-height",
+                "line": 303
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -73029,7 +75724,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/density.compact.control-height",
+                "line": 304
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -73250,7 +75955,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/density.compact.control-padding-x",
+                "line": 305
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -73275,7 +75990,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/density.compact.gap",
+                "line": 306
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -73300,7 +76025,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/density.compact.icon",
+                "line": 307
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -73325,7 +76060,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/density.compact.row-height",
+                "line": 308
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -73350,7 +76095,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/focus.offset",
+                "line": 309
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -73406,7 +76161,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/focus.offset-container",
+                "line": 310
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -73431,7 +76196,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/focus.offset-invalid",
+                "line": 311
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -73459,7 +76234,17 @@
             "border.width.default"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/focus.ring",
+                "line": 312
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -73518,7 +76303,17 @@
             "border.width.emphasis"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/focus.ring-container",
+                "line": 313
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -73543,7 +76338,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Orca's own terminal font setting; choose this family there by hand.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/font.family.mono",
+                "line": 314
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -73568,7 +76373,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Orca's own terminal letter-spacing setting.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/font.letter-spacing.terminal",
+                "line": 315
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -73593,7 +76408,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/font.line-height.caption",
+                "line": 316
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -73618,7 +76443,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/font.line-height.code",
+                "line": 317
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -73643,7 +76478,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/font.line-height.h1",
+                "line": 318
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -73668,7 +76513,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/font.line-height.h2",
+                "line": 319
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -73693,7 +76548,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/font.line-height.h3",
+                "line": 320
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -73718,7 +76583,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/font.line-height.reading",
+                "line": 321
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -73743,7 +76618,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Orca's own terminal line-height setting.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/font.line-height.terminal",
+                "line": 322
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -73768,7 +76653,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/font.line-height.ui-lg",
+                "line": 323
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -73793,7 +76688,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/font.line-height.ui-md",
+                "line": 324
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -73849,7 +76754,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/font.line-height.ui-sm",
+                "line": 325
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -73905,7 +76820,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/font.size.caption",
+                "line": 326
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -73930,7 +76855,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/font.size.code",
+                "line": 327
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -73955,7 +76890,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/font.size.h1",
+                "line": 328
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -73980,7 +76925,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/font.size.h2",
+                "line": 329
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -74021,7 +76976,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/font.size.h3",
+                "line": 330
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -74046,7 +77011,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/font.size.reading",
+                "line": 331
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -74071,7 +77046,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Orca's own terminal font size setting.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/font.size.terminal",
+                "line": 332
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -74096,7 +77081,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/font.size.ui-lg",
+                "line": 333
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -74121,7 +77116,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/font.size.ui-md",
+                "line": 334
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -74177,7 +77182,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/font.size.ui-sm",
+                "line": 335
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -74233,7 +77248,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/font.weight.bold",
+                "line": 336
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -74274,7 +77299,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/font.weight.regular",
+                "line": 337
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -74299,7 +77334,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/icon.size.lg",
+                "line": 338
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -74324,7 +77369,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/icon.size.md",
+                "line": 339
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -74380,7 +77435,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/icon.size.sm",
+                "line": 340
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -74405,7 +77470,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/icon.stroke",
+                "line": 341
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -74430,7 +77505,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/layout.app-max",
+                "line": 342
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -74455,7 +77540,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/layout.content-max",
+                "line": 343
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -74480,7 +77575,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/layout.measure",
+                "line": 344
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -74505,7 +77610,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/motion.duration.base",
+                "line": 345
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -74530,7 +77645,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/motion.duration.fast",
+                "line": 346
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -74555,7 +77680,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/motion.duration.slow",
+                "line": 347
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -74580,7 +77715,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/radius.none",
+                "line": 348
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -74894,7 +78039,17 @@
             "space.0"
           ],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/shadow.floating",
+                "line": 349
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -74937,7 +78092,17 @@
           "usedByAliases": [
             "shadow.floating"
           ],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/space.0",
+                "line": 350
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -74962,7 +78127,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/space.1",
+                "line": 351
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -74987,7 +78162,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/space.12",
+                "line": 352
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -75298,7 +78483,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/space.16",
+                "line": 353
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -75414,7 +78609,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/space.2",
+                "line": 354
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -75725,7 +78930,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/space.24",
+                "line": 355
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -75796,7 +79011,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/space.32",
+                "line": 356
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -75837,7 +79062,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/space.4",
+                "line": 357
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -75953,7 +79188,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/space.48",
+                "line": 358
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -75978,7 +79223,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/space.8",
+                "line": 359
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -76229,7 +79484,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/z.canvas",
+                "line": 360
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -76254,7 +79519,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/z.dialog",
+                "line": 361
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -76295,7 +79570,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/z.drawer",
+                "line": 362
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -76336,7 +79621,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/z.popover",
+                "line": 363
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",
@@ -76377,7 +79672,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/z.raised",
+                "line": 364
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -76402,7 +79707,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/z.skip-link",
+                "line": 365
+              }
+            }
+          ],
           "uses": [],
           "contrast": []
         },
@@ -76427,7 +79742,17 @@
           "provenance": null,
           "aliases": [],
           "usedByAliases": [],
-          "unmappedPorts": [],
+          "unmappedPorts": [
+            {
+              "port": "orca",
+              "reason": "Not a colour; Orca's terminal theme file carries colours only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/z.toast",
+                "line": 366
+              }
+            }
+          ],
           "uses": [
             {
               "kind": "part",

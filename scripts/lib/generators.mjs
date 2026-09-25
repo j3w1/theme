@@ -17,7 +17,7 @@ import { digestMap, exists, listFiles, pruneOrphans, readJson, readText, replace
 import { statusOf, toCss, toResolvedExport } from "./tokens.mjs";
 import { buildCss, buildDensityCss } from "./css.mjs";
 import { loadDeclaredPairs, validateDocs, validatePorts, validateReferences } from "./validators.mjs";
-import { buildBrief, buildCompact, buildComponentJson, buildFull, buildLlms, contrastTable, coverageTable, demoVariantsOf, portsTable, sourceDigestOf } from "./exports.mjs";
+import { buildBrief, buildCompact, buildComponentJson, buildFull, buildLlms, contrastTable, coverageTable, demoVariantsOf, downloadsTable, portsTable, sourceDigestOf } from "./exports.mjs";
 import { loadFamilies } from "./spec.mjs";
 import { themeSchema } from "../../schemas/theme.mjs";
 import { componentSchema } from "../../schemas/component.mjs";
@@ -34,6 +34,7 @@ import { taskInputsGenerator } from "./task-inputs-generator.mjs";
 import { taskInputsSchema, kitRequestSchema } from "../../schemas/task-kit.mjs";
 import { portCapabilitiesSchema, portImportEvidenceSchema, portCatalogueSchema } from "../../schemas/port-capabilities.mjs";
 import { portCatalogueGenerator, readPortDescription } from "./port-capabilities.mjs";
+import { portArtifactsGenerator } from "./port-artifacts.mjs";
 import { privateParitySchema } from "../../schemas/private-parity.mjs";
 import { releaseComparisonSchema, releaseCatalogueSchema, releaseMigrationSchema } from "../../schemas/release-comparison.mjs";
 
@@ -231,6 +232,7 @@ export const readmeGenerator = {
     const ports = context.ports ?? (await validatePorts());
     let readme = await readText("README.md");
     readme = replaceMarkerBlock(readme, "ports", portsTable(ports).join("\n"));
+    readme = replaceMarkerBlock(readme, "downloads", downloadsTable(manifest, ports).join("\n"));
     readme = replaceMarkerBlock(readme, "coverage", components.length ? coverageTable(components, coverage).join("\n") : "No components are specified yet.");
     const resolved = profiles.get(defaultId);
     const keyRoles = ["color.surface.canvas", "color.surface.default", "color.surface.raised", "color.text.default", "color.text.bright", "color.text.prose", "color.text.muted", "color.text.subtle", "color.border.control", "color.border.default", "color.interaction.focus.ring", "color.interaction.selection.bg", "color.action.primary.bg", "color.status.danger.text", "color.status.warning.text", "color.status.success.text", "color.status.info.text"];
@@ -268,4 +270,4 @@ export const figmaGenerator = {
   },
 };
 
-export const GENERATORS = [schemasGenerator, tokensGenerator, contrastGenerator, componentsGenerator, patternGenerator, figmaGenerator, usageGenerator, portCatalogueGenerator, recipeGenerator, docsGenerator, coverageGenerator, readmeGenerator, { name: "official UI distribution", run: buildUI }, taskInputsGenerator, digestsGenerator];
+export const GENERATORS = [schemasGenerator, tokensGenerator, contrastGenerator, componentsGenerator, patternGenerator, figmaGenerator, usageGenerator, portArtifactsGenerator, portCatalogueGenerator, recipeGenerator, docsGenerator, coverageGenerator, readmeGenerator, { name: "official UI distribution", run: buildUI }, taskInputsGenerator, digestsGenerator];

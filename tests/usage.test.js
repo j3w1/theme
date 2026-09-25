@@ -5,6 +5,7 @@ import { readJson, readText } from "../scripts/lib/fs.mjs";
 import { loadResolvedProfile } from "../scripts/lib/tokens.mjs";
 import { loadComponents } from "../scripts/lib/spec.mjs";
 import { buildUsageIndex } from "../scripts/lib/usage.mjs";
+import { validatePorts } from "../scripts/lib/validators.mjs";
 import { queryUsage, queryIndexOf } from "../scripts/lib/usage-query.mjs";
 import { usageSchema, portMappingSchema } from "../schemas/usage.mjs";
 const manifest = await readJson("theme.json");
@@ -56,8 +57,11 @@ test("every indexed source resolves to an actual source line and the schema is c
   assert.throws(() => usageSchema(z).parse({ ...index, guessedConsumers: [] }));
 });
 
-test("ports are explicit, complete and never fabricated", () => {
-  assert.equal(Object.values(index.profiles.default.tokens).flatMap((t) => t.uses).filter((u) => u.kind === "port").length, 0);
+test("ports are explicit, complete and never fabricated", async () => {
+  const declared = (await Promise.all((await validatePorts()).filter((p) => p.profile === "default").map((p) => readJson(`ports/${p.id}/mapping.json`))))
+    .reduce((n, mapping) => n + Object.values(mapping.mappings).flat().length, 0);
+  assert.ok(declared > 0);
+  assert.equal(Object.values(index.profiles.default.tokens).flatMap((t) => t.uses).filter((u) => u.kind === "port").length, declared);
   const mapping = { schemaVersion: 1, mappings: { "color.border.control": ["InputBorder"] },
     unmapped: Object.fromEntries([...profiles.get("default").keys()].filter((p) => p !== "color.border.control").map((p) => [p, "Outside fixture scope"])) };
   portMappingSchema(z).parse(mapping);

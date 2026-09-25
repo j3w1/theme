@@ -67,15 +67,15 @@ var changeBuilder = (state, event) => {
 var exportDefinition = (state) => JSON.stringify(state.definition, null, 2) + "\n";
 var identity_default = {
 	name: "j3w1-theme",
-	version: "1.1.0",
+	version: "1.2.0",
 	profile: "default",
-	sourceDigest: "sha256-Qsk02KFZ9BQQh2qvAmgPa2wxoehpW6FXVrNGWl8vKs8="
+	sourceDigest: "sha256-66VP2q/UTYL2qj3wl3S/Nz0Ev5vYRzMpohnSMtDeDvk="
 };
 //#endregion
 //#region packages/ui/src/internal/form-builder.js
 var templates = {
 	schemaVersion: 1,
-	version: "1.1.0",
+	version: "1.2.0",
 	templates: {
 		"text": "<div class=\"text-field\">\n  <label class=\"text-field-label\" for=\"tf-name\">Display name <span class=\"text-field-required\" aria-hidden=\"true\">*</span><span class=\"text-field-required sr-only\"> required</span></label>\n  <div class=\"text-field-root\">\n    <input class=\"text-field-input\" id=\"tf-name\" type=\"text\" value=\"j3w1\" placeholder=\"Your name\" aria-describedby=\"tf-name-help tf-name-message\">\n    <span class=\"text-field-loading\" aria-hidden=\"true\">⋯</span>\n  </div>\n  <p class=\"text-field-help\" id=\"tf-name-help\">Shown on your profile and in the window title.</p>\n  <p class=\"text-field-message\" id=\"tf-name-message\">✕ Use 2 to 32 characters.</p>\n</div>",
 		"textarea": "<div class=\"textarea\">\n  <label class=\"textarea-label\" for=\"ta-notes\">Release notes <span class=\"textarea-required\" aria-hidden=\"true\">*</span><span class=\"textarea-required sr-only\"> required</span></label>\n  <div class=\"textarea-root\">\n    <textarea class=\"textarea-input\" id=\"ta-notes\" rows=\"3\" placeholder=\"What changed and why\" aria-describedby=\"ta-notes-help ta-notes-message\">Focus rings now recolour on filled surfaces.\nDisabled controls no longer use opacity.</textarea>\n  </div>\n  <p class=\"textarea-help\" id=\"ta-notes-help\">Plain text; one change per line.</p>\n  <p class=\"textarea-message\" id=\"ta-notes-message\">✕ Say why, not only what.</p>\n</div>",

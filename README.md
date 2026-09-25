@@ -11,13 +11,27 @@ an independently authored [Vue demo](https://j3w1.github.io/theme/demo/), and
 machine-readable exports for agents.
 
 <!-- version:start -->
-Specification version **1.1.0** (release; default: approved, heritage-ansi: heritage, extended: proposed).
+Specification version **1.2.0** (release; default: approved, heritage-ansi: heritage, extended: proposed).
 
 Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 <!-- version:end -->
 
 Approval and consumption eligibility are separate; see the policy above and
 `spec/decisions.md` D-013.
+
+## Application theme downloads
+
+Theme files for applications, ready to import. Each file link is pinned to
+this version's release tag. The site serves the same file from its **download**
+link. Scope, limits and rollback are in each port's README under `ports/`.
+Declared status and import evidence are described under
+[Application ports](#application-ports).
+
+<!-- downloads:start -->
+| Application | File (theme 1.2.0) | Also on the site | Install | Status |
+| --- | --- | --- | --- | --- |
+| Orca (terminal theme YAML) | [j3w1-theme.yaml](https://raw.githubusercontent.com/j3w1/theme/v1.2.0/ports/orca/dist/j3w1-theme.yaml) | [download](https://j3w1.github.io/theme/ports/orca/j3w1-theme.yaml) | Orca → Settings → Terminal Themes → Import from YAML, then select "j3w1 theme" as the Dark Theme. | experimental; import evidence not verified |
+<!-- downloads:end -->
 
 Changing how the theme looks has a local loop:
 [design mode](docs/design-mode.md) (`npm run design`) shows the real site as
@@ -356,7 +370,9 @@ application port. Private sources, configuration and results stay outside Git
 and the public site, including when verification fails.
 
 <!-- ports:start -->
-No native ports are published yet. Historical implementations are catalogued in `references/` and are not supported downloads.
+| Port | Format | Declared status | Import evidence | Theme | Tested on | Supported / inherited / unsupported |
+| --- | --- | --- | --- | --- | --- | --- |
+| Orca (terminal theme YAML) | warp-yaml | experimental | not verified | 1.2.0 | — (linux, macos, windows) | 1 / 1 / 3 |
 <!-- ports:end -->
 
 ## Component coverage
