@@ -12,7 +12,8 @@
   "host": {
     "name": "Codex CLI",
     "observedVersions": [
-      "0.156.1"
+      "0.156.1",
+      "0.157.0"
     ],
     "setting": "tui.theme",
     "themesDir": "$CODEX_HOME/themes",
@@ -185,11 +186,27 @@
     },
     {
       "component": "code-editor",
-      "target": "deprecated text",
-      "kind": "substituted",
-      "specValue": "line-through",
-      "applied": "italic",
-      "reason": "The tmTheme renderer Codex uses supports bold, italic and underline only."
+      "target": "italic and underline font styles",
+      "kind": "unsupported",
+      "specValue": "comments italic; links, invalid text underlined; deprecated text line-through",
+      "applied": "plain text in the role colour",
+      "reason": "Codex renders only bold from a tmTheme (codex-rs/tui/src/render/highlight.rs skips italic and underline)."
+    },
+    {
+      "component": "code-editor",
+      "target": "editor surfaces",
+      "kind": "unsupported",
+      "specValue": "code.bg, code.current-line, code.selection-bg, code.gutter-bg, code.line-number",
+      "applied": "the terminal background",
+      "reason": "Codex paints no code background, line highlight, selection or gutter from a tmTheme; it uses only scope foregrounds and the inserted/deleted backgrounds."
+    },
+    {
+      "component": "diff-view",
+      "target": "modified lines",
+      "kind": "unsupported",
+      "specValue": "color.diff.modified.bg",
+      "applied": null,
+      "reason": "Codex reads backgrounds only for markup.inserted and markup.deleted."
     }
   ]
 }
