@@ -1,11 +1,15 @@
-/* The devbox commands: apply, update, test, restore and specimen. Every write
-   is planned first, backed up, written atomically and read back. */
+/* The devbox commands: apply, update, test, restore and specimen. Every change
+   is planned in full first: each file's next bytes are computed and checked
+   with a real parse before the backup exists or anything is written. Each
+   file is then read again just before its atomic write; if another program
+   changed it since the plan, that file is planned again once, and if it
+   changes again the run stops with nothing further written. */
 
 import { execFileSync } from "node:child_process";
 import { existsSync, promises as fs } from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { atomicWrite, jsonGet, jsonMembers, jsonRemove, jsonSet, readMaybe, removeFile, tomlGet, tomlRestore, tomlSet } from "./edit.mjs";
+import { atomicWrite, decodeText, EditError, encodeText, jsonGet, jsonMembers, jsonRemove, jsonSetRaw, jsonVerify, readMaybe, removeFile, sameBytes, tomlHasTable, tomlParser, tomlRead, tomlRestore, tomlSet, tomlVerify } from "./edit.mjs";
 import { claudeTheme, claudeThemeText, codexThemeObject, codexTmTheme, integrationDisclosures, INTEGRATIONS, lock } from "./generators.mjs";
 import { parsePlist } from "./plist.mjs";
 import { assertTag, DEFAULT_SOURCE_ROOT, KitError, loadContext, localKit, resolveTagRemote, sha256Hex } from "./source.mjs";
@@ -44,6 +48,8 @@ const hostVersion = (bin, skip) => {
   }
 };
 
+/* The hosts may write their own settings when probed, so every writing
+   command probes before it reads a single host file. */
 export const hostVersions = (opts) => ({ "claude-code": hostVersion("claude", opts.skipVersionProbe), codex: hostVersion("codex", opts.skipVersionProbe) });
 
 /* ---- state -------------------------------------------------------------- */
@@ -74,20 +80,44 @@ export const listBackups = async (paths) => {
 };
 
 const newBackupDir = async (paths, iso) => {
-  await fs.mkdir(backupsDir(paths), { recursive: true, mode: 0o700 });
-  const base = stamp(iso);
-  for (let n = 0; ; n += 1) {
-    const name = n ? `${base}-${n}` : base;
-    try {
-      await fs.mkdir(path.join(backupsDir(paths), name), { mode: 0o700 });
-      return { name, dir: path.join(backupsDir(paths), name) };
-    } catch (error) {
-      if (error.code !== "EEXIST") throw error;
+  try {
+    await fs.mkdir(backupsDir(paths), { recursive: true, mode: 0o700 });
+    const base = stamp(iso);
+    for (let n = 0; ; n += 1) {
+      const name = n ? `${base}-${n}` : base;
+      try {
+        await fs.mkdir(path.join(backupsDir(paths), name), { mode: 0o700 });
+        return { name, dir: path.join(backupsDir(paths), name) };
+      } catch (error) {
+        if (error.code !== "EEXIST") throw error;
+      }
     }
+  } catch (error) {
+    throw new KitError(`state directory ${paths.stateRoot} is not writable (${error.code ?? error.message}); nothing was changed. Pass --state-dir <dir> or set J3W1_TERMINAL_KIT_STATE_DIR.`);
   }
 };
 
 const STATE_FILES = ["manifest.json", "pin.json", ...INTEGRATIONS.map((i) => `theme.lock.${i}.json`)];
+
+const snapshotState = async (paths, dir) => {
+  const saved = [];
+  for (const name of STATE_FILES) {
+    const bytes = await readMaybe(path.join(currentDir(paths), name));
+    if (bytes) {
+      await fs.mkdir(path.join(dir, "current"), { recursive: true, mode: 0o700 });
+      await fs.writeFile(path.join(dir, "current", name), bytes, { mode: 0o600 });
+      saved.push(name);
+    }
+  }
+  return saved;
+};
+
+/* pin.json and the locks name what is installed; an update records them even
+   when no managed file changes. */
+const recordPin = async (ctx, paths, integrations, iso) => {
+  await writeJson(path.join(currentDir(paths), "pin.json"), { ref: ctx.theme.ref, revision: ctx.theme.revision, version: ctx.theme.version, profile: ctx.theme.profile, kitSource: ctx.source.kitFrom === "local" ? "local" : "revision", tokensDigest: ctx.tokensDigest });
+  for (const i of integrations) await writeJson(path.join(currentDir(paths), `theme.lock.${i}.json`), lock(ctx, i, { resolvedAt: iso }));
+};
 
 /* ---- targets ------------------------------------------------------------ */
 
@@ -110,42 +140,126 @@ export const buildTargets = (ctx, paths, integrations) => {
 
 const keyName = (t) => (t.format === "toml" ? `${t.table}.${t.key}` : t.key);
 
-const readKey = (t, text) => {
-  if (t.format === "json") return text.trim() === "" ? { present: false } : jsonGet(text, t.key);
-  return tomlGet(text, t.table, t.key);
+/* A manifest settings entry as a target-like reference. */
+const keyRef = (entry) => {
+  const [table, key] = entry.format === "toml" ? entry.key.split(".") : [undefined, entry.key];
+  return { path: entry.file, format: entry.format, table, key, integration: entry.integration };
 };
 
-/* Current bytes and values next to the desired ones. */
-const inspect = async (targets) => {
-  const out = [];
-  for (const t of targets) {
-    const bytes = await readMaybe(t.path);
-    if (t.kind === "file") out.push({ ...t, before: bytes, changed: !bytes || !bytes.equals(t.content) });
-    else {
-      const text = bytes ? bytes.toString("utf8") : "";
-      const current = readKey(t, text);
-      out.push({ ...t, fileBefore: bytes, text, current, changed: !(current.present && current.value === t.value) });
-    }
+const readKey = (t, text, parse) => {
+  if (t.format === "json") return text.trim() === "" ? { present: false } : jsonGet(text, t.key);
+  return tomlRead(parse, text, t.table, t.key, t.path);
+};
+
+const verifyKey = (t, before, after, want, parse) =>
+  t.format === "json" ? jsonVerify(before, after, t.key, want, t.path) : tomlVerify(parse, before, after, t.table, t.key, want, t.path);
+
+/* What a key was before a write: enough to put it back byte for byte. */
+const keyBefore = (t, text, current, fileExisted) => {
+  const out = { fileExistedBefore: fileExisted };
+  if (current.present) {
+    out.before = current.value;
+    if (t.format === "toml") out.beforeLine = current.line;
+    else out.beforeRaw = current.raw;
+  } else {
+    out.absent = true;
+    if (t.format === "toml" && !tomlHasTable(text, t.table, t.key)) out.appendedTable = { addedNewline: text !== "" && !text.endsWith("\n") };
   }
   return out;
 };
 
+/* A planning failure names the file and says nothing was written. */
+const planned = async (file, fn) => {
+  try {
+    return await fn();
+  } catch (error) {
+    if (!(error instanceof EditError)) throw error;
+    throw new EditError(`${error.message.includes(file) ? "" : `${file}: `}${error.message}`);
+  }
+};
+
+const nothingWritten = (error) => {
+  if (error instanceof EditError && !/nothing was (written|changed)/i.test(error.message)) error.message += "; nothing was written";
+  return error;
+};
+
+/* One target's current bytes, its next bytes and every guard. */
+const planTarget = (t, parse) =>
+  planned(t.path, async () => {
+    const before = await readMaybe(t.path);
+    if (t.kind === "file") return { ...t, before, after: t.content, changed: !before || !before.equals(t.content) };
+    const { bom, text } = decodeText(before);
+    const current = readKey(t, text, parse);
+    const step = { ...t, before, bom, text, current, changed: !(current.present && current.value === t.value), after: null };
+    if (step.changed) {
+      const edited = t.format === "json" ? jsonSetRaw(text, t.key, JSON.stringify(t.value)) : tomlSet(text, t.table, t.key, t.value);
+      verifyKey(t, text, edited, { value: t.value }, parse);
+      step.after = encodeText(bom, edited);
+    }
+    return step;
+  });
+
 const show = (v) => (v === undefined ? "(absent)" : JSON.stringify(v));
 
-/* ---- backup, manifest and write ---------------------------------------- */
+/* ---- commit ------------------------------------------------------------- */
 
-const snapshotState = async (paths, dir) => {
-  const saved = [];
-  for (const name of STATE_FILES) {
-    const bytes = await readMaybe(path.join(currentDir(paths), name));
-    if (bytes) {
-      await fs.mkdir(path.join(dir, "current"), { recursive: true, mode: 0o700 });
-      await fs.writeFile(path.join(dir, "current", name), bytes, { mode: 0o600 });
-      saved.push(name);
-    }
-  }
-  return saved;
+const writeStep = async (step) => {
+  if (step.after === null) await removeFile(step.path);
+  else await atomicWrite(step.path, step.after, step.kind === "key" ? { mode: 0o600 } : {});
 };
+
+/* Writes the planned steps under one backup. `record` saves a step's
+   previous bytes in the backup and returns its manifest entry; `replan`
+   plans a step again from the file's new bytes (null: nothing to do now). */
+const commit = async ({ backup, manifest, steps, record, replan, describe, log, hooks }) => {
+  const slots = [];
+  for (const step of steps) slots.push({ step, entry: await record(step) });
+  const save = (list) => {
+    manifest.files = list.filter((s) => s.step.kind === "file").map((s) => s.entry);
+    manifest.settings = list.filter((s) => s.step.kind === "key").map((s) => s.entry);
+    return writeJson(path.join(backup.dir, "manifest.json"), manifest);
+  };
+  await save(slots);
+  const done = [];
+  const stop = async (file, why) => {
+    manifest.incomplete = `stopped at ${file}: ${why}`;
+    if (done.length) await save(done);
+    else await fs.rm(backup.dir, { recursive: true, force: true });
+    const written = done.length ? `Already written: ${done.map((s) => s.step.path).join(", ")}; backup ${backup.name} records them and restore undoes them.` : "Nothing was written and no backup was kept.";
+    throw new KitError(`${file}: ${why}; stopped with nothing further written. ${written}`);
+  };
+  for (const slot of [...slots]) {
+    let { step } = slot;
+    for (let attempt = 1; ; attempt += 1) {
+      await hooks?.beforeWrite?.(step.path, attempt);
+      if (sameBytes(await readMaybe(step.path), step.before)) break;
+      if (attempt > 1) await stop(step.path, "another program changed it again while the kit was writing; close it and run the command again");
+      log(`  ${step.path} changed since the plan (another program wrote it); planning it again`);
+      try {
+        step = await replan(step);
+      } catch (error) {
+        if (!(error instanceof EditError || error instanceof KitError)) throw error;
+        await stop(step.path, `planning it again failed: ${error.message}`);
+      }
+      if (!step) {
+        log(`  same   ${slot.step.path} (the other program already made the change)`);
+        slots.splice(slots.indexOf(slot), 1);
+        await save(slots);
+        break;
+      }
+      slot.step = step;
+      slot.entry = await record(step);
+      await save(slots);
+    }
+    if (!step) continue;
+    await writeStep(step);
+    done.push(slot);
+    log(describe(step));
+  }
+  return slots;
+};
+
+/* ---- apply and update --------------------------------------------------- */
 
 const missingDirs = (targets) => {
   const dirs = new Set();
@@ -163,80 +277,22 @@ const baseManifest = (ctx, command, iso, versions) => ({
   source: { via: ctx.source.via, kitFrom: ctx.source.kitFrom },
 });
 
-/* Applies the changed targets under a fresh backup. */
-const writeTargets = async ({ ctx, paths, command, plan, integrations, versions, log }) => {
-  const iso = now();
-  const createdDirs = missingDirs(plan.filter((t) => t.changed));
-  /* The backup comes first, so a state directory the host will not let us
-     create stops the run before any managed file changes. */
-  let backup;
-  try {
-    backup = await newBackupDir(paths, iso);
-  } catch (error) {
-    throw new KitError(`state directory ${paths.stateRoot} is not writable (${error.code ?? error.message}); nothing was changed. Pass --state-dir <dir> or set J3W1_TERMINAL_KIT_STATE_DIR.`);
-  }
-  const files = [];
-  const settings = [];
-  for (const t of plan) {
-    if (!t.changed) continue;
-    if (t.kind === "file") {
-      let saved = null;
-      if (t.before) {
-        await fs.mkdir(path.join(backup.dir, "files"), { recursive: true, mode: 0o700 });
-        saved = `files/${t.id}${path.extname(t.path)}`;
-        await fs.writeFile(path.join(backup.dir, saved), t.before, { mode: 0o600 });
-      }
-      files.push({ path: t.path, integration: t.integration, existedBefore: Boolean(t.before), sha256Before: t.before ? sha256Hex(t.before) : null, sha256After: sha256Hex(t.content), backup: saved });
-    } else {
-      const entry = { file: t.path, integration: t.integration, format: t.format, key: keyName(t), fileExistedBefore: Boolean(t.fileBefore) };
-      if (t.current.present) entry.before = t.current.value;
-      else entry.absent = true;
-      entry.after = t.value;
-      if (t.format === "toml") {
-        if (t.current.present) entry.beforeLine = t.current.line;
-        else if (!new RegExp(`^\\s*\\[\\s*${t.table}\\s*\\]`, "m").test(t.text)) entry.appendedTable = { addedNewline: t.text !== "" && !t.text.endsWith("\n") };
-      } else if (t.current.present) {
-        const m = jsonMembers(t.text).members.find((x) => x.key === t.key);
-        entry.beforeRaw = t.text.slice(m.valueStart, m.valueEnd);
-      }
-      settings.push(entry);
+const recordApply = (backup) => async (t) => {
+  if (t.kind === "file") {
+    let saved = null;
+    if (t.before) {
+      await fs.mkdir(path.join(backup.dir, "files"), { recursive: true, mode: 0o700 });
+      saved = `files/${t.id}${path.extname(t.path)}`;
+      await fs.writeFile(path.join(backup.dir, saved), t.before, { mode: 0o600 });
     }
+    return { path: t.path, integration: t.integration, existedBefore: Boolean(t.before), sha256Before: t.before ? sha256Hex(t.before) : null, sha256After: sha256Hex(t.content), backup: saved };
   }
-  const manifest = {
-    ...baseManifest(ctx, command, iso, versions),
-    backup: backup.name,
-    integrations,
-    files,
-    createdDirs,
-    settings,
-    state: await snapshotState(paths, backup.dir),
-    disclosures: integrations.flatMap((i) => integrationDisclosures(ctx, i).map((d) => ({ integration: i, ...d }))),
-    deviations: integrations.flatMap((i) => ctx.roles[i].deviations.map((d) => ({ integration: i, ...d }))),
-  };
-  await writeJson(path.join(backup.dir, "manifest.json"), manifest);
-
-  for (const t of plan) {
-    if (!t.changed) continue;
-    if (t.kind === "file") await atomicWrite(t.path, t.content);
-    else {
-      const next = t.format === "json" ? jsonSet(t.text, t.key, t.value) : tomlSet(t.text, t.table, t.key, t.value);
-      await atomicWrite(t.path, next, { mode: 0o600 });
-      const back = readKey(t, (await fs.readFile(t.path)).toString("utf8"));
-      if (!(back.present && back.value === t.value)) throw new KitError(`${t.path}: ${keyName(t)} did not read back as ${t.value}`);
-    }
-    log(`  wrote ${t.path}${t.kind === "key" ? ` (${keyName(t)} = ${JSON.stringify(t.value)})` : ""}`);
-  }
-
-  await writeJson(path.join(currentDir(paths), "manifest.json"), manifest);
-  await writeJson(path.join(currentDir(paths), "pin.json"), { ref: ctx.theme.ref, revision: ctx.theme.revision, version: ctx.theme.version, profile: ctx.theme.profile, kitSource: ctx.source.kitFrom === "local" ? "local" : "revision" });
-  for (const i of integrations) await writeJson(path.join(currentDir(paths), `theme.lock.${i}.json`), lock(ctx, i, { resolvedAt: iso }));
-  log(`backup ${path.join(backupsDir(paths), backup.name)}`);
-  return { manifest, createdDirs };
+  return { file: t.path, integration: t.integration, format: t.format, key: keyName(t), ...keyBefore(t, t.text, t.current, Boolean(t.before)), after: t.value };
 };
 
-const restartNotes = (plan, createdDirs, paths, log) => {
-  const claude = plan.filter((t) => t.integration === "claude-code" && t.changed);
-  const codex = plan.filter((t) => t.integration === "codex" && t.changed);
+const restartNotes = (steps, createdDirs, paths, log) => {
+  const claude = steps.filter((t) => t.integration === "claude-code");
+  const codex = steps.filter((t) => t.integration === "codex");
   if (claude.length) {
     if (createdDirs.includes(path.join(paths.claudeDir, "themes"))) log(`restart: Claude Code: ${path.join(paths.claudeDir, "themes")} was created now; restart running sessions once so they watch it.`);
     else log("restart: Claude Code: new sessions start with the theme; running sessions watch the themes directory, restart one if it keeps its previous theme.");
@@ -255,15 +311,6 @@ const printDisclosures = (ctx, integrations, log) => {
   }
 };
 
-/* ---- commands ----------------------------------------------------------- */
-
-const pinnedContext = async (opts, paths, log) => {
-  const pin = await readJsonMaybe(path.join(currentDir(paths), "pin.json"));
-  const kit = localKit().kit;
-  if (pin && pin.revision !== kit.theme.revision) log(`using the installed pin ${pin.ref} (${pin.revision}) from ${currentDir(paths)}`);
-  return loadContext({ pin: pin ? { ref: pin.ref, revision: pin.revision, version: pin.version, profile: pin.profile } : undefined, kitSource: pin?.kitSource ?? "local", sourceRoot: opts.sourceRoot ?? DEFAULT_SOURCE_ROOT, offline: Boolean(opts.sourceRoot) });
-};
-
 const describePlan = (plan, log) => {
   for (const t of plan) {
     if (t.kind === "file") log(`  ${t.changed ? (t.before ? "update" : "create") : "same  "} ${t.path}`);
@@ -271,12 +318,31 @@ const describePlan = (plan, log) => {
   }
 };
 
+const planTargets = async (targets) => {
+  const parse = targets.some((t) => t.format === "toml") ? await tomlParser() : null;
+  const plan = [];
+  for (const t of targets) plan.push(await planTarget(t, parse));
+  return { plan, parse };
+};
+
 const run = async ({ ctx, paths, opts, command, integrations, log, before }) => {
-  const plan = await inspect(buildTargets(ctx, paths, integrations));
-  log(`j3w1-theme ${ctx.theme.version} ${ctx.theme.ref} (${ctx.theme.revision}) profile ${ctx.theme.profile}; export via ${ctx.source.via} (${ctx.source.tagCheck}); digest verified`);
+  const versions = opts.dryRun ? null : hostVersions(opts);
+  let planning;
+  try {
+    planning = await planTargets(buildTargets(ctx, paths, integrations));
+  } catch (error) {
+    throw nothingWritten(error);
+  }
+  const { plan, parse } = planning;
+  log(`j3w1-theme ${ctx.theme.version} ${ctx.theme.ref} (${ctx.theme.revision}) profile ${ctx.theme.profile}; export via ${ctx.source.via} (${ctx.source.tagCheck}); ${ctx.source.digestCheck}`);
   if (before) before(plan);
   describePlan(plan, log);
-  if (!plan.some((t) => t.changed)) {
+  const changed = plan.filter((t) => t.changed);
+  if (!changed.length) {
+    if (command.startsWith("update") && !opts.dryRun) {
+      await recordPin(ctx, paths, integrations, now());
+      log(`recorded the pin ${ctx.theme.ref} (${ctx.theme.revision}) and the locks for ${integrations.join(", ")}`);
+    }
     log("no changes");
     return 0;
   }
@@ -284,14 +350,72 @@ const run = async ({ ctx, paths, opts, command, integrations, log, before }) => 
     log("dry run: nothing written");
     return 0;
   }
-  const { createdDirs } = await writeTargets({ ctx, paths, command, plan, integrations, versions: hostVersions(opts), log });
-  restartNotes(plan, createdDirs, paths, log);
+  const iso = now();
+  const createdDirs = missingDirs(changed);
+  /* The backup comes first, so a state directory the host will not let us
+     create stops the run before any managed file changes. */
+  const backup = await newBackupDir(paths, iso);
+  const manifest = {
+    ...baseManifest(ctx, command, iso, versions),
+    backup: backup.name,
+    integrations,
+    files: [],
+    createdDirs,
+    settings: [],
+    state: await snapshotState(paths, backup.dir),
+    disclosures: integrations.flatMap((i) => integrationDisclosures(ctx, i).map((d) => ({ integration: i, ...d }))),
+    deviations: integrations.flatMap((i) => ctx.roles[i].deviations.map((d) => ({ integration: i, ...d }))),
+  };
+  const slots = await commit({
+    backup,
+    manifest,
+    steps: changed,
+    record: recordApply(backup),
+    replan: async (t) => {
+      const again = await planTarget(t, parse);
+      return again.changed ? again : null;
+    },
+    describe: (t) => `  wrote ${t.path}${t.kind === "key" ? ` (${keyName(t)} = ${JSON.stringify(t.value)})` : ""}`,
+    log,
+    hooks: opts.hooks,
+  });
+  await writeJson(path.join(currentDir(paths), "manifest.json"), manifest);
+  await recordPin(ctx, paths, integrations, iso);
+  log(`backup ${backup.dir}`);
+  restartNotes(slots.map((s) => s.step), createdDirs, paths, log);
   printDisclosures(ctx, integrations, log);
   return 0;
 };
 
+const semver = (v) => String(v ?? "").replace(/^v/, "").split(/[.-]/).slice(0, 3).map(Number);
+const newer = (a, b) => {
+  const [x, y] = [semver(a), semver(b)];
+  for (let i = 0; i < 3; i += 1) if (x[i] !== y[i]) return x[i] > y[i];
+  return false;
+};
+
+/* The installed pin (current/pin.json) wins over kit.json's once there is
+   one: only update moves it, so apply never goes back to an older release
+   and never jumps ahead to a newer one on its own. */
+const pinnedContext = async (opts, paths, log) => {
+  const pin = await readJsonMaybe(path.join(currentDir(paths), "pin.json"));
+  const kit = localKit().kit;
+  const where = { sourceRoot: opts.sourceRoot ?? DEFAULT_SOURCE_ROOT, offline: Boolean(opts.sourceRoot) };
+  if (!pin) return loadContext(where);
+  if (pin.revision !== kit.theme.revision) {
+    const direction = newer(kit.theme.ref, pin.ref) ? "to move to it" : "to go back to it";
+    log(`using the installed pin ${pin.ref} (${pin.revision}); this checkout's kit.json pins ${kit.theme.ref}. Run update --version ${kit.theme.ref} ${direction}.`);
+  }
+  try {
+    return await loadContext({ ...where, pin: { ref: pin.ref, revision: pin.revision, version: pin.version, profile: pin.profile, ...(pin.tokensDigest ? { tokensDigest: pin.tokensDigest } : {}) }, kitSource: pin.kitSource ?? "local" });
+  } catch (error) {
+    if (!(error instanceof KitError)) throw error;
+    throw new KitError(`the installed pin ${pin.ref} (${pin.revision}) cannot be loaded: ${error.message}. The kit does not fall back to kit.json's ${kit.theme.ref}; pass --source-root <a checkout that has ${pin.revision}>, or run update --version <tag> to move the pin on purpose.`);
+  }
+};
+
 export const apply = async (opts, paths, log) => {
-  const ctx = await loadContext({ sourceRoot: opts.sourceRoot ?? DEFAULT_SOURCE_ROOT, offline: Boolean(opts.sourceRoot) });
+  const ctx = await pinnedContext(opts, paths, log);
   return run({ ctx, paths, opts, command: "apply", integrations: opts.integrations, log });
 };
 
@@ -354,6 +478,8 @@ export const update = async (opts, paths, log) => {
   });
 };
 
+/* ---- specimen and test -------------------------------------------------- */
+
 export const specimen = async (opts, paths, log, out) => {
   const ctx = await pinnedContext(opts, paths, log);
   out(renderSpecimen(ctx));
@@ -368,8 +494,17 @@ export const test = async (opts, paths, log, out) => {
     results.push(status);
     log(`${status.padEnd(4)} ${what}`);
   };
-  const plan = await inspect(buildTargets(ctx, paths, opts.integrations));
-  for (const t of plan) {
+  const targets = buildTargets(ctx, paths, opts.integrations);
+  const parse = targets.some((t) => t.format === "toml") ? await tomlParser() : null;
+  for (const target of targets) {
+    let t;
+    try {
+      t = await planTarget(target, parse);
+    } catch (error) {
+      if (!(error instanceof EditError)) throw error;
+      check("FAIL", error.message);
+      continue;
+    }
     if (t.kind === "file") check(t.changed ? "FAIL" : "PASS", `${t.path} ${t.before ? (t.changed ? "differs from" : "equals") : "is missing; expected"} the generated ${t.integration} theme`);
     else check(t.changed ? "FAIL" : "PASS", `${t.path} ${keyName(t)} = ${show(t.current.present ? t.current.value : undefined)} (expected ${JSON.stringify(t.value)})`);
   }
@@ -390,11 +525,19 @@ export const test = async (opts, paths, log, out) => {
         const how = linked === own ? `links to ${own}` : "is a separate directory Orca will not replace";
         check(ok ? "PASS" : "FAIL", `Orca runtime home: ${themes} ${how}; ${file} ${bytes ? (ok ? "resolves to the generated theme" : "differs") : "is missing"}`);
       }
-      const config = await readMaybe(path.join(rt, "config.toml"));
-      let value;
-      try { value = config ? tomlGet(config.toString("utf8"), "tui", "theme") : { present: false }; } catch { value = { present: false }; }
+      const configPath = path.join(rt, "config.toml");
+      const config = await readMaybe(configPath);
       const want = ctx.roles.codex.theme.name;
-      check(value.present && value.value === want ? "PASS" : "WARN", `Orca runtime config tui.theme = ${show(value.present ? value.value : undefined)}${value.value === want ? "" : `; Orca syncs ${want} from ${path.join(paths.codexHome, "config.toml")} at the next Codex pane launch`}`);
+      let value = { present: false };
+      let problem = null;
+      try {
+        if (config) value = tomlRead(parse, decodeText(config).text, "tui", "theme", configPath);
+      } catch (error) {
+        if (!(error instanceof EditError)) throw error;
+        problem = error.message;
+      }
+      if (problem) check("WARN", `Orca runtime config: ${problem}`);
+      else check(value.present && value.value === want ? "PASS" : "WARN", `Orca runtime config tui.theme = ${show(value.present ? value.value : undefined)}${value.value === want ? "" : `; Orca syncs ${want} from ${path.join(paths.codexHome, "config.toml")} at the next Codex pane launch`}`);
     }
   }
   const versions = hostVersions(opts);
@@ -412,126 +555,203 @@ export const test = async (opts, paths, log, out) => {
 
 /* ---- restore ------------------------------------------------------------ */
 
-const restoreKeyText = (entry, text) => {
+const restoreKeyText = (entry, ref, text) => {
   if (entry.format === "json") {
-    if (entry.absent) return jsonRemove(text, entry.key);
-    return entry.beforeRaw !== undefined ? jsonSetRaw(text, entry.key, entry.beforeRaw) : jsonSet(text, entry.key, entry.before);
+    if (entry.absent) return text.trim() === "" ? text : jsonRemove(text, ref.key);
+    return jsonSetRaw(text, ref.key, entry.beforeRaw ?? JSON.stringify(entry.before));
   }
-  const [table, key] = entry.key.split(".");
-  if (entry.absent) return tomlRestore(text, table, key, { appendedTable: entry.appendedTable });
-  return tomlRestore(text, table, key, { beforeLine: entry.beforeLine ?? `${key} = ${JSON.stringify(entry.before)}` });
+  if (entry.absent) return tomlRestore(text, ref.table, ref.key, { appendedTable: entry.appendedTable });
+  return tomlRestore(text, ref.table, ref.key, { beforeLine: entry.beforeLine ?? `${ref.key} = ${JSON.stringify(entry.before)}` });
 };
 
-const jsonSetRaw = (text, key, raw) => {
-  const m = jsonMembers(text).members.find((x) => x.key === key);
-  return m ? text.slice(0, m.valueStart) + raw + text.slice(m.valueEnd) : jsonSet(text, key, JSON.parse(raw));
+const emptyDocument = (ref, text) => (ref.format === "json" ? text.trim() === "" || jsonMembers(text).members.length === 0 : text.trim() === "");
+
+/* A default restore is a baseline: it undoes everything since the previous
+   one. Manifests written before baselines were recorded count as one when
+   they restored the first backup, which was then the default. */
+const isBaseline = (manifest, first) => manifest.baseline === true || (manifest.baseline === undefined && manifest.command === `restore ${first}`);
+
+/* Per file and per key: the earliest entry (its before-value is the target)
+   and the latest one (what the kit last wrote, to detect later edits). */
+const mergeManifests = (chosen) => {
+  const files = new Map();
+  const keys = new Map();
+  for (const b of chosen) {
+    for (const f of b.manifest.files ?? []) {
+      if (files.has(f.path)) files.get(f.path).last = f;
+      else files.set(f.path, { first: f, dir: b.dir, last: f });
+    }
+    for (const s of b.manifest.settings ?? []) {
+      const id = `${s.file}\u0000${s.key}`;
+      if (keys.has(id)) keys.get(id).last = s;
+      else keys.set(id, { first: s, last: s });
+    }
+  }
+  return { files: [...files.values()], keys: [...keys.values()] };
 };
 
-const emptyAfterRestore = (entry, text) => {
-  if (entry.fileExistedBefore) return false;
-  if (entry.format === "json") return jsonMembers(text).members.length === 0;
-  return text.trim() === "";
+const planRestoreFile = async (merged) => {
+  const { first, dir, last } = merged;
+  const before = await readMaybe(first.path);
+  const saved = first.existedBefore ? path.join(dir, first.backup ?? "") : null;
+  const after = saved ? await readMaybe(saved) : null;
+  if (saved && !after) throw new KitError(`${saved}, the saved copy of ${first.path}, is missing; nothing was written`);
+  const changed = !sameBytes(before, after);
+  const drift = changed && before !== null && typeof last.sha256After === "string" && sha256Hex(before) !== last.sha256After;
+  return { kind: "file", merged, path: first.path, integration: first.integration, before, after, changed, drift };
+};
+
+const planRestoreKey = (merged, parse) => {
+  const { first, last } = merged;
+  const ref = keyRef(first);
+  return planned(ref.path, async () => {
+    const before = await readMaybe(ref.path);
+    const { bom, text } = decodeText(before);
+    const current = readKey(ref, text, parse);
+    const want = first.absent ? { absent: true } : { value: first.beforeRaw !== undefined ? JSON.parse(first.beforeRaw) : first.before };
+    const edited = before === null && first.absent ? text : restoreKeyText(first, ref, text);
+    const remove = before !== null && !first.fileExistedBefore && emptyDocument(ref, edited);
+    const changed = remove || edited !== text;
+    if (changed) verifyKey(ref, text, edited, want, parse);
+    const value = current.present ? current.value : undefined;
+    const kitValue = last.afterAbsent ? undefined : last.after;
+    return { kind: "key", merged, ref, path: ref.path, integration: first.integration, before, bom, text, current, want, remove, changed, after: remove ? null : encodeText(bom, edited), drift: changed && value !== kitValue, value, kitValue };
+  });
+};
+
+/* The kit state afterwards names only what is still installed: each undone
+   integration's lock returns to what it was before the earliest undone
+   change; pin and manifest go when no lock is left. */
+const resetState = async (paths, chosen) => {
+  const covered = new Set(chosen.flatMap((b) => b.manifest.integrations ?? []));
+  const snap = chosen[0];
+  const saved = async (n) => (snap.manifest.state?.includes(n) ? readMaybe(path.join(snap.dir, "current", n)) : null);
+  const put = async (n, bytes) => (bytes ? writeJson(path.join(currentDir(paths), n), JSON.parse(bytes.toString("utf8"))) : removeFile(path.join(currentDir(paths), n)));
+  for (const i of INTEGRATIONS) if (covered.has(i)) await put(`theme.lock.${i}.json`, await saved(`theme.lock.${i}.json`));
+  const installed = INTEGRATIONS.some((i) => existsSync(path.join(currentDir(paths), `theme.lock.${i}.json`)));
+  for (const n of ["manifest.json", "pin.json"]) {
+    if (!installed) await removeFile(path.join(currentDir(paths), n));
+    else {
+      const bytes = await saved(n);
+      if (bytes) await put(n, bytes);
+    }
+  }
 };
 
 export const restore = async (opts, paths, log) => {
-  const backups = await listBackups(paths);
-  if (!backups.length) throw new KitError(`no backups in ${backupsDir(paths)}`);
-  const name = opts.backup ?? (opts.latest ? backups.at(-1) : backups[0]);
-  if (!backups.includes(name)) throw new KitError(`backup ${name} not found; have ${backups.join(", ")}`);
-  const dir = path.join(backupsDir(paths), name);
-  const manifest = await readJsonMaybe(path.join(dir, "manifest.json"));
-  if (!manifest) throw new KitError(`${dir} has no manifest.json`);
-  log(`restore ${name} (${manifest.command} at ${manifest.timestamp})`);
+  const versions = opts.dryRun ? null : hostVersions(opts);
+  const names = await listBackups(paths);
+  if (!names.length) throw new KitError(`no backups in ${backupsDir(paths)}`);
+  const all = [];
+  for (const name of names) {
+    const dir = path.join(backupsDir(paths), name);
+    const manifest = await readJsonMaybe(path.join(dir, "manifest.json"));
+    if (manifest) all.push({ name, dir, manifest });
+  }
+  const baseline = !(opts.backup || opts.latest);
+  let chosen;
+  if (!baseline) {
+    const name = opts.backup ?? names.at(-1);
+    if (!names.includes(name)) throw new KitError(`backup ${name} not found; have ${names.join(", ")}`);
+    const one = all.find((b) => b.name === name);
+    if (!one) throw new KitError(`${path.join(backupsDir(paths), name)} has no manifest.json`);
+    chosen = [one];
+    log(`restore ${name} (${one.manifest.command} at ${one.manifest.timestamp})`);
+  } else {
+    const last = all.findLastIndex((b) => isBaseline(b.manifest, names[0]));
+    chosen = all.slice(last + 1);
+    const since = last >= 0 ? `the restore ${all[last].name}` : "the first apply";
+    if (!chosen.length) {
+      log(`nothing was applied since ${since}; no changes`);
+      return 0;
+    }
+    log(`restore: undo every change since ${since}: ${chosen.map((b) => `${b.name} (${b.manifest.command})`).join(", ")}`);
+  }
 
-  /* Desired bytes for every file and key the backup covers. */
+  const merged = mergeManifests(chosen);
   const steps = [];
-  for (const f of manifest.files) {
-    const current = await readMaybe(f.path);
-    const want = f.existedBefore ? await fs.readFile(path.join(dir, f.backup)) : null;
-    const changed = want ? !(current && current.equals(want)) : Boolean(current);
-    steps.push({ kind: "file", entry: f, current, want, changed });
-    log(`  ${changed ? (want ? "put   " : "delete") : "same  "} ${f.path}`);
+  let parse = null;
+  try {
+    if (merged.keys.some((k) => k.first.format === "toml")) parse = await tomlParser();
+    for (const f of merged.files) steps.push(await planRestoreFile(f));
+    for (const k of merged.keys) steps.push(await planRestoreKey(k, parse));
+  } catch (error) {
+    throw nothingWritten(error);
   }
-  for (const s of manifest.settings) {
-    const current = await readMaybe(s.file);
-    const text = current ? current.toString("utf8") : "";
-    const next = current ? restoreKeyText(s, text) : null;
-    const remove = next !== null && emptyAfterRestore(s, next);
-    const changed = current !== null && (remove || next !== text);
-    steps.push({ kind: "key", entry: s, current, text, next, remove, changed });
-    log(`  ${changed ? (remove ? "delete" : "set   ") : "same  "} ${s.file} ${s.key} -> ${s.absent ? "(absent)" : JSON.stringify(s.before)}`);
+  for (const s of steps) {
+    if (s.kind === "file") {
+      log(`  ${s.changed ? (s.after ? "put   " : "delete") : "same  "} ${s.path}`);
+      if (s.drift) log(`  WARN   ${s.path} changed after the kit wrote it (its sha256 is not the manifest's); restore replaces it and keeps this copy in its own backup`);
+    } else {
+      log(`  ${s.changed ? (s.remove ? "delete" : "set   ") : "same  "} ${s.path} ${s.merged.first.key} -> ${s.want.absent ? "(absent)" : JSON.stringify(s.want.value)}`);
+      if (s.drift) log(`  WARN   ${s.path} ${s.merged.first.key} is ${show(s.value)} now, not the kit's ${show(s.kitValue)}; restore replaces it and keeps it in its own backup manifest`);
+    }
   }
-  if (!steps.some((s) => s.changed)) {
-    log("no changes");
+  const changed = steps.filter((s) => s.changed);
+  if (opts.dryRun) {
+    log(changed.length ? "dry run: nothing written" : "no changes");
     return 0;
   }
-  if (opts.dryRun) {
-    log("dry run: nothing written");
+  if (!changed.length) {
+    await resetState(paths, chosen);
+    log("no changes");
     return 0;
   }
 
   /* Back up the state being replaced; restoring this backup undoes the restore. */
   const iso = now();
   const backup = await newBackupDir(paths, iso);
-  const files = [];
-  for (const s of steps.filter((x) => x.kind === "file" && x.changed)) {
-    let saved = null;
-    if (s.current) {
-      await fs.mkdir(path.join(backup.dir, "files"), { recursive: true, mode: 0o700 });
-      saved = `files/${path.basename(s.entry.backup ?? s.entry.path)}`;
-      await fs.writeFile(path.join(backup.dir, saved), s.current, { mode: 0o600 });
-    }
-    files.push({ path: s.entry.path, integration: s.entry.integration, existedBefore: Boolean(s.current), sha256Before: s.current ? sha256Hex(s.current) : null, sha256After: s.want ? sha256Hex(s.want) : null, backup: saved });
-  }
-  const settings = [];
-  for (const s of steps.filter((x) => x.kind === "key" && x.changed)) {
-    const e = s.entry;
-    const [table, key] = e.key.split(".");
-    const cur = e.format === "json" ? jsonGet(s.text, e.key) : tomlGet(s.text, table, key);
-    const entry = { file: e.file, integration: e.integration, format: e.format, key: e.key, fileExistedBefore: true };
-    if (cur.present) entry.before = cur.value;
-    else entry.absent = true;
-    if (e.absent) entry.afterAbsent = true;
-    else entry.after = e.before;
-    if (e.format === "toml" && cur.present) entry.beforeLine = cur.line;
-    if (e.format === "json" && cur.present) {
-      const m = jsonMembers(s.text).members.find((x) => x.key === e.key);
-      entry.beforeRaw = s.text.slice(m.valueStart, m.valueEnd);
-    }
-    settings.push(entry);
-  }
   const own = {
     schemaVersion: 1,
-    kit: manifest.kit,
-    command: `restore ${name}`,
+    kit: chosen[0].manifest.kit,
+    command: baseline ? "restore" : `restore ${chosen[0].name}`,
+    baseline,
+    restored: chosen.map((b) => b.name),
     timestamp: iso,
-    hosts: hostVersions(opts),
+    hosts: versions,
     theme: (await readJsonMaybe(path.join(currentDir(paths), "manifest.json")))?.theme ?? null,
     backup: backup.name,
-    integrations: manifest.integrations,
-    files,
+    integrations: [...new Set(chosen.flatMap((b) => b.manifest.integrations ?? []))],
+    files: [],
     createdDirs: [],
-    settings,
+    settings: [],
     state: await snapshotState(paths, backup.dir),
     disclosures: [],
     deviations: [],
   };
-  await writeJson(path.join(backup.dir, "manifest.json"), own);
-
-  for (const s of steps.filter((x) => x.changed)) {
+  const record = async (s) => {
     if (s.kind === "file") {
-      if (s.want) await atomicWrite(s.entry.path, s.want);
-      else await removeFile(s.entry.path);
-      log(`  ${s.want ? "restored" : "deleted"} ${s.entry.path}`);
-    } else if (s.remove) {
-      await removeFile(s.entry.file);
-      log(`  deleted ${s.entry.file} (the kit created it)`);
-    } else {
-      await atomicWrite(s.entry.file, s.next, { mode: 0o600 });
-      log(`  restored ${s.entry.file} ${s.entry.key}`);
+      let saved = null;
+      if (s.before) {
+        await fs.mkdir(path.join(backup.dir, "files"), { recursive: true, mode: 0o700 });
+        saved = `files/${path.basename(s.merged.first.backup ?? s.path)}`;
+        await fs.writeFile(path.join(backup.dir, saved), s.before, { mode: 0o600 });
+      }
+      return { path: s.path, integration: s.integration, existedBefore: Boolean(s.before), sha256Before: s.before ? sha256Hex(s.before) : null, sha256After: s.after ? sha256Hex(s.after) : null, backup: saved };
     }
+    const e = s.merged.first;
+    return { file: s.path, integration: s.integration, format: e.format, key: e.key, ...keyBefore(s.ref, s.text, s.current, Boolean(s.before)), ...(e.absent ? { afterAbsent: true } : { after: s.want.value }) };
+  };
+  const slots = await commit({
+    backup,
+    manifest: own,
+    steps: changed,
+    record,
+    replan: async (s) => {
+      const again = s.kind === "file" ? await planRestoreFile(s.merged) : await planRestoreKey(s.merged, parse);
+      return again.changed ? again : null;
+    },
+    describe: (s) => (s.kind === "file" ? `  ${s.after ? "restored" : "deleted"} ${s.path}` : s.remove ? `  deleted ${s.path} (the kit created it)` : `  restored ${s.path} ${s.merged.first.key}`),
+    log,
+    hooks: opts.hooks,
+  });
+  for (const { step, entry } of slots) {
+    if (!step.drift) continue;
+    if (step.kind === "file") log(`  kept the edited ${step.path} as ${path.join(backup.dir, entry.backup)}`);
+    else log(`  kept the replaced ${step.path} ${entry.key} value in ${path.join(backup.dir, "manifest.json")}`);
   }
-  for (const d of [...(manifest.createdDirs ?? [])].reverse()) {
+  const dirs = chosen.flatMap((b) => b.manifest.createdDirs ?? []);
+  for (const d of [...new Set(dirs)].sort().reverse()) {
     try {
       await fs.rmdir(d);
       log(`  removed empty ${d}`);
@@ -539,13 +759,8 @@ export const restore = async (opts, paths, log) => {
       /* not empty or already gone: leave it */
     }
   }
-  /* The kit state returns to what it was when the backup was taken. */
-  for (const n of STATE_FILES) {
-    const saved = manifest.state?.includes(n) ? await readMaybe(path.join(dir, "current", n)) : null;
-    if (saved) await writeJson(path.join(currentDir(paths), n), JSON.parse(saved.toString("utf8")));
-    else await removeFile(path.join(currentDir(paths), n));
-  }
-  log(`backup of the replaced state ${path.join(backupsDir(paths), backup.name)}`);
+  await resetState(paths, chosen);
+  log(`backup of the replaced state ${backup.dir}`);
   log("restart: Codex: new sessions only. Claude Code: restart a running session if it keeps the j3w1 theme.");
   return 0;
 };

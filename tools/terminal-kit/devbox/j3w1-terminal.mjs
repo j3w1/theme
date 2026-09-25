@@ -4,7 +4,7 @@
 
    Usage: node tools/terminal-kit/devbox/j3w1-terminal.mjs <command> [options]
    See `help` for the commands and options. It never runs claude or codex
-   except to read `--version`. */
+   except to read `--version`, which it does before reading their files. */
 
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -16,13 +16,15 @@ import { KitError } from "./lib/source.mjs";
 const HELP = `j3w1-terminal <command> [options]
 
 commands
-  apply     [--claude] [--codex] [--dry-run]   install the pinned themes (default both)
+  apply     [--claude] [--codex] [--dry-run]   install the pinned themes (default both);
+                                               once installed, the installed pin
   update    --version vX.Y.Z [--claude] [--codex] [--dry-run]
-                                               move to an explicit release tag
+                                               move the pin to an explicit release tag
   test      [--no-specimen] [--claude] [--codex]
                                                render the specimen, then check the install
   restore   [--backup <yyyyMMddTHHmmssZ>] [--latest] [--dry-run]
-                                               default: the first backup (the pre-kit state)
+                                               default: undo every apply and update
+                                               since the last restore
   specimen                                     render the specimen only
 
 options

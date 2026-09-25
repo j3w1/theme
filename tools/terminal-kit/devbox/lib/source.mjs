@@ -2,7 +2,9 @@
    derived from exports/tokens.resolved.json at the pinned revision, read from
    a checkout that contains the commit (git show) or from raw.githubusercontent
    after the tag has been checked against the GitHub API. The export's bytes
-   are checked against exports/digests.json before a single value is used. */
+   are checked against exports/digests.json, and against the digest kit.json
+   (or the installed pin) records for that revision, before a single value is
+   used. */
 
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
@@ -45,18 +47,35 @@ const localTag = (root, ref) => {
 
 const fill = (template, values) => template.replace(/\{(\w+)\}/g, (_, key) => values[key]);
 
-const fetchText = async (url, accept) => {
-  const response = await fetch(url, { headers: { "user-agent": "j3w1-terminal-kit", ...(accept ? { accept } : {}) } });
-  if (!response.ok) throw new KitError(`GET ${url} failed: ${response.status}`);
-  return Buffer.from(await response.arrayBuffer());
+export const FETCH_TIMEOUT_MS = 20000;
+
+/* One GET with a deadline for the whole exchange, body included. A 404 is
+   `null`; every other failure is a KitError that names the URL. */
+export const fetchText = async (url, accept, { timeoutMs = FETCH_TIMEOUT_MS } = {}) => {
+  try {
+    const response = await fetch(url, { headers: { "user-agent": "j3w1-terminal-kit", ...(accept ? { accept } : {}) }, signal: AbortSignal.timeout(timeoutMs) });
+    if (response.status === 404) return null;
+    if (!response.ok) throw new KitError(`GET ${url} failed: ${response.status}`);
+    return Buffer.from(await response.arrayBuffer());
+  } catch (error) {
+    if (error instanceof KitError) throw error;
+    if (error?.name === "TimeoutError") throw new KitError(`GET ${url} timed out after ${timeoutMs / 1000} s; check the network, or pass --source-root <checkout> to read a local clone`);
+    throw new KitError(`GET ${url} failed: ${error?.cause?.message ?? error?.message ?? error}`);
+  }
+};
+
+const fetchJson = async (url) => {
+  const bytes = await fetchText(url, "application/vnd.github+json");
+  if (!bytes) throw new KitError(`GET ${url} failed: 404`);
+  return JSON.parse(bytes.toString("utf8"));
 };
 
 /* A tag resolves to one commit; annotated tags are dereferenced once. */
 export const resolveTagRemote = async (kit, ref) => {
   const url = fill(kit.urls.tagRef, { repository: kit.theme.repository, ref });
-  const body = JSON.parse((await fetchText(url, "application/vnd.github+json")).toString("utf8"));
+  const body = await fetchJson(url);
   if (body.object?.type === "tag") {
-    const tag = JSON.parse((await fetchText(body.object.url, "application/vnd.github+json")).toString("utf8"));
+    const tag = await fetchJson(body.object.url);
     return tag.object.sha;
   }
   return body.object?.sha;
@@ -95,13 +114,7 @@ export const openRevision = async ({ kit, ref, revision, sourceRoot = DEFAULT_SO
     via: "network",
     where: `raw.githubusercontent.com/${kit.theme.repository}/${revision}`,
     tagCheck: "GitHub API tag matches",
-    read: async (file) => {
-      try {
-        return await fetchText(fill(kit.urls.raw, { repository: kit.theme.repository, revision, path: file }));
-      } catch {
-        return null;
-      }
-    },
+    read: (file) => fetchText(fill(kit.urls.raw, { repository: kit.theme.repository, revision, path: file })),
   };
 };
 
@@ -151,10 +164,13 @@ export const makeResolver = (kit, tokens) => {
   return { token, color };
 };
 
-/* The full context every generator and command works from. */
+/* The full context every generator and command works from. `pin` may carry
+   the tokensDigest recorded when it was installed. */
 export const loadContext = async ({ pin, kitSource = "local", sourceRoot = DEFAULT_SOURCE_ROOT, offline = false } = {}) => {
   let parsed = localKit();
-  const theme = { ...parsed.kit.theme, ...(pin ?? {}) };
+  const local = parsed.kit;
+  const { tokensDigest: pinnedDigest, ...pinTheme } = pin ?? {};
+  const theme = { ...parsed.kit.theme, ...pinTheme };
   const reader = await openRevision({ kit: parsed.kit, ref: theme.ref, revision: theme.revision, sourceRoot, offline });
   let kitFrom = "local";
   if (kitSource === "revision") {
@@ -173,6 +189,13 @@ export const loadContext = async ({ pin, kitSource = "local", sourceRoot = DEFAU
   const digests = JSON.parse(digestBytes.toString("utf8"));
   const digest = sha256Base64(tokenBytes);
   if (digests.files?.[tokensPath] !== digest) throw new KitError(`${tokensPath} at ${theme.revision} does not match digests.json (${digest})`);
+  /* The digest a kit.json records applies to the revision that kit.json
+     pins; an installed pin carries the digest it was installed with. */
+  const expected = [
+    ...[local, kit].filter((k) => k.theme.revision === theme.revision && k.exports.tokensDigest).map((k) => ["kit.json", k.exports.tokensDigest]),
+    ...(pinnedDigest ? [["the installed pin", pinnedDigest]] : []),
+  ];
+  for (const [from, want] of expected) if (digest !== want) throw new KitError(`${tokensPath} at ${theme.revision} is ${digest}, not the ${want} ${from} records; refusing`);
   const resolved = JSON.parse(tokenBytes.toString("utf8"));
   const profile = resolved.profiles?.[theme.profile];
   if (!profile) throw new KitError(`profile ${theme.profile} is not in the export at ${theme.revision}`);
@@ -182,8 +205,9 @@ export const loadContext = async ({ pin, kitSource = "local", sourceRoot = DEFAU
     roles,
     specimen,
     theme: { ...theme, version: resolved.version },
-    source: { via: reader.via, where: reader.where, tagCheck: reader.tagCheck, kitFrom },
+    source: { via: reader.via, where: reader.where, tagCheck: reader.tagCheck, kitFrom, digestCheck: expected.length ? `digest pinned by ${[...new Set(expected.map(([from]) => from))].join(" and ")}` : "digests.json only: nothing pins a digest for this revision" },
     exports: { [tokensPath]: digest },
+    tokensDigest: digest,
     tokens: profile.tokens,
     resolver: makeResolver(kit, profile.tokens),
   };

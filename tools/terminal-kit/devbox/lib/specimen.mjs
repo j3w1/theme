@@ -4,7 +4,8 @@
 
 const ESC = "\u001b[";
 const RESET = `${ESC}0m`;
-const ATTRS = { bold: 1, dim: 2, italic: 3, underline: 4, blink: 5, inverse: 7, hidden: 8, strikethrough: 9 };
+/* The six attributes the terminal specification defines, nothing else. */
+const ATTRS = { bold: 1, dim: 2, italic: 3, underline: 4, inverse: 7, strikethrough: 9 };
 
 export const rgb = (hex) => [1, 3, 5].map((i) => Number.parseInt(hex.slice(i, i + 2), 16));
 
@@ -46,7 +47,10 @@ export const renderSpecimen = (ctx) => {
 
   const segment = (s) => {
     const codes = [];
-    for (const a of s.attrs ?? []) codes.push(ATTRS[a]);
+    for (const a of s.attrs ?? []) {
+      if (!Object.hasOwn(ATTRS, a)) throw new Error(`specimen names attribute ${a}, which the terminal specification does not define`);
+      codes.push(ATTRS[a]);
+    }
     if (s.fg !== undefined) codes.push(slotFg(s.fg));
     if (s.bg !== undefined) codes.push(slotBg(s.bg));
     if (s.fgToken) codes.push(trueFg(color(s.fgToken)));
@@ -62,7 +66,7 @@ export const renderSpecimen = (ctx) => {
         const hex = slot(i);
         return `${String(i).padStart(2)}  ${sgr([slotFg(i)])}Sample text${RESET}  ${sgr([slotBg(i)])}        ${RESET}  expected ${hex}  vs bg ${ratio(hex, bg)}`;
       }),
-    attributes: () => Object.entries(ATTRS).filter(([name]) => name !== "hidden").map(([name, code]) => `${sgr([code])}${name}${RESET}  ${sgr([code, 31])}${name} in slot 1${RESET}`),
+    attributes: () => Object.entries(ATTRS).map(([name, code]) => `${sgr([code])}${name}${RESET}  ${sgr([code, 31])}${name} in slot 1${RESET}`),
     "bg-pairs": () =>
       Array.from({ length: 16 }, (_, i) => `${String(i).padStart(2)}  ${sgr([39, slotBg(i)])} default fg on slot ${String(i).padEnd(2)} ${RESET}  ${ratio(fg, slot(i))}`),
   };
