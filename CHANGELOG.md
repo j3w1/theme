@@ -21,8 +21,18 @@
   - a generated Downloads table in the README with links pinned to the release tag
   - a copy of each file served at `/theme/ports/<id>/<file>`
   - a download link on the Ports page
+- `@j3w1/ui`: each component's `implementationId` now hashes its definition
+  and the exact emitted modules its class reaches, instead of the whole
+  lockfile and every build script (#50). A dependency or tooling change that
+  leaves a component's runtime code alone no longer changes its id. Repeat
+  registration still requires identical runtime code.
+- `@j3w1/ui`: the bundled `entities` licence notice now comes from the copy
+  parse5 actually bundles. The licence text is unchanged.
+- Install pins in `docs/ui-consumption.md` and the package README now name
+  1.2.0.
 - Downstream: no token values change. The version moves to 1.2.0, so
-  version-stamped exports regenerate.
+  version-stamped exports and every component's version and implementation
+  id regenerate once.
 
 - #2: add pinned semantic release comparisons, explicit dependency impact,
   Markdown/JSON migration reports, and static historical specimen comparisons.
