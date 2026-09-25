@@ -3,8 +3,8 @@ import { n as content } from "../chunks/native-CAzZmDKR.js";
 //#region .cache/ui-build/entries/components/timeline.js
 var J3w1Timeline = class extends J3w1Element {
 	static componentId = "timeline";
-	static version = "1.1.0";
-	static implementationId = "sha256-/X+rrspuobkYhYjOugQTJC/uMY2TQAM4soOB3hU7yeU=";
+	static version = "1.2.0";
+	static implementationId = "sha256-WxM93VQtfhGAztFGPPRlCzLJxsA8F2T6zbwIjZ6KLNU=";
 	static connect = content;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

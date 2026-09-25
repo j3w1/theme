@@ -3,8 +3,8 @@ import { a as toolbar } from "../chunks/navigation-Dt8ap-9J.js";
 //#region .cache/ui-build/entries/components/toolbar.js
 var J3w1Toolbar = class extends J3w1Element {
 	static componentId = "toolbar";
-	static version = "1.1.0";
-	static implementationId = "sha256-sePu85/aNBmI1NhnioMQGcQTcTgfMDaBMMjm3LT1vqM=";
+	static version = "1.2.0";
+	static implementationId = "sha256-9fi7mtLP6MO1q8QqXd0h0jF07XuHQOnQ3CtYQs9W2sE=";
 	static connect = toolbar;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

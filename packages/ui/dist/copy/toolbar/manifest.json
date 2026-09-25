@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "component": "toolbar",
-  "version": "1.1.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/toolbar.md",
+  "version": "1.2.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/toolbar.md",
   "dependencies": [
     "register/toolbar.js",
     "chunks/element-C1XeXVYC.js",
@@ -16,15 +16,15 @@
     "runtime/register/toolbar.js": "sha256-OSMJIpjPl64KP4YMacdMSLwBugQjcBJHhX/8qyJT0aM=",
     "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
     "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-    "runtime/components/toolbar.js": "sha256-cYi8KPfROwyotR4hzpJ7hnAAUCN9t7lO4sdO2gYwypY=",
+    "runtime/components/toolbar.js": "sha256-QgSlOTmfY8TC1u14/1cHTwjrofspTDa7dAjOossjRN0=",
     "runtime/chunks/navigation-Dt8ap-9J.js": "sha256-7QSC/eQSDSRRy3YqMltwjb6cwbEA0V652cfo+Ng2VqA=",
     "runtime/register/menu.js": "sha256-YX+9ydadaIbkPIBFhLWX4Jv3V9vIl4UY1qolxLGfZUg=",
-    "runtime/components/menu.js": "sha256-SxjBDw4g0D7VjeQQ/drqAG4cwOau4QYaqyzxaygMeJ8=",
+    "runtime/components/menu.js": "sha256-LvyoWpMq2+bqVlzmpsalXjnT3qa1iwLKErxzvBtmKNI=",
     "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
     "component.css": "sha256-uTfyFdWFrx91RdklrAzqAHNf5B2q1psaqjlF71eT+Xc=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-MRU95stqvOm7gd3wzi8XadrYOLU9MRKqdwFO/bmSaPY=",
     "index.html": "sha256-qzep40OKd67lZTxeQflCRA+sfx2A6/zxVgtV4re8LgY=",
-    "README.md": "sha256-enb7hx3FLsLUvv6A10xYsLtaymGYS+GiwT1ye8Qfs28="
+    "README.md": "sha256-+bWWVgU+0/ruKYYd+y0FAcu00zaHwksmHC5Mb4IKfwc="
   }
 }

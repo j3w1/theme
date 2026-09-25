@@ -1,10 +1,10 @@
 {
   "id": "fieldset",
   "name": "Fieldset",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "tag": "j3w1-fieldset",
-  "contract": "https://github.com/j3w1/theme/blob/v1.1.0/spec/components/fieldset.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.1.0/packages/ui/src/behaviors/native.js",
+  "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/fieldset.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/native.js",
   "imports": {
     "class": "@j3w1/ui/components/fieldset",
     "register": "@j3w1/ui/register/fieldset",
@@ -366,6 +366,6 @@
   "copy": {
     "directory": "copy/fieldset/",
     "manifest": "copy/fieldset/manifest.json",
-    "digest": "sha256-P+MOH6dXGsufGB3aSHlDMIAVZIxAZvYoFmNpYax8Ufg="
+    "digest": "sha256-gkCv2lqcrHl+8Up6lr0Gg4UhdPVoCQtPljt3sx/3kV0="
   }
 }

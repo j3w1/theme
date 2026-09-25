@@ -3,8 +3,8 @@ import { n as modal } from "../chunks/overlays-C6nlCHqg.js";
 //#region .cache/ui-build/entries/components/drawer.js
 var J3w1Drawer = class extends J3w1Element {
 	static componentId = "drawer";
-	static version = "1.1.0";
-	static implementationId = "sha256-RY/wFFpLUH+nInVNvGajYCV/c2h+tzG/WbmEvATSee8=";
+	static version = "1.2.0";
+	static implementationId = "sha256-z5BK1nnUTLXnBIDF3ZGyPPX84mxyzytAG4ziZtT+Wyo=";
 	static connect = modal;
 	static upgradeProperties = [
 		"disabled",

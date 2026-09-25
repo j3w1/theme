@@ -3,8 +3,8 @@ import { n as content } from "../chunks/native-CAzZmDKR.js";
 //#region .cache/ui-build/entries/components/badge.js
 var J3w1Badge = class extends J3w1Element {
 	static componentId = "badge";
-	static version = "1.1.0";
-	static implementationId = "sha256-1XTdDA0dw5Fei0k0h4lGpyptfeVxIMfQBenduz3w8j4=";
+	static version = "1.2.0";
+	static implementationId = "sha256-CoO1kPdPXhRltn0FNPNg8ysDxUOtp6aWaCoeaeOiezo=";
 	static connect = content;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

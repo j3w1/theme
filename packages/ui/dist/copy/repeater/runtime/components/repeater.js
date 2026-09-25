@@ -3,8 +3,8 @@ import { r as repeater } from "../chunks/advanced-DCpe8Ndv.js";
 //#region .cache/ui-build/entries/components/repeater.js
 var J3w1Repeater = class extends J3w1Element {
 	static componentId = "repeater";
-	static version = "1.1.0";
-	static implementationId = "sha256-EUeeSAuUBm4WW7s0y7XYwAeHh88yfRvUAoELmCkm3Q8=";
+	static version = "1.2.0";
+	static implementationId = "sha256-vcg//eb0ioLo1cQ18NMJL5qejamHn4NtJerfAKyjbs0=";
 	static connect = repeater;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...[

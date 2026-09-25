@@ -3,8 +3,8 @@ import { i as fileInput } from "../chunks/native-CAzZmDKR.js";
 //#region .cache/ui-build/entries/components/file-input.js
 var J3w1FileInput = class extends J3w1Element {
 	static componentId = "file-input";
-	static version = "1.1.0";
-	static implementationId = "sha256-zzE6lxkWIT+3AV7NKB7jGHEDkCsMwTMc6MJVc7gLGNQ=";
+	static version = "1.2.0";
+	static implementationId = "sha256-FhbGx3mlvfHVu3JInL8pJwCxmosX1Xc4ucTecbw8PcI=";
 	static connect = fileInput;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

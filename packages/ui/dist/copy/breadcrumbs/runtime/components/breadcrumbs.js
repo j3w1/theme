@@ -3,8 +3,8 @@ import { n as disclosure } from "../chunks/navigation-Dt8ap-9J.js";
 //#region .cache/ui-build/entries/components/breadcrumbs.js
 var J3w1Breadcrumbs = class extends J3w1Element {
 	static componentId = "breadcrumbs";
-	static version = "1.1.0";
-	static implementationId = "sha256-4Y0YHn43RgT2zf/wa7EPuVSLyCAA8FpJ+uOkvdt/VjU=";
+	static version = "1.2.0";
+	static implementationId = "sha256-OoF5Z9SqPnznFmKoHGCGoYpxAjm0HqVNc5F9s4c99Mk=";
 	static connect = disclosure;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

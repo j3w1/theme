@@ -3,8 +3,8 @@ import { n as content } from "../chunks/native-CAzZmDKR.js";
 //#region .cache/ui-build/entries/components/fieldset.js
 var J3w1Fieldset = class extends J3w1Element {
 	static componentId = "fieldset";
-	static version = "1.1.0";
-	static implementationId = "sha256-AWCK0sExXiJWwFPKxESMPwx9ruciD+rrbXzchjAMPk4=";
+	static version = "1.2.0";
+	static implementationId = "sha256-e8o6nIXhJX0TDBRl27LhSSXQOV2RAFzmCRJojabJ7+E=";
 	static connect = content;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];
