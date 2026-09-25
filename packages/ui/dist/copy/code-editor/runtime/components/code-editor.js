@@ -4,7 +4,7 @@ import { r as developerView } from "../chunks/display-dj9YaBfn.js";
 var J3w1CodeEditor = class extends J3w1Element {
 	static componentId = "code-editor";
 	static version = "1.1.0";
-	static implementationId = "sha256-dzUfQgVnt9UZ3aLP1s572I6ftpo9d2ekI29IrJlxJs0=";
+	static implementationId = "sha256-3CVy66nVVRaIAvsm9RmlbMwfWw8a2f9UmFhW5/PawlA=";
 	static connect = developerView;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

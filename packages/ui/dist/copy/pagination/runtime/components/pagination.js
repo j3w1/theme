@@ -4,7 +4,7 @@ import { t as pagination } from "../chunks/tables-B25ydUHs.js";
 var J3w1Pagination = class extends J3w1Element {
 	static componentId = "pagination";
 	static version = "1.1.0";
-	static implementationId = "sha256-850Xp/8LpIhiFVPEXSZVU2xDfEMlOIlQWEhHPFCmdXs=";
+	static implementationId = "sha256-lUYuzn5nHcizi9w68ISO25KhxnV6lQxzI+hdYcXnM9Y=";
 	static connect = pagination;
 	static upgradeProperties = [
 		"disabled",

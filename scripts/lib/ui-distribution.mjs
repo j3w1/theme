@@ -52,6 +52,43 @@ export async function moduleClosure(root, entries) {
   return files;
 }
 
+/* A component's implementation identity is the hash of its definition and
+   of the exact emitted modules its class reaches, so an equal id means
+   identical runtime code (registerElement accepts a repeat registration only
+   then). The build writes a placeholder per component; ids are computed over
+   the bytes that still hold placeholders, then substituted everywhere. A
+   lockfile or tooling change that leaves the emitted closure alone leaves the
+   id alone; one that changes it changes only the components it reaches. */
+export const implementationPlaceholder = id => `__J3W1_IMPLEMENTATION_ID_${id}__`;
+const PLACEHOLDER = /__J3W1_IMPLEMENTATION_ID_([a-z0-9-]+)__/g;
+export function implementationIds(closures, definitions) {
+  const ids = new Map();
+  for (const [id, closure] of closures) {
+    if (!definitions[id]) throw new Error(`Unknown implementation: ${id}`);
+    const modules = [...closure].sort(([a], [b]) => a < b ? -1 : a > b ? 1 : 0).map(([name, text]) => `${name}\n${text}`);
+    ids.set(id, sha256(stableJson(definitions[id]) + modules.join("\n")));
+  }
+  return ids;
+}
+export function substituteImplementationIds(modules, ids) {
+  const out = new Map();
+  for (const [name, text] of modules) out.set(name, text.replace(PLACEHOLDER, (match, id) => {
+    if (!ids.has(id)) throw new Error(`Unknown implementation placeholder in ${name}: ${id}`);
+    return ids.get(id);
+  }));
+  for (const id of ids.keys()) if (![...modules.values()].some(text => text.includes(implementationPlaceholder(id)))) throw new Error(`No emitted module carries the implementation placeholder for ${id}`);
+  return out;
+}
+export async function assignImplementationIds(root, definitions, componentIds) {
+  const names = (await fs.readdir(root, { recursive: true })).map(name => name.split(path.sep).join("/")).filter(name => name.endsWith(".js")).sort();
+  const modules = new Map(await Promise.all(names.map(async name => [name, await fs.readFile(path.join(root, name), "utf8")])));
+  const closures = new Map();
+  for (const id of componentIds) closures.set(id, await moduleClosure(root, [`components/${id}.js`]));
+  const ids = implementationIds(closures, definitions);
+  for (const [name, text] of substituteImplementationIds(modules, ids)) if (text !== modules.get(name)) await fs.writeFile(path.join(root, name), text);
+  return ids;
+}
+
 /* The package's standalone controls stylesheet: the canonical themed
    controls on the recipe foundation, rescoped from the recipe class to the
    application enhancement boundary. Design mode rewrites it from the same

@@ -4,7 +4,7 @@ import { r as fields } from "../chunks/native-CAzZmDKR.js";
 var J3w1Checkbox = class extends J3w1Element {
 	static componentId = "checkbox";
 	static version = "1.1.0";
-	static implementationId = "sha256-VHdykVtwQgPIfp66VyILKkwt3G7lTGUsThbeaNxlwt4=";
+	static implementationId = "sha256-w0p7/ZvPVWJrCXy/JIbEAfIQBLzRR+PHNMtqtk0XE5A=";
 	static connect = fields;
 	static upgradeProperties = [
 		"disabled",

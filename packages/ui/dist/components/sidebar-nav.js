@@ -4,7 +4,7 @@ import { n as disclosure } from "../chunks/navigation-Dt8ap-9J.js";
 var J3w1SidebarNav = class extends J3w1Element {
 	static componentId = "sidebar-nav";
 	static version = "1.1.0";
-	static implementationId = "sha256-MWjwlWka3SdWlTQAVAPu7jHpVjTvxl8TEGceHZFipXU=";
+	static implementationId = "sha256-1nB0Eq+jVSbOfYNWUTv/10IoaFHkiespX0jkoerNZk0=";
 	static connect = disclosure;
 	static upgradeProperties = [
 		"disabled",

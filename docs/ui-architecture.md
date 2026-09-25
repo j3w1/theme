@@ -52,7 +52,9 @@ must implement their complete canonical keyboard and accessibility contracts.
 Class imports are separate from browser registration. Individual registration
 modules include their component dependencies. Repeating registration with the
 same constructor or identical generated implementation identity is safe, including
-independent copy directories. A different version or foreign definition is an error. Importing
+independent copy directories. A different version or foreign definition is an error. The
+implementation identity hashes the component's definition and the exact emitted
+modules its class reaches, so it changes only when that runtime code does. Importing
 the root registration module deliberately registers the complete catalogue.
 Server renderers import class definitions only when needed and register in the
 browser. Native child markup is the static and server-rendered content.

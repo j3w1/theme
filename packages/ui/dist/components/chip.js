@@ -4,7 +4,7 @@ import { t as feedback } from "../chunks/overlays-C6nlCHqg.js";
 var J3w1Chip = class extends J3w1Element {
 	static componentId = "chip";
 	static version = "1.1.0";
-	static implementationId = "sha256-61sshiRyOtkCBh7q0BAW7T9ejTjU1d3DF5sFRDNZeDw=";
+	static implementationId = "sha256-6w+kea+qihOQrMNnUDn66MmpO3U97KsoczE3tqpixQE=";
 	static connect = feedback;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];
