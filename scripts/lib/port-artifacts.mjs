@@ -102,6 +102,10 @@ export const hostEntries = (format, host) => {
    host map writes belongs to its role's mapping, or to an unmapped role whose
    reason names the key (a value the file carries that the host does not
    paint, such as a TextMate theme's editor globals in Codex). */
+/* Whether a reason names a key whole: a key ends at anything but a key
+   character, and a full stop ends it only at the end of a sentence. */
+export const namesKey = (reason, key) => new RegExp(`(^|[^A-Za-z0-9._-])${key.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}($|[^A-Za-z0-9._-]|\\.(?=\\s|$))`).test(reason ?? "");
+
 export const assertHostMapping = (port, mapping, entries) => {
   const written = new Map(entries);
   for (const [role, keys] of Object.entries(mapping.mappings)) {
@@ -110,8 +114,8 @@ export const assertHostMapping = (port, mapping, entries) => {
   for (const [key, role] of entries) {
     if (mapping.mappings[role]?.includes(key)) continue;
     // An unmapped reason may name the key it carries, as a whole key.
-    const named = new RegExp(`(^|[^A-Za-z0-9.])${key.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}($|[^A-Za-z0-9])`);
-    if (named.test(mapping.unmapped[role] ?? "")) continue;
+    // An unmapped reason may name the key it carries, as a whole key.
+    if (namesKey(mapping.unmapped[role], key)) continue;
     throw new Error(`ports/${port.id}: host.json writes ${role} at ${key}, which mapping.json neither maps nor names in the role's unmapped reason`);
   }
 };

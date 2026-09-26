@@ -65,7 +65,9 @@ installer.
   and copies `tui.theme` at each Codex pane launch, so the installer never
   writes anything Orca owns. `test` checks that runtime home read-only.
 - Backups and records go to `${XDG_STATE_HOME:-~/.local/state}/j3w1-theme`,
-  shared with the Claude Code installer. Set `J3W1_THEME_STATE_DIR` or pass
+  shared with the Claude Code installer. If only the terminal kit's old folder
+  (`…/j3w1-theme/devbox`) holds backups, the installer keeps using it and says
+  so, so restore still brings back your original settings. Set `J3W1_THEME_STATE_DIR` or pass
   `--state-dir` where that folder is not writable (on the CE devbox,
   `~/.local/state` takes only registered tool folders). The older
   `J3W1_TERMINAL_KIT_STATE_DIR` still works, with a warning. If the state

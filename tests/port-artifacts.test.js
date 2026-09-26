@@ -181,3 +181,12 @@ test("download links pin the release tag and never a branch", () => {
   }
   assert.doesNotMatch(rows, /\/main\//);
 });
+
+test("an unmapped reason names a carried key only as a whole key (review r3b)", async () => {
+  const { namesKey } = await import("../scripts/lib/port-artifacts.mjs");
+  assert.ok(namesKey("carries `globals.gutter` for editors", "globals.gutter"));
+  assert.ok(namesKey("The file carries globals.gutter.", "globals.gutter"));
+  for (const [reason, key] of [["names globals.gutterForeground", "globals.gutter"], ["names rainbow_blue_shimmer", "rainbow_blue"], ["names clawd_body_x", "clawd_body"], ["names globals.gutter.foreground", "globals.gutter"], ["names globals.gutter-x", "globals.gutter"]]) {
+    assert.equal(namesKey(reason, key), false, `${key} in "${reason}"`);
+  }
+});
