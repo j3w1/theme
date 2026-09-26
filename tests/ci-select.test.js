@@ -1,6 +1,8 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdtempSync, existsSync } from "node:fs";
+import os from "node:os";
+import path from "node:path";
 import { execFileSync } from "node:child_process";
 import { plan, globToRegExp, FULL_SHARDS, projectNames, browserImporters } from "../scripts/ci/select.mjs";
 
@@ -148,7 +150,26 @@ test("the base commit's control list still applies to a pull request", async () 
 });
 
 test("the completeness check leaves the evidence untouched and refuses a short one", () => {
-  const src = readFileSync("scripts/ci/evidence-complete.mjs", "utf8");
-  assert.match(src, /--reporter=json/, "lists with the JSON reporter only, so no configured reporter runs");
-  assert.match(src, /changed the evidence file/, "proves the file is byte for byte unchanged");
+  const listed = JSON.parse(execFileSync("npx", ["playwright", "test", "--list", "--reporter=json"], { encoding: "utf8", env: { ...process.env, CI: "1" }, maxBuffer: 64 * 1024 * 1024 }));
+  const records = [];
+  const walk = (suite) => { for (const spec of suite.specs ?? []) for (const t of spec.tests ?? []) records.push({ result: "passed", environment: { project: t.projectName } }); for (const s of suite.suites ?? []) walk(s); };
+  listed.suites.forEach(walk);
+  const dir = mkdtempSync(path.join(os.tmpdir(), "evidence-"));
+  const file = path.join(dir, "evidence.json");
+  const check = () => { try { execFileSync("node", ["scripts/ci/evidence-complete.mjs"], { stdio: "pipe", env: { ...process.env, EVIDENCE_FILE: file } }); return true; } catch { return false; } };
+  writeFileSync(file, JSON.stringify({ records }));
+  const before = readFileSync(file, "utf8");
+  assert.equal(check(), true);
+  assert.equal(readFileSync(file, "utf8"), before, "the file is byte for byte unchanged");
+  writeFileSync(file, JSON.stringify({ records: records.slice(1) }));
+  assert.equal(check(), false, "one record short is refused");
+  assert.ok(existsSync(path.join(dir, "evidence-error.json")));
+});
+
+test("a push that changes the site always runs the checks job the evidence job needs", () => {
+  for (const rule of registry.rules.filter((r) => r.site)) {
+    const file = rule.paths[0].replace("{id}", "button").replace("{name}", "page").replace("**", "x").replace("*", "x");
+    const p = run("push", [file]);
+    if (p.matrix) assert.ok(["sources", "unit", "unit-kit", "unit-kit-windows"].some((x) => p.proofs.includes(x)), file);
+  }
 });

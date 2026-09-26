@@ -109,7 +109,7 @@ jobs:
           PLAN: ${{ needs.select.outputs.plan }}
 
   # The site, its dist gates and the smoke check, in parallel with the unit
-  # tests, so the browser shards start as soon as the site exists.
+  # tests. The browser shards start when this job, smoke included, passes.
   build:
     needs: select
     if: needs.select.outputs.build == 'true'

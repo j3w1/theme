@@ -10,7 +10,7 @@ import { createHash } from "node:crypto";
 import { readFileSync, writeFileSync } from "node:fs";
 import { projectNames } from "./select.mjs";
 
-const FILE = "test-results/evidence.json";
+const FILE = process.env.EVIDENCE_FILE ?? "test-results/evidence.json";
 const bytes = readFileSync(FILE);
 const digest = (b) => createHash("sha256").update(b).digest("hex");
 const before = digest(bytes);
@@ -28,7 +28,7 @@ if (!(total > 0)) problems.push("could not count the configured tests");
 else if (evidence.records.length !== total) problems.push(`${evidence.records.length} records for ${total} configured tests`);
 if (JSON.stringify(recorded) !== JSON.stringify(projects)) problems.push(`projects recorded ${recorded.join(", ")}; configured ${projects.join(", ")}`);
 if (problems.length) {
-  writeFileSync("test-results/evidence-error.json", `${JSON.stringify({ result: "refused", reasons: problems }, null, 2)}\n`);
+  writeFileSync(FILE.replace(/evidence\.json$/, "evidence-error.json"), `${JSON.stringify({ result: "refused", reasons: problems }, null, 2)}\n`);
   console.error(`The evidence is incomplete:\n- ${problems.join("\n- ")}`);
   process.exit(1);
 }

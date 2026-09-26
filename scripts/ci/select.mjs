@@ -101,8 +101,9 @@ const fill = (text, vars) => text.replace(/\{(\w+)\}/g, (_, n) => vars[n] ?? `{$
 
 // Pure: registry + changed paths + event → plan. `specExists` tells whether a
 // browser spec file exists at the tested head.
-// On a pull request the base commit's control list applies too, so a change
-// cannot remove a file from the controls and be judged by the shorter list.
+// The base commit's control list applies too (the pull request's base, or on
+// main the last deployed commit), so a change cannot remove a file from the
+// controls and be judged by the shorter list. It only adds controls.
 export function baseControls(base) {
   if (!SHA.test(base ?? "")) return [];
   try {
@@ -147,7 +148,9 @@ export function plan({ registry, event, paths, full = false, reason = null, spec
   // The deployment path: a push to main that changes the site runs the whole
   // matrix with evidence, then deploys (D-028 keeps this; D-031 makes it fast).
   const matrix = event === "push" ? site : event === "workflow_dispatch" && floor;
-  if (matrix) { proofs.add("build"); proofs.add("consumers"); }
+  // The deployment path always validates the sources too, so the evidence job
+  // (which needs the checks job) can always run.
+  if (matrix) { proofs.add("sources"); proofs.add("build"); proofs.add("consumers"); }
   const browserSpecs = matrix || floor ? ALL_BROWSER : [...browser].sort();
   const needsBrowser = browserSpecs === ALL_BROWSER || browserSpecs.length > 0;
   // Playwright shards in contiguous blocks, which here is one project per

@@ -27,7 +27,9 @@ if (stage === "cheap") {
   if (has("unit-kit-windows")) run("node", ["--test", "tests/terminal-kit-windows.test.js"]);
 } else if (stage === "browser") {
   const files = plan.browser === "all" ? [] : plan.browser.map((s) => `tests/browser/${s}.spec.js`);
-  const reporter = plan.matrix ? "blob" : "list";
+  // A subset also loads the evidence reporter: as a shard it never writes,
+  // but it still fails a test that lacks its verification annotation.
+  const reporter = plan.matrix ? "blob" : "list,./tests/evidence-reporter.mjs";
   const [, project, shard] = part.match(/^([a-z0-9-]+):(\d+\/\d+)$/) ?? [];
   if (!project) throw new Error(`bad browser part ${part}`);
   run("npx", ["playwright", "test", ...files, ...(project === "all" ? [] : [`--project=${project}`]), `--reporter=${reporter}`, `--shard=${shard}`]);
