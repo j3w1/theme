@@ -7,12 +7,16 @@ summary: How the theme travels to other applications and frameworks, what a port
 
 ## Scope of a port
 
-A port themes only what the host documents as customisable. Editor colouring,
+A port themes only what the host documents as customisable. Editor colours,
 application chrome, terminal colours and plugin surfaces are separate scopes;
-a file that changes one does not claim the others. A port never patches
-binaries, injects unsupported hacks, overwrites a user's whole settings file or
-replaces keybindings, credentials or unrelated preferences. It installs under a
-unique name beside the host's defaults and documents how to roll back.
+a file that changes one does not claim the others. A port never:
+
+- patches binaries or injects unsupported hacks;
+- overwrites a user's whole settings file;
+- replaces keybindings, credentials or unrelated preferences.
+
+It installs under a unique name next to the host's defaults and documents how
+to roll back.
 
 ## What every port must reproduce
 
@@ -27,8 +31,8 @@ unique name beside the host's defaults and documents how to roll back.
 7. The monospace family by name, honouring the user's size.
 
 Every required role is mapped, explicitly inherited from the host, marked
-unsupported with an explanation, or intentionally out of scope. A percentage
-of coverage is meaningful only with its denominator.
+unsupported with a reason, or intentionally out of scope. A coverage
+percentage means something only with its denominator.
 
 ## Fallbacks by host capability
 
@@ -42,40 +46,56 @@ of coverage is meaningful only with its denominator.
 | Fixed radii in the host | document; do not fight the toolkit |
 | Host forbids removing its focus indicator | keep the host's indicator; never draw two |
 
+## Shared component defaults
+
+A component whose Portability section links here follows these rules. Its
+frontmatter `responsive` and `portability.nativeFallbacks` fields carry the
+same rules for the exports.
+
+- Wrap labels and actions without changing source order.
+- Use logical spacing in RTL.
+- Preserve native target sizes at both densities; only bounded data regions
+  may scroll horizontally.
+- Use equivalent native semantics and approved roles; record any unsupported
+  behavior as a mapping deviation.
+- The host owns application data, persistence, permissions and services.
+
 ## Web consumers
 
-The site's `exports/tokens.css` exposes every role as a custom property.
-Consume roles (`--color-text-default`), never primitives. A framework
-integration maps roles onto the framework's theme keys and lists what it
-cannot express; `agents/consume.md` gives the reading order and the deviation
-report format, and `theme.lock.json` pins the revision.
+`exports/tokens.css` exposes every role as a custom property. Consume roles
+(`--color-text-default`), never primitives. A framework integration maps roles
+onto the framework's theme keys and lists what it cannot express.
+`agents/consume.md` gives the reading order and the deviation report format;
+`theme.lock.json` pins the revision.
 
-## Native ports (future)
+## Native ports
 
 A port lives at `ports/<slug>/` with `port.json`, `mapping.json`, `src/`,
 `dist/` and `evidence/`, created from `templates/port/` only when work begins.
-Statuses are `experimental`, `verified` and `deprecated`; reference
-implementations and roadmap candidates are not statuses. `verified` requires a
-real import into the recorded application version with matching evidence and a
-token digest equal to the current default profile. A successful XML or JSON
-parse is a structural pass, not verification. Never hand-edit a generated hex;
-fix the mapping or the approved token and regenerate. `npm run generate` writes
-`dist/` for every port whose `format` has an emitter in
-`scripts/lib/port-artifacts.mjs` (`warp-yaml` and `ghostty-config` today).
-The README downloads table links each file at the release tag, and the site
-serves a copy at `ports/<slug>/<file>`.
+
+- Statuses are `experimental`, `verified` and `deprecated`. Reference
+  implementations and roadmap candidates are not statuses.
+- `verified` needs a real import into the recorded application version, with
+  matching evidence and a token digest equal to the current default profile.
+  A successful XML or JSON parse is a structural pass, not verification.
+- Never hand-edit a generated hex. Fix the mapping or the approved token and
+  regenerate.
+- `npm run generate` writes `dist/` for every port whose `format` has an
+  emitter in `scripts/lib/port-artifacts.mjs` (`warp-yaml`, `ghostty-config`,
+  `claude-theme-json`, `codex-tmtheme` and `chatgpt-appearance` today).
+- The README downloads table links each file at the release tag, and the site
+  serves a copy at `ports/<slug>/<file>`.
 
 For JetBrains, an editor scheme (`.icls`) and a UI theme plugin are separate
 capabilities; the scheme alone does not recolour toolbars or dialogs. For
 Notepad++, a style-theme XML, the dark-mode chrome setting and User Defined
-Languages are three mechanisms. Consult the vendor documentation for the
+Languages are three separate mechanisms. Read the vendor documentation for the
 tested version before mapping.
 
 ## The reference implementation
 
 `j3w1/j3w1.github.io` is the flagship web implementation and the source of the
-observed values. It is not an upstream that this repository scrapes at build
-time, and there is no automatic synchronisation in either direction. A later
-integration pins a release of this theme in that site through a separate
-reviewed change and records its own site-specific values (window-manager
-geometry, wallpaper gradients) as such.
+observed values. This repository does not scrape it at build time, and nothing
+synchronises in either direction. A later integration pins a release of this
+theme in that site through a separate reviewed change, and records its own
+site-specific values (window-manager geometry, wallpaper gradients) as such.
