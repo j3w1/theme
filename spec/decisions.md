@@ -10,6 +10,9 @@ A token moves from `proposed` to `approved` only by an `accepted` decision refer
 in its `$extensions["io.github.j3w1.theme"].approval.decision`. Agents may open
 `proposed` entries; only the owner changes a status.
 
+Each entry reads Decision, Why, Consequences, optional Alternatives, and Status
+(status, date, who decided, and what later entries changed).
+
 | # | Title | Status | Date | Decided by |
 | --- | --- | --- | --- | --- |
 | D-000 | Responsibility split: tokens, spec, ports, evidence | accepted | 2026-09-05 | owner (design package) |
@@ -25,9 +28,10 @@ in its `$extensions["io.github.j3w1.theme"].approval.decision`. Agents may open
 | D-010 | The site deploys from `main` | proposed | 2026-09-06 | — |
 | D-011 | Reference screenshots are cropped before publication | proposed | 2026-09-06 | — |
 | D-012 | Exports are committed and drift-checked | proposed | 2026-09-06 | — |
+| D-013 | Consumption eligibility is separate from approval | proposed | 2026-09-07 | — |
+| D-014 | Automatic inline literal color previews | proposed | 2026-09-07 | — |
 | D-015 | Clarify component mappings exposed by consumption acceptance | proposed | 2026-09-07 | — |
 | D-016 | Pinned release comparison report and historical rendering | proposed | 2026-09-08 | — |
-
 | D-017 | Private framework parity evidence | proposed | 2026-09-08 | — |
 | D-018 | Declared port capabilities and fresh import evidence | proposed | 2026-09-08 | — |
 | D-019 | One-way namespaced Figma Variables bridge | proposed | 2026-09-08 | — |
@@ -47,674 +51,565 @@ in its `$extensions["io.github.j3w1.theme"].approval.decision`. Agents may open
 
 ## D-000 Responsibility split
 
-Status: accepted · 2026-09-05 (adopted from the design package `ARCHITECTURE.md`).
+**Decision.** Token files own literal values and aliases; the specification owns
+meaning, permitted uses and constraints; port mappings own native keys; evidence
+records own what was actually tested. README, the site and pictures summarise
+them and never replace them.
 
-**Decision.** Token files own literal values and aliases. The specification owns
-meaning, permitted uses and constraints. Port mappings own native keys. Evidence
-records own what was actually tested. README, the site, and pictures summarise
-these authorities and never replace them. A disagreement between spec and tokens
-is a defect to resolve, not permission to choose the convenient answer. Images
-never override token values. Historical source is evidence of origin, not an
-override of the adopted accessible design.
+**Consequences.** A disagreement between spec and tokens is a defect to fix, not
+a choice. Images never override token values. Historical source is evidence of
+origin, not an override of the adopted accessible design.
+
+**Status.** accepted · 2026-09-05 · owner (design package `ARCHITECTURE.md`).
 
 ## D-001 Controlled three-hue extension
 
-Status: accepted · 2026-09-06.
+**Decision.** `default` adds three desaturated, warm-shifted hues: amber
+`#C9973F` (warning, modified), green `#86A46F` (success, added), blue `#7E9EBB`
+(info); dark tints `#1F1A0C`, `#0F1A0E`, `#0F141C`. They appear only in
+`status`, `diagnostic` and `diff` (plus `code`, `terminal` and `chart` in
+`extended`), never in `surface`, `text`, `border`, `interaction` or `action`. No
+purple, cyan or magenta. Every status role also has a glyph, underline pattern
+or border style. `default` syntax stays monochrome; `extended` stays `proposed`.
 
-**Context.** The observed identity is monochrome red/rose. Diagnostics, diffs and
-status information need differentiation that lightness alone cannot give (a
-200-line diff cannot be scanned by glyph). The owner's own PhpStorm scheme already
-uses conventional hues for these surfaces.
+**Why.** Lightness alone cannot separate diagnostics, diffs and status (a
+200-line diff cannot be scanned by glyph); the owner's PhpStorm scheme already
+uses such hues.
 
-**Decision.** The `default` profile adds exactly three hues, desaturated and
-warm-shifted: amber `#C9973F` (warning, modified), green `#86A46F` (success,
-added), blue `#7E9EBB` (info), with dark tints `#1F1A0C`, `#0F1A0E`, `#0F141C`.
-They are permitted only in the `status`, `diagnostic`, `diff` and (in the
-`extended` overlay) `code`, `terminal` and `chart` groups. They are forbidden in
-`surface`, `text`, `border`, `interaction` and `action`. Purple, cyan and magenta
-are not added. Every status role also carries a mandatory non-colour channel
-(glyph, underline pattern or border style). Syntax highlighting in `default`
-stays monochrome; the `extended` overlay profile remains `proposed`.
+**Consequences.** Contrast on canvas / surface / raised: amber 7.54 / 7.34 /
+6.90, green 7.13 / 6.95 / 6.53, blue 7.08 / 6.90 / 6.48.
 
-**Consequences.** Measured contrast on canvas / surface / raised: amber
-7.54 / 7.34 / 6.90, green 7.13 / 6.95 / 6.53, blue 7.08 / 6.90 / 6.48.
-
-Superseded in part, and only in part: D-030 makes the three hues available to
-opt-in syntax themes in the `default` profile through `code.hued.*`. The
-reference `code.syntax.*` roles stay monochrome, and everything else here
-stands as accepted.
+**Status.** accepted · 2026-09-06 · owner. Superseded in part by D-030 (opt-in
+`code.hued.*`; `code.syntax.*` stays monochrome).
 
 ## D-002 v0.1.0 inventory
 
-Status: accepted · 2026-09-06.
+**Decision.** The first public release holds every `R1` inventory component
+(about 47 across all nine families) plus four composed specimens (settings
+panel, administrative form, filterable table, i3 window frame), each *specified*
+and *demonstrated*. Ten core components are also *tested*: button, link,
+text-field, select, checkbox, radio-group, tabs, dialog, menu, table.
 
-**Decision.** The first public release contains every component marked `R1` in
-the coverage inventory (about 47 across all nine families) plus four composed
-specimens (settings panel, administrative form, filterable table, i3 window
-frame), each *specified* and *demonstrated*; ten core components are also
-*tested* (button, link, text-field, select, checkbox, radio-group, tabs, dialog,
-menu, table). `R2` items and the form-builder specimen are deferred to v0.2.
+**Consequences.** `R2` items and the form-builder specimen wait for v0.2.
+
+**Status.** accepted · 2026-09-06 · owner.
 
 ## D-003 Text-role corrections
 
-Status: accepted · 2026-09-06.
-
-**Context.** `#A3676B` (the site's `--quiet`) measures 4.45:1 on `#0C0909` and
-`#7D1310` (`--inactive`) 1.86:1; the site already restricts them but still uses
-`#7D1310` for line numbers. The site's suggested replacement `#A8403A` measures
-only 3.27:1.
-
 **Decision.** `text.subtle` = `#AD7175` (5.10 / 4.96 / 4.67) for metadata,
 comments and line numbers. `text.disabled` = `#8A5559` (3.33 / 3.24 / 3.05;
-exempt under WCAG 1.4.3, at least 3:1 by house policy). `#A3676B` remains in
-service as `border.control`, `icon.decorative`, `status.neutral.fill` and
-`chart.series.4` (non-text, at least 3:1). `#7D1310` remains only as
-`border.disabled`, `code.whitespace` and minor grid lines, never as text. The
-`heritage-ansi` profile keeps the original assignments flagged `$deprecated`.
+exempt under WCAG 1.4.3, at least 3:1 by house policy). `#A3676B` stays as
+`border.control`, `icon.decorative`, `status.neutral.fill` and `chart.series.4`
+(non-text, at least 3:1); `#7D1310` only as `border.disabled`, `code.whitespace`
+and minor grid lines, never text.
+
+**Why.** `#A3676B` (the site's `--quiet`) measures 4.45:1 on `#0C0909` and
+`#7D1310` (`--inactive`) 1.86:1, yet the site used `#7D1310` for line numbers;
+its suggested `#A8403A` measures only 3.27:1.
+
+**Consequences.** `heritage-ansi` keeps the original assignments, flagged
+`$deprecated`.
+
+**Status.** accepted · 2026-09-06 · owner.
 
 ## D-004 Visibility and licensing
 
-Status: accepted · 2026-09-06.
+**Decision.** The repository is public. MIT: code, tokens, schemas, scripts,
+tests, site source, generated JSON/CSS exports. CC BY 4.0: specification prose,
+specimens, generated Markdown exports. Screenshots under `references/`: all
+rights reserved, reference only.
 
-**Decision.** The repository is public. Code, tokens, schemas, scripts, tests,
-site source and generated JSON/CSS exports are MIT. Specification prose,
-specimens and generated Markdown exports are CC BY 4.0. Screenshots under
-`references/` are all rights reserved, reference only. No fonts, no vendor
-template material, no private business data are ever committed; CI scans for
-them. See `LICENSE.md`.
+**Consequences.** Fonts, vendor template material and private business data are
+never committed; CI scans for them. See `LICENSE.md`.
+
+**Status.** accepted · 2026-09-06 · owner.
 
 ## D-005 Default profile id
 
-Status: proposed.
+**Decision.** The approved everyday composition is the profile `default`;
+renaming it later is a MAJOR version change.
 
-**Decision.** The approved everyday composition is the profile `default`. A
-later rename would be a MAJOR version change.
+**Status.** proposed · 2026-09-06.
 
 ## D-006 Focus-ring rule
 
-Status: proposed.
+**Decision.** Controls and rows: `outline: 1px dashed
+{color.interaction.focus.ring}` (`#E53935`), `outline-offset: -2px`. Focusable
+containers (panes, windows, dialogs, cards): `outline: 2px solid
+{color.interaction.focus.ring-container}` (`#FFA2A7`), `outline-offset: -3px`.
+On any fill (selection, action, status) the ring takes the on-fill text colour;
+on invalid + focus, where the 2px danger border is already red, it takes
+`#FFA2A7` at `outline-offset: -4px`. `:focus:not(:focus-visible)` draws nothing;
+forced-colors mode uses `Highlight`. Selection is a fill, focus a ring.
 
-**Decision.** Controls and rows: `outline: 1px dashed {color.interaction.focus.ring}`
-(`#E53935`) with `outline-offset: -2px`. Focusable containers (panes, windows,
-dialogs, cards): `outline: 2px solid {color.interaction.focus.ring-container}`
-(`#FFA2A7`) with `outline-offset: -3px`. On any filled surface (selection,
-action fills, status fills) the ring takes that surface's on-fill text colour,
-because `#E53935` on `#911410` measures 2.15:1. For invalid + focus, where the
-2px danger border is already red, the ring switches to the container colour
-`#FFA2A7` at `outline-offset: -4px`. `:focus:not(:focus-visible)` draws nothing.
-In forced-colors mode the ring uses `Highlight`. Selection is always a fill and
-focus is always a ring; neither borrows the other's form.
+**Why.** `#E53935` on `#911410` measures 2.15:1.
 
-**Current clarification (D-015).** The owner-directed component mappings
-below clarify the generic on-fill wording above. Primary buttons and checked
-controls retain their explicitly declared container-colour ring; destructive
-fills retain their declared on-fill text ring. Geometry and contrast floors
-are unchanged.
+**Status.** proposed · 2026-09-06. Clarified by D-015 (declared component ring
+mappings on fills). Since D-027 a selected row (`#531310`, 3.38:1) takes the
+ordinary ring.
 
 ## D-007 Control boundary colour
 
-Status: proposed.
+**Decision.** `border.control` = `#A3676B` (4.45 / 4.33 / 4.07).
 
-**Decision.** Form-control boundaries must reach 3:1 against their surface
-(WCAG 1.4.11). `#531310` (1.39) and `#9E231F` (2.56) both fail, so
-`border.control` = `#A3676B` (4.45 / 4.33 / 4.07). The alternative `#C81A1A`
-(3.42) is rejected as too loud for every input at rest.
+**Why.** Control boundaries need 3:1 against their surface (WCAG 1.4.11);
+`#531310` (1.39) and `#9E231F` (2.56) fail.
+
+**Alternatives.** `#C81A1A` (3.42): too loud for every input at rest.
+
+**Status.** proposed · 2026-09-06.
 
 ## D-008 Hairlines, sunken surface, overlay border
 
-Status: proposed.
+**Decision.** The site's six near-identical hairlines (`#290D0C`, `#24100F`,
+`#321110`, `#38100F`, `#190B0B`, `#2B0E0D`) fold into `border.divider` =
+`#2B0E0D`. `#0A0707` becomes `surface.sunken`. Every floating layer (dialog,
+drawer, menu, popover, toast) takes a 1px `border.overlay` = `#E53935`.
 
-**Decision.** The site's six near-identical hairline hexes (`#290D0C`,
-`#24100F`, `#321110`, `#38100F`, `#190B0B`, `#2B0E0D`) fold into one
-`border.divider` = `#2B0E0D`. `#0A0707` becomes `surface.sunken`. Every
-floating layer (dialog, drawer, menu, popover, toast) uses a 1px
-`border.overlay` = `#E53935`; the historical dunst frame `#AE1914` survives only
-in `heritage-ansi`.
+**Consequences.** The dunst frame `#AE1914` survives only in `heritage-ansi`.
+
+**Status.** proposed · 2026-09-06.
 
 ## D-009 Density modes
 
-Status: proposed.
+**Decision.** Density modes are tokens, set with `data-density` on any subtree.
+`compact` matches the site: control 24px, row 28px, UI type 12/16, icon 16, list
+gap 2. `comfortable`: control 32px, row 36px, UI type 13/18, icon 16, list gap
+4.
 
-**Decision.** Two density modes are tokens, applied with `data-density` on any
-subtree. `compact` matches the site: control height 24px, row height 28px, UI
-type 12/16, icon 16, list gap 2. `comfortable`: control 32px, row 36px, UI
-type 13/18, icon 16, list gap 4. Both meet the 24×24 CSS-pixel target minimum;
-`compact` requires 4px between adjacent targets.
+**Consequences.** Both meet the 24×24 CSS-pixel target minimum; `compact` needs
+4px between adjacent targets.
+
+**Status.** proposed · 2026-09-06.
 
 ## D-010 Deployment source
 
-Status: proposed.
+**Decision.** The site deploys from `main` through GitHub Actions after the full
+pipeline passes. The page header prints the version and build commit and links
+to the latest tag. Consumers still pin tags or commits.
 
-**Decision.** The site deploys from `main` through GitHub Actions after the
-full pipeline passes. The page header prints the version and build commit and
-links to the latest tag; consumers pin tags or commits regardless.
+**Status.** proposed · 2026-09-06.
 
 ## D-011 Reference screenshots
 
-Status: proposed.
+**Decision.** Crop the title bar (or redact the name) before committing a
+screenshot under `references/`, and disclose the redaction in its provenance
+record. If the owner prefers, screenshots stay out of the repository, described
+only in `references/catalogue.json`.
 
-**Context.** The four PhpStorm screenshots show a private project name in the
-window title bar.
+**Why.** The four PhpStorm screenshots show a private project name in the title
+bar.
 
-**Decision.** Before any screenshot is committed under `references/`, the title
-bar is cropped (or the name redacted) and the redaction is disclosed in the
-provenance record. If the owner prefers, the screenshots stay out of the public
-repository and are described in `references/catalogue.json` only.
+**Status.** proposed · 2026-09-06.
 
 ## D-012 Committed exports
 
-Status: proposed.
+**Decision.** `exports/`, `site/src/styles/tokens.generated.css`,
+`schemas/json/` and the README marker blocks are generated and committed; `npm
+run check` fails CI on drift or orphan files. No timestamps or commit hashes, so
+two runs are byte-identical. `dist/` is never committed.
 
-**Decision.** `exports/`, `site/src/styles/tokens.generated.css`, the JSON
-schemas under `schemas/json/` and the README marker blocks are generated and
-committed; `npm run check` fails CI on drift or orphan files. Outputs contain no
-timestamps and no commit hashes so two runs are byte-identical. `dist/` is never
-committed.
+**Status.** proposed · 2026-09-06.
 
 ## D-013 Consumption eligibility is separate from approval
 
-Status: proposed (formal log status remains owner-controlled).
-
-**Context.** Issue #4 found conflicting instructions to use and to prohibit
-pending roles in the approved default profile. Alternatives were to block
-pending roles until individually approved, or to use pinned values with disclosure.
-
-**Owner direction, 2026-09-07.** During Phase 1 planning the owner selected
-"Use and report" and "Block new use" for deprecated roles, then authorized
-implementation. That explicit direction governs consumption without approving
-pending token values or changing D-005 through D-012.
-
-**Policy.** An approved default profile's pending roles may be used at a pinned
-revision with disclosure of their pending decision IDs, including dependencies.
-Proposed profiles remain preview-only and blocked for delivery. Heritage profiles
-are historical-only. Deprecated or heritage roles cannot be newly mapped in an
-approved profile; no substitute is implied. Ordinary observed/approved roles
-remain usable within their documented scope; primitives remain inspection-only.
+**Decision.** In an approved default profile, pending roles may be used at a
+pinned revision with their pending decision IDs (dependencies included)
+disclosed. Proposed profiles are preview-only and blocked for delivery; heritage
+profiles are historical-only; deprecated or heritage roles cannot be newly
+mapped in an approved profile, and no substitute is implied. Observed/approved
+roles are usable within their documented scope; primitives are inspection-only.
 Release version, profile status, role status, deprecation and eligibility are
-separate facts. The generator emits the policy and eligibility metadata.
+separate facts; the generator emits the policy and eligibility metadata.
+
+**Why.** Issue #4 found conflicting instructions to use and to prohibit pending
+roles in the approved default profile.
+
+**Consequences.** Governs consumption only: no pending value is approved, and
+D-005 through D-012 are unchanged.
+
+**Alternatives.** Block pending roles until individually approved.
+
+**Status.** proposed · 2026-09-07 (formal log status remains owner-controlled).
+Owner direction, 2026-09-07, in Phase 1 planning: "Use and report", and "Block
+new use" for deprecated roles; implementation authorized.
 
 ## D-014 Automatic inline literal color previews
 
-Status: proposed (formal log status remains owner-controlled).
+**Decision.** Every visible CSS hex literal on the spec page gets one generated
+preview; the literal stays exact and is data, never inferred from a token or
+screenshot. The preview is 16px with its theme-derived 1px boundary, circular at
+rest; on CSS `:hover` it scales to 17.4px with radius zero (fast duration token
+and ease-out on transform and border-radius; none under reduced motion). Alpha
+shows over a checkerboard of theme tokens. Only this preview may use rounded
+geometry, patterned gradient backgrounds and border-radius animation. Text,
+copying, keyboard order and no-JS access stay intact. Syntax specimens `#f00`,
+`#f008`, `#ff0000`, `#ff000080`, `#000000`, `#ffffff` (literal data, not roles)
+also test copy fidelity and transparent, dark and light previews in the browser
+suite.
 
-**Context.** Issue #1 requests circular previews and a transparency checkerboard,
-which conflict with the general square geometry and no-gradient rules. Keeping
-square previews would remove the requested circle-to-square interaction.
+**Why.** Issue #1 asks for circular previews and a transparency checkerboard,
+against the square and no-gradient rules.
 
-**Owner direction, 2026-09-07.** The owner explicitly approved a narrow preview
-exception and authorized implementation. It is presentation of literal data,
-not a new palette, semantic role or component geometry rule.
+**Consequences.** Literal-data presentation only: no new palette, semantic role
+or geometry rule.
 
-**Exception.** Every visible CSS hex literal on the spec page receives one
-automatically generated preview. Preserve the literal exactly. The preview is
-16px including its theme-derived 1px boundary, circular at rest, and scales to
-17.4px with radius zero when CSS `:hover` matches. The fast duration token and
-ease-out govern transform and border-radius; reduced motion removes animation.
-Alpha is composited over a checkerboard made from existing theme tokens.
-Only this preview permits rounded geometry, patterned gradient backgrounds and
-border-radius animation. Text, copying, keyboard order and no-JS access remain
-intact. The parsed literal is data and never inferred from a token or screenshot.
-
-
-Syntax specimens (literal data, not additional theme roles): `#f00`, `#f008`,
-`#ff0000`, `#ff000080`, `#000000`, `#ffffff`. These examples also exercise
-copy fidelity and transparent, dark and light previews in the browser suite.
+**Status.** proposed · 2026-09-07 (formal log status remains owner-controlled).
+Owner direction, 2026-09-07: the narrow exception explicitly approved,
+implementation authorized.
 
 ### Follow the pointer hovering effect
 
-The j3w1 specification's inline color circles provide a pointer-following
-exact-value preview for actual mouse and pen pointer events. The popup follows the pointer's
-position inside the circle with an 8px gap, flips when necessary and stays
-inside an 8px viewport gutter. It disappears immediately when the pointer
-leaves that circle, on an outside press, Escape, or loss of window focus.
-After page or nested-container scrolling, recheck the element under the last
-pointer position: keep the popup only if the same circle remains there.
-The popup cannot capture pointer input or keep itself open when hovered.
-It is a supplementary, non-interactive visual preview; token tables and the
-keyboard-accessible token inspector retain the persistent information and links.
-Long previews are bounded by the viewport. No new keyboard stop is introduced.
-Pointer tracking has no animation or easing, including under reduced motion.
-This owner-directed behavior extends the D-014 preview exception only; it
-does not change the general tooltip or focus contract.
-
-**Compatibility clarification.** CSS `:hover` controls the circle-to-square
-morph directly. Mouse and pen pointer events control the popup; touch and
-unknown pointer types do not open it. Neither behavior is gated by `hover`
-or `any-hover` media features: browsers can report no hover capability while
-still delivering mouse input. Reduced motion continues to remove animation,
-and circles and their literal text remain visible without JavaScript.
+Part of this exception only; the tooltip and focus contracts are unchanged.
+Mouse and pen pointers open a non-interactive popup with the exact value; touch
+and unknown pointers do not. CSS `:hover` alone drives the morph; neither uses
+the `hover` or `any-hover` media features, which can report no hover despite
+mouse input. The popup follows the pointer inside the circle at an 8px gap,
+flips when necessary and stays within an 8px viewport gutter, bounded by the
+viewport. It closes at once when the pointer leaves the circle, on an outside
+press, Escape or loss of window focus, and after page or nested-container
+scrolling unless the same circle is still under the last pointer position. It
+cannot capture input or hold itself open and adds no keyboard stop; token tables
+and the keyboard-accessible token inspector keep the persistent information and
+links. Tracking has no animation or easing, even under reduced motion. Circles
+and literal text stay visible without JavaScript.
 
 ## D-015 Clarify component mappings exposed by consumption acceptance
 
-Status: proposed. The owner directed application of this resolution on
-2026-09-07; its implementation preserves existing component appearance.
-The formal decision status remains owner-managed.
+**Decision.** Keep current component appearance and all token values. Ordinary
+confirmation uses the primary tone; destructive tone is for destructive actions,
+whatever the confirmation's semantic role. A pressed primary button keeps
+`color.action.primary.border`, secondary and tertiary use `color.border.active`,
+destructive keeps its declared border; the generic metadata is corrected to
+match. Controls keep their documented ring mappings (primary and
+checked/selected fills: `color.interaction.focus.ring-container` where declared;
+destructive fills: their on-fill text role). The global wording points to them,
+keeping ring geometry, forced-colors behavior and every contrast floor.
 
-**Context.** Phase 2's independently reviewed composed acceptance preserved
-three contradictions: ordinary confirmation versus destructive alert-dialog
-tone, the primary button's pressed-border metadata versus its prose/CSS, and
-the global on-fill focus wording versus explicit component ring mappings.
-Phase 3 controls must not present an arbitrary interpretation as canonical.
+**Why.** Phase 2's independently reviewed composed acceptance preserved these
+three contradictions; Phase 3 controls must not present an arbitrary
+interpretation as canonical.
 
-**Owner-directed resolution.** Preserve current component appearance and all token
-values. Ordinary confirmation uses the primary action tone; destructive tone
-belongs to destructive actions, independent of the confirmation's semantic
-role. The primary button retains `color.action.primary.border` when pressed;
-secondary and tertiary use `color.border.active`, and destructive retains its
-declared destructive border. Correct the generic/default metadata accordingly.
-Focusable controls retain their documented component ring mappings: primary
-and checked/selected fills use `color.interaction.focus.ring-container` where
-declared; destructive fills use their on-fill text role. Clarify the global
-wording to refer to these explicit mappings, retaining ring geometry,
-forced-colors behavior and every contrast floor. No profile or pending-token
-approval is implied.
+**Consequences.** No profile or pending-token approval; historical acceptance
+reports stay historical evidence.
 
-**Alternatives.** Enforce the generic prose everywhere, changing currently
-rendered pressed borders and focus colors; or retain the contradictions and
-explicitly mark affected workbench configurations unresolved. Neither is
-silently selected. Historical acceptance reports remain historical evidence.
+**Alternatives.** Enforce the generic prose everywhere, or mark affected
+workbench configurations unresolved.
+
+**Status.** proposed · 2026-09-07. The owner directed application on 2026-09-07;
+formal status remains owner-managed.
 
 ## D-016 Pinned release comparison report and historical rendering
 
-Status: proposed. Issue #2 authorizes derived release diagnostics; formal
-decision status and all theme approvals remain owner-managed.
-
-**Context.** Release comparison needs a versioned report without putting
-run metadata into deterministic canonical exports or interpreting missing
-historical fields using today's rules.
-
-**Implementation scope.** Schema version 1 records both immutable revisions,
+**Decision.** A report (schema version 1) records both immutable revisions,
 profile and input digests, separate semantic change categories, explicit
-dependency evidence, and unsupported historical inputs. Reports and historical
-specimen renderings are build artifacts under `dist/releases/`; the canonical
-exports retain their existing contract. Historical data is read from Git, never
-executed as a build or imported as a module. The current shared specimen
-renderer presents each side's maintained markup and styles with a documented
-renderer version and matched conditions. This is a reconstructed visual
-reference, not evidence that an old site's JavaScript or an external port ran.
-Actual browser captures remain run evidence with recorded environment and
-artifact hashes. Missing evidence stays not run. Renames require an explicit
-mapping naming the two revisions; equal values do not establish a rename.
+dependency evidence and unsupported historical inputs. Reports and historical
+specimen renderings are build artifacts in `dist/releases/`; canonical exports
+keep their contract. History is read from Git, never executed as a build or
+imported as a module. The shared specimen renderer draws each side's maintained
+markup and styles (documented renderer version, matched conditions): a
+reconstructed reference, not evidence that an old site's JavaScript or an
+external port ran. Browser captures are run evidence with environment and
+artifact hashes; missing evidence stays not run. A rename needs an explicit
+mapping naming both revisions; equal values do not establish one.
 
-**Alternatives.** A raw file diff loses semantic categories and dependency
-evidence; executing historical applications expands the trust boundary and
-confounds renderer changes with theme changes. Neither is required for this
-bounded comparison. No design values, eligibility rules or verification
-statuses are changed by the report format.
+**Why.** Run metadata must stay out of deterministic exports, and missing
+historical fields must not be read by today's rules.
+
+**Consequences.** No design values, eligibility rules or verification statuses
+change.
+
+**Alternatives.** A raw file diff (no semantic categories) or running historical
+applications (a wider trust boundary).
+
+**Status.** proposed · 2026-09-08. Issue #2 authorizes derived release
+diagnostics; formal status and all theme approvals remain owner-managed.
 
 ## D-017 Private framework parity evidence
 
-Status: proposed. Issue #3 authorizes an independently authored private harness;
-formal approval statuses and the existing license boundaries are unchanged.
+**Decision.** An independently authored private harness takes an
+operator-supplied licensed target and an explicit license review, copies only
+declared template inputs into a new private fixture directory, uses synthetic
+examples and records exact theme, template, framework, dependency and fixture
+identities. The target stays outside its write scope; browser captures, copied
+vendor inputs and detailed results stay private; missing prerequisites give
+not-run output.
 
-The harness consumes an operator-supplied licensed target and an explicit
-license review. It copies only declared template inputs into a new private
-fixture directory, uses synthetic examples and records the exact theme,
-template, framework, dependency and fixture identities. The original target
-and its application behavior remain outside this experiment's write scope.
-Browser captures, copied vendor inputs and detailed results remain private.
-Missing prerequisites produce not-run output. A successful diagnostic run is
-not a verified port or a claim of complete visual parity.
+**Consequences.** A successful diagnostic run is not a verified port or a claim
+of complete visual parity.
 
-Alternatives are a public vendor copy (incompatible with the current license
-boundary) or a generic framework mock presented as real template evidence
-(insufficient provenance). Neither is used.
+**Alternatives.** A public vendor copy (breaks the license boundary) or a
+generic mock presented as template evidence.
+
+**Status.** proposed · 2026-09-08. Issue #3 authorizes the harness; approval
+statuses and license boundaries are unchanged.
 
 ## D-018 Declared port capabilities and fresh import evidence
 
-Status: proposed. Issue #14 authorizes a derived mapping explorer; it does not
-create a port, change host capabilities or approve a profile.
+**Decision.** Optional `capabilities.json` refines each mapped/unmapped role
+into mapped, inherited, unsupported, out-of-scope or not-implemented, with a
+surface and reason; legacy unmapped reasons stay unclassified, never guessed.
+Import verification is separate from mapping state and declared status: verified
+output needs a recorded real-import protocol bound to current target metadata,
+canonical tokens, mappings, capabilities and artifact bytes. Relevant changes
+make evidence stale; failed or missing checks cannot pass. One generated
+catalogue feeds summaries, drill-downs and task kits; private parity records
+never enter it automatically.
 
-Optional `capabilities.json` metadata refines each existing mapped/unmapped
-role into mapped, inherited, unsupported, out-of-scope or not-implemented,
-with an explicit surface and reason. Legacy unmapped reasons remain
-unclassified; the generator never guesses a more specific state. Import
-verification is separate from mapping state and declared manifest status.
-Verified output requires a recorded real-import protocol bound to current
-target metadata, canonical tokens, mappings, capabilities and artifact bytes.
-Relevant changes make evidence stale; failed or missing checks cannot pass.
-The same generated catalogue supplies summaries, drill-downs and task kits.
-Private parity records are never automatically imported into the catalogue.
+**Alternatives.** A hand-maintained support matrix, or a parse treated as an
+import.
 
-Alternatives are a hand-maintained support matrix or treating a successful
-parse as an application import. Both lose the evidence boundary.
+**Status.** proposed · 2026-09-08. Issue #14 authorizes a derived mapping
+explorer; it creates no port, changes no host capability and approves no
+profile.
 
 ## D-019 One-way namespaced Figma Variables bridge
 
-Status: proposed. Issue #15 authorizes this bounded adapter; approval and
-eligibility statuses remain those of the canonical source.
+**Decision.** An explicit pinned revision supplies colors and scalar
+spacing/radius values, one way. Aliases keep their dependency structure;
+dependency-only primitives are hidden from property pickers; unsupported types
+and non-approved profiles are reported. One collection and one mode avoid
+assuming paid mode capabilities. Dry-run is read-only, apply explicit; import
+receipts identify owned IDs and their last observed values; conflicts and manual
+edits stop an update or rollback. The bridge never stores ownership in
+unsupported plugin data, overwrites unrelated variables or writes back to the
+repository.
 
-An explicit pinned revision supplies colors and scalar spacing/radius values.
-Aliases retain their dependency structure; dependency-only primitives are
-hidden from property pickers. Unsupported types and non-approved profiles are
-reported. One collection and one mode avoid assuming paid mode capabilities.
-Dry-run is read-only, apply is explicit, and external import receipts identify
-owned IDs and their last observed values. Conflicts and manual edits stop an
-update or rollback. The bridge does not store ownership in unsupported plugin
-data, overwrite unrelated variables, or write values back to the repository.
+**Alternatives.** Manual duplicate maintenance, a paid-only REST workflow, or
+flattening aliases/composites.
 
-Alternatives are manual duplicate maintenance, a paid-only REST workflow, or
-silently flattening aliases/composites. None meets the one-way evidence scope.
+**Status.** proposed · 2026-09-08. Issue #15 authorizes this bounded adapter;
+approval and eligibility follow the canonical source.
 
 ## D-020 Bounded local validation and recovery workflow
 
-Status: proposed. Issue #16 authorizes one executable pattern using existing
-admin-form, field, alert and button rules, without adding palette roles.
+**Decision.** One executable pattern: editing, invalid, review, busy, success.
+Validation runs on explicit submission, keeps values and shows linked errors;
+typing does not rewrite live announcements. Review can return to a field;
+confirm enters busy, a separate local simulation-completion event enters
+success, and no request is made. The workstation example's reserved name and
+hostname are local fixture conflicts, not business policy. The contract pins
+constituent component content digests and reports automated evidence apart from
+manual screen-reader acceptance.
 
-The workflow has editing, invalid, review, busy and success stages. Validation
-runs on explicit submission, preserves values, and presents linked errors.
-Typing does not rewrite live announcements. Review can return to a field;
-confirm enters busy, and a separate local simulation-completion event enters
-success. No request is made. The existing workstation example's reserved
-name and hostname are explicitly local fixture conflicts, not business policy.
-The pattern contract pins constituent component content digests and reports
-automated evidence separately from manual screen-reader acceptance.
+**Alternatives.** A color-only invalid snapshot, validation on every keystroke,
+or a submit click treated as a successful save.
 
-Alternatives are a color-only invalid snapshot, validation on every keystroke,
-or treating a submit click as a successful save. They do not teach recovery.
+**Status.** proposed · 2026-09-08. Issue #16 authorizes one pattern from
+existing admin-form, field, alert and button rules, without new palette roles.
 
 ## D-021 Local form composition with versioned data
 
-Status: proposed. Issue #19 authorizes the deferred form-builder demonstration.
+**Decision.** Five canonical field kinds can be added, edited, removed and
+reordered with buttons. Definitions, preview values and validation state are
+separate. JSON imports have closed fields, bounded size/counts and unique stable
+IDs; a failed import changes nothing. Content identity pins the supplying theme
+and component contracts; downloads hold definitions, never entered values.
+Rendering and validation reuse D-020.
 
-Five canonical field kinds can be added, edited, removed and reordered with
-buttons. Definitions, preview values and validation state are separate. JSON
-imports have closed fields, bounded size/counts and unique stable IDs; failed
-imports leave the current form unchanged. Content identity pins the supplying
-theme and component contracts. Downloads contain definitions, never entered
-values. The builder reuses D-020's field rendering and validation behavior.
-It remains a draft reference component, not a backend platform or native port.
+**Consequences.** A draft reference component, not a backend platform or native
+port.
 
-Alternatives are arbitrary HTML/schema execution, a conditional workflow
-engine, and a second visual field implementation. They exceed this task.
+**Alternatives.** Arbitrary HTML/schema execution, a conditional workflow
+engine, or a second field implementation.
+
+**Status.** proposed · 2026-09-08. Issue #19 authorizes the deferred
+form-builder demonstration.
 
 ## D-022 Local visual selection before agent implementation distribution
 
-Status: proposed. Issue #37 and the owner's implementation instruction authorize
-three local candidate systems before canonicalization. Formal design approval
-remains owner-managed.
+**Decision.** Before canonicalization a local harness compares exactly three
+explicit token overlays with Current, using shared specimen rendering and an
+original Vue composition. Overlays, reports and review builds stay ignored,
+never public profiles or delivery artifacts. The existing alias resolver and
+unrounded contrast engine judge candidates without changing canonical values,
+historical ANSI slots or waivers. Numbers and browser evidence approve nothing:
+the owner selects a concrete candidate before foundation freeze, mass
+productization or deployment. See `docs/phase6-visual-review.md`.
 
-The primary outcome is agent consumption of installable or copyable components
-and compositions with complete dependencies and pinned machine contracts. The
-future package, documentation portal and Vue application are consumers of the
-same canonical design language. A local review harness first compares exactly
-three explicit token overlays with Current, using shared specimen rendering and
-an original Vue composition. Overlays, generated reports and review builds stay
-ignored and are never public profiles or delivery artifacts. The existing alias
-resolver and unrounded contrast engine evaluate candidates without changing
-canonical values, historical ANSI slots or waivers. No approval is inferred from
-numerical or browser evidence. The owner must select a concrete candidate before
-foundation freeze, mass productization or deployment. See
-`docs/phase6-visual-review.md` for commands, boundaries and continuation.
+**Why.** Agents need installable or copyable components and compositions with
+complete dependencies and pinned contracts, shared by the future package,
+documentation portal and Vue application.
 
-Alternatives are productizing the old palette before visual selection, publishing
-unapproved preview profiles, or offering incomplete appearance-only snippets as
-consumable components. None satisfies the authorized sequence and consumption goal.
+**Alternatives.** Productizing the old palette first, unapproved preview
+profiles, or appearance-only snippets.
+
+**Status.** proposed · 2026-09-08. Issue #37 and the owner's implementation
+instruction authorize three local candidates; design approval remains
+owner-managed. The selection is D-023.
 
 ## D-023 True Black / Rose canonical foundation
 
-Status: accepted. The owner explicitly selected the reviewed candidate I:
-"use the True Black / Rose theme and make it permanent for j3w1/theme",
-and authorized continuing the remaining Phase 6 implementation.
+**Decision.** Seven surface assignments change: canvas, sunken, input, code and
+terminal use the existing pure black primitive; chrome uses `#090707`; default
+panels use `#100c0c`. The two new values become `color.primitive.ink.14` and
+`color.primitive.ink.28`, keeping luminance order and all historical primitives.
+Everything else stays exactly as reviewed (rose/white foreground, red actions,
+focus, borders, selections, status and chart roles); raised/overlay stay
+`#241010`, alternate chrome `#1c0a09`. The historical profile keeps its previous
+surfaces.
 
-The approved change is confined to seven surface assignments: canvas, sunken,
-input, code and terminal use the existing pure black primitive; chrome uses
-`#090707`; default panels use `#100c0c`. Add the two selected values as
-`color.primitive.ink.14` and `color.primitive.ink.28`, preserving the luminance
-ordering and all historical primitives. Keep every other color assignment,
-including rose/white foreground, red actions, focus, borders, selections,
-status and chart roles, exactly as reviewed. Raised/overlay surfaces remain
-`#241010`; alternate chrome remains `#1c0a09`. Preserve the complete historical
-profile by explicitly retaining its previous surface assignments.
+**Why.** The owner explicitly selected the reviewed candidate I: "use the True
+Black / Rose theme and make it permanent for j3w1/theme".
 
-The rejected A/B/C, revised D/E/F and final G/H/I reviews are historical local
-evidence. Their temporary inputs are not public profiles. Selection approves
-these specific surface values and assignments, not unrelated pending decisions,
-new colors or accessibility waivers. This is the foundation for the Phase 6
-package, copy distributions, static portal and Vue showcase. Existing consumers
-retain their immutable pins; the new surface contract ships in version 1.0.0,
-following the repository's major-version rule for approved value changes.
+**Consequences.** Approves these surfaces only, not other pending decisions, new
+colors or accessibility waivers. The rejected A/B/C, revised D/E/F and final
+G/H/I reviews are historical local evidence, not public profiles. Foundation for
+the Phase 6 package, copy distributions, static portal and Vue showcase; ships
+in 1.0.0 under the major-version rule, existing pins immutable.
 
-Superseded in part, and only in part. Three later accepted decisions each
-replace one or more of the role assignments above, and leave everything else
-here standing: D-024 replaces `text.link`; D-026 replaces
-`action.primary.bg`; D-027 replaces `surface.raised`,
-`interaction.selection.bg` and `text.placeholder`. Every other value and rule
-recorded in this decision — the seven surface assignments, the two new
-primitives, the luminance ordering, the remaining foreground, red action,
-focus, border, selection, status and chart roles, overlay `#241010`, alternate
-chrome `#1c0a09`, and the retained historical profile — stands as accepted.
-This decision keeps its `accepted` status; it is not superseded as a whole.
+**Status.** accepted · 2026-09-08 · owner, who also authorized the remaining
+Phase 6 implementation. Superseded in part only: D-024 (`text.link`), D-026
+(`action.primary.bg`), D-027 (`surface.raised`, `interaction.selection.bg`,
+`text.placeholder`).
 
 ## D-024 Distinguish links from body text and headings
 
-Status: accepted. During the implementation preview the owner requested links
-that are more distinguishable from normal text, using different colors. This
-is an explicit correction to the foreground-role retention in D-023, limited
-to links. Map `color.text.link` to the existing strong red primitive `#f73f35`,
-retain the persistent red underline, and retain near-white hover text on the
-strong dark-red hover fill. Visited links keep the link color and underline;
-current-page indicators and selected navigation retain their explicit on-fill
-roles. Body text and heading colors remain the True Black / Rose hierarchy.
+**Decision.** `color.text.link` maps to the existing strong red `#f73f35`,
+keeping the persistent red underline and near-white hover text on the strong
+dark-red hover fill. Visited links keep color and underline; current-page and
+selected navigation keep their on-fill roles; body and heading colors are
+unchanged.
 
-The alternative of bright-rose links still shares the heading color and gives
-too little separation in the reviewed dashboard. Blue/purple links would
-introduce an unrelated hue. No new primitive, status hue, contrast exception
-or focus rule is introduced. Preserve the old link assignment in the historical
-profile. This refinement ships with the same unreleased 1.0.0 major change.
+**Why.** In the implementation preview the owner asked for links more
+distinguishable from normal text, using different colors.
+
+**Consequences.** No new primitive, status hue, contrast exception or focus
+rule; the historical profile keeps the old link; ships in the same unreleased
+1.0.0.
+
+**Alternatives.** Bright rose (the heading color) or blue/purple (an unrelated
+hue).
+
+**Status.** accepted · 2026-09-08 · owner, correcting D-023 for links only.
+D-027 later moves link hover to `interaction.hover.bg`.
 
 ## D-025 Theme interactive controls throughout the portal and demo
 
-Status: accepted. After reviewing native blue selections in the work board and
-agent-kit picker, the owner explicitly instructed: "replace mostly all native
-components like `<select>` we must use all j3w1 themed". The owner also requested a
-properly proportioned command-search field. This records that authorization.
+**Decision.** The maintained select renders its single-choice popup and
+multiple-choice list in theme-owned DOM with the existing selection, surface,
+text, border and focus roles; the native select remains the form-value and
+constraint source and the no-JavaScript fallback. It follows the select-only
+combobox and multiple listbox keyboard patterns, keeps labels, disabled
+options/fieldsets, native input/change events, defaults and form reset, and
+documents its tested scope. The same enhancement serves existing application
+controls, the portal, the Vue demo, consumption docs and copy closures; input,
+button, checkbox, radio, range and file chrome is themed too. Date inputs get a
+theme-owned text editor and calendar, time inputs text entry and theme-owned
+step buttons; native inputs keep constraints and values. System dialogs and
+no-JavaScript fallbacks stay native, without platform hacks; native ports keep
+their mappings. The command field fills its dialog width below its label.
 
-The maintained select implementation now renders its single-choice popup and
-multiple-choice list in theme-owned DOM using the existing selection, surface,
-text, border and focus roles. The native select remains the form-value and
-constraint source and the no-JavaScript fallback. This supersedes the select
-specification's prohibition on replacing the host popup for web implementations.
-Native ports retain their host-specific mappings. The custom interface follows
-the select-only combobox and multiple listbox keyboard patterns, preserves labels,
-disabled options/fieldsets, native input/change events, defaults and form reset,
-and documents its actual tested scope.
+**Why.** Seeing native blue selections in the work board and agent-kit picker,
+the owner explicitly instructed: "replace mostly all native components like
+`<select>` we must use all j3w1 themed", and asked for a properly proportioned
+command-search field.
 
-Provide the same supported enhancement for existing application controls, use it
-throughout the portal and Vue demo, and include it in consumption documentation
-and copy closures. Theme ordinary input, button, checkbox, radio, range and file
-control chrome as well. Browser-owned system dialogs and explicit no-JavaScript
-fallbacks remain native; they are not styled by unsupported platform hacks.
+**Consequences.** Supersedes the select spec's ban on replacing the host popup
+(web implementations) and the date/time specs' host-popup descriptions (enhanced
+web implementations). Ships in 1.1.0; 1.0.0 pins stay immutable. No new hues,
+focus rules, accessibility waivers or license changes.
 
-Date inputs use a theme-owned text editor and calendar; time inputs use explicit
-text entry and theme-owned step buttons. Their original native inputs retain
-constraints and form values. This supersedes the earlier date/time component
-specifications' host-popup descriptions for enhanced web implementations.
+**Alternatives.** Advisory option CSS (the blue selection stays) or one-off
+dropdowns (duplicated behavior).
 
-The alternative of advisory option CSS leaves the demonstrated blue host
-selection unchanged. One-off Vue/portal dropdowns duplicate behavior and leave
-agents with inconsistent components. New hues, focus rules, accessibility
-waivers and license changes are not authorized by this correction. The additive
-enhancement and corrected component behavior ship in 1.1.0; existing 1.0.0 pins
-remain immutable. The command field fills its dialog width below its label.
+**Status.** accepted · 2026-09-09 · owner.
 
 ## D-026 Primary action fill darkens off heritage ANSI 12
 
-Status: accepted. The owner asked for a slightly darker fill on primary
-actions such as the portal's `Explore components` button, and accepted this
-entry as implemented after reviewing it.
+**Decision.** `color.action.primary.bg` aliases the existing
+`color.primitive.red.200` (`#7d1310`) instead of `color.primitive.red.300`; no
+colour is minted.
 
-`color.action.primary.bg` aliased `color.primitive.red.300`, which is also
-`color.primitive.ansi.12` and `color.terminal.ansi.12`. `schemas/roles.mjs`
-fixes every `color.primitive.ansi.<i>` to its heritage value byte for byte in
-every profile, so darkening that primitive is not available: it would fail
-validation and silently repaint the terminal's bright red.
+**Why.** The owner asked for a slightly darker fill on primary actions such as
+the portal's `Explore components` button. `color.primitive.red.300` is also
+`color.primitive.ansi.12` and `color.terminal.ansi.12`, and `schemas/roles.mjs`
+pins every `color.primitive.ansi.<i>` to its heritage value, so it cannot darken
+without repainting the terminal's bright red.
 
-The role therefore aliases `color.primitive.red.200` (`#7d1310`), a value
-already in the palette, rather than minting a new colour. Label contrast rises
-from 8.17:1 to 9.28:1 and the focus ring over the fill from 4.90:1 to 5.57:1;
-both were already passing. The state ladder stays ordered — pressed `#630f0d`
-below the fill, hover `#911410` above it.
+**Consequences.** Label contrast rises from 8.17:1 to 9.28:1, the ring over the
+fill from 4.90:1 to 5.57:1. Pressed `#630f0d` stays below, hover `#911410`
+above. The decorative waiver `primary fill against the panel` goes from 2.07:1
+to 1.83:1 (the label identifies the button); no waiver is added or widened.
 
-The declared pair `primary fill against the panel` is a recorded decorative
-waiver. It measured 2.07:1 before this change and measures 1.83:1 after it,
-further from 3:1. It is listed as decorative because the label identifies the
-button; this decision does not change that reasoning, and no waiver is added
-or widened.
+**Alternatives.** A new primitive at the exact value, or a darker portal button
+only (a value outside `tokens/`, against the confirmation-only rule in
+`theme.json`).
 
-This supersedes part of D-023, and only this part. `action.primary.bg`
-(`#871f19`) was one of the assignments that decision kept "exactly as
-reviewed" under its red actions clause; this entry replaces that single role
-and nothing else in D-023. The primitive is untouched, so
-`color.primitive.red.300`, `color.primitive.ansi.12` and
-`color.terminal.ansi.12` all still carry the heritage value.
-
-Alternatives: mint a new primitive at the exact requested value, which adds a
-colour to the palette for a difference of about one step and no measurable
-gain; or leave the fill and darken only the portal button, which would put a
-value in a stylesheet that is not in `tokens/`, against the confirmation-only
-rule in `theme.json`.
+**Status.** accepted · 2026-09-11 · owner (accepted as implemented after
+review). Supersedes D-023 only for `action.primary.bg` (`#871f19`, kept "exactly
+as reviewed" under its red actions clause).
 
 ## D-027 Recede the interactive chrome
 
-Status: accepted. The owner found the open list, its selected row, the
-placeholder text and the link hover fill all louder than the content they sit
-against, and asked for a darker treatment across the set, then accepted this
-entry as implemented after reviewing it.
+**Decision.** Four roles move to existing palette values; no colour is minted.
+`surface.raised`: `ink.30` (`#160b0b`), was `ink.52`; an open list reads as
+depth, distinct from `surface.default` (`#100c0c`). `interaction.selection.bg`:
+`red.100` (`#531310`), was `red.350`; text on it rises from 7.92:1 to 12.47:1.
+`text.placeholder`: `rose.350` (`#a3676b`), was `rose.600`; 4.71:1 on
+`surface.input`, over the 4.5:1 floor without a waiver. Links hover on
+`interaction.hover.bg`, not `interaction.hover.bg-strong`, which menu items
+keep.
 
-Four roles move, all onto values already in the palette; no colour is minted.
+**Why.** The owner found the open list, selected row, placeholder and link hover
+louder than the content they sit against.
 
-- `surface.raised` takes `ink.30` (`#160b0b`) instead of `ink.52`. An open list
-  now reads as depth rather than as a lighter panel, and stays distinct from
-  `surface.default` (`#100c0c`).
-- `interaction.selection.bg` takes `red.100` (`#531310`) instead of `red.350`.
-  Text on the fill improves from 7.92:1 to 12.47:1.
-- `text.placeholder` takes `rose.350` (`#a3676b`) instead of `rose.600`,
-  measuring 4.71:1 on `surface.input` — darker, and still clear of the 4.5:1
-  floor without a waiver.
-- Links hover on `interaction.hover.bg` rather than `interaction.hover.bg-strong`.
-  Menu items keep the strong fill, so the two remain distinguishable.
+**Consequences.** The fill never carried selection (2.00:1 at `#911410` against
+the raised surface, under the 3:1 non-text minimum); the unchanged 2px
+`border.selected-indicator` and check glyph do, per `spec/foundations.md`. The
+report still has 954 pairs, 17 waived, none failing; no waiver is added or
+widened. The ring measures 3.38:1 on `#531310` (2.15:1 on `#911410` was D-006's
+reason to recolour), so a selected row takes the ordinary 1px dashed ring, not
+the 2px solid container ring; `action.primary.bg` (2.52:1) and
+`status.danger.fill` (1.13:1) keep the recoloured ring. `spec/foundations.md`
+was corrected; D-006 stays as written. `tests/foundation-selection.test.js`
+guards the set.
 
-The selection fill was never what carried selection: at `#911410` it measured
-2.00:1 against the raised surface, below the 3:1 non-text minimum, and the
-recessed value measures less again. Selection is carried by the 2px
-`border.selected-indicator` and the check glyph, which is what
-`spec/foundations.md` requires when a state would otherwise be colour-only.
-Both are unchanged. The full report still shows 954 pairs, 17 waived and none
-failing; no waiver is added or widened.
+**Alternatives.** Darken only the pointed-at components, or add intermediate
+primitives.
 
-This supersedes part of D-023, and only this part. `surface.raised`
-(`#241010`) and `interaction.selection.bg` (`#911410`) were among the values
-the owner selected in that accepted decision, and `text.placeholder`
-(`#bd787d`) fell under the same decision's instruction to keep the foreground
-roles exactly as reviewed. This entry replaces those three role assignments
-and nothing else in D-023: every other surface, foreground, focus, border,
-selection, status and chart role it approved stands as accepted, as does its
-historical-profile retention. `tests/foundation-selection.test.js` guards the
-set by name and now records the recessed values; every other surface in it is
-still the D-023 selection, untouched.
-
-The darker fill also settles the ring on a selected row. D-006 recolours the
-ring on filled surfaces because `#e53935` measured 2.15:1 on the old
-`#911410`; on `#531310` it measures 3.38:1, past the 3:1 minimum, so a
-selected row now takes the ordinary 1px dashed control ring instead of the 2px
-solid container ring. That is the only fill this reaches: the ring still
-measures 2.52:1 on `action.primary.bg` and 1.13:1 on `status.danger.fill`, and
-both keep their recoloured ring. `spec/foundations.md` carried the stale 2.15:1
-figure as its stated reason and has been corrected; D-006's own record is left
-as written, since it describes what was true when it was opened.
-
-Alternatives: keep the fills and darken only the components the owner pointed
-at, which would put presentation in a stylesheet rather than in the roles and
-leave selection meaning two different things; or introduce new primitives at
-intermediate values, which adds colours to the palette for differences the
-existing steps already cover.
+**Status.** accepted · 2026-09-11 · owner (accepted as implemented after
+review). Supersedes D-023 only for `surface.raised` (`#241010`),
+`interaction.selection.bg` (`#911410`) and `text.placeholder` (`#bd787d`).
 
 ## D-028 Merge gates and the deployment gate are different suites
 
-Status: accepted. The owner instructed that the exhaustive verification move
-off the pull-request critical path: merges gate on a few minutes of checks,
-the full matrix gates deployment, and a local full run stays recommended
-rather than mandatory.
+**Decision.** The full browser and packed-consumer matrix gates deployment, not
+merging; it runs on `main` before `deploy` and on demand through the workflow
+dispatch. A subset never writes evidence: it uses the plain list reporter,
+because the evidence reporter would mark unselected tests not run and publish a
+matrix that only looked complete. Packed consumers move with the browser suite,
+which republishes their evidence against the deployed package;
+`scripts/ui-verification-report.mjs` requires the complete protocol on all three
+engines. No mandatory local gate: `npm run test:all` is recommended, never
+verified; the practice is recorded in `AGENTS.md`.
 
-**Context.** Accepting D-026 and D-027 changed prose, token metadata and
-generated exports. It cost twenty-nine and a half minutes of continuous
-integration before it could merge. Measured on that run: sources zero point
-six minutes, build zero point seven, packed consumers three point three, and
-the browser matrix twenty-four point nine. The browser job was eighty-four per
-cent of the wait, and the repository is public, so the runners are free and
-the whole cost is latency for whoever is waiting.
+**Why.** Accepting D-026 and D-027 cost 29.5 minutes of CI before merge (sources
+0.6 minutes, build 0.7, packed consumers 3.3, browser matrix 24.9: 84% of the
+wait), pure latency on a public repository. A browser failure stops publication,
+not a correct merge; a local receipt proves only that something wrote it.
 
-**Decision.** A pull request merges on `validate`, `build` and a new `smoke`
-job. The packed-consumer and browser suites run on `main` before deployment
-and on demand through the workflow dispatch. The full local loop is
-`npm run test:all`; it is available and recommended before pushing, and it is
-not mandatory. Nothing verifies that it was run.
+**Consequences.** As first recorded, pull requests merged on `validate`, `build`
+and a new `smoke` job (desktop project; page, portal, button and text-field
+specs; plain list reporter): the built site loads under its base path, renders
+from the tokens and takes a keyboard. `smoke` is never a coverage claim.
 
-The full matrix is a deployment gate. It always was: a browser failure has
-never prevented a merge from being correct, it prevents the site from being
-published, and `deploy` still depends on it. Requiring it before merge treated
-a publication gate as a correctness gate and charged every change for the
-difference. What the merge gate keeps is what a source test cannot see: that
-the built site loads under its base path, renders from the tokens, and takes a
-keyboard.
+**Alternatives.** Sharding before merge (about six minutes, bounded by the
+largest spec file, partial evidence files) or consumers on the merge path (three
+more minutes).
 
-`smoke` is a named subset and reports as one. It runs the desktop project
-only, over the page, portal, button and text-field specs, and it reports with
-the plain list reporter rather than the evidence reporter. That last point is
-the rule, not an optimisation: the evidence reporter records unselected tests
-as not run, so a filtered run that reached it would publish an evidence matrix
-that looked complete and was not. A passing `smoke` is a signal that the build
-is sound. It is never a coverage claim, and the published matrix continues to
-come only from the full suite.
-
-The packed-consumer suite moves with the browser suite and cannot be split
-from it. The browser job downloads the consumer evidence artifact and
-republishes it against the deployed package, and
-`scripts/ui-verification-report.mjs` requires the complete protocol on all
-three engines because a filtered run must not pass as a full one. Both are on
-the deployment path together.
-
-**No mandatory local gate.** A receipt produced by the machine that ran the
-tests proves only that something wrote a receipt. It cannot distinguish a real
-run from a forgotten one that was filled in afterwards, so it would have
-caught carelessness and nothing else, at the price of machinery that looked
-like proof. Local verification is a practice here, recorded in `AGENTS.md`,
-not a gate.
-
-Superseded in part by D-031: pull requests now run the checks their changed
-paths select, the deployment matrix runs in shards merged into one evidence
-report, and `release-gate` replaces `validate`, `build` and `smoke` as the
-required check. The rules above about subsets never writing evidence, and the
-full matrix gating deployment, still hold.
-
-Alternatives: shard the full suite across runners, which keeps complete
-coverage before merge at about six minutes and costs nothing on a public
-repository, but is bounded below by the largest single spec file and gives
-each shard its own partial evidence file to merge; or keep the packed
-consumers on the merge path for three more minutes, which buys cross-engine
-coverage of the distributed package rather than of this site. Sharding is the
-one worth revisiting if complete pre-merge coverage ever matters more than the
-minutes.
+**Status.** accepted · 2026-09-11 · owner: merges gate on a few minutes of
+checks, the full matrix gates deployment, a local full run stays recommended.
+Superseded in part by D-031 (path-selected pull-request checks, a sharded
+deployment matrix with one evidence report, `release-gate` as the only required
+check); the rules above still hold.
 
 ## D-029 Readable terminal and code reds
 
-Status: accepted · 2026-09-26. The owner chose these values, asked for the
-specification to change, and approved this entry by selecting them.
-
-**Context.** The owner applied the default profile to Orca, Claude Code and
-Codex and found the reds right but too dim to read. Inline code such as
-`scriptblock` in Claude Code renders in slot 12 (`#871f19`, 2.12:1), code-block
-keywords in slot 4 (`#8c1212`, 2.09:1), and Codex draws git branches in slot 4.
-Ten of the sixteen slots were below the 4.5:1 text floor on the terminal
-background. Programs, not the theme, choose which slot means what, so no port
-mapping can move the text to a readable slot.
-
-**Decision.** The default profile carries a readable heritage sixteen. Each
-heritage slot below the text floor keeps its hue and saturation and has its
-HSL lightness raised; the heritage light-to-dark order is kept, so the reds are
-not flattened to one brightness. Slot 8 (bright black) stays the deliberately
-dim tier at about 3:1, the dark-red decorative and background slot.
+**Decision.** `default` carries a readable heritage sixteen: each slot below the
+text floor keeps its hue and saturation with its HSL lightness raised, in the
+heritage light-to-dark order. Slot 8 (bright black) stays the deliberately dim
+tier at about 3:1, the dark-red decorative and background slot.
 
 | slot | heritage | default profile | contrast on `#0c0909` |
 | --- | --- | --- | --- |
@@ -729,172 +624,145 @@ dim tier at about 3:1, the dark-red decorative and background slot.
 | 14 | `#e0292f` | `#e6565a` | 4.28 → 5.52 |
 | 15 | `#a3676b` | `#b17e81` | 4.45 → 5.83 |
 
-Slots 0, 2, 3, 5, 7 and 11 already passed and are unchanged. The new values
-live in `color.primitive.ansi-readable.*`; `color.primitive.ansi.*` keeps the
-exact heritage values byte for byte, and the `heritage-ansi` profile pins every
-changed role back to them.
+Slots 0, 2, 3, 5, 7 and 11 already passed. New values live in
+`color.primitive.ansi-readable.*`; `color.primitive.ansi.*` keeps the heritage
+values byte for byte, and `heritage-ansi` pins changed roles back to them.
+Syntax reds lift slightly: `code.syntax.keyword` and `tag` `#f73f35` → `#f7463c`
+(`color.primitive.red.860`), `property`, `heading` and `invalid` `#e53935` →
+`#e95551` (`color.primitive.red.810`): 5.56:1 on the code background, 4.52 and
+4.51 in an editor selection (were 4.38 and 3.81). Interface reds are unchanged.
+New role `color.terminal.prompt-text` colours the prompt's path segment: the
+terminal background in `default` (4.55:1 on slot 4), the historical light
+selection text in `heritage-ansi`.
 
-The code editor's two syntax reds get the same treatment, only slightly:
-`code.syntax.keyword` and `tag` move from `#f73f35` to `#f7463c`
-(`color.primitive.red.860`), and `property`, `heading` and `invalid` from
-`#e53935` to `#e95551` (`color.primitive.red.810`). Both reach 5.56:1 on the
-code background and clear 4.5:1 inside an editor selection (4.52 and 4.51),
-which they did not before (4.38 and 3.81). Interface reds (focus, links,
-borders, accents, actions) are unchanged.
+**Why.** In Orca, Claude Code and Codex the owner found the reds right but too
+dim: Claude Code's inline code such as `scriptblock` uses slot 12 (`#871f19`,
+2.12:1), code-block keywords and Codex git branches slot 4 (`#8c1212`, 2.09:1).
+Ten of the sixteen slots failed the 4.5:1 text floor, and programs, not the
+theme, pick the slot.
 
-The terminal prompt's path segment takes a new role, `color.terminal.prompt-text`:
-the terminal background in the default profile (4.55:1 on the brighter slot 4),
-and the historical light selection text in `heritage-ansi`, so each profile's
-prompt stays readable.
+**Consequences.** Terminal ports regenerate; CE Devbox's shell palette and the
+Agnoster prompt's directory text follow in their own repositories.
+`heritage-ansi` stays the exact historical record.
 
-Superseded in part by D-032: slot 6 is coral `#ff7a66` rather than the lift
-`#bb696c`, and the prompt's path segment has its own background,
-`color.terminal.prompt-bg` (the heritage `#8c1212`), with bright rose
-`#ffa2a7` text in the default profile. The other nine lifted slots, the syntax
-reds and `heritage-ansi` are unchanged.
+**Alternatives.** All rejected: the heritage slots (the owner: unreadable), the
+`extended` palette (the owner keeps the red and rose families), a gentle lift
+leaving slots 4 and 12 near 3:1, an OKLCH lift (gamut clipping drifts toward
+raspberry).
 
-**Alternatives.** Keep the heritage slots and document the failures, as before;
-rejected by the owner as unreadable. Adopt the `extended` semantic palette;
-rejected, the owner keeps the red and rose families. A gentle lift that left
-slots 4 and 12 near 3:1; rejected as still dim. An OKLCH lift at constant
-chroma; rejected because gamut clipping drifts the reds toward raspberry.
-
-**Consequences.** Terminal ports regenerate with the new slots. Hosts that set
-the palette themselves (CE Devbox's shell palette, the Agnoster prompt's
-directory text) follow in their own repositories. `heritage-ansi` stays the
-exact historical record.
+**Status.** accepted · 2026-09-26 · owner, who chose the values, asked for the
+change and approved this entry by selecting them. Superseded in part by D-032:
+slot 6 is coral `#ff7a66`, not `#bb696c`; the prompt gets
+`color.terminal.prompt-bg` (heritage `#8c1212`) with `#ffa2a7` text in
+`default`.
 
 ## D-030 Hued syntax roles for opt-in code highlighting
 
-Status: accepted · 2026-09-26. The owner found Codex's code "too boring and
-single-coloured" under the monochrome default syntax and chose the `extended`
-overlay's code hues.
+**Decision.** `default` gains opt-in `color.code.hued.*` roles with the
+`extended` code hues: strings green `#86a46f`; numbers, constants, functions,
+attributes and escapes amber `#c9973f`; types and properties blue `#7e9ebb`;
+operators bright rose `#ffa2a7`. Keywords, tags, comments, variables and
+punctuation keep `code.syntax`. Every hued role reaches 7.08:1 or more on the
+code background (operators 10.37:1) and 5.74:1 or more in an editor selection.
 
-**Context.** D-001 keeps syntax highlighting in the `default` profile
-monochrome and allows the three extension hues in the `code` group only in the
-`extended` overlay, which is proposed. A proposed profile is preview-only and
-blocked for delivery, so no consumer can ship its values, however an
-individual role is marked.
+**Why.** The owner found Codex's code "too boring and single-coloured"; D-001
+allowed code hues only in the proposed `extended` overlay, which is blocked for
+delivery.
 
-**Decision.** The `default` profile gains `color.code.hued.*`, an opt-in set of
-syntax roles for hosts that want hue differentiation. They carry the
-`extended` overlay's code hues: strings in green `#86a46f`; numbers, constants,
-functions, attributes and escapes in amber `#c9973f`; types and properties in
-blue `#7e9ebb`; operators in bright rose `#ffa2a7`. Keywords, tags, comments,
-variables and punctuation keep their `code.syntax` roles. Every hued role
-reaches 7.08:1 or more on the code background (operators 10.37:1) and 5.74:1 or
-more inside an editor selection. The reference code editor and every other
-consumer keep `code.syntax.*`; a host opts in by mapping `code.hued.*`, as the
-terminal kit's Codex theme does once the kit is pinned to this release. This extends D-001's code-group allowance
-to these roles of the approved profile; the `extended` overlay itself stays
-proposed.
+**Consequences.** The reference editor and other consumers keep `code.syntax.*`;
+a host opts in by mapping `code.hued.*`, as the terminal kit's Codex theme does
+once pinned to this release. This extends D-001's code-group allowance to these
+roles; `extended` stays proposed.
 
-**Alternatives.** Keep Codex monochrome; rejected by the owner. Approve the
-whole `extended` overlay; not requested, and it also reassigns the terminal
-slots. Replace `code.syntax.*` in the default profile; rejected so the
-reference editor keeps its monochrome identity.
+**Alternatives.** Keep Codex monochrome (rejected by the owner), approve all of
+`extended` (it reassigns terminal slots too), or replace `code.syntax.*`.
+
+**Status.** accepted · 2026-09-26 · owner, who chose the extended hues.
 
 ## D-031 Select the checks a change needs; shard the deployment matrix
 
-Status: accepted · 2026-09-26. The owner found thirty-minute runs on `main`
-unacceptable and asked for classified checks modelled on theselfish.one.
-
-**Context.** A push to `main` ran every check whatever changed: a change to the
-terminal kit alone, which the site never reads, took 63 minutes to reach
-deployment. The browser suite ran on one worker for 24.7 minutes; one axe scan
-took 3.6 minutes of that; `npm test` spent 139 of its 141 seconds in the
-terminal-kit suites.
-
 **Decision.** CI is `select` → checks → `release-gate`.
 
-- `select` reads the changed paths and `scripts/ci/proofs.json`. A path gets
-  cheaper only when a rule there claims it. A path no rule claims, and every
-  control file (workflows, the selector and registry, `package.json`, the
-  lockfile, the Playwright configs), runs every check: a broad rule is a
-  floor, never a verdict. The control list lives in the selector, and on a
-  pull request the base commit's list applies as well, so a change cannot make
-  itself cheaper by shortening it. Review still protects the selector itself. A file that a browser
-  spec imports also runs that spec and counts as a site change.
-- Unit tests and the build run as parallel jobs, so the browser shards start
-  as soon as the site is built.
-- A pull request runs only the selected checks. A browser subset uses the plain
-  list reporter, so it never writes evidence (D-028 still holds).
-- A push to `main` that changes the site runs the whole matrix: the browser
-  suite split by project into jobs (desktop in four parts; the project list is
-  read from the Playwright config) with blob reports, merged once into the
-  evidence reporter, and the packed consumers in parallel. The merge runs only
-  when every shard passed and sent its report, and a check refuses evidence
-  that does not record every configured test in every project. Then the
-  verification report, then deployment. A push that no rule marks as a site
-  change deploys nothing.
-- On `main` the changed paths are counted from the last commit that reached
-  Pages, so a change that failed to deploy is counted again by the next push.
-- `release-gate` is the only required check. It recomputes the plan from Git
-  with the same code, refuses a plan that does not match, and checks that each
-  job ran exactly when the plan said it should, and passed.
-- Tests run in parallel (`fullyParallel`, two workers per CI job). The page axe
-  scan runs as two tests, colour contrast and every other rule; the rule set
-  comes from a tag-based run, so together they are exactly the rules the tags
-  select. Retries stay at zero. Only `playwright test` with nothing that
-  narrows or lists it, or the merge of every shard, writes evidence; the check
-  that counts the merged records lists tests without running any reporter and
-  proves the evidence file unchanged.
+- `select` reads the changed paths and `scripts/ci/proofs.json`; a path gets
+  cheaper only when a rule claims it. Unclaimed paths and control files
+  (workflows, the selector and registry, `package.json`, the lockfile, the
+  Playwright configs) run every check: a broad rule is a floor, never a verdict.
+  On a pull request the base commit's control list also applies, so a change
+  cannot make itself cheaper; review protects the selector. A file a browser
+  spec imports runs that spec and counts as a site change.
+- Unit tests and the build run in parallel. A pull request runs only the
+  selected checks; browser subsets use the plain list reporter and write no
+  evidence (D-028).
+- A push to `main` that changes the site runs the whole matrix: browser projects
+  split into jobs (desktop in four parts; projects read from the Playwright
+  config) with blob reports merged once into the evidence reporter, and packed
+  consumers in parallel. The merge needs every shard passed and reported; a
+  check refuses evidence missing any configured test in any project. Then the
+  verification report and deployment; no site change, no deployment. Changed
+  paths count from the last commit that reached Pages, so a failed deploy is
+  counted again.
+- `release-gate`, the only required check, recomputes the plan from Git with the
+  same code, refuses a mismatch, and checks each job ran exactly as planned and
+  passed.
+- `fullyParallel`, two workers per CI job, zero retries. The page axe scan is
+  two tests (colour contrast; every other rule) from a tag-based run, together
+  exactly the tagged rules. Only `playwright test` with nothing narrowing or
+  listing it, or the merge of every shard, writes evidence; the counting check
+  runs no reporter and proves the evidence file unchanged.
 
-**Consequences.** D-028's objection to sharding, partial evidence files, no
-longer applies: shards write blob reports only, and one merge writes one
-evidence report. A change can no longer merge on `validate`, `build` and
-`smoke` alone when it needs more. Local `npm run test:all` stays recommended,
-not required.
+**Why.** `main` ran every check whatever changed: a terminal-kit-only change,
+which the site never reads, took 63 minutes to deploy; the browser suite ran on
+one worker for 24.7 minutes (one axe scan 3.6 minutes); `npm test` spent 139 of
+its 141 seconds in terminal-kit suites.
 
-**Alternatives.** A self-hosted runner, as theselfish.one uses; rejected
-because this repository is public and pull requests from forks could run code
-on it. Reusing pull-request evidence on `main`; not possible today because the
-build stamps the commit into every page, so a pull-request build never equals
-the `main` build. Playwright's internal shard weights; rejected because they are
-not a public option.
+**Consequences.** D-028's objection to sharding (partial evidence files) no
+longer applies: shards write blob reports and one merge writes one report. A
+change needing more cannot merge on `validate`, `build` and `smoke` alone.
+
+**Alternatives.** A self-hosted runner as on theselfish.one (fork pull requests
+could run code on it), reusing pull-request evidence on `main` (not possible
+today: the build stamps the commit), Playwright's internal shard weights (not
+public).
+
+**Status.** accepted · 2026-09-26 · owner, who found thirty-minute runs on
+`main` unacceptable and asked for classified checks modelled on theselfish.one.
+Supersedes D-028 in part.
 
 ## D-032 Coral slot 6 and a fixed prompt background
 
-Status: accepted · 2026-09-26. The owner saw two problems in real use and chose
-the values.
-
-**Context.** After D-029, two things still read badly:
-
-- Claude Code highlights fenced code with fixed ANSI slots. PowerShell cmdlets
-  such as `Invoke-RestMethod` take slot 6, whose lifted `#bb696c` has almost
-  the same hue as the rose text `#e99499`. Type names such as `[scriptblock]`
-  take slot 6 dimmed, at 2.07:1.
-- The Agnoster prompt draws its directory segment on slot 4. D-029 made slot 4
-  bright red `#e53131`, so the prompt's text (slot 7, `#ffa2a7`) fell to 2.28:1
-  in Orca. In
-  the owner's PowerShell, where the old palette still applies, the prompt is
-  bright rose `#ffa2a7` on the heritage `#8c1212` (4.97:1), the look to keep.
-
 **Decision.**
 
-- Slot 6 is coral `#ff7a66` (`color.primitive.coral.700`, 7.77:1 on the
-  terminal background). It is warm and vivid, so highlighted names stand apart
-  from the rose text without taking amber's role in the code hues.
-- Dim text is not fixed in the slots. Emulators draw dim by mixing a colour
-  halfway into the background, so dimmed coral is about 2.7:1; a host setting that changes dim text alone
-  may help, and brightening slot 6 further to make up for dimming is ruled out.
-- A new role, `color.terminal.prompt-bg`, is the prompt's path-segment
-  background: the heritage `#8c1212` (`color.primitive.ansi.4`) in every
-  profile. `color.terminal.prompt-text` is bright rose `#ffa2a7` in the default
-  profile (4.97:1), and in the proposed `extended` overlay, and stays `#f4eeee`
-  in `heritage-ansi` (8.28:1). A prompt
-  sets both as 24-bit colours, so it keeps its look whatever the slots carry.
-- The terminal palette itself is the same in every host that sets it: Orca,
-  Ghostty, Warp and CE Devbox's shell palette. The prompt is the one deliberate
-  heritage-style exception.
+- Slot 6 is coral `#ff7a66` (`color.primitive.coral.700`, 7.77:1 on the terminal
+  background): warm and vivid, apart from the rose text, without taking amber's
+  code role.
+- Dim text is not fixed in the slots: emulators mix dim colours halfway into the
+  background, so dimmed coral is about 2.7:1. A dim-only host setting may help;
+  brightening slot 6 to compensate is ruled out.
+- New role `color.terminal.prompt-bg`, the prompt's path-segment background, is
+  heritage `#8c1212` (`color.primitive.ansi.4`) in every profile.
+  `color.terminal.prompt-text` is bright rose `#ffa2a7` in `default` (4.97:1)
+  and the proposed `extended`, and `#f4eeee` in `heritage-ansi` (8.28:1).
+  Prompts set both as 24-bit colours, whatever the slots carry.
+- Hosts that set the palette (Orca, Ghostty, Warp, CE Devbox's shell palette)
+  all use the same one; the prompt is the one deliberate heritage-style
+  exception.
 
-**Alternatives.** Peach `#ffab91`, blush `#ffc2c5` and amber `#e0a84a` for
-slot 6; the owner chose coral. Dark text on the bright slot 4 for the prompt,
-as D-029 first proposed; rejected by the owner after seeing it. Keeping the
-heritage palette in SSH shells; rejected, the palette should match across
-hosts.
+**Why.** Claude Code highlights fenced code with fixed ANSI slots: PowerShell
+cmdlets such as `Invoke-RestMethod` took slot 6 (`#bb696c`, nearly the hue of
+the rose text `#e99499`), and types such as `[scriptblock]` slot 6 dimmed
+(2.07:1). Agnoster's directory segment sits on slot 4, which D-029 made
+`#e53131`, so its text (slot 7, `#ffa2a7`) fell to 2.28:1 in Orca; the owner's
+PowerShell, on the old palette, shows `#ffa2a7` on `#8c1212` (4.97:1), the look
+to keep.
 
-**Consequences.** Terminal ports regenerate with the new slot 6. CE Devbox sets
-Agnoster's directory and virtualenv segments to the two prompt roles in its own
-repository. `heritage-ansi` values are unchanged; it gains `prompt-bg` with its
-existing slot-4 value.
+**Consequences.** Terminal ports regenerate. CE Devbox maps Agnoster's directory
+and virtualenv segments to the prompt roles in its own repository.
+`heritage-ansi` values are unchanged; it gains `prompt-bg` at its slot-4 value.
+
+**Alternatives.** Peach `#ffab91`, blush `#ffc2c5` or amber `#e0a84a` for slot
+6; dark text on the bright slot 4, as D-029 first proposed (rejected by the
+owner after seeing it); the heritage palette in SSH shells (rejected: palettes
+should match across hosts).
+
+**Status.** accepted · 2026-09-26 · owner, who saw both problems in real use and
+chose the values. Supersedes D-029 in part.
