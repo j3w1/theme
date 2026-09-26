@@ -114,7 +114,6 @@ export const assertHostMapping = (port, mapping, entries) => {
   for (const [key, role] of entries) {
     if (mapping.mappings[role]?.includes(key)) continue;
     // An unmapped reason may name the key it carries, as a whole key.
-    // An unmapped reason may name the key it carries, as a whole key.
     if (namesKey(mapping.unmapped[role], key)) continue;
     throw new Error(`ports/${port.id}: host.json writes ${role} at ${key}, which mapping.json neither maps nor names in the role's unmapped reason`);
   }
@@ -144,7 +143,7 @@ const chatgptFile = ({ manifest, port, mapping, exported, source }) => {
   const same = JSON.stringify(Object.keys(wanted).sort()) === JSON.stringify(Object.keys(mapped).sort())
     && Object.entries(wanted).every(([role, keys]) => JSON.stringify(keys) === JSON.stringify(mapped[role]));
   if (!same) throw new Error(`ports/${port.id}: mapping.json mappings must equal the roles and settings src/presets.json uses`);
-  return chatgptAppearance({ manifest, exported })(source);
+  return chatgptAppearance({ manifest, exported, port })(source);
 };
 
 export const PORT_EMITTERS = { "warp-yaml": warpYaml, "ghostty-config": ghosttyConfig, "claude-theme-json": claudeThemeJson, "codex-tmtheme": codexTmThemeFile, "chatgpt-appearance": chatgptFile };

@@ -21,7 +21,7 @@
     },
     "interaction": {
       "state": "unsupported",
-      "reason": "Focus and state colours follow the accent; the zero-radius geometry and dashed focus ring are not available."
+      "reason": "Focus and state colours follow the accent."
     },
     "status-colours": {
       "state": "unsupported",
@@ -42,6 +42,10 @@
     "outside-chatgpt": {
       "state": "out-of-scope",
       "reason": "Primitives and non-appearance values."
+    },
+    "geometry": {
+      "state": "unsupported",
+      "reason": "ChatGPT keeps its own rounded corners and focus ring; j3w1's zero radius and dashed focus ring cannot be set."
     }
   },
   "roles": {
@@ -1486,29 +1490,29 @@
       "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
     },
     "focus.offset": {
-      "state": "out-of-scope",
-      "surface": "outside-chatgpt",
-      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "ChatGPT keeps its own geometry; this j3w1 value cannot be set."
     },
     "focus.offset-container": {
-      "state": "out-of-scope",
-      "surface": "outside-chatgpt",
-      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "ChatGPT keeps its own geometry; this j3w1 value cannot be set."
     },
     "focus.offset-invalid": {
-      "state": "out-of-scope",
-      "surface": "outside-chatgpt",
-      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "ChatGPT keeps its own geometry; this j3w1 value cannot be set."
     },
     "focus.ring": {
-      "state": "out-of-scope",
-      "surface": "outside-chatgpt",
-      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "ChatGPT keeps its own geometry; this j3w1 value cannot be set."
     },
     "focus.ring-container": {
-      "state": "out-of-scope",
-      "surface": "outside-chatgpt",
-      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "ChatGPT keeps its own geometry; this j3w1 value cannot be set."
     },
     "font.family.mono": {
       "state": "unsupported",
@@ -1681,9 +1685,9 @@
       "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
     },
     "radius.none": {
-      "state": "out-of-scope",
-      "surface": "outside-chatgpt",
-      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "ChatGPT keeps its own geometry; this j3w1 value cannot be set."
     },
     "shadow.floating": {
       "state": "out-of-scope",
@@ -1776,5 +1780,5 @@
       "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
     }
   },
-  "rollback": "In ChatGPT: Settings > Appearance, pick another theme or reset the accent, background, foreground and contrast to the defaults shown there. Nothing is installed on disk."
+  "rollback": "In ChatGPT: Settings > Appearance, import the theme copied before, or choose another theme and set back each row of the preset table that was changed. Nothing is installed on disk."
 }

@@ -25,7 +25,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-a68NL1JOdaFTxg02WvzvuaPjJRycvQ7aX9JxSi846x0=",
+      "subjectDigest": "sha256-1SpJemEpx83jYC8JjyG1yl7rbxTr233a+qozlsA5x+Q=",
       "evidencePath": null,
       "surfaces": {
         "appearance-settings": {
@@ -46,7 +46,7 @@
         },
         "interaction": {
           "state": "unsupported",
-          "reason": "Focus and state colours follow the accent; the zero-radius geometry and dashed focus ring are not available."
+          "reason": "Focus and state colours follow the accent."
         },
         "status-colours": {
           "state": "unsupported",
@@ -67,17 +67,21 @@
         "outside-chatgpt": {
           "state": "out-of-scope",
           "reason": "Primitives and non-appearance values."
+        },
+        "geometry": {
+          "state": "unsupported",
+          "reason": "ChatGPT keeps its own rounded corners and focus ring; j3w1's zero radius and dashed focus ring cannot be set."
         }
       },
       "files": [
         {
           "path": "dist/presets.json",
-          "install": "Open ChatGPT > Settings > Appearance > Dark theme > Import and paste a preset's import string, or set the values in the preset's table by hand (see README.md).",
+          "install": "Open ChatGPT > Settings > Appearance > Dark theme > Import and paste a preset's import string, or set the values in the preset's table by hand (see ports/chatgpt/README.md).",
           "source": "ports/chatgpt/dist/presets.json",
-          "digest": "sha256-dhWYfAsX3+Q0/OJ+voHsA4rOUj3SflNIJsp3EEkRQpk="
+          "digest": "sha256-Gyl7HNak9AwQS2DF3t2FsjsN2c+ucQPXhkgg5actBh4="
         }
       ],
-      "rollback": "In ChatGPT: Settings > Appearance, pick another theme or reset the accent, background, foreground and contrast to the defaults shown there. Nothing is installed on disk.",
+      "rollback": "In ChatGPT: Settings > Appearance, import the theme copied before, or choose another theme and set back each row of the preset table that was changed. Nothing is installed on disk.",
       "readme": "ports/chatgpt/README.md",
       "mappings": [
         {
@@ -4435,9 +4439,9 @@
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
-          "state": "out-of-scope",
-          "surface": "outside-chatgpt",
-          "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints).",
+          "state": "unsupported",
+          "surface": "geometry",
+          "reason": "ChatGPT keeps its own geometry; this j3w1 value cannot be set.",
           "source": "ports/chatgpt/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -4450,9 +4454,9 @@
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
-          "state": "out-of-scope",
-          "surface": "outside-chatgpt",
-          "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints).",
+          "state": "unsupported",
+          "surface": "geometry",
+          "reason": "ChatGPT keeps its own geometry; this j3w1 value cannot be set.",
           "source": "ports/chatgpt/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -4465,9 +4469,9 @@
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
-          "state": "out-of-scope",
-          "surface": "outside-chatgpt",
-          "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints).",
+          "state": "unsupported",
+          "surface": "geometry",
+          "reason": "ChatGPT keeps its own geometry; this j3w1 value cannot be set.",
           "source": "ports/chatgpt/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -4480,9 +4484,9 @@
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
-          "state": "out-of-scope",
-          "surface": "outside-chatgpt",
-          "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints).",
+          "state": "unsupported",
+          "surface": "geometry",
+          "reason": "ChatGPT keeps its own geometry; this j3w1 value cannot be set.",
           "source": "ports/chatgpt/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -4495,9 +4499,9 @@
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
-          "state": "out-of-scope",
-          "surface": "outside-chatgpt",
-          "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints).",
+          "state": "unsupported",
+          "surface": "geometry",
+          "reason": "ChatGPT keeps its own geometry; this j3w1 value cannot be set.",
           "source": "ports/chatgpt/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -5024,9 +5028,9 @@
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
-          "state": "out-of-scope",
-          "surface": "outside-chatgpt",
-          "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints).",
+          "state": "unsupported",
+          "surface": "geometry",
+          "reason": "ChatGPT keeps its own geometry; this j3w1 value cannot be set.",
           "source": "ports/chatgpt/mapping.json",
           "spec": "spec/portability.md"
         },

@@ -28,13 +28,14 @@
       "status-colours",
       "code-colours",
       "interface-colours",
-      "typography"
+      "typography",
+      "geometry"
     ]
   },
   "files": [
     {
       "path": "dist/presets.json",
-      "install": "Open ChatGPT > Settings > Appearance > Dark theme > Import and paste a preset's import string, or set the values in the preset's table by hand (see README.md)."
+      "install": "Open ChatGPT > Settings > Appearance > Dark theme > Import and paste a preset's import string, or set the values in the preset's table by hand (see ports/chatgpt/README.md)."
     }
   ],
   "mappingPath": "mapping.json",

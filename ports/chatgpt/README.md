@@ -13,17 +13,20 @@ basic appearance controls (light, dark, system and a list of accent colours).
 Then only the Mode, and an accent close to the one below, apply.
 
 Status: **experimental**. The import strings follow the public description of
-ChatGPT's `codex-theme-v1` format. They count as verified only once imported
-into a real ChatGPT build and checked against the table. The tables work on
-their own.
+ChatGPT's `codex-theme-v1` format. The code theme id `chatgpt` behind the
+Theme row is a guess. The strings count as verified only once imported into a
+real ChatGPT build and checked against the table. The tables work on their
+own.
 
 ## Install
 
-1. Open ChatGPT > Settings > Appearance.
+1. Open ChatGPT > Settings > Appearance. If you have a custom theme you want
+   to keep, copy it first (Export, if your build shows it) or note its values.
 2. Either paste a preset's import string (Dark theme > Import), or set each
    value in its table by hand.
-3. Set the two font sizes by hand. The import string carries colours and
-   contrast only.
+3. The import string sets the colours, contrast and opaque windows, and
+   resets the UI and code font to the default. Set the two font sizes, reduce
+   motion, one mode and diff markers by hand.
 
 <!-- presets:start -->
 ### j3w1 Signature (recommended)
@@ -43,6 +46,7 @@ Strongest j3w1 identity: bright rose text on true black.
 | Separate light and dark | Off |
 | Contrast | 46 |
 | Diff markers | +/- |
+| Opaque windows | On (translucent sidebar off) |
 
 Import string (Settings > Appearance > Dark theme > Import):
 
@@ -67,6 +71,7 @@ Calmer rose for long reading sessions.
 | Separate light and dark | Off |
 | Contrast | 52 |
 | Diff markers | +/- |
+| Opaque windows | On (translucent sidebar off) |
 
 Import string (Settings > Appearance > Dark theme > Import):
 
@@ -119,12 +124,18 @@ Some parts of ChatGPT keep their own colours whatever the accent is.
 
 ## Undo
 
-Settings > Appearance: choose another theme, or reset the colours and contrast
-to the defaults shown there. Nothing is installed on disk.
+Settings > Appearance: import the theme you copied before, or choose another
+theme and set back every row of the table you changed (colours, contrast,
+font sizes, reduce motion, one mode, diff markers, opaque windows). Nothing
+is installed on disk.
 
 ## Files
 
 - `src/presets.json`: the source: roles, calibration, preset names.
+- `evidence/<build>.codex-theme.txt`: a theme string ChatGPT itself exported,
+  with `# build:` and `# date:` lines. Record one when you verify an import.
+  Generation then checks that the port emits the same format as the newest
+  one, and stops if ChatGPT changed it.
 - `dist/presets.json`: generated. Both presets with every setting, where each
   value comes from, and the import strings.
 - `port.json`, `mapping.json`, `capabilities.json`: the port contract.

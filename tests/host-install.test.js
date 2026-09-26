@@ -1265,3 +1265,14 @@ test("apply refuses a commit whose export does not match its digests.json, with 
   assert.ok(!existsSync(h.codexTheme) && !existsSync(h.state), "nothing was written");
   assert.equal(await fs.readFile(h.config, "utf8"), CONFIG);
 });
+
+test("an empty backups folder in the new state root does not hide the terminal kit's backups (review r4)", async (t) => {
+  const h = await setupHome(t);
+  const legacy = path.join(h.home, ".local/state/j3w1-theme/devbox");
+  assert.equal((await cli(h.home, "claude-code", ["apply", "--state-dir", legacy])).code, 0);
+  await fs.mkdir(path.join(h.state, "backups"), { recursive: true });
+  await fs.writeFile(path.join(h.state, "backups", ".stray"), "");
+  const restored = await cli(h.home, "claude-code", ["restore"]);
+  assert.equal(restored.code, 0, restored.stderr);
+  assert.equal(await fs.readFile(h.settings, "utf8"), SETTINGS);
+});

@@ -91711,7 +91711,7 @@
           "unmappedPorts": [
             {
               "port": "chatgpt",
-              "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints).",
+              "reason": "ChatGPT keeps its own geometry; this j3w1 value cannot be set.",
               "source": {
                 "file": "ports/chatgpt/mapping.json",
                 "pointer": "/unmapped/focus.offset",
@@ -91822,7 +91822,7 @@
           "unmappedPorts": [
             {
               "port": "chatgpt",
-              "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints).",
+              "reason": "ChatGPT keeps its own geometry; this j3w1 value cannot be set.",
               "source": {
                 "file": "ports/chatgpt/mapping.json",
                 "pointer": "/unmapped/focus.offset-container",
@@ -91902,7 +91902,7 @@
           "unmappedPorts": [
             {
               "port": "chatgpt",
-              "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints).",
+              "reason": "ChatGPT keeps its own geometry; this j3w1 value cannot be set.",
               "source": {
                 "file": "ports/chatgpt/mapping.json",
                 "pointer": "/unmapped/focus.offset-invalid",
@@ -91985,7 +91985,7 @@
           "unmappedPorts": [
             {
               "port": "chatgpt",
-              "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints).",
+              "reason": "ChatGPT keeps its own geometry; this j3w1 value cannot be set.",
               "source": {
                 "file": "ports/chatgpt/mapping.json",
                 "pointer": "/unmapped/focus.ring",
@@ -92099,7 +92099,7 @@
           "unmappedPorts": [
             {
               "port": "chatgpt",
-              "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints).",
+              "reason": "ChatGPT keeps its own geometry; this j3w1 value cannot be set.",
               "source": {
                 "file": "ports/chatgpt/mapping.json",
                 "pointer": "/unmapped/focus.ring-container",
@@ -95114,7 +95114,7 @@
           "unmappedPorts": [
             {
               "port": "chatgpt",
-              "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints).",
+              "reason": "ChatGPT keeps its own geometry; this j3w1 value cannot be set.",
               "source": {
                 "file": "ports/chatgpt/mapping.json",
                 "pointer": "/unmapped/radius.none",

@@ -246,8 +246,9 @@ export const readmeGenerator = {
     readme = replaceMarkerBlock(readme, "version", `Specification version **${manifest.version}** (${releaseOf(manifest.version).stability}; ${manifest.profiles.map((p) => `${p.id}: ${p.status}`).join(", ")}).\n\n${POLICY_TEXT}`);
     {
       const guide = "ports/chatgpt/README.md";
-      const exported = toResolvedExport(profiles.get(defaultId), manifest.profiles.find((p) => p.id === defaultId));
-      const built = buildChatgptPresets(await readJson(CHATGPT_SOURCE), exported, manifest);
+      const port = await readJson("ports/chatgpt/port.json");
+      const exported = toResolvedExport(profiles.get(port.profile), manifest.profiles.find((p) => p.id === port.profile));
+      const built = buildChatgptPresets(await readJson(CHATGPT_SOURCE), exported, manifest, { status: port.status });
       const text = replaceMarkerBlock(await readText(guide), "presets", chatgptReadmeBlock(built));
       files.push(guide);
       if (await writeOrCheck(guide, text, { check })) changed.push(guide);

@@ -3,58 +3,87 @@
    where each value comes from, and a codex-theme-v1 import string), and
    renders the README's settings tables from the same data. */
 
-import { chatgptPresetsSchema, codexThemeV1Schema, CODEX_THEME_PREFIX, parseCodexTheme } from "../../schemas/chatgpt.mjs";
-import { stableJson } from "./fs.mjs";
+import { readdirSync, readFileSync } from "node:fs";
+import path from "node:path";
+import { chatgptPresetsSchema, codexThemeSampleSchema, codexThemeV1Schema, CODEX_THEME_PREFIX, fieldSet, parseCodexTheme } from "../../schemas/chatgpt.mjs";
+import { repoRoot, stableJson } from "./fs.mjs";
 
 export const CHATGPT_SOURCE = "ports/chatgpt/src/presets.json";
 
-const valueOf = (exported, path) => {
-  const token = exported.tokens?.[path] ?? exported[path];
-  if (!token) throw new Error(`ports/chatgpt: ${path} is not a role of the profile`);
-  if (token.eligibility?.action === "blocked") throw new Error(`ports/chatgpt: ${path} is blocked for delivery`);
+const valueOf = (exported, role, kind) => {
+  const token = exported.tokens?.[role] ?? exported[role];
+  if (!token) throw new Error(`ports/chatgpt: ${role} is not a role of the profile`);
+  if (token.eligibility?.action === "blocked") throw new Error(`ports/chatgpt: ${role} is blocked for delivery`);
   const v = token.value;
-  if (typeof v === "object" && v?.hex) return v.hex.toLowerCase();
-  if (typeof v === "object" && v?.unit === "px") return v.value;
-  throw new Error(`ports/chatgpt: ${path} has no colour or px value`);
+  if (kind === "color" && typeof v === "object" && v?.hex) return v.hex.toLowerCase();
+  if (kind === "px" && typeof v === "object" && v?.unit === "px") return v.value;
+  throw new Error(`ports/chatgpt: ${role} is not a ${kind === "px" ? "px size" : "colour"}`);
+};
+
+/* ChatGPT's own exports, recorded as evidence: `# build: <name>` and
+   `# date: <yyyy-mm-dd>` lines, then the codex-theme-v1 string. */
+export const SAMPLE_DIR = "ports/chatgpt/evidence";
+export const readSamples = (root = repoRoot) => {
+  let names = [];
+  try { names = readdirSync(path.join(root, SAMPLE_DIR)).filter((n) => n.endsWith(".codex-theme.txt")).sort(); } catch { return []; }
+  return names.map((name) => {
+    const text = readFileSync(path.join(root, SAMPLE_DIR, name), "utf8");
+    const meta = Object.fromEntries([...text.matchAll(/^#\s*(build|date):\s*(.+)$/gm)].map((m) => [m[1], m[2].trim()]));
+    const line = text.split("\n").find((l) => l.startsWith(CODEX_THEME_PREFIX));
+    if (!meta.build || !meta.date || !line) throw new Error(`${SAMPLE_DIR}/${name}: needs "# build:", "# date:" and a ${CODEX_THEME_PREFIX} line`);
+    return { name, build: meta.build, date: meta.date, payload: parseCodexTheme(line.trim(), codexThemeSampleSchema) };
+  }).sort((a, b) => (a.date === b.date ? a.name.localeCompare(b.name) : a.date.localeCompare(b.date)));
+};
+
+/* The emitted format must have the field set of the newest recorded sample. */
+export const assertSampleFormat = (payload, samples) => {
+  const newest = samples.at(-1);
+  if (!newest) return;
+  const want = fieldSet(newest.payload);
+  const got = fieldSet(payload);
+  if (JSON.stringify(want) !== JSON.stringify(got)) {
+    throw new Error(`ports/chatgpt: ChatGPT ${newest.build} (${newest.date}) exports a different theme format than the port emits; update schemas/chatgpt.mjs and the emitter before publishing strings. Missing: ${want.filter((k) => !got.includes(k)).join(", ") || "none"}; extra: ${got.filter((k) => !want.includes(k)).join(", ") || "none"}`);
+  }
 };
 
 /* The roles the port maps, each with the ChatGPT setting it fills. */
 export const chatgptRoles = (source) => {
   const s = chatgptPresetsSchema.parse(source).shared;
-  const roles = {
-    [s.accent]: ["Accent", "theme.accent"],
-    [s.background]: ["Background", "theme.surface"],
-    [s.uiFontSize]: ["UI font size"],
-    [s.codeFontSize]: ["Code font size"],
-    [s.semanticColors.diffAdded]: ["theme.semanticColors.diffAdded"],
-    [s.semanticColors.diffRemoved]: ["theme.semanticColors.diffRemoved"],
-    [s.semanticColors.skill]: ["theme.semanticColors.skill"],
-  };
-  for (const p of source.presets) (roles[p.foreground] ??= []).push(`Foreground (${p.displayName})`, `theme.ink (${p.displayName})`);
+  const roles = {};
+  const add = (role, ...keys) => (roles[role] ??= []).push(...keys);
+  add(s.accent, "Accent", "theme.accent");
+  add(s.background, "Background", "theme.surface");
+  add(s.uiFontSize, "UI font size");
+  add(s.codeFontSize, "Code font size");
+  add(s.semanticColors.diffAdded, "theme.semanticColors.diffAdded");
+  add(s.semanticColors.diffRemoved, "theme.semanticColors.diffRemoved");
+  add(s.semanticColors.skill, "theme.semanticColors.skill");
+  for (const p of source.presets) add(p.foreground, `Foreground (${p.displayName})`, `theme.ink (${p.displayName})`);
   return roles;
 };
 
-export const buildChatgptPresets = (source, exported, manifest) => {
+export const buildChatgptPresets = (source, exported, manifest, { status = "experimental", samples = readSamples() } = {}) => {
   const src = chatgptPresetsSchema.parse(source);
   const s = src.shared;
   const presets = src.presets.map((p) => {
     const payload = codexThemeV1Schema.parse({
       codeThemeId: s.baseTheme.codeThemeId,
       theme: {
-        accent: valueOf(exported, s.accent),
+        accent: valueOf(exported, s.accent, "color"),
         contrast: p.contrast,
         fonts: { code: null, ui: null },
-        ink: valueOf(exported, p.foreground),
+        ink: valueOf(exported, p.foreground, "color"),
         opaqueWindows: s.calibration.opaqueWindows,
         semanticColors: {
-          diffAdded: valueOf(exported, s.semanticColors.diffAdded),
-          diffRemoved: valueOf(exported, s.semanticColors.diffRemoved),
-          skill: valueOf(exported, s.semanticColors.skill),
+          diffAdded: valueOf(exported, s.semanticColors.diffAdded, "color"),
+          diffRemoved: valueOf(exported, s.semanticColors.diffRemoved, "color"),
+          skill: valueOf(exported, s.semanticColors.skill, "color"),
         },
-        surface: valueOf(exported, s.background),
+        surface: valueOf(exported, s.background, "color"),
       },
       variant: s.mode,
     });
+    assertSampleFormat(payload, samples);
     const importString = `${CODEX_THEME_PREFIX}${JSON.stringify(payload)}`;
     parseCodexTheme(importString);
     return {
@@ -63,17 +92,18 @@ export const buildChatgptPresets = (source, exported, manifest) => {
       recommended: p.recommended,
       summary: p.summary,
       settings: [
-        { setting: "Mode", value: "Dark", source: "calibration" },
+        { setting: "Mode", value: s.mode === "dark" ? "Dark" : "Light", source: "calibration" },
         { setting: "Theme", value: s.baseTheme.label, source: "calibration" },
         { setting: "Accent", value: payload.theme.accent, source: s.accent },
         { setting: "Background", value: payload.theme.surface, source: s.background },
         { setting: "Foreground", value: payload.theme.ink, source: p.foreground },
-        { setting: "UI font size", value: `${valueOf(exported, s.uiFontSize)} px`, source: s.uiFontSize },
-        { setting: "Code font size", value: `${valueOf(exported, s.codeFontSize)} px`, source: s.codeFontSize },
+        { setting: "UI font size", value: `${valueOf(exported, s.uiFontSize, "px")} px`, source: s.uiFontSize },
+        { setting: "Code font size", value: `${valueOf(exported, s.codeFontSize, "px")} px`, source: s.codeFontSize },
         { setting: "Reduce motion", value: { system: "System", on: "On", off: "Off" }[s.calibration.reduceMotion], source: "calibration" },
         { setting: "Separate light and dark", value: s.calibration.separateLightDarkModes ? "On" : "Off", source: "calibration" },
         { setting: "Contrast", value: String(p.contrast), source: "calibration" },
         { setting: "Diff markers", value: s.calibration.diffMarkers === "plus-minus" ? "+/-" : "Colour only", source: "calibration" },
+        { setting: "Opaque windows", value: s.calibration.opaqueWindows ? "On (translucent sidebar off)" : "Off", source: "calibration" },
       ],
       importString,
     };
@@ -83,12 +113,13 @@ export const buildChatgptPresets = (source, exported, manifest) => {
     theme: manifest.name,
     version: manifest.version,
     host: "ChatGPT desktop app, Settings > Appearance",
-    status: "experimental: the import strings are verified only once imported into a real ChatGPT build",
+    status: status === "experimental" ? "experimental: the import strings are verified only once imported into a real ChatGPT build" : status,
+    formatSamples: samples.map(({ build, date }) => ({ build, date })),
     presets,
   };
 };
 
-export const chatgptAppearance = ({ manifest, exported }) => (source) => stableJson(buildChatgptPresets(source, exported, manifest));
+export const chatgptAppearance = ({ manifest, exported, port }) => (source) => stableJson(buildChatgptPresets(source, exported, manifest, { status: port?.status }));
 
 /* The README block: one settings table per preset, then its import string. */
 export const chatgptReadmeBlock = (built) => built.presets.flatMap((p) => [

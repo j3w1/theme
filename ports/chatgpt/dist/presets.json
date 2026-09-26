@@ -4,6 +4,7 @@
   "version": "2.0.0",
   "host": "ChatGPT desktop app, Settings > Appearance",
   "status": "experimental: the import strings are verified only once imported into a real ChatGPT build",
+  "formatSamples": [],
   "presets": [
     {
       "id": "signature",
@@ -64,6 +65,11 @@
         {
           "setting": "Diff markers",
           "value": "+/-",
+          "source": "calibration"
+        },
+        {
+          "setting": "Opaque windows",
+          "value": "On (translucent sidebar off)",
           "source": "calibration"
         }
       ],
@@ -128,6 +134,11 @@
         {
           "setting": "Diff markers",
           "value": "+/-",
+          "source": "calibration"
+        },
+        {
+          "setting": "Opaque windows",
+          "value": "On (translucent sidebar off)",
           "source": "calibration"
         }
       ],
