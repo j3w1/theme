@@ -807,10 +807,12 @@ terminal-kit suites.
   floor, never a verdict. The control list lives in the selector, so a change
   cannot make itself cheaper by editing the registry. A file that a browser
   spec imports also runs that spec and counts as a site change.
+- Unit tests and the build run as parallel jobs, so the browser shards start
+  as soon as the site is built.
 - A pull request runs only the selected checks. A browser subset uses the plain
   list reporter, so it never writes evidence (D-028 still holds).
 - A push to `main` that changes the site runs the whole matrix: the browser
-  suite split by project into jobs (desktop in three parts; the project list is
+  suite split by project into jobs (desktop in four parts; the project list is
   read from the Playwright config) with blob reports, merged once into the
   evidence reporter, and the packed consumers in parallel. The merge runs only
   when every shard passed and sent its report, and a check refuses evidence

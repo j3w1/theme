@@ -35,13 +35,13 @@ export const CONTROLS = [
 ];
 
 // The whole suite runs every configured Playwright project; desktop, which
-// runs by far the most tests, is split in three. Read from the config so a new
+// runs by far the most tests, is split in four. Read from the config so a new
 // project cannot be left out of the matrix.
 export function projectNames(configText) {
   const block = configText.slice(configText.indexOf("projects:"));
   return [...block.matchAll(/\{\s*name:\s*"([a-z0-9]+)"/g)].map((m) => m[1]);
 }
-export const fullShards = (projects) => projects.flatMap((p) => (p === "desktop" ? ["desktop:1/3", "desktop:2/3", "desktop:3/3"] : [`${p}:1/1`]));
+export const fullShards = (projects) => projects.flatMap((p) => (p === "desktop" ? ["desktop:1/4", "desktop:2/4", "desktop:3/4", "desktop:4/4"] : [`${p}:1/1`]));
 export const FULL_SHARDS = fullShards(projectNames(readFileSync(path.join(root, "playwright.config.mjs"), "utf8")));
 
 // Which browser specs import each file, directly or through other imports.
@@ -139,7 +139,7 @@ export function plan({ registry, event, paths, full = false, reason = null, spec
   const needsBrowser = browserSpecs === ALL_BROWSER || browserSpecs.length > 0;
   // Playwright shards in contiguous blocks, which here is one project per
   // shard, and desktop runs by far the most tests. So the whole suite splits
-  // by project, with desktop in three parts; a small subset is one job.
+  // by project, with desktop in four parts; a small subset is one job.
   const shards = !needsBrowser ? [] : browserSpecs === ALL_BROWSER || browserSpecs.length > 4 ? shardsForAll : ["all:1/1"];
   const body = {
     schemaVersion: 1,
@@ -202,7 +202,7 @@ function main(argv) {
     const lines = {
       plan: json,
       plan_hash: result.planHash,
-      checks: String(CHEAP.some(has) || has("build")),
+      checks: String(CHEAP.some(has)),
       build: String(has("build")),
       smoke: String(has("smoke")),
       consumers: String(has("consumers")),

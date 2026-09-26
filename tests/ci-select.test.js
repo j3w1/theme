@@ -85,7 +85,7 @@ test("the plan hash is stable and covers the decision", () => {
 test("release-gate refuses a skipped selected job and a plan that does not recompute", () => {
   const head = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
   const planJson = execFileSync("node", ["scripts/ci/select.mjs", "--event", "workflow_dispatch", "--head", head], { encoding: "utf8", env: { ...process.env, GITHUB_OUTPUT: "", GITHUB_STEP_SUMMARY: "" } });
-  const good = { select: { result: "success" }, checks: { result: "success" }, browser: { result: "success" }, consumers: { result: "success" }, evidence: { result: "success" } };
+  const good = { select: { result: "success" }, checks: { result: "success" }, build: { result: "success" }, browser: { result: "success" }, consumers: { result: "success" }, evidence: { result: "success" } };
   const gate = (needs, planText = planJson) => {
     try {
       execFileSync("node", ["scripts/ci/gate.mjs"], { encoding: "utf8", stdio: "pipe", env: { ...process.env, NEEDS: JSON.stringify(needs), PLAN: planText } });

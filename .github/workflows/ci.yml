@@ -88,7 +88,7 @@ jobs:
           [ -n "$BASE" ] && args+=(--base "$BASE")
           node scripts/ci/select.mjs "${args[@]}"
 
-  # Sources, unit tests, the build and the smoke check: one install.
+  # Sources and unit tests: one install, no browser.
   checks:
     needs: select
     if: needs.select.outputs.checks == 'true'
@@ -107,16 +107,30 @@ jobs:
         run: node scripts/ci/run.mjs cheap
         env:
           PLAN: ${{ needs.select.outputs.plan }}
+
+  # The site, its dist gates and the smoke check, in parallel with the unit
+  # tests, so the browser shards start as soon as the site exists.
+  build:
+    needs: select
+    if: needs.select.outputs.build == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci --prefer-offline --no-audit --no-fund
       - name: Build the site under /theme/
-        if: needs.select.outputs.build == 'true'
         run: npm run build
         env:
           GITHUB_SHA: ${{ github.sha }}
       - name: Base paths, consistency and private-material gates on dist/
-        if: needs.select.outputs.build == 'true'
         run: npm run test:dist
       - uses: actions/upload-artifact@v7
-        if: needs.select.outputs.build == 'true'
         with:
           name: site-dist
           path: dist
@@ -134,7 +148,7 @@ jobs:
       - uses: actions/upload-artifact@v7
         if: failure()
         with:
-          name: checks-results
+          name: build-results
           path: |
             test-results/
             playwright-report/
@@ -143,7 +157,7 @@ jobs:
   # Selected specs on a pull request (plain reporter); the whole suite in
   # shards with blob reports on the deployment path.
   browser:
-    needs: [select, checks]
+    needs: [select, build]
     if: needs.select.outputs.browser == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 20
@@ -222,8 +236,8 @@ jobs:
   # The deployment path only: one evidence report from every shard, checked
   # against the unchanged specimens, then the Pages artifact.
   evidence:
-    needs: [select, checks, browser, consumers]
-    if: needs.select.outputs.matrix == 'true' && !cancelled() && needs.checks.result == 'success' && needs.browser.result == 'success' && needs.consumers.result == 'success'
+    needs: [select, checks, build, browser, consumers]
+    if: needs.select.outputs.matrix == 'true' && !cancelled() && needs.checks.result == 'success' && needs.build.result == 'success' && needs.browser.result == 'success' && needs.consumers.result == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -291,7 +305,7 @@ jobs:
           path: dist
 
   release-gate:
-    needs: [select, checks, browser, consumers, evidence]
+    needs: [select, checks, build, browser, consumers, evidence]
     if: always()
     runs-on: ubuntu-latest
     timeout-minutes: 3
