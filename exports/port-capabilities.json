@@ -25,7 +25,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-Au4XviliWWzaznpaaZf99xpHb08dK5VNGkaaefHI8K0=",
+      "subjectDigest": "sha256-DQ+FnjkEebm83rhxyeREmWaY0X7O22kVTa26X/hj+pk=",
       "evidencePath": null,
       "surfaces": {
         "terminal-colours": {
@@ -3834,6 +3834,21 @@
           "spec": "spec/portability.md"
         },
         {
+          "role": "color.terminal.prompt-text",
+          "nativeKeys": [],
+          "value": "#0c0909",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "The prompt chooses its own segment colours; a terminal theme carries the palette only.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
           "role": "color.terminal.selection-bg",
           "nativeKeys": [
             "selection-background"
@@ -5166,7 +5181,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-w1etlEoLyKkTxUZYD7czuaCRY7yCsQv2ZSEradJMsKY=",
+      "subjectDigest": "sha256-7WMPYIR6gTAlPHwWv7F/ByuHL6Apn6kw5Arnb+v7PKM=",
       "evidencePath": null,
       "surfaces": {
         "terminal-colours": {
@@ -8979,6 +8994,21 @@
           "spec": "spec/portability.md"
         },
         {
+          "role": "color.terminal.prompt-text",
+          "nativeKeys": [],
+          "value": "#0c0909",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "The prompt chooses its own segment colours; a terminal theme carries the palette only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
           "role": "color.terminal.selection-bg",
           "nativeKeys": [
             "selection-background"
@@ -10315,7 +10345,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-60xZZGM2SUIX/y1Cg8pxcoRObwGUL9ela2gcheaYrzM=",
+      "subjectDigest": "sha256-nZHZBjdPa+mxcpyQabz3KlM+daJl/DJ7rCl9+Xn/sng=",
       "evidencePath": null,
       "surfaces": {
         "terminal-colours": {
@@ -14117,6 +14147,21 @@
           "state": "mapped",
           "surface": "terminal-colours",
           "reason": "Written to the file's foreground key.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.terminal.prompt-text",
+          "nativeKeys": [],
+          "value": "#0c0909",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "The prompt chooses its own segment colours; a terminal theme carries the palette only.",
           "source": "ports/warp/mapping.json",
           "spec": "spec/portability.md"
         },

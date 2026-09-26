@@ -728,8 +728,10 @@ code background and clear 4.5:1 inside an editor selection (4.52 and 4.51),
 which they did not before (4.38 and 3.81). Interface reds (focus, links,
 borders, accents, actions) are unchanged.
 
-The terminal prompt's path segment draws `color.terminal.bg` on slot 4 (4.55:1)
-instead of the selection text, which a brighter slot 4 no longer carries.
+The terminal prompt's path segment takes a new role, `color.terminal.prompt-text`:
+the terminal background in the default profile (4.55:1 on the brighter slot 4),
+and the historical light selection text in `heritage-ansi`, so each profile's
+prompt stays readable.
 
 **Alternatives.** Keep the heritage slots and document the failures, as before;
 rejected by the owner as unreadable. Adopt the `extended` semantic palette;

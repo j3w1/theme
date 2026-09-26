@@ -57,8 +57,11 @@ test("the lifted syntax reds stay readable inside an editor selection", () => {
   }
 });
 
-test("the terminal prompt's path segment text reads on the brighter slot 4", () => {
-  assert.ok(contrast(hexOf("default", "color.terminal.bg"), hexOf("default", "color.terminal.ansi.4")) >= 4.5);
+test("the prompt's path segment text reads on slot 4 in both the default and the heritage profile", () => {
+  for (const profile of ["default", "heritage-ansi"]) {
+    const ratio = contrast(hexOf(profile, "color.terminal.prompt-text"), hexOf(profile, "color.terminal.ansi.4"));
+    assert.ok(ratio >= 4.5, `${profile}: ${ratio.toFixed(2)}:1`);
+  }
 });
 
 test("interface reds are unchanged by D-029", () => {

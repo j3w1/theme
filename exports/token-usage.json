@@ -15218,7 +15218,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/axis",
-            "line": 1262
+            "line": 1274
           },
           "provenance": null,
           "aliases": [
@@ -15289,7 +15289,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/grid",
-            "line": 1266
+            "line": 1278
           },
           "provenance": null,
           "aliases": [
@@ -15360,7 +15360,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/label",
-            "line": 1270
+            "line": 1282
           },
           "provenance": null,
           "aliases": [
@@ -15458,7 +15458,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/series-1",
-            "line": 1246
+            "line": 1258
           },
           "provenance": null,
           "aliases": [
@@ -15513,7 +15513,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/series-2",
-            "line": 1250
+            "line": 1262
           },
           "provenance": null,
           "aliases": [
@@ -15584,7 +15584,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/series-3",
-            "line": 1254
+            "line": 1266
           },
           "provenance": null,
           "aliases": [
@@ -15639,7 +15639,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/series-4",
-            "line": 1258
+            "line": 1270
           },
           "provenance": null,
           "aliases": [
@@ -23390,7 +23390,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/icon/decorative",
-            "line": 1280
+            "line": 1292
           },
           "provenance": null,
           "aliases": [
@@ -23667,7 +23667,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/icon/default",
-            "line": 1276
+            "line": 1288
           },
           "provenance": null,
           "aliases": [
@@ -36941,6 +36941,7 @@
             "color.status.warning.on-fill",
             "color.terminal.ansi.0",
             "color.terminal.bg",
+            "color.terminal.prompt-text",
             "color.text.inverse",
             "color.text.on-light"
           ],
@@ -62760,7 +62761,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/0",
-            "line": 1099
+            "line": 1111
           },
           "provenance": null,
           "aliases": [
@@ -62876,7 +62877,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/1",
-            "line": 1103
+            "line": 1115
           },
           "provenance": {
             "status": "approved",
@@ -62996,7 +62997,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/10",
-            "line": 1179
+            "line": 1191
           },
           "provenance": {
             "status": "approved",
@@ -63116,7 +63117,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/11",
-            "line": 1191
+            "line": 1203
           },
           "provenance": null,
           "aliases": [
@@ -63232,7 +63233,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/12",
-            "line": 1195
+            "line": 1207
           },
           "provenance": {
             "status": "approved",
@@ -63352,7 +63353,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/13",
-            "line": 1207
+            "line": 1219
           },
           "provenance": {
             "status": "approved",
@@ -63472,7 +63473,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/14",
-            "line": 1219
+            "line": 1231
           },
           "provenance": {
             "status": "approved",
@@ -63592,7 +63593,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/15",
-            "line": 1231
+            "line": 1243
           },
           "provenance": {
             "status": "approved",
@@ -63712,7 +63713,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/2",
-            "line": 1115
+            "line": 1127
           },
           "provenance": null,
           "aliases": [
@@ -63828,7 +63829,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/3",
-            "line": 1119
+            "line": 1131
           },
           "provenance": null,
           "aliases": [
@@ -63985,7 +63986,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/4",
-            "line": 1123
+            "line": 1135
           },
           "provenance": {
             "status": "approved",
@@ -64144,7 +64145,7 @@
               }
             },
             {
-              "fg": "color.terminal.bg",
+              "fg": "color.terminal.prompt-text",
               "bg": "color.terminal.ansi.4",
               "label": "prompt segment text on slot 4",
               "state": null,
@@ -64172,7 +64173,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/5",
-            "line": 1135
+            "line": 1147
           },
           "provenance": null,
           "aliases": [
@@ -64288,7 +64289,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/6",
-            "line": 1139
+            "line": 1151
           },
           "provenance": {
             "status": "approved",
@@ -64408,7 +64409,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/7",
-            "line": 1151
+            "line": 1163
           },
           "provenance": null,
           "aliases": [
@@ -64524,7 +64525,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/8",
-            "line": 1155
+            "line": 1167
           },
           "provenance": {
             "status": "approved",
@@ -64644,7 +64645,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/9",
-            "line": 1167
+            "line": 1179
           },
           "provenance": {
             "status": "approved",
@@ -64786,21 +64787,6 @@
                 "file": "spec/components/terminal.md",
                 "pointer": "/contrast/3",
                 "line": 76
-              }
-            },
-            {
-              "kind": "contrast",
-              "component": "terminal",
-              "part": null,
-              "state": null,
-              "variant": null,
-              "surface": "color.terminal.ansi.4",
-              "nativeKey": null,
-              "port": null,
-              "source": {
-                "file": "spec/components/terminal.md",
-                "pointer": "/contrast/2",
-                "line": 75
               }
             },
             {
@@ -65181,21 +65167,6 @@
             {
               "kind": "part",
               "component": "terminal",
-              "part": "prompt.text",
-              "state": null,
-              "variant": null,
-              "surface": null,
-              "nativeKey": null,
-              "port": null,
-              "source": {
-                "file": "spec/components/terminal.md",
-                "pointer": "/tokens/prompt.text",
-                "line": 42
-              }
-            },
-            {
-              "kind": "part",
-              "component": "terminal",
               "part": "root.bg",
               "state": null,
               "variant": null,
@@ -65548,17 +65519,6 @@
                 "file": "spec/components/terminal.md",
                 "pointer": "/contrast/3",
                 "line": 76
-              }
-            },
-            {
-              "fg": "color.terminal.bg",
-              "bg": "color.terminal.ansi.4",
-              "label": "prompt segment text on slot 4",
-              "state": null,
-              "source": {
-                "file": "spec/components/terminal.md",
-                "pointer": "/contrast/2",
-                "line": 75
               }
             },
             {
@@ -66071,6 +66031,109 @@
             }
           ]
         },
+        "color.terminal.prompt-text": {
+          "path": "color.terminal.prompt-text",
+          "group": "terminal",
+          "css": "#0c0909",
+          "variable": "--color-terminal-prompt-text",
+          "description": "Text on the prompt's filled segments (slot 4 path, slot 3 branch): dark on the readable heritage slots (D-029).",
+          "status": "approved",
+          "deprecated": false,
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "source": {
+            "file": "tokens/semantic.tokens.json",
+            "pointer": "/color/terminal/prompt-text",
+            "line": 1098
+          },
+          "provenance": {
+            "status": "approved",
+            "approval": {
+              "decision": "D-029"
+            }
+          },
+          "aliases": [
+            "color.primitive.ink.20"
+          ],
+          "usedByAliases": [],
+          "unmappedPorts": [
+            {
+              "port": "ghostty",
+              "reason": "The prompt chooses its own segment colours; a terminal theme carries the palette only.",
+              "source": {
+                "file": "ports/ghostty/mapping.json",
+                "pointer": "/unmapped/color.terminal.prompt-text",
+                "line": 301
+              }
+            },
+            {
+              "port": "orca",
+              "reason": "The prompt chooses its own segment colours; a terminal theme carries the palette only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.terminal.prompt-text",
+                "line": 307
+              }
+            },
+            {
+              "port": "warp",
+              "reason": "The prompt chooses its own segment colours; a terminal theme carries the palette only.",
+              "source": {
+                "file": "ports/warp/mapping.json",
+                "pointer": "/unmapped/color.terminal.prompt-text",
+                "line": 295
+              }
+            }
+          ],
+          "uses": [
+            {
+              "kind": "contrast",
+              "component": "terminal",
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": "color.terminal.ansi.4",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/terminal.md",
+                "pointer": "/contrast/2",
+                "line": 75
+              }
+            },
+            {
+              "kind": "part",
+              "component": "terminal",
+              "part": "prompt.text",
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/terminal.md",
+                "pointer": "/tokens/prompt.text",
+                "line": 42
+              }
+            }
+          ],
+          "contrast": [
+            {
+              "fg": "color.terminal.prompt-text",
+              "bg": "color.terminal.ansi.4",
+              "label": "prompt segment text on slot 4",
+              "state": null,
+              "source": {
+                "file": "spec/components/terminal.md",
+                "pointer": "/contrast/2",
+                "line": 75
+              }
+            }
+          ]
+        },
         "color.terminal.selection-bg": {
           "path": "color.terminal.selection-bg",
           "group": "terminal",
@@ -66101,7 +66164,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.terminal.selection-bg",
-                "line": 295
+                "line": 296
               }
             }
           ],
@@ -66211,7 +66274,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.terminal.selection-text",
-                "line": 296
+                "line": 297
               }
             }
           ],
@@ -66321,7 +66384,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.text.accent",
-                "line": 301
+                "line": 302
               }
             },
             {
@@ -66330,7 +66393,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.text.accent",
-                "line": 307
+                "line": 308
               }
             }
           ],
@@ -66436,7 +66499,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.text.accent-strong",
-                "line": 302
+                "line": 303
               }
             },
             {
@@ -66445,7 +66508,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.text.accent-strong",
-                "line": 308
+                "line": 309
               }
             },
             {
@@ -66454,7 +66517,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.text.accent-strong",
-                "line": 297
+                "line": 298
               }
             }
           ],
@@ -66519,7 +66582,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.text.bright",
-                "line": 303
+                "line": 304
               }
             },
             {
@@ -66528,7 +66591,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.text.bright",
-                "line": 309
+                "line": 310
               }
             },
             {
@@ -66537,7 +66600,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.text.bright",
-                "line": 298
+                "line": 299
               }
             }
           ],
@@ -68588,7 +68651,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.text.default",
-                "line": 304
+                "line": 305
               }
             },
             {
@@ -68597,7 +68660,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.text.default",
-                "line": 310
+                "line": 311
               }
             },
             {
@@ -68606,7 +68669,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.text.default",
-                "line": 299
+                "line": 300
               }
             }
           ],
@@ -74645,7 +74708,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.text.disabled",
-                "line": 305
+                "line": 306
               }
             },
             {
@@ -74654,7 +74717,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.text.disabled",
-                "line": 311
+                "line": 312
               }
             },
             {
@@ -74663,7 +74726,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.text.disabled",
-                "line": 300
+                "line": 301
               }
             }
           ],
@@ -76089,7 +76152,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.text.inverse",
-                "line": 306
+                "line": 307
               }
             },
             {
@@ -76098,7 +76161,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.text.inverse",
-                "line": 312
+                "line": 313
               }
             },
             {
@@ -76107,7 +76170,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.text.inverse",
-                "line": 301
+                "line": 302
               }
             }
           ],
@@ -76149,7 +76212,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.text.link",
-                "line": 307
+                "line": 308
               }
             },
             {
@@ -76158,7 +76221,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.text.link",
-                "line": 313
+                "line": 314
               }
             },
             {
@@ -76167,7 +76230,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.text.link",
-                "line": 302
+                "line": 303
               }
             }
           ],
@@ -76634,7 +76697,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.text.link-hover",
-                "line": 308
+                "line": 309
               }
             },
             {
@@ -76643,7 +76706,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.text.link-hover",
-                "line": 314
+                "line": 315
               }
             },
             {
@@ -76652,7 +76715,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.text.link-hover",
-                "line": 303
+                "line": 304
               }
             }
           ],
@@ -76963,7 +77026,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.text.link-underline",
-                "line": 309
+                "line": 310
               }
             },
             {
@@ -76972,7 +77035,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.text.link-underline",
-                "line": 315
+                "line": 316
               }
             },
             {
@@ -76981,7 +77044,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.text.link-underline",
-                "line": 304
+                "line": 305
               }
             }
           ],
@@ -77128,7 +77191,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.text.muted",
-                "line": 310
+                "line": 311
               }
             },
             {
@@ -77137,7 +77200,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.text.muted",
-                "line": 316
+                "line": 317
               }
             },
             {
@@ -77146,7 +77209,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.text.muted",
-                "line": 305
+                "line": 306
               }
             }
           ],
@@ -80316,7 +80379,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.text.on-action",
-                "line": 311
+                "line": 312
               }
             },
             {
@@ -80325,7 +80388,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.text.on-action",
-                "line": 317
+                "line": 318
               }
             },
             {
@@ -80334,7 +80397,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.text.on-action",
-                "line": 306
+                "line": 307
               }
             }
           ],
@@ -80371,7 +80434,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.text.on-danger",
-                "line": 312
+                "line": 313
               }
             },
             {
@@ -80380,7 +80443,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.text.on-danger",
-                "line": 318
+                "line": 319
               }
             },
             {
@@ -80389,7 +80452,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.text.on-danger",
-                "line": 307
+                "line": 308
               }
             }
           ],
@@ -80426,7 +80489,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.text.on-light",
-                "line": 313
+                "line": 314
               }
             },
             {
@@ -80435,7 +80498,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.text.on-light",
-                "line": 319
+                "line": 320
               }
             },
             {
@@ -80444,7 +80507,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.text.on-light",
-                "line": 308
+                "line": 309
               }
             }
           ],
@@ -80481,7 +80544,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.text.on-selection",
-                "line": 314
+                "line": 315
               }
             },
             {
@@ -80490,7 +80553,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.text.on-selection",
-                "line": 320
+                "line": 321
               }
             },
             {
@@ -80499,7 +80562,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.text.on-selection",
-                "line": 309
+                "line": 310
               }
             }
           ],
@@ -80584,7 +80647,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.text.placeholder",
-                "line": 315
+                "line": 316
               }
             },
             {
@@ -80593,7 +80656,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.text.placeholder",
-                "line": 321
+                "line": 322
               }
             },
             {
@@ -80602,7 +80665,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.text.placeholder",
-                "line": 310
+                "line": 311
               }
             }
           ],
@@ -80820,7 +80883,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.text.prose",
-                "line": 316
+                "line": 317
               }
             },
             {
@@ -80829,7 +80892,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.text.prose",
-                "line": 322
+                "line": 323
               }
             },
             {
@@ -80838,7 +80901,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.text.prose",
-                "line": 311
+                "line": 312
               }
             }
           ],
@@ -80934,7 +80997,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.text.subtle",
-                "line": 317
+                "line": 318
               }
             },
             {
@@ -80943,7 +81006,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.text.subtle",
-                "line": 323
+                "line": 324
               }
             },
             {
@@ -80952,7 +81015,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.text.subtle",
-                "line": 312
+                "line": 313
               }
             }
           ],
@@ -81179,7 +81242,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/density.comfortable.control-height",
-                "line": 318
+                "line": 319
               }
             },
             {
@@ -81188,7 +81251,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/density.comfortable.control-height",
-                "line": 324
+                "line": 325
               }
             },
             {
@@ -81197,7 +81260,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/density.comfortable.control-height",
-                "line": 313
+                "line": 314
               }
             }
           ],
@@ -81428,7 +81491,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/density.comfortable.control-padding-x",
-                "line": 319
+                "line": 320
               }
             },
             {
@@ -81437,7 +81500,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/density.comfortable.control-padding-x",
-                "line": 325
+                "line": 326
               }
             },
             {
@@ -81446,7 +81509,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/density.comfortable.control-padding-x",
-                "line": 314
+                "line": 315
               }
             }
           ],
@@ -81481,7 +81544,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/density.comfortable.gap",
-                "line": 320
+                "line": 321
               }
             },
             {
@@ -81490,7 +81553,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/density.comfortable.gap",
-                "line": 326
+                "line": 327
               }
             },
             {
@@ -81499,7 +81562,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/density.comfortable.gap",
-                "line": 315
+                "line": 316
               }
             }
           ],
@@ -81534,7 +81597,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/density.comfortable.icon",
-                "line": 321
+                "line": 322
               }
             },
             {
@@ -81543,7 +81606,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/density.comfortable.icon",
-                "line": 327
+                "line": 328
               }
             },
             {
@@ -81552,7 +81615,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/density.comfortable.icon",
-                "line": 316
+                "line": 317
               }
             }
           ],
@@ -81587,7 +81650,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/density.comfortable.row-height",
-                "line": 322
+                "line": 323
               }
             },
             {
@@ -81596,7 +81659,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/density.comfortable.row-height",
-                "line": 328
+                "line": 329
               }
             },
             {
@@ -81605,7 +81668,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/density.comfortable.row-height",
-                "line": 317
+                "line": 318
               }
             }
           ],
@@ -81640,7 +81703,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/density.compact.control-height",
-                "line": 323
+                "line": 324
               }
             },
             {
@@ -81649,7 +81712,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/density.compact.control-height",
-                "line": 329
+                "line": 330
               }
             },
             {
@@ -81658,7 +81721,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/density.compact.control-height",
-                "line": 318
+                "line": 319
               }
             }
           ],
@@ -81889,7 +81952,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/density.compact.control-padding-x",
-                "line": 324
+                "line": 325
               }
             },
             {
@@ -81898,7 +81961,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/density.compact.control-padding-x",
-                "line": 330
+                "line": 331
               }
             },
             {
@@ -81907,7 +81970,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/density.compact.control-padding-x",
-                "line": 319
+                "line": 320
               }
             }
           ],
@@ -81942,7 +82005,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/density.compact.gap",
-                "line": 325
+                "line": 326
               }
             },
             {
@@ -81951,7 +82014,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/density.compact.gap",
-                "line": 331
+                "line": 332
               }
             },
             {
@@ -81960,7 +82023,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/density.compact.gap",
-                "line": 320
+                "line": 321
               }
             }
           ],
@@ -81995,7 +82058,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/density.compact.icon",
-                "line": 326
+                "line": 327
               }
             },
             {
@@ -82004,7 +82067,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/density.compact.icon",
-                "line": 332
+                "line": 333
               }
             },
             {
@@ -82013,7 +82076,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/density.compact.icon",
-                "line": 321
+                "line": 322
               }
             }
           ],
@@ -82048,7 +82111,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/density.compact.row-height",
-                "line": 327
+                "line": 328
               }
             },
             {
@@ -82057,7 +82120,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/density.compact.row-height",
-                "line": 333
+                "line": 334
               }
             },
             {
@@ -82066,7 +82129,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/density.compact.row-height",
-                "line": 322
+                "line": 323
               }
             }
           ],
@@ -82101,7 +82164,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/focus.offset",
-                "line": 328
+                "line": 329
               }
             },
             {
@@ -82110,7 +82173,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/focus.offset",
-                "line": 334
+                "line": 335
               }
             },
             {
@@ -82119,7 +82182,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/focus.offset",
-                "line": 323
+                "line": 324
               }
             }
           ],
@@ -82185,7 +82248,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/focus.offset-container",
-                "line": 329
+                "line": 330
               }
             },
             {
@@ -82194,7 +82257,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/focus.offset-container",
-                "line": 335
+                "line": 336
               }
             },
             {
@@ -82203,7 +82266,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/focus.offset-container",
-                "line": 324
+                "line": 325
               }
             }
           ],
@@ -82238,7 +82301,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/focus.offset-invalid",
-                "line": 330
+                "line": 331
               }
             },
             {
@@ -82247,7 +82310,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/focus.offset-invalid",
-                "line": 336
+                "line": 337
               }
             },
             {
@@ -82256,7 +82319,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/focus.offset-invalid",
-                "line": 325
+                "line": 326
               }
             }
           ],
@@ -82294,7 +82357,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/focus.ring",
-                "line": 331
+                "line": 332
               }
             },
             {
@@ -82303,7 +82366,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/focus.ring",
-                "line": 337
+                "line": 338
               }
             },
             {
@@ -82312,7 +82375,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/focus.ring",
-                "line": 326
+                "line": 327
               }
             }
           ],
@@ -82381,7 +82444,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/focus.ring-container",
-                "line": 332
+                "line": 333
               }
             },
             {
@@ -82390,7 +82453,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/focus.ring-container",
-                "line": 338
+                "line": 339
               }
             },
             {
@@ -82399,7 +82462,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/focus.ring-container",
-                "line": 327
+                "line": 328
               }
             }
           ],
@@ -82434,7 +82497,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.family.mono",
-                "line": 333
+                "line": 334
               }
             },
             {
@@ -82443,7 +82506,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.family.mono",
-                "line": 328
+                "line": 329
               }
             }
           ],
@@ -82494,7 +82557,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.letter-spacing.terminal",
-                "line": 334
+                "line": 335
               }
             },
             {
@@ -82503,7 +82566,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.letter-spacing.terminal",
-                "line": 339
+                "line": 340
               }
             },
             {
@@ -82512,7 +82575,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.letter-spacing.terminal",
-                "line": 329
+                "line": 330
               }
             }
           ],
@@ -82547,7 +82610,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.line-height.caption",
-                "line": 335
+                "line": 336
               }
             },
             {
@@ -82556,7 +82619,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.line-height.caption",
-                "line": 340
+                "line": 341
               }
             },
             {
@@ -82565,7 +82628,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.line-height.caption",
-                "line": 330
+                "line": 331
               }
             }
           ],
@@ -82600,7 +82663,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.line-height.code",
-                "line": 336
+                "line": 337
               }
             },
             {
@@ -82609,7 +82672,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.line-height.code",
-                "line": 341
+                "line": 342
               }
             },
             {
@@ -82618,7 +82681,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.line-height.code",
-                "line": 331
+                "line": 332
               }
             }
           ],
@@ -82653,7 +82716,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.line-height.h1",
-                "line": 337
+                "line": 338
               }
             },
             {
@@ -82662,7 +82725,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.line-height.h1",
-                "line": 342
+                "line": 343
               }
             },
             {
@@ -82671,7 +82734,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.line-height.h1",
-                "line": 332
+                "line": 333
               }
             }
           ],
@@ -82706,7 +82769,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.line-height.h2",
-                "line": 338
+                "line": 339
               }
             },
             {
@@ -82715,7 +82778,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.line-height.h2",
-                "line": 343
+                "line": 344
               }
             },
             {
@@ -82724,7 +82787,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.line-height.h2",
-                "line": 333
+                "line": 334
               }
             }
           ],
@@ -82759,7 +82822,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.line-height.h3",
-                "line": 339
+                "line": 340
               }
             },
             {
@@ -82768,7 +82831,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.line-height.h3",
-                "line": 344
+                "line": 345
               }
             },
             {
@@ -82777,7 +82840,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.line-height.h3",
-                "line": 334
+                "line": 335
               }
             }
           ],
@@ -82812,7 +82875,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.line-height.reading",
-                "line": 340
+                "line": 341
               }
             },
             {
@@ -82821,7 +82884,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.line-height.reading",
-                "line": 345
+                "line": 346
               }
             },
             {
@@ -82830,7 +82893,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.line-height.reading",
-                "line": 335
+                "line": 336
               }
             }
           ],
@@ -82865,7 +82928,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.line-height.terminal",
-                "line": 341
+                "line": 342
               }
             },
             {
@@ -82874,7 +82937,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.line-height.terminal",
-                "line": 346
+                "line": 347
               }
             },
             {
@@ -82883,7 +82946,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.line-height.terminal",
-                "line": 336
+                "line": 337
               }
             }
           ],
@@ -82918,7 +82981,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.line-height.ui-lg",
-                "line": 342
+                "line": 343
               }
             },
             {
@@ -82927,7 +82990,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.line-height.ui-lg",
-                "line": 347
+                "line": 348
               }
             },
             {
@@ -82936,7 +82999,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.line-height.ui-lg",
-                "line": 337
+                "line": 338
               }
             }
           ],
@@ -82971,7 +83034,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.line-height.ui-md",
-                "line": 343
+                "line": 344
               }
             },
             {
@@ -82980,7 +83043,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.line-height.ui-md",
-                "line": 348
+                "line": 349
               }
             },
             {
@@ -82989,7 +83052,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.line-height.ui-md",
-                "line": 338
+                "line": 339
               }
             }
           ],
@@ -83055,7 +83118,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.line-height.ui-sm",
-                "line": 344
+                "line": 345
               }
             },
             {
@@ -83064,7 +83127,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.line-height.ui-sm",
-                "line": 349
+                "line": 350
               }
             },
             {
@@ -83073,7 +83136,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.line-height.ui-sm",
-                "line": 339
+                "line": 340
               }
             }
           ],
@@ -83139,7 +83202,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.size.caption",
-                "line": 345
+                "line": 346
               }
             },
             {
@@ -83148,7 +83211,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.size.caption",
-                "line": 350
+                "line": 351
               }
             },
             {
@@ -83157,7 +83220,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.size.caption",
-                "line": 340
+                "line": 341
               }
             }
           ],
@@ -83192,7 +83255,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.size.code",
-                "line": 346
+                "line": 347
               }
             },
             {
@@ -83201,7 +83264,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.size.code",
-                "line": 351
+                "line": 352
               }
             },
             {
@@ -83210,7 +83273,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.size.code",
-                "line": 341
+                "line": 342
               }
             }
           ],
@@ -83245,7 +83308,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.size.h1",
-                "line": 347
+                "line": 348
               }
             },
             {
@@ -83254,7 +83317,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.size.h1",
-                "line": 352
+                "line": 353
               }
             },
             {
@@ -83263,7 +83326,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.size.h1",
-                "line": 342
+                "line": 343
               }
             }
           ],
@@ -83298,7 +83361,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.size.h2",
-                "line": 348
+                "line": 349
               }
             },
             {
@@ -83307,7 +83370,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.size.h2",
-                "line": 353
+                "line": 354
               }
             },
             {
@@ -83316,7 +83379,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.size.h2",
-                "line": 343
+                "line": 344
               }
             }
           ],
@@ -83367,7 +83430,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.size.h3",
-                "line": 349
+                "line": 350
               }
             },
             {
@@ -83376,7 +83439,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.size.h3",
-                "line": 354
+                "line": 355
               }
             },
             {
@@ -83385,7 +83448,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.size.h3",
-                "line": 344
+                "line": 345
               }
             }
           ],
@@ -83420,7 +83483,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.size.reading",
-                "line": 350
+                "line": 351
               }
             },
             {
@@ -83429,7 +83492,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.size.reading",
-                "line": 355
+                "line": 356
               }
             },
             {
@@ -83438,7 +83501,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.size.reading",
-                "line": 345
+                "line": 346
               }
             }
           ],
@@ -83473,7 +83536,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.size.terminal",
-                "line": 351
+                "line": 352
               }
             },
             {
@@ -83482,7 +83545,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.size.terminal",
-                "line": 346
+                "line": 347
               }
             }
           ],
@@ -83533,7 +83596,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.size.ui-lg",
-                "line": 352
+                "line": 353
               }
             },
             {
@@ -83542,7 +83605,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.size.ui-lg",
-                "line": 356
+                "line": 357
               }
             },
             {
@@ -83551,7 +83614,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.size.ui-lg",
-                "line": 347
+                "line": 348
               }
             }
           ],
@@ -83586,7 +83649,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.size.ui-md",
-                "line": 353
+                "line": 354
               }
             },
             {
@@ -83595,7 +83658,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.size.ui-md",
-                "line": 357
+                "line": 358
               }
             },
             {
@@ -83604,7 +83667,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.size.ui-md",
-                "line": 348
+                "line": 349
               }
             }
           ],
@@ -83670,7 +83733,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.size.ui-sm",
-                "line": 354
+                "line": 355
               }
             },
             {
@@ -83679,7 +83742,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.size.ui-sm",
-                "line": 358
+                "line": 359
               }
             },
             {
@@ -83688,7 +83751,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.size.ui-sm",
-                "line": 349
+                "line": 350
               }
             }
           ],
@@ -83754,7 +83817,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.weight.bold",
-                "line": 355
+                "line": 356
               }
             },
             {
@@ -83763,7 +83826,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.weight.bold",
-                "line": 359
+                "line": 360
               }
             },
             {
@@ -83772,7 +83835,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.weight.bold",
-                "line": 350
+                "line": 351
               }
             }
           ],
@@ -83823,7 +83886,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.weight.regular",
-                "line": 356
+                "line": 357
               }
             },
             {
@@ -83832,7 +83895,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.weight.regular",
-                "line": 360
+                "line": 361
               }
             },
             {
@@ -83841,7 +83904,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.weight.regular",
-                "line": 351
+                "line": 352
               }
             }
           ],
@@ -83876,7 +83939,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/icon.size.lg",
-                "line": 357
+                "line": 358
               }
             },
             {
@@ -83885,7 +83948,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/icon.size.lg",
-                "line": 361
+                "line": 362
               }
             },
             {
@@ -83894,7 +83957,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/icon.size.lg",
-                "line": 352
+                "line": 353
               }
             }
           ],
@@ -83929,7 +83992,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/icon.size.md",
-                "line": 358
+                "line": 359
               }
             },
             {
@@ -83938,7 +84001,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/icon.size.md",
-                "line": 362
+                "line": 363
               }
             },
             {
@@ -83947,7 +84010,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/icon.size.md",
-                "line": 353
+                "line": 354
               }
             }
           ],
@@ -84013,7 +84076,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/icon.size.sm",
-                "line": 359
+                "line": 360
               }
             },
             {
@@ -84022,7 +84085,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/icon.size.sm",
-                "line": 363
+                "line": 364
               }
             },
             {
@@ -84031,7 +84094,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/icon.size.sm",
-                "line": 354
+                "line": 355
               }
             }
           ],
@@ -84066,7 +84129,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/icon.stroke",
-                "line": 360
+                "line": 361
               }
             },
             {
@@ -84075,7 +84138,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/icon.stroke",
-                "line": 364
+                "line": 365
               }
             },
             {
@@ -84084,7 +84147,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/icon.stroke",
-                "line": 355
+                "line": 356
               }
             }
           ],
@@ -84119,7 +84182,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/layout.app-max",
-                "line": 361
+                "line": 362
               }
             },
             {
@@ -84128,7 +84191,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/layout.app-max",
-                "line": 365
+                "line": 366
               }
             },
             {
@@ -84137,7 +84200,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/layout.app-max",
-                "line": 356
+                "line": 357
               }
             }
           ],
@@ -84172,7 +84235,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/layout.content-max",
-                "line": 362
+                "line": 363
               }
             },
             {
@@ -84181,7 +84244,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/layout.content-max",
-                "line": 366
+                "line": 367
               }
             },
             {
@@ -84190,7 +84253,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/layout.content-max",
-                "line": 357
+                "line": 358
               }
             }
           ],
@@ -84225,7 +84288,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/layout.measure",
-                "line": 363
+                "line": 364
               }
             },
             {
@@ -84234,7 +84297,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/layout.measure",
-                "line": 367
+                "line": 368
               }
             },
             {
@@ -84243,7 +84306,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/layout.measure",
-                "line": 358
+                "line": 359
               }
             }
           ],
@@ -84278,7 +84341,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/motion.duration.base",
-                "line": 364
+                "line": 365
               }
             },
             {
@@ -84287,7 +84350,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/motion.duration.base",
-                "line": 368
+                "line": 369
               }
             },
             {
@@ -84296,7 +84359,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/motion.duration.base",
-                "line": 359
+                "line": 360
               }
             }
           ],
@@ -84331,7 +84394,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/motion.duration.fast",
-                "line": 365
+                "line": 366
               }
             },
             {
@@ -84340,7 +84403,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/motion.duration.fast",
-                "line": 369
+                "line": 370
               }
             },
             {
@@ -84349,7 +84412,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/motion.duration.fast",
-                "line": 360
+                "line": 361
               }
             }
           ],
@@ -84384,7 +84447,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/motion.duration.slow",
-                "line": 366
+                "line": 367
               }
             },
             {
@@ -84393,7 +84456,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/motion.duration.slow",
-                "line": 370
+                "line": 371
               }
             },
             {
@@ -84402,7 +84465,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/motion.duration.slow",
-                "line": 361
+                "line": 362
               }
             }
           ],
@@ -84437,7 +84500,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/radius.none",
-                "line": 367
+                "line": 368
               }
             },
             {
@@ -84446,7 +84509,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/radius.none",
-                "line": 371
+                "line": 372
               }
             },
             {
@@ -84455,7 +84518,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/radius.none",
-                "line": 362
+                "line": 363
               }
             }
           ],
@@ -84779,7 +84842,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/shadow.floating",
-                "line": 368
+                "line": 369
               }
             },
             {
@@ -84788,7 +84851,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/shadow.floating",
-                "line": 372
+                "line": 373
               }
             },
             {
@@ -84797,7 +84860,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/shadow.floating",
-                "line": 363
+                "line": 364
               }
             }
           ],
@@ -84850,7 +84913,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/space.0",
-                "line": 369
+                "line": 370
               }
             },
             {
@@ -84859,7 +84922,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/space.0",
-                "line": 373
+                "line": 374
               }
             },
             {
@@ -84868,7 +84931,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/space.0",
-                "line": 364
+                "line": 365
               }
             }
           ],
@@ -84903,7 +84966,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/space.1",
-                "line": 370
+                "line": 371
               }
             },
             {
@@ -84912,7 +84975,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/space.1",
-                "line": 374
+                "line": 375
               }
             },
             {
@@ -84921,7 +84984,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/space.1",
-                "line": 365
+                "line": 366
               }
             }
           ],
@@ -84956,7 +85019,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/space.12",
-                "line": 371
+                "line": 372
               }
             },
             {
@@ -84965,7 +85028,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/space.12",
-                "line": 375
+                "line": 376
               }
             },
             {
@@ -84974,7 +85037,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/space.12",
-                "line": 366
+                "line": 367
               }
             }
           ],
@@ -85295,7 +85358,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/space.16",
-                "line": 372
+                "line": 373
               }
             },
             {
@@ -85304,7 +85367,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/space.16",
-                "line": 376
+                "line": 377
               }
             },
             {
@@ -85313,7 +85376,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/space.16",
-                "line": 367
+                "line": 368
               }
             }
           ],
@@ -85439,7 +85502,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/space.2",
-                "line": 373
+                "line": 374
               }
             },
             {
@@ -85448,7 +85511,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/space.2",
-                "line": 377
+                "line": 378
               }
             },
             {
@@ -85457,7 +85520,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/space.2",
-                "line": 368
+                "line": 369
               }
             }
           ],
@@ -85778,7 +85841,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/space.24",
-                "line": 374
+                "line": 375
               }
             },
             {
@@ -85787,7 +85850,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/space.24",
-                "line": 378
+                "line": 379
               }
             },
             {
@@ -85796,7 +85859,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/space.24",
-                "line": 369
+                "line": 370
               }
             }
           ],
@@ -85877,7 +85940,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/space.32",
-                "line": 375
+                "line": 376
               }
             },
             {
@@ -85886,7 +85949,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/space.32",
-                "line": 379
+                "line": 380
               }
             },
             {
@@ -85895,7 +85958,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/space.32",
-                "line": 370
+                "line": 371
               }
             }
           ],
@@ -85946,7 +86009,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/space.4",
-                "line": 376
+                "line": 377
               }
             },
             {
@@ -85955,7 +86018,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/space.4",
-                "line": 380
+                "line": 381
               }
             },
             {
@@ -85964,7 +86027,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/space.4",
-                "line": 371
+                "line": 372
               }
             }
           ],
@@ -86090,7 +86153,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/space.48",
-                "line": 377
+                "line": 378
               }
             },
             {
@@ -86099,7 +86162,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/space.48",
-                "line": 381
+                "line": 382
               }
             },
             {
@@ -86108,7 +86171,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/space.48",
-                "line": 372
+                "line": 373
               }
             }
           ],
@@ -86143,7 +86206,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/space.8",
-                "line": 378
+                "line": 379
               }
             },
             {
@@ -86152,7 +86215,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/space.8",
-                "line": 382
+                "line": 383
               }
             },
             {
@@ -86161,7 +86224,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/space.8",
-                "line": 373
+                "line": 374
               }
             }
           ],
@@ -86422,7 +86485,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/z.canvas",
-                "line": 379
+                "line": 380
               }
             },
             {
@@ -86431,7 +86494,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/z.canvas",
-                "line": 383
+                "line": 384
               }
             },
             {
@@ -86440,7 +86503,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/z.canvas",
-                "line": 374
+                "line": 375
               }
             }
           ],
@@ -86475,7 +86538,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/z.dialog",
-                "line": 380
+                "line": 381
               }
             },
             {
@@ -86484,7 +86547,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/z.dialog",
-                "line": 384
+                "line": 385
               }
             },
             {
@@ -86493,7 +86556,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/z.dialog",
-                "line": 375
+                "line": 376
               }
             }
           ],
@@ -86544,7 +86607,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/z.drawer",
-                "line": 381
+                "line": 382
               }
             },
             {
@@ -86553,7 +86616,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/z.drawer",
-                "line": 385
+                "line": 386
               }
             },
             {
@@ -86562,7 +86625,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/z.drawer",
-                "line": 376
+                "line": 377
               }
             }
           ],
@@ -86613,7 +86676,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/z.popover",
-                "line": 382
+                "line": 383
               }
             },
             {
@@ -86622,7 +86685,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/z.popover",
-                "line": 386
+                "line": 387
               }
             },
             {
@@ -86631,7 +86694,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/z.popover",
-                "line": 377
+                "line": 378
               }
             }
           ],
@@ -86682,7 +86745,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/z.raised",
-                "line": 383
+                "line": 384
               }
             },
             {
@@ -86691,7 +86754,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/z.raised",
-                "line": 387
+                "line": 388
               }
             },
             {
@@ -86700,7 +86763,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/z.raised",
-                "line": 378
+                "line": 379
               }
             }
           ],
@@ -86735,7 +86798,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/z.skip-link",
-                "line": 384
+                "line": 385
               }
             },
             {
@@ -86744,7 +86807,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/z.skip-link",
-                "line": 388
+                "line": 389
               }
             },
             {
@@ -86753,7 +86816,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/z.skip-link",
-                "line": 379
+                "line": 380
               }
             }
           ],
@@ -86788,7 +86851,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/z.toast",
-                "line": 385
+                "line": 386
               }
             },
             {
@@ -86797,7 +86860,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/z.toast",
-                "line": 389
+                "line": 390
               }
             },
             {
@@ -86806,7 +86869,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/z.toast",
-                "line": 380
+                "line": 381
               }
             }
           ],
@@ -101076,7 +101139,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/axis",
-            "line": 1262
+            "line": 1274
           },
           "provenance": null,
           "aliases": [
@@ -101119,7 +101182,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/grid",
-            "line": 1266
+            "line": 1278
           },
           "provenance": null,
           "aliases": [
@@ -101162,7 +101225,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/label",
-            "line": 1270
+            "line": 1282
           },
           "provenance": null,
           "aliases": [
@@ -101232,7 +101295,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/series-1",
-            "line": 1246
+            "line": 1258
           },
           "provenance": null,
           "aliases": [
@@ -101259,7 +101322,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/series-2",
-            "line": 1250
+            "line": 1262
           },
           "provenance": null,
           "aliases": [
@@ -101302,7 +101365,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/series-3",
-            "line": 1254
+            "line": 1266
           },
           "provenance": null,
           "aliases": [
@@ -101329,7 +101392,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/series-4",
-            "line": 1258
+            "line": 1270
           },
           "provenance": null,
           "aliases": [
@@ -107583,7 +107646,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/icon/decorative",
-            "line": 1280
+            "line": 1292
           },
           "provenance": null,
           "aliases": [
@@ -107832,7 +107895,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/icon/default",
-            "line": 1276
+            "line": 1288
           },
           "provenance": null,
           "aliases": [
@@ -119694,6 +119757,7 @@
             "color.action.primary.text",
             "color.interaction.selection.text",
             "color.interaction.text-selection.text",
+            "color.terminal.prompt-text",
             "color.terminal.selection-text",
             "color.text.link-hover",
             "color.text.on-action",
@@ -143136,7 +143200,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/0",
-            "line": 1099
+            "line": 1111
           },
           "provenance": null,
           "aliases": [
@@ -143353,7 +143417,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/11",
-            "line": 1191
+            "line": 1203
           },
           "provenance": null,
           "aliases": [
@@ -143716,7 +143780,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/2",
-            "line": 1115
+            "line": 1127
           },
           "provenance": null,
           "aliases": [
@@ -143787,7 +143851,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/3",
-            "line": 1119
+            "line": 1131
           },
           "provenance": null,
           "aliases": [
@@ -144011,7 +144075,7 @@
               }
             },
             {
-              "fg": "color.terminal.bg",
+              "fg": "color.terminal.prompt-text",
               "bg": "color.terminal.ansi.4",
               "label": "prompt segment text on slot 4",
               "state": null,
@@ -144039,7 +144103,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/5",
-            "line": 1135
+            "line": 1147
           },
           "provenance": null,
           "aliases": [
@@ -144183,7 +144247,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/7",
-            "line": 1151
+            "line": 1163
           },
           "provenance": null,
           "aliases": [
@@ -144422,21 +144486,6 @@
                 "file": "spec/components/terminal.md",
                 "pointer": "/contrast/3",
                 "line": 76
-              }
-            },
-            {
-              "kind": "contrast",
-              "component": "terminal",
-              "part": null,
-              "state": null,
-              "variant": null,
-              "surface": "color.terminal.ansi.4",
-              "nativeKey": null,
-              "port": null,
-              "source": {
-                "file": "spec/components/terminal.md",
-                "pointer": "/contrast/2",
-                "line": 75
               }
             },
             {
@@ -144817,21 +144866,6 @@
             {
               "kind": "part",
               "component": "terminal",
-              "part": "prompt.text",
-              "state": null,
-              "variant": null,
-              "surface": null,
-              "nativeKey": null,
-              "port": null,
-              "source": {
-                "file": "spec/components/terminal.md",
-                "pointer": "/tokens/prompt.text",
-                "line": 42
-              }
-            },
-            {
-              "kind": "part",
-              "component": "terminal",
               "part": "root.bg",
               "state": null,
               "variant": null,
@@ -145109,17 +145143,6 @@
                 "file": "spec/components/terminal.md",
                 "pointer": "/contrast/3",
                 "line": 76
-              }
-            },
-            {
-              "fg": "color.terminal.bg",
-              "bg": "color.terminal.ansi.4",
-              "label": "prompt segment text on slot 4",
-              "state": null,
-              "source": {
-                "file": "spec/components/terminal.md",
-                "pointer": "/contrast/2",
-                "line": 75
               }
             },
             {
@@ -145538,6 +145561,78 @@
                 "file": "spec/contrast.json",
                 "pointer": "/pairs/59",
                 "line": 63
+              }
+            }
+          ]
+        },
+        "color.terminal.prompt-text": {
+          "path": "color.terminal.prompt-text",
+          "group": "terminal",
+          "css": "#f4eeee",
+          "variable": "--color-terminal-prompt-text",
+          "description": "Light prompt text on the heritage slot 4, as the workstation drew it.",
+          "status": "heritage",
+          "deprecated": false,
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          },
+          "source": {
+            "file": "tokens/profiles/heritage-ansi.tokens.json",
+            "pointer": "/color/terminal/prompt-text",
+            "line": 334
+          },
+          "provenance": {
+            "status": "heritage"
+          },
+          "aliases": [
+            "color.primitive.paper.90"
+          ],
+          "usedByAliases": [],
+          "unmappedPorts": [],
+          "uses": [
+            {
+              "kind": "contrast",
+              "component": "terminal",
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": "color.terminal.ansi.4",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/terminal.md",
+                "pointer": "/contrast/2",
+                "line": 75
+              }
+            },
+            {
+              "kind": "part",
+              "component": "terminal",
+              "part": "prompt.text",
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/terminal.md",
+                "pointer": "/tokens/prompt.text",
+                "line": 42
+              }
+            }
+          ],
+          "contrast": [
+            {
+              "fg": "color.terminal.prompt-text",
+              "bg": "color.terminal.ansi.4",
+              "label": "prompt segment text on slot 4",
+              "state": null,
+              "source": {
+                "file": "spec/components/terminal.md",
+                "pointer": "/contrast/2",
+                "line": 75
               }
             }
           ]
@@ -178066,7 +178161,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/axis",
-            "line": 1262
+            "line": 1274
           },
           "provenance": null,
           "aliases": [
@@ -178109,7 +178204,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/grid",
-            "line": 1266
+            "line": 1278
           },
           "provenance": null,
           "aliases": [
@@ -178152,7 +178247,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/label",
-            "line": 1270
+            "line": 1282
           },
           "provenance": null,
           "aliases": [
@@ -178222,7 +178317,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/series-1",
-            "line": 1246
+            "line": 1258
           },
           "provenance": null,
           "aliases": [
@@ -184672,7 +184767,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/icon/decorative",
-            "line": 1280
+            "line": 1292
           },
           "provenance": null,
           "aliases": [
@@ -184921,7 +185016,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/icon/default",
-            "line": 1276
+            "line": 1288
           },
           "provenance": null,
           "aliases": [
@@ -196475,6 +196570,7 @@
             "color.status.warning.on-fill",
             "color.terminal.ansi.0",
             "color.terminal.bg",
+            "color.terminal.prompt-text",
             "color.text.inverse",
             "color.text.on-light"
           ],
@@ -221142,7 +221238,7 @@
               }
             },
             {
-              "fg": "color.terminal.bg",
+              "fg": "color.terminal.prompt-text",
               "bg": "color.terminal.ansi.4",
               "label": "prompt segment text on slot 4",
               "state": null,
@@ -221585,21 +221681,6 @@
               "part": null,
               "state": null,
               "variant": null,
-              "surface": "color.terminal.ansi.4",
-              "nativeKey": null,
-              "port": null,
-              "source": {
-                "file": "spec/components/terminal.md",
-                "pointer": "/contrast/2",
-                "line": 75
-              }
-            },
-            {
-              "kind": "contrast",
-              "component": "terminal",
-              "part": null,
-              "state": null,
-              "variant": null,
               "surface": "color.terminal.bg",
               "nativeKey": null,
               "port": null,
@@ -221972,21 +222053,6 @@
             {
               "kind": "part",
               "component": "terminal",
-              "part": "prompt.text",
-              "state": null,
-              "variant": null,
-              "surface": null,
-              "nativeKey": null,
-              "port": null,
-              "source": {
-                "file": "spec/components/terminal.md",
-                "pointer": "/tokens/prompt.text",
-                "line": 42
-              }
-            },
-            {
-              "kind": "part",
-              "component": "terminal",
               "part": "root.bg",
               "state": null,
               "variant": null,
@@ -222264,17 +222330,6 @@
                 "file": "spec/components/terminal.md",
                 "pointer": "/contrast/3",
                 "line": 76
-              }
-            },
-            {
-              "fg": "color.terminal.bg",
-              "bg": "color.terminal.ansi.4",
-              "label": "prompt segment text on slot 4",
-              "state": null,
-              "source": {
-                "file": "spec/components/terminal.md",
-                "pointer": "/contrast/2",
-                "line": 75
               }
             },
             {
@@ -222693,6 +222748,81 @@
                 "file": "spec/contrast.json",
                 "pointer": "/pairs/59",
                 "line": 63
+              }
+            }
+          ]
+        },
+        "color.terminal.prompt-text": {
+          "path": "color.terminal.prompt-text",
+          "group": "terminal",
+          "css": "#0c0909",
+          "variable": "--color-terminal-prompt-text",
+          "description": "Text on the prompt's filled segments (slot 4 path, slot 3 branch): dark on the readable heritage slots (D-029).",
+          "status": "approved",
+          "deprecated": false,
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          },
+          "source": {
+            "file": "tokens/semantic.tokens.json",
+            "pointer": "/color/terminal/prompt-text",
+            "line": 1098
+          },
+          "provenance": {
+            "status": "approved",
+            "approval": {
+              "decision": "D-029"
+            }
+          },
+          "aliases": [
+            "color.primitive.ink.20"
+          ],
+          "usedByAliases": [],
+          "unmappedPorts": [],
+          "uses": [
+            {
+              "kind": "contrast",
+              "component": "terminal",
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": "color.terminal.ansi.4",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/terminal.md",
+                "pointer": "/contrast/2",
+                "line": 75
+              }
+            },
+            {
+              "kind": "part",
+              "component": "terminal",
+              "part": "prompt.text",
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/terminal.md",
+                "pointer": "/tokens/prompt.text",
+                "line": 42
+              }
+            }
+          ],
+          "contrast": [
+            {
+              "fg": "color.terminal.prompt-text",
+              "bg": "color.terminal.ansi.4",
+              "label": "prompt segment text on slot 4",
+              "state": null,
+              "source": {
+                "file": "spec/components/terminal.md",
+                "pointer": "/contrast/2",
+                "line": 75
               }
             }
           ]

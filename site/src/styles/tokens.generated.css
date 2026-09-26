@@ -239,6 +239,7 @@
   --color-terminal-cursor: #e99499;
   --color-terminal-selection-bg: #911410;
   --color-terminal-selection-text: #f4eeee;
+  --color-terminal-prompt-text: #0c0909;
   --color-terminal-ansi-0: #0c0909;
   --color-terminal-ansi-1: #e84b4b;
   --color-terminal-ansi-2: #bd787d;
@@ -362,6 +363,7 @@
   --color-code-syntax-heading: #e53935;
   --color-code-syntax-tag: #f73f35;
   --color-code-syntax-invalid: #e53935;
+  --color-terminal-prompt-text: #f4eeee;
   --color-terminal-ansi-1: #c81a1a;
   --color-terminal-ansi-4: #8c1212;
   --color-terminal-ansi-6: #9e474a;

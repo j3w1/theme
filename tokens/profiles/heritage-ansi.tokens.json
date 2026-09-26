@@ -330,6 +330,15 @@
             }
           }
         }
+      },
+      "prompt-text": {
+        "$value": "{color.primitive.paper.90}",
+        "$description": "Light prompt text on the heritage slot 4, as the workstation drew it.",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "heritage"
+          }
+        }
       }
     }
   }

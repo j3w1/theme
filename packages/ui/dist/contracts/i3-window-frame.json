@@ -199,6 +199,7 @@
       "color.terminal.bg",
       "color.terminal.cursor",
       "color.terminal.fg",
+      "color.terminal.prompt-text",
       "color.terminal.selection-bg",
       "color.terminal.selection-text",
       "color.text.bright",
@@ -351,6 +352,7 @@
       "color.terminal.bg",
       "color.terminal.cursor",
       "color.terminal.fg",
+      "color.terminal.prompt-text",
       "color.terminal.selection-bg",
       "color.terminal.selection-text",
       "color.text.bright",
@@ -740,6 +742,11 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "color.terminal.prompt-text": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "color.terminal.selection-bg": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -946,6 +953,6 @@
   "copy": {
     "directory": "copy/i3-window-frame/",
     "manifest": "copy/i3-window-frame/manifest.json",
-    "digest": "sha256-AeTD2oRlZPACXwyhI/Bui90bq04qq6YqJb96J7CeWSk="
+    "digest": "sha256-hg+ouXjE+laTXRkK6xMZWkEGI/ueVW9rptNMiJq9J3s="
   }
 }

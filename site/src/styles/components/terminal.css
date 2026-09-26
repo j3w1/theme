@@ -37,7 +37,7 @@
 /* the agnoster-style prompt: two filled segments, each ending in its own arrow */
 .terminal-prompt-path {
   background: var(--color-terminal-ansi-4);
-  color: var(--color-terminal-selection-text);
+  color: var(--color-terminal-prompt-text);
 }
 
 .terminal-prompt-arrow-path {

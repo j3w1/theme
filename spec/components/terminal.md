@@ -39,7 +39,7 @@ tokens:
   selection.text: color.terminal.selection-text
   current.bg: color.code.current-line
   prompt.bg: color.terminal.ansi.4
-  prompt.text: color.terminal.bg
+  prompt.text: color.terminal.prompt-text
   prompt.branch-bg: color.terminal.ansi.3
   prompt.branch-text: color.terminal.bg
   dim.text: color.text.muted
@@ -72,7 +72,7 @@ stateTokens:
 contrast:
   - { fg: color.terminal.cursor, bg: color.terminal.bg, min: 3, kind: ui, label: "hollow cursor outline at rest" }
   - { fg: color.terminal.cursor, bg: color.code.current-line, min: 3, kind: ui, state: current, label: "cursor on the cursor line" }
-  - { fg: color.terminal.bg, bg: color.terminal.ansi.4, label: "prompt segment text on slot 4" }
+  - { fg: color.terminal.prompt-text, bg: color.terminal.ansi.4, label: "prompt segment text on slot 4" }
   - { fg: color.terminal.bg, bg: color.terminal.ansi.3, label: "branch segment text on slot 3" }
   - { fg: color.terminal.ansi.4, bg: color.terminal.bg, min: 1, kind: ui, label: "prompt arrow (the segment's own colour, decorative)", waiver: "the arrow is the segment edge; the segment text carries the content" }
   - { fg: color.text.muted, bg: color.terminal.bg, label: "dim text and grid labels" }
@@ -99,7 +99,7 @@ anatomy:
   - part: line
     description: One row of cells; the cursor line takes code.current-line when current.
   - part: prompt
-    description: Agnoster-style segments; the path on slot 4 and the branch on slot 3, both with terminal.bg text, each followed by an arrow in the segment's own colour.
+    description: Agnoster-style segments; the path on slot 4 with terminal.prompt-text, the branch on slot 3 with terminal.bg text, each followed by an arrow in the segment's own colour.
   - part: slot
     description: A span coloured by one of the sixteen slots as foreground (.terminal-fg-N) or background (.terminal-bg-N).
   - part: cursor
@@ -155,10 +155,11 @@ Root `.terminal` (the `<pre>`) with a variant class `.terminal-transcript`,
 each a single role variable {color.terminal.ansi.0} … {color.terminal.ansi.15},
 so the profile switch on the specimen recolours the grid without touching
 the markup. The foreground is {color.terminal.fg} on {color.terminal.bg};
-the prompt path segment is {color.terminal.bg} on {color.terminal.ansi.4}
-and the branch segment {color.terminal.bg} on {color.terminal.ansi.3}, the two
-agnoster backgrounds the workstation used; D-029's brighter slot 4 carries
-dark text where the heritage slot carried light text.
+the prompt path segment is {color.terminal.prompt-text} on
+{color.terminal.ansi.4} and the branch segment {color.terminal.bg} on
+{color.terminal.ansi.3}, the two agnoster backgrounds the workstation used.
+{color.terminal.prompt-text} is dark on the default profile's brighter slot 4
+and the historical light text in `heritage-ansi` (D-029).
 
 ## States
 

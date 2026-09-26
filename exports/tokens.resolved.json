@@ -5687,6 +5687,30 @@
             "decisionIds": []
           }
         },
+        "color.terminal.prompt-text": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0471,
+              0.0353,
+              0.0353
+            ],
+            "alpha": 1,
+            "hex": "#0c0909"
+          },
+          "css": "#0c0909",
+          "aliasOf": "color.primitive.ink.20",
+          "description": "Text on the prompt's filled segments (slot 4 path, slot 3 branch): dark on the readable heritage slots (D-029).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
+        },
         "color.terminal.ansi.0": {
           "type": "color",
           "value": {
@@ -13313,6 +13337,30 @@
           "aliasOf": "color.primitive.paper.90",
           "description": "Terminal selection text.",
           "status": "observed",
+          "deprecated": false,
+          "decisionId": null,
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
+        "color.terminal.prompt-text": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9569,
+              0.9333,
+              0.9333
+            ],
+            "alpha": 1,
+            "hex": "#f4eeee"
+          },
+          "css": "#f4eeee",
+          "aliasOf": "color.primitive.paper.90",
+          "description": "Light prompt text on the heritage slot 4, as the workstation drew it.",
+          "status": "heritage",
           "deprecated": false,
           "decisionId": null,
           "eligibility": {
@@ -20971,6 +21019,30 @@
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "color.terminal.prompt-text": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0471,
+              0.0353,
+              0.0353
+            ],
+            "alpha": 1,
+            "hex": "#0c0909"
+          },
+          "css": "#0c0909",
+          "aliasOf": "color.primitive.ink.20",
+          "description": "Text on the prompt's filled segments (slot 4 path, slot 3 branch): dark on the readable heritage slots (D-029).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",

@@ -812,7 +812,7 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | terminal current text | current | text | `color.terminal.fg` #e99499 | `color.code.current-line` #1c0a09 | 8.35 | 4.5 | pass |
 | hollow cursor outline at rest | — | ui | `color.terminal.cursor` #e99499 | `color.terminal.bg` #0c0909 | 8.65 | 3 | pass |
 | cursor on the cursor line | current | ui | `color.terminal.cursor` #e99499 | `color.code.current-line` #1c0a09 | 8.35 | 3 | pass |
-| prompt segment text on slot 4 | — | text | `color.terminal.bg` #0c0909 | `color.terminal.ansi.4` #e53131 | 4.55 | 4.5 | pass |
+| prompt segment text on slot 4 | — | text | `color.terminal.prompt-text` #0c0909 | `color.terminal.ansi.4` #e53131 | 4.55 | 4.5 | pass |
 | branch segment text on slot 3 | — | text | `color.terminal.bg` #0c0909 | `color.terminal.ansi.3` #d4868b | 7.16 | 4.5 | pass |
 | prompt arrow (the segment's own colour, decorative) | — | ui | `color.terminal.ansi.4` #e53131 | `color.terminal.bg` #0c0909 | 4.55 | 1 | pass |
 | dim text and grid labels | — | text | `color.text.muted` #bd787d | `color.terminal.bg` #0c0909 | 5.81 | 4.5 | pass |

@@ -1273,6 +1273,11 @@
       "surface": "terminal-colours",
       "reason": "Written to the file's foreground key."
     },
+    "color.terminal.prompt-text": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "The prompt chooses its own segment colours; a terminal theme carries the palette only."
+    },
     "color.terminal.selection-bg": {
       "state": "mapped",
       "surface": "terminal-selection",

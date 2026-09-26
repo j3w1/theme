@@ -304,6 +304,7 @@
     "color.surface.raised": "Interface colour role; a terminal theme file carries terminal colours only.",
     "color.surface.sunken": "Interface colour role; a terminal theme file carries terminal colours only.",
     "color.surface.terminal": "The config has one background key, which carries color.terminal.bg (equal to ANSI 0); the pane surface has no separate key.",
+    "color.terminal.prompt-text": "The prompt chooses its own segment colours; a terminal theme carries the palette only.",
     "color.text.accent": "Interface colour role; a terminal theme file carries terminal colours only.",
     "color.text.accent-strong": "Interface colour role; a terminal theme file carries terminal colours only.",
     "color.text.bright": "Interface colour role; a terminal theme file carries terminal colours only.",

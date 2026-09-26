@@ -292,6 +292,7 @@
     "color.surface.raised": "Interface colour role; a terminal theme file carries terminal colours only.",
     "color.surface.sunken": "Interface colour role; a terminal theme file carries terminal colours only.",
     "color.surface.terminal": "The file has one background key, which carries color.terminal.bg (equal to ANSI 0); the pane surface has no separate key.",
+    "color.terminal.prompt-text": "The prompt chooses its own segment colours; a terminal theme carries the palette only.",
     "color.terminal.selection-bg": "The Warp theme format, and Orca's import of it, carry no selection colours.",
     "color.terminal.selection-text": "The Warp theme format, and Orca's import of it, carry no selection colours.",
     "color.text.accent-strong": "Interface colour role; a terminal theme file carries terminal colours only.",

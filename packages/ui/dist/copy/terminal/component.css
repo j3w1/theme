@@ -54,7 +54,7 @@ j3w1-terminal .terminal-line {
 }
 j3w1-terminal .terminal-prompt-path {
   background: var(--color-terminal-ansi-4);
-  color: var(--color-terminal-selection-text);
+  color: var(--color-terminal-prompt-text);
 }
 
 j3w1-terminal .terminal-prompt-arrow-path {

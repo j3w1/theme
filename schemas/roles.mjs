@@ -34,7 +34,7 @@ export const REQUIRED_COLOR_ROLES = [
   ...under("color.diff.removed", ["bg", "gutter", "emphasis"]),
   ...under("color.diff.modified", ["bg", "gutter"]),
   ...under("color.diff", ["conflict-border", "header-bg"]),
-  ...under("color.terminal", ["bg", "fg", "cursor", "selection-bg", "selection-text"]),
+  ...under("color.terminal", ["bg", "fg", "cursor", "selection-bg", "selection-text", "prompt-text"]),
   ...under("color.terminal.ansi", Array.from({ length: 16 }, (_, i) => String(i))),
   ...under("color.chart", ["series-1", "series-2", "series-3", "series-4", "axis", "grid", "label"]),
   ...under("color.icon", ["default", "decorative"]),

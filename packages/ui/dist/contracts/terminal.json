@@ -101,7 +101,7 @@
     "selection.text": "color.terminal.selection-text",
     "current.bg": "color.code.current-line",
     "prompt.bg": "color.terminal.ansi.4",
-    "prompt.text": "color.terminal.bg",
+    "prompt.text": "color.terminal.prompt-text",
     "prompt.branch-bg": "color.terminal.ansi.3",
     "prompt.branch-text": "color.terminal.bg",
     "dim.text": "color.text.muted",
@@ -163,6 +163,7 @@
       "color.terminal.bg",
       "color.terminal.cursor",
       "color.terminal.fg",
+      "color.terminal.prompt-text",
       "color.terminal.selection-bg",
       "color.terminal.selection-text",
       "color.text.default",
@@ -245,6 +246,7 @@
       "color.terminal.bg",
       "color.terminal.cursor",
       "color.terminal.fg",
+      "color.terminal.prompt-text",
       "color.terminal.selection-bg",
       "color.terminal.selection-text",
       "color.text.default",
@@ -414,6 +416,11 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "color.terminal.prompt-text": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "color.terminal.selection-bg": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -520,6 +527,6 @@
   "copy": {
     "directory": "copy/terminal/",
     "manifest": "copy/terminal/manifest.json",
-    "digest": "sha256-fwvnecw5O1xbseDeDPGY9UVU0576+1zTBEHpm+LuiSk="
+    "digest": "sha256-C0pIJmR17UdJZiy0X+Fq3A+5Rhojas6k+O3xzJw4NoA="
   }
 }

@@ -1095,6 +1095,18 @@
         "$value": "{color.primitive.paper.90}",
         "$description": "Terminal selection text."
       },
+      "prompt-text": {
+        "$value": "{color.primitive.ink.20}",
+        "$description": "Text on the prompt's filled segments (slot 4 path, slot 3 branch): dark on the readable heritage slots (D-029).",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "approved",
+            "approval": {
+              "decision": "D-029"
+            }
+          }
+        }
+      },
       "ansi": {
         "0": {
           "$value": "{color.primitive.ansi.0}",
