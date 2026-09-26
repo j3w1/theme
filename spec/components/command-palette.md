@@ -149,7 +149,7 @@ Combine native modal focus behavior with the editable combobox pattern. Result n
 
 ## Portability
 
-Follows the [shared component defaults](https://j3w1.github.io/theme/reference/#d-portability--shared-component-defaults).
+Follows the shared component defaults in `spec/portability.md` (section "Shared component defaults").
 
 ## Non-examples
 

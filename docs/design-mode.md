@@ -18,10 +18,11 @@ npm run design:doctor   # optional: checks the prerequisites below and stops
 npm run design
 ```
 
-Then open `http://localhost:4400/`. Stop with Ctrl+C.
+Then open `http://localhost:4400/` (the default). Stop with Ctrl+C.
 
-To use another port, set `DESIGN_PORT`. The frozen side, the live side and the
-dev server take the next three ports; `DESIGN_DEV_PORT` moves only the last.
+To use another port, start with `DESIGN_PORT=4500 npm run design`. The frozen
+side, the live side and the dev server take the next three ports;
+`DESIGN_DEV_PORT` moves only the last.
 
 The three servers listen first, so the screen answers at once. The first entry
 then builds the baseline (`npm run build`) and starts the dev server. Its first

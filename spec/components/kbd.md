@@ -110,7 +110,7 @@ Write readable names such as Ctrl, Shift and Escape. Keep sequence punctuation a
 
 ## Portability
 
-Follows the [shared component defaults](https://j3w1.github.io/theme/reference/#d-portability--shared-component-defaults).
+Follows the shared component defaults in `spec/portability.md` (section "Shared component defaults").
 
 ## Non-examples
 

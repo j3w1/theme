@@ -37,6 +37,8 @@ Do not overwrite user customization or silently edit another repository. Native
 import verification and manual accessibility records apply only to their
 recorded source and artifact digests.
 
+## What else changed
+
 The change adds two primitives for the selected chrome and panel values.
 Applications still consume semantic roles, never these primitive keys. This
 change approves no pending decision outside the selected foundation.
@@ -47,11 +49,11 @@ static full-reference link works without it. The Vue demo uses
 `/theme/demo/#/...` so direct links work on GitHub Pages.
 
 The new package and complete copy bundles implement all 67 inventory entries.
-Existing mappings and lock formats still work. When you adopt the package:
+Existing mappings and lock formats still work. When you adopt the package or copy bundles:
 
 1. Install one exact version.
 2. Update its tokens and component styles together.
 3. Review the full dependency closure when you replace copied source.
 
 The CLI refuses to overwrite an old copy. Create a fresh directory and merge
-your application changes by hand.
+your application changes carefully, by hand.

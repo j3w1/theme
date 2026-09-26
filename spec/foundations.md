@@ -43,8 +43,7 @@ more red on screen.
 background would raise their ratio. They stay in service as `border.control`,
 `icon.decorative`, `status.neutral.fill` and `border.disabled`. Metadata and
 comments that people need to read are not decorative: they use `text.subtle`,
-not a graphic colour. The contrast floor is rule 6 under
-[Interaction states](#d-foundations--interaction-states).
+not a graphic colour. The contrast floor is rule 6 under Interaction states.
 
 ## Borders
 
@@ -175,7 +174,7 @@ escapes amber `#c9973f`; types and properties blue `#7e9ebb`; operators
 Invalid text takes a wavy underline; deprecated text a line-through. Languages
 inherit these roles; a language-specific override needs a written reason.
 Inside an editor selection some syntax roles fall below 4.5:1; see
-[Limitations](#d-accessibility--limitations-recorded-not-hidden).
+`spec/accessibility.md`, Limitations.
 
 Terminal slots:
 

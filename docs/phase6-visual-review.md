@@ -10,10 +10,10 @@ package and does not change the canonical palette.
 ## Run the review
 
 1. Use Node 24 and run `npm ci`.
-2. Run `npm run phase6:visual-review` in this checkout. It builds and serves only
-   `.cache/phase6a/site/`, bound to loopback.
-3. Open `http://127.0.0.1:4322/review/compare/`. Set `REVIEW_PORT` to use
-   another port.
+2. Run `npm run phase6:visual-review` in this checkout (set `REVIEW_PORT` first
+   to use another port). It builds and serves only `.cache/phase6a/site/`,
+   bound to loopback.
+3. Open the default address, `http://127.0.0.1:4322/review/compare/`.
 4. Stop the server with Ctrl+C.
 
 Routes are `/review/current/`, `/review/conservative/`, `/review/balanced/`,
@@ -49,7 +49,7 @@ Each input follows `overlaySchema` in `scripts/lib/visual-review.mjs`:
 
 - version 1;
 - the exact baseline digest;
-- candidate ID, optional display name and summary;
+- candidate ID, a summary, and an optional display name;
 - a role-keyed changes object, each with an sRGB hex value, rationale and tradeoff.
 
 Values replace existing opaque color declarations before the canonical alias

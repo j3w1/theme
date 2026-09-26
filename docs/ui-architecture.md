@@ -54,7 +54,7 @@ and composition benefit. Each implementation manifest entry records the reason.
 - A field's input stays the successful native form control; the wrapper submits
   no duplicate hidden value.
 - Labels, fieldsets, constraint validation and reset keep browser behavior.
-- Custom widgets implement their complete canonical keyboard and accessibility
+- Custom widgets must implement their complete canonical keyboard and accessibility
   contracts.
 
 Registration:
@@ -99,8 +99,8 @@ authorization and network services belong to the consuming application.
 Per-component CSS includes transitive composition dependencies. Per-component
 ESM includes the complete runtime dependency closure. The build parses emitted
 module imports with `es-module-lexer`, follows literal relative imports, and
-rejects unbundled bare imports and non-literal dynamic dependencies. Strings and
-comments in documentation cannot become dependencies by accident.
+rejects unbundled bare imports and non-literal dynamic dependencies. Import-like
+text inside strings or comments cannot become a dependency by accident.
 
 Each copy directory contains runnable HTML, element markup, CSS, token CSS,
 runtime modules, notices, instructions and file digests.

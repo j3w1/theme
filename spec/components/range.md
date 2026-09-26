@@ -127,7 +127,7 @@ Retain the input's accessible name and native value semantics. The visible outpu
 
 ## Portability
 
-Follows the [shared component defaults](https://j3w1.github.io/theme/reference/#d-portability--shared-component-defaults).
+Follows the shared component defaults in `spec/portability.md` (section "Shared component defaults").
 
 ## Non-examples
 

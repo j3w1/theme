@@ -172,7 +172,7 @@ an installable tarball with integrity metadata.
   the declared pair, or an explicit text/UI context and an opaque underlay.
   Eligibility and waivers stay separate from the number.
 - **Motion controls** replay only maintained transitions. Static endpoints and
-  reduced motion come first. These diagnostic tools do not certify
+  reduced motion take precedence. These diagnostic tools do not certify
   accessibility.
 - **Share links.** Copy a configuration or preview link to reproduce its
   starting state. Links name the actual build and source digest; a revision

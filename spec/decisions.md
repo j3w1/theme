@@ -10,8 +10,9 @@ A token moves from `proposed` to `approved` only by an `accepted` decision refer
 in its `$extensions["io.github.j3w1.theme"].approval.decision`. Agents may open
 `proposed` entries; only the owner changes a status.
 
-Each entry reads Decision, Why, Consequences, optional Alternatives, and Status
-(status, date, who decided, and what later entries changed).
+Each entry has a Decision and a Status line (status, date, who decided, and
+what later entries changed), plus Why, Consequences and Alternatives where they
+apply.
 
 | # | Title | Status | Date | Decided by |
 | --- | --- | --- | --- | --- |
@@ -331,7 +332,7 @@ diagnostics; formal status and all theme approvals remain owner-managed.
 operator-supplied licensed target and an explicit license review, copies only
 declared template inputs into a new private fixture directory, uses synthetic
 examples and records exact theme, template, framework, dependency and fixture
-identities. The target stays outside its write scope; browser captures, copied
+identities. The target and its application behavior stay outside its write scope; browser captures, copied
 vendor inputs and detailed results stay private; missing prerequisites give
 not-run output.
 
@@ -496,7 +497,7 @@ documents its tested scope. The same enhancement serves existing application
 controls, the portal, the Vue demo, consumption docs and copy closures; input,
 button, checkbox, radio, range and file chrome is themed too. Date inputs get a
 theme-owned text editor and calendar, time inputs text entry and theme-owned
-step buttons; native inputs keep constraints and values. System dialogs and
+step buttons; native inputs keep constraints and values. Browser-owned system dialogs and
 no-JavaScript fallbacks stay native, without platform hacks; native ports keep
 their mappings. The command field fills its dialog width below its label.
 
@@ -562,7 +563,7 @@ widened. The ring measures 3.38:1 on `#531310` (2.15:1 on `#911410` was D-006's
 reason to recolour), so a selected row takes the ordinary 1px dashed ring, not
 the 2px solid container ring; `action.primary.bg` (2.52:1) and
 `status.danger.fill` (1.13:1) keep the recoloured ring. `spec/foundations.md`
-was corrected; D-006 stays as written. `tests/foundation-selection.test.js`
+was corrected (its stale 2.15:1 reason); D-006 stays as written. `tests/foundation-selection.test.js`
 guards the set.
 
 **Alternatives.** Darken only the pointed-at components, or add intermediate

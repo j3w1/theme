@@ -61,7 +61,7 @@ points. Native semantics, real forms, properties, attributes, slots and events
 are the default vocabulary. Choose light or Shadow DOM per component from its
 semantics, static content, composition and real interoperability.
 
-Every inventory entry maps to an official consumable implementation. Deferred
+Every inventory entry must map to an official consumable implementation. Deferred
 entries get complete behavior contracts first. Patterns and developer views get
 bounded APIs that fit their meaning. The form builder stays the existing bounded
 model, not an application framework.
@@ -75,7 +75,7 @@ Each component or pattern has three integration routes:
 | Mapping | Existing compact canonical contract and portability/deviation workflow for incompatible or native hosts |
 
 Prefer package mode when compatible; copy mode is first-class. Multi-file
-widgets include their transitive dependencies and are never called a
+widgets must include their transitive dependencies and must never be called a
 self-contained snippet. Reuse the maintained implementation and generators; do
 not fork behavior for the site, recipes or framework examples. Validate multiple
 instances and coexistence with host styles.
@@ -99,8 +99,8 @@ A short design-system orientation page replaces the long homepage. It still
 reads as a UI theme specification, with exact values, state rules and evidence.
 The full reference moves to `/theme/reference/`, with tested migration of the
 old anchors. Core routes: foundations, components, patterns, tokens, tools,
-implement, agents, ports and releases. Essential and normative content is in the
-first static HTML; ordinary pages load no catalogue-wide JS.
+implement, agents, ports and releases. Keep essential and normative content in
+the first static HTML; ordinary pages must load no catalogue-wide JS.
 
 Every component page combines a live official implementation with anatomy,
 tokens, states, variants, interaction and keyboard rules, accessibility,
@@ -111,7 +111,7 @@ contract links, an agent-kit action and links to realistic showcase compositions
 Document installation, registration, per-component loading, font fallback,
 density, attributes versus properties, custom events, native slots, forms,
 validation, focus, lifecycle cleanup, allowed customization, browser limits,
-troubleshooting, upgrades, pinning and migration. Code in the docs comes from
+troubleshooting, upgrades, pinning and migration. Code in the docs must come from
 maintained examples run against the packed artifact in clean fixtures.
 
 The command palette is an official component used by the portal: a compact,
@@ -135,7 +135,7 @@ library. All public code, content, assets and data are written independently.
   views, the bounded form builder and the complete component gallery.
 
 Use deterministic synthetic data, resettable in-memory state and working local
-interactions. Say which screens depend on a service. Give drag interactions a
+interactions. Say which screens depend on a service, and state what they cannot demonstrate without it. Give drag interactions a
 keyboard alternative. The agreed breadth covers application categories;
 it does not require every external reference route or real backend services.
 

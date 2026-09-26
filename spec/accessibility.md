@@ -39,10 +39,12 @@ decorative graphics that are never the only boundary of a control.
 ## Focus
 
 Focus is never lost and never invisible. The ring is defined once, in
-[Interaction states](#d-foundations--interaction-states) rule 2 (D-006,
-D-015). In short: controls and rows show `focus.ring` (1px dashed `#e53935`,
-offset −2px); focusable containers show `focus.ring-container` (2px solid
-`#ffa2a7`, offset −3px); on fills, use the component's declared ring role.
+`spec/foundations.md`, Interaction states, rule 2 (D-006, D-015). In short:
+controls and rows show `focus.ring` (1px dashed `#e53935`, offset −2px);
+focusable containers show `focus.ring-container` (2px solid `#ffa2a7`, offset
+−3px); primary and checked controls use `focus.ring-container` where declared;
+destructive fills use their on-fill text role. Colour mapping does not change
+ring geometry.
 
 - `:focus` without `:focus-visible` draws nothing. Pointer clicks stay quiet,
   and keyboard focus stays visible.
