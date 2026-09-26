@@ -15,9 +15,10 @@ complete maintained markup on the component's page.
 - **2.0.0** is also major: D-029 lifts the dim terminal slots and two code syntax
   reds, and D-030 adds opt-in `code.hued.*` syntax roles. Component behaviour is
   unchanged. Read the 2.0.0 changelog entry before you upgrade from 1.x.
-- **3.0.0** is major too: D-032 makes terminal slot 6 coral `#ff7a66` and gives
-  the prompt its own background role. Component behaviour is unchanged. Read
-  the 3.0.0 changelog entry before you upgrade.
+- **3.0.0** is major too: D-032 makes terminal slot 6 coral `#ff7a66`, gives the
+  prompt its own background role, changes the prompt text to bright rose
+  `#ffa2a7` and removes `color.primitive.ansi-readable.6`. Component behaviour
+  is unchanged. Read the 3.0.0 changelog entry before you upgrade.
 
 Keep the exact package version and your package-manager lockfile in source
 control.

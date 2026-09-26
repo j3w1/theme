@@ -128,3 +128,7 @@ test("the port leaves experimental or names a tested build only with a recorded 
   assert.equal(chatgptPortProblems({ ...port, testedVersions: ["1.2026.270"] }, [sample]).length, 0);
   assert.equal(chatgptPortProblems({ ...port, testedVersions: ["1.2026.300"] }, [sample]).length, 1);
 });
+
+test("a truncated paste is reported as unreadable, not as a new ChatGPT format (review r6)", () => {
+  assert.throws(() => readSamples(sampleDir(`# build: b1\n# date: 2026-09-26\n${CODEX_THEME_PREFIX}{"theme":\n`)), /is not a readable codex-theme-v1: string/);
+});

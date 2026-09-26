@@ -34,7 +34,9 @@ export const readSamples = (root = repoRoot) => {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(meta.date)) throw new Error(`${SAMPLE_DIR}/${name}: "# date:" must be yyyy-mm-dd`);
     let payload;
     try { payload = parseCodexTheme(line.trim(), codexThemeSampleSchema); } catch (error) {
-      throw new Error(`${SAMPLE_DIR}/${name}: ChatGPT ${meta.build} (${meta.date}) exports a theme format this port does not emit; update schemas/chatgpt.mjs and the emitter before publishing strings. ${error.issues ? error.issues.map((i) => `${i.path.join(".") || "(root)"}: ${i.message}`).join("; ") : error.message}`);
+      // A schema mismatch is a new format; anything else is a bad paste.
+      if (!error.issues) throw new Error(`${SAMPLE_DIR}/${name}: is not a readable ${CODEX_THEME_PREFIX} string (${error.message}); copy the export again`);
+      throw new Error(`${SAMPLE_DIR}/${name}: ChatGPT ${meta.build} (${meta.date}) exports a theme format this port does not emit; update schemas/chatgpt.mjs and the emitter before publishing strings. ${error.issues.map((i) => `${i.path.join(".") || "(root)"}: ${i.message}`).join("; ")}`);
     }
     return { name, build: meta.build, date: meta.date, payload };
   }).sort((a, b) => (a.date === b.date ? a.name.localeCompare(b.name) : a.date.localeCompare(b.date)));
