@@ -148,7 +148,7 @@ The `heritage-ansi` profile carries the sixteen `Xresources` slots exactly.
 The `default` profile carries the readable heritage sixteen (D-029): every slot
 that fell below the text floor keeps its hue and saturation with its lightness
 raised, so slots 1–7 and 9–15 all reach 4.5:1 on the terminal background, and
-slot 8 (bright black) stays the dim tier at 3.02:1. Programs, not the theme,
+slot 8 (bright black) stays the dim tier at 3.01:1. Programs, not the theme,
 choose which slot means what; the readable sixteen make that choice safe for
 text. Inside an editor selection (`code.selection-bg`, `#420f0c`) muted text
 stays at 4.71:1 and the keyword, tag, property and heading reds at 4.5:1 or

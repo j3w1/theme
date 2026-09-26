@@ -54,7 +54,7 @@
   color: var(--color-terminal-ansi-3);
 }
 
-/* the sixteen slots, exact in every profile */
+/* the sixteen slots of the active profile: readable heritage in default (D-029), exact in heritage-ansi */
 .terminal-fg-0 { color: var(--color-terminal-ansi-0); }
 .terminal-fg-1 { color: var(--color-terminal-ansi-1); }
 .terminal-fg-2 { color: var(--color-terminal-ansi-2); }

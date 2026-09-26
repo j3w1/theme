@@ -85,7 +85,7 @@ contrast:
   - { fg: color.terminal.ansi.1, bg: color.terminal.bg, label: "slot 1" }
   - { fg: color.terminal.ansi.4, bg: color.terminal.bg, label: "slot 4" }
   - { fg: color.terminal.ansi.6, bg: color.terminal.bg, label: "slot 6" }
-  - { fg: color.terminal.ansi.8, bg: color.terminal.bg, label: "slot 8 (3.02:1, the dim tier)", waiver: "D-029 keeps bright black as the dim, decorative slot" }
+  - { fg: color.terminal.ansi.8, bg: color.terminal.bg, label: "slot 8 (3.01:1, the dim tier)", waiver: "D-029 keeps bright black as the dim, decorative slot" }
   - { fg: color.terminal.ansi.9, bg: color.terminal.bg, label: "slot 9" }
   - { fg: color.terminal.ansi.10, bg: color.terminal.bg, label: "slot 10" }
   - { fg: color.terminal.ansi.12, bg: color.terminal.bg, label: "slot 12" }
@@ -187,7 +187,7 @@ puts it.
 The transcript is `role=log` so new output is announced politely; the grid
 and the attribute sheet are plain `<pre>` elements with a label. In the
 `default` profile slots 1–7 and 9–15 reach 4.5:1 on the terminal background
-(4.55:1–10.37:1, D-029). Slot 8 is the dim tier at 3.02:1 and slot 0 is the
+(4.55:1–10.37:1, D-029). Slot 8 is the dim tier at 3.01:1 and slot 0 is the
 background itself; the grid marks both with a `✕` after the number so the
 exception is visible, not implied. The `heritage-ansi` profile keeps the
 historical values, where ten slots fail (1.86:1–4.45:1), and marks them the

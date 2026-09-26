@@ -825,7 +825,7 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | slot 1 | — | text | `color.terminal.ansi.1` #e84b4b | `color.terminal.bg` #0c0909 | 5.23 | 4.5 | pass |
 | slot 4 | — | text | `color.terminal.ansi.4` #e53131 | `color.terminal.bg` #0c0909 | 4.55 | 4.5 | pass |
 | slot 6 | — | text | `color.terminal.ansi.6` #bb696c | `color.terminal.bg` #0c0909 | 5.05 | 4.5 | pass |
-| slot 8 (3.02:1, the dim tier) | — | text | `color.terminal.ansi.8` #b71c17 | `color.terminal.bg` #0c0909 | 3.01 | 4.5 | waived: D-029 keeps bright black as the dim, decorative slot |
+| slot 8 (3.01:1, the dim tier) | — | text | `color.terminal.ansi.8` #b71c17 | `color.terminal.bg` #0c0909 | 3.01 | 4.5 | waived: D-029 keeps bright black as the dim, decorative slot |
 | slot 9 | — | text | `color.terminal.ansi.9` #ea3833 | `color.terminal.bg` #0c0909 | 4.83 | 4.5 | pass |
 | slot 10 | — | text | `color.terminal.ansi.10` #dc4f49 | `color.terminal.bg` #0c0909 | 4.97 | 4.5 | pass |
 | slot 12 | — | text | `color.terminal.ansi.12` #db433a | `color.terminal.bg` #0c0909 | 4.61 | 4.5 | pass |

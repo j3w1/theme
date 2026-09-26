@@ -35300,7 +35300,7 @@
           "group": "primitive",
           "css": "#b71c17",
           "variable": "--color-primitive-ansi-readable-8",
-          "description": "Heritage slot 8 (#7d1310, 1.86:1) lifted to 3.02:1 on the terminal background; kept as the dim tier, not a text colour.",
+          "description": "Heritage slot 8 (#7d1310, 1.86:1) lifted to 3.01:1 on the terminal background; kept as the dim tier, not a text colour.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -64619,7 +64619,7 @@
             {
               "fg": "color.terminal.ansi.8",
               "bg": "color.terminal.bg",
-              "label": "slot 8 (3.02:1, the dim tier)",
+              "label": "slot 8 (3.01:1, the dim tier)",
               "state": null,
               "source": {
                 "file": "spec/components/terminal.md",
@@ -65491,7 +65491,7 @@
             {
               "fg": "color.terminal.ansi.8",
               "bg": "color.terminal.bg",
-              "label": "slot 8 (3.02:1, the dim tier)",
+              "label": "slot 8 (3.01:1, the dim tier)",
               "state": null,
               "source": {
                 "file": "spec/components/terminal.md",
@@ -66036,7 +66036,7 @@
           "group": "terminal",
           "css": "#0c0909",
           "variable": "--color-terminal-prompt-text",
-          "description": "Text on the prompt's filled segments (slot 4 path, slot 3 branch): dark on the readable heritage slots (D-029).",
+          "description": "Text on the prompt's path segment (slot 4): dark on the readable heritage slot 4 (D-029).",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -118560,7 +118560,7 @@
           "group": "primitive",
           "css": "#b71c17",
           "variable": "--color-primitive-ansi-readable-8",
-          "description": "Heritage slot 8 (#7d1310, 1.86:1) lifted to 3.02:1 on the terminal background; kept as the dim tier, not a text colour.",
+          "description": "Heritage slot 8 (#7d1310, 1.86:1) lifted to 3.01:1 on the terminal background; kept as the dim tier, not a text colour.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -144365,7 +144365,7 @@
             {
               "fg": "color.terminal.ansi.8",
               "bg": "color.terminal.bg",
-              "label": "slot 8 (3.02:1, the dim tier)",
+              "label": "slot 8 (3.01:1, the dim tier)",
               "state": null,
               "source": {
                 "file": "spec/components/terminal.md",
@@ -145115,7 +145115,7 @@
             {
               "fg": "color.terminal.ansi.8",
               "bg": "color.terminal.bg",
-              "label": "slot 8 (3.02:1, the dim tier)",
+              "label": "slot 8 (3.01:1, the dim tier)",
               "state": null,
               "source": {
                 "file": "spec/components/terminal.md",
@@ -195690,7 +195690,7 @@
           "group": "primitive",
           "css": "#b71c17",
           "variable": "--color-primitive-ansi-readable-8",
-          "description": "Heritage slot 8 (#7d1310, 1.86:1) lifted to 3.02:1 on the terminal background; kept as the dim tier, not a text colour.",
+          "description": "Heritage slot 8 (#7d1310, 1.86:1) lifted to 3.01:1 on the terminal background; kept as the dim tier, not a text colour.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -221548,7 +221548,7 @@
             {
               "fg": "color.terminal.ansi.8",
               "bg": "color.terminal.bg",
-              "label": "slot 8 (3.02:1, the dim tier)",
+              "label": "slot 8 (3.01:1, the dim tier)",
               "state": null,
               "source": {
                 "file": "spec/components/terminal.md",
@@ -222302,7 +222302,7 @@
             {
               "fg": "color.terminal.ansi.8",
               "bg": "color.terminal.bg",
-              "label": "slot 8 (3.02:1, the dim tier)",
+              "label": "slot 8 (3.01:1, the dim tier)",
               "state": null,
               "source": {
                 "file": "spec/components/terminal.md",
@@ -222757,7 +222757,7 @@
           "group": "terminal",
           "css": "#0c0909",
           "variable": "--color-terminal-prompt-text",
-          "description": "Text on the prompt's filled segments (slot 4 path, slot 3 branch): dark on the readable heritage slots (D-029).",
+          "description": "Text on the prompt's path segment (slot 4): dark on the readable heritage slot 4 (D-029).",
           "status": "approved",
           "deprecated": false,
           "eligibility": {

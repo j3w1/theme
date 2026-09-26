@@ -1097,7 +1097,7 @@
       },
       "prompt-text": {
         "$value": "{color.primitive.ink.20}",
-        "$description": "Text on the prompt's filled segments (slot 4 path, slot 3 branch): dark on the readable heritage slots (D-029).",
+        "$description": "Text on the prompt's path segment (slot 4): dark on the readable heritage slot 4 (D-029).",
         "$extensions": {
           "io.github.j3w1.theme": {
             "status": "approved",

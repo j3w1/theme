@@ -185,7 +185,7 @@
       },
       "terminalMinimumContrastRatio": {
         "value": 1,
-        "why": "Color Contrast Off. Any other value lets xterm recolour the slots, which the terminal spec forbids: the sixteen are carried exactly."
+        "why": "Color Contrast Off. Any other value lets xterm recolour the slots, which the terminal spec forbids: the profile's sixteen are carried as they are."
       },
       "leftSidebarAppearanceMode": {
         "value": "match-terminal",

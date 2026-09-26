@@ -5,7 +5,7 @@
 - D-029 **Readable terminal and code reds.** The default profile's terminal
   roles now carry the readable heritage sixteen: every slot that fell below
   4.5:1 keeps its hue and saturation with its lightness raised, and slot 8
-  stays the deliberately dim tier (3.02:1). Slots 1 `#e84b4b`, 4 `#e53131`,
+  stays the deliberately dim tier (3.01:1). Slots 1 `#e84b4b`, 4 `#e53131`,
   6 `#bb696c`, 8 `#b71c17`, 9 `#ea3833`, 10 `#dc4f49`, 12 `#db433a`,
   13 `#ed5360`, 14 `#e6565a`, 15 `#b17e81`; slots 0, 2, 3, 5, 7 and 11 are
   unchanged. Inline code, links and keywords that programs draw in slots 4
@@ -14,7 +14,9 @@
   selection: keywords and tags `#f73f35` → `#f7463c`, properties, headings
   and invalid text `#e53935` → `#e95551` (4.51–4.52:1 in the selection, up
   from 3.81–4.38:1). Interface reds are unchanged.
-- The terminal prompt's path segment draws dark text on the brighter slot 4.
+- New role `color.terminal.prompt-text` (D-029): the prompt's path segment draws
+  dark text on the brighter slot 4 in the default profile and keeps the
+  historical light text in `heritage-ansi`.
 - The `heritage-ansi` profile keeps every historical value byte for byte;
   `color.primitive.ansi.*` is unchanged, and the new values live in
   `color.primitive.ansi-readable.*`, `color.primitive.red.810` and
@@ -25,6 +27,9 @@
 - `tools/terminal-kit/`: installs the default profile into Orca on Windows,
   Claude Code and Codex, with backups, verification and key-level restore
   (#53).
+- Downstream: consumers of `color.terminal.ansi.*` and the five `code.syntax`
+  reds receive new values; hosts that mirror the palette (shell palettes,
+  prompts with light text on slot 4) should update with the release.
 - Install pins in `docs/ui-consumption.md` and the package README now name
   1.3.0. The version moves to 1.3.0, so version-stamped exports and every
   component's version and implementation id regenerate once.
