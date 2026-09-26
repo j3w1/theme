@@ -6,7 +6,7 @@
   "themeVersion": "0.1.0",
   "tokenDigest": "sha256-REPLACE-WITH-exports/digests.json-entry-for-tokens.resolved.json",
   "profile": "default",
-  "format": "native format identifier, e.g. icls, xml, json",
+  "format": "one of PORT_FORMATS in schemas/port.mjs; add yours there in the same change",
   "targetVersions": ["the versions this port is written for"],
   "testedVersions": [],
   "os": ["windows"],

@@ -21,13 +21,33 @@ test("globs: ** crosses folders, * does not, {name} captures one segment", () =>
   assert.equal("spec/components/button.md".match(re)[1], "button");
 });
 
-test("a kit-only change runs the kit suites, builds nothing and deploys nothing", () => {
-  const p = run("push", ["tools/terminal-kit/devbox/lib/source.mjs", "tests/terminal-kit.test.js"]);
-  assert.deepEqual(p.proofs, ["sources", "unit", "unit-kit"]);
+test("an installer-only change runs its own suites, builds nothing and deploys nothing", () => {
+  const p = run("push", ["ports/orca/install/J3w1Orca.psm1", "tests/orca-install.test.js"]);
+  assert.deepEqual(p.proofs, ["sources", "unit", "unit-install", "unit-install-windows"]);
   assert.equal(p.site, false);
   assert.equal(p.matrix, false);
   assert.equal(p.deploy, false);
   assert.deepEqual(p.shards, []);
+  const devbox = run("push", ["ports/claude-code/install.mjs"]);
+  assert.deepEqual(devbox.proofs, ["sources", "unit", "unit-install"]);
+  assert.equal(devbox.site, false);
+  assert.equal(devbox.matrix, false);
+  assert.equal(devbox.deploy, false);
+  assert.deepEqual(devbox.shards, []);
+});
+
+test("the Orca host map and specimen also run the devbox suite, which reads them", () => {
+  for (const file of ["ports/orca/host.json", "ports/orca/src/specimen.json", "ports/orca/install/specimen.json"]) {
+    assert.ok(run("pull_request", [file]).proofs.includes("unit-install"), file);
+  }
+});
+
+test("a port's published files still count as a site change", () => {
+  for (const file of ["ports/orca/dist/config.ghostty", "ports/codex/mapping.json", "ports/README.md"]) {
+    const p = run("push", [file]);
+    assert.equal(p.site, true, file);
+    assert.equal(p.deploy, true, file);
+  }
 });
 
 test("a component change on a pull request runs its spec and the page-wide checks, not the whole matrix", () => {
@@ -58,7 +78,7 @@ test("a broad rule is a floor: an unclaimed path or a control file runs everythi
     const p = run("pull_request", [file]);
     assert.equal(p.floor, true, file);
     assert.equal(p.browser, "all", file);
-    for (const proof of ["sources", "unit", "unit-kit", "unit-kit-windows", "build", "smoke", "consumers"]) assert.ok(p.proofs.includes(proof), `${file}: ${proof}`);
+    for (const proof of ["sources", "unit", "unit-install", "unit-install-windows", "build", "smoke", "consumers"]) assert.ok(p.proofs.includes(proof), `${file}: ${proof}`);
   }
 });
 
@@ -170,6 +190,6 @@ test("a push that changes the site always runs the checks job the evidence job n
   for (const rule of registry.rules.filter((r) => r.site)) {
     const file = rule.paths[0].replace("{id}", "button").replace("{name}", "page").replace("**", "x").replace("*", "x");
     const p = run("push", [file]);
-    if (p.matrix) assert.ok(["sources", "unit", "unit-kit", "unit-kit-windows"].some((x) => p.proofs.includes(x)), file);
+    if (p.matrix) assert.ok(["sources", "unit", "unit-install", "unit-install-windows"].some((x) => p.proofs.includes(x)), file);
   }
 });

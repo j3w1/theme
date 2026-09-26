@@ -1,0 +1,710 @@
+{
+  "schemaVersion": 1,
+  "note": "Generated from ports/orca/src/specimen.json by npm run generate; do not edit. Segments name ANSI slots (0-15 or \"default\") or tokens (fgToken/bgToken, drawn as 24-bit colour). No colour values live here.",
+  "sections": [
+    {
+      "id": "slots",
+      "title": "ANSI slots 0-15 (foreground on the terminal background, then as a background block)",
+      "generated": "slot-grid"
+    },
+    {
+      "id": "attributes",
+      "title": "Attributes",
+      "generated": "attributes"
+    },
+    {
+      "id": "pairs",
+      "title": "Default foreground on each slot background",
+      "generated": "bg-pairs"
+    },
+    {
+      "id": "prompt",
+      "title": "Agnoster prompt (prompt roles for the path, D-032; git segments keep their slots)",
+      "lines": [
+        [
+          {
+            "text": " ~/dev/theme ",
+            "fgToken": "color.terminal.prompt-text",
+            "bgToken": "color.terminal.prompt-bg"
+          },
+          {
+            "text": "",
+            "fgToken": "color.terminal.prompt-bg",
+            "bg": 2
+          },
+          {
+            "text": "  main ",
+            "fg": 0,
+            "bg": 2
+          },
+          {
+            "text": "",
+            "fg": 2
+          }
+        ],
+        [
+          {
+            "text": " ~/dev/theme ",
+            "fgToken": "color.terminal.prompt-text",
+            "bgToken": "color.terminal.prompt-bg"
+          },
+          {
+            "text": "",
+            "fgToken": "color.terminal.prompt-bg",
+            "bg": 5
+          },
+          {
+            "text": "  main ± ",
+            "fg": 0,
+            "bg": 5
+          },
+          {
+            "text": "",
+            "fg": 5
+          }
+        ],
+        [
+          {
+            "text": " ✘ ",
+            "fg": 5,
+            "bg": 0
+          },
+          {
+            "text": " ~/dev/theme ",
+            "fgToken": "color.terminal.prompt-text",
+            "bgToken": "color.terminal.prompt-bg"
+          },
+          {
+            "text": "",
+            "fgToken": "color.terminal.prompt-bg"
+          }
+        ]
+      ]
+    },
+    {
+      "id": "shell",
+      "title": "Shell output",
+      "lines": [
+        [
+          {
+            "text": "$ ",
+            "fg": "default"
+          },
+          {
+            "text": "ls --color",
+            "fg": "default"
+          }
+        ],
+        [
+          {
+            "text": "src/",
+            "fg": 4,
+            "attrs": [
+              "bold"
+            ]
+          },
+          {
+            "text": "  "
+          },
+          {
+            "text": "build.sh",
+            "fg": 2,
+            "attrs": [
+              "bold"
+            ]
+          },
+          {
+            "text": "  "
+          },
+          {
+            "text": "link",
+            "fg": 6,
+            "attrs": [
+              "bold"
+            ]
+          },
+          {
+            "text": "  "
+          },
+          {
+            "text": "README.md"
+          }
+        ],
+        [
+          {
+            "text": "$ ",
+            "fg": "default"
+          },
+          {
+            "text": "git status --short"
+          }
+        ],
+        [
+          {
+            "text": " M ",
+            "fg": 1
+          },
+          {
+            "text": "ports/orca/host.json"
+          }
+        ],
+        [
+          {
+            "text": "?? ",
+            "fg": 1
+          },
+          {
+            "text": "ports/orca/src/specimen.json"
+          }
+        ],
+        [
+          {
+            "text": "error: ",
+            "fg": 1,
+            "attrs": [
+              "bold"
+            ]
+          },
+          {
+            "text": "pathspec 'x' did not match any file(s) known to git"
+          }
+        ],
+        [
+          {
+            "text": "warning: ",
+            "fg": 3,
+            "attrs": [
+              "bold"
+            ]
+          },
+          {
+            "text": "LF will be replaced by CRLF"
+          }
+        ],
+        [
+          {
+            "text": "ok ",
+            "fg": 2
+          },
+          {
+            "text": "12 tests passed ",
+            "fg": "default"
+          },
+          {
+            "text": "(1.2s)",
+            "attrs": [
+              "dim"
+            ]
+          }
+        ],
+        [
+          {
+            "text": "/home/j3w1/dev/theme/ports/orca/host.json",
+            "fg": "default",
+            "attrs": [
+              "underline"
+            ]
+          },
+          {
+            "text": ":42:7",
+            "attrs": [
+              "dim"
+            ]
+          }
+        ],
+        [
+          {
+            "text": "# a shell comment, dim",
+            "attrs": [
+              "dim"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "id": "code-ansi",
+      "title": "Code as Claude Code draws it (fixed ANSI slots; not themable)",
+      "lines": [
+        [
+          {
+            "text": "import",
+            "fg": 4
+          },
+          {
+            "text": " { resolve } "
+          },
+          {
+            "text": "from",
+            "fg": 4
+          },
+          {
+            "text": " "
+          },
+          {
+            "text": "\"./tokens.mjs\"",
+            "fg": 1
+          },
+          {
+            "text": ";"
+          }
+        ],
+        [
+          {
+            "text": "const",
+            "fg": 4
+          },
+          {
+            "text": " limit = "
+          },
+          {
+            "text": "42",
+            "fg": 2
+          },
+          {
+            "text": ";  "
+          },
+          {
+            "text": "// comment",
+            "fg": 2
+          }
+        ],
+        [
+          {
+            "text": "function",
+            "fg": 4
+          },
+          {
+            "text": " "
+          },
+          {
+            "text": "apply",
+            "fg": 3
+          },
+          {
+            "text": "(path) { "
+          },
+          {
+            "text": "return",
+            "fg": 4
+          },
+          {
+            "text": " "
+          },
+          {
+            "text": "JSON",
+            "fg": 6
+          },
+          {
+            "text": ".parse(path); }"
+          }
+        ],
+        [
+          {
+            "text": "@decorator",
+            "fg": 8
+          },
+          {
+            "text": "  "
+          },
+          {
+            "text": "<meta>",
+            "fg": 8
+          }
+        ]
+      ]
+    },
+    {
+      "id": "code-truecolor",
+      "title": "Code as the j3w1 Codex tmTheme draws it (its scopes; Codex draws bold, not italic)",
+      "lines": [
+        [
+          {
+            "text": "import",
+            "fgToken": "color.code.syntax.keyword"
+          },
+          {
+            "text": " { resolve } ",
+            "fgToken": "color.code.syntax.variable"
+          },
+          {
+            "text": "from",
+            "fgToken": "color.code.syntax.keyword"
+          },
+          {
+            "text": " "
+          },
+          {
+            "text": "\"./tokens.mjs\"",
+            "fgToken": "color.code.hued.string"
+          },
+          {
+            "text": ";",
+            "fgToken": "color.code.syntax.punctuation"
+          }
+        ],
+        [
+          {
+            "text": "const",
+            "fgToken": "color.code.syntax.keyword"
+          },
+          {
+            "text": " limit ",
+            "fgToken": "color.code.syntax.variable"
+          },
+          {
+            "text": "=",
+            "fgToken": "color.code.hued.operator"
+          },
+          {
+            "text": " "
+          },
+          {
+            "text": "42",
+            "fgToken": "color.code.hued.number"
+          },
+          {
+            "text": ";  ",
+            "fgToken": "color.code.syntax.punctuation"
+          },
+          {
+            "text": "// comment",
+            "fgToken": "color.code.syntax.comment"
+          }
+        ],
+        [
+          {
+            "text": "function",
+            "fgToken": "color.code.syntax.keyword"
+          },
+          {
+            "text": " "
+          },
+          {
+            "text": "apply",
+            "fgToken": "color.code.hued.function"
+          },
+          {
+            "text": "(path: ",
+            "fgToken": "color.code.syntax.punctuation"
+          },
+          {
+            "text": "Path",
+            "fgToken": "color.code.hued.type"
+          },
+          {
+            "text": ") { ",
+            "fgToken": "color.code.syntax.punctuation"
+          },
+          {
+            "text": "this",
+            "fgToken": "color.code.hued.constant"
+          },
+          {
+            "text": ".",
+            "fgToken": "color.code.syntax.punctuation"
+          },
+          {
+            "text": "size",
+            "fgToken": "color.code.hued.property"
+          },
+          {
+            "text": " }",
+            "fgToken": "color.code.syntax.punctuation"
+          }
+        ],
+        [
+          {
+            "text": "+ added line  ",
+            "fgToken": "color.code.syntax.variable",
+            "bgToken": "color.diff.added.bg"
+          },
+          {
+            "text": "- removed line ",
+            "fgToken": "color.code.syntax.variable",
+            "bgToken": "color.diff.removed.bg"
+          }
+        ]
+      ]
+    },
+    {
+      "id": "claude",
+      "title": "Claude Code roles under the j3w1 custom theme",
+      "lines": [
+        [
+          {
+            "text": " > a message you sent, on userMessageBackground ",
+            "fgToken": "color.text.default",
+            "bgToken": "color.interaction.selection.bg"
+          }
+        ],
+        [
+          {
+            "text": "✻ ",
+            "fgToken": "color.text.accent"
+          },
+          {
+            "text": "Thinking… ",
+            "attrs": [
+              "dim",
+              "italic"
+            ]
+          },
+          {
+            "text": "(esc to interrupt)",
+            "fgToken": "color.text.muted"
+          }
+        ],
+        [
+          {
+            "text": "╭─ permission ────────╮",
+            "fgToken": "color.border.overlay"
+          }
+        ],
+        [
+          {
+            "text": "❯ 1. Yes",
+            "fgToken": "color.interaction.selection.text"
+          },
+          {
+            "text": "    2. No",
+            "fgToken": "color.text.default"
+          }
+        ],
+        [
+          {
+            "text": "✔ tests passed",
+            "fgToken": "color.status.success.text"
+          },
+          {
+            "text": "  "
+          },
+          {
+            "text": "⚠ deprecated flag",
+            "fgToken": "color.status.warning.text"
+          },
+          {
+            "text": "  "
+          },
+          {
+            "text": "✘ build failed",
+            "fgToken": "color.status.danger.text"
+          }
+        ],
+        [
+          {
+            "text": "⏸ plan mode on",
+            "fgToken": "color.status.info.text"
+          },
+          {
+            "text": "  "
+          },
+          {
+            "text": "⏵⏵ accept edits on",
+            "fgToken": "color.status.warning.text"
+          }
+        ],
+        [
+          {
+            "text": "  12 ",
+            "fgToken": "color.text.subtle"
+          },
+          {
+            "text": "+ const added = true; ",
+            "bgToken": "color.diff.added.bg"
+          },
+          {
+            "text": " - const removed = 1; ",
+            "bgToken": "color.diff.removed.bg"
+          }
+        ],
+        [
+          {
+            "text": "Current session  ",
+            "fgToken": "color.text.default"
+          },
+          {
+            "text": "████████",
+            "fgToken": "color.chart.series-2"
+          },
+          {
+            "text": "████████████",
+            "fgToken": "color.chart.grid"
+          },
+          {
+            "text": " 40% used",
+            "fgToken": "color.text.muted"
+          }
+        ],
+        [
+          {
+            "text": "────────────────────────────────────────",
+            "fgToken": "color.border.active"
+          }
+        ],
+        [
+          {
+            "text": "> ",
+            "fgToken": "color.text.default"
+          },
+          {
+            "text": "type here",
+            "fgToken": "color.text.subtle"
+          }
+        ],
+        [
+          {
+            "text": "────────────────────────────────────────",
+            "fgToken": "color.border.active"
+          }
+        ]
+      ]
+    },
+    {
+      "id": "codex",
+      "title": "Codex roles (ANSI slots it names)",
+      "lines": [
+        [
+          {
+            "text": "• ",
+            "attrs": [
+              "dim"
+            ]
+          },
+          {
+            "text": "Ran ",
+            "attrs": [
+              "bold"
+            ]
+          },
+          {
+            "text": "npm test",
+            "fgToken": "color.text.accent"
+          }
+        ],
+        [
+          {
+            "text": "  └ ",
+            "attrs": [
+              "dim"
+            ]
+          },
+          {
+            "text": "✓ ",
+            "fg": 2
+          },
+          {
+            "text": "exit 0",
+            "fg": 2,
+            "attrs": [
+              "bold"
+            ]
+          },
+          {
+            "text": "   "
+          },
+          {
+            "text": "✗ ",
+            "fg": 1
+          },
+          {
+            "text": "exit 1",
+            "fg": 1,
+            "attrs": [
+              "bold"
+            ]
+          }
+        ],
+        [
+          {
+            "text": "+12",
+            "fg": 2
+          },
+          {
+            "text": " "
+          },
+          {
+            "text": "-3",
+            "fg": 1
+          },
+          {
+            "text": "  ports/codex/host.json",
+            "attrs": [
+              "dim"
+            ]
+          }
+        ],
+        [
+          {
+            "text": "gpt-6-sol high",
+            "fg": 3
+          },
+          {
+            "text": " · ",
+            "attrs": [
+              "dim"
+            ]
+          },
+          {
+            "text": "~/dev/theme",
+            "fg": 2
+          },
+          {
+            "text": " · ",
+            "attrs": [
+              "dim"
+            ]
+          },
+          {
+            "text": "main",
+            "fg": 4
+          },
+          {
+            "text": " · ",
+            "attrs": [
+              "dim"
+            ]
+          },
+          {
+            "text": "42% context",
+            "fg": 3
+          }
+        ],
+        [
+          {
+            "text": "$ ",
+            "fg": 5
+          },
+          {
+            "text": "/status",
+            "fg": 5
+          },
+          {
+            "text": "   "
+          },
+          {
+            "text": "@file",
+            "fg": 6
+          }
+        ]
+      ]
+    },
+    {
+      "id": "selection",
+      "title": "Selection (select this line with the mouse; it should fill with the selection role)",
+      "lines": [
+        [
+          {
+            "text": "expected selection: ",
+            "fg": "default"
+          },
+          {
+            "text": " selected text ",
+            "fgToken": "color.terminal.selection-text",
+            "bgToken": "color.terminal.selection-bg"
+          }
+        ]
+      ]
+    }
+  ]
+}

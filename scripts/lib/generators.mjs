@@ -34,8 +34,9 @@ import { taskInputsGenerator } from "./task-inputs-generator.mjs";
 import { taskInputsSchema, kitRequestSchema } from "../../schemas/task-kit.mjs";
 import { portCapabilitiesSchema, portImportEvidenceSchema, portCatalogueSchema } from "../../schemas/port-capabilities.mjs";
 import { portCatalogueGenerator, readPortDescription } from "./port-capabilities.mjs";
-import { portArtifactsGenerator } from "./port-artifacts.mjs";
+import { installerSpecimenGenerator, portArtifactsGenerator } from "./port-artifacts.mjs";
 import { privateParitySchema } from "../../schemas/private-parity.mjs";
+import { guideBlocks, INSTALL_GUIDES } from "./install-guides.mjs";
 import { releaseComparisonSchema, releaseCatalogueSchema, releaseMigrationSchema } from "../../schemas/release-comparison.mjs";
 
 const write = async (relative, content, { check, changed, files }) => {
@@ -242,6 +243,12 @@ export const readmeGenerator = {
     });
     readme = replaceMarkerBlock(readme, "tokens", ["| Role | Value | Status | Use |", "| --- | --- | --- | --- |", ...rows].join("\n"));
     readme = replaceMarkerBlock(readme, "version", `Specification version **${manifest.version}** (${releaseOf(manifest.version).stability}; ${manifest.profiles.map((p) => `${p.id}: ${p.status}`).join(", ")}).\n\n${POLICY_TEXT}`);
+    for (const guide of INSTALL_GUIDES) {
+      let text = await readText(guide);
+      for (const [name, body] of Object.entries(guideBlocks(manifest, guide))) text = replaceMarkerBlock(text, name, body);
+      files.push(guide);
+      if (await writeOrCheck(guide, text, { check })) changed.push(guide);
+    }
     const consume = replaceMarkerBlock(await readText("agents/consume.md"), "eligibility", POLICY_TEXT);
     files.push("agents/consume.md");
     if (await writeOrCheck("agents/consume.md", consume, { check })) changed.push("agents/consume.md");
@@ -270,4 +277,4 @@ export const figmaGenerator = {
   },
 };
 
-export const GENERATORS = [schemasGenerator, tokensGenerator, contrastGenerator, componentsGenerator, patternGenerator, figmaGenerator, usageGenerator, portArtifactsGenerator, portCatalogueGenerator, recipeGenerator, docsGenerator, coverageGenerator, readmeGenerator, { name: "official UI distribution", run: buildUI }, taskInputsGenerator, digestsGenerator];
+export const GENERATORS = [schemasGenerator, tokensGenerator, contrastGenerator, componentsGenerator, patternGenerator, figmaGenerator, usageGenerator, portArtifactsGenerator, installerSpecimenGenerator, portCatalogueGenerator, recipeGenerator, docsGenerator, coverageGenerator, readmeGenerator, { name: "official UI distribution", run: buildUI }, taskInputsGenerator, digestsGenerator];

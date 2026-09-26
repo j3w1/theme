@@ -25,10 +25,11 @@ Images never override tokens.
 
 Literal values live in `tokens/`. Meaning and permitted uses live in `spec/`.
 Native keys live in port mappings. Test facts live in evidence records.
-`exports/`, `schemas/json/`, `site/src/styles/tokens.generated.css` and the
-README marker blocks are generated: edit their sources and run
-`npm run generate`; never edit them by hand. A contradiction between spec and
-tokens is a defect to resolve, not a choice to make.
+`exports/`, `schemas/json/`, `site/src/styles/tokens.generated.css`, the
+port files under `ports/*/dist/`, `ports/orca/install/specimen.json` and the
+marker blocks in `README.md` and the port guides are generated: edit their
+sources and run `npm run generate`; never edit them by hand. A contradiction
+between spec and tokens is a defect to resolve, not a choice to make.
 
 ## The check loop
 
@@ -105,7 +106,9 @@ only the owner changes a status.
 npm with `npm ci`, Node 24, ES modules, no linter (the contract tests are the
 style guide), generated files committed and drift-checked, LF line endings,
 kebab-case ids, closed lists in `schemas/`. Anchors come only from
-`scripts/lib/anchors.mjs`. Outputs contain no timestamps and no commit hashes.
+`scripts/lib/anchors.mjs`. Outputs contain no timestamps and no commit hashes,
+with one exception: `theme.json`'s `release.commit` (recorded after its tag
+exists) and the install commands generated from it into the port guides.
 Commits are conventional (`feat:`, `fix:`, `docs:`, `spec:`, `tokens:`,
 `site:`, `chore:`) and explain why.
 

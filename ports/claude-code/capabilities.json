@@ -1,0 +1,1760 @@
+{
+  "schemaVersion": 1,
+  "integrationKind": "other",
+  "themeRevision": "8dc6f387613411c239811e47ebde53a768c286bc",
+  "surfaces": {
+    "theme-roles": {
+      "state": "supported",
+      "reason": "Claude Code's custom theme (base dark-ansi) sets these roles: text and accents, message backgrounds, input and dialog borders, status, diff lines, the usage meter and subagent names."
+    },
+    "terminal-palette": {
+      "state": "inherited",
+      "reason": "Claude Code runs in a terminal and uses its sixteen slots, background and cursor; the terminal's own theme sets them."
+    },
+    "fixed-ansi": {
+      "state": "unsupported",
+      "reason": "Highlighted code, links (slot 12), diff + and - markers and file previews use fixed ANSI slots that no theme reaches."
+    },
+    "light-mode": {
+      "state": "unsupported",
+      "reason": "The theme has no light profile; the custom theme is dark (base dark-ansi) in every mode."
+    },
+    "outside-claude": {
+      "state": "out-of-scope",
+      "reason": "Roles Claude Code's theme has no key for: primitives, interface colours of other components and every value that is not a colour."
+    }
+  },
+  "roles": {
+    "border.width.default": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "border.width.emphasis": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "breakpoint.lg": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "breakpoint.md": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "breakpoint.sm": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "breakpoint.xs": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "color.action.destructive.border": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.action.destructive.filled-bg": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.action.destructive.filled-text": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.action.destructive.hover-bg": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.action.destructive.hover-text": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.action.destructive.pressed-bg": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.action.destructive.text": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.action.primary.bg": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.action.primary.border": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.action.primary.hover-bg": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.action.primary.pressed-bg": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.action.primary.text": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.action.secondary.bg": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.action.secondary.border": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.action.secondary.hover-bg": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.action.secondary.pressed-bg": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.action.secondary.text": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.action.tertiary.hover-bg": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.action.tertiary.text": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.border.active": {
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Written to the theme's bashBorder and promptBorder keys."
+    },
+    "color.border.control": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.border.default": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.border.disabled": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.border.divider": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.border.overlay": {
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Written to the theme's permission key."
+    },
+    "color.border.selected-indicator": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.border.selected-indicator-inactive": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.border.strong": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.chart.axis": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.chart.grid": {
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Written to the theme's rate_limit_empty key."
+    },
+    "color.chart.label": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.chart.series-1": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.chart.series-2": {
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Written to the theme's rate_limit_fill key."
+    },
+    "color.chart.series-3": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.chart.series-4": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.code.bg": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.bracket-match": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.caret": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.current-line": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.gutter-bg": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.gutter-rule": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.hued.attribute": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.hued.constant": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.hued.escape": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.hued.function": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.hued.number": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.hued.operator": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.hued.property": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.hued.string": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.hued.type": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.indent-guide": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.line-number": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.line-number-active": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.search-current-bg": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.search-current-text": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.search-match-bg": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.selection-bg": {
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Written to the theme's selectionBg key."
+    },
+    "color.code.syntax.attribute": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.syntax.comment": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.syntax.constant": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.syntax.deprecated": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.syntax.escape": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.syntax.function": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.syntax.heading": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.syntax.invalid": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.syntax.keyword": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.syntax.number": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.syntax.operator": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.syntax.property": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.syntax.punctuation": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.syntax.string": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.syntax.tag": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.syntax.type": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.syntax.variable": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.code.whitespace": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws code in fixed ANSI slots on the terminal background; its theme has no key for this role."
+    },
+    "color.diagnostic.error.bg": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.diagnostic.error.stripe": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.diagnostic.error.text": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.diagnostic.error.underline": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.diagnostic.hint.underline": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.diagnostic.info.text": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.diagnostic.info.underline": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.diagnostic.unused.text": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.diagnostic.warning.stripe": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.diagnostic.warning.text": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.diagnostic.warning.underline": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.diff.added.bg": {
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Written to the theme's diffAdded and diffAddedWord keys."
+    },
+    "color.diff.added.emphasis": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code paints diff lines with its added and removed backgrounds only; the + and - markers and file previews use fixed ANSI slots, and there is no modified-line colour."
+    },
+    "color.diff.added.gutter": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code paints diff lines with its added and removed backgrounds only; the + and - markers and file previews use fixed ANSI slots, and there is no modified-line colour."
+    },
+    "color.diff.conflict-border": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code paints diff lines with its added and removed backgrounds only; the + and - markers and file previews use fixed ANSI slots, and there is no modified-line colour."
+    },
+    "color.diff.header-bg": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code paints diff lines with its added and removed backgrounds only; the + and - markers and file previews use fixed ANSI slots, and there is no modified-line colour."
+    },
+    "color.diff.modified.bg": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code paints diff lines with its added and removed backgrounds only; the + and - markers and file previews use fixed ANSI slots, and there is no modified-line colour."
+    },
+    "color.diff.modified.gutter": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code paints diff lines with its added and removed backgrounds only; the + and - markers and file previews use fixed ANSI slots, and there is no modified-line colour."
+    },
+    "color.diff.removed.bg": {
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Written to the theme's diffRemoved and diffRemovedWord keys."
+    },
+    "color.diff.removed.emphasis": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code paints diff lines with its added and removed backgrounds only; the + and - markers and file previews use fixed ANSI slots, and there is no modified-line colour."
+    },
+    "color.diff.removed.gutter": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code paints diff lines with its added and removed backgrounds only; the + and - markers and file previews use fixed ANSI slots, and there is no modified-line colour."
+    },
+    "color.icon.decorative": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.icon.default": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.interaction.disabled.bg": {
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Written to the theme's diffAddedDimmed and diffRemovedDimmed keys."
+    },
+    "color.interaction.drop-target": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.interaction.focus.ring": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.interaction.focus.ring-container": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.interaction.hover.bg": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.interaction.hover.bg-strong": {
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Written to the theme's userMessageBackgroundHover key."
+    },
+    "color.interaction.marquee": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.interaction.pressed.bg": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.interaction.scrollbar.thumb": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.interaction.scrollbar.thumb-hover": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.interaction.scrollbar.track": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.interaction.selection.bg": {
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Written to the theme's userMessageBackground key."
+    },
+    "color.interaction.selection.inactive-bg": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.interaction.selection.inactive-text": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.interaction.selection.text": {
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Written to the theme's suggestion key."
+    },
+    "color.interaction.text-selection.bg": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.interaction.text-selection.text": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.primitive.alpha.black-55": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.alpha.black-65": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.alpha.red-12": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.alpha.red-6": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.alpha.transparent": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.amber.500": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.amber.600": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.amber.tint": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi-readable.1": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi-readable.10": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi-readable.12": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi-readable.13": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi-readable.14": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi-readable.15": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi-readable.4": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi-readable.8": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi-readable.9": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.0": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.1": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.10": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.11": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.12": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.13": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.14": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.15": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.2": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.3": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.4": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.5": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.6": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.7": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.8": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.9": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.blue.500": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.blue.600": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.blue.tint": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.coral.700": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.green.500": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.green.600": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.green.tint": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ink.0": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ink.14": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ink.15": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ink.20": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ink.25": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ink.28": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ink.30": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ink.40": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ink.52": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ink.60": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.paper.100": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.paper.90": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.100": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.150": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.200": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.250": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.300": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.350": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.400": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.450": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.50": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.500": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.550": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.650": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.750": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.760": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.770": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.800": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.810": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.850": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.860": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.rose.300": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.rose.320": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.rose.350": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.rose.450": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.rose.550": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.rose.600": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.rose.650": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.rose.700": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.rose.800": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.status.danger.border": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.status.danger.fill": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.status.danger.on-fill": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.status.danger.text": {
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Written to the theme's error key."
+    },
+    "color.status.danger.tint": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.status.info.border": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.status.info.fill": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.status.info.on-fill": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.status.info.text": {
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Written to the theme's merged and planMode keys."
+    },
+    "color.status.info.tint": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.status.neutral.border": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.status.neutral.fill": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.status.neutral.on-fill": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.status.neutral.text": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.status.neutral.tint": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.status.success.border": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.status.success.fill": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.status.success.on-fill": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.status.success.text": {
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Written to the theme's success key."
+    },
+    "color.status.success.tint": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.status.warning.border": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.status.warning.fill": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.status.warning.on-fill": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.status.warning.text": {
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Written to the theme's autoAccept, autoAcceptShimmer, warning and warningShimmer keys."
+    },
+    "color.status.warning.tint": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.surface.backdrop": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.surface.canvas": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.surface.chrome": {
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Written to the theme's composerSidebarBackground key."
+    },
+    "color.surface.chrome-alt": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.surface.code": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.surface.default": {
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Written to the theme's bashMessageBackgroundColor key."
+    },
+    "color.surface.desktop": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.surface.input": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.surface.overlay": {
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Written to the theme's memoryBackgroundColor key."
+    },
+    "color.surface.raised": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.surface.sunken": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.surface.terminal": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.terminal.ansi.0": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.ansi.1": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.ansi.10": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.ansi.11": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.ansi.12": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.ansi.13": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.ansi.14": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.ansi.15": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.ansi.2": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.ansi.3": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.ansi.4": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.ansi.5": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.ansi.6": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.ansi.7": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.ansi.8": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.ansi.9": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.bg": {
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Written to the theme's clawd_background key."
+    },
+    "color.terminal.cursor": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.fg": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.prompt-bg": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.prompt-text": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.selection-bg": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.selection-text": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.text.accent": {
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Written to the theme's briefLabelClaude, claude, clawd_body, orange_FOR_SUBAGENTS_ONLY, rainbow_blue, rainbow_green, rainbow_indigo, rainbow_orange, rainbow_red, rainbow_violet and rainbow_yellow keys."
+    },
+    "color.text.accent-strong": {
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Written to the theme's claudeShimmer, effortUltra, fastMode, permissionShimmer, promptBorderShimmer, rainbow_blue_shimmer, rainbow_green_shimmer, rainbow_indigo_shimmer, rainbow_orange_shimmer, rainbow_red_shimmer, rainbow_violet_shimmer, rainbow_yellow_shimmer and red_FOR_SUBAGENTS_ONLY keys."
+    },
+    "color.text.bright": {
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Written to the theme's background, briefLabelYou, chromeYellow, cyan_FOR_SUBAGENTS_ONLY, fastModeShimmer, pink_FOR_SUBAGENTS_ONLY, remember and skill keys."
+    },
+    "color.text.default": {
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Written to the theme's claudeBlueShimmer_FOR_SYSTEM_SPINNER, inactiveShimmer, text and yellow_FOR_SUBAGENTS_ONLY keys."
+    },
+    "color.text.disabled": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.text.inverse": {
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Written to the theme's inverseText key."
+    },
+    "color.text.link": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Claude Code draws links in ANSI slot 12 whatever the theme says."
+    },
+    "color.text.link-hover": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.text.link-underline": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.text.muted": {
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Written to the theme's claudeBlue_FOR_SYSTEM_SPINNER, ide, inactive, professionalBlue and purple_FOR_SUBAGENTS_ONLY keys."
+    },
+    "color.text.on-action": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.text.on-danger": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.text.on-light": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.text.on-selection": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.text.placeholder": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.text.prose": {
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Written to the theme's green_FOR_SUBAGENTS_ONLY key."
+    },
+    "color.text.subtle": {
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Written to the theme's blue_FOR_SUBAGENTS_ONLY and subtle keys."
+    },
+    "density.comfortable.control-height": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "density.comfortable.control-padding-x": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "density.comfortable.gap": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "density.comfortable.icon": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "density.comfortable.row-height": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "density.compact.control-height": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "density.compact.control-padding-x": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "density.compact.gap": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "density.compact.icon": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "density.compact.row-height": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "focus.offset": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "focus.offset-container": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "focus.offset-invalid": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "focus.ring": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "focus.ring-container": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "font.family.mono": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "font.letter-spacing.terminal": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "font.line-height.caption": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "font.line-height.code": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "font.line-height.h1": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "font.line-height.h2": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "font.line-height.h3": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "font.line-height.reading": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "font.line-height.terminal": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "font.line-height.ui-lg": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "font.line-height.ui-md": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "font.line-height.ui-sm": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "font.size.caption": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "font.size.code": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "font.size.h1": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "font.size.h2": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "font.size.h3": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "font.size.reading": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "font.size.terminal": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "font.size.ui-lg": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "font.size.ui-md": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "font.size.ui-sm": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "font.weight.bold": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "font.weight.regular": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "icon.size.lg": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "icon.size.md": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "icon.size.sm": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "icon.stroke": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "layout.app-max": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "layout.content-max": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "layout.measure": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "motion.duration.base": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "motion.duration.fast": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "motion.duration.slow": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "radius.none": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "shadow.floating": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "space.0": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "space.1": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "space.12": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "space.16": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "space.2": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "space.24": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "space.32": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "space.4": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "space.48": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "space.8": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "z.canvas": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "z.dialog": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "z.drawer": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "z.popover": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "z.raised": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "z.skip-link": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "z.toast": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Not a colour; a Claude Code theme carries colours only."
+    }
+  },
+  "rollback": "Run node ports/claude-code/install.mjs restore in the same clone. By hand: set \"theme\" in ~/.claude/settings.json back to your previous theme (or remove the key) and delete ~/.claude/themes/j3w1.json."
+}

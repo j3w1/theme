@@ -36,7 +36,12 @@
     },
     "format": {
       "type": "string",
-      "minLength": 1
+      "enum": [
+        "ghostty-config",
+        "warp-yaml",
+        "claude-theme-json",
+        "codex-tmtheme"
+      ]
     },
     "targetVersions": {
       "minItems": 1,

@@ -1,6 +1,12 @@
-/* Renders specimen.json as SGR. Slots are named by ANSI number so the
-   terminal's own palette draws them; tokens and Claude roles are drawn in
-   24-bit colour from the pinned export. */
+/* The terminal specimen. ports/orca/src/specimen.json names ANSI slots,
+   tokens, Claude Code roles (fgRole/bgRole, through
+   ports/claude-code/host.json) and Codex scopes (fgScope/bgScope, through
+   ports/codex/host.json). resolveSpecimen turns roles and scopes into the
+   tokens they map to, so the generated ports/orca/install/specimen.json
+   names slots and tokens only and the Windows installer needs no other
+   folder. renderSpecimen draws the generated file as SGR: slots by ANSI
+   number, so the terminal's own palette draws them, and tokens in 24-bit
+   colour from the export. */
 
 const ESC = "\u001b[";
 const RESET = `${ESC}0m`;
@@ -30,13 +36,39 @@ const trueFg = (hex) => `38;2;${rgb(hex).join(";")}`;
 const trueBg = (hex) => `48;2;${rgb(hex).join(";")}`;
 const sgr = (codes) => (codes.length ? `${ESC}${codes.join(";")}m` : "");
 
-export const renderSpecimen = (ctx) => {
-  const roles = ctx.roles["claude-code"].roles;
-  const color = (id) => ctx.resolver.color(id);
+/* Roles and scopes to tokens; every other key is kept as it is. */
+export const resolveSpecimen = (source, { claude, codex }) => {
   const role = (name) => {
-    if (!roles[name]) throw new Error(`specimen names unknown Claude role ${name}`);
-    return color(roles[name].token);
+    if (!claude.roles[name]) throw new Error(`the specimen names ${name}, which is not a role in ports/claude-code/host.json`);
+    return claude.roles[name].token;
   };
+  const scope = (name, key) => {
+    const entry = codex.scopes.find((s) => s.name === name);
+    if (!entry?.[key]) throw new Error(`the specimen names the ${key} of Codex scope ${name}, which ports/codex/host.json does not set`);
+    return entry[key];
+  };
+  const segment = (s) => {
+    const out = {};
+    for (const [key, value] of Object.entries(s)) {
+      if (key === "fgRole") out.fgToken = role(value);
+      else if (key === "bgRole") out.bgToken = role(value);
+      else if (key === "fgScope") out.fgToken = scope(value, "foreground");
+      else if (key === "bgScope") out.bgToken = scope(value, "background");
+      else out[key] = value;
+    }
+    return out;
+  };
+  return {
+    schemaVersion: source.schemaVersion,
+    note: "Generated from ports/orca/src/specimen.json by npm run generate; do not edit. Segments name ANSI slots (0-15 or \"default\") or tokens (fgToken/bgToken, drawn as 24-bit colour). No colour values live here.",
+    sections: source.sections.map((section) => (section.lines ? { ...section, lines: section.lines.map((line) => line.map(segment)) } : { ...section })),
+  };
+};
+
+const RESOLVED_ONLY = ["fgRole", "bgRole", "fgScope", "bgScope"];
+
+export const renderSpecimen = (ctx) => {
+  const color = (id) => ctx.resolver.color(id);
   const bg = color("color.terminal.bg");
   const fg = color("color.terminal.fg");
   const slot = (i) => color(`color.terminal.ansi.${i}`);
@@ -46,6 +78,8 @@ export const renderSpecimen = (ctx) => {
   };
 
   const segment = (s) => {
+    const unresolved = RESOLVED_ONLY.find((k) => k in s);
+    if (unresolved) throw new Error(`the specimen still names ${unresolved}; run npm run generate`);
     const codes = [];
     for (const a of s.attrs ?? []) {
       if (!Object.hasOwn(ATTRS, a)) throw new Error(`specimen names attribute ${a}, which the terminal specification does not define`);
@@ -55,8 +89,6 @@ export const renderSpecimen = (ctx) => {
     if (s.bg !== undefined) codes.push(slotBg(s.bg));
     if (s.fgToken) codes.push(trueFg(color(s.fgToken)));
     if (s.bgToken) codes.push(trueBg(color(s.bgToken)));
-    if (s.fgRole) codes.push(trueFg(role(s.fgRole)));
-    if (s.bgRole) codes.push(trueBg(role(s.bgRole)));
     return codes.length ? `${sgr(codes)}${s.text}${RESET}` : s.text;
   };
 
@@ -71,7 +103,8 @@ export const renderSpecimen = (ctx) => {
       Array.from({ length: 16 }, (_, i) => `${String(i).padStart(2)}  ${sgr([39, slotBg(i)])} default fg on slot ${String(i).padEnd(2)} ${RESET}  ${ratio(fg, slot(i))}`),
   };
 
-  const out = [`j3w1-theme ${ctx.theme.version} ${ctx.theme.ref} (${ctx.theme.revision}) profile ${ctx.theme.profile}`, `terminal bg ${bg}  fg ${fg}; ✕ marks a ratio below 4.5:1`, ""];
+  const at = ctx.theme.ref === ctx.theme.revision ? `commit ${ctx.theme.revision}` : `${ctx.theme.ref} (${ctx.theme.revision})`;
+  const out = [`j3w1-theme ${ctx.theme.version} ${at} profile ${ctx.theme.profile}`, `terminal bg ${bg}  fg ${fg}; ✕ marks a ratio below 4.5:1`, ""];
   for (const section of ctx.specimen.sections) {
     out.push(`${sgr([1])}${section.title}${RESET}`);
     if (section.generated) out.push(...generated[section.generated]());

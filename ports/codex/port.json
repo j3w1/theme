@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "codex",
+  "displayName": "Codex CLI (tmTheme)",
+  "status": "experimental",
+  "themeVersion": "2.0.0",
+  "tokenDigest": "sha256-mkReYBbLX5K2V40Qv2jFMJ+zUSDTX8t0xfiibnziwXE=",
+  "profile": "default",
+  "format": "codex-tmtheme",
+  "targetVersions": [
+    "0.156.1",
+    "0.157.0"
+  ],
+  "testedVersions": [],
+  "os": [
+    "linux",
+    "macos"
+  ],
+  "surfaces": {
+    "supported": [
+      "theme-scopes"
+    ],
+    "inherited": [
+      "terminal-palette"
+    ],
+    "unsupported": [
+      "editor-surfaces",
+      "font-styles",
+      "fixed-ansi"
+    ]
+  },
+  "files": [
+    {
+      "path": "dist/j3w1.tmTheme",
+      "install": "Save as ~/.codex/themes/j3w1.tmTheme and set theme = \"j3w1\" under [tui] in ~/.codex/config.toml; or run node ports/codex/install.mjs apply in a clone of this repository (see its README)."
+    }
+  ],
+  "mappingPath": "mapping.json",
+  "capabilitiesPath": "capabilities.json",
+  "evidence": []
+}

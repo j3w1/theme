@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-Restores what the kit changed, key by key.
+Restores what the installer changed, key by key.
 
 .DESCRIPTION
 By default it undoes every apply and update since the last boundary: a restore
@@ -52,15 +52,15 @@ param(
 # import stays 5.1 syntax.
 $shellVersion = $PSVersionTable.PSVersion
 if ($shellVersion.Major -lt 7 -or ($shellVersion.Major -eq 7 -and $shellVersion.Minor -lt 4)) {
-  [Console]::Error.WriteLine('This kit needs PowerShell 7.4 or later. Install PowerShell 7: winget install Microsoft.PowerShell - then run it with pwsh.')
+  [Console]::Error.WriteLine('This installer needs PowerShell 7.4 or later. Install PowerShell 7: winget install Microsoft.PowerShell - then run it with pwsh.')
   exit 1
 }
 $ErrorActionPreference = 'Stop'
-Import-Module (Join-Path $PSScriptRoot 'J3w1Kit.psm1') -Force
+Import-Module (Join-Path $PSScriptRoot 'J3w1Orca.psm1') -Force
 
 try {
   $environment = Get-J3w1Environment
-  $kitFiles = Read-J3w1KitFiles -KitRoot (Split-Path -Parent $PSScriptRoot)
+  $kitFiles = Read-J3w1HostFiles (Get-J3w1Source -Environment $environment -KitRoot (Join-Path $PSScriptRoot '../../..'))
   $code = Invoke-J3w1OrcaRestore -Environment $environment -KitFiles $kitFiles -Backup $Backup -Latest:$Latest -PlanOnly:([bool]$WhatIfPreference)
   exit $code
 } catch {

@@ -1,27 +1,54 @@
 # Application ports
 
-Published ports:
+One folder per app. Each folder holds everything for that app: the theme
+file, its installer if it has one, and one guide.
 
-- `orca/`: Orca's terminal colours, selection, pane divider and font, as a
-  Ghostty-format config for Orca's **Import from Ghostty**. Experimental.
-- `warp/`: a Warp custom theme in YAML, which Orca's **Import from YAML** and
-  **Import from Warp** also read (colours only). Experimental.
-- `ghostty/`: a Ghostty theme file (colours, selection, divider). Experimental.
+## Which one do I need
 
-Every port's importable files are listed with download links in the
-repository README (pinned to the release tag) and on the site's Ports page.
+| You use | Folder | What you get |
+| --- | --- | --- |
+| Orca on Windows | [`orca/`](orca/README.md) | Terminal colours, selection, pane divider and font; one command installs, checks and restores it |
+| Claude Code | [`claude-code/`](claude-code/README.md) | The `custom:j3w1` Claude Code theme, with an installer |
+| Codex CLI | [`codex/`](codex/README.md) | The `j3w1` Codex syntax theme, with an installer |
+| Ghostty | [`ghostty/`](ghostty/README.md) | A Ghostty theme file |
+| Warp, or Orca's Import from YAML | [`warp/`](warp/README.md) | A Warp theme file (colours only) |
+
+Claude Code and Codex run inside a terminal and use its sixteen colours for
+code, links and status. Install a terminal theme too.
+
+All ports are experimental: they are generated and checked, but no real import
+has been recorded yet. Each file is also in the Downloads table of the
+repository README and on the site's Ports page, pinned to a release.
+
+## Install commands
+
+<!-- install:start -->
+Install commands appear here once v3.0.0 is released.
+<!-- install:end -->
+
+Each app's guide has the full steps: install, update, restore, what it
+changes and its limits.
 
 Historical implementations (the owner's gedit scheme, IntelliJ scheme, tmux
 and browser-extension colours) are catalogued in `references/catalogue.json`;
 they are evidence of origin, not supported downloads.
 
+## For maintainers
+
 A port is created under `ports/<slug>/` only when implementation work begins,
 from `templates/port/`. Each port carries `port.json` (validated by
-`schemas/port.mjs`), `mapping.json` (spec role → native key, with every
-unmapped role listed), `src/` (generator inputs), `dist/` (committed importable
-files, written by `npm run generate` when the port's `format` has an emitter in
+`schemas/port.mjs`; its `format` is one of `PORT_FORMATS` there),
+`mapping.json` (spec role → native key, with every unmapped role listed),
+`src/` (generator inputs), `dist/` (committed importable files, written by
+`npm run generate` when the port's `format` has an emitter in
 `scripts/lib/port-artifacts.mjs`; create the file empty once so validation can
 find it) and `evidence/` (real captures with application version, OS and date).
+A port with an installer also carries `host.json` (which native key takes
+which role, the host versions it was observed on, and its deviations) and the
+installer itself: `install/` for Orca, `install.mjs` for Claude Code and Codex,
+whose shared code is `scripts/lib/host-install/`. Their emitters call the
+installers' generators, and `mapping.json` must agree with `host.json` key for
+key. An installer takes every value from the commit its files came from.
 
 Statuses: `experimental` (artifacts exist, checks pass, real-target verification
 incomplete), `verified` (imported into the recorded target with matching

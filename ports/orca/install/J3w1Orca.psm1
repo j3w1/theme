@@ -1,12 +1,12 @@
-# J3w1Kit.psm1 - shared functions of the j3w1 terminal kit for the Orca
+# J3w1Orca.psm1 - shared functions of the j3w1 theme installer for the Orca
 # desktop client on Windows. The scripts next to this module are thin entry
-# points; every rule lives here so Apply, Update, Test and Restore share one
-# code path.
+# points; every rule lives here so Get, Apply, Update, Test and Restore share
+# one code path.
 #
-# Values come only from the pinned export (exports/tokens.resolved.json at the
-# revision kit.json names, verified against kit.json's exports.tokensDigest
-# and exports/digests.json). This file
-# holds no colour values. orca-data.json is edited losslessly with
+# Values come only from the commit these scripts came from:
+# exports/tokens.resolved.json (verified against exports/digests.json of the
+# same commit), ports/orca/host.json and ports/orca/install/specimen.json.
+# This file holds no colour values. orca-data.json is edited losslessly with
 # System.Text.Json.Nodes: ConvertFrom-Json would coerce ISO dates, round large
 # numbers and truncate deep objects, so it is never used on Orca's store.
 
@@ -30,11 +30,12 @@ function Join-J3w1Path {
 }
 
 function Get-J3w1Environment {
-  <# Resolves the folders the kit reads and writes. The test seam
+  <# Resolves the folders the installer reads and writes. The test seam
      (J3W1_KIT_TEST_ROOT) maps APPDATA and LOCALAPPDATA under one fake root,
      reads Orca's running state and the installed fonts from variables, and
      disables the network. Inside the seam only, J3W1_KIT_TEST_SOURCE=worktree
-     lets -SourceRoot be a plain folder; such a run never counts the pin as
+     lets a plain folder be the source (the scripts' own folder, or
+     -SourceRoot of Get-J3w1Orca.ps1); such a run never counts the pin as
      verified. The seam is never active otherwise. #>
   $testRoot = $env:J3W1_KIT_TEST_ROOT
   $seam = -not [string]::IsNullOrWhiteSpace($testRoot)
@@ -67,6 +68,7 @@ function Get-J3w1Environment {
     AppData = $appData
     LocalAppData = $localAppData
     StateRoot = Join-J3w1Path $localAppData 'j3w1-theme/orca'
+    Releases = Join-J3w1Path $localAppData 'j3w1-theme/orca/releases'
   }
 }
 
@@ -243,85 +245,37 @@ function Format-J3w1Number {
 }
 
 # ---------------------------------------------------------------------------
-# Kit files, pin and export
+# Source: the release folder or clone the scripts run from
 # ---------------------------------------------------------------------------
 
-function Read-J3w1KitBytes {
-  <# One kit file (a path relative to tools/terminal-kit). $Source is
-     @{ Root } for a kit folder on disk, or @{ Environment; Kit; Pin;
-     SourceRoot; NoCache } for the kit published at a theme revision. #>
-  param([hashtable]$Source, [string]$Path)
-  if ($Source.Contains('Root')) {
-    $file = Join-J3w1Path $Source.Root $Path
-    if (-not (Test-Path -LiteralPath $file -PathType Leaf)) { return $null }
-    return , [System.IO.File]::ReadAllBytes($file)
-  }
-  return , (Get-J3w1SourceBytes -Environment $Source.Environment -Kit $Source.Kit -Pin $Source.Pin -Path "tools/terminal-kit/$Path" -SourceRoot $Source.SourceRoot -AllowNotFound -NoCache:$Source.NoCache)
+$script:InstallerId = 'j3w1-theme-installer'
+$script:Repository = 'j3w1/theme'
+$script:ThemeName = 'j3w1-theme'
+$script:ThemeProfile = 'default'
+# The first release whose tree carries this installer (ports/orca/install).
+$script:FirstInstallerTag = 'v3.0.0'
+$script:TokensPath = 'exports/tokens.resolved.json'
+$script:DigestsPath = 'exports/digests.json'
+$script:HostPath = 'ports/orca/host.json'
+$script:SpecimenPath = 'ports/orca/install/specimen.json'
+$script:TagPattern = '^v\d+\.\d+\.\d+(-[0-9A-Za-z.-]+)?$'
+# Consume roles within their documented scope, never primitives
+# (agents/consume.md); use-and-report roles are disclosed.
+$script:Eligibility = @{ allowedActions = @('use', 'use-and-report'); forbiddenPrefixes = @('color.primitive.') }
+
+function Test-J3w1TagAtLeast {
+  <# $Tag is $Floor or a later release (major, minor, patch). #>
+  param([string]$Tag, [string]$Floor)
+  $a = @($Tag.TrimStart('v').Split('-')[0].Split('.') | ForEach-Object { [int]$_ })
+  $b = @($Floor.TrimStart('v').Split('.') | ForEach-Object { [int]$_ })
+  for ($i = 0; $i -lt 3; $i++) { if ($a[$i] -ne $b[$i]) { return $a[$i] -gt $b[$i] } }
+  return $true
 }
 
-function Read-J3w1KitFiles {
-  <# Loads kit.json and the maps it names: from a kit folder (the parent of
-     windows/), or through a revision source (see Read-J3w1KitBytes).
-     Returns $null when a revision source has no kit.json. #>
-  param([string]$KitRoot, [hashtable]$Source)
-  if ($null -eq $Source) { $Source = @{ Root = $KitRoot } }
-  $label = if ($Source.Contains('Root')) { $Source.Root } else { "tools/terminal-kit at $($Source.Pin.Revision)" }
-  $load = {
-    param($path, [switch]$Optional)
-    $bytes = Read-J3w1KitBytes $Source $path
-    if ($null -eq $bytes) {
-      if ($Optional) { return $null }
-      throw "Missing kit file $path in $label"
-    }
-    ConvertFrom-Json -InputObject (ConvertFrom-J3w1Bytes $bytes) -AsHashtable
-  }
-  $kit = & $load 'kit.json' -Optional:(-not $Source.Contains('Root'))
-  if ($null -eq $kit) { return $null }
-  if ($kit.schemaVersion -ne 1) { throw "Unsupported kit.json schemaVersion $($kit.schemaVersion) in $label" }
-  return @{
-    Label = $label
-    Kit = $kit
-    Roles = & $load $kit.integrations.orca.roles
-    ClaudeRoles = & $load $kit.integrations['claude-code'].roles
-    Specimen = & $load $kit.specimen
-  }
-}
-
-function Get-J3w1Pin {
-  <# The theme pin: kit.json's, or the one a manifest recorded. #>
-  param($Kit, $Theme)
-  if ($null -eq $Theme) { $Theme = $Kit.theme }
-  $pin = @{
-    Name = $Kit.theme.name
-    Repository = $Kit.theme.repository
-    Version = [string]$Theme.version
-    Ref = [string]$Theme.ref
-    Revision = [string]$Theme.revision
-    Profile = [string]$Theme.profile
-  }
-  if ($pin.Revision -notmatch '^[0-9a-f]{40}$') { throw "The pinned revision is not a full commit: $($pin.Revision)" }
-  return $pin
-}
-
-function Get-J3w1PinnedDigest {
-  <# The sha256 of tokens.resolved.json that a kit.json pins for this
-     revision (exports.tokensDigest next to theme.revision), from the first of
-     $Kits that pins exactly this revision; $null when none does. #>
-  param($Pin, [object[]]$Kits)
-  foreach ($kit in $Kits) {
-    if ($null -eq $kit -or $null -eq $kit.theme -or $null -eq $kit.exports) { continue }
-    if ([string]$kit.theme.revision -ne $Pin.Revision) { continue }
-    $digest = [string]$kit.exports['tokensDigest']
-    if ($digest -match '^sha256-[A-Za-z0-9+/=]+$') { return @{ Digest = $digest; Source = "kit.json exports.tokensDigest" } }
-  }
-  return $null
-}
-
-function Expand-J3w1Url {
-  param([string]$Template, [hashtable]$Values)
-  $url = $Template
-  foreach ($name in $Values.Keys) { $url = $url.Replace('{' + $name + '}', [string]$Values[$name]) }
-  return $url
+function Format-J3w1Pin {
+  param($Pin)
+  if ($Pin.Ref -eq $Pin.Revision) { return "commit $($Pin.Revision)" }
+  return "$($Pin.Ref) @ $($Pin.Revision)"
 }
 
 function Invoke-J3w1Http {
@@ -334,7 +288,7 @@ function Invoke-J3w1Http {
   $client = [System.Net.Http.HttpClient]::new()
   try {
     $client.Timeout = [TimeSpan]::FromSeconds(60)
-    $client.DefaultRequestHeaders.UserAgent.ParseAdd('j3w1-terminal-kit')
+    $client.DefaultRequestHeaders.UserAgent.ParseAdd($script:InstallerId)
     if ($Url.StartsWith('https://api.github.com/')) {
       $client.DefaultRequestHeaders.Accept.ParseAdd('application/vnd.github+json')
       if (-not [string]::IsNullOrWhiteSpace($env:GITHUB_TOKEN)) {
@@ -358,7 +312,7 @@ function Invoke-J3w1Git {
   $info.RedirectStandardOutput = $true
   $info.RedirectStandardError = $true
   $info.UseShellExecute = $false
-  try { $process = [System.Diagnostics.Process]::Start($info) } catch { throw 'git is required for -SourceRoot; it was not found on PATH.' }
+  try { $process = [System.Diagnostics.Process]::Start($info) } catch { throw 'git is required to read a clone; it was not found on PATH.' }
   $buffer = [System.IO.MemoryStream]::new()
   $errors = $process.StandardError.ReadToEndAsync()
   $process.StandardOutput.BaseStream.CopyTo($buffer)
@@ -370,43 +324,40 @@ function Invoke-J3w1Git {
   return , $buffer.ToArray()
 }
 
-function Assert-J3w1GitSource {
-  <# -SourceRoot must be a git checkout that holds the pinned commit; files
-     are then read from git objects at that commit, never from the working
-     tree. A local tag of the pinned name must resolve to the same commit.
-     Returns how the pin was checked. #>
-  param([string]$SourceRoot, $Pin)
-  if ($null -eq (Invoke-J3w1Git -Arguments @('-C', $SourceRoot, 'rev-parse', '--git-dir') -AllowFailure)) {
-    throw "-SourceRoot $SourceRoot is not a git checkout. The kit reads git objects at the pinned commit $($Pin.Revision), never a folder's files; pass a clone of $($Pin.Repository)."
-  }
-  if ($null -eq (Invoke-J3w1Git -Arguments @('-C', $SourceRoot, 'cat-file', '-e', "$($Pin.Revision)^{commit}") -AllowFailure)) {
-    throw "-SourceRoot $SourceRoot does not contain the pinned commit $($Pin.Revision) ($($Pin.Ref)). Fetch it (git -C `"$SourceRoot`" fetch --tags origin) and rerun."
-  }
-  $tag = Invoke-J3w1Git -Arguments @('-C', $SourceRoot, 'rev-parse', '--verify', '--quiet', "refs/tags/$($Pin.Ref)^{commit}") -AllowFailure
-  if ($null -eq $tag) { return "commit $($Pin.Revision) read from git; tag $($Pin.Ref) is not in this checkout" }
-  $resolved = (ConvertFrom-J3w1Bytes $tag).Trim()
-  if ($resolved -ne $Pin.Revision) { throw "Tag $($Pin.Ref) resolves to $resolved in $SourceRoot, not the pinned $($Pin.Revision). Refusing." }
-  return "tag $($Pin.Ref) resolves to the pinned commit in git"
+function Get-J3w1GitText {
+  param([string[]]$Arguments)
+  $bytes = Invoke-J3w1Git -Arguments $Arguments -AllowFailure
+  if ($null -eq $bytes) { return $null }
+  return (ConvertFrom-J3w1Bytes $bytes).Trim()
+}
+
+function Get-J3w1TagFor {
+  <# The newest release tag in a clone that names $Revision, else $null. #>
+  param([string]$Root, [string]$Revision)
+  $tags = @((Get-J3w1GitText @('-C', $Root, 'tag', '--points-at', $Revision)) -split "`n" | Where-Object { $_ -match $script:TagPattern })
+  $best = $null
+  foreach ($tag in $tags) { if ($null -eq $best -or -not (Test-J3w1TagAtLeast $best $tag)) { $best = $tag } }
+  return $best
 }
 
 function Resolve-J3w1TagRevision {
   <# Resolves a release tag to its commit: through the GitHub API, or through
-     git in a local checkout. A lightweight tag's object.sha is the commit
-     (v1.2.0 is one); an annotated tag is followed to the commit it names. #>
-  param($Environment, $Kit, [string]$Ref, [string]$SourceRoot)
-  if ($Ref -notmatch '^v\d+\.\d+\.\d+(-[0-9A-Za-z.-]+)?$') { throw "Not a release tag: '$Ref'. Pass an exact tag such as v1.2.0; branches and 'latest' are refused." }
+     git in a local clone. A lightweight tag's object.sha is the commit; an
+     annotated tag is followed to the commit it names. #>
+  param($Environment, [string]$Ref, [string]$SourceRoot)
+  if ($Ref -notmatch $script:TagPattern) { throw "Not a release tag: '$Ref'. Pass an exact tag such as $($script:FirstInstallerTag); branches and 'latest' are refused." }
   if (-not [string]::IsNullOrWhiteSpace($SourceRoot)) {
-    $bytes = Invoke-J3w1Git -Arguments @('-C', $SourceRoot, 'rev-parse', '--verify', '--quiet', "refs/tags/$Ref^{commit}") -AllowFailure
-    if ($null -eq $bytes) { throw "Tag $Ref does not exist in $SourceRoot." }
-    return (ConvertFrom-J3w1Bytes $bytes).Trim()
+    $sha = Get-J3w1GitText @('-C', $SourceRoot, 'rev-parse', '--verify', '--quiet', "refs/tags/$Ref^{commit}")
+    if ([string]::IsNullOrWhiteSpace($sha)) { throw "Tag $Ref does not exist in $SourceRoot." }
+    return $sha
   }
-  $url = Expand-J3w1Url $Kit.urls.tagRef @{ repository = $Kit.theme.repository; ref = $Ref }
+  $url = "https://api.github.com/repos/$($script:Repository)/git/ref/tags/$Ref"
   $body = Invoke-J3w1Http -Environment $Environment -Url $url -AllowNotFound
-  if ($null -eq $body) { throw "Tag $Ref does not exist in $($Kit.theme.repository)." }
+  if ($null -eq $body) { throw "Tag $Ref does not exist in $($script:Repository)." }
   $data = ConvertFrom-Json -InputObject (ConvertFrom-J3w1Bytes $body) -AsHashtable
-  if ($data -isnot [System.Collections.IDictionary]) { throw "Tag $Ref is ambiguous in $($Kit.theme.repository)." }
+  if ($data -isnot [System.Collections.IDictionary]) { throw "Tag $Ref is ambiguous in $($script:Repository)." }
   if ($data.object.type -eq 'tag') {
-    # An annotated tag (older releases): its tag object names the commit.
+    # An annotated tag: its tag object names the commit.
     $body = Invoke-J3w1Http -Environment $Environment -Url ([string]$data.object.url)
     $data = ConvertFrom-Json -InputObject (ConvertFrom-J3w1Bytes $body) -AsHashtable
   }
@@ -414,115 +365,112 @@ function Resolve-J3w1TagRevision {
   return [string]$data.object.sha
 }
 
-function Get-J3w1SourceBytes {
-  <# One repository file at the pinned revision: from -SourceRoot (git
-     objects at the revision; a plain folder only inside the test seam),
-     from the cache, or from raw.githubusercontent.com at the revision SHA
-     (never a branch). #>
-  param($Environment, $Kit, $Pin, [string]$Path, [string]$SourceRoot, [switch]$AllowNotFound, [switch]$NoCache)
-  if (-not [string]::IsNullOrWhiteSpace($SourceRoot)) {
-    if (-not $Environment.SourceWorktree) {
-      $bytes = Invoke-J3w1Git -Arguments @('-C', $SourceRoot, 'cat-file', 'blob', "$($Pin.Revision):$Path") -AllowFailure
-      if ($null -eq $bytes -and -not $AllowNotFound) { throw "$Path does not exist at $($Pin.Revision) in $SourceRoot." }
-      return , $bytes
-    }
-    $local = Join-J3w1Path $SourceRoot $Path
-    if (-not (Test-Path -LiteralPath $local -PathType Leaf)) {
-      if ($AllowNotFound) { return $null }
-      throw "Missing $Path under -SourceRoot $SourceRoot."
-    }
-    return , [System.IO.File]::ReadAllBytes($local)
+function Get-J3w1Source {
+  <# Where a run takes its values from, decided by the folder the scripts sit
+     in (the repository root, three levels above install/). Every value
+     comes from one commit, the commit these scripts came from:
+       download  a release folder Get-J3w1Orca.ps1 wrote; release.json names
+                 its commit, and the export is verified on every run.
+       git       a clone of the repository: git objects at its HEAD, never
+                 the working tree.
+       worktree  inside the test seam only (J3W1_KIT_TEST_SOURCE=worktree): a
+                 plain folder, read as it is and never counted as verified. #>
+  param($Environment, [string]$KitRoot)
+  $root = [System.IO.Path]::GetFullPath($KitRoot).TrimEnd('\', '/')
+  $record = Join-J3w1Path $root 'release.json'
+  if (Test-Path -LiteralPath $record -PathType Leaf) {
+    $data = Read-J3w1Data $record
+    $revision = [string]$data.revision
+    if ($data.schemaVersion -ne 1 -or $revision -cnotmatch '^[0-9a-f]{40}$') { throw "$record is not a release record of this installer. Download the release again with Get-J3w1Orca.ps1." }
+    $ref = if ([string]$data.ref -match $script:TagPattern) { [string]$data.ref } else { $revision }
+    return @{ Kind = 'download'; Root = $root; Revision = $revision; Ref = $ref; Verified = $true; Label = "release folder $root" }
   }
-  $cached = Join-J3w1Path $Environment.StateRoot "cache/$($Pin.Revision)/$Path"
-  if (Test-Path -LiteralPath $cached -PathType Leaf) { return , [System.IO.File]::ReadAllBytes($cached) }
-  $url = Expand-J3w1Url $Kit.urls.raw @{ repository = $Pin.Repository; revision = $Pin.Revision; path = $Path }
-  $bytes = Invoke-J3w1Http -Environment $Environment -Url $url -AllowNotFound:$AllowNotFound
-  if ($null -ne $bytes -and -not $NoCache) { Write-J3w1Bytes -Path $cached -Bytes $bytes }
-  return , $bytes
+  if ($Environment.SourceWorktree) {
+    return @{ Kind = 'worktree'; Root = $root; Revision = ('0' * 40); Ref = 'worktree'; Verified = $false; Label = "working tree $root (test seam)" }
+  }
+  if ((Get-J3w1GitText @('-C', $root, 'rev-parse', '--is-inside-work-tree')) -eq 'true' -and [string]::IsNullOrEmpty((Get-J3w1GitText @('-C', $root, 'rev-parse', '--show-prefix')))) {
+    $revision = Get-J3w1GitText @('-C', $root, 'rev-parse', '--verify', '--quiet', 'HEAD^{commit}')
+    if ($revision -cmatch '^[0-9a-f]{40}$') {
+      $tag = Get-J3w1TagFor $root $revision
+      $ref = if ($null -ne $tag) { $tag } else { $revision }
+      return @{ Kind = 'git'; Root = $root; Revision = $revision; Ref = $ref; Verified = $true; Label = "clone $root (git objects at $revision)" }
+    }
+  }
+  throw "$root is neither a release folder (it has no release.json) nor a clone of $($script:Repository). Download a release with Get-J3w1Orca.ps1 and run the scripts from the folder it prints."
+}
+
+function Read-J3w1SourceBytes {
+  <# One repository file from a source: its folder (download, worktree) or
+     git objects at its commit (git). $null when it is absent. #>
+  param($Source, [string]$Path)
+  if ($Source.Kind -eq 'git') {
+    return , (Invoke-J3w1Git -Arguments @('-C', $Source.Root, 'cat-file', 'blob', "$($Source.Revision):$Path") -AllowFailure)
+  }
+  $file = Join-J3w1Path $Source.Root $Path
+  if (-not (Test-Path -LiteralPath $file -PathType Leaf)) { return $null }
+  return , [System.IO.File]::ReadAllBytes($file)
+}
+
+function Read-J3w1HostFiles {
+  <# ports/orca/host.json (which Orca keys the installer sets, from which
+     roles) and the generated specimen, from a source. #>
+  param($Source)
+  $load = {
+    param([string]$Path)
+    $bytes = Read-J3w1SourceBytes $Source $Path
+    if ($null -eq $bytes) {
+      $hint = if ($Source.Kind -eq 'git') { "Commit $($Source.Revision) predates this installer ($($script:FirstInstallerTag) and later)." } else { 'Download the release again with Get-J3w1Orca.ps1.' }
+      throw "Missing $Path in the $($Source.Label). $hint"
+    }
+    ConvertFrom-Json -InputObject (ConvertFrom-J3w1Bytes $bytes) -AsHashtable
+  }
+  $roles = & $load $script:HostPath
+  if ($roles.schemaVersion -ne 1) { throw "Unsupported $($script:HostPath) schemaVersion $($roles.schemaVersion) in the $($Source.Label)." }
+  return @{ Label = $Source.Label; Roles = $roles; Specimen = (& $load $script:SpecimenPath) }
 }
 
 function Get-J3w1Export {
-  <# Reads and verifies the pinned export. Where it comes from:
-       -SourceRoot  git objects at the pinned commit; the checkout must hold
-                    it, and a local tag of that name must resolve to it.
-       cache        a copy fetched on an earlier run, re-verified every time.
-       network      the tag must resolve to the pinned commit (GitHub API),
-                    then raw files at that commit SHA.
-     On every path tokens.resolved.json must equal the digest kit.json pins
-     for the revision ($PinnedDigest) and its entry in digests.json. The copy
-     is cached only after it passed. #>
-  param($Environment, $Kit, $Pin, [string]$SourceRoot, [switch]$NoCache, [switch]$SkipPinCheck, $PinnedDigest)
-  $tokensPath = $Kit.exports.tokens
-  $digestsPath = $Kit.exports.digests
-  $cacheRoot = Join-J3w1Path $Environment.StateRoot "cache/$($Pin.Revision)"
-  $cachedTokens = Join-J3w1Path $cacheRoot $tokensPath
-  $cachedDigests = Join-J3w1Path $cacheRoot $digestsPath
-  $pinVerified = $true
-  $fromCache = $false
-  $kind = 'network'
-  if (-not [string]::IsNullOrWhiteSpace($SourceRoot)) {
-    if ($Environment.SourceWorktree) {
-      $kind = 'worktree'
-      $pinVerified = $false
-      $pinCheck = 'working tree (test seam): the pin is NOT verified'
-    } else {
-      $kind = 'git'
-      $pinCheck = Assert-J3w1GitSource -SourceRoot $SourceRoot -Pin $Pin
-    }
-  } elseif ((Test-Path -LiteralPath $cachedTokens -PathType Leaf) -and (Test-Path -LiteralPath $cachedDigests -PathType Leaf)) {
-    $kind = 'cache'
-    $fromCache = $true
-    $pinCheck = "cache of $($Pin.Revision)"
-  } elseif ($SkipPinCheck) {
-    $pinCheck = 'tag resolved by the caller'
-  } else {
-    $resolved = Resolve-J3w1TagRevision -Environment $Environment -Kit $Kit -Ref $Pin.Ref
-    if ($resolved -ne $Pin.Revision) { throw "Tag $($Pin.Ref) resolves to $resolved, not the pinned $($Pin.Revision). Refusing." }
-    $pinCheck = "tag $($Pin.Ref) resolves to the pinned revision"
-  }
-  if ($fromCache) {
-    $digestsBytes = [System.IO.File]::ReadAllBytes($cachedDigests)
-    $tokensBytes = [System.IO.File]::ReadAllBytes($cachedTokens)
-  } else {
-    $digestsBytes = Get-J3w1SourceBytes -Environment $Environment -Kit $Kit -Pin $Pin -Path $digestsPath -SourceRoot $SourceRoot -NoCache
-    $tokensBytes = Get-J3w1SourceBytes -Environment $Environment -Kit $Kit -Pin $Pin -Path $tokensPath -SourceRoot $SourceRoot -NoCache
-  }
+  <# Reads and verifies the export of a source: tokens.resolved.json must
+     equal its entry in digests.json from the same commit, and, when Test
+     passes one, the digest the last apply recorded. A release folder is
+     verified again on every run; a copy that fails is removed, so the next
+     download replaces it. #>
+  param($Source, $PinnedDigest)
+  $tokensBytes = Read-J3w1SourceBytes $Source $script:TokensPath
+  $digestsBytes = Read-J3w1SourceBytes $Source $script:DigestsPath
   $refuse = {
     param([string]$Message)
-    if ($fromCache) {
-      foreach ($file in $cachedTokens, $cachedDigests) { Remove-Item -LiteralPath $file -Force -ErrorAction SilentlyContinue }
-      $Message += ' The cached copy was removed.'
+    if ($Source.Kind -eq 'download') {
+      foreach ($path in $script:TokensPath, $script:DigestsPath) { Remove-Item -LiteralPath (Join-J3w1Path $Source.Root $path) -Force -ErrorAction SilentlyContinue }
+      $Message += " The downloaded copy was removed; download the release again (Get-J3w1Orca.ps1 -Revision $($Source.Revision))."
     }
     throw $Message
   }
+  if ($null -eq $tokensBytes -or $null -eq $digestsBytes) { & $refuse "$($script:TokensPath) or $($script:DigestsPath) is missing in the $($Source.Label)." }
   $actual = Get-J3w1Digest $tokensBytes
-  if ($null -ne $PinnedDigest) {
-    if ($actual -ne $PinnedDigest.Digest) { & $refuse "Digest mismatch for ${tokensPath}: $($PinnedDigest.Source) pins $($PinnedDigest.Digest), got $actual. Refusing to use it." }
-    $pinCheck += '; pinned digest verified'
-  } else {
-    $pinCheck += '; no kit.json pins a digest for this revision, digests.json only'
-  }
   $digests = ConvertFrom-Json -InputObject (ConvertFrom-J3w1Bytes $digestsBytes) -AsHashtable
-  $expected = $digests.files[$tokensPath]
-  if ([string]::IsNullOrWhiteSpace($expected)) { & $refuse "$digestsPath lists no digest for $tokensPath. Refusing." }
-  if ($actual -ne $expected) { & $refuse "Digest mismatch for ${tokensPath}: expected $expected from $digestsPath, got $actual. Refusing to use it." }
-  $tokens = ConvertFrom-Json -InputObject (ConvertFrom-J3w1Bytes $tokensBytes) -AsHashtable
-  if ([string]$tokens.version -ne $Pin.Version) { throw "The export is version $($tokens.version), the pin says $($Pin.Version). Refusing." }
-  $profile = $tokens.profiles[$Pin.Profile]
-  if ($null -eq $profile) { throw "Profile '$($Pin.Profile)' is not in the export." }
-  if ($profile.status -ne 'approved') { throw "Profile '$($Pin.Profile)' is $($profile.status); only an approved profile is delivered." }
-  if ($kind -eq 'network' -and -not $NoCache) {
-    Write-J3w1Bytes -Path $cachedDigests -Bytes $digestsBytes
-    Write-J3w1Bytes -Path $cachedTokens -Bytes $tokensBytes
+  $expected = $digests.files[$script:TokensPath]
+  if ([string]::IsNullOrWhiteSpace($expected)) { & $refuse "$($script:DigestsPath) lists no digest for $($script:TokensPath). Refusing." }
+  if ($actual -ne $expected) { & $refuse "Digest mismatch for $($script:TokensPath): expected $expected from $($script:DigestsPath), got $actual. Refusing to use it." }
+  $check = "$($script:DigestsPath) at the same commit"
+  if ($null -ne $PinnedDigest) {
+    if ($actual -ne $PinnedDigest.Digest) { & $refuse "Digest mismatch for $($script:TokensPath): $($PinnedDigest.Source) records $($PinnedDigest.Digest), got $actual. Refusing to use it." }
+    $check += " and $($PinnedDigest.Source)"
   }
+  if (-not $Source.Verified) { $check = 'working tree (test seam): the pin is NOT verified' }
+  $tokens = ConvertFrom-Json -InputObject (ConvertFrom-J3w1Bytes $tokensBytes) -AsHashtable
+  if ($Source.Ref -match $script:TagPattern -and [string]$tokens.version -ne $Source.Ref.Substring(1)) { throw "The export at $($Source.Ref) is version $($tokens.version), not $($Source.Ref.Substring(1)). Refusing." }
+  $profile = $tokens.profiles[$script:ThemeProfile]
+  if ($null -eq $profile) { throw "Profile '$($script:ThemeProfile)' is not in the export." }
+  if ($profile.status -ne 'approved') { throw "Profile '$($script:ThemeProfile)' is $($profile.status); only an approved profile is delivered." }
   return @{
-    Pin = $Pin
+    Version = [string]$tokens.version
     Tokens = $profile.tokens
-    Eligibility = $Kit.eligibility
-    Digests = [ordered]@{ $tokensPath = $actual; $digestsPath = (Get-J3w1Digest $digestsBytes) }
-    PinCheck = $pinCheck
-    PinVerified = $pinVerified
-    SourceKind = $kind
+    Eligibility = $script:Eligibility
+    Digests = [ordered]@{ $script:TokensPath = $actual; $script:DigestsPath = (Get-J3w1Digest $digestsBytes) }
+    PinCheck = $check
+    PinVerified = [bool]$Source.Verified
+    SourceKind = $Source.Kind
   }
 }
 
@@ -568,7 +516,7 @@ function Resolve-J3w1Token {
 }
 
 function Get-J3w1Expected {
-  <# Every value the kit sets, in the order roles/terminal.json lists them.
+  <# Every value the kit sets, in the order ports/orca/host.json lists them.
      A preference (terminalFontSize) is carried from the machine, never set:
      it is not in Settings, and the Ghostty block carries font-size only
      when the machine has a size, so Import from Ghostty never changes it. #>
@@ -616,7 +564,7 @@ function Get-J3w1Expected {
 function Get-J3w1GhosttyBlock {
   param($Pin, $Expected, [string]$NewLine = "`n")
   $lines = @($script:BlockStart,
-    "# $($Pin.Name) $($Pin.Version) ($($Pin.Ref) @ $($Pin.Revision)), $($Pin.Profile) profile, for Orca's Import from Ghostty.") + $Expected.GhosttyLines + @($script:BlockEnd)
+    "# $($Pin.Name) $($Pin.Version) ($(Format-J3w1Pin $Pin)), $($Pin.Profile) profile, for Orca's Import from Ghostty.") + $Expected.GhosttyLines + @($script:BlockEnd)
   return ($lines -join $NewLine) + $NewLine
 }
 
@@ -891,21 +839,16 @@ function Get-J3w1FontFix {
 # ---------------------------------------------------------------------------
 
 function New-J3w1Context {
-  <# Everything a run needs: folders, kit maps, the verified export. The
-     digest the export must match comes from the first kit.json (the run's
-     own maps, then -Kits) that pins exactly this revision, else from
-     -PinnedDigest. #>
-  param([string]$KitRoot, [string]$SourceRoot, $Pin, $KitFiles, [object[]]$Kits, $PinnedDigest, [switch]$NoCache, [switch]$SkipPinCheck)
+  <# Everything a run needs: folders, the source, the host map and specimen,
+     the verified export, and the pin they make (the commit, the release tag
+     that names it when known, and the export's version). #>
+  param([string]$KitRoot, $Source, $PinnedDigest)
   $environment = Get-J3w1Environment
-  if ($null -eq $KitFiles) { $KitFiles = Read-J3w1KitFiles $KitRoot }
-  if ($null -eq $Pin) { $Pin = Get-J3w1Pin $KitFiles.Kit }
-  if (-not [string]::IsNullOrWhiteSpace($SourceRoot)) {
-    $SourceRoot = (Resolve-Path -LiteralPath $SourceRoot).Path
-  }
-  $pinned = Get-J3w1PinnedDigest -Pin $Pin -Kits (@($KitFiles.Kit) + @($Kits))
-  if ($null -eq $pinned) { $pinned = $PinnedDigest }
-  $export = Get-J3w1Export -Environment $environment -Kit $KitFiles.Kit -Pin $Pin -SourceRoot $SourceRoot -NoCache:$NoCache -SkipPinCheck:$SkipPinCheck -PinnedDigest $pinned
-  return @{ Environment = $environment; KitFiles = $KitFiles; Pin = $Pin; Export = $export; SourceRoot = $SourceRoot }
+  if ($null -eq $Source) { $Source = Get-J3w1Source -Environment $environment -KitRoot $KitRoot }
+  $kitFiles = Read-J3w1HostFiles $Source
+  $export = Get-J3w1Export -Source $Source -PinnedDigest $PinnedDigest
+  $pin = @{ Name = $script:ThemeName; Repository = $script:Repository; Version = $export.Version; Ref = $Source.Ref; Revision = $Source.Revision; Profile = $script:ThemeProfile }
+  return @{ Environment = $environment; Source = $Source; KitFiles = $kitFiles; Pin = $pin; Export = $export }
 }
 
 function Get-J3w1CurrentManifest {
@@ -984,7 +927,7 @@ function New-J3w1Manifest {
   $pin = $Context.Pin
   $manifest = [System.Text.Json.Nodes.JsonObject]::new()
   $manifest['schemaVersion'] = New-J3w1JsonNode 1
-  $manifest['kit'] = New-J3w1JsonNode $Context.KitFiles.Kit.id
+  $manifest['kit'] = New-J3w1JsonNode $script:InstallerId
   $manifest['operation'] = New-J3w1JsonNode $Operation
   $manifest['timestamp'] = New-J3w1JsonNode $Timestamp
   $manifest['orcaVersion'] = New-J3w1JsonNode $OrcaVersion
@@ -1060,8 +1003,8 @@ function New-J3w1Lock {
 function Write-J3w1Header {
   param($Context, [string]$Title)
   $pin = $Context.Pin
-  Write-Host "j3w1 terminal kit: $Title"
-  Write-Host "  theme        $($pin.Name) $($pin.Version) ($($pin.Ref) @ $($pin.Revision)), profile $($pin.Profile)"
+  Write-Host "j3w1 theme installer: $Title"
+  Write-Host "  theme        $($pin.Name) $($pin.Version) ($(Format-J3w1Pin $pin)), profile $($pin.Profile)"
   Write-Host "  export       $($Context.Export.Digests.Keys | Select-Object -First 1) $($Context.Export.Digests.Values | Select-Object -First 1) (digest verified; $($Context.Export.PinCheck))"
 }
 
@@ -1292,86 +1235,91 @@ function Invoke-J3w1OrcaApply {
 }
 
 function Invoke-J3w1OrcaUpdate {
-  <# Moves to another release: the tag resolves to its commit (API, or git in
-     -SourceRoot), the kit maps come from that commit when it publishes them
-     (else this kit's maps are used, and said so), the export is verified,
-     and the same apply path runs with a full before/after diff, then the
-     checks. Never follows a branch. Returns the process exit code. #>
-  param([string]$KitRoot, [string]$Version, [string]$SourceRoot, [switch]$PlanOnly, [switch]$SkipFontCheck)
-  if ($Version -notmatch '^v\d+\.\d+\.\d+(-[0-9A-Za-z.-]+)?$') {
-    throw "-Version must be an exact release tag such as v1.2.0; '$Version' is refused (branches, 'main' and 'latest' are never followed)."
+  <# Moves to another release: the tag resolves to its commit (the GitHub
+     API, or git in -SourceRoot), and that commit's own Get-J3w1Orca.ps1
+     downloads that commit's installer and export, verifies them, applies
+     with a before/after diff and runs the checks. Tags before v3.0.0 carry
+     no installer and are refused. Never follows a branch. Returns the
+     process exit code. #>
+  param([string]$Version, [string]$SourceRoot, [switch]$PlanOnly, [switch]$SkipFontCheck)
+  if ($Version -notmatch $script:TagPattern) {
+    throw "-Version must be an exact release tag such as $($script:FirstInstallerTag); '$Version' is refused (branches, 'main' and 'latest' are never followed)."
+  }
+  if (-not (Test-J3w1TagAtLeast $Version $script:FirstInstallerTag)) {
+    throw "$Version predates this installer ($($script:FirstInstallerTag) and later have ports/orca/install). To take the theme out, run Restore-J3w1OrcaTheme.ps1; to install $Version, use the terminal kit from that release (tools/terminal-kit/windows at $Version)."
   }
   $environment = Get-J3w1Environment
   $fromGit = -not [string]::IsNullOrWhiteSpace($SourceRoot)
   if ($fromGit -and $environment.SourceWorktree) { throw 'Update reads git objects at the tag only; unset J3W1_KIT_TEST_SOURCE.' }
-  if ($fromGit) { $SourceRoot = (Resolve-Path -LiteralPath $SourceRoot).Path }
-  $local = Read-J3w1KitFiles -KitRoot $KitRoot
-  $revision = Resolve-J3w1TagRevision -Environment $environment -Kit $local.Kit -Ref $Version -SourceRoot $SourceRoot
-  $pin = Get-J3w1Pin $local.Kit @{ version = $Version.Substring(1); ref = $Version; revision = $revision; profile = $local.Kit.theme.profile }
-  $where = if ($fromGit) { "git in $SourceRoot" } else { 'the GitHub API' }
-  if ($Version -eq [string]$local.Kit.theme.ref) {
-    # The tag kit.json pins: its commit and digest, on every source.
-    if ($revision -ne [string]$local.Kit.theme.revision) {
-      throw "Tag $Version resolves to $revision through $where, but kit.json pins $Version at $($local.Kit.theme.revision). Refusing."
-    }
-    if ($null -eq (Get-J3w1PinnedDigest -Pin $pin -Kits @($local.Kit))) {
-      throw "kit.json pins $Version but no exports.tokensDigest for it. Refusing."
-    }
-    $pinCheck = "tag $Version resolved through $where to the commit kit.json pins"
-  } elseif ($fromGit) {
-    $pinCheck = "tag $Version resolved by git in $SourceRoot and trusted as a local tag (kit.json does not pin it)"
-    Write-Warning "Tag $Version is not the tag kit.json pins ($($local.Kit.theme.ref)); its commit $revision comes from the local tag in $SourceRoot and is trusted as it is. Check it against $($local.Kit.theme.repository) on GitHub if in doubt."
+  if ($fromGit) {
+    $SourceRoot = (Resolve-Path -LiteralPath $SourceRoot).Path
+    if ($null -eq (Get-J3w1GitText @('-C', $SourceRoot, 'rev-parse', '--git-dir'))) { throw "-SourceRoot $SourceRoot is not a git clone of $($script:Repository)." }
+  }
+  $revision = Resolve-J3w1TagRevision -Environment $environment -Ref $Version -SourceRoot $SourceRoot
+  if ($revision -cnotmatch '^[0-9a-f]{40}$') { throw "Tag $Version did not resolve to a commit ($revision)." }
+  $getPath = 'ports/orca/install/Get-J3w1Orca.ps1'
+  if ($fromGit) {
+    Write-Warning "Tag $Version is trusted as a local tag: $revision comes from the tag in $SourceRoot. Check it against $($script:Repository) on GitHub if in doubt."
+    $bytes = Invoke-J3w1Git -Arguments @('-C', $SourceRoot, 'cat-file', 'blob', "${revision}:$getPath") -AllowFailure
   } else {
-    $pinCheck = "tag $Version resolved through the GitHub API"
+    $bytes = Invoke-J3w1Http -Environment $environment -Url "https://raw.githubusercontent.com/$($script:Repository)/$revision/$getPath" -AllowNotFound
   }
-  $source = @{ Environment = $environment; Kit = $local.Kit; Pin = $pin; SourceRoot = $SourceRoot; NoCache = [bool]$PlanOnly }
-  $kitFiles = Read-J3w1KitFiles -Source $source
-  if ($null -eq $kitFiles) {
-    Write-Warning "$Version publishes no tools/terminal-kit; using this kit's role maps ($($local.Label)) with the $Version export."
-    $kitFiles = $local
-  } elseif ($kitFiles.Kit.theme.repository -ne $local.Kit.theme.repository) {
-    throw "The kit at $Version names another repository ($($kitFiles.Kit.theme.repository)). Refusing."
+  if ($null -eq $bytes) {
+    throw "Tag $Version ($revision) has no $getPath, so it predates this installer. To take the theme out, run Restore-J3w1OrcaTheme.ps1; to install $Version, use the terminal kit from that release."
   }
-  $context = New-J3w1Context -SourceRoot $SourceRoot -Pin $pin -KitFiles $kitFiles -Kits @($local.Kit) -NoCache:$PlanOnly -SkipPinCheck
-  $context.Export.PinCheck = $pinCheck + ($context.Export.PinCheck -replace '^[^;]*', '')
-  $result = Invoke-J3w1OrcaApply -Context $context -Operation 'update' -PlanOnly:$PlanOnly -SkipFontCheck:$SkipFontCheck -ShowDiff
-  if ($PlanOnly) { return 0 }
-  Write-Host ''
-  $fails = Invoke-J3w1OrcaVerify -Context $context -NoSpecimen
-  if ($result.StorePending) { Write-Host 'The store checks fail until the GUI steps above are done (or Orca is quit and Update rerun).' }
-  return $(if ($fails -gt 0) { 1 } else { 0 })
+  $where = if ($fromGit) { "git in $SourceRoot" } else { 'the GitHub API' }
+  Write-Host "Update to $Version = $revision (resolved through $where); running that commit's Get-J3w1Orca.ps1."
+  # That commit's code runs in its own PowerShell process, so this release's
+  # module never mixes with the new one.
+  $script = Join-Path ([System.IO.Path]::GetTempPath()) "j3w1-get-$revision-$PID.ps1"
+  [System.IO.File]::WriteAllBytes($script, $bytes)
+  try {
+    $arguments = @('-NoProfile', '-NonInteractive', '-File', $script, '-Revision', $revision, '-Apply', '-Update', '-Tag', $Version)
+    if ($fromGit) { $arguments += @('-SourceRoot', $SourceRoot) }
+    if ($SkipFontCheck) { $arguments += '-SkipFontCheck' }
+    if ($PlanOnly) { $arguments += '-WhatIf' }
+    & ([System.Environment]::ProcessPath) @arguments | Out-Host
+    return $LASTEXITCODE
+  } finally {
+    Remove-Item -LiteralPath $script -Force -ErrorAction SilentlyContinue -WhatIf:$false
+  }
 }
 
 function New-J3w1VerifyContext {
-  <# Test checks what was last applied: the manifest's theme pin and, when an
-     update fetched them, that revision's kit maps. The export is verified
-     against the digest kit.json pins for that revision, else the digest the
-     last apply recorded in its lock. #>
-  param([string]$KitRoot, [string]$SourceRoot)
+  <# Test checks what was last applied: the commit the current manifest
+     names. When that is not the commit these scripts came from, its release
+     folder (or, in a clone, its git objects) supplies the host map, the
+     specimen and the export. The export must also match the digest the last
+     apply recorded in its lock. #>
+  param([string]$KitRoot)
   $environment = Get-J3w1Environment
-  $local = Read-J3w1KitFiles -KitRoot $KitRoot
-  $localPin = Get-J3w1Pin $local.Kit
+  $own = Get-J3w1Source -Environment $environment -KitRoot $KitRoot
   $manifest = Get-J3w1CurrentManifest $environment
-  if ($null -eq $manifest) { return New-J3w1Context -SourceRoot $SourceRoot -Pin $localPin -KitFiles $local }
+  if ($null -eq $manifest) { return New-J3w1Context -Source $own }
   $theme = $manifest['theme']
-  $pin = Get-J3w1Pin $local.Kit @{ version = $theme['version'].ToString(); ref = $theme['ref'].ToString(); revision = $theme['revision'].ToString(); profile = $theme['profile'].ToString() }
-  if ($pin.Revision -eq $localPin.Revision) { return New-J3w1Context -SourceRoot $SourceRoot -Pin $pin -KitFiles $local }
-  $kitFiles = $null
-  if ([string]::IsNullOrWhiteSpace($SourceRoot)) {
-    $cached = Join-J3w1Path $environment.StateRoot "cache/$($pin.Revision)/tools/terminal-kit"
-    if (Test-Path -LiteralPath (Join-J3w1Path $cached 'kit.json') -PathType Leaf) { $kitFiles = Read-J3w1KitFiles -KitRoot $cached }
-  } else {
-    $kitFiles = Read-J3w1KitFiles -Source @{ Environment = $environment; Kit = $local.Kit; Pin = $pin; SourceRoot = (Resolve-Path -LiteralPath $SourceRoot).Path; NoCache = $true }
+  $revision = $theme['revision'].ToString()
+  $ref = $theme['ref'].ToString()
+  $source = $own
+  if ($revision -ne $own.Revision) {
+    $folder = Join-J3w1Path $environment.Releases $revision
+    if (Test-Path -LiteralPath (Join-J3w1Path $folder 'release.json') -PathType Leaf) {
+      $source = Get-J3w1Source -Environment $environment -KitRoot $folder
+    } elseif ($own.Kind -eq 'git' -and $null -ne (Invoke-J3w1Git -Arguments @('-C', $own.Root, 'cat-file', '-e', "$revision^{commit}") -AllowFailure)) {
+      $source = @{ Kind = 'git'; Root = $own.Root; Revision = $revision; Ref = $(if ($ref -match $script:TagPattern) { $ref } else { $revision }); Verified = $true; Label = "clone $($own.Root) (git objects at $revision)" }
+    } else {
+      $name = if ($ref -eq $revision) { "commit $revision" } else { "$ref ($revision)" }
+      throw "The last apply installed $name, which is not downloaded here. Run Get-J3w1Orca.ps1 -Revision $revision to check it, or apply this release ($($own.Revision)) first."
+    }
+    Write-Host "Checking the last apply ($(Format-J3w1Pin @{ Ref = $source.Ref; Revision = $revision })), not this folder's commit ($($own.Revision))."
   }
-  if ($null -eq $kitFiles) { $kitFiles = $local }
   $recorded = $null
   $lockPath = Join-J3w1Path $environment.StateRoot 'current/theme.lock.orca.json'
   if (Test-Path -LiteralPath $lockPath -PathType Leaf) {
     $lock = Read-J3w1Data $lockPath
-    $digest = [string]$lock.exports[$kitFiles.Kit.exports.tokens]
-    if ($lock.revision -eq $pin.Revision -and $digest) { $recorded = @{ Digest = $digest; Source = 'the last apply (theme.lock.orca.json)' } }
+    $digest = [string]$lock.exports[$script:TokensPath]
+    if ($lock.revision -eq $revision -and $digest) { $recorded = @{ Digest = $digest; Source = 'the last apply (theme.lock.orca.json)' } }
   }
-  return New-J3w1Context -SourceRoot $SourceRoot -Pin $pin -KitFiles $kitFiles -Kits @($local.Kit) -PinnedDigest $recorded
+  return New-J3w1Context -Source $source -PinnedDigest $recorded
 }
 
 # ---------------------------------------------------------------------------
@@ -1494,11 +1442,8 @@ function Show-J3w1Specimen {
         if ($segment.Contains('bg')) { $codes.Add((Get-J3w1SlotCode $segment.bg -Background)) }
         if ($segment.Contains('fgToken')) { $codes.Add((Get-J3w1TrueColor (Resolve-J3w1Token $export $segment.fgToken '' $Disclosures))) }
         if ($segment.Contains('bgToken')) { $codes.Add((Get-J3w1TrueColor (Resolve-J3w1Token $export $segment.bgToken '' $Disclosures) -Background)) }
-        foreach ($pair in @(@('fgRole', $false), @('bgRole', $true))) {
-          if (-not $segment.Contains($pair[0])) { continue }
-          $role = $kitFiles.ClaudeRoles.roles[$segment[$pair[0]]]
-          if ($null -eq $role) { throw "Specimen role $($segment[$pair[0]]) is not in roles/claude-code.json." }
-          $codes.Add((Get-J3w1TrueColor (Resolve-J3w1Token $export $role.token '' $Disclosures) -Background:$pair[1]))
+        foreach ($key in 'fgRole', 'bgRole', 'fgScope', 'bgScope') {
+          if ($segment.Contains($key)) { throw "The specimen still names $key; it is generated with every role resolved (npm run generate)." }
         }
         $text += (Get-J3w1Sgr $codes) + $segment.text
       }
@@ -1828,7 +1773,7 @@ function Invoke-J3w1OrcaRestore {
 
   $paths = Get-J3w1OrcaPaths $Environment
   $running = Test-J3w1OrcaRunning $Environment
-  Write-Host 'j3w1 terminal kit: Orca (restore)'
+  Write-Host 'j3w1 theme installer: Orca (restore)'
   Write-Host "  target       $label"
   Write-Host "  settings     $($paths.Settings)"
   if ($window.Count -eq 0) {
@@ -2017,7 +1962,7 @@ function Invoke-J3w1OrcaRestore {
   foreach ($key in @($managed) + @($keys.Keys)) { if (-not $recordedKeys.Contains($key)) { $recordedKeys.Add($key) } }
   $manifest = [System.Text.Json.Nodes.JsonObject]::new()
   $manifest['schemaVersion'] = New-J3w1JsonNode 1
-  $manifest['kit'] = New-J3w1JsonNode $KitFiles.Kit.id
+  $manifest['kit'] = New-J3w1JsonNode $script:InstallerId
   $manifest['operation'] = New-J3w1JsonNode 'restore'
   $manifest['timestamp'] = New-J3w1JsonNode (Get-J3w1Timestamp)
   $manifest['mode'] = New-J3w1JsonNode $mode

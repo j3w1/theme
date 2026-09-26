@@ -18,13 +18,13 @@ const run = (cmd, args) => {
   execFileSync(cmd, args, { stdio: "inherit" });
 };
 
-const KIT = ["terminal-kit.test.js", "terminal-kit-windows.test.js"];
+const INSTALL = ["host-install.test.js", "orca-install.test.js"];
 
 if (stage === "cheap") {
   if (has("sources")) { run("npm", ["run", "validate"]); run("npm", ["run", "check"]); }
-  if (has("unit")) run("node", ["--test", ...readdirSync("tests").filter((f) => f.endsWith(".test.js") && !KIT.includes(f)).sort().map((f) => `tests/${f}`)]);
-  if (has("unit-kit")) run("node", ["--test", "tests/terminal-kit.test.js"]);
-  if (has("unit-kit-windows")) run("node", ["--test", "tests/terminal-kit-windows.test.js"]);
+  if (has("unit")) run("node", ["--test", ...readdirSync("tests").filter((f) => f.endsWith(".test.js") && !INSTALL.includes(f)).sort().map((f) => `tests/${f}`)]);
+  if (has("unit-install")) run("node", ["--test", "tests/host-install.test.js"]);
+  if (has("unit-install-windows")) run("node", ["--test", "tests/orca-install.test.js"]);
 } else if (stage === "browser") {
   const files = plan.browser === "all" ? [] : plan.browser.map((s) => `tests/browser/${s}.spec.js`);
   // A subset also loads the evidence reporter: as a shard it never writes,
