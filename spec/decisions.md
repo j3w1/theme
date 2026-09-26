@@ -671,8 +671,8 @@ allowed code hues only in the proposed `extended` overlay, which is blocked for
 delivery.
 
 **Consequences.** The reference editor and other consumers keep `code.syntax.*`;
-a host opts in by mapping `code.hued.*`, as the terminal kit's Codex theme does
-once pinned to this release. This extends D-001's code-group allowance to these
+a host opts in by mapping `code.hued.*`, as the Codex port (`ports/codex/`, once
+the terminal kit's Codex theme) does. This extends D-001's code-group allowance to these
 roles; `extended` stays proposed.
 
 **Alternatives.** Keep Codex monochrome (rejected by the owner), approve all of
