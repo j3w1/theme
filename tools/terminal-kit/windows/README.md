@@ -80,7 +80,8 @@ Or quit Orca (tray too) and run the script again.
 Every Apply or Update that writes anything records, in its manifest, the value
 (or absence) of every managed key as it found it, whether or not it wrote the
 store, the value the kit sets for each key, and the keys its maps manage
-(`managedKeys`). Restore works from those records.
+(`managedKeys`). Restore works from those records. The font size is not a
+managed key: it is recorded with the preserved keys (see below).
 
 Which records a restore undoes:
 
@@ -90,16 +91,29 @@ Which records a restore undoes:
 - **`-Backup <name>`**: the named backup, and everything after it; the state
   before that backup.
 
-A boundary is a restore that finished its last write and left no kit value
-applied: any complete restore, of any mode, whose records reach back to a
-state with no kit value (a default restore always does; `-Latest` or
-`-Backup` does when no earlier apply or update lies between it and the
-previous boundary), including one that found nothing left to change, which is
-then recorded on its own. A restore refused while Orca runs is not a boundary.
+A boundary is a restore, of any mode, that meets all three of these:
+
+- it is complete: it finished its last write (see below);
+- it was not refused while Orca ran;
+- its window reaches back to a state with no kit value: no apply or update
+  lies between the previous boundary (or the first backup) and the first
+  record of its window. A default restore always meets this; `-Latest` and
+  `-Backup` meet it only when no earlier apply or update lies before their
+  window since the previous boundary.
+
+Keys left unknown (exit 3, below) do not stop a restore from being a
+boundary. A restore that meets all three but finds nothing left to change is
+still recorded, on its own, so the next default restore starts after it.
+Restore records from earlier kit versions carry no `complete` field; they
+count as boundaries when they were default restores that were not refused.
+
 A restore writes its manifest first, marked `complete: false`, and marks it
-complete only after its last write; if it stops partway (a failed write,
-Orca started meanwhile), it is not a boundary, and running Restore again
-finishes the job.
+complete only after its last write. If it stops partway (a failed write,
+Orca started meanwhile), it is not a boundary, and the stop message names the
+command that finishes the job: the same command again, `Restore`,
+`Restore -Latest` or `Restore -Backup <name>`. Run that one; a plain
+`Restore` after a stopped `-Latest` or `-Backup` restore undoes more than was
+asked.
 
 Per key, the earliest value recorded in those records comes back (removed
 again if it was absent), but only for a key a record in them wrote, or that a
@@ -108,9 +122,12 @@ the kit's. A key the kit never wrote and never asked Orca for is left as it
 is, including a key that already held the kit's value. The earliest value
 wins: if you changed a key between two applies, Restore returns the value
 from before the first one. It warns, per key, when a value differs from what
-the kit left or asked for, at a later record or now. Keys a record names
-must be managed by this kit or listed in that record's `managedKeys` (a
-newer tag's maps); anything else is refused.
+the kit left or asked for, at a later record or now; after a run that could
+only ask Orca (Orca open), a later value equal to the one that run found is
+no change either, so quitting Orca and running the script again gives no
+warning. Keys a record names must be managed by this kit, be the font size
+(records from earlier kit versions), or be listed in that record's
+`managedKeys` (a newer tag's maps); anything else is refused.
 
 If the earliest record for a key already found the kit's value while
 `config.ghostty` already held the managed block (for example after the kit's
@@ -140,17 +157,21 @@ exits with the code the real run would.
 
 Keys it sets: `terminalColorOverrides`, `terminalMinimumContrastRatio` (1,
 "Color Contrast: Off"), `leftSidebarAppearanceMode` (`match-terminal`),
-`terminalDividerColorDark`, `terminalDividerColorLight`, `terminalFontFamily`
-and `terminalFontSize`.
+`terminalDividerColorDark`, `terminalDividerColorLight` and
+`terminalFontFamily`.
 
 - `leftSidebarAppearanceMode` is Orca chrome outside the terminal. The kit
   changes it because the owner asked for it; there is no option to leave it
   alone, and Restore returns it like every other managed key.
-- The font size is only set when the machine has none. A size the owner
-  changes after apply is a WARN in Test, never a FAIL, and the Ghostty block
-  is compared without its `font-size` line. Restore takes the size out again
-  only when the kit set it and nobody changed it since; otherwise the size
-  stays as it is.
+- The kit never sets or restores the font size (`terminalFontSize`). It is
+  carried from the machine: the Ghostty block has `font-size = <the size in
+  Orca's store>` when the store has one, and no `font-size` line when it has
+  none, so Import from Ghostty never changes the size. Apply records the size
+  (or its absence) with the preserved keys; Test reports a size that changed
+  since as a WARN, never a FAIL, and compares the Ghostty block without its
+  `font-size` line, which may be absent. Restore leaves the size as it is.
+  The one exception is a record from an earlier kit version that wrote the
+  size: Restore takes that size back only when nobody changed it since.
 - The keys listed in `orca.preserve` (theme, IDE font, editor font, zoom and
   more) are recorded and reported but never changed. A mismatch with
   `orca.expectedPreferences` produces a warning and nothing else.

@@ -6,11 +6,14 @@ Restores what the kit changed, key by key.
 By default it undoes every apply and update since the last boundary: a restore
 that finished its last write and left no kit value applied (any mode; one that
 found nothing left to change is recorded as one too). An interrupted restore is
-never a boundary, so running Restore again finishes the job. Per key, the
+never a boundary, and running the same command again (Restore, Restore
+-Latest or Restore -Backup <name>, as the stop message names it) finishes the
+job. Per key, the
 earliest value recorded since then comes back (removed again if it was absent),
 for every key the kit wrote or asked Orca for through the GUI steps; a key the
-kit never wrote, and a font size changed after the kit set it, are left as they
-are. Apply records what it observes even while Orca runs, so values Orca wrote
+kit never wrote is left as it is. The kit never sets the font size, so it is
+left too, except a size an earlier kit version wrote that nobody changed
+since. Apply records what it observes even while Orca runs, so values Orca wrote
 later through Import from Ghostty are undone too. When the earliest record
 already found the kit's value while config.ghostty held the managed block, the
 pre-kit value is unknown: that key is left as it is, the run says so and exits

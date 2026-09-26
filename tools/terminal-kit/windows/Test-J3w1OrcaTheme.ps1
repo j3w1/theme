@@ -8,8 +8,9 @@ Claude Code roles) with the expected hex and contrast beside each slot, then
 checks the Ghostty block, later Ghostty overrides, every managed Orca setting,
 the preserved keys against the last apply and the owner's expected
 preferences. Each check prints PASS, FAIL, WARN or SKIP with the observed
-value. The terminal font size is yours: a size changed after apply is a WARN,
-and the Ghostty block is compared without its font-size line. Exit code 0 only when nothing FAILs. The documented deviations and the
+value. The terminal font size is yours and the kit never sets it: a size
+changed since the last apply is a WARN, and the Ghostty block is compared
+without its font-size line, which is absent when the machine has no size. Exit code 0 only when nothing FAILs. The documented deviations and the
 use-and-report disclosures are printed every time.
 
 .PARAMETER SourceRoot

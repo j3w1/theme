@@ -569,12 +569,12 @@ function Resolve-J3w1Token {
 
 function Get-J3w1Expected {
   <# Every value the kit sets, in the order roles/terminal.json lists them.
-     terminalFontSize follows the machine: the current store value when there
-     is one, the token otherwise. #>
+     A preference (terminalFontSize) is carried from the machine, never set:
+     it is not in Settings, and the Ghostty block carries font-size only
+     when the machine has a size, so Import from Ghostty never changes it. #>
   param($KitFiles, $Export, $CurrentFontSize)
   $roles = $KitFiles.Roles
   $disclosures = [System.Collections.Generic.List[object]]::new()
-  $tokenFontSize = $null
   $fontSize = $CurrentFontSize
   $settings = [ordered]@{}
   $overrides = [ordered]@{}
@@ -589,11 +589,7 @@ function Get-J3w1Expected {
     } else {
       $pick = if ($rule.Contains('pick')) { $rule.pick } else { '' }
       $value = Resolve-J3w1Token $Export $rule.token $pick $disclosures
-      if ($rule.Contains('preference')) {
-        $tokenFontSize = $value
-        if ($null -eq $fontSize) { $fontSize = $value }
-        $value = $fontSize
-      }
+      if ($rule.Contains('preference')) { continue }
       $settings[$name] = $value
     }
   }
@@ -601,7 +597,10 @@ function Get-J3w1Expected {
   foreach ($line in $roles.ghostty.lines) {
     $pick = if ($line.Contains('pick')) { $line.pick } else { '' }
     $value = Resolve-J3w1Token $Export $line.token $pick $disclosures
-    if ($line.Contains('preference')) { $value = $fontSize }
+    if ($line.Contains('preference')) {
+      if ($null -eq $fontSize) { continue }
+      $value = $fontSize
+    }
     $text = if ($value -is [string]) { $value } else { Format-J3w1Number $value }
     if ($line.Contains('index')) { $text = "$($line.index)=$text" }
     $lines.Add("$($line.key) = $text")
@@ -610,7 +609,6 @@ function Get-J3w1Expected {
     Settings = $settings
     GhosttyLines = $lines
     FontSize = $fontSize
-    TokenFontSize = $tokenFontSize
     Disclosures = $disclosures
   }
 }
@@ -918,8 +916,18 @@ function Get-J3w1CurrentManifest {
 }
 
 function Get-J3w1ManagedKeys {
+  <# The keys the kit sets; a preference (the font size) is never set. #>
   param($KitFiles)
-  return , (@('terminalColorOverrides') + @($KitFiles.Roles.orca.settings.Keys))
+  $settings = $KitFiles.Roles.orca.settings
+  return , (@('terminalColorOverrides') + @($settings.Keys | Where-Object { -not $settings[$_].Contains('preference') }))
+}
+
+function Get-J3w1PreferenceKeys {
+  <# Keys carried from the machine and never set (the font size): recorded
+     with the preserved keys. #>
+  param($KitFiles)
+  $settings = $KitFiles.Roles.orca.settings
+  return @($settings.Keys | Where-Object { $settings[$_].Contains('preference') })
 }
 
 # ---------------------------------------------------------------------------
@@ -969,9 +977,9 @@ function New-J3w1Manifest {
      absence) of every managed key as this run found it, whether or not the
      store was written, and the value the kit sets for it (kit; written, or
      asked of Orca through the GUI steps); equalsKit marks a value that
-     already was the kit's (a preference such as the font size never is: the
-     kit keeps it). managedKeys names every key this run's maps manage, so a
-     Restore with older maps still accepts them. #>
+     already was the kit's. The font size is never set: it is recorded with
+     the preserved keys. managedKeys names every key this run's maps manage,
+     so a Restore with older maps still accepts them. #>
   param($Context, [string]$Operation, [string]$Timestamp, [string]$OrcaVersion, $ClaudeVersion, $Files, $Settings, $Observed, $Preserved, $Disclosures, [bool]$StoreWritten, [bool]$GhosttyBlockBefore, $FontSize)
   $pin = $Context.Pin
   $manifest = [System.Text.Json.Nodes.JsonObject]::new()
@@ -1160,8 +1168,7 @@ function Invoke-J3w1OrcaApply {
   # from before the kit even when Orca (running now) writes the kit's
   # values later through Import from Ghostty.
   $observed = foreach ($change in $changes) {
-    $isPreference = $roles.orca.settings.Contains($change.Key) -and $roles.orca.settings[$change.Key].Contains('preference')
-    @{ Key = $change.Key; Slot = $change.Before; Kit = $change.After.Node; EqualsKit = (-not $isPreference) -and $change.Before.Present -and (Test-J3w1SameValue $change.Before.Node $change.After.Node) }
+    @{ Key = $change.Key; Slot = $change.Before; Kit = $change.After.Node; EqualsKit = $change.Before.Present -and (Test-J3w1SameValue $change.Before.Node $change.After.Node) }
   }
   $pending = @($changes | Where-Object { $_.Differs })
   $running = Test-J3w1OrcaRunning $environment
@@ -1173,9 +1180,10 @@ function Invoke-J3w1OrcaApply {
   $ghosttyBytes = Get-J3w1GhosttyUpdate -State $ghostty -Pin $Context.Pin -Expected $expected
   $writeGhostty = -not $ghostty.Exists -or -not [System.Linq.Enumerable]::SequenceEqual([byte[]]$ghostty.Bytes, [byte[]]$ghosttyBytes)
 
-  # Preserved keys and the owner's expected preferences: reported, never changed.
+  # Preserved keys, the font size and the owner's expected preferences:
+  # reported, never changed.
   $preserved = [System.Collections.Generic.List[object]]::new()
-  foreach ($key in $roles.orca.preserve) { $preserved.Add(@{ Key = $key; Slot = (Get-J3w1NodeAt $store $key) }) }
+  foreach ($key in @($roles.orca.preserve) + @(Get-J3w1PreferenceKeys $kitFiles)) { $preserved.Add(@{ Key = $key; Slot = (Get-J3w1NodeAt $store $key) }) }
 
   Write-Host ''
   Write-Host 'Plan:'
@@ -1568,8 +1576,18 @@ function Invoke-J3w1OrcaVerify {
     if ($bad.Count -eq 0) { & $add 'PASS' 'terminalColorOverrides' "$($want.Count) colours equal the export" }
     else { & $add 'FAIL' 'terminalColorOverrides' ($bad -join '; ') }
   }
+  $preferences = @(Get-J3w1PreferenceKeys $kitFiles)
   foreach ($key in $roles.orca.settings.Keys) {
     $slot = Get-J3w1NodeAt $store $key
+    if ($preferences -contains $key) {
+      # Never set by the kit; the owner may change it at any time.
+      $then = if ($null -eq $fontSize) { '(absent)' } else { Format-J3w1Number $fontSize }
+      $ok = if ($null -eq $fontSize) { -not $slot.Present } else { $slot.Present -and $null -ne $slot.Node -and $slot.Node.GetValueKind() -eq [System.Text.Json.JsonValueKind]::Number -and $slot.Node.GetValue[double]() -eq $fontSize }
+      $detail = "observed $(Format-J3w1Value $slot), $then at the last apply; never set by the kit"
+      if (-not $ok) { $detail += '; changed since, which the kit allows (the size is yours)' }
+      & $add $(if ($ok) { 'PASS' } else { 'WARN' }) $key $detail
+      continue
+    }
     $want = New-J3w1JsonNode $expected.Settings[$key]
     $ok = $slot.Present -and $null -ne $slot.Node
     if ($ok) {
@@ -1579,13 +1597,6 @@ function Invoke-J3w1OrcaVerify {
         $ok = $slot.Node.GetValueKind() -eq $want.GetValueKind() -and $slot.Node.ToString().ToLowerInvariant() -eq $want.ToString().ToLowerInvariant()
       }
     }
-    if ($roles.orca.settings[$key].Contains('preference')) {
-      # The owner may change the size after apply; the kit keeps any size.
-      $detail = "observed $(Format-J3w1Value $slot), $(ConvertTo-J3w1Compact $want) at the last apply"
-      if (-not $ok) { $detail += '; changed since, which the kit allows (the size is yours)' }
-      & $add $(if ($ok) { 'PASS' } else { 'WARN' }) $key $detail
-      continue
-    }
     & $add $(if ($ok) { 'PASS' } else { 'FAIL' }) $key "observed $(Format-J3w1Value $slot), expected $(ConvertTo-J3w1Compact $want)"
   }
 
@@ -1594,12 +1605,13 @@ function Invoke-J3w1OrcaVerify {
     $changed = [System.Collections.Generic.List[string]]::new()
     foreach ($entry in $manifest['preserved']) {
       $key = $entry['key'].ToString()
+      if ($preferences -contains $key) { continue }
       $slot = Get-J3w1NodeAt $store $key
       $then = $entry['value']
       $same = if (Test-J3w1AbsentNode $then) { -not $slot.Present } else { $slot.Present -and (Test-J3w1NodeEqual $slot.Node $then) }
       if (-not $same) { $changed.Add("$key $(ConvertTo-J3w1Compact $then) -> $(Format-J3w1Value $slot)") }
     }
-    if ($changed.Count -eq 0) { & $add 'PASS' 'preserved keys' "$($manifest['preserved'].Count) keys unchanged since the last apply" }
+    if ($changed.Count -eq 0) { & $add 'PASS' 'preserved keys' "$(@($manifest['preserved'] | Where-Object { $preferences -notcontains $_['key'].ToString() }).Count) keys unchanged since the last apply" }
     else { & $add 'FAIL' 'preserved keys' ($changed -join '; ') }
   } else {
     & $add 'SKIP' 'preserved keys' 'no manifest to compare with'
@@ -1760,9 +1772,10 @@ function Invoke-J3w1OrcaRestore {
        -Backup  the named backup and everything after it.
      Per key the earliest value recorded in the window comes back, but only
      for a key a record in the window wrote, or that a run which could not
-     write the store (Orca open) found at a value other than the kit's; a
-     preference (the font size) the owner changed after the kit set it is
-     kept. A key whose earliest record already held the kit's value while
+     write the store (Orca open) found at a value other than the kit's. The
+     font size is never touched, except where a record from an earlier kit
+     version wrote it: then it comes back unless the owner changed it since.
+     A key whose earliest record already held the kit's value while
      config.ghostty held the managed block (or that the previous boundary
      left unknown) may have been written by Orca's Import from Ghostty; its
      pre-kit value is unknown, so it is left as it is and the run exits 3.
@@ -1825,14 +1838,15 @@ function Invoke-J3w1OrcaRestore {
   }
 
   $managed = Get-J3w1ManagedKeys $KitFiles
-  $preferences = @($KitFiles.Roles.orca.settings.Keys | Where-Object { $KitFiles.Roles.orca.settings[$_].Contains('preference') })
+  $preferences = @(Get-J3w1PreferenceKeys $KitFiles)
   foreach ($item in $backups) { $item.Info = Get-J3w1ManifestKeys $item.Manifest }
 
   # Per key: the earliest record in the window, and whether the kit touched it.
   $keys = [ordered]@{}
   foreach ($item in $window) {
     $blockBefore = Get-J3w1ManifestBool $item.Manifest 'ghosttyBlockBefore' $false
-    $accepted = @($managed)
+    # Records from earlier kit versions may name the font size.
+    $accepted = @($managed) + $preferences
     if ($null -ne $item.Manifest['managedKeys']) { $accepted += @($item.Manifest['managedKeys'] | ForEach-Object { $_.ToString() }) }
     foreach ($key in $item.Info.Keys) {
       if ($accepted -notcontains $key) { throw "Backup $($item.Name) names '$key', which neither this kit nor that run's maps manage. Refusing." }
@@ -1885,17 +1899,23 @@ function Invoke-J3w1OrcaRestore {
     }
   }
   # A key that differs, at a later record in the window, from what the kit
-  # had left or asked for: the owner (or Orca) changed it between runs.
+  # had left or asked for: the owner (or Orca) changed it between runs. A
+  # record that only asked Orca (store not written) left the value it found,
+  # so a later value equal to that one is no change either.
   $between = @{}
   $left = @{}
   foreach ($item in $window) {
     $finished = (Test-J3w1RunManifest $item.Manifest) -or (Get-J3w1ManifestBool $item.Manifest 'complete' $true)
     foreach ($key in $item.Info.Keys) {
       $entry = $item.Info[$key]
-      if ($left.Contains($key) -and -not $between.Contains($key) -and -not (Test-J3w1SameValue $left[$key].Node $entry.Before)) {
+      $unchanged = $left.Contains($key) -and ((Test-J3w1SameValue $left[$key].Node $entry.Before) -or ($null -ne $left[$key].Found -and (Test-J3w1SameValue $left[$key].Found $entry.Before)))
+      if ($left.Contains($key) -and -not $between.Contains($key) -and -not $unchanged) {
         $between[$key] = "$key was $(Format-J3w1Node $entry.Before) at backup $($item.Name), not $(Format-J3w1Node $left[$key].Node) as the kit left or asked for at backup $($left[$key].Name)"
       }
-      if ($finished -and $null -ne $entry.After) { $left[$key] = @{ Node = $entry.After; Name = $item.Name } }
+      if ($finished -and $null -ne $entry.After) {
+        $left[$key] = @{ Node = $entry.After; Found = $null; Name = $item.Name }
+        if ($entry.Asked) { $left[$key].Found = $entry.Before }
+      }
     }
   }
 
@@ -2045,7 +2065,8 @@ function Invoke-J3w1OrcaRestore {
       }
     }
   } catch {
-    throw "$($_.Exception.Message) The restore stopped partway and is not recorded as done: quit Orca (tray too) and run Restore again; it finishes the job. The state before this run is in $($snapshot.Path)."
+    $again = switch ($mode) { 'latest' { 'Restore -Latest' } 'backup' { "Restore -Backup $Backup" } default { 'Restore' } }
+    throw "$($_.Exception.Message) The restore stopped partway and is not recorded as done: quit Orca (tray too) and run $again again; it finishes the job. The state before this run is in $($snapshot.Path)."
   }
   $manifest['complete'] = New-J3w1JsonNode $true
   Write-J3w1Text $manifestPath (ConvertTo-J3w1JsonText $manifest)

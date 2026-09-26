@@ -64,7 +64,9 @@ const pinnedDigests = noPin ? { files: {} } : JSON.parse(atPin(kit.exports.diges
 const tokens = noPin ? {} : JSON.parse(pinnedTokensBytes.toString("utf8")).profiles.default.tokens;
 const color = (id) => tokens[id].css.toLowerCase();
 const expectedOverrides = noPin ? {} : Object.fromEntries(Object.entries(roles.orca.terminalColorOverrides).map(([key, id]) => [key, color(id)]));
-const managedKeys = ["terminalColorOverrides", ...Object.keys(roles.orca.settings)];
+/* The keys the kit sets: a preference (the font size) is carried from the
+   machine and never set. */
+const managedKeys = ["terminalColorOverrides", ...Object.keys(roles.orca.settings).filter((key) => !roles.orca.settings[key].preference)];
 /* Every value the kit sets except the font size (a preference): what Orca
    holds after the GUI steps (Import from Ghostty, Color Contrast Off, Match
    Terminal). */
@@ -215,6 +217,23 @@ const ownerSets = async (tree, values) => {
   Object.assign(store.settings, values);
   await writeStore(tree, store);
 };
+/* The test store on a machine that has no terminal font size. */
+const bareStore = () => {
+  const store = JSON.parse(STORE);
+  delete store.settings.terminalFontSize;
+  return store;
+};
+/* The owner does the printed GUI steps: Orca's Import from Ghostty writes
+   the kit's values, and the font size only when the block carries one
+   (ports/orca/capabilities.json), then Color Contrast Off and Match
+   Terminal. */
+const importFromBlock = async (tree) => {
+  const store = await readStore(tree);
+  Object.assign(store.settings, kitSettings());
+  const size = settingLines(managedBlock(await fs.readFile(tree.ghostty, "utf8"))).find((line) => line.startsWith("font-size = "));
+  if (size) store.settings.terminalFontSize = Number(size.slice("font-size = ".length));
+  await writeStore(tree, store);
+};
 const restoreManifest = (tree, name) => readFileJson(path.join(tree.state, "backups", name, "manifest.json"));
 /* Orca open at apply, Orca's Import from Ghostty and Color Contrast Off but
    not Match Terminal, then the kit's records lost (a cleaned LOCALAPPDATA)
@@ -229,6 +248,24 @@ const importWithoutRecords = async (tree) => {
   await writeStore(tree, imported);
   await fs.rm(tree.state, { recursive: true, force: true });
   ok(apply(tree), "apply with Orca closed writes the sidebar mode");
+};
+/* An apply on a machine without a font size, recorded as an earlier kit
+   version recorded it: that version wrote the token size (13 here) to the
+   store and listed it as managed, written and observed. */
+const earlierKitAddedSize = async (tree) => {
+  await writeStore(tree, bareStore());
+  ok(apply(tree), "apply");
+  const size = 13;
+  for (const file of [path.join(tree.state, "backups", backups(tree)[0], "manifest.json"), path.join(tree.state, "current", "manifest.json")]) {
+    const manifest = await readFileJson(file);
+    manifest.managedKeys.push("terminalFontSize");
+    manifest.observed.push({ key: "terminalFontSize", value: { absent: true }, equalsKit: false, kit: size });
+    manifest.settings.push({ key: "terminalFontSize", before: { absent: true }, after: size });
+    manifest.preserved = manifest.preserved.filter((entry) => entry.key !== "terminalFontSize");
+    manifest.preferences.terminalFontSize = size;
+    await fs.writeFile(file, JSON.stringify(manifest, null, 2));
+  }
+  await ownerSets(tree, { terminalFontSize: size });
 };
 /* A shared clone of this repository for -SourceRoot, without a working tree. */
 const cloneRepo = async (tree) => {
@@ -291,15 +328,53 @@ test("apply sets exactly the managed keys and keeps every other value", { skip }
   }
 });
 
-test("the token font size is used only when the machine has none", { skip }, async (t) => {
+test("the kit never sets the font size: without one on the machine the store keeps none and the block has no font-size line", { skip }, async (t) => {
   const tree = await makeTree(t);
-  const store = JSON.parse(STORE);
-  delete store.settings.terminalFontSize;
-  await fs.writeFile(tree.store, JSON.stringify(store, null, 2));
+  await writeStore(tree, bareStore());
+  const plan = apply(tree, ["-WhatIf"]);
+  ok(plan, "-WhatIf");
+  assert.doesNotMatch(plan.stdout, /terminalFontSize\s+set to/);
   ok(apply(tree), "apply succeeds");
-  const size = tokens["font.size.terminal"].value.value;
-  assert.equal((await readStore(tree)).settings.terminalFontSize, size);
-  assert.ok(settingLines(await fs.readFile(tree.ghostty, "utf8")).includes(`font-size = ${size}`));
+  assert.equal("terminalFontSize" in (await readStore(tree)).settings, false, "no size is added");
+  const port = settingLines(atPin("ports/orca/dist/config.ghostty").toString("utf8"));
+  const block = settingLines(managedBlock(await fs.readFile(tree.ghostty, "utf8")));
+  assert.deepEqual(block.filter((line) => line.startsWith("font-size")), [], "no font-size line, so Import from Ghostty leaves the size alone");
+  assert.deepEqual(block, port.filter((line) => !line.startsWith("font-size")), "every other line equals the Orca port");
+  const manifest = await readFileJson(path.join(tree.state, "current", "manifest.json"));
+  assert.equal(manifest.observed.some((entry) => entry.key === "terminalFontSize"), false);
+  assert.equal(manifest.settings.some((entry) => entry.key === "terminalFontSize"), false);
+  assert.deepEqual(manifest.preserved.find((entry) => entry.key === "terminalFontSize"), { key: "terminalFontSize", value: { absent: true } }, "recorded with the preserved keys");
+  const checked = verify(tree);
+  ok(checked, "Test passes");
+  assert.match(checked.stdout, /PASS\s+ghostty block/);
+  assert.match(checked.stdout, /PASS\s+terminalFontSize\s+observed \(absent\)/);
+});
+
+test("Orca open, Import from Ghostty, then Restore leaves the machine without a font size when it had none", { skip }, async (t) => {
+  for (const closedApply of [false, true]) {
+    const tree = await makeTree(t);
+    await writeStore(tree, bareStore());
+    ok(apply(tree, [], ORCA_OPEN), "apply while Orca runs");
+    await importFromBlock(tree);
+    if (closedApply) ok(apply(tree), "apply with Orca closed");
+    const restored = restore(tree);
+    ok(restored, "restore");
+    assert.match(restored.stdout, /Result: restored/);
+    assert.deepEqual(await readStore(tree), bareStore(), `the pre-kit store, without a size (closed apply: ${closedApply})`);
+  }
+});
+
+test("a font size the owner sets between two applies stays after Restore", { skip }, async (t) => {
+  const tree = await makeTree(t);
+  await writeStore(tree, bareStore());
+  ok(apply(tree), "first apply");
+  await ownerSets(tree, { terminalFontSize: 16 });
+  ok(apply(tree), "second apply");
+  assert.ok(settingLines(await fs.readFile(tree.ghostty, "utf8")).includes("font-size = 16"), "the block carries the machine's size");
+  const restored = restore(tree);
+  ok(restored, "restore");
+  assert.doesNotMatch(restored.stdout, /terminalFontSize/, "the size is not part of the restore");
+  assert.deepEqual(await readStore(tree), { ...bareStore(), settings: { ...bareStore().settings, terminalFontSize: 16 } });
 });
 
 test("a second apply changes nothing and makes no backup", { skip }, async (t) => {
@@ -591,7 +666,8 @@ test("manifests name only managed and preserved keys; the lock follows its schem
     for (const entry of manifest.settings) assert.ok(managedKeys.includes(entry.key), `${entry.key} is managed`);
     assert.deepEqual(manifest.observed.map((entry) => entry.key).sort(), [...managedKeys].sort(), "every managed key is observed");
     assert.deepEqual(manifest.observed.find((entry) => entry.key === "terminalColorOverrides").value, { foreground: "tomato" });
-    assert.deepEqual(manifest.preserved.map((entry) => entry.key), roles.orca.preserve);
+    assert.deepEqual(manifest.preserved.map((entry) => entry.key), [...roles.orca.preserve, "terminalFontSize"], "the font size is recorded, never set");
+    assert.deepEqual(manifest.preferences, { terminalFontSize: 14 });
     assert.deepEqual(manifest.settings.find((entry) => entry.key === "terminalMinimumContrastRatio").before, { absent: true });
     assert.deepEqual(manifest.deviations, roles.deviations);
     assert.deepEqual(manifest.disclosures, [{ decisionId: "D-008", token: "color.border.divider" }]);
@@ -787,7 +863,7 @@ test("an interrupted default restore is not recorded as done, and rerunning it f
   assert.match(first.stderr, /not recorded as done: .*run Restore again; it finishes the job/);
 });
 
-test("restore leaves keys the kit never wrote, and a font size the owner changed after the kit set it", { skip }, async (t) => {
+test("restore leaves keys the kit never wrote, and a font size an earlier kit version wrote only while nobody changed it", { skip }, async (t) => {
   const tree = await makeTree(t);
   const store = JSON.parse(STORE);
   store.settings.terminalMinimumContrastRatio = 1;
@@ -800,21 +876,17 @@ test("restore leaves keys the kit never wrote, and a font size the owner changed
   assert.equal(restored.settings.terminalMinimumContrastRatio, 4.5, "a key that already held the kit's value was never written");
   assert.equal(restored.settings.leftSidebarAppearanceMode, "custom", "a key the kit wrote is restored");
 
-  const bare = JSON.parse(STORE);
-  delete bare.settings.terminalFontSize;
   const changed = await makeTree(t);
-  await writeStore(changed, bare);
-  ok(apply(changed), "apply sets the token size on a machine without one");
+  await earlierKitAddedSize(changed);
   await ownerSets(changed, { terminalFontSize: 16 });
   const kept = restore(changed);
   ok(kept, "restore");
   assert.match(kept.stdout, /terminalFontSize\s+kept at 16: changed after the kit set it/);
   assert.equal((await readStore(changed)).settings.terminalFontSize, 16);
   const untouched = await makeTree(t);
-  await writeStore(untouched, bare);
-  ok(apply(untouched), "apply");
+  await earlierKitAddedSize(untouched);
   ok(restore(untouched), "restore");
-  assert.equal("terminalFontSize" in (await readStore(untouched)).settings, false, "a size the kit added and nobody changed is removed again");
+  assert.deepEqual(await readStore(untouched), bareStore(), "a size an earlier kit version added and nobody changed is removed again");
 });
 
 test("an existing empty config.ghostty is a file, and restore gives it back empty", { skip }, async (t) => {
@@ -878,6 +950,43 @@ test("restore warns per key when a value changed after the kit set it", { skip }
   assert.doesNotMatch(plan.stdout, /WARNING: terminalColorOverrides/, "an unchanged key gives no warning");
   ok(restore(tree), "restore");
   assert.deepEqual(await readStore(tree), JSON.parse(STORE), "the earliest value wins");
+});
+
+test("apply with Orca open, then quit Orca and apply again (or import first): restore warns about nothing", { skip }, async (t) => {
+  for (const imported of [false, true]) {
+    const tree = await makeTree(t);
+    ok(apply(tree, [], ORCA_OPEN), "apply while Orca runs");
+    if (imported) await importFromBlock(tree);
+    ok(apply(tree), "apply with Orca closed");
+    const restored = restore(tree);
+    ok(restored, "restore");
+    assert.doesNotMatch(restored.output, /WARNING/, `nobody changed a value (import: ${imported})`);
+    assert.deepEqual(await readStore(tree), JSON.parse(STORE));
+  }
+});
+
+test("an interrupted -Latest or -Backup restore names the exact command that finishes it", { skip }, async (t) => {
+  if (process.platform === "win32" || process.getuid?.() === 0) return t.skip("needs POSIX folder permissions and a non-root user");
+  for (const mode of ["latest", "backup"]) {
+    const tree = await makeTree(t);
+    ok(apply(tree), "apply");
+    await ownerSets(tree, { terminalFontFamily: "Iosevka Term" });
+    ok(apply(tree), "apply again over the owner's font");
+    const args = mode === "latest" ? ["-Latest"] : ["-Backup", backups(tree)[1]];
+    const profile = path.dirname(tree.store);
+    await fs.chmod(profile, 0o555);
+    let first;
+    try {
+      first = restore(tree, args);
+    } finally {
+      await fs.chmod(profile, 0o755);
+    }
+    assert.equal(first.status, 1, first.output);
+    assert.ok(first.stderr.includes(`not recorded as done: quit Orca (tray too) and run Restore ${args.join(" ")} again; it finishes the job`), first.stderr);
+    ok(restore(tree, args), "the named command finishes it");
+    assert.equal((await readStore(tree)).settings.terminalFontFamily, "Iosevka Term", `the state before the second apply (${mode})`);
+    managedBlock(await fs.readFile(tree.ghostty, "utf8"));
+  }
 });
 
 test("the one store copy is taken by the first run even while Orca runs, and never by Restore", { skip }, async (t) => {
