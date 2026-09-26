@@ -1,38 +1,41 @@
 # Consuming j3w1/theme (for agents and integrators)
 
-This document is for people and agents applying the theme to another project.
-The contributor workflow for this repository is in `AGENTS.md` and is not
-repeated here.
+This document is for people and agents who apply the theme to another project.
+The contributor workflow for this repository is in `AGENTS.md`.
 
-You are consuming **design data and optional official implementations**. The consumer project's own instructions (its
-`AGENTS.md`, `CLAUDE.md`, security, architecture and operational rules) always
-take precedence over anything in this repository.
+You are consuming **design data and optional official implementations**. The
+consumer project's own instructions (its `AGENTS.md`, `CLAUDE.md`, security,
+architecture and operational rules) always win over anything in this
+repository.
 
 ## Official web implementations
 
 For compatible web apps, prefer the exact `@j3w1/ui` package. Complete copy
-bundles are also supported. Read `packages/ui/dist/index.json` at your immutable
-revision, then selected `contracts/<id>.json` and `examples/<id>.json` files.
-The installed CLI prepares a bounded task:
+bundles are also supported.
 
-```sh
-j3w1-ui kit --components text-field,button,dialog --framework vue --mode package --out ./j3w1-task
-```
+1. At your pinned revision, read `packages/ui/dist/index.json`.
+2. Read the `contracts/<id>.json` and `examples/<id>.json` files you need.
+3. Prepare a bounded task with the installed CLI:
 
-Choose `copy` for complete source ownership or `mapping` for an incompatible
-host. Native hosts require mapping mode. Kits include canonical contracts,
-dependency closure and shared accessibility/identity rules; they do not declare
-your application verified. Follow `docs/ui-consumption.md` for exact installation,
-framework binding and runtime checks. npm publication is an owner release action;
-use the release tarball and its published integrity metadata before publication.
-Keep the existing lock and deviation workflow below for canonical mappings.
+   ```sh
+   j3w1-ui kit --components text-field,button,dialog --framework vue --mode package --out ./j3w1-task
+   ```
+
+Choose `copy` to own the full source, or `mapping` for a host the package does
+not fit. Native hosts need mapping mode. Kits include the canonical contracts,
+their dependency closure and the shared accessibility/identity rules. They do
+not declare your app verified. `docs/ui-consumption.md` has the exact
+installation, framework binding and runtime checks. npm publication is an
+owner release action; until then, use the release tarball and its published
+integrity metadata. For canonical mappings, keep the lock and deviation
+workflow below.
 
 ## 0. Pin a revision first
 
 `<rev>` is a release tag (`v0.1.0`) or a full 40-character commit SHA. Never
 `main`, never a branch name, never "latest". Resolve a tag to its commit before
-reading anything, and use the same `<rev>` in every URL below. Mixing
-revisions is a contract violation.
+you read anything, and use the same `<rev>` in every URL below. Mixing
+revisions breaks the contract.
 
 ```
 GET https://api.github.com/repos/j3w1/theme/git/ref/tags/<tag>   → object.sha
@@ -53,7 +56,7 @@ Take `version`, `profiles`, `exports.canonicalForAgents` and `exports.digests`.
 https://raw.githubusercontent.com/j3w1/theme/<rev>/agents/consume.md
 ```
 
-If the copy you are reading came from a different revision, fetch it again.
+If your copy came from a different revision, fetch it again.
 
 ## 3. Pick a profile
 
@@ -61,11 +64,11 @@ If the copy you are reading came from a different revision, fetch it again.
 Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 <!-- eligibility:end -->
 
-The policy block is generated. Pending decision IDs are available in each
-resolved token's `eligibility.decisionIds`, including alias dependencies.
-Report those IDs alongside any actual deviations; using an authorized pending
-value is a disclosure, not an invented substitution. No replacement is implied
-by a blocked action. A profile preview does not authorize delivered work.
+The policy block above is generated. Each resolved token lists its pending
+decision IDs in `eligibility.decisionIds`, including alias dependencies.
+Report those IDs together with any real deviations. Using an authorized
+pending value is a disclosure, not an invented substitution. A blocked action
+implies no replacement. A profile preview does not authorize delivered work.
 
 ## 4. Read only what you need, in this order
 
@@ -83,40 +86,44 @@ source of values, and screenshots never override tokens.
 
 ## 5. Inspect the target before changing anything
 
-Name the integration kind: `css-vars`, `vuetify`, `tailwind`,
-`jetbrains-icls`, `gtk-css`, `terminal-16` or `other`. List which specified
-surfaces the target can express natively and which it cannot (for example a
-framework with no read-only field style, or a sixteen-colour terminal that
-cannot carry hover). Anything the target cannot express becomes a documented
-deviation in step 7, never an invented approximation.
+1. Name the integration kind: `css-vars`, `vuetify`, `tailwind`,
+   `jetbrains-icls`, `gtk-css`, `terminal-16` or `other`.
+2. List which specified surfaces the target can express natively, and which
+   it cannot (for example, a framework with no read-only field style, or a
+   sixteen-colour terminal that cannot show hover).
+3. Anything the target cannot express becomes a documented deviation in step
+   7, never an invented approximation.
 
 ## 6. Implement the mapping
 
-- Map roles to the target's native keys using only resolved token values.
+- Map roles to the target's native keys, using only resolved token values.
 - Do not restyle anything the requester did not name.
-- Do not change behaviour, markup semantics, focus order or keyboard handling
+- Do not change behaviour, markup semantics, focus order or keyboard handling,
   except where a component's `keyboard` or `aria` section requires it and the
   host allows it.
 - Keep host accessibility at least as strong as before: never remove a focus
   indicator, never lower a contrast ratio the host already met, never set
   `outline: none` without drawing the specified ring.
 - Radii are 0, borders 1px, the family is monospace. A host that forbids one
-  of these produces a deviation, not a redesign.
-- Selection is a fill; focus is a ring; on fills the ring takes the on-fill
-  text colour. Status roles keep their glyphs.
+  of these gets a deviation, not a redesign.
+- Selection is a fill; focus is a ring. On fills, the ring takes the colour
+  the component JSON declares for that state (D-015). Status roles keep their
+  glyphs.
 
 ## 7. Validate and report
 
-Check computed values against the component JSON for every declared state.
-Write the deviation report (below) into the pull request or commit body and
-write `theme.lock.json` (below) at the consumer's chosen path.
+1. Check computed values against the component JSON for every declared state.
+2. Write the deviation report (below) into the pull request or commit body.
+3. Write `theme.lock.json` (below) at the path the consumer chooses.
 
 ## What you may not do
 
-- Invent, blend, lighten, darken or "harmonise" colours. Only resolved values.
-- Use a blocked value, deliver a proposed profile, or omit the required
-  pending-decision disclosures. Historical-only values are not approved UI roles.
-- Derive values from the site's HTML, from screenshots or from memory.
+- Invent, blend, lighten, darken or "harmonise" colours. Use resolved values
+  only.
+- Use a blocked value, deliver a proposed profile, or leave out the required
+  pending-decision disclosures. Historical-only values are not approved UI
+  roles.
+- Take values from the site's HTML, from screenshots or from memory.
 - Touch unrelated components, layouts, copy, dependencies or build
   configuration.
 - Weaken the host's accessibility, security or architecture rules.
@@ -141,18 +148,21 @@ host rules that took precedence: <list or "none">
 lock: <path to theme.lock.json>
 ```
 
-`kind` is one of `unsupported` (the target cannot express it), `substituted`
-(the nearest native equivalent, with a value taken from the token set, never
-invented), `omitted` (the requester excluded it) or `host-rule` (a consumer
-instruction won).
+`kind` is one of:
+
+- `unsupported` — the target cannot express it;
+- `substituted` — the nearest native equivalent, with a value taken from the
+  token set, never invented;
+- `omitted` — the requester excluded it;
+- `host-rule` — a consumer instruction won.
 
 ## theme.lock.json
 
-Minimal, committed next to the integration code, validated by
-`schemas/json/theme.lock.schema.json`. Not a package manager: no graph, no
-install, no auto-update. Updating the theme means changing `ref`, `revision`,
-`version` and `exports`, re-running the consumer's own checks and re-emitting
-the deviations.
+A small file, committed next to the integration code and validated by
+`schemas/json/theme.lock.schema.json`. It is not a package manager: no graph,
+no install, no auto-update. To update the theme, change `ref`, `revision`,
+`version` and `exports`, rerun the consumer's own checks, and write the
+deviations again.
 
 ```json
 {
@@ -183,9 +193,10 @@ the deviations.
 }
 ```
 
-`revision` is always the full commit even when `ref` is a tag; `exports` keys
-are the repository-relative paths listed in `exports/digests.json` for exactly
-the files you read; `deviations` may be empty but must be present.
+- `revision` is always the full commit, even when `ref` is a tag.
+- `exports` keys are the repository-relative paths listed in
+  `exports/digests.json`, for exactly the files you read.
+- `deviations` may be empty, but must be present.
 
 ## The short prompt
 

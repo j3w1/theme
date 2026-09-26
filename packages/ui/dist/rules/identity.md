@@ -19,54 +19,51 @@ Five rules keep an implementation recognisable:
 
 ## Where it came from
 
-The palette began as a Manjaro i3 workstation preserved in `j3w1/1w3j`: a pywal
-ramp pulled from a red wallpaper, then frozen and hand-tuned slot by slot in
-`config/Xresources` while watching what `ls`, vim and the agnoster prompt
-actually rendered. The i3 configuration supplied the rest of the idiom: 1px
-pixel borders, 14/−2 gaps, tabbed layouts, a hidden top bar with Chinese
-status labels, dunst toasts framed in `#ae1914`, dmenu selections in
-`#630f0d`.
+The palette began on a Manjaro i3 workstation, preserved in `j3w1/1w3j`. A
+pywal ramp was pulled from a red wallpaper, then frozen and tuned slot by slot
+in `config/Xresources` while watching what `ls`, vim and the agnoster prompt
+really showed. The i3 configuration gave the rest of the look: 1px pixel
+borders, 14/−2 gaps, tabbed layouts, a hidden top bar with Chinese status
+labels, dunst toasts framed in `#ae1914`, and dmenu selections in `#630f0d`.
 
-The contemporary reference is `j3w1/j3w1.github.io`, a working web
-reinterpretation of that workstation. Its stylesheet named the roles this
-specification adopts (`--terminal`, `--surface-raised`, `--selection`,
-`--focus`, `--prose`, `--muted` …) and wrote the first contrast contract. Both
-sources are pinned by revision in `references/sources.json`; after adoption
-this repository is the authority and later changes in either source are
-proposals, not automatic updates.
+The modern reference is `j3w1/j3w1.github.io`, a web version of that
+workstation. Its stylesheet named the roles this specification uses
+(`--terminal`, `--surface-raised`, `--selection`, `--focus`, `--prose`,
+`--muted` …) and wrote the first contrast contract. Both sources are pinned by
+revision in `references/sources.json`. This repository is now the authority:
+later changes in either source are proposals, not automatic updates.
 
 ## What "modern" means here
 
-Clear organisation, responsive behaviour, strong keyboard and screen-reader
-support, precisely specified states, and controls that are pleasant to
-operate. It does not mean pill buttons, glass panels, gradients, neon glows, a
-Material-style redesign, or red on every surface. Sixteen concrete
-misreadings are rendered as labelled non-examples on the site.
+Modern means clear structure, responsive layout, strong keyboard and
+screen-reader support, exact states, and controls that are pleasant to use. It
+does not mean pill buttons, glass panels, gradients, neon glows, a
+Material-style redesign, or red on every surface. The site shows sixteen such
+misreadings as labelled non-examples.
 
-The specification page’s generated literal-color previews have the narrow
-geometry, checkerboard and motion exception recorded in D-014; the component
-and consumer rules remain as written.
+One narrow exception: the colour previews that the spec page draws next to
+each hex value may be round, sit on a checkerboard and animate (D-014).
+Component and consumer rules do not change.
 
 ## Profiles
 
-- `default` — the approved everyday composition. Monochrome red/rose for
-  chrome, text, borders, interaction and actions; three bounded hues (amber,
-  green, blue) for status, diagnostics and diffs (D-001); monochrome syntax,
-  with the three hues available to opt-in syntax themes as `code.hued.*`
-  (D-030).
-- `heritage-ansi` — the sixteen Xresources slots and the historical
-  assignments, exact, including the ones that fail the contrast floor. For
-  terminals, archives and fidelity; never for new interface text.
+- `default` — the approved everyday composition. Monochrome red/rose for chrome,
+  text, borders, interaction and actions. Three bounded hues (amber, green,
+  blue) for status, diagnostics and diffs (D-001). Syntax is monochrome; the
+  three hues are available to opt-in syntax themes as `code.hued.*` (D-030).
+- `heritage-ansi` — the sixteen Xresources slots and their historical
+  assignments, exact, including the ones that fail the contrast floor. Use it
+  for terminals, archives and fidelity, never for new interface text.
 - `extended` — a proposed overlay that colours syntax, a full sixteen-slot
-  semantic terminal palette and chart series with the same three hues. Not
-  approved; the site labels it.
+  semantic terminal palette and chart series with the same three hues. It is
+  not approved, and the site labels it.
 
 ## Naming
 
-Roles are `color.<group>.<role>` with a closed group list: `surface`, `text`,
+Roles are `color.<group>.<role>`. The group list is closed: `surface`, `text`,
 `border`, `interaction`, `action`, `status`, `code`, `diagnostic`, `diff`,
-`terminal`, `chart`, `icon`. Primitives are `color.primitive.<family>.<step>`
-where the step rises with luminance. A CSS custom property is the path with
-dots replaced by dashes: `color.interaction.focus.ring` →
+`terminal`, `chart`, `icon`. Primitives are `color.primitive.<family>.<step>`;
+the step rises with luminance. A CSS custom property is the path with dots
+replaced by dashes: `color.interaction.focus.ring` →
 `--color-interaction-focus-ring`. Roles alias primitives; primitives carry
 provenance.

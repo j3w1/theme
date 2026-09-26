@@ -25,11 +25,14 @@ Images never override tokens.
 
 Literal values live in `tokens/`. Meaning and permitted uses live in `spec/`.
 Native keys live in port mappings. Test facts live in evidence records.
-`exports/`, `schemas/json/`, `site/src/styles/tokens.generated.css`, the
-port files under `ports/*/dist/`, `ports/orca/install/specimen.json` and the
-marker blocks in `README.md` and the port guides are generated: edit their
-sources and run `npm run generate`; never edit them by hand. A contradiction
-between spec and tokens is a defect to resolve, not a choice to make.
+
+These files are generated: `exports/`, `schemas/json/`,
+`site/src/styles/tokens.generated.css`, the port files under `ports/*/dist/`,
+`ports/orca/install/specimen.json`, `packages/ui/README.md` (a copy of
+`docs/ui-consumption.md`), and the marker blocks in `README.md` and the port
+guides. Edit their sources and run `npm run generate`; never edit them by
+hand. A contradiction between spec and tokens is a defect to resolve, not a
+choice to make.
 
 ## The check loop
 
@@ -114,25 +117,34 @@ Commits are conventional (`feat:`, `fix:`, `docs:`, `spec:`, `tokens:`,
 
 ## Specification UI maintenance
 
-Every human-visible CSS hex literal rendered by the j3w1 UI Theme Spec must
-receive its generated inline color swatch (D-014). New sections and components
-inherit the whole-page build transform; never hand-maintain inline swatches.
-Explicit runtime renderers, such as the token inspector, use the same literal
-parser/presentation helpers. Never scan the runtime DOM for colors. Preserve
-source/copy text and machine exports. Run the hex source, dist and browser gates.
+Every CSS hex literal a person can see on the j3w1 UI Theme Spec must get its
+generated inline color swatch (D-014).
 
+- New sections and components get swatches from the whole-page build
+  transform. Never add or maintain swatches by hand.
+- Explicit runtime renderers, such as the token inspector, use the same
+  literal parser and presentation helpers. Never scan the runtime DOM for
+  colors.
+- Keep source text, copied text and machine exports unchanged.
+- Run the three hex gates: source (`tests/hex-literals.test.js`), dist
+  (`tests/dist/hex-swatches.test.js`) and browser
+  (`tests/browser/hex-swatches.spec.js`).
 
 ## Execution evidence
 
-`tested` remains the compatibility alias for `testImplemented`, never a pass.
-Every browser test needs an explicit `verification` annotation describing its
-component, category, states, variants and limits. Use the shared evidence fixture
-for actual environment metadata. Matrix presence is rendering coverage only.
-After the browser suite, run `npm run verification:report`,
-`npm run verification:check` and `npm run test:verification`. Preserve the exact
-specimen bytes. Run records belong in ignored `test-results/` and published
-`dist/verification/`, never deterministic committed exports. Do not claim a
-manual keyboard or screen-reader pass without a recorded protocol and environment.
+- `tested` stays the compatibility alias for `testImplemented`. It is never a
+  pass.
+- Every browser test needs an explicit `verification` annotation that names its
+  component, category, states, variants and limits.
+- Use the shared evidence fixture for the real environment metadata.
+- A test in the matrix proves rendering coverage only.
+- After the browser suite, run `npm run verification:report`, then
+  `npm run verification:check`, then `npm run test:verification`.
+- Keep the exact specimen bytes.
+- Run records go in the ignored `test-results/` and the published
+  `dist/verification/`, never in the deterministic committed exports.
+- Do not claim a manual keyboard or screen-reader pass without a recorded
+  protocol and environment.
 
 ## CE Metadata integration
 

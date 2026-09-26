@@ -267,6 +267,22 @@ export const readmeGenerator = {
   },
 };
 
+/* packages/ui/README.md is the npm package's front page and
+   docs/ui-consumption.md is the guide the site renders at /implement/. The
+   guide is the one source; the package README is its generated copy. */
+export const PACKAGE_README = "packages/ui/README.md";
+export const packageReadmeOf = (guide) => `<!-- Generated from docs/ui-consumption.md by npm run generate; edit that file. -->\n\n${guide}`;
+
+export const packageReadmeGenerator = {
+  name: "package README",
+  async run({ check }) {
+    const changed = [];
+    const files = [];
+    await write(PACKAGE_README, packageReadmeOf(await readText("docs/ui-consumption.md")), { check, changed, files });
+    return { files, changed };
+  },
+};
+
 export const digestsGenerator = {
   name: "digests",
   async run({ manifest, check }) {
@@ -287,4 +303,4 @@ export const figmaGenerator = {
   },
 };
 
-export const GENERATORS = [schemasGenerator, tokensGenerator, contrastGenerator, componentsGenerator, patternGenerator, figmaGenerator, usageGenerator, portArtifactsGenerator, installerSpecimenGenerator, portCatalogueGenerator, recipeGenerator, docsGenerator, coverageGenerator, readmeGenerator, { name: "official UI distribution", run: buildUI }, taskInputsGenerator, digestsGenerator];
+export const GENERATORS = [schemasGenerator, tokensGenerator, contrastGenerator, componentsGenerator, patternGenerator, figmaGenerator, usageGenerator, portArtifactsGenerator, installerSpecimenGenerator, portCatalogueGenerator, recipeGenerator, docsGenerator, coverageGenerator, readmeGenerator, packageReadmeGenerator, { name: "official UI distribution", run: buildUI }, taskInputsGenerator, digestsGenerator];

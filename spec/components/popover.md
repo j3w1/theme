@@ -128,7 +128,7 @@ Keep essential instructions outside collapsed panels. Use a visible label or ari
 
 ## Portability
 
-Wrap labels and actions without changing source order. Use logical spacing in RTL. Preserve native target sizes at both densities; only bounded data regions may scroll horizontally. Use equivalent native semantics and approved roles; record any unsupported behavior as a mapping deviation. The host owns application data, persistence, permissions and services.
+Follows the shared component defaults in `spec/portability.md` (section "Shared component defaults").
 
 ## Non-examples
 
