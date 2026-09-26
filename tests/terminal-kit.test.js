@@ -403,8 +403,9 @@ test("apply, test, apply again, restore: a byte-exact round trip", async (t) => 
   assert.match(again.stdout, /no changes/);
   assert.equal((await backups(h)).length, 1, "no new backup when nothing changed");
 
-  const pinned = await cli(h.home, ["update", "--version", "v1.2.0"]);
+  const pinned = await cli(h.home, ["update", "--version", (await readKitJson("kit.json")).theme.ref]);
   assert.equal(pinned.code, 0, pinned.stderr);
+  assert.match(pinned.stdout, /kit files from this checkout \(the tag is its own pin\)/, "the kit's own pin keeps the checkout's maps");
   assert.match(pinned.stdout, /72 of 72 overrides unchanged/);
   assert.match(pinned.stdout, /no changes/);
 
@@ -987,7 +988,10 @@ test("pins are per integration: update moves only what it names, apply keeps eac
 
   const again = await cli(h.home, ["apply"], {}, at);
   assert.equal(again.code, 0, again.stderr);
-  assert.match(again.stdout, /claude-code: using the installed pin v1\.2\.1 .*update --version v1\.2\.0 --claude to go back to it/);
+  const kitRef = (await readKitJson("kit.json")).theme.ref;
+  const direction = kitRef.localeCompare("v1.2.1", undefined, { numeric: true }) > 0 ? "move to it" : "go back to it";
+  assert.ok(again.stdout.includes(`claude-code: using the installed pin v1.2.1 `), again.stdout);
+  assert.ok(again.stdout.includes(`update --version ${kitRef} --claude to ${direction}`), again.stdout);
   assert.doesNotMatch(again.stdout, /codex: using the installed pin/);
   assert.equal((await pinOf(h, "claude-code")).ref, "v1.2.1", "apply did not move the pin back");
   assert.equal(await codexVersion(h), `${PIN.ref.slice(1)} ${PIN.ref}`);
@@ -1000,7 +1004,7 @@ test("pins are per integration: update moves only what it names, apply keeps eac
 
   const elsewhere = await cli(h.home, ["apply"]);
   assert.equal(elsewhere.code, 1, "a source without the installed pin is refused, not replaced by kit.json's pin");
-  assert.match(elsewhere.stderr, /claude-code, codex: the installed pin v1\.2\.1 .*cannot be loaded.*does not fall back to kit\.json's v1\.2\.0.*update --version/);
+  assert.match(elsewhere.stderr, /claude-code, codex: the installed pin v1\.2\.1 .*cannot be loaded.*does not fall back to kit\.json's v\d+\.\d+\.\d+.*update --version/);
 });
 
 test("with two pins, apply plans every group before writing any, and makes one backup per pin", async (t) => {

@@ -5,14 +5,14 @@
   "theme": {
     "name": "j3w1-theme",
     "repository": "j3w1/theme",
-    "version": "1.2.0",
-    "ref": "v1.2.0",
-    "revision": "0838171cb6907f21f91f45ac9f7a992d7164a4eb",
+    "version": "2.0.0",
+    "ref": "v2.0.0",
+    "revision": "28205bebce9e9c4edab273393ce76347c8b97b3c",
     "profile": "default"
   },
   "exports": {
     "tokens": "exports/tokens.resolved.json",
-    "tokensDigest": "sha256-ewtsMMkPT+PGzEwK1TgPlUDKYkjMVbO0bpmxM3qvoTY=",
+    "tokensDigest": "sha256-aXiOhIHId7x3GZnKQKM70P5+UxiqBr7kaIoBQln64mE=",
     "digests": "exports/digests.json"
   },
   "urls": {

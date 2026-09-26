@@ -45,22 +45,22 @@
     {
       "name": "String",
       "scope": "string, string.quoted, markup.raw.inline, markup.inline.raw",
-      "foreground": "color.code.syntax.string"
+      "foreground": "color.code.hued.string"
     },
     {
       "name": "Number",
       "scope": "constant.numeric",
-      "foreground": "color.code.syntax.number"
+      "foreground": "color.code.hued.number"
     },
     {
       "name": "Constant",
       "scope": "constant.language, constant.other, support.constant, variable.other.constant",
-      "foreground": "color.code.syntax.constant"
+      "foreground": "color.code.hued.constant"
     },
     {
       "name": "Escape",
       "scope": "constant.character.escape, constant.character, string.regexp",
-      "foreground": "color.code.syntax.escape",
+      "foreground": "color.code.hued.escape",
       "fontStyle": "bold"
     },
     {
@@ -71,12 +71,12 @@
     {
       "name": "Operator",
       "scope": "keyword.operator",
-      "foreground": "color.code.syntax.operator"
+      "foreground": "color.code.hued.operator"
     },
     {
       "name": "Function",
       "scope": "entity.name.function, support.function, meta.function-call entity.name.function, variable.function",
-      "foreground": "color.code.syntax.function"
+      "foreground": "color.code.hued.function"
     },
     {
       "name": "Variable",
@@ -86,12 +86,12 @@
     {
       "name": "Type",
       "scope": "entity.name.type, entity.name.class, entity.other.inherited-class, support.type, support.class",
-      "foreground": "color.code.syntax.type"
+      "foreground": "color.code.hued.type"
     },
     {
       "name": "Property",
       "scope": "variable.other.property, variable.other.member, support.variable.property, meta.object-literal.key, entity.name.tag.yaml",
-      "foreground": "color.code.syntax.property"
+      "foreground": "color.code.hued.property"
     },
     {
       "name": "Tag",
@@ -101,7 +101,7 @@
     {
       "name": "Attribute",
       "scope": "entity.other.attribute-name",
-      "foreground": "color.code.syntax.attribute"
+      "foreground": "color.code.hued.attribute"
     },
     {
       "name": "Heading",
@@ -210,7 +210,8 @@
       "kind": "substituted",
       "specValue": "row text color.text.default with an emphasis underline",
       "applied": "syntax colours on the line tint",
-      "reason": "Codex keeps syntax colours inside diff lines and draws no underlines; the tmTheme sets only the line backgrounds. On those tints code.syntax.property, code.syntax.heading, code.syntax.invalid and the codex.accent (text.accent) measure 4.23:1 on diff.added.bg and 4.24:1 on diff.removed.bg, below 4.5:1; the other syntax roles measure 4.59:1 or more. text.accent is also used here outside its documented canvas-and-surface scope."
+      "reason": "Codex keeps syntax colours inside diff lines and draws no underlines; the tmTheme sets only the line backgrounds. On those tints code.syntax.heading, code.syntax.invalid and the codex.accent (text.accent) measure 4.23:1 on diff.added.bg and 4.24:1 on diff.removed.bg, below 4.5:1; every other syntax role measures 4.59:1 or more. text.accent is also used here outside its documented canvas-and-surface scope."
     }
-  ]
+  ],
+  "note": "Codex opts in to the hued syntax roles (D-030): green strings; amber numbers, constants, functions, attributes and escapes; blue types and properties; bright-rose operators. Keywords, tags, comments, variables and punctuation keep code.syntax."
 }

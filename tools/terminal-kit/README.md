@@ -8,12 +8,12 @@ takes it out again.
 | --- | --- | --- | --- |
 | Orca terminal | the Orca desktop client (Windows) | Orca terminal settings; a managed block in `%APPDATA%\ghostty\config.ghostty` | `roles/terminal.json`: `color.terminal.*`, `color.border.divider`, `font.family.mono` |
 | Claude Code | the devbox | `themes/j3w1.json` (base `dark-ansi`); `"theme": "custom:j3w1"` | `roles/claude-code.json`: text, surface, border, interaction, status, diff and chart roles |
-| Codex | the devbox | `themes/j3w1.tmTheme`; `[tui] theme = "j3w1"` | `roles/codex.json`: the code-editor syntax roles, diff and text roles |
+| Codex | the devbox | `themes/j3w1.tmTheme`; `[tui] theme = "j3w1"` | `roles/codex.json`: the hued and code-editor syntax roles, diff and text roles |
 
 The kit is a consumer of this repository and follows `agents/consume.md`:
 
 - It reads `exports/tokens.resolved.json` at the revision pinned in
-  `kit.json` (`v1.2.0`, commit `0838171…`), after checking that the tag still
+  `kit.json` (`v2.0.0`, commit `28205be…`), after checking that the tag still
   resolves to that commit and that the file matches the digest pinned in
   `kit.json` (`exports.tokensDigest`) as well as `exports/digests.json`.
 - It maps roles, never primitives, and only roles whose eligibility is `use` or
@@ -24,27 +24,27 @@ The kit is a consumer of this repository and follows `agents/consume.md`:
 - It has no colour values of its own; `tests/terminal-kit.test.js` fails on
   any hex literal under this directory.
 
-## Why the terminal keeps the heritage slots
+## The palette it installs
 
-The terminal specification carries the sixteen `Xresources` slots exactly and
-forbids changing them to suit a program (`spec/components/terminal.md`,
-`spec/foundations.md` § Code and terminal). The kit therefore installs the
-same palette as `ports/orca/dist/config.ghostty`, except the font size, which
-stays the size you already use. Orca's Color Contrast is turned off so xterm
-cannot recolour the slots.
+The terminal gets the default profile's sixteen slots: the readable heritage
+sixteen of D-029, the historical hues with the dim slots lifted so text in
+every slot but the dim tier (slot 8) reads. It is the same palette as
+`ports/orca/dist/config.ghostty`, except the font size, which stays the size
+you already use. Orca's Color Contrast is turned off so xterm cannot recolour
+the slots. Programs still choose which slot means what (`spec/components/terminal.md`).
 
-Differentiation for Claude Code and Codex comes from their own theme layers,
-built only from approved roles:
+Claude Code and Codex get their own theme layers, built only from approved
+roles:
 
-- green, amber and blue appear only in status and diff roles (D-001);
-- your messages sit on `surface.raised` instead of the slot-8 red block;
+- green, amber and blue appear in status and diff roles (D-001) and, for
+  Codex, in the opt-in hued syntax roles (D-030): green strings; amber numbers,
+  constants, functions, attributes and escapes; blue types and properties;
+- your messages sit on the selected-row red (`interaction.selection.bg`),
+  stepping up to the strong hover fill when hovered;
 - the Claude accent is `text.accent` red, dialog and input borders use the
   overlay and active border roles, and the selected picker item takes the
   selected-item text (`interaction.selection.text`);
 - `/usage` uses the single-series chart roles.
-
-Programs that name ANSI slots directly still draw in the heritage slots,
-because the spec leaves slot meaning to the program.
 
 ## Devbox: Claude Code and Codex
 

@@ -173,7 +173,9 @@ export const loadContext = async ({ pin, kitSource = "local", sourceRoot = DEFAU
   const theme = { ...parsed.kit.theme, ...pinTheme };
   const reader = await openRevision({ kit: parsed.kit, ref: theme.ref, revision: theme.revision, sourceRoot, offline });
   let kitFrom = "local";
-  if (kitSource === "revision") {
+  /* The checkout's own pin keeps the checkout's maps: they are the reviewed
+     maps for that release, and a tag cannot carry maps written after it. */
+  if (kitSource === "revision" && theme.revision !== local.theme.revision) {
     const files = await kitFilesAt(reader);
     if (files) {
       parsed = parseKitFiles(files);
