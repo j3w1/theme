@@ -936,9 +936,9 @@
             "io.github.j3w1.theme": {
               "status": "approved",
               "origin": {
-                "kind": "derived",
+                "kind": "proposed",
                 "ref": "spec/decisions.md#d-032",
-                "note": "Chosen by the owner for slot 6; hue 8, full saturation, lightness 70."
+                "note": "A new colour chosen by the owner for slot 6 (D-032): hue 8, full saturation, lightness 70."
               },
               "approval": {
                 "decision": "D-032"

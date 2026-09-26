@@ -865,7 +865,8 @@ the values.
   the same hue as the rose text `#e99499`. Type names such as `[scriptblock]`
   take slot 6 dimmed, at 2.07:1.
 - The Agnoster prompt draws its directory segment on slot 4. D-029 made slot 4
-  bright red `#e53131`, so the prompt's light text fell to 2.28:1 in Orca. In
+  bright red `#e53131`, so the prompt's text (slot 7, `#ffa2a7`) fell to 2.28:1
+  in Orca. In
   the owner's PowerShell, where the old palette still applies, the prompt is
   bright rose `#ffa2a7` on the heritage `#8c1212` (4.97:1), the look to keep.
 
@@ -874,13 +875,14 @@ the values.
 - Slot 6 is coral `#ff7a66` (`color.primitive.coral.700`, 7.77:1 on the
   terminal background). It is warm and vivid, so highlighted names stand apart
   from the rose text without taking amber's role in the code hues.
-- Dim text is not fixed in the slots. Emulators draw dim by halving a colour,
-  so dimmed coral is about 2.7:1; a host setting that changes dim text alone
+- Dim text is not fixed in the slots. Emulators draw dim by mixing a colour
+  halfway into the background, so dimmed coral is about 2.7:1; a host setting that changes dim text alone
   may help, and brightening slot 6 further to make up for dimming is ruled out.
 - A new role, `color.terminal.prompt-bg`, is the prompt's path-segment
   background: the heritage `#8c1212` (`color.primitive.ansi.4`) in every
   profile. `color.terminal.prompt-text` is bright rose `#ffa2a7` in the default
-  profile (4.97:1) and stays `#f4eeee` in `heritage-ansi` (8.28:1). A prompt
+  profile (4.97:1), and in the proposed `extended` overlay, and stays `#f4eeee`
+  in `heritage-ansi` (8.28:1). A prompt
   sets both as 24-bit colours, so it keeps its look whatever the slots carry.
 - The terminal palette itself is the same in every host that sets it: Orca,
   Ghostty, Warp and CE Devbox's shell palette. The prompt is the one deliberate

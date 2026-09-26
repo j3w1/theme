@@ -15,7 +15,8 @@
   `#8c1212` in every profile; its text, `color.terminal.prompt-text`, is bright
   rose `#ffa2a7` in the default profile. `heritage-ansi` values are unchanged.
   Downstream: set your prompt's directory segment to these two colours (24-bit),
-  not to slot 4.
+  not to slot 4. Major under the versioning rule: this changes approved values
+  (slot 6, prompt text) and removes `color.primitive.ansi-readable.6`.
 
 ## [2.0.0] - 2026-09-26
 

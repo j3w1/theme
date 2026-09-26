@@ -19,11 +19,11 @@
       "site/src/styles/recipe-foundation.css": "sha256-siLjKAkNj84Wa0+Xz5Vf2yj9DT9k0K/Swy/cwHNrvYo=",
       "site/src/styles/components/text-field.css": "sha256-/kKVqES+lIgSlMzei+bu09SI6o6KeVaz7c1qSlKH0A4=",
       "LICENSE.md": "sha256-Ih5+DpqcNXGWJX6BbYgpt6psmJi9lGcXGJzuiU7elE0=",
-      "tokens/primitives.tokens.json": "sha256-PPB7t2SuoExUeL8T+fNlwuHLirvVMWWi7EA7xKDJ2RA=",
+      "tokens/primitives.tokens.json": "sha256-b1osAFVmgaL/BLjX4YejhWVDzTVHrhKDL1vpf4OnyBo=",
       "tokens/semantic.tokens.json": "sha256-n3cm7xZJZgXC/U0hMUUvu1R5XbewIklroL7M82/VTBM=",
       "tokens/foundations.tokens.json": "sha256-/gYmJavPwEyem7mpNRhaBa8jjyuPKnSisugGky3PdCY="
     },
-    "digest": "sha256-GP3FhqCvujoX57BdJfQIMqwAZTr2J+ZB3OJiNkLu6J4=",
+    "digest": "sha256-mmF6VViGrAuOhk9s/3KBeaRiVox/RIskpmufWP1iERU=",
     "revisionPolicy": "Resolve these paths at the same pinned commit as this manifest. The hosted source viewer identifies its supplying commit; generated source files contain content digests, never a floating revision claim."
   },
   "dependencies": {
@@ -359,6 +359,6 @@
     "example.html": "sha256-qST2hc8F66vnWXKGr/mofYcEZ5kqh9fnteqmYXXvnVE=",
     "two-instances.html": "sha256-9sVttn40s+wayWlxszH/2p07CuniNx8OglZMVpEMnrE=",
     "LICENSE.md": "sha256-cZTaj5yCUQNVT1g7J3DR+0kfef6v2X03X7kHwJ6un+E=",
-    "README.md": "sha256-D+HqIDhg1Y9MLs2/pSESiTegCmz4krPMi9/8wXOa83o="
+    "README.md": "sha256-CCwoZVNdE1Qt+iTSUCyxObBBP/038GlVqLZ8xElVjvQ="
   }
 }

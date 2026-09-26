@@ -713,11 +713,6 @@
       "surface": "outside-terminal",
       "reason": "Primitive; ports consume roles, never primitives."
     },
-    "color.primitive.coral.700": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Primitive; ports consume roles, never primitives."
-    },
     "color.primitive.ansi-readable.8": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
@@ -819,6 +814,11 @@
       "reason": "Primitive; ports consume roles, never primitives."
     },
     "color.primitive.blue.tint": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.coral.700": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
       "reason": "Primitive; ports consume roles, never primitives."

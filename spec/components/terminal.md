@@ -6,7 +6,7 @@ maturity: stable
 priority: R1
 since: 0.1.0
 order: 40
-summary: Terminal text on the terminal surface with the readable heritage sixteen ANSI slots (D-029), the cursor, the selection and the six text attributes; a transcript, the slot grid and the attributes.
+summary: Terminal text with the readable heritage sixteen ANSI slots (D-029, D-032), the cursor, the selection and the six text attributes; a transcript, the slot grid and the attributes.
 native: true
 aria:
   pattern: "native <pre role=log> for a transcript; a plain <pre> with aria-label for the slot grid and the attribute sheet"
@@ -140,7 +140,7 @@ cursor, the selection, the six attributes and the sixteen slots the
 workstation froze in `Xresources`. The slots are the origin of the theme:
 the `heritage-ansi` profile carries them exactly, and the `default` profile
 carries the readable heritage sixteen (D-029), the same hues with the dim
-slots lifted so text in any slot reads. What a program does with a slot is
+slots lifted so text in any slot reads, except slot 6, which is coral (D-032). What a program does with a slot is
 that program's choice; the theme makes every slot but the dim tier safe for
 text rather than steering programs to particular slots.
 
@@ -203,8 +203,8 @@ are outside the theme: bold-as-bright, which substitutes slots 8–15 for 0–7
 and must be off for the slots to hold, and 256-colour or 24-bit sequences,
 which carry their own values. Attributes are attributes: dim uses
 {color.text.muted} (5.81:1) rather than a slot in the reference, but most
-emulators draw dim by halving a slot's colour, so dimmed slot 6 falls to about
-2.7:1. The theme does not brighten slots to make up for it; a host setting
+emulators draw dim by mixing a slot's colour halfway into the background, so
+dimmed slot 6 falls to about 2.7:1. The theme does not brighten slots to make up for it; a host setting
 that changes dim text alone may (D-032). Inverse swaps foreground and
 background (8.65:1), and bold, italic, underline and strikethrough are text
 styles a screen reader can expose.
