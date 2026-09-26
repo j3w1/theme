@@ -30,6 +30,7 @@ Declared status and import evidence are described under
 <!-- downloads:start -->
 | Application | File (theme 2.0.0) | Also on the site | Install | Status |
 | --- | --- | --- | --- | --- |
+| ChatGPT desktop app (Appearance) | [presets.json](https://raw.githubusercontent.com/j3w1/theme/v2.0.0/ports/chatgpt/dist/presets.json) | [download](https://j3w1.github.io/theme/ports/chatgpt/presets.json) | Open ChatGPT > Settings > Appearance > Dark theme > Import and paste a preset's import string, or set the values in the preset's table by hand (see ports/chatgpt/README.md). | experimental; import evidence not verified |
 | Claude Code (custom theme) | [j3w1.json](https://raw.githubusercontent.com/j3w1/theme/v2.0.0/ports/claude-code/dist/j3w1.json) | [download](https://j3w1.github.io/theme/ports/claude-code/j3w1.json) | Save as ~/.claude/themes/j3w1.json and set "theme": "custom:j3w1" in ~/.claude/settings.json; or run node ports/claude-code/install.mjs apply in a clone of this repository (see its README). | experimental; import evidence not verified |
 | Codex CLI (tmTheme) | [j3w1.tmTheme](https://raw.githubusercontent.com/j3w1/theme/v2.0.0/ports/codex/dist/j3w1.tmTheme) | [download](https://j3w1.github.io/theme/ports/codex/j3w1.tmTheme) | Save as ~/.codex/themes/j3w1.tmTheme and set theme = "j3w1" under [tui] in ~/.codex/config.toml; or run node ports/codex/install.mjs apply in a clone of this repository (see its README). | experimental; import evidence not verified |
 | Ghostty theme | [j3w1](https://raw.githubusercontent.com/j3w1/theme/v2.0.0/ports/ghostty/dist/j3w1) | [download](https://j3w1.github.io/theme/ports/ghostty/j3w1) | Save as ~/.config/ghostty/themes/j3w1 and add `theme = j3w1` to your Ghostty config. | experimental; import evidence not verified |
@@ -377,6 +378,7 @@ and the public site, including when verification fails.
 <!-- ports:start -->
 | Port | Format | Declared status | Import evidence | Theme | Tested on | Supported / inherited / unsupported |
 | --- | --- | --- | --- | --- | --- | --- |
+| ChatGPT desktop app (Appearance) | chatgpt-appearance | experimental | not verified | 2.0.0 | — (windows, macos) | 1 / 0 / 9 |
 | Claude Code (custom theme) | claude-theme-json | experimental | not verified | 2.0.0 | — (linux, macos, windows) | 1 / 1 / 2 |
 | Codex CLI (tmTheme) | codex-tmtheme | experimental | not verified | 2.0.0 | — (linux, macos) | 1 / 1 / 3 |
 | Ghostty theme | ghostty-config | experimental | not verified | 2.0.0 | — (macos, linux) | 3 / 1 / 1 |

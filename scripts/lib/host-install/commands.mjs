@@ -9,7 +9,7 @@
    with nothing further written. */
 
 import { execFileSync } from "node:child_process";
-import { existsSync, promises as fs } from "node:fs";
+import { existsSync, readdirSync, promises as fs } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { isDeepStrictEqual } from "node:util";
@@ -41,7 +41,8 @@ export const stateRootOf = (opts, env = process.env) => {
   // backups, keep using it, so restore still reaches the user's original
   // settings after an upgrade.
   const legacy = path.join(root, "devbox");
-  if (!existsSync(path.join(root, "backups")) && existsSync(path.join(legacy, "backups"))) return { root: legacy, deprecated: false, legacy: true };
+  const hasBackups = (dir) => { try { return readdirSync(path.join(dir, "backups")).some((n) => /^\d{8}T\d{6}Z(?:-\d+)?$/.test(n)); } catch { return false; } };
+  if (!hasBackups(root) && hasBackups(legacy)) return { root: legacy, deprecated: false, legacy: true };
   return { root, deprecated: false };
 };
 

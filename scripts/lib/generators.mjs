@@ -37,6 +37,7 @@ import { portCatalogueGenerator, readPortDescription } from "./port-capabilities
 import { installerSpecimenGenerator, portArtifactsGenerator } from "./port-artifacts.mjs";
 import { privateParitySchema } from "../../schemas/private-parity.mjs";
 import { guideBlocks, INSTALL_GUIDES } from "./install-guides.mjs";
+import { buildChatgptPresets, chatgptReadmeBlock, CHATGPT_SOURCE } from "./chatgpt-port.mjs";
 import { releaseComparisonSchema, releaseCatalogueSchema, releaseMigrationSchema } from "../../schemas/release-comparison.mjs";
 
 const write = async (relative, content, { check, changed, files }) => {
@@ -243,6 +244,15 @@ export const readmeGenerator = {
     });
     readme = replaceMarkerBlock(readme, "tokens", ["| Role | Value | Status | Use |", "| --- | --- | --- | --- |", ...rows].join("\n"));
     readme = replaceMarkerBlock(readme, "version", `Specification version **${manifest.version}** (${releaseOf(manifest.version).stability}; ${manifest.profiles.map((p) => `${p.id}: ${p.status}`).join(", ")}).\n\n${POLICY_TEXT}`);
+    {
+      const guide = "ports/chatgpt/README.md";
+      const port = await readJson("ports/chatgpt/port.json");
+      const exported = toResolvedExport(profiles.get(port.profile), manifest.profiles.find((p) => p.id === port.profile));
+      const built = buildChatgptPresets(await readJson(CHATGPT_SOURCE), exported, manifest, { status: port.status });
+      const text = replaceMarkerBlock(await readText(guide), "presets", chatgptReadmeBlock(built));
+      files.push(guide);
+      if (await writeOrCheck(guide, text, { check })) changed.push(guide);
+    }
     for (const guide of INSTALL_GUIDES) {
       let text = await readText(guide);
       for (const [name, body] of Object.entries(guideBlocks(manifest, guide))) text = replaceMarkerBlock(text, name, body);

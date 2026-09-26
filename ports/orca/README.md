@@ -40,8 +40,11 @@ This route has no backup or restore.
 Commands appear here once v3.0.0 is released.
 <!-- update:end -->
 
-Update shows what changes, key by key, before it writes. Tags before v3.0.0
-have no installer and are refused.
+The Install command of a newer release applies it over this one and keeps the
+backups. To move to a specific release tag, or back to an older one, run
+`Update-J3w1OrcaTheme.ps1 -Version` with that tag from the release folder: it
+shows what changes, key by key, before it writes. Tags before v3.0.0 have no
+installer and are refused.
 
 ## Restore
 

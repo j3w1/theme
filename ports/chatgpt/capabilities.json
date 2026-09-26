@@ -1,0 +1,1784 @@
+{
+  "schemaVersion": 1,
+  "integrationKind": "other",
+  "themeRevision": "a07d7eea2e2fc2b1a531019c91a3ef46b1597764",
+  "surfaces": {
+    "appearance-settings": {
+      "state": "supported",
+      "reason": "Mode, accent, background, foreground, contrast, UI and code font size, reduce motion, separate light and dark, diff markers, and the diff and skill colours in the import string."
+    },
+    "text-ladder": {
+      "state": "unsupported",
+      "reason": "One global foreground: prose, muted, subtle and disabled text follow ChatGPT's own derivation."
+    },
+    "surfaces": {
+      "state": "unsupported",
+      "reason": "One background; ChatGPT derives its other surfaces."
+    },
+    "borders": {
+      "state": "unsupported",
+      "reason": "No border colour setting."
+    },
+    "interaction": {
+      "state": "unsupported",
+      "reason": "Focus and state colours follow the accent."
+    },
+    "status-colours": {
+      "state": "unsupported",
+      "reason": "Only diff added, diff removed and skill have colours."
+    },
+    "code-colours": {
+      "state": "unsupported",
+      "reason": "Syntax colours come from the code theme ChatGPT offers."
+    },
+    "interface-colours": {
+      "state": "unsupported",
+      "reason": "No setting."
+    },
+    "typography": {
+      "state": "unsupported",
+      "reason": "Only two sizes; fonts stay the system default."
+    },
+    "outside-chatgpt": {
+      "state": "out-of-scope",
+      "reason": "Primitives and non-appearance values."
+    },
+    "geometry": {
+      "state": "unsupported",
+      "reason": "ChatGPT keeps its own rounded corners and focus ring; j3w1's zero radius and dashed focus ring cannot be set."
+    }
+  },
+  "roles": {
+    "border.width.default": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "border.width.emphasis": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "breakpoint.lg": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "breakpoint.md": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "breakpoint.sm": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "breakpoint.xs": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "color.action.destructive.border": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.action.destructive.filled-bg": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.action.destructive.filled-text": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.action.destructive.hover-bg": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.action.destructive.hover-text": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.action.destructive.pressed-bg": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.action.destructive.text": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.action.primary.bg": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.action.primary.border": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.action.primary.hover-bg": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.action.primary.pressed-bg": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.action.primary.text": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.action.secondary.bg": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.action.secondary.border": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.action.secondary.hover-bg": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.action.secondary.pressed-bg": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.action.secondary.text": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.action.tertiary.hover-bg": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.action.tertiary.text": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.border.active": {
+      "state": "unsupported",
+      "surface": "borders",
+      "reason": "ChatGPT draws its own borders; there is no border colour setting."
+    },
+    "color.border.control": {
+      "state": "unsupported",
+      "surface": "borders",
+      "reason": "ChatGPT draws its own borders; there is no border colour setting."
+    },
+    "color.border.default": {
+      "state": "unsupported",
+      "surface": "borders",
+      "reason": "ChatGPT draws its own borders; there is no border colour setting."
+    },
+    "color.border.disabled": {
+      "state": "unsupported",
+      "surface": "borders",
+      "reason": "ChatGPT draws its own borders; there is no border colour setting."
+    },
+    "color.border.divider": {
+      "state": "unsupported",
+      "surface": "borders",
+      "reason": "ChatGPT draws its own borders; there is no border colour setting."
+    },
+    "color.border.overlay": {
+      "state": "unsupported",
+      "surface": "borders",
+      "reason": "ChatGPT draws its own borders; there is no border colour setting."
+    },
+    "color.border.selected-indicator": {
+      "state": "unsupported",
+      "surface": "borders",
+      "reason": "ChatGPT draws its own borders; there is no border colour setting."
+    },
+    "color.border.selected-indicator-inactive": {
+      "state": "unsupported",
+      "surface": "borders",
+      "reason": "ChatGPT draws its own borders; there is no border colour setting."
+    },
+    "color.border.strong": {
+      "state": "unsupported",
+      "surface": "borders",
+      "reason": "ChatGPT draws its own borders; there is no border colour setting."
+    },
+    "color.chart.axis": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.chart.grid": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.chart.label": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.chart.series-1": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.chart.series-2": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.chart.series-3": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.chart.series-4": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.code.bg": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.bracket-match": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.caret": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.current-line": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.gutter-bg": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.gutter-rule": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.hued.attribute": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.hued.constant": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.hued.escape": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.hued.function": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.hued.number": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.hued.operator": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.hued.property": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.hued.string": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.hued.type": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.indent-guide": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.line-number": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.line-number-active": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.search-current-bg": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.search-current-text": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.search-match-bg": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.selection-bg": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.syntax.attribute": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.syntax.comment": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.syntax.constant": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.syntax.deprecated": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.syntax.escape": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.syntax.function": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.syntax.heading": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.syntax.invalid": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.syntax.keyword": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.syntax.number": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.syntax.operator": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.syntax.property": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.syntax.punctuation": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.syntax.string": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.syntax.tag": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.syntax.type": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.syntax.variable": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.code.whitespace": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.diagnostic.error.bg": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.diagnostic.error.stripe": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.diagnostic.error.text": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.diagnostic.error.underline": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.diagnostic.hint.underline": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.diagnostic.info.text": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.diagnostic.info.underline": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.diagnostic.unused.text": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.diagnostic.warning.stripe": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.diagnostic.warning.text": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.diagnostic.warning.underline": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.diff.added.bg": {
+      "state": "unsupported",
+      "surface": "status-colours",
+      "reason": "ChatGPT exposes only the diff added, diff removed and skill colours; other status and diff roles have no setting."
+    },
+    "color.diff.added.emphasis": {
+      "state": "unsupported",
+      "surface": "status-colours",
+      "reason": "ChatGPT exposes only the diff added, diff removed and skill colours; other status and diff roles have no setting."
+    },
+    "color.diff.added.gutter": {
+      "state": "unsupported",
+      "surface": "status-colours",
+      "reason": "ChatGPT exposes only the diff added, diff removed and skill colours; other status and diff roles have no setting."
+    },
+    "color.diff.conflict-border": {
+      "state": "unsupported",
+      "surface": "status-colours",
+      "reason": "ChatGPT exposes only the diff added, diff removed and skill colours; other status and diff roles have no setting."
+    },
+    "color.diff.header-bg": {
+      "state": "unsupported",
+      "surface": "status-colours",
+      "reason": "ChatGPT exposes only the diff added, diff removed and skill colours; other status and diff roles have no setting."
+    },
+    "color.diff.modified.bg": {
+      "state": "unsupported",
+      "surface": "status-colours",
+      "reason": "ChatGPT exposes only the diff added, diff removed and skill colours; other status and diff roles have no setting."
+    },
+    "color.diff.modified.gutter": {
+      "state": "unsupported",
+      "surface": "status-colours",
+      "reason": "ChatGPT exposes only the diff added, diff removed and skill colours; other status and diff roles have no setting."
+    },
+    "color.diff.removed.bg": {
+      "state": "unsupported",
+      "surface": "status-colours",
+      "reason": "ChatGPT exposes only the diff added, diff removed and skill colours; other status and diff roles have no setting."
+    },
+    "color.diff.removed.emphasis": {
+      "state": "unsupported",
+      "surface": "status-colours",
+      "reason": "ChatGPT exposes only the diff added, diff removed and skill colours; other status and diff roles have no setting."
+    },
+    "color.diff.removed.gutter": {
+      "state": "unsupported",
+      "surface": "status-colours",
+      "reason": "ChatGPT exposes only the diff added, diff removed and skill colours; other status and diff roles have no setting."
+    },
+    "color.icon.decorative": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.icon.default": {
+      "state": "unsupported",
+      "surface": "interface-colours",
+      "reason": "ChatGPT has no setting for this colour."
+    },
+    "color.interaction.disabled.bg": {
+      "state": "unsupported",
+      "surface": "interaction",
+      "reason": "Focus, hover, pressed and selection colours are derived by ChatGPT from the accent and contrast; only the accent is set."
+    },
+    "color.interaction.drop-target": {
+      "state": "unsupported",
+      "surface": "interaction",
+      "reason": "Focus, hover, pressed and selection colours are derived by ChatGPT from the accent and contrast; only the accent is set."
+    },
+    "color.interaction.focus.ring": {
+      "state": "mapped",
+      "surface": "appearance-settings",
+      "reason": "Set by Accent, theme.accent."
+    },
+    "color.interaction.focus.ring-container": {
+      "state": "unsupported",
+      "surface": "interaction",
+      "reason": "Focus, hover, pressed and selection colours are derived by ChatGPT from the accent and contrast; only the accent is set."
+    },
+    "color.interaction.hover.bg": {
+      "state": "unsupported",
+      "surface": "interaction",
+      "reason": "Focus, hover, pressed and selection colours are derived by ChatGPT from the accent and contrast; only the accent is set."
+    },
+    "color.interaction.hover.bg-strong": {
+      "state": "unsupported",
+      "surface": "interaction",
+      "reason": "Focus, hover, pressed and selection colours are derived by ChatGPT from the accent and contrast; only the accent is set."
+    },
+    "color.interaction.marquee": {
+      "state": "unsupported",
+      "surface": "interaction",
+      "reason": "Focus, hover, pressed and selection colours are derived by ChatGPT from the accent and contrast; only the accent is set."
+    },
+    "color.interaction.pressed.bg": {
+      "state": "unsupported",
+      "surface": "interaction",
+      "reason": "Focus, hover, pressed and selection colours are derived by ChatGPT from the accent and contrast; only the accent is set."
+    },
+    "color.interaction.scrollbar.thumb": {
+      "state": "unsupported",
+      "surface": "interaction",
+      "reason": "Focus, hover, pressed and selection colours are derived by ChatGPT from the accent and contrast; only the accent is set."
+    },
+    "color.interaction.scrollbar.thumb-hover": {
+      "state": "unsupported",
+      "surface": "interaction",
+      "reason": "Focus, hover, pressed and selection colours are derived by ChatGPT from the accent and contrast; only the accent is set."
+    },
+    "color.interaction.scrollbar.track": {
+      "state": "unsupported",
+      "surface": "interaction",
+      "reason": "Focus, hover, pressed and selection colours are derived by ChatGPT from the accent and contrast; only the accent is set."
+    },
+    "color.interaction.selection.bg": {
+      "state": "unsupported",
+      "surface": "interaction",
+      "reason": "Focus, hover, pressed and selection colours are derived by ChatGPT from the accent and contrast; only the accent is set."
+    },
+    "color.interaction.selection.inactive-bg": {
+      "state": "unsupported",
+      "surface": "interaction",
+      "reason": "Focus, hover, pressed and selection colours are derived by ChatGPT from the accent and contrast; only the accent is set."
+    },
+    "color.interaction.selection.inactive-text": {
+      "state": "unsupported",
+      "surface": "interaction",
+      "reason": "Focus, hover, pressed and selection colours are derived by ChatGPT from the accent and contrast; only the accent is set."
+    },
+    "color.interaction.selection.text": {
+      "state": "unsupported",
+      "surface": "interaction",
+      "reason": "Focus, hover, pressed and selection colours are derived by ChatGPT from the accent and contrast; only the accent is set."
+    },
+    "color.interaction.text-selection.bg": {
+      "state": "unsupported",
+      "surface": "interaction",
+      "reason": "Focus, hover, pressed and selection colours are derived by ChatGPT from the accent and contrast; only the accent is set."
+    },
+    "color.interaction.text-selection.text": {
+      "state": "unsupported",
+      "surface": "interaction",
+      "reason": "Focus, hover, pressed and selection colours are derived by ChatGPT from the accent and contrast; only the accent is set."
+    },
+    "color.primitive.alpha.black-55": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.alpha.black-65": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.alpha.red-12": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.alpha.red-6": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.alpha.transparent": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.amber.500": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.amber.600": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.amber.tint": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi-readable.1": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi-readable.10": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi-readable.12": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi-readable.13": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi-readable.14": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi-readable.15": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi-readable.4": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi-readable.8": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi-readable.9": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.0": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.1": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.10": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.11": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.12": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.13": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.14": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.15": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.2": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.3": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.4": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.5": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.6": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.7": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.8": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.9": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.blue.500": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.blue.600": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.blue.tint": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.coral.700": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.green.500": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.green.600": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.green.tint": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ink.0": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ink.14": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ink.15": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ink.20": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ink.25": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ink.28": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ink.30": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ink.40": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ink.52": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ink.60": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.paper.100": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.paper.90": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.100": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.150": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.200": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.250": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.300": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.350": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.400": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.450": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.50": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.500": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.550": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.650": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.750": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.760": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.770": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.800": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.810": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.850": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.860": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.rose.300": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.rose.320": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.rose.350": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.rose.450": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.rose.550": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.rose.600": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.rose.650": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.rose.700": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.rose.800": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.status.danger.border": {
+      "state": "unsupported",
+      "surface": "status-colours",
+      "reason": "ChatGPT exposes only the diff added, diff removed and skill colours; other status and diff roles have no setting."
+    },
+    "color.status.danger.fill": {
+      "state": "unsupported",
+      "surface": "status-colours",
+      "reason": "ChatGPT exposes only the diff added, diff removed and skill colours; other status and diff roles have no setting."
+    },
+    "color.status.danger.on-fill": {
+      "state": "unsupported",
+      "surface": "status-colours",
+      "reason": "ChatGPT exposes only the diff added, diff removed and skill colours; other status and diff roles have no setting."
+    },
+    "color.status.danger.text": {
+      "state": "mapped",
+      "surface": "appearance-settings",
+      "reason": "Set by theme.semanticColors.diffRemoved."
+    },
+    "color.status.danger.tint": {
+      "state": "unsupported",
+      "surface": "status-colours",
+      "reason": "ChatGPT exposes only the diff added, diff removed and skill colours; other status and diff roles have no setting."
+    },
+    "color.status.info.border": {
+      "state": "unsupported",
+      "surface": "status-colours",
+      "reason": "ChatGPT exposes only the diff added, diff removed and skill colours; other status and diff roles have no setting."
+    },
+    "color.status.info.fill": {
+      "state": "unsupported",
+      "surface": "status-colours",
+      "reason": "ChatGPT exposes only the diff added, diff removed and skill colours; other status and diff roles have no setting."
+    },
+    "color.status.info.on-fill": {
+      "state": "unsupported",
+      "surface": "status-colours",
+      "reason": "ChatGPT exposes only the diff added, diff removed and skill colours; other status and diff roles have no setting."
+    },
+    "color.status.info.text": {
+      "state": "unsupported",
+      "surface": "status-colours",
+      "reason": "ChatGPT exposes only the diff added, diff removed and skill colours; other status and diff roles have no setting."
+    },
+    "color.status.info.tint": {
+      "state": "unsupported",
+      "surface": "status-colours",
+      "reason": "ChatGPT exposes only the diff added, diff removed and skill colours; other status and diff roles have no setting."
+    },
+    "color.status.neutral.border": {
+      "state": "unsupported",
+      "surface": "status-colours",
+      "reason": "ChatGPT exposes only the diff added, diff removed and skill colours; other status and diff roles have no setting."
+    },
+    "color.status.neutral.fill": {
+      "state": "unsupported",
+      "surface": "status-colours",
+      "reason": "ChatGPT exposes only the diff added, diff removed and skill colours; other status and diff roles have no setting."
+    },
+    "color.status.neutral.on-fill": {
+      "state": "unsupported",
+      "surface": "status-colours",
+      "reason": "ChatGPT exposes only the diff added, diff removed and skill colours; other status and diff roles have no setting."
+    },
+    "color.status.neutral.text": {
+      "state": "unsupported",
+      "surface": "status-colours",
+      "reason": "ChatGPT exposes only the diff added, diff removed and skill colours; other status and diff roles have no setting."
+    },
+    "color.status.neutral.tint": {
+      "state": "unsupported",
+      "surface": "status-colours",
+      "reason": "ChatGPT exposes only the diff added, diff removed and skill colours; other status and diff roles have no setting."
+    },
+    "color.status.success.border": {
+      "state": "unsupported",
+      "surface": "status-colours",
+      "reason": "ChatGPT exposes only the diff added, diff removed and skill colours; other status and diff roles have no setting."
+    },
+    "color.status.success.fill": {
+      "state": "unsupported",
+      "surface": "status-colours",
+      "reason": "ChatGPT exposes only the diff added, diff removed and skill colours; other status and diff roles have no setting."
+    },
+    "color.status.success.on-fill": {
+      "state": "unsupported",
+      "surface": "status-colours",
+      "reason": "ChatGPT exposes only the diff added, diff removed and skill colours; other status and diff roles have no setting."
+    },
+    "color.status.success.text": {
+      "state": "mapped",
+      "surface": "appearance-settings",
+      "reason": "Set by theme.semanticColors.diffAdded."
+    },
+    "color.status.success.tint": {
+      "state": "unsupported",
+      "surface": "status-colours",
+      "reason": "ChatGPT exposes only the diff added, diff removed and skill colours; other status and diff roles have no setting."
+    },
+    "color.status.warning.border": {
+      "state": "unsupported",
+      "surface": "status-colours",
+      "reason": "ChatGPT exposes only the diff added, diff removed and skill colours; other status and diff roles have no setting."
+    },
+    "color.status.warning.fill": {
+      "state": "unsupported",
+      "surface": "status-colours",
+      "reason": "ChatGPT exposes only the diff added, diff removed and skill colours; other status and diff roles have no setting."
+    },
+    "color.status.warning.on-fill": {
+      "state": "unsupported",
+      "surface": "status-colours",
+      "reason": "ChatGPT exposes only the diff added, diff removed and skill colours; other status and diff roles have no setting."
+    },
+    "color.status.warning.text": {
+      "state": "unsupported",
+      "surface": "status-colours",
+      "reason": "ChatGPT exposes only the diff added, diff removed and skill colours; other status and diff roles have no setting."
+    },
+    "color.status.warning.tint": {
+      "state": "unsupported",
+      "surface": "status-colours",
+      "reason": "ChatGPT exposes only the diff added, diff removed and skill colours; other status and diff roles have no setting."
+    },
+    "color.surface.backdrop": {
+      "state": "unsupported",
+      "surface": "surfaces",
+      "reason": "ChatGPT has one background; raised, overlay and inset surfaces follow its own derivation from it."
+    },
+    "color.surface.canvas": {
+      "state": "mapped",
+      "surface": "appearance-settings",
+      "reason": "Set by Background, theme.surface."
+    },
+    "color.surface.chrome": {
+      "state": "unsupported",
+      "surface": "surfaces",
+      "reason": "ChatGPT has one background; raised, overlay and inset surfaces follow its own derivation from it."
+    },
+    "color.surface.chrome-alt": {
+      "state": "unsupported",
+      "surface": "surfaces",
+      "reason": "ChatGPT has one background; raised, overlay and inset surfaces follow its own derivation from it."
+    },
+    "color.surface.code": {
+      "state": "unsupported",
+      "surface": "surfaces",
+      "reason": "ChatGPT has one background; raised, overlay and inset surfaces follow its own derivation from it."
+    },
+    "color.surface.default": {
+      "state": "unsupported",
+      "surface": "surfaces",
+      "reason": "ChatGPT has one background; raised, overlay and inset surfaces follow its own derivation from it."
+    },
+    "color.surface.desktop": {
+      "state": "unsupported",
+      "surface": "surfaces",
+      "reason": "ChatGPT has one background; raised, overlay and inset surfaces follow its own derivation from it."
+    },
+    "color.surface.input": {
+      "state": "unsupported",
+      "surface": "surfaces",
+      "reason": "ChatGPT has one background; raised, overlay and inset surfaces follow its own derivation from it."
+    },
+    "color.surface.overlay": {
+      "state": "unsupported",
+      "surface": "surfaces",
+      "reason": "ChatGPT has one background; raised, overlay and inset surfaces follow its own derivation from it."
+    },
+    "color.surface.raised": {
+      "state": "unsupported",
+      "surface": "surfaces",
+      "reason": "ChatGPT has one background; raised, overlay and inset surfaces follow its own derivation from it."
+    },
+    "color.surface.sunken": {
+      "state": "unsupported",
+      "surface": "surfaces",
+      "reason": "ChatGPT has one background; raised, overlay and inset surfaces follow its own derivation from it."
+    },
+    "color.surface.terminal": {
+      "state": "unsupported",
+      "surface": "surfaces",
+      "reason": "ChatGPT has one background; raised, overlay and inset surfaces follow its own derivation from it."
+    },
+    "color.terminal.ansi.0": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.terminal.ansi.1": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.terminal.ansi.10": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.terminal.ansi.11": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.terminal.ansi.12": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.terminal.ansi.13": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.terminal.ansi.14": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.terminal.ansi.15": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.terminal.ansi.2": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.terminal.ansi.3": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.terminal.ansi.4": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.terminal.ansi.5": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.terminal.ansi.6": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.terminal.ansi.7": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.terminal.ansi.8": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.terminal.ansi.9": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.terminal.bg": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.terminal.cursor": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.terminal.fg": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.terminal.prompt-bg": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.terminal.prompt-text": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.terminal.selection-bg": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.terminal.selection-text": {
+      "state": "unsupported",
+      "surface": "code-colours",
+      "reason": "Code colours come from the chosen code theme, not from separate settings."
+    },
+    "color.text.accent": {
+      "state": "mapped",
+      "surface": "appearance-settings",
+      "reason": "Set by theme.semanticColors.skill."
+    },
+    "color.text.accent-strong": {
+      "state": "unsupported",
+      "surface": "text-ladder",
+      "reason": "ChatGPT has one global foreground; the presets use text.bright or text.default and the rest of the text ladder has no setting."
+    },
+    "color.text.bright": {
+      "state": "mapped",
+      "surface": "appearance-settings",
+      "reason": "Set by Foreground (j3w1 Signature), theme.ink (j3w1 Signature)."
+    },
+    "color.text.default": {
+      "state": "mapped",
+      "surface": "appearance-settings",
+      "reason": "Set by Foreground (j3w1 Reading), theme.ink (j3w1 Reading)."
+    },
+    "color.text.disabled": {
+      "state": "unsupported",
+      "surface": "text-ladder",
+      "reason": "ChatGPT has one global foreground; the presets use text.bright or text.default and the rest of the text ladder has no setting."
+    },
+    "color.text.inverse": {
+      "state": "unsupported",
+      "surface": "text-ladder",
+      "reason": "ChatGPT has one global foreground; the presets use text.bright or text.default and the rest of the text ladder has no setting."
+    },
+    "color.text.link": {
+      "state": "unsupported",
+      "surface": "text-ladder",
+      "reason": "ChatGPT has one global foreground; the presets use text.bright or text.default and the rest of the text ladder has no setting."
+    },
+    "color.text.link-hover": {
+      "state": "unsupported",
+      "surface": "text-ladder",
+      "reason": "ChatGPT has one global foreground; the presets use text.bright or text.default and the rest of the text ladder has no setting."
+    },
+    "color.text.link-underline": {
+      "state": "unsupported",
+      "surface": "text-ladder",
+      "reason": "ChatGPT has one global foreground; the presets use text.bright or text.default and the rest of the text ladder has no setting."
+    },
+    "color.text.muted": {
+      "state": "unsupported",
+      "surface": "text-ladder",
+      "reason": "ChatGPT has one global foreground; the presets use text.bright or text.default and the rest of the text ladder has no setting."
+    },
+    "color.text.on-action": {
+      "state": "unsupported",
+      "surface": "text-ladder",
+      "reason": "ChatGPT has one global foreground; the presets use text.bright or text.default and the rest of the text ladder has no setting."
+    },
+    "color.text.on-danger": {
+      "state": "unsupported",
+      "surface": "text-ladder",
+      "reason": "ChatGPT has one global foreground; the presets use text.bright or text.default and the rest of the text ladder has no setting."
+    },
+    "color.text.on-light": {
+      "state": "unsupported",
+      "surface": "text-ladder",
+      "reason": "ChatGPT has one global foreground; the presets use text.bright or text.default and the rest of the text ladder has no setting."
+    },
+    "color.text.on-selection": {
+      "state": "unsupported",
+      "surface": "text-ladder",
+      "reason": "ChatGPT has one global foreground; the presets use text.bright or text.default and the rest of the text ladder has no setting."
+    },
+    "color.text.placeholder": {
+      "state": "unsupported",
+      "surface": "text-ladder",
+      "reason": "ChatGPT has one global foreground; the presets use text.bright or text.default and the rest of the text ladder has no setting."
+    },
+    "color.text.prose": {
+      "state": "unsupported",
+      "surface": "text-ladder",
+      "reason": "ChatGPT has one global foreground; the presets use text.bright or text.default and the rest of the text ladder has no setting."
+    },
+    "color.text.subtle": {
+      "state": "unsupported",
+      "surface": "text-ladder",
+      "reason": "ChatGPT has one global foreground; the presets use text.bright or text.default and the rest of the text ladder has no setting."
+    },
+    "density.comfortable.control-height": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "density.comfortable.control-padding-x": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "density.comfortable.gap": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "density.comfortable.icon": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "density.comfortable.row-height": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "density.compact.control-height": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "density.compact.control-padding-x": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "density.compact.gap": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "density.compact.icon": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "density.compact.row-height": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "focus.offset": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "ChatGPT keeps its own geometry; this j3w1 value cannot be set."
+    },
+    "focus.offset-container": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "ChatGPT keeps its own geometry; this j3w1 value cannot be set."
+    },
+    "focus.offset-invalid": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "ChatGPT keeps its own geometry; this j3w1 value cannot be set."
+    },
+    "focus.ring": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "ChatGPT keeps its own geometry; this j3w1 value cannot be set."
+    },
+    "focus.ring-container": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "ChatGPT keeps its own geometry; this j3w1 value cannot be set."
+    },
+    "font.family.mono": {
+      "state": "unsupported",
+      "surface": "typography",
+      "reason": "ChatGPT uses its own fonts (the UI and code font can be chosen by name, but the port leaves them as the system default)."
+    },
+    "font.letter-spacing.terminal": {
+      "state": "unsupported",
+      "surface": "typography",
+      "reason": "ChatGPT uses its own fonts (the UI and code font can be chosen by name, but the port leaves them as the system default)."
+    },
+    "font.line-height.caption": {
+      "state": "unsupported",
+      "surface": "typography",
+      "reason": "ChatGPT uses its own fonts (the UI and code font can be chosen by name, but the port leaves them as the system default)."
+    },
+    "font.line-height.code": {
+      "state": "unsupported",
+      "surface": "typography",
+      "reason": "ChatGPT uses its own fonts (the UI and code font can be chosen by name, but the port leaves them as the system default)."
+    },
+    "font.line-height.h1": {
+      "state": "unsupported",
+      "surface": "typography",
+      "reason": "ChatGPT uses its own fonts (the UI and code font can be chosen by name, but the port leaves them as the system default)."
+    },
+    "font.line-height.h2": {
+      "state": "unsupported",
+      "surface": "typography",
+      "reason": "ChatGPT uses its own fonts (the UI and code font can be chosen by name, but the port leaves them as the system default)."
+    },
+    "font.line-height.h3": {
+      "state": "unsupported",
+      "surface": "typography",
+      "reason": "ChatGPT uses its own fonts (the UI and code font can be chosen by name, but the port leaves them as the system default)."
+    },
+    "font.line-height.reading": {
+      "state": "unsupported",
+      "surface": "typography",
+      "reason": "ChatGPT uses its own fonts (the UI and code font can be chosen by name, but the port leaves them as the system default)."
+    },
+    "font.line-height.terminal": {
+      "state": "unsupported",
+      "surface": "typography",
+      "reason": "ChatGPT uses its own fonts (the UI and code font can be chosen by name, but the port leaves them as the system default)."
+    },
+    "font.line-height.ui-lg": {
+      "state": "unsupported",
+      "surface": "typography",
+      "reason": "ChatGPT uses its own fonts (the UI and code font can be chosen by name, but the port leaves them as the system default)."
+    },
+    "font.line-height.ui-md": {
+      "state": "unsupported",
+      "surface": "typography",
+      "reason": "ChatGPT uses its own fonts (the UI and code font can be chosen by name, but the port leaves them as the system default)."
+    },
+    "font.line-height.ui-sm": {
+      "state": "unsupported",
+      "surface": "typography",
+      "reason": "ChatGPT uses its own fonts (the UI and code font can be chosen by name, but the port leaves them as the system default)."
+    },
+    "font.size.caption": {
+      "state": "unsupported",
+      "surface": "typography",
+      "reason": "ChatGPT has only a UI size and a code size."
+    },
+    "font.size.code": {
+      "state": "mapped",
+      "surface": "appearance-settings",
+      "reason": "Set by Code font size."
+    },
+    "font.size.h1": {
+      "state": "unsupported",
+      "surface": "typography",
+      "reason": "ChatGPT has only a UI size and a code size."
+    },
+    "font.size.h2": {
+      "state": "unsupported",
+      "surface": "typography",
+      "reason": "ChatGPT has only a UI size and a code size."
+    },
+    "font.size.h3": {
+      "state": "unsupported",
+      "surface": "typography",
+      "reason": "ChatGPT has only a UI size and a code size."
+    },
+    "font.size.reading": {
+      "state": "mapped",
+      "surface": "appearance-settings",
+      "reason": "Set by UI font size."
+    },
+    "font.size.terminal": {
+      "state": "unsupported",
+      "surface": "typography",
+      "reason": "ChatGPT has only a UI size and a code size."
+    },
+    "font.size.ui-lg": {
+      "state": "unsupported",
+      "surface": "typography",
+      "reason": "ChatGPT has only a UI size and a code size."
+    },
+    "font.size.ui-md": {
+      "state": "unsupported",
+      "surface": "typography",
+      "reason": "ChatGPT has only a UI size and a code size."
+    },
+    "font.size.ui-sm": {
+      "state": "unsupported",
+      "surface": "typography",
+      "reason": "ChatGPT has only a UI size and a code size."
+    },
+    "font.weight.bold": {
+      "state": "unsupported",
+      "surface": "typography",
+      "reason": "ChatGPT uses its own fonts (the UI and code font can be chosen by name, but the port leaves them as the system default)."
+    },
+    "font.weight.regular": {
+      "state": "unsupported",
+      "surface": "typography",
+      "reason": "ChatGPT uses its own fonts (the UI and code font can be chosen by name, but the port leaves them as the system default)."
+    },
+    "icon.size.lg": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "icon.size.md": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "icon.size.sm": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "icon.stroke": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "layout.app-max": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "layout.content-max": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "layout.measure": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "motion.duration.base": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "motion.duration.fast": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "motion.duration.slow": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "radius.none": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "ChatGPT keeps its own geometry; this j3w1 value cannot be set."
+    },
+    "shadow.floating": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "space.0": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "space.1": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "space.12": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "space.16": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "space.2": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "space.24": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "space.32": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "space.4": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "space.48": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "space.8": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "z.canvas": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "z.dialog": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "z.drawer": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "z.popover": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "z.raised": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "z.skip-link": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "z.toast": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    }
+  },
+  "rollback": "In ChatGPT: Settings > Appearance, import the theme copied before, or choose another theme and set back each row of the preset table that was changed. Nothing is installed on disk."
+}

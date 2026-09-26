@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "id": "chatgpt",
+  "displayName": "ChatGPT desktop app (Appearance)",
+  "status": "experimental",
+  "themeVersion": "2.0.0",
+  "tokenDigest": "sha256-mkReYBbLX5K2V40Qv2jFMJ+zUSDTX8t0xfiibnziwXE=",
+  "profile": "default",
+  "format": "chatgpt-appearance",
+  "targetVersions": [
+    "ChatGPT desktop app with Settings > Appearance import (2026-09)"
+  ],
+  "testedVersions": [],
+  "os": [
+    "windows",
+    "macos"
+  ],
+  "surfaces": {
+    "supported": [
+      "appearance-settings"
+    ],
+    "inherited": [],
+    "unsupported": [
+      "text-ladder",
+      "surfaces",
+      "borders",
+      "interaction",
+      "status-colours",
+      "code-colours",
+      "interface-colours",
+      "typography",
+      "geometry"
+    ]
+  },
+  "files": [
+    {
+      "path": "dist/presets.json",
+      "install": "Open ChatGPT > Settings > Appearance > Dark theme > Import and paste a preset's import string, or set the values in the preset's table by hand (see ports/chatgpt/README.md)."
+    }
+  ],
+  "mappingPath": "mapping.json",
+  "capabilitiesPath": "capabilities.json",
+  "evidence": []
+}

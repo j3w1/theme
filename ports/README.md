@@ -12,6 +12,7 @@ file, its installer if it has one, and one guide.
 | Codex CLI | [`codex/`](codex/README.md) | The `j3w1` Codex syntax theme, with an installer |
 | Ghostty | [`ghostty/`](ghostty/README.md) | A Ghostty theme file |
 | Warp, or Orca's Import from YAML | [`warp/`](warp/README.md) | A Warp theme file (colours only) |
+| ChatGPT desktop app | [`chatgpt/`](chatgpt/README.md) | Two appearance presets (Signature, Reading): a settings table and an import string each |
 
 Claude Code and Codex run inside a terminal and use its sixteen colours for
 code, links and status. Install a terminal theme too.

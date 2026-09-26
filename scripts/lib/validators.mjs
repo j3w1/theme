@@ -2,6 +2,7 @@
    with a message that names the file. scripts/validate.mjs and
    scripts/generate.mjs run them; tests call them directly. */
 
+import { readSamples } from "./chatgpt-port.mjs";
 import { z } from "zod";
 import { exists, gitFiles, listFiles, readJson, readText } from "./fs.mjs";
 import { EXTENSIONS_KEY } from "../../schemas/tokens.mjs";
@@ -288,6 +289,10 @@ export const validatePorts = async () => {
         if (!(await exists(evidenceFile))) fail(`${file}: import evidence is absent`);
         portImportEvidenceSchema(z).parse(await readJson(evidenceFile));
       }
+    }
+    if (port.format === "chatgpt-appearance") {
+      const samples = readSamples();
+      if (!samples.length && (port.status !== "experimental" || port.testedVersions.length)) fail(`${file}: the ChatGPT port stays experimental with no tested versions until a ChatGPT export is recorded in ports/chatgpt/evidence/`);
     }
     if (!(await exists(`ports/${dir}/README.md`))) fail(`${file}: README.md is missing`);
     ports.push(port);
