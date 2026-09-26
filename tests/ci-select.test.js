@@ -21,15 +21,25 @@ test("globs: ** crosses folders, * does not, {name} captures one segment", () =>
   assert.equal("spec/components/button.md".match(re)[1], "button");
 });
 
-test("an installer-only change runs its own suite, builds nothing and deploys nothing", () => {
+test("an installer-only change runs its own suites, builds nothing and deploys nothing", () => {
   const p = run("push", ["ports/orca/install/J3w1Orca.psm1", "tests/orca-install.test.js"]);
-  assert.deepEqual(p.proofs, ["sources", "unit", "unit-install-windows"]);
+  assert.deepEqual(p.proofs, ["sources", "unit", "unit-install", "unit-install-windows"]);
   assert.equal(p.site, false);
+  assert.equal(p.matrix, false);
   assert.equal(p.deploy, false);
   assert.deepEqual(p.shards, []);
   const devbox = run("push", ["ports/claude-code/install.mjs"]);
-  assert.deepEqual(devbox.proofs, ["sources", "unit-install"]);
+  assert.deepEqual(devbox.proofs, ["sources", "unit", "unit-install"]);
+  assert.equal(devbox.site, false);
+  assert.equal(devbox.matrix, false);
   assert.equal(devbox.deploy, false);
+  assert.deepEqual(devbox.shards, []);
+});
+
+test("the Orca host map and specimen also run the devbox suite, which reads them", () => {
+  for (const file of ["ports/orca/host.json", "ports/orca/src/specimen.json", "ports/orca/install/specimen.json"]) {
+    assert.ok(run("pull_request", [file]).proofs.includes("unit-install"), file);
+  }
 });
 
 test("a port's published files still count as a site change", () => {

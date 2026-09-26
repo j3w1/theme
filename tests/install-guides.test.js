@@ -54,7 +54,10 @@ test("without a release every block is one line; with one every command names it
   assert.equal(orcaOneLiner(commit), `& ([scriptblock]::Create((Invoke-RestMethod https://raw.githubusercontent.com/j3w1/theme/${commit}/ports/orca/install/Get-J3w1Orca.ps1))) -Revision ${commit} -Apply`);
   assert.ok(orca.install.includes(orcaScript(commit, "Test-J3w1OrcaTheme.ps1")));
   assert.ok(orca.restore.includes(orcaScript(commit, "Restore-J3w1OrcaTheme.ps1")));
-  assert.ok(orca.update.includes(`-Version ${FIRST_INSTALLER_TAG}`));
+  // Updating is the newest release's Install command; an example that names
+  // the installed release would change nothing (review r3).
+  assert.match(orca.update, /Install command names the newest release/);
+  assert.doesNotMatch(orca.update, /-Version/);
   assert.deepEqual(devboxLines("codex", commit), ["git pull --ff-only --tags && npm ci", `node ports/codex/install.mjs apply --revision ${commit}`]);
   const index = guideBlocks(released, "ports/README.md").install;
   for (const line of [orcaOneLiner(commit), ...devboxLines("claude-code", commit), ...devboxLines("codex", commit)]) assert.ok(index.includes(line), line);
@@ -72,7 +75,11 @@ test("release.commit is the commit its tag names", (t) => {
   if (!manifest.release) return t.diagnostic(`theme.json records no release yet; the guides say commands appear once ${FIRST_INSTALLER_TAG} is released`);
   const { tag, commit } = manifest.release;
   const named = spawnSync("git", ["rev-list", "-n1", tag], { encoding: "utf8" });
-  if (named.status !== 0) return t.skip(`tag ${tag} is not fetched in this clone (git fetch --tags), so its commit cannot be compared`);
+  if (named.status !== 0) {
+    // CI fetches every tag, so a missing tag there is a failure, not a skip.
+    assert.ok(!process.env.CI, `tag ${tag} is not in this clone; CI must fetch tags to compare it`);
+    return t.skip(`tag ${tag} is not fetched in this clone (git fetch --tags), so its commit cannot be compared`);
+  }
   assert.equal(named.stdout.trim(), commit, `theme.json release.commit must be the commit ${tag} names`);
 });
 

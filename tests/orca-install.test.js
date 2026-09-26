@@ -11,7 +11,7 @@
    suite skips locally and fails in CI. */
 
 import assert from "node:assert/strict";
-import { spawnSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { existsSync, lstatSync, promises as fs, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
@@ -1220,4 +1220,23 @@ test("Update to a tag whose host map adds a managed key: Restore accepts the key
   assert.deepEqual(await readStore(tree), JSON.parse(STORE));
   assert.ok((await restoreManifest(tree, backups(tree)[0])).managedKeys.includes("terminalKitProbe"), "the update recorded the key as managed");
   assert.match(updated.output, /trusted as a local tag/);
+});
+
+test("Get refuses a commit whose export does not match its digests.json, before writing anything (review r3)", { skip }, async (t) => {
+  const tree = await makeTree(t);
+  const clone = await scratchDir(t, "j3w1-orca-tamper-");
+  execFileSync("git", ["clone", "--quiet", "--shared", "--no-checkout", repoRoot, clone], { stdio: "ignore" });
+  const env = { ...process.env, GIT_AUTHOR_NAME: "installer test", GIT_AUTHOR_EMAIL: "installer@test.invalid", GIT_COMMITTER_NAME: "installer test", GIT_COMMITTER_EMAIL: "installer@test.invalid", GIT_INDEX_FILE: path.join(clone, ".git", "installer-test-index") };
+  const g = (args, input) => execFileSync("git", ["-C", clone, ...args], { env, input, stdio: ["pipe", "pipe", "ignore"] }).toString().trim();
+  const tokens = JSON.parse(atHead("exports/tokens.resolved.json").toString("utf8"));
+  tokens.tampered = true;
+  g(["read-tree", HEAD]);
+  g(["update-index", "--add", "--cacheinfo", `100644,${g(["hash-object", "-w", "--stdin"], `${JSON.stringify(tokens, null, 2)}\n`)},exports/tokens.resolved.json`]);
+  const commit = g(["commit-tree", g(["write-tree"]), "-p", HEAD, "-m", "tampered export"]);
+  const refused = run(tree, "Get-J3w1Orca.ps1", ["-Revision", commit, "-SourceRoot", clone]);
+  assert.notEqual(refused.status, 0);
+  assert.match(refused.stderr, /digests\.json/);
+  assert.match(refused.stderr, /Nothing was written/);
+  assert.equal(existsSync(tree.state), false, "no release folder, no state");
+  assert.equal(await fs.readFile(tree.store, "utf8"), STORE);
 });

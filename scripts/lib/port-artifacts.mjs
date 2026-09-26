@@ -108,7 +108,9 @@ export const assertHostMapping = (port, mapping, entries) => {
   }
   for (const [key, role] of entries) {
     if (mapping.mappings[role]?.includes(key)) continue;
-    if (mapping.unmapped[role]?.includes(key)) continue;
+    // An unmapped reason may name the key it carries, as a whole key.
+    const named = new RegExp(`(^|[^A-Za-z0-9.])${key.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}($|[^A-Za-z0-9])`);
+    if (named.test(mapping.unmapped[role] ?? "")) continue;
     throw new Error(`ports/${port.id}: host.json writes ${role} at ${key}, which mapping.json neither maps nor names in the role's unmapped reason`);
   }
 };

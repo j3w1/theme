@@ -87,6 +87,7 @@ export const parseArgs = (integration, argv) => {
   opts.integrations = [integration];
   if (command === "update" && !opts.version) throw new KitError(`update needs --version <tag>, such as ${FIRST_INSTALLER_TAG}`);
   if (opts.revision && command !== "apply") throw new KitError("--revision is an apply option; update takes --version <tag>");
+  if (opts.version && command !== "update") throw new KitError("--version is an update option; apply takes --revision <commit>");
   if (opts.backup && opts.latest) throw new KitError("pass --backup or --latest, not both");
   return { command, opts };
 };
@@ -139,7 +140,9 @@ const commandMain = async (integration, argv, { env = process.env, stdout = proc
     const { command, opts } = parseArgs(integration, argv);
     const handler = COMMANDS[command];
     if (!handler) throw new KitError(`unknown command ${command}; try help`);
-    if (stateRootOf(opts, env).deprecated) log("j3w1-theme: J3W1_TERMINAL_KIT_STATE_DIR is deprecated; set J3W1_THEME_STATE_DIR to the same folder instead");
+    const state = stateRootOf(opts, env);
+    if (state.deprecated) log("j3w1-theme: J3W1_TERMINAL_KIT_STATE_DIR is deprecated; set J3W1_THEME_STATE_DIR to the same folder instead");
+    if (state.legacy) log(`j3w1-theme: using the terminal kit's state folder ${state.root}, which holds your backups`);
     const paths = resolvePaths(opts, env);
     return await handler(opts, paths, (line) => out(`${line}\n`), out);
   } catch (error) {

@@ -56,12 +56,8 @@ const blocks = {
       "",
       ...fence("powershell", [orcaScript(commit, "Test-J3w1OrcaTheme.ps1")], "   "),
     ],
-    update: ({ tag, commit }) => [
-      "When a newer release is out, paste the Install command from that release's copy of this page. It downloads that release and applies it.",
-      "",
-      `Or move by tag from this release's folder (for example to ${tag}):`,
-      "",
-      ...fence("powershell", [`${orcaScript(commit, "Update-J3w1OrcaTheme.ps1")} -Version ${tag}`]),
+    update: () => [
+      "When a newer release is out, open this page on the site's Ports page or on the repository's main branch: its Install command names the newest release. Quit Orca and paste it. It downloads that release, applies it and runs the checks.",
     ],
     restore: ({ commit }) => [
       "Quit Orca (tray icon too), then run:",

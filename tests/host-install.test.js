@@ -1207,3 +1207,61 @@ test("the specimen command renders to stdout", async (t) => {
   assert.match(result.stdout, /Claude Code roles under the j3w1 custom theme/);
   assert.match(result.stdout, /\u001b\[48;2;/);
 });
+
+/* Review r3 follow-ups. */
+
+test("the terminal kit's own default state folder is used when it alone holds backups, so restore reaches the original settings", async (t) => {
+  const h = await setupHome(t);
+  const legacy = path.join(h.home, ".local/state/j3w1-theme/devbox");
+  const applied = await cli(h.home, "claude-code", ["apply", "--state-dir", legacy]);
+  assert.equal(applied.code, 0, applied.stderr);
+  assert.ok(existsSync(path.join(legacy, "backups")) && !existsSync(path.join(h.state, "backups")));
+  const restored = await cli(h.home, "claude-code", ["restore"]);
+  assert.equal(restored.code, 0, restored.stderr);
+  assert.match(restored.stdout + restored.stderr, /terminal kit's state folder/);
+  assert.equal(await fs.readFile(h.settings, "utf8"), SETTINGS, "the user's original theme is back");
+});
+
+test("apply refuses --version, which only update takes", async (t) => {
+  const h = await setupHome(t);
+  const refused = await cli(h.home, "claude-code", ["apply", "--version", "v3.0.0"]);
+  assert.equal(refused.code, 1);
+  assert.match(refused.stderr, /--version is an update option/);
+  assert.equal(await fs.readFile(h.settings, "utf8"), SETTINGS);
+});
+
+test("a host map whose theme name, file or setting is not one the installer writes is refused before any target is built", async () => {
+  const { buildTargets } = await import("../scripts/lib/host-install/commands.mjs");
+  const c = await ctx();
+  const paths = { claudeDir: "/tmp/none/.claude", codexHome: "/tmp/none/.codex" };
+  const bad = (integration, mutate) => {
+    const roles = structuredClone(c.roles);
+    mutate(roles[integration]);
+    return () => buildTargets({ ...c, roles }, paths, [integration]);
+  };
+  assert.doesNotThrow(() => buildTargets(c, paths, APPS));
+  assert.throws(bad("claude-code", (m) => { m.theme.slug = "../../x"; }), /not one this installer writes/);
+  assert.throws(bad("claude-code", (m) => { m.host.setting = "hooks"; }), /not one this installer writes/);
+  assert.throws(bad("codex", (m) => { m.theme.file = "../x.tmTheme"; }), /not one this installer writes/);
+  assert.throws(bad("codex", (m) => { m.host.setting = "model.provider"; }), /not one this installer writes/);
+});
+
+test("apply refuses a commit whose export does not match its digests.json, with nothing written, dry run included", async (t) => {
+  const dir = await scratchDir(t, "j3w1-host-install-tamper-");
+  execFileSync("git", ["clone", "--quiet", "--shared", "--no-checkout", repoRoot, dir], { stdio: "ignore" });
+  const env = { ...process.env, GIT_AUTHOR_NAME: "installer test", GIT_AUTHOR_EMAIL: "installer@test.invalid", GIT_COMMITTER_NAME: "installer test", GIT_COMMITTER_EMAIL: "installer@test.invalid", GIT_INDEX_FILE: path.join(dir, ".git", "installer-test-index") };
+  const g = (args, input) => gitAt(dir, args, { env, input }).toString().trim();
+  const tokens = JSON.parse(atHead(TOKENS).toString("utf8"));
+  tokens.tampered = true;
+  g(["read-tree", HEAD.revision]);
+  g(["update-index", "--add", "--cacheinfo", `100644,${g(["hash-object", "-w", "--stdin"], `${JSON.stringify(tokens, null, 2)}\n`)},${TOKENS}`]);
+  const commit = g(["commit-tree", g(["write-tree"]), "-p", HEAD.revision, "-m", "tampered export"]);
+  const h = await setupHome(t);
+  for (const args of [["apply", "--revision", commit], ["apply", "--revision", commit, "--dry-run"]]) {
+    const refused = await cli(h.home, "codex", args, {}, { sourceRoot: dir });
+    assert.equal(refused.code, 1, args.join(" "));
+    assert.match(refused.stderr, /digests\.json/, args.join(" "));
+  }
+  assert.ok(!existsSync(h.codexTheme) && !existsSync(h.state), "nothing was written");
+  assert.equal(await fs.readFile(h.config, "utf8"), CONFIG);
+});

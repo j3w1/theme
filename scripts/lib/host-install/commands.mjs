@@ -36,7 +36,13 @@ export const stateRootOf = (opts, env = process.env) => {
   if (env.J3W1_THEME_STATE_DIR) return { root: path.resolve(env.J3W1_THEME_STATE_DIR), deprecated: false };
   if (env.J3W1_TERMINAL_KIT_STATE_DIR) return { root: path.resolve(env.J3W1_TERMINAL_KIT_STATE_DIR), deprecated: true };
   const home = env.HOME || os.homedir();
-  return { root: path.join(env.XDG_STATE_HOME || path.join(home, ".local", "state"), "j3w1-theme"), deprecated: false };
+  const root = path.join(env.XDG_STATE_HOME || path.join(home, ".local", "state"), "j3w1-theme");
+  // The terminal kit's own default was <root>/devbox. If only that folder has
+  // backups, keep using it, so restore still reaches the user's original
+  // settings after an upgrade.
+  const legacy = path.join(root, "devbox");
+  if (!existsSync(path.join(root, "backups")) && existsSync(path.join(legacy, "backups"))) return { root: legacy, deprecated: false, legacy: true };
+  return { root, deprecated: false };
 };
 
 /* Codex's home is always the user's registered one (~/.codex), never
@@ -145,8 +151,18 @@ const recordPin = async (ctx, paths, integrations, iso) => {
 /* ---- targets ------------------------------------------------------------ */
 
 /* The desired state of every managed file and key for the chosen hosts. */
+/* A host map's identity fields become file names and settings keys, so they
+   must match closed patterns even when the map came from another commit. */
+const assertHostIdentity = (integration, map) => {
+  const ok = integration === "claude-code"
+    ? /^[a-z0-9-]+$/.test(map.theme?.slug ?? "") && map.host?.setting === "theme"
+    : /^[a-z0-9-]+\.tmTheme$/.test(map.theme?.file ?? "") && /^[a-z0-9-]+$/.test(map.theme?.name ?? "") && map.host?.setting === "tui.theme";
+  if (!ok) throw new KitError(`${integration}: the host map's theme name, file or setting is not one this installer writes`);
+};
+
 export const buildTargets = (ctx, paths, integrations) => {
   const targets = [];
+  for (const integration of integrations) assertHostIdentity(integration, ctx.roles[integration]);
   if (integrations.includes("claude-code")) {
     const map = ctx.roles["claude-code"];
     targets.push({ kind: "file", id: "claude-code-theme", integration: "claude-code", path: path.join(paths.claudeDir, "themes", `${map.theme.slug}.json`), content: Buffer.from(claudeThemeText(ctx)) });
