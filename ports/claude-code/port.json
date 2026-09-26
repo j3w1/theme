@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "id": "claude-code",
+  "displayName": "Claude Code (custom theme)",
+  "status": "experimental",
+  "themeVersion": "2.0.0",
+  "tokenDigest": "sha256-mkReYBbLX5K2V40Qv2jFMJ+zUSDTX8t0xfiibnziwXE=",
+  "profile": "default",
+  "format": "claude-theme-json",
+  "targetVersions": [
+    "2.1.281",
+    "2.1.282",
+    "2.1.283"
+  ],
+  "testedVersions": [],
+  "os": [
+    "linux",
+    "macos",
+    "windows"
+  ],
+  "surfaces": {
+    "supported": [
+      "theme-roles"
+    ],
+    "inherited": [
+      "terminal-palette"
+    ],
+    "unsupported": [
+      "fixed-ansi",
+      "light-mode"
+    ]
+  },
+  "files": [
+    {
+      "path": "dist/j3w1.json",
+      "install": "Save as ~/.claude/themes/j3w1.json and set \"theme\": \"custom:j3w1\" in ~/.claude/settings.json; or run node ports/claude-code/install.mjs apply in a clone of this repository (see its README)."
+    }
+  ],
+  "mappingPath": "mapping.json",
+  "capabilitiesPath": "capabilities.json",
+  "evidence": []
+}

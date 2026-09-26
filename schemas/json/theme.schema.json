@@ -143,6 +143,24 @@
       ],
       "additionalProperties": false
     },
+    "release": {
+      "type": "object",
+      "properties": {
+        "tag": {
+          "type": "string",
+          "pattern": "^v\\d+\\.\\d+\\.\\d+$"
+        },
+        "commit": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        }
+      },
+      "required": [
+        "tag",
+        "commit"
+      ],
+      "additionalProperties": false
+    },
     "profiles": {
       "minItems": 1,
       "type": "array",

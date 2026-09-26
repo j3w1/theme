@@ -8,6 +8,39 @@
   matrix in parallel jobs by project, merged into one evidence report; a change that
   does not touch the site deploys nothing. Tests run in parallel, and the page
   axe scan is split into two halves that together cover the same rules.
+- **One folder per app.** Everything for Orca is in `ports/orca/`, for Claude
+  Code in `ports/claude-code/`, for Codex in `ports/codex/`: the theme file,
+  the installer and one plain guide (install, update, restore, what it
+  changes, limits). `ports/README.md` says which one you need.
+  `tools/terminal-kit/` is removed; its role maps are now each port's
+  `host.json`, its devbox library is `scripts/lib/host-install/`, and its tests
+  are `tests/orca-install.test.js` and `tests/host-install.test.js`.
+- **Values come from the same commit as the installer.** `kit.json` and its
+  separate release pin are gone. The Windows bootstrap, now
+  `ports/orca/install/Get-J3w1Orca.ps1`, downloads `ports/orca` and the export
+  at one commit into `%LOCALAPPDATA%\j3w1-theme\orca\releases\`, checks the
+  export against `exports/digests.json` from that commit, and with `-Apply`
+  installs and checks in one step. The devbox installers read git objects at
+  HEAD, at `--revision`, or at a release tag. Update takes tags from v3.0.0
+  on (earlier tags have no installer and are refused). The Windows state
+  folder is unchanged, so backups made by the terminal kit still restore.
+- **Claude Code and Codex are ports** (experimental): generated
+  `ports/claude-code/dist/j3w1.json` and `ports/codex/dist/j3w1.tmTheme`, a
+  full role mapping and capabilities, and installers
+  (`node ports/claude-code/install.mjs`, `node ports/codex/install.mjs`) that
+  share one implementation with the emitters. Each installer restores only its
+  own host. Their state defaults to `${XDG_STATE_HOME:-~/.local/state}/j3w1-theme`
+  (`J3W1_THEME_STATE_DIR`; the old `J3W1_TERMINAL_KIT_STATE_DIR` still works,
+  with a warning). `schemas/port.mjs` now lists the port formats as a closed
+  list.
+- `theme.json` gains an optional `release` (tag and commit). The port guides
+  print copy-paste install commands pinned to that commit, with nothing to
+  fill in; until it is recorded they say the commands come with v3.0.0.
+- The Orca Test specimen shows the Agnoster prompt in the D-032 prompt roles,
+  and its Codex preview follows the Codex theme's own scopes.
+- Downstream: install from the new guides. On the devbox, set
+  `J3W1_THEME_STATE_DIR` to the folder `J3W1_TERMINAL_KIT_STATE_DIR` named.
+
 - D-032 **Coral slot 6 and a fixed prompt background.** Terminal slot 6 is coral
   `#ff7a66` (7.77:1), so names that code highlighters draw in slot 6, such as
   PowerShell cmdlets in Claude Code, stand apart from the rose text. A new role,

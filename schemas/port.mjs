@@ -3,6 +3,11 @@
    reference implementations and roadmap candidates live in references/ and
    spec/decisions.md, never here. */
 
+/* The native formats ports publish, a closed list. A format with an emitter
+   in scripts/lib/port-artifacts.mjs is generated; a new port adds its format
+   here in the same change. */
+export const PORT_FORMATS = ["ghostty-config", "warp-yaml", "claude-theme-json", "codex-tmtheme"];
+
 export const portSchema = (z) =>
   z
     .object({
@@ -13,7 +18,7 @@ export const portSchema = (z) =>
       themeVersion: z.string().regex(/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/),
       tokenDigest: z.string().regex(/^sha256-[A-Za-z0-9+/=]+$/),
       profile: z.string().regex(/^[a-z0-9-]+$/),
-      format: z.string().min(1),
+      format: z.enum(PORT_FORMATS),
       targetVersions: z.array(z.string().min(1)).min(1),
       testedVersions: z.array(z.string().min(1)),
       os: z.array(z.enum(["windows", "linux", "macos", "any"])).min(1),

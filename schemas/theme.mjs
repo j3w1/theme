@@ -2,6 +2,15 @@
 
 export const SEMVER = /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/;
 export const PROFILE_ID = /^[a-z0-9-]+$/;
+/* The first release whose tree carries the installers under ports/ (and
+   ports/<app>/host.json). Older tags hold the retired tools/terminal-kit. */
+export const FIRST_INSTALLER_TAG = "v3.0.0";
+const releaseNumbers = (tag) => tag.slice(1).split(".").map(Number);
+const atLeast = (tag, floor) => {
+  const [a, b] = [releaseNumbers(tag), releaseNumbers(floor)];
+  for (let i = 0; i < 3; i += 1) if (a[i] !== b[i]) return a[i] > b[i];
+  return true;
+};
 
 export const themeSchema = (z) =>
   z
@@ -40,6 +49,18 @@ export const themeSchema = (z) =>
           note: z.string(),
         })
         .strict(),
+      /* The latest published release and the commit its tag names. The
+         install guides print commands pinned to this commit; it is set after
+         the tag exists, in a separate change, because a file cannot name the
+         commit that contains it. */
+      release: z
+        .object({
+          tag: z.string().regex(/^v\d+\.\d+\.\d+$/),
+          commit: z.string().regex(/^[0-9a-f]{40}$/, "commit must be the full 40-character SHA the tag names"),
+        })
+        .strict()
+        .refine((release) => atLeast(release.tag, FIRST_INSTALLER_TAG), { message: `release.tag must be ${FIRST_INSTALLER_TAG} or later; older tags have no installers under ports/` })
+        .optional(),
       profiles: z
         .array(
           z

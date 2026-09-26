@@ -1,0 +1,1764 @@
+{
+  "schemaVersion": 1,
+  "integrationKind": "other",
+  "themeRevision": "ddda2a59c3a9a3e0c7d3da470f70f12137f9069f",
+  "surfaces": {
+    "theme-scopes": {
+      "state": "supported",
+      "reason": "Codex colours highlighted code from the tmTheme's scope foregrounds and bold, and tints added and removed diff lines with the markup.inserted and markup.deleted backgrounds."
+    },
+    "editor-surfaces": {
+      "state": "unsupported",
+      "reason": "Codex paints no code background, current line, selection, gutter or find highlight from a tmTheme, and no modified-line tint; the file still carries those values."
+    },
+    "font-styles": {
+      "state": "unsupported",
+      "reason": "Codex renders only bold from a tmTheme: comments are not italic, and links and invalid text are not underlined."
+    },
+    "fixed-ansi": {
+      "state": "unsupported",
+      "reason": "Status, diff signs, the brand and the status line use ANSI slots 1-6 that Codex names; the prompt and composer fills are computed from the terminal background."
+    },
+    "terminal-palette": {
+      "state": "inherited",
+      "reason": "Codex runs in a terminal and uses its sixteen slots and background; the terminal's own theme sets them."
+    },
+    "outside-codex": {
+      "state": "out-of-scope",
+      "reason": "Roles a tmTheme has no key for: primitives, interface colours and every value that is not a colour."
+    }
+  },
+  "roles": {
+    "border.width.default": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "border.width.emphasis": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "breakpoint.lg": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "breakpoint.md": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "breakpoint.sm": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "breakpoint.xs": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "color.action.destructive.border": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.action.destructive.filled-bg": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.action.destructive.filled-text": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.action.destructive.hover-bg": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.action.destructive.hover-text": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.action.destructive.pressed-bg": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.action.destructive.text": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.action.primary.bg": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.action.primary.border": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.action.primary.hover-bg": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.action.primary.pressed-bg": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.action.primary.text": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.action.secondary.bg": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.action.secondary.border": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.action.secondary.hover-bg": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.action.secondary.pressed-bg": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.action.secondary.text": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.action.tertiary.hover-bg": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.action.tertiary.text": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.border.active": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.border.control": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.border.default": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.border.disabled": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.border.divider": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.border.overlay": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.border.selected-indicator": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.border.selected-indicator-inactive": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.border.strong": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.chart.axis": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.chart.grid": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.chart.label": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.chart.series-1": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.chart.series-2": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.chart.series-3": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.chart.series-4": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.code.bg": {
+      "state": "unsupported",
+      "surface": "editor-surfaces",
+      "reason": "The file carries it as globals.background; Codex paints no code background from a tmTheme and keeps the terminal background."
+    },
+    "color.code.bracket-match": {
+      "state": "unsupported",
+      "surface": "editor-surfaces",
+      "reason": "Codex reads scope foregrounds and two diff backgrounds from a tmTheme; nothing in it takes this role."
+    },
+    "color.code.caret": {
+      "state": "unsupported",
+      "surface": "editor-surfaces",
+      "reason": "The file carries it as globals.caret; Codex paints no caret from a tmTheme and keeps the terminal background."
+    },
+    "color.code.current-line": {
+      "state": "unsupported",
+      "surface": "editor-surfaces",
+      "reason": "The file carries it as globals.lineHighlight; Codex paints no current-line highlight from a tmTheme and keeps the terminal background."
+    },
+    "color.code.gutter-bg": {
+      "state": "unsupported",
+      "surface": "editor-surfaces",
+      "reason": "The file carries it as globals.gutter; Codex paints no gutter from a tmTheme and keeps the terminal background."
+    },
+    "color.code.gutter-rule": {
+      "state": "unsupported",
+      "surface": "editor-surfaces",
+      "reason": "Codex reads scope foregrounds and two diff backgrounds from a tmTheme; nothing in it takes this role."
+    },
+    "color.code.hued.attribute": {
+      "state": "mapped",
+      "surface": "theme-scopes",
+      "reason": "Written to the theme's Attribute.foreground setting."
+    },
+    "color.code.hued.constant": {
+      "state": "mapped",
+      "surface": "theme-scopes",
+      "reason": "Written to the theme's Constant.foreground setting."
+    },
+    "color.code.hued.escape": {
+      "state": "mapped",
+      "surface": "theme-scopes",
+      "reason": "Written to the theme's Escape.foreground setting."
+    },
+    "color.code.hued.function": {
+      "state": "mapped",
+      "surface": "theme-scopes",
+      "reason": "Written to the theme's Function.foreground setting."
+    },
+    "color.code.hued.number": {
+      "state": "mapped",
+      "surface": "theme-scopes",
+      "reason": "Written to the theme's Number.foreground setting."
+    },
+    "color.code.hued.operator": {
+      "state": "mapped",
+      "surface": "theme-scopes",
+      "reason": "Written to the theme's Operator.foreground setting."
+    },
+    "color.code.hued.property": {
+      "state": "mapped",
+      "surface": "theme-scopes",
+      "reason": "Written to the theme's Property.foreground setting."
+    },
+    "color.code.hued.string": {
+      "state": "mapped",
+      "surface": "theme-scopes",
+      "reason": "Written to the theme's String.foreground setting."
+    },
+    "color.code.hued.type": {
+      "state": "mapped",
+      "surface": "theme-scopes",
+      "reason": "Written to the theme's Type.foreground setting."
+    },
+    "color.code.indent-guide": {
+      "state": "unsupported",
+      "surface": "editor-surfaces",
+      "reason": "Codex reads scope foregrounds and two diff backgrounds from a tmTheme; nothing in it takes this role."
+    },
+    "color.code.line-number": {
+      "state": "unsupported",
+      "surface": "editor-surfaces",
+      "reason": "The file carries it as globals.gutterForeground; Codex paints no line numbers from a tmTheme and keeps the terminal background."
+    },
+    "color.code.line-number-active": {
+      "state": "unsupported",
+      "surface": "editor-surfaces",
+      "reason": "Codex reads scope foregrounds and two diff backgrounds from a tmTheme; nothing in it takes this role."
+    },
+    "color.code.search-current-bg": {
+      "state": "unsupported",
+      "surface": "editor-surfaces",
+      "reason": "Codex reads scope foregrounds and two diff backgrounds from a tmTheme; nothing in it takes this role."
+    },
+    "color.code.search-current-text": {
+      "state": "unsupported",
+      "surface": "editor-surfaces",
+      "reason": "Codex reads scope foregrounds and two diff backgrounds from a tmTheme; nothing in it takes this role."
+    },
+    "color.code.search-match-bg": {
+      "state": "unsupported",
+      "surface": "editor-surfaces",
+      "reason": "The file carries it as globals.findHighlight; Codex paints no find highlight from a tmTheme and keeps the terminal background."
+    },
+    "color.code.selection-bg": {
+      "state": "unsupported",
+      "surface": "editor-surfaces",
+      "reason": "The file carries it as globals.selection; Codex paints no selection from a tmTheme and keeps the terminal background."
+    },
+    "color.code.syntax.attribute": {
+      "state": "out-of-scope",
+      "surface": "theme-scopes",
+      "reason": "The Codex theme opts in to the hued roles (D-030): color.code.hued.attribute carries this scope."
+    },
+    "color.code.syntax.comment": {
+      "state": "mapped",
+      "surface": "theme-scopes",
+      "reason": "Written to the theme's Comment.foreground setting."
+    },
+    "color.code.syntax.constant": {
+      "state": "out-of-scope",
+      "surface": "theme-scopes",
+      "reason": "The Codex theme opts in to the hued roles (D-030): color.code.hued.constant carries this scope."
+    },
+    "color.code.syntax.deprecated": {
+      "state": "mapped",
+      "surface": "theme-scopes",
+      "reason": "Written to the theme's Deprecated.foreground setting."
+    },
+    "color.code.syntax.escape": {
+      "state": "out-of-scope",
+      "surface": "theme-scopes",
+      "reason": "The Codex theme opts in to the hued roles (D-030): color.code.hued.escape carries this scope."
+    },
+    "color.code.syntax.function": {
+      "state": "out-of-scope",
+      "surface": "theme-scopes",
+      "reason": "The Codex theme opts in to the hued roles (D-030): color.code.hued.function carries this scope."
+    },
+    "color.code.syntax.heading": {
+      "state": "mapped",
+      "surface": "theme-scopes",
+      "reason": "Written to the theme's Heading.foreground setting."
+    },
+    "color.code.syntax.invalid": {
+      "state": "mapped",
+      "surface": "theme-scopes",
+      "reason": "Written to the theme's Invalid.foreground setting."
+    },
+    "color.code.syntax.keyword": {
+      "state": "mapped",
+      "surface": "theme-scopes",
+      "reason": "Written to the theme's Keyword.foreground setting."
+    },
+    "color.code.syntax.number": {
+      "state": "out-of-scope",
+      "surface": "theme-scopes",
+      "reason": "The Codex theme opts in to the hued roles (D-030): color.code.hued.number carries this scope."
+    },
+    "color.code.syntax.operator": {
+      "state": "out-of-scope",
+      "surface": "theme-scopes",
+      "reason": "The Codex theme opts in to the hued roles (D-030): color.code.hued.operator carries this scope."
+    },
+    "color.code.syntax.property": {
+      "state": "out-of-scope",
+      "surface": "theme-scopes",
+      "reason": "The Codex theme opts in to the hued roles (D-030): color.code.hued.property carries this scope."
+    },
+    "color.code.syntax.punctuation": {
+      "state": "mapped",
+      "surface": "theme-scopes",
+      "reason": "Written to the theme's Punctuation.foreground setting."
+    },
+    "color.code.syntax.string": {
+      "state": "out-of-scope",
+      "surface": "theme-scopes",
+      "reason": "The Codex theme opts in to the hued roles (D-030): color.code.hued.string carries this scope."
+    },
+    "color.code.syntax.tag": {
+      "state": "mapped",
+      "surface": "theme-scopes",
+      "reason": "Written to the theme's Tag.foreground setting."
+    },
+    "color.code.syntax.type": {
+      "state": "out-of-scope",
+      "surface": "theme-scopes",
+      "reason": "The Codex theme opts in to the hued roles (D-030): color.code.hued.type carries this scope."
+    },
+    "color.code.syntax.variable": {
+      "state": "mapped",
+      "surface": "theme-scopes",
+      "reason": "Written to the theme's Variable.foreground and globals.foreground settings."
+    },
+    "color.code.whitespace": {
+      "state": "unsupported",
+      "surface": "editor-surfaces",
+      "reason": "The file carries it as globals.invisibles; Codex paints no whitespace marks from a tmTheme and keeps the terminal background."
+    },
+    "color.diagnostic.error.bg": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.diagnostic.error.stripe": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.diagnostic.error.text": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.diagnostic.error.underline": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.diagnostic.hint.underline": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.diagnostic.info.text": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.diagnostic.info.underline": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.diagnostic.unused.text": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.diagnostic.warning.stripe": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.diagnostic.warning.text": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.diagnostic.warning.underline": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.diff.added.bg": {
+      "state": "mapped",
+      "surface": "theme-scopes",
+      "reason": "Written to the theme's Inserted.background setting."
+    },
+    "color.diff.added.emphasis": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Codex draws diff signs in fixed ANSI slots and no word emphasis; only the added and removed line tints come from the tmTheme."
+    },
+    "color.diff.added.gutter": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Codex draws diff signs in fixed ANSI slots and no word emphasis; only the added and removed line tints come from the tmTheme."
+    },
+    "color.diff.conflict-border": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Codex draws diff signs in fixed ANSI slots and no word emphasis; only the added and removed line tints come from the tmTheme."
+    },
+    "color.diff.header-bg": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Codex draws diff signs in fixed ANSI slots and no word emphasis; only the added and removed line tints come from the tmTheme."
+    },
+    "color.diff.modified.bg": {
+      "state": "unsupported",
+      "surface": "editor-surfaces",
+      "reason": "The file carries it as Changed.background; Codex reads backgrounds only for markup.inserted and markup.deleted, so modified lines get no tint."
+    },
+    "color.diff.modified.gutter": {
+      "state": "mapped",
+      "surface": "theme-scopes",
+      "reason": "Written to the theme's Changed.foreground setting."
+    },
+    "color.diff.removed.bg": {
+      "state": "mapped",
+      "surface": "theme-scopes",
+      "reason": "Written to the theme's Deleted.background setting."
+    },
+    "color.diff.removed.emphasis": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Codex draws diff signs in fixed ANSI slots and no word emphasis; only the added and removed line tints come from the tmTheme."
+    },
+    "color.diff.removed.gutter": {
+      "state": "unsupported",
+      "surface": "fixed-ansi",
+      "reason": "Codex draws diff signs in fixed ANSI slots and no word emphasis; only the added and removed line tints come from the tmTheme."
+    },
+    "color.icon.decorative": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.icon.default": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.interaction.disabled.bg": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.interaction.drop-target": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.interaction.focus.ring": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.interaction.focus.ring-container": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.interaction.hover.bg": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.interaction.hover.bg-strong": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.interaction.marquee": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.interaction.pressed.bg": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.interaction.scrollbar.thumb": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.interaction.scrollbar.thumb-hover": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.interaction.scrollbar.track": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.interaction.selection.bg": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.interaction.selection.inactive-bg": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.interaction.selection.inactive-text": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.interaction.selection.text": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.interaction.text-selection.bg": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.interaction.text-selection.text": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.primitive.alpha.black-55": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.alpha.black-65": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.alpha.red-12": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.alpha.red-6": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.alpha.transparent": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.amber.500": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.amber.600": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.amber.tint": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi-readable.1": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi-readable.10": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi-readable.12": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi-readable.13": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi-readable.14": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi-readable.15": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi-readable.4": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi-readable.8": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi-readable.9": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.0": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.1": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.10": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.11": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.12": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.13": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.14": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.15": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.2": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.3": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.4": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.5": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.6": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.7": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.8": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi.9": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.blue.500": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.blue.600": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.blue.tint": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.coral.700": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.green.500": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.green.600": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.green.tint": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ink.0": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ink.14": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ink.15": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ink.20": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ink.25": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ink.28": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ink.30": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ink.40": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ink.52": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ink.60": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.paper.100": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.paper.90": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.100": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.150": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.200": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.250": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.300": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.350": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.400": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.450": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.50": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.500": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.550": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.650": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.750": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.760": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.770": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.800": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.810": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.850": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.860": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.rose.300": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.rose.320": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.rose.350": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.rose.450": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.rose.550": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.rose.600": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.rose.650": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.rose.700": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.rose.800": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.status.danger.border": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.status.danger.fill": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.status.danger.on-fill": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.status.danger.text": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.status.danger.tint": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.status.info.border": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.status.info.fill": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.status.info.on-fill": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.status.info.text": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.status.info.tint": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.status.neutral.border": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.status.neutral.fill": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.status.neutral.on-fill": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.status.neutral.text": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.status.neutral.tint": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.status.success.border": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.status.success.fill": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.status.success.on-fill": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.status.success.text": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.status.success.tint": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.status.warning.border": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.status.warning.fill": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.status.warning.on-fill": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.status.warning.text": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.status.warning.tint": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.surface.backdrop": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.surface.canvas": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.surface.chrome": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.surface.chrome-alt": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.surface.code": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.surface.default": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.surface.desktop": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.surface.input": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.surface.overlay": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.surface.raised": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.surface.sunken": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.surface.terminal": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.terminal.ansi.0": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; a tmTheme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.ansi.1": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; a tmTheme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.ansi.10": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; a tmTheme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.ansi.11": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; a tmTheme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.ansi.12": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; a tmTheme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.ansi.13": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; a tmTheme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.ansi.14": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; a tmTheme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.ansi.15": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; a tmTheme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.ansi.2": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; a tmTheme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.ansi.3": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; a tmTheme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.ansi.4": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; a tmTheme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.ansi.5": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; a tmTheme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.ansi.6": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; a tmTheme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.ansi.7": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; a tmTheme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.ansi.8": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; a tmTheme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.ansi.9": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; a tmTheme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.bg": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; a tmTheme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.cursor": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; a tmTheme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.fg": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; a tmTheme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.prompt-bg": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; a tmTheme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.prompt-text": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; a tmTheme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.selection-bg": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; a tmTheme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.terminal.selection-text": {
+      "state": "inherited",
+      "surface": "terminal-palette",
+      "reason": "The terminal draws this; a tmTheme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+    },
+    "color.text.accent": {
+      "state": "mapped",
+      "surface": "theme-scopes",
+      "reason": "Written to the theme's Codex accent.foreground setting."
+    },
+    "color.text.accent-strong": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.text.bright": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.text.default": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.text.disabled": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.text.inverse": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.text.link": {
+      "state": "mapped",
+      "surface": "theme-scopes",
+      "reason": "Written to the theme's Link.foreground setting."
+    },
+    "color.text.link-hover": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.text.link-underline": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.text.muted": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.text.on-action": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.text.on-danger": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.text.on-light": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.text.on-selection": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.text.placeholder": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.text.prose": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.text.subtle": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "density.comfortable.control-height": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "density.comfortable.control-padding-x": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "density.comfortable.gap": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "density.comfortable.icon": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "density.comfortable.row-height": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "density.compact.control-height": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "density.compact.control-padding-x": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "density.compact.gap": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "density.compact.icon": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "density.compact.row-height": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "focus.offset": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "focus.offset-container": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "focus.offset-invalid": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "focus.ring": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "focus.ring-container": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "font.family.mono": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "font.letter-spacing.terminal": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "font.line-height.caption": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "font.line-height.code": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "font.line-height.h1": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "font.line-height.h2": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "font.line-height.h3": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "font.line-height.reading": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "font.line-height.terminal": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "font.line-height.ui-lg": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "font.line-height.ui-md": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "font.line-height.ui-sm": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "font.size.caption": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "font.size.code": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "font.size.h1": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "font.size.h2": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "font.size.h3": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "font.size.reading": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "font.size.terminal": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "font.size.ui-lg": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "font.size.ui-md": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "font.size.ui-sm": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "font.weight.bold": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "font.weight.regular": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "icon.size.lg": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "icon.size.md": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "icon.size.sm": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "icon.stroke": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "layout.app-max": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "layout.content-max": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "layout.measure": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "motion.duration.base": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "motion.duration.fast": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "motion.duration.slow": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "radius.none": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "shadow.floating": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "space.0": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "space.1": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "space.12": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "space.16": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "space.2": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "space.24": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "space.32": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "space.4": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "space.48": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "space.8": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "z.canvas": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "z.dialog": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "z.drawer": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "z.popover": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "z.raised": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "z.skip-link": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "z.toast": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Not a colour; a tmTheme carries colours only."
+    }
+  },
+  "rollback": "Run node ports/codex/install.mjs restore in the same clone. By hand: set theme under [tui] in ~/.codex/config.toml back to your previous theme (or remove the line) and delete ~/.codex/themes/j3w1.tmTheme."
+}

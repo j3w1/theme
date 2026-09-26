@@ -30,6 +30,8 @@ Declared status and import evidence are described under
 <!-- downloads:start -->
 | Application | File (theme 2.0.0) | Also on the site | Install | Status |
 | --- | --- | --- | --- | --- |
+| Claude Code (custom theme) | [j3w1.json](https://raw.githubusercontent.com/j3w1/theme/v2.0.0/ports/claude-code/dist/j3w1.json) | [download](https://j3w1.github.io/theme/ports/claude-code/j3w1.json) | Save as ~/.claude/themes/j3w1.json and set "theme": "custom:j3w1" in ~/.claude/settings.json; or run node ports/claude-code/install.mjs apply in a clone of this repository (see its README). | experimental; import evidence not verified |
+| Codex CLI (tmTheme) | [j3w1.tmTheme](https://raw.githubusercontent.com/j3w1/theme/v2.0.0/ports/codex/dist/j3w1.tmTheme) | [download](https://j3w1.github.io/theme/ports/codex/j3w1.tmTheme) | Save as ~/.codex/themes/j3w1.tmTheme and set theme = "j3w1" under [tui] in ~/.codex/config.toml; or run node ports/codex/install.mjs apply in a clone of this repository (see its README). | experimental; import evidence not verified |
 | Ghostty theme | [j3w1](https://raw.githubusercontent.com/j3w1/theme/v2.0.0/ports/ghostty/dist/j3w1) | [download](https://j3w1.github.io/theme/ports/ghostty/j3w1) | Save as ~/.config/ghostty/themes/j3w1 and add `theme = j3w1` to your Ghostty config. | experimental; import evidence not verified |
 | Orca (Ghostty config import) | [config.ghostty](https://raw.githubusercontent.com/j3w1/theme/v2.0.0/ports/orca/dist/config.ghostty) | [download](https://j3w1.github.io/theme/ports/orca/config.ghostty) | Save as %APPDATA%\ghostty\config.ghostty (Windows) or ~/.config/ghostty/config.ghostty, then Orca → Settings → Terminal → Import from Ghostty → Apply Changes. | experimental; import evidence not verified |
 | Warp theme YAML (also Orca's Import from YAML) | [j3w1.yaml](https://raw.githubusercontent.com/j3w1/theme/v2.0.0/ports/warp/dist/j3w1.yaml) | [download](https://j3w1.github.io/theme/ports/warp/j3w1.yaml) | Orca → Settings → Terminal Themes → Import from YAML (or save into %APPDATA%\warp\Warp\data\themes\ and use Import from Warp), then select "j3w1 theme" as the Dark Theme. Warp: save into its themes folder. | experimental; import evidence not verified |
@@ -332,7 +334,7 @@ are implied by adding a comparison. D-016 records the report schema boundary.
 | `exports/` | Generated, committed: resolved tokens, semantic usage index, CSS custom properties, contrast report, coverage ledger, per-component JSON and briefs, compact and full Markdown, `llms.txt`, digests |
 | `site/` | The Astro source of the design-system portal, complete reference and token tools, built to `dist/` and deployed to `/theme/` by CI |
 | `references/` | Pinned provenance, catalogued historical implementations, excerpts, and any reference screenshots with their provenance |
-| `ports/` | Native application ports, when they exist, each with a manifest, mapping, artifacts and evidence |
+| `ports/` | One folder per app, each with a manifest, mapping, generated theme file and evidence; Orca, Claude Code and Codex also hold their installer and one guide (`ports/README.md` says which one you need) |
 | `templates/` | Starting points for a port, a component and the fresh-agent consumption task |
 | `tests/` | Source tests, `dist/` tests, browser tests, consumption fixtures |
 
@@ -375,6 +377,8 @@ and the public site, including when verification fails.
 <!-- ports:start -->
 | Port | Format | Declared status | Import evidence | Theme | Tested on | Supported / inherited / unsupported |
 | --- | --- | --- | --- | --- | --- | --- |
+| Claude Code (custom theme) | claude-theme-json | experimental | not verified | 2.0.0 | — (linux, macos, windows) | 1 / 1 / 2 |
+| Codex CLI (tmTheme) | codex-tmtheme | experimental | not verified | 2.0.0 | — (linux, macos) | 1 / 1 / 3 |
 | Ghostty theme | ghostty-config | experimental | not verified | 2.0.0 | — (macos, linux) | 3 / 1 / 1 |
 | Orca (Ghostty config import) | ghostty-config | experimental | not verified | 2.0.0 | — (windows, macos, linux) | 4 / 1 / 1 |
 | Warp theme YAML (also Orca's Import from YAML) | warp-yaml | experimental | not verified | 2.0.0 | — (windows, macos, linux) | 1 / 1 / 3 |

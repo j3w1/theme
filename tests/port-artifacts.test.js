@@ -2,16 +2,20 @@
    its importer accepts. The Warp rules are Orca 1.4.209's Import from YAML
    (hex colours; background, foreground and an ANSI slot; dark below 0.55
    luminance). The Ghostty rules are its Import from Ghostty (`key = value`
-   lines, `palette = N=#hex` for N 0–15, a bare-number font size). A parse is a
-   structural pass, never import evidence. */
+   lines, `palette = N=#hex` for N 0–15, a bare-number font size). The Claude
+   Code file is a custom theme (name, base, overrides of hex colours); the
+   Codex file is a TextMate property list. A parse is a structural pass,
+   never import evidence. */
 
 import assert from "node:assert/strict";
 import test from "node:test";
 import { parse } from "yaml";
 import { readJson, readText } from "../scripts/lib/fs.mjs";
 import { validatePorts } from "../scripts/lib/validators.mjs";
-import { GHOSTTY_KEYS, PORT_EMITTERS, WARP_YAML_KEYS, luminance } from "../scripts/lib/port-artifacts.mjs";
+import { assertHostMapping, GHOSTTY_KEYS, hostEntries, PORT_EMITTERS, WARP_YAML_KEYS, luminance } from "../scripts/lib/port-artifacts.mjs";
+import { parsePlist } from "../scripts/lib/host-install/plist.mjs";
 import { downloadsTable } from "../scripts/lib/exports.mjs";
+import { PORT_FORMATS } from "../schemas/port.mjs";
 
 const manifest = await readJson("theme.json");
 const resolved = await readJson("exports/tokens.resolved.json");
@@ -45,15 +49,47 @@ const ghostty = (text) => {
   return out;
 };
 
-test("the generated ports are the Warp, Ghostty and Orca files", () => {
-  assert.deepEqual(ports.map(({ port }) => `${port.id}:${port.format}`), ["ghostty:ghostty-config", "orca:ghostty-config", "warp:warp-yaml"]);
+/* A TextMate theme as native key -> value: `globals.<key>` and `<scope
+   name>.<setting>`, colours only. */
+const tmValues = (text) => {
+  const theme = parsePlist(text);
+  const [globals, ...rules] = theme.settings;
+  const out = new Map(Object.entries(globals.settings).map(([k, v]) => [`globals.${k}`, v]));
+  for (const rule of rules) for (const [k, v] of Object.entries(rule.settings)) if (k !== "fontStyle") out.set(`${rule.name}.${k}`, v);
+  return { theme, values: out };
+};
+
+test("the generated ports are the Claude Code, Codex, Ghostty, Orca and Warp files", () => {
+  assert.deepEqual(ports.map(({ port }) => `${port.id}:${port.format}`), ["claude-code:claude-theme-json", "codex:codex-tmtheme", "ghostty:ghostty-config", "orca:ghostty-config", "warp:warp-yaml"]);
+  for (const format of Object.keys(PORT_EMITTERS)) assert.ok(PORT_FORMATS.includes(format), `${format} is in the closed list of port formats`);
 });
 
 for (const entry of ports) {
   const { port, text } = entry;
   test(`${port.id}: every mapped role is written at its native key with the resolved value, and nothing else is`, () => {
     const want = expected(entry);
-    if (port.format === "warp-yaml") {
+    if (port.format === "claude-theme-json") {
+      const theme = JSON.parse(text);
+      assert.deepEqual(Object.keys(theme), ["name", "base", "overrides"]);
+      assert.equal(theme.name, "j3w1");
+      assert.equal(theme.base, "dark-ansi");
+      assert.deepEqual(Object.keys(theme.overrides).sort(), [...want.keys()].sort());
+      for (const [key, value] of want) assert.equal(theme.overrides[key], value, key);
+      for (const value of Object.values(theme.overrides)) assert.match(value, /^#[0-9a-f]{6}$/);
+    } else if (port.format === "codex-tmtheme") {
+      const { theme, values } = tmValues(text);
+      assert.equal(theme.name, "j3w1");
+      for (const [key, value] of want) assert.equal(values.get(key), value, key);
+      // Anything else the file carries belongs to an unmapped role whose reason names the key.
+      const tokens = resolved.profiles[port.profile].tokens;
+      for (const [key, value] of values) {
+        if (want.has(key)) continue;
+        const role = Object.entries(entry.mapping.unmapped).find(([, reason]) => reason.includes(key))?.[0];
+        assert.ok(role, `${key} is written but neither mapped nor named by an unmapped reason`);
+        assert.equal(value, tokens[role].css, key);
+      }
+      for (const value of values.values()) assert.match(value, /^#[0-9a-f]{6}$/);
+    } else if (port.format === "warp-yaml") {
       const theme = parse(text);
       const at = (key) => key.split(".").reduce((node, part) => node?.[part], theme);
       for (const key of WARP_YAML_KEYS) assert.equal(at(key), want.get(key), key);
@@ -75,9 +111,19 @@ for (const entry of ports) {
     }
   });
   test(`${port.id}: the file names its version and source and carries no timestamp`, () => {
-    assert.ok(text.startsWith(`# j3w1 theme ${manifest.version}, ${port.profile} profile`));
-    assert.ok(text.includes(`Generated from ports/${port.id}/mapping.json`));
+    if (port.format === "claude-theme-json") {
+      // JSON has no comments and Claude Code's theme takes name, base and
+      // overrides only, so this file cannot name its version; the
+      // shape test above pins its keys instead.
+      assert.deepEqual(Object.keys(JSON.parse(text)), ["name", "base", "overrides"]);
+    } else if (port.format === "codex-tmtheme") {
+      assert.ok(tmValues(text).theme.comment.startsWith(`j3w1 theme ${manifest.version}, ${port.profile} profile, for Codex CLI. Generated from ports/${port.id}/host.json`));
+    } else {
+      assert.ok(text.startsWith(`# j3w1 theme ${manifest.version}, ${port.profile} profile`));
+      assert.ok(text.includes(`Generated from ports/${port.id}/mapping.json`));
+    }
     assert.doesNotMatch(text, /\d{4}-\d{2}-\d{2}/);
+    assert.doesNotMatch(text, /\b[0-9a-f]{40}\b/, "no commit");
   });
 }
 
@@ -86,6 +132,25 @@ test("roles a format cannot carry stay unmapped with a reason", () => {
   for (const role of ["color.terminal.selection-bg", "color.terminal.selection-text", "color.border.divider"]) assert.ok(byId.warp.unmapped[role], role);
   for (const role of ["font.line-height.terminal", "font.letter-spacing.terminal", "color.surface.terminal"]) assert.ok(byId.orca.unmapped[role], role);
   assert.ok(byId.ghostty.unmapped["font.family.mono"]);
+  for (const role of ["color.code.syntax.keyword", "color.text.link", "color.terminal.ansi.1"]) assert.ok(byId["claude-code"].unmapped[role], role);
+  for (const role of ["color.terminal.ansi.1", "color.diff.added.gutter"]) assert.ok(byId.codex.unmapped[role], role);
+  assert.match(byId.codex.unmapped["color.code.bg"], /globals\.background/, "a carried global names its key");
+});
+
+test("mapping.json and host.json agree key for key, and a disagreement fails generation", async () => {
+  for (const { port, mapping } of ports.filter(({ port }) => ["claude-theme-json", "codex-tmtheme"].includes(port.format))) {
+    const host = await readJson(`ports/${port.id}/host.json`);
+    const entries = hostEntries(port.format, host);
+    assert.doesNotThrow(() => assertHostMapping(port, mapping, entries));
+    const [role, keys] = Object.entries(mapping.mappings)[0];
+    const moved = structuredClone(mapping);
+    moved.mappings[role] = [...keys, "notAKey"];
+    assert.throws(() => assertHostMapping(port, moved, entries), /host\.json writes nothing there/);
+    const dropped = structuredClone(mapping);
+    delete dropped.mappings[role];
+    dropped.unmapped[role] = "Dropped without naming the key.";
+    assert.throws(() => assertHostMapping(port, dropped, entries), /neither maps nor names in the role's unmapped reason/);
+  }
 });
 
 test("download links pin the release tag and never a branch", () => {

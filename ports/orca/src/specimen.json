@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "note": "Segments name ANSI slots (0-15 or \"default\"), resolved tokens (fgToken/bgToken, drawn as 24-bit colour) or Claude Code roles (fgRole/bgRole, resolved through roles/claude-code.json). No colour values live here.",
+  "note": "Source of ports/orca/install/specimen.json, which npm run generate writes. Segments name ANSI slots (0-15 or \"default\"), tokens (fgToken/bgToken, drawn as 24-bit colour), Claude Code roles (fgRole/bgRole, through ports/claude-code/host.json) or Codex scopes by name (fgScope/bgScope, through ports/codex/host.json). No colour values live here.",
   "sections": [
     {
       "id": "slots",
@@ -19,17 +19,17 @@
     },
     {
       "id": "prompt",
-      "title": "Agnoster prompt (this devbox's ~/.zshrc)",
+      "title": "Agnoster prompt (prompt roles for the path, D-032; git segments keep their slots)",
       "lines": [
         [
           {
             "text": " ~/dev/theme ",
-            "fg": 7,
-            "bg": 4
+            "fgToken": "color.terminal.prompt-text",
+            "bgToken": "color.terminal.prompt-bg"
           },
           {
             "text": "",
-            "fg": 4,
+            "fgToken": "color.terminal.prompt-bg",
             "bg": 2
           },
           {
@@ -45,12 +45,12 @@
         [
           {
             "text": " ~/dev/theme ",
-            "fg": 7,
-            "bg": 4
+            "fgToken": "color.terminal.prompt-text",
+            "bgToken": "color.terminal.prompt-bg"
           },
           {
             "text": "",
-            "fg": 4,
+            "fgToken": "color.terminal.prompt-bg",
             "bg": 5
           },
           {
@@ -71,12 +71,12 @@
           },
           {
             "text": " ~/dev/theme ",
-            "fg": 7,
-            "bg": 4
+            "fgToken": "color.terminal.prompt-text",
+            "bgToken": "color.terminal.prompt-bg"
           },
           {
             "text": "",
-            "fg": 4
+            "fgToken": "color.terminal.prompt-bg"
           }
         ]
       ]
@@ -145,7 +145,7 @@
             "fg": 1
           },
           {
-            "text": "tools/terminal-kit/kit.json"
+            "text": "ports/orca/host.json"
           }
         ],
         [
@@ -154,7 +154,7 @@
             "fg": 1
           },
           {
-            "text": "tools/terminal-kit/specimen.json"
+            "text": "ports/orca/src/specimen.json"
           }
         ],
         [
@@ -199,7 +199,7 @@
         ],
         [
           {
-            "text": "/home/j3w1/dev/theme/tools/terminal-kit/roles/terminal.json",
+            "text": "/home/j3w1/dev/theme/ports/orca/host.json",
             "fg": "default",
             "attrs": [
               "underline"
@@ -316,116 +316,113 @@
     },
     {
       "id": "code-truecolor",
-      "title": "Code as the j3w1 Codex tmTheme draws it (code-editor roles)",
+      "title": "Code as the j3w1 Codex tmTheme draws it (its scopes; Codex draws bold, not italic)",
       "lines": [
         [
           {
             "text": "import",
-            "fgToken": "color.code.syntax.keyword"
+            "fgScope": "Keyword"
           },
           {
             "text": " { resolve } ",
-            "fgToken": "color.code.syntax.variable"
+            "fgScope": "Variable"
           },
           {
             "text": "from",
-            "fgToken": "color.code.syntax.keyword"
+            "fgScope": "Keyword"
           },
           {
             "text": " "
           },
           {
             "text": "\"./tokens.mjs\"",
-            "fgToken": "color.code.syntax.string"
+            "fgScope": "String"
           },
           {
             "text": ";",
-            "fgToken": "color.code.syntax.punctuation"
+            "fgScope": "Punctuation"
           }
         ],
         [
           {
             "text": "const",
-            "fgToken": "color.code.syntax.keyword"
+            "fgScope": "Keyword"
           },
           {
             "text": " limit ",
-            "fgToken": "color.code.syntax.variable"
+            "fgScope": "Variable"
           },
           {
             "text": "=",
-            "fgToken": "color.code.syntax.operator"
+            "fgScope": "Operator"
           },
           {
             "text": " "
           },
           {
             "text": "42",
-            "fgToken": "color.code.syntax.number"
+            "fgScope": "Number"
           },
           {
             "text": ";  ",
-            "fgToken": "color.code.syntax.punctuation"
+            "fgScope": "Punctuation"
           },
           {
             "text": "// comment",
-            "fgToken": "color.code.syntax.comment",
-            "attrs": [
-              "italic"
-            ]
+            "fgScope": "Comment"
           }
         ],
         [
           {
             "text": "function",
-            "fgToken": "color.code.syntax.keyword"
+            "fgScope": "Keyword"
           },
           {
             "text": " "
           },
           {
             "text": "apply",
-            "fgToken": "color.code.syntax.function"
+            "fgScope": "Function"
           },
           {
             "text": "(path: ",
-            "fgToken": "color.code.syntax.punctuation"
+            "fgScope": "Punctuation"
           },
           {
             "text": "Path",
-            "fgToken": "color.code.syntax.type"
+            "fgScope": "Type"
           },
           {
             "text": ") { ",
-            "fgToken": "color.code.syntax.punctuation"
+            "fgScope": "Punctuation"
           },
           {
             "text": "this",
-            "fgToken": "color.code.syntax.constant"
+            "fgScope": "Constant"
           },
           {
             "text": ".",
-            "fgToken": "color.code.syntax.punctuation"
+            "fgScope": "Punctuation"
           },
           {
             "text": "size",
-            "fgToken": "color.code.syntax.property"
+            "fgScope": "Property"
           },
           {
             "text": " }",
-            "fgToken": "color.code.syntax.punctuation"
+            "fgScope": "Punctuation"
           }
         ],
         [
           {
             "text": "+ added line  ",
-            "fgToken": "color.diff.added.emphasis",
-            "bgToken": "color.diff.added.bg"
+            "fgScope": "Variable",
+            "bgScope": "Inserted"
           },
           {
             "text": "- removed line ",
-            "fgToken": "color.diff.removed.emphasis",
-            "bgToken": "color.diff.removed.bg"
+            "fgScope": "Variable",
+            "bgScope": "Deleted"
           }
         ]
       ]
@@ -582,7 +579,7 @@
           },
           {
             "text": "npm test",
-            "fgToken": "color.text.accent"
+            "fgScope": "Codex accent"
           }
         ],
         [
@@ -631,7 +628,7 @@
             "fg": 1
           },
           {
-            "text": "  tools/terminal-kit/roles/codex.json",
+            "text": "  ports/codex/host.json",
             "attrs": [
               "dim"
             ]

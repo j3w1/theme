@@ -31,6 +31,9 @@ test("port explorer lists every published port with a working download and the c
 });
 test("port explorer navigation is keyboard accessible with no axe violations", { annotation }, async ({ page }, info) => {
   test.skip(info.project.name !== "desktop", "Single keyboard and axe audit.");
+  // The scan covers every port's full role table (five ports, one row per
+  // role each), as the other full-page scans do with their own budgets.
+  test.setTimeout(120_000);
   await page.goto("ports/");
   for (const name of ["Download mapping JSON", /^Download .+\.[a-z]+$/]) {
     const link = page.getByRole("link", { name }).first();

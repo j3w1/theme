@@ -1,4 +1,6 @@
-/* The devbox commands: apply, update, test, restore and specimen. Every change
+/* The devbox commands: apply, update, test, restore and specimen, for the
+   integrations an entry point names (ports/claude-code/install.mjs names
+   claude-code, ports/codex/install.mjs names codex). Every change
    is planned in full first: each file's next bytes are computed and checked
    with a real parse before the backup exists or anything is written. Each
    file is then read again just before its atomic write, and compared once
@@ -14,7 +16,7 @@ import { isDeepStrictEqual } from "node:util";
 import { atomicWrite, ChangedError, decodeText, EditError, encodeText, jsonGet, jsonMembers, jsonRemove, jsonSetRaw, jsonVerify, readMaybe, removeFile, sameBytes, tomlHasTable, tomlParser, tomlRead, tomlRestore, tomlSet, tomlVerify, WrittenError } from "./edit.mjs";
 import { claudeTheme, claudeThemeText, codexThemeObject, codexTmTheme, integrationDisclosures, INTEGRATIONS, lock } from "./generators.mjs";
 import { parsePlist } from "./plist.mjs";
-import { assertTag, DEFAULT_SOURCE_ROOT, KitError, loadContext, localKit, resolveTagRemote, sha256Hex } from "./source.mjs";
+import { assertRevision, assertTag, DEFAULT_SOURCE_ROOT, describeRevision, headRevision, INSTALLER_ID, KitError, loadContext, localTag, resolveTagRemote, sha256Hex, THEME, TOKENS } from "./source.mjs";
 import { renderSpecimen } from "./specimen.mjs";
 
 const CLAUDE_THEME_VALUE = (slug) => `custom:${slug}`;
@@ -24,19 +26,31 @@ const stamp = (iso) => iso.replaceAll("-", "").replaceAll(":", "");
 
 /* ---- environment -------------------------------------------------------- */
 
+/* The state directory: --state-dir, else $J3W1_THEME_STATE_DIR, else the
+   deprecated $J3W1_TERMINAL_KIT_STATE_DIR (the terminal kit's variable, kept
+   so an existing kit state keeps working), else
+   ${XDG_STATE_HOME:-~/.local/state}/j3w1-theme. Both installers share it, so
+   one backup history covers both hosts. */
+export const stateRootOf = (opts, env = process.env) => {
+  if (opts.stateDir) return { root: opts.stateDir, deprecated: false };
+  if (env.J3W1_THEME_STATE_DIR) return { root: path.resolve(env.J3W1_THEME_STATE_DIR), deprecated: false };
+  if (env.J3W1_TERMINAL_KIT_STATE_DIR) return { root: path.resolve(env.J3W1_TERMINAL_KIT_STATE_DIR), deprecated: true };
+  const home = env.HOME || os.homedir();
+  return { root: path.join(env.XDG_STATE_HOME || path.join(home, ".local", "state"), "j3w1-theme"), deprecated: false };
+};
+
 /* Codex's home is always the user's registered one (~/.codex), never
    $CODEX_HOME: inside an Orca pane that variable names Orca's runtime copy,
    which Orca rebuilds from ~/.codex at every launch. */
 export const resolvePaths = (opts, env = process.env) => {
   const home = env.HOME || os.homedir();
-  const xdgState = env.XDG_STATE_HOME || path.join(home, ".local", "state");
   const xdgConfig = env.XDG_CONFIG_HOME || path.join(home, ".config");
   return {
     home,
     claudeDir: opts.claudeConfigDir ?? env.CLAUDE_CONFIG_DIR ?? path.join(home, ".claude"),
     codexHome: opts.codexHome ?? path.join(home, ".codex"),
     orcaRuntimeHome: opts.orcaRuntimeHome ?? path.join(xdgConfig, "orca", "codex-runtime-home", "home"),
-    stateRoot: opts.stateDir ?? (env.J3W1_TERMINAL_KIT_STATE_DIR ? path.resolve(env.J3W1_TERMINAL_KIT_STATE_DIR) : path.join(xdgState, "j3w1-theme", "devbox")),
+    stateRoot: stateRootOf(opts, env).root,
   };
 };
 
@@ -51,8 +65,10 @@ const hostVersion = (bin, skip) => {
 };
 
 /* The hosts may write their own settings when probed, so every writing
-   command probes before it reads a single host file. */
-export const hostVersions = (opts) => ({ "claude-code": hostVersion("claude", opts.skipVersionProbe), codex: hostVersion("codex", opts.skipVersionProbe) });
+   command probes before it reads a single host file. Only the named hosts
+   are probed. */
+const BINARIES = { "claude-code": "claude", codex: "codex" };
+export const hostVersions = (opts) => Object.fromEntries((opts.integrations ?? INTEGRATIONS).map((i) => [i, hostVersion(BINARIES[i], opts.skipVersionProbe)]));
 
 /* ---- state -------------------------------------------------------------- */
 
@@ -95,7 +111,7 @@ const newBackupDir = async (paths, iso) => {
       }
     }
   } catch (error) {
-    throw new KitError(`state directory ${paths.stateRoot} is not writable (${error.code ?? error.message}); nothing was changed. Pass --state-dir <dir> or set J3W1_TERMINAL_KIT_STATE_DIR.`);
+    throw new KitError(`state directory ${paths.stateRoot} is not writable (${error.code ?? error.message}); nothing was changed. Pass --state-dir <dir> or set J3W1_THEME_STATE_DIR.`);
   }
 };
 
@@ -121,7 +137,7 @@ const snapshotState = async (paths, dir) => {
    integrations it was asked to move. */
 const recordPin = async (ctx, paths, integrations, iso) => {
   for (const i of integrations) {
-    await writeJson(path.join(currentDir(paths), `pin.${i}.json`), { ref: ctx.theme.ref, revision: ctx.theme.revision, version: ctx.theme.version, profile: ctx.theme.profile, kitSource: ctx.source.kitFrom === "local" ? "local" : "revision", tokensDigest: ctx.tokensDigest });
+    await writeJson(path.join(currentDir(paths), `pin.${i}.json`), { ref: ctx.theme.ref, revision: ctx.theme.revision, version: ctx.theme.version, profile: ctx.theme.profile, tokensDigest: ctx.tokensDigest });
     await writeJson(path.join(currentDir(paths), `theme.lock.${i}.json`), lock(ctx, i, { resolvedAt: iso }));
   }
 };
@@ -302,12 +318,12 @@ const missingDirs = (targets) => {
 
 const baseManifest = (ctx, command, iso, versions) => ({
   schemaVersion: 1,
-  kit: ctx.kit.id,
+  kit: INSTALLER_ID,
   command,
   timestamp: iso,
   hosts: versions,
-  theme: { name: ctx.kit.theme.name, version: ctx.theme.version, ref: ctx.theme.ref, revision: ctx.theme.revision, profile: ctx.theme.profile },
-  source: { via: ctx.source.via, kitFrom: ctx.source.kitFrom },
+  theme: { name: THEME, version: ctx.theme.version, ref: ctx.theme.ref, revision: ctx.theme.revision, profile: ctx.theme.profile },
+  source: { via: ctx.source.via },
 });
 
 const recordApply = (backup) => async (t) => {
@@ -369,14 +385,19 @@ const planRun = async (ctx, paths, integrations) => {
 const run = async ({ ctx, paths, opts, command, integrations, log, before, planning }) => {
   const versions = opts.dryRun ? null : hostVersions(opts);
   const { plan, parse } = planning ?? (await planRun(ctx, paths, integrations));
-  log(`j3w1-theme ${ctx.theme.version} ${ctx.theme.ref} (${ctx.theme.revision}) profile ${ctx.theme.profile}; export via ${ctx.source.via} (${ctx.source.tagCheck}); ${ctx.source.digestCheck}`);
+  log(`${describeTheme(ctx)}; export via ${ctx.source.via} (${ctx.source.tagCheck}); digest checked against ${ctx.source.digestCheck}`);
   if (before) before(plan);
   describePlan(plan, log);
   const changed = plan.filter((t) => t.changed);
   if (!changed.length) {
-    if (command.startsWith("update") && !opts.dryRun) {
-      await recordPin(ctx, paths, integrations, now());
-      log(`recorded the pin ${ctx.theme.ref} (${ctx.theme.revision}) and the locks for ${integrations.join(", ")}`);
+    /* The files already hold this commit's values; the pin still moves to
+       it, so test checks the commit that was asked for. */
+    const moved = [];
+    for (const i of integrations) if ((await installedPin(paths, i))?.revision !== ctx.theme.revision) moved.push(i);
+    if (!opts.dryRun && (command.startsWith("update") || moved.length)) {
+      const recorded = command.startsWith("update") ? integrations : moved;
+      await recordPin(ctx, paths, recorded, now());
+      log(`recorded the pin ${ctx.theme.ref} (${ctx.theme.revision}) and the locks for ${recorded.join(", ")}`);
     }
     log("no changes");
     return 0;
@@ -423,76 +444,77 @@ const run = async ({ ctx, paths, opts, command, integrations, log, before, plann
   return 0;
 };
 
-const semver = (v) => String(v ?? "").replace(/^v/, "").split(/[.-]/).slice(0, 3).map(Number);
-const newer = (a, b) => {
-  const [x, y] = [semver(a), semver(b)];
-  for (let i = 0; i < 3; i += 1) if (x[i] !== y[i]) return x[i] > y[i];
-  return false;
-};
-
-const FLAG = { "claude-code": "--claude", codex: "--codex" };
-const flagsFor = (integrations) => (integrations.length === INTEGRATIONS.length ? "" : ` ${integrations.map((i) => FLAG[i]).join(" ")}`);
+const installerFor = (integrations) => integrations.map((i) => `node ports/${i}/install.mjs`).join(" and ");
 
 /* One integration's installed pin: its own pin file, else (installed before
-   pins were per integration) its lock, with pin.json's kit source when that
-   names the same revision. */
-const installedPin = async (paths, integration, kit) => {
+   pins were per integration) its lock, with the digest the lock recorded. */
+const installedPin = async (paths, integration) => {
   const own = await readJsonMaybe(path.join(currentDir(paths), `pin.${integration}.json`));
   if (own) return own;
   const locked = await readJsonMaybe(path.join(currentDir(paths), `theme.lock.${integration}.json`));
   if (!locked) return null;
-  const legacy = await readJsonMaybe(path.join(currentDir(paths), "pin.json"));
-  const kitSource = legacy?.revision === locked.revision ? legacy.kitSource : locked.revision === kit.theme.revision ? "local" : "revision";
-  return { ref: locked.ref, revision: locked.revision, version: locked.version, profile: locked.profile, tokensDigest: locked.exports?.[kit.exports.tokens], kitSource };
+  return { ref: locked.ref, revision: locked.revision, version: locked.version, profile: locked.profile, tokensDigest: locked.exports?.[TOKENS] };
 };
 
-/* Each integration's installed pin wins over kit.json's once there is one:
-   only update moves it, and only for the integrations it names, so apply
-   never goes back to an older release and never jumps ahead to a newer one
-   on its own. An integration not installed yet takes kit.json's pin. The
-   result has one context per distinct pin. */
-const pinnedContexts = async (opts, paths, log, integrations = opts.integrations) => {
-  const kit = localKit().kit;
-  const where = { sourceRoot: opts.sourceRoot ?? DEFAULT_SOURCE_ROOT, offline: Boolean(opts.sourceRoot) };
+export const describeTheme = (ctx) => `j3w1-theme ${ctx.theme.version} ${ctx.theme.ref === ctx.theme.revision ? `commit ${ctx.theme.revision}` : `${ctx.theme.ref} (${ctx.theme.revision})`} profile ${ctx.theme.profile}`;
+const pinName = (pin) => (pin.ref === pin.revision ? `commit ${pin.revision}` : `${pin.ref} (${pin.revision})`);
+
+const where = (opts) => ({ sourceRoot: opts.sourceRoot ?? DEFAULT_SOURCE_ROOT, offline: Boolean(opts.sourceRoot) });
+
+/* test and specimen check what is installed: each integration at its own
+   installed pin, verified against the digest recorded with it. An
+   integration not installed yet is checked against this checkout's HEAD. */
+const installedContexts = async (opts, paths, log, integrations = opts.integrations) => {
+  const at = where(opts);
+  const head = headRevision(at.sourceRoot);
   const groups = new Map();
   for (const i of integrations) {
-    const pin = await installedPin(paths, i, kit);
-    const id = pin ? JSON.stringify([pin.ref, pin.revision, pin.version, pin.profile, pin.tokensDigest ?? null, pin.kitSource ?? "local"]) : "kit.json";
+    const pin = await installedPin(paths, i);
+    const id = pin ? JSON.stringify([pin.ref, pin.revision, pin.tokensDigest ?? null]) : "HEAD";
     if (!groups.has(id)) groups.set(id, { pin, integrations: [] });
     groups.get(id).integrations.push(i);
   }
   const out = [];
   for (const { pin, integrations: members } of groups.values()) {
     if (!pin) {
-      out.push({ ctx: await loadContext(where), integrations: members });
+      out.push({ ctx: await loadContext({ ...at, ...head }), integrations: members });
       continue;
     }
     const names = members.join(", ");
-    if (pin.revision !== kit.theme.revision) {
-      const direction = newer(kit.theme.ref, pin.ref) ? "to move to it" : "to go back to it";
-      log(`${names}: using the installed pin ${pin.ref} (${pin.revision}); this checkout's kit.json pins ${kit.theme.ref}. Run update --version ${kit.theme.ref}${flagsFor(members)} ${direction}.`);
-    }
+    if (pin.revision !== head.revision) log(`${names}: installed from ${pinName(pin)}; this checkout is at ${pinName(head)}. Run ${installerFor(members)} apply to move to it.`);
     try {
-      out.push({ ctx: await loadContext({ ...where, pin: { ref: pin.ref, revision: pin.revision, version: pin.version, profile: pin.profile, ...(pin.tokensDigest ? { tokensDigest: pin.tokensDigest } : {}) }, kitSource: pin.kitSource ?? "local" }), integrations: members });
+      out.push({ ctx: await loadContext({ ...at, revision: pin.revision, ref: pin.ref, pinnedDigest: pin.tokensDigest ?? null }), integrations: members });
     } catch (error) {
       if (!(error instanceof KitError)) throw error;
-      throw new KitError(`${names}: the installed pin ${pin.ref} (${pin.revision}) cannot be loaded: ${error.message}. The kit does not fall back to kit.json's ${kit.theme.ref}; pass --source-root <a checkout that has ${pin.revision}>, or run update --version <tag>${flagsFor(members)} to move the pin on purpose.`);
+      throw new KitError(`${names}: the installed pin ${pinName(pin)} cannot be loaded: ${error.message}. Run ${installerFor(members)} apply to install this checkout's commit, or pass --source-root <a checkout that has ${pin.revision}>.`);
     }
   }
   return out;
 };
 
-/* Every pin group is planned, with every guard, before any group is
-   written: a planning error in any group writes nothing. Each group is then
-   written under its own backup. */
-export const apply = async (opts, paths, log) => {
-  const groups = await pinnedContexts(opts, paths, log);
-  for (const g of groups) g.planning = await planRun(g.ctx, paths, g.integrations);
-  for (const { ctx, integrations, planning } of groups) {
-    const code = await run({ ctx, paths, opts, command: "apply", integrations, log, planning });
-    if (code) return code;
+/* The commit apply installs: --revision, else this checkout's HEAD. Values
+   always come from git objects at that commit, never from the working tree. */
+const applyTarget = (opts) => {
+  const at = where(opts);
+  if (!opts.revision) return headRevision(at.sourceRoot);
+  assertRevision(opts.revision);
+  return describeRevision(at.sourceRoot, opts.revision);
+};
+
+const movingFrom = async (ctx, paths, integrations, log) => {
+  for (const i of integrations) {
+    const pin = await installedPin(paths, i);
+    if (pin && pin.revision !== ctx.theme.revision) log(`${i}: moving from ${pinName(pin)} to ${pinName(ctx.theme)}`);
   }
-  return 0;
+};
+
+/* Installs one commit for the named integrations. Every guard is checked
+   while planning, before anything is written. */
+export const apply = async (opts, paths, log) => {
+  const ctx = await loadContext({ ...where(opts), ...applyTarget(opts) });
+  const planning = await planRun(ctx, paths, opts.integrations);
+  await movingFrom(ctx, paths, opts.integrations, log);
+  return run({ ctx, paths, opts, command: "apply", integrations: opts.integrations, log, planning });
 };
 
 const overrideDiff = (installed, next, log) => {
@@ -513,26 +535,26 @@ const tmSettings = (theme) => {
   return out;
 };
 
+/* Moves the named integrations to a release tag (v3.0.0 or later): the tag
+   resolves to one commit (a local tag first, else the GitHub API), and that
+   commit's host maps and export are installed, with a before/after diff. */
 export const update = async (opts, paths, log) => {
   assertTag(opts.version);
-  const sourceRoot = opts.sourceRoot ?? DEFAULT_SOURCE_ROOT;
-  let revision = null;
-  try {
-    revision = execFileSync("git", ["-C", sourceRoot, "rev-parse", "--verify", "--quiet", `refs/tags/${opts.version}^{commit}`], { stdio: ["ignore", "pipe", "ignore"] }).toString().trim() || null;
-  } catch {
-    revision = null;
-  }
+  const at = where(opts);
+  let revision = localTag(at.sourceRoot, opts.version);
+  let how = `the local tag in ${at.sourceRoot}`;
   if (!revision) {
-    if (opts.sourceRoot) throw new KitError(`tag ${opts.version} is not in ${sourceRoot}; without --source-root the tag is resolved on GitHub`);
-    revision = await resolveTagRemote(localKit().kit, opts.version);
+    if (opts.sourceRoot) throw new KitError(`tag ${opts.version} is not in ${at.sourceRoot}; without --source-root the tag is resolved on GitHub`);
+    revision = await resolveTagRemote(opts.version);
+    how = "the GitHub API";
   }
   if (!revision) throw new KitError(`tag ${opts.version} does not resolve to a commit`);
-  const version = opts.version.slice(1);
-  const ctx = await loadContext({ pin: { ref: opts.version, revision, version }, kitSource: "revision", sourceRoot, offline: Boolean(opts.sourceRoot) });
-  const fromCheckout = revision === localKit().kit.theme.revision ? "this checkout (the tag is its own pin)" : "this checkout (the tag predates the kit)";
-  log(`update to ${opts.version} = ${revision}; kit files from ${ctx.source.kitFrom === "local" ? fromCheckout : "the tag"}`);
+  const ctx = await loadContext({ ...at, revision, ref: opts.version });
+  log(`update to ${opts.version} = ${revision} (resolved through ${how}); host maps and export from that commit`);
+  const planning = await planRun(ctx, paths, opts.integrations);
+  await movingFrom(ctx, paths, opts.integrations, log);
   return run({
-    ctx, paths, opts, command: `update ${opts.version}`, integrations: opts.integrations, log,
+    ctx, paths, opts, command: `update ${opts.version}`, integrations: opts.integrations, log, planning,
     before: (plan) => {
       for (const t of plan.filter((x) => x.kind === "file")) {
         if (t.id === "claude-code-theme") {
@@ -558,12 +580,12 @@ export const update = async (opts, paths, log) => {
 /* ---- specimen and test -------------------------------------------------- */
 
 export const specimen = async (opts, paths, log, out) => {
-  for (const { ctx } of await pinnedContexts(opts, paths, log)) out(renderSpecimen(ctx));
+  for (const { ctx } of await installedContexts(opts, paths, log)) out(renderSpecimen(ctx));
   return 0;
 };
 
 export const test = async (opts, paths, log, out) => {
-  const groups = await pinnedContexts(opts, paths, log);
+  const groups = await installedContexts(opts, paths, log);
   if (!opts.noSpecimen) for (const { ctx } of groups) out(renderSpecimen(ctx));
   const results = [];
   const check = (status, what) => {
@@ -645,19 +667,30 @@ const restoreKeyText = (entry, ref, text) => {
 const emptyDocument = (ref, text) => (ref.format === "json" ? text.trim() === "" || jsonMembers(text).members.length === 0 : text.trim() === "");
 
 /* A restore is written as not complete and marked complete only after its
-   last write and the state reset. A complete restore that left nothing of
-   the kit applied (default, --backup or --latest, and a restore that had
-   nothing to change) is a baseline: the default restore undoes everything
-   since the last one. Manifests written before completion was recorded count
-   as one when they say so and did not stop partway, or, older still, when
-   they restored the first backup, which was then the default. */
+   last write and the state reset. A complete restore that left nothing of an
+   integration applied (default, --backup or --latest, and a restore that had
+   nothing to change) is a baseline for it (baselineFor): that integration's
+   default restore undoes everything since the last one. Restores written by
+   the terminal kit, before baselineFor, recorded one baseline for both
+   hosts; older ones count when they say so and did not stop partway, or,
+   older still, when they restored the first backup, which was then the
+   default. */
 const isRestore = (manifest) => String(manifest.command ?? "").startsWith("restore");
 const interrupted = (manifest) => isRestore(manifest) && (manifest.complete === false || (manifest.complete === undefined && Boolean(manifest.incomplete)));
-const isBaseline = (manifest, first) => {
+const isBaseline = (manifest, first, integrations) => {
   if (!isRestore(manifest) || interrupted(manifest)) return false;
+  if (Array.isArray(manifest.baselineFor)) return integrations.every((i) => manifest.baselineFor.includes(i));
   if (manifest.complete === true) return manifest.baseline === true;
   return manifest.baseline === true || (manifest.baseline === undefined && manifest.command === `restore ${first}`);
 };
+
+/* The backups one host's restore reads: those with an entry for it, or that
+   name it (a restore with nothing to change has no entries). A backup made by
+   both hosts at once (the terminal kit's combined apply) is read for each,
+   and each restore takes only its own host's entries from it. */
+const ownEntry = (integrations) => (entry) => integrations.includes(entry.integration);
+const touches = (manifest, integrations) =>
+  [...(manifest.files ?? []), ...(manifest.settings ?? [])].some(ownEntry(integrations)) || (manifest.integrations ?? []).some((i) => integrations.includes(i));
 
 const keyBeforeValue = (e) => (e.absent ? undefined : e.before);
 const keyAfterValue = (e) => (e.afterAbsent ? undefined : e.after);
@@ -667,14 +700,15 @@ const keyAfterValue = (e) => (e.afterAbsent ? undefined : e.after);
    a later run found something other than what the run before it left, the
    owner (or another program) changed it in between: that is recorded, and
    restore still puts back the earliest before-value. */
-const mergeManifests = (chosen, { bridged = () => false } = {}) => {
+const mergeManifests = (chosen, { bridged = () => false, integrations = INTEGRATIONS } = {}) => {
   const files = new Map();
   const keys = new Map();
+  const own = ownEntry(integrations);
   for (const b of chosen) {
     /* A restore that stopped partway is not undone, but what it wrote is the
        kit's own change: it only moves "last" on for what is undone. */
     const bridge = bridged(b.manifest);
-    for (const f of b.manifest.files ?? []) {
+    for (const f of (b.manifest.files ?? []).filter(own)) {
       const m = files.get(f.path);
       if (!m && bridge) continue;
       if (!m) files.set(f.path, { first: f, firstName: b.name, dir: b.dir, last: f, lastName: b.name, changedBetween: [] });
@@ -683,7 +717,7 @@ const mergeManifests = (chosen, { bridged = () => false } = {}) => {
         Object.assign(m, { last: f, lastName: b.name });
       }
     }
-    for (const s of b.manifest.settings ?? []) {
+    for (const s of (b.manifest.settings ?? []).filter(own)) {
       const id = `${s.file}\u0000${s.key}`;
       const m = keys.get(id);
       if (!m && bridge) continue;
@@ -726,12 +760,12 @@ const planRestoreKey = (merged, parse) => {
   });
 };
 
-/* The kit state afterwards names only what is still installed: each undone
+/* The state afterwards names only what is still installed: each undone
    integration's pin and lock return to what they were before the earliest
    undone change; the manifest (and a pin.json from before per-integration
    pins) go when no lock is left. Returns whether any lock is left. */
-const resetState = async (paths, chosen) => {
-  const covered = new Set(chosen.flatMap((b) => b.manifest.integrations ?? []));
+const resetState = async (paths, chosen, integrations = INTEGRATIONS) => {
+  const covered = new Set(chosen.flatMap((b) => b.manifest.integrations ?? []).filter((i) => integrations.includes(i)));
   const snap = chosen[0];
   const saved = async (n) => (snap.manifest.state?.includes(n) ? readMaybe(path.join(snap.dir, "current", n)) : null);
   const put = async (n, bytes) => (bytes ? writeJson(path.join(currentDir(paths), n), JSON.parse(bytes.toString("utf8"))) : removeFile(path.join(currentDir(paths), n)));
@@ -750,29 +784,35 @@ const resetState = async (paths, chosen) => {
   return installed;
 };
 
+/* Restores the named integrations only: the backups are shared by both
+   installers, and each restore reads and undoes its own hosts' entries. */
 export const restore = async (opts, paths, log) => {
   const versions = opts.dryRun ? null : hostVersions(opts);
+  const integrations = opts.integrations ?? INTEGRATIONS;
   const names = await listBackups(paths);
   if (!names.length) throw new KitError(`no backups in ${backupsDir(paths)}`);
-  const all = [];
+  const every = [];
   for (const name of names) {
     const dir = path.join(backupsDir(paths), name);
     const manifest = await readJsonMaybe(path.join(dir, "manifest.json"));
-    if (manifest) all.push({ name, dir, manifest });
+    if (manifest) every.push({ name, dir, manifest });
   }
+  const all = every.filter((b) => touches(b.manifest, integrations));
   const byDefault = !(opts.backup || opts.latest);
   let chosen;
   let undo;
   if (!byDefault) {
-    const name = opts.backup ?? names.at(-1);
-    if (!names.includes(name)) throw new KitError(`backup ${name} not found; have ${names.join(", ")}`);
+    if (opts.backup && !names.includes(opts.backup)) throw new KitError(`backup ${opts.backup} not found; have ${names.join(", ")}`);
+    if (opts.backup && !every.some((b) => b.name === opts.backup)) throw new KitError(`${path.join(backupsDir(paths), opts.backup)} has no manifest.json`);
+    const name = opts.backup ?? all.at(-1)?.name;
+    if (!name) throw new KitError(`no backup in ${backupsDir(paths)} changed ${integrations.join(" or ")}`);
     const one = all.find((b) => b.name === name);
-    if (!one) throw new KitError(`${path.join(backupsDir(paths), name)} has no manifest.json`);
+    if (!one) throw new KitError(`backup ${name} changed nothing of ${integrations.join(" or ")}; the other installer restores it`);
     chosen = [one];
     undo = chosen;
     log(`restore ${name} (${one.manifest.command} at ${one.manifest.timestamp})`);
   } else {
-    const last = all.findLastIndex((b) => isBaseline(b.manifest, names[0]));
+    const last = all.findLastIndex((b) => isBaseline(b.manifest, names[0], integrations));
     chosen = all.slice(last + 1);
     const since = last >= 0 ? `the restore ${all[last].name}` : "the first apply";
     if (!chosen.length) {
@@ -787,7 +827,7 @@ export const restore = async (opts, paths, log) => {
     log(`restore: undo every change since ${since}: ${chosen.map((b) => `${b.name} (${b.manifest.command}${stopped(b.manifest)})`).join(", ")}`);
   }
 
-  const merged = byDefault ? mergeManifests(chosen, { bridged: interrupted }) : mergeManifests(undo);
+  const merged = byDefault ? mergeManifests(chosen, { bridged: interrupted, integrations }) : mergeManifests(undo, { integrations });
   const steps = [];
   let parse = null;
   try {
@@ -823,16 +863,17 @@ export const restore = async (opts, paths, log) => {
   const backup = await newBackupDir(paths, iso);
   const own = {
     schemaVersion: 1,
-    kit: chosen[0].manifest.kit,
+    kit: INSTALLER_ID,
     command: byDefault ? "restore" : `restore ${chosen[0].name}`,
     baseline: false,
+    baselineFor: [],
     complete: false,
     restored: chosen.map((b) => b.name),
     timestamp: iso,
     hosts: versions,
     theme: (await readJsonMaybe(path.join(currentDir(paths), "manifest.json")))?.theme ?? null,
     backup: backup.name,
-    integrations: [...new Set(chosen.flatMap((b) => b.manifest.integrations ?? []))],
+    integrations: [...new Set(chosen.flatMap((b) => b.manifest.integrations ?? []))].filter((i) => integrations.includes(i)),
     files: [],
     createdDirs: [],
     settings: [],
@@ -872,7 +913,9 @@ export const restore = async (opts, paths, log) => {
     if (step.kind === "file") log(`  kept the edited ${step.path} as ${path.join(backup.dir, entry.backup)}`);
     else log(`  kept the replaced ${step.path} ${entry.key} value in ${path.join(backup.dir, "manifest.json")}`);
   }
-  const dirs = undo.flatMap((b) => b.manifest.createdDirs ?? []);
+  /* A directory the kit created goes when it is empty; from a backup both
+     hosts made, only the ones that hold this host's files. */
+  const dirs = undo.flatMap((b) => (b.manifest.createdDirs ?? []).filter((d) => (b.manifest.files ?? []).some((f) => integrations.includes(f.integration) && path.dirname(f.path) === d)));
   for (const d of [...new Set(dirs)].sort().reverse()) {
     try {
       await fs.rmdir(d);
@@ -881,12 +924,13 @@ export const restore = async (opts, paths, log) => {
       /* not empty or already gone: leave it */
     }
   }
-  const installed = await resetState(paths, chosen);
-  Object.assign(own, { baseline: !installed, complete: true });
+  const installed = await resetState(paths, chosen, integrations);
+  const stillInstalled = (i) => existsSync(path.join(currentDir(paths), `theme.lock.${i}.json`));
+  Object.assign(own, { baseline: !installed, baselineFor: integrations.filter((i) => !stillInstalled(i)), complete: true });
   await writeJson(path.join(backup.dir, "manifest.json"), own);
   if (!changed.length) log("no changes");
   else log(`backup of the replaced state ${backup.dir}`);
-  if (!installed) log(`nothing of the kit is applied now; the next restore undoes only what is applied after this one (${backup.name})`);
+  if (own.baselineFor.length === integrations.length) log(`nothing of the kit is applied now for ${integrations.join(", ")}; the next restore undoes only what is applied after this one (${backup.name})`);
   if (changed.length) log("restart: Codex: new sessions only. Claude Code: restart a running session if it keeps the j3w1 theme.");
   return 0;
 };
