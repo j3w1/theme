@@ -28,7 +28,7 @@ if (stage === "cheap") {
 } else if (stage === "browser") {
   const files = plan.browser === "all" ? [] : plan.browser.map((s) => `tests/browser/${s}.spec.js`);
   const reporter = plan.matrix ? "blob" : "list";
-  const [, project, shard] = part.match(/^([a-z0-9]+):(\d+\/\d+)$/) ?? [];
+  const [, project, shard] = part.match(/^([a-z0-9-]+):(\d+\/\d+)$/) ?? [];
   if (!project) throw new Error(`bad browser part ${part}`);
   run("npx", ["playwright", "test", ...files, ...(project === "all" ? [] : [`--project=${project}`]), `--reporter=${reporter}`, `--shard=${shard}`]);
 } else {

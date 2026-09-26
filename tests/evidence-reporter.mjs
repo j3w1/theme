@@ -9,14 +9,16 @@ import { subjectOfBuild, validateEvidence } from "../scripts/lib/evidence.mjs";
 export default class EvidenceReporter {
   onBegin(config, suite) {
     this.startedAt = new Date().toISOString();
-    // Evidence comes only from the whole suite (D-028). A sharded, filtered or
-    // single-project run records nothing; merge-reports of every shard does.
+    // Evidence comes only from the whole suite (D-028): `playwright test` with
+    // nothing that narrows or lists it, or merge-reports of every shard. The
+    // check is an allowlist, so any other option counts as a subset.
     const argv = process.argv.slice(2);
     const at = argv.indexOf("test");
     const args = at >= 0 ? argv.slice(at + 1) : [];
-    const valued = new Set(["--config", "-c", "--reporter", "--workers", "-j", "--output", "--timeout", "--retries", "--max-failures"]);
-    const positional = args.filter((a, i) => !a.startsWith("-") && !valued.has(args[i - 1]));
-    this.subset = at >= 0 && (config.shard != null || positional.length > 0 || args.some((a) => /^(--grep|-g|--grep-invert|--project|--last-failed|--only-changed)(=|$)/.test(a)));
+    const valued = new Set(["--config", "-c", "--workers", "-j", "--reporter"]);
+    const plain = new Set(["--headed", "--headless"]);
+    const whole = at >= 0 ? args.every((a, i) => valued.has(a) || plain.has(a) || valued.has(args[i - 1]) || /^(--config|--workers|--reporter)=/.test(a)) : argv.includes("merge-reports");
+    this.subset = !whole || config.shard != null;
     this.subject = subjectOfBuild();
     // A rejected subject must not become an unhandled promise while tests run.
     this.subject.catch(() => {});
@@ -54,6 +56,11 @@ export default class EvidenceReporter {
   async onEnd(result) {
     if (this.subset) {
       console.log("Evidence not written: this run is a subset. Only the whole suite, or merge-reports of every shard, records evidence.");
+      // A missing verification annotation still fails a subset run.
+      if (this.collectionErrors.length) {
+        console.error(this.collectionErrors.join("; "));
+        return { status: "failed" };
+      }
       return;
     }
     try {

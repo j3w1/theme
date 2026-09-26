@@ -39,7 +39,9 @@ export const CONTROLS = [
 // project cannot be left out of the matrix.
 export function projectNames(configText) {
   const block = configText.slice(configText.indexOf("projects:"));
-  return [...block.matchAll(/\{\s*name:\s*"([a-z0-9]+)"/g)].map((m) => m[1]);
+  const names = [...block.matchAll(/^\s*\[\s*"([a-z0-9-]+)",/gm)].map((m) => m[1]);
+  if (!names.length) throw new Error("playwright.config.mjs: no project rows found; keep projects as [\"name\", viewport, javaScript, extra] rows");
+  return names;
 }
 export const fullShards = (projects) => projects.flatMap((p) => (p === "desktop" ? ["desktop:1/4", "desktop:2/4", "desktop:3/4", "desktop:4/4"] : [`${p}:1/1`]));
 export const FULL_SHARDS = fullShards(projectNames(readFileSync(path.join(root, "playwright.config.mjs"), "utf8")));
@@ -55,7 +57,7 @@ export function browserImporters(dir = root) {
   const importsOf = (file) => {
     let text = "";
     try { text = readFileSync(path.join(dir, file), "utf8"); } catch { return []; }
-    return [...text.matchAll(/(?:from\s*|import\s*\(\s*)["'](\.{1,2}\/[^"']+)["']/g)].map((m) => path.posix.normalize(path.posix.join(path.posix.dirname(file), m[1])));
+    return [...text.matchAll(/(?:from\s*|import\s*\(\s*|import\s+)["'](\.{1,2}\/[^"']+)["']/g)].map((m) => path.posix.normalize(path.posix.join(path.posix.dirname(file), m[1])));
   };
   const map = {};
   for (const spec of specs) {
@@ -99,6 +101,17 @@ const fill = (text, vars) => text.replace(/\{(\w+)\}/g, (_, n) => vars[n] ?? `{$
 
 // Pure: registry + changed paths + event → plan. `specExists` tells whether a
 // browser spec file exists at the tested head.
+// On a pull request the base commit's control list applies too, so a change
+// cannot remove a file from the controls and be judged by the shorter list.
+export function baseControls(base) {
+  if (!SHA.test(base ?? "")) return [];
+  try {
+    const text = execFileSync("git", ["show", `${base}:scripts/ci/select.mjs`], { cwd: root, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] });
+    const block = text.match(/export const CONTROLS = \[([\s\S]*?)\];/)?.[1] ?? "";
+    return [...block.matchAll(/"([^"]+)"/g)].map((m) => m[1]);
+  } catch { return []; }
+}
+
 export function plan({ registry, event, paths, full = false, reason = null, specExists = () => true, importers = {}, controls = CONTROLS, shardsForAll = FULL_SHARDS }) {
   const proofs = new Set();
   const browser = new Set();
@@ -109,7 +122,7 @@ export function plan({ registry, event, paths, full = false, reason = null, spec
   if (paths === null) reasons.push(reason ?? "the changed paths could not be determined");
   for (const file of paths ?? []) {
     if (controls.some((g) => matches(g, file))) { floor = true; reasons.push(`${file}: control file`); continue; }
-    if (importers[file]) {
+    if (Object.hasOwn(importers, file)) {
       site = true;
       for (const spec of importers[file]) browser.add(spec);
       proofs.add("sources");
@@ -194,7 +207,8 @@ function main(argv) {
   const paths = event === "workflow_dispatch" && !base ? null : changedPaths(base, head);
   const reason = event === "workflow_dispatch" && !base ? "manual dispatch without a base runs everything" : null;
   const specExists = (spec) => existsSync(path.join(root, "tests/browser", `${spec}.spec.js`));
-  const result = { ...plan({ registry, event, paths, full, reason, specExists, importers: browserImporters() }), base: base ?? null, head };
+  const controls = [...new Set([...CONTROLS, ...baseControls(base)])].sort();
+  const result = { ...plan({ registry, event, paths, full, reason, specExists, importers: browserImporters(), controls }), base: base ?? null, head };
   const json = JSON.stringify(result);
   process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
   if (process.env.GITHUB_OUTPUT) {

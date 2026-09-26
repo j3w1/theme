@@ -277,10 +277,8 @@ jobs:
       - name: The evidence records every configured test in every project
         run: node scripts/ci/evidence-complete.mjs
       - name: Publish execution report alongside unchanged specimens
-        if: always()
         run: npm run verification:report
       - name: Validate report, evidence and immutable specimen digest
-        if: always()
         run: npm run verification:check
       - name: Publish matching packed-consumer evidence
         run: npm run ui:publish-evidence
@@ -292,7 +290,7 @@ jobs:
         env:
           CI: "1"
       - uses: actions/upload-artifact@v7
-        if: always()
+        if: success()
         with:
           name: verification-evidence
           path: |
@@ -303,6 +301,14 @@ jobs:
         if: success() && github.event_name == 'push' && github.ref == 'refs/heads/main'
         with:
           path: dist
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: verification-evidence-refused
+          path: |
+            test-results/evidence*.json
+            playwright-report/
+          if-no-files-found: ignore
 
   release-gate:
     needs: [select, checks, build, browser, consumers, evidence]

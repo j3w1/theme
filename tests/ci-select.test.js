@@ -98,8 +98,10 @@ test("release-gate refuses a skipped selected job and a plan that does not recom
   assert.equal(gate(good, tampered), false);
 });
 
-test("the whole matrix covers every configured Playwright project", () => {
+test("the whole matrix covers every configured Playwright project", async () => {
   const configured = projectNames(readFileSync("playwright.config.mjs", "utf8"));
+  const real = (await import("../playwright.config.mjs")).default.projects.map((p) => p.name);
+  assert.deepEqual(configured, real, "the selector reads the same projects Playwright runs");
   assert.ok(configured.length >= 4);
   assert.deepEqual([...new Set(FULL_SHARDS.map((s) => s.split(":")[0]))].sort(), [...configured].sort());
 });
@@ -129,4 +131,24 @@ test("no file a browser spec imports sits under a site: false rule without the g
 test("control files are fixed in the selector, not read from the registry a change could edit", () => {
   assert.equal(registry.controls, undefined);
   assert.equal(run("pull_request", ["scripts/ci/proofs.json"]).floor, true);
+});
+
+test("each project's metadata matches the environment it runs in", async () => {
+  for (const p of (await import("../playwright.config.mjs")).default.projects) {
+    assert.deepEqual(p.metadata.viewport, p.use.viewport, p.name);
+    assert.equal(p.metadata.javaScript, p.use.javaScriptEnabled !== false, p.name);
+  }
+});
+
+test("the base commit's control list still applies to a pull request", async () => {
+  const { baseControls } = await import("../scripts/ci/select.mjs");
+  const head = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
+  assert.ok(baseControls(head).includes("scripts/ci/**"));
+  assert.deepEqual(baseControls("not-a-sha"), []);
+});
+
+test("the completeness check leaves the evidence untouched and refuses a short one", () => {
+  const src = readFileSync("scripts/ci/evidence-complete.mjs", "utf8");
+  assert.match(src, /--reporter=json/, "lists with the JSON reporter only, so no configured reporter runs");
+  assert.match(src, /changed the evidence file/, "proves the file is byte for byte unchanged");
 });

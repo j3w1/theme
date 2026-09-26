@@ -804,8 +804,9 @@ terminal-kit suites.
   cheaper only when a rule there claims it. A path no rule claims, and every
   control file (workflows, the selector and registry, `package.json`, the
   lockfile, the Playwright configs), runs every check: a broad rule is a
-  floor, never a verdict. The control list lives in the selector, so a change
-  cannot make itself cheaper by editing the registry. A file that a browser
+  floor, never a verdict. The control list lives in the selector, and on a
+  pull request the base commit's list applies as well, so a change cannot make
+  itself cheaper by shortening it. Review still protects the selector itself. A file that a browser
   spec imports also runs that spec and counts as a site change.
 - Unit tests and the build run as parallel jobs, so the browser shards start
   as soon as the site is built.
@@ -827,8 +828,10 @@ terminal-kit suites.
 - Tests run in parallel (`fullyParallel`, two workers per CI job). The page axe
   scan runs as two tests, colour contrast and every other rule; the rule set
   comes from a tag-based run, so together they are exactly the rules the tags
-  select. Retries stay at zero. A sharded, filtered or single-project local run
-  writes no evidence.
+  select. Retries stay at zero. Only `playwright test` with nothing that
+  narrows or lists it, or the merge of every shard, writes evidence; the check
+  that counts the merged records lists tests without running any reporter and
+  proves the evidence file unchanged.
 
 **Consequences.** D-028's objection to sharding, partial evidence files, no
 longer applies: shards write blob reports only, and one merge writes one
