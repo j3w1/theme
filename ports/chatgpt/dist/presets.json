@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "theme": "j3w1-theme",
+  "version": "2.0.0",
+  "host": "ChatGPT desktop app, Settings > Appearance",
+  "status": "experimental: the import strings are verified only once imported into a real ChatGPT build",
+  "presets": [
+    {
+      "id": "signature",
+      "displayName": "j3w1 Signature",
+      "recommended": true,
+      "summary": "Strongest j3w1 identity: bright rose text on true black.",
+      "settings": [
+        {
+          "setting": "Mode",
+          "value": "Dark",
+          "source": "calibration"
+        },
+        {
+          "setting": "Theme",
+          "value": "ChatGPT",
+          "source": "calibration"
+        },
+        {
+          "setting": "Accent",
+          "value": "#e53935",
+          "source": "color.interaction.focus.ring"
+        },
+        {
+          "setting": "Background",
+          "value": "#000000",
+          "source": "color.surface.canvas"
+        },
+        {
+          "setting": "Foreground",
+          "value": "#ffa2a7",
+          "source": "color.text.bright"
+        },
+        {
+          "setting": "UI font size",
+          "value": "15 px",
+          "source": "font.size.reading"
+        },
+        {
+          "setting": "Code font size",
+          "value": "13 px",
+          "source": "font.size.code"
+        },
+        {
+          "setting": "Reduce motion",
+          "value": "System",
+          "source": "calibration"
+        },
+        {
+          "setting": "Separate light and dark",
+          "value": "Off",
+          "source": "calibration"
+        },
+        {
+          "setting": "Contrast",
+          "value": "46",
+          "source": "calibration"
+        },
+        {
+          "setting": "Diff markers",
+          "value": "+/-",
+          "source": "calibration"
+        }
+      ],
+      "importString": "codex-theme-v1:{\"codeThemeId\":\"chatgpt\",\"theme\":{\"accent\":\"#e53935\",\"contrast\":46,\"fonts\":{\"code\":null,\"ui\":null},\"ink\":\"#ffa2a7\",\"opaqueWindows\":true,\"semanticColors\":{\"diffAdded\":\"#86a46f\",\"diffRemoved\":\"#f73f35\",\"skill\":\"#e53935\"},\"surface\":\"#000000\"},\"variant\":\"dark\"}"
+    },
+    {
+      "id": "reading",
+      "displayName": "j3w1 Reading",
+      "recommended": false,
+      "summary": "Calmer rose for long reading sessions.",
+      "settings": [
+        {
+          "setting": "Mode",
+          "value": "Dark",
+          "source": "calibration"
+        },
+        {
+          "setting": "Theme",
+          "value": "ChatGPT",
+          "source": "calibration"
+        },
+        {
+          "setting": "Accent",
+          "value": "#e53935",
+          "source": "color.interaction.focus.ring"
+        },
+        {
+          "setting": "Background",
+          "value": "#000000",
+          "source": "color.surface.canvas"
+        },
+        {
+          "setting": "Foreground",
+          "value": "#e99499",
+          "source": "color.text.default"
+        },
+        {
+          "setting": "UI font size",
+          "value": "15 px",
+          "source": "font.size.reading"
+        },
+        {
+          "setting": "Code font size",
+          "value": "13 px",
+          "source": "font.size.code"
+        },
+        {
+          "setting": "Reduce motion",
+          "value": "System",
+          "source": "calibration"
+        },
+        {
+          "setting": "Separate light and dark",
+          "value": "Off",
+          "source": "calibration"
+        },
+        {
+          "setting": "Contrast",
+          "value": "52",
+          "source": "calibration"
+        },
+        {
+          "setting": "Diff markers",
+          "value": "+/-",
+          "source": "calibration"
+        }
+      ],
+      "importString": "codex-theme-v1:{\"codeThemeId\":\"chatgpt\",\"theme\":{\"accent\":\"#e53935\",\"contrast\":52,\"fonts\":{\"code\":null,\"ui\":null},\"ink\":\"#e99499\",\"opaqueWindows\":true,\"semanticColors\":{\"diffAdded\":\"#86a46f\",\"diffRemoved\":\"#f73f35\",\"skill\":\"#e53935\"},\"surface\":\"#000000\"},\"variant\":\"dark\"}"
+    }
+  ]
+}

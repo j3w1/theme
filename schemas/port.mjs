@@ -6,7 +6,7 @@
 /* The native formats ports publish, a closed list. A format with an emitter
    in scripts/lib/port-artifacts.mjs is generated; a new port adds its format
    here in the same change. */
-export const PORT_FORMATS = ["ghostty-config", "warp-yaml", "claude-theme-json", "codex-tmtheme"];
+export const PORT_FORMATS = ["ghostty-config", "warp-yaml", "claude-theme-json", "codex-tmtheme", "chatgpt-appearance"];
 
 export const portSchema = (z) =>
   z

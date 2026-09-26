@@ -8,6 +8,7 @@
    published file and an installed one come from one implementation; their
    mapping.json must agree with host.json key for key. */
 
+import { chatgptAppearance, chatgptRoles, CHATGPT_SOURCE } from "./chatgpt-port.mjs";
 import { stringify } from "yaml";
 import { exists, readJson, stableJson, writeOrCheck } from "./fs.mjs";
 import { toCss, toResolvedExport } from "./tokens.mjs";
@@ -131,7 +132,18 @@ const codexTmThemeFile = (args) => {
   return codexTmTheme(hostContext(args));
 };
 
-export const PORT_EMITTERS = { "warp-yaml": warpYaml, "ghostty-config": ghosttyConfig, "claude-theme-json": claudeThemeJson, "codex-tmtheme": codexTmThemeFile };
+/* ChatGPT: the presets in src/presets.json, resolved; the mapping must name
+   exactly the roles the presets use. */
+const chatgptFile = ({ manifest, port, mapping, exported, source }) => {
+  const wanted = chatgptRoles(source);
+  const mapped = mapping.mappings;
+  const same = JSON.stringify(Object.keys(wanted).sort()) === JSON.stringify(Object.keys(mapped).sort())
+    && Object.entries(wanted).every(([role, keys]) => JSON.stringify(keys) === JSON.stringify(mapped[role]));
+  if (!same) throw new Error(`ports/${port.id}: mapping.json mappings must equal the roles and settings src/presets.json uses`);
+  return chatgptAppearance({ manifest, exported })(source);
+};
+
+export const PORT_EMITTERS = { "warp-yaml": warpYaml, "ghostty-config": ghosttyConfig, "claude-theme-json": claudeThemeJson, "codex-tmtheme": codexTmThemeFile, "chatgpt-appearance": chatgptFile };
 
 export const portArtifactsGenerator = {
   name: "port artifacts",
@@ -144,11 +156,12 @@ export const portArtifactsGenerator = {
       const mapping = await readJson(`ports/${port.id}/${port.mappingPath}`);
       const hostFile = `ports/${port.id}/host.json`;
       const host = (await exists(hostFile)) ? await readJson(hostFile) : null;
+      const source = port.format === "chatgpt-appearance" ? await readJson(CHATGPT_SOURCE) : null;
       const profile = manifest.profiles.find((p) => p.id === port.profile);
       const exported = toResolvedExport(profiles.get(port.profile), profile);
       const file = `ports/${port.id}/${port.files[0].path}`;
       files.push(file);
-      if (await writeOrCheck(file, emit({ manifest, port, mapping, host, exported, resolved: profiles.get(port.profile) }), { check })) changed.push(file);
+      if (await writeOrCheck(file, emit({ manifest, port, mapping, host, exported, source, resolved: profiles.get(port.profile) }), { check })) changed.push(file);
     }
     return { files, changed, note: `${files.length} generated` };
   },

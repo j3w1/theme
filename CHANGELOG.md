@@ -2,6 +2,13 @@
 
 ## [Unreleased]
 
+- **ChatGPT port** (experimental). `ports/chatgpt/` sets the ChatGPT desktop
+  app's Appearance to two presets: **j3w1 Signature** (bright rose
+  `color.text.bright` on true black, contrast 46, recommended) and **j3w1
+  Reading** (`color.text.default`, contrast 52). Each has a settings table and
+  a `codex-theme-v1` import string, generated from `ports/chatgpt/src/presets.json`
+  and checked by a strict schema, so a changed format fails generation. The
+  strings count as verified only once imported into a real ChatGPT build.
 - D-031 **Faster CI.** CI now picks the checks each change needs
   (`scripts/ci/select.mjs`, `scripts/ci/proofs.json`), and `release-gate` is the
   only required check. On `main`, a change to the site runs the whole browser

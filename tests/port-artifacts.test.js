@@ -7,6 +7,7 @@
    Codex file is a TextMate property list. A parse is a structural pass,
    never import evidence. */
 
+import { parseCodexTheme } from "../schemas/chatgpt.mjs";
 import assert from "node:assert/strict";
 import test from "node:test";
 import { parse } from "yaml";
@@ -59,14 +60,30 @@ const tmValues = (text) => {
   return { theme, values: out };
 };
 
-test("the generated ports are the Claude Code, Codex, Ghostty, Orca and Warp files", () => {
-  assert.deepEqual(ports.map(({ port }) => `${port.id}:${port.format}`), ["claude-code:claude-theme-json", "codex:codex-tmtheme", "ghostty:ghostty-config", "orca:ghostty-config", "warp:warp-yaml"]);
+test("the generated ports are the ChatGPT, Claude Code, Codex, Ghostty, Orca and Warp files", () => {
+  assert.deepEqual(ports.map(({ port }) => `${port.id}:${port.format}`), ["chatgpt:chatgpt-appearance", "claude-code:claude-theme-json", "codex:codex-tmtheme", "ghostty:ghostty-config", "orca:ghostty-config", "warp:warp-yaml"]);
   for (const format of Object.keys(PORT_EMITTERS)) assert.ok(PORT_FORMATS.includes(format), `${format} is in the closed list of port formats`);
 });
 
 for (const entry of ports) {
   const { port, text } = entry;
   test(`${port.id}: every mapped role is written at its native key with the resolved value, and nothing else is`, () => {
+    if (port.format === "chatgpt-appearance") {
+      const built = JSON.parse(text);
+      const tokens = resolved.profiles[port.profile].tokens;
+      const value = (role) => tokens[role].value.hex?.toLowerCase() ?? `${tokens[role].value.value} px`;
+      const roleOf = (setting) => Object.entries(entry.mapping.mappings).filter(([, keys]) => keys.some((k) => k === setting || k.startsWith(`${setting} (`))).map(([role]) => role);
+      for (const preset of built.presets) {
+        for (const row of preset.settings.filter((r) => r.source !== "calibration")) {
+          assert.ok(roleOf(row.setting).includes(row.source), `${preset.id}: ${row.setting} comes from a mapped role`);
+          assert.equal(row.value, value(row.source), `${preset.id}: ${row.setting}`);
+        }
+        const payload = parseCodexTheme(preset.importString);
+        assert.equal(payload.theme.ink, preset.settings.find((r) => r.setting === "Foreground").value);
+        assert.equal(payload.theme.surface, preset.settings.find((r) => r.setting === "Background").value);
+      }
+      return;
+    }
     const want = expected(entry);
     if (port.format === "claude-theme-json") {
       const theme = JSON.parse(text);
@@ -111,7 +128,9 @@ for (const entry of ports) {
     }
   });
   test(`${port.id}: the file names its version and source and carries no timestamp`, () => {
-    if (port.format === "claude-theme-json") {
+    if (port.format === "chatgpt-appearance") {
+      assert.equal(JSON.parse(text).version, manifest.version);
+    } else if (port.format === "claude-theme-json") {
       // JSON has no comments and Claude Code's theme takes name, base and
       // overrides only, so this file cannot name its version; the
       // shape test above pins its keys instead.

@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "payload": "codex-theme-v1",
+  "about": "The source of the ChatGPT port. Colours and sizes name theme roles; the emitter resolves them. Values that are ChatGPT host settings, not theme roles (contrast, diff markers, reduce motion, the base theme), are calibration chosen by the owner in real use.",
+  "shared": {
+    "mode": "dark",
+    "baseTheme": { "label": "ChatGPT", "codeThemeId": "chatgpt" },
+    "accent": "color.interaction.focus.ring",
+    "background": "color.surface.canvas",
+    "uiFontSize": "font.size.reading",
+    "codeFontSize": "font.size.code",
+    "semanticColors": {
+      "diffAdded": "color.status.success.text",
+      "diffRemoved": "color.status.danger.text",
+      "skill": "color.text.accent"
+    },
+    "calibration": {
+      "reduceMotion": "system",
+      "separateLightDarkModes": false,
+      "diffMarkers": "plus-minus",
+      "opaqueWindows": true
+    }
+  },
+  "presets": [
+    {
+      "id": "signature",
+      "displayName": "j3w1 Signature",
+      "recommended": true,
+      "summary": "Strongest j3w1 identity: bright rose text on true black.",
+      "foreground": "color.text.bright",
+      "contrast": 46
+    },
+    {
+      "id": "reading",
+      "displayName": "j3w1 Reading",
+      "recommended": false,
+      "summary": "Calmer rose for long reading sessions.",
+      "foreground": "color.text.default",
+      "contrast": 52
+    }
+  ]
+}
