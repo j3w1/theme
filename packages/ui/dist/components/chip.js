@@ -3,8 +3,8 @@ import { t as feedback } from "../chunks/overlays-C6nlCHqg.js";
 //#region .cache/ui-build/entries/components/chip.js
 var J3w1Chip = class extends J3w1Element {
 	static componentId = "chip";
-	static version = "1.3.0";
-	static implementationId = "sha256-A0k8n1eyttD7AeHyPTAkwAaUjr3ctuVF6O012CQ7/fo=";
+	static version = "2.0.0";
+	static implementationId = "sha256-fLFmvDzBSoHPm1kk83CiwigYNFu1EHjJpK8NCiy8kAQ=";
 	static connect = feedback;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

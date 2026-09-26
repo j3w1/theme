@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "theme": "j3w1-theme",
-  "version": "1.3.0",
+  "version": "2.0.0",
   "sourcePolicy": "Relative paths refer to the same pinned revision as this digest-covered export. Historical references and private runs are not published ports.",
   "ports": [
     {
@@ -10,7 +10,7 @@
       "declaredStatus": "experimental",
       "format": "ghostty-config",
       "integrationKind": "terminal-16",
-      "themeVersion": "1.3.0",
+      "themeVersion": "2.0.0",
       "themeRevision": "7b045d1a7bc32fddc7c9946e7084ffe74f62b5b5",
       "profile": "default",
       "targetVersions": [
@@ -25,7 +25,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-qWqIBl7g5Ahxh//0w567e4hIj7cA9RTiMz+7pdLPKho=",
+      "subjectDigest": "sha256-uxhqmRxslqV0VOvCmkTZ9lLKvbufNSGMQCTFZtp/lW4=",
       "evidencePath": null,
       "surfaces": {
         "terminal-colours": {
@@ -58,7 +58,7 @@
           "path": "dist/j3w1",
           "install": "Save as ~/.config/ghostty/themes/j3w1 and add `theme = j3w1` to your Ghostty config.",
           "source": "ports/ghostty/dist/j3w1",
-          "digest": "sha256-9ZT6BFY3lw/XeQ7LL3W966Vtpknk3anBnlkgda5Hjnc="
+          "digest": "sha256-X8W1IOgdCb4EncxKrgfkho06Ekla6dFk6L20CLzvkMQ="
         }
       ],
       "rollback": "Remove the `theme = j3w1` line (or point it at your previous theme) and delete ~/.config/ghostty/themes/j3w1.",
@@ -5300,7 +5300,7 @@
       "declaredStatus": "experimental",
       "format": "ghostty-config",
       "integrationKind": "terminal-16",
-      "themeVersion": "1.3.0",
+      "themeVersion": "2.0.0",
       "themeRevision": "7b045d1a7bc32fddc7c9946e7084ffe74f62b5b5",
       "profile": "default",
       "targetVersions": [
@@ -5316,7 +5316,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-w78qTrBauShmw9C/R3uNUCZuBqe0sbE/4g1lZCd24A4=",
+      "subjectDigest": "sha256-SD80qKSkSsxPkK6EiN6FCrj8+ANbCDATTJV0wRvQrmU=",
       "evidencePath": null,
       "surfaces": {
         "terminal-colours": {
@@ -5353,7 +5353,7 @@
           "path": "dist/config.ghostty",
           "install": "Save as %APPDATA%\\ghostty\\config.ghostty (Windows) or ~/.config/ghostty/config.ghostty, then Orca → Settings → Terminal → Import from Ghostty → Apply Changes.",
           "source": "ports/orca/dist/config.ghostty",
-          "digest": "sha256-9TEaCiLzMqWuSqAZ6SIYyt9zdvjoUsWevLCi2UpwQ+s="
+          "digest": "sha256-CvRawvus2IfjJ1HO2TQNDRzAdJG7aM+PoWQDdXUo4ng="
         }
       ],
       "rollback": "In Orca, open Settings → Terminal and choose \"Reset all color overrides\"; set the font family, font size and divider colours back to your previous values. Remove or rename %APPDATA%\\ghostty\\config.ghostty so a later Ghostty import does not re-apply it.",
@@ -10599,7 +10599,7 @@
       "declaredStatus": "experimental",
       "format": "warp-yaml",
       "integrationKind": "terminal-16",
-      "themeVersion": "1.3.0",
+      "themeVersion": "2.0.0",
       "themeRevision": "7b045d1a7bc32fddc7c9946e7084ffe74f62b5b5",
       "profile": "default",
       "targetVersions": [
@@ -10615,7 +10615,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-Ds+D2jHt8o8Rt3/rRL98032woeh4+syv7AHdrvP1mu0=",
+      "subjectDigest": "sha256-oR45DNyInYUeneUS4TmmizsRotaGFtaFuTSTtsXhlSU=",
       "evidencePath": null,
       "surfaces": {
         "terminal-colours": {
@@ -10648,7 +10648,7 @@
           "path": "dist/j3w1.yaml",
           "install": "Orca → Settings → Terminal Themes → Import from YAML (or save into %APPDATA%\\warp\\Warp\\data\\themes\\ and use Import from Warp), then select \"j3w1 theme\" as the Dark Theme. Warp: save into its themes folder.",
           "source": "ports/warp/dist/j3w1.yaml",
-          "digest": "sha256-zg1XVBfKGu4lE2CWwTCM+Xf9cYpst8jkDBnjWxuRCG4="
+          "digest": "sha256-yYYwNdzXsPCjREP6sO15KIGGpSs6ODFAI1mgvQ+N7bQ="
         }
       ],
       "rollback": "Orca: select your previous Dark Theme in Settings → Terminal Themes and remove the imported \"j3w1 theme\". Warp: select another theme and delete j3w1.yaml from its themes folder.",

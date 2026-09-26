@@ -77,6 +77,11 @@ stays monochrome; the `extended` overlay profile remains `proposed`.
 **Consequences.** Measured contrast on canvas / surface / raised: amber
 7.54 / 7.34 / 6.90, green 7.13 / 6.95 / 6.53, blue 7.08 / 6.90 / 6.48.
 
+Superseded in part, and only in part: D-030 makes the three hues available to
+opt-in syntax themes in the `default` profile through `code.hued.*`. The
+reference `code.syntax.*` roles stay monochrome, and everything else here
+stands as accepted.
+
 ## D-002 v0.1.0 inventory
 
 Status: accepted · 2026-09-06.
@@ -765,8 +770,8 @@ blue `#7e9ebb`; operators in bright rose `#ffa2a7`. Keywords, tags, comments,
 variables and punctuation keep their `code.syntax` roles. Every hued role
 reaches 7.08:1 or more on the code background (operators 10.37:1) and 5.74:1 or
 more inside an editor selection. The reference code editor and every other
-consumer keep `code.syntax.*`; a host opts in by mapping `code.hued.*`, which
-the terminal kit's Codex theme does. This extends D-001's code-group allowance
+consumer keep `code.syntax.*`; a host opts in by mapping `code.hued.*`, as the
+terminal kit's Codex theme does once the kit is pinned to this release. This extends D-001's code-group allowance
 to these roles of the approved profile; the `extended` overlay itself stays
 proposed.
 

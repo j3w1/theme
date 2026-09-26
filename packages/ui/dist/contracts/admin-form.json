@@ -1,10 +1,10 @@
 {
   "id": "admin-form",
   "name": "Admin form",
-  "version": "1.3.0",
+  "version": "2.0.0",
   "tag": "j3w1-admin-form",
-  "contract": "https://github.com/j3w1/theme/blob/v1.3.0/spec/components/admin-form.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.3.0/packages/ui/src/behaviors/forms.js",
+  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/admin-form.md",
+  "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/forms.js",
   "imports": {
     "class": "@j3w1/ui/components/admin-form",
     "register": "@j3w1/ui/register/admin-form",
@@ -908,6 +908,6 @@
   "copy": {
     "directory": "copy/admin-form/",
     "manifest": "copy/admin-form/manifest.json",
-    "digest": "sha256-cU8OERnJBVvIE3utIwD5NvxCiuagbiBQwvsrwd1sTMY="
+    "digest": "sha256-CsaQ/dV4WaJUNm0xXtZEdgCJotbnRf2hJ1lfuZDxzl0="
   }
 }

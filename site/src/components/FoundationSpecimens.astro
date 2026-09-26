@@ -91,7 +91,7 @@ const hex = (path: string) => (defaultTokens[path].value as { hex: string }).hex
 
 <div class="block" id={anchors.specimen("status")}>
   <h4>Status set</h4>
-  <p class="family-description">Each status has text, fill, tint and border roles and a mandatory glyph. The three extension hues (D-001) exist only here, in diagnostics, in diffs and in the proposed overlay.</p>
+  <p class="family-description">Each status has text, fill, tint and border roles and a mandatory glyph. The three extension hues (D-001) exist only here, in diagnostics, in diffs, in the opt-in <code>code.hued</code> syntax roles (D-030) and in the proposed overlay.</p>
   <div class="status-set">
     {statuses.map((s) => (
       <div class="status-card">

@@ -1,6 +1,11 @@
 # Changelog
 
-## [1.3.0] - 2026-09-26
+## [2.0.0] - 2026-09-26
+
+Major under the versioning rule: D-029 changes approved values (ten terminal
+slots and five syntax reds). Consumers pinned to 1.x keep the old values until
+they upgrade.
+
 
 - D-029 **Readable terminal and code reds.** The default profile's terminal
   roles now carry the readable heritage sixteen: every slot that fell below
@@ -18,7 +23,7 @@
   that want coloured code: strings green `#86a46f`; numbers, constants,
   functions, attributes and escapes amber `#c9973f`; types and properties blue
   `#7e9ebb`; operators `#ffa2a7`. The reference code editor stays monochrome;
-  the terminal kit's Codex theme opts in.
+  the terminal kit's Codex theme opts in with its 2.0.0 pin.
 - New role `color.terminal.prompt-text` (D-029): the prompt's path segment draws
   dark text on the brighter slot 4 in the default profile and keeps the
   historical light text in `heritage-ansi`.
@@ -32,12 +37,12 @@
 - `tools/terminal-kit/`: installs the default profile into Orca on Windows,
   Claude Code and Codex, with backups, verification and key-level restore
   (#53). In this release it still pins 1.2.0; a follow-up moves the pin to
-  1.3.0 and maps the Codex theme to `code.hued.*`.
+  2.0.0 and maps the Codex theme to `code.hued.*`.
 - Downstream: consumers of `color.terminal.ansi.*` and the five `code.syntax`
   reds receive new values; hosts that mirror the palette (shell palettes,
   prompts with light text on slot 4) should update with the release.
 - Install pins in `docs/ui-consumption.md` and the package README now name
-  1.3.0. The version moves to 1.3.0, so version-stamped exports and every
+  2.0.0. The version moves to 2.0.0, so version-stamped exports and every
   component's version and implementation id regenerate once.
 
 ## [1.2.0] - 2026-09-25

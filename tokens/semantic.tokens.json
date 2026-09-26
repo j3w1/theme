@@ -890,7 +890,7 @@
         }
       },
       "hued": {
-        "$description": "D-030 hued syntax: opt-in syntax colours for hosts that want hue differentiation (the terminal kit's Codex theme). Keywords, tags, comments, variables and punctuation keep the code.syntax roles; the reference code editor stays monochrome.",
+        "$description": "D-030 hued syntax: opt-in syntax colours for hosts that want hue differentiation (for example the terminal kit's Codex theme). Keywords, tags, comments, variables and punctuation keep the code.syntax roles; the reference code editor stays monochrome.",
         "string": {
           "$value": "{color.primitive.green.500}",
           "$description": "Strings in green (D-030).",

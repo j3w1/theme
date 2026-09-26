@@ -147,22 +147,22 @@
     "Busy requires an explicit simulation-completion event; a submit click is not success.",
     "Automated keyboard/DOM/axe evidence does not claim a manual screen-reader or user-research pass."
   ],
-  "version": "1.3.0",
+  "version": "2.0.0",
   "theme": {
     "name": "j3w1-theme",
-    "version": "1.3.0",
+    "version": "2.0.0",
     "profile": "default",
-    "sourceDigest": "sha256-282wmIi2/JxTs6Dhqm7+frffyjjK4VhJscSFbzY2bPc="
+    "sourceDigest": "sha256-ZGl+s8WDw8R3wZk1Kl/yEHR+oyfN9kdNEQ6JPHD17sU="
   },
   "componentDigests": {
-    "admin-form": "sha256-IZetrVfNQuJn0ppJa+BnOx8z8ALxxMA8cKBMsPuZ2gA=",
-    "alert": "sha256-mWoy1nHy7vFcA+y7aM1yj+ZVeqzNzD9/Q2WHL4v/c0Y=",
-    "button": "sha256-B3Ezx/MaLEgVg6jJs4fBc9ajMEdbgJlsMhyoV7fhBns=",
-    "checkbox": "sha256-k+ZZ91TFsXGYb6yEZ4W7vrROzBnUnO6HzpdD21thcog=",
-    "radio-group": "sha256-Qfjv/3o3QQDsAcIUU0axFg7ZxU1mCpZgRJ/aY0M0HF0=",
-    "select": "sha256-+u4A8zXdRjiP+jPj5G6IMrJyGEfqtJBXKDr98xOiF2o=",
-    "table": "sha256-FGf9T2jP8pu2A8/n02ax/Sub/lSU9S5X7fbdQipfNvE=",
-    "text-field": "sha256-p6KT7JmJQqNSUzUxOeArgRNR+J+Q/18B9zin/UV3A9o=",
-    "textarea": "sha256-8uw3Mzv90AtYDAJ1ZNZ1h5kjaQ2zaJWNYFPw/EOUhJA="
+    "admin-form": "sha256-30sxoJTBlNaoiiSdpx/7iBzZX0HTaqhttQJpWjUq+L8=",
+    "alert": "sha256-uDDp9PUnr8AwZiF6vYnxhpkIYZ/JMuS6yVyRm6+Wfn0=",
+    "button": "sha256-bJDJGYvsoJoNdYvZtkHuTWGkVIZPG5n2gyJgcn1W6d0=",
+    "checkbox": "sha256-JRbOc8LTElq3JWyY20PYwmPCzpTlvhcyfd5inTSb5Uw=",
+    "radio-group": "sha256-h1Rsg+ZzS2hw4u3MohE2o0A4VrvP69RLay8HUioWNII=",
+    "select": "sha256-vxcqjk9acETNI/yf9h1kUsPqcDXcvTSInLkXm8z9RQI=",
+    "table": "sha256-HLps//quTdsbWLT9i6BalNWnR4KqE3CDGiaZ2eBDyfQ=",
+    "text-field": "sha256-w/X8zDEKbsuhOBTHoH0pC0H8zSM8h5ZAPyH/V41s8qA=",
+    "textarea": "sha256-Fi2l2Nd21vfJezqlUsrgPpEbSbqeK7MBgzNTqIGsw/0="
   }
 }

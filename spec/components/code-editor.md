@@ -219,8 +219,9 @@ role values; the mapping does not change.
 
 ## Non-examples
 
-Rainbow syntax in the `default` profile (the three extension hues are
-proposed only in `extended`). A blinking or animated caret in the reference.
+Rainbow syntax in the reference editor, or any hue outside the three bounded
+ones (the opt-in `code.hued.*` roles of D-030 carry them for hosts that want
+hue differentiation). A blinking or animated caret in the reference.
 A selection that recolours the text to white and loses the syntax roles. A
 current-line highlight brighter than the selection. A bracket match drawn as
 a background fill, which reads as a selection. Line numbers in the decorative

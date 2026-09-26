@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
   "theme": "j3w1-theme",
-  "version": "1.3.0",
+  "version": "2.0.0",
   "component": "button",
   "variant": "default",
   "profile": "default",
   "source": {
     "algorithm": "sha256 over LF file bytes, base64",
     "files": {
-      "theme.json": "sha256-itKSz4fEPFqepBVKxg0Gi8k8eGWA8oMC3+cgf2Uh3rA=",
+      "theme.json": "sha256-PDhXrxe7t2uYG71dGnlI9YG40PXuFaZtuilTMRWkoaw=",
       "site/recipes.json": "sha256-71h0SYIOKbPRh+V/IhtLV7ZGuX90wfmeo84Rx0sm494=",
       "scripts/lib/recipe-generator.mjs": "sha256-73WV6IUzUVgC3oyFESbgawkTU9o6mh+rKtZx8HgdZeA=",
       "scripts/lib/recipe-css.mjs": "sha256-dA/5L61Tsn+Gkmz/syAd689Z5IyuShpluZ1NfgXcZ/c=",
@@ -20,10 +20,10 @@
       "site/src/styles/components/button.css": "sha256-cTeJ1Xhs2PQ77A1isdwO7UPvrb+RZDEArmYJ946DLWI=",
       "LICENSE.md": "sha256-Ih5+DpqcNXGWJX6BbYgpt6psmJi9lGcXGJzuiU7elE0=",
       "tokens/primitives.tokens.json": "sha256-wxRfRDKXDGY/KBBKzdWW5yPzygsFbNWoQtHY1ZomNHE=",
-      "tokens/semantic.tokens.json": "sha256-DokYw+b7zAuOTq7CRcD0l41B+51670KBy6U0rQjqzRY=",
+      "tokens/semantic.tokens.json": "sha256-ClPWwXlwrb7S4MWg5kCGKn9lYurcRzOrmcJVbXQwwnw=",
       "tokens/foundations.tokens.json": "sha256-/gYmJavPwEyem7mpNRhaBa8jjyuPKnSisugGky3PdCY="
     },
-    "digest": "sha256-BdAdjQ0vPmgFHKHHrEANaM4uh5/9sT7UTtqEoRwGz5o=",
+    "digest": "sha256-n8oCzmXq5qa3dRX/IiPNJLg/Y1S5QKiKCUtR5oaOTM4=",
     "revisionPolicy": "Resolve these paths at the same pinned commit as this manifest. The hosted source viewer identifies its supplying commit; generated source files contain content digests, never a floating revision claim."
   },
   "dependencies": {
@@ -381,17 +381,17 @@
   "licenses": {
     "markup": "CC-BY-4.0",
     "css": "MIT",
-    "notice": "j3w1 theme 1.3.0. Markup adapted from j3w1 UI Theme Spec, https://github.com/j3w1/theme, CC BY 4.0: https://creativecommons.org/licenses/by/4.0/. Changes: scoped instance IDs and documentation-only content removed. CSS and generator: MIT; see LICENSE.md."
+    "notice": "j3w1 theme 2.0.0. Markup adapted from j3w1 UI Theme Spec, https://github.com/j3w1/theme, CC BY 4.0: https://creativecommons.org/licenses/by/4.0/. Changes: scoped instance IDs and documentation-only content removed. CSS and generator: MIT; see LICENSE.md."
   },
   "files": {
-    "markup.html": "sha256-TW8OCRJf5j17pMru7wjBbV1webzxzACs5sQeb6aA5IY=",
-    "template.html": "sha256-0Guj2CiZZobMTvxEFb+pyfKn3aNMPobz01VXW8j62xY=",
-    "tokens.css": "sha256-MNkQPLDuZbOSqF+uIW0f3XVBy6S9FyhM2zpH/ETUaEE=",
-    "foundation.css": "sha256-RcF7BewRUf4ucF9BoUhe+8EhsBOQ+McIVTe5OY++/No=",
-    "component.css": "sha256-05PZKEjKzERh/IRJKRsnqfVfTdgpiVu4I2EfnYyCe9g=",
-    "example.html": "sha256-9ljMs3PLH1pKvkk0+DJp5dR3h2SfJzEoanW9m3A2Uno=",
-    "two-instances.html": "sha256-JYCKeMT4Ajw0crEG9DFxZ8NW1UPoVo+nrK/6zjIByMo=",
-    "LICENSE.md": "sha256-7nWbZbARwVhb1iopNcOMTs0w14BhORA8frn6C623tpM=",
-    "README.md": "sha256-Yosp4ClbxOM5DOIW7S30luXUWiAOIsCLA4TFxAhPeiY="
+    "markup.html": "sha256-k41nebOluzS35b7rdA//SnezbKDRqtadZfBfC6midso=",
+    "template.html": "sha256-jxuiugAg6dDvXUZmKDRhBuD32LVGFU2Q6+xv64gVyLs=",
+    "tokens.css": "sha256-ZFktar6lOWcv5ZknfqFitJ/58kGdyJqVWH+fpdSPeFM=",
+    "foundation.css": "sha256-teBwujmV34YeE81fg/9LAQOIJQWEx9rxmBpRFf/Zx6M=",
+    "component.css": "sha256-e6ipTarcdfDJ1A301JSTNfbCZ+uLNihoJ/JdXSky87s=",
+    "example.html": "sha256-gifpfj7HpiHkgDSnbWF+eHwaYPoaDz5hR0JB1B33bR0=",
+    "two-instances.html": "sha256-ZOrLrUpOkb1B3x8YRrUiG+aq/AcgaURjwJyFwzEB90M=",
+    "LICENSE.md": "sha256-cZTaj5yCUQNVT1g7J3DR+0kfef6v2X03X7kHwJ6un+E=",
+    "README.md": "sha256-1L3vF9E4cUYS/jw4IzdtWSJZqvP76o20KCyCwiC3+e8="
   }
 }

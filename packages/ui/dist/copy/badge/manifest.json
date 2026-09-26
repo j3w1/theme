@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "component": "badge",
-  "version": "1.3.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.3.0/spec/components/badge.md",
+  "version": "2.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/badge.md",
   "dependencies": [
     "register/badge.js",
     "chunks/element-C1XeXVYC.js",
@@ -14,13 +14,13 @@
     "runtime/register/badge.js": "sha256-v2MgL8efVFZ4zJl9rvTmIYZxswZz69oeyrHTaYTAojs=",
     "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
     "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-    "runtime/components/badge.js": "sha256-H+Rbf9PbUMMldjwm4akSfZ6DtnGYsJu7Ga8dQXh0Alw=",
+    "runtime/components/badge.js": "sha256-ZckrrPWl5Mo1XJiJeHPw4RcCvUBj7LOf0kAlVWtFybA=",
     "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
     "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
     "component.css": "sha256-K2TPkFZfKUt35HniL/ub9icdMukZ7wCx0S5+D1FOv8Y=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-rXaOLdDbEK5SMtYsw5TegOMtcnLijmgtU07RVrvJx8o=",
     "index.html": "sha256-adxgp7aQqS8TWwQ8h7ZunxvDdJpxjaS8oGagTh0d+s0=",
-    "README.md": "sha256-YwGPzQaEXnQahKoJ4WXVKN3HeyjTU3KwGfDYcSg8aos="
+    "README.md": "sha256-A2lQ24hcsk0ea7nnuB8FtsFkaDGYQsY0XOGnWcMufNY="
   }
 }

@@ -1,10 +1,10 @@
 {
   "id": "form-builder",
   "name": "Form builder",
-  "version": "1.3.0",
+  "version": "2.0.0",
   "tag": "j3w1-form-builder",
-  "contract": "https://github.com/j3w1/theme/blob/v1.3.0/spec/components/form-builder.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.3.0/packages/ui/src/behaviors/form-builder.js",
+  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/form-builder.md",
+  "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/form-builder.js",
   "imports": {
     "class": "@j3w1/ui/components/form-builder",
     "register": "@j3w1/ui/register/form-builder",
@@ -877,6 +877,6 @@
   "copy": {
     "directory": "copy/form-builder/",
     "manifest": "copy/form-builder/manifest.json",
-    "digest": "sha256-3Rqo6JSXaNFS4+sS2JhW5Dhsnh5dEKDkPQIuAY57wZs="
+    "digest": "sha256-6f3uXppI+lWyTBA73IMGLZGjuG0QV+UMS/nmlVz1cLc="
   }
 }

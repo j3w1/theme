@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "component": "popover",
-  "version": "1.3.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.3.0/spec/components/popover.md",
+  "version": "2.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/popover.md",
   "dependencies": [
     "register/popover.js",
     "chunks/element-C1XeXVYC.js",
@@ -14,13 +14,13 @@
     "runtime/register/popover.js": "sha256-eWKTLAUIMPauNqccfCSWaTkpN6Eyrj+GtlvM7FRaKHc=",
     "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
     "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-    "runtime/components/popover.js": "sha256-Pwy1ImH51xFVNVu7iQyRTvCViGtF7irbwi4jFiWYkcE=",
+    "runtime/components/popover.js": "sha256-kzvrVAGQFA/1pk4mysBkvK7FM6QSU515IfLJceXDaQI=",
     "runtime/chunks/overlays-C6nlCHqg.js": "sha256-JtKjtFU2sbObAEtYaA9S+YE40WKP5hX073Xv4lpA67o=",
     "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
     "component.css": "sha256-53zGKZZyZMB+sdGIbnQk30oFXcLvjoplsW7FfQ9W0u0=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-tBbkSUEedfklBWmTm/lh13o3rlYHe/9AGgvmXp+p/Lo=",
     "index.html": "sha256-qj6qyYYBmNfnfn4cPT10GeMQN/ToGtN/ZB6H3yjUV/g=",
-    "README.md": "sha256-Df3jDWqa49OKDmq2o1A/wWCB1u0neUhWAcg57mUwkGk="
+    "README.md": "sha256-tDS2B1kMUgMc2kmrc1dAs+INkfARDLatzAWXx6AN/tY="
   }
 }

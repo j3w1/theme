@@ -1,10 +1,10 @@
 {
   "id": "toolbar",
   "name": "Toolbar",
-  "version": "1.3.0",
+  "version": "2.0.0",
   "tag": "j3w1-toolbar",
-  "contract": "https://github.com/j3w1/theme/blob/v1.3.0/spec/components/toolbar.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.3.0/packages/ui/src/behaviors/navigation.js",
+  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/toolbar.md",
+  "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/navigation.js",
   "imports": {
     "class": "@j3w1/ui/components/toolbar",
     "register": "@j3w1/ui/register/toolbar",
@@ -533,6 +533,6 @@
   "copy": {
     "directory": "copy/toolbar/",
     "manifest": "copy/toolbar/manifest.json",
-    "digest": "sha256-bf1iSsNvNOd5B4L8o0b4JDcCqFI0honQ0YFoRxxUkww="
+    "digest": "sha256-sm5A2AiJnFYQGt0VXQb1pSMLJ7RnASAYT01N3YUcTwA="
   }
 }

@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "component": "settings-panel",
-  "version": "1.3.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.3.0/spec/components/settings-panel.md",
+  "version": "2.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/settings-panel.md",
   "dependencies": [
     "register/settings-panel.js",
     "chunks/element-C1XeXVYC.js",
@@ -18,15 +18,15 @@
     "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
     "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
     "runtime/register/switch.js": "sha256-WA0Avt/JJmz7DqxDx8v5Rnw3WCZFaVGJjPdibTQKkSc=",
-    "runtime/components/switch.js": "sha256-/WPLKh0/Bv+yaX45h/CzMAxUipbp8DH5Z2RS5iiTFvU=",
+    "runtime/components/switch.js": "sha256-xt2Q+YT/dvNYw+6WIQi9MuEPy8CJO7zza/oJSeBBoJg=",
     "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-    "runtime/components/settings-panel.js": "sha256-ASgd0LXbqT1CZP9eh4qu2tP+uJdArlpFS9HcIS3Ysw4=",
+    "runtime/components/settings-panel.js": "sha256-MfBo2xT28OmY0PGDOOD79XPm0C8JlrNr9hvisl5WdDg=",
     "runtime/chunks/forms-BT3z7lNC.js": "sha256-Txmae07dWLj1H/FL869U0Kv84TQxzpdFeOg0g8zGK6I=",
     "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
     "component.css": "sha256-bKV+vxJoQcQ+/WSkUADY0AkxpU9pAMAviGj+BrOQK1w=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-Z1ZqDdIXySN8gWG0bvhT8iMaa+GaOyHy/vumYpCsYt8=",
     "index.html": "sha256-jGGdyR2U7IytSpOvqtrVJUJKtnNfW/khN9J+vCUatNM=",
-    "README.md": "sha256-4ik/Ol+SfnVDpsOo+9EX8DjRP8rsOgIlw4eOajfovDQ="
+    "README.md": "sha256-kUhv15zsnHPUJuj6TeAEJ5e7X+uuzNe7w3W9i6lhn3s="
   }
 }

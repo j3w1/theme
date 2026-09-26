@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "theme": "j3w1-theme",
-  "version": "1.3.0",
+  "version": "2.0.0",
   "profile": "default",
   "profileStatus": "approved",
   "release": {
-    "version": "1.3.0",
+    "version": "2.0.0",
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-rFBDeCkXw3V5EDkEMe5C7kADr0a1mOPqQqMr5/PUWS4=",
+  "sourceDigest": "sha256-KQ0xfX4qzHgItmCBtWFynqKLPpZe3Q1sZCpVIkir3kQ=",
   "id": "code-editor",
   "family": "developer",
   "maturity": "stable",
@@ -759,7 +759,7 @@
   "specimens": [
     "i3-window-frame"
   ],
-  "nonExamples": "Rainbow syntax in the `default` profile (the three extension hues are\nproposed only in `extended`). A blinking or animated caret in the reference.\nA selection that recolours the text to white and loses the syntax roles. A\ncurrent-line highlight brighter than the selection. A bracket match drawn as\na background fill, which reads as a selection. Line numbers in the decorative\n`#7d1310`. A glow, gradient or rounded corner on the editor box. Removing the\nhost's focus indicator without drawing the container ring.",
+  "nonExamples": "Rainbow syntax in the reference editor, or any hue outside the three bounded\nones (the opt-in `code.hued.*` roles of D-030 carry them for hosts that want\nhue differentiation). A blinking or animated caret in the reference.\nA selection that recolours the text to white and loses the syntax roles. A\ncurrent-line highlight brighter than the selection. A bracket match drawn as\na background fill, which reads as a selection. Line numbers in the decorative\n`#7d1310`. A glow, gradient or rounded corner on the editor box. Removing the\nhost's focus indicator without drawing the container ring.",
   "contrast": [
     {
       "label": "code-editor default text",

@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "component": "filterable-table",
-  "version": "1.3.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.3.0/spec/components/filterable-table.md",
+  "version": "2.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/filterable-table.md",
   "dependencies": [
     "register/filterable-table.js",
     "chunks/element-C1XeXVYC.js",
@@ -18,15 +18,15 @@
     "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
     "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
     "runtime/register/search-field.js": "sha256-Z6IeX4+LKGVQJUcQGuyUnCBL6ggQSoevMhrj75zYisw=",
-    "runtime/components/search-field.js": "sha256-br6o7Mrw2X5k9XoCNIjF3LemmZhRJunOQvNfoytH/80=",
+    "runtime/components/search-field.js": "sha256-0t9rViTvcJZXk/w+gKGSDKSd6p3+H4nbkhVsWy8AwS0=",
     "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-    "runtime/components/filterable-table.js": "sha256-VC2LKOAXlM+kBN9qsWFc5bgBpYHmuhYYZCt3U8SL9mw=",
+    "runtime/components/filterable-table.js": "sha256-uTYi7Obbr1IfF3Ety8TZ9RHleQDeBDKBdBrqI3ZfodM=",
     "runtime/chunks/tables-B25ydUHs.js": "sha256-XqRdyfrSS93rVybWHq6a0WhrmZgaboHi5n8ymgwRbM8=",
     "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
     "component.css": "sha256-ZpN1xEJy4fV/PBDvH91mkuN2CZqhCUo5wpeCs27jREo=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-3PbF9wWtnKy3q07M9x690D730biEbSwu20wHAcvPPEE=",
     "index.html": "sha256-61p1J3mpIgWTPXP4+wTHI0p/MffdvGq+yeT7j0urEZA=",
-    "README.md": "sha256-yyxfKRBbXH3/deeUBfz+s6ZH9zMbwJR0LsZYG+nq3yA="
+    "README.md": "sha256-29hv3iKckNBNFxCSXtOh/i9434KjqfV0bJ/y0oB/p9E="
   }
 }

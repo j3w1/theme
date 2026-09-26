@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "component": "skeleton",
-  "version": "1.3.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.3.0/spec/components/skeleton.md",
+  "version": "2.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/skeleton.md",
   "dependencies": [
     "register/skeleton.js",
     "chunks/element-C1XeXVYC.js",
@@ -14,13 +14,13 @@
     "runtime/register/skeleton.js": "sha256-LZWZWuDy/lr/JDq+2VL59KCkU2EurStRQaUsuNF4US4=",
     "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
     "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-    "runtime/components/skeleton.js": "sha256-P0cfvR84JFdSxxm4xtpnlCqNWEstAV8j52BxLf1cQE4=",
+    "runtime/components/skeleton.js": "sha256-tUKnVd/gCEOws2j6JVMQx4trIy92+oPjipm6/vvAVIQ=",
     "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
     "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
     "component.css": "sha256-JI92x7GOktbjpIm0AQnODJ4rVTJnEQA4DLP34bflM4k=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-/g7jxryHfbaG3yxoxK8NfCh2k5U92wPPELD/107+2Ps=",
     "index.html": "sha256-wOHcfVLjvDJzcjrxHt2FdIU6zvsgQKyM+mk68FWiW1g=",
-    "README.md": "sha256-S56QVjtWEy2F2jYv6dbXbPhB/XDRy3XKItV0U1Z0Wdo="
+    "README.md": "sha256-n3ZiA0+KECsNtGvdo4qWrCXsMybCOfnNMMf87EqshRQ="
   }
 }

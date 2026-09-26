@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "component": "list",
-  "version": "1.3.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.3.0/spec/components/list.md",
+  "version": "2.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/list.md",
   "dependencies": [
     "register/list.js",
     "chunks/element-C1XeXVYC.js",
@@ -14,13 +14,13 @@
     "runtime/register/list.js": "sha256-wbjYHGmbf46FoJiajI+Z127P5eUpLr9c6BSonN2FqnQ=",
     "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
     "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-    "runtime/components/list.js": "sha256-sL5SFxLzgdxj6KUhmxsbFe6KhPbyw8vIIZs0sbkzq/s=",
+    "runtime/components/list.js": "sha256-fwFBL9rB897g2uQVO5YwaE3T8E2nVELDeZwqQzTsbjw=",
     "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
     "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
     "component.css": "sha256-MSEasr2r2kyu8iJSxcX+m4nWTD2FHPKwBU7K8T/9844=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-tiKX+fFUPCsBJEryliaQ7y9RhU4zlh8aEqMJ0aSO8Lk=",
     "index.html": "sha256-sY1ilmVvk6pArKOSGuz/1p4PN883f3mu5PXF1sOLwX4=",
-    "README.md": "sha256-z/fQ1nZBfwxwtVCNVwRhy36geUwHc4QxmtDHHRzisMQ="
+    "README.md": "sha256-292DuU2FhB7sLCxniF2iwka4MKewP1UJ1FW9nX85djo="
   }
 }

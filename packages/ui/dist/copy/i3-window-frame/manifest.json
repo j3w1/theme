@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "component": "i3-window-frame",
-  "version": "1.3.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.3.0/spec/components/i3-window-frame.md",
+  "version": "2.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/i3-window-frame.md",
   "dependencies": [
     "register/i3-window-frame.js",
     "chunks/element-C1XeXVYC.js",
@@ -15,7 +15,7 @@
     "runtime/register/i3-window-frame.js": "sha256-T8BESQEwjGZsf7/+P5mPJcokXWquh+9IX+aeYr2odNE=",
     "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
     "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-    "runtime/components/i3-window-frame.js": "sha256-r+5UDbpXvL5Xkm/fCR1sGufMhOdmeSg5vG10zpENELQ=",
+    "runtime/components/i3-window-frame.js": "sha256-RmAfb78tW/HR9EmBrLPqshW251IrzlBgaowpHWb5fIQ=",
     "runtime/chunks/compositions-d6BkKTYf.js": "sha256-El5csGAVMeeZWmJ1ztdXW3O3t2AQPrf3YrEOMkGX17c=",
     "runtime/chunks/navigation-Dt8ap-9J.js": "sha256-7QSC/eQSDSRRy3YqMltwjb6cwbEA0V652cfo+Ng2VqA=",
     "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
@@ -23,6 +23,6 @@
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-nNyvwUVLU3Rdy3x0UcZN+IkCA1+Ot5CVwjUB54GDnq8=",
     "index.html": "sha256-5VNshBKwk0GCY7ID/iL5fiZjb6VRrIZhEdVK/HjtiK0=",
-    "README.md": "sha256-ALmgkOVpIpfqEzZ3fD8AUbDPtMeKpdlRZXgirZsoX6I="
+    "README.md": "sha256-E2/wZaIBuZlDr8F5nmgdQLKvVYiZdVwcogrx9Sq/iTQ="
   }
 }

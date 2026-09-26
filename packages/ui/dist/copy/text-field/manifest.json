@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "component": "text-field",
-  "version": "1.3.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.3.0/spec/components/text-field.md",
+  "version": "2.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/text-field.md",
   "dependencies": [
     "register/text-field.js",
     "chunks/element-C1XeXVYC.js",
@@ -14,13 +14,13 @@
     "runtime/register/text-field.js": "sha256-DD+ctMlKClOK6B/glshiJwIjKilewzY171GvKtVGf1A=",
     "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
     "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-    "runtime/components/text-field.js": "sha256-9DeATJsTbvQ0SrlLiwEdU2vfJPjezMUb0vxYEiBvDOo=",
+    "runtime/components/text-field.js": "sha256-P9D2vXvBRXLVYzSg9WKBslllePI3kHNuAYvEXCMmQwA=",
     "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
     "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
     "component.css": "sha256-Y3xQDYeeCQmNtobwOfTiTh/OVHOCJt5If76c4411/ns=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-R8UtNVXLOQSMMT+NPAGht8BHx8b1yIjvTii2pQlPs8k=",
     "index.html": "sha256-J9hbLzXuEnbSdeQVzpl5q51KXvGGqGz+Y21d3vAb3a4=",
-    "README.md": "sha256-UIlKW6LnHyLTco6WyAUiNSyDYhGNiUjPapjOWeqEKVM="
+    "README.md": "sha256-h3WAjZWFDEfyxlRubyDvWj2vFfd7cDUYzSjVJmu1dNI="
   }
 }

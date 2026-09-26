@@ -1,10 +1,10 @@
 {
   "id": "drawer",
   "name": "Drawer",
-  "version": "1.3.0",
+  "version": "2.0.0",
   "tag": "j3w1-drawer",
-  "contract": "https://github.com/j3w1/theme/blob/v1.3.0/spec/components/drawer.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.3.0/packages/ui/src/behaviors/overlays.js",
+  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/drawer.md",
+  "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/overlays.js",
   "imports": {
     "class": "@j3w1/ui/components/drawer",
     "register": "@j3w1/ui/register/drawer",
@@ -695,6 +695,6 @@
   "copy": {
     "directory": "copy/drawer/",
     "manifest": "copy/drawer/manifest.json",
-    "digest": "sha256-b0eP5U07lUnaqErI7MGgjr3RJMgDbElOx/g1fMAb9nU="
+    "digest": "sha256-A+DmqSCK3wrr5ObF9/o7G/LE5CniDRG8THVwQAXelqc="
   }
 }
