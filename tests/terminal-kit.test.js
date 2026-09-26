@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { execFile, execFileSync } from "node:child_process";
+import { execFile, execFileSync, spawn } from "node:child_process";
 import { existsSync, promises as fs, readFileSync } from "node:fs";
 import http from "node:http";
 import path from "node:path";
@@ -28,7 +28,7 @@ const readKitJson = async (file) => JSON.parse(await fs.readFile(path.join(KIT, 
 const PIN = JSON.parse(readFileSync(path.join(KIT, "kit.json"), "utf8")).theme;
 const gitAt = (root, args, options = {}) => execFileSync("git", ["-C", root, ...args], { maxBuffer: 64 * 1024 * 1024, stdio: ["pipe", "pipe", "ignore"], ...options });
 const atPin = (file) => gitAt(repoRoot, ["show", `${PIN.revision}:${file}`]);
-const STATE_FILES = ["manifest.json", "pin.json", "theme.lock.claude-code.json", "theme.lock.codex.json"];
+const STATE_FILES = ["manifest.json", "pin.json", "pin.claude-code.json", "pin.codex.json", "theme.lock.claude-code.json", "theme.lock.codex.json"];
 
 /* The Claude Code theme roles observed in 2.1.281-2.1.283. */
 const OBSERVED_CLAUDE_ROLES = [
@@ -468,7 +468,8 @@ test("split installs: the default restore undoes both halves; one backup undoes 
   assert.ok(!existsSync(one.config) && !existsSync(one.codexTheme), "the Codex half is undone");
   assert.ok(existsSync(one.settings) && existsSync(one.claudeTheme), "the Claude half stays");
   assert.ok(!existsSync(current(one, "theme.lock.codex.json")));
-  for (const n of ["theme.lock.claude-code.json", "pin.json", "manifest.json"]) assert.ok(existsSync(current(one, n)), `${n} still describes the Claude half`);
+  for (const n of ["theme.lock.claude-code.json", "pin.claude-code.json", "manifest.json"]) assert.ok(existsSync(current(one, n)), `${n} still describes the Claude half`);
+  assert.ok(!existsSync(current(one, "pin.codex.json")));
   assert.equal((await cli(one.home, ["test", "--claude", "--no-specimen"])).code, 0);
   assert.equal((await cli(one.home, ["restore"])).code, 0, "the default restore undoes the rest");
   assert.ok(![one.config, one.codexTheme, one.settings, one.claudeTheme].some(existsSync));
@@ -582,14 +583,19 @@ test("a host that writes its settings when probed loses nothing", async (t) => {
   assert.equal(await fs.readFile(h.settings, "utf8"), `${hostWrites}\n`);
 });
 
+/* The commands in this process, against a scratch HOME, with explicit paths. */
+const quiet = () => {};
+const inProcess = async (t, files) => {
+  const h = await setupHome(t, files);
+  const paths = resolvePaths({ stateDir: h.state, claudeConfigDir: path.join(h.home, ".claude"), codexHome: path.join(h.home, ".codex"), orcaRuntimeHome: path.join(h.home, "orca-runtime") }, { HOME: h.home });
+  const opts = (hooks, more = {}) => ({ integrations: ["claude-code", "codex"], sourceRoot: repoRoot, skipVersionProbe: true, hooks, ...more });
+  return { h, paths, opts };
+};
+
+const manifestOf = async (h, name) => JSON.parse(await fs.readFile(path.join(h.state, "backups", name, "manifest.json"), "utf8"));
+
 test("a file changed between plan and write is planned again once, then the run stops", async (t) => {
-  const quiet = () => {};
-  const setup = async () => {
-    const h = await setupHome(t);
-    const paths = resolvePaths({ stateDir: h.state, claudeConfigDir: path.join(h.home, ".claude"), codexHome: path.join(h.home, ".codex"), orcaRuntimeHome: path.join(h.home, "orca-runtime") }, { HOME: h.home });
-    const opts = (hooks) => ({ integrations: ["claude-code", "codex"], sourceRoot: repoRoot, skipVersionProbe: true, hooks });
-    return { h, paths, opts };
-  };
+  const setup = () => inProcess(t);
 
   /* Once: the other program's write is kept and the kit's key still lands. */
   const a = await setup();
@@ -644,6 +650,215 @@ test("a file changed between plan and write is planned again once, then the run 
   assert.match(await fs.readFile(d.h.settings, "utf8"), /"n": \d+/, "restore did not overwrite the other program's write");
 });
 
+/* The state after a finished restore of everything: pre-kit files, no kit
+   files and no kit state. */
+const assertPreKit = async (h, { settings = SETTINGS, config = CONFIG } = {}) => {
+  assert.equal(await fs.readFile(h.settings, "utf8"), settings);
+  assert.equal(await fs.readFile(h.config, "utf8"), config);
+  assert.ok(!existsSync(h.claudeTheme) && !existsSync(h.codexTheme), "no kit theme file is left");
+  for (const n of STATE_FILES) assert.ok(!existsSync(current(h, n)), `${n} is gone: nothing is installed`);
+};
+
+test("a restore stopped by another program's writes is not a baseline; running it again finishes the job", async (t) => {
+  const { h, paths, opts } = await inProcess(t);
+  assert.equal(await apply(opts(), paths, quiet), 0);
+  let n = 0;
+  const edits = async (file) => {
+    if (file === h.settings) await fs.writeFile(h.settings, SETTINGS.replace('"theme": "dark-ansi"', `"theme": "custom:j3w1", "n": ${(n += 1)}`));
+  };
+  await assert.rejects(restore(opts({ beforeWrite: edits }), paths, quiet), (e) => e instanceof KitError && /settings\.json: another program changed it again.*Already written: .*j3w1\.json.*This restore is not complete: run restore again; it finishes the job\./s.test(e.message));
+  assert.ok(!existsSync(h.claudeTheme) && !existsSync(h.codexTheme), "the theme files were already deleted");
+  const stopped = (await backups(h)).at(-1);
+  const record = await manifestOf(h, stopped);
+  assert.deepEqual([record.complete, record.baseline], [false, false]);
+  assert.match(record.incomplete, /settings\.json/);
+
+  const lines = [];
+  assert.equal(await restore(opts(), paths, (l) => lines.push(l)), 0);
+  assert.match(lines.join("\n"), new RegExp(`${stopped} \\(restore, stopped partway: finishing it\\)`));
+  await assertPreKit(h, { settings: SETTINGS.replace('"theme": "dark-ansi"', `"theme": "dark-ansi", "n": ${n}`) });
+  const done = await manifestOf(h, (await backups(h)).at(-1));
+  assert.deepEqual([done.complete, done.baseline], [true, true]);
+  const third = [];
+  assert.equal(await restore(opts(), paths, (l) => third.push(l)), 0);
+  assert.match(third.join("\n"), /nothing was applied since the restore/);
+});
+
+test("a restore stopped by a write error is not a baseline; running it again finishes the job", { skip: process.getuid?.() === 0 && "root ignores the permission" }, async (t) => {
+  const { h, paths, opts } = await inProcess(t);
+  assert.equal(await apply(opts(), paths, quiet), 0);
+  const codexHome = path.dirname(h.config);
+  const lock = async (file) => {
+    if (file === h.config) await fs.chmod(codexHome, 0o500);
+  };
+  try {
+    await assert.rejects(restore(opts({ beforeWrite: lock }), paths, quiet), (e) => e instanceof KitError && /config\.toml: writing it failed \(EACCES.*stopped with nothing further written\. Already written: .*settings\.json.*run restore again; it finishes the job\./s.test(e.message));
+  } finally {
+    await fs.chmod(codexHome, 0o700);
+  }
+  assert.equal(await fs.readFile(h.settings, "utf8"), SETTINGS, "settings.json was restored before the failure");
+  assert.match(await fs.readFile(h.config, "utf8"), /theme = "j3w1"/, "config.toml still holds the kit's value");
+  const record = await manifestOf(h, (await backups(h)).at(-1));
+  assert.equal(record.complete, false);
+  assert.deepEqual(record.settings.map((e) => e.key), ["theme"], "the record lists only what was written");
+  assert.equal(await restore(opts(), paths, quiet), 0);
+  await assertPreKit(h);
+});
+
+test("a closed output pipe never interrupts restore", async (t) => {
+  const h = await setupHome(t);
+  assert.equal((await cli(h.home, ["apply"])).code, 0);
+  /* Both ends the reader holds are closed before the kit prints its first
+     line, as with `restore | head -1` once head has exited. */
+  const child = spawn(process.execPath, [CLI, "restore", "--source-root", repoRoot, "--skip-version-probe"], { env: { PATH: process.env.PATH, HOME: h.home }, stdio: ["ignore", "pipe", "pipe"] });
+  child.stdout.destroy();
+  child.stderr.destroy();
+  const code = await new Promise((resolve) => child.on("close", resolve));
+  assert.equal(code, 0, "restore finished although nobody read its output");
+  await assertPreKit(h);
+  assert.equal((await manifestOf(h, (await backups(h)).at(-1))).complete, true);
+  const again = await cli(h.home, ["restore"]);
+  assert.equal(again.code, 0, again.stderr);
+  assert.match(again.stdout, /nothing was applied since the restore/);
+});
+
+test("every restore that leaves nothing of the kit applied is a baseline", async (t) => {
+  const light = SETTINGS.replace('"theme": "dark-ansi"', '"theme": "light"');
+  const base16 = CONFIG.replace('"ansi"', '"base16"');
+  const ownerChange = async (h) => {
+    await fs.writeFile(h.settings, light);
+    await fs.writeFile(h.config, base16);
+  };
+  const reapplyAndRestore = async (h) => {
+    assert.equal((await cli(h.home, ["apply"])).code, 0);
+    const again = await cli(h.home, ["restore"]);
+    assert.equal(again.code, 0, again.stderr);
+    assert.doesNotMatch(again.stdout, /WARN/);
+    await assertPreKit(h, { settings: light, config: base16 });
+  };
+
+  for (const how of [["--latest"], ["--backup"]]) {
+    const h = await setupHome(t);
+    assert.equal((await cli(h.home, ["apply"])).code, 0);
+    const [only] = await backups(h);
+    const undone = await cli(h.home, ["restore", ...how, ...(how[0] === "--backup" ? [only] : [])]);
+    assert.equal(undone.code, 0, undone.stderr);
+    assert.match(undone.stdout, /nothing of the kit is applied now/);
+    await ownerChange(h);
+    await reapplyAndRestore(h);
+  }
+
+  /* The owner undid the kit by hand; the restore that finds nothing to do
+     still records itself. */
+  const h = await setupHome(t);
+  assert.equal((await cli(h.home, ["apply"])).code, 0);
+  await fs.writeFile(h.settings, SETTINGS);
+  await fs.writeFile(h.config, CONFIG);
+  await fs.rm(h.claudeTheme);
+  await fs.rm(h.codexTheme);
+  const noop = await cli(h.home, ["restore"]);
+  assert.equal(noop.code, 0, noop.stderr);
+  assert.match(noop.stdout, /no changes\nnothing of the kit is applied now/);
+  assert.equal((await backups(h)).length, 2);
+  await ownerChange(h);
+  await reapplyAndRestore(h);
+});
+
+test("a restore that leaves the kit applied is not a baseline", async (t) => {
+  const clone = await releaseClone(t);
+  const h = await setupHome(t);
+  const at = { sourceRoot: clone.dir };
+  assert.equal((await cli(h.home, ["apply"], {}, at)).code, 0);
+  assert.equal((await cli(h.home, ["update", "--version", "v1.2.1"], {}, at)).code, 0);
+  const latest = await cli(h.home, ["restore", "--latest"], {}, at);
+  assert.equal(latest.code, 0, latest.stderr);
+  assert.doesNotMatch(latest.stdout, /nothing of the kit is applied now/);
+  assert.equal(await codexVersion(h), `${PIN.ref.slice(1)} ${PIN.ref}`, "the update alone is undone");
+  const all = await cli(h.home, ["restore"], {}, at);
+  assert.equal(all.code, 0, all.stderr);
+  assert.match(all.stdout, /undo every change since the first apply/);
+  await assertPreKit(h);
+});
+
+test("a value changed by hand between two applies is reported, and restore says what it sets", async (t) => {
+  const h = await setupHome(t);
+  assert.equal((await cli(h.home, ["apply"])).code, 0);
+  await fs.writeFile(h.settings, SETTINGS.replace('"theme": "custom:j3w1"', '"theme": "light"').replace('"theme": "dark-ansi"', '"theme": "light"'));
+  assert.equal((await cli(h.home, ["apply"])).code, 0);
+  const [first, second] = await backups(h);
+  const dry = await cli(h.home, ["restore", "--dry-run"]);
+  assert.equal(dry.code, 0, dry.stderr);
+  const warning = new RegExp(`WARN .*settings\\.json theme was "light" when ${second} ran, not the "custom:j3w1" ${first} left: it changed between them, not by the kit; restore sets the value from before ${first}, "dark-ansi"`);
+  assert.match(dry.stdout, warning);
+  assert.doesNotMatch(dry.stdout, /config\.toml .*WARN|WARN .*config\.toml/, "only the changed key is reported");
+  const restored = await cli(h.home, ["restore"]);
+  assert.equal(restored.code, 0, restored.stderr);
+  assert.match(restored.stdout, warning);
+  await assertPreKit(h);
+});
+
+test("a write just before the rename is kept: the file is compared once more", async (t) => {
+  const { h, paths, opts } = await inProcess(t);
+  const sonnet = SETTINGS.replace('"model": "opus"', '"model": "sonnet"');
+  let fired = 0;
+  const late = async (file) => {
+    if (file === h.settings && !fired) {
+      fired += 1;
+      await fs.writeFile(h.settings, sonnet);
+    }
+  };
+  const lines = [];
+  assert.equal(await apply(opts({ beforeCommit: late }), paths, (l) => lines.push(l)), 0);
+  assert.equal(fired, 1, "the hook ran between the temporary file and the rename");
+  assert.match(lines.join("\n"), /settings\.json changed since the plan .*planning it again/);
+  assert.equal(await fs.readFile(h.settings, "utf8"), sonnet.replace('"theme": "dark-ansi"', '"theme": "custom:j3w1"'));
+  assert.deepEqual((await fs.readdir(path.dirname(h.settings))).filter((n) => n.endsWith(".tmp")), [], "no temporary file is left");
+
+  const kits = CONFIG.replace('"ansi"', '"j3w1"');
+  let n = 0;
+  const always = async (file) => {
+    if (file === h.config) await fs.writeFile(h.config, `${kits}# edit ${(n += 1)}\n`);
+  };
+  await assert.rejects(restore(opts({ beforeCommit: always }), paths, quiet), /config\.toml: another program changed it again/);
+  assert.equal(await fs.readFile(h.config, "utf8"), `${kits}# edit 2\n`, "the other program's write is never replaced");
+});
+
+test("a 64-bit integer at the edge of the range is valid TOML", async (t) => {
+  const config = `limit = 9223372036854775807\nlow = -9223372036854775808\n${CONFIG}`;
+  const h = await setupHome(t, { config });
+  const applied = await cli(h.home, ["apply", "--codex"]);
+  assert.equal(applied.code, 0, applied.stderr);
+  assert.equal(await fs.readFile(h.config, "utf8"), config.replace('theme = "ansi" #', 'theme = "j3w1" #'));
+  assert.equal((await cli(h.home, ["test", "--codex", "--no-specimen"])).code, 0);
+  assert.equal((await cli(h.home, ["restore"])).code, 0);
+  assert.equal(await fs.readFile(h.config, "utf8"), config);
+});
+
+test("a kit.json whose tokensDigest is not the export's is refused", async (t) => {
+  /* A copy of the kit with one changed digest, run against this checkout. */
+  const root = await scratchDir(t, "j3w1-terminal-kit-copy-");
+  const copy = path.join(root, "tools/terminal-kit");
+  await fs.mkdir(copy, { recursive: true });
+  for (const part of ["devbox", "roles", "specimen.json", "kit.json"]) await fs.cp(path.join(KIT, part), path.join(copy, part), { recursive: true });
+  const kit = await readKitJson("kit.json");
+  const wrong = `sha256-${Buffer.alloc(32, 7).toString("base64")}`;
+  await fs.writeFile(path.join(copy, "kit.json"), `${JSON.stringify({ ...kit, exports: { ...kit.exports, tokensDigest: wrong } }, null, 2)}\n`);
+  const h = await setupHome(t);
+  for (const args of [["apply", "--claude", "--dry-run"], ["apply", "--claude"], ["test", "--claude", "--no-specimen"]]) {
+    let result;
+    try {
+      result = await run(process.execPath, [path.join(copy, "devbox/j3w1-terminal.mjs"), ...args, "--source-root", repoRoot, "--skip-version-probe"], { env: { PATH: process.env.PATH, HOME: h.home } });
+      result.code = 0;
+    } catch (error) {
+      result = error;
+    }
+    assert.equal(result.code, 1, args.join(" "));
+    assert.match(result.stderr, new RegExp(`at ${PIN.revision} is sha256-\\S+, not the ${wrong.replace(/[+/]/g, "\\$&")} kit\\.json records; refusing`));
+  }
+  assert.ok(!existsSync(h.state) && !existsSync(h.claudeTheme));
+  assert.equal(await fs.readFile(h.settings, "utf8"), SETTINGS);
+});
+
 /* A scratch clone with one more release tag, v1.2.1: the pinned export with
    its version moved, committed on top of HEAD without a checkout. */
 const releaseClone = async (t) => {
@@ -667,30 +882,64 @@ const releaseClone = async (t) => {
   return { dir, commit };
 };
 
-test("update records the pin even when nothing changes; apply keeps the installed pin", async (t) => {
+const pinOf = async (h, i) => JSON.parse(await fs.readFile(current(h, `pin.${i}.json`), "utf8"));
+const codexVersion = async (h) => /j3w1-theme (\S+) \((\S+) /.exec(await fs.readFile(h.codexTheme, "utf8")).slice(1, 3).join(" ");
+
+test("pins are per integration: update moves only what it names, apply keeps each installed pin", async (t) => {
   const clone = await releaseClone(t);
   const h = await setupHome(t);
   const at = { sourceRoot: clone.dir };
   assert.equal((await cli(h.home, ["apply"], {}, at)).code, 0);
+  for (const i of ["claude-code", "codex"]) assert.equal((await pinOf(h, i)).ref, PIN.ref);
 
   const moved = await cli(h.home, ["update", "--claude", "--version", "v1.2.1"], {}, at);
   assert.equal(moved.code, 0, moved.stderr);
   assert.match(moved.stdout, /72 of 72 overrides unchanged/);
-  assert.match(moved.stdout, /recorded the pin v1\.2\.1/);
-  const pin = JSON.parse(await fs.readFile(current(h, "pin.json"), "utf8"));
+  assert.match(moved.stdout, /recorded the pin v1\.2\.1 .* and the locks for claude-code\n/);
+  const pin = await pinOf(h, "claude-code");
   assert.deepEqual([pin.ref, pin.revision, pin.version], ["v1.2.1", clone.commit, "1.2.1"]);
   assert.equal(JSON.parse(await fs.readFile(current(h, "theme.lock.claude-code.json"), "utf8")).revision, clone.commit);
+  assert.deepEqual([(await pinOf(h, "codex")).ref, JSON.parse(await fs.readFile(current(h, "theme.lock.codex.json"), "utf8")).revision], [PIN.ref, PIN.revision], "update --claude never moves Codex");
+
+  const codexTest = await cli(h.home, ["test", "--codex", "--no-specimen"], {}, at);
+  assert.equal(codexTest.code, 0, codexTest.stdout);
+  const codexApply = await cli(h.home, ["apply", "--codex"], {}, at);
+  assert.equal(codexApply.code, 0, codexApply.stderr);
+  assert.match(codexApply.stdout, /no changes/);
+  assert.equal(await codexVersion(h), `${PIN.ref.slice(1)} ${PIN.ref}`, "apply --codex keeps Codex's own pin");
 
   const again = await cli(h.home, ["apply"], {}, at);
   assert.equal(again.code, 0, again.stderr);
-  assert.match(again.stdout, /using the installed pin v1\.2\.1/);
-  assert.match(again.stdout, /update --version v1\.2\.0 to go back to it/);
-  assert.equal(JSON.parse(await fs.readFile(current(h, "pin.json"), "utf8")).ref, "v1.2.1", "apply did not move the pin back");
-  assert.match(await fs.readFile(h.codexTheme, "utf8"), /j3w1-theme 1\.2\.1 \(v1\.2\.1 /);
+  assert.match(again.stdout, /claude-code: using the installed pin v1\.2\.1 .*update --version v1\.2\.0 --claude to go back to it/);
+  assert.doesNotMatch(again.stdout, /codex: using the installed pin/);
+  assert.equal((await pinOf(h, "claude-code")).ref, "v1.2.1", "apply did not move the pin back");
+  assert.equal(await codexVersion(h), `${PIN.ref.slice(1)} ${PIN.ref}`);
+  assert.equal((await cli(h.home, ["test", "--no-specimen"], {}, at)).code, 0, "each integration is tested at its own pin");
+
+  const both = await cli(h.home, ["update", "--version", "v1.2.1"], {}, at);
+  assert.equal(both.code, 0, both.stderr);
+  assert.equal(await codexVersion(h), "1.2.1 v1.2.1");
+  assert.equal((await pinOf(h, "codex")).ref, "v1.2.1");
 
   const elsewhere = await cli(h.home, ["apply"]);
   assert.equal(elsewhere.code, 1, "a source without the installed pin is refused, not replaced by kit.json's pin");
-  assert.match(elsewhere.stderr, /installed pin v1\.2\.1 .*cannot be loaded.*does not fall back to kit\.json's v1\.2\.0.*update --version/);
+  assert.match(elsewhere.stderr, /claude-code, codex: the installed pin v1\.2\.1 .*cannot be loaded.*does not fall back to kit\.json's v1\.2\.0.*update --version/);
+});
+
+test("an install from before per-integration pins reads each integration's lock", async (t) => {
+  const clone = await releaseClone(t);
+  const h = await setupHome(t);
+  const at = { sourceRoot: clone.dir };
+  assert.equal((await cli(h.home, ["apply"], {}, at)).code, 0);
+  assert.equal((await cli(h.home, ["update", "--claude", "--version", "v1.2.1"], {}, at)).code, 0);
+  /* The old layout: one pin.json, moved by the Claude update, and no pin files. */
+  await fs.writeFile(current(h, "pin.json"), JSON.stringify({ ...(await pinOf(h, "claude-code")) }));
+  for (const i of ["claude-code", "codex"]) await fs.rm(current(h, `pin.${i}.json`));
+  const checked = await cli(h.home, ["test", "--no-specimen"], {}, at);
+  assert.equal(checked.code, 0, checked.stdout);
+  assert.match(checked.stdout, /claude-code: using the installed pin v1\.2\.1/);
+  assert.equal((await cli(h.home, ["apply", "--codex"], {}, at)).code, 0);
+  assert.equal(await codexVersion(h), `${PIN.ref.slice(1)} ${PIN.ref}`, "Codex stays at its lock's revision");
 });
 
 test("the Orca runtime home is checked read-only through Orca's themes link", async (t) => {

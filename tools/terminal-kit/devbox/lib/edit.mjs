@@ -309,14 +309,21 @@ export const tomlRestore = (text, table, key, { beforeLine, appendedTable }) => 
 let tomlParse;
 export const tomlParser = async () => {
   if (!tomlParse) {
+    let parse;
     try {
-      ({ parse: tomlParse } = await import("smol-toml"));
+      ({ parse } = await import("smol-toml"));
     } catch (error) {
       throw new EditError(`checking config.toml needs the smol-toml package, which this checkout has not installed (${error.code ?? error.message}); run npm ci in the checkout and try again. Nothing was written`);
     }
+    /* Every valid TOML integer is a signed 64-bit one; beyond 2^53 it is read
+       as a BigInt rather than refused as invalid. */
+    tomlParse = (text) => parse(text, { integersAsBigInt: "asNeeded" });
   }
   return tomlParse;
 };
+
+/* JSON.stringify for values a TOML parse may hold (a BigInt). */
+const showParsed = (value) => (typeof value === "bigint" ? String(value) : JSON.stringify(value));
 
 const firstLine = (message) => String(message).split("\n")[0];
 
@@ -348,7 +355,7 @@ export const tomlRead = (parse, text, table, key, where) => {
   const current = tomlGet(text, table, key);
   const parsed = doc[table]?.[key];
   if (current.present ? parsed !== current.value : parsed !== undefined) {
-    throw new EditError(`${where}: ${table}.${key} is ${JSON.stringify(parsed)} in a form this editor does not change (dotted key, inline table or quoted name); edit it by hand`);
+    throw new EditError(`${where}: ${table}.${key} is ${showParsed(parsed)} in a form this editor does not change (dotted key, inline table or quoted name); edit it by hand`);
   }
   return current;
 };
@@ -364,7 +371,7 @@ export const tomlVerify = (parse, before, after, table, key, want, where) => {
     throw new EditError(`the edited ${where} would not be valid TOML (${firstLine(error.message)}); edit ${table}.${key} by hand`);
   }
   const got = b[table]?.[key];
-  if (want.absent ? got !== undefined : got !== want.value) throw new EditError(`the edited ${where} would read ${table}.${key} as ${JSON.stringify(got)}; edit it by hand`);
+  if (want.absent ? got !== undefined : got !== want.value) throw new EditError(`the edited ${where} would read ${table}.${key} as ${showParsed(got)}; edit it by hand`);
   if (!isDeepStrictEqual(withoutKey(a, table, key), withoutKey(b, table, key))) throw new EditError(`editing ${table}.${key} in ${where} would change more than that key; edit it by hand`);
 };
 
@@ -381,9 +388,21 @@ export const readMaybe = async (file) => {
 
 export const sameBytes = (a, b) => (a === null || b === null ? a === b : a.equals(b));
 
+/* Another program wrote the file after the caller last compared it. */
+export class ChangedError extends Error {}
+
+/* `expect` (bytes, or null for absent) is compared with the file once more
+   immediately before the rename or unlink, which narrows the window in which
+   another program's write can be lost to that one system call. */
+const unchanged = async (file, target, expect, beforeCommit) => {
+  if (expect === undefined) return;
+  await beforeCommit?.(file);
+  if (!sameBytes(await readMaybe(target), expect)) throw new ChangedError(`${file} changed while the kit was writing it`);
+};
+
 /* Writes through a symlink to its target, via a temp file and rename in the
    target's directory, keeping the previous mode. */
-export const atomicWrite = async (file, bytes, { mode = 0o644 } = {}) => {
+export const atomicWrite = async (file, bytes, { mode = 0o644, expect, beforeCommit } = {}) => {
   let target = file;
   let keepMode = mode;
   try {
@@ -402,12 +421,19 @@ export const atomicWrite = async (file, bytes, { mode = 0o644 } = {}) => {
     await handle.close();
   }
   await fs.chmod(temp, keepMode);
+  try {
+    await unchanged(file, target, expect, beforeCommit);
+  } catch (error) {
+    await fs.rm(temp, { force: true });
+    throw error;
+  }
   await fs.rename(temp, target);
   const back = await fs.readFile(target);
   if (!back.equals(Buffer.from(bytes))) throw new EditError(`${file} did not read back as written`);
 };
 
-export const removeFile = async (file) => {
+export const removeFile = async (file, { expect, beforeCommit } = {}) => {
+  await unchanged(file, file, expect, beforeCommit);
   try {
     await fs.unlink(file);
   } catch (error) {

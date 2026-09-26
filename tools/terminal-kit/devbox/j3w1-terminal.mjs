@@ -27,6 +27,24 @@ commands
                                                since the last restore
   specimen                                     render the specimen only
 
+pins
+  Each integration keeps its own pin. apply uses it once the integration is
+  installed (kit.json's pin before that); update moves only the integrations
+  it names (default both), so update --claude never moves Codex.
+
+restore
+  The default restore puts every managed file and key back to what it was
+  before the first apply or update since the last restore, where "the last
+  restore" is the last one that finished and left nothing of the kit applied:
+  a default, --backup or --latest restore, including one that had nothing to
+  change. A value changed by hand between two applies is reported with WARN
+  and the value restore sets instead; it is replaced. A value changed by hand
+  after the last apply is reported, replaced, and kept in the restore's own
+  backup.
+  --backup <name> undoes that one backup; --latest the newest one.
+  A restore that stopped partway (another program's write, a write error)
+  says so; run the same restore again and it finishes the job.
+
 options
   --source-root <checkout>    read the export from this checkout only (no network)
   --state-dir <dir>           default $J3W1_TERMINAL_KIT_STATE_DIR, else \${XDG_STATE_HOME:-~/.local/state}/j3w1-theme/devbox
@@ -59,9 +77,29 @@ export const parseArgs = (argv) => {
   return { command, opts };
 };
 
+/* Output that cannot be written (a closed pipe: EPIPE) is dropped, so a
+   reader that goes away never aborts a sequence of writes to the hosts'
+   files halfway through. */
+const quietWhenClosed = (stream) => {
+  let closed = false;
+  stream.on?.("error", () => {
+    closed = true;
+  });
+  return (text) => {
+    if (closed) return;
+    try {
+      stream.write(text);
+    } catch {
+      closed = true;
+    }
+  };
+};
+
 export const main = async (argv, { env = process.env, stdout = process.stdout, stderr = process.stderr } = {}) => {
-  const log = (line) => stderr.write(`${line}\n`);
-  const out = (text) => stdout.write(text);
+  const toStdout = quietWhenClosed(stdout);
+  const toStderr = quietWhenClosed(stderr);
+  const log = (line) => toStderr(`${line}\n`);
+  const out = (text) => toStdout(text);
   try {
     if (!argv.length || ["help", "--help", "-h"].includes(argv[0])) {
       out(HELP);
