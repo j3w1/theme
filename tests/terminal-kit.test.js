@@ -722,6 +722,83 @@ test("a closed output pipe never interrupts restore", async (t) => {
   assert.match(again.stdout, /nothing was applied since the restore/);
 });
 
+test("output that cannot be written for any reason but a closed reader fails the command", { skip: !existsSync("/dev/full") && "no /dev/full" }, async (t) => {
+  const h = await setupHome(t);
+  const full = await fs.open("/dev/full", "w");
+  t.after(() => full.close());
+  const child = spawn(process.execPath, [CLI, "specimen", "--source-root", repoRoot, "--skip-version-probe"], { env: { PATH: process.env.PATH, HOME: h.home }, stdio: ["ignore", full.fd, "pipe"] });
+  let stderr = "";
+  child.stderr.on("data", (d) => (stderr += d));
+  const code = await new Promise((resolve) => child.on("close", resolve));
+  assert.equal(code, 1, "a full disk is not a closed pipe");
+  assert.match(stderr, /the output could not be written \(ENOSPC\)/);
+});
+
+test("a write that fails after its rename stays in the manifest, so restore undoes it", async (t) => {
+  const { h, paths, opts } = await inProcess(t);
+  /* The rename lands other bytes than the kit's (a host rewrote the file in
+     between), so it does not read back as written. */
+  const temp = path.join(path.dirname(h.settings), `.settings.json.j3w1-${process.pid}.tmp`);
+  const race = async (file) => {
+    if (file === h.settings) await fs.writeFile(temp, (await fs.readFile(temp, "utf8")).replace('"theme": "custom:j3w1"', '"theme": "custom:j3w1", "n": 1'));
+  };
+  await assert.rejects(apply(opts({ beforeCommit: race }), paths, quiet), (e) => e instanceof KitError && /settings\.json: writing it failed \(.*did not read back as written\).*Already written: .*j3w1\.json, .*settings\.json;/s.test(e.message));
+  const record = await manifestOf(h, (await backups(h)).at(-1));
+  assert.deepEqual(record.settings.map((e) => e.key), ["theme"], "the renamed file is recorded");
+  assert.equal(await restore(opts(), paths, quiet), 0);
+  await assertPreKit(h, { settings: SETTINGS.replace('"theme": "dark-ansi"', '"theme": "dark-ansi", "n": 1') });
+});
+
+test("a stopped restore's own writes are not reported as another program's", async (t) => {
+  const { h, paths, opts } = await inProcess(t);
+  assert.equal(await apply(opts(), paths, quiet), 0);
+  const kits = CONFIG.replace('"ansi"', '"j3w1"');
+  let n = 0;
+  const always = async (file) => {
+    if (file === h.config) await fs.writeFile(h.config, `${kits}# edit ${(n += 1)}\n`);
+  };
+  /* Both theme files deleted and settings.json restored, then it stops. */
+  await assert.rejects(restore(opts({ beforeWrite: always }), paths, quiet), /config\.toml: another program changed it again/);
+  assert.equal(await fs.readFile(h.settings, "utf8"), SETTINGS);
+  assert.equal(await apply(opts(), paths, quiet), 0);
+  const lines = [];
+  assert.equal(await restore(opts(), paths, (l) => lines.push(l)), 0);
+  assert.match(lines.join("\n"), /\(restore, stopped partway: finishing it\)/);
+  assert.doesNotMatch(lines.join("\n"), /WARN/);
+  await assertPreKit(h, { config: `${CONFIG}# edit 2\n` });
+
+  /* A value changed between two applies and set back by hand before the
+     restore: restore has nothing to do there and does not warn. */
+  const b = await inProcess(t);
+  assert.equal(await apply(b.opts(), b.paths, quiet), 0);
+  await fs.writeFile(b.h.settings, SETTINGS.replace('"theme": "dark-ansi"', '"theme": "light"'));
+  assert.equal(await apply(b.opts(), b.paths, quiet), 0);
+  await fs.writeFile(b.h.settings, SETTINGS);
+  const quietLines = [];
+  assert.equal(await restore(b.opts(), b.paths, (l) => quietLines.push(l)), 0);
+  assert.match(quietLines.join("\n"), /same {3}.*settings\.json theme/);
+  assert.doesNotMatch(quietLines.join("\n"), /WARN/);
+  await assertPreKit(b.h);
+});
+
+test("a stopped --latest restore names restore --backup, and the default restore does not claim to finish it", async (t) => {
+  const { h, paths, opts } = await inProcess(t);
+  assert.equal(await apply(opts(), paths, quiet), 0);
+  const [applied] = await backups(h);
+  const kits = CONFIG.replace('"ansi"', '"j3w1"');
+  let n = 0;
+  const always = async (file) => {
+    if (file === h.config) await fs.writeFile(h.config, `${kits}# edit ${(n += 1)}\n`);
+  };
+  await assert.rejects(restore(opts({ beforeWrite: always }, { latest: true }), paths, quiet), (e) => e instanceof KitError && e.message.includes(`This restore is not complete: run restore --backup ${applied} again; it finishes the job. Not restore --latest: that undoes this stopped restore instead.`));
+  const stopped = (await backups(h)).at(-1);
+  const lines = [];
+  assert.equal(await restore(opts(), paths, (l) => lines.push(l)), 0);
+  assert.match(lines.join("\n"), new RegExp(`${stopped} \\(restore ${applied}, stopped partway\\)`));
+  assert.doesNotMatch(lines.join("\n"), /finishing it|WARN/);
+  await assertPreKit(h, { config: `${CONFIG}# edit 2\n` });
+});
+
 test("every restore that leaves nothing of the kit applied is a baseline", async (t) => {
   const light = SETTINGS.replace('"theme": "dark-ansi"', '"theme": "light"');
   const base16 = CONFIG.replace('"ansi"', '"base16"');
@@ -924,6 +1001,36 @@ test("pins are per integration: update moves only what it names, apply keeps eac
   const elsewhere = await cli(h.home, ["apply"]);
   assert.equal(elsewhere.code, 1, "a source without the installed pin is refused, not replaced by kit.json's pin");
   assert.match(elsewhere.stderr, /claude-code, codex: the installed pin v1\.2\.1 .*cannot be loaded.*does not fall back to kit\.json's v1\.2\.0.*update --version/);
+});
+
+test("with two pins, apply plans every group before writing any, and makes one backup per pin", async (t) => {
+  const clone = await releaseClone(t);
+  const h = await setupHome(t);
+  const at = { sourceRoot: clone.dir };
+  assert.equal((await cli(h.home, ["apply"], {}, at)).code, 0);
+  assert.equal((await cli(h.home, ["update", "--claude", "--version", "v1.2.1"], {}, at)).code, 0);
+  const light = SETTINGS.replace('"theme": "dark-ansi"', '"theme": "light"');
+  await fs.writeFile(h.settings, light);
+  const kits = await fs.readFile(h.config, "utf8");
+  await fs.writeFile(h.config, `${kits}[[[\n`);
+  const before = await backups(h);
+  const refused = await cli(h.home, ["apply"], {}, at);
+  assert.equal(refused.code, 1, refused.stdout);
+  assert.match(refused.stderr, /config\.toml is not valid TOML .*nothing was written/);
+  assert.doesNotMatch(refused.stdout, /wrote/);
+  assert.equal(await fs.readFile(h.settings, "utf8"), light, "the Claude group was not written either");
+  assert.deepEqual(await backups(h), before);
+
+  const base16 = kits.replace('"j3w1"', '"base16"');
+  await fs.writeFile(h.config, base16);
+  assert.equal((await cli(h.home, ["apply"], {}, at)).code, 0);
+  assert.equal((await backups(h)).length, before.length + 2, "one backup per pin");
+  const latest = await cli(h.home, ["restore", "--latest"], {}, at);
+  assert.equal(latest.code, 0, latest.stderr);
+  assert.equal(await fs.readFile(h.config, "utf8"), base16, "--latest undoes the newest backup: the Codex half");
+  assert.match(await fs.readFile(h.settings, "utf8"), /"theme": "custom:j3w1"/);
+  const help = await cli(h.home, ["help"]);
+  assert.match(help.stdout.replace(/\s+/g, " "), /An apply across two pins makes one backup per pin; --latest undoes the newest one\./);
 });
 
 test("an install from before per-integration pins reads each integration's lock", async (t) => {

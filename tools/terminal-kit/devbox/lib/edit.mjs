@@ -391,6 +391,10 @@ export const sameBytes = (a, b) => (a === null || b === null ? a === b : a.equal
 /* Another program wrote the file after the caller last compared it. */
 export class ChangedError extends Error {}
 
+/* The rename has happened, so the file holds the kit's write, but it did not
+   read back as written: the caller counts the file as written. */
+export class WrittenError extends EditError {}
+
 /* `expect` (bytes, or null for absent) is compared with the file once more
    immediately before the rename or unlink, which narrows the window in which
    another program's write can be lost to that one system call. */
@@ -428,8 +432,13 @@ export const atomicWrite = async (file, bytes, { mode = 0o644, expect, beforeCom
     throw error;
   }
   await fs.rename(temp, target);
-  const back = await fs.readFile(target);
-  if (!back.equals(Buffer.from(bytes))) throw new EditError(`${file} did not read back as written`);
+  let back;
+  try {
+    back = await fs.readFile(target);
+  } catch (error) {
+    throw new WrittenError(`${file} was written but could not be read back (${error.code ?? error.message})`);
+  }
+  if (!back.equals(Buffer.from(bytes))) throw new WrittenError(`${file} did not read back as written`);
 };
 
 export const removeFile = async (file, { expect, beforeCommit } = {}) => {

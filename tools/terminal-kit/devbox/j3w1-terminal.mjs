@@ -35,15 +35,18 @@ pins
 restore
   The default restore puts every managed file and key back to what it was
   before the first apply or update since the last restore, where "the last
-  restore" is the last one that finished and left nothing of the kit applied:
-  a default, --backup or --latest restore, including one that had nothing to
-  change. A value changed by hand between two applies is reported with WARN
-  and the value restore sets instead; it is replaced. A value changed by hand
-  after the last apply is reported, replaced, and kept in the restore's own
-  backup.
-  --backup <name> undoes that one backup; --latest the newest one.
+  restore" is the last completed restore that leaves nothing of the kit
+  applied: a default, --backup or --latest restore, including one that had
+  nothing to change. A value changed by hand between two applies is reported
+  with WARN and the value restore sets instead; it is replaced. A value
+  changed by hand after the last apply is reported, replaced, and kept in the
+  restore's own backup.
+  --backup <name> undoes that one backup. An apply across two pins makes one
+  backup per pin; --latest undoes the newest one.
   A restore that stopped partway (another program's write, a write error)
-  says so; run the same restore again and it finishes the job.
+  says so and names the command that finishes it: restore for a default
+  restore, restore --backup <name> for a --backup or --latest one (restore
+  --latest again would undo the stopped restore instead).
 
 options
   --source-root <checkout>    read the export from this checkout only (no network)
@@ -77,27 +80,44 @@ export const parseArgs = (argv) => {
   return { command, opts };
 };
 
-/* Output that cannot be written (a closed pipe: EPIPE) is dropped, so a
-   reader that goes away never aborts a sequence of writes to the hosts'
-   files halfway through. */
-const quietWhenClosed = (stream) => {
+/* Output nobody reads any more (a closed pipe: EPIPE, or a destroyed
+   stream) is dropped, so a reader that goes away never aborts a sequence of
+   writes to the hosts' files halfway through. Any other output error (a full
+   disk, an I/O error) stops the output too, and the command exits 1. */
+const DROPPED = new Set(["EPIPE", "ERR_STREAM_DESTROYED"]);
+const quietWhenClosed = (stream, failed) => {
   let closed = false;
-  stream.on?.("error", () => {
+  const fail = (error) => {
     closed = true;
-  });
+    if (!DROPPED.has(error?.code)) failed(error);
+  };
+  stream.on?.("error", fail);
   return (text) => {
     if (closed) return;
     try {
       stream.write(text);
-    } catch {
-      closed = true;
+    } catch (error) {
+      fail(error);
     }
   };
 };
 
-export const main = async (argv, { env = process.env, stdout = process.stdout, stderr = process.stderr } = {}) => {
-  const toStdout = quietWhenClosed(stdout);
-  const toStderr = quietWhenClosed(stderr);
+export const main = async (argv, options = {}) => {
+  let outputError = null;
+  const code = await commandMain(argv, options, (error) => {
+    outputError ??= error;
+  });
+  /* Stream errors are emitted after the write that caused them. */
+  await new Promise((resolve) => setImmediate(resolve));
+  if (!outputError) return code;
+  const stderr = options.stderr ?? process.stderr;
+  if (!stderr.destroyed) stderr.write(`j3w1-terminal: the output could not be written (${outputError.code ?? outputError.message})\n`);
+  return code || 1;
+};
+
+const commandMain = async (argv, { env = process.env, stdout = process.stdout, stderr = process.stderr } = {}, failed) => {
+  const toStdout = quietWhenClosed(stdout, failed);
+  const toStderr = quietWhenClosed(stderr, failed);
   const log = (line) => toStderr(`${line}\n`);
   const out = (text) => toStdout(text);
   try {

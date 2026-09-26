@@ -11,7 +11,7 @@ import { existsSync, promises as fs } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { isDeepStrictEqual } from "node:util";
-import { atomicWrite, ChangedError, decodeText, EditError, encodeText, jsonGet, jsonMembers, jsonRemove, jsonSetRaw, jsonVerify, readMaybe, removeFile, sameBytes, tomlHasTable, tomlParser, tomlRead, tomlRestore, tomlSet, tomlVerify } from "./edit.mjs";
+import { atomicWrite, ChangedError, decodeText, EditError, encodeText, jsonGet, jsonMembers, jsonRemove, jsonSetRaw, jsonVerify, readMaybe, removeFile, sameBytes, tomlHasTable, tomlParser, tomlRead, tomlRestore, tomlSet, tomlVerify, WrittenError } from "./edit.mjs";
 import { claudeTheme, claudeThemeText, codexThemeObject, codexTmTheme, integrationDisclosures, INTEGRATIONS, lock } from "./generators.mjs";
 import { parsePlist } from "./plist.mjs";
 import { assertTag, DEFAULT_SOURCE_ROOT, KitError, loadContext, localKit, resolveTagRemote, sha256Hex } from "./source.mjs";
@@ -280,6 +280,9 @@ const commit = async ({ backup, manifest, steps, record, replan, describe, log, 
       step = await writeSlot(slot);
     } catch (error) {
       if (error instanceof Stopped) throw error;
+      /* Renamed into place but not read back as written: the file holds the
+         kit's write, so it stays in the manifest and restore undoes it. */
+      if (error instanceof WrittenError) done.push(slot);
       await stop(slot.step.path, `writing it failed (${error.message})`);
     }
     if (!step) continue;
@@ -355,15 +358,17 @@ const planTargets = async (targets) => {
   return { plan, parse };
 };
 
-const run = async ({ ctx, paths, opts, command, integrations, log, before }) => {
-  const versions = opts.dryRun ? null : hostVersions(opts);
-  let planning;
+const planRun = async (ctx, paths, integrations) => {
   try {
-    planning = await planTargets(buildTargets(ctx, paths, integrations));
+    return await planTargets(buildTargets(ctx, paths, integrations));
   } catch (error) {
     throw nothingWritten(error);
   }
-  const { plan, parse } = planning;
+};
+
+const run = async ({ ctx, paths, opts, command, integrations, log, before, planning }) => {
+  const versions = opts.dryRun ? null : hostVersions(opts);
+  const { plan, parse } = planning ?? (await planRun(ctx, paths, integrations));
   log(`j3w1-theme ${ctx.theme.version} ${ctx.theme.ref} (${ctx.theme.revision}) profile ${ctx.theme.profile}; export via ${ctx.source.via} (${ctx.source.tagCheck}); ${ctx.source.digestCheck}`);
   if (before) before(plan);
   describePlan(plan, log);
@@ -477,9 +482,14 @@ const pinnedContexts = async (opts, paths, log, integrations = opts.integrations
   return out;
 };
 
+/* Every pin group is planned, with every guard, before any group is
+   written: a planning error in any group writes nothing. Each group is then
+   written under its own backup. */
 export const apply = async (opts, paths, log) => {
-  for (const { ctx, integrations } of await pinnedContexts(opts, paths, log)) {
-    const code = await run({ ctx, paths, opts, command: "apply", integrations, log });
+  const groups = await pinnedContexts(opts, paths, log);
+  for (const g of groups) g.planning = await planRun(g.ctx, paths, g.integrations);
+  for (const { ctx, integrations, planning } of groups) {
+    const code = await run({ ctx, paths, opts, command: "apply", integrations, log, planning });
     if (code) return code;
   }
   return 0;
@@ -656,12 +666,16 @@ const keyAfterValue = (e) => (e.afterAbsent ? undefined : e.after);
    a later run found something other than what the run before it left, the
    owner (or another program) changed it in between: that is recorded, and
    restore still puts back the earliest before-value. */
-const mergeManifests = (chosen) => {
+const mergeManifests = (chosen, { bridged = () => false } = {}) => {
   const files = new Map();
   const keys = new Map();
   for (const b of chosen) {
+    /* A restore that stopped partway is not undone, but what it wrote is the
+       kit's own change: it only moves "last" on for what is undone. */
+    const bridge = bridged(b.manifest);
     for (const f of b.manifest.files ?? []) {
       const m = files.get(f.path);
+      if (!m && bridge) continue;
       if (!m) files.set(f.path, { first: f, firstName: b.name, dir: b.dir, last: f, lastName: b.name, changedBetween: [] });
       else {
         if ((f.sha256Before ?? null) !== (m.last.sha256After ?? null)) m.changedBetween.push({ from: m.lastName, to: b.name });
@@ -671,6 +685,7 @@ const mergeManifests = (chosen) => {
     for (const s of b.manifest.settings ?? []) {
       const id = `${s.file}\u0000${s.key}`;
       const m = keys.get(id);
+      if (!m && bridge) continue;
       if (!m) keys.set(id, { first: s, firstName: b.name, last: s, lastName: b.name, changedBetween: [] });
       else {
         if (!isDeepStrictEqual(keyBeforeValue(s), keyAfterValue(m.last))) m.changedBetween.push({ from: m.lastName, to: b.name, found: keyBeforeValue(s), left: keyAfterValue(m.last) });
@@ -764,12 +779,14 @@ export const restore = async (opts, paths, log) => {
       return 0;
     }
     /* A restore that stopped partway is finished, not undone: its records
-       are left out and the files are read as they are now. */
+       only carry what it wrote into the gap check, and the files are read as
+       they are now. */
     undo = chosen.filter((b) => !interrupted(b.manifest));
-    log(`restore: undo every change since ${since}: ${chosen.map((b) => `${b.name} (${b.manifest.command}${interrupted(b.manifest) ? ", stopped partway: finishing it" : ""})`).join(", ")}`);
+    const stopped = (m) => (!interrupted(m) ? "" : m.command === "restore" ? ", stopped partway: finishing it" : ", stopped partway");
+    log(`restore: undo every change since ${since}: ${chosen.map((b) => `${b.name} (${b.manifest.command}${stopped(b.manifest)})`).join(", ")}`);
   }
 
-  const merged = mergeManifests(undo);
+  const merged = byDefault ? mergeManifests(chosen, { bridged: interrupted }) : mergeManifests(undo);
   const steps = [];
   let parse = null;
   try {
@@ -783,12 +800,12 @@ export const restore = async (opts, paths, log) => {
     const { merged: m } = s;
     if (s.kind === "file") {
       log(`  ${s.changed ? (s.after ? "put   " : "delete") : "same  "} ${s.path}`);
-      for (const c of m.changedBetween) log(`  WARN   ${s.path} changed between ${c.from} and ${c.to}, not by the kit; restore puts back what was there before ${m.firstName}${s.after ? "" : " (no file)"}`);
+      for (const c of s.changed ? m.changedBetween : []) log(`  WARN   ${s.path} changed between ${c.from} and ${c.to}, not by the kit; restore puts back what was there before ${m.firstName}${s.after ? "" : " (no file)"}`);
       if (s.drift) log(`  WARN   ${s.path} changed after the kit wrote it (its sha256 is not the manifest's); restore replaces it and keeps this copy in its own backup`);
     } else {
       const target = s.want.absent ? "(absent)" : JSON.stringify(s.want.value);
       log(`  ${s.changed ? (s.remove ? "delete" : "set   ") : "same  "} ${s.path} ${m.first.key} -> ${target}`);
-      for (const c of m.changedBetween) log(`  WARN   ${s.path} ${m.first.key} was ${show(c.found)} when ${c.to} ran, not the ${show(c.left)} ${c.from} left: it changed between them, not by the kit; restore sets the value from before ${m.firstName}, ${target}`);
+      for (const c of s.changed ? m.changedBetween : []) log(`  WARN   ${s.path} ${m.first.key} was ${show(c.found)} when ${c.to} ran, not the ${show(c.left)} ${c.from} left: it changed between them, not by the kit; restore sets the value from before ${m.firstName}, ${target}`);
       if (s.drift) log(`  WARN   ${s.path} ${m.first.key} is ${show(s.value)} now, not the kit's ${show(s.kitValue)}; restore replaces it and keeps it in its own backup manifest`);
     }
   }
@@ -847,7 +864,7 @@ export const restore = async (opts, paths, log) => {
     describe: (s) => (s.kind === "file" ? `  ${s.after ? "restored" : "deleted"} ${s.path}` : s.remove ? `  deleted ${s.path} (the kit created it)` : `  restored ${s.path} ${s.merged.first.key}`),
     log,
     hooks: opts.hooks,
-    resume: `This restore is not complete: run restore${byDefault ? "" : ` --backup ${chosen[0].name}`} again; it finishes the job.`,
+    resume: `This restore is not complete: run restore${byDefault ? "" : ` --backup ${chosen[0].name}`} again; it finishes the job.${opts.latest ? " Not restore --latest: that undoes this stopped restore instead." : ""}`,
   });
   for (const { step, entry } of slots) {
     if (!step.drift) continue;
