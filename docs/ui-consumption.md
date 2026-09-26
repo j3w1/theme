@@ -10,6 +10,9 @@ input; start with the complete maintained markup on its component page.
 
 The 1.0.0 release introduces True Black / Rose as the default and is a major
 upgrade from 0.1.0. Review `docs/true-black-rose-migration.md` before replacing old tokens.
+The 2.0.0 release is also major: D-029 lifts the dim terminal slots and two code
+syntax reds, and D-030 adds opt-in `code.hued.*` syntax roles; component behaviour
+is unchanged. Review the 2.0.0 changelog entry before upgrading from 1.x.
 Keep the exact package version and your package-manager lockfile in source control.
 
 ```sh
