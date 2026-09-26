@@ -90,6 +90,8 @@ contrast:
   - { fg: color.code.syntax.attribute, bg: color.code.bg, label: "attribute and escape" }
   - { fg: color.code.syntax.deprecated, bg: color.code.bg, label: "deprecated text" }
   - { fg: color.code.syntax.string, bg: color.code.selection-bg, state: selected, label: "muted string text inside the selection" }
+  - { fg: color.code.syntax.keyword, bg: color.code.selection-bg, state: selected, label: "keyword and tag text inside the selection (D-029)" }
+  - { fg: color.code.syntax.property, bg: color.code.selection-bg, state: selected, label: "property, heading and invalid text inside the selection (D-029)" }
   - { fg: color.text.muted, bg: color.code.bg, label: "fold marker text" }
   - { fg: color.code.indent-guide, bg: color.code.bg, min: 1, kind: ui, label: "indent guide (decorative)", waiver: "indent guides duplicate the whitespace that is already in the text; they carry no information of their own" }
   - { fg: color.code.whitespace, bg: color.code.bg, min: 1, kind: ui, label: "rendered whitespace (decorative)", waiver: "rendered whitespace duplicates characters that are already in the text; foundations names it decorative" }
@@ -125,7 +127,7 @@ portability:
     - "GTK: GtkSourceView style scheme; current-line, selection, bracket-match and the syntax roles map one to one; the container ring becomes the frame's focus outline."
     - "Qt: KSyntaxHighlighting theme JSON; editor colours and text styles carry the same roles; caret width follows the toolkit."
     - "JetBrains: an editor scheme (.icls); CARET_ROW, SELECTION_BACKGROUND, MATCHED_BRACE_ATTRIBUTES and the language attribute keys; the UI theme is a separate capability."
-    - "Terminal editors (vim, helix): 16-slot hosts use the heritage-ansi mapping and document that the caret follows the terminal cursor."
+    - "Terminal editors (vim, helix): 16-slot hosts use the default profile's terminal slots (the readable heritage sixteen, D-029) and document that the caret follows the terminal cursor."
 fixtures: [FX-STATE-MATRIX, FX-320, FX-ZOOM-200, FX-RM, FX-HC, FX-LONG, FX-RTL]
 related: [diagnostics, diff-view, terminal]
 specimens: [i3-window-frame]
@@ -189,11 +191,16 @@ Syntax colour is decoration: no meaning is carried by colour alone. Invalid
 text has the wavy underline, deprecated text the line-through, comments the
 italic. Selection is a fill and focus is a ring, drawn together and never
 substituted for one another. Every syntax role reaches 4.5:1 on
-{color.code.bg} (the lowest is {color.code.syntax.property} at 4.69:1) and
-{color.text.default} reaches 7.02:1 inside the selection fill. Comment,
-type, keyword and property text drop below 4.5:1 inside
-{color.code.selection-bg} (3.81–4.38:1); this is a recorded limitation of the
-selection value and is not to be fixed by recolouring the tokens locally. Line
+{color.code.bg} (the lowest is {color.code.syntax.comment} at 5.10:1) and
+{color.text.default} reaches 7.02:1 inside the selection fill. D-029 lifted
+the keyword, tag, property and heading reds so they stay at 4.5:1 or more
+inside {color.code.selection-bg} (4.51–4.52:1); comment and type text still
+drop below it there (4.13 and 4.24:1). That is a recorded limitation of the
+selection value and is not to be fixed by recolouring the tokens locally. The reference editor
+stays monochrome; a host that wants hue differentiation maps the opt-in
+{color.code.hued.string}, {color.code.hued.number}, {color.code.hued.type} and
+the other `code.hued.*` roles (D-030), which reach 5.74:1 or more inside the
+selection. Line
 numbers are metadata people read and use {color.text.subtle}, not a graphic
 colour; indent guides, rendered whitespace and the gutter rule are decorative.
 In forced-colours mode the caret, selection and bracket outline take the
@@ -212,8 +219,9 @@ role values; the mapping does not change.
 
 ## Non-examples
 
-Rainbow syntax in the `default` profile (the three extension hues are
-proposed only in `extended`). A blinking or animated caret in the reference.
+Rainbow syntax in the reference editor, or any hue outside the three bounded
+ones (the opt-in `code.hued.*` roles of D-030 carry them for hosts that want
+hue differentiation). A blinking or animated caret in the reference.
 A selection that recolours the text to white and loses the syntax roles. A
 current-line highlight brighter than the selection. A bracket match drawn as
 a background fill, which reads as a selection. Line numbers in the decorative

@@ -51,7 +51,9 @@ and consumer rules remain as written.
 
 - `default` — the approved everyday composition. Monochrome red/rose for
   chrome, text, borders, interaction and actions; three bounded hues (amber,
-  green, blue) for status, diagnostics and diffs (D-001); monochrome syntax.
+  green, blue) for status, diagnostics and diffs (D-001); monochrome syntax,
+  with the three hues available to opt-in syntax themes as `code.hued.*`
+  (D-030).
 - `heritage-ansi` — the sixteen Xresources slots and the historical
   assignments, exact, including the ones that fail the contrast floor. For
   terminals, archives and fidelity; never for new interface text.

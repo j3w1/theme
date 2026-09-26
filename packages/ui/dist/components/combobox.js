@@ -3,8 +3,8 @@ import { t as combobox } from "../chunks/navigation-Dt8ap-9J.js";
 //#region .cache/ui-build/entries/components/combobox.js
 var J3w1Combobox = class extends J3w1Element {
 	static componentId = "combobox";
-	static version = "1.2.0";
-	static implementationId = "sha256-EUY/re1GFhlO/ksn5NZz2PSUm2gymIHrKXjKiKh2JpI=";
+	static version = "2.0.0";
+	static implementationId = "sha256-tS+8y3maR4UZXFQBwOI8PIPS6T7tcdRAMe4CPL9pa/M=";
 	static connect = combobox;
 	static upgradeProperties = [
 		"disabled",

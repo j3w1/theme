@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "theme": "j3w1-theme",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "profile": "default",
   "profileStatus": "approved",
   "release": {
-    "version": "1.2.0",
+    "version": "2.0.0",
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-n/7Zq/WqDQMIB6i2OEF18z5ommL7MyKb+rAqMGd9Yfo=",
+  "sourceDigest": "sha256-KQ0xfX4qzHgItmCBtWFynqKLPpZe3Q1sZCpVIkir3kQ=",
   "id": "code-editor",
   "family": "developer",
   "maturity": "stable",
@@ -289,10 +289,10 @@
     },
     "syntax.keyword": {
       "alias": "color.code.syntax.keyword",
-      "value": "#f73f35",
-      "status": "observed",
+      "value": "#f7463c",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-029",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -409,10 +409,10 @@
     },
     "syntax.property": {
       "alias": "color.code.syntax.property",
-      "value": "#e53935",
-      "status": "observed",
+      "value": "#e95551",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-029",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -421,10 +421,10 @@
     },
     "syntax.heading": {
       "alias": "color.code.syntax.heading",
-      "value": "#e53935",
-      "status": "observed",
+      "value": "#e95551",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-029",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -433,10 +433,10 @@
     },
     "syntax.tag": {
       "alias": "color.code.syntax.tag",
-      "value": "#f73f35",
-      "status": "observed",
+      "value": "#f7463c",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-029",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -469,10 +469,10 @@
     },
     "syntax.invalid": {
       "alias": "color.code.syntax.invalid",
-      "value": "#e53935",
-      "status": "observed",
+      "value": "#e95551",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-029",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -739,7 +739,7 @@
       "GTK: GtkSourceView style scheme; current-line, selection, bracket-match and the syntax roles map one to one; the container ring becomes the frame's focus outline.",
       "Qt: KSyntaxHighlighting theme JSON; editor colours and text styles carry the same roles; caret width follows the toolkit.",
       "JetBrains: an editor scheme (.icls); CARET_ROW, SELECTION_BACKGROUND, MATCHED_BRACE_ATTRIBUTES and the language attribute keys; the UI theme is a separate capability.",
-      "Terminal editors (vim, helix): 16-slot hosts use the heritage-ansi mapping and document that the caret follows the terminal cursor."
+      "Terminal editors (vim, helix): 16-slot hosts use the default profile's terminal slots (the readable heritage sixteen, D-029) and document that the caret follows the terminal cursor."
     ]
   },
   "fixtures": [
@@ -759,7 +759,7 @@
   "specimens": [
     "i3-window-frame"
   ],
-  "nonExamples": "Rainbow syntax in the `default` profile (the three extension hues are\nproposed only in `extended`). A blinking or animated caret in the reference.\nA selection that recolours the text to white and loses the syntax roles. A\ncurrent-line highlight brighter than the selection. A bracket match drawn as\na background fill, which reads as a selection. Line numbers in the decorative\n`#7d1310`. A glow, gradient or rounded corner on the editor box. Removing the\nhost's focus indicator without drawing the container ring.",
+  "nonExamples": "Rainbow syntax in the reference editor, or any hue outside the three bounded\nones (the opt-in `code.hued.*` roles of D-030 carry them for hosts that want\nhue differentiation). A blinking or animated caret in the reference.\nA selection that recolours the text to white and loses the syntax roles. A\ncurrent-line highlight brighter than the selection. A bracket match drawn as\na background fill, which reads as a selection. Line numbers in the decorative\n`#7d1310`. A glow, gradient or rounded corner on the editor box. Removing the\nhost's focus indicator without drawing the container ring.",
   "contrast": [
     {
       "label": "code-editor default text",
@@ -950,9 +950,9 @@
       "min": 4.5,
       "fg": "color.code.syntax.keyword",
       "bg": "color.code.bg",
-      "fgHex": "#f73f35",
+      "fgHex": "#f7463c",
       "bgHex": "#0c0909",
-      "ratio": 5.4,
+      "ratio": 5.57,
       "pass": true,
       "waiver": null
     },
@@ -1028,9 +1028,9 @@
       "min": 4.5,
       "fg": "color.code.syntax.property",
       "bg": "color.code.bg",
-      "fgHex": "#e53935",
+      "fgHex": "#e95551",
       "bgHex": "#0c0909",
-      "ratio": 4.69,
+      "ratio": 5.56,
       "pass": true,
       "waiver": null
     },
@@ -1041,9 +1041,9 @@
       "min": 4.5,
       "fg": "color.code.syntax.tag",
       "bg": "color.code.bg",
-      "fgHex": "#f73f35",
+      "fgHex": "#f7463c",
       "bgHex": "#0c0909",
-      "ratio": 5.4,
+      "ratio": 5.57,
       "pass": true,
       "waiver": null
     },
@@ -1083,6 +1083,32 @@
       "fgHex": "#bd787d",
       "bgHex": "#420f0c",
       "ratio": 4.71,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "keyword and tag text inside the selection (D-029)",
+      "state": "selected",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.code.syntax.keyword",
+      "bg": "color.code.selection-bg",
+      "fgHex": "#f7463c",
+      "bgHex": "#420f0c",
+      "ratio": 4.52,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "property, heading and invalid text inside the selection (D-029)",
+      "state": "selected",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.code.syntax.property",
+      "bg": "color.code.selection-bg",
+      "fgHex": "#e95551",
+      "bgHex": "#420f0c",
+      "ratio": 4.51,
       "pass": true,
       "waiver": null
     },

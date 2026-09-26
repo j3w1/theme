@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "component": "chip",
-  "version": "1.2.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/chip.md",
+  "version": "2.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/chip.md",
   "dependencies": [
     "register/chip.js",
     "chunks/element-C1XeXVYC.js",
@@ -14,13 +14,13 @@
     "runtime/register/chip.js": "sha256-nhg2cNNdf2EtWAVdLGFMWDTHx5f02Oe0Zf06cTV+sY8=",
     "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
     "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-    "runtime/components/chip.js": "sha256-PTYznRSmL6ujyTUJzNfii8dt+QUs36pkZ1BxJ7o5Z0c=",
+    "runtime/components/chip.js": "sha256-G74ostacfCfuEqQE/UQg6vJdPTe75fmHoiZBFMa2800=",
     "runtime/chunks/overlays-C6nlCHqg.js": "sha256-JtKjtFU2sbObAEtYaA9S+YE40WKP5hX073Xv4lpA67o=",
-    "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+    "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
     "component.css": "sha256-nKS3XC8eLjQCMMZHRRKSiHiaNGZgYD6CXzVULJoDU3g=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-yjXdYrZ4DqpcZ/ZDGxD0cgfYY/xqj0qeSkX1dJmVhfY=",
     "index.html": "sha256-w6jTubEaofdbvKO8llTmtTpw3a/ixglUtu1tDybz2iY=",
-    "README.md": "sha256-YA81r69XODa+e6TCGijVaapyTX60jg23vJM0Iz4+W+8="
+    "README.md": "sha256-CbIQ3ps3BQ7xZr1mgxNYEVL/0y5k3Tt+Pf5NBCRm4XY="
   }
 }

@@ -1,10 +1,10 @@
 {
   "id": "compact-dashboard",
   "name": "Compact dashboard",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "tag": "j3w1-compact-dashboard",
-  "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/compact-dashboard.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/compositions.js",
+  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/compact-dashboard.md",
+  "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/compositions.js",
   "imports": {
     "class": "@j3w1/ui/components/compact-dashboard",
     "register": "@j3w1/ui/register/compact-dashboard",
@@ -479,6 +479,6 @@
   "copy": {
     "directory": "copy/compact-dashboard/",
     "manifest": "copy/compact-dashboard/manifest.json",
-    "digest": "sha256-zR+pNlNGhqFV42v+sJ945hZHpvn76ykPWaCCDPuQdPQ="
+    "digest": "sha256-HbFvmBaWmc0y8QCebhiWLF8N+0KtClZrVa3AbyuAZro="
   }
 }

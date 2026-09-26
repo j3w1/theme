@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "theme": "j3w1-theme",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "profile": "default",
   "profileStatus": "approved",
   "release": {
-    "version": "1.2.0",
+    "version": "2.0.0",
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-n/7Zq/WqDQMIB6i2OEF18z5ommL7MyKb+rAqMGd9Yfo=",
+  "sourceDigest": "sha256-KQ0xfX4qzHgItmCBtWFynqKLPpZe3Q1sZCpVIkir3kQ=",
   "id": "terminal",
   "family": "developer",
   "maturity": "stable",
@@ -25,7 +25,7 @@
     "states": 5
   },
   "title": "Terminal",
-  "summary": "Terminal text on the terminal surface with the sixteen heritage ANSI slots carried exactly, the cursor, the selection and the six text attributes; a transcript, the slot grid and the attributes.",
+  "summary": "Terminal text on the terminal surface with the readable heritage sixteen ANSI slots (D-029), the cursor, the selection and the six text attributes; a transcript, the slot grid and the attributes.",
   "anchors": {
     "site": "https://j3w1.github.io/theme/reference/#c-terminal",
     "spec": "spec/components/terminal.md",
@@ -45,7 +45,7 @@
     {
       "id": "ansi-grid",
       "name": "ANSI grid",
-      "description": "One row per slot, labelled with its number; slots that pass 4.5:1 show sample text, slots that fail show colour blocks and a ✕, and every background is a block."
+      "description": "One row per slot, labelled with its number; the default profile's text slots show sample text, slot 0 (the background) and slot 8 (the dim tier) show colour blocks and a ✕, and every background is a block."
     },
     {
       "id": "attributes",
@@ -177,10 +177,10 @@
     },
     "prompt.bg": {
       "alias": "color.terminal.ansi.4",
-      "value": "#8c1212",
-      "status": "observed",
+      "value": "#e53131",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-029",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -188,11 +188,11 @@
       }
     },
     "prompt.text": {
-      "alias": "color.terminal.selection-text",
-      "value": "#f4eeee",
-      "status": "observed",
+      "alias": "color.terminal.prompt-text",
+      "value": "#0c0909",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-029",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -297,10 +297,10 @@
     },
     "slot.ansi-1": {
       "alias": "color.terminal.ansi.1",
-      "value": "#c81a1a",
-      "status": "observed",
+      "value": "#e84b4b",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-029",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -333,10 +333,10 @@
     },
     "slot.ansi-4": {
       "alias": "color.terminal.ansi.4",
-      "value": "#8c1212",
-      "status": "observed",
+      "value": "#e53131",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-029",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -357,10 +357,10 @@
     },
     "slot.ansi-6": {
       "alias": "color.terminal.ansi.6",
-      "value": "#9e474a",
-      "status": "observed",
+      "value": "#bb696c",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-029",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -381,10 +381,10 @@
     },
     "slot.ansi-8": {
       "alias": "color.terminal.ansi.8",
-      "value": "#7d1310",
-      "status": "observed",
+      "value": "#b71c17",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-029",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -393,10 +393,10 @@
     },
     "slot.ansi-9": {
       "alias": "color.terminal.ansi.9",
-      "value": "#ab1612",
-      "status": "observed",
+      "value": "#ea3833",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-029",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -405,10 +405,10 @@
     },
     "slot.ansi-10": {
       "alias": "color.terminal.ansi.10",
-      "value": "#ad2721",
-      "status": "observed",
+      "value": "#dc4f49",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-029",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -429,10 +429,10 @@
     },
     "slot.ansi-12": {
       "alias": "color.terminal.ansi.12",
-      "value": "#871f19",
-      "status": "observed",
+      "value": "#db433a",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-029",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -441,10 +441,10 @@
     },
     "slot.ansi-13": {
       "alias": "color.terminal.ansi.13",
-      "value": "#e82132",
-      "status": "observed",
+      "value": "#ed5360",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-029",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -453,10 +453,10 @@
     },
     "slot.ansi-14": {
       "alias": "color.terminal.ansi.14",
-      "value": "#e0292f",
-      "status": "observed",
+      "value": "#e6565a",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-029",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -465,10 +465,10 @@
     },
     "slot.ansi-15": {
       "alias": "color.terminal.ansi.15",
-      "value": "#a3676b",
-      "status": "observed",
+      "value": "#b17e81",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-029",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -824,11 +824,11 @@
       "state": null,
       "kind": "text",
       "min": 4.5,
-      "fg": "color.terminal.selection-text",
+      "fg": "color.terminal.prompt-text",
       "bg": "color.terminal.ansi.4",
-      "fgHex": "#f4eeee",
-      "bgHex": "#8c1212",
-      "ratio": 8.28,
+      "fgHex": "#0c0909",
+      "bgHex": "#e53131",
+      "ratio": 4.55,
       "pass": true,
       "waiver": null
     },
@@ -852,9 +852,9 @@
       "min": 1,
       "fg": "color.terminal.ansi.4",
       "bg": "color.terminal.bg",
-      "fgHex": "#8c1212",
+      "fgHex": "#e53131",
       "bgHex": "#0c0909",
-      "ratio": 2.09,
+      "ratio": 4.55,
       "pass": true,
       "waiver": "the arrow is the segment edge; the segment text carries the content"
     },
@@ -950,134 +950,134 @@
       "waiver": null
     },
     {
-      "label": "slot 1 (3.42:1)",
+      "label": "slot 1",
       "state": null,
       "kind": "text",
       "min": 4.5,
       "fg": "color.terminal.ansi.1",
       "bg": "color.terminal.bg",
-      "fgHex": "#c81a1a",
+      "fgHex": "#e84b4b",
       "bgHex": "#0c0909",
-      "ratio": 3.42,
-      "pass": false,
-      "waiver": "heritage slot; documented as failing, programs choose slot semantics"
+      "ratio": 5.23,
+      "pass": true,
+      "waiver": null
     },
     {
-      "label": "slot 4 (2.09:1)",
+      "label": "slot 4",
       "state": null,
       "kind": "text",
       "min": 4.5,
       "fg": "color.terminal.ansi.4",
       "bg": "color.terminal.bg",
-      "fgHex": "#8c1212",
+      "fgHex": "#e53131",
       "bgHex": "#0c0909",
-      "ratio": 2.09,
-      "pass": false,
-      "waiver": "heritage slot; documented as failing, programs choose slot semantics"
+      "ratio": 4.55,
+      "pass": true,
+      "waiver": null
     },
     {
-      "label": "slot 6 (3.26:1)",
+      "label": "slot 6",
       "state": null,
       "kind": "text",
       "min": 4.5,
       "fg": "color.terminal.ansi.6",
       "bg": "color.terminal.bg",
-      "fgHex": "#9e474a",
+      "fgHex": "#bb696c",
       "bgHex": "#0c0909",
-      "ratio": 3.26,
-      "pass": false,
-      "waiver": "heritage slot; documented as failing, programs choose slot semantics"
+      "ratio": 5.05,
+      "pass": true,
+      "waiver": null
     },
     {
-      "label": "slot 8 (1.86:1)",
+      "label": "slot 8 (3.01:1, the dim tier)",
       "state": null,
       "kind": "text",
       "min": 4.5,
       "fg": "color.terminal.ansi.8",
       "bg": "color.terminal.bg",
-      "fgHex": "#7d1310",
+      "fgHex": "#b71c17",
       "bgHex": "#0c0909",
-      "ratio": 1.86,
+      "ratio": 3.01,
       "pass": false,
-      "waiver": "heritage slot; documented as failing, programs choose slot semantics"
+      "waiver": "D-029 keeps bright black as the dim, decorative slot"
     },
     {
-      "label": "slot 9 (2.70:1)",
+      "label": "slot 9",
       "state": null,
       "kind": "text",
       "min": 4.5,
       "fg": "color.terminal.ansi.9",
       "bg": "color.terminal.bg",
-      "fgHex": "#ab1612",
+      "fgHex": "#ea3833",
       "bgHex": "#0c0909",
-      "ratio": 2.7,
-      "pass": false,
-      "waiver": "heritage slot; documented as failing, programs choose slot semantics"
+      "ratio": 4.83,
+      "pass": true,
+      "waiver": null
     },
     {
-      "label": "slot 10 (2.92:1)",
+      "label": "slot 10",
       "state": null,
       "kind": "text",
       "min": 4.5,
       "fg": "color.terminal.ansi.10",
       "bg": "color.terminal.bg",
-      "fgHex": "#ad2721",
+      "fgHex": "#dc4f49",
       "bgHex": "#0c0909",
-      "ratio": 2.92,
-      "pass": false,
-      "waiver": "heritage slot; documented as failing, programs choose slot semantics"
+      "ratio": 4.97,
+      "pass": true,
+      "waiver": null
     },
     {
-      "label": "slot 12 (2.12:1)",
+      "label": "slot 12",
       "state": null,
       "kind": "text",
       "min": 4.5,
       "fg": "color.terminal.ansi.12",
       "bg": "color.terminal.bg",
-      "fgHex": "#871f19",
+      "fgHex": "#db433a",
       "bgHex": "#0c0909",
-      "ratio": 2.12,
-      "pass": false,
-      "waiver": "heritage slot; documented as failing, programs choose slot semantics"
+      "ratio": 4.61,
+      "pass": true,
+      "waiver": null
     },
     {
-      "label": "slot 13 (4.43:1)",
+      "label": "slot 13",
       "state": null,
       "kind": "text",
       "min": 4.5,
       "fg": "color.terminal.ansi.13",
       "bg": "color.terminal.bg",
-      "fgHex": "#e82132",
+      "fgHex": "#ed5360",
       "bgHex": "#0c0909",
-      "ratio": 4.43,
-      "pass": false,
-      "waiver": "heritage slot; documented as failing, programs choose slot semantics"
+      "ratio": 5.67,
+      "pass": true,
+      "waiver": null
     },
     {
-      "label": "slot 14 (4.28:1)",
+      "label": "slot 14",
       "state": null,
       "kind": "text",
       "min": 4.5,
       "fg": "color.terminal.ansi.14",
       "bg": "color.terminal.bg",
-      "fgHex": "#e0292f",
+      "fgHex": "#e6565a",
       "bgHex": "#0c0909",
-      "ratio": 4.28,
-      "pass": false,
-      "waiver": "heritage slot; documented as failing, programs choose slot semantics"
+      "ratio": 5.52,
+      "pass": true,
+      "waiver": null
     },
     {
-      "label": "slot 15 (4.45:1; not in the foundations list)",
+      "label": "slot 15",
       "state": null,
       "kind": "text",
       "min": 4.5,
       "fg": "color.terminal.ansi.15",
       "bg": "color.terminal.bg",
-      "fgHex": "#a3676b",
+      "fgHex": "#b17e81",
       "bgHex": "#0c0909",
-      "ratio": 4.45,
-      "pass": false,
-      "waiver": "heritage slot; documented as failing, programs choose slot semantics"
+      "ratio": 5.83,
+      "pass": true,
+      "waiver": null
     },
     {
       "label": "slot 0 (1.00:1; it is the background)",

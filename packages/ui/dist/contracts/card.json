@@ -1,10 +1,10 @@
 {
   "id": "card",
   "name": "Card",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "tag": "j3w1-card",
-  "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/card.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/native.js",
+  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/card.md",
+  "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/native.js",
   "imports": {
     "class": "@j3w1/ui/components/card",
     "register": "@j3w1/ui/register/card",
@@ -362,6 +362,6 @@
   "copy": {
     "directory": "copy/card/",
     "manifest": "copy/card/manifest.json",
-    "digest": "sha256-4shhxapRYfs43rueYrjZogktfckLvpmN/BSFq7zR4dE="
+    "digest": "sha256-ogtKVx0WJs0e6tuJ1jhsGX0NHY00W4aHSFvVL8fJtgs="
   }
 }

@@ -3,8 +3,8 @@ import { n as table } from "../chunks/tables-B25ydUHs.js";
 //#region .cache/ui-build/entries/components/data-table.js
 var J3w1DataTable = class extends J3w1Element {
 	static componentId = "data-table";
-	static version = "1.2.0";
-	static implementationId = "sha256-GqWokOtE6/3YUHBcLiWpEr3+/kBzbTpccU33r8i3afI=";
+	static version = "2.0.0";
+	static implementationId = "sha256-Ez5Y7fbbOV8r75S50Mkv/a7HJJkO3C6Mi0p911W3A8I=";
 	static connect = table;
 	static upgradeProperties = [
 		"disabled",

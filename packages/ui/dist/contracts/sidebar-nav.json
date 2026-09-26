@@ -1,10 +1,10 @@
 {
   "id": "sidebar-nav",
   "name": "Sidebar navigation",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "tag": "j3w1-sidebar-nav",
-  "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/sidebar-nav.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/navigation.js",
+  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/sidebar-nav.md",
+  "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/navigation.js",
   "imports": {
     "class": "@j3w1/ui/components/sidebar-nav",
     "register": "@j3w1/ui/register/sidebar-nav",
@@ -426,6 +426,6 @@
   "copy": {
     "directory": "copy/sidebar-nav/",
     "manifest": "copy/sidebar-nav/manifest.json",
-    "digest": "sha256-TCYyw8jzoh+/a3nS9GDDpby+duBdkVTsFt+lCbtkKYE="
+    "digest": "sha256-B1jz0UisWLi7noSn4tBjZR7rRnaKgVPJJg3iHoGyoMY="
   }
 }

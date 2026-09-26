@@ -1,10 +1,10 @@
 j3w1/theme implementation brief — terminal
-theme: j3w1-theme 1.2.0  profile: default  sourceDigest: sha256-n/7Zq/WqDQMIB6i2OEF18z5ommL7MyKb+rAqMGd9Yfo=
-pin: https://raw.githubusercontent.com/j3w1/theme/v1.2.0/exports/components/terminal.json
+theme: j3w1-theme 2.0.0  profile: default  sourceDigest: sha256-KQ0xfX4qzHgItmCBtWFynqKLPpZe3Q1sZCpVIkir3kQ=
+pin: https://raw.githubusercontent.com/j3w1/theme/v2.0.0/exports/components/terminal.json
 spec: spec/components/terminal.md  site: https://j3w1.github.io/theme/reference/#c-terminal
 maturity: stable  priority: R1
 
-Summary: Terminal text on the terminal surface with the sixteen heritage ANSI slots carried exactly, the cursor, the selection and the six text attributes; a transcript, the slot grid and the attributes.
+Summary: Terminal text on the terminal surface with the readable heritage sixteen ANSI slots (D-029), the cursor, the selection and the six text attributes; a transcript, the slot grid and the attributes.
 
 Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
@@ -17,8 +17,8 @@ Tokens (resolved):
   selection.bg        #911410  ({color.terminal.selection-bg})  use
   selection.text      #f4eeee  ({color.terminal.selection-text})  use
   current.bg          #1c0a09  ({color.code.current-line})  use
-  prompt.bg           #8c1212  ({color.terminal.ansi.4})  use
-  prompt.text         #f4eeee  ({color.terminal.selection-text})  use
+  prompt.bg           #e53131  ({color.terminal.ansi.4})  use
+  prompt.text         #0c0909  ({color.terminal.prompt-text})  use
   prompt.branch-bg    #d4868b  ({color.terminal.ansi.3})  use
   prompt.branch-text  #0c0909  ({color.terminal.bg})  use
   dim.text            #bd787d  ({color.text.muted})  use
@@ -27,21 +27,21 @@ Tokens (resolved):
   label.text          #bd787d  ({color.text.muted})  use
   fail.glyph          #e99499  ({color.terminal.fg})  use
   slot.ansi-0         #0c0909  ({color.terminal.ansi.0})  use
-  slot.ansi-1         #c81a1a  ({color.terminal.ansi.1})  use
+  slot.ansi-1         #e84b4b  ({color.terminal.ansi.1})  use
   slot.ansi-2         #bd787d  ({color.terminal.ansi.2})  use
   slot.ansi-3         #d4868b  ({color.terminal.ansi.3})  use
-  slot.ansi-4         #8c1212  ({color.terminal.ansi.4})  use
+  slot.ansi-4         #e53131  ({color.terminal.ansi.4})  use
   slot.ansi-5         #f73f35  ({color.terminal.ansi.5})  use
-  slot.ansi-6         #9e474a  ({color.terminal.ansi.6})  use
+  slot.ansi-6         #bb696c  ({color.terminal.ansi.6})  use
   slot.ansi-7         #ffa2a7  ({color.terminal.ansi.7})  use
-  slot.ansi-8         #7d1310  ({color.terminal.ansi.8})  use
-  slot.ansi-9         #ab1612  ({color.terminal.ansi.9})  use
-  slot.ansi-10        #ad2721  ({color.terminal.ansi.10})  use
+  slot.ansi-8         #b71c17  ({color.terminal.ansi.8})  use
+  slot.ansi-9         #ea3833  ({color.terminal.ansi.9})  use
+  slot.ansi-10        #dc4f49  ({color.terminal.ansi.10})  use
   slot.ansi-11        #b37175  ({color.terminal.ansi.11})  use
-  slot.ansi-12        #871f19  ({color.terminal.ansi.12})  use
-  slot.ansi-13        #e82132  ({color.terminal.ansi.13})  use
-  slot.ansi-14        #e0292f  ({color.terminal.ansi.14})  use
-  slot.ansi-15        #a3676b  ({color.terminal.ansi.15})  use
+  slot.ansi-12        #db433a  ({color.terminal.ansi.12})  use
+  slot.ansi-13        #ed5360  ({color.terminal.ansi.13})  use
+  slot.ansi-14        #e6565a  ({color.terminal.ansi.14})  use
+  slot.ansi-15        #b17e81  ({color.terminal.ansi.15})  use
 State dependency disclosures: D-007
 
 States: default, focus-visible, selected, busy, current

@@ -38,7 +38,7 @@ of coverage is meaningful only with its denominator.
 | No separate inactive selection | selection fill everywhere; record it |
 | No read-only styling hook | treat as default text with a dotted bottom edge if borders are available, else as default |
 | No pattern fills (charts) | keep the glyph or label channel; never colour alone |
-| Sixteen-colour terminal | `heritage-ansi` for fidelity or the `extended` slots when approved; document bold-as-bright and whether 256/24-bit colours bypass the slots |
+| Sixteen-colour terminal | `default` (the readable heritage sixteen, D-029); `heritage-ansi` for fidelity; the `extended` slots when approved; document bold-as-bright and whether 256/24-bit colours bypass the slots |
 | Fixed radii in the host | document; do not fight the toolkit |
 | Host forbids removing its focus indicator | keep the host's indicator; never draw two |
 

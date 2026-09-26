@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "component": "combobox",
-  "version": "1.2.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/combobox.md",
+  "version": "2.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/combobox.md",
   "dependencies": [
     "register/combobox.js",
     "chunks/element-C1XeXVYC.js",
@@ -14,13 +14,13 @@
     "runtime/register/combobox.js": "sha256-wSm80gvqOsgkhwOnsCIjr2a4w8W7WCRQqBXn2frDhak=",
     "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
     "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-    "runtime/components/combobox.js": "sha256-BJ9wodwcK4qERu2F2E4av067q2UUbdNerg4CIZb0JY0=",
+    "runtime/components/combobox.js": "sha256-aJ03pickphRjnUyx9EaDCWV8EPh77pnz+Fg5PxMOoqs=",
     "runtime/chunks/navigation-Dt8ap-9J.js": "sha256-7QSC/eQSDSRRy3YqMltwjb6cwbEA0V652cfo+Ng2VqA=",
-    "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+    "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
     "component.css": "sha256-f4pI9RLIKYsRggzuVcLA2zYdXHZXY3+DbGFjvBCtbSg=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-/SDEtn3D/9kfnULtpHPFEgK1FAkmwe+77gdxlWNewhY=",
     "index.html": "sha256-TgE5FDYDcg51ETqt8UekGbIULwjwCa+CjxGdU63wd/k=",
-    "README.md": "sha256-8kb7bXuzf4drTt4zDI+jkM/PRDYMjm4fejEGCeClUVg="
+    "README.md": "sha256-s33BPAliRpuG33+r/lHwBtU/ghk1Azwqi3bJ2rXCMCo="
   }
 }

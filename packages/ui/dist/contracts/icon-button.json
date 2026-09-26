@@ -1,10 +1,10 @@
 {
   "id": "icon-button",
   "name": "Icon button",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "tag": "j3w1-icon-button",
-  "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/icon-button.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/native.js",
+  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/icon-button.md",
+  "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/native.js",
   "imports": {
     "class": "@j3w1/ui/components/icon-button",
     "register": "@j3w1/ui/register/icon-button",
@@ -365,6 +365,6 @@
   "copy": {
     "directory": "copy/icon-button/",
     "manifest": "copy/icon-button/manifest.json",
-    "digest": "sha256-Uk6XBKSZ7dWNQ8nkJeGRxpPHgCZDRH/MZ5L+azJsopI="
+    "digest": "sha256-BZq5S62g9YVYehKGsSaALds8cHwTY+xHK7rWa9dIj2E="
   }
 }

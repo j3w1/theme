@@ -1,10 +1,10 @@
 {
   "id": "data-table",
   "name": "Data table",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "tag": "j3w1-data-table",
-  "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/data-table.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/tables.js",
+  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/data-table.md",
+  "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/tables.js",
   "imports": {
     "class": "@j3w1/ui/components/data-table",
     "register": "@j3w1/ui/register/data-table",
@@ -606,6 +606,6 @@
   "copy": {
     "directory": "copy/data-table/",
     "manifest": "copy/data-table/manifest.json",
-    "digest": "sha256-MIE96759HGq+JYN4/jPxe5qNp9NeFTYjqwsTxq9BjVw="
+    "digest": "sha256-XhzJVM80Zk83Zj24KBBHueHyKvJxxe3AozmRVJa3Si8="
   }
 }

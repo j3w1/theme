@@ -1,10 +1,10 @@
 {
   "id": "dialog",
   "name": "Dialog",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "tag": "j3w1-dialog",
-  "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/dialog.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/overlays.js",
+  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/dialog.md",
+  "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/overlays.js",
   "imports": {
     "class": "@j3w1/ui/components/dialog",
     "register": "@j3w1/ui/register/dialog",
@@ -694,6 +694,6 @@
   "copy": {
     "directory": "copy/dialog/",
     "manifest": "copy/dialog/manifest.json",
-    "digest": "sha256-usFHa1M9Hn354niKIg08j/0cYwYLLrsN/wkGCn8QIAk="
+    "digest": "sha256-9LQ9PNMAKPnZ08Jie1z8BHPCe5P54vBem/AviequK8s="
   }
 }

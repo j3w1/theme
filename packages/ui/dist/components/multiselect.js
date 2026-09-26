@@ -3,8 +3,8 @@ import { n as multiselect } from "../chunks/advanced-DCpe8Ndv.js";
 //#region .cache/ui-build/entries/components/multiselect.js
 var J3w1Multiselect = class extends J3w1Element {
 	static componentId = "multiselect";
-	static version = "1.2.0";
-	static implementationId = "sha256-o/rkfUMojJYA9ybygicndrPtQRBA4FTx/M6qHj1rGAs=";
+	static version = "2.0.0";
+	static implementationId = "sha256-vGEgA45IdWiW5m4iX+VsOw/+xWnwMlKszQfzgy8TOM4=";
 	static connect = multiselect;
 	static upgradeProperties = [
 		"disabled",

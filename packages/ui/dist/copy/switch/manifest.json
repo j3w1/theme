@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "component": "switch",
-  "version": "1.2.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/switch.md",
+  "version": "2.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/switch.md",
   "dependencies": [
     "register/switch.js",
     "chunks/element-C1XeXVYC.js",
@@ -14,13 +14,13 @@
     "runtime/register/switch.js": "sha256-WA0Avt/JJmz7DqxDx8v5Rnw3WCZFaVGJjPdibTQKkSc=",
     "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
     "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-    "runtime/components/switch.js": "sha256-y95w7FKSiLDm1plL50Q9ldcowSBT3XJxkwEGJOWaO8I=",
+    "runtime/components/switch.js": "sha256-xt2Q+YT/dvNYw+6WIQi9MuEPy8CJO7zza/oJSeBBoJg=",
     "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-    "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+    "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
     "component.css": "sha256-wQ5f/FFGWolJtnjyPar452XqRgkIhBLJEQbc8ziQvag=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-bja8BqOYebPhAJ/84m7EUQysf7pqQJ3wMJ10wj4YBz4=",
     "index.html": "sha256-UZvqjISxPBGEl7MJkilEMem3b7sjRYRpBJpzJneqq/Q=",
-    "README.md": "sha256-hBQEKSCsKbCwGWojAeahRtOau9jHkDfZnxLsxsff5C0="
+    "README.md": "sha256-C5ygGftKnvwAvEqePNRHfDWPFW6seFB7s7aEYldY3DE="
   }
 }

@@ -10,10 +10,13 @@ input; start with the complete maintained markup on its component page.
 
 The 1.0.0 release introduces True Black / Rose as the default and is a major
 upgrade from 0.1.0. Review `docs/true-black-rose-migration.md` before replacing old tokens.
+The 2.0.0 release is also major: D-029 lifts the dim terminal slots and two code
+syntax reds, and D-030 adds opt-in `code.hued.*` syntax roles; component behaviour
+is unchanged. Review the 2.0.0 changelog entry before upgrading from 1.x.
 Keep the exact package version and your package-manager lockfile in source control.
 
 ```sh
-npm install --save-exact @j3w1/ui@1.2.0
+npm install --save-exact @j3w1/ui@2.0.0
 ```
 
 That command requires npm publication, which is an owner release action. Before
@@ -21,7 +24,7 @@ publication, download the release tarball, verify its published digest and insta
 the local file instead:
 
 ```sh
-npm install --save-exact ./j3w1-ui-1.2.0.tgz
+npm install --save-exact ./j3w1-ui-2.0.0.tgz
 ```
 
 The repository prepares this same artifact with `npm run ui:build` and
@@ -200,8 +203,8 @@ behavior. Scope an intentional host override and record it in your integration.
 ## Copy a complete bundle
 
 ```sh
-npx --package=@j3w1/ui@1.2.0 j3w1-ui copy dialog --out ./vendor/j3w1/dialog
-npx --package=@j3w1/ui@1.2.0 j3w1-ui kit --components text-field,button,dialog --out ./vendor/j3w1/task
+npx --package=@j3w1/ui@2.0.0 j3w1-ui copy dialog --out ./vendor/j3w1/dialog
+npx --package=@j3w1/ui@2.0.0 j3w1-ui kit --components text-field,button,dialog --out ./vendor/j3w1/task
 ```
 
 When installed from a tarball, use the installed `j3w1-ui` binary instead of asking

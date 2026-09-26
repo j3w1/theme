@@ -1,5 +1,50 @@
 # Changelog
 
+## [2.0.0] - 2026-09-26
+
+Major under the versioning rule: D-029 changes approved values (ten terminal
+slots and five syntax reds). Consumers pinned to 1.x keep the old values until
+they upgrade.
+
+
+- D-029 **Readable terminal and code reds.** The default profile's terminal
+  roles now carry the readable heritage sixteen: every slot that fell below
+  4.5:1 keeps its hue and saturation with its lightness raised, and slot 8
+  stays the deliberately dim tier (3.01:1). Slots 1 `#e84b4b`, 4 `#e53131`,
+  6 `#bb696c`, 8 `#b71c17`, 9 `#ea3833`, 10 `#dc4f49`, 12 `#db433a`,
+  13 `#ed5360`, 14 `#e6565a`, 15 `#b17e81`; slots 0, 2, 3, 5, 7 and 11 are
+  unchanged. Inline code, links and keywords that programs draw in slots 4
+  and 12 become readable (2.1:1 → 4.6:1).
+- The code editor's syntax reds lift slightly so they stay readable inside a
+  selection: keywords and tags `#f73f35` → `#f7463c`, properties, headings
+  and invalid text `#e53935` → `#e95551` (4.51–4.52:1 in the selection, up
+  from 3.81–4.38:1). Interface reds are unchanged.
+- D-030 **Hued syntax roles.** `color.code.hued.*` is an opt-in set for hosts
+  that want coloured code: strings green `#86a46f`; numbers, constants,
+  functions, attributes and escapes amber `#c9973f`; types and properties blue
+  `#7e9ebb`; operators `#ffa2a7`. The reference code editor stays monochrome;
+  the terminal kit's Codex theme opts in with its 2.0.0 pin.
+- New role `color.terminal.prompt-text` (D-029): the prompt's path segment draws
+  dark text on the brighter slot 4 in the default profile and keeps the
+  historical light text in `heritage-ansi`.
+- The `heritage-ansi` profile keeps every historical value byte for byte;
+  `color.primitive.ansi.*` is unchanged, and the new values live in
+  `color.primitive.ansi-readable.*`, `color.primitive.red.810` and
+  `color.primitive.red.860`.
+- The Orca, Ghostty and Warp ports regenerate with the new slots. Hosts that
+  set their own palette (CE Devbox's shell palette, an Agnoster prompt's
+  directory text) follow in their own repositories.
+- `tools/terminal-kit/`: installs the default profile into Orca on Windows,
+  Claude Code and Codex, with backups, verification and key-level restore
+  (#53). In this release it still pins 1.2.0; a follow-up moves the pin to
+  2.0.0 and maps the Codex theme to `code.hued.*`.
+- Downstream: consumers of `color.terminal.ansi.*` and the five `code.syntax`
+  reds receive new values; hosts that mirror the palette (shell palettes,
+  prompts with light text on slot 4) should update with the release.
+- Install pins in `docs/ui-consumption.md` and the package README now name
+  2.0.0. The version moves to 2.0.0, so version-stamped exports and every
+  component's version and implementation id regenerate once.
+
 ## [1.2.0] - 2026-09-25
 
 - Add the first application ports, all experimental, for the default profile's

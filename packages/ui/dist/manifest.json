@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
   "name": "@j3w1/ui",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "profile": "default",
   "components": [
     {
       "id": "button",
       "name": "Button",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-button",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/button.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/native.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/button.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/native.js",
       "imports": {
         "class": "@j3w1/ui/components/button",
         "register": "@j3w1/ui/register/button",
@@ -517,25 +517,25 @@
           "runtime/register/button.js": "sha256-nrgSUK+JnRhipV1b5VKANBtP+ap6ANYd4xnpZYpHYM0=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/button.js": "sha256-vIPloBYpTH18+wwYYMHwFqLPP7NjDqLJK0Bow+yfndw=",
+          "runtime/components/button.js": "sha256-77QvlgGxsUOeiulXfasZRcQUmT15LgjfSN0fSuVhAz8=",
           "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-79ycU5ojNv1Z2yHzJ6KXDmshFL1we3mQNOoIwfMXnyg=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-kLEcMMhF4Tv+byKkImEgGIqqR+QYh6uOOCz/mg5hkPs=",
           "index.html": "sha256-uj00vnflsiaqN+2apiLHqJpCJQQxYasFb7KAWllw5dM=",
-          "README.md": "sha256-lzo/DM+B/NEeJQOh3c7xiuSqL/fXTUHxTgoM/LNkYFk=",
-          "manifest.json": "sha256-kDs5qpvgYk3ryYZo/YNCu42tIoZ6MYIc24Nhv2oBBVE="
+          "README.md": "sha256-lzHd7+NtgQFoBoa7mob9FvkgMf/tMIbrevGT2sSI5xg=",
+          "manifest.json": "sha256-4pxYTjjqKVZZyCVyDxfkEn8RmFa2jLUx2bRqm8Bhdso="
         }
       }
     },
     {
       "id": "icon-button",
       "name": "Icon button",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-icon-button",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/icon-button.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/native.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/icon-button.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/native.js",
       "imports": {
         "class": "@j3w1/ui/components/icon-button",
         "register": "@j3w1/ui/register/icon-button",
@@ -899,25 +899,25 @@
           "runtime/register/icon-button.js": "sha256-UWU2VaBVj42dfmtJg9c1yLb2JZ0ObB4FemDN0vyV/uM=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/icon-button.js": "sha256-HBsb0dHoRZgiEtj8KbINLRXqe2ZshkhLANBOC0YlTAU=",
+          "runtime/components/icon-button.js": "sha256-Lq5LuZ7GxOzGQT1Usl4v6vgKs+Mv+50zzJi0hGETyzQ=",
           "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-oGnsvpT9vCQjmmGSRaHOeQIJDUE5f5LrSWgR9jdM6/s=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-Zd5z+/mavK2J24Rl+RQLGhMT+nTLwoOf3bAJevwrz7s=",
           "index.html": "sha256-1y5bo9Aq1K+z6CIM0Ef/YeTqqv1dTsU0UQCeeo8cxrs=",
-          "README.md": "sha256-nbtThMqsMo929MkBToGj3pXBYD5gtiCMdDH1xdg5+sA=",
-          "manifest.json": "sha256-Uk6XBKSZ7dWNQ8nkJeGRxpPHgCZDRH/MZ5L+azJsopI="
+          "README.md": "sha256-LIJjCzUj4dH9OtPYMjiz4clH43ApNQ9VkyEfHOTvM5k=",
+          "manifest.json": "sha256-BZq5S62g9YVYehKGsSaALds8cHwTY+xHK7rWa9dIj2E="
         }
       }
     },
     {
       "id": "link",
       "name": "Link",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-link",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/link.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/native.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/link.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/native.js",
       "imports": {
         "class": "@j3w1/ui/components/link",
         "register": "@j3w1/ui/register/link",
@@ -1238,25 +1238,25 @@
           "runtime/register/link.js": "sha256-sR0lpvEqWio1+xbGZ5p+TKd03qMnXyE+UkbdxPPGD9k=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/link.js": "sha256-iYtZSm0rVOPnJ5ezGyNTHi3yX0v9jMWcoJ6XCTNVzn8=",
+          "runtime/components/link.js": "sha256-bsYQO4xRwtOqBKdTlORKi//nZMfwhqokFh1IwEO2Fe4=",
           "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-bMMi6OLOyxVGAoiDlHUR/PYvzH66VbZ4i/UAzrXw4yo=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-I9IW2mf0VnX5LtCoHDI29AJHW7PXUxnRReiAbsbd094=",
           "index.html": "sha256-kh0VS0IbzhJnHVnQwZQ2ZRbX2qADJqm2SjicvR49IB0=",
-          "README.md": "sha256-F81VS9VYoO8ZZ7SvnX5l3b6Tnmrz6mx1UZrs2FnWo1Y=",
-          "manifest.json": "sha256-7pRkLYkq/PBOv8LqS93BHJMV/xXJ4/j8jKk2nHk5C6I="
+          "README.md": "sha256-rC3Hfj3QFdgik2HElpKElAcgKS6KpGk/Nk+JpSHngG0=",
+          "manifest.json": "sha256-cMwO5OGxK7SAjnq107YOW5a8Np9YTr/76u0BIB7k0zg="
         }
       }
     },
     {
       "id": "button-group",
       "name": "Button group",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-button-group",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/button-group.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/native.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/button-group.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/native.js",
       "imports": {
         "class": "@j3w1/ui/components/button-group",
         "register": "@j3w1/ui/register/button-group",
@@ -1578,25 +1578,25 @@
           "runtime/register/button-group.js": "sha256-iOfzUy8ZfhYmriDjbhxJtVBL2w+EPgppfO8UNoOm6QM=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/button-group.js": "sha256-orLE/OjeQFKWIsNw8U88GWPqdJn0HtMeyQEs0I9XJKc=",
+          "runtime/components/button-group.js": "sha256-XgjaGiZX+5pVdnAvwHtHRUwUcJ6mBcvetS6tUIdljH4=",
           "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-f5VJ2bwUNXUnsb5AcdxUYbcOC7PeghM/cnXvDSuGuMs=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-4NLobHuAfZnWUQDNQ3ENH9ucyjTTUTD6gk0XV7SHGng=",
           "index.html": "sha256-jp7d1/nw1z4Jpji1Vc8gp8BdBvkGTLC7tdVzkGSKG28=",
-          "README.md": "sha256-AfZL1Bgkes0/zInp92PEZp4BarJwidh03IGxRmrE+FI=",
-          "manifest.json": "sha256-Mq7HXUiGQDPXFsvSQqgN/uZFDJePaTRqgzEKy7TipEg="
+          "README.md": "sha256-ACCg7yzZ6j0jGA7dIwrVQ7aVfV0ToNmbbUEAuv+X8wI=",
+          "manifest.json": "sha256-pqJj9SjBieA7jNkEAQICvdSDxdLG31sGS4rj2MhvxyM="
         }
       }
     },
     {
       "id": "segmented-control",
       "name": "Segmented control",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-segmented-control",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/segmented-control.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/native.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/segmented-control.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/native.js",
       "imports": {
         "class": "@j3w1/ui/components/segmented-control",
         "register": "@j3w1/ui/register/segmented-control",
@@ -2045,25 +2045,25 @@
           "runtime/register/segmented-control.js": "sha256-Hp1iRTlBtVJffhsTkXPWleCnHa8ag50yeW35VsnXQ4c=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/segmented-control.js": "sha256-nOlR2div/ur9sJ2LlkwD5jOrMvZTacwarsAupzbu6cM=",
+          "runtime/components/segmented-control.js": "sha256-hfeLGvDp8TR44cfVtHhR8G3p7nZa6ubzo9KcO6a+TNw=",
           "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-Dq4r47NU2yi+AVRCcT0g+RV5YoPw7Z3JUhDMJqtUoJM=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-/y5XrVYeuiIc2/pZ/wdJWuadUAGF48in7tED7hWQGYI=",
           "index.html": "sha256-zUD5N3s3EYsmNmV+t33T6lt+kNsDMoRbcdyTYDikNPI=",
-          "README.md": "sha256-LeK2QuKIKesZfK84UJg6iQHZXfBy4OwZgMIhBRJY2g8=",
-          "manifest.json": "sha256-Tpngf9oT5V946U5uNhEFPmUWo+VCdi9/ONoSHntOnuA="
+          "README.md": "sha256-re+uuQactqeEvDubcVfSbaUzZpiGOij7/vtc4ebVce4=",
+          "manifest.json": "sha256-KbYsmSMEVTaPTT9VLKsJFlcbJEd92MClo8m4hsnV30s="
         }
       }
     },
     {
       "id": "field",
       "name": "Field",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-field",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/field.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/native.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/field.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/native.js",
       "imports": {
         "class": "@j3w1/ui/components/field",
         "register": "@j3w1/ui/register/field",
@@ -2436,25 +2436,25 @@
           "runtime/register/field.js": "sha256-XVffQJ1x1BaYIujyxerGMhRVXOVJvdiFmAKkTglUyC8=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/field.js": "sha256-nGC3Jd2VnX/DHsaP4EVQrWmXjyGMZrZ0IsMtM8lAdGg=",
+          "runtime/components/field.js": "sha256-0lxjFflxK9HtE7hVwlOgsHVdtoIXuxEXWvVwKVXi/DI=",
           "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-Rd3CCjOeRNdq9v3ql8A+P+nyw3MOp7Fa0LUD8UqBzFA=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-M+Faw3Q4PMYCRgzzkpyGYO6m3Sefbyj3JZ3/wdlvGPU=",
           "index.html": "sha256-60Xj3vT6YA5V4cnFFqd+JceMzjQ4nZCBnBjOt3OId+A=",
-          "README.md": "sha256-O0XLZdjnbQCxMFfH2tfxgCxjmPrVnFyo3C9FkkyYcj4=",
-          "manifest.json": "sha256-LqA7pdFmVvQ7MacEpcxmzMxf9NRPs9STs/J2mIZ+sek="
+          "README.md": "sha256-40t1X1MTdY+LWQUxMvf02vjnVAyJyLojK0PJkDQI9N8=",
+          "manifest.json": "sha256-31bv8elJzhJErXNr0Xu6M+pdNKbXeuHNm8C5WXiiMlI="
         }
       }
     },
     {
       "id": "text-field",
       "name": "Text field",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-text-field",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/text-field.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/native.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/text-field.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/native.js",
       "imports": {
         "class": "@j3w1/ui/components/text-field",
         "register": "@j3w1/ui/register/text-field",
@@ -2989,25 +2989,25 @@
           "runtime/register/text-field.js": "sha256-DD+ctMlKClOK6B/glshiJwIjKilewzY171GvKtVGf1A=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/text-field.js": "sha256-bsHMtehxnr46wvO9thnnQyzud9erLpiGMmxnS8hAuDA=",
+          "runtime/components/text-field.js": "sha256-P9D2vXvBRXLVYzSg9WKBslllePI3kHNuAYvEXCMmQwA=",
           "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-Y3xQDYeeCQmNtobwOfTiTh/OVHOCJt5If76c4411/ns=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-R8UtNVXLOQSMMT+NPAGht8BHx8b1yIjvTii2pQlPs8k=",
           "index.html": "sha256-J9hbLzXuEnbSdeQVzpl5q51KXvGGqGz+Y21d3vAb3a4=",
-          "README.md": "sha256-9B8HlhVLDfYK5P7oX5ULzLBsC35LI7kK9WVr1SS0/lc=",
-          "manifest.json": "sha256-+SPDQahx7UGFaa4r8InV2rZubOK3CGCfNRrRlVEL3f0="
+          "README.md": "sha256-h3WAjZWFDEfyxlRubyDvWj2vFfd7cDUYzSjVJmu1dNI=",
+          "manifest.json": "sha256-75rL8dseQ0BgALq9AYOut3Y9Z/Hn8QFGuHZlzWNDAY8="
         }
       }
     },
     {
       "id": "textarea",
       "name": "Textarea",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-textarea",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/textarea.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/native.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/textarea.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/native.js",
       "imports": {
         "class": "@j3w1/ui/components/textarea",
         "register": "@j3w1/ui/register/textarea",
@@ -3499,25 +3499,25 @@
           "runtime/register/textarea.js": "sha256-H+BMjmdgnMxVEA9KvLSSKoOlHTAH91Qy7+pjUiTlgEE=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/textarea.js": "sha256-t5z8aPGOq98pdt7OxcbMuppTeeo50Uru+VhCOt1Va68=",
+          "runtime/components/textarea.js": "sha256-WVmyDkrKbTthLnBEbrPcs3xlA83+/SZ3Nj/+IPQvpuY=",
           "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-BbcGdXHTnD7C55UItp05tibzn6AUyioSMT0hgk45J68=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-FrTRU04fY9wZ6rThXepEiAOHAf/WPEcefiPDsYvSLsM=",
           "index.html": "sha256-xM2w2jkYyi5BE0Nc6YGqICrh5wAW+DKYGmHHjEB1tOM=",
-          "README.md": "sha256-CaWXd2rsHCcwZOiPyVf0ZCdaXn+UR2DMwRQiPE0vUBk=",
-          "manifest.json": "sha256-W4Id+Pb3P1JpGVYNU+RqtkjKvS5OXxkBfL9xY31Zn90="
+          "README.md": "sha256-/ksvSWE8Ln61eT6MiM6iBoojeN2Ge5+qDZer2MFNPgs=",
+          "manifest.json": "sha256-GU8zwJqzwVF+3aZ/pHL6JbPkOci1PfCFHsY+k+swkz8="
         }
       }
     },
     {
       "id": "select",
       "name": "Select",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-select",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/select.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/native.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/select.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/native.js",
       "imports": {
         "class": "@j3w1/ui/components/select",
         "register": "@j3w1/ui/register/select",
@@ -4123,25 +4123,25 @@
           "runtime/register/select.js": "sha256-zXXuJRnrp9EVnk1A8VpgUzF/JPShcAImY9zRc6nQasQ=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/select.js": "sha256-RDYaAX/SayqXoPsDxGEro+rG6a0qnOo71uge+c7xQ5M=",
+          "runtime/components/select.js": "sha256-4Xg4o4sno6mUHdMLLEHl/rdIpt3qFDYF6FKAMm0rkLc=",
           "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-F7S6++WxoGrwiPfTq2NRQciL64rhre0zZKEhwee9I1E=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-1rMGJynWvvm/FG3mKaD7Cc+QHA+zhkGFyc7tL4Ul37Q=",
           "index.html": "sha256-f4rQyCq7pkNwF1oV2xWbeCAut4dwtAt0CPyZLBiz+1Y=",
-          "README.md": "sha256-SK6W0OVM1sFpBxqwTpO+BpQ9vAJ9rhrdIZ5xp9QDds4=",
-          "manifest.json": "sha256-oQ4GVn0XuS+gWWXMMqGwWATd7/GZE1QAkkexP4PinS0="
+          "README.md": "sha256-n08uQ7wpcB3m75vdfBJ0V/vGWGKEgfPCl/q/csCZMt4=",
+          "manifest.json": "sha256-rRV4k83MHw3Y2fYEED5ylI0C+nQRM8TgVHy7QYhktow="
         }
       }
     },
     {
       "id": "checkbox",
       "name": "Checkbox",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-checkbox",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/checkbox.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/native.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/checkbox.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/native.js",
       "imports": {
         "class": "@j3w1/ui/components/checkbox",
         "register": "@j3w1/ui/register/checkbox",
@@ -4630,25 +4630,25 @@
           "runtime/register/checkbox.js": "sha256-Bcfx68O9tVUsOU2UXt39Iw36ZluRIGYHI88jMpSDEjk=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/checkbox.js": "sha256-1qEcfhzQca80sTMWBbjH/+Cg8/0qJ7gBzHEJJu4dtoU=",
+          "runtime/components/checkbox.js": "sha256-t2n4grj+SKNwL6MYEtH60F+TzzUm5jEU5G6NVbliF0w=",
           "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-PpwiBtqgcGIHn1KgKDXvrsX0DeTZ4PfyQsMnUpwCUrI=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-D5pZAWuWF8+C90nVIZnSREv1i0fk6q9L+6SEdvU1Okk=",
           "index.html": "sha256-zm4zdpqK+QV2pfYf2WrPK1bYk0S65vU+AWWPEq60/mE=",
-          "README.md": "sha256-FvJQav7hLcAC/radXtB2tXOjeTX2QZdDe8r+sQK+a+M=",
-          "manifest.json": "sha256-EVcIjTLvdF4GQNL9LB6PucUCe6MpQtp2mKSKtyVlOvI="
+          "README.md": "sha256-EC37W+fbdzlSJxbm5dsPWmntiMA2fPXKYFuRHGp5xgA=",
+          "manifest.json": "sha256-RLeQ4jmO4JjzeWS33HHeksw18sP2aiPBIqjy8sXmqUo="
         }
       }
     },
     {
       "id": "radio-group",
       "name": "Radio group",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-radio-group",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/radio-group.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/native.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/radio-group.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/native.js",
       "imports": {
         "class": "@j3w1/ui/components/radio-group",
         "register": "@j3w1/ui/register/radio-group",
@@ -5042,25 +5042,25 @@
           "runtime/register/radio-group.js": "sha256-L7TPdkL+uckYkNZ8nwZWjfTisSvOmPO7rqB3QlmfaTI=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/radio-group.js": "sha256-C5H+gtRlncKiDOtnaq0iu6Tgj7oc7e9nfQ0CtXx6KT8=",
+          "runtime/components/radio-group.js": "sha256-mqB0ab2wdEW1m3TA19VTR7PT4ibThKlMCRzbVEJel7M=",
           "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-Ig6nuF1jMxOL71ppi7cvN8DjEKs9unk/ugZ0b1XTImY=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-6HA7gvr2JUQeKZ5jWPcVyfSw5t4FmaqlAA/+mhuSJjc=",
           "index.html": "sha256-4ptm1dy28zuJlLU04Zd8QtEveiw6njq8DNNQd89W/1w=",
-          "README.md": "sha256-ju3I1ZLDWdSwEoOZVvEp4bGFkmZv5gzA4LXuYZUIOd4=",
-          "manifest.json": "sha256-D6c54N5JGY86XjssiCiGZKVxGkOLf41kimwQpQuo0FY="
+          "README.md": "sha256-8pWAtcJ0UUm+CBeFDyir+o/STP0FxdPU/+6xJJ8TWJA=",
+          "manifest.json": "sha256-m0msWpHG9sfoyM5BqGd/AMzPGfzlkxgd2o1d7oJWmjM="
         }
       }
     },
     {
       "id": "switch",
       "name": "Switch",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-switch",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/switch.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/native.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/switch.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/native.js",
       "imports": {
         "class": "@j3w1/ui/components/switch",
         "register": "@j3w1/ui/register/switch",
@@ -5452,25 +5452,25 @@
           "runtime/register/switch.js": "sha256-WA0Avt/JJmz7DqxDx8v5Rnw3WCZFaVGJjPdibTQKkSc=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/switch.js": "sha256-y95w7FKSiLDm1plL50Q9ldcowSBT3XJxkwEGJOWaO8I=",
+          "runtime/components/switch.js": "sha256-xt2Q+YT/dvNYw+6WIQi9MuEPy8CJO7zza/oJSeBBoJg=",
           "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-wQ5f/FFGWolJtnjyPar452XqRgkIhBLJEQbc8ziQvag=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-bja8BqOYebPhAJ/84m7EUQysf7pqQJ3wMJ10wj4YBz4=",
           "index.html": "sha256-UZvqjISxPBGEl7MJkilEMem3b7sjRYRpBJpzJneqq/Q=",
-          "README.md": "sha256-hBQEKSCsKbCwGWojAeahRtOau9jHkDfZnxLsxsff5C0=",
-          "manifest.json": "sha256-iiPYxw/aULL/oXvL5rH5cDMP3nEi43Q7bTlxN2CspjI="
+          "README.md": "sha256-C5ygGftKnvwAvEqePNRHfDWPFW6seFB7s7aEYldY3DE=",
+          "manifest.json": "sha256-W6/rLgzL15ssiNTwm9h6O+hYu3LyY6IdMIsp7BxrxB0="
         }
       }
     },
     {
       "id": "range",
       "name": "Range",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-range",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/range.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/native.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/range.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/native.js",
       "imports": {
         "class": "@j3w1/ui/components/range",
         "register": "@j3w1/ui/register/range",
@@ -6025,25 +6025,25 @@
           "runtime/register/range.js": "sha256-g8jU/JKj2ySLza7/G+XS4TC2NE8Gwuw6lyc+G1k9pi4=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/range.js": "sha256-HpTNBQ1VXr+EmXNLPRi3ZFZIKZqXg1jd1EgTvNOxDz4=",
+          "runtime/components/range.js": "sha256-v3MhNnjCdqAr7HA7hdMH/r1++RX4FAU7p0or/nSa1G8=",
           "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-XwLMipanpFGzjbmGs1VEzJL/+7DPUuYTewuadW6x3zE=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-F3TYZf5Pysp2EfVbSAxBHmgiviXyRS3/dKjUdvZrzF0=",
           "index.html": "sha256-xuKPgkTCOPNTZ8muQffKPJpVLWZpA03yfkf+90bVZmw=",
-          "README.md": "sha256-pTHXGIlLeyshfqC7ldLBnLsC8eA7JLPf8TqdrWP4nLM=",
-          "manifest.json": "sha256-EZXiJnJgD1Dys8YHd6tnCLUXHcoEBVqp4E02VpZBv6g="
+          "README.md": "sha256-AxMcThQFXEmS734goIhFf/BhX1w/yinFtug4unnK1jg=",
+          "manifest.json": "sha256-C1MsXatWu+skWUf3/sY3e31fjEkH9/2i3Hmu2t4tHrY="
         }
       }
     },
     {
       "id": "fieldset",
       "name": "Fieldset",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-fieldset",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/fieldset.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/native.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/fieldset.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/native.js",
       "imports": {
         "class": "@j3w1/ui/components/fieldset",
         "register": "@j3w1/ui/register/fieldset",
@@ -6408,25 +6408,25 @@
           "runtime/register/fieldset.js": "sha256-95mq6oG6gTLPWs+kdvdNqiuSftofqYoBvCulLuTebyE=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/fieldset.js": "sha256-qp6rnqWhEBcsd5PcNB9dXTudPlI1ljXsZ+Tboxkxh2A=",
+          "runtime/components/fieldset.js": "sha256-DyY8kg1qBWNT54r9VEo/NiZUtXQTGq7LSr8LHs1+35Y=",
           "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-TPi15SfEwAaSl4PqQvGAd3bFbbB4BJ2trfD5k2+8yrc=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-Z916I2upHIzzffRAz/6w6FSTBwegAd+L49E9Juck2fo=",
           "index.html": "sha256-/G/GqORWDhO+K+ngVGX8Mrb/mp0XHqSZ3PP1WwffRXQ=",
-          "README.md": "sha256-RdO1fgKjlwxdj0dZHnMAUsTiomi9cjZ+6QamBdvWaLc=",
-          "manifest.json": "sha256-gkCv2lqcrHl+8Up6lr0Gg4UhdPVoCQtPljt3sx/3kV0="
+          "README.md": "sha256-th8GeIwDBDUwdiEJfMTKPqep9s1Do2I3nGGRAX4Qkh0=",
+          "manifest.json": "sha256-fe/aHH4kM0vFIwSfWFGE/29tp4ANodnCLf13ug0so5o="
         }
       }
     },
     {
       "id": "number-field",
       "name": "Number field",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-number-field",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/number-field.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/native.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/number-field.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/native.js",
       "imports": {
         "class": "@j3w1/ui/components/number-field",
         "register": "@j3w1/ui/register/number-field",
@@ -7033,25 +7033,25 @@
           "runtime/register/number-field.js": "sha256-jCevLNvnx84VrjcqcaLN+LoayqMvlOZqbeB0vfcKCTw=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/number-field.js": "sha256-3/Wuxam1WdxXHpdg/EeveziRbtBlBtz8RNRaUzbuafo=",
+          "runtime/components/number-field.js": "sha256-NxijdcSBVakVv8+5+TUIyeOZrPssZL+fwuT5Kr5FdPk=",
           "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-agyrkFz7FiKZpcU4J9QsaeTNRYBw7yWJQcMOdSd8SPc=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-wabUKPjMJ+zn/+oKJMogtcDlppICQ8zTGXEbhGwm+iQ=",
           "index.html": "sha256-yH23EzsY61NhYO5ZTaRXcpIb2OUYezkZl+VlqSSVS/M=",
-          "README.md": "sha256-Kha/axcVWw48Qo4p/Skv2GNuZjlMzAfdU8PCyeMVU9U=",
-          "manifest.json": "sha256-RrjwjD/Ga1H89yRCcV5ClElNFVgH4nd6EKv2WpgP2m8="
+          "README.md": "sha256-4aUOXQj5W8AOGlMXPVnmqj9FkQEDEt20kDVwfnC/6Iw=",
+          "manifest.json": "sha256-fV4Rt3Xbm81EbW9myD2jIA0WbntJOtN4sUG7C6RmzwI="
         }
       }
     },
     {
       "id": "search-field",
       "name": "Search field",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-search-field",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/search-field.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/native.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/search-field.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/native.js",
       "imports": {
         "class": "@j3w1/ui/components/search-field",
         "register": "@j3w1/ui/register/search-field",
@@ -7534,25 +7534,25 @@
           "runtime/register/search-field.js": "sha256-Z6IeX4+LKGVQJUcQGuyUnCBL6ggQSoevMhrj75zYisw=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/search-field.js": "sha256-4zdiSs9nHNNd3FWWGtdiWwst5UMz3VQIRlv0Hvuz/EY=",
+          "runtime/components/search-field.js": "sha256-0t9rViTvcJZXk/w+gKGSDKSd6p3+H4nbkhVsWy8AwS0=",
           "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-LKiZdfWdQXHUoEdFnG1o5Aka8mOS8NP98IdndPFnsbQ=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-HUFhtyi3m/bOmHYH5vU0uD/8e/TFVZ6EmUZzoucKCCM=",
           "index.html": "sha256-pNWMnOcTZTr/TNcGVa53Ac8S3/6iWYnBj5B5CjnTcVI=",
-          "README.md": "sha256-LYHLI9aa46awXt9qXC4OWAii+h3OVKoIPDq9zdTHa0A=",
-          "manifest.json": "sha256-fj9m2tiStrEyK6SuiGRtlb9xYW34NiCf3y0jU0gt+Cc="
+          "README.md": "sha256-31WSDBDILiQdYDcXhtqIQVnF3qug7ya1mnuYnxq3A2g=",
+          "manifest.json": "sha256-u3tKCDX4Ij79HOGfSlvaLljhZwo2UMmW0B9hinN8J8A="
         }
       }
     },
     {
       "id": "combobox",
       "name": "Combobox",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-combobox",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/combobox.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/navigation.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/combobox.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/navigation.js",
       "imports": {
         "class": "@j3w1/ui/components/combobox",
         "register": "@j3w1/ui/register/combobox",
@@ -8099,25 +8099,25 @@
           "runtime/register/combobox.js": "sha256-wSm80gvqOsgkhwOnsCIjr2a4w8W7WCRQqBXn2frDhak=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/combobox.js": "sha256-BJ9wodwcK4qERu2F2E4av067q2UUbdNerg4CIZb0JY0=",
+          "runtime/components/combobox.js": "sha256-aJ03pickphRjnUyx9EaDCWV8EPh77pnz+Fg5PxMOoqs=",
           "runtime/chunks/navigation-Dt8ap-9J.js": "sha256-7QSC/eQSDSRRy3YqMltwjb6cwbEA0V652cfo+Ng2VqA=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-f4pI9RLIKYsRggzuVcLA2zYdXHZXY3+DbGFjvBCtbSg=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-/SDEtn3D/9kfnULtpHPFEgK1FAkmwe+77gdxlWNewhY=",
           "index.html": "sha256-TgE5FDYDcg51ETqt8UekGbIULwjwCa+CjxGdU63wd/k=",
-          "README.md": "sha256-8kb7bXuzf4drTt4zDI+jkM/PRDYMjm4fejEGCeClUVg=",
-          "manifest.json": "sha256-6eJSI5f5ibXbBrhSNd3EheBDL7Y75vzBN/RISuWVFp4="
+          "README.md": "sha256-s33BPAliRpuG33+r/lHwBtU/ghk1Azwqi3bJ2rXCMCo=",
+          "manifest.json": "sha256-Fedg5xlOjE6q5mUJ5JUyTb7VD52VewznDG73lDm4unc="
         }
       }
     },
     {
       "id": "multiselect",
       "name": "Multiple selection",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-multiselect",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/multiselect.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/advanced.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/multiselect.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/advanced.js",
       "imports": {
         "class": "@j3w1/ui/components/multiselect",
         "register": "@j3w1/ui/register/multiselect",
@@ -8605,26 +8605,26 @@
           "runtime/register/multiselect.js": "sha256-96pmTEj2wLhjjLNib4gB1d7Twzrt5QcyklLK7RfzavA=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/multiselect.js": "sha256-/U4HIAfopQbRQco5o4u37AD+BQN8fUSRiuOFv+hK2/0=",
+          "runtime/components/multiselect.js": "sha256-qPpX8pHzqhy09Z0BPtTPq6pBbZskl4LZh6sWG+yEbgM=",
           "runtime/chunks/advanced-DCpe8Ndv.js": "sha256-nr1LFdLYsGeTM4vDyldvuJygRm0F04sYonxatySPu1g=",
           "runtime/chunks/markup-DeQ4bEMR.js": "sha256-Eyyx7MKBoqXK4i2HaVUQhKUM066L2wIggABt6jAdgas=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-NHeO9yzX+pKu8X05cxcbMC+aba6f5KV7SQL1E+N/kKM=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-1E4hftJizWZX+Gn6uhOJBXC2VAC62t50q2kwRpgS2pQ=",
           "index.html": "sha256-/iSVBFFALSTS0ebIls1qu3/g280a8lbMULm2Al9zFMM=",
-          "README.md": "sha256-mkHW21ApFdWFlZkGBZxIHh0UXK2AgS9MjPzxU6H9XlA=",
-          "manifest.json": "sha256-BMtVQVoD5rrwQMDJhlECRSVmGPREvAGZJRbNN7DCL3A="
+          "README.md": "sha256-56S0mUziP7yxzh9tMsS3OGtsM5ZFYV6s+6MfKx0ECY0=",
+          "manifest.json": "sha256-84Hca9z1uFm2qIBY49G1ZRclmAQZP9vodUK8hB+fTrE="
         }
       }
     },
     {
       "id": "date-picker",
       "name": "Date picker",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-date-picker",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/date-picker.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/native.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/date-picker.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/native.js",
       "imports": {
         "class": "@j3w1/ui/components/date-picker",
         "register": "@j3w1/ui/register/date-picker",
@@ -9206,25 +9206,25 @@
           "runtime/register/date-picker.js": "sha256-QyyWDOnYnSGxEdY+mxrtYtsLqoQAkhvTLJ5z7kjo3/w=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/date-picker.js": "sha256-h9qSAo4n5wfh8Omthj44XQjSEqU6Rh2D4Bfe/ArKpzA=",
+          "runtime/components/date-picker.js": "sha256-Zn9urUojVCLlcZRhRMTFif6/ZxMVu0xGUFP+1yF/95k=",
           "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-InOm4+AU0uQu6XZs3K+f13FA89Jf7iQO1GuL/2+s9YA=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-Nho5WRdNWOIx9zrVkZR8s5NrC95hgRBVnvDTdnZ7qoo=",
           "index.html": "sha256-eGq952lAjjjM/6cG7o5Rv4hcM4Tuc6zA38HiAPrEevM=",
-          "README.md": "sha256-UrEQ/jcnQCILjL4p9LGYg2iQFPMebQl92XZxaO2DCQE=",
-          "manifest.json": "sha256-TIG95j9krTv1gYETu3F/CgsS5Y3g7CsgBUjlnZIgF3k="
+          "README.md": "sha256-VM/N5PDtZ1jjUST38gwrAJR0RykVXV/9ZbJqkCjpFjk=",
+          "manifest.json": "sha256-unQGGh389C8bC/AR4eQR3h+XJwBhbIvqk0dSb5ziI9c="
         }
       }
     },
     {
       "id": "time-picker",
       "name": "Time picker",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-time-picker",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/time-picker.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/native.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/time-picker.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/native.js",
       "imports": {
         "class": "@j3w1/ui/components/time-picker",
         "register": "@j3w1/ui/register/time-picker",
@@ -9790,25 +9790,25 @@
           "runtime/register/time-picker.js": "sha256-2BVpwqf8Gmd8NnGgY7TdxAtrN4oIOg8cMn0kMOqj9Y4=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/time-picker.js": "sha256-2IeH/zC5d8CNjaYB0Pj5NI0YxihJ2NfWh4oJTIXp9eY=",
+          "runtime/components/time-picker.js": "sha256-flxupnR3bfdKzsE6sVUQjfBo9SyqnVyLJw48GRmyaS0=",
           "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-J5VoJUQp+zDREm8yqwh0jq7TRzMH+H8XMK+3CWxjgIU=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-RLfLhDEtkzyeISgOb1Njmp8QsxMKjIUzebwrMAg9GNk=",
           "index.html": "sha256-0uRkUg8W3uzjOeM45/CL0JXuey7R36hf4eL2pcTXKZY=",
-          "README.md": "sha256-81PA/pJxWfqeku3KACnC5gg1boD9G3UW7j6IpV/X1sg=",
-          "manifest.json": "sha256-WlgCI7W8c7ZLvROxGz7L04Zy/gR+esy6ki2kYfXwKEU="
+          "README.md": "sha256-/mg47NuAa9MdLHtSOwe4HtYSlb5z/kJpv2Gxr33wMjY=",
+          "manifest.json": "sha256-xp8Wmh9VXiynN8jfKjoYpoe/6Eg3UU8vXLZwVf7zdYg="
         }
       }
     },
     {
       "id": "file-input",
       "name": "File input",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-file-input",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/file-input.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/native.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/file-input.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/native.js",
       "imports": {
         "class": "@j3w1/ui/components/file-input",
         "register": "@j3w1/ui/register/file-input",
@@ -10329,25 +10329,25 @@
           "runtime/register/file-input.js": "sha256-JVcVdlTDOCB4bLa+Gc4LHWSfojAaR3wRwOBxMeLa8z4=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/file-input.js": "sha256-lrVnRZQ4a5lNzomJv6XqzF0j/alvDL6Hh7dFkBL3eUw=",
+          "runtime/components/file-input.js": "sha256-S/vqp+vffy2fgqGPoGODWzs6sndDobwN1P8iukpgG7g=",
           "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-ezg9wydBGR6KpQziZgvoKiTXURNTPkh+aD9h3vFuuW4=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-3MysNuXXyX6HzlWv0wFhnto4CU9Q/n0JHK2wx1ufwbE=",
           "index.html": "sha256-fBkoQQjmYl2pS2ZhIJZ6zX3QXl6l6HTDfKsrsy4jmb8=",
-          "README.md": "sha256-ZmMH+zJJOdT3Eby9OTQl1jhZnkU3Laz7YoGOzhpz8do=",
-          "manifest.json": "sha256-M6nNOZWdvfmoDu1bMzYBClv+IDgaaCuA+FK3ITtgHi8="
+          "README.md": "sha256-j0Y7HDn2BrTfQ50eN7tKHxy398IZqyHOdfenCPFHp2c=",
+          "manifest.json": "sha256-u0xi1mxODVVS+0SR4Nq8M/UJpvZfACaT4H/SpI0Vgvk="
         }
       }
     },
     {
       "id": "repeater",
       "name": "Repeater",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-repeater",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/repeater.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/advanced.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/repeater.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/advanced.js",
       "imports": {
         "class": "@j3w1/ui/components/repeater",
         "register": "@j3w1/ui/register/repeater",
@@ -10707,26 +10707,26 @@
           "runtime/register/repeater.js": "sha256-CL1MU0vVSqQyPhS6UQWzKLVZqxO0fbuljqqDRE9GvUA=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/repeater.js": "sha256-LgHlSmVpnkepfzayont0hvM6wC+bjEgf7DV25mxBt9k=",
+          "runtime/components/repeater.js": "sha256-FG/d49dIdH3fty2QScEs7VnY/Td7n+DRjhQc5sOXa4U=",
           "runtime/chunks/advanced-DCpe8Ndv.js": "sha256-nr1LFdLYsGeTM4vDyldvuJygRm0F04sYonxatySPu1g=",
           "runtime/chunks/markup-DeQ4bEMR.js": "sha256-Eyyx7MKBoqXK4i2HaVUQhKUM066L2wIggABt6jAdgas=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-IEhREL5vlXFRdDmE8HHaqwhAbMJ8feOqTJ5MMrQGztk=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-DSCQzrRbDwFOKtw5YmpR+3oYWMIBJFIPnJpes5bSMPY=",
           "index.html": "sha256-c0jxp+wZ+Fh6pdflIdXG673av6oOTGx7HobpD63O2Sk=",
-          "README.md": "sha256-zRxSP9dPT+dqMHK23IUH+7SGozWdF32TWWs6L7jzRgE=",
-          "manifest.json": "sha256-73KShMozPV8e62zeS2s06vunuxm55XpNkKR2t1w5yro="
+          "README.md": "sha256-7b06PhbQDYEdxPj1GQxrwgtZzyZlzREQvTtoVLtrLDc=",
+          "manifest.json": "sha256-BJk9PPnlCC+29/vuF+lnL25aNj/WyT8L2Ch2CxaTojA="
         }
       }
     },
     {
       "id": "wizard",
       "name": "Wizard",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-wizard",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/wizard.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/forms.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/wizard.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/forms.js",
       "imports": {
         "class": "@j3w1/ui/components/wizard",
         "register": "@j3w1/ui/register/wizard",
@@ -11355,25 +11355,25 @@
           "runtime/register/wizard.js": "sha256-8JwKlLD2lG42fsQh0+nf+OZ0pvg6Vy7Uexn7bdkWEe0=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/wizard.js": "sha256-NxD9W/6HFBsY0PI8CAgGQEErAdJhV0LL3fEX1Uwr3Ms=",
+          "runtime/components/wizard.js": "sha256-rQVIfDxEwCKywnvcGmWaIdE5tf9a0XCdgqJqAEUIfWw=",
           "runtime/chunks/forms-BT3z7lNC.js": "sha256-Txmae07dWLj1H/FL869U0Kv84TQxzpdFeOg0g8zGK6I=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-TIsUn3die+vDqK/B4+HqIiSctLsbfAW5EflsX5y1oJA=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-T5EJ8DcqnD1rFEoCwvdUpmBCh0hH9dJSmq5oOkC+mi4=",
           "index.html": "sha256-x7w0JHEaRfh3sRM0TmJcKmqI73CDTfRHzbgURIS3m80=",
-          "README.md": "sha256-hFQYWdNP2oy0PTimcTPsLP/gq7zKyh9ElyIqPqpdxHo=",
-          "manifest.json": "sha256-oSmtKc9Slw+DsP/zDUWWqrf3tLqQcfTOSqZ9XXaWpWQ="
+          "README.md": "sha256-nD/YW7EzC9XuXemJ4RzVJ2bzjEIaFoM9BigEWgTvsV4=",
+          "manifest.json": "sha256-DSwcWcdK+qDKDn6h5k5KViK8WQtpDix294DbRzkXtps="
         }
       }
     },
     {
       "id": "form-builder",
       "name": "Form builder",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-form-builder",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/form-builder.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/form-builder.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/form-builder.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/form-builder.js",
       "imports": {
         "class": "@j3w1/ui/components/form-builder",
         "register": "@j3w1/ui/register/form-builder",
@@ -12246,30 +12246,30 @@
       "copy": {
         "directory": "copy/form-builder/",
         "files": {
-          "runtime/register/form-builder.js": "sha256-yrQJxTI+61/ohHrs9PB3u35WapGoiJYNA2uNGFYiLbQ=",
+          "runtime/register/form-builder.js": "sha256-lvpdvrkWnWuhuZfR6VuwIS6P9C4brNtKX92zgkBzjdU=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/chunks/form-builder-CYqv_TC9.js": "sha256-BPz+mjC+GASc7iX9PqDXWEfZe6Lf763OLeqHFCVyeoA=",
-          "runtime/chunks/form-builder-hnYs5h9c.js": "sha256-Z1XqU9OoMo3eHkquYjcfs+O+WuOJnDAzt4sDoEL0toY=",
+          "runtime/chunks/form-builder-DAFXNWRQ.js": "sha256-Kyv5fiKodqtumFADNjEpPkSWkd1gFy7bcC9S4hJrlDM=",
+          "runtime/chunks/form-builder-PauZCbiP.js": "sha256-zS9SrlKpGF9ww2j1uP0n21p0uUa7OlheVPiYYcXgTto=",
           "runtime/chunks/form-workflow-DMGni-Gs.js": "sha256-g3g/Afxx3XsClDK4ZfvWQjZKprT6z7Qp1lULS48F0rY=",
           "runtime/chunks/markup-DeQ4bEMR.js": "sha256-Eyyx7MKBoqXK4i2HaVUQhKUM066L2wIggABt6jAdgas=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-dgVsrgYuHrvBt6OjTg069abl7yU4iwgXOXUw3n9cB7g=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-vq61pWv0xeMFu0tTsDtRWWpAr16AFefjpz5JTSyF440=",
           "index.html": "sha256-v74xLbiCzhGoMsKDM8vIO3nwDmWQJymihSOqXqvPlkk=",
-          "README.md": "sha256-Fqwmfw/hbEN7iSkr+FrIoqnbFkjtwu7ncS2Fzk98ISY=",
-          "manifest.json": "sha256-2rYpUezI7gm4OxesT0tjqzTaNDpzsucTkIMjv0Rq5a0="
+          "README.md": "sha256-o8OuWOz41VwKmUBT+3u9rRLJ1OcOEKl/Zk9A7K5URRo=",
+          "manifest.json": "sha256-6f3uXppI+lWyTBA73IMGLZGjuG0QV+UMS/nmlVz1cLc="
         }
       }
     },
     {
       "id": "tabs",
       "name": "Tabs",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-tabs",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/tabs.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/navigation.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/tabs.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/navigation.js",
       "imports": {
         "class": "@j3w1/ui/components/tabs",
         "register": "@j3w1/ui/register/tabs",
@@ -12666,25 +12666,25 @@
           "runtime/register/tabs.js": "sha256-ZNIa4RlyyzL89jDO8N637zceDABaxE+yPzulw77+N9c=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/tabs.js": "sha256-dn5A38bsnVn4S8rqBUtEqoWGif3osPbQVy1H3WhOlOA=",
+          "runtime/components/tabs.js": "sha256-sElG2cjwEk4J73c6JEp199nj5RxFEF6vH6ZIK52Vwnc=",
           "runtime/chunks/navigation-Dt8ap-9J.js": "sha256-7QSC/eQSDSRRy3YqMltwjb6cwbEA0V652cfo+Ng2VqA=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-zVXkxQteKGqZmvOgx444SE+3ubxZ6YdRaGci9hT3GeU=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-xe4UR+a4C9oNodr9UlW5OGE5DR5R9JErwW0UAalo8oE=",
           "index.html": "sha256-w1fTqm25U4WCS0w6RvFvuUPfonjfue1T0ZJN83ccPr0=",
-          "README.md": "sha256-C4Mx6hpaAZ0X34Gtlg053hxXdgCIQM8+7tSlt6E+JGo=",
-          "manifest.json": "sha256-893TrxOax7RF5dI8Hj966tPYRCvyB/tcAXXNFKNM2Nk="
+          "README.md": "sha256-AuzoEmj/oqBhLeMU3te/Hu6Dq8a50gM9lAtNI8r65c8=",
+          "manifest.json": "sha256-smfpfJcdNNvZ6T/JEtplxPMQFzSghykUZasY7V4yH78="
         }
       }
     },
     {
       "id": "breadcrumbs",
       "name": "Breadcrumbs",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-breadcrumbs",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/breadcrumbs.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/navigation.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/breadcrumbs.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/navigation.js",
       "imports": {
         "class": "@j3w1/ui/components/breadcrumbs",
         "register": "@j3w1/ui/register/breadcrumbs",
@@ -13023,25 +13023,25 @@
           "runtime/register/breadcrumbs.js": "sha256-Q0duBAI2kOEbn33M/8S8M3ciNcrLKYFaLDl2PvMF4MY=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/breadcrumbs.js": "sha256-aOG9rgOhvqU4AExwIT1UQemgFoq9GQr6yOfjwwjHK0I=",
+          "runtime/components/breadcrumbs.js": "sha256-6c59aHXQQfGVjP8FlJEWvEdQ3X+QdBCCr+o7xTHfDg0=",
           "runtime/chunks/navigation-Dt8ap-9J.js": "sha256-7QSC/eQSDSRRy3YqMltwjb6cwbEA0V652cfo+Ng2VqA=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-pJjvksTD6NTZ2QRx/SBxS4j7xy1rVLprovo5OnTOafs=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-W9qk0XtcetNK1me7748lByEMSMUZyP6NT//vet/Kt0I=",
           "index.html": "sha256-OWJN8qhGZ4YIN1OKUp03drZk8CY4D66GaO0t6LtKvJs=",
-          "README.md": "sha256-JHyXou/fhsjWz54lczj93wjDi+NP/ovXmTV8snP1CuM=",
-          "manifest.json": "sha256-tQvFGdVD1B+PpZyWRSnNTG7QXr8mDYIEQU2I1deGQNE="
+          "README.md": "sha256-Lj9ndtrqv1Qe9aqMARQT46s6al1xiLk46xq/ikmR1cs=",
+          "manifest.json": "sha256-O5eFAw2kRZi6KRQNTnj6Q6IyPJUQRNLrN9MfTq2SjtU="
         }
       }
     },
     {
       "id": "pagination",
       "name": "Pagination",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-pagination",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/pagination.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/tables.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/pagination.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/tables.js",
       "imports": {
         "class": "@j3w1/ui/components/pagination",
         "register": "@j3w1/ui/register/pagination",
@@ -13418,25 +13418,25 @@
           "runtime/register/pagination.js": "sha256-pgp0U5vF4tER52b++qgmdpAuRSmpiybgRt6HfLmtBqU=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/pagination.js": "sha256-+N2q656cCfPkA5zxVt9uZvzrhkWikzuHNIH4JOIbV6Q=",
+          "runtime/components/pagination.js": "sha256-bFhba4UroRmGj1aJz0+zHMS+y7+hQijvtSnMU+IEYrw=",
           "runtime/chunks/tables-B25ydUHs.js": "sha256-XqRdyfrSS93rVybWHq6a0WhrmZgaboHi5n8ymgwRbM8=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-J6AIVbVHNyS581oA3enNH84ZCf3yRHxSsjlqUa9Z6d0=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-jp4BjPewAxszUnraKXf7iG6Zty7ZB7J8SdFyHQg7hL4=",
           "index.html": "sha256-/fV58cVZi1JLHRPrv8jsrMD51D/264mvCsNHTj4WEYM=",
-          "README.md": "sha256-I0IjY6jDOhtITZGvjCQf2VAzPGPt04jTD8Yap99nGdM=",
-          "manifest.json": "sha256-1kGIx11pMR7r+8XgGhpnK5P6XLLjjyt7/ZoyIHJxyUA="
+          "README.md": "sha256-Xc5H2jflReCrzbj7G0L9qf+pPd1hWhfeBf9zCpTmOLE=",
+          "manifest.json": "sha256-ZL9+pRKEm8wSo9SvfjmAjYhDLIz1aJUNsUjHFB7bSQQ="
         }
       }
     },
     {
       "id": "sidebar-nav",
       "name": "Sidebar navigation",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-sidebar-nav",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/sidebar-nav.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/navigation.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/sidebar-nav.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/navigation.js",
       "imports": {
         "class": "@j3w1/ui/components/sidebar-nav",
         "register": "@j3w1/ui/register/sidebar-nav",
@@ -13861,25 +13861,25 @@
           "runtime/register/sidebar-nav.js": "sha256-X/t0V38SB2UnmTa0KqYTvD4OKdvRFtsN75azWmcPa90=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/sidebar-nav.js": "sha256-edk6JVbhRWQ4CZjcWXbumr850slZ7379/Gk+1sAmMPU=",
+          "runtime/components/sidebar-nav.js": "sha256-1jK+Z7i6QzN7uthx01P2jkPhogFaaFCNkpUp7j2RvbI=",
           "runtime/chunks/navigation-Dt8ap-9J.js": "sha256-7QSC/eQSDSRRy3YqMltwjb6cwbEA0V652cfo+Ng2VqA=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-daIsd5K5mOs8Mmspd3m8ktJKgxTzPCRGoQY/6MQCDww=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-LBoiPSLgtVIozM1wEFWbV78DaFWbIW+6OgOjaCSim8g=",
           "index.html": "sha256-iigY56T4Y5udSqoBZloU6658GNUHY+ynrBQSOg/+UIc=",
-          "README.md": "sha256-uykoQSN/dZOkgLBX79N6YwVGLSeNSljfIqepu3cpK4I=",
-          "manifest.json": "sha256-TCYyw8jzoh+/a3nS9GDDpby+duBdkVTsFt+lCbtkKYE="
+          "README.md": "sha256-dUDgziQNvEN3h7ySe43xOuXipamwCzLEL+HN9pjMxng=",
+          "manifest.json": "sha256-B1jz0UisWLi7noSn4tBjZR7rRnaKgVPJJg3iHoGyoMY="
         }
       }
     },
     {
       "id": "toolbar",
       "name": "Toolbar",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-toolbar",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/toolbar.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/navigation.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/toolbar.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/navigation.js",
       "imports": {
         "class": "@j3w1/ui/components/toolbar",
         "register": "@j3w1/ui/register/toolbar",
@@ -14411,27 +14411,27 @@
           "runtime/register/toolbar.js": "sha256-OSMJIpjPl64KP4YMacdMSLwBugQjcBJHhX/8qyJT0aM=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/toolbar.js": "sha256-QgSlOTmfY8TC1u14/1cHTwjrofspTDa7dAjOossjRN0=",
+          "runtime/components/toolbar.js": "sha256-WXHP8DDuntSgCCFnbozoMxFIC+b8S2qbRnFgbzPwLsM=",
           "runtime/chunks/navigation-Dt8ap-9J.js": "sha256-7QSC/eQSDSRRy3YqMltwjb6cwbEA0V652cfo+Ng2VqA=",
           "runtime/register/menu.js": "sha256-YX+9ydadaIbkPIBFhLWX4Jv3V9vIl4UY1qolxLGfZUg=",
-          "runtime/components/menu.js": "sha256-LvyoWpMq2+bqVlzmpsalXjnT3qa1iwLKErxzvBtmKNI=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "runtime/components/menu.js": "sha256-g982fipBPI6+JvjYT/f2XuNKg71O9DAC8lccIGsii1U=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-uTfyFdWFrx91RdklrAzqAHNf5B2q1psaqjlF71eT+Xc=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-MRU95stqvOm7gd3wzi8XadrYOLU9MRKqdwFO/bmSaPY=",
           "index.html": "sha256-qzep40OKd67lZTxeQflCRA+sfx2A6/zxVgtV4re8LgY=",
-          "README.md": "sha256-+bWWVgU+0/ruKYYd+y0FAcu00zaHwksmHC5Mb4IKfwc=",
-          "manifest.json": "sha256-JgtaUrNbScnqFbv4DbHAFJh+f7ZQOe9Ab15Ec6faJSo="
+          "README.md": "sha256-K95gLZI2Pb0XPJQ0FFt7zituO2mDDnWgAE7dfmR+OdM=",
+          "manifest.json": "sha256-sm5A2AiJnFYQGt0VXQb1pSMLJ7RnASAYT01N3YUcTwA="
         }
       }
     },
     {
       "id": "menu",
       "name": "Menu",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-menu",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/menu.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/navigation.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/menu.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/navigation.js",
       "imports": {
         "class": "@j3w1/ui/components/menu",
         "register": "@j3w1/ui/register/menu",
@@ -14964,25 +14964,25 @@
           "runtime/register/menu.js": "sha256-YX+9ydadaIbkPIBFhLWX4Jv3V9vIl4UY1qolxLGfZUg=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/menu.js": "sha256-LvyoWpMq2+bqVlzmpsalXjnT3qa1iwLKErxzvBtmKNI=",
+          "runtime/components/menu.js": "sha256-g982fipBPI6+JvjYT/f2XuNKg71O9DAC8lccIGsii1U=",
           "runtime/chunks/navigation-Dt8ap-9J.js": "sha256-7QSC/eQSDSRRy3YqMltwjb6cwbEA0V652cfo+Ng2VqA=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-SIubQgNKqhuy1abCUQB+rvpnPXZTQ9fiW5Yb6XWT5MQ=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-0SXVO1pxUxzA5mgZzG5YXw21f3G/n81DtP3vy14Nv5M=",
           "index.html": "sha256-nwGZ4fZm7plv8ayxNa3zbvZ6jTO5Efxv0EvQBeohNN8=",
-          "README.md": "sha256-4Hcxnf0YcRF1Ik4V8X5ODA4o8ZV4ed9k3PTtPZy2K6k=",
-          "manifest.json": "sha256-JGePPfhpT/bsSuHtCf6QsVPgxPxWkpcUlgXihzQ8vnA="
+          "README.md": "sha256-hwf47ajVgd53KpFEzoineswzdjNTNGRAgKXvbdJWV+E=",
+          "manifest.json": "sha256-77NGlTB00pjj39Qrrb+Ce+2pgnGERfC7c3srM6P/Tgw="
         }
       }
     },
     {
       "id": "command-palette",
       "name": "Command palette",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-command-palette",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/command-palette.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/advanced.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/command-palette.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/advanced.js",
       "imports": {
         "class": "@j3w1/ui/components/command-palette",
         "register": "@j3w1/ui/register/command-palette",
@@ -15388,26 +15388,26 @@
           "runtime/register/command-palette.js": "sha256-lGGoaVMCbjDzpQkjNlUs9K1jnmKtBfQi/K3dG35cCd0=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/command-palette.js": "sha256-wgAHKkt74dmMveDD9217HL8fVGngmOPS9aBo5nTn+Vg=",
+          "runtime/components/command-palette.js": "sha256-wUK3nB4rnJdG4hZQWC6Q1sATWezNF20OcPcoeP1Yfm4=",
           "runtime/chunks/advanced-DCpe8Ndv.js": "sha256-nr1LFdLYsGeTM4vDyldvuJygRm0F04sYonxatySPu1g=",
           "runtime/chunks/markup-DeQ4bEMR.js": "sha256-Eyyx7MKBoqXK4i2HaVUQhKUM066L2wIggABt6jAdgas=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-t7Nx5bVz8i3o11i46wST9tQPTbjvJ21yoVfgMSGeZNM=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-mNRkLE+yYA4PARM4rv5bXDj90Oq8yxQLPgoUW8bX6ns=",
           "index.html": "sha256-I5o97Y3ykrn6MCqMmtWvFGTxDBltracgMFnF25iNwZk=",
-          "README.md": "sha256-ApKKiMUa5dQXor5qlMBRF1MPqy86PKvOGqOqSHbMgZQ=",
-          "manifest.json": "sha256-ei9XMy1+ZFUn5Rz7d2HS96R+e5Gu6eh618RjWW2avlE="
+          "README.md": "sha256-A5kNk7ZLaXCYEIjivNy3Yx/ORry0R+VWrVJUz/Ypfkw=",
+          "manifest.json": "sha256-iCvRGgz5KeyyJjHWA6vppMq5lvDC5KSCUZfj5pWYFSo="
         }
       }
     },
     {
       "id": "tree",
       "name": "Tree",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-tree",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/tree.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/advanced.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/tree.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/advanced.js",
       "imports": {
         "class": "@j3w1/ui/components/tree",
         "register": "@j3w1/ui/register/tree",
@@ -15745,26 +15745,26 @@
           "runtime/register/tree.js": "sha256-xY8jWYnbMM8UlE/rdQJsu3/URGPvdUC06U1QmKsmFZQ=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/tree.js": "sha256-RClTDpX2JH40fjk0koAVbrjimqrLAqddloblFeyUjhg=",
+          "runtime/components/tree.js": "sha256-WwZH2Q9TwSO6Oi9J9px50Xv68VZ52hGPHuhQ88KoPfw=",
           "runtime/chunks/advanced-DCpe8Ndv.js": "sha256-nr1LFdLYsGeTM4vDyldvuJygRm0F04sYonxatySPu1g=",
           "runtime/chunks/markup-DeQ4bEMR.js": "sha256-Eyyx7MKBoqXK4i2HaVUQhKUM066L2wIggABt6jAdgas=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-CMMLz+0autEo86UbTxzkyHVpMoNtyKskesgbIua+YiQ=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-F1zSdM5xw3/jlndjR4iQRRyZ7K9gfkgofh1Oin9xUAo=",
           "index.html": "sha256-+NV68HiyyQfXclh/Z5F0O/9UwWGzR6RouwMjxM/4DZI=",
-          "README.md": "sha256-zsp4LhaTGd07EEfJDfsSpAhh2KzcR3yrOMP8ANPHmU4=",
-          "manifest.json": "sha256-ywsiIe5Mxv/PtEczhXT0Uol5qJ9yXOY3j1sXPzp5zyg="
+          "README.md": "sha256-bRjERp9L5a9apFkyBlLJlooOF3C3NWPGhzY/YJDJHbw=",
+          "manifest.json": "sha256-jCGOTwSLcZYafqc4mbpwDq/PVDcJByojnKihRuCb8lk="
         }
       }
     },
     {
       "id": "disclosure",
       "name": "Disclosure",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-disclosure",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/disclosure.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/navigation.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/disclosure.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/navigation.js",
       "imports": {
         "class": "@j3w1/ui/components/disclosure",
         "register": "@j3w1/ui/register/disclosure",
@@ -16098,25 +16098,25 @@
           "runtime/register/disclosure.js": "sha256-QAWXKSki5SRPPTshefR54Zy2gycHjHlG61aTWPL1Q4g=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/disclosure.js": "sha256-xFt7D51dG1lBYA82wnCVVEGhEOeiV08tRU94IsGhGow=",
+          "runtime/components/disclosure.js": "sha256-Shq6t0uhJu8gaaIxvQ+wSV3uUaLuvRnpnJIBzColyv4=",
           "runtime/chunks/navigation-Dt8ap-9J.js": "sha256-7QSC/eQSDSRRy3YqMltwjb6cwbEA0V652cfo+Ng2VqA=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-vVNjPU0AXLKLnxgRPgOVmN3dS6S3pxA6xLFfJFK8ex4=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-ZbpW/j8ZGKofIgL/uVEO47xXhxXmS2mrK5w32n/BWZA=",
           "index.html": "sha256-IGRscuNxsfbVQd8cDkiBz1/QAEamMHSToesnIwq38AU=",
-          "README.md": "sha256-ClRk6MRFHeWqnAKQA3e3epanyegGldIdJ0U6bcoe5bw=",
-          "manifest.json": "sha256-uzE/A+pTS5/Fr27vB5txUaKheENDZR+AhiPSfcJ/8+o="
+          "README.md": "sha256-iqKT5Qd35xSQo27TI0kI3yO/enNJypIMRj5lcJcupVg=",
+          "manifest.json": "sha256-Rg5/UTkCrsaXjaDvt0MMQ+1w5rzVg38ufer/3ITy4zk="
         }
       }
     },
     {
       "id": "skip-link",
       "name": "Skip link",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-skip-link",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/skip-link.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/native.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/skip-link.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/native.js",
       "imports": {
         "class": "@j3w1/ui/components/skip-link",
         "register": "@j3w1/ui/register/skip-link",
@@ -16404,25 +16404,25 @@
           "runtime/register/skip-link.js": "sha256-J3W8TBKgxKkjPInemg2o0yMPFluGS5Q/lPN9NQYBXAo=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/skip-link.js": "sha256-bw8BVJX36riqjZj/Jkd1T+n2cGdzu22gfoy8ARrqGjk=",
+          "runtime/components/skip-link.js": "sha256-u0OetxVpNRXfbqciUM48CmbAJ/kUxIs7yFD/XljqEIs=",
           "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-KCkIExZyQJQhySZCEQIOrm9lPtDzOq95R9+IED0MI8A=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-TllH5VfEO0Xn2+KsNK2k/W4RJWPv9CVLWE38btvoOpw=",
           "index.html": "sha256-/HDnZh+ZTER/j0o82CsKR1s11+5KNWqzGpG3Q+RrG1Q=",
-          "README.md": "sha256-7mT0Ib0jADU7+tZxvrBvFzFH3PknpvOXizs75Jtkgs8=",
-          "manifest.json": "sha256-SplY0sOoBomfxiqyhrwoZKHbiTTEgW3IUCitenOik8Q="
+          "README.md": "sha256-2sF6+lfi2dmo6zG4Cyae/jC8VRKRFb8FQfk5rvNYmqE=",
+          "manifest.json": "sha256-BWoYbg2PJpBX/NAga5T3lv66MntHPbd8Xdr+eAErI9Y="
         }
       }
     },
     {
       "id": "card",
       "name": "Card",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-card",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/card.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/native.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/card.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/native.js",
       "imports": {
         "class": "@j3w1/ui/components/card",
         "register": "@j3w1/ui/register/card",
@@ -16783,25 +16783,25 @@
           "runtime/register/card.js": "sha256-zbAWuZuKNPZkVbl9pW5S2Mzg9/mlHJ7BeQEgQAUhrlA=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/card.js": "sha256-+sfy4hPJrqYnKcdMA9W4liLIvz0vDGbORkdeH3GtvAQ=",
+          "runtime/components/card.js": "sha256-zusRMxfj/9/oEcFz+ZMe4GEkJPhRoTZsiqEZmSoqXU4=",
           "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-pfXQBPkrp6iF0OlQiLQh9DMUwtsCinOaL1HLAjlChII=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-Rc0IwITP8X0cKscYMBt4LgzFbntPHkCAdDQ4xLh2LXs=",
           "index.html": "sha256-IvoBispcGfdc1cclMkSpIk4mImhXxUS8/bDAr0dLmcU=",
-          "README.md": "sha256-7P/4SKpbl5WWmgPIrAUW7V7PTNL5qoyIldCGrXKjgME=",
-          "manifest.json": "sha256-4shhxapRYfs43rueYrjZogktfckLvpmN/BSFq7zR4dE="
+          "README.md": "sha256-XduZWS8u4ctKXCXdiW9BfoTiivMQXmry594jjungX3s=",
+          "manifest.json": "sha256-ogtKVx0WJs0e6tuJ1jhsGX0NHY00W4aHSFvVL8fJtgs="
         }
       }
     },
     {
       "id": "list",
       "name": "List",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-list",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/list.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/native.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/list.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/native.js",
       "imports": {
         "class": "@j3w1/ui/components/list",
         "register": "@j3w1/ui/register/list",
@@ -17207,25 +17207,25 @@
           "runtime/register/list.js": "sha256-wbjYHGmbf46FoJiajI+Z127P5eUpLr9c6BSonN2FqnQ=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/list.js": "sha256-yV2q3NzDM8fKxj1PwwFJmmIgHolR1XD/cse9LTjzsTo=",
+          "runtime/components/list.js": "sha256-fwFBL9rB897g2uQVO5YwaE3T8E2nVELDeZwqQzTsbjw=",
           "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-MSEasr2r2kyu8iJSxcX+m4nWTD2FHPKwBU7K8T/9844=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-tiKX+fFUPCsBJEryliaQ7y9RhU4zlh8aEqMJ0aSO8Lk=",
           "index.html": "sha256-sY1ilmVvk6pArKOSGuz/1p4PN883f3mu5PXF1sOLwX4=",
-          "README.md": "sha256-OD9MwXZ2w4Yo17+mzhwVCahIgMXPzWzcPSyNwa/w+2o=",
-          "manifest.json": "sha256-/g0kRN/SAT6PRpcb6G9x2sWoxU9ghd1eCepcdck3tqQ="
+          "README.md": "sha256-292DuU2FhB7sLCxniF2iwka4MKewP1UJ1FW9nX85djo=",
+          "manifest.json": "sha256-fA1mo8RGCbaZ2tkXx3zthVz1tZXDyRNTwZdst6SUjSA="
         }
       }
     },
     {
       "id": "description-list",
       "name": "Description list",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-description-list",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/description-list.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/native.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/description-list.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/native.js",
       "imports": {
         "class": "@j3w1/ui/components/description-list",
         "register": "@j3w1/ui/register/description-list",
@@ -17505,25 +17505,25 @@
           "runtime/register/description-list.js": "sha256-yhsiXjAR6wy2d0ePQtFlXsvPwWsBDWwuJiOZu/UqR1g=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/description-list.js": "sha256-fM6BdGxULzDnIYFHEaq0dNp24nBCQaYRz7EugbW45tI=",
+          "runtime/components/description-list.js": "sha256-tYIhlUmmCV8eZVjaPPIVUeYufTAKg0w0e5I/VcjOBAY=",
           "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-MvWyrX2+45DLgWL1ZxTdk0IFVjl5WyfGYZdOYpIeoak=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-h2HPGz9Kz0LvMiuTC767wAQvYHOVVmffDECwh46tG0c=",
           "index.html": "sha256-mGxvifjxa5eFOtCBUQR3P/9IKtYsKd4nsTfWb9+u9w0=",
-          "README.md": "sha256-YZtxIGP3HAxTHyRr0bD6r9Cw6DbI2KXKi/gW7w+aH+Q=",
-          "manifest.json": "sha256-kLdE483vmbkLi7CGcQvN3DIiQCSMoQTskWGpCV8Y38E="
+          "README.md": "sha256-d6yE51b7APFoyx8UDzhPGpRRasc1+BJ9VLoi+Bp/4O0=",
+          "manifest.json": "sha256-eVeMkICWrTLL/tv7Og0b9Y5IvMj5UCsSc0Oy/09E0dw="
         }
       }
     },
     {
       "id": "badge",
       "name": "Badge",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-badge",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/badge.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/native.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/badge.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/native.js",
       "imports": {
         "class": "@j3w1/ui/components/badge",
         "register": "@j3w1/ui/register/badge",
@@ -17973,25 +17973,25 @@
           "runtime/register/badge.js": "sha256-v2MgL8efVFZ4zJl9rvTmIYZxswZz69oeyrHTaYTAojs=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/badge.js": "sha256-GZhXQZrJp/sr0EdTGrNTzyKunqdfptcKsoTDfhqpwL8=",
+          "runtime/components/badge.js": "sha256-ZckrrPWl5Mo1XJiJeHPw4RcCvUBj7LOf0kAlVWtFybA=",
           "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-K2TPkFZfKUt35HniL/ub9icdMukZ7wCx0S5+D1FOv8Y=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-rXaOLdDbEK5SMtYsw5TegOMtcnLijmgtU07RVrvJx8o=",
           "index.html": "sha256-adxgp7aQqS8TWwQ8h7ZunxvDdJpxjaS8oGagTh0d+s0=",
-          "README.md": "sha256-FwLFpLTAQ6TAUq6XmpXiMXS+8fQB2dMuDP9pEq80P9k=",
-          "manifest.json": "sha256-54/tbcNS3A4E8zfwfWgUlySTznTqAyJgZsmF+nbe8aY="
+          "README.md": "sha256-A2lQ24hcsk0ea7nnuB8FtsFkaDGYQsY0XOGnWcMufNY=",
+          "manifest.json": "sha256-uyyXigLkg5AXaII7KNG4fuF7AeulJicB6nPJC6cZv/k="
         }
       }
     },
     {
       "id": "chip",
       "name": "Chip",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-chip",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/chip.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/overlays.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/chip.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/overlays.js",
       "imports": {
         "class": "@j3w1/ui/components/chip",
         "register": "@j3w1/ui/register/chip",
@@ -18376,25 +18376,25 @@
           "runtime/register/chip.js": "sha256-nhg2cNNdf2EtWAVdLGFMWDTHx5f02Oe0Zf06cTV+sY8=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/chip.js": "sha256-PTYznRSmL6ujyTUJzNfii8dt+QUs36pkZ1BxJ7o5Z0c=",
+          "runtime/components/chip.js": "sha256-G74ostacfCfuEqQE/UQg6vJdPTe75fmHoiZBFMa2800=",
           "runtime/chunks/overlays-C6nlCHqg.js": "sha256-JtKjtFU2sbObAEtYaA9S+YE40WKP5hX073Xv4lpA67o=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-nKS3XC8eLjQCMMZHRRKSiHiaNGZgYD6CXzVULJoDU3g=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-yjXdYrZ4DqpcZ/ZDGxD0cgfYY/xqj0qeSkX1dJmVhfY=",
           "index.html": "sha256-w6jTubEaofdbvKO8llTmtTpw3a/ixglUtu1tDybz2iY=",
-          "README.md": "sha256-YA81r69XODa+e6TCGijVaapyTX60jg23vJM0Iz4+W+8=",
-          "manifest.json": "sha256-quHFx7iyhFQ73DbgwdKrLqcxwYlVCV0lJaJ6I47WGfg="
+          "README.md": "sha256-CbIQ3ps3BQ7xZr1mgxNYEVL/0y5k3Tt+Pf5NBCRm4XY=",
+          "manifest.json": "sha256-/18wOHxJMor4O3c5Wv5upXKYBA+7SlsozN0bh8Rqnhg="
         }
       }
     },
     {
       "id": "avatar",
       "name": "Avatar",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-avatar",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/avatar.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/display.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/avatar.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/display.js",
       "imports": {
         "class": "@j3w1/ui/components/avatar",
         "register": "@j3w1/ui/register/avatar",
@@ -18667,25 +18667,25 @@
           "runtime/register/avatar.js": "sha256-5DYNLWi7ycaPY4mr7DXYNOCVEbo97Pnr3INC7MFexbM=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/avatar.js": "sha256-zqmUa2aLPiZtbFEt59Czhe/wyNtcowLgnSLWN42+pzw=",
+          "runtime/components/avatar.js": "sha256-ogGu8Nq0B18VlJYBS5gKDFEI+FzQPS/sre4j78whAa4=",
           "runtime/chunks/display-dj9YaBfn.js": "sha256-0Y8LcHvfDz2LLz+EWdO8Jr6pfwnXPw03N8x1UcM2pN8=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-XYCR7yVoWMnpJrQG4A+pL3xESyHR6OKMuwJfZGgDpKA=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-R1Q+6UFu76jOlVP9cadBrMxVS3+Yb2JgIDkcnKxWvtk=",
           "index.html": "sha256-6wIoUvdBP1c8DCQbO8yN3AbgSvI4jPyNvKs6IYYA/7o=",
-          "README.md": "sha256-SbYwVUtCQ41ID1V9yoGCCF0h/7xYKq4yu5q0ck4bLmQ=",
-          "manifest.json": "sha256-287pBHXCqYJct2Nk/64QvA28rf7LNQnF7iaEQbaSG0c="
+          "README.md": "sha256-HIQvIBnvmBmTkEexsqjPMWLvWGbBzIU8Fe9LrrbGssg=",
+          "manifest.json": "sha256-rpTx/AjFL2STvvVz4K32/Ysxv/OaUPPoG8ahh3R3ofc="
         }
       }
     },
     {
       "id": "table",
       "name": "Table",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-table",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/table.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/tables.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/table.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/tables.js",
       "imports": {
         "class": "@j3w1/ui/components/table",
         "register": "@j3w1/ui/register/table",
@@ -19113,25 +19113,25 @@
           "runtime/register/table.js": "sha256-MdQKdnzPN7NGGdLpVWq6qbgJvHQFdZaIpYLaOLJxRfo=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/table.js": "sha256-sYKnbROBA+gOG2HYxiaCNFSjk4nvQs7IQrjkzug/Pqk=",
+          "runtime/components/table.js": "sha256-rr9CHcI2y9n2CIYLNxq6Qu1m0aHepxAKGJTSWWv6WMY=",
           "runtime/chunks/tables-B25ydUHs.js": "sha256-XqRdyfrSS93rVybWHq6a0WhrmZgaboHi5n8ymgwRbM8=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-ZLczhksx4+OpxZGChcR6o/jBIHldhOt8XpRDJPyDfeU=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-eTlfzsTldT7TjA25qNYpX+MAAskuYiA9Y+zZW9/B+MU=",
           "index.html": "sha256-wHPL38nEdZyiESe+MlLb9ZgRLg+MfbRXMzN538tD0pE=",
-          "README.md": "sha256-QetjHRBu0I9SpyNqcU/3fVFFL3hqU9jv6hT5kHnSjvs=",
-          "manifest.json": "sha256-L9Uev05Sj3yh0mGLHGSqT/MGgQTfJOwsTLxcHVUorTI="
+          "README.md": "sha256-sxFEPPeTXu++Jjj0NIec3Npxy2IFTFQuMbTdFrKb5qs=",
+          "manifest.json": "sha256-ZX1LlGu8dwxAz3sGpHKwd4kgAaTIoKVucxj6/T6rqyE="
         }
       }
     },
     {
       "id": "data-table",
       "name": "Data table",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-data-table",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/data-table.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/tables.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/data-table.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/tables.js",
       "imports": {
         "class": "@j3w1/ui/components/data-table",
         "register": "@j3w1/ui/register/data-table",
@@ -19737,27 +19737,27 @@
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
           "runtime/register/menu.js": "sha256-YX+9ydadaIbkPIBFhLWX4Jv3V9vIl4UY1qolxLGfZUg=",
-          "runtime/components/menu.js": "sha256-LvyoWpMq2+bqVlzmpsalXjnT3qa1iwLKErxzvBtmKNI=",
+          "runtime/components/menu.js": "sha256-g982fipBPI6+JvjYT/f2XuNKg71O9DAC8lccIGsii1U=",
           "runtime/chunks/navigation-Dt8ap-9J.js": "sha256-7QSC/eQSDSRRy3YqMltwjb6cwbEA0V652cfo+Ng2VqA=",
-          "runtime/components/data-table.js": "sha256-Rp+BsK/ffwERfTKjgmAZmGnvyPaXZ+ceZUW8fIKSeB4=",
+          "runtime/components/data-table.js": "sha256-diGBub/xh9U2+VSohTKOHU5fhwEWekLfosZzBpvLJSQ=",
           "runtime/chunks/tables-B25ydUHs.js": "sha256-XqRdyfrSS93rVybWHq6a0WhrmZgaboHi5n8ymgwRbM8=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-aygLfHiZmFXenQHQrHnjVcw8W0tp2SLdB7d/laGcKgA=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-FieIuPCt66UIxpdAH0wuPBOrPEVXUqjJfyWMyCdO9nI=",
           "index.html": "sha256-wxdZWAwB7Q/aPOpcvws/xlqJAMNO1twAxfHnSVMuNlo=",
-          "README.md": "sha256-MtZc70AsIOt0ZJYTYp3iDfCuQy714+ktmyYG71pKcHw=",
-          "manifest.json": "sha256-MIE96759HGq+JYN4/jPxe5qNp9NeFTYjqwsTxq9BjVw="
+          "README.md": "sha256-QWeozEOzH2yo2yeJdb0SWvKVbL94mZovRaJpR+3+h2A=",
+          "manifest.json": "sha256-XhzJVM80Zk83Zj24KBBHueHyKvJxxe3AozmRVJa3Si8="
         }
       }
     },
     {
       "id": "timeline",
       "name": "Timeline",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-timeline",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/timeline.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/native.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/timeline.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/native.js",
       "imports": {
         "class": "@j3w1/ui/components/timeline",
         "register": "@j3w1/ui/register/timeline",
@@ -20038,25 +20038,25 @@
           "runtime/register/timeline.js": "sha256-DmcJVvF9PvFZM0ka0qgQH9L6lE7TCHhDf56kHMV+SA4=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/timeline.js": "sha256-etNBcjD+0n65PVRjBx8i6zh4jpZrOICrlLqZYtpgRLA=",
+          "runtime/components/timeline.js": "sha256-dboWRbAfdO8LYJFSnkN3/8tnd+YFY3o61Gmn94PUOuw=",
           "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-VnvBxMC1c6IWen0gQ3RLi0m3FOelH4E8j4xG+B5Zoas=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-pj/LmsP7e5l3NZI2ZWOLcerU4j0Vn1w2EloUpExz0nw=",
           "index.html": "sha256-Ob/LUhVAfw+2yZ5HV+/MpGcf5gBqNfOvKXpabGlMOEs=",
-          "README.md": "sha256-iY9pPq+YgWUjvwZ1vBBHWmcKFdhazohjo3dVJ4Gtvfw=",
-          "manifest.json": "sha256-6MHKYSf9UM70tYrDVLcC5rCw2iLLRK9Eswe0tKCJ390="
+          "README.md": "sha256-oXjRx1RICm8GbjFUaTP9XYsc9Sx4Cd86rNliF3ywX8g=",
+          "manifest.json": "sha256-wCKvB4d2WuhVCXr/rUDBx+FizaIKzjNL8fD5tsZxEFA="
         }
       }
     },
     {
       "id": "chart",
       "name": "Chart",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-chart",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/chart.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/display.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/chart.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/display.js",
       "imports": {
         "class": "@j3w1/ui/components/chart",
         "register": "@j3w1/ui/register/chart",
@@ -20391,25 +20391,25 @@
           "runtime/register/chart.js": "sha256-5iBwKSjcyRylARXTeL2emhbuI2FCMQ757IBdPqFnU0U=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/chart.js": "sha256-f00AT79NVyUrW/+29bIPeinwZTrHOYr91eYeav3XZ1Y=",
+          "runtime/components/chart.js": "sha256-m4i8dUikaF4VD/smsoPzMzz9wuF/KbISSd8dg0gpEd8=",
           "runtime/chunks/display-dj9YaBfn.js": "sha256-0Y8LcHvfDz2LLz+EWdO8Jr6pfwnXPw03N8x1UcM2pN8=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-/W9/IEOepx6zAHtGcRJs1x0lwfMFkVEiYDCV4y4byXw=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-Wk7EuPuisom2ohEBkZvcgafrpN7xXzlCUaNrWq7BZEA=",
           "index.html": "sha256-HuXni+L2aI7ES/QsPUPIODbff80dbY+jNFEIzyVxLFg=",
-          "README.md": "sha256-XP7YxqSYP2Cj8CdUsUzXfTctMvpL3vMY4+ZwutvSPXo=",
-          "manifest.json": "sha256-Wrtp6Uodo3aOOSjhrsbSsDzyMkkyGvYL4o1nQWf4Tjw="
+          "README.md": "sha256-WTh7y1I1x7Q30gB1tsjnpJyobr+tV57kfkSO8VeH3/U=",
+          "manifest.json": "sha256-QCFruyWUCmvNthw3QAgEzIUMIl/L3nNrlEc3XBMovWo="
         }
       }
     },
     {
       "id": "kbd",
       "name": "Keyboard key",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-kbd",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/kbd.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/native.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/kbd.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/native.js",
       "imports": {
         "class": "@j3w1/ui/components/kbd",
         "register": "@j3w1/ui/register/kbd",
@@ -20662,25 +20662,25 @@
           "runtime/register/kbd.js": "sha256-bIqjf3wmYiE5WXjgu0PbMLOsZ/LIWT+En7xpv6yWDNQ=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/kbd.js": "sha256-fy+ZyrrhcQZ2zXpJJbWXbFndYDUfOJK+RWYNHtvW1Ms=",
+          "runtime/components/kbd.js": "sha256-aMHpvm/BeEcm/uYzdMXIeWRGysEsi6ZOACs+l7vJ658=",
           "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-sKesLjkvspbpsD6walvgEF0NFv1fsIWXNbBy+hhtAUE=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-tpH9QDJi6WP1xXEjkGhicB0miKDe2fe69wAALVp2X5A=",
           "index.html": "sha256-n95EF5vEOXJJV0vVrIVOke9WC7Ja83CiFAFm4jiOY3w=",
-          "README.md": "sha256-+COIDK9gZS2BqydVOXqmJ2PREvv7VBXz2PB+0X2MHeg=",
-          "manifest.json": "sha256-9dUnKR8ZNvVwutt+0jEYNSkZNLwBbYf7t4nqCMTnTVs="
+          "README.md": "sha256-o6IBgbew/ccnhSk/+nkoodZPuvK8sRP+qMqi+0Fd2Yk=",
+          "manifest.json": "sha256-reEiC0AS2OUxRihYzwPk9/btclOvdGfKOz9v+A/NOrw="
         }
       }
     },
     {
       "id": "alert",
       "name": "Alert",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-alert",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/alert.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/overlays.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/alert.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/overlays.js",
       "imports": {
         "class": "@j3w1/ui/components/alert",
         "register": "@j3w1/ui/register/alert",
@@ -21124,25 +21124,25 @@
           "runtime/register/alert.js": "sha256-da/DH6uAJcK9QeCEbqBELiYsVrWkN9elrGzFJKH78ZI=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/alert.js": "sha256-XSee1Akd5+BxCvne7A+6RbSIgLHeI2bfqod0KyBn9gs=",
+          "runtime/components/alert.js": "sha256-k1H5338GMqdOj3qMZ9P0crw4D1MCNRJSB20eS6PeYkA=",
           "runtime/chunks/overlays-C6nlCHqg.js": "sha256-JtKjtFU2sbObAEtYaA9S+YE40WKP5hX073Xv4lpA67o=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-cEV4WAKxLNKgYY5pU9nDVSG4toj5mM7vGZwyE+6Ui8o=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-QUAq9dxIFB1jlxB27CrSrEZKRLa4rC6qRLbWmR2t/ug=",
           "index.html": "sha256-F+j2IXSP/bqqvJ5iiyqLOkHvIuLBvN0FsF+7CX+ZhVs=",
-          "README.md": "sha256-C4OBtsJ2H8DgpQBSnYKdxnEFWK1DzMadx7iqCtXlbz8=",
-          "manifest.json": "sha256-PcNqxwiG1X5VWBvkOJdDvDCM0f+9fF481+7ALcZ5LE0="
+          "README.md": "sha256-McAUJxOUfuhH7NUk2F0IGb4h10YDw/JOo+A3de3QR5I=",
+          "manifest.json": "sha256-B3+9wijwtVmg78SK2L/zDz2a2VjvKkoeRGCN47IfUo0="
         }
       }
     },
     {
       "id": "toast",
       "name": "Toast",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-toast",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/toast.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/overlays.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/toast.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/overlays.js",
       "imports": {
         "class": "@j3w1/ui/components/toast",
         "register": "@j3w1/ui/register/toast",
@@ -21665,25 +21665,25 @@
           "runtime/register/toast.js": "sha256-IdIE1uz4eUV1mu94jhavw3kQx9Omawr6aMO+ij/EIRU=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/toast.js": "sha256-fIq4QIW0yaiTF364MLSXi5g9VVwcmkvgNMCsd4FwY2k=",
+          "runtime/components/toast.js": "sha256-gUY0zMN0UtWnWMogNAGHzMKp/9K/lHpEEO2O96UOczU=",
           "runtime/chunks/overlays-C6nlCHqg.js": "sha256-JtKjtFU2sbObAEtYaA9S+YE40WKP5hX073Xv4lpA67o=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-dMp7q8HbznH2LxwbeRaoK7WL/2M2GeVwkitql3aJ3GE=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-2DXrOBOlEPzc9p3N5SEbw98qHHSMYTxlOnR6gT91kkU=",
           "index.html": "sha256-UfXmgxl10YQJyIiSccW0Sy7gHSjlICq9a865B0vR+7Q=",
-          "README.md": "sha256-YH6lSd7nRFbsjjzp+jEx7y0N8aRJpuBj9Nk6O5xSlIU=",
-          "manifest.json": "sha256-R31xRemdz+9bXVfWIQw3dqx6BeuLHbdjR6YvVGbZrz4="
+          "README.md": "sha256-glmOXFLgmTdZMSfDRNAbGtTuFhV8wlTt3O/n29eehWA=",
+          "manifest.json": "sha256-QUZywuqvBdXktqkQalU587cQkJP1TNu5O7Hmz1+3Of8="
         }
       }
     },
     {
       "id": "progress",
       "name": "Progress",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-progress",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/progress.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/native.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/progress.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/native.js",
       "imports": {
         "class": "@j3w1/ui/components/progress",
         "register": "@j3w1/ui/register/progress",
@@ -21980,25 +21980,25 @@
           "runtime/register/progress.js": "sha256-wcMNQVWBoGiWoasImip5urxM4QZkIIiDqdTbDHFb09c=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/progress.js": "sha256-k+d7sXcr0umsjLvrlyxe5XWzdYVNwC/8jdOlUd2UQ6Q=",
+          "runtime/components/progress.js": "sha256-w7ni5MbDrTY1JRgZvohqda/ikLBPqrPGkS3pQ8GbIxo=",
           "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-qVh6/s9QPg2t6WrczrtP5i8fP1blV8a6S9OZUF5oJdY=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-Bm2XYmsDcMrSYl/yKw1emmfA++ea/EjE5wzSjdg0eyw=",
           "index.html": "sha256-PMCQa/n0AlL1bSbPiT96VPfHTQgJmUowUoHElZGYf5k=",
-          "README.md": "sha256-/lojm2nC6j5q8E78fFp4zZmM/SDUrKbjbv14OLRFaqs=",
-          "manifest.json": "sha256-qo1HRQPrjs2luidLJfGE/ZA7NNhezgFfPRSVNDK1yEQ="
+          "README.md": "sha256-mab7Rc0mj3IIQisja4CxdSrzg0sf+BWibagjYzQHLBA=",
+          "manifest.json": "sha256-+xbZHUeYwSKdYAPxlQ4s9jGeA1gmCJByknlNpyBtByA="
         }
       }
     },
     {
       "id": "loading-indicator",
       "name": "Loading indicator",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-loading-indicator",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/loading-indicator.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/native.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/loading-indicator.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/native.js",
       "imports": {
         "class": "@j3w1/ui/components/loading-indicator",
         "register": "@j3w1/ui/register/loading-indicator",
@@ -22283,25 +22283,25 @@
           "runtime/register/loading-indicator.js": "sha256-4wKk+e/O8cCnxAR2RouY4I5/K1UuOcPjh3ehR7I9oqo=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/loading-indicator.js": "sha256-V4pbiMnRiW/pyf589UzZP+5sdCX60Sq4iItnhrXFBko=",
+          "runtime/components/loading-indicator.js": "sha256-g04a2YRD0wqjlmyA2BeK/HV6Tby4I7vdpyL5xztXFr0=",
           "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-eNbtRNqnJDdDaKs9tYapfgCNRwMffdQ7e2TqjrYuL6w=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-yiCrGr/OXo7SakIH4qRV3wDHbj09EqyJ2F7eTQHbnbc=",
           "index.html": "sha256-MGxeLPPCJTIT6qFSP0xS4GBpdzFTGjBojEELvbNO6VY=",
-          "README.md": "sha256-b9AnxauUpdlPxpSRRhnjUXnwaIrMOfJY14W5tuQj0qk=",
-          "manifest.json": "sha256-rU7xjVJE0G8PA4OA8aemwoNv+gXtoBB4wjO9Bb7Zxm8="
+          "README.md": "sha256-YTb+QzoC+3efSEKOW37hb8I9DQjZMX6hzRJAy/HWkU0=",
+          "manifest.json": "sha256-kkBE7ciqV5DbVuQysLGbNyVxkckW9pI4RvSTJ0qSHuE="
         }
       }
     },
     {
       "id": "skeleton",
       "name": "Skeleton",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-skeleton",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/skeleton.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/native.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/skeleton.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/native.js",
       "imports": {
         "class": "@j3w1/ui/components/skeleton",
         "register": "@j3w1/ui/register/skeleton",
@@ -22582,25 +22582,25 @@
           "runtime/register/skeleton.js": "sha256-LZWZWuDy/lr/JDq+2VL59KCkU2EurStRQaUsuNF4US4=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/skeleton.js": "sha256-GyjfWhmtJnN3vRNO+Kj2QZM63IKOdpXIv09WLuMH/h8=",
+          "runtime/components/skeleton.js": "sha256-tUKnVd/gCEOws2j6JVMQx4trIy92+oPjipm6/vvAVIQ=",
           "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-JI92x7GOktbjpIm0AQnODJ4rVTJnEQA4DLP34bflM4k=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-/g7jxryHfbaG3yxoxK8NfCh2k5U92wPPELD/107+2Ps=",
           "index.html": "sha256-wOHcfVLjvDJzcjrxHt2FdIU6zvsgQKyM+mk68FWiW1g=",
-          "README.md": "sha256-syw16cUmT0XSOFEA9ZFwKbfSVmaVqddi986/0CDn+FM=",
-          "manifest.json": "sha256-WLkKJKe59klU37bpvOAmxtO/7fuFQck3FyXKqorkD40="
+          "README.md": "sha256-n3ZiA0+KECsNtGvdo4qWrCXsMybCOfnNMMf87EqshRQ=",
+          "manifest.json": "sha256-FPbftSAuuPx4V2WeyyPeEAkPXG5HjN2zpgOqAbW1haY="
         }
       }
     },
     {
       "id": "tooltip",
       "name": "Tooltip",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-tooltip",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/tooltip.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/overlays.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/tooltip.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/overlays.js",
       "imports": {
         "class": "@j3w1/ui/components/tooltip",
         "register": "@j3w1/ui/register/tooltip",
@@ -22956,25 +22956,25 @@
           "runtime/register/tooltip.js": "sha256-HkIZuQ8Gs11kQ0MzBEIBWrfaPopBPdUh+ODRas1HzLk=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/tooltip.js": "sha256-WTgLZKB6EIeziSxvfxI84OSDbWSDWKk7LjcS5FWG8PE=",
+          "runtime/components/tooltip.js": "sha256-Oe0vP7l7eBZJ82+KCO1t18uKFarDMZq56HJ71I/cqiw=",
           "runtime/chunks/overlays-C6nlCHqg.js": "sha256-JtKjtFU2sbObAEtYaA9S+YE40WKP5hX073Xv4lpA67o=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-Skdu3czE82hMaq0VZwtG6ERV4Hud75l3iMhOfMR7K7U=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-+kSohyFbJg7z8/YUnlkzY1UQAu9ZLX7qE1eFLvk/1hI=",
           "index.html": "sha256-E+iyir+kE7FZW4yp4r+zjaBJSIcRsJGbvmwPckUJga0=",
-          "README.md": "sha256-p0/c98Th1zGlDVjYMmXSzYm5nck+Mieg0d0ihk2fFAg=",
-          "manifest.json": "sha256-+nOHqmvwqBb4cchelzmBGbrietG8s6Ex0a255kvguqo="
+          "README.md": "sha256-ZUjQwtYJAM5mMyuQKsqxfM4PsGTGMWQCQQgpQkU4+DE=",
+          "manifest.json": "sha256-wLPRt6zCyHQoOw+UG8zcDuuZD3AE+0gXTMvja5An3cw="
         }
       }
     },
     {
       "id": "popover",
       "name": "Popover",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-popover",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/popover.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/overlays.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/popover.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/overlays.js",
       "imports": {
         "class": "@j3w1/ui/components/popover",
         "register": "@j3w1/ui/register/popover",
@@ -23309,25 +23309,25 @@
           "runtime/register/popover.js": "sha256-eWKTLAUIMPauNqccfCSWaTkpN6Eyrj+GtlvM7FRaKHc=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/popover.js": "sha256-JFKXjBxtKikCogDIsCwXXHKs8vOQaqt6DcjUbwOGQbE=",
+          "runtime/components/popover.js": "sha256-kzvrVAGQFA/1pk4mysBkvK7FM6QSU515IfLJceXDaQI=",
           "runtime/chunks/overlays-C6nlCHqg.js": "sha256-JtKjtFU2sbObAEtYaA9S+YE40WKP5hX073Xv4lpA67o=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-53zGKZZyZMB+sdGIbnQk30oFXcLvjoplsW7FfQ9W0u0=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-tBbkSUEedfklBWmTm/lh13o3rlYHe/9AGgvmXp+p/Lo=",
           "index.html": "sha256-qj6qyYYBmNfnfn4cPT10GeMQN/ToGtN/ZB6H3yjUV/g=",
-          "README.md": "sha256-KxLOwExYdPDBsvancMV2zu9Je/8LbJuL+5+8P2eAtiw=",
-          "manifest.json": "sha256-6SpwgPP9Gex89Bw8UukXQWv39RYaU6VJd0ZHHs22k5M="
+          "README.md": "sha256-tDS2B1kMUgMc2kmrc1dAs+INkfARDLatzAWXx6AN/tY=",
+          "manifest.json": "sha256-gMRmSKaAi5niwF/PWWsifr92XmM735ZoNmTNkxHmH3o="
         }
       }
     },
     {
       "id": "dialog",
       "name": "Dialog",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-dialog",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/dialog.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/overlays.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/dialog.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/overlays.js",
       "imports": {
         "class": "@j3w1/ui/components/dialog",
         "register": "@j3w1/ui/register/dialog",
@@ -24020,25 +24020,25 @@
           "runtime/register/dialog.js": "sha256-Y6MRVCgkK5UEzcEdMHQSCUf6gMnxsPOJuhfEFWmJXOw=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/dialog.js": "sha256-7ThcG2BVI+YYF7lvlEZeWeyF51kTjPwJNg2ss2dHPvc=",
+          "runtime/components/dialog.js": "sha256-ZwP2gao3DL7tYsV2dwHXp4Dr+S0287CpfAlfNCMoFNc=",
           "runtime/chunks/overlays-C6nlCHqg.js": "sha256-JtKjtFU2sbObAEtYaA9S+YE40WKP5hX073Xv4lpA67o=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-d4bh9HaP4YOtfgWmP42qVqw3nqSJ3DF629AWjqoZTn4=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-wFFtRxUFWBTzxYOcblp+JjddYxJQF3QKoOb0/hIuSL0=",
           "index.html": "sha256-cDDMTM4Wj+7faOBKrvRWjGkb2tcMvyJcbhuH6ForsLs=",
-          "README.md": "sha256-POH3N5N1SKdtKfa6LZlCE7OW78Z6Vrpf7HE9e2F2YOM=",
-          "manifest.json": "sha256-usFHa1M9Hn354niKIg08j/0cYwYLLrsN/wkGCn8QIAk="
+          "README.md": "sha256-nkoS7abec2jLN1tXU+/EsxsIsioZ4VuZED1tRCzJW9s=",
+          "manifest.json": "sha256-9LQ9PNMAKPnZ08Jie1z8BHPCe5P54vBem/AviequK8s="
         }
       }
     },
     {
       "id": "drawer",
       "name": "Drawer",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-drawer",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/drawer.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/overlays.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/drawer.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/overlays.js",
       "imports": {
         "class": "@j3w1/ui/components/drawer",
         "register": "@j3w1/ui/register/drawer",
@@ -24732,25 +24732,25 @@
           "runtime/register/drawer.js": "sha256-6AFbTqS+kQAd15TJ9NzKLIyNKPdVVmxyZMeHJXtNEhU=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/drawer.js": "sha256-ozCFIGvVbK0p9RHIhp6K4NzxmZV8z0SwWFymQr2iFM8=",
+          "runtime/components/drawer.js": "sha256-4azfHMZfyxJroIZ7KWjzb5b8blhOwqFjic92zwLiSuQ=",
           "runtime/chunks/overlays-C6nlCHqg.js": "sha256-JtKjtFU2sbObAEtYaA9S+YE40WKP5hX073Xv4lpA67o=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-39DmGp3B3f8+C/QGAv6xbiVXT7QviSaVCnHk8XpC158=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-RNAiKQJPioHCtfhMtqcsFaQFfwhKvdH+iIfLXOWo6QQ=",
           "index.html": "sha256-CbS/ignNl9YlA8MUwmXMnGVVRk6rR78IN2YGSe3T/OI=",
-          "README.md": "sha256-zN1uHF9HBUZ7dPBE9vu5/e1X0gUgPYM1TE2sdsAwSuc=",
-          "manifest.json": "sha256-3BnKpV8RNvouTfuH1ZhbBr0L4yLJNLoWPx4v9w+8pHM="
+          "README.md": "sha256-m8qYDWZ/Q4uEhPC4JAx3+9ZK4aYbT0Pru3JAtJ5u4Fg=",
+          "manifest.json": "sha256-A+DmqSCK3wrr5ObF9/o7G/LE5CniDRG8THVwQAXelqc="
         }
       }
     },
     {
       "id": "empty-state",
       "name": "Empty state",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-empty-state",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/empty-state.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/overlays.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/empty-state.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/overlays.js",
       "imports": {
         "class": "@j3w1/ui/components/empty-state",
         "register": "@j3w1/ui/register/empty-state",
@@ -25178,25 +25178,25 @@
           "runtime/register/empty-state.js": "sha256-U7bwZQNspzXEKbkM+QwrFwH9wCsXZ+UNK2RYEFi+FjI=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/empty-state.js": "sha256-VJHT4U2XGrzrVPx3aPQtIh1DLRyz9boCurIKT9qWz+M=",
+          "runtime/components/empty-state.js": "sha256-ER2WN9+mdpIrWtcuJc3XChaOgt1nqxQJgMiXY9esmRs=",
           "runtime/chunks/overlays-C6nlCHqg.js": "sha256-JtKjtFU2sbObAEtYaA9S+YE40WKP5hX073Xv4lpA67o=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-Mdd72ooxolJDcPYScpT7yUM7Uj1SV5nk9LuG9vP0EeA=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-j6rKuP4LmxmaKm47ZcfAqQ0LKMqN7l90HZwvUydHutQ=",
           "index.html": "sha256-rcFm3dTOVu+pB+gds4jp/elaQrgi/1rGF8xpNTCacL4=",
-          "README.md": "sha256-j6bB1S3VDchRggdNAaWRv6qyyBb95hBjNxg1FDizlhA=",
-          "manifest.json": "sha256-XtowDmnOH4E3EV4abGUdXsKBak4hXscf46C73/t0Q1g="
+          "README.md": "sha256-JmgTRDvwjQ6YBA0PcVmzVedsr3lOW8TAnCI2V4BiOA8=",
+          "manifest.json": "sha256-xeAHM2xy4NCnaQkTa7LBkzxz8h2khU5YHowfyWU5rYs="
         }
       }
     },
     {
       "id": "error-state",
       "name": "Error state",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-error-state",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/error-state.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/overlays.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/error-state.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/overlays.js",
       "imports": {
         "class": "@j3w1/ui/components/error-state",
         "register": "@j3w1/ui/register/error-state",
@@ -25548,25 +25548,25 @@
           "runtime/register/error-state.js": "sha256-LIyigSg3KPB01jhmW1+pAsrMoPyf6KtZcmrTenvFCx8=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/error-state.js": "sha256-G0wE69Th7aKdr8plSC6CGEe+nMJ19WYiTG/xFwzv+iU=",
+          "runtime/components/error-state.js": "sha256-JYGHyijM0EXvMj0WJJNQYRSRHFJRADDTk05p8YsBsS8=",
           "runtime/chunks/overlays-C6nlCHqg.js": "sha256-JtKjtFU2sbObAEtYaA9S+YE40WKP5hX073Xv4lpA67o=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-CdLPhgSZDY0ucB4/nfZpfphuYXcfoqslUTPyuhz2tDw=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-ORjrriOpBHk2VlqSsyeUSEs1medDwB5oaTT4RxrXLFs=",
           "index.html": "sha256-ypHtxbip0wQwfxcnTK23eRJ0nU1YTWrbBIr8zvdVgzA=",
-          "README.md": "sha256-elAmv9gWxq0dIUdlkwDznb0RYNH4F12azyaP66n6JuI=",
-          "manifest.json": "sha256-T+TynfsRy9fkP74YRZPhwVoOy1c5kWfFJk3CAAuBHPI="
+          "README.md": "sha256-9NcGa+AYuce+cz+4PM+t4juxB8zHS06g7yZXLdfF0iI=",
+          "manifest.json": "sha256-miJ5NWSCxYcN1RWDtkX1a5o3QdPV4POxr88oQL3fiR0="
         }
       }
     },
     {
       "id": "code-editor",
       "name": "Code editor",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-code-editor",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/code-editor.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/display.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/code-editor.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/display.js",
       "imports": {
         "class": "@j3w1/ui/components/code-editor",
         "register": "@j3w1/ui/register/code-editor",
@@ -25796,7 +25796,8 @@
           "color.primitive.red.200",
           "color.primitive.red.350",
           "color.primitive.red.800",
-          "color.primitive.red.850",
+          "color.primitive.red.810",
+          "color.primitive.red.860",
           "color.primitive.rose.350",
           "color.primitive.rose.450",
           "color.primitive.rose.550",
@@ -26095,25 +26096,25 @@
           "runtime/register/code-editor.js": "sha256-agRsxgm8tBPEgLi7nGnYfqB/KOMRnbad/Eph3+YfYnE=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/code-editor.js": "sha256-50U83rjfmee05gAo4dY1QgcjxHGuN4TQwzO1Z2Kai5k=",
+          "runtime/components/code-editor.js": "sha256-JCTuGZiztDcix/7MhO29Knjrw+qCloDjb7ZYSzL45E0=",
           "runtime/chunks/display-dj9YaBfn.js": "sha256-0Y8LcHvfDz2LLz+EWdO8Jr6pfwnXPw03N8x1UcM2pN8=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-X9h2Mxr0yLKLoKffZDsC55HBiRmSX+SuRQkjkcxerOo=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-aD+1gDxKB5fijO+A+hjuTqChvHPDv5zp5tK9UPZhwLc=",
           "index.html": "sha256-Dn2d67XC/1eO3QNVfsBf4pv4f2WuhBmmk1fFbSiGnWY=",
-          "README.md": "sha256-bEm+FDynWIiR1zXyypV05Nz6rCi/SHpP/XB9dSMkn+Q=",
-          "manifest.json": "sha256-JisceTQX+r13pk25FyWYxH1ReQsPPAhI7fuNRuX1LyQ="
+          "README.md": "sha256-pxcxH2bz6hPh+7kArilTqpDh0sTN10dxIeAVAIvS1Ow=",
+          "manifest.json": "sha256-6HuRekUE7I+RRu8dgr1/NXJ1iQHKljrMkjJpcXv6j6Y="
         }
       }
     },
     {
       "id": "editor-search",
       "name": "Editor search",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-editor-search",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/editor-search.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/display.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/editor-search.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/display.js",
       "imports": {
         "class": "@j3w1/ui/components/editor-search",
         "register": "@j3w1/ui/register/editor-search",
@@ -26475,25 +26476,25 @@
           "runtime/register/editor-search.js": "sha256-tMpvZf9OrWiyhDzn0EWZnEz8kSJ2SP8tALzQVYqwCws=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/editor-search.js": "sha256-4kdoi6a4aX+qLAKIdTX+OAA2W7RTvEFtyl4i5nVcZ+0=",
+          "runtime/components/editor-search.js": "sha256-yGqmGCiPCcxSMJd+mS6UiZHCGygg4a65fnoee15c078=",
           "runtime/chunks/display-dj9YaBfn.js": "sha256-0Y8LcHvfDz2LLz+EWdO8Jr6pfwnXPw03N8x1UcM2pN8=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-M0SrYSnjmhmwR0wfAiNg1VU3bXhEQkYknaGRLw0fWMM=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-d4aAYzdcDHNmdiry3w1Y3xEHMEA6MELYHpoj25fZY7M=",
           "index.html": "sha256-nzYqIKBlE7peT4onxSzqAj0mwZHNcvHOF2jIuZV5iKo=",
-          "README.md": "sha256-JM30B8cZv2goLsbF/UcIDGCLOyHZIL68b7KlVCWDlq0=",
-          "manifest.json": "sha256-RqxcBjlZBeK3g5Y9xGtOFjpTgneC0rFjJXdBeiTzqqg="
+          "README.md": "sha256-r/AFaz6O+t5rOx9vLYk7bPSTURrsOPbr9967H+vsRgI=",
+          "manifest.json": "sha256-kxjwK8qGKzO1bZG+HCyIH7mBJiPfuIeP4Y0PPRoqmBk="
         }
       }
     },
     {
       "id": "diagnostics",
       "name": "Diagnostics",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-diagnostics",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/diagnostics.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/display.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/diagnostics.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/display.js",
       "imports": {
         "class": "@j3w1/ui/components/diagnostics",
         "register": "@j3w1/ui/register/diagnostics",
@@ -27060,25 +27061,25 @@
           "runtime/register/diagnostics.js": "sha256-lSYtaMuTbe7wtLvNB4chvQ8SOVu0ILi3pFknhy/X/0E=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/diagnostics.js": "sha256-F7ZXguzKrnHdEMMRJMCL6cw1GmeQy0JFr2ZjopduBOk=",
+          "runtime/components/diagnostics.js": "sha256-Kma+vFb2izc5BOAasqMvH8TW5wredp9w3iXbYNLtNZI=",
           "runtime/chunks/display-dj9YaBfn.js": "sha256-0Y8LcHvfDz2LLz+EWdO8Jr6pfwnXPw03N8x1UcM2pN8=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-1uXLsplg978riCNhv/v5p+RvR0hW6fVdRnKgNUo+IYs=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-oPPp/R+dnwC1tnH/Td+Hlrs3CRODUkA4Bvq/HK/fAUU=",
           "index.html": "sha256-Tq03gSM/g1JYQlO5vswlLUOSXHf9l2bEjBuZbLQpK1E=",
-          "README.md": "sha256-0ngTrE/jNJ8E3ir5pjuCRlmpt0B1FQu6ShKCvSquoZw=",
-          "manifest.json": "sha256-EQ1cBH8DUmr9pTW7Q4/BgpWZmJwmsB0i9bhaR+7EyCs="
+          "README.md": "sha256-06wM/9jvEV6lcNe358LfBzy3Of6ouymvaMoSk5UZxfo=",
+          "manifest.json": "sha256-6WgO/lVvnhg80GHPvY0DkhK9B3Dqhggf8IzFEqPOcnA="
         }
       }
     },
     {
       "id": "diff-view",
       "name": "Diff view",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-diff-view",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/diff-view.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/display.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/diff-view.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/display.js",
       "imports": {
         "class": "@j3w1/ui/components/diff-view",
         "register": "@j3w1/ui/register/diff-view",
@@ -27593,25 +27594,25 @@
           "runtime/register/diff-view.js": "sha256-dfbslff/fV33ePOMN/mGU9l+7RqomLajKxKQdpmW+qQ=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/diff-view.js": "sha256-zWf+fyroq9vkMUFgeahdcz8xCP07mO1kTGet2kPLpdM=",
+          "runtime/components/diff-view.js": "sha256-bkZRdWI5/tzJ9MxQhgadSy2eS0r0h9Bw0K3Q++ZifqU=",
           "runtime/chunks/display-dj9YaBfn.js": "sha256-0Y8LcHvfDz2LLz+EWdO8Jr6pfwnXPw03N8x1UcM2pN8=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-mibFUolrx0OWHlYNpEFTvfkMI0c6h4CUv7SWJ4eQVns=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-t7cx4Y+4qhIPiwFbRPz+6U12N/CFATPTfG7/iZf85zs=",
           "index.html": "sha256-EYPYe3QVJkVBz7byssoY6NHiAMZc9tW/oSLut2DPrX4=",
-          "README.md": "sha256-KrQKCCl+XkUjGGvEM7h7URClyTXR134S07/Xlufud+A=",
-          "manifest.json": "sha256-p7NPc9kgZromdk3EVBdniYwOwABcKZi5hSnBPl1Wls4="
+          "README.md": "sha256-751r3IsxtsU2ispUQUOE+Cs7uczNbmboB+yNuNQqGeE=",
+          "manifest.json": "sha256-WGddfkn6JDeDFwsi/epQ+LJ92IntplKKo9Ifa+PJSPU="
         }
       }
     },
     {
       "id": "terminal",
       "name": "Terminal",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-terminal",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/terminal.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/display.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/terminal.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/display.js",
       "imports": {
         "class": "@j3w1/ui/components/terminal",
         "register": "@j3w1/ui/register/terminal",
@@ -27681,7 +27682,7 @@
         {
           "id": "ansi-grid",
           "name": "ANSI grid",
-          "description": "One row per slot, labelled with its number; slots that pass 4.5:1 show sample text, slots that fail show colour blocks and a ✕, and every background is a block."
+          "description": "One row per slot, labelled with its number; the default profile's text slots show sample text, slot 0 (the background) and slot 8 (the dim tier) show colour blocks and a ✕, and every background is a block."
         },
         {
           "id": "attributes",
@@ -27708,7 +27709,7 @@
         "selection.text": "color.terminal.selection-text",
         "current.bg": "color.code.current-line",
         "prompt.bg": "color.terminal.ansi.4",
-        "prompt.text": "color.terminal.selection-text",
+        "prompt.text": "color.terminal.prompt-text",
         "prompt.branch-bg": "color.terminal.ansi.3",
         "prompt.branch-text": "color.terminal.bg",
         "dim.text": "color.text.muted",
@@ -27770,6 +27771,7 @@
           "color.terminal.bg",
           "color.terminal.cursor",
           "color.terminal.fg",
+          "color.terminal.prompt-text",
           "color.terminal.selection-bg",
           "color.terminal.selection-text",
           "color.text.default",
@@ -27802,39 +27804,30 @@
           "color.interaction.selection.text",
           "color.interaction.text-selection.bg",
           "color.interaction.text-selection.text",
+          "color.primitive.ansi-readable.1",
+          "color.primitive.ansi-readable.10",
+          "color.primitive.ansi-readable.12",
+          "color.primitive.ansi-readable.13",
+          "color.primitive.ansi-readable.14",
+          "color.primitive.ansi-readable.15",
+          "color.primitive.ansi-readable.4",
+          "color.primitive.ansi-readable.6",
+          "color.primitive.ansi-readable.8",
+          "color.primitive.ansi-readable.9",
           "color.primitive.ansi.0",
-          "color.primitive.ansi.1",
-          "color.primitive.ansi.10",
           "color.primitive.ansi.11",
-          "color.primitive.ansi.12",
-          "color.primitive.ansi.13",
-          "color.primitive.ansi.14",
-          "color.primitive.ansi.15",
           "color.primitive.ansi.2",
           "color.primitive.ansi.3",
-          "color.primitive.ansi.4",
           "color.primitive.ansi.5",
-          "color.primitive.ansi.6",
           "color.primitive.ansi.7",
-          "color.primitive.ansi.8",
-          "color.primitive.ansi.9",
           "color.primitive.ink.0",
           "color.primitive.ink.20",
           "color.primitive.ink.40",
           "color.primitive.paper.90",
           "color.primitive.red.100",
-          "color.primitive.red.200",
-          "color.primitive.red.250",
-          "color.primitive.red.300",
           "color.primitive.red.350",
-          "color.primitive.red.450",
-          "color.primitive.red.500",
-          "color.primitive.red.650",
-          "color.primitive.red.760",
-          "color.primitive.red.770",
           "color.primitive.red.800",
           "color.primitive.red.850",
-          "color.primitive.rose.320",
           "color.primitive.rose.350",
           "color.primitive.rose.550",
           "color.primitive.rose.600",
@@ -27861,6 +27854,7 @@
           "color.terminal.bg",
           "color.terminal.cursor",
           "color.terminal.fg",
+          "color.terminal.prompt-text",
           "color.terminal.selection-bg",
           "color.terminal.selection-text",
           "color.text.default",
@@ -28030,6 +28024,11 @@
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
+          "color.terminal.prompt-text": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
           "color.terminal.selection-bg": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -28139,25 +28138,25 @@
           "runtime/register/terminal.js": "sha256-HI+Ed6H0sblV3/oR4o14WYg9OG1oLmgIOC/HbV2sFos=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/terminal.js": "sha256-K7BuGFq9qsM9D+BIFCiMXKoMsZHLmxWGHPqqAKJrCF4=",
+          "runtime/components/terminal.js": "sha256-JmpaTRo3JIwDKO1J8n1GAemAZTd2PUpc+q/b+kVRLkY=",
           "runtime/chunks/display-dj9YaBfn.js": "sha256-0Y8LcHvfDz2LLz+EWdO8Jr6pfwnXPw03N8x1UcM2pN8=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
-          "component.css": "sha256-MIhYtQDMss2ri6iV237ysdPcm2B6qLEf0RUxUM8ie+E=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
+          "component.css": "sha256-K/HmwD4ugrOMOUIdtkgqXpztghGGABbSHbJElT1BBBo=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-WyXNyoxiAXNq3bLZRmrc1qS2XzgHghN+5tO+9HpocVA=",
           "index.html": "sha256-7nIjP5H9Tnolb/DAw1vtVGkOfqf2/oL9ZxMvSounzKk=",
-          "README.md": "sha256-DrIeKudvrggNXm6/if1thPvyLnc62pMot8HzogO/QSE=",
-          "manifest.json": "sha256-udv1bbRFz5HXYVzDSi0c+7lI3MD91pOmjtua9tIlZdE="
+          "README.md": "sha256-7OCa+plqzV1a+MRqghDdUJCBIUSNwoCsP57iKTJ91yI=",
+          "manifest.json": "sha256-bGCP/DgjhcJvuNn6nRZYGzVqc+i1Ld+j/M8RGQVjNMo="
         }
       }
     },
     {
       "id": "settings-panel",
       "name": "Settings panel",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-settings-panel",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/settings-panel.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/forms.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/settings-panel.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/forms.js",
       "imports": {
         "class": "@j3w1/ui/components/settings-panel",
         "register": "@j3w1/ui/register/settings-panel",
@@ -28973,27 +28972,27 @@
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
           "runtime/register/switch.js": "sha256-WA0Avt/JJmz7DqxDx8v5Rnw3WCZFaVGJjPdibTQKkSc=",
-          "runtime/components/switch.js": "sha256-y95w7FKSiLDm1plL50Q9ldcowSBT3XJxkwEGJOWaO8I=",
+          "runtime/components/switch.js": "sha256-xt2Q+YT/dvNYw+6WIQi9MuEPy8CJO7zza/oJSeBBoJg=",
           "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-          "runtime/components/settings-panel.js": "sha256-tsspj5ZPz58ss8n+BJElYXzq+R1BKbvQhqHE0hGH/OU=",
+          "runtime/components/settings-panel.js": "sha256-MfBo2xT28OmY0PGDOOD79XPm0C8JlrNr9hvisl5WdDg=",
           "runtime/chunks/forms-BT3z7lNC.js": "sha256-Txmae07dWLj1H/FL869U0Kv84TQxzpdFeOg0g8zGK6I=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-bKV+vxJoQcQ+/WSkUADY0AkxpU9pAMAviGj+BrOQK1w=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-Z1ZqDdIXySN8gWG0bvhT8iMaa+GaOyHy/vumYpCsYt8=",
           "index.html": "sha256-jGGdyR2U7IytSpOvqtrVJUJKtnNfW/khN9J+vCUatNM=",
-          "README.md": "sha256-fjJfIkP6IUQ7JVxhar5NRjmiMOxATIFzVN6hJdgagys=",
-          "manifest.json": "sha256-5bzmV9ep4e5Detkiqki1jYWyasoFYSQr21mJ9wz9/yE="
+          "README.md": "sha256-kUhv15zsnHPUJuj6TeAEJ5e7X+uuzNe7w3W9i6lhn3s=",
+          "manifest.json": "sha256-O5ZF7kAEJ09RUdn0hYno4Sft8uSryQd+sWYscuEhwa4="
         }
       }
     },
     {
       "id": "admin-form",
       "name": "Admin form",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-admin-form",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/admin-form.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/forms.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/admin-form.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/forms.js",
       "imports": {
         "class": "@j3w1/ui/components/admin-form",
         "register": "@j3w1/ui/register/admin-form",
@@ -29901,31 +29900,31 @@
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
           "runtime/register/text-field.js": "sha256-DD+ctMlKClOK6B/glshiJwIjKilewzY171GvKtVGf1A=",
-          "runtime/components/text-field.js": "sha256-bsHMtehxnr46wvO9thnnQyzud9erLpiGMmxnS8hAuDA=",
+          "runtime/components/text-field.js": "sha256-P9D2vXvBRXLVYzSg9WKBslllePI3kHNuAYvEXCMmQwA=",
           "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
           "runtime/register/textarea.js": "sha256-H+BMjmdgnMxVEA9KvLSSKoOlHTAH91Qy7+pjUiTlgEE=",
-          "runtime/components/textarea.js": "sha256-t5z8aPGOq98pdt7OxcbMuppTeeo50Uru+VhCOt1Va68=",
+          "runtime/components/textarea.js": "sha256-WVmyDkrKbTthLnBEbrPcs3xlA83+/SZ3Nj/+IPQvpuY=",
           "runtime/register/select.js": "sha256-zXXuJRnrp9EVnk1A8VpgUzF/JPShcAImY9zRc6nQasQ=",
-          "runtime/components/select.js": "sha256-RDYaAX/SayqXoPsDxGEro+rG6a0qnOo71uge+c7xQ5M=",
-          "runtime/components/admin-form.js": "sha256-iwQXqrWL9zZ83Fi12K2B+9q2eTkDpvPNxVSVKb2d6dI=",
+          "runtime/components/select.js": "sha256-4Xg4o4sno6mUHdMLLEHl/rdIpt3qFDYF6FKAMm0rkLc=",
+          "runtime/components/admin-form.js": "sha256-/dAn15xMzeJ2KW9jKw497yxx41f4bUPI0j+kGGf1FiY=",
           "runtime/chunks/forms-BT3z7lNC.js": "sha256-Txmae07dWLj1H/FL869U0Kv84TQxzpdFeOg0g8zGK6I=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-Of5oLJY6n5Yfqu44/xCAuuJEYRoCg4Kr+YZbVggbwZE=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-TRLraonRxggrZcfXS9jlN+nTIOpRHiXbMKQNm8NbR2A=",
           "index.html": "sha256-HsmeIqneb7G9ZHVJEuzAqXdP7AYU8OlzG8Rs70uYyBQ=",
-          "README.md": "sha256-oidJhH1gbsYi2kpk7qSU6imWd6tUByXijYsmK/i2xaI=",
-          "manifest.json": "sha256-Z6CRR2IVXUPQ4kRQAiB+at2N+IShX4vfncx3OMvWHus="
+          "README.md": "sha256-jfMi2wbACziORV7ll3X/rL5rAZ+YHuVxxv9UqIuJTlc=",
+          "manifest.json": "sha256-CsaQ/dV4WaJUNm0xXtZEdgCJotbnRf2hJ1lfuZDxzl0="
         }
       }
     },
     {
       "id": "filterable-table",
       "name": "Filterable table",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-filterable-table",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/filterable-table.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/tables.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/filterable-table.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/tables.js",
       "imports": {
         "class": "@j3w1/ui/components/filterable-table",
         "register": "@j3w1/ui/register/filterable-table",
@@ -30680,27 +30679,27 @@
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
           "runtime/register/search-field.js": "sha256-Z6IeX4+LKGVQJUcQGuyUnCBL6ggQSoevMhrj75zYisw=",
-          "runtime/components/search-field.js": "sha256-4zdiSs9nHNNd3FWWGtdiWwst5UMz3VQIRlv0Hvuz/EY=",
+          "runtime/components/search-field.js": "sha256-0t9rViTvcJZXk/w+gKGSDKSd6p3+H4nbkhVsWy8AwS0=",
           "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-          "runtime/components/filterable-table.js": "sha256-EHk7AyT6jv0+cXEpUXzvUST4TZ83BkaLS82YxPFz1Pk=",
+          "runtime/components/filterable-table.js": "sha256-uTYi7Obbr1IfF3Ety8TZ9RHleQDeBDKBdBrqI3ZfodM=",
           "runtime/chunks/tables-B25ydUHs.js": "sha256-XqRdyfrSS93rVybWHq6a0WhrmZgaboHi5n8ymgwRbM8=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-ZpN1xEJy4fV/PBDvH91mkuN2CZqhCUo5wpeCs27jREo=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-3PbF9wWtnKy3q07M9x690D730biEbSwu20wHAcvPPEE=",
           "index.html": "sha256-61p1J3mpIgWTPXP4+wTHI0p/MffdvGq+yeT7j0urEZA=",
-          "README.md": "sha256-qGxKjhmKDkC1GUF8T2g0yWLHqo/iA6D1oCuY2gZLcbE=",
-          "manifest.json": "sha256-8yGkZ8KX3/MM7+wtNksfeXeRIQpo5XAMXISxgD8ercY="
+          "README.md": "sha256-29hv3iKckNBNFxCSXtOh/i9434KjqfV0bJ/y0oB/p9E=",
+          "manifest.json": "sha256-ggQJPzakDTni2eBkbeHmsNIIS/aqPFWCS9fcevwNHcc="
         }
       }
     },
     {
       "id": "i3-window-frame",
       "name": "i3 window frame",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-i3-window-frame",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/i3-window-frame.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/compositions.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/i3-window-frame.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/compositions.js",
       "imports": {
         "class": "@j3w1/ui/components/i3-window-frame",
         "register": "@j3w1/ui/register/i3-window-frame",
@@ -30895,6 +30894,7 @@
           "color.terminal.bg",
           "color.terminal.cursor",
           "color.terminal.fg",
+          "color.terminal.prompt-text",
           "color.terminal.selection-bg",
           "color.terminal.selection-text",
           "color.text.bright",
@@ -30983,22 +30983,22 @@
           "color.interaction.text-selection.bg",
           "color.interaction.text-selection.text",
           "color.primitive.alpha.black-55",
+          "color.primitive.ansi-readable.1",
+          "color.primitive.ansi-readable.10",
+          "color.primitive.ansi-readable.12",
+          "color.primitive.ansi-readable.13",
+          "color.primitive.ansi-readable.14",
+          "color.primitive.ansi-readable.15",
+          "color.primitive.ansi-readable.4",
+          "color.primitive.ansi-readable.6",
+          "color.primitive.ansi-readable.8",
+          "color.primitive.ansi-readable.9",
           "color.primitive.ansi.0",
-          "color.primitive.ansi.1",
-          "color.primitive.ansi.10",
           "color.primitive.ansi.11",
-          "color.primitive.ansi.12",
-          "color.primitive.ansi.13",
-          "color.primitive.ansi.14",
-          "color.primitive.ansi.15",
           "color.primitive.ansi.2",
           "color.primitive.ansi.3",
-          "color.primitive.ansi.4",
           "color.primitive.ansi.5",
-          "color.primitive.ansi.6",
           "color.primitive.ansi.7",
-          "color.primitive.ansi.8",
-          "color.primitive.ansi.9",
           "color.primitive.ink.0",
           "color.primitive.ink.14",
           "color.primitive.ink.20",
@@ -31008,20 +31008,14 @@
           "color.primitive.paper.90",
           "color.primitive.red.100",
           "color.primitive.red.200",
-          "color.primitive.red.250",
-          "color.primitive.red.300",
           "color.primitive.red.350",
           "color.primitive.red.400",
-          "color.primitive.red.450",
           "color.primitive.red.50",
-          "color.primitive.red.500",
-          "color.primitive.red.650",
-          "color.primitive.red.760",
-          "color.primitive.red.770",
           "color.primitive.red.800",
+          "color.primitive.red.810",
           "color.primitive.red.850",
+          "color.primitive.red.860",
           "color.primitive.rose.300",
-          "color.primitive.rose.320",
           "color.primitive.rose.350",
           "color.primitive.rose.450",
           "color.primitive.rose.550",
@@ -31053,6 +31047,7 @@
           "color.terminal.bg",
           "color.terminal.cursor",
           "color.terminal.fg",
+          "color.terminal.prompt-text",
           "color.terminal.selection-bg",
           "color.terminal.selection-text",
           "color.text.bright",
@@ -31442,6 +31437,11 @@
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
+          "color.terminal.prompt-text": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
           "color.terminal.selection-bg": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -31651,26 +31651,26 @@
           "runtime/register/i3-window-frame.js": "sha256-T8BESQEwjGZsf7/+P5mPJcokXWquh+9IX+aeYr2odNE=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/components/i3-window-frame.js": "sha256-Tqa2tdw0vbzKVItvzwuij1RZz+IIGQKd5rAwBse6stM=",
+          "runtime/components/i3-window-frame.js": "sha256-RmAfb78tW/HR9EmBrLPqshW251IrzlBgaowpHWb5fIQ=",
           "runtime/chunks/compositions-d6BkKTYf.js": "sha256-El5csGAVMeeZWmJ1ztdXW3O3t2AQPrf3YrEOMkGX17c=",
           "runtime/chunks/navigation-Dt8ap-9J.js": "sha256-7QSC/eQSDSRRy3YqMltwjb6cwbEA0V652cfo+Ng2VqA=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
-          "component.css": "sha256-QljmW58WdoKF6+YBgt70LlUJmwvwqRDo5o6oSTF0nTA=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
+          "component.css": "sha256-CZ6YOvxPihCFrBOXp/3NpTSU11F0zHBTGuNNHoygcBU=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-nNyvwUVLU3Rdy3x0UcZN+IkCA1+Ot5CVwjUB54GDnq8=",
           "index.html": "sha256-5VNshBKwk0GCY7ID/iL5fiZjb6VRrIZhEdVK/HjtiK0=",
-          "README.md": "sha256-+YY7YCnF1zbr3+9pjGudz/HTr0Mqr1IwSuvKyPJ5JCI=",
-          "manifest.json": "sha256-mpH5Ue/5wBxbdSnN4O9V47uieKl/kmcJSTxUEmkEA7U="
+          "README.md": "sha256-E2/wZaIBuZlDr8F5nmgdQLKvVYiZdVwcogrx9Sq/iTQ=",
+          "manifest.json": "sha256-KKl+cQvMh1M+RqRVJ7c3/wDxfVnKYUU7LKK9u6iFhIA="
         }
       }
     },
     {
       "id": "file-browser",
       "name": "File browser",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-file-browser",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/file-browser.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/compositions.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/file-browser.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/compositions.js",
       "imports": {
         "class": "@j3w1/ui/components/file-browser",
         "register": "@j3w1/ui/register/file-browser",
@@ -32129,29 +32129,29 @@
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
           "runtime/register/tree.js": "sha256-xY8jWYnbMM8UlE/rdQJsu3/URGPvdUC06U1QmKsmFZQ=",
-          "runtime/components/tree.js": "sha256-RClTDpX2JH40fjk0koAVbrjimqrLAqddloblFeyUjhg=",
+          "runtime/components/tree.js": "sha256-WwZH2Q9TwSO6Oi9J9px50Xv68VZ52hGPHuhQ88KoPfw=",
           "runtime/chunks/advanced-DCpe8Ndv.js": "sha256-nr1LFdLYsGeTM4vDyldvuJygRm0F04sYonxatySPu1g=",
           "runtime/chunks/markup-DeQ4bEMR.js": "sha256-Eyyx7MKBoqXK4i2HaVUQhKUM066L2wIggABt6jAdgas=",
-          "runtime/components/file-browser.js": "sha256-v/EeC/EPmvoMyvyBeXXgfN88GVSIWoUTD8oVbdZJtxs=",
+          "runtime/components/file-browser.js": "sha256-lcgW3zSZe6E8NpZjvx08hQAZ9xQyXls5S2EzBXjWc8Y=",
           "runtime/chunks/compositions-d6BkKTYf.js": "sha256-El5csGAVMeeZWmJ1ztdXW3O3t2AQPrf3YrEOMkGX17c=",
           "runtime/chunks/navigation-Dt8ap-9J.js": "sha256-7QSC/eQSDSRRy3YqMltwjb6cwbEA0V652cfo+Ng2VqA=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-jXsUncF3ZqNTAY54eALB2XHlOFiiumSXp+AnM14Tz1Q=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-TbSmPr7cV31g3WqgPi6LboOGQdmgxz/89Tf/3ld2pfU=",
           "index.html": "sha256-68VZEF9M4ZFNgI9IZ7yrpktM4/9dA+GR/D6aTo6ocn0=",
-          "README.md": "sha256-2Oaes5eyrYlL5JAuylI5VcfxIgtbU6T+FeKVVtiQAOs=",
-          "manifest.json": "sha256-KqCTVSQmnuaOO0+533gvuq0hKjWw9oifw1s8WCkuwrM="
+          "README.md": "sha256-O9Uar0drahpnelkz99qb0kb89Oid1UfM5BFnK8kq5q0=",
+          "manifest.json": "sha256-rXYLAWzXkdDTakoILFHNZt4413DWHfaQjz54gpUlm5E="
         }
       }
     },
     {
       "id": "compact-dashboard",
       "name": "Compact dashboard",
-      "version": "1.2.0",
+      "version": "2.0.0",
       "tag": "j3w1-compact-dashboard",
-      "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/compact-dashboard.md",
-      "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/compositions.js",
+      "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/compact-dashboard.md",
+      "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/compositions.js",
       "imports": {
         "class": "@j3w1/ui/components/compact-dashboard",
         "register": "@j3w1/ui/register/compact-dashboard",
@@ -32630,18 +32630,18 @@
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
           "runtime/register/chart.js": "sha256-5iBwKSjcyRylARXTeL2emhbuI2FCMQ757IBdPqFnU0U=",
-          "runtime/components/chart.js": "sha256-f00AT79NVyUrW/+29bIPeinwZTrHOYr91eYeav3XZ1Y=",
+          "runtime/components/chart.js": "sha256-m4i8dUikaF4VD/smsoPzMzz9wuF/KbISSd8dg0gpEd8=",
           "runtime/chunks/display-dj9YaBfn.js": "sha256-0Y8LcHvfDz2LLz+EWdO8Jr6pfwnXPw03N8x1UcM2pN8=",
-          "runtime/components/compact-dashboard.js": "sha256-rHOMZQCwb4U0/gWoPI2qX3Tp7tEhghY9D/FuAvI5t60=",
+          "runtime/components/compact-dashboard.js": "sha256-/6h8wINXFx9PmZt/3B0XFUH3dESpgT06czb7Pz3xJHs=",
           "runtime/chunks/compositions-d6BkKTYf.js": "sha256-El5csGAVMeeZWmJ1ztdXW3O3t2AQPrf3YrEOMkGX17c=",
           "runtime/chunks/navigation-Dt8ap-9J.js": "sha256-7QSC/eQSDSRRy3YqMltwjb6cwbEA0V652cfo+Ng2VqA=",
-          "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+          "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
           "component.css": "sha256-CK9kd2wDntxSLF6J4F4+3SFybCPdr/tSqL7xJpw3hFs=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-I++zY2714BqcfCh02WgcXCFwujrwXLK4TwP9wII+QE4=",
           "index.html": "sha256-3/JWb8Uk24wjHBuQjWRaXDvwfUi9Mp9wjh4uYtdNxQ4=",
-          "README.md": "sha256-qQvnripP000ObyN6YRQiwLB6yRCxMw510PBFP1i14Rg=",
-          "manifest.json": "sha256-zR+pNlNGhqFV42v+sJ945hZHpvn76ykPWaCCDPuQdPQ="
+          "README.md": "sha256-uYulUBng1FP6Dw/HTAlHDttDFUl37oo5IBSaHjq8uw0=",
+          "manifest.json": "sha256-HbFvmBaWmc0y8QCebhiWLF8N+0KtClZrVa3AbyuAZro="
         }
       }
     }

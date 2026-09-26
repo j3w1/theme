@@ -3,8 +3,8 @@ import { t as formComposition } from "../chunks/forms-BT3z7lNC.js";
 //#region .cache/ui-build/entries/components/admin-form.js
 var J3w1AdminForm = class extends J3w1Element {
 	static componentId = "admin-form";
-	static version = "1.2.0";
-	static implementationId = "sha256-p+oOVrSgV+00iW2/YqKmT8SXezpLZsgWwFW2LrXg5vs=";
+	static version = "2.0.0";
+	static implementationId = "sha256-otV5xnHzaH7yqnWaI3MOCuaDU1A7o1sCh2BWz5i91pc=";
 	static connect = formComposition;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

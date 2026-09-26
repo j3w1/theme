@@ -264,6 +264,51 @@
       "surface": "outside-terminal",
       "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
+    "color.code.hued.attribute": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+    },
+    "color.code.hued.constant": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+    },
+    "color.code.hued.escape": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+    },
+    "color.code.hued.function": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+    },
+    "color.code.hued.number": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+    },
+    "color.code.hued.operator": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+    },
+    "color.code.hued.property": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+    },
+    "color.code.hued.string": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+    },
+    "color.code.hued.type": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+    },
     "color.code.indent-guide": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
@@ -629,6 +674,56 @@
       "surface": "outside-terminal",
       "reason": "Primitive; ports consume roles, never primitives."
     },
+    "color.primitive.ansi-readable.1": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi-readable.10": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi-readable.12": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi-readable.13": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi-readable.14": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi-readable.15": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi-readable.4": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi-readable.6": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi-readable.8": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.ansi-readable.9": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
     "color.primitive.ansi.0": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
@@ -879,7 +974,17 @@
       "surface": "outside-terminal",
       "reason": "Primitive; ports consume roles, never primitives."
     },
+    "color.primitive.red.810": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
     "color.primitive.red.850": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.860": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
       "reason": "Primitive; ports consume roles, never primitives."
@@ -1208,6 +1313,11 @@
       "state": "mapped",
       "surface": "terminal-colours",
       "reason": "Written to the file's foreground key."
+    },
+    "color.terminal.prompt-text": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "The prompt chooses its own segment colours; a terminal theme carries the palette only."
     },
     "color.terminal.selection-bg": {
       "state": "unsupported",

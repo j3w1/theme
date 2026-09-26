@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "component": "radio-group",
-  "version": "1.2.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/radio-group.md",
+  "version": "2.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/radio-group.md",
   "dependencies": [
     "register/radio-group.js",
     "chunks/element-C1XeXVYC.js",
@@ -14,13 +14,13 @@
     "runtime/register/radio-group.js": "sha256-L7TPdkL+uckYkNZ8nwZWjfTisSvOmPO7rqB3QlmfaTI=",
     "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
     "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-    "runtime/components/radio-group.js": "sha256-C5H+gtRlncKiDOtnaq0iu6Tgj7oc7e9nfQ0CtXx6KT8=",
+    "runtime/components/radio-group.js": "sha256-mqB0ab2wdEW1m3TA19VTR7PT4ibThKlMCRzbVEJel7M=",
     "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-    "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+    "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
     "component.css": "sha256-Ig6nuF1jMxOL71ppi7cvN8DjEKs9unk/ugZ0b1XTImY=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-6HA7gvr2JUQeKZ5jWPcVyfSw5t4FmaqlAA/+mhuSJjc=",
     "index.html": "sha256-4ptm1dy28zuJlLU04Zd8QtEveiw6njq8DNNQd89W/1w=",
-    "README.md": "sha256-ju3I1ZLDWdSwEoOZVvEp4bGFkmZv5gzA4LXuYZUIOd4="
+    "README.md": "sha256-8pWAtcJ0UUm+CBeFDyir+o/STP0FxdPU/+6xJJ8TWJA="
   }
 }

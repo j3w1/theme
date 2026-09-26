@@ -105,13 +105,15 @@ it silently.
   evidence. Missing protocols remain not run, not implied by the scan.
 - `text.disabled` at 3.52:1 on canvas is below the ordinary-text floor by design and
   relies on the WCAG exemption for inactive controls.
-- Heritage ANSI slots 1, 4, 6, 8, 9, 10, 12, 13, 14 and 15 fail 4.5:1 on the
-  terminal background (slot 0 is the background). Programs that render errors
-  or directories in those slots inherit that failure; the `extended` overlay
-  proposes a corrected set.
-- Syntax roles inside an editor selection: keyword, type, property and comment
-  drop below 4.5:1 on `code.selection-bg`. Selection is transient; the
-  limitation is recorded in the code-editor specification.
+- In the `default` profile, terminal slot 8 is the dim tier at 3.01:1 on the
+  terminal background (D-029; slot 0 is the background). Programs that render
+  text in slot 8 inherit that. The `heritage-ansi` profile keeps the historical
+  slots, where 1, 4, 6, 8, 9, 10, 12, 13, 14 and 15 fail 4.5:1; the `extended`
+  overlay proposes a semantic set.
+- Syntax roles inside an editor selection: type and comment drop below 4.5:1 on
+  `code.selection-bg` (4.24 and 4.13:1); keyword, tag, property and heading
+  stay above it after D-029. Selection is transient; the limitation is
+  recorded in the code-editor specification.
 
 
 ## Verification evidence and freshness

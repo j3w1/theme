@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "theme": "j3w1-theme",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "sourcePolicy": "Relative paths refer to the same pinned revision as this digest-covered export. Historical references and private runs are not published ports.",
   "ports": [
     {
@@ -10,7 +10,7 @@
       "declaredStatus": "experimental",
       "format": "ghostty-config",
       "integrationKind": "terminal-16",
-      "themeVersion": "1.2.0",
+      "themeVersion": "2.0.0",
       "themeRevision": "7b045d1a7bc32fddc7c9946e7084ffe74f62b5b5",
       "profile": "default",
       "targetVersions": [
@@ -25,7 +25,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-KBWyx+ipEimot7Z9ngSUf8v/fYewCTMRcurs2650m+o=",
+      "subjectDigest": "sha256-uxhqmRxslqV0VOvCmkTZ9lLKvbufNSGMQCTFZtp/lW4=",
       "evidencePath": null,
       "surfaces": {
         "terminal-colours": {
@@ -58,7 +58,7 @@
           "path": "dist/j3w1",
           "install": "Save as ~/.config/ghostty/themes/j3w1 and add `theme = j3w1` to your Ghostty config.",
           "source": "ports/ghostty/dist/j3w1",
-          "digest": "sha256-lNITy0AUFyEQxSWhlQ7bQAPXW8fjQ+/aYVO3rmQE7dA="
+          "digest": "sha256-X8W1IOgdCb4EncxKrgfkho06Ekla6dFk6L20CLzvkMQ="
         }
       ],
       "rollback": "Remove the `theme = j3w1` line (or point it at your previous theme) and delete ~/.config/ghostty/themes/j3w1.",
@@ -778,6 +778,141 @@
           "spec": "spec/portability.md"
         },
         {
+          "role": "color.code.hued.attribute",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.constant",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.escape",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.function",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.number",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.operator",
+          "nativeKeys": [],
+          "value": "#ffa2a7",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.property",
+          "nativeKeys": [],
+          "value": "#7e9ebb",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.string",
+          "nativeKeys": [],
+          "value": "#86a46f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.type",
+          "nativeKeys": [],
+          "value": "#7e9ebb",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
           "role": "color.code.indent-guide",
           "nativeKeys": [],
           "value": "#531310",
@@ -975,7 +1110,7 @@
         {
           "role": "color.code.syntax.heading",
           "nativeKeys": [],
-          "value": "#e53935",
+          "value": "#e95551",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -990,7 +1125,7 @@
         {
           "role": "color.code.syntax.invalid",
           "nativeKeys": [],
-          "value": "#e53935",
+          "value": "#e95551",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -1005,7 +1140,7 @@
         {
           "role": "color.code.syntax.keyword",
           "nativeKeys": [],
-          "value": "#f73f35",
+          "value": "#f7463c",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -1050,7 +1185,7 @@
         {
           "role": "color.code.syntax.property",
           "nativeKeys": [],
-          "value": "#e53935",
+          "value": "#e95551",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -1095,7 +1230,7 @@
         {
           "role": "color.code.syntax.tag",
           "nativeKeys": [],
-          "value": "#f73f35",
+          "value": "#f7463c",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -1873,6 +2008,156 @@
           "spec": "spec/portability.md"
         },
         {
+          "role": "color.primitive.ansi-readable.1",
+          "nativeKeys": [],
+          "value": "#e84b4b",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi-readable.10",
+          "nativeKeys": [],
+          "value": "#dc4f49",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi-readable.12",
+          "nativeKeys": [],
+          "value": "#db433a",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi-readable.13",
+          "nativeKeys": [],
+          "value": "#ed5360",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi-readable.14",
+          "nativeKeys": [],
+          "value": "#e6565a",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi-readable.15",
+          "nativeKeys": [],
+          "value": "#b17e81",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi-readable.4",
+          "nativeKeys": [],
+          "value": "#e53131",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi-readable.6",
+          "nativeKeys": [],
+          "value": "#bb696c",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi-readable.8",
+          "nativeKeys": [],
+          "value": "#b71c17",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi-readable.9",
+          "nativeKeys": [],
+          "value": "#ea3833",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
           "role": "color.primitive.ansi.0",
           "nativeKeys": [],
           "value": "#0c0909",
@@ -2623,9 +2908,39 @@
           "spec": "spec/portability.md"
         },
         {
+          "role": "color.primitive.red.810",
+          "nativeKeys": [],
+          "value": "#e95551",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
           "role": "color.primitive.red.850",
           "nativeKeys": [],
           "value": "#f73f35",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.red.860",
+          "nativeKeys": [],
+          "value": "#f7463c",
           "eligibility": {
             "action": "blocked",
             "reason": "Inspection only: consume semantic roles, not primitives.",
@@ -3351,7 +3666,7 @@
           "nativeKeys": [
             "palette[1]"
           ],
-          "value": "#c81a1a",
+          "value": "#e84b4b",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -3368,7 +3683,7 @@
           "nativeKeys": [
             "palette[10]"
           ],
-          "value": "#ad2721",
+          "value": "#dc4f49",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -3402,7 +3717,7 @@
           "nativeKeys": [
             "palette[12]"
           ],
-          "value": "#871f19",
+          "value": "#db433a",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -3419,7 +3734,7 @@
           "nativeKeys": [
             "palette[13]"
           ],
-          "value": "#e82132",
+          "value": "#ed5360",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -3436,7 +3751,7 @@
           "nativeKeys": [
             "palette[14]"
           ],
-          "value": "#e0292f",
+          "value": "#e6565a",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -3453,7 +3768,7 @@
           "nativeKeys": [
             "palette[15]"
           ],
-          "value": "#a3676b",
+          "value": "#b17e81",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -3504,7 +3819,7 @@
           "nativeKeys": [
             "palette[4]"
           ],
-          "value": "#8c1212",
+          "value": "#e53131",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -3538,7 +3853,7 @@
           "nativeKeys": [
             "palette[6]"
           ],
-          "value": "#9e474a",
+          "value": "#bb696c",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -3572,7 +3887,7 @@
           "nativeKeys": [
             "palette[8]"
           ],
-          "value": "#7d1310",
+          "value": "#b71c17",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -3589,7 +3904,7 @@
           "nativeKeys": [
             "palette[9]"
           ],
-          "value": "#ab1612",
+          "value": "#ea3833",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -3650,6 +3965,21 @@
           "state": "mapped",
           "surface": "terminal-colours",
           "reason": "Written to the file's foreground key.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.terminal.prompt-text",
+          "nativeKeys": [],
+          "value": "#0c0909",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "The prompt chooses its own segment colours; a terminal theme carries the palette only.",
           "source": "ports/ghostty/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -4970,7 +5300,7 @@
       "declaredStatus": "experimental",
       "format": "ghostty-config",
       "integrationKind": "terminal-16",
-      "themeVersion": "1.2.0",
+      "themeVersion": "2.0.0",
       "themeRevision": "7b045d1a7bc32fddc7c9946e7084ffe74f62b5b5",
       "profile": "default",
       "targetVersions": [
@@ -4986,7 +5316,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-wTJ85BHrlgcjkFiyUwYo6rMHqLIkpc907Ws8dcy8438=",
+      "subjectDigest": "sha256-SD80qKSkSsxPkK6EiN6FCrj8+ANbCDATTJV0wRvQrmU=",
       "evidencePath": null,
       "surfaces": {
         "terminal-colours": {
@@ -5023,7 +5353,7 @@
           "path": "dist/config.ghostty",
           "install": "Save as %APPDATA%\\ghostty\\config.ghostty (Windows) or ~/.config/ghostty/config.ghostty, then Orca → Settings → Terminal → Import from Ghostty → Apply Changes.",
           "source": "ports/orca/dist/config.ghostty",
-          "digest": "sha256-72TZvzGiDButIeVAgTdrIkA3T1d4uS7lbn/l7F3MNYk="
+          "digest": "sha256-CvRawvus2IfjJ1HO2TQNDRzAdJG7aM+PoWQDdXUo4ng="
         }
       ],
       "rollback": "In Orca, open Settings → Terminal and choose \"Reset all color overrides\"; set the font family, font size and divider colours back to your previous values. Remove or rename %APPDATA%\\ghostty\\config.ghostty so a later Ghostty import does not re-apply it.",
@@ -5743,6 +6073,141 @@
           "spec": "spec/portability.md"
         },
         {
+          "role": "color.code.hued.attribute",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.constant",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.escape",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.function",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.number",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.operator",
+          "nativeKeys": [],
+          "value": "#ffa2a7",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.property",
+          "nativeKeys": [],
+          "value": "#7e9ebb",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.string",
+          "nativeKeys": [],
+          "value": "#86a46f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.type",
+          "nativeKeys": [],
+          "value": "#7e9ebb",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
           "role": "color.code.indent-guide",
           "nativeKeys": [],
           "value": "#531310",
@@ -5940,7 +6405,7 @@
         {
           "role": "color.code.syntax.heading",
           "nativeKeys": [],
-          "value": "#e53935",
+          "value": "#e95551",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -5955,7 +6420,7 @@
         {
           "role": "color.code.syntax.invalid",
           "nativeKeys": [],
-          "value": "#e53935",
+          "value": "#e95551",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -5970,7 +6435,7 @@
         {
           "role": "color.code.syntax.keyword",
           "nativeKeys": [],
-          "value": "#f73f35",
+          "value": "#f7463c",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -6015,7 +6480,7 @@
         {
           "role": "color.code.syntax.property",
           "nativeKeys": [],
-          "value": "#e53935",
+          "value": "#e95551",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -6060,7 +6525,7 @@
         {
           "role": "color.code.syntax.tag",
           "nativeKeys": [],
-          "value": "#f73f35",
+          "value": "#f7463c",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -6838,6 +7303,156 @@
           "spec": "spec/portability.md"
         },
         {
+          "role": "color.primitive.ansi-readable.1",
+          "nativeKeys": [],
+          "value": "#e84b4b",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi-readable.10",
+          "nativeKeys": [],
+          "value": "#dc4f49",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi-readable.12",
+          "nativeKeys": [],
+          "value": "#db433a",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi-readable.13",
+          "nativeKeys": [],
+          "value": "#ed5360",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi-readable.14",
+          "nativeKeys": [],
+          "value": "#e6565a",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi-readable.15",
+          "nativeKeys": [],
+          "value": "#b17e81",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi-readable.4",
+          "nativeKeys": [],
+          "value": "#e53131",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi-readable.6",
+          "nativeKeys": [],
+          "value": "#bb696c",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi-readable.8",
+          "nativeKeys": [],
+          "value": "#b71c17",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi-readable.9",
+          "nativeKeys": [],
+          "value": "#ea3833",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
           "role": "color.primitive.ansi.0",
           "nativeKeys": [],
           "value": "#0c0909",
@@ -7588,9 +8203,39 @@
           "spec": "spec/portability.md"
         },
         {
+          "role": "color.primitive.red.810",
+          "nativeKeys": [],
+          "value": "#e95551",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
           "role": "color.primitive.red.850",
           "nativeKeys": [],
           "value": "#f73f35",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.red.860",
+          "nativeKeys": [],
+          "value": "#f7463c",
           "eligibility": {
             "action": "blocked",
             "reason": "Inspection only: consume semantic roles, not primitives.",
@@ -8316,7 +8961,7 @@
           "nativeKeys": [
             "palette[1]"
           ],
-          "value": "#c81a1a",
+          "value": "#e84b4b",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -8333,7 +8978,7 @@
           "nativeKeys": [
             "palette[10]"
           ],
-          "value": "#ad2721",
+          "value": "#dc4f49",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -8367,7 +9012,7 @@
           "nativeKeys": [
             "palette[12]"
           ],
-          "value": "#871f19",
+          "value": "#db433a",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -8384,7 +9029,7 @@
           "nativeKeys": [
             "palette[13]"
           ],
-          "value": "#e82132",
+          "value": "#ed5360",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -8401,7 +9046,7 @@
           "nativeKeys": [
             "palette[14]"
           ],
-          "value": "#e0292f",
+          "value": "#e6565a",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -8418,7 +9063,7 @@
           "nativeKeys": [
             "palette[15]"
           ],
-          "value": "#a3676b",
+          "value": "#b17e81",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -8469,7 +9114,7 @@
           "nativeKeys": [
             "palette[4]"
           ],
-          "value": "#8c1212",
+          "value": "#e53131",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -8503,7 +9148,7 @@
           "nativeKeys": [
             "palette[6]"
           ],
-          "value": "#9e474a",
+          "value": "#bb696c",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -8537,7 +9182,7 @@
           "nativeKeys": [
             "palette[8]"
           ],
-          "value": "#7d1310",
+          "value": "#b71c17",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -8554,7 +9199,7 @@
           "nativeKeys": [
             "palette[9]"
           ],
-          "value": "#ab1612",
+          "value": "#ea3833",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -8615,6 +9260,21 @@
           "state": "mapped",
           "surface": "terminal-colours",
           "reason": "Written to the file's foreground key.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.terminal.prompt-text",
+          "nativeKeys": [],
+          "value": "#0c0909",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "The prompt chooses its own segment colours; a terminal theme carries the palette only.",
           "source": "ports/orca/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -9939,7 +10599,7 @@
       "declaredStatus": "experimental",
       "format": "warp-yaml",
       "integrationKind": "terminal-16",
-      "themeVersion": "1.2.0",
+      "themeVersion": "2.0.0",
       "themeRevision": "7b045d1a7bc32fddc7c9946e7084ffe74f62b5b5",
       "profile": "default",
       "targetVersions": [
@@ -9955,7 +10615,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-eQEW0B++LFH/V4+01b58cYT10iuXfyx0+wO5dnD5NhA=",
+      "subjectDigest": "sha256-oR45DNyInYUeneUS4TmmizsRotaGFtaFuTSTtsXhlSU=",
       "evidencePath": null,
       "surfaces": {
         "terminal-colours": {
@@ -9988,7 +10648,7 @@
           "path": "dist/j3w1.yaml",
           "install": "Orca → Settings → Terminal Themes → Import from YAML (or save into %APPDATA%\\warp\\Warp\\data\\themes\\ and use Import from Warp), then select \"j3w1 theme\" as the Dark Theme. Warp: save into its themes folder.",
           "source": "ports/warp/dist/j3w1.yaml",
-          "digest": "sha256-mxktirEEZdEtH1CW1n1xOi6faDRQhTVZs3esPMjygPY="
+          "digest": "sha256-yYYwNdzXsPCjREP6sO15KIGGpSs6ODFAI1mgvQ+N7bQ="
         }
       ],
       "rollback": "Orca: select your previous Dark Theme in Settings → Terminal Themes and remove the imported \"j3w1 theme\". Warp: select another theme and delete j3w1.yaml from its themes folder.",
@@ -10706,6 +11366,141 @@
           "spec": "spec/portability.md"
         },
         {
+          "role": "color.code.hued.attribute",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.constant",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.escape",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.function",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.number",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.operator",
+          "nativeKeys": [],
+          "value": "#ffa2a7",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.property",
+          "nativeKeys": [],
+          "value": "#7e9ebb",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.string",
+          "nativeKeys": [],
+          "value": "#86a46f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.type",
+          "nativeKeys": [],
+          "value": "#7e9ebb",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
           "role": "color.code.indent-guide",
           "nativeKeys": [],
           "value": "#531310",
@@ -10903,7 +11698,7 @@
         {
           "role": "color.code.syntax.heading",
           "nativeKeys": [],
-          "value": "#e53935",
+          "value": "#e95551",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -10918,7 +11713,7 @@
         {
           "role": "color.code.syntax.invalid",
           "nativeKeys": [],
-          "value": "#e53935",
+          "value": "#e95551",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -10933,7 +11728,7 @@
         {
           "role": "color.code.syntax.keyword",
           "nativeKeys": [],
-          "value": "#f73f35",
+          "value": "#f7463c",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -10978,7 +11773,7 @@
         {
           "role": "color.code.syntax.property",
           "nativeKeys": [],
-          "value": "#e53935",
+          "value": "#e95551",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -11023,7 +11818,7 @@
         {
           "role": "color.code.syntax.tag",
           "nativeKeys": [],
-          "value": "#f73f35",
+          "value": "#f7463c",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -11801,6 +12596,156 @@
           "spec": "spec/portability.md"
         },
         {
+          "role": "color.primitive.ansi-readable.1",
+          "nativeKeys": [],
+          "value": "#e84b4b",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi-readable.10",
+          "nativeKeys": [],
+          "value": "#dc4f49",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi-readable.12",
+          "nativeKeys": [],
+          "value": "#db433a",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi-readable.13",
+          "nativeKeys": [],
+          "value": "#ed5360",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi-readable.14",
+          "nativeKeys": [],
+          "value": "#e6565a",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi-readable.15",
+          "nativeKeys": [],
+          "value": "#b17e81",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi-readable.4",
+          "nativeKeys": [],
+          "value": "#e53131",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi-readable.6",
+          "nativeKeys": [],
+          "value": "#bb696c",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi-readable.8",
+          "nativeKeys": [],
+          "value": "#b71c17",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.ansi-readable.9",
+          "nativeKeys": [],
+          "value": "#ea3833",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
           "role": "color.primitive.ansi.0",
           "nativeKeys": [],
           "value": "#0c0909",
@@ -12551,9 +13496,39 @@
           "spec": "spec/portability.md"
         },
         {
+          "role": "color.primitive.red.810",
+          "nativeKeys": [],
+          "value": "#e95551",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
           "role": "color.primitive.red.850",
           "nativeKeys": [],
           "value": "#f73f35",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.red.860",
+          "nativeKeys": [],
+          "value": "#f7463c",
           "eligibility": {
             "action": "blocked",
             "reason": "Inspection only: consume semantic roles, not primitives.",
@@ -13279,7 +14254,7 @@
           "nativeKeys": [
             "terminal_colors.normal.red"
           ],
-          "value": "#c81a1a",
+          "value": "#e84b4b",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -13296,7 +14271,7 @@
           "nativeKeys": [
             "terminal_colors.bright.green"
           ],
-          "value": "#ad2721",
+          "value": "#dc4f49",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -13330,7 +14305,7 @@
           "nativeKeys": [
             "terminal_colors.bright.blue"
           ],
-          "value": "#871f19",
+          "value": "#db433a",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -13347,7 +14322,7 @@
           "nativeKeys": [
             "terminal_colors.bright.magenta"
           ],
-          "value": "#e82132",
+          "value": "#ed5360",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -13364,7 +14339,7 @@
           "nativeKeys": [
             "terminal_colors.bright.cyan"
           ],
-          "value": "#e0292f",
+          "value": "#e6565a",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -13381,7 +14356,7 @@
           "nativeKeys": [
             "terminal_colors.bright.white"
           ],
-          "value": "#a3676b",
+          "value": "#b17e81",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -13432,7 +14407,7 @@
           "nativeKeys": [
             "terminal_colors.normal.blue"
           ],
-          "value": "#8c1212",
+          "value": "#e53131",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -13466,7 +14441,7 @@
           "nativeKeys": [
             "terminal_colors.normal.cyan"
           ],
-          "value": "#9e474a",
+          "value": "#bb696c",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -13500,7 +14475,7 @@
           "nativeKeys": [
             "terminal_colors.bright.black"
           ],
-          "value": "#7d1310",
+          "value": "#b71c17",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -13517,7 +14492,7 @@
           "nativeKeys": [
             "terminal_colors.bright.red"
           ],
-          "value": "#ab1612",
+          "value": "#ea3833",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -13577,6 +14552,21 @@
           "state": "mapped",
           "surface": "terminal-colours",
           "reason": "Written to the file's foreground key.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.terminal.prompt-text",
+          "nativeKeys": [],
+          "value": "#0c0909",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "The prompt chooses its own segment colours; a terminal theme carries the palette only.",
           "source": "ports/warp/mapping.json",
           "spec": "spec/portability.md"
         },

@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "component": "icon-button",
-  "version": "1.2.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/icon-button.md",
+  "version": "2.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/icon-button.md",
   "dependencies": [
     "register/icon-button.js",
     "chunks/element-C1XeXVYC.js",
@@ -14,13 +14,13 @@
     "runtime/register/icon-button.js": "sha256-UWU2VaBVj42dfmtJg9c1yLb2JZ0ObB4FemDN0vyV/uM=",
     "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
     "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-    "runtime/components/icon-button.js": "sha256-HBsb0dHoRZgiEtj8KbINLRXqe2ZshkhLANBOC0YlTAU=",
+    "runtime/components/icon-button.js": "sha256-Lq5LuZ7GxOzGQT1Usl4v6vgKs+Mv+50zzJi0hGETyzQ=",
     "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-    "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+    "tokens.css": "sha256-kek1LufsD0r8r4Cp4wnoQqCUrR//tb5ujE0Kdob9Z2I=",
     "component.css": "sha256-oGnsvpT9vCQjmmGSRaHOeQIJDUE5f5LrSWgR9jdM6/s=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-Zd5z+/mavK2J24Rl+RQLGhMT+nTLwoOf3bAJevwrz7s=",
     "index.html": "sha256-1y5bo9Aq1K+z6CIM0Ef/YeTqqv1dTsU0UQCeeo8cxrs=",
-    "README.md": "sha256-nbtThMqsMo929MkBToGj3pXBYD5gtiCMdDH1xdg5+sA="
+    "README.md": "sha256-LIJjCzUj4dH9OtPYMjiz4clH43ApNQ9VkyEfHOTvM5k="
   }
 }

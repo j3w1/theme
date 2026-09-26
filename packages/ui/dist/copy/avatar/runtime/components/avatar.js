@@ -3,8 +3,8 @@ import { t as avatar } from "../chunks/display-dj9YaBfn.js";
 //#region .cache/ui-build/entries/components/avatar.js
 var J3w1Avatar = class extends J3w1Element {
 	static componentId = "avatar";
-	static version = "1.2.0";
-	static implementationId = "sha256-t/edN3uHBudp5QqDzBnDqQPIc3aPoDUvkJQX1cYIDs4=";
+	static version = "2.0.0";
+	static implementationId = "sha256-hC0IjnVtdjlA1DL6d1cdzMUUVSYlkrwLTY5ZL1vTvfE=";
 	static connect = avatar;
 	static upgradeProperties = [
 		"disabled",

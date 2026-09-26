@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "theme": "j3w1-theme",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "tokenFormat": "dtcg-2025.10",
   "defaultProfile": "default",
   "release": {
-    "version": "1.2.0",
+    "version": "2.0.0",
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
@@ -639,6 +639,30 @@
             "decisionIds": []
           }
         },
+        "color.primitive.red.810": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9137,
+              0.3333,
+              0.3176
+            ],
+            "alpha": 1,
+            "hex": "#e95551"
+          },
+          "css": "#e95551",
+          "aliasOf": null,
+          "description": "D-029 code syntax red: red.800 (#e53935) lifted to 5.56:1 on the code background and 4.51:1 inside an editor selection (properties, headings, invalid text).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          }
+        },
         "color.primitive.red.850": {
           "type": "color",
           "value": {
@@ -657,6 +681,30 @@
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          }
+        },
+        "color.primitive.red.860": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9686,
+              0.2745,
+              0.2353
+            ],
+            "alpha": 1,
+            "hex": "#f7463c"
+          },
+          "css": "#f7463c",
+          "aliasOf": null,
+          "description": "D-029 code syntax red: red.850 (#f73f35) lifted to 5.57:1 on the code background and 4.52:1 inside an editor selection (keywords, tags).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
           "eligibility": {
             "action": "blocked",
             "reason": "Inspection only: consume semantic roles, not primitives.",
@@ -1641,6 +1689,246 @@
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          }
+        },
+        "color.primitive.ansi-readable.1": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9098,
+              0.2941,
+              0.2941
+            ],
+            "alpha": 1,
+            "hex": "#e84b4b"
+          },
+          "css": "#e84b4b",
+          "aliasOf": null,
+          "description": "Heritage slot 1 (#c81a1a, 3.42:1) lifted to 5.23:1 on the terminal background.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          }
+        },
+        "color.primitive.ansi-readable.4": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.898,
+              0.1922,
+              0.1922
+            ],
+            "alpha": 1,
+            "hex": "#e53131"
+          },
+          "css": "#e53131",
+          "aliasOf": null,
+          "description": "Heritage slot 4 (#8c1212, 2.09:1) lifted to 4.55:1 on the terminal background.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          }
+        },
+        "color.primitive.ansi-readable.6": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7333,
+              0.4118,
+              0.4235
+            ],
+            "alpha": 1,
+            "hex": "#bb696c"
+          },
+          "css": "#bb696c",
+          "aliasOf": null,
+          "description": "Heritage slot 6 (#9e474a, 3.26:1) lifted to 5.05:1 on the terminal background.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          }
+        },
+        "color.primitive.ansi-readable.8": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7176,
+              0.1098,
+              0.0902
+            ],
+            "alpha": 1,
+            "hex": "#b71c17"
+          },
+          "css": "#b71c17",
+          "aliasOf": null,
+          "description": "Heritage slot 8 (#7d1310, 1.86:1) lifted to 3.01:1 on the terminal background; kept as the dim tier, not a text colour.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          }
+        },
+        "color.primitive.ansi-readable.9": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9176,
+              0.2196,
+              0.2
+            ],
+            "alpha": 1,
+            "hex": "#ea3833"
+          },
+          "css": "#ea3833",
+          "aliasOf": null,
+          "description": "Heritage slot 9 (#ab1612, 2.70:1) lifted to 4.83:1 on the terminal background.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          }
+        },
+        "color.primitive.ansi-readable.10": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8627,
+              0.3098,
+              0.2863
+            ],
+            "alpha": 1,
+            "hex": "#dc4f49"
+          },
+          "css": "#dc4f49",
+          "aliasOf": null,
+          "description": "Heritage slot 10 (#ad2721, 2.92:1) lifted to 4.97:1 on the terminal background.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          }
+        },
+        "color.primitive.ansi-readable.12": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8588,
+              0.2627,
+              0.2275
+            ],
+            "alpha": 1,
+            "hex": "#db433a"
+          },
+          "css": "#db433a",
+          "aliasOf": null,
+          "description": "Heritage slot 12 (#871f19, 2.12:1) lifted to 4.61:1 on the terminal background.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          }
+        },
+        "color.primitive.ansi-readable.13": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9294,
+              0.3255,
+              0.3765
+            ],
+            "alpha": 1,
+            "hex": "#ed5360"
+          },
+          "css": "#ed5360",
+          "aliasOf": null,
+          "description": "Heritage slot 13 (#e82132, 4.43:1) lifted to 5.67:1 on the terminal background.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          }
+        },
+        "color.primitive.ansi-readable.14": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.902,
+              0.3373,
+              0.3529
+            ],
+            "alpha": 1,
+            "hex": "#e6565a"
+          },
+          "css": "#e6565a",
+          "aliasOf": null,
+          "description": "Heritage slot 14 (#e0292f, 4.28:1) lifted to 5.52:1 on the terminal background.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          }
+        },
+        "color.primitive.ansi-readable.15": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6941,
+              0.4941,
+              0.5059
+            ],
+            "alpha": 1,
+            "hex": "#b17e81"
+          },
+          "css": "#b17e81",
+          "aliasOf": null,
+          "description": "Heritage slot 15 (#a3676b, 4.45:1) lifted to 5.83:1 on the terminal background.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
           "eligibility": {
             "action": "blocked",
             "reason": "Inspection only: consume semantic roles, not primitives.",
@@ -4373,18 +4661,18 @@
             "colorSpace": "srgb",
             "components": [
               0.9686,
-              0.2471,
-              0.2078
+              0.2745,
+              0.2353
             ],
             "alpha": 1,
-            "hex": "#f73f35"
+            "hex": "#f7463c"
           },
-          "css": "#f73f35",
-          "aliasOf": "color.primitive.red.850",
-          "description": "Keywords (Xresources color5 lineage).",
-          "status": "observed",
+          "css": "#f7463c",
+          "aliasOf": "color.primitive.red.860",
+          "description": "Keywords (Xresources color5 lineage), lifted by D-029.",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-029",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -4612,19 +4900,19 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.898,
-              0.2235,
-              0.2078
+              0.9137,
+              0.3333,
+              0.3176
             ],
             "alpha": 1,
-            "hex": "#e53935"
+            "hex": "#e95551"
           },
-          "css": "#e53935",
-          "aliasOf": "color.primitive.red.800",
-          "description": "Properties and keys (site .syntax-key).",
-          "status": "observed",
+          "css": "#e95551",
+          "aliasOf": "color.primitive.red.810",
+          "description": "Properties and keys (site .syntax-key), lifted by D-029.",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-029",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -4636,19 +4924,19 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.898,
-              0.2235,
-              0.2078
+              0.9137,
+              0.3333,
+              0.3176
             ],
             "alpha": 1,
-            "hex": "#e53935"
+            "hex": "#e95551"
           },
-          "css": "#e53935",
-          "aliasOf": "color.primitive.red.800",
-          "description": "Markup headings (site .syntax-heading).",
-          "status": "observed",
+          "css": "#e95551",
+          "aliasOf": "color.primitive.red.810",
+          "description": "Markup headings (site .syntax-heading), lifted by D-029.",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-029",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -4661,18 +4949,18 @@
             "colorSpace": "srgb",
             "components": [
               0.9686,
-              0.2471,
-              0.2078
+              0.2745,
+              0.2353
             ],
             "alpha": 1,
-            "hex": "#f73f35"
+            "hex": "#f7463c"
           },
-          "css": "#f73f35",
-          "aliasOf": "color.primitive.red.850",
-          "description": "Markup tags.",
-          "status": "observed",
+          "css": "#f7463c",
+          "aliasOf": "color.primitive.red.860",
+          "description": "Markup tags, lifted by D-029.",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-029",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -4732,19 +5020,19 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.898,
-              0.2235,
-              0.2078
+              0.9137,
+              0.3333,
+              0.3176
             ],
             "alpha": 1,
-            "hex": "#e53935"
+            "hex": "#e95551"
           },
-          "css": "#e53935",
-          "aliasOf": "color.primitive.red.800",
-          "description": "Invalid text: wavy underline.",
-          "status": "observed",
+          "css": "#e95551",
+          "aliasOf": "color.primitive.red.810",
+          "description": "Invalid text: wavy underline; lifted by D-029.",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-029",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -4769,6 +5057,222 @@
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.string": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5255,
+              0.6431,
+              0.4353
+            ],
+            "alpha": 1,
+            "hex": "#86a46f"
+          },
+          "css": "#86a46f",
+          "aliasOf": "color.primitive.green.500",
+          "description": "Strings in green (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.number": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7882,
+              0.5922,
+              0.2471
+            ],
+            "alpha": 1,
+            "hex": "#c9973f"
+          },
+          "css": "#c9973f",
+          "aliasOf": "color.primitive.amber.500",
+          "description": "Numbers in amber (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.constant": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7882,
+              0.5922,
+              0.2471
+            ],
+            "alpha": 1,
+            "hex": "#c9973f"
+          },
+          "css": "#c9973f",
+          "aliasOf": "color.primitive.amber.500",
+          "description": "Constants in amber (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.function": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7882,
+              0.5922,
+              0.2471
+            ],
+            "alpha": 1,
+            "hex": "#c9973f"
+          },
+          "css": "#c9973f",
+          "aliasOf": "color.primitive.amber.500",
+          "description": "Function and method names in amber (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.attribute": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7882,
+              0.5922,
+              0.2471
+            ],
+            "alpha": 1,
+            "hex": "#c9973f"
+          },
+          "css": "#c9973f",
+          "aliasOf": "color.primitive.amber.500",
+          "description": "Markup attribute names in amber (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.escape": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7882,
+              0.5922,
+              0.2471
+            ],
+            "alpha": 1,
+            "hex": "#c9973f"
+          },
+          "css": "#c9973f",
+          "aliasOf": "color.primitive.amber.500",
+          "description": "Escapes in amber (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.type": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4941,
+              0.6196,
+              0.7333
+            ],
+            "alpha": 1,
+            "hex": "#7e9ebb"
+          },
+          "css": "#7e9ebb",
+          "aliasOf": "color.primitive.blue.500",
+          "description": "Types in blue (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.property": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4941,
+              0.6196,
+              0.7333
+            ],
+            "alpha": 1,
+            "hex": "#7e9ebb"
+          },
+          "css": "#7e9ebb",
+          "aliasOf": "color.primitive.blue.500",
+          "description": "Object properties in blue (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.operator": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.6353,
+              0.6549
+            ],
+            "alpha": 1,
+            "hex": "#ffa2a7"
+          },
+          "css": "#ffa2a7",
+          "aliasOf": "color.primitive.rose.800",
+          "description": "Operators in bright rose (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -5399,6 +5903,30 @@
             "decisionIds": []
           }
         },
+        "color.terminal.prompt-text": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0471,
+              0.0353,
+              0.0353
+            ],
+            "alpha": 1,
+            "hex": "#0c0909"
+          },
+          "css": "#0c0909",
+          "aliasOf": "color.primitive.ink.20",
+          "description": "Text on the prompt's path segment (slot 4): dark on the readable heritage slot 4 (D-029).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
+        },
         "color.terminal.ansi.0": {
           "type": "color",
           "value": {
@@ -5428,19 +5956,19 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.7843,
-              0.102,
-              0.102
+              0.9098,
+              0.2941,
+              0.2941
             ],
             "alpha": 1,
-            "hex": "#c81a1a"
+            "hex": "#e84b4b"
           },
-          "css": "#c81a1a",
-          "aliasOf": "color.primitive.ansi.1",
-          "description": "ANSI slot 1, exact heritage value.",
-          "status": "observed",
+          "css": "#e84b4b",
+          "aliasOf": "color.primitive.ansi-readable.1",
+          "description": "ANSI slot 1, readable heritage (D-029); the heritage-ansi profile keeps the exact value.",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-029",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -5500,19 +6028,19 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.549,
-              0.0706,
-              0.0706
+              0.898,
+              0.1922,
+              0.1922
             ],
             "alpha": 1,
-            "hex": "#8c1212"
+            "hex": "#e53131"
           },
-          "css": "#8c1212",
-          "aliasOf": "color.primitive.ansi.4",
-          "description": "ANSI slot 4, exact heritage value.",
-          "status": "observed",
+          "css": "#e53131",
+          "aliasOf": "color.primitive.ansi-readable.4",
+          "description": "ANSI slot 4, readable heritage (D-029); the heritage-ansi profile keeps the exact value.",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-029",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -5548,19 +6076,19 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.6196,
-              0.2784,
-              0.2902
+              0.7333,
+              0.4118,
+              0.4235
             ],
             "alpha": 1,
-            "hex": "#9e474a"
+            "hex": "#bb696c"
           },
-          "css": "#9e474a",
-          "aliasOf": "color.primitive.ansi.6",
-          "description": "ANSI slot 6, exact heritage value.",
-          "status": "observed",
+          "css": "#bb696c",
+          "aliasOf": "color.primitive.ansi-readable.6",
+          "description": "ANSI slot 6, readable heritage (D-029); the heritage-ansi profile keeps the exact value.",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-029",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -5596,19 +6124,19 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.4902,
-              0.0745,
-              0.0627
+              0.7176,
+              0.1098,
+              0.0902
             ],
             "alpha": 1,
-            "hex": "#7d1310"
+            "hex": "#b71c17"
           },
-          "css": "#7d1310",
-          "aliasOf": "color.primitive.ansi.8",
-          "description": "ANSI slot 8, exact heritage value.",
-          "status": "observed",
+          "css": "#b71c17",
+          "aliasOf": "color.primitive.ansi-readable.8",
+          "description": "ANSI slot 8, readable heritage (D-029); the heritage-ansi profile keeps the exact value.",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-029",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -5620,19 +6148,19 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.6706,
-              0.0863,
-              0.0706
+              0.9176,
+              0.2196,
+              0.2
             ],
             "alpha": 1,
-            "hex": "#ab1612"
+            "hex": "#ea3833"
           },
-          "css": "#ab1612",
-          "aliasOf": "color.primitive.ansi.9",
-          "description": "ANSI slot 9, exact heritage value.",
-          "status": "observed",
+          "css": "#ea3833",
+          "aliasOf": "color.primitive.ansi-readable.9",
+          "description": "ANSI slot 9, readable heritage (D-029); the heritage-ansi profile keeps the exact value.",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-029",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -5644,19 +6172,19 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.6784,
-              0.1529,
-              0.1294
+              0.8627,
+              0.3098,
+              0.2863
             ],
             "alpha": 1,
-            "hex": "#ad2721"
+            "hex": "#dc4f49"
           },
-          "css": "#ad2721",
-          "aliasOf": "color.primitive.ansi.10",
-          "description": "ANSI slot 10, exact heritage value.",
-          "status": "observed",
+          "css": "#dc4f49",
+          "aliasOf": "color.primitive.ansi-readable.10",
+          "description": "ANSI slot 10, readable heritage (D-029); the heritage-ansi profile keeps the exact value.",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-029",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -5692,19 +6220,19 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.5294,
-              0.1216,
-              0.098
+              0.8588,
+              0.2627,
+              0.2275
             ],
             "alpha": 1,
-            "hex": "#871f19"
+            "hex": "#db433a"
           },
-          "css": "#871f19",
-          "aliasOf": "color.primitive.ansi.12",
-          "description": "ANSI slot 12, exact heritage value.",
-          "status": "observed",
+          "css": "#db433a",
+          "aliasOf": "color.primitive.ansi-readable.12",
+          "description": "ANSI slot 12, readable heritage (D-029); the heritage-ansi profile keeps the exact value.",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-029",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -5716,19 +6244,19 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9098,
-              0.1294,
-              0.1961
+              0.9294,
+              0.3255,
+              0.3765
             ],
             "alpha": 1,
-            "hex": "#e82132"
+            "hex": "#ed5360"
           },
-          "css": "#e82132",
-          "aliasOf": "color.primitive.ansi.13",
-          "description": "ANSI slot 13, exact heritage value.",
-          "status": "observed",
+          "css": "#ed5360",
+          "aliasOf": "color.primitive.ansi-readable.13",
+          "description": "ANSI slot 13, readable heritage (D-029); the heritage-ansi profile keeps the exact value.",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-029",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -5740,19 +6268,19 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.8784,
-              0.1608,
-              0.1843
+              0.902,
+              0.3373,
+              0.3529
             ],
             "alpha": 1,
-            "hex": "#e0292f"
+            "hex": "#e6565a"
           },
-          "css": "#e0292f",
-          "aliasOf": "color.primitive.ansi.14",
-          "description": "ANSI slot 14, exact heritage value.",
-          "status": "observed",
+          "css": "#e6565a",
+          "aliasOf": "color.primitive.ansi-readable.14",
+          "description": "ANSI slot 14, readable heritage (D-029); the heritage-ansi profile keeps the exact value.",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-029",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -5764,19 +6292,19 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.6392,
-              0.4039,
-              0.4196
+              0.6941,
+              0.4941,
+              0.5059
             ],
             "alpha": 1,
-            "hex": "#a3676b"
+            "hex": "#b17e81"
           },
-          "css": "#a3676b",
-          "aliasOf": "color.primitive.ansi.15",
-          "description": "ANSI slot 15, exact heritage value.",
-          "status": "observed",
+          "css": "#b17e81",
+          "aliasOf": "color.primitive.ansi-readable.15",
+          "description": "ANSI slot 15, readable heritage (D-029); the heritage-ansi profile keeps the exact value.",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-029",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -7987,6 +8515,30 @@
             "decisionIds": []
           }
         },
+        "color.primitive.red.810": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9137,
+              0.3333,
+              0.3176
+            ],
+            "alpha": 1,
+            "hex": "#e95551"
+          },
+          "css": "#e95551",
+          "aliasOf": null,
+          "description": "D-029 code syntax red: red.800 (#e53935) lifted to 5.56:1 on the code background and 4.51:1 inside an editor selection (properties, headings, invalid text).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
         "color.primitive.red.850": {
           "type": "color",
           "value": {
@@ -8005,6 +8557,30 @@
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
+        "color.primitive.red.860": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9686,
+              0.2745,
+              0.2353
+            ],
+            "alpha": 1,
+            "hex": "#f7463c"
+          },
+          "css": "#f7463c",
+          "aliasOf": null,
+          "description": "D-029 code syntax red: red.850 (#f73f35) lifted to 5.57:1 on the code background and 4.52:1 inside an editor selection (keywords, tags).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
           "eligibility": {
             "action": "historical-only",
             "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
@@ -8989,6 +9565,246 @@
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
+        "color.primitive.ansi-readable.1": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9098,
+              0.2941,
+              0.2941
+            ],
+            "alpha": 1,
+            "hex": "#e84b4b"
+          },
+          "css": "#e84b4b",
+          "aliasOf": null,
+          "description": "Heritage slot 1 (#c81a1a, 3.42:1) lifted to 5.23:1 on the terminal background.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
+        "color.primitive.ansi-readable.4": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.898,
+              0.1922,
+              0.1922
+            ],
+            "alpha": 1,
+            "hex": "#e53131"
+          },
+          "css": "#e53131",
+          "aliasOf": null,
+          "description": "Heritage slot 4 (#8c1212, 2.09:1) lifted to 4.55:1 on the terminal background.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
+        "color.primitive.ansi-readable.6": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7333,
+              0.4118,
+              0.4235
+            ],
+            "alpha": 1,
+            "hex": "#bb696c"
+          },
+          "css": "#bb696c",
+          "aliasOf": null,
+          "description": "Heritage slot 6 (#9e474a, 3.26:1) lifted to 5.05:1 on the terminal background.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
+        "color.primitive.ansi-readable.8": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7176,
+              0.1098,
+              0.0902
+            ],
+            "alpha": 1,
+            "hex": "#b71c17"
+          },
+          "css": "#b71c17",
+          "aliasOf": null,
+          "description": "Heritage slot 8 (#7d1310, 1.86:1) lifted to 3.01:1 on the terminal background; kept as the dim tier, not a text colour.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
+        "color.primitive.ansi-readable.9": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9176,
+              0.2196,
+              0.2
+            ],
+            "alpha": 1,
+            "hex": "#ea3833"
+          },
+          "css": "#ea3833",
+          "aliasOf": null,
+          "description": "Heritage slot 9 (#ab1612, 2.70:1) lifted to 4.83:1 on the terminal background.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
+        "color.primitive.ansi-readable.10": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8627,
+              0.3098,
+              0.2863
+            ],
+            "alpha": 1,
+            "hex": "#dc4f49"
+          },
+          "css": "#dc4f49",
+          "aliasOf": null,
+          "description": "Heritage slot 10 (#ad2721, 2.92:1) lifted to 4.97:1 on the terminal background.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
+        "color.primitive.ansi-readable.12": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8588,
+              0.2627,
+              0.2275
+            ],
+            "alpha": 1,
+            "hex": "#db433a"
+          },
+          "css": "#db433a",
+          "aliasOf": null,
+          "description": "Heritage slot 12 (#871f19, 2.12:1) lifted to 4.61:1 on the terminal background.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
+        "color.primitive.ansi-readable.13": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9294,
+              0.3255,
+              0.3765
+            ],
+            "alpha": 1,
+            "hex": "#ed5360"
+          },
+          "css": "#ed5360",
+          "aliasOf": null,
+          "description": "Heritage slot 13 (#e82132, 4.43:1) lifted to 5.67:1 on the terminal background.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
+        "color.primitive.ansi-readable.14": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.902,
+              0.3373,
+              0.3529
+            ],
+            "alpha": 1,
+            "hex": "#e6565a"
+          },
+          "css": "#e6565a",
+          "aliasOf": null,
+          "description": "Heritage slot 14 (#e0292f, 4.28:1) lifted to 5.52:1 on the terminal background.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
+        "color.primitive.ansi-readable.15": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6941,
+              0.4941,
+              0.5059
+            ],
+            "alpha": 1,
+            "hex": "#b17e81"
+          },
+          "css": "#b17e81",
+          "aliasOf": null,
+          "description": "Heritage slot 15 (#a3676b, 4.45:1) lifted to 5.83:1 on the terminal background.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
           "eligibility": {
             "action": "historical-only",
             "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
@@ -11727,8 +12543,8 @@
           },
           "css": "#f73f35",
           "aliasOf": "color.primitive.red.850",
-          "description": "Keywords (Xresources color5 lineage).",
-          "status": "observed",
+          "description": "Keywords, historical value before D-029.",
+          "status": "heritage",
           "deprecated": false,
           "decisionId": null,
           "eligibility": {
@@ -11967,8 +12783,8 @@
           },
           "css": "#e53935",
           "aliasOf": "color.primitive.red.800",
-          "description": "Properties and keys (site .syntax-key).",
-          "status": "observed",
+          "description": "Properties and keys, historical value before D-029.",
+          "status": "heritage",
           "deprecated": false,
           "decisionId": null,
           "eligibility": {
@@ -11991,8 +12807,8 @@
           },
           "css": "#e53935",
           "aliasOf": "color.primitive.red.800",
-          "description": "Markup headings (site .syntax-heading).",
-          "status": "observed",
+          "description": "Markup headings, historical value before D-029.",
+          "status": "heritage",
           "deprecated": false,
           "decisionId": null,
           "eligibility": {
@@ -12015,8 +12831,8 @@
           },
           "css": "#f73f35",
           "aliasOf": "color.primitive.red.850",
-          "description": "Markup tags.",
-          "status": "observed",
+          "description": "Markup tags, historical value before D-029.",
+          "status": "heritage",
           "deprecated": false,
           "decisionId": null,
           "eligibility": {
@@ -12087,8 +12903,8 @@
           },
           "css": "#e53935",
           "aliasOf": "color.primitive.red.800",
-          "description": "Invalid text: wavy underline.",
-          "status": "observed",
+          "description": "Invalid text, historical value before D-029.",
+          "status": "heritage",
           "deprecated": false,
           "decisionId": null,
           "eligibility": {
@@ -12115,6 +12931,222 @@
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.string": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5255,
+              0.6431,
+              0.4353
+            ],
+            "alpha": 1,
+            "hex": "#86a46f"
+          },
+          "css": "#86a46f",
+          "aliasOf": "color.primitive.green.500",
+          "description": "Strings in green (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.number": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7882,
+              0.5922,
+              0.2471
+            ],
+            "alpha": 1,
+            "hex": "#c9973f"
+          },
+          "css": "#c9973f",
+          "aliasOf": "color.primitive.amber.500",
+          "description": "Numbers in amber (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.constant": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7882,
+              0.5922,
+              0.2471
+            ],
+            "alpha": 1,
+            "hex": "#c9973f"
+          },
+          "css": "#c9973f",
+          "aliasOf": "color.primitive.amber.500",
+          "description": "Constants in amber (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.function": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7882,
+              0.5922,
+              0.2471
+            ],
+            "alpha": 1,
+            "hex": "#c9973f"
+          },
+          "css": "#c9973f",
+          "aliasOf": "color.primitive.amber.500",
+          "description": "Function and method names in amber (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.attribute": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7882,
+              0.5922,
+              0.2471
+            ],
+            "alpha": 1,
+            "hex": "#c9973f"
+          },
+          "css": "#c9973f",
+          "aliasOf": "color.primitive.amber.500",
+          "description": "Markup attribute names in amber (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.escape": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7882,
+              0.5922,
+              0.2471
+            ],
+            "alpha": 1,
+            "hex": "#c9973f"
+          },
+          "css": "#c9973f",
+          "aliasOf": "color.primitive.amber.500",
+          "description": "Escapes in amber (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.type": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4941,
+              0.6196,
+              0.7333
+            ],
+            "alpha": 1,
+            "hex": "#7e9ebb"
+          },
+          "css": "#7e9ebb",
+          "aliasOf": "color.primitive.blue.500",
+          "description": "Types in blue (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.property": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4941,
+              0.6196,
+              0.7333
+            ],
+            "alpha": 1,
+            "hex": "#7e9ebb"
+          },
+          "css": "#7e9ebb",
+          "aliasOf": "color.primitive.blue.500",
+          "description": "Object properties in blue (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.operator": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.6353,
+              0.6549
+            ],
+            "alpha": 1,
+            "hex": "#ffa2a7"
+          },
+          "css": "#ffa2a7",
+          "aliasOf": "color.primitive.rose.800",
+          "description": "Operators in bright rose (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
           "eligibility": {
             "action": "historical-only",
             "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
@@ -12745,6 +13777,30 @@
             "decisionIds": []
           }
         },
+        "color.terminal.prompt-text": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9569,
+              0.9333,
+              0.9333
+            ],
+            "alpha": 1,
+            "hex": "#f4eeee"
+          },
+          "css": "#f4eeee",
+          "aliasOf": "color.primitive.paper.90",
+          "description": "Light prompt text on the heritage slot 4, as the workstation drew it.",
+          "status": "heritage",
+          "deprecated": false,
+          "decisionId": null,
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
         "color.terminal.ansi.0": {
           "type": "color",
           "value": {
@@ -12783,9 +13839,9 @@
           },
           "css": "#c81a1a",
           "aliasOf": "color.primitive.ansi.1",
-          "description": "ANSI slot 1, exact heritage value.",
-          "status": "observed",
-          "deprecated": false,
+          "description": "ANSI slot 1, exact heritage value (#c81a1a).",
+          "status": "heritage",
+          "deprecated": "fails 4.5:1 (3.42); historical fidelity only",
           "decisionId": null,
           "eligibility": {
             "action": "historical-only",
@@ -12855,9 +13911,9 @@
           },
           "css": "#8c1212",
           "aliasOf": "color.primitive.ansi.4",
-          "description": "ANSI slot 4, exact heritage value.",
-          "status": "observed",
-          "deprecated": false,
+          "description": "ANSI slot 4, exact heritage value (#8c1212).",
+          "status": "heritage",
+          "deprecated": "fails 4.5:1 (2.09); historical fidelity only",
           "decisionId": null,
           "eligibility": {
             "action": "historical-only",
@@ -12903,9 +13959,9 @@
           },
           "css": "#9e474a",
           "aliasOf": "color.primitive.ansi.6",
-          "description": "ANSI slot 6, exact heritage value.",
-          "status": "observed",
-          "deprecated": false,
+          "description": "ANSI slot 6, exact heritage value (#9e474a).",
+          "status": "heritage",
+          "deprecated": "fails 4.5:1 (3.26); historical fidelity only",
           "decisionId": null,
           "eligibility": {
             "action": "historical-only",
@@ -12951,9 +14007,9 @@
           },
           "css": "#7d1310",
           "aliasOf": "color.primitive.ansi.8",
-          "description": "ANSI slot 8, exact heritage value.",
-          "status": "observed",
-          "deprecated": false,
+          "description": "ANSI slot 8, exact heritage value (#7d1310).",
+          "status": "heritage",
+          "deprecated": "fails 4.5:1 (1.86); historical fidelity only",
           "decisionId": null,
           "eligibility": {
             "action": "historical-only",
@@ -12975,9 +14031,9 @@
           },
           "css": "#ab1612",
           "aliasOf": "color.primitive.ansi.9",
-          "description": "ANSI slot 9, exact heritage value.",
-          "status": "observed",
-          "deprecated": false,
+          "description": "ANSI slot 9, exact heritage value (#ab1612).",
+          "status": "heritage",
+          "deprecated": "fails 4.5:1 (2.70); historical fidelity only",
           "decisionId": null,
           "eligibility": {
             "action": "historical-only",
@@ -12999,9 +14055,9 @@
           },
           "css": "#ad2721",
           "aliasOf": "color.primitive.ansi.10",
-          "description": "ANSI slot 10, exact heritage value.",
-          "status": "observed",
-          "deprecated": false,
+          "description": "ANSI slot 10, exact heritage value (#ad2721).",
+          "status": "heritage",
+          "deprecated": "fails 4.5:1 (2.92); historical fidelity only",
           "decisionId": null,
           "eligibility": {
             "action": "historical-only",
@@ -13047,9 +14103,9 @@
           },
           "css": "#871f19",
           "aliasOf": "color.primitive.ansi.12",
-          "description": "ANSI slot 12, exact heritage value.",
-          "status": "observed",
-          "deprecated": false,
+          "description": "ANSI slot 12, exact heritage value (#871f19).",
+          "status": "heritage",
+          "deprecated": "fails 4.5:1 (2.12); historical fidelity only",
           "decisionId": null,
           "eligibility": {
             "action": "historical-only",
@@ -13071,9 +14127,9 @@
           },
           "css": "#e82132",
           "aliasOf": "color.primitive.ansi.13",
-          "description": "ANSI slot 13, exact heritage value.",
-          "status": "observed",
-          "deprecated": false,
+          "description": "ANSI slot 13, exact heritage value (#e82132).",
+          "status": "heritage",
+          "deprecated": "fails 4.5:1 (4.43); historical fidelity only",
           "decisionId": null,
           "eligibility": {
             "action": "historical-only",
@@ -13095,9 +14151,9 @@
           },
           "css": "#e0292f",
           "aliasOf": "color.primitive.ansi.14",
-          "description": "ANSI slot 14, exact heritage value.",
-          "status": "observed",
-          "deprecated": false,
+          "description": "ANSI slot 14, exact heritage value (#e0292f).",
+          "status": "heritage",
+          "deprecated": "fails 4.5:1 (4.28); historical fidelity only",
           "decisionId": null,
           "eligibility": {
             "action": "historical-only",
@@ -13119,9 +14175,9 @@
           },
           "css": "#a3676b",
           "aliasOf": "color.primitive.ansi.15",
-          "description": "ANSI slot 15, exact heritage value.",
-          "status": "observed",
-          "deprecated": false,
+          "description": "ANSI slot 15, exact heritage value (#a3676b).",
+          "status": "heritage",
+          "deprecated": "fails 4.5:1 (4.45); historical fidelity only",
           "decisionId": null,
           "eligibility": {
             "action": "historical-only",
@@ -15333,6 +16389,30 @@
             "decisionIds": []
           }
         },
+        "color.primitive.red.810": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9137,
+              0.3333,
+              0.3176
+            ],
+            "alpha": 1,
+            "hex": "#e95551"
+          },
+          "css": "#e95551",
+          "aliasOf": null,
+          "description": "D-029 code syntax red: red.800 (#e53935) lifted to 5.56:1 on the code background and 4.51:1 inside an editor selection (properties, headings, invalid text).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
         "color.primitive.red.850": {
           "type": "color",
           "value": {
@@ -15351,6 +16431,30 @@
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "color.primitive.red.860": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9686,
+              0.2745,
+              0.2353
+            ],
+            "alpha": 1,
+            "hex": "#f7463c"
+          },
+          "css": "#f7463c",
+          "aliasOf": null,
+          "description": "D-029 code syntax red: red.850 (#f73f35) lifted to 5.57:1 on the code background and 4.52:1 inside an editor selection (keywords, tags).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",
@@ -16335,6 +17439,246 @@
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "color.primitive.ansi-readable.1": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9098,
+              0.2941,
+              0.2941
+            ],
+            "alpha": 1,
+            "hex": "#e84b4b"
+          },
+          "css": "#e84b4b",
+          "aliasOf": null,
+          "description": "Heritage slot 1 (#c81a1a, 3.42:1) lifted to 5.23:1 on the terminal background.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "color.primitive.ansi-readable.4": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.898,
+              0.1922,
+              0.1922
+            ],
+            "alpha": 1,
+            "hex": "#e53131"
+          },
+          "css": "#e53131",
+          "aliasOf": null,
+          "description": "Heritage slot 4 (#8c1212, 2.09:1) lifted to 4.55:1 on the terminal background.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "color.primitive.ansi-readable.6": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7333,
+              0.4118,
+              0.4235
+            ],
+            "alpha": 1,
+            "hex": "#bb696c"
+          },
+          "css": "#bb696c",
+          "aliasOf": null,
+          "description": "Heritage slot 6 (#9e474a, 3.26:1) lifted to 5.05:1 on the terminal background.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "color.primitive.ansi-readable.8": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7176,
+              0.1098,
+              0.0902
+            ],
+            "alpha": 1,
+            "hex": "#b71c17"
+          },
+          "css": "#b71c17",
+          "aliasOf": null,
+          "description": "Heritage slot 8 (#7d1310, 1.86:1) lifted to 3.01:1 on the terminal background; kept as the dim tier, not a text colour.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "color.primitive.ansi-readable.9": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9176,
+              0.2196,
+              0.2
+            ],
+            "alpha": 1,
+            "hex": "#ea3833"
+          },
+          "css": "#ea3833",
+          "aliasOf": null,
+          "description": "Heritage slot 9 (#ab1612, 2.70:1) lifted to 4.83:1 on the terminal background.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "color.primitive.ansi-readable.10": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8627,
+              0.3098,
+              0.2863
+            ],
+            "alpha": 1,
+            "hex": "#dc4f49"
+          },
+          "css": "#dc4f49",
+          "aliasOf": null,
+          "description": "Heritage slot 10 (#ad2721, 2.92:1) lifted to 4.97:1 on the terminal background.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "color.primitive.ansi-readable.12": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8588,
+              0.2627,
+              0.2275
+            ],
+            "alpha": 1,
+            "hex": "#db433a"
+          },
+          "css": "#db433a",
+          "aliasOf": null,
+          "description": "Heritage slot 12 (#871f19, 2.12:1) lifted to 4.61:1 on the terminal background.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "color.primitive.ansi-readable.13": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9294,
+              0.3255,
+              0.3765
+            ],
+            "alpha": 1,
+            "hex": "#ed5360"
+          },
+          "css": "#ed5360",
+          "aliasOf": null,
+          "description": "Heritage slot 13 (#e82132, 4.43:1) lifted to 5.67:1 on the terminal background.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "color.primitive.ansi-readable.14": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.902,
+              0.3373,
+              0.3529
+            ],
+            "alpha": 1,
+            "hex": "#e6565a"
+          },
+          "css": "#e6565a",
+          "aliasOf": null,
+          "description": "Heritage slot 14 (#e0292f, 4.28:1) lifted to 5.52:1 on the terminal background.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "color.primitive.ansi-readable.15": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6941,
+              0.4941,
+              0.5059
+            ],
+            "alpha": 1,
+            "hex": "#b17e81"
+          },
+          "css": "#b17e81",
+          "aliasOf": null,
+          "description": "Heritage slot 15 (#a3676b, 4.45:1) lifted to 5.83:1 on the terminal background.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",
@@ -19067,18 +20411,18 @@
             "colorSpace": "srgb",
             "components": [
               0.9686,
-              0.2471,
-              0.2078
+              0.2745,
+              0.2353
             ],
             "alpha": 1,
-            "hex": "#f73f35"
+            "hex": "#f7463c"
           },
-          "css": "#f73f35",
-          "aliasOf": "color.primitive.red.850",
-          "description": "Keywords (Xresources color5 lineage).",
-          "status": "observed",
+          "css": "#f7463c",
+          "aliasOf": "color.primitive.red.860",
+          "description": "Keywords (Xresources color5 lineage), lifted by D-029.",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-029",
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",
@@ -19346,19 +20690,19 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.898,
-              0.2235,
-              0.2078
+              0.9137,
+              0.3333,
+              0.3176
             ],
             "alpha": 1,
-            "hex": "#e53935"
+            "hex": "#e95551"
           },
-          "css": "#e53935",
-          "aliasOf": "color.primitive.red.800",
-          "description": "Markup headings (site .syntax-heading).",
-          "status": "observed",
+          "css": "#e95551",
+          "aliasOf": "color.primitive.red.810",
+          "description": "Markup headings (site .syntax-heading), lifted by D-029.",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-029",
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",
@@ -19371,18 +20715,18 @@
             "colorSpace": "srgb",
             "components": [
               0.9686,
-              0.2471,
-              0.2078
+              0.2745,
+              0.2353
             ],
             "alpha": 1,
-            "hex": "#f73f35"
+            "hex": "#f7463c"
           },
-          "css": "#f73f35",
-          "aliasOf": "color.primitive.red.850",
-          "description": "Markup tags.",
-          "status": "observed",
+          "css": "#f7463c",
+          "aliasOf": "color.primitive.red.860",
+          "description": "Markup tags, lifted by D-029.",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-029",
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",
@@ -19446,19 +20790,19 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.898,
-              0.2235,
-              0.2078
+              0.9137,
+              0.3333,
+              0.3176
             ],
             "alpha": 1,
-            "hex": "#e53935"
+            "hex": "#e95551"
           },
-          "css": "#e53935",
-          "aliasOf": "color.primitive.red.800",
-          "description": "Invalid text: wavy underline.",
-          "status": "observed",
+          "css": "#e95551",
+          "aliasOf": "color.primitive.red.810",
+          "description": "Invalid text: wavy underline; lifted by D-029.",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-029",
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",
@@ -19483,6 +20827,222 @@
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.string": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5255,
+              0.6431,
+              0.4353
+            ],
+            "alpha": 1,
+            "hex": "#86a46f"
+          },
+          "css": "#86a46f",
+          "aliasOf": "color.primitive.green.500",
+          "description": "Strings in green (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.number": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7882,
+              0.5922,
+              0.2471
+            ],
+            "alpha": 1,
+            "hex": "#c9973f"
+          },
+          "css": "#c9973f",
+          "aliasOf": "color.primitive.amber.500",
+          "description": "Numbers in amber (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.constant": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7882,
+              0.5922,
+              0.2471
+            ],
+            "alpha": 1,
+            "hex": "#c9973f"
+          },
+          "css": "#c9973f",
+          "aliasOf": "color.primitive.amber.500",
+          "description": "Constants in amber (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.function": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7882,
+              0.5922,
+              0.2471
+            ],
+            "alpha": 1,
+            "hex": "#c9973f"
+          },
+          "css": "#c9973f",
+          "aliasOf": "color.primitive.amber.500",
+          "description": "Function and method names in amber (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.attribute": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7882,
+              0.5922,
+              0.2471
+            ],
+            "alpha": 1,
+            "hex": "#c9973f"
+          },
+          "css": "#c9973f",
+          "aliasOf": "color.primitive.amber.500",
+          "description": "Markup attribute names in amber (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.escape": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7882,
+              0.5922,
+              0.2471
+            ],
+            "alpha": 1,
+            "hex": "#c9973f"
+          },
+          "css": "#c9973f",
+          "aliasOf": "color.primitive.amber.500",
+          "description": "Escapes in amber (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.type": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4941,
+              0.6196,
+              0.7333
+            ],
+            "alpha": 1,
+            "hex": "#7e9ebb"
+          },
+          "css": "#7e9ebb",
+          "aliasOf": "color.primitive.blue.500",
+          "description": "Types in blue (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.property": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4941,
+              0.6196,
+              0.7333
+            ],
+            "alpha": 1,
+            "hex": "#7e9ebb"
+          },
+          "css": "#7e9ebb",
+          "aliasOf": "color.primitive.blue.500",
+          "description": "Object properties in blue (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.operator": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.6353,
+              0.6549
+            ],
+            "alpha": 1,
+            "hex": "#ffa2a7"
+          },
+          "css": "#ffa2a7",
+          "aliasOf": "color.primitive.rose.800",
+          "description": "Operators in bright rose (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",
@@ -20107,6 +21667,30 @@
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "color.terminal.prompt-text": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0471,
+              0.0353,
+              0.0353
+            ],
+            "alpha": 1,
+            "hex": "#0c0909"
+          },
+          "css": "#0c0909",
+          "aliasOf": "color.primitive.ink.20",
+          "description": "Text on the prompt's path segment (slot 4): dark on the readable heritage slot 4 (D-029).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-029",
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",

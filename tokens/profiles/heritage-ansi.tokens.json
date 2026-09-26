@@ -6,7 +6,11 @@
       "link": {
         "$value": "{color.primitive.rose.800}",
         "$description": "Historical bright-rose link assignment before D-024.",
-        "$extensions": { "io.github.j3w1.theme": { "status": "heritage" } }
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "heritage"
+          }
+        }
       },
       "subtle": {
         "$value": "{color.primitive.rose.350}",
@@ -83,6 +87,51 @@
         "punctuation": {
           "$value": "{color.primitive.rose.650}",
           "$description": "color3: parentheses, symbols, commas.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "heritage"
+            }
+          }
+        },
+        "keyword": {
+          "$value": "{color.primitive.red.850}",
+          "$description": "Keywords, historical value before D-029.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "heritage"
+            }
+          }
+        },
+        "tag": {
+          "$value": "{color.primitive.red.850}",
+          "$description": "Markup tags, historical value before D-029.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "heritage"
+            }
+          }
+        },
+        "property": {
+          "$value": "{color.primitive.red.800}",
+          "$description": "Properties and keys, historical value before D-029.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "heritage"
+            }
+          }
+        },
+        "heading": {
+          "$value": "{color.primitive.red.800}",
+          "$description": "Markup headings, historical value before D-029.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "heritage"
+            }
+          }
+        },
+        "invalid": {
+          "$value": "{color.primitive.red.800}",
+          "$description": "Invalid text, historical value before D-029.",
           "$extensions": {
             "io.github.j3w1.theme": {
               "status": "heritage"
@@ -172,6 +221,119 @@
       "default": {
         "$value": "{color.primitive.ink.30}",
         "$description": "Historical surface assignment retained across D-023.",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "heritage"
+          }
+        }
+      }
+    },
+    "terminal": {
+      "ansi": {
+        "1": {
+          "$value": "{color.primitive.ansi.1}",
+          "$description": "ANSI slot 1, exact heritage value (#c81a1a).",
+          "$deprecated": "fails 4.5:1 (3.42); historical fidelity only",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "heritage"
+            }
+          }
+        },
+        "4": {
+          "$value": "{color.primitive.ansi.4}",
+          "$description": "ANSI slot 4, exact heritage value (#8c1212).",
+          "$deprecated": "fails 4.5:1 (2.09); historical fidelity only",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "heritage"
+            }
+          }
+        },
+        "6": {
+          "$value": "{color.primitive.ansi.6}",
+          "$description": "ANSI slot 6, exact heritage value (#9e474a).",
+          "$deprecated": "fails 4.5:1 (3.26); historical fidelity only",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "heritage"
+            }
+          }
+        },
+        "8": {
+          "$value": "{color.primitive.ansi.8}",
+          "$description": "ANSI slot 8, exact heritage value (#7d1310).",
+          "$deprecated": "fails 4.5:1 (1.86); historical fidelity only",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "heritage"
+            }
+          }
+        },
+        "9": {
+          "$value": "{color.primitive.ansi.9}",
+          "$description": "ANSI slot 9, exact heritage value (#ab1612).",
+          "$deprecated": "fails 4.5:1 (2.70); historical fidelity only",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "heritage"
+            }
+          }
+        },
+        "10": {
+          "$value": "{color.primitive.ansi.10}",
+          "$description": "ANSI slot 10, exact heritage value (#ad2721).",
+          "$deprecated": "fails 4.5:1 (2.92); historical fidelity only",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "heritage"
+            }
+          }
+        },
+        "12": {
+          "$value": "{color.primitive.ansi.12}",
+          "$description": "ANSI slot 12, exact heritage value (#871f19).",
+          "$deprecated": "fails 4.5:1 (2.12); historical fidelity only",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "heritage"
+            }
+          }
+        },
+        "13": {
+          "$value": "{color.primitive.ansi.13}",
+          "$description": "ANSI slot 13, exact heritage value (#e82132).",
+          "$deprecated": "fails 4.5:1 (4.43); historical fidelity only",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "heritage"
+            }
+          }
+        },
+        "14": {
+          "$value": "{color.primitive.ansi.14}",
+          "$description": "ANSI slot 14, exact heritage value (#e0292f).",
+          "$deprecated": "fails 4.5:1 (4.28); historical fidelity only",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "heritage"
+            }
+          }
+        },
+        "15": {
+          "$value": "{color.primitive.ansi.15}",
+          "$description": "ANSI slot 15, exact heritage value (#a3676b).",
+          "$deprecated": "fails 4.5:1 (4.45); historical fidelity only",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "heritage"
+            }
+          }
+        }
+      },
+      "prompt-text": {
+        "$value": "{color.primitive.paper.90}",
+        "$description": "Light prompt text on the heritage slot 4, as the workstation drew it.",
         "$extensions": {
           "io.github.j3w1.theme": {
             "status": "heritage"

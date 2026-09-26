@@ -1,10 +1,10 @@
 {
   "id": "code-editor",
   "name": "Code editor",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "tag": "j3w1-code-editor",
-  "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/code-editor.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/display.js",
+  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/code-editor.md",
+  "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/display.js",
   "imports": {
     "class": "@j3w1/ui/components/code-editor",
     "register": "@j3w1/ui/register/code-editor",
@@ -234,7 +234,8 @@
       "color.primitive.red.200",
       "color.primitive.red.350",
       "color.primitive.red.800",
-      "color.primitive.red.850",
+      "color.primitive.red.810",
+      "color.primitive.red.860",
       "color.primitive.rose.350",
       "color.primitive.rose.450",
       "color.primitive.rose.550",
@@ -530,6 +531,6 @@
   "copy": {
     "directory": "copy/code-editor/",
     "manifest": "copy/code-editor/manifest.json",
-    "digest": "sha256-JisceTQX+r13pk25FyWYxH1ReQsPPAhI7fuNRuX1LyQ="
+    "digest": "sha256-6HuRekUE7I+RRu8dgr1/NXJ1iQHKljrMkjJpcXv6j6Y="
   }
 }
