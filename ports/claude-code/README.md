@@ -12,7 +12,21 @@ so install the terminal theme too, for example [`../orca/`](../orca/README.md).
 ## Install
 
 <!-- install:start -->
-Install commands appear here once v3.0.0 is released.
+Release v3.0.0 (commit `f0e9e25a00357c0b47ae3d1392b87e5bc0aa91e6`).
+
+1. In your clone of this repository (`~/dev/theme` on the CE devbox; if you have none, run `git clone https://github.com/j3w1/theme.git ~/dev/theme` and `cd` into it), paste:
+
+   ```sh
+   git pull --ff-only --tags
+   node ports/claude-code/install.mjs apply --revision f0e9e25a00357c0b47ae3d1392b87e5bc0aa91e6
+   ```
+
+2. Restart Claude Code sessions that were already running (new sessions pick the theme up by themselves).
+3. Check it:
+
+   ```sh
+   node ports/claude-code/install.mjs test
+   ```
 <!-- install:end -->
 
 The installer writes the theme file and one setting, and prints what it did.

@@ -8,7 +8,7 @@
   "source": {
     "algorithm": "sha256 over LF file bytes, base64",
     "files": {
-      "theme.json": "sha256-6aFuAq0gNpaGXhJHqcFH2Wh3/MCUW/e9HAZxpWCD0q8=",
+      "theme.json": "sha256-qXrd63iyykBISd7FagJ51udY4Pe0C18GaZHT8X1sjmc=",
       "site/recipes.json": "sha256-71h0SYIOKbPRh+V/IhtLV7ZGuX90wfmeo84Rx0sm494=",
       "scripts/lib/recipe-generator.mjs": "sha256-73WV6IUzUVgC3oyFESbgawkTU9o6mh+rKtZx8HgdZeA=",
       "scripts/lib/recipe-css.mjs": "sha256-dA/5L61Tsn+Gkmz/syAd689Z5IyuShpluZ1NfgXcZ/c=",
@@ -23,7 +23,7 @@
       "tokens/semantic.tokens.json": "sha256-n3cm7xZJZgXC/U0hMUUvu1R5XbewIklroL7M82/VTBM=",
       "tokens/foundations.tokens.json": "sha256-/gYmJavPwEyem7mpNRhaBa8jjyuPKnSisugGky3PdCY="
     },
-    "digest": "sha256-9HYU0Hvm5Ak5TKjMNd7m1WEKSvcWrTwwqjz3UTYj+jc=",
+    "digest": "sha256-MR9b+NOkaxO2yWJJH4/hJyFGAvikkw8Mj3A+Ik+rptI=",
     "revisionPolicy": "Resolve these paths at the same pinned commit as this manifest. The hosted source viewer identifies its supplying commit; generated source files contain content digests, never a floating revision claim."
   },
   "dependencies": {
@@ -359,6 +359,6 @@
     "example.html": "sha256-kmF7Jb38Iq7jMNwI66ubLJygGN9E5TJYOkKtk9j4RvQ=",
     "two-instances.html": "sha256-TyiCgCqjgNfjRfxi8tV1PoNRe7VNlspBF3Jbk9Kx6tg=",
     "LICENSE.md": "sha256-De5+J6E56pezqsNkkiFO2SNcVVg5aibpeaDnDfl8Xfo=",
-    "README.md": "sha256-ItlnJC5AwZ1gvdQ+ttUkjU0kYmIEDdDp0RdK+l8xM1A="
+    "README.md": "sha256-3gm7vW8iCu71N/Hxm7dU4aYqUQiG0FRdDLnqt6F8qP8="
   }
 }

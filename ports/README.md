@@ -24,7 +24,27 @@ repository README and on the site's Ports page, pinned to a release.
 ## Install commands
 
 <!-- install:start -->
-Install commands appear here once v3.0.0 is released.
+Release v3.0.0 (commit `f0e9e25a00357c0b47ae3d1392b87e5bc0aa91e6`):
+
+- **Orca** on Windows. Quit Orca first (tray icon too), then paste into PowerShell 7:
+
+  ```powershell
+  & ([scriptblock]::Create((Invoke-RestMethod https://raw.githubusercontent.com/j3w1/theme/f0e9e25a00357c0b47ae3d1392b87e5bc0aa91e6/ports/orca/install/Get-J3w1Orca.ps1))) -Revision f0e9e25a00357c0b47ae3d1392b87e5bc0aa91e6 -Apply
+  ```
+
+- **Claude Code**, in your clone of this repository:
+
+  ```sh
+  git pull --ff-only --tags
+  node ports/claude-code/install.mjs apply --revision f0e9e25a00357c0b47ae3d1392b87e5bc0aa91e6
+  ```
+
+- **Codex**, in your clone of this repository:
+
+  ```sh
+  git pull --ff-only --tags && npm ci
+  node ports/codex/install.mjs apply --revision f0e9e25a00357c0b47ae3d1392b87e5bc0aa91e6
+  ```
 <!-- install:end -->
 
 Each app's guide has the full steps: install, update, restore, what it

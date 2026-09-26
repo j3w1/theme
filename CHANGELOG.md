@@ -5,8 +5,9 @@
 Major under the versioning rule: D-032 changes approved values (terminal slot
 6 and the prompt text) and removes `color.primitive.ansi-readable.6`.
 Consumers pinned to 2.x keep the old values until they upgrade. The terminal
-kit is replaced by one folder per app under `ports/`; its v2.0.0 installs
-restore with the new installers.
+kit is replaced by one folder per app under `ports/`. Backups made by the
+v2.0.0 terminal kit restore with the new installers (on the devbox, set
+`J3W1_THEME_STATE_DIR` first; see Downstream below).
 
 - **ChatGPT port** (experimental). `ports/chatgpt/` sets the ChatGPT desktop
   app's Appearance to two presets: **j3w1 Signature** (bright rose
@@ -55,7 +56,6 @@ restore with the new installers.
   and its Codex preview follows the Codex theme's own scopes.
 - Downstream: install from the new guides. On the devbox, set
   `J3W1_THEME_STATE_DIR` to the folder `J3W1_TERMINAL_KIT_STATE_DIR` named.
-
 - D-032 **Coral slot 6 and a fixed prompt background.** Terminal slot 6 is coral
   `#ff7a66` (7.77:1), so names that code highlighters draw in slot 6, such as
   PowerShell cmdlets in Claude Code, stand apart from the rose text. A new role,
