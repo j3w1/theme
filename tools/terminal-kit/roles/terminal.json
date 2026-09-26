@@ -1,0 +1,273 @@
+{
+  "schemaVersion": 1,
+  "integration": {
+    "id": "orca-terminal",
+    "version": "1",
+    "kind": "terminal-16"
+  },
+  "components": [
+    "terminal"
+  ],
+  "host": {
+    "name": "Orca",
+    "targetVersions": [
+      "1.4.209"
+    ],
+    "settingsFile": "%APPDATA%\\orca\\profiles\\<activeProfileId>\\orca-data.json",
+    "profileIndex": "%APPDATA%\\orca\\orca-profile-index.json",
+    "ghosttyFiles": [
+      "%APPDATA%\\ghostty\\config.ghostty",
+      "%APPDATA%\\ghostty\\config"
+    ]
+  },
+  "ghostty": {
+    "order": "Same keys and order as ports/orca/dist/config.ghostty; font-size carries the machine's Orca terminal size and is omitted when the machine has none.",
+    "lines": [
+      {
+        "key": "background",
+        "token": "color.terminal.bg"
+      },
+      {
+        "key": "foreground",
+        "token": "color.terminal.fg"
+      },
+      {
+        "key": "cursor-color",
+        "token": "color.terminal.cursor"
+      },
+      {
+        "key": "cursor-text",
+        "token": "color.terminal.bg"
+      },
+      {
+        "key": "selection-background",
+        "token": "color.terminal.selection-bg"
+      },
+      {
+        "key": "selection-foreground",
+        "token": "color.terminal.selection-text"
+      },
+      {
+        "key": "palette",
+        "index": 0,
+        "token": "color.terminal.ansi.0"
+      },
+      {
+        "key": "palette",
+        "index": 1,
+        "token": "color.terminal.ansi.1"
+      },
+      {
+        "key": "palette",
+        "index": 2,
+        "token": "color.terminal.ansi.2"
+      },
+      {
+        "key": "palette",
+        "index": 3,
+        "token": "color.terminal.ansi.3"
+      },
+      {
+        "key": "palette",
+        "index": 4,
+        "token": "color.terminal.ansi.4"
+      },
+      {
+        "key": "palette",
+        "index": 5,
+        "token": "color.terminal.ansi.5"
+      },
+      {
+        "key": "palette",
+        "index": 6,
+        "token": "color.terminal.ansi.6"
+      },
+      {
+        "key": "palette",
+        "index": 7,
+        "token": "color.terminal.ansi.7"
+      },
+      {
+        "key": "palette",
+        "index": 8,
+        "token": "color.terminal.ansi.8"
+      },
+      {
+        "key": "palette",
+        "index": 9,
+        "token": "color.terminal.ansi.9"
+      },
+      {
+        "key": "palette",
+        "index": 10,
+        "token": "color.terminal.ansi.10"
+      },
+      {
+        "key": "palette",
+        "index": 11,
+        "token": "color.terminal.ansi.11"
+      },
+      {
+        "key": "palette",
+        "index": 12,
+        "token": "color.terminal.ansi.12"
+      },
+      {
+        "key": "palette",
+        "index": 13,
+        "token": "color.terminal.ansi.13"
+      },
+      {
+        "key": "palette",
+        "index": 14,
+        "token": "color.terminal.ansi.14"
+      },
+      {
+        "key": "palette",
+        "index": 15,
+        "token": "color.terminal.ansi.15"
+      },
+      {
+        "key": "split-divider-color",
+        "token": "color.border.divider"
+      },
+      {
+        "key": "font-family",
+        "token": "font.family.mono",
+        "pick": "first"
+      },
+      {
+        "key": "font-size",
+        "token": "font.size.terminal",
+        "preference": "terminalFontSize"
+      }
+    ]
+  },
+  "orca": {
+    "terminalColorOverrides": {
+      "foreground": "color.terminal.fg",
+      "background": "color.terminal.bg",
+      "cursor": "color.terminal.cursor",
+      "cursorAccent": "color.terminal.bg",
+      "selectionBackground": "color.terminal.selection-bg",
+      "selectionForeground": "color.terminal.selection-text",
+      "black": "color.terminal.ansi.0",
+      "red": "color.terminal.ansi.1",
+      "green": "color.terminal.ansi.2",
+      "yellow": "color.terminal.ansi.3",
+      "blue": "color.terminal.ansi.4",
+      "magenta": "color.terminal.ansi.5",
+      "cyan": "color.terminal.ansi.6",
+      "white": "color.terminal.ansi.7",
+      "brightBlack": "color.terminal.ansi.8",
+      "brightRed": "color.terminal.ansi.9",
+      "brightGreen": "color.terminal.ansi.10",
+      "brightYellow": "color.terminal.ansi.11",
+      "brightBlue": "color.terminal.ansi.12",
+      "brightMagenta": "color.terminal.ansi.13",
+      "brightCyan": "color.terminal.ansi.14",
+      "brightWhite": "color.terminal.ansi.15"
+    },
+    "settings": {
+      "terminalDividerColorDark": {
+        "token": "color.border.divider"
+      },
+      "terminalDividerColorLight": {
+        "token": "color.border.divider"
+      },
+      "terminalFontFamily": {
+        "token": "font.family.mono",
+        "pick": "first"
+      },
+      "terminalFontSize": {
+        "token": "font.size.terminal",
+        "preference": "terminalFontSize"
+      },
+      "terminalMinimumContrastRatio": {
+        "value": 1,
+        "why": "Color Contrast Off. Any other value lets xterm recolour the slots, which the terminal spec forbids: the sixteen are carried exactly."
+      },
+      "leftSidebarAppearanceMode": {
+        "value": "match-terminal",
+        "why": "The only chrome surface Orca 1.4.209 lets follow the terminal colours."
+      }
+    },
+    "preserve": [
+      "theme",
+      "appFontFamily",
+      "editorFontFamily",
+      "ui.uiZoomLevel",
+      "terminalThemeDark",
+      "terminalThemeLight",
+      "terminalUseSeparateLightTheme",
+      "terminalLineHeight",
+      "terminalFontWeight",
+      "terminalFontWeightBold",
+      "terminalCursorStyle",
+      "terminalCursorBlink",
+      "terminalScrollSensitivity",
+      "terminalScrollbackRows",
+      "terminalWindowsShell",
+      "terminalWindowsPowerShellImplementation",
+      "terminalDefaultShell",
+      "leftSidebarTintColor",
+      "leftSidebarTintOpacity"
+    ],
+    "expectedPreferences": {
+      "theme": "system",
+      "appFontFamily": "JetBrainsMono NF",
+      "ui.uiZoomLevel": 0,
+      "terminalFontSize": 14
+    }
+  },
+  "deviations": [
+    {
+      "component": "terminal",
+      "target": "bold text",
+      "kind": "unsupported",
+      "specValue": "bold-as-bright off, so bold keeps its own slot",
+      "applied": null,
+      "reason": "Orca 1.4.209 hard-codes xterm drawBoldTextInBrightColors to true and exposes no setting; bold text in slots 0-7 renders in slots 8-15."
+    },
+    {
+      "component": "terminal",
+      "target": "light mode",
+      "kind": "unsupported",
+      "specValue": "dark terminal roles",
+      "applied": null,
+      "reason": "Orca stores colour overrides once for both modes, so the dark roles also apply when the system is light."
+    },
+    {
+      "component": "terminal",
+      "target": "current line",
+      "kind": "unsupported",
+      "specValue": "color.code.current-line",
+      "applied": null,
+      "reason": "xterm.js has no cursor-line fill."
+    },
+    {
+      "component": "terminal",
+      "target": "font size",
+      "kind": "host-rule",
+      "specValue": "font.size.terminal",
+      "applied": "the Orca terminal font size already set on the machine, carried into the Ghostty block (none when the machine has none); the kit never sets or restores it",
+      "reason": "Hosts keep the user's chosen size (spec/foundations.md, Typography)."
+    },
+    {
+      "component": "terminal",
+      "target": "cursor shape and blink",
+      "kind": "host-rule",
+      "specValue": "block, no blink in the reference",
+      "applied": "the Orca cursor style and blink already set",
+      "reason": "The cursor shape is the user's setting; the theme only supplies its colour."
+    },
+    {
+      "component": "terminal",
+      "target": "application chrome",
+      "kind": "unsupported",
+      "specValue": "surface and border roles for tabs, right sidebar, status bar and settings",
+      "applied": null,
+      "reason": "Orca 1.4.209 has no app-chrome appearance setting; only the left sidebar can match the terminal."
+    }
+  ]
+}

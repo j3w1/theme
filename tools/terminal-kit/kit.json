@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "id": "j3w1-terminal-kit",
+  "description": "Local installer for the j3w1 approved default profile in Orca (Windows client), Claude Code and Codex. A consumer of this repository: it reads only the pinned export and never edits canonical sources.",
+  "theme": {
+    "name": "j3w1-theme",
+    "repository": "j3w1/theme",
+    "version": "1.2.0",
+    "ref": "v1.2.0",
+    "revision": "0838171cb6907f21f91f45ac9f7a992d7164a4eb",
+    "profile": "default"
+  },
+  "exports": {
+    "tokens": "exports/tokens.resolved.json",
+    "tokensDigest": "sha256-ewtsMMkPT+PGzEwK1TgPlUDKYkjMVbO0bpmxM3qvoTY=",
+    "digests": "exports/digests.json"
+  },
+  "urls": {
+    "tagRef": "https://api.github.com/repos/{repository}/git/ref/tags/{ref}",
+    "raw": "https://raw.githubusercontent.com/{repository}/{revision}/{path}"
+  },
+  "eligibility": {
+    "allowedActions": [
+      "use",
+      "use-and-report"
+    ],
+    "forbiddenPrefixes": [
+      "color.primitive."
+    ],
+    "note": "Consume roles within their documented scope, never primitives (agents/consume.md). use-and-report roles are disclosed with their decision ids."
+  },
+  "integrations": {
+    "orca": {
+      "roles": "roles/terminal.json",
+      "platform": "windows",
+      "entry": "windows/Apply-J3w1OrcaTheme.ps1"
+    },
+    "claude-code": {
+      "roles": "roles/claude-code.json",
+      "platform": "devbox",
+      "entry": "devbox/j3w1-terminal.mjs"
+    },
+    "codex": {
+      "roles": "roles/codex.json",
+      "platform": "devbox",
+      "entry": "devbox/j3w1-terminal.mjs"
+    }
+  },
+  "specimen": "specimen.json"
+}
