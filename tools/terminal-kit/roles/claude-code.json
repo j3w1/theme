@@ -300,12 +300,12 @@
       "why": "Default foreground; dark-ansi uses slot 15, which measures 4.45:1."
     },
     "userMessageBackground": {
-      "token": "color.surface.raised",
-      "why": "Your messages sit on a raised surface, not a slot-8 red block."
+      "token": "color.interaction.selection.bg",
+      "why": "Your messages sit on the selected-row red, a clearly visible band (6.24:1 for the rose text); chosen by the owner over the fainter raised surface."
     },
     "userMessageBackgroundHover": {
-      "token": "color.interaction.hover.bg",
-      "why": "Hover fill."
+      "token": "color.interaction.hover.bg-strong",
+      "why": "Hover and expanded rows step up to the strong hover fill (5.71:1)."
     },
     "warning": {
       "token": "color.status.warning.text",

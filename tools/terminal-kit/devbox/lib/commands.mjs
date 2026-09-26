@@ -529,7 +529,8 @@ export const update = async (opts, paths, log) => {
   if (!revision) throw new KitError(`tag ${opts.version} does not resolve to a commit`);
   const version = opts.version.slice(1);
   const ctx = await loadContext({ pin: { ref: opts.version, revision, version }, kitSource: "revision", sourceRoot, offline: Boolean(opts.sourceRoot) });
-  log(`update to ${opts.version} = ${revision}; kit files from ${ctx.source.kitFrom === "local" ? "this checkout (the tag predates the kit)" : "the tag"}`);
+  const fromCheckout = revision === localKit().kit.theme.revision ? "this checkout (the tag is its own pin)" : "this checkout (the tag predates the kit)";
+  log(`update to ${opts.version} = ${revision}; kit files from ${ctx.source.kitFrom === "local" ? fromCheckout : "the tag"}`);
   return run({
     ctx, paths, opts, command: `update ${opts.version}`, integrations: opts.integrations, log,
     before: (plan) => {

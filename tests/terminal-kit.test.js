@@ -403,8 +403,9 @@ test("apply, test, apply again, restore: a byte-exact round trip", async (t) => 
   assert.match(again.stdout, /no changes/);
   assert.equal((await backups(h)).length, 1, "no new backup when nothing changed");
 
-  const pinned = await cli(h.home, ["update", "--version", "v1.2.0"]);
+  const pinned = await cli(h.home, ["update", "--version", (await readKitJson("kit.json")).theme.ref]);
   assert.equal(pinned.code, 0, pinned.stderr);
+  assert.match(pinned.stdout, /kit files from this checkout \(the tag is its own pin\)/, "the kit's own pin keeps the checkout's maps");
   assert.match(pinned.stdout, /72 of 72 overrides unchanged/);
   assert.match(pinned.stdout, /no changes/);
 
