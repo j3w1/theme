@@ -27,7 +27,12 @@ equal that pinned digest and its entry in `exports/digests.json`:
 
 `Update` pins a different tag: it resolves the tag (GitHub API, or git in
 `-SourceRoot`), and verifies the export against the digest a `kit.json` pins
-for that commit when one does, and always against its `digests.json`.
+for that commit when one does, and always against its `digests.json`. When
+`-Version` is the tag `../kit.json` pins, the tag must resolve to the commit
+`kit.json` pins and the export must match its `tokensDigest`, on every
+source; anything else is refused. Any other tag read from `-SourceRoot` is
+taken as the local tag names it: the run says in its header and in a warning
+that the local tag was trusted.
 
 ## Get the kit
 
@@ -74,31 +79,62 @@ Or quit Orca (tray too) and run the script again.
 
 Every Apply or Update that writes anything records, in its manifest, the value
 (or absence) of every managed key as it found it, whether or not it wrote the
-store. That is what Restore returns to, so the values Orca writes later through
-the GUI steps above are undone too.
+store, the value the kit sets for each key, and the keys its maps manage
+(`managedKeys`). Restore works from those records.
 
-- **Default**: undo every apply and update since the last restore (since the
-  first apply when there was none). Each managed key gets the earliest value
-  recorded in that window, or is removed again if it was absent. A restore
-  after an owner's change and a new apply therefore keeps the owner's change.
-- **`-Latest`**: undo only the most recent apply or update.
-- **`-Backup <name>`**: return to the state before one backup.
+Which records a restore undoes:
+
+- **Default**: every record since the last *boundary*, or since the first
+  apply when there is none.
+- **`-Latest`**: the most recent apply or update, and anything after it.
+- **`-Backup <name>`**: the named backup, and everything after it; the state
+  before that backup.
+
+A boundary is a restore that finished its last write and left no kit value
+applied: any complete restore, of any mode, whose records reach back to a
+state with no kit value (a default restore always does; `-Latest` or
+`-Backup` does when no earlier apply or update lies between it and the
+previous boundary), including one that found nothing left to change, which is
+then recorded on its own. A restore refused while Orca runs is not a boundary.
+A restore writes its manifest first, marked `complete: false`, and marks it
+complete only after its last write; if it stops partway (a failed write,
+Orca started meanwhile), it is not a boundary, and running Restore again
+finishes the job.
+
+Per key, the earliest value recorded in those records comes back (removed
+again if it was absent), but only for a key a record in them wrote, or that a
+run which could not write the store (Orca open) found at a value other than
+the kit's. A key the kit never wrote and never asked Orca for is left as it
+is, including a key that already held the kit's value. The earliest value
+wins: if you changed a key between two applies, Restore returns the value
+from before the first one. It warns, per key, when a value differs from what
+the kit left or asked for, at a later record or now. Keys a record names
+must be managed by this kit or listed in that record's `managedKeys` (a
+newer tag's maps); anything else is refused.
 
 If the earliest record for a key already found the kit's value while
 `config.ghostty` already held the managed block (for example after the kit's
 state folder was deleted and Orca had imported the block), the pre-kit value is
 unknown. Restore says so for that key, leaves it as it is, and exits 3. It
-never reports such a key as restored.
+never reports such a key as restored, and the next restore after a later
+apply still treats it as unknown while it holds the kit's value.
 
-`config.ghostty` loses only the managed block; every byte outside it is kept.
-Its exact pre-kit bytes come back (or the file is deleted, when the kit created
-it) only when nothing outside the block changed since the kit wrote it. The
-plan warns when a file changed since the kit last wrote it. A symbolic link is
-written through to its target and stays a link.
+`config.ghostty` returns to its state before the earliest record that wrote
+it. When no record in the window wrote it, a default restore still takes the
+managed block out, while `-Latest` and `-Backup` leave the file alone. Only
+the managed block is removed and every byte outside it is kept. Its exact
+earlier bytes come back (or the file is deleted, when the kit created it)
+only when nothing outside the block changed since the kit wrote it; an
+existing empty file comes back empty. The plan warns when a file changed
+since the kit last wrote it. A symbolic link is written through to its target
+and stays a link; a link whose target is missing stops the run. A file with
+more than one managed block is refused by Apply and Restore until the extra
+copies are deleted, and Test reports it as a FAIL.
 
 While Orca runs, the store part is refused: Restore restores the Ghostty file
 only and exits 2. Exit codes: 0 done, 1 error, 2 store refused while Orca
-runs, 3 some keys left because their pre-kit value is unknown.
+runs, 3 some keys left because their pre-kit value is unknown. `-WhatIf`
+exits with the code the real run would.
 
 ## What it changes and what it never changes
 
@@ -112,7 +148,9 @@ and `terminalFontSize`.
   alone, and Restore returns it like every other managed key.
 - The font size is only set when the machine has none. A size the owner
   changes after apply is a WARN in Test, never a FAIL, and the Ghostty block
-  is compared without its `font-size` line.
+  is compared without its `font-size` line. Restore takes the size out again
+  only when the kit set it and nobody changed it since; otherwise the size
+  stays as it is.
 - The keys listed in `orca.preserve` (theme, IDE font, editor font, zoom and
   more) are recorded and reported but never changed. A mismatch with
   `orca.expectedPreferences` produces a warning and nothing else.
@@ -128,11 +166,15 @@ Everything is in `%LOCALAPPDATA%\j3w1-theme\orca\`:
   keys (their observed, before and after values) and the preserved keys,
   never other Orca state.
 - `pre-kit\orca-data.json` is **one full copy of Orca's settings store**,
-  taken the first time the kit writes the store and never overwritten. It
+  as read by the first Apply or Update that writes anything and finds no
+  copy, whether or not that run writes the store (with Orca open it does
+  not). It is never overwritten, and Restore never takes it. It is the
+  pre-kit store only if that run was the kit's first on this machine: after
+  the state folder was deleted, it holds whatever the store held then. It
   contains the whole private store (repositories, worktree paths, session
   state, account flags), protected only by the folder's normal permissions.
-  Restore does not need it; it is the last-resort copy. Delete it yourself
-  once you no longer want it.
+  Restore does not need it; it is a last-resort copy. Delete it yourself once
+  you no longer want it.
 - `cache\<commit>\` holds the verified export (see Pinning).
 
 Orca 1.4.209 has no app-chrome appearance setting (only the left sidebar can
@@ -150,4 +192,5 @@ needs that commit (CI fetches full history). The test seam
 maps APPDATA and LOCALAPPDATA under that root and disables the network.
 Inside the seam only, `J3W1_KIT_TEST_SOURCE=worktree` lets `-SourceRoot` be a
 plain folder; such a run marks the pin as not verified and writes no lock. The
-seam is never active otherwise.
+seam refuses a root that maps onto the real `APPDATA` or `LOCALAPPDATA`, and
+is never active otherwise.

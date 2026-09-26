@@ -9,7 +9,10 @@ when that commit has none), downloads and verifies that commit's export (against
 pins for that commit when one does, and always against its digests.json), shows
 a before/after diff of every managed value, backs up, applies through the same
 path as Apply-J3w1OrcaTheme.ps1 and runs the checks. It never follows a branch:
-"main", "latest" and anything that is not an exact tag are refused.
+"main", "latest" and anything that is not an exact tag are refused. The tag
+../kit.json pins must resolve to the commit and digest kit.json pins; any other
+tag read from -SourceRoot is trusted as the local tag names it, and the run
+says so.
 
 .PARAMETER Version
 The release tag, for example v1.2.0.

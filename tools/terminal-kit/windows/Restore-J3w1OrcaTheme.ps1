@@ -3,28 +3,35 @@
 Restores what the kit changed, key by key.
 
 .DESCRIPTION
-By default it undoes every apply and update since the last restore (since the
-first apply when there was none): every managed Orca setting returns to the
-earliest value the kit observed in that window (removed again if it was
-absent). Apply records what it observes even while Orca runs, so values Orca
-wrote later through Import from Ghostty are undone too. When the earliest
-record already found the kit's value while config.ghostty held the managed
-block, the pre-kit value is unknown: that key is left as it is, the run says
-so and exits 3.
+By default it undoes every apply and update since the last boundary: a restore
+that finished its last write and left no kit value applied (any mode; one that
+found nothing left to change is recorded as one too). An interrupted restore is
+never a boundary, so running Restore again finishes the job. Per key, the
+earliest value recorded since then comes back (removed again if it was absent),
+for every key the kit wrote or asked Orca for through the GUI steps; a key the
+kit never wrote, and a font size changed after the kit set it, are left as they
+are. Apply records what it observes even while Orca runs, so values Orca wrote
+later through Import from Ghostty are undone too. When the earliest record
+already found the kit's value while config.ghostty held the managed block, the
+pre-kit value is unknown: that key is left as it is, the run says so and exits
+3. It warns per key about values changed after the kit set them.
 
 config.ghostty loses only the managed block; every byte outside it is kept.
-Its pre-kit bytes come back exactly (or the file is deleted when the kit
+Its earlier bytes come back exactly (or the file is deleted when the kit
 created it) only when nothing outside the block changed since. The plan warns
 when a file changed since the kit last wrote it. Nothing else in Orca's store
 is touched. The current state is backed up first. While Orca runs the store
 part is refused (Orca would overwrite it) and the exit code is 2; the Ghostty
-file is still restored.
+file is still restored. -WhatIf exits with the code the real run would.
 
 .PARAMETER Backup
-Restore to the state before one backup (its folder name, yyyyMMddTHHmmssZ).
+Restore to the state before one backup (its folder name, yyyyMMddTHHmmssZ):
+that record and every later one are undone. config.ghostty is left alone when
+none of them wrote it.
 
 .PARAMETER Latest
-Undo only the most recent apply or update.
+Undo the most recent apply or update (and anything after it). config.ghostty
+is left alone when that run did not write it.
 
 .PARAMETER WhatIf
 Print the plan and write nothing.

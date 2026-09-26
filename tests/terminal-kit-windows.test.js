@@ -207,6 +207,58 @@ const withoutManaged = (store) => {
   return copy;
 };
 const ok = (result, message) => assert.equal(result.status, 0, `${message}\n${result.output}`);
+const ORCA_OPEN = { J3W1_KIT_TEST_ORCA_RUNNING: "1" };
+const writeStore = (tree, store) => fs.writeFile(tree.store, JSON.stringify(store, null, 2));
+/* The owner changes managed keys in Orca between runs. */
+const ownerSets = async (tree, values) => {
+  const store = await readStore(tree);
+  Object.assign(store.settings, values);
+  await writeStore(tree, store);
+};
+const restoreManifest = (tree, name) => readFileJson(path.join(tree.state, "backups", name, "manifest.json"));
+/* Orca open at apply, Orca's Import from Ghostty and Color Contrast Off but
+   not Match Terminal, then the kit's records lost (a cleaned LOCALAPPDATA)
+   and an apply with Orca closed: the terminal keys' pre-kit values are
+   unknown to the kit. */
+const importWithoutRecords = async (tree) => {
+  ok(apply(tree, [], ORCA_OPEN), "apply while Orca runs");
+  const imported = JSON.parse(STORE);
+  const values = kitSettings();
+  delete values.leftSidebarAppearanceMode;
+  Object.assign(imported.settings, values);
+  await writeStore(tree, imported);
+  await fs.rm(tree.state, { recursive: true, force: true });
+  ok(apply(tree), "apply with Orca closed writes the sidebar mode");
+};
+/* A shared clone of this repository for -SourceRoot, without a working tree. */
+const cloneRepo = async (tree) => {
+  const clone = path.join(tree.root, "clone");
+  git(["clone", "--quiet", "--shared", "--no-checkout", repoRoot, clone], tree.root);
+  return clone;
+};
+/* A commit on top of the pinned revision that replaces `files` (repository
+   path -> text), built from git objects so nothing is checked out. */
+const commitOnPin = (clone, files, message) => {
+  const env = { ...process.env, GIT_INDEX_FILE: path.join(clone, ".git", "j3w1-kit-test-index") };
+  const raw = (args, input) => {
+    const result = spawnSync("git", ["-c", "user.name=kit-test", "-c", "user.email=kit-test@example.invalid", "-c", "commit.gpgsign=false", ...args], { cwd: clone, env, input, encoding: "utf8" });
+    assert.equal(result.status, 0, `git ${args.join(" ")}\n${result.stderr}`);
+    return result.stdout.trim();
+  };
+  raw(["read-tree", kit.theme.revision]);
+  for (const [file, text] of Object.entries(files)) {
+    raw(["update-index", "--add", "--cacheinfo", `100644,${raw(["hash-object", "-w", "--stdin"], text)},${file}`]);
+  }
+  return raw(["commit-tree", raw(["write-tree"]), "-p", kit.theme.revision, "-m", message]);
+};
+/* The pinned export with `edit` applied to its parsed tokens file, and a
+   digests.json that matches it. */
+const exportFiles = (edit) => {
+  const text = edit(pinnedTokensBytes.toString("utf8"));
+  const digests = structuredClone(pinnedDigests);
+  digests.files[kit.exports.tokens] = digestOf(Buffer.from(text));
+  return { [kit.exports.tokens]: text, [kit.exports.digests]: `${JSON.stringify(digests, null, 2)}\n` };
+};
 
 test("the generated Ghostty block equals the Orca port except font-size", { skip }, async (t) => {
   const tree = await makeTree(t);
@@ -363,7 +415,7 @@ test("Orca open, then Import from Ghostty in the GUI, then apply with Orca close
   assert.deepEqual(await readStore(tree), JSON.parse(STORE), "every managed key has its pre-kit value again");
   assert.deepEqual(await fs.readFile(tree.ghostty), Buffer.from(GHOSTTY));
   assert.equal(first.storeWritten, false);
-  assert.deepEqual(first.observed.find((entry) => entry.key === "leftSidebarAppearanceMode"), { key: "leftSidebarAppearanceMode", value: "custom", equalsKit: false }, "observed although not written");
+  assert.deepEqual(first.observed.find((entry) => entry.key === "leftSidebarAppearanceMode"), { key: "leftSidebarAppearanceMode", value: "custom", equalsKit: false, kit: "match-terminal" }, "observed although not written");
 });
 
 test("a key whose only records already hold the kit's value from an import is left, said so, and the restore exits non-zero", { skip }, async (t) => {
@@ -531,7 +583,8 @@ test("manifests name only managed and preserved keys; the lock follows its schem
   for (const file of [path.join(tree.state, "current", "manifest.json"), path.join(tree.state, "backups", backup, "manifest.json")]) {
     const text = await fs.readFile(file, "utf8");
     const manifest = JSON.parse(text);
-    assert.deepEqual(Object.keys(manifest).sort(), ["claudeCodeVersion", "deviations", "disclosures", "files", "ghosttyBlockBefore", "kit", "observed", "operation", "orcaVersion", "preferences", "preserved", "schemaVersion", "settings", "source", "storeWritten", "theme", "timestamp"]);
+    assert.deepEqual(Object.keys(manifest).sort(), ["claudeCodeVersion", "deviations", "disclosures", "files", "ghosttyBlockBefore", "kit", "managedKeys", "observed", "operation", "orcaVersion", "preferences", "preserved", "schemaVersion", "settings", "source", "storeWritten", "theme", "timestamp"]);
+    assert.deepEqual(manifest.managedKeys, managedKeys, "the keys this run's maps manage");
     assert.equal(manifest.kit, kit.id);
     assert.deepEqual(manifest.theme, { name: kit.theme.name, version: kit.theme.version, ref: kit.theme.ref, revision: kit.theme.revision, profile: kit.theme.profile });
     assert.deepEqual(manifest.source, { kind: "git", pinVerified: true });
@@ -705,4 +758,244 @@ test("Get-J3w1Kit takes only a full commit SHA and reads it from git", { skip },
     assert.deepEqual(await fs.readFile(path.join(target, file)), committed, `${file} is the committed blob`);
   }
   assert.ok(fetched.stdout.includes(path.join(target, "windows", "Apply-J3w1OrcaTheme.ps1")), "prints the next command");
+});
+
+test("an interrupted default restore is not recorded as done, and rerunning it finishes the job", { skip }, async (t) => {
+  if (process.platform === "win32" || process.getuid?.() === 0) return t.skip("needs POSIX folder permissions and a non-root user");
+  const tree = await makeTree(t);
+  ok(apply(tree), "apply");
+  // The store's folder refuses the write, after the Ghostty file was restored.
+  const profile = path.dirname(tree.store);
+  await fs.chmod(profile, 0o555);
+  let first;
+  try {
+    first = restore(tree);
+  } finally {
+    await fs.chmod(profile, 0o755);
+  }
+  assert.equal(first.status, 1, first.output);
+  assert.notDeepEqual(await readStore(tree), JSON.parse(STORE), "the store was not written");
+  const second = restore(tree);
+  ok(second, "the rerun succeeds");
+  assert.match(second.stdout, /Result: restored/);
+  assert.deepEqual(await readStore(tree), JSON.parse(STORE), "the pre-kit values are back");
+  assert.deepEqual(await fs.readFile(tree.ghostty), Buffer.from(GHOSTTY));
+  assert.match(restore(tree).stdout, /nothing to restore; no apply or update since the restore/);
+  const [, interrupted, finished] = backups(tree);
+  assert.equal((await restoreManifest(tree, interrupted)).complete, false);
+  assert.equal((await restoreManifest(tree, finished)).complete, true);
+  assert.match(first.stderr, /not recorded as done: .*run Restore again; it finishes the job/);
+});
+
+test("restore leaves keys the kit never wrote, and a font size the owner changed after the kit set it", { skip }, async (t) => {
+  const tree = await makeTree(t);
+  const store = JSON.parse(STORE);
+  store.settings.terminalMinimumContrastRatio = 1;
+  await writeStore(tree, store);
+  ok(apply(tree), "apply");
+  await ownerSets(tree, { terminalFontSize: 16, terminalMinimumContrastRatio: 4.5 });
+  ok(restore(tree), "restore");
+  const restored = await readStore(tree);
+  assert.equal(restored.settings.terminalFontSize, 16, "the kit never wrote the size; the owner's stays");
+  assert.equal(restored.settings.terminalMinimumContrastRatio, 4.5, "a key that already held the kit's value was never written");
+  assert.equal(restored.settings.leftSidebarAppearanceMode, "custom", "a key the kit wrote is restored");
+
+  const bare = JSON.parse(STORE);
+  delete bare.settings.terminalFontSize;
+  const changed = await makeTree(t);
+  await writeStore(changed, bare);
+  ok(apply(changed), "apply sets the token size on a machine without one");
+  await ownerSets(changed, { terminalFontSize: 16 });
+  const kept = restore(changed);
+  ok(kept, "restore");
+  assert.match(kept.stdout, /terminalFontSize\s+kept at 16: changed after the kit set it/);
+  assert.equal((await readStore(changed)).settings.terminalFontSize, 16);
+  const untouched = await makeTree(t);
+  await writeStore(untouched, bare);
+  ok(apply(untouched), "apply");
+  ok(restore(untouched), "restore");
+  assert.equal("terminalFontSize" in (await readStore(untouched)).settings, false, "a size the kit added and nobody changed is removed again");
+});
+
+test("an existing empty config.ghostty is a file, and restore gives it back empty", { skip }, async (t) => {
+  const tree = await makeTree(t, { ghostty: "" });
+  const applied = apply(tree);
+  ok(applied, "apply");
+  assert.match(applied.stdout, /config\.ghostty: append the managed block/);
+  const restored = restore(tree);
+  ok(restored, "restore");
+  assert.match(restored.stdout, /restore the pre-kit bytes/);
+  assert.ok(existsSync(tree.ghostty), "the file is kept");
+  assert.equal((await fs.readFile(tree.ghostty)).length, 0, "and is empty again");
+});
+
+test("-Latest and -Backup leave config.ghostty alone when the runs they undo never wrote it", { skip }, async (t) => {
+  const tree = await makeTree(t);
+  ok(apply(tree), "apply writes the store and the block");
+  await ownerSets(tree, { terminalFontFamily: "Iosevka Term" });
+  ok(apply(tree), "apply writes only the store");
+  const [, second] = backups(tree);
+  assert.deepEqual((await restoreManifest(tree, second)).files.map((file) => file.role), ["store"]);
+  const plan = restore(tree, ["-Backup", second, "-WhatIf"]);
+  ok(plan, "-Backup -WhatIf");
+  assert.doesNotMatch(plan.stdout, /config\.ghostty: /);
+  ok(restore(tree, ["-Latest"]), "-Latest");
+  managedBlock(await fs.readFile(tree.ghostty, "utf8"));
+  assert.equal((await readStore(tree)).settings.terminalFontFamily, "Iosevka Term", "the state before the latest run");
+});
+
+test("a -Latest or no-op restore that left no kit value is where the next default restore starts", { skip }, async (t) => {
+  const latest = await makeTree(t);
+  ok(apply(latest), "apply");
+  ok(restore(latest, ["-Latest"]), "-Latest undoes the only run");
+  await ownerSets(latest, { terminalFontFamily: "Iosevka Term" });
+  ok(apply(latest), "apply again");
+  ok(restore(latest), "default restore");
+  assert.equal((await readStore(latest)).settings.terminalFontFamily, "Iosevka Term", "the owner's font from after the -Latest restore");
+
+  const noop = await makeTree(t);
+  ok(apply(noop, [], ORCA_OPEN), "apply while Orca runs writes only the block");
+  await fs.writeFile(noop.ghostty, GHOSTTY);
+  const idle = restore(noop);
+  ok(idle, "a restore with nothing left to change");
+  assert.match(idle.stdout, /Result: nothing to restore\.\s+Recorded as the last restore/);
+  await ownerSets(noop, { terminalFontFamily: "Iosevka Term" });
+  ok(apply(noop), "apply with Orca closed");
+  ok(restore(noop), "default restore");
+  assert.equal((await readStore(noop)).settings.terminalFontFamily, "Iosevka Term", "the owner's font from after the no-op restore");
+});
+
+test("restore warns per key when a value changed after the kit set it", { skip }, async (t) => {
+  const tree = await makeTree(t);
+  ok(apply(tree), "apply");
+  await ownerSets(tree, { terminalFontFamily: "Iosevka Term" });
+  ok(apply(tree), "apply again over the owner's font");
+  await ownerSets(tree, { leftSidebarAppearanceMode: "separate" });
+  const plan = restore(tree, ["-WhatIf"]);
+  ok(plan, "-WhatIf");
+  assert.match(plan.stdout, /WARNING: terminalFontFamily was "Iosevka Term" at backup \S+, not "[^"]+" as the kit left or asked for at backup \S+\. Restore returns the earlier value, \(absent\)\./);
+  assert.match(plan.stdout, /WARNING: leftSidebarAppearanceMode is "separate" now, not "match-terminal" as the kit last left or asked for \(backup \S+\); it changed since\. Restore sets it to "custom"\./);
+  assert.doesNotMatch(plan.stdout, /WARNING: terminalColorOverrides/, "an unchanged key gives no warning");
+  ok(restore(tree), "restore");
+  assert.deepEqual(await readStore(tree), JSON.parse(STORE), "the earliest value wins");
+});
+
+test("the one store copy is taken by the first run even while Orca runs, and never by Restore", { skip }, async (t) => {
+  const tree = await makeTree(t);
+  const preKit = path.join(tree.state, "pre-kit", "orca-data.json");
+  const first = apply(tree, [], ORCA_OPEN);
+  ok(first, "apply while Orca runs");
+  assert.ok(first.stdout.includes(`as this run read it, before any kit write`) && first.stdout.includes(preKit), "names the copy");
+  assert.equal(await fs.readFile(preKit, "utf8"), STORE, "the bytes the first run read");
+  await ownerSets(tree, kitSettings());
+  ok(apply(tree), "apply with Orca closed after the import");
+  ok(restore(tree), "restore");
+  assert.equal(await fs.readFile(preKit, "utf8"), STORE, "still the pre-kit store");
+
+  const other = await makeTree(t);
+  ok(apply(other), "apply");
+  await fs.rm(path.join(other.state, "pre-kit"), { recursive: true });
+  ok(restore(other), "restore writes the store");
+  assert.equal(existsSync(path.join(other.state, "pre-kit")), false, "Restore takes no copy");
+});
+
+test("Update refuses the pinned tag when the -SourceRoot tag names another commit", { skip }, async (t) => {
+  const tree = await makeTree(t);
+  const clone = await cloneRepo(tree);
+  const moved = commitOnPin(clone, exportFiles(changeSlotOne), "moved tag");
+  git(["tag", "-f", kit.theme.ref, moved], clone);
+  const result = run(tree, "Update-J3w1OrcaTheme.ps1", ["-Version", kit.theme.ref, "-SourceRoot", clone]);
+  assert.notEqual(result.status, 0, result.output);
+  assert.match(result.stderr, new RegExp(`Tag ${kit.theme.ref.replace(/\./g, "\\.")} resolves to ${moved} through git in .*, but kit\\.json pins`));
+  assert.equal(await fs.readFile(tree.store, "utf8"), STORE);
+  assert.equal(existsSync(tree.state), false, "nothing written");
+});
+
+test("Update to a tag whose maps add a managed key says the local tag was trusted; Restore accepts the key it recorded", { skip }, async (t) => {
+  const tree = await makeTree(t);
+  const clone = await cloneRepo(tree);
+  const version = "9.9.9";
+  const files = exportFiles((text) => `${JSON.stringify({ ...JSON.parse(text), version }, null, 2)}\n`);
+  const kitRoot = path.join(repoRoot, "tools/terminal-kit");
+  const terminal = structuredClone(roles);
+  terminal.orca.settings.terminalKitProbe = { value: "on", why: "a key only the newer maps manage (test)" };
+  files["tools/terminal-kit/kit.json"] = await fs.readFile(path.join(kitRoot, "kit.json"), "utf8");
+  files[`tools/terminal-kit/${kit.integrations.orca.roles}`] = `${JSON.stringify(terminal, null, 2)}\n`;
+  for (const file of [kit.integrations["claude-code"].roles, kit.specimen]) files[`tools/terminal-kit/${file}`] = await fs.readFile(path.join(kitRoot, file), "utf8");
+  git(["tag", `v${version}`, commitOnPin(clone, files, "a release whose maps add a key")], clone);
+  const updated = run(tree, "Update-J3w1OrcaTheme.ps1", ["-Version", `v${version}`, "-SourceRoot", clone]);
+  ok(updated, "update");
+  assert.equal((await readStore(tree)).settings.terminalKitProbe, "on");
+  const restored = restore(tree);
+  ok(restored, "restore with this kit's maps");
+  assert.deepEqual(await readStore(tree), JSON.parse(STORE));
+  assert.ok((await restoreManifest(tree, backups(tree)[0])).managedKeys.includes("terminalKitProbe"), "the update recorded the key as managed");
+  assert.match(updated.output, /trusted as a local tag \(kit\.json does not pin it\)/);
+});
+
+test("Restore -WhatIf exits with the code the real run would", { skip }, async (t) => {
+  const tree = await makeTree(t);
+  await importWithoutRecords(tree);
+  const plan = restore(tree, ["-WhatIf"]);
+  assert.equal(plan.status, 3, plan.output);
+  assert.match(plan.stdout, /Result: -WhatIf, nothing written/);
+  const running = restore(tree, ["-WhatIf"], ORCA_OPEN);
+  assert.equal(running.status, 2, running.output);
+});
+
+test("a key whose pre-kit value is unknown stays unknown across the next restore", { skip }, async (t) => {
+  const tree = await makeTree(t);
+  await importWithoutRecords(tree);
+  const first = restore(tree);
+  assert.equal(first.status, 3, first.output);
+  ok(apply(tree), "apply again");
+  const second = restore(tree);
+  assert.equal(second.status, 3, second.output);
+  assert.match(second.stdout, /terminalColorOverrides\s+left as .*cannot know the pre-kit value/);
+  assert.doesNotMatch(second.stdout, /Result: restored/);
+  const store = await readStore(tree);
+  assert.equal(store.settings.leftSidebarAppearanceMode, "custom");
+  assert.deepEqual(store.settings.terminalColorOverrides, expectedOverrides, "left as it is");
+});
+
+test("a duplicated managed block is refused before anything is written", { skip }, async (t) => {
+  const tree = await makeTree(t);
+  ok(apply(tree), "apply");
+  const text = await fs.readFile(tree.ghostty, "utf8");
+  const doubled = `${text}\n${managedBlock(text)}\n`;
+  await fs.writeFile(tree.ghostty, doubled);
+  const store = await fs.readFile(tree.store);
+  for (const result of [apply(tree), restore(tree)]) {
+    assert.equal(result.status, 1, result.output);
+    assert.match(result.stderr, /holds 2 j3w1-theme managed blocks\. Delete the extra copies/);
+  }
+  assert.equal(await fs.readFile(tree.ghostty, "utf8"), doubled);
+  assert.deepEqual(await fs.readFile(tree.store), store);
+  assert.equal(backups(tree).length, 1, "no new backup");
+  assert.match(verify(tree).stdout, /FAIL\s+ghostty block count\s+2 managed blocks/);
+});
+
+test("a config.ghostty link whose target is missing stops the run with a clear message", { skip }, async (t) => {
+  const tree = await makeTree(t, { ghostty: null });
+  try {
+    await fs.symlink(path.join(tree.root, "dotfiles", "config.ghostty"), tree.ghostty);
+  } catch (error) {
+    return t.skip(`cannot create a symlink here: ${error.code}`);
+  }
+  const result = apply(tree);
+  assert.equal(result.status, 1, result.output);
+  assert.match(result.stderr, /config\.ghostty is a symbolic link to .*dotfiles.config\.ghostty, which does not exist/);
+  assert.equal(existsSync(tree.state), false, "nothing written");
+  assert.equal(await fs.readFile(tree.store, "utf8"), STORE);
+});
+
+test("the test seam refuses to map onto the real APPDATA or LOCALAPPDATA", { skip }, async (t) => {
+  const tree = await makeTree(t);
+  for (const [name, folder] of [["APPDATA", "Roaming"], ["LOCALAPPDATA", "Local"]]) {
+    const result = apply(tree, [], { [name]: path.join(tree.root, "AppData", folder) });
+    assert.equal(result.status, 1, `${name}\n${result.output}`);
+    assert.match(result.stderr, /Test seam refused: .*maps onto the real profile folder/, name);
+  }
+  assert.equal(existsSync(tree.state), false);
+  assert.equal(await fs.readFile(tree.store, "utf8"), STORE);
 });
