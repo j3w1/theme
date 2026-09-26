@@ -14,7 +14,21 @@ get it; `-SkipFontCheck` goes on without it.
 ## Install
 
 <!-- install:start -->
-Install commands appear here once v3.0.0 is released.
+Release v3.0.0 (commit `f0e9e25a00357c0b47ae3d1392b87e5bc0aa91e6`).
+
+1. Quit Orca, including its tray icon. Then paste this into PowerShell 7 (`pwsh`):
+
+   ```powershell
+   & ([scriptblock]::Create((Invoke-RestMethod https://raw.githubusercontent.com/j3w1/theme/f0e9e25a00357c0b47ae3d1392b87e5bc0aa91e6/ports/orca/install/Get-J3w1Orca.ps1))) -Revision f0e9e25a00357c0b47ae3d1392b87e5bc0aa91e6 -Apply
+   ```
+
+   It downloads this release, checks it, applies it and runs the checks.
+2. Start Orca.
+3. Open a terminal in Orca and run the test. It draws the colours and prints PASS or FAIL for each setting:
+
+   ```powershell
+   pwsh -NoProfile -File "$env:LOCALAPPDATA\j3w1-theme\orca\releases\f0e9e25a00357c0b47ae3d1392b87e5bc0aa91e6\ports\orca\install\Test-J3w1OrcaTheme.ps1"
+   ```
 <!-- install:end -->
 
 If Orca is still open, the installer does not touch Orca's settings (Orca
@@ -37,7 +51,7 @@ This route has no backup or restore.
 ## Update
 
 <!-- update:start -->
-Commands appear here once v3.0.0 is released.
+When a newer release is out, open this page on the site's Ports page or on the repository's main branch: its Install command names the newest release. Quit Orca and paste it. It downloads that release, applies it and runs the checks.
 <!-- update:end -->
 
 The Install command of a newer release applies it over this one and keeps the
@@ -49,7 +63,11 @@ installer and are refused.
 ## Restore
 
 <!-- restore:start -->
-Commands appear here once v3.0.0 is released.
+Quit Orca (tray icon too), then run:
+
+```powershell
+pwsh -NoProfile -File "$env:LOCALAPPDATA\j3w1-theme\orca\releases\f0e9e25a00357c0b47ae3d1392b87e5bc0aa91e6\ports\orca\install\Restore-J3w1OrcaTheme.ps1"
+```
 <!-- restore:end -->
 
 Restore puts back every setting the installer changed since your last
