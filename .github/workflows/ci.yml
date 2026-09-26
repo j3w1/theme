@@ -1,38 +1,62 @@
 name: ci
 
-# Two paths, one workflow (D-028).
+# select → checks → release-gate (D-031, amending D-028).
 #
-# Every pull request: validate → build (+dist gates) → smoke. A few minutes,
-# and enough to catch a broken source, a broken build, or a page that no longer
-# renders from the tokens or takes a keyboard.
+# select reads the changed paths and scripts/ci/proofs.json and decides which
+# checks this change needs. A path gets cheaper only when a rule claims it;
+# anything unclaimed, and every control file, runs everything.
 #
-# Before deployment, and on demand: the same three, plus the exhaustive
-# packed-consumer and browser suites, then deploy. The full matrix is a
-# deployment gate, not a merge gate. Run it on a branch with the workflow
-# dispatch, or locally with `npm run test:all`.
+# Pull requests run only the selected checks. A browser subset uses the plain
+# list reporter, so it can never publish a partial evidence matrix.
 #
-# The dist the browser job tests stays byte-identical; only verification/ is
-# added before deployment. Pages is configured to deploy from Actions (D-010).
+# A push to main that changes the site runs the whole matrix with evidence:
+# the browser suite in parallel shards merged into one evidence report, the
+# packed consumers on three engines, then deploy. A push that does not change
+# the site deploys nothing and takes about a minute.
+#
+# release-gate is the only required check. It recomputes the plan and checks
+# that every job ran exactly when the plan said it should, and passed.
 
 on:
   push:
     branches: [main]
   pull_request:
   workflow_dispatch:
+    inputs:
+      base:
+        description: Optional base commit; with it, only the checks those changes need run. Without it, everything runs.
+        type: string
+        default: ""
 
 permissions:
   contents: read
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 env:
   ASTRO_TELEMETRY_DISABLED: "1"
 
 jobs:
-  validate:
+  select:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
+    permissions:
+      contents: read
+      deployments: read
+    outputs:
+      plan: ${{ steps.plan.outputs.plan }}
+      plan_hash: ${{ steps.plan.outputs.plan_hash }}
+      checks: ${{ steps.plan.outputs.checks }}
+      build: ${{ steps.plan.outputs.build }}
+      smoke: ${{ steps.plan.outputs.smoke }}
+      consumers: ${{ steps.plan.outputs.consumers }}
+      browser: ${{ steps.plan.outputs.browser }}
+      shards: ${{ steps.plan.outputs.shards }}
+      matrix: ${{ steps.plan.outputs.matrix }}
+      deploy: ${{ steps.plan.outputs.deploy }}
+      base: ${{ steps.base.outputs.base }}
     steps:
       - uses: actions/checkout@v7
         with:
@@ -40,18 +64,36 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version: 24
-          cache: npm
-      - run: npm ci
-      - name: Sources validate
-        run: npm run validate
-      - name: Generated artifacts are current
-        run: npm run check
-      - name: Source and export tests
-        run: npm test
+      # On main the base is the last commit that reached Pages, so a change
+      # that failed to deploy is still counted by the next push.
+      - id: base
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EVENT: ${{ github.event_name }}
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+          DISPATCH_BASE: ${{ inputs.base }}
+        run: |
+          if [ "$EVENT" = pull_request ]; then base="$PR_BASE"
+          elif [ "$EVENT" = push ]; then
+            base=$(node scripts/ci/deployed.mjs "$GITHUB_REPOSITORY" || true)
+          else base="$DISPATCH_BASE"; fi
+          echo "base=$base" >> "$GITHUB_OUTPUT"
+      - id: plan
+        env:
+          EVENT: ${{ github.event_name }}
+          BASE: ${{ steps.base.outputs.base }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          args=(--event "$EVENT" --head "$HEAD_SHA")
+          [ -n "$BASE" ] && args+=(--base "$BASE")
+          node scripts/ci/select.mjs "${args[@]}"
 
-  build:
+  # Sources and unit tests: one install, no browser.
+  checks:
+    needs: select
+    if: needs.select.outputs.checks == 'true'
     runs-on: ubuntu-latest
-    needs: validate
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7
         with:
@@ -60,7 +102,28 @@ jobs:
         with:
           node-version: 24
           cache: npm
-      - run: npm ci
+      - run: npm ci --prefer-offline --no-audit --no-fund
+      - name: Selected sources and unit tests
+        run: node scripts/ci/run.mjs cheap
+        env:
+          PLAN: ${{ needs.select.outputs.plan }}
+
+  # The site, its dist gates and the smoke check, in parallel with the unit
+  # tests. The browser shards start when this job, smoke included, passes.
+  build:
+    needs: select
+    if: needs.select.outputs.build == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci --prefer-offline --no-audit --no-fund
       - name: Build the site under /theme/
         run: npm run build
         env:
@@ -73,49 +136,86 @@ jobs:
           path: dist
           retention-days: 7
           include-hidden-files: true
-
-  # The merge gate. A named subset, reported with the plain list reporter so it
-  # can never publish a partial evidence matrix.
-  smoke:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
+      - uses: ./.github/actions/playwright
+        if: needs.select.outputs.smoke == 'true'
         with:
-          node-version: 24
-          cache: npm
-      - run: npm ci
-      - uses: actions/download-artifact@v8
-        with:
-          name: site-dist
-          path: dist
-      - run: npx playwright install --with-deps chromium
+          browsers: chromium
       - name: The built site loads, renders from the tokens and takes a keyboard
+        if: needs.select.outputs.smoke == 'true'
         run: npm run test:smoke
         env:
           CI: "1"
       - uses: actions/upload-artifact@v7
         if: failure()
         with:
-          name: smoke-results
+          name: build-results
           path: |
             test-results/
             playwright-report/
           if-no-files-found: ignore
 
-  ui-consumers:
+  # Selected specs on a pull request (plain reporter); the whole suite in
+  # shards with blob reports on the deployment path.
+  browser:
+    needs: [select, build]
+    if: needs.select.outputs.browser == 'true'
     runs-on: ubuntu-latest
-    needs: build
-    if: github.event_name != 'pull_request'
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: ${{ fromJSON(needs.select.outputs.shards) }}
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: npm
-      - run: npm ci
-      - run: npx playwright install --with-deps chromium firefox webkit
+      - run: npm ci --prefer-offline --no-audit --no-fund
+      - uses: actions/download-artifact@v8
+        with:
+          name: site-dist
+          path: dist
+      - uses: ./.github/actions/playwright
+        with:
+          browsers: chromium
+      - name: Browser suite, ${{ matrix.shard }}
+        run: node scripts/ci/run.mjs browser ${{ matrix.shard }}
+        env:
+          CI: "1"
+          PLAN: ${{ needs.select.outputs.plan }}
+          PLAYWRIGHT_BLOB_OUTPUT_NAME: report-${{ strategy.job-index }}.zip
+      - uses: actions/upload-artifact@v7
+        if: always() && needs.select.outputs.matrix == 'true'
+        with:
+          name: blob-report-${{ strategy.job-index }}
+          path: blob-report
+          retention-days: 7
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: browser-results-${{ strategy.job-index }}
+          path: |
+            test-results/
+            playwright-report/
+          if-no-files-found: ignore
+
+  consumers:
+    needs: select
+    if: needs.select.outputs.consumers == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci --prefer-offline --no-audit --no-fund
+      - uses: ./.github/actions/playwright
+        with:
+          browsers: chromium firefox webkit
       - name: Install packed HTML, Vue, React, Astro and copy consumers
         run: npm run ui:consumers
       - name: Cross-browser native forms, lifecycle, keyboard and complete copy flows
@@ -133,17 +233,22 @@ jobs:
           path: .cache/ui-evidence/
           include-hidden-files: true
 
-  browser:
+  # The deployment path only: one evidence report from every shard, checked
+  # against the unchanged specimens, then the Pages artifact.
+  evidence:
+    needs: [select, checks, build, browser, consumers]
+    if: needs.select.outputs.matrix == 'true' && !cancelled() && needs.checks.result == 'success' && needs.build.result == 'success' && needs.browser.result == 'success' && needs.consumers.result == 'success'
     runs-on: ubuntu-latest
-    needs: [build, ui-consumers]
-    if: github.event_name != 'pull_request'
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: npm
-      - run: npm ci
+      - run: npm ci --prefer-offline --no-audit --no-fund
       - uses: actions/download-artifact@v8
         with:
           name: site-dist
@@ -152,39 +257,46 @@ jobs:
         with:
           name: ui-consumer-evidence
           path: .cache/ui-evidence
-      - run: npx playwright install --with-deps chromium
-      - name: Keyboard, axe, reflow, motion, no-JS, enhancements, print
-        id: browser-tests
-        run: npm run test:browser
+      - uses: actions/download-artifact@v8
+        with:
+          pattern: blob-report-*
+          path: all-blob-reports
+          merge-multiple: true
+      - name: Every shard sent its report
+        env:
+          SHARDS: ${{ needs.select.outputs.shards }}
+        run: |
+          want=$(node -p "JSON.parse(process.env.SHARDS).length")
+          got=$(ls all-blob-reports/*.zip | wc -l)
+          echo "blob reports: $got of $want"
+          [ "$got" = "$want" ]
+      - name: One evidence report from every shard
+        run: npx playwright merge-reports --config playwright.merge.config.mjs ./all-blob-reports
         env:
           CI: "1"
+      - name: The evidence records every configured test in every project
+        run: node scripts/ci/evidence-complete.mjs
       - name: Publish execution report alongside unchanged specimens
-        if: always()
         run: npm run verification:report
       - name: Validate report, evidence and immutable specimen digest
-        if: always()
         run: npm run verification:check
       - name: Publish matching packed-consumer evidence
         run: npm run ui:publish-evidence
+      - uses: ./.github/actions/playwright
+        with:
+          browsers: chromium
       - name: Report keyboard, filtering and no-JS checks
-        if: always()
         run: npm run test:verification
         env:
           CI: "1"
       - uses: actions/upload-artifact@v7
-        if: always()
+        if: success()
         with:
           name: verification-evidence
           path: |
             test-results/evidence*.json
             dist/verification/
           if-no-files-found: error
-      - uses: actions/upload-artifact@v7
-        if: success()
-        with:
-          name: site-with-evidence
-          path: dist
-          include-hidden-files: true
       - uses: actions/upload-pages-artifact@v5
         if: success() && github.event_name == 'push' && github.ref == 'refs/heads/main'
         with:
@@ -192,19 +304,34 @@ jobs:
       - uses: actions/upload-artifact@v7
         if: failure()
         with:
-          name: playwright-results
+          name: verification-evidence-refused
           path: |
-            test-results/
+            test-results/evidence*.json
             playwright-report/
           if-no-files-found: ignore
 
-  deploy:
+  release-gate:
+    needs: [select, checks, build, browser, consumers, evidence]
+    if: always()
     runs-on: ubuntu-latest
-    # smoke is a subset of the browser suite today, so this is redundant on
-    # paper. It is listed anyway: the redundancy is what keeps "nothing red on
-    # main is published" true if the subset ever stops holding.
-    needs: [build, smoke, ui-consumers, browser]
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - name: Every selected check ran and passed; the plan recomputes
+        env:
+          NEEDS: ${{ toJSON(needs) }}
+          PLAN: ${{ needs.select.outputs.plan }}
+        run: node scripts/ci/gate.mjs
+
+  deploy:
+    needs: [select, release-gate]
+    if: ${{ !cancelled() && needs.select.outputs.deploy == 'true' && needs.release-gate.result == 'success' }}
+    runs-on: ubuntu-latest
     permissions:
       pages: write
       id-token: write

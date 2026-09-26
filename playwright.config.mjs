@@ -9,8 +9,12 @@ const port = portFromEnv("PW_PORT", 4173, { min: 1 });
 
 export default defineConfig({
   testDir: "./tests/browser",
-  fullyParallel: false,
-  workers: 1,
+  // Tests are independent page loads, so they spread across workers. CI runs
+  // the suite in shards of two workers each (D-031); locally it uses half the
+  // cores. The evidence reporter runs in the main process either way.
+  fullyParallel: true,
+  forbidOnly: !!process.env.CI,
+  workers: process.env.CI ? 2 : "50%",
   retries: 0,
   timeout: 30_000,
   reporter: [["list"], ["./tests/evidence-reporter.mjs"], ...(process.env.CI ? [["html", { open: "never" }]] : [])],
@@ -27,10 +31,17 @@ export default defineConfig({
     reuseExistingServer: !process.env.CI,
     timeout: 20_000,
   },
+  // Each project's environment is written once and used twice: as `use`, and
+  // as metadata, because merged shard reports keep project metadata but not
+  // `use`; the evidence reporter reads it there.
   projects: [
-    { name: "desktop", use: { ...devices["Desktop Chrome"], viewport: { width: 1440, height: 1000 } } },
-    { name: "narrow", use: { ...devices["Desktop Chrome"], viewport: { width: 360, height: 740 } } },
-    { name: "zoom200", use: { ...devices["Desktop Chrome"], viewport: { width: 640, height: 500 }, deviceScaleFactor: 2 } },
-    { name: "nojs", use: { ...devices["Desktop Chrome"], viewport: { width: 1440, height: 1000 }, javaScriptEnabled: false } },
-  ],
+    ["desktop", { width: 1440, height: 1000 }, true, {}],
+    ["narrow", { width: 360, height: 740 }, true, {}],
+    ["zoom200", { width: 640, height: 500 }, true, { deviceScaleFactor: 2 }],
+    ["nojs", { width: 1440, height: 1000 }, false, {}],
+  ].map(([name, viewport, javaScript, extra]) => ({
+    name,
+    use: { ...devices["Desktop Chrome"], viewport, ...extra, ...(javaScript ? {} : { javaScriptEnabled: false }) },
+    metadata: { viewport, javaScript },
+  })),
 });

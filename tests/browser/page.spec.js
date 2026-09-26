@@ -64,18 +64,37 @@ test.describe("the specification page", () => {
     await expect(page.locator('#family-filter input[name="family"]').first()).toBeFocused();
   });
 
-  test("axe finds no WCAG 2.x A/AA violations (a scan, not a conformance claim)", verification({component: "page", category: "axe", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {
-    test.skip(!only(testInfo, "desktop"), "one scan is enough");
-    test.setTimeout(600_000);
-    await openSpec(page);
-    /* Non-default matrix cells are aria-hidden inert clones of the default
-       cell; scanning every one of them multiplies the run time by the number
-       of states without adding findings. The live cells are scanned. */
-    const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).exclude('.matrix [aria-hidden="true"]').analyze();
-    await fs.mkdir("test-results", { recursive: true });
-    await fs.writeFile("test-results/axe.json", JSON.stringify(results, null, 2));
-    expect(results.violations.map((v) => `${v.id}: ${v.nodes.length} × ${v.help}`)).toEqual([]);
-  });
+  /* One scan of the page, split in two so the halves run in parallel (D-031):
+     color contrast, which is most of the time, and every other rule. The
+     rule set is read from a tag-based run, so the two halves together are
+     exactly the rules the tags select; nothing is dropped or added. */
+  const AXE_TAGS = ["wcag2a", "wcag2aa", "wcag21aa"];
+  const tagRules = async (page) => {
+    const probe = await page.context().newPage();
+    await probe.setContent('<!doctype html><html lang="en"><title>probe</title><main><h1>probe</h1></main></html>');
+    const r = await new AxeBuilder({ page: probe }).withTags(AXE_TAGS).analyze();
+    await probe.close();
+    return [...new Set([...r.passes, ...r.violations, ...r.incomplete, ...r.inapplicable].map((x) => x.id))].sort();
+  };
+  for (const [part, pick] of [["color contrast", (id) => id === "color-contrast"], ["every other rule", (id) => id !== "color-contrast"]]) {
+    test(`axe finds no WCAG 2.x A/AA violations, ${part} (a scan, not a conformance claim)`, verification({component: "page", category: "axe", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {
+      test.skip(!only(testInfo, "desktop"), "one scan is enough");
+      test.setTimeout(600_000);
+      await openSpec(page);
+      const all = await tagRules(page);
+      expect(all).toContain("color-contrast");
+      const rules = all.filter(pick);
+      /* Non-default matrix cells are aria-hidden inert clones of the default
+         cell; scanning every one of them multiplies the run time by the number
+         of states without adding findings. The live cells are scanned. */
+      const results = await new AxeBuilder({ page }).withRules(rules).exclude('.matrix [aria-hidden="true"]').analyze();
+      const ran = new Set([...results.passes, ...results.violations, ...results.incomplete, ...results.inapplicable].map((x) => x.id));
+      expect([...ran].sort()).toEqual(rules);
+      await fs.mkdir("test-results", { recursive: true });
+      await fs.writeFile(`test-results/axe-${part.replace(/ /g, "-")}.json`, JSON.stringify(results, null, 2));
+      expect(results.violations.map((v) => `${v.id}: ${v.nodes.length} × ${v.help}`)).toEqual([]);
+    });
+  }
 
   test("reflow: no horizontal page scroll at 360px and at 200% text zoom", verification({component: "page", category: "reflow", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {
     test.skip(!only(testInfo, "narrow", "zoom200"), "reflow projects only");

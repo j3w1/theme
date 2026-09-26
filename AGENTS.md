@@ -32,47 +32,44 @@ tokens is a defect to resolve, not a choice to make.
 
 ## The check loop
 
-Three tiers, and they are not interchangeable (D-028).
-
-**Required before a merge.** These are what the `main` ruleset enforces on
-every pull request, and they take a few minutes.
+CI picks the checks a change needs (D-031). You can see its choice before you
+push:
 
 ```
-npm run validate      # sources only: manifest, decisions, tokens, docs, spec, contrast, ports, references, private material
-npm run generate      # rewrite every generated artifact
-npm run check         # CI mode: generated artifacts must be current, no orphans
-npm test              # node --test over the sources and exports
-npm run build && npm run test:dist   # the site under /theme/, base paths, consistency
+node scripts/ci/select.mjs --event pull_request --base origin/main --head HEAD
+```
+
+`release-gate` is the only required check: it passes when every selected check
+passed.
+
+**Before you push.** Run what the plan selects. The usual set:
+
+```
+npm run generate      # rewrite every generated file (run it after any source change)
+npm run validate      # sources: manifest, decisions, tokens, docs, spec, contrast, ports, references, private material
+npm run check         # generated files are current, no orphans
+npm test              # node --test over sources and exports
+npm run build && npm run test:dist   # the site under /theme/
 npm run test:smoke    # the built site loads, renders from the tokens, takes a keyboard
 ```
 
-Run `npm run generate` first whenever you changed a source; `npm run check`
-only reports drift, it does not fix it.
+`npm run check` only reports drift; `npm run generate` fixes it.
 
-**Recommended before a push.** `npm run test:all` runs everything below in the
-order continuous integration runs it, and takes roughly half an hour. Nothing
-verifies that you ran it. Run it when you changed rendering, tokens,
-components or the package, and say in the pull request that you did.
+**The whole suite.** `npm run test:all` runs everything; the browser part runs
+in parallel. Run it when you changed rendering, tokens, components or the package,
+and say in the pull request that you did. On `main`, CI runs the whole matrix
+for every change to the site before it deploys. From the Actions tab, the
+workflow dispatch runs it on any branch.
 
-**Mandatory before deployment.** The exhaustive suite runs on `main` and gates
-`deploy`, and can be started against any branch from the Actions tab through
-the workflow dispatch.
-
-```
-npm run ui:consumers && npm run test:ui && npm run ui:report   # packed HTML, Vue, React, Astro consumers on three engines
-npm run test:browser  # keyboard, axe, reflow, motion, no-JS, enhancements, print, four environments
-```
-
-`npm run test:smoke` is a named subset of the browser suite and reports as
-one. It is never a coverage claim, and it never writes execution evidence.
-Coverage and the published matrix come only from the full suite.
+**Evidence.** Only the whole suite writes execution evidence. A subset, such as
+`test:smoke`, the specs a pull request selects, or a local run of one spec,
+shard or project, writes none and never claims coverage.
 
 Report checks that were not run separately from checks that passed.
 
 **Design mode is a working tool, not a gate.** `npm run design` compares the
 site at an anchored commit with the live dev server (`docs/design-mode.md`).
-Nothing it shows is evidence, and it approves nothing: the tiers above still
-decide whether a change can merge.
+Nothing it shows is evidence, and it approves nothing.
 
 ## What you may do without a decision
 

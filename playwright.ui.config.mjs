@@ -1,5 +1,6 @@
 import { defineConfig } from "@playwright/test";
 export default defineConfig({
+  forbidOnly: !!process.env.CI,
   testDir: "./tests/ui", workers: 1, retries: 0, timeout: 30000,
   globalSetup: "./tests/ui/global-setup.mjs",
   outputDir: ".cache/ui-evidence/traces",

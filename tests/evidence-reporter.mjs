@@ -9,6 +9,16 @@ import { subjectOfBuild, validateEvidence } from "../scripts/lib/evidence.mjs";
 export default class EvidenceReporter {
   onBegin(config, suite) {
     this.startedAt = new Date().toISOString();
+    // Evidence comes only from the whole suite (D-028): `playwright test` with
+    // nothing that narrows or lists it, or merge-reports of every shard. The
+    // check is an allowlist, so any other option counts as a subset.
+    const argv = process.argv.slice(2);
+    const at = argv.indexOf("test");
+    const args = at >= 0 ? argv.slice(at + 1) : [];
+    const valued = new Set(["--config", "-c", "--workers", "-j", "--reporter"]);
+    const plain = new Set(["--headed", "--headless"]);
+    const whole = at >= 0 ? args.every((a, i) => valued.has(a) || plain.has(a) || valued.has(args[i - 1]) || /^(--config|--workers|--reporter)=/.test(a)) : argv.includes("merge-reports");
+    this.subset = !whole || config.shard != null;
     this.subject = subjectOfBuild();
     // A rejected subject must not become an unhandled promise while tests run.
     this.subject.catch(() => {});
@@ -33,7 +43,7 @@ export default class EvidenceReporter {
     this.records.push({ id, kind: "automated", scope: JSON.parse(annotation.description), result: status,
       reason: status === "passed" ? null : status === "skipped" ? ((result?.annotations ?? test.annotations).find((a) => a.type === "skip")?.description ?? "Skipped by the test configuration") : result ? `Playwright result: ${result.status}; inspect the referenced run and test location.` : "The selected run did not execute this test.",
       reference: this.reference, test: { file, title: test.title, line: test.location.line },
-      environment: environment ? JSON.parse(environment.description) : { browser: project.use.browserName ?? "chromium", browserVersion: null, os: `${os.type()} ${os.release()} ${os.arch()}`, viewport: project.use.viewport ?? null, project: project.name, profile: "default", density: "comfortable", javaScript: project.use.javaScriptEnabled !== false },
+      environment: environment ? JSON.parse(environment.description) : { browser: project.use.browserName ?? "chromium", browserVersion: null, os: `${os.type()} ${os.release()} ${os.arch()}`, viewport: project.metadata?.viewport ?? project.use.viewport ?? null, project: project.name, profile: "default", density: "comfortable", javaScript: project.metadata?.javaScript ?? project.use.javaScriptEnabled !== false },
     });
   }
 
@@ -44,11 +54,23 @@ export default class EvidenceReporter {
   }
 
   async onEnd(result) {
+    if (this.subset) {
+      console.log("Evidence not written: this run is a subset. Only the whole suite, or merge-reports of every shard, records evidence.");
+      // A missing verification annotation still fails a subset run.
+      if (this.collectionErrors.length) {
+        console.error(this.collectionErrors.join("; "));
+        return { status: "failed" };
+      }
+      return;
+    }
     try {
       const subject = await this.subject;
       if (this.collectionErrors.length) throw new Error(this.collectionErrors.join("; "));
       await subjectOfBuild();
       for (const test of this.tests) if (!this.seen.has(test.id)) this.record(test, null);
+      // Parallel workers and merged shards finish in any order; the report does not.
+      const key = (r) => `${r.test.file}\u0000${String(r.test.line).padStart(6, "0")}\u0000${r.test.title}\u0000${r.environment.project ?? ""}\u0000${r.id}`;
+      this.records.sort((a, b) => (key(a) < key(b) ? -1 : key(a) > key(b) ? 1 : 0));
       const evidence = await validateEvidence({ schemaVersion: 1, sourceDigest: subject.sourceDigest, artifactDigest: subject.artifactDigest, revision: this.revision,
         run: { startedAt: this.startedAt, completedAt: new Date().toISOString(), result: result.status, reference: this.reference }, records: this.records });
       await fs.mkdir(path.join(repoRoot, "test-results"), { recursive: true });

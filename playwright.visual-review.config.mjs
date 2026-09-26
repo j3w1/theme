@@ -1,6 +1,7 @@
 import { defineConfig } from "@playwright/test";
 const port = Number(process.env.REVIEW_PORT ?? 4322);
 export default defineConfig({
+  forbidOnly: !!process.env.CI,
   testDir: "./tests/visual-review", workers: 1, retries: 0, timeout: 45000,
   outputDir: ".cache/phase6a/evidence/results",
   reporter: [["list"], ["json", { outputFile: ".cache/phase6a/evidence/results.json" }]],
