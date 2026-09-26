@@ -9,8 +9,11 @@ const port = portFromEnv("PW_PORT", 4173, { min: 1 });
 
 export default defineConfig({
   testDir: "./tests/browser",
-  fullyParallel: false,
-  workers: 1,
+  // Tests are independent page loads, so they spread across workers. CI runs
+  // the suite in shards of two workers each (D-031); locally it uses half the
+  // cores. The evidence reporter runs in the main process either way.
+  fullyParallel: true,
+  workers: process.env.CI ? 2 : "50%",
   retries: 0,
   timeout: 30_000,
   reporter: [["list"], ["./tests/evidence-reporter.mjs"], ...(process.env.CI ? [["html", { open: "never" }]] : [])],

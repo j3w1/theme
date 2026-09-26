@@ -1,5 +1,14 @@
 # Changelog
 
+## [Unreleased]
+
+- D-031 **Faster CI.** CI now picks the checks each change needs
+  (`scripts/ci/select.mjs`, `scripts/ci/proofs.json`), and `release-gate` is the
+  only required check. On `main`, a change to the site runs the whole browser
+  matrix in six parallel jobs, merged into one evidence report; a change that
+  does not touch the site deploys nothing. Tests run in parallel, and the page
+  axe scan is split into two halves that together cover the same rules.
+
 ## [2.0.0] - 2026-09-26
 
 Major under the versioning rule: D-029 changes approved values (ten terminal

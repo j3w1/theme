@@ -49,6 +49,9 @@ export default class EvidenceReporter {
       if (this.collectionErrors.length) throw new Error(this.collectionErrors.join("; "));
       await subjectOfBuild();
       for (const test of this.tests) if (!this.seen.has(test.id)) this.record(test, null);
+      // Parallel workers and merged shards finish in any order; the report does not.
+      const key = (r) => `${r.test.file}\u0000${String(r.test.line).padStart(6, "0")}\u0000${r.test.title}\u0000${r.environment.project ?? ""}\u0000${r.id}`;
+      this.records.sort((a, b) => (key(a) < key(b) ? -1 : key(a) > key(b) ? 1 : 0));
       const evidence = await validateEvidence({ schemaVersion: 1, sourceDigest: subject.sourceDigest, artifactDigest: subject.artifactDigest, revision: this.revision,
         run: { startedAt: this.startedAt, completedAt: new Date().toISOString(), result: result.status, reference: this.reference }, records: this.records });
       await fs.mkdir(path.join(repoRoot, "test-results"), { recursive: true });

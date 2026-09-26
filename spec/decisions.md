@@ -42,6 +42,7 @@ in its `$extensions["io.github.j3w1.theme"].approval.decision`. Agents may open
 | D-028 | Merge gates and the deployment gate are different suites | accepted | 2026-09-11 | owner (explicit verification-split instruction) |
 | D-029 | Readable terminal and code reds | accepted | 2026-09-26 | owner (explicit selection of values and release in planning) |
 | D-030 | Hued syntax roles for opt-in code highlighting | accepted | 2026-09-26 | owner (explicit request for a more colourful Codex, selection of the extended hues) |
+| D-031 | Select the checks a change needs; shard the deployment matrix | accepted | 2026-09-26 | owner (explicit CI renovation request, plan approval) |
 
 ## D-000 Responsibility split
 
@@ -680,6 +681,12 @@ caught carelessness and nothing else, at the price of machinery that looked
 like proof. Local verification is a practice here, recorded in `AGENTS.md`,
 not a gate.
 
+Superseded in part by D-031: pull requests now run the checks their changed
+paths select, the deployment matrix runs in shards merged into one evidence
+report, and `release-gate` replaces `validate`, `build` and `smoke` as the
+required check. The rules above about subsets never writing evidence, and the
+full matrix gating deployment, still hold.
+
 Alternatives: shard the full suite across runners, which keeps complete
 coverage before merge at about six minutes and costs nothing on a public
 repository, but is bounded below by the largest single spec file and gives
@@ -780,3 +787,50 @@ whole `extended` overlay; not requested, and it also reassigns the terminal
 slots. Replace `code.syntax.*` in the default profile; rejected so the
 reference editor keeps its monochrome identity.
 
+## D-031 Select the checks a change needs; shard the deployment matrix
+
+Status: accepted · 2026-09-26. The owner found thirty-minute runs on `main`
+unacceptable and asked for classified checks modelled on theselfish.one.
+
+**Context.** A push to `main` ran every check whatever changed: a change to the
+terminal kit alone, which the site never reads, took 63 minutes to reach
+deployment. The browser suite ran on one worker for 24.7 minutes; one axe scan
+took 3.6 minutes of that; `npm test` spent 139 of its 141 seconds in the
+terminal-kit suites.
+
+**Decision.** CI is `select` → checks → `release-gate`.
+
+- `select` reads the changed paths and `scripts/ci/proofs.json`. A path gets
+  cheaper only when a rule there claims it. A path no rule claims, and every
+  control file (workflows, the selector, `package.json`, the lockfile, the
+  Playwright configs), runs every check: a broad rule is a floor, never a
+  verdict.
+- A pull request runs only the selected checks. A browser subset uses the plain
+  list reporter, so it never writes evidence (D-028 still holds).
+- A push to `main` that changes the site runs the whole matrix: the browser
+  suite split by project into six jobs (desktop in three parts) with blob
+  reports, merged once into the evidence reporter, and the packed consumers in
+  parallel. Then the verification report, then deployment. A push that does not
+  change the site deploys nothing.
+- On `main` the changed paths are counted from the last commit that reached
+  Pages, so a change that failed to deploy is counted again by the next push.
+- `release-gate` is the only required check. It recomputes the plan from Git,
+  refuses a plan that does not match, and checks that each job ran exactly when
+  the plan said it should, and passed.
+- Tests run in parallel (`fullyParallel`, two workers per CI job). The page axe
+  scan runs as two tests, colour contrast and every other rule; the rule set
+  comes from a tag-based run, so together they are exactly the rules the tags
+  select. Retries stay at zero.
+
+**Consequences.** D-028's objection to sharding, partial evidence files, no
+longer applies: shards write blob reports only, and one merge writes one
+evidence report. A change can no longer merge on `validate`, `build` and
+`smoke` alone when it needs more. Local `npm run test:all` stays recommended,
+not required.
+
+**Alternatives.** A self-hosted runner, as theselfish.one uses; rejected
+because this repository is public and pull requests from forks could run code
+on it. Reusing pull-request evidence on `main`; not possible today because the
+build stamps the commit into every page, so a pull-request build never equals
+the `main` build. Playwright's internal shard weights; rejected because they are
+not a public option.
