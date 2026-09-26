@@ -21,7 +21,7 @@
     ]
   },
   "ghostty": {
-    "order": "Same keys and order as ports/orca/dist/config.ghostty; only font-size follows the host preference.",
+    "order": "Same keys and order as ports/orca/dist/config.ghostty; font-size carries the machine's Orca terminal size and is omitted when the machine has none.",
     "lines": [
       {
         "key": "background",
@@ -250,7 +250,7 @@
       "target": "font size",
       "kind": "host-rule",
       "specValue": "font.size.terminal",
-      "applied": "the Orca terminal font size already set on the machine",
+      "applied": "the Orca terminal font size already set on the machine, carried into the Ghostty block (none when the machine has none); the kit never sets or restores it",
       "reason": "Hosts keep the user's chosen size (spec/foundations.md, Typography)."
     },
     {
