@@ -322,7 +322,7 @@
   },
   "deviations": [
     {
-      "component": "code",
+      "component": "code-editor",
       "target": "code blocks with a language",
       "kind": "unsupported",
       "specValue": "code.syntax.* roles",
@@ -370,7 +370,7 @@
       "reason": "j3w1 defines one focused-input border; the `!` prompt marker carries the mode."
     },
     {
-      "component": "code",
+      "component": "code-editor",
       "target": "inline code",
       "kind": "substituted",
       "specValue": "code roles",
@@ -378,12 +378,12 @@
       "reason": "Claude Code draws inline code in its permission colour, which the kit maps to the overlay border for dialogs."
     },
     {
-      "component": "subagent labels",
-      "target": "eight categorical name colours",
+      "component": "terminal",
+      "target": "subagent name colours",
       "kind": "substituted",
       "specValue": "eight distinct colours",
       "applied": "seven distinct text roles; cyan shares pink's value",
-      "reason": "j3w1 has no categorical text palette and permits no hue outside status roles (D-001)."
+      "reason": "j3w1 has no categorical text palette and permits no hue outside status roles (D-001). Cyan and pink share one role (text.bright); two further pairs are close: orange text.accent / red text.accent-strong, purple text.muted / blue text.subtle."
     },
     {
       "component": "terminal",
@@ -391,7 +391,7 @@
       "kind": "substituted",
       "specValue": "color.interaction.text-selection.bg with color.interaction.text-selection.text",
       "applied": "color.code.selection-bg; spans keep their own colour",
-      "reason": "Claude Code has a selection background token only, so the editor-selection role keeps text readable."
+      "reason": "Claude Code has a selection background token only, so spans keep their own colour on color.code.selection-bg: text.default 7.02:1 and text.muted 4.71:1 stay above 4.5:1, while text.subtle (4.13:1), text.accent-strong and status.danger.text (4.38:1), and text.accent and border.overlay (3.81:1) fall below it inside the selection, as spec/foundations.md accepts for syntax roles in an editor selection."
     }
   ]
 }
