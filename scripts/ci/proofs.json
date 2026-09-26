@@ -3,9 +3,9 @@
   "about": "Which checks a changed path needs (D-031). A path gets cheaper only when a rule below claims it. Any path no rule claims runs every check: a broad rule is a floor, never a verdict. Control files, which always run everything, are listed in select.mjs; a file that browser specs import runs those specs whatever rule claims it.",
   "proofs": {
     "sources": "npm run validate && npm run check",
-    "unit": "node --test on tests/*.test.js, without the terminal-kit suites",
-    "unit-kit": "node --test tests/terminal-kit.test.js",
-    "unit-kit-windows": "node --test tests/terminal-kit-windows.test.js (PowerShell 7)",
+    "unit": "node --test on tests/*.test.js, without the two installer suites",
+    "unit-install": "node --test tests/host-install.test.js (Claude Code and Codex installers)",
+    "unit-install-windows": "node --test tests/orca-install.test.js (the Orca Windows installer, PowerShell 7)",
     "build": "npm run build && npm run test:dist",
     "smoke": "npm run test:smoke",
     "browser": "the named Playwright specs in tests/browser, all four projects, plain list reporter",
@@ -13,29 +13,29 @@
   },
   "rules": [
     {
-      "why": "The terminal kit is not part of the site; its own suites prove it.",
+      "why": "The Claude Code and Codex installers are not part of the site; their own suite proves them.",
       "paths": [
-        "tools/terminal-kit/**",
-        "tests/terminal-kit.test.js"
+        "ports/claude-code/install.mjs",
+        "ports/codex/install.mjs",
+        "tests/host-install.test.js"
       ],
       "proofs": [
         "sources",
-        "unit-kit"
+        "unit-install"
       ],
       "site": false
     },
     {
-      "why": "The Windows scripts have their own PowerShell suite.",
+      "why": "The Orca Windows installer is not part of the site; its PowerShell suite proves it.",
       "paths": [
-        "tools/terminal-kit/windows/**",
-        "tools/terminal-kit/kit.json",
-        "tools/terminal-kit/roles/**",
-        "tools/terminal-kit/specimen.json",
-        "tests/terminal-kit-windows.test.js"
+        "ports/orca/install/**",
+        "ports/orca/host.json",
+        "ports/orca/src/**",
+        "tests/orca-install.test.js"
       ],
       "proofs": [
         "sources",
-        "unit-kit-windows"
+        "unit-install-windows"
       ],
       "site": false
     },
@@ -110,9 +110,15 @@
       "site": true
     },
     {
-      "why": "Ports render on the Ports page and in the downloads.",
+      "why": "Ports render on the Ports page and in the downloads: their descriptions, mappings, guides and dist files.",
       "paths": [
-        "ports/**"
+        "ports/README.md",
+        "ports/*/README.md",
+        "ports/*/port.json",
+        "ports/*/mapping.json",
+        "ports/*/capabilities.json",
+        "ports/*/dist/**",
+        "ports/*/evidence/**"
       ],
       "proofs": [
         "sources",

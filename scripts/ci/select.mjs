@@ -18,7 +18,7 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const registryPath = path.join(root, "scripts/ci/proofs.json");
 const ALL_BROWSER = "all";
-const CHEAP = ["sources", "unit", "unit-kit", "unit-kit-windows"];
+const CHEAP = ["sources", "unit", "unit-install", "unit-install-windows"];
 const SHA = /^[0-9a-f]{40}$/;
 // Control files always run everything. They live here, in a control file,
 // not in proofs.json, so a pull request cannot make itself cheaper by editing
@@ -142,7 +142,7 @@ export function plan({ registry, event, paths, full = false, reason = null, spec
   }
   if (floor) {
     site = true;
-    for (const p of ["sources", "unit", "unit-kit", "unit-kit-windows", "build", "smoke", "consumers"]) proofs.add(p);
+    for (const p of ["sources", "unit", "unit-install", "unit-install-windows", "build", "smoke", "consumers"]) proofs.add(p);
   }
   if (browser.size || floor) proofs.add("build");
   // The deployment path: a push to main that changes the site runs the whole
