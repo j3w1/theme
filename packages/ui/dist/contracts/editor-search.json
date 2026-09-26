@@ -1,10 +1,10 @@
 {
   "id": "editor-search",
   "name": "Editor search",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "tag": "j3w1-editor-search",
-  "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/editor-search.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/display.js",
+  "contract": "https://github.com/j3w1/theme/blob/v1.3.0/spec/components/editor-search.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.3.0/packages/ui/src/behaviors/display.js",
   "imports": {
     "class": "@j3w1/ui/components/editor-search",
     "register": "@j3w1/ui/register/editor-search",
@@ -363,6 +363,6 @@
   "copy": {
     "directory": "copy/editor-search/",
     "manifest": "copy/editor-search/manifest.json",
-    "digest": "sha256-RqxcBjlZBeK3g5Y9xGtOFjpTgneC0rFjJXdBeiTzqqg="
+    "digest": "sha256-ITub+krwhOMmvOWio5vqLoh4u81cz7wXX4P+FX7o4fI="
   }
 }

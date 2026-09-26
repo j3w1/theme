@@ -40,6 +40,7 @@ in its `$extensions["io.github.j3w1.theme"].approval.decision`. Agents may open
 | D-026 | Primary action fill darkens off heritage ANSI 12 | accepted | 2026-09-11 | owner (explicit acceptance after visual review) |
 | D-027 | Recede the interactive chrome | accepted | 2026-09-11 | owner (explicit acceptance after visual review) |
 | D-028 | Merge gates and the deployment gate are different suites | accepted | 2026-09-11 | owner (explicit verification-split instruction) |
+| D-029 | Readable terminal and code reds | accepted | 2026-09-26 | owner (explicit selection of values and release in planning) |
 
 ## D-000 Responsibility split
 
@@ -681,3 +682,63 @@ consumers on the merge path for three more minutes, which buys cross-engine
 coverage of the distributed package rather than of this site. Sharding is the
 one worth revisiting if complete pre-merge coverage ever matters more than the
 minutes.
+
+## D-029 Readable terminal and code reds
+
+Status: accepted · 2026-09-26. The owner chose these values, asked for the
+specification to change, and approved this entry by selecting them.
+
+**Context.** The owner applied the default profile to Orca, Claude Code and
+Codex and found the reds right but too dim to read. Inline code such as
+`scriptblock` in Claude Code renders in slot 12 (`#871f19`, 2.12:1), code-block
+keywords in slot 4 (`#8c1212`, 2.09:1), and Codex draws git branches in slot 4.
+Ten of the sixteen slots were below the 4.5:1 text floor on the terminal
+background. Programs, not the theme, choose which slot means what, so no port
+mapping can move the text to a readable slot.
+
+**Decision.** The default profile carries a readable heritage sixteen. Each
+heritage slot below the text floor keeps its hue and saturation and has its
+HSL lightness raised; the heritage light-to-dark order is kept, so the reds are
+not flattened to one brightness. Slot 8 (bright black) stays the deliberately
+dim tier at about 3:1, the dark-red decorative and background slot.
+
+| slot | heritage | default profile | contrast on `#0c0909` |
+| --- | --- | --- | --- |
+| 1 | `#c81a1a` | `#e84b4b` | 3.42 → 5.23 |
+| 4 | `#8c1212` | `#e53131` | 2.09 → 4.55 |
+| 6 | `#9e474a` | `#bb696c` | 3.26 → 5.05 |
+| 8 | `#7d1310` | `#b71c17` | 1.86 → 3.02 (dim tier) |
+| 9 | `#ab1612` | `#ea3833` | 2.70 → 4.83 |
+| 10 | `#ad2721` | `#dc4f49` | 2.92 → 4.97 |
+| 12 | `#871f19` | `#db433a` | 2.12 → 4.61 |
+| 13 | `#e82132` | `#ed5360` | 4.43 → 5.67 |
+| 14 | `#e0292f` | `#e6565a` | 4.28 → 5.52 |
+| 15 | `#a3676b` | `#b17e81` | 4.45 → 5.83 |
+
+Slots 0, 2, 3, 5, 7 and 11 already passed and are unchanged. The new values
+live in `color.primitive.ansi-readable.*`; `color.primitive.ansi.*` keeps the
+exact heritage values byte for byte, and the `heritage-ansi` profile pins every
+changed role back to them.
+
+The code editor's two syntax reds get the same treatment, only slightly:
+`code.syntax.keyword` and `tag` move from `#f73f35` to `#f7463c`
+(`color.primitive.red.860`), and `property`, `heading` and `invalid` from
+`#e53935` to `#e95551` (`color.primitive.red.810`). Both reach 5.56:1 on the
+code background and clear 4.5:1 inside an editor selection (4.52 and 4.51),
+which they did not before (4.38 and 3.81). Interface reds (focus, links,
+borders, accents, actions) are unchanged.
+
+The terminal prompt's path segment draws `color.terminal.bg` on slot 4 (4.55:1)
+instead of the selection text, which a brighter slot 4 no longer carries.
+
+**Alternatives.** Keep the heritage slots and document the failures, as before;
+rejected by the owner as unreadable. Adopt the `extended` semantic palette;
+rejected, the owner keeps the red and rose families. A gentle lift that left
+slots 4 and 12 near 3:1; rejected as still dim. An OKLCH lift at constant
+chroma; rejected because gamut clipping drifts the reds toward raspberry.
+
+**Consequences.** Terminal ports regenerate with the new slots. Hosts that set
+the palette themselves (CE Devbox's shell palette, the Agnoster prompt's
+directory text) follow in their own repositories. `heritage-ansi` stays the
+exact historical record.
+

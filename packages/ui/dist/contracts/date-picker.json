@@ -1,10 +1,10 @@
 {
   "id": "date-picker",
   "name": "Date picker",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "tag": "j3w1-date-picker",
-  "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/date-picker.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/native.js",
+  "contract": "https://github.com/j3w1/theme/blob/v1.3.0/spec/components/date-picker.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.3.0/packages/ui/src/behaviors/native.js",
   "imports": {
     "class": "@j3w1/ui/components/date-picker",
     "register": "@j3w1/ui/register/date-picker",
@@ -583,6 +583,6 @@
   "copy": {
     "directory": "copy/date-picker/",
     "manifest": "copy/date-picker/manifest.json",
-    "digest": "sha256-TIG95j9krTv1gYETu3F/CgsS5Y3g7CsgBUjlnZIgF3k="
+    "digest": "sha256-6ldJXauJ0RHCQ5NCziOPqtvU/vDIW7fCo70YQt4TiK4="
   }
 }

@@ -1,4 +1,4 @@
-# j3w1 theme 1.2.0, default profile, for Warp theme YAML (also Orca's Import from YAML).
+# j3w1 theme 1.3.0, default profile, for Warp theme YAML (also Orca's Import from YAML).
 # Generated from ports/warp/mapping.json by npm run generate; do not edit.
 name: j3w1 theme
 accent: "#e53935"
@@ -9,19 +9,19 @@ details: darker
 terminal_colors:
   normal:
     black: "#0c0909"
-    red: "#c81a1a"
+    red: "#e84b4b"
     green: "#bd787d"
     yellow: "#d4868b"
-    blue: "#8c1212"
+    blue: "#e53131"
     magenta: "#f73f35"
-    cyan: "#9e474a"
+    cyan: "#bb696c"
     white: "#ffa2a7"
   bright:
-    black: "#7d1310"
-    red: "#ab1612"
-    green: "#ad2721"
+    black: "#b71c17"
+    red: "#ea3833"
+    green: "#dc4f49"
     yellow: "#b37175"
-    blue: "#871f19"
-    magenta: "#e82132"
-    cyan: "#e0292f"
-    white: "#a3676b"
+    blue: "#db433a"
+    magenta: "#ed5360"
+    cyan: "#e6565a"
+    white: "#b17e81"

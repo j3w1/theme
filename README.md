@@ -11,7 +11,7 @@ an independently authored [Vue demo](https://j3w1.github.io/theme/demo/), and
 machine-readable exports for agents.
 
 <!-- version:start -->
-Specification version **1.2.0** (release; default: approved, heritage-ansi: heritage, extended: proposed).
+Specification version **1.3.0** (release; default: approved, heritage-ansi: heritage, extended: proposed).
 
 Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 <!-- version:end -->
@@ -28,11 +28,11 @@ Declared status and import evidence are described under
 [Application ports](#application-ports).
 
 <!-- downloads:start -->
-| Application | File (theme 1.2.0) | Also on the site | Install | Status |
+| Application | File (theme 1.3.0) | Also on the site | Install | Status |
 | --- | --- | --- | --- | --- |
-| Ghostty theme | [j3w1](https://raw.githubusercontent.com/j3w1/theme/v1.2.0/ports/ghostty/dist/j3w1) | [download](https://j3w1.github.io/theme/ports/ghostty/j3w1) | Save as ~/.config/ghostty/themes/j3w1 and add `theme = j3w1` to your Ghostty config. | experimental; import evidence not verified |
-| Orca (Ghostty config import) | [config.ghostty](https://raw.githubusercontent.com/j3w1/theme/v1.2.0/ports/orca/dist/config.ghostty) | [download](https://j3w1.github.io/theme/ports/orca/config.ghostty) | Save as %APPDATA%\ghostty\config.ghostty (Windows) or ~/.config/ghostty/config.ghostty, then Orca → Settings → Terminal → Import from Ghostty → Apply Changes. | experimental; import evidence not verified |
-| Warp theme YAML (also Orca's Import from YAML) | [j3w1.yaml](https://raw.githubusercontent.com/j3w1/theme/v1.2.0/ports/warp/dist/j3w1.yaml) | [download](https://j3w1.github.io/theme/ports/warp/j3w1.yaml) | Orca → Settings → Terminal Themes → Import from YAML (or save into %APPDATA%\warp\Warp\data\themes\ and use Import from Warp), then select "j3w1 theme" as the Dark Theme. Warp: save into its themes folder. | experimental; import evidence not verified |
+| Ghostty theme | [j3w1](https://raw.githubusercontent.com/j3w1/theme/v1.3.0/ports/ghostty/dist/j3w1) | [download](https://j3w1.github.io/theme/ports/ghostty/j3w1) | Save as ~/.config/ghostty/themes/j3w1 and add `theme = j3w1` to your Ghostty config. | experimental; import evidence not verified |
+| Orca (Ghostty config import) | [config.ghostty](https://raw.githubusercontent.com/j3w1/theme/v1.3.0/ports/orca/dist/config.ghostty) | [download](https://j3w1.github.io/theme/ports/orca/config.ghostty) | Save as %APPDATA%\ghostty\config.ghostty (Windows) or ~/.config/ghostty/config.ghostty, then Orca → Settings → Terminal → Import from Ghostty → Apply Changes. | experimental; import evidence not verified |
+| Warp theme YAML (also Orca's Import from YAML) | [j3w1.yaml](https://raw.githubusercontent.com/j3w1/theme/v1.3.0/ports/warp/dist/j3w1.yaml) | [download](https://j3w1.github.io/theme/ports/warp/j3w1.yaml) | Orca → Settings → Terminal Themes → Import from YAML (or save into %APPDATA%\warp\Warp\data\themes\ and use Import from Warp), then select "j3w1 theme" as the Dark Theme. Warp: save into its themes folder. | experimental; import evidence not verified |
 <!-- downloads:end -->
 
 Changing how the theme looks has a local loop:
@@ -374,9 +374,9 @@ and the public site, including when verification fails.
 <!-- ports:start -->
 | Port | Format | Declared status | Import evidence | Theme | Tested on | Supported / inherited / unsupported |
 | --- | --- | --- | --- | --- | --- | --- |
-| Ghostty theme | ghostty-config | experimental | not verified | 1.2.0 | — (macos, linux) | 3 / 1 / 1 |
-| Orca (Ghostty config import) | ghostty-config | experimental | not verified | 1.2.0 | — (windows, macos, linux) | 4 / 1 / 1 |
-| Warp theme YAML (also Orca's Import from YAML) | warp-yaml | experimental | not verified | 1.2.0 | — (windows, macos, linux) | 1 / 1 / 3 |
+| Ghostty theme | ghostty-config | experimental | not verified | 1.3.0 | — (macos, linux) | 3 / 1 / 1 |
+| Orca (Ghostty config import) | ghostty-config | experimental | not verified | 1.3.0 | — (windows, macos, linux) | 4 / 1 / 1 |
+| Warp theme YAML (also Orca's Import from YAML) | warp-yaml | experimental | not verified | 1.3.0 | — (windows, macos, linux) | 1 / 1 / 3 |
 <!-- ports:end -->
 
 ## Component coverage

@@ -3,8 +3,8 @@ import { n as content } from "../chunks/native-CAzZmDKR.js";
 //#region .cache/ui-build/entries/components/description-list.js
 var J3w1DescriptionList = class extends J3w1Element {
 	static componentId = "description-list";
-	static version = "1.2.0";
-	static implementationId = "sha256-9W7Rfq48JvZUOhSuDxQOizgz5WXnlI2RZW/dBGO/2Sk=";
+	static version = "1.3.0";
+	static implementationId = "sha256-EG3W5Gbg/tOPqRE0FNQvsauW2BqSKfxlYmgroJ4bfi4=";
 	static connect = content;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

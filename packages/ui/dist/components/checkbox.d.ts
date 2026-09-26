@@ -1,5 +1,5 @@
 import { J3w1Element } from '../element.js';
-export declare class J3w1Checkbox extends J3w1Element { static readonly componentId: 'checkbox'; static readonly version: '1.2.0';
+export declare class J3w1Checkbox extends J3w1Element { static readonly componentId: 'checkbox'; static readonly version: '1.3.0';
   refresh(): void;
   focus(options?: FocusOptions): void;
   checkValidity(): boolean;

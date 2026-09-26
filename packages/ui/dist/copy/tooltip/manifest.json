@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "component": "tooltip",
-  "version": "1.2.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/tooltip.md",
+  "version": "1.3.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.3.0/spec/components/tooltip.md",
   "dependencies": [
     "register/tooltip.js",
     "chunks/element-C1XeXVYC.js",
@@ -14,13 +14,13 @@
     "runtime/register/tooltip.js": "sha256-HkIZuQ8Gs11kQ0MzBEIBWrfaPopBPdUh+ODRas1HzLk=",
     "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
     "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-    "runtime/components/tooltip.js": "sha256-WTgLZKB6EIeziSxvfxI84OSDbWSDWKk7LjcS5FWG8PE=",
+    "runtime/components/tooltip.js": "sha256-raWc3x3SfyJK2tcVJCGdF7ETdSgPixKUoxpwNMlgMV0=",
     "runtime/chunks/overlays-C6nlCHqg.js": "sha256-JtKjtFU2sbObAEtYaA9S+YE40WKP5hX073Xv4lpA67o=",
-    "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+    "tokens.css": "sha256-MCcCCQ1BvLHMwDdPBtZjb0bMFVi/M6Bfe29PDa1O4UM=",
     "component.css": "sha256-Skdu3czE82hMaq0VZwtG6ERV4Hud75l3iMhOfMR7K7U=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-+kSohyFbJg7z8/YUnlkzY1UQAu9ZLX7qE1eFLvk/1hI=",
     "index.html": "sha256-E+iyir+kE7FZW4yp4r+zjaBJSIcRsJGbvmwPckUJga0=",
-    "README.md": "sha256-p0/c98Th1zGlDVjYMmXSzYm5nck+Mieg0d0ihk2fFAg="
+    "README.md": "sha256-QinyJ1VIQ5bWe/6Eydoi4gPLi0HusQ7qSH9mPF3LbM0="
   }
 }

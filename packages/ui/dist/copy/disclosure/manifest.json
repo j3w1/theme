@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "component": "disclosure",
-  "version": "1.2.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/disclosure.md",
+  "version": "1.3.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.3.0/spec/components/disclosure.md",
   "dependencies": [
     "register/disclosure.js",
     "chunks/element-C1XeXVYC.js",
@@ -14,13 +14,13 @@
     "runtime/register/disclosure.js": "sha256-QAWXKSki5SRPPTshefR54Zy2gycHjHlG61aTWPL1Q4g=",
     "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
     "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-    "runtime/components/disclosure.js": "sha256-xFt7D51dG1lBYA82wnCVVEGhEOeiV08tRU94IsGhGow=",
+    "runtime/components/disclosure.js": "sha256-OQeJb7VuVEcTeSlSG/A9c32t2guuVgnUcpyza7KoGtM=",
     "runtime/chunks/navigation-Dt8ap-9J.js": "sha256-7QSC/eQSDSRRy3YqMltwjb6cwbEA0V652cfo+Ng2VqA=",
-    "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+    "tokens.css": "sha256-MCcCCQ1BvLHMwDdPBtZjb0bMFVi/M6Bfe29PDa1O4UM=",
     "component.css": "sha256-vVNjPU0AXLKLnxgRPgOVmN3dS6S3pxA6xLFfJFK8ex4=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-ZbpW/j8ZGKofIgL/uVEO47xXhxXmS2mrK5w32n/BWZA=",
     "index.html": "sha256-IGRscuNxsfbVQd8cDkiBz1/QAEamMHSToesnIwq38AU=",
-    "README.md": "sha256-ClRk6MRFHeWqnAKQA3e3epanyegGldIdJ0U6bcoe5bw="
+    "README.md": "sha256-9Gpgon8aiPeZ7vgt8BtULsMSXVqee7L9c7X0V+ooTwg="
   }
 }

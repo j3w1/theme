@@ -3,8 +3,8 @@ import { r as fields } from "../chunks/native-CAzZmDKR.js";
 //#region .cache/ui-build/entries/components/number-field.js
 var J3w1NumberField = class extends J3w1Element {
 	static componentId = "number-field";
-	static version = "1.2.0";
-	static implementationId = "sha256-/m/WZUrqOuZ27dP5lcv1sINauEnam7GyJr710j1rqw8=";
+	static version = "1.3.0";
+	static implementationId = "sha256-Cc5LEBM9qrg/k3Dwgrj25hw+CLYI8VfvVudTprLlTRg=";
 	static connect = fields;
 	static upgradeProperties = [
 		"disabled",

@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "component": "date-picker",
-  "version": "1.2.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/date-picker.md",
+  "version": "1.3.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.3.0/spec/components/date-picker.md",
   "dependencies": [
     "register/date-picker.js",
     "chunks/element-C1XeXVYC.js",
@@ -14,13 +14,13 @@
     "runtime/register/date-picker.js": "sha256-QyyWDOnYnSGxEdY+mxrtYtsLqoQAkhvTLJ5z7kjo3/w=",
     "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
     "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-    "runtime/components/date-picker.js": "sha256-h9qSAo4n5wfh8Omthj44XQjSEqU6Rh2D4Bfe/ArKpzA=",
+    "runtime/components/date-picker.js": "sha256-sUm2yvX8ZY3DHFzKSY97k0UQVH6s6k3tg4wIW5HYOf0=",
     "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-    "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+    "tokens.css": "sha256-MCcCCQ1BvLHMwDdPBtZjb0bMFVi/M6Bfe29PDa1O4UM=",
     "component.css": "sha256-InOm4+AU0uQu6XZs3K+f13FA89Jf7iQO1GuL/2+s9YA=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-Nho5WRdNWOIx9zrVkZR8s5NrC95hgRBVnvDTdnZ7qoo=",
     "index.html": "sha256-eGq952lAjjjM/6cG7o5Rv4hcM4Tuc6zA38HiAPrEevM=",
-    "README.md": "sha256-UrEQ/jcnQCILjL4p9LGYg2iQFPMebQl92XZxaO2DCQE="
+    "README.md": "sha256-6GzDQBuOB+4i3Pf8+CVhQrKhRO2LtULjWqJwVb1lKco="
   }
 }

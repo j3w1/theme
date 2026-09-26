@@ -3,8 +3,8 @@ import { i as tabs } from "../chunks/navigation-Dt8ap-9J.js";
 //#region .cache/ui-build/entries/components/tabs.js
 var J3w1Tabs = class extends J3w1Element {
 	static componentId = "tabs";
-	static version = "1.2.0";
-	static implementationId = "sha256-VqxANniBt6rVN2IjNBBIZQLdYsjDV5w/bedxtL7eiVM=";
+	static version = "1.3.0";
+	static implementationId = "sha256-RY4DokpA/1yPVVShwWkw/mMpM9LlJ9t34r9DSeQdUBk=";
 	static connect = tabs;
 	static upgradeProperties = [
 		"disabled",

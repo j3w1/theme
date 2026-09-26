@@ -3,8 +3,8 @@ import { r as developerView } from "../chunks/display-dj9YaBfn.js";
 //#region .cache/ui-build/entries/components/code-editor.js
 var J3w1CodeEditor = class extends J3w1Element {
 	static componentId = "code-editor";
-	static version = "1.2.0";
-	static implementationId = "sha256-3WxbcGavn/Z9JCb+Y8cOVz9zqOd3NJJlVmW2IE3J6t8=";
+	static version = "1.3.0";
+	static implementationId = "sha256-+9giga83xSEZ2XNKE4eNci8L6yaRPUrrx2YxX9stJt4=";
 	static connect = developerView;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

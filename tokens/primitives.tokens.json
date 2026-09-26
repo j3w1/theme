@@ -617,6 +617,33 @@
             }
           }
         },
+        "810": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9137,
+              0.3333,
+              0.3176
+            ],
+            "alpha": 1,
+            "hex": "#e95551"
+          },
+          "$description": "D-029 code syntax red: red.800 (#e53935) lifted to 5.56:1 on the code background and 4.51:1 inside an editor selection (properties, headings, invalid text).",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "origin": {
+                "kind": "derived",
+                "ref": "spec/decisions.md#d-029",
+                "note": "HSL lightness lift of color.primitive.red.800; hue and saturation kept."
+              },
+              "approval": {
+                "decision": "D-029"
+              },
+              "textSafe": "raised"
+            }
+          }
+        },
         "850": {
           "$value": {
             "colorSpace": "srgb",
@@ -637,6 +664,33 @@
                 "ref": "j3w1/1w3j@98413159d17e7e77e301b21fb688262e8b16d676 config/Xresources",
                 "key": "color5"
               }
+            }
+          }
+        },
+        "860": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9686,
+              0.2745,
+              0.2353
+            ],
+            "alpha": 1,
+            "hex": "#f7463c"
+          },
+          "$description": "D-029 code syntax red: red.850 (#f73f35) lifted to 5.57:1 on the code background and 4.52:1 inside an editor selection (keywords, tags).",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "origin": {
+                "kind": "derived",
+                "ref": "spec/decisions.md#d-029",
+                "note": "HSL lightness lift of color.primitive.red.850; hue and saturation kept."
+              },
+              "approval": {
+                "decision": "D-029"
+              },
+              "textSafe": "raised"
             }
           }
         },
@@ -1335,6 +1389,279 @@
           "$description": "color15"
         },
         "$description": "The sixteen Xresources slots by number, exact. Historical fidelity; the slot names carry no semantic promise."
+      },
+      "ansi-readable": {
+        "1": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9098,
+              0.2941,
+              0.2941
+            ],
+            "alpha": 1,
+            "hex": "#e84b4b"
+          },
+          "$description": "Heritage slot 1 (#c81a1a, 3.42:1) lifted to 5.23:1 on the terminal background.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "origin": {
+                "kind": "derived",
+                "ref": "spec/decisions.md#d-029",
+                "note": "HSL lightness lift of color.primitive.ansi.1; hue and saturation kept."
+              },
+              "approval": {
+                "decision": "D-029"
+              },
+              "textSafe": "raised"
+            }
+          }
+        },
+        "4": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.898,
+              0.1922,
+              0.1922
+            ],
+            "alpha": 1,
+            "hex": "#e53131"
+          },
+          "$description": "Heritage slot 4 (#8c1212, 2.09:1) lifted to 4.55:1 on the terminal background.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "origin": {
+                "kind": "derived",
+                "ref": "spec/decisions.md#d-029",
+                "note": "HSL lightness lift of color.primitive.ansi.4; hue and saturation kept."
+              },
+              "approval": {
+                "decision": "D-029"
+              },
+              "textSafe": "canvas"
+            }
+          }
+        },
+        "6": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7333,
+              0.4118,
+              0.4235
+            ],
+            "alpha": 1,
+            "hex": "#bb696c"
+          },
+          "$description": "Heritage slot 6 (#9e474a, 3.26:1) lifted to 5.05:1 on the terminal background.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "origin": {
+                "kind": "derived",
+                "ref": "spec/decisions.md#d-029",
+                "note": "HSL lightness lift of color.primitive.ansi.6; hue and saturation kept."
+              },
+              "approval": {
+                "decision": "D-029"
+              },
+              "textSafe": "raised"
+            }
+          }
+        },
+        "8": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7176,
+              0.1098,
+              0.0902
+            ],
+            "alpha": 1,
+            "hex": "#b71c17"
+          },
+          "$description": "Heritage slot 8 (#7d1310, 1.86:1) lifted to 3.02:1 on the terminal background; kept as the dim tier, not a text colour.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "origin": {
+                "kind": "derived",
+                "ref": "spec/decisions.md#d-029",
+                "note": "HSL lightness lift of color.primitive.ansi.8; hue and saturation kept."
+              },
+              "approval": {
+                "decision": "D-029"
+              },
+              "textSafe": "none"
+            }
+          }
+        },
+        "9": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9176,
+              0.2196,
+              0.2
+            ],
+            "alpha": 1,
+            "hex": "#ea3833"
+          },
+          "$description": "Heritage slot 9 (#ab1612, 2.70:1) lifted to 4.83:1 on the terminal background.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "origin": {
+                "kind": "derived",
+                "ref": "spec/decisions.md#d-029",
+                "note": "HSL lightness lift of color.primitive.ansi.9; hue and saturation kept."
+              },
+              "approval": {
+                "decision": "D-029"
+              },
+              "textSafe": "raised"
+            }
+          }
+        },
+        "10": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8627,
+              0.3098,
+              0.2863
+            ],
+            "alpha": 1,
+            "hex": "#dc4f49"
+          },
+          "$description": "Heritage slot 10 (#ad2721, 2.92:1) lifted to 4.97:1 on the terminal background.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "origin": {
+                "kind": "derived",
+                "ref": "spec/decisions.md#d-029",
+                "note": "HSL lightness lift of color.primitive.ansi.10; hue and saturation kept."
+              },
+              "approval": {
+                "decision": "D-029"
+              },
+              "textSafe": "raised"
+            }
+          }
+        },
+        "12": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8588,
+              0.2627,
+              0.2275
+            ],
+            "alpha": 1,
+            "hex": "#db433a"
+          },
+          "$description": "Heritage slot 12 (#871f19, 2.12:1) lifted to 4.61:1 on the terminal background.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "origin": {
+                "kind": "derived",
+                "ref": "spec/decisions.md#d-029",
+                "note": "HSL lightness lift of color.primitive.ansi.12; hue and saturation kept."
+              },
+              "approval": {
+                "decision": "D-029"
+              },
+              "textSafe": "default"
+            }
+          }
+        },
+        "13": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9294,
+              0.3255,
+              0.3765
+            ],
+            "alpha": 1,
+            "hex": "#ed5360"
+          },
+          "$description": "Heritage slot 13 (#e82132, 4.43:1) lifted to 5.67:1 on the terminal background.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "origin": {
+                "kind": "derived",
+                "ref": "spec/decisions.md#d-029",
+                "note": "HSL lightness lift of color.primitive.ansi.13; hue and saturation kept."
+              },
+              "approval": {
+                "decision": "D-029"
+              },
+              "textSafe": "raised"
+            }
+          }
+        },
+        "14": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.902,
+              0.3373,
+              0.3529
+            ],
+            "alpha": 1,
+            "hex": "#e6565a"
+          },
+          "$description": "Heritage slot 14 (#e0292f, 4.28:1) lifted to 5.52:1 on the terminal background.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "origin": {
+                "kind": "derived",
+                "ref": "spec/decisions.md#d-029",
+                "note": "HSL lightness lift of color.primitive.ansi.14; hue and saturation kept."
+              },
+              "approval": {
+                "decision": "D-029"
+              },
+              "textSafe": "raised"
+            }
+          }
+        },
+        "15": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6941,
+              0.4941,
+              0.5059
+            ],
+            "alpha": 1,
+            "hex": "#b17e81"
+          },
+          "$description": "Heritage slot 15 (#a3676b, 4.45:1) lifted to 5.83:1 on the terminal background.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "origin": {
+                "kind": "derived",
+                "ref": "spec/decisions.md#d-029",
+                "note": "HSL lightness lift of color.primitive.ansi.15; hue and saturation kept."
+              },
+              "approval": {
+                "decision": "D-029"
+              },
+              "textSafe": "raised"
+            }
+          }
+        },
+        "$description": "D-029 readable heritage slots: each heritage ANSI slot that fell below the text floor, lifted in HSL lightness with its hue and saturation kept. The default profile's terminal roles use these; color.primitive.ansi.* keeps the exact heritage values."
       }
     }
   }

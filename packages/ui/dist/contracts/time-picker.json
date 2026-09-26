@@ -1,10 +1,10 @@
 {
   "id": "time-picker",
   "name": "Time picker",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "tag": "j3w1-time-picker",
-  "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/time-picker.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/native.js",
+  "contract": "https://github.com/j3w1/theme/blob/v1.3.0/spec/components/time-picker.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.3.0/packages/ui/src/behaviors/native.js",
   "imports": {
     "class": "@j3w1/ui/components/time-picker",
     "register": "@j3w1/ui/register/time-picker",
@@ -567,6 +567,6 @@
   "copy": {
     "directory": "copy/time-picker/",
     "manifest": "copy/time-picker/manifest.json",
-    "digest": "sha256-WlgCI7W8c7ZLvROxGz7L04Zy/gR+esy6ki2kYfXwKEU="
+    "digest": "sha256-zhALmQ7L8dMzYHAVIV3jG8EAjo5pWzR8IF2pY4GZlGw="
   }
 }

@@ -191,7 +191,9 @@
         "$extensions": {
           "io.github.j3w1.theme": {
             "status": "approved",
-            "approval": { "decision": "D-024" }
+            "approval": {
+              "decision": "D-024"
+            }
           }
         }
       },
@@ -771,8 +773,16 @@
       },
       "syntax": {
         "keyword": {
-          "$value": "{color.primitive.red.850}",
-          "$description": "Keywords (Xresources color5 lineage)."
+          "$value": "{color.primitive.red.860}",
+          "$description": "Keywords (Xresources color5 lineage), lifted by D-029.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-029"
+              }
+            }
+          }
         },
         "string": {
           "$value": "{color.primitive.rose.600}",
@@ -819,16 +829,40 @@
           "$description": "Punctuation."
         },
         "property": {
-          "$value": "{color.primitive.red.800}",
-          "$description": "Properties and keys (site .syntax-key)."
+          "$value": "{color.primitive.red.810}",
+          "$description": "Properties and keys (site .syntax-key), lifted by D-029.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-029"
+              }
+            }
+          }
         },
         "heading": {
-          "$value": "{color.primitive.red.800}",
-          "$description": "Markup headings (site .syntax-heading)."
+          "$value": "{color.primitive.red.810}",
+          "$description": "Markup headings (site .syntax-heading), lifted by D-029.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-029"
+              }
+            }
+          }
         },
         "tag": {
-          "$value": "{color.primitive.red.850}",
-          "$description": "Markup tags."
+          "$value": "{color.primitive.red.860}",
+          "$description": "Markup tags, lifted by D-029.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-029"
+              }
+            }
+          }
         },
         "attribute": {
           "$value": "{color.primitive.rose.650}",
@@ -839,8 +873,16 @@
           "$description": "Escape sequences and regex, bold."
         },
         "invalid": {
-          "$value": "{color.primitive.red.800}",
-          "$description": "Invalid text: wavy underline."
+          "$value": "{color.primitive.red.810}",
+          "$description": "Invalid text: wavy underline; lifted by D-029.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-029"
+              }
+            }
+          }
         },
         "deprecated": {
           "$value": "{color.primitive.rose.450}",
@@ -1059,8 +1101,16 @@
           "$description": "ANSI slot 0, exact heritage value."
         },
         "1": {
-          "$value": "{color.primitive.ansi.1}",
-          "$description": "ANSI slot 1, exact heritage value."
+          "$value": "{color.primitive.ansi-readable.1}",
+          "$description": "ANSI slot 1, readable heritage (D-029); the heritage-ansi profile keeps the exact value.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-029"
+              }
+            }
+          }
         },
         "2": {
           "$value": "{color.primitive.ansi.2}",
@@ -1071,52 +1121,124 @@
           "$description": "ANSI slot 3, exact heritage value."
         },
         "4": {
-          "$value": "{color.primitive.ansi.4}",
-          "$description": "ANSI slot 4, exact heritage value."
+          "$value": "{color.primitive.ansi-readable.4}",
+          "$description": "ANSI slot 4, readable heritage (D-029); the heritage-ansi profile keeps the exact value.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-029"
+              }
+            }
+          }
         },
         "5": {
           "$value": "{color.primitive.ansi.5}",
           "$description": "ANSI slot 5, exact heritage value."
         },
         "6": {
-          "$value": "{color.primitive.ansi.6}",
-          "$description": "ANSI slot 6, exact heritage value."
+          "$value": "{color.primitive.ansi-readable.6}",
+          "$description": "ANSI slot 6, readable heritage (D-029); the heritage-ansi profile keeps the exact value.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-029"
+              }
+            }
+          }
         },
         "7": {
           "$value": "{color.primitive.ansi.7}",
           "$description": "ANSI slot 7, exact heritage value."
         },
         "8": {
-          "$value": "{color.primitive.ansi.8}",
-          "$description": "ANSI slot 8, exact heritage value."
+          "$value": "{color.primitive.ansi-readable.8}",
+          "$description": "ANSI slot 8, readable heritage (D-029); the heritage-ansi profile keeps the exact value.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-029"
+              }
+            }
+          }
         },
         "9": {
-          "$value": "{color.primitive.ansi.9}",
-          "$description": "ANSI slot 9, exact heritage value."
+          "$value": "{color.primitive.ansi-readable.9}",
+          "$description": "ANSI slot 9, readable heritage (D-029); the heritage-ansi profile keeps the exact value.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-029"
+              }
+            }
+          }
         },
         "10": {
-          "$value": "{color.primitive.ansi.10}",
-          "$description": "ANSI slot 10, exact heritage value."
+          "$value": "{color.primitive.ansi-readable.10}",
+          "$description": "ANSI slot 10, readable heritage (D-029); the heritage-ansi profile keeps the exact value.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-029"
+              }
+            }
+          }
         },
         "11": {
           "$value": "{color.primitive.ansi.11}",
           "$description": "ANSI slot 11, exact heritage value."
         },
         "12": {
-          "$value": "{color.primitive.ansi.12}",
-          "$description": "ANSI slot 12, exact heritage value."
+          "$value": "{color.primitive.ansi-readable.12}",
+          "$description": "ANSI slot 12, readable heritage (D-029); the heritage-ansi profile keeps the exact value.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-029"
+              }
+            }
+          }
         },
         "13": {
-          "$value": "{color.primitive.ansi.13}",
-          "$description": "ANSI slot 13, exact heritage value."
+          "$value": "{color.primitive.ansi-readable.13}",
+          "$description": "ANSI slot 13, readable heritage (D-029); the heritage-ansi profile keeps the exact value.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-029"
+              }
+            }
+          }
         },
         "14": {
-          "$value": "{color.primitive.ansi.14}",
-          "$description": "ANSI slot 14, exact heritage value."
+          "$value": "{color.primitive.ansi-readable.14}",
+          "$description": "ANSI slot 14, readable heritage (D-029); the heritage-ansi profile keeps the exact value.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-029"
+              }
+            }
+          }
         },
         "15": {
-          "$value": "{color.primitive.ansi.15}",
-          "$description": "ANSI slot 15, exact heritage value."
+          "$value": "{color.primitive.ansi-readable.15}",
+          "$description": "ANSI slot 15, readable heritage (D-029); the heritage-ansi profile keeps the exact value.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-029"
+              }
+            }
+          }
         }
       }
     },

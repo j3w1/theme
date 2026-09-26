@@ -3,8 +3,8 @@ import { t as commandPalette } from "../chunks/advanced-DCpe8Ndv.js";
 //#region .cache/ui-build/entries/components/command-palette.js
 var J3w1CommandPalette = class extends J3w1Element {
 	static componentId = "command-palette";
-	static version = "1.2.0";
-	static implementationId = "sha256-Tt7ht2WEvNm6aVFbV93CZniw/jzZNFijxkiufFHvVK8=";
+	static version = "1.3.0";
+	static implementationId = "sha256-cglMMO4WmWNUr1ci3Jpci+aPDFMG7MDJnQ5TIEnPaqA=";
 	static connect = commandPalette;
 	static upgradeProperties = [
 		"disabled",

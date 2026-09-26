@@ -3,8 +3,8 @@ import { t as formComposition } from "../chunks/forms-BT3z7lNC.js";
 //#region .cache/ui-build/entries/components/settings-panel.js
 var J3w1SettingsPanel = class extends J3w1Element {
 	static componentId = "settings-panel";
-	static version = "1.2.0";
-	static implementationId = "sha256-QlEMmfxa2c8UpJHaZBFRfCD3Wl6R3T1PGMv9Z0SmcIY=";
+	static version = "1.3.0";
+	static implementationId = "sha256-C7LkqVK9zRmPr1IOT9cQm+G3Y+EoPbt4f6fqjPBeqJQ=";
 	static connect = formComposition;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

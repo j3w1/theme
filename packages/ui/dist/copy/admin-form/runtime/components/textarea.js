@@ -3,8 +3,8 @@ import { r as fields } from "../chunks/native-CAzZmDKR.js";
 //#region .cache/ui-build/entries/components/textarea.js
 var J3w1Textarea = class extends J3w1Element {
 	static componentId = "textarea";
-	static version = "1.2.0";
-	static implementationId = "sha256-i7fDSZ5Ob9z28OJvLseXXjN5iGzIQsAdj7lqk31UEYU=";
+	static version = "1.3.0";
+	static implementationId = "sha256-NgRYcxhtgb91ouE1l7ySgipAMLaXInZZFLs25I6FYBU=";
 	static connect = fields;
 	static upgradeProperties = [
 		"disabled",

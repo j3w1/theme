@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "component": "multiselect",
-  "version": "1.2.0",
-  "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/multiselect.md",
+  "version": "1.3.0",
+  "contract": "https://github.com/j3w1/theme/blob/v1.3.0/spec/components/multiselect.md",
   "dependencies": [
     "register/multiselect.js",
     "chunks/element-C1XeXVYC.js",
@@ -15,14 +15,14 @@
     "runtime/register/multiselect.js": "sha256-96pmTEj2wLhjjLNib4gB1d7Twzrt5QcyklLK7RfzavA=",
     "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
     "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-    "runtime/components/multiselect.js": "sha256-/U4HIAfopQbRQco5o4u37AD+BQN8fUSRiuOFv+hK2/0=",
+    "runtime/components/multiselect.js": "sha256-zc+2TLzhcvaHgl1H2GiS925WyZDjyZOy/n4oLMgH4kg=",
     "runtime/chunks/advanced-DCpe8Ndv.js": "sha256-nr1LFdLYsGeTM4vDyldvuJygRm0F04sYonxatySPu1g=",
     "runtime/chunks/markup-DeQ4bEMR.js": "sha256-Eyyx7MKBoqXK4i2HaVUQhKUM066L2wIggABt6jAdgas=",
-    "tokens.css": "sha256-e3SlEktgElKxBirr7PuEBjsxsZPpTmR0uEjaOtCy7pw=",
+    "tokens.css": "sha256-MCcCCQ1BvLHMwDdPBtZjb0bMFVi/M6Bfe29PDa1O4UM=",
     "component.css": "sha256-NHeO9yzX+pKu8X05cxcbMC+aba6f5KV7SQL1E+N/kKM=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-1E4hftJizWZX+Gn6uhOJBXC2VAC62t50q2kwRpgS2pQ=",
     "index.html": "sha256-/iSVBFFALSTS0ebIls1qu3/g280a8lbMULm2Al9zFMM=",
-    "README.md": "sha256-mkHW21ApFdWFlZkGBZxIHh0UXK2AgS9MjPzxU6H9XlA="
+    "README.md": "sha256-xreVjidVKcoEAx6VtBA70cQPEqHTaEIf/DM9/ieCxE0="
   }
 }

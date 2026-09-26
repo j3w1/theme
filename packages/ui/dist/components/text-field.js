@@ -3,8 +3,8 @@ import { r as fields } from "../chunks/native-CAzZmDKR.js";
 //#region .cache/ui-build/entries/components/text-field.js
 var J3w1TextField = class extends J3w1Element {
 	static componentId = "text-field";
-	static version = "1.2.0";
-	static implementationId = "sha256-RzmVHroucrrbmKKVy+t+US2aXqzFJeSFUMjAZNyWy0A=";
+	static version = "1.3.0";
+	static implementationId = "sha256-g981TYolzgHjCBT/cGbZaD/N5zqmpycf3Hsi/aUfoRc=";
 	static connect = fields;
 	static upgradeProperties = [
 		"disabled",

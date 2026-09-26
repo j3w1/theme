@@ -1,10 +1,10 @@
 {
   "id": "pagination",
   "name": "Pagination",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "tag": "j3w1-pagination",
-  "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/pagination.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/tables.js",
+  "contract": "https://github.com/j3w1/theme/blob/v1.3.0/spec/components/pagination.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.3.0/packages/ui/src/behaviors/tables.js",
   "imports": {
     "class": "@j3w1/ui/components/pagination",
     "register": "@j3w1/ui/register/pagination",
@@ -378,6 +378,6 @@
   "copy": {
     "directory": "copy/pagination/",
     "manifest": "copy/pagination/manifest.json",
-    "digest": "sha256-1kGIx11pMR7r+8XgGhpnK5P6XLLjjyt7/ZoyIHJxyUA="
+    "digest": "sha256-Chhc3vUumxr2F03eHmfysKzTDNvlIfkUdSBitZu5QoY="
   }
 }

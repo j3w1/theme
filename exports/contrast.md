@@ -1,4 +1,4 @@
-# Contrast report (1.2.0, profile: default)
+# Contrast report (1.3.0, profile: default)
 
 Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a design target for the named role, not an application-wide conformance claim. Waived pairs are listed with their reason.
 
@@ -53,7 +53,7 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | caret on current line | — | ui | `color.code.caret` #e99499 | `color.code.current-line` #1c0a09 | 8.35 | 3 | pass |
 | comment on code background | — | text | `color.code.syntax.comment` #ad7175 | `color.code.bg` #0c0909 | 5.10 | 4.5 | pass |
 | string on code background | — | text | `color.code.syntax.string` #bd787d | `color.code.bg` #0c0909 | 5.81 | 4.5 | pass |
-| keyword on code background | — | text | `color.code.syntax.keyword` #f73f35 | `color.code.bg` #0c0909 | 5.40 | 4.5 | pass |
+| keyword on code background | — | text | `color.code.syntax.keyword` #f7463c | `color.code.bg` #0c0909 | 5.57 | 4.5 | pass |
 | type on code background | — | text | `color.code.syntax.type` #b37175 | `color.code.bg` #0c0909 | 5.23 | 4.5 | pass |
 | muted text on editor selection | — | text | `color.text.muted` #bd787d | `color.code.selection-bg` #420f0c | 4.71 | 4.5 | pass |
 | current search match text | — | text | `color.code.search-current-text` #0c0909 | `color.code.search-current-bg` #ffa2a7 | 10.37 | 4.5 | pass |
@@ -237,17 +237,19 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | bracket-match outline on the current line | current | ui | `color.code.bracket-match` #e53935 | `color.code.current-line` #1c0a09 | 4.53 | 3 | pass |
 | line numbers in the gutter | — | text | `color.code.line-number` #ad7175 | `color.code.gutter-bg` #0c0909 | 5.10 | 4.5 | pass |
 | active line number | — | text | `color.code.line-number-active` #e99499 | `color.code.current-line` #1c0a09 | 8.35 | 4.5 | pass |
-| keyword | — | text | `color.code.syntax.keyword` #f73f35 | `color.code.bg` #0c0909 | 5.40 | 4.5 | pass |
+| keyword | — | text | `color.code.syntax.keyword` #f7463c | `color.code.bg` #0c0909 | 5.57 | 4.5 | pass |
 | string | — | text | `color.code.syntax.string` #bd787d | `color.code.bg` #0c0909 | 5.81 | 4.5 | pass |
 | comment | — | text | `color.code.syntax.comment` #ad7175 | `color.code.bg` #0c0909 | 5.10 | 4.5 | pass |
 | number and constant | — | text | `color.code.syntax.number` #d4868b | `color.code.bg` #0c0909 | 7.16 | 4.5 | pass |
 | function | — | text | `color.code.syntax.function` #ffa2a7 | `color.code.bg` #0c0909 | 10.37 | 4.5 | pass |
 | type | — | text | `color.code.syntax.type` #b37175 | `color.code.bg` #0c0909 | 5.23 | 4.5 | pass |
-| property, heading and invalid text | — | text | `color.code.syntax.property` #e53935 | `color.code.bg` #0c0909 | 4.69 | 4.5 | pass |
-| tag | — | text | `color.code.syntax.tag` #f73f35 | `color.code.bg` #0c0909 | 5.40 | 4.5 | pass |
+| property, heading and invalid text | — | text | `color.code.syntax.property` #e95551 | `color.code.bg` #0c0909 | 5.56 | 4.5 | pass |
+| tag | — | text | `color.code.syntax.tag` #f7463c | `color.code.bg` #0c0909 | 5.57 | 4.5 | pass |
 | attribute and escape | — | text | `color.code.syntax.attribute` #d4868b | `color.code.bg` #0c0909 | 7.16 | 4.5 | pass |
 | deprecated text | — | text | `color.code.syntax.deprecated` #ad7175 | `color.code.bg` #0c0909 | 5.10 | 4.5 | pass |
 | muted string text inside the selection | selected | text | `color.code.syntax.string` #bd787d | `color.code.selection-bg` #420f0c | 4.71 | 4.5 | pass |
+| keyword and tag text inside the selection (D-029) | selected | text | `color.code.syntax.keyword` #f7463c | `color.code.selection-bg` #420f0c | 4.52 | 4.5 | pass |
+| property, heading and invalid text inside the selection (D-029) | selected | text | `color.code.syntax.property` #e95551 | `color.code.selection-bg` #420f0c | 4.51 | 4.5 | pass |
 | fold marker text | — | text | `color.text.muted` #bd787d | `color.code.bg` #0c0909 | 5.81 | 4.5 | pass |
 | indent guide (decorative) | — | ui | `color.code.indent-guide` #531310 | `color.code.bg` #0c0909 | 1.39 | 1 | pass |
 | rendered whitespace (decorative) | — | ui | `color.code.whitespace` #7d1310 | `color.code.bg` #0c0909 | 1.86 | 1 | pass |
@@ -810,9 +812,9 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | terminal current text | current | text | `color.terminal.fg` #e99499 | `color.code.current-line` #1c0a09 | 8.35 | 4.5 | pass |
 | hollow cursor outline at rest | — | ui | `color.terminal.cursor` #e99499 | `color.terminal.bg` #0c0909 | 8.65 | 3 | pass |
 | cursor on the cursor line | current | ui | `color.terminal.cursor` #e99499 | `color.code.current-line` #1c0a09 | 8.35 | 3 | pass |
-| prompt segment text on slot 4 | — | text | `color.terminal.selection-text` #f4eeee | `color.terminal.ansi.4` #8c1212 | 8.28 | 4.5 | pass |
+| prompt segment text on slot 4 | — | text | `color.terminal.bg` #0c0909 | `color.terminal.ansi.4` #e53131 | 4.55 | 4.5 | pass |
 | branch segment text on slot 3 | — | text | `color.terminal.bg` #0c0909 | `color.terminal.ansi.3` #d4868b | 7.16 | 4.5 | pass |
-| prompt arrow (the segment's own colour, decorative) | — | ui | `color.terminal.ansi.4` #8c1212 | `color.terminal.bg` #0c0909 | 2.09 | 1 | pass |
+| prompt arrow (the segment's own colour, decorative) | — | ui | `color.terminal.ansi.4` #e53131 | `color.terminal.bg` #0c0909 | 4.55 | 1 | pass |
 | dim text and grid labels | — | text | `color.text.muted` #bd787d | `color.terminal.bg` #0c0909 | 5.81 | 4.5 | pass |
 | inverse text | — | text | `color.terminal.bg` #0c0909 | `color.terminal.fg` #e99499 | 8.65 | 4.5 | pass |
 | slot 2 | — | text | `color.terminal.ansi.2` #bd787d | `color.terminal.bg` #0c0909 | 5.81 | 4.5 | pass |
@@ -820,16 +822,16 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | slot 5 | — | text | `color.terminal.ansi.5` #f73f35 | `color.terminal.bg` #0c0909 | 5.40 | 4.5 | pass |
 | slot 7 | — | text | `color.terminal.ansi.7` #ffa2a7 | `color.terminal.bg` #0c0909 | 10.37 | 4.5 | pass |
 | slot 11 | — | text | `color.terminal.ansi.11` #b37175 | `color.terminal.bg` #0c0909 | 5.23 | 4.5 | pass |
-| slot 1 (3.42:1) | — | text | `color.terminal.ansi.1` #c81a1a | `color.terminal.bg` #0c0909 | 3.42 | 4.5 | waived: heritage slot; documented as failing, programs choose slot semantics |
-| slot 4 (2.09:1) | — | text | `color.terminal.ansi.4` #8c1212 | `color.terminal.bg` #0c0909 | 2.09 | 4.5 | waived: heritage slot; documented as failing, programs choose slot semantics |
-| slot 6 (3.26:1) | — | text | `color.terminal.ansi.6` #9e474a | `color.terminal.bg` #0c0909 | 3.26 | 4.5 | waived: heritage slot; documented as failing, programs choose slot semantics |
-| slot 8 (1.86:1) | — | text | `color.terminal.ansi.8` #7d1310 | `color.terminal.bg` #0c0909 | 1.86 | 4.5 | waived: heritage slot; documented as failing, programs choose slot semantics |
-| slot 9 (2.70:1) | — | text | `color.terminal.ansi.9` #ab1612 | `color.terminal.bg` #0c0909 | 2.70 | 4.5 | waived: heritage slot; documented as failing, programs choose slot semantics |
-| slot 10 (2.92:1) | — | text | `color.terminal.ansi.10` #ad2721 | `color.terminal.bg` #0c0909 | 2.92 | 4.5 | waived: heritage slot; documented as failing, programs choose slot semantics |
-| slot 12 (2.12:1) | — | text | `color.terminal.ansi.12` #871f19 | `color.terminal.bg` #0c0909 | 2.12 | 4.5 | waived: heritage slot; documented as failing, programs choose slot semantics |
-| slot 13 (4.43:1) | — | text | `color.terminal.ansi.13` #e82132 | `color.terminal.bg` #0c0909 | 4.43 | 4.5 | waived: heritage slot; documented as failing, programs choose slot semantics |
-| slot 14 (4.28:1) | — | text | `color.terminal.ansi.14` #e0292f | `color.terminal.bg` #0c0909 | 4.28 | 4.5 | waived: heritage slot; documented as failing, programs choose slot semantics |
-| slot 15 (4.45:1; not in the foundations list) | — | text | `color.terminal.ansi.15` #a3676b | `color.terminal.bg` #0c0909 | 4.45 | 4.5 | waived: heritage slot; documented as failing, programs choose slot semantics |
+| slot 1 | — | text | `color.terminal.ansi.1` #e84b4b | `color.terminal.bg` #0c0909 | 5.23 | 4.5 | pass |
+| slot 4 | — | text | `color.terminal.ansi.4` #e53131 | `color.terminal.bg` #0c0909 | 4.55 | 4.5 | pass |
+| slot 6 | — | text | `color.terminal.ansi.6` #bb696c | `color.terminal.bg` #0c0909 | 5.05 | 4.5 | pass |
+| slot 8 (3.02:1, the dim tier) | — | text | `color.terminal.ansi.8` #b71c17 | `color.terminal.bg` #0c0909 | 3.01 | 4.5 | waived: D-029 keeps bright black as the dim, decorative slot |
+| slot 9 | — | text | `color.terminal.ansi.9` #ea3833 | `color.terminal.bg` #0c0909 | 4.83 | 4.5 | pass |
+| slot 10 | — | text | `color.terminal.ansi.10` #dc4f49 | `color.terminal.bg` #0c0909 | 4.97 | 4.5 | pass |
+| slot 12 | — | text | `color.terminal.ansi.12` #db433a | `color.terminal.bg` #0c0909 | 4.61 | 4.5 | pass |
+| slot 13 | — | text | `color.terminal.ansi.13` #ed5360 | `color.terminal.bg` #0c0909 | 5.67 | 4.5 | pass |
+| slot 14 | — | text | `color.terminal.ansi.14` #e6565a | `color.terminal.bg` #0c0909 | 5.52 | 4.5 | pass |
+| slot 15 | — | text | `color.terminal.ansi.15` #b17e81 | `color.terminal.bg` #0c0909 | 5.83 | 4.5 | pass |
 | slot 0 (1.00:1; it is the background) | — | text | `color.terminal.ansi.0` #0c0909 | `color.terminal.bg` #0c0909 | 1.00 | 4.5 | waived: heritage slot; slot 0 is the terminal background and is never a foreground on it |
 | text-field default text | default | text | `color.text.default` #e99499 | `color.surface.input` #000000 | 9.16 | 4.5 | pass |
 | text-field default border | default | ui | `color.border.control` #a3676b | `color.surface.input` #000000 | 4.71 | 3 | pass |

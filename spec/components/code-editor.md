@@ -90,6 +90,8 @@ contrast:
   - { fg: color.code.syntax.attribute, bg: color.code.bg, label: "attribute and escape" }
   - { fg: color.code.syntax.deprecated, bg: color.code.bg, label: "deprecated text" }
   - { fg: color.code.syntax.string, bg: color.code.selection-bg, state: selected, label: "muted string text inside the selection" }
+  - { fg: color.code.syntax.keyword, bg: color.code.selection-bg, state: selected, label: "keyword and tag text inside the selection (D-029)" }
+  - { fg: color.code.syntax.property, bg: color.code.selection-bg, state: selected, label: "property, heading and invalid text inside the selection (D-029)" }
   - { fg: color.text.muted, bg: color.code.bg, label: "fold marker text" }
   - { fg: color.code.indent-guide, bg: color.code.bg, min: 1, kind: ui, label: "indent guide (decorative)", waiver: "indent guides duplicate the whitespace that is already in the text; they carry no information of their own" }
   - { fg: color.code.whitespace, bg: color.code.bg, min: 1, kind: ui, label: "rendered whitespace (decorative)", waiver: "rendered whitespace duplicates characters that are already in the text; foundations names it decorative" }
@@ -189,10 +191,11 @@ Syntax colour is decoration: no meaning is carried by colour alone. Invalid
 text has the wavy underline, deprecated text the line-through, comments the
 italic. Selection is a fill and focus is a ring, drawn together and never
 substituted for one another. Every syntax role reaches 4.5:1 on
-{color.code.bg} (the lowest is {color.code.syntax.property} at 4.69:1) and
-{color.text.default} reaches 7.02:1 inside the selection fill. Comment,
-type, keyword and property text drop below 4.5:1 inside
-{color.code.selection-bg} (3.81–4.38:1); this is a recorded limitation of the
+{color.code.bg} (the lowest is {color.code.syntax.comment} at 5.10:1) and
+{color.text.default} reaches 7.02:1 inside the selection fill. D-029 lifted
+the keyword, tag, property and heading reds so they stay at 4.5:1 or more
+inside {color.code.selection-bg} (4.51–4.52:1); comment and type text still
+drop below it there (4.13 and 4.24:1). That is a recorded limitation of the
 selection value and is not to be fixed by recolouring the tokens locally. Line
 numbers are metadata people read and use {color.text.subtle}, not a graphic
 colour; indent guides, rendered whitespace and the gutter rule are decorative.

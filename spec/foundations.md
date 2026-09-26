@@ -137,22 +137,24 @@ Editor surfaces use `code.bg` (`#0c0909`), `code.current-line` (`#1c0a09`),
 matches `#630f0d` with the current match inverted (`#ffa2a7` on `#0c0909`),
 bracket match as a 1px `#e53935` border, indent guides `#531310`, rendered
 whitespace `#7d1310` (decorative). Syntax in `default` is monochrome:
-keywords `#f73f35`, strings `#bd787d`, comments `#ad7175` italic, numbers and
+keywords `#f7463c`, strings `#bd787d`, comments `#ad7175` italic, numbers and
 constants `#d4868b`, functions `#ffa2a7`, variables and operators `#e99499`,
-types `#b37175`, properties and headings `#e53935`, tags `#f73f35`,
-attributes and escapes `#d4868b`; invalid text takes a wavy underline,
+types `#b37175`, properties and headings `#e95551`, tags `#f7463c`,
+attributes and escapes `#d4868b` (the two syntax reds lifted by D-029); invalid text takes a wavy underline,
 deprecated text a line-through. Languages inherit these roles; a
 language-specific override needs a documented reason.
 
-Terminal roles carry the sixteen slots **exactly** in every profile. Slots
-1, 4, 6, 8, 9, 10, 12, 13, 14 and 15 do not reach 4.5:1 on the terminal
-background (slot 15, `#a3676b`, measures 4.45:1; slot 0 is the background
-itself); the theme documents this rather than normalising it, because
-programs, not the theme, choose which slot means what. Inside an editor
-selection (`code.selection-bg`, `#420f0c`) muted text stays at 4.71:1 but the
-keyword, type, property and comment roles fall below 4.5:1; a selection is a
-transient state and the limitation is recorded, not hidden. The `extended` overlay
-proposes a semantic sixteen-slot palette that all reaches 4.5:1.
+The `heritage-ansi` profile carries the sixteen `Xresources` slots exactly.
+The `default` profile carries the readable heritage sixteen (D-029): every slot
+that fell below the text floor keeps its hue and saturation with its lightness
+raised, so slots 1–7 and 9–15 all reach 4.5:1 on the terminal background, and
+slot 8 (bright black) stays the dim tier at 3.02:1. Programs, not the theme,
+choose which slot means what; the readable sixteen make that choice safe for
+text. Inside an editor selection (`code.selection-bg`, `#420f0c`) muted text
+stays at 4.71:1 and the keyword, tag, property and heading reds at 4.5:1 or
+more; the type and comment roles fall below it, and a selection is a transient
+state, so the limitation is recorded, not hidden. The `extended` overlay
+proposes a semantic sixteen that all reaches 4.5:1.
 
 Links use strong red `text.link` (`#f73f35`) and a persistent underline, distinct
 from the rose body and heading ladder (D-024). Hover uses near-white

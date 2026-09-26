@@ -3,8 +3,8 @@ import { t as feedback } from "../chunks/overlays-C6nlCHqg.js";
 //#region .cache/ui-build/entries/components/toast.js
 var J3w1Toast = class extends J3w1Element {
 	static componentId = "toast";
-	static version = "1.2.0";
-	static implementationId = "sha256-ARmKrnhrzKVReeIDsMqTsM4z1LRoWZA0BexcoBcx7cg=";
+	static version = "1.3.0";
+	static implementationId = "sha256-qDGRr93FdM3JKWJt0T/+WQggsihVxL5KPqiqGRlgPyw=";
 	static connect = feedback;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

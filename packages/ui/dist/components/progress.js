@@ -3,8 +3,8 @@ import { n as content } from "../chunks/native-CAzZmDKR.js";
 //#region .cache/ui-build/entries/components/progress.js
 var J3w1Progress = class extends J3w1Element {
 	static componentId = "progress";
-	static version = "1.2.0";
-	static implementationId = "sha256-3AiJE2TO+opz1xE5ahx4w5MYMSLTu5ucCKNXno8kGNE=";
+	static version = "1.3.0";
+	static implementationId = "sha256-co5cX9PfICCUTERqklXnYpdzyYIabuEbbZrWEM2BgJ0=";
 	static connect = content;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

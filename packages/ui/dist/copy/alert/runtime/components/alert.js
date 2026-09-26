@@ -3,8 +3,8 @@ import { t as feedback } from "../chunks/overlays-C6nlCHqg.js";
 //#region .cache/ui-build/entries/components/alert.js
 var J3w1Alert = class extends J3w1Element {
 	static componentId = "alert";
-	static version = "1.2.0";
-	static implementationId = "sha256-BX/XVa7Zwvj+RkUzQcxX0A1Ku1yuWgwFMiAtlEnGYi4=";
+	static version = "1.3.0";
+	static implementationId = "sha256-HvvRKBjWMpOem43OUMiikDl0l50u+2hL5cEXAUsDdko=";
 	static connect = feedback;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

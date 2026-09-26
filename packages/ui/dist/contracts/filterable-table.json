@@ -1,10 +1,10 @@
 {
   "id": "filterable-table",
   "name": "Filterable table",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "tag": "j3w1-filterable-table",
-  "contract": "https://github.com/j3w1/theme/blob/v1.2.0/spec/components/filterable-table.md",
-  "source": "https://github.com/j3w1/theme/blob/v1.2.0/packages/ui/src/behaviors/tables.js",
+  "contract": "https://github.com/j3w1/theme/blob/v1.3.0/spec/components/filterable-table.md",
+  "source": "https://github.com/j3w1/theme/blob/v1.3.0/packages/ui/src/behaviors/tables.js",
   "imports": {
     "class": "@j3w1/ui/components/filterable-table",
     "register": "@j3w1/ui/register/filterable-table",
@@ -755,6 +755,6 @@
   "copy": {
     "directory": "copy/filterable-table/",
     "manifest": "copy/filterable-table/manifest.json",
-    "digest": "sha256-8yGkZ8KX3/MM7+wtNksfeXeRIQpo5XAMXISxgD8ercY="
+    "digest": "sha256-H5hp3XGaoH+G7tZBlJRnOADA95mrYDuoECD0oN47/Qc="
   }
 }

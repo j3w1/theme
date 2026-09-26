@@ -6,7 +6,7 @@ maturity: stable
 priority: R1
 since: 0.1.0
 order: 40
-summary: Terminal text on the terminal surface with the sixteen heritage ANSI slots carried exactly, the cursor, the selection and the six text attributes; a transcript, the slot grid and the attributes.
+summary: Terminal text on the terminal surface with the readable heritage sixteen ANSI slots (D-029), the cursor, the selection and the six text attributes; a transcript, the slot grid and the attributes.
 native: true
 aria:
   pattern: "native <pre role=log> for a transcript; a plain <pre> with aria-label for the slot grid and the attribute sheet"
@@ -39,7 +39,7 @@ tokens:
   selection.text: color.terminal.selection-text
   current.bg: color.code.current-line
   prompt.bg: color.terminal.ansi.4
-  prompt.text: color.terminal.selection-text
+  prompt.text: color.terminal.bg
   prompt.branch-bg: color.terminal.ansi.3
   prompt.branch-text: color.terminal.bg
   dim.text: color.text.muted
@@ -72,7 +72,7 @@ stateTokens:
 contrast:
   - { fg: color.terminal.cursor, bg: color.terminal.bg, min: 3, kind: ui, label: "hollow cursor outline at rest" }
   - { fg: color.terminal.cursor, bg: color.code.current-line, min: 3, kind: ui, state: current, label: "cursor on the cursor line" }
-  - { fg: color.terminal.selection-text, bg: color.terminal.ansi.4, label: "prompt segment text on slot 4" }
+  - { fg: color.terminal.bg, bg: color.terminal.ansi.4, label: "prompt segment text on slot 4" }
   - { fg: color.terminal.bg, bg: color.terminal.ansi.3, label: "branch segment text on slot 3" }
   - { fg: color.terminal.ansi.4, bg: color.terminal.bg, min: 1, kind: ui, label: "prompt arrow (the segment's own colour, decorative)", waiver: "the arrow is the segment edge; the segment text carries the content" }
   - { fg: color.text.muted, bg: color.terminal.bg, label: "dim text and grid labels" }
@@ -82,16 +82,16 @@ contrast:
   - { fg: color.terminal.ansi.5, bg: color.terminal.bg, label: "slot 5" }
   - { fg: color.terminal.ansi.7, bg: color.terminal.bg, label: "slot 7" }
   - { fg: color.terminal.ansi.11, bg: color.terminal.bg, label: "slot 11" }
-  - { fg: color.terminal.ansi.1, bg: color.terminal.bg, label: "slot 1 (3.42:1)", waiver: "heritage slot; documented as failing, programs choose slot semantics" }
-  - { fg: color.terminal.ansi.4, bg: color.terminal.bg, label: "slot 4 (2.09:1)", waiver: "heritage slot; documented as failing, programs choose slot semantics" }
-  - { fg: color.terminal.ansi.6, bg: color.terminal.bg, label: "slot 6 (3.26:1)", waiver: "heritage slot; documented as failing, programs choose slot semantics" }
-  - { fg: color.terminal.ansi.8, bg: color.terminal.bg, label: "slot 8 (1.86:1)", waiver: "heritage slot; documented as failing, programs choose slot semantics" }
-  - { fg: color.terminal.ansi.9, bg: color.terminal.bg, label: "slot 9 (2.70:1)", waiver: "heritage slot; documented as failing, programs choose slot semantics" }
-  - { fg: color.terminal.ansi.10, bg: color.terminal.bg, label: "slot 10 (2.92:1)", waiver: "heritage slot; documented as failing, programs choose slot semantics" }
-  - { fg: color.terminal.ansi.12, bg: color.terminal.bg, label: "slot 12 (2.12:1)", waiver: "heritage slot; documented as failing, programs choose slot semantics" }
-  - { fg: color.terminal.ansi.13, bg: color.terminal.bg, label: "slot 13 (4.43:1)", waiver: "heritage slot; documented as failing, programs choose slot semantics" }
-  - { fg: color.terminal.ansi.14, bg: color.terminal.bg, label: "slot 14 (4.28:1)", waiver: "heritage slot; documented as failing, programs choose slot semantics" }
-  - { fg: color.terminal.ansi.15, bg: color.terminal.bg, label: "slot 15 (4.45:1; not in the foundations list)", waiver: "heritage slot; documented as failing, programs choose slot semantics" }
+  - { fg: color.terminal.ansi.1, bg: color.terminal.bg, label: "slot 1" }
+  - { fg: color.terminal.ansi.4, bg: color.terminal.bg, label: "slot 4" }
+  - { fg: color.terminal.ansi.6, bg: color.terminal.bg, label: "slot 6" }
+  - { fg: color.terminal.ansi.8, bg: color.terminal.bg, label: "slot 8 (3.02:1, the dim tier)", waiver: "D-029 keeps bright black as the dim, decorative slot" }
+  - { fg: color.terminal.ansi.9, bg: color.terminal.bg, label: "slot 9" }
+  - { fg: color.terminal.ansi.10, bg: color.terminal.bg, label: "slot 10" }
+  - { fg: color.terminal.ansi.12, bg: color.terminal.bg, label: "slot 12" }
+  - { fg: color.terminal.ansi.13, bg: color.terminal.bg, label: "slot 13" }
+  - { fg: color.terminal.ansi.14, bg: color.terminal.bg, label: "slot 14" }
+  - { fg: color.terminal.ansi.15, bg: color.terminal.bg, label: "slot 15" }
   - { fg: color.terminal.ansi.0, bg: color.terminal.bg, label: "slot 0 (1.00:1; it is the background)", waiver: "heritage slot; slot 0 is the terminal background and is never a foreground on it" }
 anatomy:
   - part: root
@@ -99,7 +99,7 @@ anatomy:
   - part: line
     description: One row of cells; the cursor line takes code.current-line when current.
   - part: prompt
-    description: Agnoster-style segments; the path on slot 4 with selection-text, the branch on slot 3 with terminal.bg text, each followed by an arrow in the segment's own colour.
+    description: Agnoster-style segments; the path on slot 4 and the branch on slot 3, both with terminal.bg text, each followed by an arrow in the segment's own colour.
   - part: slot
     description: A span coloured by one of the sixteen slots as foreground (.terminal-fg-N) or background (.terminal-bg-N).
   - part: cursor
@@ -137,10 +137,12 @@ compact: false
 
 The reference for terminal text: the surface, the default foreground, the
 cursor, the selection, the six attributes and the sixteen slots the
-workstation froze in `Xresources`. The slots are the origin of the theme and
-are carried exactly; what a program does with a slot is that program's
-choice, and the theme documents where a choice fails rather than quietly
-fixing it.
+workstation froze in `Xresources`. The slots are the origin of the theme:
+the `heritage-ansi` profile carries them exactly, and the `default` profile
+carries the readable heritage sixteen (D-029), the same hues with the dim
+slots lifted so text in any slot reads. What a program does with a slot is
+that program's choice; the theme makes every slot but the dim tier safe for
+text rather than steering programs to particular slots.
 
 ## Anatomy
 
@@ -153,9 +155,10 @@ Root `.terminal` (the `<pre>`) with a variant class `.terminal-transcript`,
 each a single role variable {color.terminal.ansi.0} … {color.terminal.ansi.15},
 so the profile switch on the specimen recolours the grid without touching
 the markup. The foreground is {color.terminal.fg} on {color.terminal.bg};
-the prompt path segment is {color.terminal.selection-text} on
-{color.terminal.ansi.4} and the branch segment {color.terminal.bg} on
-{color.terminal.ansi.3}, the two agnoster backgrounds the workstation used.
+the prompt path segment is {color.terminal.bg} on {color.terminal.ansi.4}
+and the branch segment {color.terminal.bg} on {color.terminal.ansi.3}, the two
+agnoster backgrounds the workstation used; D-029's brighter slot 4 carries
+dark text where the heritage slot carried light text.
 
 ## States
 
@@ -181,17 +184,18 @@ puts it.
 ## Accessibility
 
 The transcript is `role=log` so new output is announced politely; the grid
-and the attribute sheet are plain `<pre>` elements with a label. The sixteen
-slots are exact in every profile: slots 2, 3, 5, 7 and 11 reach 4.5:1 on the
-terminal background; slots 1, 4, 6, 8, 9, 10, 12, 13 and 14 do not
-(1.86:1–4.43:1), and the grid marks each of them with a `✕` after its number
-so the failure is visible, not implied. Two more are marked on the same
-evidence: slot 15 measures 4.45:1 and slot 0 is the background itself. The
-`extended` overlay reassigns the slots to a semantic sixteen that all reach
-4.5:1; the site's profile control shows the grid under it. The background
-row is legible only with a foreground the program chooses: with the default
-foreground only slots 0 and 8 pass, which is why the row is shown and not
-declared as a contract. Two escape families bypass the slots entirely and
+and the attribute sheet are plain `<pre>` elements with a label. In the
+`default` profile slots 1–7 and 9–15 reach 4.5:1 on the terminal background
+(4.55:1–10.37:1, D-029). Slot 8 is the dim tier at 3.02:1 and slot 0 is the
+background itself; the grid marks both with a `✕` after the number so the
+exception is visible, not implied. The `heritage-ansi` profile keeps the
+historical values, where ten slots fail (1.86:1–4.45:1), and marks them the
+same way; the `extended` overlay proposes a semantic sixteen that all reach
+4.5:1. The site's profile control shows the grid under each. The background
+row is legible only with a foreground the program chooses: the default
+foreground passes only on slot 0, while the terminal background passes on
+every slot except 0 and 8, which is why the row is shown and not declared as
+a contract. Two escape families bypass the slots entirely and
 are outside the theme: bold-as-bright, which substitutes slots 8–15 for 0–7
 and must be off for the slots to hold, and 256-colour or 24-bit sequences,
 which carry their own values. Attributes are attributes: dim uses
@@ -203,9 +207,9 @@ styles a screen reader can expose.
 
 Every emulator with a sixteen-slot palette can hold these values byte for
 byte; the port's evidence records whether bold-as-bright is off and whether
-the cursor and selection keys exist. Programs that pick slot 4 or 12 for
-directories inherit the documented failure; a port may recommend `LS_COLORS`
-or a prompt configuration but never changes the slots to compensate. The
+the cursor and selection keys exist. A port carries the profile's slots as
+they are; it may recommend `LS_COLORS` or a prompt configuration (a prompt on
+slot 4 wants dark text) but never changes the slots to compensate. The
 cursor shape (block, bar, underline) is the user's setting; the theme only
 supplies its colour.
 
