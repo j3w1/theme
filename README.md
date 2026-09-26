@@ -2,13 +2,14 @@
 
 **True-black canvas. Near-black surfaces. Rose text. Red focus. Square components.**
 
-This repository is the canonical, versioned specification of the j3w1 visual
-identity, so that people and AI agents can implement it consistently in
-websites, application interfaces, editors, terminals and native theme
-formats. It publishes a design-system portal at **https://j3w1.github.io/theme/**,
-the complete static specification at **https://j3w1.github.io/theme/reference/**,
-an independently authored [Vue demo](https://j3w1.github.io/theme/demo/), and
-machine-readable exports for agents.
+This repository is the versioned specification of the j3w1 look. People and AI
+agents use it to build the same theme in websites, apps, editors, terminals and
+native theme formats. It publishes:
+
+- a design-system portal: **https://j3w1.github.io/theme/**;
+- the complete static specification: **https://j3w1.github.io/theme/reference/**;
+- an independently written [Vue demo](https://j3w1.github.io/theme/demo/);
+- machine-readable exports for agents.
 
 <!-- version:start -->
 Specification version **2.0.0** (release; default: approved, heritage-ansi: heritage, extended: proposed).
@@ -21,10 +22,10 @@ Approval and consumption eligibility are separate; see the policy above and
 
 ## Application theme downloads
 
-Theme files for applications, ready to import. Each file link is pinned to
-this version's release tag. The site serves the same file from its **download**
-link. Scope, limits and rollback are in each port's README under `ports/`.
-Declared status and import evidence are described under
+Theme files for apps, ready to import. Each file link is pinned to this
+version's release tag, and the site serves the same file from its **download**
+link. Each port's README under `ports/` gives scope, limits and rollback.
+Declared status and import evidence are explained under
 [Application ports](#application-ports).
 
 <!-- downloads:start -->
@@ -38,57 +39,57 @@ Declared status and import evidence are described under
 | Warp theme YAML (also Orca's Import from YAML) | [j3w1.yaml](https://raw.githubusercontent.com/j3w1/theme/v2.0.0/ports/warp/dist/j3w1.yaml) | [download](https://j3w1.github.io/theme/ports/warp/j3w1.yaml) | Orca → Settings → Terminal Themes → Import from YAML (or save into %APPDATA%\warp\Warp\data\themes\ and use Import from Warp), then select "j3w1 theme" as the Dark Theme. Warp: save into its themes folder. | experimental; import evidence not verified |
 <!-- downloads:end -->
 
-Changing how the theme looks has a local loop:
-[design mode](docs/design-mode.md) (`npm run design`) shows the real site as
-built at an anchored commit next to the live dev server, so a change is judged
-against what it replaces. It is a working tool, not a gate.
+To change how the theme looks, use [design mode](docs/design-mode.md)
+(`npm run design`). It shows the real site, built at an anchored commit, next
+to the live dev server, so you judge a change against what it replaces. It is
+a working tool, not a gate.
 
-The owner selected **True Black / Rose** after the
-[local visual-foundation review](docs/phase6-visual-review.md). D-023 records
-the seven canonical surface changes. D-024 records the subsequent owner-requested
-strong-red links. See [the migration notes](docs/true-black-rose-migration.md)
-and [the delivery record](docs/phase6-delivery.md) for verification status.
+History in brief:
 
-D-025 records the owner's subsequent requirement for themed controls throughout
-the portal and Vue demo. Version 1.1.0 renders single and multiple choices using
-j3w1 surfaces and selection colors, preserves their native form data and fallback,
-and provides a supported enhancement for existing application markup. The shared
-command palette now places a full-width search field beneath its label.
+- The owner chose **True Black / Rose** after the
+  [local visual-foundation review](docs/phase6-visual-review.md). D-023 records
+  the seven canonical surface changes; D-024 records the strong-red links the
+  owner asked for next. See [the migration notes](docs/true-black-rose-migration.md)
+  and [the delivery record](docs/phase6-delivery.md) for verification status.
+- D-025 records the owner's request for themed controls across the portal and
+  the Vue demo. Since version 1.1.0, single and multiple choices use j3w1
+  surfaces and selection colors, keep their native form data and fallback, and
+  come with a supported enhancement for existing app markup. The shared command
+  palette puts a full-width search field under its label.
 
-The [validation and recovery composition](https://j3w1.github.io/theme/patterns/validation-recovery/)
-and [draft form builder](https://j3w1.github.io/theme/builder/) demonstrate local
-form behavior using canonical fields. Definitions are bounded, content-pinned
-JSON; entered values never enter downloads or persistence. The optional
-[Figma Variables bridge](https://j3w1.github.io/theme/figma/) provides a reviewed
-one-way import route with dry-run, explicit apply and rollback receipts. Generate
-its sample with `node scripts/figma-bridge.mjs --ref FULL_COMMIT_OR_RELEASE_TAG`.
-See [form patterns](spec/form-patterns.md), [builder contract](spec/components/form-builder.md)
-and [bridge instructions](spec/figma-bridge.md) for limits and evidence.
+Forms and design tools:
+
+- The [validation and recovery composition](https://j3w1.github.io/theme/patterns/validation-recovery/)
+  and the [draft form builder](https://j3w1.github.io/theme/builder/) show local
+  form behavior with canonical fields. Definitions are bounded, content-pinned
+  JSON. Entered values never go into downloads or storage.
+- The optional [Figma Variables bridge](https://j3w1.github.io/theme/figma/)
+  is a reviewed one-way import with dry-run, explicit apply and rollback
+  receipts. Generate its sample with
+  `node scripts/figma-bridge.mjs --ref FULL_COMMIT_OR_RELEASE_TAG`.
+- Limits and evidence: [form patterns](spec/form-patterns.md),
+  [builder contract](spec/components/form-builder.md) and
+  [bridge instructions](spec/figma-bridge.md).
 
 ## What this is, and what it is not
 
 `j3w1/theme` **defines** the theme: exact tokens, semantic roles, interaction
-states, accessibility constraints, component specifications and portability
-rules. The official `@j3w1/ui` package implements all 67 inventory entries with
-native HTML, typed Custom Elements, per-component imports and complete copy
-distributions. [Consumption instructions](docs/ui-consumption.md) cover package,
-copy and native mapping routes. `j3w1/j3w1.github.io` remains a separate downstream
-application. No purchased template source or assets are included.
+states, accessibility limits, component specifications and portability rules.
+The official `@j3w1/ui` package implements all 67 inventory entries with native
+HTML, typed Custom Elements, per-component imports and complete copy
+distributions. The [consumption instructions](docs/ui-consumption.md) cover the
+package, copy and native mapping routes. `j3w1/j3w1.github.io` stays a separate
+downstream app. No purchased template source or assets are included.
 
 ## Where it came from
 
-The palette began on a Manjaro i3 workstation preserved in
-[`j3w1/1w3j`](https://github.com/j3w1/1w3j): a pywal ramp pulled from a red
-wallpaper, frozen and hand-tuned slot by slot in `config/Xresources` while
-watching what `ls`, vim and the shell prompt rendered. The i3 configuration
-supplied the idiom: 1px pixel borders, 14/−2 gaps, tabbed layouts, a hidden
-top bar with Chinese status labels, dunst toasts, dmenu selections. The
-contemporary reference is
-[`j3w1/j3w1.github.io`](https://github.com/j3w1/j3w1.github.io), whose
-stylesheet named the roles adopted here. Both are pinned by revision in
-`references/sources.json`; historical ports (a gedit scheme, an IntelliJ
-scheme, tmux, browser extensions) are catalogued in
-`references/catalogue.json` as evidence, not downloads.
+The palette began on a Manjaro i3 workstation, preserved in
+[`j3w1/1w3j`](https://github.com/j3w1/1w3j), and was named as web roles by
+[`j3w1/j3w1.github.io`](https://github.com/j3w1/j3w1.github.io). The full
+story is in `spec/identity.md`. Both sources are pinned by revision in
+`references/sources.json`. Historical ports (a gedit scheme, an IntelliJ
+scheme, tmux, browser extensions) are listed in `references/catalogue.json`
+as evidence, not downloads.
 
 ## The identity in seven values
 
@@ -129,198 +130,226 @@ reference syntax highlighting stays monochrome in the default profile.
 
 ## Using the theme
 
-**People:** explore the portal foundations, components, patterns and tools. The
-full static reference retains every state matrix, stress fixture, non-example,
-contrast report and coverage ledger. Old homepage hashes migrate to its sections.
+**People:** browse the portal's foundations, components, patterns and tools.
+The full static reference keeps every state matrix, stress fixture,
+non-example, contrast report and coverage ledger. Old homepage hashes redirect
+to its sections.
 
-**Agents:** consume deterministic artifacts. Pin a tag or commit and follow
-[`agents/consume.md`](agents/consume.md): read `theme.json`, then
-`exports/theme.compact.md`, then the `exports/components/<id>.json` you need,
-record `theme.lock.json`, and report deviations. `exports/llms.txt` is a
-discovery index for tools that look for one. For official implementations, read
-`packages/ui/dist/index.json`, then selected `contracts/<id>.json` and
-`examples/<id>.json`. The installed `j3w1-ui kit` command prepares bounded
-framework/package/copy/mapping kits. npm publication remains an owner action;
-the portal also supplies an installable tarball and integrity metadata.
+**Agents:** use the deterministic artifacts. Pin a tag or commit, then follow
+[`agents/consume.md`](agents/consume.md):
+
+1. Read `theme.json`.
+2. Read `exports/theme.compact.md`.
+3. Read the `exports/components/<id>.json` files you need.
+4. Record `theme.lock.json` and report deviations.
+
+`exports/llms.txt` is a discovery index for tools that look for one. For the
+official implementations, read `packages/ui/dist/index.json`, then the
+`contracts/<id>.json` and `examples/<id>.json` you need. The installed
+`j3w1-ui kit` command prepares bounded framework, package, copy or mapping
+kits. npm publication is still an owner action; until then the portal offers
+an installable tarball with integrity metadata.
 
 **Contributors:** read [`AGENTS.md`](AGENTS.md). `CLAUDE.md` imports it.
 
-Matrix rendering uses `scripts/lib/specimen-markup.mjs` for native state
-attributes and hidden-cell focus handling. Its parsed ID-reference rewriting
-is shared with recipe instances through `scripts/lib/markup.mjs`; recipes
-reject unresolved local references, while matrices retain their documented
-fixture links. Keep these transformations shared when adding specimen tools.
-The [component workbench](https://j3w1.github.io/theme/workbench/) provides
-live controls for button, text field, checkbox, tabs and dialog, plus table
-and sidebar navigation previews. Choose a maintained variant and initial
-state, then inspect real iframe widths, density, language and RTL behavior.
-Comparison frames can use different environments. The anatomy inspector
-separates declared roles, resolved values and browser measurements; it reports
-mismatches without correcting the specimen. Forced visual states are labeled
-and do not substitute for keyboard interaction or form validation.
+### Tools on the portal
 
-Contrast comparisons use the existing unrounded contrast engine. Choose the
-declared pair or an explicit text/UI context and opaque underlay; eligibility
-and waivers remain separate from the numeric result. Motion controls replay
-only maintained transitions, with static endpoints and reduced motion taking
-precedence. These diagnostic tools do not certify accessibility.
+- **Shared specimen markup.** State matrices use
+  `scripts/lib/specimen-markup.mjs` for native state attributes and hidden-cell
+  focus handling. Its parsed ID-reference rewriting is shared with recipe
+  instances through `scripts/lib/markup.mjs`. Recipes reject unresolved local
+  references; matrices keep their documented fixture links. Keep these
+  transformations shared when you add specimen tools.
+- **[Component workbench](https://j3w1.github.io/theme/workbench/).** Live
+  controls for button, text field, checkbox, tabs and dialog, plus table and
+  sidebar navigation previews. Pick a maintained variant and starting state,
+  then check real iframe widths, density, language and RTL. Comparison frames
+  can use different environments. The anatomy inspector keeps declared roles,
+  resolved values and browser measurements apart; it reports mismatches
+  without correcting the specimen. Forced visual states are labelled and do
+  not replace keyboard interaction or form validation.
+- **Contrast comparisons** use the existing unrounded contrast engine. Pick
+  the declared pair, or an explicit text/UI context and an opaque underlay.
+  Eligibility and waivers stay separate from the number.
+- **Motion controls** replay only maintained transitions. Static endpoints and
+  reduced motion come first. These diagnostic tools do not certify
+  accessibility.
+- **Share links.** Copy a configuration or preview link to reproduce its
+  starting state. Links name the actual build and source digest; a revision
+  that is not available is reported with a pinned source link. Entered
+  specimen text is left out unless you include it in the shown share payload.
+  Nothing is saved to browser storage.
+- **Issue drafts.** Component and token pages link to a reviewed public issue
+  draft. A draft includes the actual build, profile and public anchor, and
+  never includes entered specimen text. If a draft is longer than the
+  8,000-character portable URL budget, copy it and paste it into GitHub's
+  composer. Opening the composer never submits an issue.
 
-Copy a configuration or preview link to reproduce its initial state. Links
-identify the actual build and source digest; unavailable revisions are reported
-with a pinned source link. Entered specimen text is excluded unless explicitly
-included in the displayed share payload. Nothing is saved to browser storage.
-Component and token pages also link to a reviewed public issue draft. Drafts
-include the actual build, profile and public anchor, and always omit entered
-specimen text. If a draft exceeds the 8,000-character portable URL budget,
-copy it and paste it into GitHub's composer. Opening the composer never submits
-an issue. Canonical specimens, normative content and direct reporting links
-remain available without JavaScript.
+Canonical specimens, normative content and direct reporting links all work
+without JavaScript.
 
-`schemas/playground.mjs` defines closed configuration choices, and
+`schemas/playground.mjs` defines the closed configuration choices, and
 `site/workbench.json` binds controls to maintained specimen parts. The build
-validates each binding in every variant. Preview routes and state matrices
-share the parsed renderer; add new bindings and coverage rather than creating
-another specimen implementation.
+checks each binding in every variant. Preview routes and state matrices share
+the parsed renderer: add new bindings and coverage instead of writing another
+specimen implementation.
 
 ### Choosing a semantic role
 
-Use the [token usage explorer](https://j3w1.github.io/theme/tokens/) or follow
-a token-name link from the specification. Filter by documented role group,
-component, part, state, variant, profile, status and surface. All selected
-usage facets must match the same declaration; an unknown relationship has no
-match. Exact path, CSS-variable and hex searches remain available, and equal
-values retain their separate roles. Filter URLs can be shared; the explorer
-does not store preferences or submit searches to a service.
+Use the [token usage explorer](https://j3w1.github.io/theme/tokens/), or follow
+a token-name link from the specification.
 
-Each token has a persistent page with all profile values, eligibility,
-pending decisions, alias dependencies, provenance, component/port references
-and contrast declarations. Profile tables and details remain readable without
-JavaScript. Copy controls copy the role path or CSS variable. Source links in
-hosted builds use the build's full commit and parsed source line; local builds
-show checkout-relative locations without claiming a published revision.
+- Filter by role group, component, part, state, variant, profile, status and
+  surface. All selected usage filters must match the same declaration; an
+  unknown relationship matches nothing.
+- Exact path, CSS-variable and hex searches still work, and equal values keep
+  their separate roles.
+- Filter URLs can be shared. The explorer stores no preferences and sends no
+  searches to a service.
 
-Agents can optionally fetch `exports/token-usage.json` at the same pinned
-revision as the other contracts. This schema-version-1 reverse index is
-generated from source mappings, not colour similarity. Variant references are
-included only when a mapped part's prefix equals a declared variant id.
-Missing port consumers remain unknown. The usage index is digest-covered and
-uses `schemas/json/token-usage.schema.json`; regenerate it with the ordinary
-`npm run generate` workflow after editing source mappings.
+Each token has its own page with every profile value, eligibility, pending
+decisions, alias dependencies, provenance, component and port references, and
+contrast declarations. Profile tables and details work without JavaScript.
+Copy controls copy the role path or the CSS variable. In hosted builds, source
+links use the build's full commit and the parsed source line; local builds show
+checkout-relative locations and claim no published revision.
+
+Agents can also fetch `exports/token-usage.json` at the same pinned revision as
+the other contracts. This schema-version-1 reverse index comes from source
+mappings, not from colour similarity.
+
+- Variant references are included only when a mapped part's prefix equals a
+  declared variant id.
+- Missing port consumers stay unknown.
+- The index is digest-covered and uses `schemas/json/token-usage.schema.json`.
+  After you edit source mappings, regenerate it with `npm run generate`.
 
 ### Standalone component recipes
 
 The [recipe source viewer](https://j3w1.github.io/theme/recipes/) packages the
-default button, text-field and dialog directly from maintained demo and CSS
-sources. Each component section links to its source and standalone HTML.
-Download `example.html` to run without Astro, or include `tokens.css`,
-`foundation.css` and `component.css` in order with `markup.html`.
+default button, text-field and dialog straight from the maintained demo and
+CSS sources. Each component section links to its source and standalone HTML.
 
-Styles stay inside `.j3w1-recipe`; choose a unique instance prefix in the
-viewer for each copy. Labels and ARIA references are rewritten together.
-`two-instances.html` demonstrates coexistence. The dialog is an open visual
-reference: modal lifecycle, close actions, focus trapping and focus return
-remain host responsibilities. No behavior module or font binary is bundled.
+1. Download `example.html` to run it without Astro, or include `tokens.css`,
+   `foundation.css` and `component.css`, in that order, with `markup.html`.
+2. Pick a unique instance prefix in the viewer for each copy. Labels and ARIA
+   references are rewritten together. `two-instances.html` shows two copies
+   side by side.
+
+Styles stay inside `.j3w1-recipe`. The dialog is an open visual reference:
+modal lifecycle, close actions, focus trapping and focus return are the host's
+job. No behavior module or font binary is bundled.
 
 `site/recipes.json` declares the inputs; `npm run generate` writes and
-drift-checks `exports/recipes/`. Source and output digests identify the exact
-bytes. Consume these paths at one pinned commit; the hosted viewer exposes
-its supplying revision. Recipe markup retains the specimen's CC BY 4.0
-license and attribution; CSS retains MIT notices. See each recipe's manifest,
-README and LICENSE for dependencies, pending decisions and limitations.
+drift-checks `exports/recipes/`. Source and output digests name the exact
+bytes. Use these paths at one pinned commit; the hosted viewer shows the
+revision it came from. Recipe markup keeps the specimen's CC BY 4.0 licence and
+attribution; CSS keeps its MIT notices. Each recipe's manifest, README and
+LICENSE list its dependencies, pending decisions and limits.
 
-Browser checks default to port 4173. When another checkout is testing, set
+Browser checks use port 4173 by default. If another checkout is testing, set
 `PW_PORT` to a free port before `npm run test:browser` and
 `npm run test:verification`; both use the same server configuration. For
 example, PowerShell: `$env:PW_PORT = '4174'`; POSIX shells:
-`PW_PORT=4174 npm run test:browser`. Finish the build before starting tests.
+`PW_PORT=4174 npm run test:browser`. Finish the build before you start tests.
 
 ### Task-scoped implementation kits
 
-Use the [task-kit builder](https://j3w1.github.io/theme/kit/) to select
-components, describe the authorized task and supply an integration ID,
-version and kind. Download a ZIP or copy the complete Markdown package.
-Inputs stay in the browser; no model service, backend or persistence is used.
+With the [task-kit builder](https://j3w1.github.io/theme/kit/):
+
+1. Select components.
+2. Describe the authorized task and give an integration ID, version and kind.
+3. Download a ZIP, or copy the complete Markdown package.
+
+Inputs stay in the browser; no model service, backend or storage is used.
 Without JavaScript, use the CLI from a checkout at a committed revision:
 
 ```sh
 npm run task:kit -- --components text-field,checkbox,button,dialog --task "Implement a settings form" --integration-id settings --integration-version 1 --out ../settings-kit
 ```
 
-The CLI defaults to the current full commit; `--ref` accepts a full commit or
-release tag, never a branch. It reads every input from that Git revision.
-The browser embeds its source revision and expected file digests, then rejects
-mixed deployment bytes. A pinned build requires committed generated inputs
-and `GITHUB_SHA` set to that full commit. An ordinary unpinned local build
-shows the workflow but disables packaging.
+- The CLI uses the current full commit by default. `--ref` takes a full commit
+  or a release tag, never a branch. Every input is read from that Git revision.
+- The browser embeds its source revision and the expected file digests, and
+  rejects mixed deployment bytes. A pinned build needs committed generated
+  inputs and `GITHUB_SHA` set to that full commit. An ordinary unpinned local
+  build shows the workflow but turns packaging off.
+- Standard mode includes the available standalone recipes; `--mode minimal`
+  leaves out only the optional recipes. Both keep the selected JSON and
+  specification contracts, all shared global rules and foundations, the
+  required token/alias closure, the consumer contract, the lock schema and a
+  bounded prompt. Briefs of unselected components are removed from the derived
+  compact file.
+- `KIT.json` keeps upstream hashes apart from the derived compact/subset
+  hashes. The lock's `resolvedAt` is the source commit's timestamp, so the same
+  inputs give the same output. An empty starting deviation list does not
+  certify a downstream implementation.
 
-Standard mode includes available standalone recipes. `--mode minimal` omits
-only optional recipes. Both retain the selected JSON/specification contracts,
-all shared global rules and foundations, required token/alias closure, the
-consumer contract, lock schema and bounded prompt. Unselected component
-briefs are removed from the derived compact file. `KIT.json` distinguishes
-upstream hashes from derived compact/subset hashes. The lock's `resolvedAt`
-is the source commit timestamp, making repeated inputs deterministic; an
-empty initial deviation list does not certify a downstream implementation.
-
-Output must be a new local directory under an existing, non-redirected parent.
-Existing destinations, symbolic links, Windows reparse points and unsafe file
-names fail closed. The writer never recursively erases a destination; a failed
-write preserves partial output for inspection. Keep the user-owned parent
-stable while writing; this is not an OS sandbox against concurrent mutation.
-The legacy `consumption:kit` command now uses the same writer and refuses
-existing directories. Its default path and `--strict` omission of
-`tokens.resolved.json` are unchanged; select a new `--out` for each rerun.
+Output must be a new local directory under an existing parent that is not
+redirected. Existing destinations, symbolic links, Windows reparse points and
+unsafe file names fail closed. The writer never erases a destination
+recursively; a failed write leaves partial output for inspection. Keep the
+parent directory stable while writing: this is not an OS sandbox against
+concurrent changes. The legacy `consumption:kit` command uses the same writer
+and refuses existing directories. Its default path and its `--strict`
+omission of `tokens.resolved.json` are unchanged; pick a new `--out` for each
+rerun.
 
 The original [single-component protocol](tests/consumption/PROTOCOL.md) and
-the [composed task-kit protocol](tests/consumption/TASK-KITS.md) remain separate
-acceptance exercises. A generated kit does not execute an agent or prove that
-the consumer's implementation conforms.
+the [composed task-kit protocol](tests/consumption/TASK-KITS.md) are separate
+acceptance exercises. A generated kit does not run an agent or prove that the
+consumer's implementation conforms.
 
 ## Pinned release comparison
 
 The [release comparison](https://j3w1.github.io/theme/releases/) compares two
 published revisions from `site/releases.json`. The catalogue pins every tag to
-its dereferenced full commit and distinguishes a release from a published
-commit checkpoint. Builds require those Git objects locally (`fetch-depth: 0`
-in CI); building and viewing the comparison never fetches a moving branch.
+its full commit and tells a release apart from a published commit checkpoint.
+Builds need those Git objects locally (`fetch-depth: 0` in CI). Building and
+viewing the comparison never fetch a moving branch.
 
 ```sh
 npm run release:compare -- --from v0.1.0 --to b601998b3711dcd62949d497ed828af2089f9544 --out ../release-comparison
 ```
 
-Both arguments accept only release tags or full commits. `--profile` selects
-one common historical profile. The output is a new directory under an existing,
-non-redirected parent, written through the same guarded writer as task kits.
-It contains JSON/Markdown migration reports and reconstructed before/after
-specimens. It never builds historical code, upgrades consumers, or certifies a
-port. An optional `--migrations` JSON file follows the generated
-`release-migration` schema and names both commits plus explicit role renames;
-equal values alone never imply a rename.
+- Both arguments take only release tags or full commits. `--profile` picks one
+  common historical profile.
+- The output is a new directory under an existing parent that is not
+  redirected, written by the same guarded writer as task kits. It holds
+  JSON/Markdown migration reports and reconstructed before/after specimens.
+- It never builds historical code, upgrades consumers or certifies a port.
+- An optional `--migrations` JSON file follows the generated
+  `release-migration` schema and names both commits plus explicit role renames.
+  Equal values alone never imply a rename.
 
-The reader verifies each historical export against its own digest ledger.
-Missing or unsupported historical contracts remain unsupported. Missing usage
-indexes are disclosed; available direct component/port mappings still provide
-bounded dependency evidence. Absent historical eligibility fields stay unknown.
-Reports distinguish value, alias, status/decision, component/state, portability
-and appearance-source changes. Known affected means a declared dependency or
-contract changed, not an observed application regression. Unregistered consumers
-remain unknown and an empty port catalogue stays empty.
+How the report reads history:
+
+- Each historical export is checked against its own digest ledger. Missing or
+  unsupported historical contracts stay unsupported.
+- Missing usage indexes are disclosed; direct component/port mappings, where
+  present, still give bounded dependency evidence. Missing historical
+  eligibility fields stay unknown.
+- Reports separate value, alias, status/decision, component/state,
+  portability and appearance-source changes. "Known affected" means a declared
+  dependency or contract changed, not an observed regression in an app.
+  Unregistered consumers stay unknown, and an empty port catalogue stays empty.
 
 The visual reference reuses the parsed specimen renderer with historical
-markup/CSS for the workbench's seven components and their variants/states.
+markup/CSS for the workbench's seven components and their variants and states.
 Both sides use 640 × 480 frames, comfortable density, LTR and static motion
-endpoints. No historical JavaScript or remote font/asset requests are allowed.
-Fixture changes are disclosed; fonts depend on the shared browser/machine.
-The frames are reconstructed references, not historical runtime evidence.
-Browser tests capture matching specimens and attach their actual environment;
-the report itself truthfully says visual execution is not run. Other engines,
-physical devices, manual accessibility and unlisted component captures remain
-unverified. Report/specimen outputs live in `dist/releases/`, outside committed
-canonical exports, and are covered by the ordinary built-artifact evidence.
+endpoints. No historical JavaScript and no remote font or asset requests are
+allowed. Fixture changes are disclosed; fonts depend on the shared browser and
+machine. The frames are reconstructed references, not historical runtime
+evidence. Browser tests capture matching specimens and attach their real
+environment, while the report itself says truthfully that visual execution is
+not run. Other engines, physical devices, manual accessibility and unlisted
+component captures stay unverified. Report and specimen outputs live in
+`dist/releases/`, outside the committed canonical exports, and are covered by
+the ordinary built-artifact evidence.
 
-Adding a published revision requires a reviewed catalogue pin and the existing
-generate/check/build/dist/browser/evidence gates. No palette or approval changes
-are implied by adding a comparison. D-016 records the report schema boundary.
+To add a published revision, add a reviewed catalogue pin and pass the usual
+generate/check/build/dist/browser/evidence gates. Adding a comparison changes
+no palette and approves nothing. D-016 records the report schema boundary.
 
 ## Repository map
 
@@ -341,39 +370,40 @@ are implied by adding a comparison. D-016 records the report schema boundary.
 
 ## Application ports
 
-The [capability explorer](https://j3w1.github.io/theme/ports/) derives its
+The [capability explorer](https://j3w1.github.io/theme/ports/) builds its
 summary, role-to-native-key rows, artifact links and evidence state from the
 same committed port inputs. `exports/port-capabilities.json` is digest-covered
-and included in task kits. It distinguishes mapped, inherited, unsupported,
-out-of-scope and not-implemented roles from import verification. Legacy
-unmapped roles keep their reason without a guessed classification. An empty
-catalogue publishes no application support.
+and included in task kits. It keeps mapped, inherited, unsupported,
+out-of-scope and not-implemented roles apart from import verification. Legacy
+unmapped roles keep their reason, with no guessed classification. An empty
+catalogue publishes no app support.
 
-See `ports/README.md` for optional capability metadata and the exact evidence
-fingerprint. A stale artifact token digest hides its claimed resolved values;
-changing targets, mappings, capabilities or artifact bytes invalidates import
-evidence. Static tables and JSON remain available without JavaScript.
+`ports/README.md` describes the optional capability metadata and the exact
+evidence fingerprint. A stale artifact token digest hides its claimed resolved
+values. Changing targets, mappings, capabilities or artifact bytes makes
+import evidence stale. Static tables and JSON work without JavaScript.
 
 ### Private framework parity
 
-`npm run parity:private` prints a useful **not run** prerequisite record when
-no licensed target is supplied. Public validation, builds and browser tests
-never require a private target. To run the bounded seven-component experiment,
-follow [the private harness protocol](templates/private-parity/README.md) and
-pass an operator-owned JSON file outside this repository:
+With no licensed target supplied, `npm run parity:private` prints a useful
+**not run** prerequisite record. Public validation, builds and browser tests
+never need a private target. To run the bounded seven-component experiment:
 
-```sh
-npm run parity:private -- --config /private/location/parity.json
-```
+1. Follow [the private harness protocol](templates/private-parity/README.md).
+2. Pass an operator-owned JSON file from outside this repository:
 
-The protocol validates actual installed versions against the target package
-and lock, copies explicitly selected script/style inputs into a new private
-directory, and captures native references and real framework controls with
-recorded environment, input hashes, property differences and screenshots.
-It never starts the target application's backend or runs its package scripts.
-Completed diagnostics may report differences; they do not certify an
-application port. Private sources, configuration and results stay outside Git
-and the public site, including when verification fails.
+   ```sh
+   npm run parity:private -- --config /private/location/parity.json
+   ```
+
+The protocol checks the installed versions against the target package and
+lock. It copies only the selected script/style inputs into a new private
+directory. It captures native references and real framework controls with the
+recorded environment, input hashes, property differences and screenshots. It
+never starts the target app's backend or runs its package scripts. Finished
+diagnostics may report differences; they do not certify an app port. Private
+sources, configuration and results stay out of Git and the public site, also
+when verification fails.
 
 <!-- ports:start -->
 | Port | Format | Declared status | Import evidence | Theme | Tested on | Supported / inherited / unsupported |
@@ -388,17 +418,19 @@ and the public site, including when verification fails.
 
 ## Component coverage
 
-*Specified* means the component's specification validates; *demonstrated*
-means its demo renders every declared variant on the site; *test implemented* means a
-browser test exists for it. Actual outcomes are published separately in the
-linked verification report, with exact scope, configuration and digests. The ledger is generated from the sources.
+*Specified* means the component's specification validates. *Demonstrated*
+means its demo renders every declared variant on the site. *Test implemented*
+means a browser test exists for it. Real outcomes are published separately in
+the linked verification report, with exact scope, configuration and digests.
+The ledger is generated from the sources.
 
-The shared browser evidence fixture records the actual browser/OS and final
-viewport, plus the page root's declared profile and density at test completion.
-An absent declaration is recorded as `not-declared`; an unavailable page
-context is reported explicitly. These fields do not infer a mode for every
-nested specimen. Protocols that exercise several local modes describe them in
-their verification annotation, rather than labeling every run as comfortable.
+The shared browser evidence fixture records the real browser/OS, the final
+viewport, and the page root's declared profile and density when the test ends.
+A missing declaration is recorded as `not-declared`; a page context that is
+not available is reported explicitly. These fields do not infer a mode for
+every nested specimen. Protocols that exercise several local modes describe
+them in their verification annotation instead of labelling every run as
+comfortable.
 
 <!-- coverage:start -->
 | Component | Family | Priority | Specified | Demonstrated | Test implemented |
@@ -474,13 +506,17 @@ their verification annotation, rather than labeling every run as comfortable.
 
 ## Versioning
 
-Semantic versioning over the contract, not the code. **Major:** removing or
-renaming a role, changing an approved value or its meaning, removing a
-component or state, incompatible export or lock schema. **Minor:** new roles,
-components, states, variants or profiles; promoting proposed to approved.
-**Patch:** prose, generation, test and site fixes, evidence updates. Every
-global appearance change gets a changelog entry and a downstream impact note.
-Releases are tags; consumers pin them.
+Semantic versioning over the contract, not the code.
+
+- **Major:** removing or renaming a role, changing an approved value or its
+  meaning, removing a component or state, an incompatible export or lock
+  schema.
+- **Minor:** new roles, components, states, variants or profiles; promoting
+  proposed to approved.
+- **Patch:** prose, generation, test and site fixes, evidence updates.
+
+Every global appearance change gets a changelog entry and a downstream impact
+note. Releases are tags; consumers pin them.
 
 ## Licence
 
