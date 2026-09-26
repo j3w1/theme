@@ -25,7 +25,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-cD7CRBh+0ZyHRPgnTpEAzoLevc4NGPZ5GmYzldl2SYE=",
+      "subjectDigest": "sha256-qWqIBl7g5Ahxh//0w567e4hIj7cA9RTiMz+7pdLPKho=",
       "evidencePath": null,
       "surfaces": {
         "terminal-colours": {
@@ -766,6 +766,141 @@
           "role": "color.code.gutter-rule",
           "nativeKeys": [],
           "value": "#2b0e0d",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.attribute",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.constant",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.escape",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.function",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.number",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.operator",
+          "nativeKeys": [],
+          "value": "#ffa2a7",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.property",
+          "nativeKeys": [],
+          "value": "#7e9ebb",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.string",
+          "nativeKeys": [],
+          "value": "#86a46f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.type",
+          "nativeKeys": [],
+          "value": "#7e9ebb",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -5181,7 +5316,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-ZUWu2a1CnsLKkdmwk/vzHz5yfZCg47/Y86vN6vt8w7U=",
+      "subjectDigest": "sha256-w78qTrBauShmw9C/R3uNUCZuBqe0sbE/4g1lZCd24A4=",
       "evidencePath": null,
       "surfaces": {
         "terminal-colours": {
@@ -5926,6 +6061,141 @@
           "role": "color.code.gutter-rule",
           "nativeKeys": [],
           "value": "#2b0e0d",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.attribute",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.constant",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.escape",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.function",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.number",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.operator",
+          "nativeKeys": [],
+          "value": "#ffa2a7",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.property",
+          "nativeKeys": [],
+          "value": "#7e9ebb",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.string",
+          "nativeKeys": [],
+          "value": "#86a46f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.type",
+          "nativeKeys": [],
+          "value": "#7e9ebb",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -10345,7 +10615,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-Mgy/vdPpp8sx+crsbCQXhdnf3gyL6W4PQOBS+FMbhGU=",
+      "subjectDigest": "sha256-Ds+D2jHt8o8Rt3/rRL98032woeh4+syv7AHdrvP1mu0=",
       "evidencePath": null,
       "surfaces": {
         "terminal-colours": {
@@ -11084,6 +11354,141 @@
           "role": "color.code.gutter-rule",
           "nativeKeys": [],
           "value": "#2b0e0d",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.attribute",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.constant",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.escape",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.function",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.number",
+          "nativeKeys": [],
+          "value": "#c9973f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.operator",
+          "nativeKeys": [],
+          "value": "#ffa2a7",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.property",
+          "nativeKeys": [],
+          "value": "#7e9ebb",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.string",
+          "nativeKeys": [],
+          "value": "#86a46f",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.code.hued.type",
+          "nativeKeys": [],
+          "value": "#7e9ebb",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",

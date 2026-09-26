@@ -74,7 +74,7 @@
     {
       "id": "ansi-grid",
       "name": "ANSI grid",
-      "description": "One row per slot, labelled with its number; slots that pass 4.5:1 show sample text, slots that fail show colour blocks and a ✕, and every background is a block."
+      "description": "One row per slot, labelled with its number; the default profile's text slots show sample text, slot 0 (the background) and slot 8 (the dim tier) show colour blocks and a ✕, and every background is a block."
     },
     {
       "id": "attributes",
@@ -527,6 +527,6 @@
   "copy": {
     "directory": "copy/terminal/",
     "manifest": "copy/terminal/manifest.json",
-    "digest": "sha256-C0pIJmR17UdJZiy0X+Fq3A+5Rhojas6k+O3xzJw4NoA="
+    "digest": "sha256-iemxjKfaKKxjcZs4PbF+Qmi93U90ZmSYnqV5won0tYo="
   }
 }

@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — code-editor
-theme: j3w1-theme 1.3.0  profile: default  sourceDigest: sha256-zBTDHJl62HGOhLcSX/wWOxRJ7/IS0Mu7kHKktV/gscI=
+theme: j3w1-theme 1.3.0  profile: default  sourceDigest: sha256-rFBDeCkXw3V5EDkEMe5C7kADr0a1mOPqQqMr5/PUWS4=
 pin: https://raw.githubusercontent.com/j3w1/theme/v1.3.0/exports/components/code-editor.json
 spec: spec/components/code-editor.md  site: https://j3w1.github.io/theme/reference/#c-code-editor
 maturity: stable  priority: R1
@@ -64,7 +64,7 @@ Portability: role=textbox aria-multiline=true aria-readonly=true over <pre>, tab
   native: GTK: GtkSourceView style scheme; current-line, selection, bracket-match and the syntax roles map one to one; the container ring becomes the frame's focus outline.
   native: Qt: KSyntaxHighlighting theme JSON; editor colours and text styles carry the same roles; caret width follows the toolkit.
   native: JetBrains: an editor scheme (.icls); CARET_ROW, SELECTION_BACKGROUND, MATCHED_BRACE_ATTRIBUTES and the language attribute keys; the UI theme is a separate capability.
-  native: Terminal editors (vim, helix): 16-slot hosts use the heritage-ansi mapping and document that the caret follows the terminal cursor.
+  native: Terminal editors (vim, helix): 16-slot hosts use the default profile's terminal slots (the readable heritage sixteen, D-029) and document that the caret follows the terminal cursor.
 
 Rules: use only these values; no invented colours; radius 0; borders 1px (2px emphasis); focus is a 1px dashed ring, selection is a fill;
 do not restyle unrelated elements; report deviations per agents/consume.md; record theme.lock.json at the pinned revision.

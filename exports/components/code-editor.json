@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-zBTDHJl62HGOhLcSX/wWOxRJ7/IS0Mu7kHKktV/gscI=",
+  "sourceDigest": "sha256-rFBDeCkXw3V5EDkEMe5C7kADr0a1mOPqQqMr5/PUWS4=",
   "id": "code-editor",
   "family": "developer",
   "maturity": "stable",
@@ -739,7 +739,7 @@
       "GTK: GtkSourceView style scheme; current-line, selection, bracket-match and the syntax roles map one to one; the container ring becomes the frame's focus outline.",
       "Qt: KSyntaxHighlighting theme JSON; editor colours and text styles carry the same roles; caret width follows the toolkit.",
       "JetBrains: an editor scheme (.icls); CARET_ROW, SELECTION_BACKGROUND, MATCHED_BRACE_ATTRIBUTES and the language attribute keys; the UI theme is a separate capability.",
-      "Terminal editors (vim, helix): 16-slot hosts use the heritage-ansi mapping and document that the caret follows the terminal cursor."
+      "Terminal editors (vim, helix): 16-slot hosts use the default profile's terminal slots (the readable heritage sixteen, D-029) and document that the caret follows the terminal cursor."
     ]
   },
   "fixtures": [

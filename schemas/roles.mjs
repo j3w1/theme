@@ -25,6 +25,7 @@ export const REQUIRED_COLOR_ROLES = [
   ...["danger", "warning", "success", "info", "neutral"].flatMap((s) => under(`color.status.${s}`, ["text", "fill", "on-fill", "tint", "border"])),
   ...under("color.code", ["bg", "current-line", "gutter-bg", "line-number", "line-number-active", "gutter-rule", "caret", "selection-bg", "search-match-bg", "search-current-bg", "search-current-text", "bracket-match", "indent-guide", "whitespace"]),
   ...under("color.code.syntax", ["keyword", "string", "comment", "number", "constant", "function", "variable", "type", "operator", "punctuation", "property", "heading", "tag", "attribute", "escape", "invalid", "deprecated"]),
+  ...under("color.code.hued", ["string", "number", "constant", "function", "attribute", "escape", "type", "property", "operator"]),
   ...under("color.diagnostic.error", ["underline", "text", "stripe", "bg"]),
   ...under("color.diagnostic.warning", ["underline", "text", "stripe"]),
   ...under("color.diagnostic.info", ["underline", "text"]),

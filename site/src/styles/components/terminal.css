@@ -1,5 +1,5 @@
 /* terminal — reference CSS. A native <pre> on the terminal surface with the
-   sixteen heritage slots as classes, the cursor, the selection and the six
+   sixteen slots of the active profile as classes, the cursor, the selection and the six
    attributes. Slot colours are the role variables --color-terminal-ansi-0 …
    -15 and nothing else, so the specimen profile switch shows the extended
    reassignment. No animation: the cursor does not blink. Forced-state
@@ -195,7 +195,7 @@
   }
 }
 
-/* ansi-grid samples of slots that fail the text floor are colour blocks, not words */
+/* ansi-grid samples of the background slot and the dim tier are colour blocks, not words */
 .terminal-swatch,
 .terminal-swatch-bg {
   display: inline-block;

@@ -5063,6 +5063,222 @@
             "decisionIds": []
           }
         },
+        "color.code.hued.string": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5255,
+              0.6431,
+              0.4353
+            ],
+            "alpha": 1,
+            "hex": "#86a46f"
+          },
+          "css": "#86a46f",
+          "aliasOf": "color.primitive.green.500",
+          "description": "Strings in green (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.number": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7882,
+              0.5922,
+              0.2471
+            ],
+            "alpha": 1,
+            "hex": "#c9973f"
+          },
+          "css": "#c9973f",
+          "aliasOf": "color.primitive.amber.500",
+          "description": "Numbers in amber (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.constant": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7882,
+              0.5922,
+              0.2471
+            ],
+            "alpha": 1,
+            "hex": "#c9973f"
+          },
+          "css": "#c9973f",
+          "aliasOf": "color.primitive.amber.500",
+          "description": "Constants in amber (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.function": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7882,
+              0.5922,
+              0.2471
+            ],
+            "alpha": 1,
+            "hex": "#c9973f"
+          },
+          "css": "#c9973f",
+          "aliasOf": "color.primitive.amber.500",
+          "description": "Function and method names in amber (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.attribute": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7882,
+              0.5922,
+              0.2471
+            ],
+            "alpha": 1,
+            "hex": "#c9973f"
+          },
+          "css": "#c9973f",
+          "aliasOf": "color.primitive.amber.500",
+          "description": "Markup attribute names in amber (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.escape": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7882,
+              0.5922,
+              0.2471
+            ],
+            "alpha": 1,
+            "hex": "#c9973f"
+          },
+          "css": "#c9973f",
+          "aliasOf": "color.primitive.amber.500",
+          "description": "Escapes in amber (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.type": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4941,
+              0.6196,
+              0.7333
+            ],
+            "alpha": 1,
+            "hex": "#7e9ebb"
+          },
+          "css": "#7e9ebb",
+          "aliasOf": "color.primitive.blue.500",
+          "description": "Types in blue (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.property": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4941,
+              0.6196,
+              0.7333
+            ],
+            "alpha": 1,
+            "hex": "#7e9ebb"
+          },
+          "css": "#7e9ebb",
+          "aliasOf": "color.primitive.blue.500",
+          "description": "Object properties in blue (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.operator": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.6353,
+              0.6549
+            ],
+            "alpha": 1,
+            "hex": "#ffa2a7"
+          },
+          "css": "#ffa2a7",
+          "aliasOf": "color.primitive.rose.800",
+          "description": "Operators in bright rose (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
+        },
         "color.diagnostic.error.underline": {
           "type": "color",
           "value": {
@@ -12715,6 +12931,222 @@
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.string": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5255,
+              0.6431,
+              0.4353
+            ],
+            "alpha": 1,
+            "hex": "#86a46f"
+          },
+          "css": "#86a46f",
+          "aliasOf": "color.primitive.green.500",
+          "description": "Strings in green (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.number": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7882,
+              0.5922,
+              0.2471
+            ],
+            "alpha": 1,
+            "hex": "#c9973f"
+          },
+          "css": "#c9973f",
+          "aliasOf": "color.primitive.amber.500",
+          "description": "Numbers in amber (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.constant": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7882,
+              0.5922,
+              0.2471
+            ],
+            "alpha": 1,
+            "hex": "#c9973f"
+          },
+          "css": "#c9973f",
+          "aliasOf": "color.primitive.amber.500",
+          "description": "Constants in amber (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.function": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7882,
+              0.5922,
+              0.2471
+            ],
+            "alpha": 1,
+            "hex": "#c9973f"
+          },
+          "css": "#c9973f",
+          "aliasOf": "color.primitive.amber.500",
+          "description": "Function and method names in amber (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.attribute": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7882,
+              0.5922,
+              0.2471
+            ],
+            "alpha": 1,
+            "hex": "#c9973f"
+          },
+          "css": "#c9973f",
+          "aliasOf": "color.primitive.amber.500",
+          "description": "Markup attribute names in amber (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.escape": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7882,
+              0.5922,
+              0.2471
+            ],
+            "alpha": 1,
+            "hex": "#c9973f"
+          },
+          "css": "#c9973f",
+          "aliasOf": "color.primitive.amber.500",
+          "description": "Escapes in amber (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.type": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4941,
+              0.6196,
+              0.7333
+            ],
+            "alpha": 1,
+            "hex": "#7e9ebb"
+          },
+          "css": "#7e9ebb",
+          "aliasOf": "color.primitive.blue.500",
+          "description": "Types in blue (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.property": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4941,
+              0.6196,
+              0.7333
+            ],
+            "alpha": 1,
+            "hex": "#7e9ebb"
+          },
+          "css": "#7e9ebb",
+          "aliasOf": "color.primitive.blue.500",
+          "description": "Object properties in blue (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.operator": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.6353,
+              0.6549
+            ],
+            "alpha": 1,
+            "hex": "#ffa2a7"
+          },
+          "css": "#ffa2a7",
+          "aliasOf": "color.primitive.rose.800",
+          "description": "Operators in bright rose (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
           "eligibility": {
             "action": "historical-only",
             "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
@@ -20395,6 +20827,222 @@
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.string": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5255,
+              0.6431,
+              0.4353
+            ],
+            "alpha": 1,
+            "hex": "#86a46f"
+          },
+          "css": "#86a46f",
+          "aliasOf": "color.primitive.green.500",
+          "description": "Strings in green (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.number": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7882,
+              0.5922,
+              0.2471
+            ],
+            "alpha": 1,
+            "hex": "#c9973f"
+          },
+          "css": "#c9973f",
+          "aliasOf": "color.primitive.amber.500",
+          "description": "Numbers in amber (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.constant": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7882,
+              0.5922,
+              0.2471
+            ],
+            "alpha": 1,
+            "hex": "#c9973f"
+          },
+          "css": "#c9973f",
+          "aliasOf": "color.primitive.amber.500",
+          "description": "Constants in amber (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.function": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7882,
+              0.5922,
+              0.2471
+            ],
+            "alpha": 1,
+            "hex": "#c9973f"
+          },
+          "css": "#c9973f",
+          "aliasOf": "color.primitive.amber.500",
+          "description": "Function and method names in amber (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.attribute": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7882,
+              0.5922,
+              0.2471
+            ],
+            "alpha": 1,
+            "hex": "#c9973f"
+          },
+          "css": "#c9973f",
+          "aliasOf": "color.primitive.amber.500",
+          "description": "Markup attribute names in amber (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.escape": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7882,
+              0.5922,
+              0.2471
+            ],
+            "alpha": 1,
+            "hex": "#c9973f"
+          },
+          "css": "#c9973f",
+          "aliasOf": "color.primitive.amber.500",
+          "description": "Escapes in amber (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.type": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4941,
+              0.6196,
+              0.7333
+            ],
+            "alpha": 1,
+            "hex": "#7e9ebb"
+          },
+          "css": "#7e9ebb",
+          "aliasOf": "color.primitive.blue.500",
+          "description": "Types in blue (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.property": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4941,
+              0.6196,
+              0.7333
+            ],
+            "alpha": 1,
+            "hex": "#7e9ebb"
+          },
+          "css": "#7e9ebb",
+          "aliasOf": "color.primitive.blue.500",
+          "description": "Object properties in blue (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "color.code.hued.operator": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.6353,
+              0.6549
+            ],
+            "alpha": 1,
+            "hex": "#ffa2a7"
+          },
+          "css": "#ffa2a7",
+          "aliasOf": "color.primitive.rose.800",
+          "description": "Operators in bright rose (D-030).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-030",
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",

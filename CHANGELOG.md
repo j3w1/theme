@@ -14,6 +14,11 @@
   selection: keywords and tags `#f73f35` → `#f7463c`, properties, headings
   and invalid text `#e53935` → `#e95551` (4.51–4.52:1 in the selection, up
   from 3.81–4.38:1). Interface reds are unchanged.
+- D-030 **Hued syntax roles.** `color.code.hued.*` is an opt-in set for hosts
+  that want coloured code: strings green `#86a46f`; numbers, constants,
+  functions, attributes and escapes amber `#c9973f`; types and properties blue
+  `#7e9ebb`; operators `#ffa2a7`. The reference code editor stays monochrome;
+  the terminal kit's Codex theme opts in.
 - New role `color.terminal.prompt-text` (D-029): the prompt's path segment draws
   dark text on the brighter slot 4 in the default profile and keeps the
   historical light text in `heritage-ansi`.
@@ -26,7 +31,8 @@
   directory text) follow in their own repositories.
 - `tools/terminal-kit/`: installs the default profile into Orca on Windows,
   Claude Code and Codex, with backups, verification and key-level restore
-  (#53).
+  (#53). In this release it still pins 1.2.0; a follow-up moves the pin to
+  1.3.0 and maps the Codex theme to `code.hued.*`.
 - Downstream: consumers of `color.terminal.ansi.*` and the five `code.syntax`
   reds receive new values; hosts that mirror the palette (shell palettes,
   prompts with light text on slot 4) should update with the release.

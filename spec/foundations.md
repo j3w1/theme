@@ -140,7 +140,11 @@ whitespace `#7d1310` (decorative). Syntax in `default` is monochrome:
 keywords `#f7463c`, strings `#bd787d`, comments `#ad7175` italic, numbers and
 constants `#d4868b`, functions `#ffa2a7`, variables and operators `#e99499`,
 types `#b37175`, properties and headings `#e95551`, tags `#f7463c`,
-attributes and escapes `#d4868b` (the two syntax reds lifted by D-029); invalid text takes a wavy underline,
+attributes and escapes `#d4868b` (the two syntax reds lifted by D-029); hosts that want hue
+differentiation may opt in to `code.hued.*` (D-030): strings green `#86a46f`;
+numbers, constants, functions, attributes and escapes amber `#c9973f`; types
+and properties blue `#7e9ebb`; operators `#ffa2a7`, with keywords, tags,
+comments, variables and punctuation unchanged; invalid text takes a wavy underline,
 deprecated text a line-through. Languages inherit these roles; a
 language-specific override needs a documented reason.
 

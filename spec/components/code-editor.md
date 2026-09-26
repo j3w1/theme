@@ -127,7 +127,7 @@ portability:
     - "GTK: GtkSourceView style scheme; current-line, selection, bracket-match and the syntax roles map one to one; the container ring becomes the frame's focus outline."
     - "Qt: KSyntaxHighlighting theme JSON; editor colours and text styles carry the same roles; caret width follows the toolkit."
     - "JetBrains: an editor scheme (.icls); CARET_ROW, SELECTION_BACKGROUND, MATCHED_BRACE_ATTRIBUTES and the language attribute keys; the UI theme is a separate capability."
-    - "Terminal editors (vim, helix): 16-slot hosts use the heritage-ansi mapping and document that the caret follows the terminal cursor."
+    - "Terminal editors (vim, helix): 16-slot hosts use the default profile's terminal slots (the readable heritage sixteen, D-029) and document that the caret follows the terminal cursor."
 fixtures: [FX-STATE-MATRIX, FX-320, FX-ZOOM-200, FX-RM, FX-HC, FX-LONG, FX-RTL]
 related: [diagnostics, diff-view, terminal]
 specimens: [i3-window-frame]
@@ -196,7 +196,11 @@ substituted for one another. Every syntax role reaches 4.5:1 on
 the keyword, tag, property and heading reds so they stay at 4.5:1 or more
 inside {color.code.selection-bg} (4.51–4.52:1); comment and type text still
 drop below it there (4.13 and 4.24:1). That is a recorded limitation of the
-selection value and is not to be fixed by recolouring the tokens locally. Line
+selection value and is not to be fixed by recolouring the tokens locally. The reference editor
+stays monochrome; a host that wants hue differentiation maps the opt-in
+{color.code.hued.string}, {color.code.hued.number}, {color.code.hued.type} and
+the other `code.hued.*` roles (D-030), which reach 5.74:1 or more inside the
+selection. Line
 numbers are metadata people read and use {color.text.subtle}, not a graphic
 colour; indent guides, rendered whitespace and the gutter rule are decorative.
 In forced-colours mode the caret, selection and bracket outline take the

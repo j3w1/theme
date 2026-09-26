@@ -41,6 +41,7 @@ in its `$extensions["io.github.j3w1.theme"].approval.decision`. Agents may open
 | D-027 | Recede the interactive chrome | accepted | 2026-09-11 | owner (explicit acceptance after visual review) |
 | D-028 | Merge gates and the deployment gate are different suites | accepted | 2026-09-11 | owner (explicit verification-split instruction) |
 | D-029 | Readable terminal and code reds | accepted | 2026-09-26 | owner (explicit selection of values and release in planning) |
+| D-030 | Hued syntax roles for opt-in code highlighting | accepted | 2026-09-26 | owner (explicit request for a more colourful Codex, selection of the extended hues) |
 
 ## D-000 Responsibility split
 
@@ -743,4 +744,34 @@ chroma; rejected because gamut clipping drifts the reds toward raspberry.
 the palette themselves (CE Devbox's shell palette, the Agnoster prompt's
 directory text) follow in their own repositories. `heritage-ansi` stays the
 exact historical record.
+
+## D-030 Hued syntax roles for opt-in code highlighting
+
+Status: accepted · 2026-09-26. The owner found Codex's code "too boring and
+single-coloured" under the monochrome default syntax and chose the `extended`
+overlay's code hues.
+
+**Context.** D-001 keeps syntax highlighting in the `default` profile
+monochrome and allows the three extension hues in the `code` group only in the
+`extended` overlay, which is proposed. A proposed profile is preview-only and
+blocked for delivery, so no consumer can ship its values, however an
+individual role is marked.
+
+**Decision.** The `default` profile gains `color.code.hued.*`, an opt-in set of
+syntax roles for hosts that want hue differentiation. They carry the
+`extended` overlay's code hues: strings in green `#86a46f`; numbers, constants,
+functions, attributes and escapes in amber `#c9973f`; types and properties in
+blue `#7e9ebb`; operators in bright rose `#ffa2a7`. Keywords, tags, comments,
+variables and punctuation keep their `code.syntax` roles. Every hued role
+reaches 7.08:1 or more on the code background (operators 10.37:1) and 5.74:1 or
+more inside an editor selection. The reference code editor and every other
+consumer keep `code.syntax.*`; a host opts in by mapping `code.hued.*`, which
+the terminal kit's Codex theme does. This extends D-001's code-group allowance
+to these roles of the approved profile; the `extended` overlay itself stays
+proposed.
+
+**Alternatives.** Keep Codex monochrome; rejected by the owner. Approve the
+whole `extended` overlay; not requested, and it also reassigns the terminal
+slots. Replace `code.syntax.*` in the default profile; rejected so the
+reference editor keeps its monochrome identity.
 

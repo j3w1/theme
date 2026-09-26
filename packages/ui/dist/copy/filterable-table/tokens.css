@@ -213,6 +213,15 @@
   --color-code-syntax-escape: #d4868b;
   --color-code-syntax-invalid: #e95551;
   --color-code-syntax-deprecated: #ad7175;
+  --color-code-hued-string: #86a46f;
+  --color-code-hued-number: #c9973f;
+  --color-code-hued-constant: #c9973f;
+  --color-code-hued-function: #c9973f;
+  --color-code-hued-attribute: #c9973f;
+  --color-code-hued-escape: #c9973f;
+  --color-code-hued-type: #7e9ebb;
+  --color-code-hued-property: #7e9ebb;
+  --color-code-hued-operator: #ffa2a7;
   --color-diagnostic-error-underline: #e53935;
   --color-diagnostic-error-text: #f73f35;
   --color-diagnostic-error-stripe: #e53935;

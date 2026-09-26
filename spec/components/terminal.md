@@ -17,7 +17,7 @@ variants:
     description: An agnoster-style prompt, an ls listing coloured by the slots that pass the text floor, an ESC[31m-style error line and the cursor.
   - id: ansi-grid
     name: ANSI grid
-    description: One row per slot, labelled with its number; slots that pass 4.5:1 show sample text, slots that fail show colour blocks and a ✕, and every background is a block.
+    description: One row per slot, labelled with its number; the default profile's text slots show sample text, slot 0 (the background) and slot 8 (the dim tier) show colour blocks and a ✕, and every background is a block.
   - id: attributes
     name: Attributes
     description: Bold, dim, italic, underline, inverse and strikethrough.
@@ -190,9 +190,10 @@ and the attribute sheet are plain `<pre>` elements with a label. In the
 (4.55:1–10.37:1, D-029). Slot 8 is the dim tier at 3.01:1 and slot 0 is the
 background itself; the grid marks both with a `✕` after the number so the
 exception is visible, not implied. The `heritage-ansi` profile keeps the
-historical values, where ten slots fail (1.86:1–4.45:1), and marks them the
-same way; the `extended` overlay proposes a semantic sixteen that all reach
-4.5:1. The site's profile control shows the grid under each. The background
+historical values, where ten slots fail (1.86:1–4.45:1); the grid's crosses
+follow the default profile, so under `heritage-ansi` its sample text shows
+those failures directly. The `extended` overlay proposes a semantic sixteen
+that all reach 4.5:1. The site's profile control shows the grid under each. The background
 row is legible only with a foreground the program chooses: the default
 foreground passes only on slot 0, while the terminal background passes on
 every slot except 0 and 8, which is why the row is shown and not declared as

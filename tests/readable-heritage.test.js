@@ -69,3 +69,15 @@ test("interface reds are unchanged by D-029", () => {
     assert.equal(hexOf("default", path), hex, path);
   }
 });
+
+test("D-030 hued syntax roles are approved default-profile roles that stay readable inside a selection", () => {
+  const expected = { string: "#86a46f", number: "#c9973f", constant: "#c9973f", function: "#c9973f", attribute: "#c9973f", escape: "#c9973f", type: "#7e9ebb", property: "#7e9ebb", operator: "#ffa2a7" };
+  const selection = hexOf("default", "color.code.selection-bg");
+  for (const [role, hex] of Object.entries(expected)) {
+    const token = resolved.profiles.default.tokens[`color.code.hued.${role}`];
+    assert.equal(token.value.hex, hex, role);
+    assert.equal(token.eligibility.action, "use", `${role} is deliverable`);
+    assert.ok(contrast(hex, selection) >= 4.5, `${role} in the selection: ${contrast(hex, selection).toFixed(2)}:1`);
+  }
+  assert.equal(hexOf("default", "color.code.syntax.string"), "#bd787d", "the reference editor stays monochrome");
+});

@@ -268,6 +268,51 @@
       "surface": "outside-terminal",
       "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
+    "color.code.hued.attribute": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+    },
+    "color.code.hued.constant": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+    },
+    "color.code.hued.escape": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+    },
+    "color.code.hued.function": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+    },
+    "color.code.hued.number": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+    },
+    "color.code.hued.operator": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+    },
+    "color.code.hued.property": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+    },
+    "color.code.hued.string": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+    },
+    "color.code.hued.type": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+    },
     "color.code.indent-guide": {
       "state": "out-of-scope",
       "surface": "outside-terminal",

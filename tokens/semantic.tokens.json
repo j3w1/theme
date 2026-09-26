@@ -888,6 +888,117 @@
           "$value": "{color.primitive.rose.450}",
           "$description": "Deprecated symbol: line-through."
         }
+      },
+      "hued": {
+        "$description": "D-030 hued syntax: opt-in syntax colours for hosts that want hue differentiation (the terminal kit's Codex theme). Keywords, tags, comments, variables and punctuation keep the code.syntax roles; the reference code editor stays monochrome.",
+        "string": {
+          "$value": "{color.primitive.green.500}",
+          "$description": "Strings in green (D-030).",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-030"
+              }
+            }
+          }
+        },
+        "number": {
+          "$value": "{color.primitive.amber.500}",
+          "$description": "Numbers in amber (D-030).",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-030"
+              }
+            }
+          }
+        },
+        "constant": {
+          "$value": "{color.primitive.amber.500}",
+          "$description": "Constants in amber (D-030).",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-030"
+              }
+            }
+          }
+        },
+        "function": {
+          "$value": "{color.primitive.amber.500}",
+          "$description": "Function and method names in amber (D-030).",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-030"
+              }
+            }
+          }
+        },
+        "attribute": {
+          "$value": "{color.primitive.amber.500}",
+          "$description": "Markup attribute names in amber (D-030).",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-030"
+              }
+            }
+          }
+        },
+        "escape": {
+          "$value": "{color.primitive.amber.500}",
+          "$description": "Escapes in amber (D-030).",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-030"
+              }
+            }
+          }
+        },
+        "type": {
+          "$value": "{color.primitive.blue.500}",
+          "$description": "Types in blue (D-030).",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-030"
+              }
+            }
+          }
+        },
+        "property": {
+          "$value": "{color.primitive.blue.500}",
+          "$description": "Object properties in blue (D-030).",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-030"
+              }
+            }
+          }
+        },
+        "operator": {
+          "$value": "{color.primitive.rose.800}",
+          "$description": "Operators in bright rose (D-030).",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-030"
+              }
+            }
+          }
+        }
       }
     },
     "diagnostic": {
