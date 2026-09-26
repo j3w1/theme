@@ -8,6 +8,7 @@ import { scopeRecipeCss } from "../scripts/lib/recipe-css.mjs";
 import { sha256, repoRoot } from "../scripts/lib/fs.mjs";
 import { scratchDir } from "./helpers/scratch.mjs";
 import { registerElement } from "../packages/ui/src/internal/element.js";
+import { GENERATORS, PACKAGE_README, packageReadmeGenerator, packageReadmeOf } from "../scripts/lib/generators.mjs";
 
 test("copy dependency traversal includes reexports and side effects and rejects escapes and unresolved packages", async t => {
   const root = await scratchDir(t, "j3w1-closure-");
@@ -76,4 +77,10 @@ test("CSS dependency closure preserves container rules and rejects external or c
   await assert.rejects(cssSourceClosure(root,["entry.css"]));
   await fs.writeFile(path.join(root,"entry.css"), '@import "./base.css";');await fs.writeFile(path.join(root,"base.css"),'@import "./entry.css";');
   await assert.rejects(cssSourceClosure(root,["entry.css"]),/Circular CSS dependency/);
+});
+
+test("the package README is the generated copy of the consumption guide", async () => {
+  const guide = await fs.readFile(path.join(repoRoot, "docs/ui-consumption.md"), "utf8");
+  assert.equal(await fs.readFile(path.join(repoRoot, PACKAGE_README), "utf8"), packageReadmeOf(guide));
+  assert.ok(GENERATORS.includes(packageReadmeGenerator), "npm run check covers the copy");
 });
