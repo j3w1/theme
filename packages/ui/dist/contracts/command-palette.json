@@ -1,10 +1,10 @@
 {
   "id": "command-palette",
   "name": "Command palette",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "tag": "j3w1-command-palette",
-  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/command-palette.md",
-  "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/advanced.js",
+  "contract": "https://github.com/j3w1/theme/blob/v3.0.0/spec/components/command-palette.md",
+  "source": "https://github.com/j3w1/theme/blob/v3.0.0/packages/ui/src/behaviors/advanced.js",
   "imports": {
     "class": "@j3w1/ui/components/command-palette",
     "register": "@j3w1/ui/register/command-palette",
@@ -407,6 +407,6 @@
   "copy": {
     "directory": "copy/command-palette/",
     "manifest": "copy/command-palette/manifest.json",
-    "digest": "sha256-duQOsaDKDj5AIOLO0FNNcGUjUP6PnYNqBsCdBxFJftQ="
+    "digest": "sha256-J3Cub5kx9VY/uwyBs93+QHqZALy0oP+Nu4PvpE3PmoU="
   }
 }

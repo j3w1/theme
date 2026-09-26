@@ -1,5 +1,5 @@
 import { J3w1Element } from '../element.js';
-export declare class J3w1Tree extends J3w1Element { static readonly componentId: 'tree'; static readonly version: '2.0.0';
+export declare class J3w1Tree extends J3w1Element { static readonly componentId: 'tree'; static readonly version: '3.0.0';
   refresh(): void;
   focus(options?: FocusOptions): void;
   expand(id: string, expanded?: boolean): void;

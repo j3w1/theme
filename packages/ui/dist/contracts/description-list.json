@@ -1,10 +1,10 @@
 {
   "id": "description-list",
   "name": "Description list",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "tag": "j3w1-description-list",
-  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/description-list.md",
-  "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/native.js",
+  "contract": "https://github.com/j3w1/theme/blob/v3.0.0/spec/components/description-list.md",
+  "source": "https://github.com/j3w1/theme/blob/v3.0.0/packages/ui/src/behaviors/native.js",
   "imports": {
     "class": "@j3w1/ui/components/description-list",
     "register": "@j3w1/ui/register/description-list",
@@ -281,6 +281,6 @@
   "copy": {
     "directory": "copy/description-list/",
     "manifest": "copy/description-list/manifest.json",
-    "digest": "sha256-F3x0RUZ+AkdgKewLrGp1MP9u0f5NB79ZzmwOmPTvS5U="
+    "digest": "sha256-vDWVFh36YHqnDY0f6g5Hi6o+u3a7bae0UWn2wLD9A0I="
   }
 }

@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "component": "diff-view",
-  "version": "2.0.0",
-  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/diff-view.md",
+  "version": "3.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v3.0.0/spec/components/diff-view.md",
   "dependencies": [
     "register/diff-view.js",
     "chunks/element-C1XeXVYC.js",
@@ -14,13 +14,13 @@
     "runtime/register/diff-view.js": "sha256-dfbslff/fV33ePOMN/mGU9l+7RqomLajKxKQdpmW+qQ=",
     "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
     "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-    "runtime/components/diff-view.js": "sha256-bkZRdWI5/tzJ9MxQhgadSy2eS0r0h9Bw0K3Q++ZifqU=",
+    "runtime/components/diff-view.js": "sha256-KQ8QNj8WCLhAbFh9/cJMByTJrETUx4oDE5Rtd1oZbg0=",
     "runtime/chunks/display-dj9YaBfn.js": "sha256-0Y8LcHvfDz2LLz+EWdO8Jr6pfwnXPw03N8x1UcM2pN8=",
     "tokens.css": "sha256-c/NmCkdHsOHiHx4q0evmxTKbpeLSU3Eoo2b0S7PYNzU=",
     "component.css": "sha256-mibFUolrx0OWHlYNpEFTvfkMI0c6h4CUv7SWJ4eQVns=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-t7cx4Y+4qhIPiwFbRPz+6U12N/CFATPTfG7/iZf85zs=",
     "index.html": "sha256-EYPYe3QVJkVBz7byssoY6NHiAMZc9tW/oSLut2DPrX4=",
-    "README.md": "sha256-751r3IsxtsU2ispUQUOE+Cs7uczNbmboB+yNuNQqGeE="
+    "README.md": "sha256-xIM4IObSIwJu5RrlMo0E4g8FTVZNschH+WSfQYnbfnY="
   }
 }

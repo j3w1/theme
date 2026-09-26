@@ -3,8 +3,8 @@ import { i as tree } from "../chunks/advanced-DCpe8Ndv.js";
 //#region .cache/ui-build/entries/components/tree.js
 var J3w1Tree = class extends J3w1Element {
 	static componentId = "tree";
-	static version = "2.0.0";
-	static implementationId = "sha256-C3O9X7lF+dYLVr8mWfoor8nr3mOMwEEK9briQtAlESw=";
+	static version = "3.0.0";
+	static implementationId = "sha256-3HkTUKcyxbK2SQwz5vMNGjOPfO11izQOOyJZ+4Gl2NA=";
 	static connect = tree;
 	static upgradeProperties = [
 		"disabled",

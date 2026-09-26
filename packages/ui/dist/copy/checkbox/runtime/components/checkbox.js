@@ -3,8 +3,8 @@ import { r as fields } from "../chunks/native-CAzZmDKR.js";
 //#region .cache/ui-build/entries/components/checkbox.js
 var J3w1Checkbox = class extends J3w1Element {
 	static componentId = "checkbox";
-	static version = "2.0.0";
-	static implementationId = "sha256-VsIUblxlHEOfla6m8TR/pkMQNUEptLOTUyTad83ECuA=";
+	static version = "3.0.0";
+	static implementationId = "sha256-we0SJewHZNFzn3+AGXG7fRM/MGmar5zU0tHGhXqyJ2I=";
 	static connect = fields;
 	static upgradeProperties = [
 		"disabled",

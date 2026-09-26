@@ -3,8 +3,8 @@ import { r as fields } from "../chunks/native-CAzZmDKR.js";
 //#region .cache/ui-build/entries/components/select.js
 var J3w1Select = class extends J3w1Element {
 	static componentId = "select";
-	static version = "2.0.0";
-	static implementationId = "sha256-lQCzJNYOskK2M23nXbHGEDnXaKXri8lpONj5Mj9IYhY=";
+	static version = "3.0.0";
+	static implementationId = "sha256-Li5rI7QJ+LogcA+OooY/ToFyrptpZ/w8gbv27OMWfm0=";
 	static connect = fields;
 	static upgradeProperties = [
 		"disabled",

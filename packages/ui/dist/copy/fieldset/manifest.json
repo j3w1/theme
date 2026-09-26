@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "component": "fieldset",
-  "version": "2.0.0",
-  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/fieldset.md",
+  "version": "3.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v3.0.0/spec/components/fieldset.md",
   "dependencies": [
     "register/fieldset.js",
     "chunks/element-C1XeXVYC.js",
@@ -14,13 +14,13 @@
     "runtime/register/fieldset.js": "sha256-95mq6oG6gTLPWs+kdvdNqiuSftofqYoBvCulLuTebyE=",
     "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
     "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-    "runtime/components/fieldset.js": "sha256-DyY8kg1qBWNT54r9VEo/NiZUtXQTGq7LSr8LHs1+35Y=",
+    "runtime/components/fieldset.js": "sha256-gNxo98j266yupxK3kbNX3bmqnBe/L9a095WJRf6cfMg=",
     "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
     "tokens.css": "sha256-c/NmCkdHsOHiHx4q0evmxTKbpeLSU3Eoo2b0S7PYNzU=",
     "component.css": "sha256-TPi15SfEwAaSl4PqQvGAd3bFbbB4BJ2trfD5k2+8yrc=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-Z916I2upHIzzffRAz/6w6FSTBwegAd+L49E9Juck2fo=",
     "index.html": "sha256-/G/GqORWDhO+K+ngVGX8Mrb/mp0XHqSZ3PP1WwffRXQ=",
-    "README.md": "sha256-th8GeIwDBDUwdiEJfMTKPqep9s1Do2I3nGGRAX4Qkh0="
+    "README.md": "sha256-peBFBijKRxOOGx4F4etBPeLb33hLex8RQ8lQdOpE+y4="
   }
 }

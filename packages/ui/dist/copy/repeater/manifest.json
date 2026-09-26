@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "component": "repeater",
-  "version": "2.0.0",
-  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/repeater.md",
+  "version": "3.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v3.0.0/spec/components/repeater.md",
   "dependencies": [
     "register/repeater.js",
     "chunks/element-C1XeXVYC.js",
@@ -15,7 +15,7 @@
     "runtime/register/repeater.js": "sha256-CL1MU0vVSqQyPhS6UQWzKLVZqxO0fbuljqqDRE9GvUA=",
     "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
     "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-    "runtime/components/repeater.js": "sha256-FG/d49dIdH3fty2QScEs7VnY/Td7n+DRjhQc5sOXa4U=",
+    "runtime/components/repeater.js": "sha256-y1Wi63bxJmCVlDbUDd35EHfPxCviRVQj5R2mmgO6Vzo=",
     "runtime/chunks/advanced-DCpe8Ndv.js": "sha256-nr1LFdLYsGeTM4vDyldvuJygRm0F04sYonxatySPu1g=",
     "runtime/chunks/markup-DeQ4bEMR.js": "sha256-Eyyx7MKBoqXK4i2HaVUQhKUM066L2wIggABt6jAdgas=",
     "tokens.css": "sha256-c/NmCkdHsOHiHx4q0evmxTKbpeLSU3Eoo2b0S7PYNzU=",
@@ -23,6 +23,6 @@
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-DSCQzrRbDwFOKtw5YmpR+3oYWMIBJFIPnJpes5bSMPY=",
     "index.html": "sha256-c0jxp+wZ+Fh6pdflIdXG673av6oOTGx7HobpD63O2Sk=",
-    "README.md": "sha256-7b06PhbQDYEdxPj1GQxrwgtZzyZlzREQvTtoVLtrLDc="
+    "README.md": "sha256-CA6z/jrGtSAVBvFkDbYFWMjbbeHL8hwL5aKQJGCCnUQ="
   }
 }

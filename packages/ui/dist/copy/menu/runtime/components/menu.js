@@ -3,8 +3,8 @@ import { r as menu } from "../chunks/navigation-Dt8ap-9J.js";
 //#region .cache/ui-build/entries/components/menu.js
 var J3w1Menu = class extends J3w1Element {
 	static componentId = "menu";
-	static version = "2.0.0";
-	static implementationId = "sha256-frMEd4XSyaWAU+Wedz44AnwP0X+5ZbHoZjZy4rHS+Eo=";
+	static version = "3.0.0";
+	static implementationId = "sha256-CK4QIJkkIZJeWEurWASD5Ifv6DGKbLahq5kIkzzOjGg=";
 	static connect = menu;
 	static upgradeProperties = [
 		"disabled",

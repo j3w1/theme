@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "component": "skip-link",
-  "version": "2.0.0",
-  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/skip-link.md",
+  "version": "3.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v3.0.0/spec/components/skip-link.md",
   "dependencies": [
     "register/skip-link.js",
     "chunks/element-C1XeXVYC.js",
@@ -14,13 +14,13 @@
     "runtime/register/skip-link.js": "sha256-J3W8TBKgxKkjPInemg2o0yMPFluGS5Q/lPN9NQYBXAo=",
     "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
     "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-    "runtime/components/skip-link.js": "sha256-u0OetxVpNRXfbqciUM48CmbAJ/kUxIs7yFD/XljqEIs=",
+    "runtime/components/skip-link.js": "sha256-lnXHwoTR/Y2vIA0GXq3Rb7yIJ7CGVs/S6T48QmHwVjs=",
     "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
     "tokens.css": "sha256-c/NmCkdHsOHiHx4q0evmxTKbpeLSU3Eoo2b0S7PYNzU=",
     "component.css": "sha256-KCkIExZyQJQhySZCEQIOrm9lPtDzOq95R9+IED0MI8A=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-TllH5VfEO0Xn2+KsNK2k/W4RJWPv9CVLWE38btvoOpw=",
     "index.html": "sha256-/HDnZh+ZTER/j0o82CsKR1s11+5KNWqzGpG3Q+RrG1Q=",
-    "README.md": "sha256-2sF6+lfi2dmo6zG4Cyae/jC8VRKRFb8FQfk5rvNYmqE="
+    "README.md": "sha256-0QaljwInCXYRiopUbDQmHTaQOiNioEMytbGs/dBK3PY="
   }
 }

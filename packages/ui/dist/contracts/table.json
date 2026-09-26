@@ -1,10 +1,10 @@
 {
   "id": "table",
   "name": "Table",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "tag": "j3w1-table",
-  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/table.md",
-  "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/tables.js",
+  "contract": "https://github.com/j3w1/theme/blob/v3.0.0/spec/components/table.md",
+  "source": "https://github.com/j3w1/theme/blob/v3.0.0/packages/ui/src/behaviors/tables.js",
   "imports": {
     "class": "@j3w1/ui/components/table",
     "register": "@j3w1/ui/register/table",
@@ -429,6 +429,6 @@
   "copy": {
     "directory": "copy/table/",
     "manifest": "copy/table/manifest.json",
-    "digest": "sha256-TcRbSZ0ziX+r06OMN6RO1xv3FMXiVSEMNvwYDug3yOE="
+    "digest": "sha256-GZAOcply0nR5qa8+tSLxzmF7eQ7zJaEQZDIxn53ljTE="
   }
 }

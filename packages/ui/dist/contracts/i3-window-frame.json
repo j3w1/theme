@@ -1,10 +1,10 @@
 {
   "id": "i3-window-frame",
   "name": "i3 window frame",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "tag": "j3w1-i3-window-frame",
-  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/i3-window-frame.md",
-  "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/compositions.js",
+  "contract": "https://github.com/j3w1/theme/blob/v3.0.0/spec/components/i3-window-frame.md",
+  "source": "https://github.com/j3w1/theme/blob/v3.0.0/packages/ui/src/behaviors/compositions.js",
   "imports": {
     "class": "@j3w1/ui/components/i3-window-frame",
     "register": "@j3w1/ui/register/i3-window-frame",
@@ -962,6 +962,6 @@
   "copy": {
     "directory": "copy/i3-window-frame/",
     "manifest": "copy/i3-window-frame/manifest.json",
-    "digest": "sha256-Hz2HdlGkBbiBXQ4ZAZwezvlJo4qykN7GDjS7QJeGsOE="
+    "digest": "sha256-VUFLucP34fV1oMQ6/iWHuZorDpYOsutzrHEpDujRgQU="
   }
 }

@@ -3,8 +3,8 @@ import { n as table } from "../chunks/tables-B25ydUHs.js";
 //#region .cache/ui-build/entries/components/filterable-table.js
 var J3w1FilterableTable = class extends J3w1Element {
 	static componentId = "filterable-table";
-	static version = "2.0.0";
-	static implementationId = "sha256-sHfg8TgeDGFYzXwR9LiEMTUxH+xxItVaRHo8JYsEYXU=";
+	static version = "3.0.0";
+	static implementationId = "sha256-YmLc4Vumli8xMEO/GWonHfLLM06eeYIOdV5vHRJk1rw=";
 	static connect = table;
 	static upgradeProperties = [
 		"disabled",

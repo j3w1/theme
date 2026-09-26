@@ -1,4 +1,4 @@
-# Contrast report (2.0.0, profile: default)
+# Contrast report (3.0.0, profile: default)
 
 Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a design target for the named role, not an application-wide conformance claim. Waived pairs are listed with their reason.
 

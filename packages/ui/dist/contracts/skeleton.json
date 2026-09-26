@@ -1,10 +1,10 @@
 {
   "id": "skeleton",
   "name": "Skeleton",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "tag": "j3w1-skeleton",
-  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/skeleton.md",
-  "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/native.js",
+  "contract": "https://github.com/j3w1/theme/blob/v3.0.0/spec/components/skeleton.md",
+  "source": "https://github.com/j3w1/theme/blob/v3.0.0/packages/ui/src/behaviors/native.js",
   "imports": {
     "class": "@j3w1/ui/components/skeleton",
     "register": "@j3w1/ui/register/skeleton",
@@ -282,6 +282,6 @@
   "copy": {
     "directory": "copy/skeleton/",
     "manifest": "copy/skeleton/manifest.json",
-    "digest": "sha256-pfyglpyC5qyyFs5fInPe4vGDpnJM+iuJJ0GtznFELB8="
+    "digest": "sha256-k6ZKEsikzjThBfkEtZxowZvHJnZK4HIn5nx8SKByDno="
   }
 }

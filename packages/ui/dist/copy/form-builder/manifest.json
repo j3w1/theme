@@ -1,23 +1,23 @@
 {
   "schemaVersion": 1,
   "component": "form-builder",
-  "version": "2.0.0",
-  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/form-builder.md",
+  "version": "3.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v3.0.0/spec/components/form-builder.md",
   "dependencies": [
     "register/form-builder.js",
     "chunks/element-C1XeXVYC.js",
     "chunks/choice-Db_w_BOQ.js",
-    "chunks/form-builder-XtkXhEV0.js",
-    "chunks/form-builder-BcnZXjrt.js",
+    "chunks/form-builder-BzzJKKoh.js",
+    "chunks/form-builder-BAK5FiPp.js",
     "chunks/form-workflow-DMGni-Gs.js",
     "chunks/markup-DeQ4bEMR.js"
   ],
   "files": {
-    "runtime/register/form-builder.js": "sha256-dcAQy3IbmXYO9KBuQLXskCmq8HE4UcW8f2V5H8kqG+A=",
+    "runtime/register/form-builder.js": "sha256-2AE/pxObrbwScYBXaCLKmD0V6WjKdCPJ5GmUaqrF344=",
     "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
     "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-    "runtime/chunks/form-builder-XtkXhEV0.js": "sha256-lwlUBmCDKvuDqMUxqD2t7vudCxdFpNbOT8cx6nCtj/M=",
-    "runtime/chunks/form-builder-BcnZXjrt.js": "sha256-R+yLV6SjCTFbXE4uRLkxfBFHtPhO1LgGJvVW7B1R1gc=",
+    "runtime/chunks/form-builder-BzzJKKoh.js": "sha256-2VJ6rWErvXOPcoRebgvG6huLKMQEsRI5z4rgQg68va0=",
+    "runtime/chunks/form-builder-BAK5FiPp.js": "sha256-U5PyV4jQU2aMURPYWqHh/m65LLWMCm+ToFou1D3ww0o=",
     "runtime/chunks/form-workflow-DMGni-Gs.js": "sha256-g3g/Afxx3XsClDK4ZfvWQjZKprT6z7Qp1lULS48F0rY=",
     "runtime/chunks/markup-DeQ4bEMR.js": "sha256-Eyyx7MKBoqXK4i2HaVUQhKUM066L2wIggABt6jAdgas=",
     "tokens.css": "sha256-c/NmCkdHsOHiHx4q0evmxTKbpeLSU3Eoo2b0S7PYNzU=",
@@ -25,6 +25,6 @@
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-vq61pWv0xeMFu0tTsDtRWWpAr16AFefjpz5JTSyF440=",
     "index.html": "sha256-v74xLbiCzhGoMsKDM8vIO3nwDmWQJymihSOqXqvPlkk=",
-    "README.md": "sha256-o8OuWOz41VwKmUBT+3u9rRLJ1OcOEKl/Zk9A7K5URRo="
+    "README.md": "sha256-FMcfTRMs6DJXMOlygimzWK7z8rZ0tFFs0Y2rtwF6O04="
   }
 }

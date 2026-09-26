@@ -1,10 +1,10 @@
 {
   "id": "wizard",
   "name": "Wizard",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "tag": "j3w1-wizard",
-  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/wizard.md",
-  "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/forms.js",
+  "contract": "https://github.com/j3w1/theme/blob/v3.0.0/spec/components/wizard.md",
+  "source": "https://github.com/j3w1/theme/blob/v3.0.0/packages/ui/src/behaviors/forms.js",
   "imports": {
     "class": "@j3w1/ui/components/wizard",
     "register": "@j3w1/ui/register/wizard",
@@ -630,6 +630,6 @@
   "copy": {
     "directory": "copy/wizard/",
     "manifest": "copy/wizard/manifest.json",
-    "digest": "sha256-DpDmDm4tjTeeJW6uOZ7jfn2I68bkJigUQtnBcn+8x0o="
+    "digest": "sha256-dBdvEscxqkGWxSzgEafl1gkCg42kl6hqKcmLWrdv9hE="
   }
 }

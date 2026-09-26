@@ -3,8 +3,8 @@ import { a as switchControl } from "../chunks/native-CAzZmDKR.js";
 //#region .cache/ui-build/entries/components/switch.js
 var J3w1Switch = class extends J3w1Element {
 	static componentId = "switch";
-	static version = "2.0.0";
-	static implementationId = "sha256-VhN3FKCJs09dKYRfJ9SVfPbsIex8Y2LVeyzjRefBnTM=";
+	static version = "3.0.0";
+	static implementationId = "sha256-upmUGxE0sqO/AaviKMas2clnpcy41WYxPZnFeQrhXyo=";
 	static connect = switchControl;
 	static upgradeProperties = [
 		"disabled",

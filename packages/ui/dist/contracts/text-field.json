@@ -1,10 +1,10 @@
 {
   "id": "text-field",
   "name": "Text field",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "tag": "j3w1-text-field",
-  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/text-field.md",
-  "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/native.js",
+  "contract": "https://github.com/j3w1/theme/blob/v3.0.0/spec/components/text-field.md",
+  "source": "https://github.com/j3w1/theme/blob/v3.0.0/packages/ui/src/behaviors/native.js",
   "imports": {
     "class": "@j3w1/ui/components/text-field",
     "register": "@j3w1/ui/register/text-field",
@@ -536,6 +536,6 @@
   "copy": {
     "directory": "copy/text-field/",
     "manifest": "copy/text-field/manifest.json",
-    "digest": "sha256-eufbVjIGuJiV81XqBvdfvAbHQoWYT/5R3vtXEFIg7VI="
+    "digest": "sha256-sZ+fjg2x6GWgWfkvwANcFn9FU3Do/ML4l+mBcul3jg8="
   }
 }
