@@ -1,10 +1,10 @@
 {
   "id": "alert",
   "name": "Alert",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "tag": "j3w1-alert",
-  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/alert.md",
-  "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/overlays.js",
+  "contract": "https://github.com/j3w1/theme/blob/v3.0.0/spec/components/alert.md",
+  "source": "https://github.com/j3w1/theme/blob/v3.0.0/packages/ui/src/behaviors/overlays.js",
   "imports": {
     "class": "@j3w1/ui/components/alert",
     "register": "@j3w1/ui/register/alert",
@@ -445,6 +445,6 @@
   "copy": {
     "directory": "copy/alert/",
     "manifest": "copy/alert/manifest.json",
-    "digest": "sha256-LEeOe/9EBu+a8OF+V2wVuc8FwVbdjJ2AXq/sFiOQq2g="
+    "digest": "sha256-xyiceq9ljnsASBERzkYjg0sSAFy/FB+U2zTQbR6Muz4="
   }
 }

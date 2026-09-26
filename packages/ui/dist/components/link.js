@@ -3,8 +3,8 @@ import { n as content } from "../chunks/native-CAzZmDKR.js";
 //#region .cache/ui-build/entries/components/link.js
 var J3w1Link = class extends J3w1Element {
 	static componentId = "link";
-	static version = "2.0.0";
-	static implementationId = "sha256-EVvtovUUUjQvdQNtA8RrcKN6Ev7GQyRqwSZHUFhPz14=";
+	static version = "3.0.0";
+	static implementationId = "sha256-eu9xbYv9vRidcX2PL4hym2G/kD0ur3i7+YUjFpaE3Hs=";
 	static connect = content;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

@@ -1,10 +1,10 @@
 {
   "id": "menu",
   "name": "Menu",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "tag": "j3w1-menu",
-  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/menu.md",
-  "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/navigation.js",
+  "contract": "https://github.com/j3w1/theme/blob/v3.0.0/spec/components/menu.md",
+  "source": "https://github.com/j3w1/theme/blob/v3.0.0/packages/ui/src/behaviors/navigation.js",
   "imports": {
     "class": "@j3w1/ui/components/menu",
     "register": "@j3w1/ui/register/menu",
@@ -534,6 +534,6 @@
   "copy": {
     "directory": "copy/menu/",
     "manifest": "copy/menu/manifest.json",
-    "digest": "sha256-i9tqPhMmzBfrnJ85R4V8K6G16cWxUFeLsM5oRHE38v8="
+    "digest": "sha256-vee+AYnsyinN8Ew0Z90rI9t5+gBzAHjf27UvZPyXSzM="
   }
 }

@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "component": "avatar",
-  "version": "2.0.0",
-  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/avatar.md",
+  "version": "3.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v3.0.0/spec/components/avatar.md",
   "dependencies": [
     "register/avatar.js",
     "chunks/element-C1XeXVYC.js",
@@ -14,13 +14,13 @@
     "runtime/register/avatar.js": "sha256-5DYNLWi7ycaPY4mr7DXYNOCVEbo97Pnr3INC7MFexbM=",
     "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
     "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-    "runtime/components/avatar.js": "sha256-ogGu8Nq0B18VlJYBS5gKDFEI+FzQPS/sre4j78whAa4=",
+    "runtime/components/avatar.js": "sha256-rssXsMwc73tZuXAb+j2M6fvHha1h/WyncOV1mZw30uY=",
     "runtime/chunks/display-dj9YaBfn.js": "sha256-0Y8LcHvfDz2LLz+EWdO8Jr6pfwnXPw03N8x1UcM2pN8=",
     "tokens.css": "sha256-c/NmCkdHsOHiHx4q0evmxTKbpeLSU3Eoo2b0S7PYNzU=",
     "component.css": "sha256-XYCR7yVoWMnpJrQG4A+pL3xESyHR6OKMuwJfZGgDpKA=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-R1Q+6UFu76jOlVP9cadBrMxVS3+Yb2JgIDkcnKxWvtk=",
     "index.html": "sha256-6wIoUvdBP1c8DCQbO8yN3AbgSvI4jPyNvKs6IYYA/7o=",
-    "README.md": "sha256-HIQvIBnvmBmTkEexsqjPMWLvWGbBzIU8Fe9LrrbGssg="
+    "README.md": "sha256-pRNk8p+iDm5hcBnFimyGLzobiwErmPfCY8PyP7VEdO8="
   }
 }

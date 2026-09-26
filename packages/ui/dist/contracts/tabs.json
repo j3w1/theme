@@ -1,10 +1,10 @@
 {
   "id": "tabs",
   "name": "Tabs",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "tag": "j3w1-tabs",
-  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/tabs.md",
-  "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/navigation.js",
+  "contract": "https://github.com/j3w1/theme/blob/v3.0.0/spec/components/tabs.md",
+  "source": "https://github.com/j3w1/theme/blob/v3.0.0/packages/ui/src/behaviors/navigation.js",
   "imports": {
     "class": "@j3w1/ui/components/tabs",
     "register": "@j3w1/ui/register/tabs",
@@ -398,6 +398,6 @@
   "copy": {
     "directory": "copy/tabs/",
     "manifest": "copy/tabs/manifest.json",
-    "digest": "sha256-DePbA0nuR8z/fGwClIsLHr2IBQ5hF1EjZbkgBn+Gbc4="
+    "digest": "sha256-5YdV0qM4VeOFq1AWec5RDcPqPLZVxoP+VS9FXCtfmhU="
   }
 }

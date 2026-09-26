@@ -4,7 +4,7 @@ import { readFileSync } from "node:fs";
 import { mkdtempSync, mkdirSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { assertSampleFormat, buildChatgptPresets, chatgptRoles, readSamples } from "../scripts/lib/chatgpt-port.mjs";
+import { assertSampleFormat, buildChatgptPresets, chatgptPortProblems, chatgptRoles, readSamples } from "../scripts/lib/chatgpt-port.mjs";
 import { parseCodexTheme, chatgptPresetsSchema, codexThemeSampleSchema, CODEX_THEME_PREFIX } from "../schemas/chatgpt.mjs";
 
 const source = JSON.parse(readFileSync("ports/chatgpt/src/presets.json", "utf8"));
@@ -91,7 +91,7 @@ test("a recorded ChatGPT export with a different format stops generation; the sa
   changed.theme.foreground = changed.theme.ink;
   delete changed.theme.ink;
   const renamed = `# build: 1.2026.300\n# date: 2026-10-20\n${CODEX_THEME_PREFIX}${JSON.stringify(changed)}\n`;
-  assert.throws(() => readSamples(sampleDir(renamed)), "a sample the strict schema cannot read stops generation");
+  assert.throws(() => readSamples(sampleDir(renamed)), /test-build\.codex-theme\.txt: ChatGPT 1\.2026\.300 \(2026-10-20\) exports a theme format this port does not emit/);
   assert.throws(() => assertSampleFormat(same, [{ build: "x", date: "2026-10-20", payload: { ...same, extra: 1 } }]), /different theme format/);
   assert.throws(() => readSamples(sampleDir(`${CODEX_THEME_PREFIX}${JSON.stringify(same)}\n`)), /needs "# build:"/);
   assert.ok(codexThemeSampleSchema.safeParse({ ...same, theme: { ...same.theme, accent: "#E53935" } }).success);
@@ -106,4 +106,25 @@ test("a role of the wrong kind is refused, not emitted as nonsense", () => {
 test("two settings that share a role both stay mapped", () => {
   const shared = { ...source, shared: { ...source.shared, semanticColors: { ...source.shared.semanticColors, skill: source.shared.accent } } };
   assert.deepEqual(chatgptRoles(shared)[source.shared.accent], ["Accent", "theme.accent", "theme.semanticColors.skill"]);
+});
+
+test("a byte-order mark and a bad date in a sample are handled plainly (review r4b)", () => {
+  const same = parseCodexTheme(byId.signature.importString);
+  const line = `${CODEX_THEME_PREFIX}${JSON.stringify(same)}`;
+  assert.equal(readSamples(sampleDir(`\uFEFF# build: b1\n# date: 2026-09-26\n${line}\n`)).length, 1);
+  assert.throws(() => readSamples(sampleDir(`# build: b1\n# date: 26/09/2026\n${line}\n`)), /yyyy-mm-dd/);
+});
+
+test("a sample whose code theme id differs from the source stops generation (review r4b)", () => {
+  const same = parseCodexTheme(byId.signature.importString);
+  assert.throws(() => assertSampleFormat(same, [{ build: "b1", date: "2026-09-26", payload: { ...same, codeThemeId: "codex" } }]), /codeThemeId "codex"/);
+});
+
+test("the port leaves experimental or names a tested build only with a recorded export per build (review r4b)", () => {
+  const port = JSON.parse(readFileSync("ports/chatgpt/port.json", "utf8"));
+  const sample = { build: "1.2026.270", date: "2026-09-26" };
+  assert.deepEqual(chatgptPortProblems(port, []), []);
+  assert.equal(chatgptPortProblems({ ...port, status: "verified" }, []).length, 1);
+  assert.equal(chatgptPortProblems({ ...port, testedVersions: ["1.2026.270"] }, [sample]).length, 0);
+  assert.equal(chatgptPortProblems({ ...port, testedVersions: ["1.2026.300"] }, [sample]).length, 1);
 });

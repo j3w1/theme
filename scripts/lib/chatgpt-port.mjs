@@ -27,18 +27,28 @@ export const readSamples = (root = repoRoot) => {
   let names = [];
   try { names = readdirSync(path.join(root, SAMPLE_DIR)).filter((n) => n.endsWith(".codex-theme.txt")).sort(); } catch { return []; }
   return names.map((name) => {
-    const text = readFileSync(path.join(root, SAMPLE_DIR, name), "utf8");
+    const text = readFileSync(path.join(root, SAMPLE_DIR, name), "utf8").replace(/^\uFEFF/, "");
     const meta = Object.fromEntries([...text.matchAll(/^#\s*(build|date):\s*(.+)$/gm)].map((m) => [m[1], m[2].trim()]));
     const line = text.split("\n").find((l) => l.startsWith(CODEX_THEME_PREFIX));
     if (!meta.build || !meta.date || !line) throw new Error(`${SAMPLE_DIR}/${name}: needs "# build:", "# date:" and a ${CODEX_THEME_PREFIX} line`);
-    return { name, build: meta.build, date: meta.date, payload: parseCodexTheme(line.trim(), codexThemeSampleSchema) };
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(meta.date)) throw new Error(`${SAMPLE_DIR}/${name}: "# date:" must be yyyy-mm-dd`);
+    let payload;
+    try { payload = parseCodexTheme(line.trim(), codexThemeSampleSchema); } catch (error) {
+      throw new Error(`${SAMPLE_DIR}/${name}: ChatGPT ${meta.build} (${meta.date}) exports a theme format this port does not emit; update schemas/chatgpt.mjs and the emitter before publishing strings. ${error.issues ? error.issues.map((i) => `${i.path.join(".") || "(root)"}: ${i.message}`).join("; ") : error.message}`);
+    }
+    return { name, build: meta.build, date: meta.date, payload };
   }).sort((a, b) => (a.date === b.date ? a.name.localeCompare(b.name) : a.date.localeCompare(b.date)));
 };
 
-/* The emitted format must have the field set of the newest recorded sample. */
+/* Every recorded sample must match the current format (readSamples parses it
+   strictly); the emitted payload must also have the newest sample's field set
+   and code theme id. */
 export const assertSampleFormat = (payload, samples) => {
   const newest = samples.at(-1);
   if (!newest) return;
+  if (newest.payload.codeThemeId !== payload.codeThemeId) {
+    throw new Error(`ports/chatgpt: ChatGPT ${newest.build} (${newest.date}) exports codeThemeId "${newest.payload.codeThemeId}", but src/presets.json names "${payload.codeThemeId}"; set baseTheme.codeThemeId to the id ChatGPT uses`);
+  }
   const want = fieldSet(newest.payload);
   const got = fieldSet(payload);
   if (JSON.stringify(want) !== JSON.stringify(got)) {
@@ -138,3 +148,12 @@ export const chatgptReadmeBlock = (built) => built.presets.flatMap((p) => [
   "```",
   "",
 ]).join("\n").trimEnd();
+
+/* The port may leave experimental, or name a tested build, only with a
+   recorded export from each build it names. */
+export const chatgptPortProblems = (port, samples) => {
+  const problems = [];
+  if (!samples.length && (port.status !== "experimental" || port.testedVersions.length)) problems.push("the ChatGPT port stays experimental with no tested versions until a ChatGPT export is recorded in ports/chatgpt/evidence/");
+  for (const build of port.testedVersions) if (!samples.some((s) => s.build === build)) problems.push(`tested build ${build} has no recorded export in ports/chatgpt/evidence/`);
+  return problems;
+};

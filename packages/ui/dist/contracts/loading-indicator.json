@@ -1,10 +1,10 @@
 {
   "id": "loading-indicator",
   "name": "Loading indicator",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "tag": "j3w1-loading-indicator",
-  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/loading-indicator.md",
-  "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/native.js",
+  "contract": "https://github.com/j3w1/theme/blob/v3.0.0/spec/components/loading-indicator.md",
+  "source": "https://github.com/j3w1/theme/blob/v3.0.0/packages/ui/src/behaviors/native.js",
   "imports": {
     "class": "@j3w1/ui/components/loading-indicator",
     "register": "@j3w1/ui/register/loading-indicator",
@@ -286,6 +286,6 @@
   "copy": {
     "directory": "copy/loading-indicator/",
     "manifest": "copy/loading-indicator/manifest.json",
-    "digest": "sha256-4CypsQDD7pw565BsEJzb8wjuSqP9dAY+XZXgdIVf7jE="
+    "digest": "sha256-hFRS3e/VqY/1UmNcL0mDcBzdxosfjcLiwauzvZ62iE0="
   }
 }

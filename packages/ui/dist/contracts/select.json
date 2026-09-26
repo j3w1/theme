@@ -1,10 +1,10 @@
 {
   "id": "select",
   "name": "Select",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "tag": "j3w1-select",
-  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/select.md",
-  "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/native.js",
+  "contract": "https://github.com/j3w1/theme/blob/v3.0.0/spec/components/select.md",
+  "source": "https://github.com/j3w1/theme/blob/v3.0.0/packages/ui/src/behaviors/native.js",
   "imports": {
     "class": "@j3w1/ui/components/select",
     "register": "@j3w1/ui/register/select",
@@ -607,6 +607,6 @@
   "copy": {
     "directory": "copy/select/",
     "manifest": "copy/select/manifest.json",
-    "digest": "sha256-H7WQT0OkenWiWYC//YFBy/sB24k1ey9kKdQQ40+Qdlw="
+    "digest": "sha256-/EIcm74GJAvNCODJhtQZfFWvD3StoPiIxGU/tfYsvV0="
   }
 }

@@ -1,10 +1,10 @@
 {
   "id": "breadcrumbs",
   "name": "Breadcrumbs",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "tag": "j3w1-breadcrumbs",
-  "contract": "https://github.com/j3w1/theme/blob/v2.0.0/spec/components/breadcrumbs.md",
-  "source": "https://github.com/j3w1/theme/blob/v2.0.0/packages/ui/src/behaviors/navigation.js",
+  "contract": "https://github.com/j3w1/theme/blob/v3.0.0/spec/components/breadcrumbs.md",
+  "source": "https://github.com/j3w1/theme/blob/v3.0.0/packages/ui/src/behaviors/navigation.js",
   "imports": {
     "class": "@j3w1/ui/components/breadcrumbs",
     "register": "@j3w1/ui/register/breadcrumbs",
@@ -340,6 +340,6 @@
   "copy": {
     "directory": "copy/breadcrumbs/",
     "manifest": "copy/breadcrumbs/manifest.json",
-    "digest": "sha256-IfZkv/eNnZdG4MDN/BxGTHfskuxCYObKUVkfRa7Nlqc="
+    "digest": "sha256-lKNRiMgFCBWRgPJkmp0Yof3hA7/eHk1JTGUTWy1Y2jY="
   }
 }

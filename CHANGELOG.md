@@ -1,6 +1,12 @@
 # Changelog
 
-## [Unreleased]
+## [3.0.0] - 2026-09-26
+
+Major under the versioning rule: D-032 changes approved values (terminal slot
+6 and the prompt text) and removes `color.primitive.ansi-readable.6`.
+Consumers pinned to 2.x keep the old values until they upgrade. The terminal
+kit is replaced by one folder per app under `ports/`; its v2.0.0 installs
+restore with the new installers.
 
 - **ChatGPT port** (experimental). `ports/chatgpt/` sets the ChatGPT desktop
   app's Appearance to two presets: **j3w1 Signature** (bright rose

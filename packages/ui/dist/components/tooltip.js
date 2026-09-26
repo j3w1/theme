@@ -3,8 +3,8 @@ import { i as tooltip } from "../chunks/overlays-C6nlCHqg.js";
 //#region .cache/ui-build/entries/components/tooltip.js
 var J3w1Tooltip = class extends J3w1Element {
 	static componentId = "tooltip";
-	static version = "2.0.0";
-	static implementationId = "sha256-1JL2uQhG81N8rtHEl7yHLTbeP0We4HcUuvnu0rID9wc=";
+	static version = "3.0.0";
+	static implementationId = "sha256-JQwDC7AN8AN/E7KdPI/FaDmcPqJ1iwz+kihKFwxIoGs=";
 	static connect = tooltip;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

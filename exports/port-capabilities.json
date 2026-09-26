@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "theme": "j3w1-theme",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "sourcePolicy": "Relative paths refer to the same pinned revision as this digest-covered export. Historical references and private runs are not published ports.",
   "ports": [
     {
@@ -10,7 +10,7 @@
       "declaredStatus": "experimental",
       "format": "chatgpt-appearance",
       "integrationKind": "other",
-      "themeVersion": "2.0.0",
+      "themeVersion": "3.0.0",
       "themeRevision": "a07d7eea2e2fc2b1a531019c91a3ef46b1597764",
       "profile": "default",
       "targetVersions": [
@@ -25,7 +25,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-1SpJemEpx83jYC8JjyG1yl7rbxTr233a+qozlsA5x+Q=",
+      "subjectDigest": "sha256-MC7LvzxkCcwAONCE7M+AzLo0OJGdd5QDXJW7KmizoL8=",
       "evidencePath": null,
       "surfaces": {
         "appearance-settings": {
@@ -78,7 +78,7 @@
           "path": "dist/presets.json",
           "install": "Open ChatGPT > Settings > Appearance > Dark theme > Import and paste a preset's import string, or set the values in the preset's table by hand (see ports/chatgpt/README.md).",
           "source": "ports/chatgpt/dist/presets.json",
-          "digest": "sha256-Gyl7HNak9AwQS2DF3t2FsjsN2c+ucQPXhkgg5actBh4="
+          "digest": "sha256-mwTRi8PSTmaPqX9UJKGYZ0L4gIovyNh4fiPYNMwAUFk="
         }
       ],
       "rollback": "In ChatGPT: Settings > Appearance, import the theme copied before, or choose another theme and set back each row of the preset table that was changed. Nothing is installed on disk.",
@@ -5312,7 +5312,7 @@
       "declaredStatus": "experimental",
       "format": "claude-theme-json",
       "integrationKind": "other",
-      "themeVersion": "2.0.0",
+      "themeVersion": "3.0.0",
       "themeRevision": "8dc6f387613411c239811e47ebde53a768c286bc",
       "profile": "default",
       "targetVersions": [
@@ -5330,7 +5330,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-WTXl1BDHSEzTsFQcfoWV/G9VwVMZSiNtjCQiVHbXK8U=",
+      "subjectDigest": "sha256-lqBjL4hI0GiDZIKbENicM99Ms6l7AbpyOYD/rlTeYc0=",
       "evidencePath": null,
       "surfaces": {
         "theme-roles": {
@@ -10670,7 +10670,7 @@
       "declaredStatus": "experimental",
       "format": "codex-tmtheme",
       "integrationKind": "other",
-      "themeVersion": "2.0.0",
+      "themeVersion": "3.0.0",
       "themeRevision": "8dc6f387613411c239811e47ebde53a768c286bc",
       "profile": "default",
       "targetVersions": [
@@ -10686,7 +10686,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-nJ5sYrknv7IIUCOx6QSE+NKLhq/y8Ph09RQ9PnnLJmc=",
+      "subjectDigest": "sha256-FcuAl9hNXBa7YcXFMDEj4zEYYuWI1+IMYq3iuumGRt4=",
       "evidencePath": null,
       "surfaces": {
         "theme-scopes": {
@@ -10719,7 +10719,7 @@
           "path": "dist/j3w1.tmTheme",
           "install": "Save as ~/.codex/themes/j3w1.tmTheme and set theme = \"j3w1\" under [tui] in ~/.codex/config.toml; or run node ports/codex/install.mjs apply in a clone of this repository (see its README).",
           "source": "ports/codex/dist/j3w1.tmTheme",
-          "digest": "sha256-r33wyyljn5aYQI2U96Bl0QWDmTOKVkpAVW0m9GOJark="
+          "digest": "sha256-x0W7K/ePp862cf7063JhyR89yShkrde0xp0Ki0H7YtA="
         }
       ],
       "rollback": "Run node ports/codex/install.mjs restore in the same clone. By hand: set theme under [tui] in ~/.codex/config.toml back to your previous theme (or remove the line) and delete ~/.codex/themes/j3w1.tmTheme.",
@@ -15976,7 +15976,7 @@
       "declaredStatus": "experimental",
       "format": "ghostty-config",
       "integrationKind": "terminal-16",
-      "themeVersion": "2.0.0",
+      "themeVersion": "3.0.0",
       "themeRevision": "7b045d1a7bc32fddc7c9946e7084ffe74f62b5b5",
       "profile": "default",
       "targetVersions": [
@@ -15991,7 +15991,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-sRq8bar0t1/+KkfpzK714tTYfgsvU3OtKVHKquFNCjw=",
+      "subjectDigest": "sha256-By9eaxGgRJb1aVRs4xBCpOVW/isNhteIV5oNqB6ttaE=",
       "evidencePath": null,
       "surfaces": {
         "terminal-colours": {
@@ -16024,7 +16024,7 @@
           "path": "dist/j3w1",
           "install": "Save as ~/.config/ghostty/themes/j3w1 and add `theme = j3w1` to your Ghostty config.",
           "source": "ports/ghostty/dist/j3w1",
-          "digest": "sha256-p49zvKhy01TcWOMF3NQIrFNpvICdHoqBu6PT1j77r9s="
+          "digest": "sha256-42FkgBK+fKSvpKzFAbxkzolyIDB6oUvIz6n9EoWy6oQ="
         }
       ],
       "rollback": "Remove the `theme = j3w1` line (or point it at your previous theme) and delete ~/.config/ghostty/themes/j3w1.",
@@ -21281,7 +21281,7 @@
       "declaredStatus": "experimental",
       "format": "ghostty-config",
       "integrationKind": "terminal-16",
-      "themeVersion": "2.0.0",
+      "themeVersion": "3.0.0",
       "themeRevision": "7b045d1a7bc32fddc7c9946e7084ffe74f62b5b5",
       "profile": "default",
       "targetVersions": [
@@ -21297,7 +21297,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-Ap26rdJrrGO54WrCFh2kgse1c2MMSXeK8NVbhsPuTIA=",
+      "subjectDigest": "sha256-qmOqGk+obAqjLz/HBYiBBHdvcsYM218AzC9bVICC7L8=",
       "evidencePath": null,
       "surfaces": {
         "terminal-colours": {
@@ -21334,7 +21334,7 @@
           "path": "dist/config.ghostty",
           "install": "Save as %APPDATA%\\ghostty\\config.ghostty (Windows) or ~/.config/ghostty/config.ghostty, then Orca → Settings → Terminal → Import from Ghostty → Apply Changes.",
           "source": "ports/orca/dist/config.ghostty",
-          "digest": "sha256-BKTQK1Qo4CBC7DKkL1EUYZC2a6DH8l3g4FoMGaPZQiw="
+          "digest": "sha256-DQy8U+tz1h9IX6qC8Iq+dJOHyyVmXdN3qQDjfLt8GNM="
         }
       ],
       "rollback": "In Orca, open Settings → Terminal and choose \"Reset all color overrides\"; set the font family, font size and divider colours back to your previous values. Remove or rename %APPDATA%\\ghostty\\config.ghostty so a later Ghostty import does not re-apply it.",
@@ -26595,7 +26595,7 @@
       "declaredStatus": "experimental",
       "format": "warp-yaml",
       "integrationKind": "terminal-16",
-      "themeVersion": "2.0.0",
+      "themeVersion": "3.0.0",
       "themeRevision": "7b045d1a7bc32fddc7c9946e7084ffe74f62b5b5",
       "profile": "default",
       "targetVersions": [
@@ -26611,7 +26611,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-DNLnytVNYXIkK6IzMohzgo57Pm85RFrYpmVHqc50YDo=",
+      "subjectDigest": "sha256-l3Dnpj1l0JYfrC82tesBydUkZAs8ryRNQi0wlHRXLT0=",
       "evidencePath": null,
       "surfaces": {
         "terminal-colours": {
@@ -26644,7 +26644,7 @@
           "path": "dist/j3w1.yaml",
           "install": "Orca → Settings → Terminal Themes → Import from YAML (or save into %APPDATA%\\warp\\Warp\\data\\themes\\ and use Import from Warp), then select \"j3w1 theme\" as the Dark Theme. Warp: save into its themes folder.",
           "source": "ports/warp/dist/j3w1.yaml",
-          "digest": "sha256-gUlrWbiR89aRLfpaX/GQvZQO5Y6KEjZXPDpVSzO2xE0="
+          "digest": "sha256-meR31BbBv4/Sg2eekyB8tQ558Hj/ZPntS0GjC1hjgkk="
         }
       ],
       "rollback": "Orca: select your previous Dark Theme in Settings → Terminal Themes and remove the imported \"j3w1 theme\". Warp: select another theme and delete j3w1.yaml from its themes folder.",
