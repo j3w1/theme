@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — terminal
-theme: j3w1-theme 2.0.0  profile: default  sourceDigest: sha256-aApQGxBV0khlG+5VQ1uCqrGOjaJjBFmo/zdTO5b4y84=
+theme: j3w1-theme 2.0.0  profile: default  sourceDigest: sha256-oio9XU33uxl62Ta24Gn1knvBGZOnKgBkpD7VISOr1zc=
 pin: https://raw.githubusercontent.com/j3w1/theme/v2.0.0/exports/components/terminal.json
 spec: spec/components/terminal.md  site: https://j3w1.github.io/theme/reference/#c-terminal
 maturity: stable  priority: R1
@@ -17,8 +17,8 @@ Tokens (resolved):
   selection.bg        #911410  ({color.terminal.selection-bg})  use
   selection.text      #f4eeee  ({color.terminal.selection-text})  use
   current.bg          #1c0a09  ({color.code.current-line})  use
-  prompt.bg           #e53131  ({color.terminal.ansi.4})  use
-  prompt.text         #0c0909  ({color.terminal.prompt-text})  use
+  prompt.bg           #8c1212  ({color.terminal.prompt-bg})  use
+  prompt.text         #ffa2a7  ({color.terminal.prompt-text})  use
   prompt.branch-bg    #d4868b  ({color.terminal.ansi.3})  use
   prompt.branch-text  #0c0909  ({color.terminal.bg})  use
   dim.text            #bd787d  ({color.text.muted})  use
@@ -32,7 +32,7 @@ Tokens (resolved):
   slot.ansi-3         #d4868b  ({color.terminal.ansi.3})  use
   slot.ansi-4         #e53131  ({color.terminal.ansi.4})  use
   slot.ansi-5         #f73f35  ({color.terminal.ansi.5})  use
-  slot.ansi-6         #bb696c  ({color.terminal.ansi.6})  use
+  slot.ansi-6         #ff7a66  ({color.terminal.ansi.6})  use
   slot.ansi-7         #ffa2a7  ({color.terminal.ansi.7})  use
   slot.ansi-8         #b71c17  ({color.terminal.ansi.8})  use
   slot.ansi-9         #ea3833  ({color.terminal.ansi.9})  use

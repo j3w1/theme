@@ -43,6 +43,7 @@ in its `$extensions["io.github.j3w1.theme"].approval.decision`. Agents may open
 | D-029 | Readable terminal and code reds | accepted | 2026-09-26 | owner (explicit selection of values and release in planning) |
 | D-030 | Hued syntax roles for opt-in code highlighting | accepted | 2026-09-26 | owner (explicit request for a more colourful Codex, selection of the extended hues) |
 | D-031 | Select the checks a change needs; shard the deployment matrix | accepted | 2026-09-26 | owner (explicit CI renovation request, plan approval) |
+| D-032 | Coral slot 6 and a fixed prompt background | accepted | 2026-09-26 | owner (explicit selection of coral and the PowerShell prompt look) |
 
 ## D-000 Responsibility split
 
@@ -746,6 +747,12 @@ the terminal background in the default profile (4.55:1 on the brighter slot 4),
 and the historical light selection text in `heritage-ansi`, so each profile's
 prompt stays readable.
 
+Superseded in part by D-032: slot 6 is coral `#ff7a66` rather than the lift
+`#bb696c`, and the prompt's path segment has its own background,
+`color.terminal.prompt-bg` (the heritage `#8c1212`), with bright rose
+`#ffa2a7` text in the default profile. The other nine lifted slots, the syntax
+reds and `heritage-ansi` are unchanged.
+
 **Alternatives.** Keep the heritage slots and document the failures, as before;
 rejected by the owner as unreadable. Adopt the `extended` semantic palette;
 rejected, the owner keeps the red and rose families. A gentle lift that left
@@ -845,3 +852,47 @@ on it. Reusing pull-request evidence on `main`; not possible today because the
 build stamps the commit into every page, so a pull-request build never equals
 the `main` build. Playwright's internal shard weights; rejected because they are
 not a public option.
+
+## D-032 Coral slot 6 and a fixed prompt background
+
+Status: accepted · 2026-09-26. The owner saw two problems in real use and chose
+the values.
+
+**Context.** After D-029, two things still read badly:
+
+- Claude Code highlights fenced code with fixed ANSI slots. PowerShell cmdlets
+  such as `Invoke-RestMethod` take slot 6, whose lifted `#bb696c` has almost
+  the same hue as the rose text `#e99499`. Type names such as `[scriptblock]`
+  take slot 6 dimmed, at 2.07:1.
+- The Agnoster prompt draws its directory segment on slot 4. D-029 made slot 4
+  bright red `#e53131`, so the prompt's light text fell to 2.28:1 in Orca. In
+  the owner's PowerShell, where the old palette still applies, the prompt is
+  bright rose `#ffa2a7` on the heritage `#8c1212` (4.97:1), the look to keep.
+
+**Decision.**
+
+- Slot 6 is coral `#ff7a66` (`color.primitive.coral.700`, 7.77:1 on the
+  terminal background). It is warm and vivid, so highlighted names stand apart
+  from the rose text without taking amber's role in the code hues.
+- Dim text is not fixed in the slots. Emulators draw dim by halving a colour,
+  so dimmed coral is about 2.7:1; a host setting that changes dim text alone
+  may help, and brightening slot 6 further to make up for dimming is ruled out.
+- A new role, `color.terminal.prompt-bg`, is the prompt's path-segment
+  background: the heritage `#8c1212` (`color.primitive.ansi.4`) in every
+  profile. `color.terminal.prompt-text` is bright rose `#ffa2a7` in the default
+  profile (4.97:1) and stays `#f4eeee` in `heritage-ansi` (8.28:1). A prompt
+  sets both as 24-bit colours, so it keeps its look whatever the slots carry.
+- The terminal palette itself is the same in every host that sets it: Orca,
+  Ghostty, Warp and CE Devbox's shell palette. The prompt is the one deliberate
+  heritage-style exception.
+
+**Alternatives.** Peach `#ffab91`, blush `#ffc2c5` and amber `#e0a84a` for
+slot 6; the owner chose coral. Dark text on the bright slot 4 for the prompt,
+as D-029 first proposed; rejected by the owner after seeing it. Keeping the
+heritage palette in SSH shells; rejected, the palette should match across
+hosts.
+
+**Consequences.** Terminal ports regenerate with the new slot 6. CE Devbox sets
+Agnoster's directory and virtualenv segments to the two prompt roles in its own
+repository. `heritage-ansi` values are unchanged; it gains `prompt-bg` with its
+existing slot-4 value.

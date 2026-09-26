@@ -331,6 +331,15 @@
           }
         }
       },
+      "prompt-bg": {
+        "$value": "{color.primitive.ansi.4}",
+        "$description": "The heritage slot 4 behind the prompt's path segment, as the workstation drew it.",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "heritage"
+          }
+        }
+      },
       "prompt-text": {
         "$value": "{color.primitive.paper.90}",
         "$description": "Light prompt text on the heritage slot 4, as the workstation drew it.",

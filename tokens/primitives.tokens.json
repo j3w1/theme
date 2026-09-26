@@ -919,6 +919,35 @@
         },
         "$description": "Desaturated rose: the text family."
       },
+      "coral": {
+        "700": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1.0,
+              0.4784,
+              0.4
+            ],
+            "alpha": 1,
+            "hex": "#ff7a66"
+          },
+          "$description": "D-032 coral for terminal slot 6: warm and vivid so highlighted names stand apart from the rose text (7.77:1 on the terminal background).",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "origin": {
+                "kind": "derived",
+                "ref": "spec/decisions.md#d-032",
+                "note": "Chosen by the owner for slot 6; hue 8, full saturation, lightness 70."
+              },
+              "approval": {
+                "decision": "D-032"
+              },
+              "textSafe": "raised"
+            }
+          }
+        }
+      },
       "paper": {
         "90": {
           "$value": {
@@ -1442,33 +1471,6 @@
                 "decision": "D-029"
               },
               "textSafe": "canvas"
-            }
-          }
-        },
-        "6": {
-          "$value": {
-            "colorSpace": "srgb",
-            "components": [
-              0.7333,
-              0.4118,
-              0.4235
-            ],
-            "alpha": 1,
-            "hex": "#bb696c"
-          },
-          "$description": "Heritage slot 6 (#9e474a, 3.26:1) lifted to 5.05:1 on the terminal background.",
-          "$extensions": {
-            "io.github.j3w1.theme": {
-              "status": "approved",
-              "origin": {
-                "kind": "derived",
-                "ref": "spec/decisions.md#d-029",
-                "note": "HSL lightness lift of color.primitive.ansi.6; hue and saturation kept."
-              },
-              "approval": {
-                "decision": "D-029"
-              },
-              "textSafe": "raised"
             }
           }
         },

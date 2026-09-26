@@ -709,7 +709,7 @@
       "surface": "outside-terminal",
       "reason": "Primitive; ports consume roles, never primitives."
     },
-    "color.primitive.ansi-readable.6": {
+    "color.primitive.coral.700": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
       "reason": "Primitive; ports consume roles, never primitives."
@@ -1313,6 +1313,11 @@
       "state": "mapped",
       "surface": "terminal-colours",
       "reason": "Written to the file's foreground key."
+    },
+    "color.terminal.prompt-bg": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "The prompt chooses its own segment colours; a terminal theme carries the palette only."
     },
     "color.terminal.prompt-text": {
       "state": "out-of-scope",

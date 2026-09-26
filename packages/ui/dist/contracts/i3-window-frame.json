@@ -199,6 +199,7 @@
       "color.terminal.bg",
       "color.terminal.cursor",
       "color.terminal.fg",
+      "color.terminal.prompt-bg",
       "color.terminal.prompt-text",
       "color.terminal.selection-bg",
       "color.terminal.selection-text",
@@ -295,15 +296,16 @@
       "color.primitive.ansi-readable.14",
       "color.primitive.ansi-readable.15",
       "color.primitive.ansi-readable.4",
-      "color.primitive.ansi-readable.6",
       "color.primitive.ansi-readable.8",
       "color.primitive.ansi-readable.9",
       "color.primitive.ansi.0",
       "color.primitive.ansi.11",
       "color.primitive.ansi.2",
       "color.primitive.ansi.3",
+      "color.primitive.ansi.4",
       "color.primitive.ansi.5",
       "color.primitive.ansi.7",
+      "color.primitive.coral.700",
       "color.primitive.ink.0",
       "color.primitive.ink.14",
       "color.primitive.ink.20",
@@ -313,6 +315,7 @@
       "color.primitive.paper.90",
       "color.primitive.red.100",
       "color.primitive.red.200",
+      "color.primitive.red.250",
       "color.primitive.red.350",
       "color.primitive.red.400",
       "color.primitive.red.50",
@@ -352,6 +355,7 @@
       "color.terminal.bg",
       "color.terminal.cursor",
       "color.terminal.fg",
+      "color.terminal.prompt-bg",
       "color.terminal.prompt-text",
       "color.terminal.selection-bg",
       "color.terminal.selection-text",
@@ -742,6 +746,11 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "color.terminal.prompt-bg": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "color.terminal.prompt-text": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -953,6 +962,6 @@
   "copy": {
     "directory": "copy/i3-window-frame/",
     "manifest": "copy/i3-window-frame/manifest.json",
-    "digest": "sha256-KKl+cQvMh1M+RqRVJ7c3/wDxfVnKYUU7LKK9u6iFhIA="
+    "digest": "sha256-Hz2HdlGkBbiBXQ4ZAZwezvlJo4qykN7GDjS7QJeGsOE="
   }
 }

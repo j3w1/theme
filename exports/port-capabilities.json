@@ -25,7 +25,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-uxhqmRxslqV0VOvCmkTZ9lLKvbufNSGMQCTFZtp/lW4=",
+      "subjectDigest": "sha256-mJot7pkjXeDb1kfFaTTZoFMSM8x09a0XDwMoCrNh8CY=",
       "evidencePath": null,
       "surfaces": {
         "terminal-colours": {
@@ -58,7 +58,7 @@
           "path": "dist/j3w1",
           "install": "Save as ~/.config/ghostty/themes/j3w1 and add `theme = j3w1` to your Ghostty config.",
           "source": "ports/ghostty/dist/j3w1",
-          "digest": "sha256-X8W1IOgdCb4EncxKrgfkho06Ekla6dFk6L20CLzvkMQ="
+          "digest": "sha256-p49zvKhy01TcWOMF3NQIrFNpvICdHoqBu6PT1j77r9s="
         }
       ],
       "rollback": "Remove the `theme = j3w1` line (or point it at your previous theme) and delete ~/.config/ghostty/themes/j3w1.",
@@ -2113,21 +2113,6 @@
           "spec": "spec/portability.md"
         },
         {
-          "role": "color.primitive.ansi-readable.6",
-          "nativeKeys": [],
-          "value": "#bb696c",
-          "eligibility": {
-            "action": "blocked",
-            "reason": "Inspection only: consume semantic roles, not primitives.",
-            "decisionIds": []
-          },
-          "state": "out-of-scope",
-          "surface": "outside-terminal",
-          "reason": "Primitive; ports consume roles, never primitives.",
-          "source": "ports/ghostty/mapping.json",
-          "spec": "spec/portability.md"
-        },
-        {
           "role": "color.primitive.ansi-readable.8",
           "nativeKeys": [],
           "value": "#b71c17",
@@ -2431,6 +2416,21 @@
           "role": "color.primitive.blue.tint",
           "nativeKeys": [],
           "value": "#0f141c",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.coral.700",
+          "nativeKeys": [],
+          "value": "#ff7a66",
           "eligibility": {
             "action": "blocked",
             "reason": "Inspection only: consume semantic roles, not primitives.",
@@ -3853,7 +3853,7 @@
           "nativeKeys": [
             "palette[6]"
           ],
-          "value": "#bb696c",
+          "value": "#ff7a66",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -3969,9 +3969,24 @@
           "spec": "spec/portability.md"
         },
         {
+          "role": "color.terminal.prompt-bg",
+          "nativeKeys": [],
+          "value": "#8c1212",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "The prompt chooses its own segment colours; a terminal theme carries the palette only.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
           "role": "color.terminal.prompt-text",
           "nativeKeys": [],
-          "value": "#0c0909",
+          "value": "#ffa2a7",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -5316,7 +5331,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-SD80qKSkSsxPkK6EiN6FCrj8+ANbCDATTJV0wRvQrmU=",
+      "subjectDigest": "sha256-k917keHIcBhjUy8i0qWPqlroDd5LN9IGoQHTBbNv3W8=",
       "evidencePath": null,
       "surfaces": {
         "terminal-colours": {
@@ -5353,7 +5368,7 @@
           "path": "dist/config.ghostty",
           "install": "Save as %APPDATA%\\ghostty\\config.ghostty (Windows) or ~/.config/ghostty/config.ghostty, then Orca → Settings → Terminal → Import from Ghostty → Apply Changes.",
           "source": "ports/orca/dist/config.ghostty",
-          "digest": "sha256-CvRawvus2IfjJ1HO2TQNDRzAdJG7aM+PoWQDdXUo4ng="
+          "digest": "sha256-BKTQK1Qo4CBC7DKkL1EUYZC2a6DH8l3g4FoMGaPZQiw="
         }
       ],
       "rollback": "In Orca, open Settings → Terminal and choose \"Reset all color overrides\"; set the font family, font size and divider colours back to your previous values. Remove or rename %APPDATA%\\ghostty\\config.ghostty so a later Ghostty import does not re-apply it.",
@@ -7408,21 +7423,6 @@
           "spec": "spec/portability.md"
         },
         {
-          "role": "color.primitive.ansi-readable.6",
-          "nativeKeys": [],
-          "value": "#bb696c",
-          "eligibility": {
-            "action": "blocked",
-            "reason": "Inspection only: consume semantic roles, not primitives.",
-            "decisionIds": []
-          },
-          "state": "out-of-scope",
-          "surface": "outside-terminal",
-          "reason": "Primitive; ports consume roles, never primitives.",
-          "source": "ports/orca/mapping.json",
-          "spec": "spec/portability.md"
-        },
-        {
           "role": "color.primitive.ansi-readable.8",
           "nativeKeys": [],
           "value": "#b71c17",
@@ -7726,6 +7726,21 @@
           "role": "color.primitive.blue.tint",
           "nativeKeys": [],
           "value": "#0f141c",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.coral.700",
+          "nativeKeys": [],
+          "value": "#ff7a66",
           "eligibility": {
             "action": "blocked",
             "reason": "Inspection only: consume semantic roles, not primitives.",
@@ -9148,7 +9163,7 @@
           "nativeKeys": [
             "palette[6]"
           ],
-          "value": "#bb696c",
+          "value": "#ff7a66",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -9264,9 +9279,24 @@
           "spec": "spec/portability.md"
         },
         {
+          "role": "color.terminal.prompt-bg",
+          "nativeKeys": [],
+          "value": "#8c1212",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "The prompt chooses its own segment colours; a terminal theme carries the palette only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
           "role": "color.terminal.prompt-text",
           "nativeKeys": [],
-          "value": "#0c0909",
+          "value": "#ffa2a7",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -10615,7 +10645,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-oR45DNyInYUeneUS4TmmizsRotaGFtaFuTSTtsXhlSU=",
+      "subjectDigest": "sha256-PJ19elI2buHoFpmbzQUJI472mUydfPq0SbRFA/eEFnE=",
       "evidencePath": null,
       "surfaces": {
         "terminal-colours": {
@@ -10648,7 +10678,7 @@
           "path": "dist/j3w1.yaml",
           "install": "Orca → Settings → Terminal Themes → Import from YAML (or save into %APPDATA%\\warp\\Warp\\data\\themes\\ and use Import from Warp), then select \"j3w1 theme\" as the Dark Theme. Warp: save into its themes folder.",
           "source": "ports/warp/dist/j3w1.yaml",
-          "digest": "sha256-yYYwNdzXsPCjREP6sO15KIGGpSs6ODFAI1mgvQ+N7bQ="
+          "digest": "sha256-gUlrWbiR89aRLfpaX/GQvZQO5Y6KEjZXPDpVSzO2xE0="
         }
       ],
       "rollback": "Orca: select your previous Dark Theme in Settings → Terminal Themes and remove the imported \"j3w1 theme\". Warp: select another theme and delete j3w1.yaml from its themes folder.",
@@ -12701,21 +12731,6 @@
           "spec": "spec/portability.md"
         },
         {
-          "role": "color.primitive.ansi-readable.6",
-          "nativeKeys": [],
-          "value": "#bb696c",
-          "eligibility": {
-            "action": "blocked",
-            "reason": "Inspection only: consume semantic roles, not primitives.",
-            "decisionIds": []
-          },
-          "state": "out-of-scope",
-          "surface": "outside-terminal",
-          "reason": "Primitive; ports consume roles, never primitives.",
-          "source": "ports/warp/mapping.json",
-          "spec": "spec/portability.md"
-        },
-        {
           "role": "color.primitive.ansi-readable.8",
           "nativeKeys": [],
           "value": "#b71c17",
@@ -13019,6 +13034,21 @@
           "role": "color.primitive.blue.tint",
           "nativeKeys": [],
           "value": "#0f141c",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.coral.700",
+          "nativeKeys": [],
+          "value": "#ff7a66",
           "eligibility": {
             "action": "blocked",
             "reason": "Inspection only: consume semantic roles, not primitives.",
@@ -14441,7 +14471,7 @@
           "nativeKeys": [
             "terminal_colors.normal.cyan"
           ],
-          "value": "#bb696c",
+          "value": "#ff7a66",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -14556,9 +14586,24 @@
           "spec": "spec/portability.md"
         },
         {
+          "role": "color.terminal.prompt-bg",
+          "nativeKeys": [],
+          "value": "#8c1212",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "The prompt chooses its own segment colours; a terminal theme carries the palette only.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
           "role": "color.terminal.prompt-text",
           "nativeKeys": [],
-          "value": "#0c0909",
+          "value": "#ffa2a7",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",

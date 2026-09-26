@@ -41,6 +41,7 @@
   --color-primitive-rose-650: #d4868b;
   --color-primitive-rose-700: #e99499;
   --color-primitive-rose-800: #ffa2a7;
+  --color-primitive-coral-700: #ff7a66;
   --color-primitive-paper-90: #f4eeee;
   --color-primitive-paper-100: #f9faf9;
   --color-primitive-amber-500: #c9973f;
@@ -75,7 +76,6 @@
   --color-primitive-ansi-15: #a3676b;
   --color-primitive-ansi-readable-1: #e84b4b;
   --color-primitive-ansi-readable-4: #e53131;
-  --color-primitive-ansi-readable-6: #bb696c;
   --color-primitive-ansi-readable-8: #b71c17;
   --color-primitive-ansi-readable-9: #ea3833;
   --color-primitive-ansi-readable-10: #dc4f49;
@@ -248,14 +248,15 @@
   --color-terminal-cursor: #e99499;
   --color-terminal-selection-bg: #911410;
   --color-terminal-selection-text: #f4eeee;
-  --color-terminal-prompt-text: #0c0909;
+  --color-terminal-prompt-bg: #8c1212;
+  --color-terminal-prompt-text: #ffa2a7;
   --color-terminal-ansi-0: #0c0909;
   --color-terminal-ansi-1: #e84b4b;
   --color-terminal-ansi-2: #bd787d;
   --color-terminal-ansi-3: #d4868b;
   --color-terminal-ansi-4: #e53131;
   --color-terminal-ansi-5: #f73f35;
-  --color-terminal-ansi-6: #bb696c;
+  --color-terminal-ansi-6: #ff7a66;
   --color-terminal-ansi-7: #ffa2a7;
   --color-terminal-ansi-8: #b71c17;
   --color-terminal-ansi-9: #ea3833;
