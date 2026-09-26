@@ -1206,14 +1206,26 @@
         "$value": "{color.primitive.paper.90}",
         "$description": "Terminal selection text."
       },
-      "prompt-text": {
-        "$value": "{color.primitive.ink.20}",
-        "$description": "Text on the prompt's path segment (slot 4): dark on the readable heritage slot 4 (D-029).",
+      "prompt-bg": {
+        "$value": "{color.primitive.ansi.4}",
+        "$description": "Background of the prompt's path segment: the heritage dark red, so the prompt keeps its look whatever slot 4 carries (D-032).",
         "$extensions": {
           "io.github.j3w1.theme": {
             "status": "approved",
             "approval": {
-              "decision": "D-029"
+              "decision": "D-032"
+            }
+          }
+        }
+      },
+      "prompt-text": {
+        "$value": "{color.primitive.rose.800}",
+        "$description": "Text on the prompt's path segment: bright rose on the prompt background (D-032).",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "approved",
+            "approval": {
+              "decision": "D-032"
             }
           }
         }
@@ -1260,13 +1272,13 @@
           "$description": "ANSI slot 5, exact heritage value."
         },
         "6": {
-          "$value": "{color.primitive.ansi-readable.6}",
-          "$description": "ANSI slot 6, readable heritage (D-029); the heritage-ansi profile keeps the exact value.",
+          "$value": "{color.primitive.coral.700}",
+          "$description": "ANSI slot 6, coral (D-032); the heritage-ansi profile keeps the exact value.",
           "$extensions": {
             "io.github.j3w1.theme": {
               "status": "approved",
               "approval": {
-                "decision": "D-029"
+                "decision": "D-032"
               }
             }
           }

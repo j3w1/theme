@@ -36,13 +36,13 @@
 
 /* the agnoster-style prompt: two filled segments, each ending in its own arrow */
 .terminal-prompt-path {
-  background: var(--color-terminal-ansi-4);
+  background: var(--color-terminal-prompt-bg);
   color: var(--color-terminal-prompt-text);
 }
 
 .terminal-prompt-arrow-path {
   background: var(--color-terminal-ansi-3);
-  color: var(--color-terminal-ansi-4);
+  color: var(--color-terminal-prompt-bg);
 }
 
 .terminal-prompt-branch {
@@ -54,7 +54,7 @@
   color: var(--color-terminal-ansi-3);
 }
 
-/* the sixteen slots of the active profile: readable heritage in default (D-029), exact in heritage-ansi */
+/* the sixteen slots of the active profile: readable heritage in default (D-029; slot 6 coral, D-032), exact in heritage-ansi */
 .terminal-fg-0 { color: var(--color-terminal-ansi-0); }
 .terminal-fg-1 { color: var(--color-terminal-ansi-1); }
 .terminal-fg-2 { color: var(--color-terminal-ansi-2); }

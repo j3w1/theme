@@ -1,10 +1,10 @@
 j3w1/theme implementation brief — terminal
-theme: j3w1-theme 2.0.0  profile: default  sourceDigest: sha256-aApQGxBV0khlG+5VQ1uCqrGOjaJjBFmo/zdTO5b4y84=
+theme: j3w1-theme 2.0.0  profile: default  sourceDigest: sha256-OzaSZVBlsd0Uv4PiP+22q1ylFn09rIiH2YGvsjO/qbI=
 pin: https://raw.githubusercontent.com/j3w1/theme/v2.0.0/exports/components/terminal.json
 spec: spec/components/terminal.md  site: https://j3w1.github.io/theme/reference/#c-terminal
 maturity: stable  priority: R1
 
-Summary: Terminal text on the terminal surface with the readable heritage sixteen ANSI slots (D-029), the cursor, the selection and the six text attributes; a transcript, the slot grid and the attributes.
+Summary: Terminal text with the readable heritage sixteen ANSI slots (D-029, D-032), the cursor, the selection and the six text attributes; a transcript, the slot grid and the attributes.
 
 Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
@@ -17,8 +17,8 @@ Tokens (resolved):
   selection.bg        #911410  ({color.terminal.selection-bg})  use
   selection.text      #f4eeee  ({color.terminal.selection-text})  use
   current.bg          #1c0a09  ({color.code.current-line})  use
-  prompt.bg           #e53131  ({color.terminal.ansi.4})  use
-  prompt.text         #0c0909  ({color.terminal.prompt-text})  use
+  prompt.bg           #8c1212  ({color.terminal.prompt-bg})  use
+  prompt.text         #ffa2a7  ({color.terminal.prompt-text})  use
   prompt.branch-bg    #d4868b  ({color.terminal.ansi.3})  use
   prompt.branch-text  #0c0909  ({color.terminal.bg})  use
   dim.text            #bd787d  ({color.text.muted})  use
@@ -32,7 +32,7 @@ Tokens (resolved):
   slot.ansi-3         #d4868b  ({color.terminal.ansi.3})  use
   slot.ansi-4         #e53131  ({color.terminal.ansi.4})  use
   slot.ansi-5         #f73f35  ({color.terminal.ansi.5})  use
-  slot.ansi-6         #bb696c  ({color.terminal.ansi.6})  use
+  slot.ansi-6         #ff7a66  ({color.terminal.ansi.6})  use
   slot.ansi-7         #ffa2a7  ({color.terminal.ansi.7})  use
   slot.ansi-8         #b71c17  ({color.terminal.ansi.8})  use
   slot.ansi-9         #ea3833  ({color.terminal.ansi.9})  use

@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-aApQGxBV0khlG+5VQ1uCqrGOjaJjBFmo/zdTO5b4y84=",
+  "sourceDigest": "sha256-OzaSZVBlsd0Uv4PiP+22q1ylFn09rIiH2YGvsjO/qbI=",
   "id": "terminal",
   "family": "developer",
   "maturity": "stable",
@@ -25,7 +25,7 @@
     "states": 5
   },
   "title": "Terminal",
-  "summary": "Terminal text on the terminal surface with the readable heritage sixteen ANSI slots (D-029), the cursor, the selection and the six text attributes; a transcript, the slot grid and the attributes.",
+  "summary": "Terminal text with the readable heritage sixteen ANSI slots (D-029, D-032), the cursor, the selection and the six text attributes; a transcript, the slot grid and the attributes.",
   "anchors": {
     "site": "https://j3w1.github.io/theme/reference/#c-terminal",
     "spec": "spec/components/terminal.md",
@@ -176,11 +176,11 @@
       }
     },
     "prompt.bg": {
-      "alias": "color.terminal.ansi.4",
-      "value": "#e53131",
+      "alias": "color.terminal.prompt-bg",
+      "value": "#8c1212",
       "status": "approved",
       "deprecated": false,
-      "decisionId": "D-029",
+      "decisionId": "D-032",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -189,10 +189,10 @@
     },
     "prompt.text": {
       "alias": "color.terminal.prompt-text",
-      "value": "#0c0909",
+      "value": "#ffa2a7",
       "status": "approved",
       "deprecated": false,
-      "decisionId": "D-029",
+      "decisionId": "D-032",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -357,10 +357,10 @@
     },
     "slot.ansi-6": {
       "alias": "color.terminal.ansi.6",
-      "value": "#bb696c",
+      "value": "#ff7a66",
       "status": "approved",
       "deprecated": false,
-      "decisionId": "D-029",
+      "decisionId": "D-032",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -820,15 +820,15 @@
       "waiver": null
     },
     {
-      "label": "prompt segment text on slot 4",
+      "label": "prompt segment text on the prompt background",
       "state": null,
       "kind": "text",
       "min": 4.5,
       "fg": "color.terminal.prompt-text",
-      "bg": "color.terminal.ansi.4",
-      "fgHex": "#0c0909",
-      "bgHex": "#e53131",
-      "ratio": 4.55,
+      "bg": "color.terminal.prompt-bg",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#8c1212",
+      "ratio": 4.97,
       "pass": true,
       "waiver": null
     },
@@ -850,11 +850,11 @@
       "state": null,
       "kind": "ui",
       "min": 1,
-      "fg": "color.terminal.ansi.4",
+      "fg": "color.terminal.prompt-bg",
       "bg": "color.terminal.bg",
-      "fgHex": "#e53131",
+      "fgHex": "#8c1212",
       "bgHex": "#0c0909",
-      "ratio": 4.55,
+      "ratio": 2.09,
       "pass": true,
       "waiver": "the arrow is the segment edge; the segment text carries the content"
     },
@@ -982,9 +982,9 @@
       "min": 4.5,
       "fg": "color.terminal.ansi.6",
       "bg": "color.terminal.bg",
-      "fgHex": "#bb696c",
+      "fgHex": "#ff7a66",
       "bgHex": "#0c0909",
-      "ratio": 5.05,
+      "ratio": 7.77,
       "pass": true,
       "waiver": null
     },

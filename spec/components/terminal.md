@@ -6,7 +6,7 @@ maturity: stable
 priority: R1
 since: 0.1.0
 order: 40
-summary: Terminal text on the terminal surface with the readable heritage sixteen ANSI slots (D-029), the cursor, the selection and the six text attributes; a transcript, the slot grid and the attributes.
+summary: Terminal text with the readable heritage sixteen ANSI slots (D-029, D-032), the cursor, the selection and the six text attributes; a transcript, the slot grid and the attributes.
 native: true
 aria:
   pattern: "native <pre role=log> for a transcript; a plain <pre> with aria-label for the slot grid and the attribute sheet"
@@ -38,7 +38,7 @@ tokens:
   selection.bg: color.terminal.selection-bg
   selection.text: color.terminal.selection-text
   current.bg: color.code.current-line
-  prompt.bg: color.terminal.ansi.4
+  prompt.bg: color.terminal.prompt-bg
   prompt.text: color.terminal.prompt-text
   prompt.branch-bg: color.terminal.ansi.3
   prompt.branch-text: color.terminal.bg
@@ -72,9 +72,9 @@ stateTokens:
 contrast:
   - { fg: color.terminal.cursor, bg: color.terminal.bg, min: 3, kind: ui, label: "hollow cursor outline at rest" }
   - { fg: color.terminal.cursor, bg: color.code.current-line, min: 3, kind: ui, state: current, label: "cursor on the cursor line" }
-  - { fg: color.terminal.prompt-text, bg: color.terminal.ansi.4, label: "prompt segment text on slot 4" }
+  - { fg: color.terminal.prompt-text, bg: color.terminal.prompt-bg, label: "prompt segment text on the prompt background" }
   - { fg: color.terminal.bg, bg: color.terminal.ansi.3, label: "branch segment text on slot 3" }
-  - { fg: color.terminal.ansi.4, bg: color.terminal.bg, min: 1, kind: ui, label: "prompt arrow (the segment's own colour, decorative)", waiver: "the arrow is the segment edge; the segment text carries the content" }
+  - { fg: color.terminal.prompt-bg, bg: color.terminal.bg, min: 1, kind: ui, label: "prompt arrow (the segment's own colour, decorative)", waiver: "the arrow is the segment edge; the segment text carries the content" }
   - { fg: color.text.muted, bg: color.terminal.bg, label: "dim text and grid labels" }
   - { fg: color.terminal.bg, bg: color.terminal.fg, label: "inverse text" }
   - { fg: color.terminal.ansi.2, bg: color.terminal.bg, label: "slot 2" }
@@ -99,7 +99,7 @@ anatomy:
   - part: line
     description: One row of cells; the cursor line takes code.current-line when current.
   - part: prompt
-    description: Agnoster-style segments; the path on slot 4 with terminal.prompt-text, the branch on slot 3 with terminal.bg text, each followed by an arrow in the segment's own colour.
+    description: Agnoster-style segments; the path on terminal.prompt-bg with terminal.prompt-text, the branch on slot 3 with terminal.bg text, each followed by an arrow in the segment's own colour.
   - part: slot
     description: A span coloured by one of the sixteen slots as foreground (.terminal-fg-N) or background (.terminal-bg-N).
   - part: cursor
@@ -140,7 +140,7 @@ cursor, the selection, the six attributes and the sixteen slots the
 workstation froze in `Xresources`. The slots are the origin of the theme:
 the `heritage-ansi` profile carries them exactly, and the `default` profile
 carries the readable heritage sixteen (D-029), the same hues with the dim
-slots lifted so text in any slot reads. What a program does with a slot is
+slots lifted so text in any slot reads, except slot 6, which is coral (D-032). What a program does with a slot is
 that program's choice; the theme makes every slot but the dim tier safe for
 text rather than steering programs to particular slots.
 
@@ -156,10 +156,10 @@ each a single role variable {color.terminal.ansi.0} … {color.terminal.ansi.15}
 so the profile switch on the specimen recolours the grid without touching
 the markup. The foreground is {color.terminal.fg} on {color.terminal.bg};
 the prompt path segment is {color.terminal.prompt-text} on
-{color.terminal.ansi.4} and the branch segment {color.terminal.bg} on
+{color.terminal.prompt-bg} and the branch segment {color.terminal.bg} on
 {color.terminal.ansi.3}, the two agnoster backgrounds the workstation used.
-{color.terminal.prompt-text} is dark on the default profile's brighter slot 4
-and the historical light text in `heritage-ansi` (D-029).
+{color.terminal.prompt-bg} is the heritage dark red in every profile, so the
+prompt looks the same whatever slot 4 carries (D-032).
 
 ## States
 
@@ -187,7 +187,8 @@ puts it.
 The transcript is `role=log` so new output is announced politely; the grid
 and the attribute sheet are plain `<pre>` elements with a label. In the
 `default` profile slots 1–7 and 9–15 reach 4.5:1 on the terminal background
-(4.55:1–10.37:1, D-029). Slot 8 is the dim tier at 3.01:1 and slot 0 is the
+(4.55:1–10.37:1, D-029); slot 6 is coral, so highlighted names stand apart
+from the rose text (D-032). Slot 8 is the dim tier at 3.01:1 and slot 0 is the
 background itself; the grid marks both with a `✕` after the number so the
 exception is visible, not implied. The `heritage-ansi` profile keeps the
 historical values, where ten slots fail (1.86:1–4.45:1); the grid's crosses
@@ -201,7 +202,10 @@ a contract. Two escape families bypass the slots entirely and
 are outside the theme: bold-as-bright, which substitutes slots 8–15 for 0–7
 and must be off for the slots to hold, and 256-colour or 24-bit sequences,
 which carry their own values. Attributes are attributes: dim uses
-{color.text.muted} (5.81:1) rather than a slot, inverse swaps foreground and
+{color.text.muted} (5.81:1) rather than a slot in the reference, but most
+emulators draw dim by mixing a slot's colour halfway into the background, so
+dimmed slot 6 falls to about 2.7:1. The theme does not brighten slots to make up for it; a host setting
+that changes dim text alone may (D-032). Inverse swaps foreground and
 background (8.65:1), and bold, italic, underline and strikethrough are text
 styles a screen reader can expose.
 
@@ -210,8 +214,10 @@ styles a screen reader can expose.
 Every emulator with a sixteen-slot palette can hold these values byte for
 byte; the port's evidence records whether bold-as-bright is off and whether
 the cursor and selection keys exist. A port carries the profile's slots as
-they are; it may recommend `LS_COLORS` or a prompt configuration (a prompt on
-slot 4 wants dark text) but never changes the slots to compensate. The
+they are; it may recommend `LS_COLORS` or a prompt configuration (a prompt
+draws its path segment in {color.terminal.prompt-bg} and
+{color.terminal.prompt-text} as 24-bit colours, so the slots do not change
+it) but never changes the slots to compensate. The
 cursor shape (block, bar, underline) is the user's setting; the theme only
 supplies its colour.
 

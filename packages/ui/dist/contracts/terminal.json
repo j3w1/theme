@@ -100,7 +100,7 @@
     "selection.bg": "color.terminal.selection-bg",
     "selection.text": "color.terminal.selection-text",
     "current.bg": "color.code.current-line",
-    "prompt.bg": "color.terminal.ansi.4",
+    "prompt.bg": "color.terminal.prompt-bg",
     "prompt.text": "color.terminal.prompt-text",
     "prompt.branch-bg": "color.terminal.ansi.3",
     "prompt.branch-text": "color.terminal.bg",
@@ -163,6 +163,7 @@
       "color.terminal.bg",
       "color.terminal.cursor",
       "color.terminal.fg",
+      "color.terminal.prompt-bg",
       "color.terminal.prompt-text",
       "color.terminal.selection-bg",
       "color.terminal.selection-text",
@@ -203,20 +204,22 @@
       "color.primitive.ansi-readable.14",
       "color.primitive.ansi-readable.15",
       "color.primitive.ansi-readable.4",
-      "color.primitive.ansi-readable.6",
       "color.primitive.ansi-readable.8",
       "color.primitive.ansi-readable.9",
       "color.primitive.ansi.0",
       "color.primitive.ansi.11",
       "color.primitive.ansi.2",
       "color.primitive.ansi.3",
+      "color.primitive.ansi.4",
       "color.primitive.ansi.5",
       "color.primitive.ansi.7",
+      "color.primitive.coral.700",
       "color.primitive.ink.0",
       "color.primitive.ink.20",
       "color.primitive.ink.40",
       "color.primitive.paper.90",
       "color.primitive.red.100",
+      "color.primitive.red.250",
       "color.primitive.red.350",
       "color.primitive.red.800",
       "color.primitive.red.850",
@@ -246,6 +249,7 @@
       "color.terminal.bg",
       "color.terminal.cursor",
       "color.terminal.fg",
+      "color.terminal.prompt-bg",
       "color.terminal.prompt-text",
       "color.terminal.selection-bg",
       "color.terminal.selection-text",
@@ -416,6 +420,11 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "color.terminal.prompt-bg": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "color.terminal.prompt-text": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -527,6 +536,6 @@
   "copy": {
     "directory": "copy/terminal/",
     "manifest": "copy/terminal/manifest.json",
-    "digest": "sha256-bGCP/DgjhcJvuNn6nRZYGzVqc+i1Ld+j/M8RGQVjNMo="
+    "digest": "sha256-q88APtccE/re+Sl5j1PDJkgh+aYZaidbQz6kjvnyipI="
   }
 }

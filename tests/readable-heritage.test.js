@@ -38,7 +38,8 @@ test("the default profile's terminal slots reach the text floor, except the back
 });
 
 test("the lift keeps the heritage light-to-dark order of the changed slots", () => {
-  const changed = [1, 4, 6, 8, 9, 10, 12, 13, 14, 15];
+  // D-032 gives slot 6 its own coral; the D-029 lift order holds for the other nine.
+  const changed = [1, 4, 8, 9, 10, 12, 13, 14, 15];
   const bg = hexOf("default", "color.terminal.bg");
   const order = (profile) => [...changed].sort((a, b) => contrast(hexOf(profile, `color.terminal.ansi.${a}`), bg) - contrast(hexOf(profile, `color.terminal.ansi.${b}`), bg));
   const heritage = order("heritage-ansi");
@@ -57,11 +58,20 @@ test("the lifted syntax reds stay readable inside an editor selection", () => {
   }
 });
 
-test("the prompt's path segment text reads on slot 4 in both the default and the heritage profile", () => {
+test("the prompt's path segment keeps the heritage background and readable text in both profiles (D-032)", () => {
   for (const profile of ["default", "heritage-ansi"]) {
-    const ratio = contrast(hexOf(profile, "color.terminal.prompt-text"), hexOf(profile, "color.terminal.ansi.4"));
+    assert.equal(hexOf(profile, "color.terminal.prompt-bg"), "#8c1212", `${profile}: prompt background`);
+    const ratio = contrast(hexOf(profile, "color.terminal.prompt-text"), hexOf(profile, "color.terminal.prompt-bg"));
     assert.ok(ratio >= 4.5, `${profile}: ${ratio.toFixed(2)}:1`);
   }
+  assert.equal(hexOf("default", "color.terminal.prompt-text"), "#ffa2a7");
+  assert.equal(hexOf("heritage-ansi", "color.terminal.prompt-text"), "#f4eeee");
+});
+
+test("slot 6 is coral in the default profile, and stays heritage in heritage-ansi (D-032)", () => {
+  assert.equal(hexOf("default", "color.terminal.ansi.6"), "#ff7a66");
+  assert.ok(contrast("#ff7a66", hexOf("default", "color.terminal.bg")) >= 7);
+  assert.equal(hexOf("heritage-ansi", "color.terminal.ansi.6"), HERITAGE_ANSI[6]);
 });
 
 test("interface reds are unchanged by D-029", () => {

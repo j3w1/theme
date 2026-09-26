@@ -329,13 +329,13 @@ j3w1-i3-window-frame .terminal-line {
   vertical-align: top;
 }
 j3w1-i3-window-frame .terminal-prompt-path {
-  background: var(--color-terminal-ansi-4);
+  background: var(--color-terminal-prompt-bg);
   color: var(--color-terminal-prompt-text);
 }
 
 j3w1-i3-window-frame .terminal-prompt-arrow-path {
   background: var(--color-terminal-ansi-3);
-  color: var(--color-terminal-ansi-4);
+  color: var(--color-terminal-prompt-bg);
 }
 
 j3w1-i3-window-frame .terminal-prompt-branch {

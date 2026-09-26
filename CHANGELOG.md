@@ -8,6 +8,15 @@
   matrix in parallel jobs by project, merged into one evidence report; a change that
   does not touch the site deploys nothing. Tests run in parallel, and the page
   axe scan is split into two halves that together cover the same rules.
+- D-032 **Coral slot 6 and a fixed prompt background.** Terminal slot 6 is coral
+  `#ff7a66` (7.77:1), so names that code highlighters draw in slot 6, such as
+  PowerShell cmdlets in Claude Code, stand apart from the rose text. A new role,
+  `color.terminal.prompt-bg`, keeps the Agnoster prompt on the heritage
+  `#8c1212` in every profile; its text, `color.terminal.prompt-text`, is bright
+  rose `#ffa2a7` in the default profile. `heritage-ansi` values are unchanged.
+  Downstream: set your prompt's directory segment to these two colours (24-bit),
+  not to slot 4. Major under the versioning rule: this changes approved values
+  (slot 6, prompt text) and removes `color.primitive.ansi-readable.6`.
 
 ## [2.0.0] - 2026-09-26
 

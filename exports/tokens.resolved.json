@@ -927,6 +927,30 @@
             "decisionIds": []
           }
         },
+        "color.primitive.coral.700": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.4784,
+              0.4
+            ],
+            "alpha": 1,
+            "hex": "#ff7a66"
+          },
+          "css": "#ff7a66",
+          "aliasOf": null,
+          "description": "D-032 coral for terminal slot 6: warm and vivid so highlighted names stand apart from the rose text (7.77:1 on the terminal background).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-032",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          }
+        },
         "color.primitive.paper.90": {
           "type": "color",
           "value": {
@@ -1734,30 +1758,6 @@
           "css": "#e53131",
           "aliasOf": null,
           "description": "Heritage slot 4 (#8c1212, 2.09:1) lifted to 4.55:1 on the terminal background.",
-          "status": "approved",
-          "deprecated": false,
-          "decisionId": "D-029",
-          "eligibility": {
-            "action": "blocked",
-            "reason": "Inspection only: consume semantic roles, not primitives.",
-            "decisionIds": []
-          }
-        },
-        "color.primitive.ansi-readable.6": {
-          "type": "color",
-          "value": {
-            "colorSpace": "srgb",
-            "components": [
-              0.7333,
-              0.4118,
-              0.4235
-            ],
-            "alpha": 1,
-            "hex": "#bb696c"
-          },
-          "css": "#bb696c",
-          "aliasOf": null,
-          "description": "Heritage slot 6 (#9e474a, 3.26:1) lifted to 5.05:1 on the terminal background.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-029",
@@ -5903,24 +5903,48 @@
             "decisionIds": []
           }
         },
+        "color.terminal.prompt-bg": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.549,
+              0.0706,
+              0.0706
+            ],
+            "alpha": 1,
+            "hex": "#8c1212"
+          },
+          "css": "#8c1212",
+          "aliasOf": "color.primitive.ansi.4",
+          "description": "Background of the prompt's path segment: the heritage dark red, so the prompt keeps its look whatever slot 4 carries (D-032).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-032",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
+        },
         "color.terminal.prompt-text": {
           "type": "color",
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.0471,
-              0.0353,
-              0.0353
+              1,
+              0.6353,
+              0.6549
             ],
             "alpha": 1,
-            "hex": "#0c0909"
+            "hex": "#ffa2a7"
           },
-          "css": "#0c0909",
-          "aliasOf": "color.primitive.ink.20",
-          "description": "Text on the prompt's path segment (slot 4): dark on the readable heritage slot 4 (D-029).",
+          "css": "#ffa2a7",
+          "aliasOf": "color.primitive.rose.800",
+          "description": "Text on the prompt's path segment: bright rose on the prompt background (D-032).",
           "status": "approved",
           "deprecated": false,
-          "decisionId": "D-029",
+          "decisionId": "D-032",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -6076,19 +6100,19 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.7333,
-              0.4118,
-              0.4235
+              1,
+              0.4784,
+              0.4
             ],
             "alpha": 1,
-            "hex": "#bb696c"
+            "hex": "#ff7a66"
           },
-          "css": "#bb696c",
-          "aliasOf": "color.primitive.ansi-readable.6",
-          "description": "ANSI slot 6, readable heritage (D-029); the heritage-ansi profile keeps the exact value.",
+          "css": "#ff7a66",
+          "aliasOf": "color.primitive.coral.700",
+          "description": "ANSI slot 6, coral (D-032); the heritage-ansi profile keeps the exact value.",
           "status": "approved",
           "deprecated": false,
-          "decisionId": "D-029",
+          "decisionId": "D-032",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -8803,6 +8827,30 @@
             "decisionIds": []
           }
         },
+        "color.primitive.coral.700": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.4784,
+              0.4
+            ],
+            "alpha": 1,
+            "hex": "#ff7a66"
+          },
+          "css": "#ff7a66",
+          "aliasOf": null,
+          "description": "D-032 coral for terminal slot 6: warm and vivid so highlighted names stand apart from the rose text (7.77:1 on the terminal background).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-032",
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
         "color.primitive.paper.90": {
           "type": "color",
           "value": {
@@ -9610,30 +9658,6 @@
           "css": "#e53131",
           "aliasOf": null,
           "description": "Heritage slot 4 (#8c1212, 2.09:1) lifted to 4.55:1 on the terminal background.",
-          "status": "approved",
-          "deprecated": false,
-          "decisionId": "D-029",
-          "eligibility": {
-            "action": "historical-only",
-            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
-            "decisionIds": []
-          }
-        },
-        "color.primitive.ansi-readable.6": {
-          "type": "color",
-          "value": {
-            "colorSpace": "srgb",
-            "components": [
-              0.7333,
-              0.4118,
-              0.4235
-            ],
-            "alpha": 1,
-            "hex": "#bb696c"
-          },
-          "css": "#bb696c",
-          "aliasOf": null,
-          "description": "Heritage slot 6 (#9e474a, 3.26:1) lifted to 5.05:1 on the terminal background.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-029",
@@ -13777,6 +13801,30 @@
             "decisionIds": []
           }
         },
+        "color.terminal.prompt-bg": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.549,
+              0.0706,
+              0.0706
+            ],
+            "alpha": 1,
+            "hex": "#8c1212"
+          },
+          "css": "#8c1212",
+          "aliasOf": "color.primitive.ansi.4",
+          "description": "The heritage slot 4 behind the prompt's path segment, as the workstation drew it.",
+          "status": "heritage",
+          "deprecated": false,
+          "decisionId": null,
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
         "color.terminal.prompt-text": {
           "type": "color",
           "value": {
@@ -16677,6 +16725,30 @@
             "decisionIds": []
           }
         },
+        "color.primitive.coral.700": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.4784,
+              0.4
+            ],
+            "alpha": 1,
+            "hex": "#ff7a66"
+          },
+          "css": "#ff7a66",
+          "aliasOf": null,
+          "description": "D-032 coral for terminal slot 6: warm and vivid so highlighted names stand apart from the rose text (7.77:1 on the terminal background).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-032",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
         "color.primitive.paper.90": {
           "type": "color",
           "value": {
@@ -17484,30 +17556,6 @@
           "css": "#e53131",
           "aliasOf": null,
           "description": "Heritage slot 4 (#8c1212, 2.09:1) lifted to 4.55:1 on the terminal background.",
-          "status": "approved",
-          "deprecated": false,
-          "decisionId": "D-029",
-          "eligibility": {
-            "action": "blocked",
-            "reason": "Proposed profile: preview only, not downstream delivery.",
-            "decisionIds": []
-          }
-        },
-        "color.primitive.ansi-readable.6": {
-          "type": "color",
-          "value": {
-            "colorSpace": "srgb",
-            "components": [
-              0.7333,
-              0.4118,
-              0.4235
-            ],
-            "alpha": 1,
-            "hex": "#bb696c"
-          },
-          "css": "#bb696c",
-          "aliasOf": null,
-          "description": "Heritage slot 6 (#9e474a, 3.26:1) lifted to 5.05:1 on the terminal background.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-029",
@@ -21673,24 +21721,48 @@
             "decisionIds": []
           }
         },
+        "color.terminal.prompt-bg": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.549,
+              0.0706,
+              0.0706
+            ],
+            "alpha": 1,
+            "hex": "#8c1212"
+          },
+          "css": "#8c1212",
+          "aliasOf": "color.primitive.ansi.4",
+          "description": "Background of the prompt's path segment: the heritage dark red, so the prompt keeps its look whatever slot 4 carries (D-032).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-032",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
         "color.terminal.prompt-text": {
           "type": "color",
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.0471,
-              0.0353,
-              0.0353
+              1,
+              0.6353,
+              0.6549
             ],
             "alpha": 1,
-            "hex": "#0c0909"
+            "hex": "#ffa2a7"
           },
-          "css": "#0c0909",
-          "aliasOf": "color.primitive.ink.20",
-          "description": "Text on the prompt's path segment (slot 4): dark on the readable heritage slot 4 (D-029).",
+          "css": "#ffa2a7",
+          "aliasOf": "color.primitive.rose.800",
+          "description": "Text on the prompt's path segment: bright rose on the prompt background (D-032).",
           "status": "approved",
           "deprecated": false,
-          "decisionId": "D-029",
+          "decisionId": "D-032",
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",

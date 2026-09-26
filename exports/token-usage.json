@@ -15218,7 +15218,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/axis",
-            "line": 1385
+            "line": 1397
           },
           "provenance": null,
           "aliases": [
@@ -15289,7 +15289,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/grid",
-            "line": 1389
+            "line": 1401
           },
           "provenance": null,
           "aliases": [
@@ -15360,7 +15360,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/label",
-            "line": 1393
+            "line": 1405
           },
           "provenance": null,
           "aliases": [
@@ -15458,7 +15458,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/series-1",
-            "line": 1369
+            "line": 1381
           },
           "provenance": null,
           "aliases": [
@@ -15513,7 +15513,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/series-2",
-            "line": 1373
+            "line": 1385
           },
           "provenance": null,
           "aliases": [
@@ -15584,7 +15584,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/series-3",
-            "line": 1377
+            "line": 1389
           },
           "provenance": null,
           "aliases": [
@@ -15639,7 +15639,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/series-4",
-            "line": 1381
+            "line": 1393
           },
           "provenance": null,
           "aliases": [
@@ -23978,7 +23978,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/icon/decorative",
-            "line": 1403
+            "line": 1415
           },
           "provenance": null,
           "aliases": [
@@ -24255,7 +24255,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/icon/default",
-            "line": 1399
+            "line": 1411
           },
           "provenance": null,
           "aliases": [
@@ -34864,7 +34864,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/alpha/black-55",
-            "line": 1230
+            "line": 1259
           },
           "provenance": {
             "status": "observed",
@@ -34926,7 +34926,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/alpha/black-65",
-            "line": 1253
+            "line": 1282
           },
           "provenance": {
             "status": "observed",
@@ -34991,7 +34991,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/alpha/red-12",
-            "line": 1302
+            "line": 1331
           },
           "provenance": {
             "status": "observed",
@@ -35053,7 +35053,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/alpha/red-6",
-            "line": 1279
+            "line": 1308
           },
           "provenance": {
             "status": "observed",
@@ -35113,7 +35113,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/alpha/transparent",
-            "line": 1207
+            "line": 1236
           },
           "provenance": {
             "status": "observed",
@@ -35175,7 +35175,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/amber/500",
-            "line": 974
+            "line": 1003
           },
           "provenance": {
             "status": "approved",
@@ -35251,7 +35251,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/amber/600",
-            "line": 1000
+            "line": 1029
           },
           "provenance": {
             "status": "proposed",
@@ -35311,7 +35311,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/amber/tint",
-            "line": 1024
+            "line": 1053
           },
           "provenance": {
             "status": "approved",
@@ -35376,7 +35376,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi-readable/1",
-            "line": 1394
+            "line": 1423
           },
           "provenance": {
             "status": "approved",
@@ -35442,7 +35442,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi-readable/10",
-            "line": 1529
+            "line": 1531
           },
           "provenance": {
             "status": "approved",
@@ -35508,7 +35508,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi-readable/12",
-            "line": 1556
+            "line": 1558
           },
           "provenance": {
             "status": "approved",
@@ -35574,7 +35574,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi-readable/13",
-            "line": 1583
+            "line": 1585
           },
           "provenance": {
             "status": "approved",
@@ -35640,7 +35640,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi-readable/14",
-            "line": 1610
+            "line": 1612
           },
           "provenance": {
             "status": "approved",
@@ -35706,7 +35706,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi-readable/15",
-            "line": 1637
+            "line": 1639
           },
           "provenance": {
             "status": "approved",
@@ -35772,7 +35772,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi-readable/4",
-            "line": 1421
+            "line": 1450
           },
           "provenance": {
             "status": "approved",
@@ -35822,72 +35822,6 @@
           "uses": [],
           "contrast": []
         },
-        "color.primitive.ansi-readable.6": {
-          "path": "color.primitive.ansi-readable.6",
-          "group": "primitive",
-          "css": "#bb696c",
-          "variable": "--color-primitive-ansi-readable-6",
-          "description": "Heritage slot 6 (#9e474a, 3.26:1) lifted to 5.05:1 on the terminal background.",
-          "status": "approved",
-          "deprecated": false,
-          "eligibility": {
-            "action": "blocked",
-            "reason": "Inspection only: consume semantic roles, not primitives.",
-            "decisionIds": []
-          },
-          "source": {
-            "file": "tokens/primitives.tokens.json",
-            "pointer": "/color/primitive/ansi-readable/6",
-            "line": 1448
-          },
-          "provenance": {
-            "status": "approved",
-            "origin": {
-              "kind": "derived",
-              "ref": "spec/decisions.md#d-029",
-              "note": "HSL lightness lift of color.primitive.ansi.6; hue and saturation kept."
-            },
-            "approval": {
-              "decision": "D-029"
-            },
-            "textSafe": "raised"
-          },
-          "aliases": [],
-          "usedByAliases": [
-            "color.terminal.ansi.6"
-          ],
-          "unmappedPorts": [
-            {
-              "port": "ghostty",
-              "reason": "Primitive; ports consume roles, never primitives.",
-              "source": {
-                "file": "ports/ghostty/mapping.json",
-                "pointer": "/unmapped/color.primitive.ansi-readable.6",
-                "line": 208
-              }
-            },
-            {
-              "port": "orca",
-              "reason": "Primitive; ports consume roles, never primitives.",
-              "source": {
-                "file": "ports/orca/mapping.json",
-                "pointer": "/unmapped/color.primitive.ansi-readable.6",
-                "line": 214
-              }
-            },
-            {
-              "port": "warp",
-              "reason": "Primitive; ports consume roles, never primitives.",
-              "source": {
-                "file": "ports/warp/mapping.json",
-                "pointer": "/unmapped/color.primitive.ansi-readable.6",
-                "line": 202
-              }
-            }
-          ],
-          "uses": [],
-          "contrast": []
-        },
         "color.primitive.ansi-readable.8": {
           "path": "color.primitive.ansi-readable.8",
           "group": "primitive",
@@ -35904,7 +35838,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi-readable/8",
-            "line": 1475
+            "line": 1477
           },
           "provenance": {
             "status": "approved",
@@ -35929,7 +35863,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi-readable.8",
-                "line": 209
+                "line": 208
               }
             },
             {
@@ -35938,7 +35872,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi-readable.8",
-                "line": 215
+                "line": 214
               }
             },
             {
@@ -35947,7 +35881,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi-readable.8",
-                "line": 203
+                "line": 202
               }
             }
           ],
@@ -35970,7 +35904,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi-readable/9",
-            "line": 1502
+            "line": 1504
           },
           "provenance": {
             "status": "approved",
@@ -35995,7 +35929,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi-readable.9",
-                "line": 210
+                "line": 209
               }
             },
             {
@@ -36004,7 +35938,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi-readable.9",
-                "line": 216
+                "line": 215
               }
             },
             {
@@ -36013,7 +35947,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi-readable.9",
-                "line": 204
+                "line": 203
               }
             }
           ],
@@ -36036,7 +35970,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/0",
-            "line": 1327
+            "line": 1356
           },
           "provenance": null,
           "aliases": [
@@ -36052,7 +35986,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.0",
-                "line": 211
+                "line": 210
               }
             },
             {
@@ -36061,7 +35995,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.0",
-                "line": 217
+                "line": 216
               }
             },
             {
@@ -36070,7 +36004,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.0",
-                "line": 205
+                "line": 204
               }
             }
           ],
@@ -36093,7 +36027,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/1",
-            "line": 1331
+            "line": 1360
           },
           "provenance": null,
           "aliases": [
@@ -36107,7 +36041,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.1",
-                "line": 212
+                "line": 211
               }
             },
             {
@@ -36116,7 +36050,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.1",
-                "line": 218
+                "line": 217
               }
             },
             {
@@ -36125,7 +36059,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.1",
-                "line": 206
+                "line": 205
               }
             }
           ],
@@ -36148,7 +36082,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/10",
-            "line": 1367
+            "line": 1396
           },
           "provenance": null,
           "aliases": [
@@ -36162,7 +36096,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.10",
-                "line": 213
+                "line": 212
               }
             },
             {
@@ -36171,7 +36105,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.10",
-                "line": 219
+                "line": 218
               }
             },
             {
@@ -36180,7 +36114,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.10",
-                "line": 207
+                "line": 206
               }
             }
           ],
@@ -36203,7 +36137,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/11",
-            "line": 1371
+            "line": 1400
           },
           "provenance": null,
           "aliases": [
@@ -36219,7 +36153,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.11",
-                "line": 214
+                "line": 213
               }
             },
             {
@@ -36228,7 +36162,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.11",
-                "line": 220
+                "line": 219
               }
             },
             {
@@ -36237,7 +36171,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.11",
-                "line": 208
+                "line": 207
               }
             }
           ],
@@ -36260,7 +36194,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/12",
-            "line": 1375
+            "line": 1404
           },
           "provenance": null,
           "aliases": [
@@ -36274,7 +36208,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.12",
-                "line": 215
+                "line": 214
               }
             },
             {
@@ -36283,7 +36217,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.12",
-                "line": 221
+                "line": 220
               }
             },
             {
@@ -36292,7 +36226,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.12",
-                "line": 209
+                "line": 208
               }
             }
           ],
@@ -36315,7 +36249,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/13",
-            "line": 1379
+            "line": 1408
           },
           "provenance": null,
           "aliases": [
@@ -36329,7 +36263,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.13",
-                "line": 216
+                "line": 215
               }
             },
             {
@@ -36338,7 +36272,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.13",
-                "line": 222
+                "line": 221
               }
             },
             {
@@ -36347,7 +36281,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.13",
-                "line": 210
+                "line": 209
               }
             }
           ],
@@ -36370,7 +36304,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/14",
-            "line": 1383
+            "line": 1412
           },
           "provenance": null,
           "aliases": [
@@ -36384,7 +36318,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.14",
-                "line": 217
+                "line": 216
               }
             },
             {
@@ -36393,7 +36327,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.14",
-                "line": 223
+                "line": 222
               }
             },
             {
@@ -36402,7 +36336,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.14",
-                "line": 211
+                "line": 210
               }
             }
           ],
@@ -36425,7 +36359,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/15",
-            "line": 1387
+            "line": 1416
           },
           "provenance": null,
           "aliases": [
@@ -36439,7 +36373,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.15",
-                "line": 218
+                "line": 217
               }
             },
             {
@@ -36448,7 +36382,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.15",
-                "line": 224
+                "line": 223
               }
             },
             {
@@ -36457,7 +36391,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.15",
-                "line": 212
+                "line": 211
               }
             }
           ],
@@ -36480,7 +36414,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/2",
-            "line": 1335
+            "line": 1364
           },
           "provenance": null,
           "aliases": [
@@ -36496,7 +36430,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.2",
-                "line": 219
+                "line": 218
               }
             },
             {
@@ -36505,7 +36439,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.2",
-                "line": 225
+                "line": 224
               }
             },
             {
@@ -36514,7 +36448,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.2",
-                "line": 213
+                "line": 212
               }
             }
           ],
@@ -36537,7 +36471,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/3",
-            "line": 1339
+            "line": 1368
           },
           "provenance": null,
           "aliases": [
@@ -36553,7 +36487,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.3",
-                "line": 220
+                "line": 219
               }
             },
             {
@@ -36562,7 +36496,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.3",
-                "line": 226
+                "line": 225
               }
             },
             {
@@ -36571,7 +36505,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.3",
-                "line": 214
+                "line": 213
               }
             }
           ],
@@ -36594,13 +36528,15 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/4",
-            "line": 1343
+            "line": 1372
           },
           "provenance": null,
           "aliases": [
             "color.primitive.red.250"
           ],
-          "usedByAliases": [],
+          "usedByAliases": [
+            "color.terminal.prompt-bg"
+          ],
           "unmappedPorts": [
             {
               "port": "ghostty",
@@ -36608,7 +36544,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.4",
-                "line": 221
+                "line": 220
               }
             },
             {
@@ -36617,7 +36553,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.4",
-                "line": 227
+                "line": 226
               }
             },
             {
@@ -36626,7 +36562,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.4",
-                "line": 215
+                "line": 214
               }
             }
           ],
@@ -36649,7 +36585,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/5",
-            "line": 1347
+            "line": 1376
           },
           "provenance": null,
           "aliases": [
@@ -36665,7 +36601,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.5",
-                "line": 222
+                "line": 221
               }
             },
             {
@@ -36674,7 +36610,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.5",
-                "line": 228
+                "line": 227
               }
             },
             {
@@ -36683,7 +36619,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.5",
-                "line": 216
+                "line": 215
               }
             }
           ],
@@ -36706,7 +36642,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/6",
-            "line": 1351
+            "line": 1380
           },
           "provenance": null,
           "aliases": [
@@ -36720,7 +36656,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.6",
-                "line": 223
+                "line": 222
               }
             },
             {
@@ -36729,7 +36665,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.6",
-                "line": 229
+                "line": 228
               }
             },
             {
@@ -36738,7 +36674,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.6",
-                "line": 217
+                "line": 216
               }
             }
           ],
@@ -36761,7 +36697,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/7",
-            "line": 1355
+            "line": 1384
           },
           "provenance": null,
           "aliases": [
@@ -36777,7 +36713,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.7",
-                "line": 224
+                "line": 223
               }
             },
             {
@@ -36786,7 +36722,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.7",
-                "line": 230
+                "line": 229
               }
             },
             {
@@ -36795,7 +36731,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.7",
-                "line": 218
+                "line": 217
               }
             }
           ],
@@ -36818,7 +36754,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/8",
-            "line": 1359
+            "line": 1388
           },
           "provenance": null,
           "aliases": [
@@ -36832,7 +36768,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.8",
-                "line": 225
+                "line": 224
               }
             },
             {
@@ -36841,7 +36777,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.8",
-                "line": 231
+                "line": 230
               }
             },
             {
@@ -36850,7 +36786,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.8",
-                "line": 219
+                "line": 218
               }
             }
           ],
@@ -36873,7 +36809,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/9",
-            "line": 1363
+            "line": 1392
           },
           "provenance": null,
           "aliases": [
@@ -36887,7 +36823,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.9",
-                "line": 226
+                "line": 225
               }
             },
             {
@@ -36896,7 +36832,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.9",
-                "line": 232
+                "line": 231
               }
             },
             {
@@ -36905,7 +36841,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.9",
-                "line": 220
+                "line": 219
               }
             }
           ],
@@ -36928,7 +36864,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/blue/500",
-            "line": 1129
+            "line": 1158
           },
           "provenance": {
             "status": "approved",
@@ -36958,7 +36894,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.primitive.blue.500",
-                "line": 227
+                "line": 226
               }
             },
             {
@@ -36967,7 +36903,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.primitive.blue.500",
-                "line": 233
+                "line": 232
               }
             },
             {
@@ -36976,7 +36912,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.primitive.blue.500",
-                "line": 221
+                "line": 220
               }
             }
           ],
@@ -36999,7 +36935,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/blue/600",
-            "line": 1155
+            "line": 1184
           },
           "provenance": {
             "status": "proposed",
@@ -37018,7 +36954,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.primitive.blue.600",
-                "line": 228
+                "line": 227
               }
             },
             {
@@ -37027,7 +36963,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.primitive.blue.600",
-                "line": 234
+                "line": 233
               }
             },
             {
@@ -37036,7 +36972,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.primitive.blue.600",
-                "line": 222
+                "line": 221
               }
             }
           ],
@@ -37059,7 +36995,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/blue/tint",
-            "line": 1179
+            "line": 1208
           },
           "provenance": {
             "status": "approved",
@@ -37082,7 +37018,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.primitive.blue.tint",
-                "line": 229
+                "line": 228
               }
             },
             {
@@ -37091,7 +37027,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.primitive.blue.tint",
-                "line": 235
+                "line": 234
               }
             },
             {
@@ -37100,6 +37036,72 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.primitive.blue.tint",
+                "line": 222
+              }
+            }
+          ],
+          "uses": [],
+          "contrast": []
+        },
+        "color.primitive.coral.700": {
+          "path": "color.primitive.coral.700",
+          "group": "primitive",
+          "css": "#ff7a66",
+          "variable": "--color-primitive-coral-700",
+          "description": "D-032 coral for terminal slot 6: warm and vivid so highlighted names stand apart from the rose text (7.77:1 on the terminal background).",
+          "status": "approved",
+          "deprecated": false,
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "source": {
+            "file": "tokens/primitives.tokens.json",
+            "pointer": "/color/primitive/coral/700",
+            "line": 923
+          },
+          "provenance": {
+            "status": "approved",
+            "origin": {
+              "kind": "proposed",
+              "ref": "spec/decisions.md#d-032",
+              "note": "A new colour chosen by the owner for slot 6 (D-032): hue 8, full saturation, lightness 70."
+            },
+            "approval": {
+              "decision": "D-032"
+            },
+            "textSafe": "raised"
+          },
+          "aliases": [],
+          "usedByAliases": [
+            "color.terminal.ansi.6"
+          ],
+          "unmappedPorts": [
+            {
+              "port": "ghostty",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/ghostty/mapping.json",
+                "pointer": "/unmapped/color.primitive.coral.700",
+                "line": 229
+              }
+            },
+            {
+              "port": "orca",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.primitive.coral.700",
+                "line": 235
+              }
+            },
+            {
+              "port": "warp",
+              "reason": "Primitive; ports consume roles, never primitives.",
+              "source": {
+                "file": "ports/warp/mapping.json",
+                "pointer": "/unmapped/color.primitive.coral.700",
                 "line": 223
               }
             }
@@ -37123,7 +37125,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/green/500",
-            "line": 1051
+            "line": 1080
           },
           "provenance": {
             "status": "approved",
@@ -37193,7 +37195,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/green/600",
-            "line": 1077
+            "line": 1106
           },
           "provenance": {
             "status": "observed",
@@ -37254,7 +37256,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/green/tint",
-            "line": 1102
+            "line": 1131
           },
           "provenance": {
             "status": "approved",
@@ -37537,7 +37539,6 @@
             "color.status.warning.on-fill",
             "color.terminal.ansi.0",
             "color.terminal.bg",
-            "color.terminal.prompt-text",
             "color.text.inverse",
             "color.text.on-light"
           ],
@@ -37976,7 +37977,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/paper/100",
-            "line": 947
+            "line": 976
           },
           "provenance": {
             "status": "observed",
@@ -38042,7 +38043,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/paper/90",
-            "line": 923
+            "line": 952
           },
           "provenance": {
             "status": "observed",
@@ -38318,7 +38319,8 @@
           },
           "aliases": [],
           "usedByAliases": [
-            "color.primitive.ansi.4"
+            "color.primitive.ansi.4",
+            "color.terminal.prompt-bg"
           ],
           "unmappedPorts": [
             {
@@ -39906,6 +39908,7 @@
             "color.interaction.focus.ring-container",
             "color.primitive.ansi.7",
             "color.terminal.ansi.7",
+            "color.terminal.prompt-text",
             "color.text.bright"
           ],
           "unmappedPorts": [
@@ -63358,7 +63361,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/0",
-            "line": 1222
+            "line": 1234
           },
           "provenance": null,
           "aliases": [
@@ -63474,7 +63477,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/1",
-            "line": 1226
+            "line": 1238
           },
           "provenance": {
             "status": "approved",
@@ -63594,7 +63597,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/10",
-            "line": 1302
+            "line": 1314
           },
           "provenance": {
             "status": "approved",
@@ -63714,7 +63717,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/11",
-            "line": 1314
+            "line": 1326
           },
           "provenance": null,
           "aliases": [
@@ -63830,7 +63833,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/12",
-            "line": 1318
+            "line": 1330
           },
           "provenance": {
             "status": "approved",
@@ -63950,7 +63953,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/13",
-            "line": 1330
+            "line": 1342
           },
           "provenance": {
             "status": "approved",
@@ -64070,7 +64073,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/14",
-            "line": 1342
+            "line": 1354
           },
           "provenance": {
             "status": "approved",
@@ -64190,7 +64193,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/15",
-            "line": 1354
+            "line": 1366
           },
           "provenance": {
             "status": "approved",
@@ -64310,7 +64313,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/2",
-            "line": 1238
+            "line": 1250
           },
           "provenance": null,
           "aliases": [
@@ -64426,7 +64429,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/3",
-            "line": 1242
+            "line": 1254
           },
           "provenance": null,
           "aliases": [
@@ -64583,7 +64586,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/4",
-            "line": 1246
+            "line": 1258
           },
           "provenance": {
             "status": "approved",
@@ -64603,21 +64606,6 @@
               "part": null,
               "state": null,
               "variant": null,
-              "surface": "color.terminal.ansi.4",
-              "nativeKey": null,
-              "port": null,
-              "source": {
-                "file": "spec/components/terminal.md",
-                "pointer": "/contrast/2",
-                "line": 75
-              }
-            },
-            {
-              "kind": "contrast",
-              "component": "terminal",
-              "part": null,
-              "state": null,
-              "variant": null,
               "surface": "color.terminal.bg",
               "nativeKey": null,
               "port": null,
@@ -64625,36 +64613,6 @@
                 "file": "spec/components/terminal.md",
                 "pointer": "/contrast/13",
                 "line": 86
-              }
-            },
-            {
-              "kind": "contrast",
-              "component": "terminal",
-              "part": null,
-              "state": null,
-              "variant": null,
-              "surface": "color.terminal.bg",
-              "nativeKey": null,
-              "port": null,
-              "source": {
-                "file": "spec/components/terminal.md",
-                "pointer": "/contrast/4",
-                "line": 77
-              }
-            },
-            {
-              "kind": "part",
-              "component": "terminal",
-              "part": "prompt.bg",
-              "state": null,
-              "variant": null,
-              "surface": null,
-              "nativeKey": null,
-              "port": null,
-              "source": {
-                "file": "spec/components/terminal.md",
-                "pointer": "/tokens/prompt.bg",
-                "line": 41
               }
             },
             {
@@ -64722,34 +64680,12 @@
             {
               "fg": "color.terminal.ansi.4",
               "bg": "color.terminal.bg",
-              "label": "prompt arrow (the segment's own colour, decorative)",
-              "state": null,
-              "source": {
-                "file": "spec/components/terminal.md",
-                "pointer": "/contrast/4",
-                "line": 77
-              }
-            },
-            {
-              "fg": "color.terminal.ansi.4",
-              "bg": "color.terminal.bg",
               "label": "slot 4",
               "state": null,
               "source": {
                 "file": "spec/components/terminal.md",
                 "pointer": "/contrast/13",
                 "line": 86
-              }
-            },
-            {
-              "fg": "color.terminal.prompt-text",
-              "bg": "color.terminal.ansi.4",
-              "label": "prompt segment text on slot 4",
-              "state": null,
-              "source": {
-                "file": "spec/components/terminal.md",
-                "pointer": "/contrast/2",
-                "line": 75
               }
             }
           ]
@@ -64770,7 +64706,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/5",
-            "line": 1258
+            "line": 1270
           },
           "provenance": null,
           "aliases": [
@@ -64873,9 +64809,9 @@
         "color.terminal.ansi.6": {
           "path": "color.terminal.ansi.6",
           "group": "terminal",
-          "css": "#bb696c",
+          "css": "#ff7a66",
           "variable": "--color-terminal-ansi-6",
-          "description": "ANSI slot 6, readable heritage (D-029); the heritage-ansi profile keeps the exact value.",
+          "description": "ANSI slot 6, coral (D-032); the heritage-ansi profile keeps the exact value.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -64886,16 +64822,16 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/6",
-            "line": 1262
+            "line": 1274
           },
           "provenance": {
             "status": "approved",
             "approval": {
-              "decision": "D-029"
+              "decision": "D-032"
             }
           },
           "aliases": [
-            "color.primitive.ansi-readable.6"
+            "color.primitive.coral.700"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -65006,7 +64942,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/7",
-            "line": 1274
+            "line": 1286
           },
           "provenance": null,
           "aliases": [
@@ -65122,7 +65058,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/8",
-            "line": 1278
+            "line": 1290
           },
           "provenance": {
             "status": "approved",
@@ -65242,7 +65178,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/9",
-            "line": 1290
+            "line": 1302
           },
           "provenance": {
             "status": "approved",
@@ -66033,17 +65969,6 @@
             {
               "fg": "color.terminal.ansi.4",
               "bg": "color.terminal.bg",
-              "label": "prompt arrow (the segment's own colour, decorative)",
-              "state": null,
-              "source": {
-                "file": "spec/components/terminal.md",
-                "pointer": "/contrast/4",
-                "line": 77
-              }
-            },
-            {
-              "fg": "color.terminal.ansi.4",
-              "bg": "color.terminal.bg",
               "label": "slot 4",
               "state": null,
               "source": {
@@ -66182,6 +66107,17 @@
                 "file": "spec/contrast.json",
                 "pointer": "/pairs/59",
                 "line": 63
+              }
+            },
+            {
+              "fg": "color.terminal.prompt-bg",
+              "bg": "color.terminal.bg",
+              "label": "prompt arrow (the segment's own colour, decorative)",
+              "state": null,
+              "source": {
+                "file": "spec/components/terminal.md",
+                "pointer": "/contrast/4",
+                "line": 77
               }
             },
             {
@@ -66628,12 +66564,12 @@
             }
           ]
         },
-        "color.terminal.prompt-text": {
-          "path": "color.terminal.prompt-text",
+        "color.terminal.prompt-bg": {
+          "path": "color.terminal.prompt-bg",
           "group": "terminal",
-          "css": "#0c0909",
-          "variable": "--color-terminal-prompt-text",
-          "description": "Text on the prompt's path segment (slot 4): dark on the readable heritage slot 4 (D-029).",
+          "css": "#8c1212",
+          "variable": "--color-terminal-prompt-bg",
+          "description": "Background of the prompt's path segment: the heritage dark red, so the prompt keeps its look whatever slot 4 carries (D-032).",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -66643,17 +66579,18 @@
           },
           "source": {
             "file": "tokens/semantic.tokens.json",
-            "pointer": "/color/terminal/prompt-text",
+            "pointer": "/color/terminal/prompt-bg",
             "line": 1209
           },
           "provenance": {
             "status": "approved",
             "approval": {
-              "decision": "D-029"
+              "decision": "D-032"
             }
           },
           "aliases": [
-            "color.primitive.ink.20"
+            "color.primitive.ansi.4",
+            "color.primitive.red.250"
           ],
           "usedByAliases": [],
           "unmappedPorts": [
@@ -66662,7 +66599,7 @@
               "reason": "The prompt chooses its own segment colours; a terminal theme carries the palette only.",
               "source": {
                 "file": "ports/ghostty/mapping.json",
-                "pointer": "/unmapped/color.terminal.prompt-text",
+                "pointer": "/unmapped/color.terminal.prompt-bg",
                 "line": 310
               }
             },
@@ -66671,7 +66608,7 @@
               "reason": "The prompt chooses its own segment colours; a terminal theme carries the palette only.",
               "source": {
                 "file": "ports/orca/mapping.json",
-                "pointer": "/unmapped/color.terminal.prompt-text",
+                "pointer": "/unmapped/color.terminal.prompt-bg",
                 "line": 316
               }
             },
@@ -66680,7 +66617,7 @@
               "reason": "The prompt chooses its own segment colours; a terminal theme carries the palette only.",
               "source": {
                 "file": "ports/warp/mapping.json",
-                "pointer": "/unmapped/color.terminal.prompt-text",
+                "pointer": "/unmapped/color.terminal.prompt-bg",
                 "line": 304
               }
             }
@@ -66692,7 +66629,136 @@
               "part": null,
               "state": null,
               "variant": null,
-              "surface": "color.terminal.ansi.4",
+              "surface": "color.terminal.bg",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/terminal.md",
+                "pointer": "/contrast/4",
+                "line": 77
+              }
+            },
+            {
+              "kind": "contrast",
+              "component": "terminal",
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": "color.terminal.prompt-bg",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/terminal.md",
+                "pointer": "/contrast/2",
+                "line": 75
+              }
+            },
+            {
+              "kind": "part",
+              "component": "terminal",
+              "part": "prompt.bg",
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/terminal.md",
+                "pointer": "/tokens/prompt.bg",
+                "line": 41
+              }
+            }
+          ],
+          "contrast": [
+            {
+              "fg": "color.terminal.prompt-bg",
+              "bg": "color.terminal.bg",
+              "label": "prompt arrow (the segment's own colour, decorative)",
+              "state": null,
+              "source": {
+                "file": "spec/components/terminal.md",
+                "pointer": "/contrast/4",
+                "line": 77
+              }
+            },
+            {
+              "fg": "color.terminal.prompt-text",
+              "bg": "color.terminal.prompt-bg",
+              "label": "prompt segment text on the prompt background",
+              "state": null,
+              "source": {
+                "file": "spec/components/terminal.md",
+                "pointer": "/contrast/2",
+                "line": 75
+              }
+            }
+          ]
+        },
+        "color.terminal.prompt-text": {
+          "path": "color.terminal.prompt-text",
+          "group": "terminal",
+          "css": "#ffa2a7",
+          "variable": "--color-terminal-prompt-text",
+          "description": "Text on the prompt's path segment: bright rose on the prompt background (D-032).",
+          "status": "approved",
+          "deprecated": false,
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "source": {
+            "file": "tokens/semantic.tokens.json",
+            "pointer": "/color/terminal/prompt-text",
+            "line": 1221
+          },
+          "provenance": {
+            "status": "approved",
+            "approval": {
+              "decision": "D-032"
+            }
+          },
+          "aliases": [
+            "color.primitive.rose.800"
+          ],
+          "usedByAliases": [],
+          "unmappedPorts": [
+            {
+              "port": "ghostty",
+              "reason": "The prompt chooses its own segment colours; a terminal theme carries the palette only.",
+              "source": {
+                "file": "ports/ghostty/mapping.json",
+                "pointer": "/unmapped/color.terminal.prompt-text",
+                "line": 311
+              }
+            },
+            {
+              "port": "orca",
+              "reason": "The prompt chooses its own segment colours; a terminal theme carries the palette only.",
+              "source": {
+                "file": "ports/orca/mapping.json",
+                "pointer": "/unmapped/color.terminal.prompt-text",
+                "line": 317
+              }
+            },
+            {
+              "port": "warp",
+              "reason": "The prompt chooses its own segment colours; a terminal theme carries the palette only.",
+              "source": {
+                "file": "ports/warp/mapping.json",
+                "pointer": "/unmapped/color.terminal.prompt-text",
+                "line": 305
+              }
+            }
+          ],
+          "uses": [
+            {
+              "kind": "contrast",
+              "component": "terminal",
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": "color.terminal.prompt-bg",
               "nativeKey": null,
               "port": null,
               "source": {
@@ -66720,8 +66786,8 @@
           "contrast": [
             {
               "fg": "color.terminal.prompt-text",
-              "bg": "color.terminal.ansi.4",
-              "label": "prompt segment text on slot 4",
+              "bg": "color.terminal.prompt-bg",
+              "label": "prompt segment text on the prompt background",
               "state": null,
               "source": {
                 "file": "spec/components/terminal.md",
@@ -66761,7 +66827,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.terminal.selection-bg",
-                "line": 305
+                "line": 306
               }
             }
           ],
@@ -66871,7 +66937,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.terminal.selection-text",
-                "line": 306
+                "line": 307
               }
             }
           ],
@@ -66981,7 +67047,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.text.accent",
-                "line": 311
+                "line": 312
               }
             },
             {
@@ -66990,7 +67056,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.text.accent",
-                "line": 317
+                "line": 318
               }
             }
           ],
@@ -67096,7 +67162,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.text.accent-strong",
-                "line": 312
+                "line": 313
               }
             },
             {
@@ -67105,7 +67171,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.text.accent-strong",
-                "line": 318
+                "line": 319
               }
             },
             {
@@ -67114,7 +67180,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.text.accent-strong",
-                "line": 307
+                "line": 308
               }
             }
           ],
@@ -67179,7 +67245,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.text.bright",
-                "line": 313
+                "line": 314
               }
             },
             {
@@ -67188,7 +67254,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.text.bright",
-                "line": 319
+                "line": 320
               }
             },
             {
@@ -67197,7 +67263,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.text.bright",
-                "line": 308
+                "line": 309
               }
             }
           ],
@@ -69248,7 +69314,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.text.default",
-                "line": 314
+                "line": 315
               }
             },
             {
@@ -69257,7 +69323,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.text.default",
-                "line": 320
+                "line": 321
               }
             },
             {
@@ -69266,7 +69332,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.text.default",
-                "line": 309
+                "line": 310
               }
             }
           ],
@@ -75305,7 +75371,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.text.disabled",
-                "line": 315
+                "line": 316
               }
             },
             {
@@ -75314,7 +75380,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.text.disabled",
-                "line": 321
+                "line": 322
               }
             },
             {
@@ -75323,7 +75389,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.text.disabled",
-                "line": 310
+                "line": 311
               }
             }
           ],
@@ -76749,7 +76815,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.text.inverse",
-                "line": 316
+                "line": 317
               }
             },
             {
@@ -76758,7 +76824,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.text.inverse",
-                "line": 322
+                "line": 323
               }
             },
             {
@@ -76767,7 +76833,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.text.inverse",
-                "line": 311
+                "line": 312
               }
             }
           ],
@@ -76809,7 +76875,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.text.link",
-                "line": 317
+                "line": 318
               }
             },
             {
@@ -76818,7 +76884,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.text.link",
-                "line": 323
+                "line": 324
               }
             },
             {
@@ -76827,7 +76893,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.text.link",
-                "line": 312
+                "line": 313
               }
             }
           ],
@@ -77294,7 +77360,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.text.link-hover",
-                "line": 318
+                "line": 319
               }
             },
             {
@@ -77303,7 +77369,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.text.link-hover",
-                "line": 324
+                "line": 325
               }
             },
             {
@@ -77312,7 +77378,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.text.link-hover",
-                "line": 313
+                "line": 314
               }
             }
           ],
@@ -77623,7 +77689,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.text.link-underline",
-                "line": 319
+                "line": 320
               }
             },
             {
@@ -77632,7 +77698,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.text.link-underline",
-                "line": 325
+                "line": 326
               }
             },
             {
@@ -77641,7 +77707,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.text.link-underline",
-                "line": 314
+                "line": 315
               }
             }
           ],
@@ -77788,7 +77854,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.text.muted",
-                "line": 320
+                "line": 321
               }
             },
             {
@@ -77797,7 +77863,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.text.muted",
-                "line": 326
+                "line": 327
               }
             },
             {
@@ -77806,7 +77872,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.text.muted",
-                "line": 315
+                "line": 316
               }
             }
           ],
@@ -80976,7 +81042,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.text.on-action",
-                "line": 321
+                "line": 322
               }
             },
             {
@@ -80985,7 +81051,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.text.on-action",
-                "line": 327
+                "line": 328
               }
             },
             {
@@ -80994,7 +81060,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.text.on-action",
-                "line": 316
+                "line": 317
               }
             }
           ],
@@ -81031,7 +81097,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.text.on-danger",
-                "line": 322
+                "line": 323
               }
             },
             {
@@ -81040,7 +81106,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.text.on-danger",
-                "line": 328
+                "line": 329
               }
             },
             {
@@ -81049,7 +81115,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.text.on-danger",
-                "line": 317
+                "line": 318
               }
             }
           ],
@@ -81086,7 +81152,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.text.on-light",
-                "line": 323
+                "line": 324
               }
             },
             {
@@ -81095,7 +81161,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.text.on-light",
-                "line": 329
+                "line": 330
               }
             },
             {
@@ -81104,7 +81170,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.text.on-light",
-                "line": 318
+                "line": 319
               }
             }
           ],
@@ -81141,7 +81207,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.text.on-selection",
-                "line": 324
+                "line": 325
               }
             },
             {
@@ -81150,7 +81216,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.text.on-selection",
-                "line": 330
+                "line": 331
               }
             },
             {
@@ -81159,7 +81225,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.text.on-selection",
-                "line": 319
+                "line": 320
               }
             }
           ],
@@ -81244,7 +81310,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.text.placeholder",
-                "line": 325
+                "line": 326
               }
             },
             {
@@ -81253,7 +81319,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.text.placeholder",
-                "line": 331
+                "line": 332
               }
             },
             {
@@ -81262,7 +81328,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.text.placeholder",
-                "line": 320
+                "line": 321
               }
             }
           ],
@@ -81480,7 +81546,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.text.prose",
-                "line": 326
+                "line": 327
               }
             },
             {
@@ -81489,7 +81555,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.text.prose",
-                "line": 332
+                "line": 333
               }
             },
             {
@@ -81498,7 +81564,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.text.prose",
-                "line": 321
+                "line": 322
               }
             }
           ],
@@ -81594,7 +81660,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/color.text.subtle",
-                "line": 327
+                "line": 328
               }
             },
             {
@@ -81603,7 +81669,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/color.text.subtle",
-                "line": 333
+                "line": 334
               }
             },
             {
@@ -81612,7 +81678,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.text.subtle",
-                "line": 322
+                "line": 323
               }
             }
           ],
@@ -81839,7 +81905,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/density.comfortable.control-height",
-                "line": 328
+                "line": 329
               }
             },
             {
@@ -81848,7 +81914,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/density.comfortable.control-height",
-                "line": 334
+                "line": 335
               }
             },
             {
@@ -81857,7 +81923,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/density.comfortable.control-height",
-                "line": 323
+                "line": 324
               }
             }
           ],
@@ -82088,7 +82154,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/density.comfortable.control-padding-x",
-                "line": 329
+                "line": 330
               }
             },
             {
@@ -82097,7 +82163,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/density.comfortable.control-padding-x",
-                "line": 335
+                "line": 336
               }
             },
             {
@@ -82106,7 +82172,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/density.comfortable.control-padding-x",
-                "line": 324
+                "line": 325
               }
             }
           ],
@@ -82141,7 +82207,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/density.comfortable.gap",
-                "line": 330
+                "line": 331
               }
             },
             {
@@ -82150,7 +82216,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/density.comfortable.gap",
-                "line": 336
+                "line": 337
               }
             },
             {
@@ -82159,7 +82225,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/density.comfortable.gap",
-                "line": 325
+                "line": 326
               }
             }
           ],
@@ -82194,7 +82260,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/density.comfortable.icon",
-                "line": 331
+                "line": 332
               }
             },
             {
@@ -82203,7 +82269,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/density.comfortable.icon",
-                "line": 337
+                "line": 338
               }
             },
             {
@@ -82212,7 +82278,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/density.comfortable.icon",
-                "line": 326
+                "line": 327
               }
             }
           ],
@@ -82247,7 +82313,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/density.comfortable.row-height",
-                "line": 332
+                "line": 333
               }
             },
             {
@@ -82256,7 +82322,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/density.comfortable.row-height",
-                "line": 338
+                "line": 339
               }
             },
             {
@@ -82265,7 +82331,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/density.comfortable.row-height",
-                "line": 327
+                "line": 328
               }
             }
           ],
@@ -82300,7 +82366,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/density.compact.control-height",
-                "line": 333
+                "line": 334
               }
             },
             {
@@ -82309,7 +82375,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/density.compact.control-height",
-                "line": 339
+                "line": 340
               }
             },
             {
@@ -82318,7 +82384,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/density.compact.control-height",
-                "line": 328
+                "line": 329
               }
             }
           ],
@@ -82549,7 +82615,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/density.compact.control-padding-x",
-                "line": 334
+                "line": 335
               }
             },
             {
@@ -82558,7 +82624,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/density.compact.control-padding-x",
-                "line": 340
+                "line": 341
               }
             },
             {
@@ -82567,7 +82633,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/density.compact.control-padding-x",
-                "line": 329
+                "line": 330
               }
             }
           ],
@@ -82602,7 +82668,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/density.compact.gap",
-                "line": 335
+                "line": 336
               }
             },
             {
@@ -82611,7 +82677,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/density.compact.gap",
-                "line": 341
+                "line": 342
               }
             },
             {
@@ -82620,7 +82686,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/density.compact.gap",
-                "line": 330
+                "line": 331
               }
             }
           ],
@@ -82655,7 +82721,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/density.compact.icon",
-                "line": 336
+                "line": 337
               }
             },
             {
@@ -82664,7 +82730,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/density.compact.icon",
-                "line": 342
+                "line": 343
               }
             },
             {
@@ -82673,7 +82739,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/density.compact.icon",
-                "line": 331
+                "line": 332
               }
             }
           ],
@@ -82708,7 +82774,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/density.compact.row-height",
-                "line": 337
+                "line": 338
               }
             },
             {
@@ -82717,7 +82783,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/density.compact.row-height",
-                "line": 343
+                "line": 344
               }
             },
             {
@@ -82726,7 +82792,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/density.compact.row-height",
-                "line": 332
+                "line": 333
               }
             }
           ],
@@ -82761,7 +82827,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/focus.offset",
-                "line": 338
+                "line": 339
               }
             },
             {
@@ -82770,7 +82836,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/focus.offset",
-                "line": 344
+                "line": 345
               }
             },
             {
@@ -82779,7 +82845,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/focus.offset",
-                "line": 333
+                "line": 334
               }
             }
           ],
@@ -82845,7 +82911,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/focus.offset-container",
-                "line": 339
+                "line": 340
               }
             },
             {
@@ -82854,7 +82920,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/focus.offset-container",
-                "line": 345
+                "line": 346
               }
             },
             {
@@ -82863,7 +82929,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/focus.offset-container",
-                "line": 334
+                "line": 335
               }
             }
           ],
@@ -82898,7 +82964,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/focus.offset-invalid",
-                "line": 340
+                "line": 341
               }
             },
             {
@@ -82907,7 +82973,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/focus.offset-invalid",
-                "line": 346
+                "line": 347
               }
             },
             {
@@ -82916,7 +82982,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/focus.offset-invalid",
-                "line": 335
+                "line": 336
               }
             }
           ],
@@ -82954,7 +83020,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/focus.ring",
-                "line": 341
+                "line": 342
               }
             },
             {
@@ -82963,7 +83029,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/focus.ring",
-                "line": 347
+                "line": 348
               }
             },
             {
@@ -82972,7 +83038,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/focus.ring",
-                "line": 336
+                "line": 337
               }
             }
           ],
@@ -83041,7 +83107,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/focus.ring-container",
-                "line": 342
+                "line": 343
               }
             },
             {
@@ -83050,7 +83116,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/focus.ring-container",
-                "line": 348
+                "line": 349
               }
             },
             {
@@ -83059,7 +83125,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/focus.ring-container",
-                "line": 337
+                "line": 338
               }
             }
           ],
@@ -83094,7 +83160,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.family.mono",
-                "line": 343
+                "line": 344
               }
             },
             {
@@ -83103,7 +83169,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.family.mono",
-                "line": 338
+                "line": 339
               }
             }
           ],
@@ -83154,7 +83220,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.letter-spacing.terminal",
-                "line": 344
+                "line": 345
               }
             },
             {
@@ -83163,7 +83229,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.letter-spacing.terminal",
-                "line": 349
+                "line": 350
               }
             },
             {
@@ -83172,7 +83238,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.letter-spacing.terminal",
-                "line": 339
+                "line": 340
               }
             }
           ],
@@ -83207,7 +83273,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.line-height.caption",
-                "line": 345
+                "line": 346
               }
             },
             {
@@ -83216,7 +83282,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.line-height.caption",
-                "line": 350
+                "line": 351
               }
             },
             {
@@ -83225,7 +83291,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.line-height.caption",
-                "line": 340
+                "line": 341
               }
             }
           ],
@@ -83260,7 +83326,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.line-height.code",
-                "line": 346
+                "line": 347
               }
             },
             {
@@ -83269,7 +83335,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.line-height.code",
-                "line": 351
+                "line": 352
               }
             },
             {
@@ -83278,7 +83344,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.line-height.code",
-                "line": 341
+                "line": 342
               }
             }
           ],
@@ -83313,7 +83379,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.line-height.h1",
-                "line": 347
+                "line": 348
               }
             },
             {
@@ -83322,7 +83388,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.line-height.h1",
-                "line": 352
+                "line": 353
               }
             },
             {
@@ -83331,7 +83397,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.line-height.h1",
-                "line": 342
+                "line": 343
               }
             }
           ],
@@ -83366,7 +83432,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.line-height.h2",
-                "line": 348
+                "line": 349
               }
             },
             {
@@ -83375,7 +83441,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.line-height.h2",
-                "line": 353
+                "line": 354
               }
             },
             {
@@ -83384,7 +83450,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.line-height.h2",
-                "line": 343
+                "line": 344
               }
             }
           ],
@@ -83419,7 +83485,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.line-height.h3",
-                "line": 349
+                "line": 350
               }
             },
             {
@@ -83428,7 +83494,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.line-height.h3",
-                "line": 354
+                "line": 355
               }
             },
             {
@@ -83437,7 +83503,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.line-height.h3",
-                "line": 344
+                "line": 345
               }
             }
           ],
@@ -83472,7 +83538,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.line-height.reading",
-                "line": 350
+                "line": 351
               }
             },
             {
@@ -83481,7 +83547,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.line-height.reading",
-                "line": 355
+                "line": 356
               }
             },
             {
@@ -83490,7 +83556,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.line-height.reading",
-                "line": 345
+                "line": 346
               }
             }
           ],
@@ -83525,7 +83591,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.line-height.terminal",
-                "line": 351
+                "line": 352
               }
             },
             {
@@ -83534,7 +83600,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.line-height.terminal",
-                "line": 356
+                "line": 357
               }
             },
             {
@@ -83543,7 +83609,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.line-height.terminal",
-                "line": 346
+                "line": 347
               }
             }
           ],
@@ -83578,7 +83644,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.line-height.ui-lg",
-                "line": 352
+                "line": 353
               }
             },
             {
@@ -83587,7 +83653,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.line-height.ui-lg",
-                "line": 357
+                "line": 358
               }
             },
             {
@@ -83596,7 +83662,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.line-height.ui-lg",
-                "line": 347
+                "line": 348
               }
             }
           ],
@@ -83631,7 +83697,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.line-height.ui-md",
-                "line": 353
+                "line": 354
               }
             },
             {
@@ -83640,7 +83706,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.line-height.ui-md",
-                "line": 358
+                "line": 359
               }
             },
             {
@@ -83649,7 +83715,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.line-height.ui-md",
-                "line": 348
+                "line": 349
               }
             }
           ],
@@ -83715,7 +83781,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.line-height.ui-sm",
-                "line": 354
+                "line": 355
               }
             },
             {
@@ -83724,7 +83790,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.line-height.ui-sm",
-                "line": 359
+                "line": 360
               }
             },
             {
@@ -83733,7 +83799,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.line-height.ui-sm",
-                "line": 349
+                "line": 350
               }
             }
           ],
@@ -83799,7 +83865,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.size.caption",
-                "line": 355
+                "line": 356
               }
             },
             {
@@ -83808,7 +83874,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.size.caption",
-                "line": 360
+                "line": 361
               }
             },
             {
@@ -83817,7 +83883,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.size.caption",
-                "line": 350
+                "line": 351
               }
             }
           ],
@@ -83852,7 +83918,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.size.code",
-                "line": 356
+                "line": 357
               }
             },
             {
@@ -83861,7 +83927,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.size.code",
-                "line": 361
+                "line": 362
               }
             },
             {
@@ -83870,7 +83936,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.size.code",
-                "line": 351
+                "line": 352
               }
             }
           ],
@@ -83905,7 +83971,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.size.h1",
-                "line": 357
+                "line": 358
               }
             },
             {
@@ -83914,7 +83980,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.size.h1",
-                "line": 362
+                "line": 363
               }
             },
             {
@@ -83923,7 +83989,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.size.h1",
-                "line": 352
+                "line": 353
               }
             }
           ],
@@ -83958,7 +84024,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.size.h2",
-                "line": 358
+                "line": 359
               }
             },
             {
@@ -83967,7 +84033,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.size.h2",
-                "line": 363
+                "line": 364
               }
             },
             {
@@ -83976,7 +84042,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.size.h2",
-                "line": 353
+                "line": 354
               }
             }
           ],
@@ -84027,7 +84093,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.size.h3",
-                "line": 359
+                "line": 360
               }
             },
             {
@@ -84036,7 +84102,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.size.h3",
-                "line": 364
+                "line": 365
               }
             },
             {
@@ -84045,7 +84111,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.size.h3",
-                "line": 354
+                "line": 355
               }
             }
           ],
@@ -84080,7 +84146,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.size.reading",
-                "line": 360
+                "line": 361
               }
             },
             {
@@ -84089,7 +84155,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.size.reading",
-                "line": 365
+                "line": 366
               }
             },
             {
@@ -84098,7 +84164,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.size.reading",
-                "line": 355
+                "line": 356
               }
             }
           ],
@@ -84133,7 +84199,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.size.terminal",
-                "line": 361
+                "line": 362
               }
             },
             {
@@ -84142,7 +84208,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.size.terminal",
-                "line": 356
+                "line": 357
               }
             }
           ],
@@ -84193,7 +84259,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.size.ui-lg",
-                "line": 362
+                "line": 363
               }
             },
             {
@@ -84202,7 +84268,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.size.ui-lg",
-                "line": 366
+                "line": 367
               }
             },
             {
@@ -84211,7 +84277,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.size.ui-lg",
-                "line": 357
+                "line": 358
               }
             }
           ],
@@ -84246,7 +84312,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.size.ui-md",
-                "line": 363
+                "line": 364
               }
             },
             {
@@ -84255,7 +84321,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.size.ui-md",
-                "line": 367
+                "line": 368
               }
             },
             {
@@ -84264,7 +84330,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.size.ui-md",
-                "line": 358
+                "line": 359
               }
             }
           ],
@@ -84330,7 +84396,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.size.ui-sm",
-                "line": 364
+                "line": 365
               }
             },
             {
@@ -84339,7 +84405,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.size.ui-sm",
-                "line": 368
+                "line": 369
               }
             },
             {
@@ -84348,7 +84414,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.size.ui-sm",
-                "line": 359
+                "line": 360
               }
             }
           ],
@@ -84414,7 +84480,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.weight.bold",
-                "line": 365
+                "line": 366
               }
             },
             {
@@ -84423,7 +84489,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.weight.bold",
-                "line": 369
+                "line": 370
               }
             },
             {
@@ -84432,7 +84498,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.weight.bold",
-                "line": 360
+                "line": 361
               }
             }
           ],
@@ -84483,7 +84549,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/font.weight.regular",
-                "line": 366
+                "line": 367
               }
             },
             {
@@ -84492,7 +84558,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/font.weight.regular",
-                "line": 370
+                "line": 371
               }
             },
             {
@@ -84501,7 +84567,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/font.weight.regular",
-                "line": 361
+                "line": 362
               }
             }
           ],
@@ -84536,7 +84602,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/icon.size.lg",
-                "line": 367
+                "line": 368
               }
             },
             {
@@ -84545,7 +84611,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/icon.size.lg",
-                "line": 371
+                "line": 372
               }
             },
             {
@@ -84554,7 +84620,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/icon.size.lg",
-                "line": 362
+                "line": 363
               }
             }
           ],
@@ -84589,7 +84655,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/icon.size.md",
-                "line": 368
+                "line": 369
               }
             },
             {
@@ -84598,7 +84664,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/icon.size.md",
-                "line": 372
+                "line": 373
               }
             },
             {
@@ -84607,7 +84673,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/icon.size.md",
-                "line": 363
+                "line": 364
               }
             }
           ],
@@ -84673,7 +84739,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/icon.size.sm",
-                "line": 369
+                "line": 370
               }
             },
             {
@@ -84682,7 +84748,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/icon.size.sm",
-                "line": 373
+                "line": 374
               }
             },
             {
@@ -84691,7 +84757,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/icon.size.sm",
-                "line": 364
+                "line": 365
               }
             }
           ],
@@ -84726,7 +84792,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/icon.stroke",
-                "line": 370
+                "line": 371
               }
             },
             {
@@ -84735,7 +84801,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/icon.stroke",
-                "line": 374
+                "line": 375
               }
             },
             {
@@ -84744,7 +84810,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/icon.stroke",
-                "line": 365
+                "line": 366
               }
             }
           ],
@@ -84779,7 +84845,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/layout.app-max",
-                "line": 371
+                "line": 372
               }
             },
             {
@@ -84788,7 +84854,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/layout.app-max",
-                "line": 375
+                "line": 376
               }
             },
             {
@@ -84797,7 +84863,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/layout.app-max",
-                "line": 366
+                "line": 367
               }
             }
           ],
@@ -84832,7 +84898,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/layout.content-max",
-                "line": 372
+                "line": 373
               }
             },
             {
@@ -84841,7 +84907,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/layout.content-max",
-                "line": 376
+                "line": 377
               }
             },
             {
@@ -84850,7 +84916,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/layout.content-max",
-                "line": 367
+                "line": 368
               }
             }
           ],
@@ -84885,7 +84951,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/layout.measure",
-                "line": 373
+                "line": 374
               }
             },
             {
@@ -84894,7 +84960,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/layout.measure",
-                "line": 377
+                "line": 378
               }
             },
             {
@@ -84903,7 +84969,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/layout.measure",
-                "line": 368
+                "line": 369
               }
             }
           ],
@@ -84938,7 +85004,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/motion.duration.base",
-                "line": 374
+                "line": 375
               }
             },
             {
@@ -84947,7 +85013,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/motion.duration.base",
-                "line": 378
+                "line": 379
               }
             },
             {
@@ -84956,7 +85022,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/motion.duration.base",
-                "line": 369
+                "line": 370
               }
             }
           ],
@@ -84991,7 +85057,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/motion.duration.fast",
-                "line": 375
+                "line": 376
               }
             },
             {
@@ -85000,7 +85066,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/motion.duration.fast",
-                "line": 379
+                "line": 380
               }
             },
             {
@@ -85009,7 +85075,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/motion.duration.fast",
-                "line": 370
+                "line": 371
               }
             }
           ],
@@ -85044,7 +85110,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/motion.duration.slow",
-                "line": 376
+                "line": 377
               }
             },
             {
@@ -85053,7 +85119,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/motion.duration.slow",
-                "line": 380
+                "line": 381
               }
             },
             {
@@ -85062,7 +85128,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/motion.duration.slow",
-                "line": 371
+                "line": 372
               }
             }
           ],
@@ -85097,7 +85163,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/radius.none",
-                "line": 377
+                "line": 378
               }
             },
             {
@@ -85106,7 +85172,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/radius.none",
-                "line": 381
+                "line": 382
               }
             },
             {
@@ -85115,7 +85181,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/radius.none",
-                "line": 372
+                "line": 373
               }
             }
           ],
@@ -85439,7 +85505,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/shadow.floating",
-                "line": 378
+                "line": 379
               }
             },
             {
@@ -85448,7 +85514,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/shadow.floating",
-                "line": 382
+                "line": 383
               }
             },
             {
@@ -85457,7 +85523,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/shadow.floating",
-                "line": 373
+                "line": 374
               }
             }
           ],
@@ -85510,7 +85576,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/space.0",
-                "line": 379
+                "line": 380
               }
             },
             {
@@ -85519,7 +85585,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/space.0",
-                "line": 383
+                "line": 384
               }
             },
             {
@@ -85528,7 +85594,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/space.0",
-                "line": 374
+                "line": 375
               }
             }
           ],
@@ -85563,7 +85629,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/space.1",
-                "line": 380
+                "line": 381
               }
             },
             {
@@ -85572,7 +85638,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/space.1",
-                "line": 384
+                "line": 385
               }
             },
             {
@@ -85581,7 +85647,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/space.1",
-                "line": 375
+                "line": 376
               }
             }
           ],
@@ -85616,7 +85682,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/space.12",
-                "line": 381
+                "line": 382
               }
             },
             {
@@ -85625,7 +85691,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/space.12",
-                "line": 385
+                "line": 386
               }
             },
             {
@@ -85634,7 +85700,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/space.12",
-                "line": 376
+                "line": 377
               }
             }
           ],
@@ -85955,7 +86021,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/space.16",
-                "line": 382
+                "line": 383
               }
             },
             {
@@ -85964,7 +86030,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/space.16",
-                "line": 386
+                "line": 387
               }
             },
             {
@@ -85973,7 +86039,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/space.16",
-                "line": 377
+                "line": 378
               }
             }
           ],
@@ -86099,7 +86165,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/space.2",
-                "line": 383
+                "line": 384
               }
             },
             {
@@ -86108,7 +86174,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/space.2",
-                "line": 387
+                "line": 388
               }
             },
             {
@@ -86117,7 +86183,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/space.2",
-                "line": 378
+                "line": 379
               }
             }
           ],
@@ -86438,7 +86504,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/space.24",
-                "line": 384
+                "line": 385
               }
             },
             {
@@ -86447,7 +86513,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/space.24",
-                "line": 388
+                "line": 389
               }
             },
             {
@@ -86456,7 +86522,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/space.24",
-                "line": 379
+                "line": 380
               }
             }
           ],
@@ -86537,7 +86603,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/space.32",
-                "line": 385
+                "line": 386
               }
             },
             {
@@ -86546,7 +86612,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/space.32",
-                "line": 389
+                "line": 390
               }
             },
             {
@@ -86555,7 +86621,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/space.32",
-                "line": 380
+                "line": 381
               }
             }
           ],
@@ -86606,7 +86672,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/space.4",
-                "line": 386
+                "line": 387
               }
             },
             {
@@ -86615,7 +86681,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/space.4",
-                "line": 390
+                "line": 391
               }
             },
             {
@@ -86624,7 +86690,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/space.4",
-                "line": 381
+                "line": 382
               }
             }
           ],
@@ -86750,7 +86816,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/space.48",
-                "line": 387
+                "line": 388
               }
             },
             {
@@ -86759,7 +86825,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/space.48",
-                "line": 391
+                "line": 392
               }
             },
             {
@@ -86768,7 +86834,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/space.48",
-                "line": 382
+                "line": 383
               }
             }
           ],
@@ -86803,7 +86869,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/space.8",
-                "line": 388
+                "line": 389
               }
             },
             {
@@ -86812,7 +86878,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/space.8",
-                "line": 392
+                "line": 393
               }
             },
             {
@@ -86821,7 +86887,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/space.8",
-                "line": 383
+                "line": 384
               }
             }
           ],
@@ -87082,7 +87148,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/z.canvas",
-                "line": 389
+                "line": 390
               }
             },
             {
@@ -87091,7 +87157,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/z.canvas",
-                "line": 393
+                "line": 394
               }
             },
             {
@@ -87100,7 +87166,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/z.canvas",
-                "line": 384
+                "line": 385
               }
             }
           ],
@@ -87135,7 +87201,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/z.dialog",
-                "line": 390
+                "line": 391
               }
             },
             {
@@ -87144,7 +87210,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/z.dialog",
-                "line": 394
+                "line": 395
               }
             },
             {
@@ -87153,7 +87219,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/z.dialog",
-                "line": 385
+                "line": 386
               }
             }
           ],
@@ -87204,7 +87270,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/z.drawer",
-                "line": 391
+                "line": 392
               }
             },
             {
@@ -87213,7 +87279,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/z.drawer",
-                "line": 395
+                "line": 396
               }
             },
             {
@@ -87222,7 +87288,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/z.drawer",
-                "line": 386
+                "line": 387
               }
             }
           ],
@@ -87273,7 +87339,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/z.popover",
-                "line": 392
+                "line": 393
               }
             },
             {
@@ -87282,7 +87348,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/z.popover",
-                "line": 396
+                "line": 397
               }
             },
             {
@@ -87291,7 +87357,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/z.popover",
-                "line": 387
+                "line": 388
               }
             }
           ],
@@ -87342,7 +87408,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/z.raised",
-                "line": 393
+                "line": 394
               }
             },
             {
@@ -87351,7 +87417,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/z.raised",
-                "line": 397
+                "line": 398
               }
             },
             {
@@ -87360,7 +87426,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/z.raised",
-                "line": 388
+                "line": 389
               }
             }
           ],
@@ -87395,7 +87461,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/z.skip-link",
-                "line": 394
+                "line": 395
               }
             },
             {
@@ -87404,7 +87470,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/z.skip-link",
-                "line": 398
+                "line": 399
               }
             },
             {
@@ -87413,7 +87479,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/z.skip-link",
-                "line": 389
+                "line": 390
               }
             }
           ],
@@ -87448,7 +87514,7 @@
               "source": {
                 "file": "ports/ghostty/mapping.json",
                 "pointer": "/unmapped/z.toast",
-                "line": 395
+                "line": 396
               }
             },
             {
@@ -87457,7 +87523,7 @@
               "source": {
                 "file": "ports/orca/mapping.json",
                 "pointer": "/unmapped/z.toast",
-                "line": 399
+                "line": 400
               }
             },
             {
@@ -87466,7 +87532,7 @@
               "source": {
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/z.toast",
-                "line": 390
+                "line": 391
               }
             }
           ],
@@ -101736,7 +101802,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/axis",
-            "line": 1385
+            "line": 1397
           },
           "provenance": null,
           "aliases": [
@@ -101779,7 +101845,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/grid",
-            "line": 1389
+            "line": 1401
           },
           "provenance": null,
           "aliases": [
@@ -101822,7 +101888,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/label",
-            "line": 1393
+            "line": 1405
           },
           "provenance": null,
           "aliases": [
@@ -101892,7 +101958,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/series-1",
-            "line": 1369
+            "line": 1381
           },
           "provenance": null,
           "aliases": [
@@ -101919,7 +101985,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/series-2",
-            "line": 1373
+            "line": 1385
           },
           "provenance": null,
           "aliases": [
@@ -101962,7 +102028,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/series-3",
-            "line": 1377
+            "line": 1389
           },
           "provenance": null,
           "aliases": [
@@ -101989,7 +102055,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/series-4",
-            "line": 1381
+            "line": 1393
           },
           "provenance": null,
           "aliases": [
@@ -108579,7 +108645,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/icon/decorative",
-            "line": 1403
+            "line": 1415
           },
           "provenance": null,
           "aliases": [
@@ -108828,7 +108894,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/icon/default",
-            "line": 1399
+            "line": 1411
           },
           "provenance": null,
           "aliases": [
@@ -118933,7 +118999,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/alpha/black-55",
-            "line": 1230
+            "line": 1259
           },
           "provenance": {
             "status": "observed",
@@ -118967,7 +119033,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/alpha/black-65",
-            "line": 1253
+            "line": 1282
           },
           "provenance": {
             "status": "observed",
@@ -119004,7 +119070,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/alpha/red-12",
-            "line": 1302
+            "line": 1331
           },
           "provenance": {
             "status": "observed",
@@ -119038,7 +119104,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/alpha/red-6",
-            "line": 1279
+            "line": 1308
           },
           "provenance": {
             "status": "observed",
@@ -119070,7 +119136,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/alpha/transparent",
-            "line": 1207
+            "line": 1236
           },
           "provenance": {
             "status": "observed",
@@ -119104,7 +119170,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/amber/500",
-            "line": 974
+            "line": 1003
           },
           "provenance": {
             "status": "approved",
@@ -119152,7 +119218,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/amber/600",
-            "line": 1000
+            "line": 1029
           },
           "provenance": {
             "status": "proposed",
@@ -119184,7 +119250,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/amber/tint",
-            "line": 1024
+            "line": 1053
           },
           "provenance": {
             "status": "approved",
@@ -119221,7 +119287,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi-readable/1",
-            "line": 1394
+            "line": 1423
           },
           "provenance": {
             "status": "approved",
@@ -119257,7 +119323,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi-readable/10",
-            "line": 1529
+            "line": 1531
           },
           "provenance": {
             "status": "approved",
@@ -119293,7 +119359,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi-readable/12",
-            "line": 1556
+            "line": 1558
           },
           "provenance": {
             "status": "approved",
@@ -119329,7 +119395,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi-readable/13",
-            "line": 1583
+            "line": 1585
           },
           "provenance": {
             "status": "approved",
@@ -119365,7 +119431,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi-readable/14",
-            "line": 1610
+            "line": 1612
           },
           "provenance": {
             "status": "approved",
@@ -119401,7 +119467,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi-readable/15",
-            "line": 1637
+            "line": 1639
           },
           "provenance": {
             "status": "approved",
@@ -119437,7 +119503,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi-readable/4",
-            "line": 1421
+            "line": 1450
           },
           "provenance": {
             "status": "approved",
@@ -119450,42 +119516,6 @@
               "decision": "D-029"
             },
             "textSafe": "canvas"
-          },
-          "aliases": [],
-          "usedByAliases": [],
-          "unmappedPorts": [],
-          "uses": [],
-          "contrast": []
-        },
-        "color.primitive.ansi-readable.6": {
-          "path": "color.primitive.ansi-readable.6",
-          "group": "primitive",
-          "css": "#bb696c",
-          "variable": "--color-primitive-ansi-readable-6",
-          "description": "Heritage slot 6 (#9e474a, 3.26:1) lifted to 5.05:1 on the terminal background.",
-          "status": "approved",
-          "deprecated": false,
-          "eligibility": {
-            "action": "historical-only",
-            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
-            "decisionIds": []
-          },
-          "source": {
-            "file": "tokens/primitives.tokens.json",
-            "pointer": "/color/primitive/ansi-readable/6",
-            "line": 1448
-          },
-          "provenance": {
-            "status": "approved",
-            "origin": {
-              "kind": "derived",
-              "ref": "spec/decisions.md#d-029",
-              "note": "HSL lightness lift of color.primitive.ansi.6; hue and saturation kept."
-            },
-            "approval": {
-              "decision": "D-029"
-            },
-            "textSafe": "raised"
           },
           "aliases": [],
           "usedByAliases": [],
@@ -119509,7 +119539,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi-readable/8",
-            "line": 1475
+            "line": 1477
           },
           "provenance": {
             "status": "approved",
@@ -119545,7 +119575,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi-readable/9",
-            "line": 1502
+            "line": 1504
           },
           "provenance": {
             "status": "approved",
@@ -119581,7 +119611,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/0",
-            "line": 1327
+            "line": 1356
           },
           "provenance": null,
           "aliases": [
@@ -119610,7 +119640,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/1",
-            "line": 1331
+            "line": 1360
           },
           "provenance": null,
           "aliases": [
@@ -119639,7 +119669,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/10",
-            "line": 1367
+            "line": 1396
           },
           "provenance": null,
           "aliases": [
@@ -119668,7 +119698,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/11",
-            "line": 1371
+            "line": 1400
           },
           "provenance": null,
           "aliases": [
@@ -119697,7 +119727,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/12",
-            "line": 1375
+            "line": 1404
           },
           "provenance": null,
           "aliases": [
@@ -119726,7 +119756,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/13",
-            "line": 1379
+            "line": 1408
           },
           "provenance": null,
           "aliases": [
@@ -119755,7 +119785,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/14",
-            "line": 1383
+            "line": 1412
           },
           "provenance": null,
           "aliases": [
@@ -119784,7 +119814,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/15",
-            "line": 1387
+            "line": 1416
           },
           "provenance": null,
           "aliases": [
@@ -119813,7 +119843,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/2",
-            "line": 1335
+            "line": 1364
           },
           "provenance": null,
           "aliases": [
@@ -119842,7 +119872,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/3",
-            "line": 1339
+            "line": 1368
           },
           "provenance": null,
           "aliases": [
@@ -119871,14 +119901,15 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/4",
-            "line": 1343
+            "line": 1372
           },
           "provenance": null,
           "aliases": [
             "color.primitive.red.250"
           ],
           "usedByAliases": [
-            "color.terminal.ansi.4"
+            "color.terminal.ansi.4",
+            "color.terminal.prompt-bg"
           ],
           "unmappedPorts": [],
           "uses": [],
@@ -119900,7 +119931,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/5",
-            "line": 1347
+            "line": 1376
           },
           "provenance": null,
           "aliases": [
@@ -119929,7 +119960,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/6",
-            "line": 1351
+            "line": 1380
           },
           "provenance": null,
           "aliases": [
@@ -119958,7 +119989,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/7",
-            "line": 1355
+            "line": 1384
           },
           "provenance": null,
           "aliases": [
@@ -119987,7 +120018,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/8",
-            "line": 1359
+            "line": 1388
           },
           "provenance": null,
           "aliases": [
@@ -120016,7 +120047,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/9",
-            "line": 1363
+            "line": 1392
           },
           "provenance": null,
           "aliases": [
@@ -120045,7 +120076,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/blue/500",
-            "line": 1129
+            "line": 1158
           },
           "provenance": {
             "status": "approved",
@@ -120088,7 +120119,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/blue/600",
-            "line": 1155
+            "line": 1184
           },
           "provenance": {
             "status": "proposed",
@@ -120120,7 +120151,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/blue/tint",
-            "line": 1179
+            "line": 1208
           },
           "provenance": {
             "status": "approved",
@@ -120136,6 +120167,42 @@
           "usedByAliases": [
             "color.status.info.tint"
           ],
+          "unmappedPorts": [],
+          "uses": [],
+          "contrast": []
+        },
+        "color.primitive.coral.700": {
+          "path": "color.primitive.coral.700",
+          "group": "primitive",
+          "css": "#ff7a66",
+          "variable": "--color-primitive-coral-700",
+          "description": "D-032 coral for terminal slot 6: warm and vivid so highlighted names stand apart from the rose text (7.77:1 on the terminal background).",
+          "status": "approved",
+          "deprecated": false,
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          },
+          "source": {
+            "file": "tokens/primitives.tokens.json",
+            "pointer": "/color/primitive/coral/700",
+            "line": 923
+          },
+          "provenance": {
+            "status": "approved",
+            "origin": {
+              "kind": "proposed",
+              "ref": "spec/decisions.md#d-032",
+              "note": "A new colour chosen by the owner for slot 6 (D-032): hue 8, full saturation, lightness 70."
+            },
+            "approval": {
+              "decision": "D-032"
+            },
+            "textSafe": "raised"
+          },
+          "aliases": [],
+          "usedByAliases": [],
           "unmappedPorts": [],
           "uses": [],
           "contrast": []
@@ -120156,7 +120223,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/green/500",
-            "line": 1051
+            "line": 1080
           },
           "provenance": {
             "status": "approved",
@@ -120198,7 +120265,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/green/600",
-            "line": 1077
+            "line": 1106
           },
           "provenance": {
             "status": "observed",
@@ -120231,7 +120298,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/green/tint",
-            "line": 1102
+            "line": 1131
           },
           "provenance": {
             "status": "approved",
@@ -120644,7 +120711,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/paper/100",
-            "line": 947
+            "line": 976
           },
           "provenance": {
             "status": "observed",
@@ -120682,7 +120749,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/paper/90",
-            "line": 923
+            "line": 952
           },
           "provenance": {
             "status": "observed",
@@ -120851,7 +120918,8 @@
           "aliases": [],
           "usedByAliases": [
             "color.primitive.ansi.4",
-            "color.terminal.ansi.4"
+            "color.terminal.ansi.4",
+            "color.terminal.prompt-bg"
           ],
           "unmappedPorts": [],
           "uses": [],
@@ -144142,7 +144210,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/0",
-            "line": 1222
+            "line": 1234
           },
           "provenance": null,
           "aliases": [
@@ -144359,7 +144427,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/11",
-            "line": 1314
+            "line": 1326
           },
           "provenance": null,
           "aliases": [
@@ -144722,7 +144790,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/2",
-            "line": 1238
+            "line": 1250
           },
           "provenance": null,
           "aliases": [
@@ -144793,7 +144861,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/3",
-            "line": 1242
+            "line": 1254
           },
           "provenance": null,
           "aliases": [
@@ -144923,21 +144991,6 @@
               "part": null,
               "state": null,
               "variant": null,
-              "surface": "color.terminal.ansi.4",
-              "nativeKey": null,
-              "port": null,
-              "source": {
-                "file": "spec/components/terminal.md",
-                "pointer": "/contrast/2",
-                "line": 75
-              }
-            },
-            {
-              "kind": "contrast",
-              "component": "terminal",
-              "part": null,
-              "state": null,
-              "variant": null,
               "surface": "color.terminal.bg",
               "nativeKey": null,
               "port": null,
@@ -144945,36 +144998,6 @@
                 "file": "spec/components/terminal.md",
                 "pointer": "/contrast/13",
                 "line": 86
-              }
-            },
-            {
-              "kind": "contrast",
-              "component": "terminal",
-              "part": null,
-              "state": null,
-              "variant": null,
-              "surface": "color.terminal.bg",
-              "nativeKey": null,
-              "port": null,
-              "source": {
-                "file": "spec/components/terminal.md",
-                "pointer": "/contrast/4",
-                "line": 77
-              }
-            },
-            {
-              "kind": "part",
-              "component": "terminal",
-              "part": "prompt.bg",
-              "state": null,
-              "variant": null,
-              "surface": null,
-              "nativeKey": null,
-              "port": null,
-              "source": {
-                "file": "spec/components/terminal.md",
-                "pointer": "/tokens/prompt.bg",
-                "line": 41
               }
             },
             {
@@ -144997,34 +145020,12 @@
             {
               "fg": "color.terminal.ansi.4",
               "bg": "color.terminal.bg",
-              "label": "prompt arrow (the segment's own colour, decorative)",
-              "state": null,
-              "source": {
-                "file": "spec/components/terminal.md",
-                "pointer": "/contrast/4",
-                "line": 77
-              }
-            },
-            {
-              "fg": "color.terminal.ansi.4",
-              "bg": "color.terminal.bg",
               "label": "slot 4",
               "state": null,
               "source": {
                 "file": "spec/components/terminal.md",
                 "pointer": "/contrast/13",
                 "line": 86
-              }
-            },
-            {
-              "fg": "color.terminal.prompt-text",
-              "bg": "color.terminal.ansi.4",
-              "label": "prompt segment text on slot 4",
-              "state": null,
-              "source": {
-                "file": "spec/components/terminal.md",
-                "pointer": "/contrast/2",
-                "line": 75
               }
             }
           ]
@@ -145045,7 +145046,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/5",
-            "line": 1258
+            "line": 1270
           },
           "provenance": null,
           "aliases": [
@@ -145189,7 +145190,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/terminal/ansi/7",
-            "line": 1274
+            "line": 1286
           },
           "provenance": null,
           "aliases": [
@@ -146002,17 +146003,6 @@
             {
               "fg": "color.terminal.ansi.4",
               "bg": "color.terminal.bg",
-              "label": "prompt arrow (the segment's own colour, decorative)",
-              "state": null,
-              "source": {
-                "file": "spec/components/terminal.md",
-                "pointer": "/contrast/4",
-                "line": 77
-              }
-            },
-            {
-              "fg": "color.terminal.ansi.4",
-              "bg": "color.terminal.bg",
               "label": "slot 4",
               "state": null,
               "source": {
@@ -146151,6 +146141,17 @@
                 "file": "spec/contrast.json",
                 "pointer": "/pairs/59",
                 "line": 63
+              }
+            },
+            {
+              "fg": "color.terminal.prompt-bg",
+              "bg": "color.terminal.bg",
+              "label": "prompt arrow (the segment's own colour, decorative)",
+              "state": null,
+              "source": {
+                "file": "spec/components/terminal.md",
+                "pointer": "/contrast/4",
+                "line": 77
               }
             },
             {
@@ -146507,6 +146508,105 @@
             }
           ]
         },
+        "color.terminal.prompt-bg": {
+          "path": "color.terminal.prompt-bg",
+          "group": "terminal",
+          "css": "#8c1212",
+          "variable": "--color-terminal-prompt-bg",
+          "description": "The heritage slot 4 behind the prompt's path segment, as the workstation drew it.",
+          "status": "heritage",
+          "deprecated": false,
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          },
+          "source": {
+            "file": "tokens/profiles/heritage-ansi.tokens.json",
+            "pointer": "/color/terminal/prompt-bg",
+            "line": 334
+          },
+          "provenance": {
+            "status": "heritage"
+          },
+          "aliases": [
+            "color.primitive.ansi.4",
+            "color.primitive.red.250"
+          ],
+          "usedByAliases": [],
+          "unmappedPorts": [],
+          "uses": [
+            {
+              "kind": "contrast",
+              "component": "terminal",
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": "color.terminal.bg",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/terminal.md",
+                "pointer": "/contrast/4",
+                "line": 77
+              }
+            },
+            {
+              "kind": "contrast",
+              "component": "terminal",
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": "color.terminal.prompt-bg",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/terminal.md",
+                "pointer": "/contrast/2",
+                "line": 75
+              }
+            },
+            {
+              "kind": "part",
+              "component": "terminal",
+              "part": "prompt.bg",
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/terminal.md",
+                "pointer": "/tokens/prompt.bg",
+                "line": 41
+              }
+            }
+          ],
+          "contrast": [
+            {
+              "fg": "color.terminal.prompt-bg",
+              "bg": "color.terminal.bg",
+              "label": "prompt arrow (the segment's own colour, decorative)",
+              "state": null,
+              "source": {
+                "file": "spec/components/terminal.md",
+                "pointer": "/contrast/4",
+                "line": 77
+              }
+            },
+            {
+              "fg": "color.terminal.prompt-text",
+              "bg": "color.terminal.prompt-bg",
+              "label": "prompt segment text on the prompt background",
+              "state": null,
+              "source": {
+                "file": "spec/components/terminal.md",
+                "pointer": "/contrast/2",
+                "line": 75
+              }
+            }
+          ]
+        },
         "color.terminal.prompt-text": {
           "path": "color.terminal.prompt-text",
           "group": "terminal",
@@ -146523,7 +146623,7 @@
           "source": {
             "file": "tokens/profiles/heritage-ansi.tokens.json",
             "pointer": "/color/terminal/prompt-text",
-            "line": 334
+            "line": 343
           },
           "provenance": {
             "status": "heritage"
@@ -146540,7 +146640,7 @@
               "part": null,
               "state": null,
               "variant": null,
-              "surface": "color.terminal.ansi.4",
+              "surface": "color.terminal.prompt-bg",
               "nativeKey": null,
               "port": null,
               "source": {
@@ -146568,8 +146668,8 @@
           "contrast": [
             {
               "fg": "color.terminal.prompt-text",
-              "bg": "color.terminal.ansi.4",
-              "label": "prompt segment text on slot 4",
+              "bg": "color.terminal.prompt-bg",
+              "label": "prompt segment text on the prompt background",
               "state": null,
               "source": {
                 "file": "spec/components/terminal.md",
@@ -179103,7 +179203,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/axis",
-            "line": 1385
+            "line": 1397
           },
           "provenance": null,
           "aliases": [
@@ -179146,7 +179246,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/grid",
-            "line": 1389
+            "line": 1401
           },
           "provenance": null,
           "aliases": [
@@ -179189,7 +179289,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/label",
-            "line": 1393
+            "line": 1405
           },
           "provenance": null,
           "aliases": [
@@ -179259,7 +179359,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/chart/series-1",
-            "line": 1369
+            "line": 1381
           },
           "provenance": null,
           "aliases": [
@@ -186045,7 +186145,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/icon/decorative",
-            "line": 1403
+            "line": 1415
           },
           "provenance": null,
           "aliases": [
@@ -186294,7 +186394,7 @@
           "source": {
             "file": "tokens/semantic.tokens.json",
             "pointer": "/color/icon/default",
-            "line": 1399
+            "line": 1411
           },
           "provenance": null,
           "aliases": [
@@ -196399,7 +196499,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/alpha/black-55",
-            "line": 1230
+            "line": 1259
           },
           "provenance": {
             "status": "observed",
@@ -196433,7 +196533,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/alpha/black-65",
-            "line": 1253
+            "line": 1282
           },
           "provenance": {
             "status": "observed",
@@ -196470,7 +196570,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/alpha/red-12",
-            "line": 1302
+            "line": 1331
           },
           "provenance": {
             "status": "observed",
@@ -196504,7 +196604,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/alpha/red-6",
-            "line": 1279
+            "line": 1308
           },
           "provenance": {
             "status": "observed",
@@ -196536,7 +196636,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/alpha/transparent",
-            "line": 1207
+            "line": 1236
           },
           "provenance": {
             "status": "observed",
@@ -196570,7 +196670,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/amber/500",
-            "line": 974
+            "line": 1003
           },
           "provenance": {
             "status": "approved",
@@ -196625,7 +196725,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/amber/600",
-            "line": 1000
+            "line": 1029
           },
           "provenance": {
             "status": "proposed",
@@ -196659,7 +196759,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/amber/tint",
-            "line": 1024
+            "line": 1053
           },
           "provenance": {
             "status": "approved",
@@ -196696,7 +196796,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi-readable/1",
-            "line": 1394
+            "line": 1423
           },
           "provenance": {
             "status": "approved",
@@ -196732,7 +196832,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi-readable/10",
-            "line": 1529
+            "line": 1531
           },
           "provenance": {
             "status": "approved",
@@ -196768,7 +196868,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi-readable/12",
-            "line": 1556
+            "line": 1558
           },
           "provenance": {
             "status": "approved",
@@ -196804,7 +196904,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi-readable/13",
-            "line": 1583
+            "line": 1585
           },
           "provenance": {
             "status": "approved",
@@ -196840,7 +196940,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi-readable/14",
-            "line": 1610
+            "line": 1612
           },
           "provenance": {
             "status": "approved",
@@ -196876,7 +196976,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi-readable/15",
-            "line": 1637
+            "line": 1639
           },
           "provenance": {
             "status": "approved",
@@ -196912,7 +197012,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi-readable/4",
-            "line": 1421
+            "line": 1450
           },
           "provenance": {
             "status": "approved",
@@ -196925,42 +197025,6 @@
               "decision": "D-029"
             },
             "textSafe": "canvas"
-          },
-          "aliases": [],
-          "usedByAliases": [],
-          "unmappedPorts": [],
-          "uses": [],
-          "contrast": []
-        },
-        "color.primitive.ansi-readable.6": {
-          "path": "color.primitive.ansi-readable.6",
-          "group": "primitive",
-          "css": "#bb696c",
-          "variable": "--color-primitive-ansi-readable-6",
-          "description": "Heritage slot 6 (#9e474a, 3.26:1) lifted to 5.05:1 on the terminal background.",
-          "status": "approved",
-          "deprecated": false,
-          "eligibility": {
-            "action": "blocked",
-            "reason": "Proposed profile: preview only, not downstream delivery.",
-            "decisionIds": []
-          },
-          "source": {
-            "file": "tokens/primitives.tokens.json",
-            "pointer": "/color/primitive/ansi-readable/6",
-            "line": 1448
-          },
-          "provenance": {
-            "status": "approved",
-            "origin": {
-              "kind": "derived",
-              "ref": "spec/decisions.md#d-029",
-              "note": "HSL lightness lift of color.primitive.ansi.6; hue and saturation kept."
-            },
-            "approval": {
-              "decision": "D-029"
-            },
-            "textSafe": "raised"
           },
           "aliases": [],
           "usedByAliases": [],
@@ -196984,7 +197048,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi-readable/8",
-            "line": 1475
+            "line": 1477
           },
           "provenance": {
             "status": "approved",
@@ -197020,7 +197084,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi-readable/9",
-            "line": 1502
+            "line": 1504
           },
           "provenance": {
             "status": "approved",
@@ -197056,7 +197120,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/0",
-            "line": 1327
+            "line": 1356
           },
           "provenance": null,
           "aliases": [
@@ -197083,7 +197147,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/1",
-            "line": 1331
+            "line": 1360
           },
           "provenance": null,
           "aliases": [
@@ -197110,7 +197174,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/10",
-            "line": 1367
+            "line": 1396
           },
           "provenance": null,
           "aliases": [
@@ -197137,7 +197201,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/11",
-            "line": 1371
+            "line": 1400
           },
           "provenance": null,
           "aliases": [
@@ -197164,7 +197228,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/12",
-            "line": 1375
+            "line": 1404
           },
           "provenance": null,
           "aliases": [
@@ -197191,7 +197255,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/13",
-            "line": 1379
+            "line": 1408
           },
           "provenance": null,
           "aliases": [
@@ -197218,7 +197282,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/14",
-            "line": 1383
+            "line": 1412
           },
           "provenance": null,
           "aliases": [
@@ -197245,7 +197309,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/15",
-            "line": 1387
+            "line": 1416
           },
           "provenance": null,
           "aliases": [
@@ -197272,7 +197336,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/2",
-            "line": 1335
+            "line": 1364
           },
           "provenance": null,
           "aliases": [
@@ -197299,7 +197363,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/3",
-            "line": 1339
+            "line": 1368
           },
           "provenance": null,
           "aliases": [
@@ -197326,13 +197390,15 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/4",
-            "line": 1343
+            "line": 1372
           },
           "provenance": null,
           "aliases": [
             "color.primitive.red.250"
           ],
-          "usedByAliases": [],
+          "usedByAliases": [
+            "color.terminal.prompt-bg"
+          ],
           "unmappedPorts": [],
           "uses": [],
           "contrast": []
@@ -197353,7 +197419,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/5",
-            "line": 1347
+            "line": 1376
           },
           "provenance": null,
           "aliases": [
@@ -197380,7 +197446,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/6",
-            "line": 1351
+            "line": 1380
           },
           "provenance": null,
           "aliases": [
@@ -197407,7 +197473,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/7",
-            "line": 1355
+            "line": 1384
           },
           "provenance": null,
           "aliases": [
@@ -197434,7 +197500,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/8",
-            "line": 1359
+            "line": 1388
           },
           "provenance": null,
           "aliases": [
@@ -197461,7 +197527,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/ansi/9",
-            "line": 1363
+            "line": 1392
           },
           "provenance": null,
           "aliases": [
@@ -197488,7 +197554,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/blue/500",
-            "line": 1129
+            "line": 1158
           },
           "provenance": {
             "status": "approved",
@@ -197535,7 +197601,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/blue/600",
-            "line": 1155
+            "line": 1184
           },
           "provenance": {
             "status": "proposed",
@@ -197569,7 +197635,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/blue/tint",
-            "line": 1179
+            "line": 1208
           },
           "provenance": {
             "status": "approved",
@@ -197585,6 +197651,42 @@
           "usedByAliases": [
             "color.status.info.tint"
           ],
+          "unmappedPorts": [],
+          "uses": [],
+          "contrast": []
+        },
+        "color.primitive.coral.700": {
+          "path": "color.primitive.coral.700",
+          "group": "primitive",
+          "css": "#ff7a66",
+          "variable": "--color-primitive-coral-700",
+          "description": "D-032 coral for terminal slot 6: warm and vivid so highlighted names stand apart from the rose text (7.77:1 on the terminal background).",
+          "status": "approved",
+          "deprecated": false,
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          },
+          "source": {
+            "file": "tokens/primitives.tokens.json",
+            "pointer": "/color/primitive/coral/700",
+            "line": 923
+          },
+          "provenance": {
+            "status": "approved",
+            "origin": {
+              "kind": "proposed",
+              "ref": "spec/decisions.md#d-032",
+              "note": "A new colour chosen by the owner for slot 6 (D-032): hue 8, full saturation, lightness 70."
+            },
+            "approval": {
+              "decision": "D-032"
+            },
+            "textSafe": "raised"
+          },
+          "aliases": [],
+          "usedByAliases": [],
           "unmappedPorts": [],
           "uses": [],
           "contrast": []
@@ -197605,7 +197707,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/green/500",
-            "line": 1051
+            "line": 1080
           },
           "provenance": {
             "status": "approved",
@@ -197650,7 +197752,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/green/600",
-            "line": 1077
+            "line": 1106
           },
           "provenance": {
             "status": "observed",
@@ -197685,7 +197787,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/green/tint",
-            "line": 1102
+            "line": 1131
           },
           "provenance": {
             "status": "approved",
@@ -197856,7 +197958,6 @@
             "color.status.warning.on-fill",
             "color.terminal.ansi.0",
             "color.terminal.bg",
-            "color.terminal.prompt-text",
             "color.text.inverse",
             "color.text.on-light"
           ],
@@ -198099,7 +198200,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/paper/100",
-            "line": 947
+            "line": 976
           },
           "provenance": {
             "status": "observed",
@@ -198137,7 +198238,7 @@
           "source": {
             "file": "tokens/primitives.tokens.json",
             "pointer": "/color/primitive/paper/90",
-            "line": 923
+            "line": 952
           },
           "provenance": {
             "status": "observed",
@@ -198302,7 +198403,8 @@
           },
           "aliases": [],
           "usedByAliases": [
-            "color.primitive.ansi.4"
+            "color.primitive.ansi.4",
+            "color.terminal.prompt-bg"
           ],
           "unmappedPorts": [],
           "uses": [],
@@ -199210,6 +199312,7 @@
             "color.interaction.focus.ring-container",
             "color.primitive.ansi.7",
             "color.terminal.ansi.14",
+            "color.terminal.prompt-text",
             "color.text.bright"
           ],
           "unmappedPorts": [],
@@ -222431,21 +222534,6 @@
               "part": null,
               "state": null,
               "variant": null,
-              "surface": "color.terminal.ansi.4",
-              "nativeKey": null,
-              "port": null,
-              "source": {
-                "file": "spec/components/terminal.md",
-                "pointer": "/contrast/2",
-                "line": 75
-              }
-            },
-            {
-              "kind": "contrast",
-              "component": "terminal",
-              "part": null,
-              "state": null,
-              "variant": null,
               "surface": "color.terminal.bg",
               "nativeKey": null,
               "port": null,
@@ -222453,36 +222541,6 @@
                 "file": "spec/components/terminal.md",
                 "pointer": "/contrast/13",
                 "line": 86
-              }
-            },
-            {
-              "kind": "contrast",
-              "component": "terminal",
-              "part": null,
-              "state": null,
-              "variant": null,
-              "surface": "color.terminal.bg",
-              "nativeKey": null,
-              "port": null,
-              "source": {
-                "file": "spec/components/terminal.md",
-                "pointer": "/contrast/4",
-                "line": 77
-              }
-            },
-            {
-              "kind": "part",
-              "component": "terminal",
-              "part": "prompt.bg",
-              "state": null,
-              "variant": null,
-              "surface": null,
-              "nativeKey": null,
-              "port": null,
-              "source": {
-                "file": "spec/components/terminal.md",
-                "pointer": "/tokens/prompt.bg",
-                "line": 41
               }
             },
             {
@@ -222505,34 +222563,12 @@
             {
               "fg": "color.terminal.ansi.4",
               "bg": "color.terminal.bg",
-              "label": "prompt arrow (the segment's own colour, decorative)",
-              "state": null,
-              "source": {
-                "file": "spec/components/terminal.md",
-                "pointer": "/contrast/4",
-                "line": 77
-              }
-            },
-            {
-              "fg": "color.terminal.ansi.4",
-              "bg": "color.terminal.bg",
               "label": "slot 4",
               "state": null,
               "source": {
                 "file": "spec/components/terminal.md",
                 "pointer": "/contrast/13",
                 "line": 86
-              }
-            },
-            {
-              "fg": "color.terminal.prompt-text",
-              "bg": "color.terminal.ansi.4",
-              "label": "prompt segment text on slot 4",
-              "state": null,
-              "source": {
-                "file": "spec/components/terminal.md",
-                "pointer": "/contrast/2",
-                "line": 75
               }
             }
           ]
@@ -223534,17 +223570,6 @@
             {
               "fg": "color.terminal.ansi.4",
               "bg": "color.terminal.bg",
-              "label": "prompt arrow (the segment's own colour, decorative)",
-              "state": null,
-              "source": {
-                "file": "spec/components/terminal.md",
-                "pointer": "/contrast/4",
-                "line": 77
-              }
-            },
-            {
-              "fg": "color.terminal.ansi.4",
-              "bg": "color.terminal.bg",
               "label": "slot 4",
               "state": null,
               "source": {
@@ -223683,6 +223708,17 @@
                 "file": "spec/contrast.json",
                 "pointer": "/pairs/59",
                 "line": 63
+              }
+            },
+            {
+              "fg": "color.terminal.prompt-bg",
+              "bg": "color.terminal.bg",
+              "label": "prompt arrow (the segment's own colour, decorative)",
+              "state": null,
+              "source": {
+                "file": "spec/components/terminal.md",
+                "pointer": "/contrast/4",
+                "line": 77
               }
             },
             {
@@ -224039,12 +224075,12 @@
             }
           ]
         },
-        "color.terminal.prompt-text": {
-          "path": "color.terminal.prompt-text",
+        "color.terminal.prompt-bg": {
+          "path": "color.terminal.prompt-bg",
           "group": "terminal",
-          "css": "#0c0909",
-          "variable": "--color-terminal-prompt-text",
-          "description": "Text on the prompt's path segment (slot 4): dark on the readable heritage slot 4 (D-029).",
+          "css": "#8c1212",
+          "variable": "--color-terminal-prompt-bg",
+          "description": "Background of the prompt's path segment: the heritage dark red, so the prompt keeps its look whatever slot 4 carries (D-032).",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -224054,17 +224090,18 @@
           },
           "source": {
             "file": "tokens/semantic.tokens.json",
-            "pointer": "/color/terminal/prompt-text",
+            "pointer": "/color/terminal/prompt-bg",
             "line": 1209
           },
           "provenance": {
             "status": "approved",
             "approval": {
-              "decision": "D-029"
+              "decision": "D-032"
             }
           },
           "aliases": [
-            "color.primitive.ink.20"
+            "color.primitive.ansi.4",
+            "color.primitive.red.250"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -224075,7 +224112,108 @@
               "part": null,
               "state": null,
               "variant": null,
-              "surface": "color.terminal.ansi.4",
+              "surface": "color.terminal.bg",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/terminal.md",
+                "pointer": "/contrast/4",
+                "line": 77
+              }
+            },
+            {
+              "kind": "contrast",
+              "component": "terminal",
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": "color.terminal.prompt-bg",
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/terminal.md",
+                "pointer": "/contrast/2",
+                "line": 75
+              }
+            },
+            {
+              "kind": "part",
+              "component": "terminal",
+              "part": "prompt.bg",
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": null,
+              "port": null,
+              "source": {
+                "file": "spec/components/terminal.md",
+                "pointer": "/tokens/prompt.bg",
+                "line": 41
+              }
+            }
+          ],
+          "contrast": [
+            {
+              "fg": "color.terminal.prompt-bg",
+              "bg": "color.terminal.bg",
+              "label": "prompt arrow (the segment's own colour, decorative)",
+              "state": null,
+              "source": {
+                "file": "spec/components/terminal.md",
+                "pointer": "/contrast/4",
+                "line": 77
+              }
+            },
+            {
+              "fg": "color.terminal.prompt-text",
+              "bg": "color.terminal.prompt-bg",
+              "label": "prompt segment text on the prompt background",
+              "state": null,
+              "source": {
+                "file": "spec/components/terminal.md",
+                "pointer": "/contrast/2",
+                "line": 75
+              }
+            }
+          ]
+        },
+        "color.terminal.prompt-text": {
+          "path": "color.terminal.prompt-text",
+          "group": "terminal",
+          "css": "#ffa2a7",
+          "variable": "--color-terminal-prompt-text",
+          "description": "Text on the prompt's path segment: bright rose on the prompt background (D-032).",
+          "status": "approved",
+          "deprecated": false,
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          },
+          "source": {
+            "file": "tokens/semantic.tokens.json",
+            "pointer": "/color/terminal/prompt-text",
+            "line": 1221
+          },
+          "provenance": {
+            "status": "approved",
+            "approval": {
+              "decision": "D-032"
+            }
+          },
+          "aliases": [
+            "color.primitive.rose.800"
+          ],
+          "usedByAliases": [],
+          "unmappedPorts": [],
+          "uses": [
+            {
+              "kind": "contrast",
+              "component": "terminal",
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": "color.terminal.prompt-bg",
               "nativeKey": null,
               "port": null,
               "source": {
@@ -224103,8 +224241,8 @@
           "contrast": [
             {
               "fg": "color.terminal.prompt-text",
-              "bg": "color.terminal.ansi.4",
-              "label": "prompt segment text on slot 4",
+              "bg": "color.terminal.prompt-bg",
+              "label": "prompt segment text on the prompt background",
               "state": null,
               "source": {
                 "file": "spec/components/terminal.md",
