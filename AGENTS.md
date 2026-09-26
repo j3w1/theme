@@ -39,8 +39,8 @@ push:
 node scripts/ci/select.mjs --event pull_request --base origin/main --head HEAD
 ```
 
-`release-gate` is the only required check: it passes
-when every selected check passed.
+`release-gate` is the only required check: it passes when every selected check
+passed.
 
 **Before you push.** Run what the plan selects. The usual set:
 
@@ -55,15 +55,15 @@ npm run test:smoke    # the built site loads, renders from the tokens, takes a k
 
 `npm run check` only reports drift; `npm run generate` fixes it.
 
-**The whole suite.** `npm run test:all` runs everything, in parallel, in a few
-minutes. Run it when you changed rendering, tokens, components or the package,
+**The whole suite.** `npm run test:all` runs everything; the browser part runs
+in parallel. Run it when you changed rendering, tokens, components or the package,
 and say in the pull request that you did. On `main`, CI runs the whole matrix
 for every change to the site before it deploys. From the Actions tab, the
 workflow dispatch runs it on any branch.
 
 **Evidence.** Only the whole suite writes execution evidence. A subset, such as
-`test:smoke` or the specs a pull request selects, uses the plain list reporter
-and never claims coverage.
+`test:smoke`, the specs a pull request selects, or a local run of one spec,
+shard or project, writes none and never claims coverage.
 
 Report checks that were not run separately from checks that passed.
 

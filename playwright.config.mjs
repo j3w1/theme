@@ -30,10 +30,12 @@ export default defineConfig({
     reuseExistingServer: !process.env.CI,
     timeout: 20_000,
   },
+  // metadata repeats each project's environment because merged shard reports
+  // keep project metadata but not `use`; the evidence reporter reads it there.
   projects: [
-    { name: "desktop", use: { ...devices["Desktop Chrome"], viewport: { width: 1440, height: 1000 } } },
-    { name: "narrow", use: { ...devices["Desktop Chrome"], viewport: { width: 360, height: 740 } } },
-    { name: "zoom200", use: { ...devices["Desktop Chrome"], viewport: { width: 640, height: 500 }, deviceScaleFactor: 2 } },
-    { name: "nojs", use: { ...devices["Desktop Chrome"], viewport: { width: 1440, height: 1000 }, javaScriptEnabled: false } },
+    { name: "desktop", use: { ...devices["Desktop Chrome"], viewport: { width: 1440, height: 1000 } }, metadata: { viewport: { width: 1440, height: 1000 }, javaScript: true } },
+    { name: "narrow", use: { ...devices["Desktop Chrome"], viewport: { width: 360, height: 740 } }, metadata: { viewport: { width: 360, height: 740 }, javaScript: true } },
+    { name: "zoom200", use: { ...devices["Desktop Chrome"], viewport: { width: 640, height: 500 }, deviceScaleFactor: 2 }, metadata: { viewport: { width: 640, height: 500 }, javaScript: true } },
+    { name: "nojs", use: { ...devices["Desktop Chrome"], viewport: { width: 1440, height: 1000 }, javaScriptEnabled: false }, metadata: { viewport: { width: 1440, height: 1000 }, javaScript: false } },
   ],
 });

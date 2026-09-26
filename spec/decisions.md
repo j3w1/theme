@@ -802,25 +802,31 @@ terminal-kit suites.
 
 - `select` reads the changed paths and `scripts/ci/proofs.json`. A path gets
   cheaper only when a rule there claims it. A path no rule claims, and every
-  control file (workflows, the selector, `package.json`, the lockfile, the
-  Playwright configs), runs every check: a broad rule is a floor, never a
-  verdict.
+  control file (workflows, the selector and registry, `package.json`, the
+  lockfile, the Playwright configs), runs every check: a broad rule is a
+  floor, never a verdict. The control list lives in the selector, so a change
+  cannot make itself cheaper by editing the registry. A file that a browser
+  spec imports also runs that spec and counts as a site change.
 - A pull request runs only the selected checks. A browser subset uses the plain
   list reporter, so it never writes evidence (D-028 still holds).
 - A push to `main` that changes the site runs the whole matrix: the browser
-  suite split by project into six jobs (desktop in three parts) with blob
-  reports, merged once into the evidence reporter, and the packed consumers in
-  parallel. Then the verification report, then deployment. A push that does not
-  change the site deploys nothing.
+  suite split by project into jobs (desktop in three parts; the project list is
+  read from the Playwright config) with blob reports, merged once into the
+  evidence reporter, and the packed consumers in parallel. The merge runs only
+  when every shard passed and sent its report, and a check refuses evidence
+  that does not record every configured test in every project. Then the
+  verification report, then deployment. A push that no rule marks as a site
+  change deploys nothing.
 - On `main` the changed paths are counted from the last commit that reached
   Pages, so a change that failed to deploy is counted again by the next push.
-- `release-gate` is the only required check. It recomputes the plan from Git,
-  refuses a plan that does not match, and checks that each job ran exactly when
-  the plan said it should, and passed.
+- `release-gate` is the only required check. It recomputes the plan from Git
+  with the same code, refuses a plan that does not match, and checks that each
+  job ran exactly when the plan said it should, and passed.
 - Tests run in parallel (`fullyParallel`, two workers per CI job). The page axe
   scan runs as two tests, colour contrast and every other rule; the rule set
   comes from a tag-based run, so together they are exactly the rules the tags
-  select. Retries stay at zero.
+  select. Retries stay at zero. A sharded, filtered or single-project local run
+  writes no evidence.
 
 **Consequences.** D-028's objection to sharding, partial evidence files, no
 longer applies: shards write blob reports only, and one merge writes one

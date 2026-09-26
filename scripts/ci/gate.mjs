@@ -14,7 +14,6 @@ if (needs.select?.result !== "success" || !process.env.PLAN) {
 const plan = JSON.parse(process.env.PLAN);
 const args = ["scripts/ci/select.mjs", "--event", plan.event, "--head", plan.head];
 if (plan.base) args.push("--base", plan.base);
-if (process.env.FULL === "true") args.push("--full");
 const again = JSON.parse(execFileSync("node", args, { encoding: "utf8", env: { ...process.env, GITHUB_OUTPUT: "", GITHUB_STEP_SUMMARY: "" } }));
 if (JSON.stringify(again) !== JSON.stringify(plan)) problems.push(`the plan does not recompute: ${String(plan.planHash).slice(0, 12)} vs ${again.planHash.slice(0, 12)}`);
 

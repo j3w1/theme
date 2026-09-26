@@ -2,15 +2,18 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
-import { plan, globToRegExp, FULL_SHARDS } from "../scripts/ci/select.mjs";
+import { plan, globToRegExp, FULL_SHARDS, projectNames, browserImporters } from "../scripts/ci/select.mjs";
 
 const registry = JSON.parse(readFileSync("scripts/ci/proofs.json", "utf8"));
 const specs = new Set(["components/button", "page", "hex-swatches", "spec-tables", "ports", "usage"]);
-const run = (event, paths, extra = {}) => plan({ registry, event, paths, specExists: (s) => specs.has(s), ...extra });
+const importers = browserImporters();
+const run = (event, paths, extra = {}) => plan({ registry, event, paths, specExists: (s) => specs.has(s), importers, ...extra });
 
 test("globs: ** crosses folders, * does not, {name} captures one segment", () => {
   assert.ok(globToRegExp("tools/**").re.test("tools/terminal-kit/windows/a.ps1"));
   assert.ok(!globToRegExp("tests/*.test.js").re.test("tests/dist/a.test.js"));
+  assert.ok(globToRegExp("a/**/b").re.test("a/b") && globToRegExp("a/**/b").re.test("a/x/y/b"));
+  assert.ok(!globToRegExp("a/**/b").re.test("a/xb"));
   const { re, names } = globToRegExp("spec/components/{id}.md");
   assert.deepEqual(names, ["id"]);
   assert.equal("spec/components/button.md".match(re)[1], "button");
@@ -81,11 +84,11 @@ test("the plan hash is stable and covers the decision", () => {
 
 test("release-gate refuses a skipped selected job and a plan that does not recompute", () => {
   const head = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
-  const planJson = execFileSync("node", ["scripts/ci/select.mjs", "--event", "workflow_dispatch", "--head", head, "--full"], { encoding: "utf8", env: { ...process.env, GITHUB_OUTPUT: "", GITHUB_STEP_SUMMARY: "" } });
+  const planJson = execFileSync("node", ["scripts/ci/select.mjs", "--event", "workflow_dispatch", "--head", head], { encoding: "utf8", env: { ...process.env, GITHUB_OUTPUT: "", GITHUB_STEP_SUMMARY: "" } });
   const good = { select: { result: "success" }, checks: { result: "success" }, browser: { result: "success" }, consumers: { result: "success" }, evidence: { result: "success" } };
   const gate = (needs, planText = planJson) => {
     try {
-      execFileSync("node", ["scripts/ci/gate.mjs"], { encoding: "utf8", stdio: "pipe", env: { ...process.env, NEEDS: JSON.stringify(needs), PLAN: planText, FULL: "true" } });
+      execFileSync("node", ["scripts/ci/gate.mjs"], { encoding: "utf8", stdio: "pipe", env: { ...process.env, NEEDS: JSON.stringify(needs), PLAN: planText } });
       return true;
     } catch { return false; }
   };
@@ -93,4 +96,37 @@ test("release-gate refuses a skipped selected job and a plan that does not recom
   assert.equal(gate({ ...good, browser: { result: "skipped" } }), false);
   const tampered = JSON.stringify({ ...JSON.parse(planJson), proofs: ["sources"] });
   assert.equal(gate(good, tampered), false);
+});
+
+test("the whole matrix covers every configured Playwright project", () => {
+  const configured = projectNames(readFileSync("playwright.config.mjs", "utf8"));
+  assert.ok(configured.length >= 4);
+  assert.deepEqual([...new Set(FULL_SHARDS.map((s) => s.split(":")[0]))].sort(), [...configured].sort());
+});
+
+test("a file that browser specs import runs those specs and counts as a site change", () => {
+  const p = run("pull_request", ["tests/fixtures/port-capabilities.mjs"]);
+  assert.ok(p.browser === "all" || p.browser.includes("ports"));
+  const push = run("push", ["tests/helpers/scratch.mjs"]);
+  assert.equal(push.site, true);
+  assert.equal(push.deploy, true);
+  const helper = run("pull_request", ["tests/ui/choice-helper.mjs"]);
+  for (const spec of ["portal", "usage", "workbench"]) assert.ok(helper.browser.includes(spec), spec);
+});
+
+test("the import graph only adds: an unclaimed imported file still runs everything", () => {
+  assert.ok(importers["scripts/lib/port-presentation.mjs"]);
+  assert.equal(run("pull_request", ["scripts/lib/port-presentation.mjs"]).floor, true);
+});
+
+test("no file a browser spec imports sits under a site: false rule without the graph catching it", () => {
+  for (const file of Object.keys(importers)) {
+    const p = run("push", [file]);
+    assert.equal(p.site, true, `${file} is imported by ${importers[file].join(", ")} but plans as no site change`);
+  }
+});
+
+test("control files are fixed in the selector, not read from the registry a change could edit", () => {
+  assert.equal(registry.controls, undefined);
+  assert.equal(run("pull_request", ["scripts/ci/proofs.json"]).floor, true);
 });

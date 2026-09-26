@@ -23,10 +23,10 @@ on:
   pull_request:
   workflow_dispatch:
     inputs:
-      full:
-        description: Run every check and the whole browser matrix
-        type: boolean
-        default: true
+      base:
+        description: Optional base commit; with it, only the checks those changes need run. Without it, everything runs.
+        type: string
+        default: ""
 
 permissions:
   contents: read
@@ -71,22 +71,21 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           EVENT: ${{ github.event_name }}
           PR_BASE: ${{ github.event.pull_request.base.sha }}
+          DISPATCH_BASE: ${{ inputs.base }}
         run: |
           if [ "$EVENT" = pull_request ]; then base="$PR_BASE"
           elif [ "$EVENT" = push ]; then
             base=$(node scripts/ci/deployed.mjs "$GITHUB_REPOSITORY" || true)
-          else base=""; fi
+          else base="$DISPATCH_BASE"; fi
           echo "base=$base" >> "$GITHUB_OUTPUT"
       - id: plan
         env:
           EVENT: ${{ github.event_name }}
           BASE: ${{ steps.base.outputs.base }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
-          FULL: ${{ github.event_name == 'workflow_dispatch' && inputs.full }}
         run: |
           args=(--event "$EVENT" --head "$HEAD_SHA")
           [ -n "$BASE" ] && args+=(--base "$BASE")
-          [ "$FULL" = true ] && args+=(--full)
           node scripts/ci/select.mjs "${args[@]}"
 
   # Sources, unit tests, the build and the smoke check: one install.
@@ -105,7 +104,9 @@ jobs:
           cache: npm
       - run: npm ci --prefer-offline --no-audit --no-fund
       - name: Selected sources and unit tests
-        run: node scripts/ci/run.mjs '${{ needs.select.outputs.plan }}' cheap
+        run: node scripts/ci/run.mjs cheap
+        env:
+          PLAN: ${{ needs.select.outputs.plan }}
       - name: Build the site under /theme/
         if: needs.select.outputs.build == 'true'
         run: npm run build
@@ -165,9 +166,10 @@ jobs:
         with:
           browsers: chromium
       - name: Browser suite, ${{ matrix.shard }}
-        run: node scripts/ci/run.mjs '${{ needs.select.outputs.plan }}' browser ${{ matrix.shard }}
+        run: node scripts/ci/run.mjs browser ${{ matrix.shard }}
         env:
           CI: "1"
+          PLAN: ${{ needs.select.outputs.plan }}
           PLAYWRIGHT_BLOB_OUTPUT_NAME: report-${{ strategy.job-index }}.zip
       - uses: actions/upload-artifact@v7
         if: always() && needs.select.outputs.matrix == 'true'
@@ -221,7 +223,7 @@ jobs:
   # against the unchanged specimens, then the Pages artifact.
   evidence:
     needs: [select, checks, browser, consumers]
-    if: needs.select.outputs.matrix == 'true' && !cancelled() && needs.checks.result == 'success' && needs.consumers.result == 'success'
+    if: needs.select.outputs.matrix == 'true' && !cancelled() && needs.checks.result == 'success' && needs.browser.result == 'success' && needs.consumers.result == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -246,10 +248,20 @@ jobs:
           pattern: blob-report-*
           path: all-blob-reports
           merge-multiple: true
+      - name: Every shard sent its report
+        env:
+          SHARDS: ${{ needs.select.outputs.shards }}
+        run: |
+          want=$(node -p "JSON.parse(process.env.SHARDS).length")
+          got=$(ls all-blob-reports/*.zip | wc -l)
+          echo "blob reports: $got of $want"
+          [ "$got" = "$want" ]
       - name: One evidence report from every shard
         run: npx playwright merge-reports --config playwright.merge.config.mjs ./all-blob-reports
         env:
           CI: "1"
+      - name: The evidence records every configured test in every project
+        run: node scripts/ci/evidence-complete.mjs
       - name: Publish execution report alongside unchanged specimens
         if: always()
         run: npm run verification:report
@@ -294,12 +306,11 @@ jobs:
         env:
           NEEDS: ${{ toJSON(needs) }}
           PLAN: ${{ needs.select.outputs.plan }}
-          FULL: ${{ github.event_name == 'workflow_dispatch' && inputs.full }}
         run: node scripts/ci/gate.mjs
 
   deploy:
     needs: [select, release-gate]
-    if: needs.select.outputs.deploy == 'true' && needs.release-gate.result == 'success'
+    if: ${{ !cancelled() && needs.select.outputs.deploy == 'true' && needs.release-gate.result == 'success' }}
     runs-on: ubuntu-latest
     permissions:
       pages: write

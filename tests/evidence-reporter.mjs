@@ -9,6 +9,14 @@ import { subjectOfBuild, validateEvidence } from "../scripts/lib/evidence.mjs";
 export default class EvidenceReporter {
   onBegin(config, suite) {
     this.startedAt = new Date().toISOString();
+    // Evidence comes only from the whole suite (D-028). A sharded, filtered or
+    // single-project run records nothing; merge-reports of every shard does.
+    const argv = process.argv.slice(2);
+    const at = argv.indexOf("test");
+    const args = at >= 0 ? argv.slice(at + 1) : [];
+    const valued = new Set(["--config", "-c", "--reporter", "--workers", "-j", "--output", "--timeout", "--retries", "--max-failures"]);
+    const positional = args.filter((a, i) => !a.startsWith("-") && !valued.has(args[i - 1]));
+    this.subset = at >= 0 && (config.shard != null || positional.length > 0 || args.some((a) => /^(--grep|-g|--grep-invert|--project|--last-failed|--only-changed)(=|$)/.test(a)));
     this.subject = subjectOfBuild();
     // A rejected subject must not become an unhandled promise while tests run.
     this.subject.catch(() => {});
@@ -33,7 +41,7 @@ export default class EvidenceReporter {
     this.records.push({ id, kind: "automated", scope: JSON.parse(annotation.description), result: status,
       reason: status === "passed" ? null : status === "skipped" ? ((result?.annotations ?? test.annotations).find((a) => a.type === "skip")?.description ?? "Skipped by the test configuration") : result ? `Playwright result: ${result.status}; inspect the referenced run and test location.` : "The selected run did not execute this test.",
       reference: this.reference, test: { file, title: test.title, line: test.location.line },
-      environment: environment ? JSON.parse(environment.description) : { browser: project.use.browserName ?? "chromium", browserVersion: null, os: `${os.type()} ${os.release()} ${os.arch()}`, viewport: project.use.viewport ?? null, project: project.name, profile: "default", density: "comfortable", javaScript: project.use.javaScriptEnabled !== false },
+      environment: environment ? JSON.parse(environment.description) : { browser: project.use.browserName ?? "chromium", browserVersion: null, os: `${os.type()} ${os.release()} ${os.arch()}`, viewport: project.metadata?.viewport ?? project.use.viewport ?? null, project: project.name, profile: "default", density: "comfortable", javaScript: project.metadata?.javaScript ?? project.use.javaScriptEnabled !== false },
     });
   }
 
@@ -44,6 +52,10 @@ export default class EvidenceReporter {
   }
 
   async onEnd(result) {
+    if (this.subset) {
+      console.log("Evidence not written: this run is a subset. Only the whole suite, or merge-reports of every shard, records evidence.");
+      return;
+    }
     try {
       const subject = await this.subject;
       if (this.collectionErrors.length) throw new Error(this.collectionErrors.join("; "));

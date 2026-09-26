@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "about": "Which checks a changed path needs (D-031). A path gets cheaper only when a rule below claims it. Any path no rule claims, and every control file, gets every check: a broad rule is a floor, never a verdict.",
+  "about": "Which checks a changed path needs (D-031). A path gets cheaper only when a rule below claims it. Any path no rule claims runs every check: a broad rule is a floor, never a verdict. Control files, which always run everything, are listed in select.mjs; a file that browser specs import runs those specs whatever rule claims it.",
   "proofs": {
     "sources": "npm run validate && npm run check",
     "unit": "node --test on tests/*.test.js, without the terminal-kit suites",
@@ -11,69 +11,152 @@
     "browser": "the named Playwright specs in tests/browser, all four projects, plain list reporter",
     "consumers": "npm run ui:consumers && npm run test:ui && npm run ui:report"
   },
-  "controls": [
-    ".github/workflows/**",
-    ".github/actions/**",
-    "scripts/ci/**",
-    "package.json",
-    "package-lock.json",
-    "playwright*.config.mjs",
-    "astro.config.mjs",
-    "tsconfig.json"
-  ],
   "rules": [
     {
       "why": "The terminal kit is not part of the site; its own suites prove it.",
-      "paths": ["tools/terminal-kit/**", "tests/terminal-kit.test.js"],
-      "proofs": ["sources", "unit-kit"],
+      "paths": [
+        "tools/terminal-kit/**",
+        "tests/terminal-kit.test.js"
+      ],
+      "proofs": [
+        "sources",
+        "unit-kit"
+      ],
       "site": false
     },
     {
       "why": "The Windows scripts have their own PowerShell suite.",
-      "paths": ["tools/terminal-kit/windows/**", "tools/terminal-kit/kit.json", "tools/terminal-kit/roles/**", "tools/terminal-kit/specimen.json", "tests/terminal-kit-windows.test.js"],
-      "proofs": ["sources", "unit-kit-windows"],
+      "paths": [
+        "tools/terminal-kit/windows/**",
+        "tools/terminal-kit/kit.json",
+        "tools/terminal-kit/roles/**",
+        "tools/terminal-kit/specimen.json",
+        "tests/terminal-kit-windows.test.js"
+      ],
+      "proofs": [
+        "sources",
+        "unit-kit-windows"
+      ],
       "site": false
     },
     {
       "why": "Agent and repository notes are not rendered.",
-      "paths": ["AGENTS.md", "CLAUDE.md", ".github/dependabot.yml", ".gitignore", ".gitattributes"],
-      "proofs": ["sources", "unit"],
+      "paths": [
+        "AGENTS.md",
+        "CLAUDE.md",
+        ".github/dependabot.yml",
+        ".gitignore",
+        ".gitattributes"
+      ],
+      "proofs": [
+        "sources",
+        "unit"
+      ],
       "site": false
     },
     {
       "why": "A unit test proves itself; unit tests do not feed the site.",
-      "paths": ["tests/*.test.js", "tests/helpers/**", "tests/fixtures/**"],
-      "proofs": ["sources", "unit"],
+      "paths": [
+        "tests/*.test.js"
+      ],
+      "proofs": [
+        "sources",
+        "unit"
+      ],
       "site": false
     },
     {
       "why": "Prose renders on the site: rebuild it and check that it still loads.",
-      "paths": ["README.md", "CHANGELOG.md", "LICENSE.md", "docs/**", "agents/**", "spec/*.md", "templates/**", "references/**"],
-      "proofs": ["sources", "unit", "build", "smoke", "browser:page", "browser:spec-tables"],
+      "paths": [
+        "README.md",
+        "CHANGELOG.md",
+        "LICENSE.md",
+        "docs/**",
+        "agents/**",
+        "spec/*.md",
+        "templates/**",
+        "references/**"
+      ],
+      "proofs": [
+        "sources",
+        "unit",
+        "build",
+        "smoke",
+        "browser:page",
+        "browser:spec-tables"
+      ],
       "site": true
     },
     {
       "why": "One component: its own browser spec, plus the page-wide checks that cover every component.",
-      "paths": ["spec/components/{id}.md", "spec/components/{id}.demo.html", "site/src/styles/components/{id}.css", "exports/components/{id}.json", "exports/components/{id}.brief.txt", "tests/browser/components/{id}.spec.js"],
-      "proofs": ["sources", "unit", "build", "smoke", "browser:components/{id}", "browser:page", "browser:hex-swatches", "browser:spec-tables"],
+      "paths": [
+        "spec/components/{id}.md",
+        "spec/components/{id}.demo.html",
+        "site/src/styles/components/{id}.css",
+        "exports/components/{id}.json",
+        "exports/components/{id}.brief.txt",
+        "tests/browser/components/{id}.spec.js"
+      ],
+      "proofs": [
+        "sources",
+        "unit",
+        "build",
+        "smoke",
+        "browser:components/{id}",
+        "browser:page",
+        "browser:hex-swatches",
+        "browser:spec-tables"
+      ],
       "site": true
     },
     {
       "why": "Ports render on the Ports page and in the downloads.",
-      "paths": ["ports/**"],
-      "proofs": ["sources", "unit", "build", "smoke", "browser:ports", "browser:page"],
+      "paths": [
+        "ports/**"
+      ],
+      "proofs": [
+        "sources",
+        "unit",
+        "build",
+        "smoke",
+        "browser:ports",
+        "browser:page"
+      ],
       "site": true
     },
     {
       "why": "One browser spec proves itself.",
-      "paths": ["tests/browser/{name}.spec.js"],
-      "proofs": ["sources", "build", "browser:{name}"],
+      "paths": [
+        "tests/browser/{name}.spec.js"
+      ],
+      "proofs": [
+        "sources",
+        "build",
+        "browser:{name}"
+      ],
       "site": true
     },
     {
       "why": "The package is proven by the packed consumers on three engines.",
-      "paths": ["packages/ui/**", "apps/demo/**", "tests/ui/**", "scripts/build-ui.mjs", "scripts/pack-ui.mjs", "scripts/verify-ui-consumers.mjs", "scripts/ui-verification-report.mjs", "scripts/lib/ui-consumer-examples.mjs", "scripts/lib/ui-evidence.mjs"],
-      "proofs": ["sources", "unit", "build", "smoke", "consumers", "browser:page"],
+      "paths": [
+        "packages/ui/**",
+        "apps/demo/**",
+        "tests/ui/**",
+        "scripts/build-ui.mjs",
+        "scripts/pack-ui.mjs",
+        "scripts/verify-ui-consumers.mjs",
+        "scripts/ui-verification-report.mjs",
+        "scripts/lib/ui-consumer-examples.mjs",
+        "scripts/lib/ui-evidence.mjs"
+      ],
+      "proofs": [
+        "sources",
+        "unit",
+        "build",
+        "smoke",
+        "consumers",
+        "browser:page"
+      ],
       "site": true
     }
   ]

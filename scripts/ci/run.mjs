@@ -1,15 +1,17 @@
 #!/usr/bin/env node
 // Runs the checks a plan selected (D-031). Called by the ci workflow:
-//   node scripts/ci/run.mjs '<plan json>' cheap
-//   node scripts/ci/run.mjs '<plan json>' browser <project>:<shard>/<total>
+//   PLAN='<plan json>' node scripts/ci/run.mjs cheap
+//   PLAN='<plan json>' node scripts/ci/run.mjs browser <project>:<shard>/<total>
+// The plan comes through the environment, never the command line, so a
+// changed path's name cannot reach a shell.
 // A browser subset reports with the plain list reporter; only the deployment
 // path writes blob reports, which merge into one evidence report.
 
 import { execFileSync } from "node:child_process";
 import { readdirSync } from "node:fs";
 
-const [planJson, stage, part = "all:1/1"] = process.argv.slice(2);
-const plan = JSON.parse(planJson);
+const [stage, part = "all:1/1"] = process.argv.slice(2);
+const plan = JSON.parse(process.env.PLAN ?? "");
 const has = (p) => plan.proofs.includes(p);
 const run = (cmd, args) => {
   console.log(`\n$ ${cmd} ${args.join(" ")}`);
