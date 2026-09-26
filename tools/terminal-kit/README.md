@@ -14,7 +14,8 @@ The kit is a consumer of this repository and follows `agents/consume.md`:
 
 - It reads `exports/tokens.resolved.json` at the revision pinned in
   `kit.json` (`v1.2.0`, commit `0838171…`), after checking that the tag still
-  resolves to that commit and that the file matches `exports/digests.json`.
+  resolves to that commit and that the file matches the digest pinned in
+  `kit.json` (`exports.tokensDigest`) as well as `exports/digests.json`.
 - It maps roles, never primitives, and only roles whose eligibility is `use` or
   `use-and-report`. The `use-and-report` roles, `color.border.divider` (the
   Orca pane divider) and `color.border.overlay` (Claude Code's dialog border),
@@ -37,7 +38,9 @@ built only from approved roles:
 
 - green, amber and blue appear only in status and diff roles (D-001);
 - your messages sit on `surface.raised` instead of the slot-8 red block;
-- picker selection, borders and the accent use the red focus roles;
+- the Claude accent is `text.accent` red, dialog and input borders use the
+  overlay and active border roles, and the selected picker item takes the
+  selected-item text (`interaction.selection.text`);
 - `/usage` uses the single-series chart roles.
 
 Programs that name ANSI slots directly still draw in the heritage slots,
@@ -47,6 +50,7 @@ because the spec leaves slot meaning to the program.
 
 ```sh
 cd ~/dev/theme    # or any checkout that contains this kit
+npm ci            # the Codex step verifies config.toml with smol-toml
 node tools/terminal-kit/devbox/j3w1-terminal.mjs apply --dry-run
 node tools/terminal-kit/devbox/j3w1-terminal.mjs apply
 node tools/terminal-kit/devbox/j3w1-terminal.mjs test
@@ -56,8 +60,8 @@ node tools/terminal-kit/devbox/j3w1-terminal.mjs test
 | --- | --- |
 | `apply [--claude] [--codex] [--dry-run]` | Plans every change, backs up, then writes both theme files and sets the two keys. Uses the installed pin once there is one. Makes no backup when nothing changes. |
 | `test [--no-specimen]` | Renders the specimen, then prints PASS/FAIL/WARN for every managed file and key. |
-| `update --version vX.Y.Z` | Moves to an explicit release tag and records the new pin; never follows a branch. |
-| `restore [--backup <ts> \| --latest] [--dry-run]` | Undoes every apply and update since the last restore: each key returns to its earlier value (or is removed), and theme files the kit created are deleted. It warns before touching a file changed since the kit wrote it. |
+| `update --version vX.Y.Z [--claude] [--codex]` | Moves the named integrations (default both) to an explicit release tag and records their pins; never follows a branch. Each integration keeps its own pin. |
+| `restore [--backup <ts> \| --latest] [--dry-run]` | By default undoes every apply and update since the last completed restore: each key returns to the value it had before the first of those runs (or is removed), and theme files the kit created are deleted. `--latest` undoes only the most recent run, `--backup <ts>` only that run. Any completed restore starts a new window, even one with nothing to undo (it leaves a backup that marks the window); an interrupted one does not, so running `restore` again finishes it. It warns before overwriting a file or key changed since the kit wrote it. |
 | `specimen` | Renders the specimen only. |
 
 `--help` lists every option.
@@ -89,10 +93,14 @@ Follow [`windows/README.md`](windows/README.md). In short:
 
 If Orca is running, Apply writes only the Ghostty block and prints the three
 Settings steps that finish the job (Import from Ghostty, Color Contrast Off,
-Left Sidebar Appearance Match Terminal). `Restore-J3w1OrcaTheme.ps1` undoes
-every apply and update since the last restore, key by key; when the kit never
-saw a key's earlier value (because Orca wrote it during a Ghostty import), it
-says so instead of guessing.
+Left Sidebar Appearance Match Terminal). `Restore-J3w1OrcaTheme.ps1` follows
+the same window rule as the devbox restore: by default it undoes every apply
+and update since the last completed restore, key by key, and only for keys the
+kit wrote or asked Orca to set, so a font size you changed yourself stays. It
+warns about keys changed since the kit wrote them, and when it never saw a
+key's earlier value (because Orca wrote it during a Ghostty import) it says so
+instead of guessing. Apply keeps one full copy of Orca's store from before the
+kit's first run; it holds your private Orca data and stays on your machine.
 
 Besides the terminal colours, contrast, divider and terminal font, the kit sets
 Left Sidebar Appearance to Match Terminal, because you asked for it. It keeps the
