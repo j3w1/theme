@@ -21295,7 +21295,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-thtTmC5o6ZkOvQPRUCXioBRyIpxNzmFxi6zDlD8nAxY=",
+      "subjectDigest": "sha256-IYK5Nwz30Ms0cz4IDn7urnUP9SrsCLdlisttoSma1KA=",
       "evidencePath": null,
       "surfaces": {
         "interface": {
@@ -21342,7 +21342,7 @@
           "path": "dist/theme.css",
           "install": "Copy beside manifest.json in <vault>/.obsidian/themes/j3w1/; restart Obsidian after a manifest update.",
           "source": "ports/obsidian/dist/theme.css",
-          "digest": "sha256-irIbCtUStql4ry8f93DOqdD6XAV82sGzLEVxxY0OFDo="
+          "digest": "sha256-6PWMsbw9ZNjRKPvU+JUhPrRjIvsViZY3704FVUfyi8w="
         }
       ],
       "rollback": "Select the previous theme or Default in Settings → Appearance → Themes; restore both previous files together to roll back a j3w1 update.",
@@ -21384,7 +21384,9 @@
             ".theme-dark .prompt .suggestion-item | border-inline-start-width",
             ".theme-dark .tree-item-self.is-active | border-inline-start-width",
             ".theme-dark .tree-item-self.is-selected | border-inline-start-width",
-            ".theme-dark .workspace-tab-header-container .workspace-tab-header.is-active | border-bottom-width"
+            ".theme-dark .workspace-tab-header-container .workspace-tab-header.is-active | border-bottom-width",
+            ".theme-dark .tree-item-self | border-inline-start-width",
+            ".theme-dark .workspace-tab-header-container .workspace-tab-header | border-bottom-width"
           ],
           "value": "2px",
           "eligibility": {
@@ -21462,7 +21464,8 @@
           "role": "color.action.destructive.border",
           "nativeKeys": [
             ".theme-dark button.mod-warning | border-color",
-            ".theme-dark button.mod-destructive.mod-cta | border-color"
+            ".theme-dark button.mod-destructive.mod-cta | border-color",
+            ".theme-dark button.mod-destructive | border-color"
           ],
           "value": "#e53935",
           "eligibility": {
@@ -21478,18 +21481,16 @@
         },
         {
           "role": "color.action.destructive.filled-bg",
-          "nativeKeys": [
-            ".theme-dark button.mod-warning | background-color"
-          ],
+          "nativeKeys": [],
           "value": "#dc282e",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
-          "state": "mapped",
-          "surface": "interface",
-          "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported.",
+          "state": "inherited",
+          "surface": "host-behavior",
+          "reason": "Native desktop warning/confirmation fills and their hover/mobile-tap variants consume background-modifier-error/error-hover, owned by status.danger.fill; mobile warning uses interactive-normal. No independent filled-bg assignment is claimed.",
           "source": "ports/obsidian/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -21515,31 +21516,39 @@
         },
         {
           "role": "color.action.destructive.hover-bg",
-          "nativeKeys": [],
+          "nativeKeys": [
+            ".theme-dark button.mod-destructive:hover | background-color",
+            ".theme-dark button.mod-destructive.mobile-tap | background-color"
+          ],
           "value": "#dc282e",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
-          "state": "inherited",
-          "surface": "host-behavior",
-          "reason": "Native destructive hover uses its existing error/interactive fill model; no independent destructive hover fill is installed.",
+          "state": "mapped",
+          "surface": "interface",
+          "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported.",
           "source": "ports/obsidian/mapping.json",
           "spec": "spec/portability.md"
         },
         {
           "role": "color.action.destructive.hover-text",
-          "nativeKeys": [],
+          "nativeKeys": [
+            ".theme-dark button.mod-destructive:hover | --text-color",
+            ".theme-dark button.mod-destructive:hover | --background-modifier-border-focus",
+            ".theme-dark button.mod-destructive.mobile-tap | --text-color",
+            ".theme-dark button.mod-destructive.mobile-tap | --background-modifier-border-focus"
+          ],
           "value": "#f9faf9",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
-          "state": "inherited",
-          "surface": "host-behavior",
-          "reason": "Native destructive hover inherits text-error or its filled text; no independent hover-text assignment.",
+          "state": "mapped",
+          "surface": "interface",
+          "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported.",
           "source": "ports/obsidian/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -21560,16 +21569,18 @@
         },
         {
           "role": "color.action.destructive.text",
-          "nativeKeys": [],
+          "nativeKeys": [
+            ".theme-dark button.mod-destructive | --text-color"
+          ],
           "value": "#f73f35",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
-          "state": "inherited",
-          "surface": "host-behavior",
-          "reason": "Native outline destructive buttons use text-error and a computed error tint; the filled confirmation is mapped separately.",
+          "state": "mapped",
+          "surface": "interface",
+          "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported.",
           "source": "ports/obsidian/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -22385,7 +22396,7 @@
         {
           "role": "color.code.selection-bg",
           "nativeKeys": [
-            ".theme-dark .markdown-source-view.mod-cm6 .cm-content | --text-selection"
+            ".theme-dark .markdown-source-view.mod-cm6 .cm-scroller | --text-selection"
           ],
           "value": "#420f0c",
           "eligibility": {
@@ -23293,7 +23304,10 @@
             "--nav-item-color-selected",
             "--tab-text-color-focused-active",
             "--tab-text-color-focused-active-current",
-            ".theme-dark .prompt .suggestion-item.is-selected | color"
+            ".theme-dark .prompt .suggestion-item.is-selected | color",
+            ".theme-dark .prompt .suggestion-item.is-selected | --text-muted",
+            ".theme-dark .prompt .suggestion-item.is-selected | --text-faint",
+            ".theme-dark .prompt .suggestion-item.is-selected | --text-accent"
           ],
           "value": "#f4eeee",
           "eligibility": {
@@ -24921,19 +24935,16 @@
         },
         {
           "role": "color.status.warning.tint",
-          "nativeKeys": [
-            "--background-modifier-warning",
-            "--background-modifier-warning-hover"
-          ],
+          "nativeKeys": [],
           "value": "#1f1a0c",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
-          "state": "mapped",
-          "surface": "interface",
-          "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported.",
+          "state": "unsupported",
+          "surface": "unsupported-hooks",
+          "reason": "No consumer for background-modifier-warning/warning-hover in audited Obsidian 1.13.4/1.13.7; warning callouts compute their tint from callout-warning, not this exact tint role.",
           "source": "ports/obsidian/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -25523,7 +25534,7 @@
             "--nav-item-color-highlighted",
             "--tab-text-color-focused-highlighted",
             "--icon-color-active",
-            ".theme-dark .prompt .suggestion-action | color"
+            "--color-accent"
           ],
           "value": "#f73f35",
           "eligibility": {
@@ -25589,7 +25600,9 @@
           "role": "color.text.disabled",
           "nativeKeys": [
             ".theme-dark button:not(.clickable-icon)[disabled] | --text-color",
-            ".theme-dark button:not(.clickable-icon)[aria-disabled=\"true\"] | --text-color"
+            ".theme-dark button:not(.clickable-icon)[aria-disabled=\"true\"] | --text-color",
+            ".theme-dark button:not(.clickable-icon)[disabled] | color",
+            ".theme-dark button:not(.clickable-icon)[aria-disabled=\"true\"] | color"
           ],
           "value": "#8a5559",
           "eligibility": {
@@ -25794,7 +25807,6 @@
           "role": "color.text.subtle",
           "nativeKeys": [
             "--text-faint",
-            "--heading-formatting",
             "--list-marker-color"
           ],
           "value": "#ad7175",
@@ -25904,7 +25916,7 @@
         {
           "role": "density.compact.control-padding-x",
           "nativeKeys": [
-            ".theme-dark .prompt input.prompt-input | padding-inline",
+            ".theme-dark .prompt input.prompt-input | padding-inline-start",
             ".theme-dark .prompt .suggestion-item | padding-inline"
           ],
           "value": "8px",
@@ -26598,7 +26610,6 @@
             "--touch-radius-xs",
             "--touch-radius-s",
             "--touch-radius-m",
-            "--touch-radius-l",
             "--touch-radius-xl"
           ],
           "value": "0px",

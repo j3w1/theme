@@ -773,9 +773,9 @@
       "reason": "Native clickable icons share background-modifier-hover with generic hover; interaction.hover.bg owns that key, without separate tertiary-hover coverage."
     },
     "color.action.destructive.text": {
-      "state": "inherited",
-      "surface": "host-behavior",
-      "reason": "Native outline destructive buttons use text-error and a computed error tint; the filled confirmation is mapped separately."
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
     },
     "color.action.destructive.border": {
       "state": "mapped",
@@ -783,14 +783,14 @@
       "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
     },
     "color.action.destructive.hover-bg": {
-      "state": "inherited",
-      "surface": "host-behavior",
-      "reason": "Native destructive hover uses its existing error/interactive fill model; no independent destructive hover fill is installed."
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
     },
     "color.action.destructive.hover-text": {
-      "state": "inherited",
-      "surface": "host-behavior",
-      "reason": "Native destructive hover inherits text-error or its filled text; no independent hover-text assignment."
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
     },
     "color.action.destructive.pressed-bg": {
       "state": "inherited",
@@ -798,9 +798,9 @@
       "reason": "Native pressed destructive behavior is retained; no independent native pressed variable is exposed."
     },
     "color.action.destructive.filled-bg": {
-      "state": "mapped",
-      "surface": "interface",
-      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "Native desktop warning/confirmation fills and their hover/mobile-tap variants consume background-modifier-error/error-hover, owned by status.danger.fill; mobile warning uses interactive-normal. No independent filled-bg assignment is claimed."
     },
     "color.action.destructive.filled-text": {
       "state": "mapped",
@@ -848,9 +848,9 @@
       "reason": "No separate filled warning status badge is styled in v1; do not reuse generic interactive/on-accent keys as warning on-fill coverage."
     },
     "color.status.warning.tint": {
-      "state": "mapped",
-      "surface": "interface",
-      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "No consumer for background-modifier-warning/warning-hover in audited Obsidian 1.13.4/1.13.7; warning callouts compute their tint from callout-warning, not this exact tint role."
     },
     "color.status.warning.border": {
       "state": "unsupported",

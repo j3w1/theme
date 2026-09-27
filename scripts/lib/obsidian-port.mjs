@@ -58,10 +58,10 @@ export const OBSIDIAN_VARIABLE_TYPES = {
   "--nav-heading-color-collapsed": "color",
   "--nav-tag-color": "color",
   "--text-faint": "color",
-  "--heading-formatting": "color",
   "--list-marker-color": "color",
   "--input-placeholder-color": "color",
   "--text-accent": "color",
+  "--color-accent": "color",
   "--nav-item-color-highlighted": "color",
   "--tab-text-color-focused-highlighted": "color",
   "--link-color": "color",
@@ -126,8 +126,6 @@ export const OBSIDIAN_VARIABLE_TYPES = {
   "--background-modifier-error-hover": "color",
   "--text-warning": "color",
   "--callout-warning": "color",
-  "--background-modifier-warning": "color",
-  "--background-modifier-warning-hover": "color",
   "--text-success": "color",
   "--callout-success": "color",
   "--background-modifier-success": "color",
@@ -193,7 +191,6 @@ export const OBSIDIAN_VARIABLE_TYPES = {
   "--touch-radius-xs": "dimension",
   "--touch-radius-s": "dimension",
   "--touch-radius-m": "dimension",
-  "--touch-radius-l": "dimension",
   "--touch-radius-xl": "dimension"
 };
 
@@ -208,10 +205,16 @@ export const OBSIDIAN_RULES = [
   {
     "selector": ".theme-dark .markdown-source-view.mod-cm6 .cm-content",
     "properties": {
-      "color": "color",
+      "color": "color"
+    },
+    "reason": "CM6 content root separates prose from interface widgets."
+  },
+  {
+    "selector": ".theme-dark .markdown-source-view.mod-cm6 .cm-scroller",
+    "properties": {
       "--text-selection": "color"
     },
-    "reason": "CM6 content root separates prose and editor selection from interface widgets and UI selection."
+    "reason": "CM6 scroller contains both content and the sibling drawn-selection layer; scope editor selection above both."
   },
   {
     "selector": ".theme-dark .popover",
@@ -247,10 +250,10 @@ export const OBSIDIAN_RULES = [
       "border-color": "color",
       "border-width": "dimension",
       "padding-block": "dimension",
-      "padding-inline": "dimension",
+      "padding-inline-start": "dimension",
       "min-height": "dimension"
     },
-    "reason": "Native full-width prompt field hardcodes transparent fill, large padding and no border.",
+    "reason": "Native prompt field needs a fill and border; compact start padding preserves the native clear-button end reservation.",
     "fixed": {
       "height": "auto",
       "border-style": "solid"
@@ -286,9 +289,12 @@ export const OBSIDIAN_RULES = [
     "properties": {
       "background-color": "color",
       "color": "color",
-      "border-inline-start-color": "color"
+      "border-inline-start-color": "color",
+      "--text-muted": "color",
+      "--text-faint": "color",
+      "--text-accent": "color"
     },
-    "reason": "Native selected suggestions borrow hover fill; separate selection and add the indicator."
+    "reason": "Separate selection and its indicator; local text variables keep notes, flair, faint text and actions readable on the selected fill."
   },
   {
     "selector": ".theme-dark .menu",
@@ -296,6 +302,17 @@ export const OBSIDIAN_RULES = [
       "--background-modifier-hover": "color"
     },
     "reason": "Menus consume general hover fill; local strong hover keeps other surfaces restrained."
+  },
+  {
+    "selector": ".theme-dark .tree-item-self",
+    "properties": {
+      "border-inline-start-width": "dimension"
+    },
+    "reason": "Reserve the selected tree indicator in every state so labels do not move.",
+    "fixed": {
+      "border-inline-start-style": "solid",
+      "border-inline-start-color": "transparent"
+    }
   },
   {
     "selector": ".theme-dark .tree-item-self.is-active",
@@ -317,6 +334,17 @@ export const OBSIDIAN_RULES = [
     "reason": "Native navigation selected fill has no selected-indicator variable.",
     "fixed": {
       "border-inline-start-style": "solid"
+    }
+  },
+  {
+    "selector": ".theme-dark .workspace-tab-header-container .workspace-tab-header",
+    "properties": {
+      "border-bottom-width": "dimension"
+    },
+    "reason": "Reserve the tab indicator in every state so main and sidebar tab labels do not move.",
+    "fixed": {
+      "border-bottom-style": "solid",
+      "border-bottom-color": "transparent"
     }
   },
   {
@@ -374,14 +402,40 @@ export const OBSIDIAN_RULES = [
     "reason": "Recolor the native radio focus shadow when checked."
   },
   {
-    "selector": ".theme-dark button.mod-warning",
+    "selector": ".theme-dark button.mod-destructive",
     "properties": {
       "border-color": "color",
+      "--text-color": "color"
+    },
+    "reason": "Restore plain destructive text and border after the standard-button rule; confirmation variants override the text below."
+  },
+  {
+    "selector": ".theme-dark button.mod-destructive:hover",
+    "properties": {
       "background-color": "color",
       "--text-color": "color",
       "--background-modifier-border-focus": "color"
     },
-    "reason": "Native mod-warning buttons are destructive filled actions; their fill requires on-danger text and a recolored native focus shadow."
+    "reason": "Destructive hover uses its canonical fill and on-fill text; recolor the single native focus shadow on that fill.",
+    "media": "(hover: hover)"
+  },
+  {
+    "selector": ".theme-dark button.mod-destructive.mobile-tap",
+    "properties": {
+      "background-color": "color",
+      "--text-color": "color",
+      "--background-modifier-border-focus": "color"
+    },
+    "reason": "Native mobile-tap otherwise borrows the secondary hover fill with unsafe danger text; retain destructive meaning with its hover pair."
+  },
+  {
+    "selector": ".theme-dark button.mod-warning",
+    "properties": {
+      "border-color": "color",
+      "--text-color": "color",
+      "--background-modifier-border-focus": "color"
+    },
+    "reason": "Native warning buttons keep desktop error fills and the mobile neutral fill; recolor desktop text and the existing focus shadow."
   },
   {
     "selector": ".theme-dark button.mod-destructive.mod-cta",
@@ -429,6 +483,7 @@ export const OBSIDIAN_RULES = [
     "selector": ".theme-dark button:not(.clickable-icon)[disabled]",
     "properties": {
       "--text-color": "color",
+      "color": "color",
       "background-color": "color",
       "border-color": "color"
     },
@@ -441,6 +496,7 @@ export const OBSIDIAN_RULES = [
     "selector": ".theme-dark button:not(.clickable-icon)[aria-disabled=\"true\"]",
     "properties": {
       "--text-color": "color",
+      "color": "color",
       "background-color": "color",
       "border-color": "color"
     },
@@ -476,17 +532,18 @@ export const OBSIDIAN_RULES = [
   },
   {
     "selector": ".theme-dark .prompt .suggestion-action",
-    "properties": {
-      "color": "color"
+    "properties": {},
+    "fixed": {
+      "color": "var(--text-accent)"
     },
-    "reason": "Native suggestion actions use the primary fill as text; assign the strong text accent within prompts to retain the text contrast floor."
+    "reason": "Native actions use the primary fill as text; use the text accent, whose selected-row scope supplies readable on-selection text."
   }
 ];
 
 const RESET_VARIABLES = {
   "--input-shadow": "none", "--input-shadow-hover": "none",
   "--shadow-xs": "none", "--shadow-s": "none", "--shadow-l": "none",
-  "--menu-shadow": "none", "--modal-shadow": "none", "--raised-shadow": "none",
+  "--menu-shadow": "none", "--raised-shadow": "none",
   "--slider-thumb-shadow": "none", "--slider-thumb-shadow-hover": "none", "--slider-thumb-shadow-active": "none",
   "--raised-blur": "none", "--prompt-backdrop-filter": "none", "--suggestion-backdrop-filter": "none",
   "--menu-backdrop-filter": "none", "--raised-mask-display": "none",
@@ -522,7 +579,26 @@ export const obsidianCss = ({ manifest, port, mapping, resolved }) => {
   }
   // Native shadows/outlines remain the only indicators; forced colors must
   // recolor them too. The prompt has one replacement outline, never a shadow.
-  css += `\n@media (forced-colors: active) {\n.theme-dark {\n  --background-modifier-border-focus: Highlight;\n}\n.theme-dark button.mod-cta,\n.theme-dark button.mod-warning,\n.theme-dark button.mod-destructive.mod-cta,\n.theme-dark .checkbox-container.is-enabled,\n.theme-dark input[type="checkbox"]:checked,\n.theme-dark input[type="radio"]:checked {\n  --background-modifier-border-focus: Highlight;\n}\n.theme-dark .prompt input.prompt-input:focus-visible {\n  outline-color: Highlight;\n}\n}\n`;
+  css += `
+@media (forced-colors: active) {
+.theme-dark {
+  --background-modifier-border-focus: Highlight;
+}
+.theme-dark button.mod-cta,
+.theme-dark button.mod-warning,
+.theme-dark button.mod-destructive.mod-cta,
+.theme-dark button.mod-destructive:hover,
+.theme-dark button.mod-destructive.mobile-tap,
+.theme-dark .checkbox-container.is-enabled,
+.theme-dark input[type="checkbox"]:checked,
+.theme-dark input[type="radio"]:checked {
+  --background-modifier-border-focus: Highlight;
+}
+.theme-dark .prompt input.prompt-input:focus-visible {
+  outline-color: Highlight;
+}
+}
+`;
   return css;
 };
 export const obsidianArtifacts = args => [

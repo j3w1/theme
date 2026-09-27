@@ -58,6 +58,10 @@ claim about every core-plugin view. In particular, PDF/print presentation,
 Canvas/Graph data colors and non-status callout colors are outside scope.
 
 Text selection, CM6 selection and keyboard focus have separate assignments.
+The CM6 scroller scopes the editor fill over both `.cm-content` and its sibling
+`.cm-selectionLayer`; native `::selection` and drawn selection inherit it.
+Which layer a mode draws, table-widget exceptions and selected syntax foregrounds
+remain native; this does not claim uniform selection rendering in every mode.
 Native status/error/warning/success text and error/warning/success/info callouts
 use only the matching status roles; host glyphs remain. Monochrome `--code-*`
 variables cover both editor and Reading View code highlighting. The host shares
@@ -69,13 +73,19 @@ fallback stack. Obsidian's explicit user font overrides take precedence. No font
 binary is bundled, and font sizes, relative headings, line heights and zoom stay
 native. Compact prompt rows use a minimum height, not a clipping height; the
 full-width native search input grows with text and uses a comfortable minimum.
+Only its start padding is compact; native end space for the clear button stays.
+Selected prompt notes, flair, faint text and actions use on-selection text.
+Tree rows and main/sidebar tabs reserve transparent indicator borders at rest.
 
 ## Compatibility and deviations
 
 The public `minAppVersion` is **1.13.4**, the earliest public 1.13.x source audited
-here, not a claim that earlier releases fail. Every emitted native variable and
-selector is checked against both 1.13.4 and 1.13.7 `app.css`; documentation is
-pinned to official developer-docs revision
+here, not a claim that earlier releases fail. Every emitted native variable has
+a definition and a consumer in both
+1.13.4 and 1.13.7 `app.css`; selector hooks and cascade facts are audited in
+both sources. Definitions alone do not count as mapping coverage. Inert warning
+tint, heading-formatting, modal-shadow and touch-radius-l keys are omitted.
+Documentation is pinned to official developer-docs revision
 `c56c7e770ba25dd0ea392aacf4588f9425970d36`.
 
 - Native focus geometry remains: buttons use a three-pixel solid shadow ring,
@@ -90,6 +100,11 @@ pinned to official developer-docs revision
   plugin-specific geometry and mobile layout can still diverge. Native target
   sizes remain except bounded compact prompt rows. User/system dialogs remain
   native. No universal geometry or accessibility conformance is claimed.
+- Plain destructive buttons keep danger text/borders at rest and use the
+  canonical destructive hover pair on hover and mobile tap, with the same native
+  focus shadow recolored. Warning confirmations keep native desktop error fills
+  and mobile neutral fills. Disabled/aria-disabled overrides win over every
+  variant, including the mobile warning button's direct foreground.
 - Native action variables conflate some pressed/hover states. Unmapped action,
   inactive-navigation, diagnostic stripe/underline and editor search/current-line
   roles have precise capability reasons; equal hex values do not add coverage.
@@ -100,6 +115,13 @@ pinned to official developer-docs revision
 - User-supplied CSS snippets and font overrides can alter the result. Third-party
   plugins may inherit semantic variables but receive no plugin-specific selectors.
   Native non-status callouts and data colors are not reassigned as status hues.
+- UI text selection preserves the foreground. Rose `--text-normal` on the
+  global `--text-selection` fill measures **3.96:1**, below the 4.5:1 text
+  floor; muted/faint UI foregrounds are lower still. Native Search result
+  `:hover` and `.mobile-tap` also use this fill with rose text, and secondary
+  replacement actions keep their native foregrounds. This host limitation is
+  explicit, not a contrast waiver or a conformance claim. The canonical
+  near-white selection pair passes; Reading View prose retains it.
 - Known canonical syntax-selection contrast limits remain as documented in
   `spec/accessibility.md`. Automated mapping/contrast checks are structural,
   not Windows, keyboard or screen-reader evidence.
@@ -128,24 +150,30 @@ not validated in a running app; regression contracts pin their scope.
 | Selector | Why a variable alone is insufficient |
 | --- | --- |
 | `.theme-dark .markdown-preview-view` | Reading View root uses --text-normal, also used by UI; set only note content color. |
-| `.theme-dark .markdown-source-view.mod-cm6 .cm-content` | CM6 content root separates prose and editor selection from interface widgets and UI selection. |
+| `.theme-dark .markdown-source-view.mod-cm6 .cm-content` | CM6 content root separates prose from interface widgets. |
+| `.theme-dark .markdown-source-view.mod-cm6 .cm-scroller` | CM6 scroller contains both content and the sibling drawn-selection layer; scope editor selection above both. |
 | `.theme-dark .popover` | File preview popovers use the canvas variable locally; raised content requires a scoped value. |
 | `.theme-dark .tooltip` | Native tooltip hardcodes white text and has no border variables. |
 | `.theme-dark .tooltip.mod-error` | Native error tooltip fills with --background-modifier-error and needs its own on-fill text. |
-| `.theme-dark .prompt input.prompt-input` | Native full-width prompt field hardcodes transparent fill, large padding and no border. |
+| `.theme-dark .prompt input.prompt-input` | Native prompt field needs a fill and border; compact start padding preserves the native clear-button end reservation. |
 | `.theme-dark .prompt input.prompt-input:focus-visible` | Native prompt suppresses input focus shadows; add exactly one inset dashed ring. |
 | `.theme-dark .prompt .suggestion-item` | Native suggestions have fixed padding but no density or selection indicator variable. |
-| `.theme-dark .prompt .suggestion-item.is-selected` | Native selected suggestions borrow hover fill; separate selection and add the indicator. |
+| `.theme-dark .prompt .suggestion-item.is-selected` | Separate selection and its indicator; local text variables keep notes, flair, faint text and actions readable on the selected fill. |
 | `.theme-dark .menu` | Menus consume general hover fill; local strong hover keeps other surfaces restrained. |
+| `.theme-dark .tree-item-self` | Reserve the selected tree indicator in every state so labels do not move. |
 | `.theme-dark .tree-item-self.is-active` | Native navigation active fill has no selected-indicator variable. |
 | `.theme-dark .tree-item-self.is-selected` | Native navigation selected fill has no selected-indicator variable. |
+| `.theme-dark .workspace-tab-header-container .workspace-tab-header` | Reserve the tab indicator in every state so main and sidebar tab labels do not move. |
 | `.theme-dark .workspace-tab-header-container .workspace-tab-header.is-active` | Sidebar tabs use hover fill and main tabs lack an indicator; one named-state override covers both. |
 | `.theme-dark button:not(.clickable-icon)` | Native standard buttons use shadow as their boundary; supply a real outline edge after removing decorative shadows. |
 | `.theme-dark button.mod-cta` | Recolor the existing native button focus shadow on primary fills; do not add another indicator. |
 | `.theme-dark .checkbox-container.is-enabled` | Recolor the existing toggle outline on primary fill. |
 | `.theme-dark input[type="checkbox"]:checked` | Recolor the native checkbox focus shadow when checked. |
 | `.theme-dark input[type="radio"]:checked` | Recolor the native radio focus shadow when checked. |
-| `.theme-dark button.mod-warning` | Native mod-warning buttons are destructive filled actions; their fill requires on-danger text and a recolored native focus shadow. |
+| `.theme-dark button.mod-destructive` | Restore plain destructive text and border after the standard-button rule; confirmation variants override the text below. |
+| `.theme-dark button.mod-destructive:hover` | Destructive hover uses its canonical fill and on-fill text; recolor the single native focus shadow on that fill. Applied only under `(hover: hover)`. |
+| `.theme-dark button.mod-destructive.mobile-tap` | Native mobile-tap otherwise borrows the secondary hover fill with unsafe danger text; retain destructive meaning with its hover pair. |
+| `.theme-dark button.mod-warning` | Native warning buttons keep desktop error fills and the mobile neutral fill; recolor desktop text and the existing focus shadow. |
 | `.theme-dark button.mod-destructive.mod-cta` | Native destructive confirmation fill requires on-danger text and native focus shadow color. |
 | `.theme-dark select` | Native select uses decorative input shadow as its edge; replace with a real control border. |
 | `.theme-dark .dropdown` | Native dropdown uses input shadow as its edge; replace with a real control border. |
@@ -155,7 +183,7 @@ not validated in a running app; regression contracts pin their scope.
 | `.theme-dark .prompt input.prompt-input:hover` | Native prompt hover forces transparency and its bottom border; retain field fill and visible boundary. Applied only under `(hover: hover)`. |
 | `.theme-dark .workspace-tab-header-container .workspace-tab-header.is-active:hover` | Native sidebar active hover borrows hover fill; selection takes precedence. Applied only under `(hover: hover)`. |
 | `.theme-dark:not(.is-focused) .workspace-tab-header-container .workspace-tab-header.is-active` | Native tabs have inactive text but no inactive fill or indicator variables. |
-| `.theme-dark .prompt .suggestion-action` | Native suggestion actions use the primary fill as text; assign the strong text accent within prompts to retain the text contrast floor. |
+| `.theme-dark .prompt .suggestion-action` | Native actions use the primary fill as text; use the text accent, whose selected-row scope supplies readable on-selection text. |
 
 The forced-colors block repeats `.theme-dark`, the same primary/destructive/
 checked-control selectors and the prompt `:focus-visible` selector above solely

@@ -94,6 +94,7 @@ test("native semantic families keep surfaces, text, controls, status, focus and 
     "--ribbon-background": "color.surface.chrome", "--settings-background": "color.surface.default",
     "--text-normal": "color.text.default", "--h1-color": "color.text.bright", "--text-muted": "color.text.muted",
     "--text-faint": "color.text.subtle", "--background-modifier-border": "color.border.control",
+    "--color-accent": "color.text.accent-strong",
     "--background-modifier-border-focus": "color.interaction.focus.ring", "--caret-color": "color.code.caret",
     "--nav-item-background-selected": "color.interaction.selection.bg", "--nav-item-color-selected": "color.interaction.selection.text",
     "--background-modifier-hover": "color.interaction.hover.bg", "--interactive-accent": "color.action.primary.bg",
@@ -130,6 +131,22 @@ test("the 1.13 hook audit, selector ledger and dark-only hazard contracts stay c
   assert.deepEqual(audit.nativeVariables.sort(), Object.keys(OBSIDIAN_VARIABLE_TYPES).sort());
   assert.deepEqual(audit.selectors.sort(), OBSIDIAN_RULES.map(r => r.selector).sort());
   assert.deepEqual(audit.versions.map(v => v.version), ["1.13.4", "1.13.7"]);
+  for (const version of audit.versions) {
+    for (const key of [...audit.nativeVariables, ...audit.resetVariables]) {
+      assert.ok(version.hooks[key].definitionLine > 0, `${version.version}: ${key} definition`);
+      assert.ok(version.hooks[key].consumerCount > 0, `${version.version}: ${key} consumer`);
+      assert.ok(version.hooks[key].example.selector, `${version.version}: ${key} consumer selector`);
+    }
+    for (const key of audit.unusedVariables) {
+      assert.ok(version.hooks[key].definitionLine > 0, `${version.version}: ${key} inert definition`);
+      assert.equal(version.hooks[key].consumerCount, 0, `${version.version}: ${key} inert consumer`);
+      assert.ok(!declarations.has(key), `${key} must not inflate mapped coverage`);
+    }
+  }
+  assert.equal(capabilities.roles["color.status.warning.tint"].state, "unsupported");
+  assert.equal(capabilities.roles["color.action.destructive.text"].state, "mapped");
+  assert.equal(capabilities.roles["color.action.destructive.filled-bg"].state, "inherited");
+  assert.doesNotMatch(css, /--color-accent-[12]\s*:/);
   const readme = await readText("ports/obsidian/README.md");
   for (const rule of OBSIDIAN_RULES) {
     assert.ok(readme.includes('`' + rule.selector + '`'), rule.selector);
@@ -161,8 +178,10 @@ test("contrast pairs validate actual native values without rounding a failure in
   check("--nav-item-color-selected", "--nav-item-background-selected");
   check("--text-on-accent", "--interactive-accent");
   check(".theme-dark button.mod-cta | --background-modifier-border-focus", "--interactive-accent", 3);
-  check(".theme-dark button.mod-warning | --text-color", ".theme-dark button.mod-warning | background-color");
-  check(".theme-dark button.mod-warning | --background-modifier-border-focus", ".theme-dark button.mod-warning | background-color", 3);
+  check(".theme-dark button.mod-warning | --text-color", "--background-modifier-error");
+  check(".theme-dark button.mod-warning | --background-modifier-border-focus", "--background-modifier-error", 3);
+  check("--text-error", "--interactive-normal");
+  for (const property of ["color", "--text-muted", "--text-faint", "--text-accent"]) check(`.theme-dark .prompt .suggestion-item.is-selected | ${property}`, ".theme-dark .prompt .suggestion-item.is-selected | background-color");
 });
 test("source preparation pins Obsidian downloads to the next version and preserves the latest published release", async () => {
   assert.equal(manifest.version, "3.1.0");

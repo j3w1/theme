@@ -53,10 +53,10 @@
   --nav-heading-color-collapsed: #bd787d;
   --nav-tag-color: #bd787d;
   --text-faint: #ad7175;
-  --heading-formatting: #ad7175;
   --list-marker-color: #ad7175;
   --input-placeholder-color: #a3676b;
   --text-accent: #f73f35;
+  --color-accent: #f73f35;
   --nav-item-color-highlighted: #f73f35;
   --tab-text-color-focused-highlighted: #f73f35;
   --link-color: #f73f35;
@@ -121,8 +121,6 @@
   --background-modifier-error-hover: #dc282e;
   --text-warning: #c9973f;
   --callout-warning: #c9973f;
-  --background-modifier-warning: #1f1a0c;
-  --background-modifier-warning-hover: #1f1a0c;
   --text-success: #86a46f;
   --callout-success: #86a46f;
   --background-modifier-success: #0f1a0e;
@@ -188,7 +186,6 @@
   --touch-radius-xs: 0px;
   --touch-radius-s: 0px;
   --touch-radius-m: 0px;
-  --touch-radius-l: 0px;
   --touch-radius-xl: 0px;
   --input-shadow: none;
   --input-shadow-hover: none;
@@ -196,7 +193,6 @@
   --shadow-s: none;
   --shadow-l: none;
   --menu-shadow: none;
-  --modal-shadow: none;
   --raised-shadow: none;
   --slider-thumb-shadow: none;
   --slider-thumb-shadow-hover: none;
@@ -219,9 +215,13 @@
   color: #f4eeee;
 }
 
-/* CM6 content root separates prose and editor selection from interface widgets and UI selection. */
+/* CM6 content root separates prose from interface widgets. */
 .theme-dark .markdown-source-view.mod-cm6 .cm-content {
   color: #f4eeee;
+}
+
+/* CM6 scroller contains both content and the sibling drawn-selection layer; scope editor selection above both. */
+.theme-dark .markdown-source-view.mod-cm6 .cm-scroller {
   --text-selection: #420f0c;
 }
 
@@ -244,13 +244,13 @@
   color: #f9faf9;
 }
 
-/* Native full-width prompt field hardcodes transparent fill, large padding and no border. */
+/* Native prompt field needs a fill and border; compact start padding preserves the native clear-button end reservation. */
 .theme-dark .prompt input.prompt-input {
   background-color: #000000;
   border-color: #a3676b;
   border-width: 1px;
   padding-block: 4px;
-  padding-inline: 8px;
+  padding-inline-start: 8px;
   min-height: 32px;
   height: auto;
   border-style: solid;
@@ -273,16 +273,26 @@
   border-inline-start-color: transparent;
 }
 
-/* Native selected suggestions borrow hover fill; separate selection and add the indicator. */
+/* Separate selection and its indicator; local text variables keep notes, flair, faint text and actions readable on the selected fill. */
 .theme-dark .prompt .suggestion-item.is-selected {
   background-color: #531310;
   color: #f4eeee;
   border-inline-start-color: #e53935;
+  --text-muted: #f4eeee;
+  --text-faint: #f4eeee;
+  --text-accent: #f4eeee;
 }
 
 /* Menus consume general hover fill; local strong hover keeps other surfaces restrained. */
 .theme-dark .menu {
   --background-modifier-hover: #630f0d;
+}
+
+/* Reserve the selected tree indicator in every state so labels do not move. */
+.theme-dark .tree-item-self {
+  border-inline-start-width: 2px;
+  border-inline-start-style: solid;
+  border-inline-start-color: transparent;
 }
 
 /* Native navigation active fill has no selected-indicator variable. */
@@ -297,6 +307,13 @@
   border-inline-start-color: #e53935;
   border-inline-start-width: 2px;
   border-inline-start-style: solid;
+}
+
+/* Reserve the tab indicator in every state so main and sidebar tab labels do not move. */
+.theme-dark .workspace-tab-header-container .workspace-tab-header {
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-bottom-color: transparent;
 }
 
 /* Sidebar tabs use hover fill and main tabs lack an indicator; one named-state override covers both. */
@@ -337,10 +354,31 @@
   --background-modifier-border-focus: #ffa2a7;
 }
 
-/* Native mod-warning buttons are destructive filled actions; their fill requires on-danger text and a recolored native focus shadow. */
+/* Restore plain destructive text and border after the standard-button rule; confirmation variants override the text below. */
+.theme-dark button.mod-destructive {
+  border-color: #e53935;
+  --text-color: #f73f35;
+}
+
+/* Destructive hover uses its canonical fill and on-fill text; recolor the single native focus shadow on that fill. */
+@media (hover: hover) {
+.theme-dark button.mod-destructive:hover {
+  background-color: #dc282e;
+  --text-color: #f9faf9;
+  --background-modifier-border-focus: #f9faf9;
+}
+}
+
+/* Native mobile-tap otherwise borrows the secondary hover fill with unsafe danger text; retain destructive meaning with its hover pair. */
+.theme-dark button.mod-destructive.mobile-tap {
+  background-color: #dc282e;
+  --text-color: #f9faf9;
+  --background-modifier-border-focus: #f9faf9;
+}
+
+/* Native warning buttons keep desktop error fills and the mobile neutral fill; recolor desktop text and the existing focus shadow. */
 .theme-dark button.mod-warning {
   border-color: #e53935;
-  background-color: #dc282e;
   --text-color: #f9faf9;
   --background-modifier-border-focus: #f9faf9;
 }
@@ -376,6 +414,7 @@
 /* Native disabled button uses opacity; explicit disabled roles retain contrast accounting. */
 .theme-dark button:not(.clickable-icon)[disabled] {
   --text-color: #8a5559;
+  color: #8a5559;
   background-color: #160b0b;
   border-color: #7d1310;
   opacity: 1;
@@ -384,6 +423,7 @@
 /* Native disabled button uses opacity; explicit disabled roles retain contrast accounting. */
 .theme-dark button:not(.clickable-icon)[aria-disabled="true"] {
   --text-color: #8a5559;
+  color: #8a5559;
   background-color: #160b0b;
   border-color: #7d1310;
   opacity: 1;
@@ -410,9 +450,9 @@
   border-bottom-color: #9e231f;
 }
 
-/* Native suggestion actions use the primary fill as text; assign the strong text accent within prompts to retain the text contrast floor. */
+/* Native actions use the primary fill as text; use the text accent, whose selected-row scope supplies readable on-selection text. */
 .theme-dark .prompt .suggestion-action {
-  color: #f73f35;
+  color: var(--text-accent);
 }
 
 @media (forced-colors: active) {
@@ -422,6 +462,8 @@
 .theme-dark button.mod-cta,
 .theme-dark button.mod-warning,
 .theme-dark button.mod-destructive.mod-cta,
+.theme-dark button.mod-destructive:hover,
+.theme-dark button.mod-destructive.mobile-tap,
 .theme-dark .checkbox-container.is-enabled,
 .theme-dark input[type="checkbox"]:checked,
 .theme-dark input[type="radio"]:checked {

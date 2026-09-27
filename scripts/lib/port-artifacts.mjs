@@ -18,6 +18,7 @@ import { makeResolver } from "./host-install/source.mjs";
 import { resolveSpecimen } from "./host-install/specimen.mjs";
 import { safeKitPath } from "../../schemas/task-kit.mjs";
 import { obsidianArtifacts } from "./obsidian-port.mjs";
+import { portArtifactBasename } from "../../schemas/port.mjs";
 
 const ANSI = ["black", "red", "green", "yellow", "blue", "magenta", "cyan", "white"];
 
@@ -159,9 +160,11 @@ export const assertPortArtifacts = (port, artifacts) => {
   const declared = port.files.map(file => file.path);
   if (declared.some(name => !safe(name))) throw new Error(`ports/${port.id}: unsafe declared artifact path`);
   if (new Set(declared).size !== declared.length) throw new Error(`ports/${port.id}: duplicate declared artifact paths`);
+  if (new Set(declared.map(portArtifactBasename)).size !== declared.length) throw new Error(`ports/${port.id}: duplicate declared artifact basenames (case-insensitive)`);
   if (!Array.isArray(artifacts) || artifacts.some(file => !file || !safe(file.path) || typeof file.text !== "string" || Object.keys(file).sort().join(",") !== "path,text")) throw new Error(`ports/${port.id}: invalid emitted artifact; expected safe path and text`);
   const emitted = artifacts.map(file => file.path);
   if (new Set(emitted).size !== emitted.length) throw new Error(`ports/${port.id}: duplicate emitted artifact paths`);
+  if (new Set(emitted.map(portArtifactBasename)).size !== emitted.length) throw new Error(`ports/${port.id}: duplicate emitted artifact basenames (case-insensitive)`);
   const missing = declared.filter(name => !emitted.includes(name));
   const extra = emitted.filter(name => !declared.includes(name));
   if (missing.length || extra.length) throw new Error(`ports/${port.id}: artifact set mismatch; missing: ${missing.join(", ") || "none"}; extra: ${extra.join(", ") || "none"}`);

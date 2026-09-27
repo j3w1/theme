@@ -78,7 +78,6 @@
     ],
     "color.text.subtle": [
       "--text-faint",
-      "--heading-formatting",
       "--list-marker-color"
     ],
     "color.text.placeholder": [
@@ -89,7 +88,7 @@
       "--nav-item-color-highlighted",
       "--tab-text-color-focused-highlighted",
       "--icon-color-active",
-      ".theme-dark .prompt .suggestion-action | color"
+      "--color-accent"
     ],
     "color.text.link": [
       "--link-color",
@@ -151,7 +150,10 @@
       "--nav-item-color-selected",
       "--tab-text-color-focused-active",
       "--tab-text-color-focused-active-current",
-      ".theme-dark .prompt .suggestion-item.is-selected | color"
+      ".theme-dark .prompt .suggestion-item.is-selected | color",
+      ".theme-dark .prompt .suggestion-item.is-selected | --text-muted",
+      ".theme-dark .prompt .suggestion-item.is-selected | --text-faint",
+      ".theme-dark .prompt .suggestion-item.is-selected | --text-accent"
     ],
     "color.interaction.selection.inactive-text": [
       "--tab-text-color-active"
@@ -214,10 +216,6 @@
     "color.status.warning.text": [
       "--text-warning",
       "--callout-warning"
-    ],
-    "color.status.warning.tint": [
-      "--background-modifier-warning",
-      "--background-modifier-warning-hover"
     ],
     "color.status.success.text": [
       "--text-success",
@@ -335,7 +333,6 @@
       "--touch-radius-xs",
       "--touch-radius-s",
       "--touch-radius-m",
-      "--touch-radius-l",
       "--touch-radius-xl"
     ],
     "color.text.prose": [
@@ -343,7 +340,7 @@
       ".theme-dark .markdown-source-view.mod-cm6 .cm-content | color"
     ],
     "color.code.selection-bg": [
-      ".theme-dark .markdown-source-view.mod-cm6 .cm-content | --text-selection"
+      ".theme-dark .markdown-source-view.mod-cm6 .cm-scroller | --text-selection"
     ],
     "color.status.danger.on-fill": [
       ".theme-dark .tooltip.mod-error | color"
@@ -353,7 +350,7 @@
       ".theme-dark .prompt .suggestion-item | padding-block"
     ],
     "density.compact.control-padding-x": [
-      ".theme-dark .prompt input.prompt-input | padding-inline",
+      ".theme-dark .prompt input.prompt-input | padding-inline-start",
       ".theme-dark .prompt .suggestion-item | padding-inline"
     ],
     "density.comfortable.control-height": [
@@ -372,7 +369,9 @@
       ".theme-dark .prompt .suggestion-item | border-inline-start-width",
       ".theme-dark .tree-item-self.is-active | border-inline-start-width",
       ".theme-dark .tree-item-self.is-selected | border-inline-start-width",
-      ".theme-dark .workspace-tab-header-container .workspace-tab-header.is-active | border-bottom-width"
+      ".theme-dark .workspace-tab-header-container .workspace-tab-header.is-active | border-bottom-width",
+      ".theme-dark .tree-item-self | border-inline-start-width",
+      ".theme-dark .workspace-tab-header-container .workspace-tab-header | border-bottom-width"
     ],
     "color.border.selected-indicator": [
       ".theme-dark .prompt .suggestion-item.is-selected | border-inline-start-color",
@@ -406,10 +405,8 @@
     ],
     "color.action.destructive.border": [
       ".theme-dark button.mod-warning | border-color",
-      ".theme-dark button.mod-destructive.mod-cta | border-color"
-    ],
-    "color.action.destructive.filled-bg": [
-      ".theme-dark button.mod-warning | background-color"
+      ".theme-dark button.mod-destructive.mod-cta | border-color",
+      ".theme-dark button.mod-destructive | border-color"
     ],
     "color.action.destructive.filled-text": [
       ".theme-dark button.mod-warning | --text-color",
@@ -419,7 +416,9 @@
     ],
     "color.text.disabled": [
       ".theme-dark button:not(.clickable-icon)[disabled] | --text-color",
-      ".theme-dark button:not(.clickable-icon)[aria-disabled=\"true\"] | --text-color"
+      ".theme-dark button:not(.clickable-icon)[aria-disabled=\"true\"] | --text-color",
+      ".theme-dark button:not(.clickable-icon)[disabled] | color",
+      ".theme-dark button:not(.clickable-icon)[aria-disabled=\"true\"] | color"
     ],
     "color.interaction.disabled.bg": [
       ".theme-dark button:not(.clickable-icon)[disabled] | background-color",
@@ -428,6 +427,19 @@
     "color.border.disabled": [
       ".theme-dark button:not(.clickable-icon)[disabled] | border-color",
       ".theme-dark button:not(.clickable-icon)[aria-disabled=\"true\"] | border-color"
+    ],
+    "color.action.destructive.text": [
+      ".theme-dark button.mod-destructive | --text-color"
+    ],
+    "color.action.destructive.hover-bg": [
+      ".theme-dark button.mod-destructive:hover | background-color",
+      ".theme-dark button.mod-destructive.mobile-tap | background-color"
+    ],
+    "color.action.destructive.hover-text": [
+      ".theme-dark button.mod-destructive:hover | --text-color",
+      ".theme-dark button.mod-destructive:hover | --background-modifier-border-focus",
+      ".theme-dark button.mod-destructive.mobile-tap | --text-color",
+      ".theme-dark button.mod-destructive.mobile-tap | --background-modifier-border-focus"
     ]
   },
   "unmapped": {
@@ -530,9 +542,6 @@
     "color.action.secondary.pressed-bg": "Native secondary buttons conflate pressed/mobile-tap with interactive-hover; preserve that model without claiming a distinct pressed fill.",
     "color.action.tertiary.text": "Native clickable icons use --icon-color, owned by icon.default; no second independent tertiary-text assignment is claimed.",
     "color.action.tertiary.hover-bg": "Native clickable icons share background-modifier-hover with generic hover; interaction.hover.bg owns that key, without separate tertiary-hover coverage.",
-    "color.action.destructive.text": "Native outline destructive buttons use text-error and a computed error tint; the filled confirmation is mapped separately.",
-    "color.action.destructive.hover-bg": "Native destructive hover uses its existing error/interactive fill model; no independent destructive hover fill is installed.",
-    "color.action.destructive.hover-text": "Native destructive hover inherits text-error or its filled text; no independent hover-text assignment.",
     "color.action.destructive.pressed-bg": "Native pressed destructive behavior is retained; no independent native pressed variable is exposed.",
     "color.status.danger.tint": "Native danger callout background/border is computed with color-mix from its text color and host opacity, not an independent exact tint role; no second assignment is claimed.",
     "color.status.danger.border": "Native danger callout background/border is computed with color-mix from its text color and host opacity, not an independent exact border role; no second assignment is claimed.",
@@ -688,6 +697,8 @@
     "z.drawer": "z.drawer: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
     "z.dialog": "z.dialog: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
     "z.toast": "z.toast: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
-    "z.skip-link": "z.skip-link: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    "z.skip-link": "z.skip-link: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "color.action.destructive.filled-bg": "Native desktop warning/confirmation fills and their hover/mobile-tap variants consume background-modifier-error/error-hover, owned by status.danger.fill; mobile warning uses interactive-normal. No independent filled-bg assignment is claimed.",
+    "color.status.warning.tint": "No consumer for background-modifier-warning/warning-hover in audited Obsidian 1.13.4/1.13.7; warning callouts compute their tint from callout-warning, not this exact tint role."
   }
 }

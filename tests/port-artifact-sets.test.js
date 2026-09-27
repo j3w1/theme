@@ -33,6 +33,26 @@ test("the manifest schema rejects duplicate and unsafe declared artifact paths",
   for (const path of ["dist/../escape.css", "dist\\escape.css", "dist/CON.css"]) assert.equal(portSchema(z).safeParse({ ...real, files: [{ path, install: "fixture" }] }).success, false);
 });
 
+test("declared and emitted paths cannot collide after download flattening or case folding", async () => {
+  const real = await readJson("ports/obsidian/port.json");
+  for (const paths of [
+    ["dist/a/theme.css", "dist/b/theme.css"],
+    ["dist/Theme.css", "dist/theme.css"],
+    ["dist/a/THEME.CSS", "dist/b/theme.css"]
+  ]) {
+    const files = paths.map(path => ({ path, install: "fixture" }));
+    const emitted = paths.map(path => ({ path, text: "fixture" }));
+    assert.throws(() => assertPortArtifacts({ id: "collision", files }, emitted), /duplicate declared artifact basenames/);
+    assert.throws(() => assertPortArtifacts(port, emitted), /duplicate emitted artifact basenames/);
+    const result = portSchema(z).safeParse({ ...real, files });
+    assert.equal(result.success, false);
+    assert.ok(result.error.issues.some(issue => /basenames/.test(issue.message)));
+  }
+  const files = ["dist/a/theme.css", "dist/b/manifest.json"].map(path => ({ path, install: "fixture" }));
+  assert.doesNotThrow(() => assertPortArtifacts({ id: "distinct", files }, files.map(({ path }) => ({ path, text: "fixture" }))));
+  assert.equal(portSchema(z).safeParse({ ...real, files }).success, true);
+});
+
 test("generation rebuilds deleted Obsidian files, validation stays strict, and failed sets write nothing", async t => {
   const { promises: fs } = await import("node:fs");
   const path = await import("node:path");
