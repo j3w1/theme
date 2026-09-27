@@ -5,14 +5,17 @@ file, its installer if it has one, and one guide.
 
 ## Which one do I need
 
-| You use | Folder | What you get |
+<!-- guides:start -->
+| Application | Guide | Importable files |
 | --- | --- | --- |
-| Orca on Windows | [`orca/`](orca/README.md) | Terminal colours, selection, pane divider and font; one command installs, checks and restores it |
-| Claude Code | [`claude-code/`](claude-code/README.md) | The `custom:j3w1` Claude Code theme, with an installer |
-| Codex CLI | [`codex/`](codex/README.md) | The `j3w1` Codex syntax theme, with an installer |
-| Ghostty | [`ghostty/`](ghostty/README.md) | A Ghostty theme file |
-| Warp, or Orca's Import from YAML | [`warp/`](warp/README.md) | A Warp theme file (colours only) |
-| ChatGPT desktop app | [`chatgpt/`](chatgpt/README.md) | Two appearance presets (Signature, Reading): a settings table and an import string each |
+| ChatGPT desktop app (Appearance) | [chatgpt](chatgpt/README.md) | `presets.json` |
+| Claude Code (custom theme) | [claude-code](claude-code/README.md) | `j3w1.json` |
+| Codex CLI (tmTheme) | [codex](codex/README.md) | `j3w1.tmTheme` |
+| Ghostty theme | [ghostty](ghostty/README.md) | `j3w1` |
+| Obsidian theme | [obsidian](obsidian/README.md) | `manifest.json`, `theme.css` |
+| Orca (Ghostty config import) | [orca](orca/README.md) | `config.ghostty` |
+| Warp theme YAML (also Orca's Import from YAML) | [warp](warp/README.md) | `j3w1.yaml` |
+<!-- guides:end -->
 
 Claude Code and Codex run inside a terminal and use its sixteen colours for
 code, links and status. Install a terminal theme too.
@@ -60,10 +63,13 @@ A port is created under `ports/<slug>/` only when implementation work begins,
 from `templates/port/`. Each port carries `port.json` (validated by
 `schemas/port.mjs`; its `format` is one of `PORT_FORMATS` there),
 `mapping.json` (spec role → native key, with every unmapped role listed),
-`src/` (generator inputs), `dist/` (committed importable files, written by
-`npm run generate` when the port's `format` has an emitter in
-`scripts/lib/port-artifacts.mjs`; create the file empty once so validation can
-find it) and `evidence/` (real captures with application version, OS and date).
+`dist/` (committed importable files, written by `npm run generate` when the
+port's `format` has an emitter in `scripts/lib/port-artifacts.mjs`). Add `src/`
+only for real generator inputs and `evidence/` only for actual records with
+application version, OS and date; neither needs a placeholder. Generation
+rebuilds absent emitted files, while validation and drift checks require them.
+Every emitter returns its complete declared text-artifact set; unsafe, duplicate,
+missing or extra paths fail before any port artifact is written.
 A port with an installer also carries `host.json` (which native key takes
 which role, the host versions it was observed on, and its deviations) and the
 installer itself: `install/` for Orca, `install.mjs` for Claude Code and Codex,

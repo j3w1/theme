@@ -3,8 +3,8 @@ import { n as disclosure } from "../chunks/navigation-Dt8ap-9J.js";
 //#region .cache/ui-build/entries/components/sidebar-nav.js
 var J3w1SidebarNav = class extends J3w1Element {
 	static componentId = "sidebar-nav";
-	static version = "3.0.0";
-	static implementationId = "sha256-ssUeaLv8ORjGIKMkpAOyf+W3yXplc/pzjsWul1QiJU8=";
+	static version = "3.1.0";
+	static implementationId = "sha256-rLo8EHxg7S3QM4QWQDKXliLer0tAMx9ElMFHi0Bf54A=";
 	static connect = disclosure;
 	static upgradeProperties = [
 		"disabled",

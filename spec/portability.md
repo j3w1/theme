@@ -70,8 +70,11 @@ onto the framework's theme keys and lists what it cannot express.
 
 ## Native ports
 
-A port lives at `ports/<slug>/` with `port.json`, `mapping.json`, `src/`,
-`dist/` and `evidence/`, created from `templates/port/` only when work begins.
+A port lives at `ports/<slug>/` with a README, `port.json`, `mapping.json` and
+importable artifacts under `dist/`. Add `capabilities.json` for precise role
+classifications. Add `src/` only for real generator inputs that these sources
+cannot express, and `evidence/` only for actual evidence; neither needs a
+placeholder directory. `templates/port/` is a starting aid when work begins.
 
 - Statuses are `experimental`, `verified` and `deprecated`. Reference
   implementations and roadmap candidates are not statuses.
@@ -82,7 +85,10 @@ A port lives at `ports/<slug>/` with `port.json`, `mapping.json`, `src/`,
   regenerate.
 - `npm run generate` writes `dist/` for every port whose `format` has an
   emitter in `scripts/lib/port-artifacts.mjs` (`warp-yaml`, `ghostty-config`,
-  `claude-theme-json`, `codex-tmtheme` and `chatgpt-appearance` today).
+  `claude-theme-json`, `codex-tmtheme`, `chatgpt-appearance` and
+  `obsidian-theme` today). Each emitter returns the complete declared array of
+  text artifacts. Unsafe or duplicate paths and missing/extra outputs fail
+  before any port artifact is written; Obsidian emits a manifest and CSS together.
 - The README downloads table links each file at the release tag, and the site
   serves a copy at `ports/<slug>/<file>`.
 

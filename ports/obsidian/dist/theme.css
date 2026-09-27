@@ -1,0 +1,433 @@
+/* j3w1 theme 3.1.0, default profile, for Obsidian.
+ * Generated from ports/obsidian/mapping.json by npm run generate; do not edit.
+ * MIT; dark only; no font files or runtime dependencies.
+ */
+.theme-dark {
+  --background-primary: #000000;
+  --background-primary-alt: #100c0c;
+  --background-secondary: #100c0c;
+  --settings-background: #100c0c;
+  --setting-items-background: #100c0c;
+  --modal-sidebar-background: #100c0c;
+  --search-result-background: #100c0c;
+  --background-secondary-alt: #160b0b;
+  --menu-background: #160b0b;
+  --suggestion-background: #160b0b;
+  --prompt-background: #160b0b;
+  --background-modifier-message: #160b0b;
+  --raised-background: #160b0b;
+  --modal-background: #241010;
+  --background-modifier-form-field: #000000;
+  --background-modifier-form-field-hover: #000000;
+  --dropdown-background: #000000;
+  --ribbon-background: #090707;
+  --ribbon-background-collapsed: #090707;
+  --titlebar-background: #090707;
+  --tab-container-background: #090707;
+  --status-bar-background: #090707;
+  --file-header-background: #090707;
+  --titlebar-background-focused: #1c0a09;
+  --file-header-background-focused: #1c0a09;
+  --background-modifier-cover: rgb(0 0 0 / 65%);
+  --text-normal: #e99499;
+  --nav-item-color: #e99499;
+  --nav-heading-color: #e99499;
+  --titlebar-text-color-focused: #e99499;
+  --metadata-input-text-color: #e99499;
+  --bold-color: #ffa2a7;
+  --italic-color: #ffa2a7;
+  --inline-title-color: #ffa2a7;
+  --setting-group-heading-color: #ffa2a7;
+  --h1-color: #ffa2a7;
+  --h2-color: #ffa2a7;
+  --h3-color: #ffa2a7;
+  --h4-color: #ffa2a7;
+  --h5-color: #ffa2a7;
+  --h6-color: #ffa2a7;
+  --text-muted: #bd787d;
+  --titlebar-text-color: #bd787d;
+  --status-bar-text-color: #bd787d;
+  --tab-text-color: #bd787d;
+  --tab-text-color-focused: #bd787d;
+  --metadata-label-text-color: #bd787d;
+  --nav-heading-color-collapsed: #bd787d;
+  --nav-tag-color: #bd787d;
+  --text-faint: #ad7175;
+  --heading-formatting: #ad7175;
+  --list-marker-color: #ad7175;
+  --input-placeholder-color: #a3676b;
+  --text-accent: #f73f35;
+  --nav-item-color-highlighted: #f73f35;
+  --tab-text-color-focused-highlighted: #f73f35;
+  --link-color: #f73f35;
+  --link-external-color: #f73f35;
+  --link-unresolved-color: #f73f35;
+  --link-color-hover: #f4eeee;
+  --link-external-color-hover: #f4eeee;
+  --text-accent-hover: #f4eeee;
+  --background-modifier-border: #a3676b;
+  --checkbox-border-color: #a3676b;
+  --slider-thumb-border-color: #a3676b;
+  --background-modifier-border-hover: #e53935;
+  --checkbox-border-color-hover: #e53935;
+  --divider-color-hover: #e53935;
+  --divider-color: #2b0e0d;
+  --tab-divider-color: #2b0e0d;
+  --status-bar-border-color: #2b0e0d;
+  --hr-color: #2b0e0d;
+  --table-border-color: #2b0e0d;
+  --metadata-divider-color: #2b0e0d;
+  --code-border-color: #531310;
+  --tab-outline-color: #531310;
+  --modal-border-color: #e53935;
+  --menu-border-color: #e53935;
+  --prompt-border-color: #e53935;
+  --background-modifier-border-focus: #e53935;
+  --nav-item-background-active: #531310;
+  --nav-item-background-selected: #531310;
+  --tab-background-active: #531310;
+  --table-selection: #531310;
+  --nav-item-color-active: #f4eeee;
+  --nav-item-color-selected: #f4eeee;
+  --tab-text-color-focused-active: #f4eeee;
+  --tab-text-color-focused-active-current: #f4eeee;
+  --tab-text-color-active: #e99499;
+  --text-selection: #911410;
+  --background-modifier-hover: #1c0a09;
+  --nav-item-background-hover: #1c0a09;
+  --dropdown-background-hover: #1c0a09;
+  --background-modifier-active-hover: #420f0c;
+  --scrollbar-bg: #0c0909;
+  --scrollbar-thumb-bg: #420f0c;
+  --scrollbar-active-thumb-bg: #911410;
+  --interactive-accent: #7d1310;
+  --checkbox-color: #7d1310;
+  --text-on-accent: #f4eeee;
+  --checkbox-marker-color: #f4eeee;
+  --toggle-thumb-color: #f4eeee;
+  --interactive-accent-hover: #911410;
+  --checkbox-color-hover: #911410;
+  --interactive-normal: rgb(0 0 0 / 0%);
+  --interactive-hover: #630f0d;
+  --icon-color: #e99499;
+  --icon-color-hover: #e99499;
+  --icon-color-focused: #e99499;
+  --icon-color-active: #f73f35;
+  --text-error: #f73f35;
+  --callout-error: #f73f35;
+  --callout-fail: #f73f35;
+  --callout-bug: #f73f35;
+  --background-modifier-error: #dc282e;
+  --background-modifier-error-hover: #dc282e;
+  --text-warning: #c9973f;
+  --callout-warning: #c9973f;
+  --background-modifier-warning: #1f1a0c;
+  --background-modifier-warning-hover: #1f1a0c;
+  --text-success: #86a46f;
+  --callout-success: #86a46f;
+  --background-modifier-success: #0f1a0e;
+  --callout-info: #7e9ebb;
+  --code-background: #0c0909;
+  --caret-color: #e99499;
+  --text-highlight-bg: #630f0d;
+  --indentation-guide-color: #531310;
+  --indentation-guide-color-active: #531310;
+  --code-normal: #e99499;
+  --code-comment: #ad7175;
+  --code-function: #ffa2a7;
+  --code-important: #d4868b;
+  --code-keyword: #f7463c;
+  --code-operator: #e99499;
+  --code-property: #e95551;
+  --code-punctuation: #e99499;
+  --code-string: #bd787d;
+  --code-tag: #f7463c;
+  --code-value: #d4868b;
+  --font-interface-theme: "SauceCodePro NFM", "Source Code Pro", "Cascadia Mono", "Consolas", "Liberation Mono", "DejaVu Sans Mono", monospace;
+  --font-text-theme: "SauceCodePro NFM", "Source Code Pro", "Cascadia Mono", "Consolas", "Liberation Mono", "DejaVu Sans Mono", monospace;
+  --font-monospace-theme: "SauceCodePro NFM", "Source Code Pro", "Cascadia Mono", "Consolas", "Liberation Mono", "DejaVu Sans Mono", monospace;
+  --font-normal: 400;
+  --font-bold: 700;
+  --border-width: 1px;
+  --input-border-width: 1px;
+  --divider-width: 1px;
+  --modal-border-width: 1px;
+  --menu-border-width: 1px;
+  --prompt-border-width: 1px;
+  --code-border-width: 1px;
+  --slider-thumb-border-width: 1px;
+  --radius-s: 0px;
+  --radius-m: 0px;
+  --radius-l: 0px;
+  --radius-xl: 0px;
+  --input-radius: 0px;
+  --search-input-radius: 0px;
+  --button-radius: 0px;
+  --checkbox-radius: 0px;
+  --toggle-radius: 0px;
+  --toggle-thumb-radius: 0px;
+  --slider-thumb-radius: 0px;
+  --modal-radius: 0px;
+  --menu-radius: 0px;
+  --tab-radius: 0px;
+  --tab-radius-active: 0px;
+  --tab-curve: 0px;
+  --nav-item-radius: 0px;
+  --nav-tag-radius: 0px;
+  --code-radius: 0px;
+  --tag-radius: 0px;
+  --pill-radius: 0px;
+  --status-bar-radius: 0px;
+  --scrollbar-radius: 0px;
+  --callout-radius: 0px;
+  --metadata-property-radius: 0px;
+  --metadata-property-radius-hover: 0px;
+  --metadata-property-radius-focus: 0px;
+  --setting-items-radius: 0px;
+  --touch-radius-xxs: 0px;
+  --touch-radius-xs: 0px;
+  --touch-radius-s: 0px;
+  --touch-radius-m: 0px;
+  --touch-radius-l: 0px;
+  --touch-radius-xl: 0px;
+  --input-shadow: none;
+  --input-shadow-hover: none;
+  --shadow-xs: none;
+  --shadow-s: none;
+  --shadow-l: none;
+  --menu-shadow: none;
+  --modal-shadow: none;
+  --raised-shadow: none;
+  --slider-thumb-shadow: none;
+  --slider-thumb-shadow-hover: none;
+  --slider-thumb-shadow-active: none;
+  --raised-blur: none;
+  --prompt-backdrop-filter: none;
+  --suggestion-backdrop-filter: none;
+  --menu-backdrop-filter: none;
+  --raised-mask-display: none;
+  --link-decoration: underline;
+  --link-decoration-hover: underline;
+  --link-external-decoration: underline;
+  --link-external-decoration-hover: underline;
+  --link-unresolved-opacity: 1;
+  --icon-opacity: 1;
+}
+
+/* Reading View root uses --text-normal, also used by UI; set only note content color. */
+.theme-dark .markdown-preview-view {
+  color: #f4eeee;
+}
+
+/* CM6 content root separates prose and editor selection from interface widgets and UI selection. */
+.theme-dark .markdown-source-view.mod-cm6 .cm-content {
+  color: #f4eeee;
+  --text-selection: #420f0c;
+}
+
+/* File preview popovers use the canvas variable locally; raised content requires a scoped value. */
+.theme-dark .popover {
+  --background-primary: #160b0b;
+}
+
+/* Native tooltip hardcodes white text and has no border variables. */
+.theme-dark .tooltip {
+  color: #e99499;
+  border-color: #e53935;
+  border-width: 1px;
+  border-style: solid;
+  box-shadow: none;
+}
+
+/* Native error tooltip fills with --background-modifier-error and needs its own on-fill text. */
+.theme-dark .tooltip.mod-error {
+  color: #f9faf9;
+}
+
+/* Native full-width prompt field hardcodes transparent fill, large padding and no border. */
+.theme-dark .prompt input.prompt-input {
+  background-color: #000000;
+  border-color: #a3676b;
+  border-width: 1px;
+  padding-block: 4px;
+  padding-inline: 8px;
+  min-height: 32px;
+  height: auto;
+  border-style: solid;
+}
+
+/* Native prompt suppresses input focus shadows; add exactly one inset dashed ring. */
+.theme-dark .prompt input.prompt-input:focus-visible {
+  outline: 1px dashed #e53935;
+  outline-offset: -2px;
+  box-shadow: none;
+}
+
+/* Native suggestions have fixed padding but no density or selection indicator variable. */
+.theme-dark .prompt .suggestion-item {
+  min-height: 28px;
+  padding-block: 4px;
+  padding-inline: 8px;
+  border-inline-start-width: 2px;
+  border-inline-start-style: solid;
+  border-inline-start-color: transparent;
+}
+
+/* Native selected suggestions borrow hover fill; separate selection and add the indicator. */
+.theme-dark .prompt .suggestion-item.is-selected {
+  background-color: #531310;
+  color: #f4eeee;
+  border-inline-start-color: #e53935;
+}
+
+/* Menus consume general hover fill; local strong hover keeps other surfaces restrained. */
+.theme-dark .menu {
+  --background-modifier-hover: #630f0d;
+}
+
+/* Native navigation active fill has no selected-indicator variable. */
+.theme-dark .tree-item-self.is-active {
+  border-inline-start-color: #e53935;
+  border-inline-start-width: 2px;
+  border-inline-start-style: solid;
+}
+
+/* Native navigation selected fill has no selected-indicator variable. */
+.theme-dark .tree-item-self.is-selected {
+  border-inline-start-color: #e53935;
+  border-inline-start-width: 2px;
+  border-inline-start-style: solid;
+}
+
+/* Sidebar tabs use hover fill and main tabs lack an indicator; one named-state override covers both. */
+.theme-dark .workspace-tab-header-container .workspace-tab-header.is-active {
+  background-color: #531310;
+  border-bottom-color: #e53935;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+}
+
+/* Native standard buttons use shadow as their boundary; supply a real outline edge after removing decorative shadows. */
+.theme-dark button:not(.clickable-icon) {
+  border-width: 1px;
+  border-color: #a3676b;
+  --text-color: #ffa2a7;
+  border-style: solid;
+}
+
+/* Recolor the existing native button focus shadow on primary fills; do not add another indicator. */
+.theme-dark button.mod-cta {
+  --background-modifier-border-focus: #ffa2a7;
+  border-color: #9e231f;
+  --text-color: #f4eeee;
+}
+
+/* Recolor the existing toggle outline on primary fill. */
+.theme-dark .checkbox-container.is-enabled {
+  --background-modifier-border-focus: #ffa2a7;
+}
+
+/* Recolor the native checkbox focus shadow when checked. */
+.theme-dark input[type="checkbox"]:checked {
+  --background-modifier-border-focus: #ffa2a7;
+}
+
+/* Recolor the native radio focus shadow when checked. */
+.theme-dark input[type="radio"]:checked {
+  --background-modifier-border-focus: #ffa2a7;
+}
+
+/* Native mod-warning buttons are destructive filled actions; their fill requires on-danger text and a recolored native focus shadow. */
+.theme-dark button.mod-warning {
+  border-color: #e53935;
+  background-color: #dc282e;
+  --text-color: #f9faf9;
+  --background-modifier-border-focus: #f9faf9;
+}
+
+/* Native destructive confirmation fill requires on-danger text and native focus shadow color. */
+.theme-dark button.mod-destructive.mod-cta {
+  border-color: #e53935;
+  --text-color: #f9faf9;
+  --background-modifier-border-focus: #f9faf9;
+}
+
+/* Native select uses decorative input shadow as its edge; replace with a real control border. */
+.theme-dark select {
+  border-width: 1px;
+  border-color: #a3676b;
+  border-style: solid;
+}
+
+/* Native dropdown uses input shadow as its edge; replace with a real control border. */
+.theme-dark .dropdown {
+  border-width: 1px;
+  border-color: #a3676b;
+  border-style: solid;
+}
+
+/* Native combobox button uses input shadow as its edge; replace with a real control border. */
+.theme-dark .combobox-button {
+  border-width: 1px;
+  border-color: #a3676b;
+  border-style: solid;
+}
+
+/* Native disabled button uses opacity; explicit disabled roles retain contrast accounting. */
+.theme-dark button:not(.clickable-icon)[disabled] {
+  --text-color: #8a5559;
+  background-color: #160b0b;
+  border-color: #7d1310;
+  opacity: 1;
+}
+
+/* Native disabled button uses opacity; explicit disabled roles retain contrast accounting. */
+.theme-dark button:not(.clickable-icon)[aria-disabled="true"] {
+  --text-color: #8a5559;
+  background-color: #160b0b;
+  border-color: #7d1310;
+  opacity: 1;
+}
+
+/* Native prompt hover forces transparency and its bottom border; retain field fill and visible boundary. */
+@media (hover: hover) {
+.theme-dark .prompt input.prompt-input:hover {
+  background-color: #000000;
+  border-color: #e53935;
+}
+}
+
+/* Native sidebar active hover borrows hover fill; selection takes precedence. */
+@media (hover: hover) {
+.theme-dark .workspace-tab-header-container .workspace-tab-header.is-active:hover {
+  background-color: #531310;
+}
+}
+
+/* Native tabs have inactive text but no inactive fill or indicator variables. */
+.theme-dark:not(.is-focused) .workspace-tab-header-container .workspace-tab-header.is-active {
+  background-color: #420f0c;
+  border-bottom-color: #9e231f;
+}
+
+/* Native suggestion actions use the primary fill as text; assign the strong text accent within prompts to retain the text contrast floor. */
+.theme-dark .prompt .suggestion-action {
+  color: #f73f35;
+}
+
+@media (forced-colors: active) {
+.theme-dark {
+  --background-modifier-border-focus: Highlight;
+}
+.theme-dark button.mod-cta,
+.theme-dark button.mod-warning,
+.theme-dark button.mod-destructive.mod-cta,
+.theme-dark .checkbox-container.is-enabled,
+.theme-dark input[type="checkbox"]:checked,
+.theme-dark input[type="radio"]:checked {
+  --background-modifier-border-focus: Highlight;
+}
+.theme-dark .prompt input.prompt-input:focus-visible {
+  outline-color: Highlight;
+}
+}

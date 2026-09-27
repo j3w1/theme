@@ -1,0 +1,36 @@
+{
+  "candidate": "ac60902f8747bcfd321b795c2ba364db1790d1aa",
+  "version": "3.0.0",
+  "files": [
+    {
+      "path": "ports/chatgpt/dist/presets.json",
+      "sha256": "9b04d18bc3d24e668fa97f5424a1986742f8808a2fc8d8787e23d834cc005059",
+      "bytes": 4344
+    },
+    {
+      "path": "ports/claude-code/dist/j3w1.json",
+      "sha256": "10a2c419c659131d8ff07402a220c15a7f72670e3f0b0e434bfef2b44a93b451",
+      "bytes": 2527
+    },
+    {
+      "path": "ports/codex/dist/j3w1.tmTheme",
+      "sha256": "c745bb2bf78fa7ceb671fef4eb7261c91f3dc92864add7b4c69d0a8b41fb62d0",
+      "bytes": 7289
+    },
+    {
+      "path": "ports/ghostty/dist/j3w1",
+      "sha256": "e361648012be7ca4afa4acc501bc64ce897220307aa14bc8cfa9fd1285b2ea84",
+      "bytes": 639
+    },
+    {
+      "path": "ports/orca/dist/config.ghostty",
+      "sha256": "0d0cbc53eb73d61f485faa82f08abe749387cb25665dd377a900e37cbb7c18d3",
+      "bytes": 697
+    },
+    {
+      "path": "ports/warp/dist/j3w1.yaml",
+      "sha256": "99e477d416c1bf8fd283679e93207cb50e79f078ff64f9ed4b41a30b58638249",
+      "bytes": 648
+    }
+  ]
+}

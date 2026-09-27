@@ -6,7 +6,9 @@
 /* The native formats ports publish, a closed list. A format with an emitter
    in scripts/lib/port-artifacts.mjs is generated; a new port adds its format
    here in the same change. */
-export const PORT_FORMATS = ["ghostty-config", "warp-yaml", "claude-theme-json", "codex-tmtheme", "chatgpt-appearance"];
+import { safeKitPath } from "./task-kit.mjs";
+
+export const PORT_FORMATS = ["ghostty-config", "warp-yaml", "claude-theme-json", "codex-tmtheme", "chatgpt-appearance", "obsidian-theme"];
 
 export const portSchema = (z) =>
   z
@@ -29,7 +31,7 @@ export const portSchema = (z) =>
           unsupported: z.array(z.string().min(1)),
         })
         .strict(),
-      files: z.array(z.object({ path: z.string().regex(/^dist\//), install: z.string().min(1) }).strict()).min(1),
+      files: z.array(z.object({ path: z.string().regex(/^dist\//).refine(safeKitPath), install: z.string().min(1) }).strict()).min(1),
       mappingPath: z.literal("mapping.json"),
       capabilitiesPath: z.literal("capabilities.json").optional(),
       evidence: z
@@ -49,6 +51,7 @@ export const portSchema = (z) =>
     })
     .strict()
     .superRefine((port, ctx) => {
+      if (new Set(port.files.map(file => file.path)).size !== port.files.length) ctx.addIssue({ code: "custom", message: "duplicate declared artifact paths", path: ["files"] });
       if (port.status === "verified") {
         if (port.testedVersions.length === 0) ctx.addIssue({ code: "custom", message: "verified ports need testedVersions", path: ["testedVersions"] });
         if (port.evidence.length === 0) ctx.addIssue({ code: "custom", message: "verified ports need evidence", path: ["evidence"] });

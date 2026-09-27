@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "id": "obsidian",
+  "displayName": "Obsidian theme",
+  "status": "experimental",
+  "themeVersion": "3.1.0",
+  "tokenDigest": "sha256-7nj2Uyib940st4KVhRJ+YfzEjWwTN/p8rzJNmAUwj0A=",
+  "profile": "default",
+  "format": "obsidian-theme",
+  "targetVersions": [
+    "1.13.x"
+  ],
+  "testedVersions": [],
+  "os": [
+    "any"
+  ],
+  "surfaces": {
+    "supported": [
+      "interface",
+      "markdown",
+      "commands"
+    ],
+    "inherited": [
+      "host-behavior"
+    ],
+    "unsupported": [
+      "light-mode",
+      "unsupported-hooks"
+    ]
+  },
+  "files": [
+    {
+      "path": "dist/manifest.json",
+      "install": "Copy manifest.json and theme.css into <vault>/.obsidian/themes/j3w1/, choose the Dark base scheme, then select j3w1 under Settings → Appearance → Themes."
+    },
+    {
+      "path": "dist/theme.css",
+      "install": "Copy beside manifest.json in <vault>/.obsidian/themes/j3w1/; restart Obsidian after a manifest update."
+    }
+  ],
+  "mappingPath": "mapping.json",
+  "capabilitiesPath": "capabilities.json",
+  "evidence": []
+}

@@ -3,8 +3,8 @@ import { t as feedback } from "../chunks/overlays-C6nlCHqg.js";
 //#region .cache/ui-build/entries/components/empty-state.js
 var J3w1EmptyState = class extends J3w1Element {
 	static componentId = "empty-state";
-	static version = "3.0.0";
-	static implementationId = "sha256-MR2dBGn8YBuH1q8vpZbS081lRb4wsEgagjAL0IHc4R4=";
+	static version = "3.1.0";
+	static implementationId = "sha256-omT78PvAMsAqlU5z8F0iW3O/WtTEJ+TFrH/D+s2qTfI=";
 	static connect = feedback;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

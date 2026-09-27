@@ -263,7 +263,7 @@ const sourceExists = async (id) => {
   return Boolean(sources.repositories?.[id] || sources.external?.[id]);
 };
 
-export const validatePorts = async () => {
+export const validatePorts = async ({ requireArtifacts = true, generatedFormats = [] } = {}) => {
   const ports = [];
   const dirs = new Set((await listFiles("ports")).map((f) => f.split("/")[1]).filter((d) => d && !d.endsWith(".md")));
   for (const dir of dirs) {
@@ -273,7 +273,8 @@ export const validatePorts = async () => {
     if (!parsed.success) fail(`${file}:\n${formatIssues(parsed.error.issues)}`);
     const port = parsed.data;
     if (port.id !== dir) fail(`${file}: id ${port.id} must equal the directory name`);
-    for (const f of port.files) if (!safeKitPath(f.path) || !(await exists(`ports/${dir}/${f.path}`))) fail(`${file}: artifact path is unsafe or absent`);
+    const needsArtifacts = requireArtifacts || !generatedFormats.includes(port.format);
+    for (const f of port.files) if (!safeKitPath(f.path) || (needsArtifacts && !(await exists(`ports/${dir}/${f.path}`)))) fail(`${file}: artifact path is unsafe or absent`);
     for (const e of port.evidence) if (!safeKitPath(e.path) || !(await exists(`ports/${dir}/${e.path}`))) fail(`${file}: evidence path is unsafe or absent`);
     if (!(await exists(`ports/${dir}/mapping.json`))) fail(`${file}: mapping.json is missing`);
     const mapping = portMappingSchema(z).safeParse(await readJson(`ports/${dir}/mapping.json`));
@@ -356,7 +357,7 @@ const STEPS = {
     await validateContrast({ ...tokens, components });
     context.components = components;
   },
-  ports: async () => { await validatePorts(); },
+  ports: async (context) => { await validatePorts({ requireArtifacts: context.requirePortArtifacts ?? true, generatedFormats: context.generatedPortFormats ?? [] }); },
   references: async () => { await validateReferences(); },
   private: async () => { await validatePrivateMaterial(); },
 };
@@ -365,8 +366,8 @@ const STEPS = {
 export const VALIDATORS = Object.fromEntries(Object.entries(STEPS).map(([name, step]) => [name, () => step({})]));
 
 /* Every validator in order; returns the context the generators build from. */
-export const validateAll = async () => {
-  const context = {};
+export const validateAll = async ({ requirePortArtifacts = true, generatedPortFormats = [] } = {}) => {
+  const context = { requirePortArtifacts, generatedPortFormats };
   for (const step of Object.values(STEPS)) await step(context);
   const { manifest, decisions, profiles, defaultId, components } = context;
   return { manifest, decisions, profiles, defaultId, components };

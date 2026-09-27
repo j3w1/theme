@@ -3,8 +3,8 @@ import { t as pagination } from "../chunks/tables-B25ydUHs.js";
 //#region .cache/ui-build/entries/components/pagination.js
 var J3w1Pagination = class extends J3w1Element {
 	static componentId = "pagination";
-	static version = "3.0.0";
-	static implementationId = "sha256-bwbwVh3HF71Q2IlgbNk/WjKCBvmjWUNe3mNruW5iPTo=";
+	static version = "3.1.0";
+	static implementationId = "sha256-PbuJg/1GjILEY7V0B2Q+9aNti300qNyXs2PBIZhl0bU=";
 	static connect = pagination;
 	static upgradeProperties = [
 		"disabled",

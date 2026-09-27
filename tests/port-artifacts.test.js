@@ -23,7 +23,8 @@ const resolved = await readJson("exports/tokens.resolved.json");
 const ports = [];
 for (const port of await validatePorts()) {
   if (!PORT_EMITTERS[port.format]) continue;
-  ports.push({ port, mapping: await readJson(`ports/${port.id}/mapping.json`), text: await readText(`ports/${port.id}/${port.files[0].path}`) });
+  const artifacts = await Promise.all(port.files.map(async file => ({ path: file.path, text: await readText(`ports/${port.id}/${file.path}`) })));
+  ports.push({ port, mapping: await readJson(`ports/${port.id}/mapping.json`), artifacts, text: artifacts[0].text });
 }
 const expected = ({ port, mapping }) => {
   const tokens = resolved.profiles[port.profile].tokens;
@@ -60,12 +61,13 @@ const tmValues = (text) => {
   return { theme, values: out };
 };
 
-test("the generated ports are the ChatGPT, Claude Code, Codex, Ghostty, Orca and Warp files", () => {
-  assert.deepEqual(ports.map(({ port }) => `${port.id}:${port.format}`), ["chatgpt:chatgpt-appearance", "claude-code:claude-theme-json", "codex:codex-tmtheme", "ghostty:ghostty-config", "orca:ghostty-config", "warp:warp-yaml"]);
+test("the registered generated ports declare their complete artifact sets", () => {
+  assert.deepEqual(ports.map(({ port }) => `${port.id}:${port.format}`), ["chatgpt:chatgpt-appearance", "claude-code:claude-theme-json", "codex:codex-tmtheme", "ghostty:ghostty-config", "obsidian:obsidian-theme", "orca:ghostty-config", "warp:warp-yaml"]);
   for (const format of Object.keys(PORT_EMITTERS)) assert.ok(PORT_FORMATS.includes(format), `${format} is in the closed list of port formats`);
 });
 
-for (const entry of ports) {
+// Obsidian has two artifacts and its own semantic CSS/manifest contracts.
+for (const entry of ports.filter(({ port }) => port.format !== "obsidian-theme")) {
   const { port, text } = entry;
   test(`${port.id}: every mapped role is written at its native key with the resolved value, and nothing else is`, () => {
     if (port.format === "chatgpt-appearance") {
@@ -175,9 +177,11 @@ test("mapping.json and host.json agree key for key, and a disagreement fails gen
 test("download links pin the release tag and never a branch", () => {
   const rows = downloadsTable(manifest, ports.map(({ port }) => ({ ...port, verification: { status: "not verified" } }))).join("\n");
   for (const { port } of ports) {
-    const name = port.files[0].path.split("/").at(-1);
-    assert.ok(rows.includes(`https://raw.githubusercontent.com/j3w1/theme/v${manifest.version}/ports/${port.id}/${port.files[0].path}`), port.id);
-    assert.ok(rows.includes(`${manifest.site.url}ports/${port.id}/${name}`), port.id);
+    for (const file of port.files) {
+      const name = file.path.split("/").at(-1);
+      assert.ok(rows.includes(`https://raw.githubusercontent.com/j3w1/theme/v${manifest.version}/ports/${port.id}/${file.path}`), port.id);
+      assert.ok(rows.includes(`${manifest.site.url}ports/${port.id}/${name}`), port.id);
+    }
   }
   assert.doesNotMatch(rows, /\/main\//);
 });

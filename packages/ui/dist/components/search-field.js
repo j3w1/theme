@@ -3,8 +3,8 @@ import { r as fields } from "../chunks/native-CAzZmDKR.js";
 //#region .cache/ui-build/entries/components/search-field.js
 var J3w1SearchField = class extends J3w1Element {
 	static componentId = "search-field";
-	static version = "3.0.0";
-	static implementationId = "sha256-eBq/z1924LSoD+rlZkJfzZ/73LDrNHUZ91C0RQaUC14=";
+	static version = "3.1.0";
+	static implementationId = "sha256-QZG5ahZstPQl9xMjv12jlZ5UBNom8OvJ+WZ146+vWaQ=";
 	static connect = fields;
 	static upgradeProperties = [
 		"disabled",
