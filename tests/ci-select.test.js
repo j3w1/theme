@@ -74,7 +74,7 @@ test("the same component change on main runs the whole matrix and deploys", () =
 });
 
 test("a broad rule is a floor: an unclaimed path or a control file runs everything", () => {
-  for (const file of ["tokens/semantic.tokens.json", "scripts/lib/exports.mjs", "package-lock.json", ".github/workflows/ci.yml", "scripts/ci/proofs.json"]) {
+  for (const file of ["tokens/semantic.tokens.json", "scripts/lib/exports.mjs", "package-lock.json", "apps/demo/package.json", "packages/ui/package.json", ".github/workflows/ci.yml", "scripts/ci/proofs.json"]) {
     const p = run("pull_request", [file]);
     assert.equal(p.floor, true, file);
     assert.equal(p.browser, "all", file);

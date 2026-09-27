@@ -29,6 +29,8 @@ export const CONTROLS = [
   "scripts/ci/**",
   "package.json",
   "package-lock.json",
+  "apps/*/package.json",
+  "packages/*/package.json",
   "playwright*.config.mjs",
   "astro.config.mjs",
   "tsconfig.json",

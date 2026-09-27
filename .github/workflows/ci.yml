@@ -108,6 +108,51 @@ jobs:
         env:
           PLAN: ${{ needs.select.outputs.plan }}
 
+  # Informational proposal only: no write token and no change to release-gate.
+  # Use the PR head, not GitHub's synthetic merge commit, for an applicable patch.
+  dependabot-refresh:
+    if: github.event_name == 'pull_request' && github.event.pull_request.user.login == 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - id: classify
+        name: Detect npm manifest and lockfile changes
+        env:
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: node scripts/ci/dependabot-refresh.mjs --classify --base "$BASE" --head "$HEAD_SHA"
+      - if: steps.classify.outputs.eligible == 'true'
+        run: npm ci --prefer-offline --no-audit --no-fund
+      - id: refresh
+        if: steps.classify.outputs.eligible == 'true'
+        name: Generate, check and prepare a patch
+        env:
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: node scripts/ci/dependabot-refresh.mjs --base "$BASE" --head "$HEAD_SHA"
+      - if: steps.refresh.outputs.patch == 'true'
+        uses: actions/upload-artifact@v7
+        with:
+          name: dependabot-generated-patch
+          path: .cache/dependabot-refresh.patch
+          if-no-files-found: error
+          retention-days: 7
+      - if: failure() && steps.refresh.outcome == 'skipped'
+        env:
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: printf '### Dependabot npm refresh failed\n\nDependency installation or classification failed at PR head `%s`; no patch was published. Selected checks remain independent.\n' "$HEAD_SHA" >> "$GITHUB_STEP_SUMMARY"
+
   # The site, its dist gates and the smoke check, in parallel with the unit
   # tests. The browser shards start when this job, smoke included, passes.
   build:

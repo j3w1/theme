@@ -575,7 +575,8 @@ test("CRLF config.toml with a commented [tui] header: apply, test and restore st
   assert.equal(applied.code, 0, applied.stderr);
   const text = await fs.readFile(h.config, "utf8");
   assert.equal(text, 'model = "gpt-6"\r\n\r\n[tui] # interface\r\ntheme = "j3w1"\r\nnotifications = true\r\n');
-  assert.deepEqual(parseToml(text), { model: "gpt-6", tui: { theme: "j3w1", notifications: true } });
+  const parsed = parseToml(text);
+  assert.deepEqual({ ...parsed, tui: { ...parsed.tui } }, { model: "gpt-6", tui: { theme: "j3w1", notifications: true } });
   assert.equal((await cli(h.home, "codex", ["test", "--no-specimen"])).code, 0);
   assert.equal((await cli(h.home, "codex", ["restore"])).code, 0);
   assert.equal(await fs.readFile(h.config, "utf8"), config);
