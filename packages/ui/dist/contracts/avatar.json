@@ -1,10 +1,10 @@
 {
   "id": "avatar",
   "name": "Avatar",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "tag": "j3w1-avatar",
-  "contract": "https://github.com/j3w1/theme/blob/v3.0.0/spec/components/avatar.md",
-  "source": "https://github.com/j3w1/theme/blob/v3.0.0/packages/ui/src/behaviors/display.js",
+  "contract": "https://github.com/j3w1/theme/blob/v3.1.0/spec/components/avatar.md",
+  "source": "https://github.com/j3w1/theme/blob/v3.1.0/packages/ui/src/behaviors/display.js",
   "imports": {
     "class": "@j3w1/ui/components/avatar",
     "register": "@j3w1/ui/register/avatar",
@@ -274,6 +274,6 @@
   "copy": {
     "directory": "copy/avatar/",
     "manifest": "copy/avatar/manifest.json",
-    "digest": "sha256-JhGNAOptYmZek5Po4/5L+AA9dEmuBNjPG4/y9Njhvn0="
+    "digest": "sha256-cUGnH8MeWM2StkW2AeZYRrw6/xFzAXbCIs5GuvI4Lso="
   }
 }

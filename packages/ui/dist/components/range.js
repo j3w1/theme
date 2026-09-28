@@ -3,8 +3,8 @@ import { r as fields } from "../chunks/native-CAzZmDKR.js";
 //#region .cache/ui-build/entries/components/range.js
 var J3w1Range = class extends J3w1Element {
 	static componentId = "range";
-	static version = "3.0.0";
-	static implementationId = "sha256-tSFGOdvPZ/Qb6WBchu6W+VKJdY/cYzch8DSkZuoB/1g=";
+	static version = "3.1.0";
+	static implementationId = "sha256-muNeIbdGyIxYvY0sWwz9G06qW9Gk/zXGzG4ITGSBOUI=";
 	static connect = fields;
 	static upgradeProperties = [
 		"disabled",

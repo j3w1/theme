@@ -24,7 +24,7 @@ Keep the exact package version and your package-manager lockfile in source
 control.
 
 ```sh
-npm install --save-exact @j3w1/ui@3.0.0
+npm install --save-exact @j3w1/ui@3.1.0
 ```
 
 That command needs npm publication, which is an owner release action. Before
@@ -35,7 +35,7 @@ publication:
 3. Install the local file:
 
 ```sh
-npm install --save-exact ./j3w1-ui-3.0.0.tgz
+npm install --save-exact ./j3w1-ui-3.1.0.tgz
 ```
 
 The repository builds this same artifact with `npm run ui:build` and
@@ -251,8 +251,8 @@ Styling:
 ## Copy a complete bundle
 
 ```sh
-npx --package=@j3w1/ui@3.0.0 j3w1-ui copy dialog --out ./vendor/j3w1/dialog
-npx --package=@j3w1/ui@3.0.0 j3w1-ui kit --components text-field,button,dialog --out ./vendor/j3w1/task
+npx --package=@j3w1/ui@3.1.0 j3w1-ui copy dialog --out ./vendor/j3w1/dialog
+npx --package=@j3w1/ui@3.1.0 j3w1-ui kit --components text-field,button,dialog --out ./vendor/j3w1/task
 ```
 
 - Installed from a tarball: run the installed `j3w1-ui` binary instead of npx.

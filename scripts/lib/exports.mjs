@@ -297,6 +297,13 @@ export const portsTable = (ports) =>
       ]
     : ["No native ports are published yet. Historical implementations are catalogued in `references/` and are not supported downloads."];
 
+// The port guide index is derived from the same manifests as downloads.
+export const portGuidesTable = ports => [
+  "| Application | Guide | Importable files |",
+  "| --- | --- | --- |",
+  ...ports.map(port => `| ${port.displayName} | [${port.id}](${port.id}/README.md) | ${port.files.map(file => `\`${file.path.split("/").at(-1)}\``).join(", ")} |`),
+];
+
 /* One row per importable file: a raw link pinned to this version's tag and
    the copy the site serves. Neither ever names a branch. */
 export const downloadsTable = (manifest, ports) =>

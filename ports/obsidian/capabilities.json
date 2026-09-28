@@ -1,0 +1,1772 @@
+{
+  "schemaVersion": 1,
+  "integrationKind": "other",
+  "themeRevision": "7b045d1a7bc32fddc7c9946e7084ffe74f62b5b5",
+  "surfaces": {
+    "interface": {
+      "state": "supported",
+      "reason": "Native semantic variables for dark chrome, panels, controls, navigation and status; structural checks only."
+    },
+    "markdown": {
+      "state": "supported",
+      "reason": "Reading View, CM6 content and monochrome code variables; structural checks only."
+    },
+    "commands": {
+      "state": "supported",
+      "reason": "Native Command Palette and Quick Switcher; scoped styling, keyboard behavior owned by Obsidian."
+    },
+    "light-mode": {
+      "state": "unsupported",
+      "reason": "No approved light profile; choose the Dark base scheme."
+    },
+    "host-behavior": {
+      "state": "inherited",
+      "reason": "Host keyboard, focus geometry, font overrides, sizes, zoom, layout and motion remain native; no manual validation."
+    },
+    "extended-content": {
+      "state": "out-of-scope",
+      "reason": "User data colors, Canvas/Graph custom colors, PDFs, print, third-party plugin selectors and non-status callouts are not recolored."
+    },
+    "unsupported-hooks": {
+      "state": "unsupported",
+      "reason": "No independently safe native hook within this bounded v1 mapping."
+    },
+    "primitives": {
+      "state": "out-of-scope",
+      "reason": "Inspection-only primitives are never consumed by the port."
+    }
+  },
+  "roles": {
+    "color.primitive.ink.0": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.ink.14": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.ink.15": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.ink.20": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.ink.25": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.ink.28": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.ink.30": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.ink.40": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.ink.52": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.ink.60": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.red.50": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.red.100": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.red.150": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.red.200": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.red.250": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.red.300": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.red.350": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.red.400": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.red.450": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.red.500": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.red.550": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.red.650": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.red.750": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.red.760": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.red.770": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.red.800": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.red.810": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.red.850": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.red.860": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.rose.300": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.rose.320": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.rose.350": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.rose.450": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.rose.550": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.rose.600": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.rose.650": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.rose.700": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.rose.800": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.coral.700": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.paper.90": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.paper.100": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.amber.500": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.amber.600": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.amber.tint": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.green.500": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.green.600": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.green.tint": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.blue.500": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.blue.600": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.blue.tint": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.alpha.transparent": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.alpha.black-55": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.alpha.black-65": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.alpha.red-6": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.alpha.red-12": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.ansi.0": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.ansi.1": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.ansi.2": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.ansi.3": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.ansi.4": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.ansi.5": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.ansi.6": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.ansi.7": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.ansi.8": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.ansi.9": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.ansi.10": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.ansi.11": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.ansi.12": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.ansi.13": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.ansi.14": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.ansi.15": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.ansi-readable.1": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.ansi-readable.4": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.ansi-readable.8": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.ansi-readable.9": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.ansi-readable.10": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.ansi-readable.12": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.ansi-readable.13": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.ansi-readable.14": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.ansi-readable.15": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.surface.desktop": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.surface.desktop: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.surface.canvas": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.surface.chrome": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.surface.chrome-alt": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.surface.sunken": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "Reading/detail panes share --background-primary with the canvas; the canvas role is mapped, with no independent sunken surface assignment."
+    },
+    "color.surface.default": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.surface.raised": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.surface.overlay": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.surface.input": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.surface.backdrop": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.surface.code": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "The Markdown editor canvas shares --background-primary with Reading View; fenced/inline code uses color.code.bg. No independent surface.code assignment is claimed."
+    },
+    "color.surface.terminal": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.surface.terminal: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.text.default": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.text.bright": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.text.prose": {
+      "state": "mapped",
+      "surface": "markdown",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.text.muted": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.text.subtle": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.text.disabled": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.text.placeholder": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.text.accent": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "Native text-accent is also used on raised layers, where this role misses the text floor; the safe text.accent-strong role owns that key instead."
+    },
+    "color.text.accent-strong": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.text.link": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.text.link-underline": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "Native link underlines use currentColor and remain present; their independent canonical underline color is not imposed."
+    },
+    "color.text.link-hover": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.text.on-selection": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "Native selected-row text keys are owned by interaction.selection.text; there is no second independent generic on-selection assignment."
+    },
+    "color.text.on-action": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "Native text-on-accent is owned by action.primary.text; there is no second independent generic on-action assignment."
+    },
+    "color.text.on-danger": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "Error tooltips and destructive fills use their status.danger.on-fill/action.destructive.filled-text roles; no separate generic on-danger key."
+    },
+    "color.text.on-light": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "This dark-only map creates no generic light text surfaces or hued filled status badges; data colors remain user-owned."
+    },
+    "color.text.inverse": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "No inverse-surface widget is installed in this dark-only port."
+    },
+    "color.border.divider": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.border.default": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.border.strong": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "Native sticky-header separators retain their divider/border variables; no independent emphasized sticky-header rule is installed."
+    },
+    "color.border.control": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.border.active": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.border.overlay": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.border.disabled": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.border.selected-indicator": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.border.selected-indicator-inactive": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.interaction.focus.ring": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.interaction.focus.ring-container": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.interaction.selection.bg": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.interaction.selection.text": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.interaction.selection.inactive-bg": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.interaction.selection.inactive-text": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.interaction.text-selection.bg": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.interaction.text-selection.text": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "Obsidian native text-selection changes its fill and preserves content/syntax foregrounds; no global ::selection foreground override is installed."
+    },
+    "color.interaction.hover.bg": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.interaction.hover.bg-strong": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.interaction.pressed.bg": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.interaction.disabled.bg": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.interaction.marquee": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "Canvas/Graph marquee and user data selection are outside this Markdown/chrome port."
+    },
+    "color.interaction.drop-target": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "Host drag/drop affordances and native data colors remain; no dashed drop-target replacement is installed."
+    },
+    "color.interaction.scrollbar.track": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.interaction.scrollbar.thumb": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.interaction.scrollbar.thumb-hover": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.action.primary.bg": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.action.primary.text": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.action.primary.hover-bg": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.action.primary.pressed-bg": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "Native primary buttons conflate pressed/mobile-tap with interactive-accent-hover; preserve that model without claiming a distinct pressed fill."
+    },
+    "color.action.primary.border": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.action.secondary.bg": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.action.secondary.text": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.action.secondary.border": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.action.secondary.hover-bg": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.action.secondary.pressed-bg": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "Native secondary buttons conflate pressed/mobile-tap with interactive-hover; preserve that model without claiming a distinct pressed fill."
+    },
+    "color.action.tertiary.text": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "Native clickable icons use --icon-color, owned by icon.default; no second independent tertiary-text assignment is claimed."
+    },
+    "color.action.tertiary.hover-bg": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "Native clickable icons share background-modifier-hover with generic hover; interaction.hover.bg owns that key, without separate tertiary-hover coverage."
+    },
+    "color.action.destructive.text": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.action.destructive.border": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.action.destructive.hover-bg": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.action.destructive.hover-text": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.action.destructive.pressed-bg": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "Native pressed destructive behavior is retained; no independent native pressed variable is exposed."
+    },
+    "color.action.destructive.filled-bg": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "Native desktop warning/confirmation fills and their hover/mobile-tap variants consume background-modifier-error/error-hover, owned by status.danger.fill; mobile warning uses interactive-normal. No independent filled-bg assignment is claimed."
+    },
+    "color.action.destructive.filled-text": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.status.danger.text": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.status.danger.fill": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.status.danger.on-fill": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.status.danger.tint": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "Native danger callout background/border is computed with color-mix from its text color and host opacity, not an independent exact tint role; no second assignment is claimed."
+    },
+    "color.status.danger.border": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "Native danger callout background/border is computed with color-mix from its text color and host opacity, not an independent exact border role; no second assignment is claimed."
+    },
+    "color.status.warning.text": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.status.warning.fill": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "No separate filled warning status badge is styled in v1; do not reuse generic interactive/on-accent keys as warning fill coverage."
+    },
+    "color.status.warning.on-fill": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "No separate filled warning status badge is styled in v1; do not reuse generic interactive/on-accent keys as warning on-fill coverage."
+    },
+    "color.status.warning.tint": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "No consumer for background-modifier-warning/warning-hover in audited Obsidian 1.13.4/1.13.7; warning callouts compute their tint from callout-warning, not this exact tint role."
+    },
+    "color.status.warning.border": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "Native warning callout background/border is computed with color-mix from its text color and host opacity, not an independent exact border role; no second assignment is claimed."
+    },
+    "color.status.success.text": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.status.success.fill": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "No separate filled success status badge is styled in v1; do not reuse generic interactive/on-accent keys as success fill coverage."
+    },
+    "color.status.success.on-fill": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "No separate filled success status badge is styled in v1; do not reuse generic interactive/on-accent keys as success on-fill coverage."
+    },
+    "color.status.success.tint": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.status.success.border": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "Native success callout background/border is computed with color-mix from its text color and host opacity, not an independent exact border role; no second assignment is claimed."
+    },
+    "color.status.info.text": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.status.info.fill": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "No separate filled info status badge is styled in v1; do not reuse generic interactive/on-accent keys as info fill coverage."
+    },
+    "color.status.info.on-fill": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "No separate filled info status badge is styled in v1; do not reuse generic interactive/on-accent keys as info on-fill coverage."
+    },
+    "color.status.info.tint": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "Native info callout background/border is computed with color-mix from its text color and host opacity, not an independent exact tint role; no second assignment is claimed."
+    },
+    "color.status.info.border": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "Native info callout background/border is computed with color-mix from its text color and host opacity, not an independent exact border role; no second assignment is claimed."
+    },
+    "color.status.neutral.text": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "Obsidian has no independent --text-neutral variable in the audited sources; generic notice text stays interface text, without a neutral status claim."
+    },
+    "color.status.neutral.fill": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "No separate filled neutral status badge is styled in v1; do not reuse generic interactive/on-accent keys as neutral fill coverage."
+    },
+    "color.status.neutral.on-fill": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "No separate filled neutral status badge is styled in v1; do not reuse generic interactive/on-accent keys as neutral on-fill coverage."
+    },
+    "color.status.neutral.tint": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "Native neutral callout background/border is computed with color-mix from its text color and host opacity, not an independent exact tint role; no second assignment is claimed."
+    },
+    "color.status.neutral.border": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "Native neutral callout background/border is computed with color-mix from its text color and host opacity, not an independent exact border role; no second assignment is claimed."
+    },
+    "color.code.bg": {
+      "state": "mapped",
+      "surface": "markdown",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.code.current-line": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "CM6 active-line styling remains native; no distinct current-line variable is assigned."
+    },
+    "color.code.gutter-bg": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "CM6 gutter inherits the native editor canvas; no independent code gutter background is assigned."
+    },
+    "color.code.line-number": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "Native CM6 line numbers inherit text variables; their source selector is not replaced with an independent line-number role."
+    },
+    "color.code.line-number-active": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "Native CM6 active line-number styling remains; no separate active line-number variable is assigned."
+    },
+    "color.code.gutter-rule": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "Native CM6 gutter separation is retained; no independent gutter rule is installed."
+    },
+    "color.code.caret": {
+      "state": "mapped",
+      "surface": "markdown",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.code.selection-bg": {
+      "state": "mapped",
+      "surface": "markdown",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.code.search-match-bg": {
+      "state": "mapped",
+      "surface": "markdown",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.code.search-current-bg": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "Native search matches share text-highlight/selection and blend-mode logic; no independent current-match inversion hook is exposed by the mapped variables."
+    },
+    "color.code.search-current-text": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "Native search matches preserve syntax text; no independent current-match text inversion is installed."
+    },
+    "color.code.bracket-match": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "Native bracket matching uses its background model; no canonical one-pixel bracket border replacement is installed."
+    },
+    "color.code.indent-guide": {
+      "state": "mapped",
+      "surface": "markdown",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.code.whitespace": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "Native whitespace rendering is retained; no whitespace-marker selector override is installed."
+    },
+    "color.code.syntax.keyword": {
+      "state": "mapped",
+      "surface": "markdown",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.code.syntax.string": {
+      "state": "mapped",
+      "surface": "markdown",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.code.syntax.comment": {
+      "state": "mapped",
+      "surface": "markdown",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.code.syntax.number": {
+      "state": "mapped",
+      "surface": "markdown",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.code.syntax.constant": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "Native --code-tag/--code-value conflate constants with tags/values; tag and number own those keys."
+    },
+    "color.code.syntax.function": {
+      "state": "mapped",
+      "surface": "markdown",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.code.syntax.variable": {
+      "state": "mapped",
+      "surface": "markdown",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.code.syntax.type": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "Native --code-function conflates types/classes with functions; function owns that key."
+    },
+    "color.code.syntax.operator": {
+      "state": "mapped",
+      "surface": "markdown",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.code.syntax.punctuation": {
+      "state": "mapped",
+      "surface": "markdown",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.code.syntax.property": {
+      "state": "mapped",
+      "surface": "markdown",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.code.syntax.heading": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "Native Markdown headings use h1–h6 color variables, owned by text.bright; no separate code syntax heading channel."
+    },
+    "color.code.syntax.tag": {
+      "state": "mapped",
+      "surface": "markdown",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.code.syntax.attribute": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "Native --code-property also styles attributes; property owns that key without claiming distinct attribute coverage."
+    },
+    "color.code.syntax.escape": {
+      "state": "mapped",
+      "surface": "markdown",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.code.syntax.invalid": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "Native invalid code uses --text-error; no separate syntax-invalid color plus wavy-underline contract is installed."
+    },
+    "color.code.syntax.deprecated": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "No independent deprecated-code token/strike-through contract is exposed by the mapped native syntax variables."
+    },
+    "color.code.hued.string": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.code.hued.string: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.code.hued.number": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.code.hued.number: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.code.hued.constant": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.code.hued.constant: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.code.hued.function": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.code.hued.function: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.code.hued.attribute": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.code.hued.attribute: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.code.hued.escape": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.code.hued.escape: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.code.hued.type": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.code.hued.type: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.code.hued.property": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.code.hued.property: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.code.hued.operator": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.code.hued.operator: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.diagnostic.error.underline": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "color.diagnostic.error.underline: no diagnostic message/underline/stripe contract is installed in this CSS-only port; native status hooks are classified separately."
+    },
+    "color.diagnostic.error.text": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "color.diagnostic.error.text: no diagnostic message/underline/stripe contract is installed in this CSS-only port; native status hooks are classified separately."
+    },
+    "color.diagnostic.error.stripe": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "color.diagnostic.error.stripe: no diagnostic message/underline/stripe contract is installed in this CSS-only port; native status hooks are classified separately."
+    },
+    "color.diagnostic.error.bg": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "color.diagnostic.error.bg: no diagnostic message/underline/stripe contract is installed in this CSS-only port; native status hooks are classified separately."
+    },
+    "color.diagnostic.warning.underline": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "color.diagnostic.warning.underline: no diagnostic message/underline/stripe contract is installed in this CSS-only port; native status hooks are classified separately."
+    },
+    "color.diagnostic.warning.text": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "color.diagnostic.warning.text: no diagnostic message/underline/stripe contract is installed in this CSS-only port; native status hooks are classified separately."
+    },
+    "color.diagnostic.warning.stripe": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "color.diagnostic.warning.stripe: no diagnostic message/underline/stripe contract is installed in this CSS-only port; native status hooks are classified separately."
+    },
+    "color.diagnostic.info.underline": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "color.diagnostic.info.underline: no diagnostic message/underline/stripe contract is installed in this CSS-only port; native status hooks are classified separately."
+    },
+    "color.diagnostic.info.text": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "color.diagnostic.info.text: no diagnostic message/underline/stripe contract is installed in this CSS-only port; native status hooks are classified separately."
+    },
+    "color.diagnostic.hint.underline": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "color.diagnostic.hint.underline: no diagnostic message/underline/stripe contract is installed in this CSS-only port; native status hooks are classified separately."
+    },
+    "color.diagnostic.unused.text": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "color.diagnostic.unused.text: no diagnostic message/underline/stripe contract is installed in this CSS-only port; native status hooks are classified separately."
+    },
+    "color.diff.added.bg": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.diff.added.bg: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.diff.added.gutter": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.diff.added.gutter: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.diff.added.emphasis": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.diff.added.emphasis: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.diff.removed.bg": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.diff.removed.bg: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.diff.removed.gutter": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.diff.removed.gutter: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.diff.removed.emphasis": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.diff.removed.emphasis: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.diff.modified.bg": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.diff.modified.bg: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.diff.modified.gutter": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.diff.modified.gutter: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.diff.conflict-border": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.diff.conflict-border: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.diff.header-bg": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.diff.header-bg: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.terminal.bg": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.terminal.bg: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.terminal.fg": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.terminal.fg: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.terminal.cursor": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.terminal.cursor: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.terminal.selection-bg": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.terminal.selection-bg: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.terminal.selection-text": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.terminal.selection-text: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.terminal.prompt-bg": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.terminal.prompt-bg: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.terminal.prompt-text": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.terminal.prompt-text: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.terminal.ansi.0": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.terminal.ansi.0: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.terminal.ansi.1": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.terminal.ansi.1: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.terminal.ansi.2": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.terminal.ansi.2: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.terminal.ansi.3": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.terminal.ansi.3: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.terminal.ansi.4": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.terminal.ansi.4: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.terminal.ansi.5": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.terminal.ansi.5: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.terminal.ansi.6": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.terminal.ansi.6: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.terminal.ansi.7": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.terminal.ansi.7: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.terminal.ansi.8": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.terminal.ansi.8: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.terminal.ansi.9": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.terminal.ansi.9: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.terminal.ansi.10": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.terminal.ansi.10: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.terminal.ansi.11": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.terminal.ansi.11: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.terminal.ansi.12": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.terminal.ansi.12: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.terminal.ansi.13": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.terminal.ansi.13: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.terminal.ansi.14": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.terminal.ansi.14: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.terminal.ansi.15": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.terminal.ansi.15: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.chart.series-1": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.chart.series-1: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.chart.series-2": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.chart.series-2: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.chart.series-3": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.chart.series-3: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.chart.series-4": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.chart.series-4: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.chart.axis": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.chart.axis: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.chart.grid": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.chart.grid: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.chart.label": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "color.chart.label: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "color.icon.default": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "color.icon.decorative": {
+      "state": "unsupported",
+      "surface": "unsupported-hooks",
+      "reason": "Native icon-color is used by meaningful controls; it takes icon.default rather than the decorative-only role."
+    },
+    "space.0": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "space.0: native spacing retained except the explicitly mapped compact prompt padding."
+    },
+    "space.1": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "space.1: native spacing retained except the explicitly mapped compact prompt padding."
+    },
+    "space.2": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "space.2: native spacing retained except the explicitly mapped compact prompt padding."
+    },
+    "space.4": {
+      "state": "mapped",
+      "surface": "commands",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "space.8": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "space.8: native spacing retained except the explicitly mapped compact prompt padding."
+    },
+    "space.12": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "space.12: native spacing retained except the explicitly mapped compact prompt padding."
+    },
+    "space.16": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "space.16: native spacing retained except the explicitly mapped compact prompt padding."
+    },
+    "space.24": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "space.24: native spacing retained except the explicitly mapped compact prompt padding."
+    },
+    "space.32": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "space.32: native spacing retained except the explicitly mapped compact prompt padding."
+    },
+    "space.48": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "space.48: native spacing retained except the explicitly mapped compact prompt padding."
+    },
+    "border.width.default": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "border.width.emphasis": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "radius.none": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "font.family.mono": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "font.weight.regular": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "font.weight.bold": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "font.size.ui-sm": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "font.size.ui-sm: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "font.size.ui-md": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "font.size.ui-md: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "font.size.ui-lg": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "font.size.ui-lg: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "font.size.reading": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "font.size.reading: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "font.size.code": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "font.size.code: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "font.size.terminal": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "font.size.terminal: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "font.size.h1": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "font.size.h1: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "font.size.h2": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "font.size.h2: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "font.size.h3": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "font.size.h3: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "font.size.caption": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "font.size.caption: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "font.line-height.ui-sm": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "font.line-height.ui-sm: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "font.line-height.ui-md": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "font.line-height.ui-md: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "font.line-height.ui-lg": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "font.line-height.ui-lg: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "font.line-height.reading": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "font.line-height.reading: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "font.line-height.code": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "font.line-height.code: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "font.line-height.terminal": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "font.line-height.terminal: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "font.line-height.h1": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "font.line-height.h1: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "font.line-height.h2": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "font.line-height.h2: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "font.line-height.h3": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "font.line-height.h3: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "font.line-height.caption": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "font.line-height.caption: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "font.letter-spacing.terminal": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "font.letter-spacing.terminal: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "density.compact.control-height": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "density.compact.control-height: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "density.compact.row-height": {
+      "state": "mapped",
+      "surface": "commands",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "density.compact.control-padding-x": {
+      "state": "mapped",
+      "surface": "commands",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "density.compact.icon": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "density.compact.icon: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "density.compact.gap": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "density.compact.gap: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "density.comfortable.control-height": {
+      "state": "mapped",
+      "surface": "commands",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "density.comfortable.row-height": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "density.comfortable.row-height: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "density.comfortable.control-padding-x": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "density.comfortable.control-padding-x: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "density.comfortable.icon": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "density.comfortable.icon: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "density.comfortable.gap": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "density.comfortable.gap: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "focus.ring": {
+      "state": "mapped",
+      "surface": "commands",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "focus.ring-container": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "focus.ring-container: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "focus.offset": {
+      "state": "mapped",
+      "surface": "commands",
+      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+    },
+    "focus.offset-container": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "focus.offset-container: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "focus.offset-invalid": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "focus.offset-invalid: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "motion.duration.fast": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "motion.duration.fast: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "motion.duration.base": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "motion.duration.base: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "motion.duration.slow": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "motion.duration.slow: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "shadow.floating": {
+      "state": "out-of-scope",
+      "surface": "extended-content",
+      "reason": "shadow.floating: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port."
+    },
+    "layout.measure": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "layout.measure: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "layout.content-max": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "layout.content-max: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "layout.app-max": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "layout.app-max: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "breakpoint.xs": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "breakpoint.xs: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "breakpoint.sm": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "breakpoint.sm: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "breakpoint.md": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "breakpoint.md: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "breakpoint.lg": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "breakpoint.lg: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "icon.size.sm": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "icon.size.sm: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "icon.size.md": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "icon.size.md: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "icon.size.lg": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "icon.size.lg: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "icon.stroke": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "icon.stroke: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "z.canvas": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "z.canvas: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "z.raised": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "z.raised: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "z.popover": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "z.popover: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "z.drawer": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "z.drawer: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "z.dialog": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "z.dialog: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "z.toast": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "z.toast: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "z.skip-link": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "z.skip-link: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    }
+  },
+  "rollback": "Select the previous theme or Default in Settings → Appearance → Themes; restore both previous files together to roll back a j3w1 update."
+}

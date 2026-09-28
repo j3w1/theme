@@ -3,8 +3,8 @@ import { n as content } from "../chunks/native-CAzZmDKR.js";
 //#region .cache/ui-build/entries/components/segmented-control.js
 var J3w1SegmentedControl = class extends J3w1Element {
 	static componentId = "segmented-control";
-	static version = "3.0.0";
-	static implementationId = "sha256-kSksVvEX8+sJnFz2+Hv8Z6Iu3dciwQQiSQ7y9Kg4Bmk=";
+	static version = "3.1.0";
+	static implementationId = "sha256-YhihoogLMgs/dHYk7kTzmMkZ4iBT9EVIYIAfQ32d1IM=";
 	static connect = content;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

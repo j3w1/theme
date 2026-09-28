@@ -1,0 +1,708 @@
+{
+  "schemaVersion": 1,
+  "mappings": {
+    "color.surface.canvas": [
+      "--background-primary"
+    ],
+    "color.surface.default": [
+      "--background-primary-alt",
+      "--background-secondary",
+      "--settings-background",
+      "--setting-items-background",
+      "--modal-sidebar-background",
+      "--search-result-background"
+    ],
+    "color.surface.raised": [
+      "--background-secondary-alt",
+      "--menu-background",
+      "--suggestion-background",
+      "--prompt-background",
+      "--background-modifier-message",
+      "--raised-background",
+      ".theme-dark .popover | --background-primary"
+    ],
+    "color.surface.overlay": [
+      "--modal-background"
+    ],
+    "color.surface.input": [
+      "--background-modifier-form-field",
+      "--background-modifier-form-field-hover",
+      "--dropdown-background",
+      ".theme-dark .prompt input.prompt-input | background-color",
+      ".theme-dark .prompt input.prompt-input:hover | background-color",
+      ".theme-dark.is-phone .search-input-container.mod-raised input | background-color",
+      ".theme-dark .workspace-drawer .search-input-container input | background-color",
+      ".theme-dark .metadata-property-value .multi-select-container input | background-color",
+      ".theme-dark .bases-search-row .search-input-container input | background-color"
+    ],
+    "color.surface.chrome": [
+      "--ribbon-background",
+      "--ribbon-background-collapsed",
+      "--titlebar-background",
+      "--tab-container-background",
+      "--status-bar-background",
+      "--file-header-background"
+    ],
+    "color.surface.chrome-alt": [
+      "--titlebar-background-focused",
+      "--file-header-background-focused"
+    ],
+    "color.surface.backdrop": [
+      "--background-modifier-cover"
+    ],
+    "color.text.default": [
+      "--text-normal",
+      "--nav-item-color",
+      "--nav-heading-color",
+      "--titlebar-text-color-focused",
+      "--metadata-input-text-color",
+      ".theme-dark .tooltip | color"
+    ],
+    "color.text.bright": [
+      "--bold-color",
+      "--italic-color",
+      "--inline-title-color",
+      "--setting-group-heading-color",
+      "--h1-color",
+      "--h2-color",
+      "--h3-color",
+      "--h4-color",
+      "--h5-color",
+      "--h6-color"
+    ],
+    "color.text.muted": [
+      "--text-muted",
+      "--titlebar-text-color",
+      "--status-bar-text-color",
+      "--tab-text-color",
+      "--tab-text-color-focused",
+      "--metadata-label-text-color",
+      "--nav-heading-color-collapsed",
+      "--nav-tag-color"
+    ],
+    "color.text.subtle": [
+      "--text-faint",
+      "--list-marker-color"
+    ],
+    "color.text.placeholder": [
+      "--input-placeholder-color"
+    ],
+    "color.text.accent-strong": [
+      "--text-accent",
+      "--nav-item-color-highlighted",
+      "--tab-text-color-focused-highlighted",
+      "--icon-color-active",
+      "--color-accent"
+    ],
+    "color.text.link": [
+      "--link-color",
+      "--link-external-color",
+      "--link-unresolved-color"
+    ],
+    "color.text.link-hover": [
+      "--link-color-hover",
+      "--link-external-color-hover",
+      "--text-accent-hover"
+    ],
+    "color.border.control": [
+      "--background-modifier-border",
+      "--checkbox-border-color",
+      "--slider-thumb-border-color",
+      ".theme-dark .prompt input.prompt-input | border-color",
+      ".theme-dark select | border-color",
+      ".theme-dark .dropdown | border-color",
+      ".theme-dark .combobox-button | border-color"
+    ],
+    "color.border.active": [
+      "--background-modifier-border-hover",
+      "--checkbox-border-color-hover",
+      "--divider-color-hover",
+      ".theme-dark .prompt input.prompt-input:hover | border-color"
+    ],
+    "color.border.divider": [
+      "--divider-color",
+      "--tab-divider-color",
+      "--status-bar-border-color",
+      "--hr-color",
+      "--table-border-color",
+      "--metadata-divider-color"
+    ],
+    "color.border.default": [
+      "--code-border-color",
+      "--tab-outline-color"
+    ],
+    "color.border.overlay": [
+      "--modal-border-color",
+      "--menu-border-color",
+      "--prompt-border-color",
+      ".theme-dark .tooltip | border-color"
+    ],
+    "color.interaction.focus.ring": [
+      "--background-modifier-border-focus"
+    ],
+    "color.interaction.selection.bg": [
+      "--nav-item-background-active",
+      "--nav-item-background-selected",
+      "--tab-background-active",
+      "--table-selection",
+      ".theme-dark .prompt .suggestion-item.is-selected | background-color",
+      ".theme-dark .workspace-tab-header-container .workspace-tab-header.is-active | background-color",
+      ".theme-dark .workspace-tab-header-container .workspace-tab-header.is-active:hover | background-color"
+    ],
+    "color.interaction.selection.text": [
+      "--nav-item-color-active",
+      "--nav-item-color-selected",
+      "--tab-text-color-focused-active",
+      "--tab-text-color-focused-active-current",
+      ".theme-dark .prompt .suggestion-item.is-selected | color",
+      ".theme-dark .prompt .suggestion-item.is-selected | --text-muted",
+      ".theme-dark .prompt .suggestion-item.is-selected | --text-faint",
+      ".theme-dark .prompt .suggestion-item.is-selected | --text-accent"
+    ],
+    "color.interaction.selection.inactive-text": [
+      "--tab-text-color-active"
+    ],
+    "color.interaction.text-selection.bg": [
+      "--text-selection"
+    ],
+    "color.interaction.hover.bg": [
+      "--background-modifier-hover",
+      "--nav-item-background-hover",
+      "--dropdown-background-hover"
+    ],
+    "color.interaction.pressed.bg": [
+      "--background-modifier-active-hover"
+    ],
+    "color.interaction.scrollbar.track": [
+      "--scrollbar-bg"
+    ],
+    "color.interaction.scrollbar.thumb": [
+      "--scrollbar-thumb-bg"
+    ],
+    "color.interaction.scrollbar.thumb-hover": [
+      "--scrollbar-active-thumb-bg"
+    ],
+    "color.action.primary.bg": [
+      "--interactive-accent",
+      "--checkbox-color"
+    ],
+    "color.action.primary.text": [
+      "--text-on-accent",
+      "--checkbox-marker-color",
+      "--toggle-thumb-color",
+      ".theme-dark button.mod-cta | --text-color"
+    ],
+    "color.action.primary.hover-bg": [
+      "--interactive-accent-hover",
+      "--checkbox-color-hover"
+    ],
+    "color.action.secondary.bg": [
+      "--interactive-normal"
+    ],
+    "color.action.secondary.hover-bg": [
+      "--interactive-hover"
+    ],
+    "color.icon.default": [
+      "--icon-color",
+      "--icon-color-hover",
+      "--icon-color-focused"
+    ],
+    "color.status.danger.text": [
+      "--text-error",
+      "--callout-error",
+      "--callout-fail",
+      "--callout-bug"
+    ],
+    "color.status.danger.fill": [
+      "--background-modifier-error",
+      "--background-modifier-error-hover"
+    ],
+    "color.status.warning.text": [
+      "--text-warning",
+      "--callout-warning"
+    ],
+    "color.status.success.text": [
+      "--text-success",
+      "--callout-success"
+    ],
+    "color.status.success.tint": [
+      "--background-modifier-success"
+    ],
+    "color.status.info.text": [
+      "--callout-info"
+    ],
+    "color.code.bg": [
+      "--code-background"
+    ],
+    "color.code.caret": [
+      "--caret-color"
+    ],
+    "color.code.search-match-bg": [
+      "--text-highlight-bg"
+    ],
+    "color.code.indent-guide": [
+      "--indentation-guide-color",
+      "--indentation-guide-color-active"
+    ],
+    "color.code.syntax.variable": [
+      "--code-normal"
+    ],
+    "color.code.syntax.comment": [
+      "--code-comment"
+    ],
+    "color.code.syntax.function": [
+      "--code-function"
+    ],
+    "color.code.syntax.escape": [
+      "--code-important"
+    ],
+    "color.code.syntax.keyword": [
+      "--code-keyword"
+    ],
+    "color.code.syntax.operator": [
+      "--code-operator"
+    ],
+    "color.code.syntax.property": [
+      "--code-property"
+    ],
+    "color.code.syntax.punctuation": [
+      "--code-punctuation"
+    ],
+    "color.code.syntax.string": [
+      "--code-string"
+    ],
+    "color.code.syntax.tag": [
+      "--code-tag"
+    ],
+    "color.code.syntax.number": [
+      "--code-value"
+    ],
+    "font.family.mono": [
+      "--font-interface-theme",
+      "--font-text-theme",
+      "--font-monospace-theme"
+    ],
+    "font.weight.regular": [
+      "--font-normal"
+    ],
+    "font.weight.bold": [
+      "--font-bold"
+    ],
+    "border.width.default": [
+      "--border-width",
+      "--input-border-width",
+      "--divider-width",
+      "--modal-border-width",
+      "--menu-border-width",
+      "--prompt-border-width",
+      "--code-border-width",
+      "--slider-thumb-border-width",
+      ".theme-dark .tooltip | border-width",
+      ".theme-dark .prompt input.prompt-input | border-width",
+      ".theme-dark button:not(.clickable-icon) | border-width",
+      ".theme-dark select | border-width",
+      ".theme-dark .dropdown | border-width",
+      ".theme-dark .combobox-button | border-width"
+    ],
+    "radius.none": [
+      "--radius-s",
+      "--radius-m",
+      "--radius-l",
+      "--radius-xl",
+      "--input-radius",
+      "--search-input-radius",
+      "--button-radius",
+      "--checkbox-radius",
+      "--toggle-radius",
+      "--toggle-thumb-radius",
+      "--slider-thumb-radius",
+      "--modal-radius",
+      "--menu-radius",
+      "--tab-radius",
+      "--tab-radius-active",
+      "--tab-curve",
+      "--nav-item-radius",
+      "--nav-tag-radius",
+      "--code-radius",
+      "--tag-radius",
+      "--pill-radius",
+      "--status-bar-radius",
+      "--scrollbar-radius",
+      "--callout-radius",
+      "--metadata-property-radius",
+      "--metadata-property-radius-hover",
+      "--metadata-property-radius-focus",
+      "--setting-items-radius",
+      "--touch-radius-xxs",
+      "--touch-radius-xs",
+      "--touch-radius-s",
+      "--touch-radius-m",
+      "--touch-radius-xl"
+    ],
+    "color.text.prose": [
+      ".theme-dark .markdown-preview-view | color",
+      ".theme-dark .markdown-source-view.mod-cm6 .cm-content | color"
+    ],
+    "color.code.selection-bg": [
+      ".theme-dark .markdown-source-view.mod-cm6 .cm-scroller | --text-selection"
+    ],
+    "color.status.danger.on-fill": [
+      ".theme-dark .tooltip.mod-error | color"
+    ],
+    "space.4": [
+      ".theme-dark .prompt input.prompt-input | padding-block",
+      ".theme-dark .prompt .suggestion-item | padding-block"
+    ],
+    "density.compact.control-padding-x": [
+      ".theme-dark .prompt input.prompt-input | padding-inline-start",
+      ".theme-dark .prompt .suggestion-item | padding-inline"
+    ],
+    "density.comfortable.control-height": [
+      ".theme-dark .prompt input.prompt-input | min-height"
+    ],
+    "focus.ring": [
+      ".theme-dark .prompt input.prompt-input:focus-visible | outline"
+    ],
+    "focus.offset": [
+      ".theme-dark .prompt input.prompt-input:focus-visible | outline-offset"
+    ],
+    "density.compact.row-height": [
+      ".theme-dark .prompt .suggestion-item | min-height"
+    ],
+    "border.width.emphasis": [
+      ".theme-dark .prompt .suggestion-item | border-inline-start-width",
+      ".theme-dark .tree-item-self.is-active | border-inline-start-width",
+      ".theme-dark .tree-item-self.is-selected | border-inline-start-width",
+      ".theme-dark .workspace-tab-header-container .workspace-tab-header.is-active | border-bottom-width",
+      ".theme-dark .tree-item-self | border-inline-start-width",
+      ".theme-dark .workspace-tab-header-container .workspace-tab-header | border-bottom-width"
+    ],
+    "color.border.selected-indicator": [
+      ".theme-dark .prompt .suggestion-item.is-selected | border-inline-start-color",
+      ".theme-dark .tree-item-self.is-active | border-inline-start-color",
+      ".theme-dark .tree-item-self.is-selected | border-inline-start-color",
+      ".theme-dark .workspace-tab-header-container .workspace-tab-header.is-active | border-bottom-color"
+    ],
+    "color.interaction.hover.bg-strong": [
+      ".theme-dark .menu | --background-modifier-hover"
+    ],
+    "color.interaction.selection.inactive-bg": [
+      ".theme-dark:not(.is-focused) .workspace-tab-header-container .workspace-tab-header.is-active | background-color"
+    ],
+    "color.border.selected-indicator-inactive": [
+      ".theme-dark:not(.is-focused) .workspace-tab-header-container .workspace-tab-header.is-active | border-bottom-color"
+    ],
+    "color.action.secondary.border": [
+      ".theme-dark button:not(.clickable-icon) | border-color"
+    ],
+    "color.action.secondary.text": [
+      ".theme-dark button:not(.clickable-icon) | --text-color"
+    ],
+    "color.interaction.focus.ring-container": [
+      ".theme-dark button.mod-cta | --background-modifier-border-focus",
+      ".theme-dark .checkbox-container.is-enabled | --background-modifier-border-focus",
+      ".theme-dark input[type=\"checkbox\"]:checked | --background-modifier-border-focus",
+      ".theme-dark input[type=\"radio\"]:checked | --background-modifier-border-focus"
+    ],
+    "color.action.primary.border": [
+      ".theme-dark button.mod-cta | border-color"
+    ],
+    "color.action.destructive.border": [
+      ".theme-dark button.mod-warning | border-color",
+      ".theme-dark button.mod-destructive.mod-cta | border-color",
+      ".theme-dark button.mod-destructive | border-color"
+    ],
+    "color.action.destructive.filled-text": [
+      ".theme-dark button.mod-warning | --text-color",
+      ".theme-dark button.mod-warning | --background-modifier-border-focus",
+      ".theme-dark button.mod-destructive.mod-cta | --text-color",
+      ".theme-dark button.mod-destructive.mod-cta | --background-modifier-border-focus"
+    ],
+    "color.text.disabled": [
+      ".theme-dark button:not(.clickable-icon)[disabled] | --text-color",
+      ".theme-dark button:not(.clickable-icon)[aria-disabled=\"true\"] | --text-color",
+      ".theme-dark button:not(.clickable-icon)[disabled] | color",
+      ".theme-dark button:not(.clickable-icon)[aria-disabled=\"true\"] | color"
+    ],
+    "color.interaction.disabled.bg": [
+      ".theme-dark button:not(.clickable-icon)[disabled] | background-color",
+      ".theme-dark button:not(.clickable-icon)[aria-disabled=\"true\"] | background-color"
+    ],
+    "color.border.disabled": [
+      ".theme-dark button:not(.clickable-icon)[disabled] | border-color",
+      ".theme-dark button:not(.clickable-icon)[aria-disabled=\"true\"] | border-color"
+    ],
+    "color.action.destructive.text": [
+      ".theme-dark button.mod-destructive | --text-color"
+    ],
+    "color.action.destructive.hover-bg": [
+      ".theme-dark button.mod-destructive:hover | background-color",
+      ".theme-dark button.mod-destructive.mobile-tap | background-color"
+    ],
+    "color.action.destructive.hover-text": [
+      ".theme-dark button.mod-destructive:hover | --text-color",
+      ".theme-dark button.mod-destructive:hover | --background-modifier-border-focus",
+      ".theme-dark button.mod-destructive.mobile-tap | --text-color",
+      ".theme-dark button.mod-destructive.mobile-tap | --background-modifier-border-focus"
+    ]
+  },
+  "unmapped": {
+    "color.primitive.ink.0": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.ink.14": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.ink.15": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.ink.20": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.ink.25": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.ink.28": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.ink.30": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.ink.40": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.ink.52": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.ink.60": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.red.50": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.red.100": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.red.150": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.red.200": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.red.250": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.red.300": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.red.350": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.red.400": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.red.450": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.red.500": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.red.550": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.red.650": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.red.750": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.red.760": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.red.770": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.red.800": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.red.810": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.red.850": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.red.860": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.rose.300": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.rose.320": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.rose.350": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.rose.450": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.rose.550": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.rose.600": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.rose.650": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.rose.700": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.rose.800": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.coral.700": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.paper.90": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.paper.100": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.amber.500": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.amber.600": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.amber.tint": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.green.500": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.green.600": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.green.tint": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.blue.500": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.blue.600": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.blue.tint": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.alpha.transparent": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.alpha.black-55": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.alpha.black-65": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.alpha.red-6": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.alpha.red-12": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.ansi.0": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.ansi.1": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.ansi.2": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.ansi.3": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.ansi.4": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.ansi.5": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.ansi.6": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.ansi.7": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.ansi.8": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.ansi.9": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.ansi.10": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.ansi.11": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.ansi.12": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.ansi.13": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.ansi.14": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.ansi.15": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.ansi-readable.1": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.ansi-readable.4": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.ansi-readable.8": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.ansi-readable.9": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.ansi-readable.10": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.ansi-readable.12": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.ansi-readable.13": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.ansi-readable.14": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.primitive.ansi-readable.15": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+    "color.surface.desktop": "color.surface.desktop: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.surface.sunken": "Reading/detail panes share --background-primary with the canvas; the canvas role is mapped, with no independent sunken surface assignment.",
+    "color.surface.code": "The Markdown editor canvas shares --background-primary with Reading View; fenced/inline code uses color.code.bg. No independent surface.code assignment is claimed.",
+    "color.surface.terminal": "color.surface.terminal: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.text.accent": "Native text-accent is also used on raised layers, where this role misses the text floor; the safe text.accent-strong role owns that key instead.",
+    "color.text.link-underline": "Native link underlines use currentColor and remain present; their independent canonical underline color is not imposed.",
+    "color.text.on-selection": "Native selected-row text keys are owned by interaction.selection.text; there is no second independent generic on-selection assignment.",
+    "color.text.on-action": "Native text-on-accent is owned by action.primary.text; there is no second independent generic on-action assignment.",
+    "color.text.on-danger": "Error tooltips and destructive fills use their status.danger.on-fill/action.destructive.filled-text roles; no separate generic on-danger key.",
+    "color.text.on-light": "This dark-only map creates no generic light text surfaces or hued filled status badges; data colors remain user-owned.",
+    "color.text.inverse": "No inverse-surface widget is installed in this dark-only port.",
+    "color.border.strong": "Native sticky-header separators retain their divider/border variables; no independent emphasized sticky-header rule is installed.",
+    "color.interaction.text-selection.text": "Obsidian native text-selection changes its fill and preserves content/syntax foregrounds; no global ::selection foreground override is installed.",
+    "color.interaction.marquee": "Canvas/Graph marquee and user data selection are outside this Markdown/chrome port.",
+    "color.interaction.drop-target": "Host drag/drop affordances and native data colors remain; no dashed drop-target replacement is installed.",
+    "color.action.primary.pressed-bg": "Native primary buttons conflate pressed/mobile-tap with interactive-accent-hover; preserve that model without claiming a distinct pressed fill.",
+    "color.action.secondary.pressed-bg": "Native secondary buttons conflate pressed/mobile-tap with interactive-hover; preserve that model without claiming a distinct pressed fill.",
+    "color.action.tertiary.text": "Native clickable icons use --icon-color, owned by icon.default; no second independent tertiary-text assignment is claimed.",
+    "color.action.tertiary.hover-bg": "Native clickable icons share background-modifier-hover with generic hover; interaction.hover.bg owns that key, without separate tertiary-hover coverage.",
+    "color.action.destructive.pressed-bg": "Native pressed destructive behavior is retained; no independent native pressed variable is exposed.",
+    "color.status.danger.tint": "Native danger callout background/border is computed with color-mix from its text color and host opacity, not an independent exact tint role; no second assignment is claimed.",
+    "color.status.danger.border": "Native danger callout background/border is computed with color-mix from its text color and host opacity, not an independent exact border role; no second assignment is claimed.",
+    "color.status.warning.fill": "No separate filled warning status badge is styled in v1; do not reuse generic interactive/on-accent keys as warning fill coverage.",
+    "color.status.warning.on-fill": "No separate filled warning status badge is styled in v1; do not reuse generic interactive/on-accent keys as warning on-fill coverage.",
+    "color.status.warning.border": "Native warning callout background/border is computed with color-mix from its text color and host opacity, not an independent exact border role; no second assignment is claimed.",
+    "color.status.success.fill": "No separate filled success status badge is styled in v1; do not reuse generic interactive/on-accent keys as success fill coverage.",
+    "color.status.success.on-fill": "No separate filled success status badge is styled in v1; do not reuse generic interactive/on-accent keys as success on-fill coverage.",
+    "color.status.success.border": "Native success callout background/border is computed with color-mix from its text color and host opacity, not an independent exact border role; no second assignment is claimed.",
+    "color.status.info.fill": "No separate filled info status badge is styled in v1; do not reuse generic interactive/on-accent keys as info fill coverage.",
+    "color.status.info.on-fill": "No separate filled info status badge is styled in v1; do not reuse generic interactive/on-accent keys as info on-fill coverage.",
+    "color.status.info.tint": "Native info callout background/border is computed with color-mix from its text color and host opacity, not an independent exact tint role; no second assignment is claimed.",
+    "color.status.info.border": "Native info callout background/border is computed with color-mix from its text color and host opacity, not an independent exact border role; no second assignment is claimed.",
+    "color.status.neutral.text": "Obsidian has no independent --text-neutral variable in the audited sources; generic notice text stays interface text, without a neutral status claim.",
+    "color.status.neutral.fill": "No separate filled neutral status badge is styled in v1; do not reuse generic interactive/on-accent keys as neutral fill coverage.",
+    "color.status.neutral.on-fill": "No separate filled neutral status badge is styled in v1; do not reuse generic interactive/on-accent keys as neutral on-fill coverage.",
+    "color.status.neutral.tint": "Native neutral callout background/border is computed with color-mix from its text color and host opacity, not an independent exact tint role; no second assignment is claimed.",
+    "color.status.neutral.border": "Native neutral callout background/border is computed with color-mix from its text color and host opacity, not an independent exact border role; no second assignment is claimed.",
+    "color.code.current-line": "CM6 active-line styling remains native; no distinct current-line variable is assigned.",
+    "color.code.gutter-bg": "CM6 gutter inherits the native editor canvas; no independent code gutter background is assigned.",
+    "color.code.line-number": "Native CM6 line numbers inherit text variables; their source selector is not replaced with an independent line-number role.",
+    "color.code.line-number-active": "Native CM6 active line-number styling remains; no separate active line-number variable is assigned.",
+    "color.code.gutter-rule": "Native CM6 gutter separation is retained; no independent gutter rule is installed.",
+    "color.code.search-current-bg": "Native search matches share text-highlight/selection and blend-mode logic; no independent current-match inversion hook is exposed by the mapped variables.",
+    "color.code.search-current-text": "Native search matches preserve syntax text; no independent current-match text inversion is installed.",
+    "color.code.bracket-match": "Native bracket matching uses its background model; no canonical one-pixel bracket border replacement is installed.",
+    "color.code.whitespace": "Native whitespace rendering is retained; no whitespace-marker selector override is installed.",
+    "color.code.syntax.constant": "Native --code-tag/--code-value conflate constants with tags/values; tag and number own those keys.",
+    "color.code.syntax.type": "Native --code-function conflates types/classes with functions; function owns that key.",
+    "color.code.syntax.heading": "Native Markdown headings use h1–h6 color variables, owned by text.bright; no separate code syntax heading channel.",
+    "color.code.syntax.attribute": "Native --code-property also styles attributes; property owns that key without claiming distinct attribute coverage.",
+    "color.code.syntax.invalid": "Native invalid code uses --text-error; no separate syntax-invalid color plus wavy-underline contract is installed.",
+    "color.code.syntax.deprecated": "No independent deprecated-code token/strike-through contract is exposed by the mapped native syntax variables.",
+    "color.code.hued.string": "color.code.hued.string: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.code.hued.number": "color.code.hued.number: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.code.hued.constant": "color.code.hued.constant: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.code.hued.function": "color.code.hued.function: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.code.hued.attribute": "color.code.hued.attribute: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.code.hued.escape": "color.code.hued.escape: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.code.hued.type": "color.code.hued.type: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.code.hued.property": "color.code.hued.property: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.code.hued.operator": "color.code.hued.operator: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.diagnostic.error.underline": "color.diagnostic.error.underline: no diagnostic message/underline/stripe contract is installed in this CSS-only port; native status hooks are classified separately.",
+    "color.diagnostic.error.text": "color.diagnostic.error.text: no diagnostic message/underline/stripe contract is installed in this CSS-only port; native status hooks are classified separately.",
+    "color.diagnostic.error.stripe": "color.diagnostic.error.stripe: no diagnostic message/underline/stripe contract is installed in this CSS-only port; native status hooks are classified separately.",
+    "color.diagnostic.error.bg": "color.diagnostic.error.bg: no diagnostic message/underline/stripe contract is installed in this CSS-only port; native status hooks are classified separately.",
+    "color.diagnostic.warning.underline": "color.diagnostic.warning.underline: no diagnostic message/underline/stripe contract is installed in this CSS-only port; native status hooks are classified separately.",
+    "color.diagnostic.warning.text": "color.diagnostic.warning.text: no diagnostic message/underline/stripe contract is installed in this CSS-only port; native status hooks are classified separately.",
+    "color.diagnostic.warning.stripe": "color.diagnostic.warning.stripe: no diagnostic message/underline/stripe contract is installed in this CSS-only port; native status hooks are classified separately.",
+    "color.diagnostic.info.underline": "color.diagnostic.info.underline: no diagnostic message/underline/stripe contract is installed in this CSS-only port; native status hooks are classified separately.",
+    "color.diagnostic.info.text": "color.diagnostic.info.text: no diagnostic message/underline/stripe contract is installed in this CSS-only port; native status hooks are classified separately.",
+    "color.diagnostic.hint.underline": "color.diagnostic.hint.underline: no diagnostic message/underline/stripe contract is installed in this CSS-only port; native status hooks are classified separately.",
+    "color.diagnostic.unused.text": "color.diagnostic.unused.text: no diagnostic message/underline/stripe contract is installed in this CSS-only port; native status hooks are classified separately.",
+    "color.diff.added.bg": "color.diff.added.bg: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.diff.added.gutter": "color.diff.added.gutter: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.diff.added.emphasis": "color.diff.added.emphasis: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.diff.removed.bg": "color.diff.removed.bg: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.diff.removed.gutter": "color.diff.removed.gutter: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.diff.removed.emphasis": "color.diff.removed.emphasis: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.diff.modified.bg": "color.diff.modified.bg: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.diff.modified.gutter": "color.diff.modified.gutter: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.diff.conflict-border": "color.diff.conflict-border: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.diff.header-bg": "color.diff.header-bg: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.terminal.bg": "color.terminal.bg: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.terminal.fg": "color.terminal.fg: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.terminal.cursor": "color.terminal.cursor: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.terminal.selection-bg": "color.terminal.selection-bg: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.terminal.selection-text": "color.terminal.selection-text: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.terminal.prompt-bg": "color.terminal.prompt-bg: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.terminal.prompt-text": "color.terminal.prompt-text: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.terminal.ansi.0": "color.terminal.ansi.0: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.terminal.ansi.1": "color.terminal.ansi.1: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.terminal.ansi.2": "color.terminal.ansi.2: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.terminal.ansi.3": "color.terminal.ansi.3: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.terminal.ansi.4": "color.terminal.ansi.4: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.terminal.ansi.5": "color.terminal.ansi.5: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.terminal.ansi.6": "color.terminal.ansi.6: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.terminal.ansi.7": "color.terminal.ansi.7: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.terminal.ansi.8": "color.terminal.ansi.8: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.terminal.ansi.9": "color.terminal.ansi.9: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.terminal.ansi.10": "color.terminal.ansi.10: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.terminal.ansi.11": "color.terminal.ansi.11: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.terminal.ansi.12": "color.terminal.ansi.12: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.terminal.ansi.13": "color.terminal.ansi.13: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.terminal.ansi.14": "color.terminal.ansi.14: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.terminal.ansi.15": "color.terminal.ansi.15: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.chart.series-1": "color.chart.series-1: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.chart.series-2": "color.chart.series-2: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.chart.series-3": "color.chart.series-3: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.chart.series-4": "color.chart.series-4: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.chart.axis": "color.chart.axis: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.chart.grid": "color.chart.grid: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.chart.label": "color.chart.label: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "color.icon.decorative": "Native icon-color is used by meaningful controls; it takes icon.default rather than the decorative-only role.",
+    "space.0": "space.0: native spacing retained except the explicitly mapped compact prompt padding.",
+    "space.1": "space.1: native spacing retained except the explicitly mapped compact prompt padding.",
+    "space.2": "space.2: native spacing retained except the explicitly mapped compact prompt padding.",
+    "space.8": "space.8: native spacing retained except the explicitly mapped compact prompt padding.",
+    "space.12": "space.12: native spacing retained except the explicitly mapped compact prompt padding.",
+    "space.16": "space.16: native spacing retained except the explicitly mapped compact prompt padding.",
+    "space.24": "space.24: native spacing retained except the explicitly mapped compact prompt padding.",
+    "space.32": "space.32: native spacing retained except the explicitly mapped compact prompt padding.",
+    "space.48": "space.48: native spacing retained except the explicitly mapped compact prompt padding.",
+    "font.size.ui-sm": "font.size.ui-sm: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "font.size.ui-md": "font.size.ui-md: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "font.size.ui-lg": "font.size.ui-lg: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "font.size.reading": "font.size.reading: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "font.size.code": "font.size.code: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "font.size.terminal": "font.size.terminal: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "font.size.h1": "font.size.h1: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "font.size.h2": "font.size.h2: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "font.size.h3": "font.size.h3: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "font.size.caption": "font.size.caption: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "font.line-height.ui-sm": "font.line-height.ui-sm: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "font.line-height.ui-md": "font.line-height.ui-md: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "font.line-height.ui-lg": "font.line-height.ui-lg: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "font.line-height.reading": "font.line-height.reading: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "font.line-height.code": "font.line-height.code: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "font.line-height.terminal": "font.line-height.terminal: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "font.line-height.h1": "font.line-height.h1: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "font.line-height.h2": "font.line-height.h2: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "font.line-height.h3": "font.line-height.h3: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "font.line-height.caption": "font.line-height.caption: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "font.letter-spacing.terminal": "font.letter-spacing.terminal: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "density.compact.control-height": "density.compact.control-height: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "density.compact.icon": "density.compact.icon: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "density.compact.gap": "density.compact.gap: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "density.comfortable.row-height": "density.comfortable.row-height: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "density.comfortable.control-padding-x": "density.comfortable.control-padding-x: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "density.comfortable.icon": "density.comfortable.icon: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "density.comfortable.gap": "density.comfortable.gap: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "focus.ring-container": "focus.ring-container: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "focus.offset-container": "focus.offset-container: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "focus.offset-invalid": "focus.offset-invalid: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "motion.duration.fast": "motion.duration.fast: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "motion.duration.base": "motion.duration.base: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "motion.duration.slow": "motion.duration.slow: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "shadow.floating": "shadow.floating: terminal, diff, chart, hued syntax or desktop specimen semantics are outside this Markdown/application port.",
+    "layout.measure": "layout.measure: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "layout.content-max": "layout.content-max: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "layout.app-max": "layout.app-max: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "breakpoint.xs": "breakpoint.xs: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "breakpoint.sm": "breakpoint.sm: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "breakpoint.md": "breakpoint.md: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "breakpoint.lg": "breakpoint.lg: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "icon.size.sm": "icon.size.sm: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "icon.size.md": "icon.size.md: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "icon.size.lg": "icon.size.lg: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "icon.stroke": "icon.stroke: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "z.canvas": "z.canvas: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "z.raised": "z.raised: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "z.popover": "z.popover: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "z.drawer": "z.drawer: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "z.dialog": "z.dialog: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "z.toast": "z.toast: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "z.skip-link": "z.skip-link: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
+    "color.action.destructive.filled-bg": "Native desktop warning/confirmation fills and their hover/mobile-tap variants consume background-modifier-error/error-hover, owned by status.danger.fill; mobile warning uses interactive-normal. No independent filled-bg assignment is claimed.",
+    "color.status.warning.tint": "No consumer for background-modifier-warning/warning-hover in audited Obsidian 1.13.4/1.13.7; warning callouts compute their tint from callout-warning, not this exact tint role."
+  }
+}

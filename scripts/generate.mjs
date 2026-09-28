@@ -14,13 +14,16 @@
 
 import { validateAll } from "./lib/validators.mjs";
 import { GENERATORS } from "./lib/generators.mjs";
+import { PORT_EMITTERS } from "./lib/port-artifacts.mjs";
 
 const check = process.argv.includes("--check");
 const only = process.argv.find((a) => a.startsWith("--only="))?.slice(7);
 
 let context;
 try {
-  context = await validateAll();
+  // Generation can rebuild absent artifacts; validation and --check still
+  // require them. All source manifests, paths and mappings are validated.
+  context = await validateAll({ requirePortArtifacts: check, generatedPortFormats: Object.keys(PORT_EMITTERS) });
 } catch (error) {
   console.error(error.message);
   process.exit(1);

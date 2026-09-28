@@ -16,6 +16,9 @@ import { validatePorts } from "./validators.mjs";
 import { claudeThemeText, codexTmTheme } from "./host-install/generators.mjs";
 import { makeResolver } from "./host-install/source.mjs";
 import { resolveSpecimen } from "./host-install/specimen.mjs";
+import { safeKitPath } from "../../schemas/task-kit.mjs";
+import { obsidianArtifacts } from "./obsidian-port.mjs";
+import { portArtifactBasename } from "../../schemas/port.mjs";
 
 const ANSI = ["black", "red", "green", "yellow", "blue", "magenta", "cyan", "white"];
 
@@ -146,25 +149,47 @@ const chatgptFile = ({ manifest, port, mapping, exported, source }) => {
   return chatgptAppearance({ manifest, exported, port })(source);
 };
 
-export const PORT_EMITTERS = { "warp-yaml": warpYaml, "ghostty-config": ghosttyConfig, "claude-theme-json": claudeThemeJson, "codex-tmtheme": codexTmThemeFile, "chatgpt-appearance": chatgptFile };
+// Keep the existing text renderers intact; only their result envelope changes.
+const singleArtifact = render => args => [{ path: args.port.files[0]?.path, text: render(args) }];
+export const PORT_EMITTERS = { "warp-yaml": singleArtifact(warpYaml), "ghostty-config": singleArtifact(ghosttyConfig), "claude-theme-json": singleArtifact(claudeThemeJson), "codex-tmtheme": singleArtifact(codexTmThemeFile), "chatgpt-appearance": singleArtifact(chatgptFile), "obsidian-theme": obsidianArtifacts };
+
+// Validate the complete set before any write. Paths stay relative to a port,
+// under dist/, with the same portable filename policy as other exports.
+export const assertPortArtifacts = (port, artifacts) => {
+  const safe = name => safeKitPath(name) && name.startsWith("dist/");
+  const declared = port.files.map(file => file.path);
+  if (declared.some(name => !safe(name))) throw new Error(`ports/${port.id}: unsafe declared artifact path`);
+  if (new Set(declared).size !== declared.length) throw new Error(`ports/${port.id}: duplicate declared artifact paths`);
+  if (new Set(declared.map(portArtifactBasename)).size !== declared.length) throw new Error(`ports/${port.id}: duplicate declared artifact basenames (case-insensitive)`);
+  if (!Array.isArray(artifacts) || artifacts.some(file => !file || !safe(file.path) || typeof file.text !== "string" || Object.keys(file).sort().join(",") !== "path,text")) throw new Error(`ports/${port.id}: invalid emitted artifact; expected safe path and text`);
+  const emitted = artifacts.map(file => file.path);
+  if (new Set(emitted).size !== emitted.length) throw new Error(`ports/${port.id}: duplicate emitted artifact paths`);
+  if (new Set(emitted.map(portArtifactBasename)).size !== emitted.length) throw new Error(`ports/${port.id}: duplicate emitted artifact basenames (case-insensitive)`);
+  const missing = declared.filter(name => !emitted.includes(name));
+  const extra = emitted.filter(name => !declared.includes(name));
+  if (missing.length || extra.length) throw new Error(`ports/${port.id}: artifact set mismatch; missing: ${missing.join(", ") || "none"}; extra: ${extra.join(", ") || "none"}`);
+};
 
 export const portArtifactsGenerator = {
   name: "port artifacts",
   async run({ manifest, profiles, check }) {
-    const files = [], changed = [];
-    for (const port of await validatePorts()) {
+    const files = [], changed = [], outputs = [];
+    for (const port of await validatePorts({ requireArtifacts: false, generatedFormats: Object.keys(PORT_EMITTERS) })) {
       const emit = PORT_EMITTERS[port.format];
       if (!emit) continue;
-      if (port.files.length !== 1) throw new Error(`ports/${port.id}: the ${port.format} emitter writes exactly one file`);
       const mapping = await readJson(`ports/${port.id}/${port.mappingPath}`);
       const hostFile = `ports/${port.id}/host.json`;
       const host = (await exists(hostFile)) ? await readJson(hostFile) : null;
       const source = port.format === "chatgpt-appearance" ? await readJson(CHATGPT_SOURCE) : null;
       const profile = manifest.profiles.find((p) => p.id === port.profile);
       const exported = toResolvedExport(profiles.get(port.profile), profile);
-      const file = `ports/${port.id}/${port.files[0].path}`;
-      files.push(file);
-      if (await writeOrCheck(file, emit({ manifest, port, mapping, host, exported, source, resolved: profiles.get(port.profile) }), { check })) changed.push(file);
+      const artifacts = emit({ manifest, port, mapping, host, exported, source, resolved: profiles.get(port.profile) });
+      assertPortArtifacts(port, artifacts);
+      outputs.push(...artifacts.map(({ path, text }) => ({ path: `ports/${port.id}/${path}`, text })));
+    }
+    for (const { path, text } of outputs) {
+      files.push(path);
+      if (await writeOrCheck(path, text, { check })) changed.push(path);
     }
     return { files, changed, note: `${files.length} generated` };
   },

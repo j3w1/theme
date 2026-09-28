@@ -1,5 +1,33 @@
 # Changelog
 
+## [3.1.0] - 2026-09-27
+
+Additive minor preparation, following the first downloadable application-port
+precedent (1.2.0): Obsidian joins the public port contract. This prepares
+`v3.1.0`; no tag, release, Community-directory submission or publication is
+performed. `theme.json.release` continues to identify the published v3.0.0.
+
+- **Obsidian port** (experimental). `ports/obsidian/` generates native
+  `manifest.json` and dark-only `theme.css` from default semantic roles, with a
+  complete mapping/capability partition. The visible theme and author are
+  j3w1. Public minimum 1.13.4 is backed by source audits of 1.13.4 and 1.13.7;
+  status stays experimental and `testedVersions` empty until a real import.
+- Native variables preserve the surface/text hierarchy, separate focus and
+  selection, square geometry, monochrome code and all mono fallback families.
+  Scoped gaps cover prose roots, compact command results, selected indicators
+  and filled-focus colors; user font sizes/zoom and keyboard behavior remain
+  native. The README records every selector and host deviation.
+- Emitters now return complete arrays of text artifacts. Safe, unique declared
+  and emitted paths must agree before writing any port artifact. Same-input
+  hashes preserve all six existing port files; version-only headers/metadata
+  and current token-export digests change separately for 3.1.0.
+- Downloads, capabilities, usage and site copies follow existing generators.
+  Downstream: native Obsidian installation copies two files at one pinned
+  revision into the vault theme folder and selects the Dark base scheme;
+  restore the previous two files or select the previous theme to roll back.
+  Published v3.1.0 links require the separately authorized release action.
+  Canonical roles, values, focus/selection rules and licensing do not change.
+
 ## [3.0.0] - 2026-09-26
 
 Major under the versioning rule: D-032 changes approved values (terminal slot

@@ -17,7 +17,7 @@ import { digestMap, exists, listFiles, pruneOrphans, readJson, readText, replace
 import { statusOf, toCss, toResolvedExport } from "./tokens.mjs";
 import { buildCss, buildDensityCss } from "./css.mjs";
 import { loadDeclaredPairs, validateDocs, validatePorts, validateReferences } from "./validators.mjs";
-import { buildBrief, buildCompact, buildComponentJson, buildFull, buildLlms, contrastTable, coverageTable, demoVariantsOf, downloadsTable, portsTable, sourceDigestOf } from "./exports.mjs";
+import { buildBrief, buildCompact, buildComponentJson, buildFull, buildLlms, contrastTable, coverageTable, demoVariantsOf, downloadsTable, portsTable, portGuidesTable, sourceDigestOf } from "./exports.mjs";
 import { loadFamilies } from "./spec.mjs";
 import { themeSchema } from "../../schemas/theme.mjs";
 import { componentSchema } from "../../schemas/component.mjs";
@@ -255,6 +255,7 @@ export const readmeGenerator = {
     }
     for (const guide of INSTALL_GUIDES) {
       let text = await readText(guide);
+      if (guide === "ports/README.md") text = replaceMarkerBlock(text, "guides", portGuidesTable(ports).join("\n"));
       for (const [name, body] of Object.entries(guideBlocks(manifest, guide))) text = replaceMarkerBlock(text, name, body);
       files.push(guide);
       if (await writeOrCheck(guide, text, { check })) changed.push(guide);
@@ -303,4 +304,4 @@ export const figmaGenerator = {
   },
 };
 
-export const GENERATORS = [schemasGenerator, tokensGenerator, contrastGenerator, componentsGenerator, patternGenerator, figmaGenerator, usageGenerator, portArtifactsGenerator, installerSpecimenGenerator, portCatalogueGenerator, recipeGenerator, docsGenerator, coverageGenerator, readmeGenerator, packageReadmeGenerator, { name: "official UI distribution", run: buildUI }, taskInputsGenerator, digestsGenerator];
+export const GENERATORS = [schemasGenerator, tokensGenerator, contrastGenerator, componentsGenerator, patternGenerator, figmaGenerator, portArtifactsGenerator, usageGenerator, installerSpecimenGenerator, portCatalogueGenerator, recipeGenerator, docsGenerator, coverageGenerator, readmeGenerator, packageReadmeGenerator, { name: "official UI distribution", run: buildUI }, taskInputsGenerator, digestsGenerator];
