@@ -31,7 +31,8 @@
       "enum": [
         "windows",
         "linux",
-        "macos"
+        "macos",
+        "android"
       ]
     },
     "os": {

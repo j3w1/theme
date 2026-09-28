@@ -21285,7 +21285,8 @@
       "themeRevision": "7b045d1a7bc32fddc7c9946e7084ffe74f62b5b5",
       "profile": "default",
       "targetVersions": [
-        "1.13.x"
+        "1.13.4",
+        "1.13.7"
       ],
       "testedVersions": [],
       "os": [
@@ -21295,7 +21296,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-Tyqm4U083M3weRl/6s0BV4uc89isr4hKKFkjZ6zZWAU=",
+      "subjectDigest": "sha256-1Y4/2zONYc+V/5Dst3xT/cs5SZFVAJf28LhfYN4TB3w=",
       "evidencePath": null,
       "surfaces": {
         "interface": {

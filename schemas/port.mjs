@@ -10,6 +10,10 @@ import { safeKitPath } from "./task-kit.mjs";
    here in the same change. */
 export const PORT_FORMATS = ["ghostty-config", "warp-yaml", "claude-theme-json", "codex-tmtheme", "chatgpt-appearance", "obsidian-theme"];
 
+/* The operating systems a port can target and an import can be recorded on,
+   a closed list; a port manifest may also declare "any". */
+export const PORT_PLATFORMS = ["windows", "linux", "macos", "android"];
+
 // Downloads flatten paths, and native installs may use case-insensitive filesystems.
 export const portArtifactBasename = path => path.split("/").at(-1).toLowerCase();
 
@@ -26,7 +30,7 @@ export const portSchema = (z) =>
       format: z.enum(PORT_FORMATS),
       targetVersions: z.array(z.string().min(1)).min(1),
       testedVersions: z.array(z.string().min(1)),
-      os: z.array(z.enum(["windows", "linux", "macos", "any"])).min(1),
+      os: z.array(z.enum([...PORT_PLATFORMS, "any"])).min(1),
       surfaces: z
         .object({
           supported: z.array(z.string().min(1)),

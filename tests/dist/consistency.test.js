@@ -8,6 +8,7 @@ import { listFiles, readJson, readText } from "../../scripts/lib/fs.mjs";
 import { listComponentFiles, componentIdOf } from "../../scripts/lib/spec.mjs";
 import { anchorFor } from "../../scripts/lib/anchors.mjs";
 import { portDownloadPath } from "../../scripts/lib/port-presentation.mjs";
+import { OBSIDIAN_INSTALLERS } from "../../scripts/lib/obsidian-port.mjs";
 
 const html = await readText("dist/reference/index.html");
 const resolved = await readJson("exports/tokens.resolved.json");
@@ -59,9 +60,12 @@ test("every port file is served byte-identical under /theme/ports/ and linked fr
   }
 });
 
-test("reviewed Obsidian installer is served byte-identically but is not a native theme artifact", async () => {
-  const source = "ports/obsidian/install.ps1";
-  assert.deepEqual(await readFile(`dist/${source}`), await readFile(source));
+test("reviewed Obsidian installers are served byte-identically but are not native theme artifacts", async () => {
+  assert.deepEqual(OBSIDIAN_INSTALLERS, ["install.ps1", "install-android.sh"]);
+  for (const name of OBSIDIAN_INSTALLERS) {
+    const source = `ports/obsidian/${name}`;
+    assert.deepEqual(await readFile(`dist/${source}`), await readFile(source), source);
+  }
   const port = await readJson("ports/obsidian/port.json");
   assert.deepEqual(port.files.map(file => file.path), ["dist/manifest.json", "dist/theme.css"]);
 });

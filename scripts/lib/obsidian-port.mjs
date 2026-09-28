@@ -6,6 +6,9 @@ import { stableJson } from "./fs.mjs";
 import { REQUIRED_ROLES } from "../../schemas/roles.mjs";
 
 export const OBSIDIAN_MIN_APP_VERSION = "1.13.4";
+// Reviewed helpers the site serves beside the two native artifacts, never
+// native artifacts themselves: Windows PowerShell and Android (Termux) sh.
+export const OBSIDIAN_INSTALLERS = ["install.ps1", "install-android.sh"];
 // The public 1.13.4 floor and 1.13.7 source expose every hook below. See README.
 export const OBSIDIAN_VARIABLE_TYPES = {
   "--background-primary": "color",
