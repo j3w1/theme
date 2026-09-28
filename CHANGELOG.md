@@ -32,8 +32,10 @@ performed. `theme.json.release` continues to identify the published v3.0.0.
   beside `install.ps1` for Termux and device-storage vaults. It keeps the
   Windows helper's checks and messages, and replaces the whole `j3w1` folder
   by renaming within `themes/`. It refuses a folder holding anything but the
-  pair and keeps both copies if a swap is interrupted. `ANDROID.md` covers
-  storage, a manual fallback and rollback. Its tests run the real script
+  pair, reports success only once the pair is exactly in `j3w1`, and keeps
+  both copies when a swap fails, is stopped by a signal it can catch, or finds
+  the vault folders changed. `ANDROID.md` covers storage, a manual fallback,
+  recovery after an abrupt stop and rollback. Its tests run the real script
   against scratch vaults; no Android import is recorded.
 - Ports and real-import evidence can name `android` as a platform. Obsidian's
   `targetVersions` are now the audited 1.13.4 and 1.13.7 instead of `1.13.x`,

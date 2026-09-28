@@ -213,6 +213,9 @@ test("Android shares the port: one README entry, an operational guide and the sa
   for (const line of [...termux, "termux-setup-storage", "pkg install curl jq", "device storage", "(ANDROID.md)"]) assert.ok(readme.includes(line), `README: ${line}`);
   for (const line of [...termux, "termux-setup-storage", "pkg install curl jq", "**Device storage**", "**App storage**", "Manual fallback without Termux", "roll back", "Base color scheme → Dark", "No Android import", "(README.md)", "(IMPLEMENTATION.md)"]) assert.ok(android.includes(line), `ANDROID.md: ${line}`);
   for (const file of ["manifest.json", "theme.css"]) assert.ok(android.includes(`https://j3w1.github.io/theme/ports/obsidian/${file}`), file);
+  // Recovery after an abrupt stop, and the audited versions, are stated rather than implied.
+  for (const line of [".j3w1-backup-…", ".j3w1-install-…", "as long as no other app changes", "later versions are not"]) assert.ok(android.includes(line), `ANDROID.md: ${line}`);
+  assert.match(readme, /source-audited on 1\.13\.4\s+and 1\.13\.7 only; later versions are not audited or imported/);
   for (const [name, text] of [["README.md", readme], ["ANDROID.md", android]]) {
     assert.doesNotMatch(text, /\|\s*(?:ba|da)?sh\b/, `${name} never pipes a download into a shell`);
     assert.doesNotMatch(text, /\/main\//, `${name} links no branch`);

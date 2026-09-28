@@ -58,15 +58,25 @@ Do not pipe a download straight into a shell. The helper works in this order:
 5. It stages the new pair in a hidden `.j3w1-install-…` folder beside `j3w1`,
    moves the old `j3w1` folder into a hidden `.j3w1-backup-…` folder, then
    moves the staged folder into place. Both moves are renames within
-   `.obsidian/themes`.
+   `.obsidian/themes`. It reports success only after checking that both files
+   are directly in `j3w1`.
 6. If the second move fails, it moves the old folder back. If that also fails,
-   or the helper is interrupted during the swap, it keeps both hidden folders
-   and prints their paths. Restore the previous `j3w1` folder from there
-   before you start Obsidian.
+   if something else changed `j3w1` or the vault folders during the swap, or
+   if you stop the helper with Ctrl+C, it keeps both hidden folders and prints
+   their paths. Restore the previous `j3w1` folder from there before you start
+   Obsidian.
 7. After success it removes its temporary and hidden folders and prints the
-   installed version.
+   installed version. If it cannot remove one, it says which.
 
-It writes only inside `.obsidian/themes`: notes, plugins, snippets, settings
+An abrupt stop the helper cannot notice, such as force-closing Termux, a
+restart or a flat battery, prints nothing. Before starting Obsidian after one,
+look in `.obsidian/themes` for `.j3w1-backup-…` and `.j3w1-install-…`
+folders. If `j3w1` is missing or incomplete, move the `j3w1` folder from inside
+`.j3w1-backup-…` back into `.obsidian/themes`.
+
+It writes only inside `.obsidian/themes`, as long as no other app changes the
+vault's folders while it runs. It rechecks them before each change and stops
+without deleting anything if they moved. Notes, plugins, snippets, settings
 and other themes are never touched. Besides `curl` and `jq` it uses only the
 standard commands `mktemp`, `cp`, `mv`, `rm`, `mkdir`, `rmdir` and `chmod`.
 
@@ -110,6 +120,8 @@ Obsidian you may delete only the `j3w1` folder.
   tablet and phone rules come from a source audit; see
   [IMPLEMENTATION.md](IMPLEMENTATION.md).
 - Vaults in app storage are not supported.
+- Only Obsidian 1.13.4 and 1.13.7 are source-audited; later versions are not
+  audited or imported.
 - The helper replaces the whole `j3w1` folder, so keep your own CSS in
   `.obsidian/snippets`, not there.
 - During the swap `j3w1` briefly does not exist, which is why Obsidian must

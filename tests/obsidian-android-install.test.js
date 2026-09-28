@@ -53,10 +53,20 @@ const MV = `#!/bin/sh
 [ "$1" = "--" ] && shift
 src=$1 dst=$2
 case ",$STUB_MV_FAIL," in *,aside,*) case $dst in */.j3w1-backup-*/j3w1) exit 1 ;; esac ;; esac
+# Another app acts during the swap: j3w1 reappears, or the themes folder becomes a link.
+case ",$STUB_MV_FAIL," in *,reappear,*) case $dst in */.j3w1-backup-*/j3w1) "$REAL_MV" -- "$src" "$dst" && mkdir -- "$src"; exit ;; esac ;; esac
+case ",$STUB_MV_FAIL," in *,relink,*) case $dst in */.j3w1-backup-*/j3w1)
+  themes=\${src%/j3w1}
+  "$REAL_MV" -- "$src" "$dst" && "$REAL_MV" -- "$themes" "$themes.moved" && exec "$REAL_LN" -s "$themes.moved" "$themes" ;; esac ;; esac
+case ",$STUB_MV_FAIL," in *,recreate,*) case \${src##*/} in .j3w1-install-*) mkdir -- "$dst" ;; esac ;; esac
 case ",$STUB_MV_FAIL," in *,staging,*) case \${src##*/} in .j3w1-install-*) exit 1 ;; esac ;; esac
 case ",$STUB_MV_FAIL," in *,term,*) case \${src##*/} in .j3w1-install-*) kill -s TERM "$PPID"; exit 1 ;; esac ;; esac
 case ",$STUB_MV_FAIL," in *,restore,*) case $src in */.j3w1-backup-*/j3w1) exit 1 ;; esac ;; esac
 exec "$REAL_MV" -- "$src" "$dst"
+`;
+const RM = `#!/bin/sh
+for arg; do case $arg in */.j3w1-backup-*) exit 1 ;; esac; done
+exec "$REAL_RM" "$@"
 `;
 
 const sha = (bytes) => createHash("sha256").update(bytes).digest("hex");
@@ -78,7 +88,7 @@ const pair = async (dir) => Object.fromEntries(await Promise.all(NAMES.map(async
 
 /* A vault with notes, a plugin, settings and (optionally) another theme and
    an installed pair; its name has a space so every path must be quoted. */
-const setup = async (t, shell, { served = DIST, themes = true, installed = OLD, fail = "", mvFail = "", tools = [...TOOLS, "jq"] } = {}) => {
+const setup = async (t, shell, { served = DIST, themes = true, installed = OLD, fail = "", mvFail = "", rmFail = false, tools = [...TOOLS, "jq"] } = {}) => {
   const root = await scratchDir(t, "j3w1-android-");
   const bin = path.join(root, "bin"), web = path.join(root, "web"), tmp = path.join(root, "tmp"), vault = path.join(root, "My Vault");
   for (const dir of [bin, web, tmp, path.join(vault, ".obsidian/plugins/sample")]) await fs.mkdir(dir, { recursive: true });
@@ -96,11 +106,12 @@ const setup = async (t, shell, { served = DIST, themes = true, installed = OLD, 
   for (const [name, bytes] of Object.entries(served)) await fs.writeFile(path.join(web, name), bytes);
   await fs.writeFile(path.join(bin, "curl"), CURL, { mode: 0o755 });
   if (mvFail) await fs.writeFile(path.join(bin, "mv"), MV, { mode: 0o755 });
+  if (rmFail) await fs.writeFile(path.join(bin, "rm"), RM, { mode: 0o755 });
   // PATH holds only the declared tools, so every case also proves the script needs nothing else.
-  for (const name of tools) if (!(mvFail && name === "mv")) await fs.symlink(REAL[name], path.join(bin, name));
+  for (const name of tools) if (!(mvFail && name === "mv") && !(rmFail && name === "rm")) await fs.symlink(REAL[name], path.join(bin, name));
   const env = {
     PATH: bin, HOME: root, TMPDIR: tmp, LC_ALL: "C",
-    STUB_LOG: path.join(root, "curl.log"), STUB_SERVED: web, STUB_FAIL: fail, STUB_MV_FAIL: mvFail, REAL_CP: REAL.cp, REAL_MV: REAL.mv,
+    STUB_LOG: path.join(root, "curl.log"), STUB_SERVED: web, STUB_FAIL: fail, STUB_MV_FAIL: mvFail, REAL_CP: REAL.cp, REAL_MV: REAL.mv, REAL_RM: REAL.rm, REAL_LN: which("ln"),
   };
   const run = (args = ["--vault", vault], cwd = root) => {
     const result = spawnSync(shell.command, [...shell.args, SCRIPT, ...args], { cwd, env, encoding: "utf8" });
@@ -256,6 +267,57 @@ for (const shell of SHELLS) {
       assert.deepEqual(await pair(next), DIST);
       assert.equal(await fs.stat(v.theme).catch(() => null), null);
       assert.deepEqual(await fs.readdir(v.tmp), [], "the download folder is still removed");
+    });
+
+    const recovery = (stderr) => ({ previous: stderr.match(/^j3w1: previous theme: (.*)$/m)?.[1], next: stderr.match(/^j3w1: new pair: (.*)$/m)?.[1] });
+
+    await t.test("a j3w1 folder created during the swap is never mistaken for success", async (t) => {
+      const v = await setup(t, shell, { mvFail: "recreate" });
+      const result = v.run();
+      assert.notEqual(result.status, 0, result.stdout);
+      assert.doesNotMatch(result.stdout, /Installed/);
+      assert.match(result.stderr, /The theme folder changed during replacement; nothing was deleted\. Keep recovery copies at /);
+      const { previous, next } = recovery(result.stderr);
+      assert.ok(previous && next, result.stderr);
+      assert.deepEqual(await pair(previous), OLD, "the previous pair survives");
+      assert.deepEqual(await pair(next), DIST);
+      assert.equal(path.dirname(next), await fs.realpath(v.theme), "the new pair is reported where mv nested it");
+      assert.deepEqual(await fs.readdir(v.tmp), []);
+
+      const fresh = await setup(t, shell, { themes: false, mvFail: "recreate" });
+      const second = fresh.run();
+      assert.notEqual(second.status, 0);
+      assert.match(second.stderr, /The theme folder changed during replacement; nothing was deleted\. The new pair was not installed\./);
+      assert.deepEqual(await pair(recovery(second.stderr).next), DIST);
+
+      const back = await setup(t, shell, { mvFail: "reappear" });
+      const third = back.run();
+      assert.notEqual(third.status, 0);
+      assert.match(third.stderr, /The theme folder changed during replacement; nothing was deleted\. Keep recovery copies at /);
+      assert.deepEqual(await pair(recovery(third.stderr).previous), OLD);
+      assert.deepEqual(await pair(recovery(third.stderr).next), DIST);
+    });
+
+    await t.test("a themes folder that becomes a link mid-install stops the swap and removes nothing", async (t) => {
+      const v = await setup(t, shell, { mvFail: "relink" });
+      const result = v.run();
+      assert.notEqual(result.status, 0);
+      assert.match(result.stderr, /The vault folders changed during installation; stopping\. Keep recovery copies at /);
+      const moved = `${v.themes}.moved`;
+      const names = await fs.readdir(moved);
+      const backup = names.find((name) => name.startsWith(".j3w1-backup-")), staged = names.find((name) => name.startsWith(".j3w1-install-"));
+      assert.ok(backup && staged, names.join());
+      assert.deepEqual(await pair(path.join(moved, backup, "j3w1")), OLD);
+      assert.deepEqual(await pair(path.join(moved, staged)), DIST);
+    });
+
+    await t.test("a backup that cannot be removed is reported after a successful install", async (t) => {
+      const v = await setup(t, shell, { rmFail: true });
+      const result = v.run();
+      assert.equal(result.status, 0, result.stderr);
+      assert.match(result.stdout, /^Installed j3w1 /);
+      assert.match(result.stderr, /could not remove .*\.j3w1-backup-[^;]*; delete it after closing Obsidian\./);
+      assert.deepEqual(await pair(v.theme), DIST);
     });
 
     await t.test("an interruption during the swap never deletes the only copy", async (t) => {

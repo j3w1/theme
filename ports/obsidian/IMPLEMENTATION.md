@@ -219,13 +219,21 @@ user-facing messages match. They differ in the replacement step: the Windows
 helper copies two files over the old pair, while the Android helper renames
 the whole `j3w1` folder aside and renames the staged folder into place, so it
 refuses a `j3w1` folder that holds anything but the pair, or holds only one
-of the two files, or is a link. An interruption during the Android swap keeps
-both hidden folders rather than deleting the only copy.
+of the two files, or is a link. `mv` into an existing folder nests instead of
+replacing, so the Android helper claims success only when the pair is
+directly in `j3w1` and the staged folder is gone. It rechecks that `.obsidian`
+and `themes` are still real folders before each change. It keeps both hidden
+folders, and removes nothing under `themes`, when a swap fails, is stopped by
+a signal it can catch, or finds a folder changed. Shell code cannot confine
+writes against an app that changes the vault concurrently, or run cleanup
+after an uncatchable stop; ANDROID.md states both limits and the manual
+recovery.
 
 `tests/obsidian-android-install.test.js` runs the real Android script against
 scratch vaults under `sh` and, when installed, dash and busybox, with stub
-`curl` and `mv` and a PATH that holds only the declared tools. It proves the
-shell contract, not an Android import. `tests/obsidian-port.test.js` holds the
+`curl`, `mv` and `rm` and a PATH that holds only the declared tools. The stubs
+also act as a concurrent app: they recreate `j3w1` or turn `themes` into a
+link mid-swap. It proves the shell contract, not an Android import. `tests/obsidian-port.test.js` holds the
 PowerShell text contract; no PowerShell run of `install.ps1` is recorded.
 
 ## Verification before claiming a real import

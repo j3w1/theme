@@ -1,7 +1,9 @@
 # j3w1 for Obsidian
 
-Experimental, dark-only theme for Obsidian **1.13.4+** (including the declared
-minimum supported by 1.13.7). Windows and Android use the same two files,
+Experimental, dark-only theme for Obsidian **1.13.4+**: the manifest's minimum
+app version is 1.13.4, and the hooks it relies on are source-audited on 1.13.4
+and 1.13.7 only; later versions are not audited or imported. Windows and
+Android use the same two files,
 `manifest.json` and `theme.css`. A Windows 1.13.7 import and visible rendering
 were **user-reported**; no Android import is recorded. Repository real-import
 verification, including manual keyboard, zoom and screen-reader checks, is not
@@ -86,7 +88,8 @@ sh "$HOME/j3w1-install-android.sh" --vault "$vault"
 
 Do not pipe a remote download into a shell. The helper validates the
 downloaded pair as the Windows helper does, stages it beside the theme, swaps
-the whole `j3w1` folder and restores the previous one if the swap fails.
+the whole `j3w1` folder and restores the previous one if the swap fails. Keep
+Obsidian and any app that syncs the vault closed while it runs.
 
 ## Enable and verify
 

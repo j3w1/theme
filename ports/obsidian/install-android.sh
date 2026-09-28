@@ -1,8 +1,10 @@
 #!/bin/sh
 # Reviewed j3w1 installer for an Obsidian vault on Android device storage,
 # run from Termux. It replaces only <vault>/.obsidian/themes/j3w1 and never
-# touches notes, plugins, other themes or other vault configuration. Read
-# ANDROID.md first and keep Obsidian closed until it finishes.
+# touches notes, plugins, other themes or other vault configuration, provided
+# nothing else changes the vault's folders while it runs: it rechecks them
+# before each change and stops if they moved. Read ANDROID.md first and keep
+# Obsidian (and any app that syncs the vault) closed until it finishes.
 #
 #   sh install-android.sh --vault "$HOME/storage/shared/Documents/MyVault"
 
@@ -64,17 +66,37 @@ backup=''
 created_themes=''
 keep=''
 
+# True while .obsidian and its themes folder are still real folders, not links.
+confined() {
+    [ ! -L "$config" ] && [ -d "$config" ] && [ ! -L "$themes" ] && [ -d "$themes" ]
+}
+
 # Removes only folders this run created with mktemp inside the themes folder.
 remove_owned() {
     case $1 in
-        "$themes"/.j3w1-install-* | "$themes"/.j3w1-backup-*) rm -rf -- "$1" ;;
+        "$themes"/.j3w1-install-* | "$themes"/.j3w1-backup-*)
+            if [ -e "$1" ] && ! rm -rf -- "$1"; then
+                printf 'j3w1: could not remove %s; delete it after closing Obsidian.\n' "$1" >&2
+            fi
+            ;;
     esac
+}
+
+# True when the staged folder became exactly themes/j3w1. If another app
+# created j3w1 first, mv nests the staged folder inside it instead.
+installed() {
+    [ ! -e "$staging" ] && [ ! -L "$theme" ] && [ -d "$theme" ] &&
+        [ ! -e "$theme/${staging##*/}" ] &&
+        [ -f "$theme/manifest.json" ] && [ -f "$theme/theme.css" ]
 }
 
 cleanup() {
     status=$?
     set +e
     if [ -n "$download" ]; then rm -rf -- "$download"; fi
+    # Nothing under themes is removed once its folders moved: a path could now
+    # lead outside the vault.
+    if [ -z "$keep" ] && [ -n "$staging$backup" ] && ! confined; then keep=1; fi
     if [ -n "$keep" ]; then
         printf 'j3w1: %s\n' 'Recovery copies were kept; restore the previous pair to j3w1 before starting Obsidian.' >&2
         if [ -n "$backup" ] && [ -e "$backup/j3w1" ]; then printf 'j3w1: previous theme: %s\n' "$backup/j3w1" >&2; fi
@@ -135,10 +157,12 @@ elif [ -e "$theme" ]; then
     die "Theme path is not a directory: $theme"
 fi
 
+moved='The vault folders changed during installation; stopping.'
 if [ ! -d "$themes" ]; then
     mkdir -- "$themes" || die "Could not create $themes"
     created_themes=1
 fi
+confined || die "$moved"
 staging=$(mktemp -d "$themes/.j3w1-install-XXXXXXXX") || die "Could not create a staging folder in $themes"
 chmod 755 "$staging" 2>/dev/null || :
 for name in $names; do
@@ -146,9 +170,13 @@ for name in $names; do
 done
 
 # Both folders are on one filesystem, so each move is a rename. From here an
-# interruption keeps every copy instead of deleting the only one.
+# interruption keeps every copy instead of deleting the only one, and success
+# is claimed only once the pair is exactly in j3w1.
+nested="$theme/${staging##*/}"
+changed='The theme folder changed during replacement; nothing was deleted.'
 if [ -d "$theme" ]; then
     backup=$(mktemp -d "$themes/.j3w1-backup-XXXXXXXX") || die "Could not create a backup folder in $themes"
+    confined || die "$moved"
     keep=1
     if ! mv -- "$theme" "$backup/j3w1"; then
         if [ -d "$theme" ] && [ ! -e "$backup/j3w1" ]; then
@@ -157,17 +185,30 @@ if [ -d "$theme" ]; then
         fi
         die "Could not move the existing theme aside. Keep recovery copies at $backup."
     fi
+    confined || die "$moved Keep recovery copies at $backup."
+    if [ -e "$theme" ] || [ -L "$theme" ]; then die "$changed Keep recovery copies at $backup."; fi
     if ! mv -- "$staging" "$theme"; then
-        if [ ! -e "$theme" ] && mv -- "$backup/j3w1" "$theme"; then
+        if [ ! -e "$theme" ] && [ ! -L "$theme" ] && mv -- "$backup/j3w1" "$theme"; then
             keep=''
             die 'Replacement failed; previous theme pair restored.'
         fi
         die "Replacement failed and restoration failed. Keep recovery copies at $backup."
     fi
+    if ! installed; then
+        if [ -e "$nested" ]; then staging=$nested; fi
+        die "$changed Keep recovery copies at $backup."
+    fi
     staging=''
     keep=''
 else
+    confined || die "$moved"
+    if [ -e "$theme" ] || [ -L "$theme" ]; then die "$changed"; fi
     mv -- "$staging" "$theme" || die 'Installation failed; no theme was installed.'
+    if ! installed; then
+        keep=1
+        if [ -e "$nested" ]; then staging=$nested; fi
+        die "$changed The new pair was not installed."
+    fi
     staging=''
 fi
 printf 'Installed j3w1 %s at %s. Restart Obsidian and choose the Dark base scheme.\n' "$version" "$theme"
