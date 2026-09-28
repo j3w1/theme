@@ -225,9 +225,11 @@ directly in `j3w1` and the staged folder is gone. Between steps it checks
 that `.obsidian` and `themes` are still real folders and that its own hidden
 folders are still in `themes`, which also catches a `themes` folder moved or
 replaced by another real folder. Until the old folder has moved aside, a
-failure or a signal it can catch (including a failed attempt to move the old
-folder) leaves the previous theme where it was and removes only the helper's
-own staging and empty backup folders. From that move until the new pair is
+failure or a signal it can catch (including an attempt to move the old folder
+that left it in place) leaves the previous theme where it was and removes
+only the helper's own staging and empty backup folders; the helper records
+the move and, at exit, treats a run that never moved the old folder as having
+nothing to recover. From that move until the new pair is
 verified in place, a signal, a failed restore or a noticed change removes
 nothing under `themes`, and the helper reports what it kept. If only the
 staged rename fails and the old folder moves back, it then removes its own

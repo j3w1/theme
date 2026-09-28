@@ -66,6 +66,7 @@ staging=''
 backup=''
 created_themes=''
 keep=''
+aside=''
 
 # True while .obsidian and themes are real folders, not links, and this run's
 # own hidden folders are still where it made them: a themes folder that was
@@ -105,6 +106,12 @@ cleanup() {
     # Nothing under themes is removed once its folders moved: a path could now
     # lead outside the vault.
     if [ -z "$keep" ] && [ -n "$staging$backup" ] && ! confined; then keep=1; fi
+    # A stop before the old folder moved aside leaves nothing to recover: the
+    # previous theme is still in place, so only this run's own folders go.
+    if [ -n "$keep" ] && [ -z "$aside" ] && [ -n "$backup" ] && [ ! -e "$backup/j3w1" ] &&
+        [ ! -L "$backup/j3w1" ] && [ -d "$theme" ] && [ ! -L "$theme" ] && confined; then
+        keep=''
+    fi
     if [ -n "$keep" ]; then
         # The only place recovery paths are printed: a path is named only if it
         # exists now, and advice follows what is on disk. Nothing here deletes.
@@ -125,7 +132,7 @@ cleanup() {
                 say 'Before starting Obsidian, move whatever is at j3w1 to a folder outside .obsidian/themes and check it, then move the previous theme folder back to j3w1.'
             fi
         elif [ -n "$backup" ]; then
-            say 'The themes folder was moved or replaced. Find the folder that now holds the hidden .j3w1-backup- and .j3w1-install- folders and check both copies before starting Obsidian.'
+            say 'The previous theme is no longer where the helper left it; the themes folder may have been moved or replaced. Find the hidden .j3w1-backup- and .j3w1-install- folders and check both copies before starting Obsidian.'
         fi
     else
         if [ -n "$staging" ]; then remove_owned "$staging"; fi
@@ -211,6 +218,7 @@ if [ -d "$theme" ]; then
         fi
         die 'Could not move the existing theme aside completely.'
     fi
+    aside=1
     confined || die "$moved"
     if [ -e "$theme" ] || [ -L "$theme" ]; then die "$changed"; fi
     if ! mv -- "$staging" "$theme"; then
