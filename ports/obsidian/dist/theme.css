@@ -34,16 +34,16 @@
   --nav-heading-color: #e99499;
   --titlebar-text-color-focused: #e99499;
   --metadata-input-text-color: #e99499;
-  --bold-color: #ffa2a7;
+  --bold-color: #f4eeee;
   --italic-color: #ffa2a7;
-  --inline-title-color: #ffa2a7;
+  --inline-title-color: #f4eeee;
   --setting-group-heading-color: #ffa2a7;
-  --h1-color: #ffa2a7;
-  --h2-color: #ffa2a7;
-  --h3-color: #ffa2a7;
-  --h4-color: #ffa2a7;
-  --h5-color: #ffa2a7;
-  --h6-color: #ffa2a7;
+  --h1-color: #f4eeee;
+  --h2-color: #f4eeee;
+  --h3-color: #f4eeee;
+  --h4-color: #f4eeee;
+  --h5-color: #f4eeee;
+  --h6-color: #f4eeee;
   --text-muted: #bd787d;
   --titlebar-text-color: #bd787d;
   --status-bar-text-color: #bd787d;
@@ -261,12 +261,12 @@
 
 /* Reading View root uses --text-normal, also used by UI; set only note content color. */
 .theme-dark .markdown-preview-view {
-  color: #f4eeee;
+  color: #e99499;
 }
 
 /* CM6 content root separates prose from interface widgets. */
 .theme-dark .markdown-source-view.mod-cm6 .cm-content {
-  color: #f4eeee;
+  color: #e99499;
 }
 
 /* CM6 scroller contains both content and the sibling drawn-selection layer; scope editor selection above both. */

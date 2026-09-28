@@ -21295,7 +21295,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-kmyS9DnQKYEZEMVOtmHFOSt/F5MSSwyq9PlFB/G8hKg=",
+      "subjectDigest": "sha256-Tyqm4U083M3weRl/6s0BV4uc89isr4hKKFkjZ6zZWAU=",
       "evidencePath": null,
       "surfaces": {
         "interface": {
@@ -21304,7 +21304,7 @@
         },
         "markdown": {
           "state": "supported",
-          "reason": "Reading View, CM6 content and monochrome code variables; structural checks only."
+          "reason": "Rose Reading View and CM6 note text, near-white note headings/title/bold and monochrome code variables; structural checks only."
         },
         "commands": {
           "state": "supported",
@@ -21342,7 +21342,7 @@
           "path": "dist/theme.css",
           "install": "Copy beside manifest.json in <vault>/.obsidian/themes/j3w1/; restart Obsidian after a manifest update.",
           "source": "ports/obsidian/dist/theme.css",
-          "digest": "sha256-c+fcq98MglbZ8vMzLoUX1CUOd0XSWGc8phxht33Pn+Y="
+          "digest": "sha256-yrzcD3UNrfECwlqgSa6vS3GfBuCH3VsSC2pzkuUz9jk="
         }
       ],
       "rollback": "Select the previous theme or Default in Settings → Appearance → Themes; restore both previous files together to roll back a j3w1 update.",
@@ -22517,7 +22517,7 @@
           },
           "state": "unsupported",
           "surface": "unsupported-hooks",
-          "reason": "Native Markdown headings use h1–h6 color variables, owned by text.bright; no separate code syntax heading channel.",
+          "reason": "Native Markdown headings use h1–h6 color variables, owned by text.prose; no separate code syntax heading channel.",
           "source": "ports/obsidian/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -25555,16 +25555,8 @@
         {
           "role": "color.text.bright",
           "nativeKeys": [
-            "--bold-color",
             "--italic-color",
-            "--inline-title-color",
-            "--setting-group-heading-color",
-            "--h1-color",
-            "--h2-color",
-            "--h3-color",
-            "--h4-color",
-            "--h5-color",
-            "--h6-color"
+            "--setting-group-heading-color"
           ],
           "value": "#ffa2a7",
           "eligibility": {
@@ -25574,7 +25566,7 @@
           },
           "state": "mapped",
           "surface": "interface",
-          "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported.",
+          "reason": "Bright rose remains on italic note emphasis and interface setting-group headings; source-audited in Obsidian 1.13.4 and 1.13.7.",
           "source": "ports/obsidian/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -25586,7 +25578,9 @@
             "--nav-heading-color",
             "--titlebar-text-color-focused",
             "--metadata-input-text-color",
-            ".theme-dark .tooltip | color"
+            ".theme-dark .tooltip | color",
+            ".theme-dark .markdown-preview-view | color",
+            ".theme-dark .markdown-source-view.mod-cm6 .cm-content | color"
           ],
           "value": "#e99499",
           "eligibility": {
@@ -25596,7 +25590,7 @@
           },
           "state": "mapped",
           "surface": "interface",
-          "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported.",
+          "reason": "Rose for interface text and scoped Reading View/CM6 note bodies; source-audited in Obsidian 1.13.4 and 1.13.7, not verified by a recorded import.",
           "source": "ports/obsidian/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -25792,8 +25786,14 @@
         {
           "role": "color.text.prose",
           "nativeKeys": [
-            ".theme-dark .markdown-preview-view | color",
-            ".theme-dark .markdown-source-view.mod-cm6 .cm-content | color"
+            "--bold-color",
+            "--inline-title-color",
+            "--h1-color",
+            "--h2-color",
+            "--h3-color",
+            "--h4-color",
+            "--h5-color",
+            "--h6-color"
           ],
           "value": "#f4eeee",
           "eligibility": {
@@ -25803,7 +25803,7 @@
           },
           "state": "mapped",
           "surface": "markdown",
-          "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported.",
+          "reason": "Near-white is reserved for note headings (h1–h6), inline title and bold; a documented Obsidian-only semantic deviation, not a token change.",
           "source": "ports/obsidian/mapping.json",
           "spec": "spec/portability.md"
         },

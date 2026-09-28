@@ -47,6 +47,21 @@ test("specificity includes :not and variants; same-weight source order remains d
 
 for (const { version } of audit.versions) {
   const native = nativeCss(version), css = native + emitted;
+  test(`${version}: Reading View and CM6 text are rose while note headings, title and bold are near-white`, () => {
+    const root = body(), preview = element("div", ["markdown-preview-view"], root);
+    const view = element("div", ["markdown-source-view", "mod-cm6"], root);
+    const content = element("div", ["cm-content"], element("div", ["cm-scroller"], view));
+    for (const node of [preview, content]) {
+      const style = cascade(css, node);
+      assert.equal(style.value("color"), role("color.text.default"));
+      assert.equal(style.value("--bold-color"), role("color.text.prose"));
+      assert.equal(style.value("--inline-title-color"), role("color.text.prose"));
+      for (let level = 1; level <= 6; level++) assert.equal(style.value(`--h${level}-color`), role("color.text.prose"));
+      assert.equal(style.value("--italic-color"), role("color.text.bright"));
+      assert.ok(pair(style.value("color"), role("color.surface.canvas")).pass);
+      assert.ok(pair(style.value("--bold-color"), role("color.surface.canvas")).pass);
+    }
+  });
   test(`${version}: every audited compound dark root keeps its mapped values`, () => {
     const actual = audit.rootVariantFacts.map(f => `${f.selector} | ${f.property}`).sort();
     const expected = OBSIDIAN_ROOT_VARIANTS.flatMap(({ selector, keys }) => keys.map(key => `${[...selector.matchAll(/\.[\w-]+/g)].map(m => m[0]).toSorted().join("")} | ${key}`)).sort();
@@ -222,7 +237,7 @@ for (const { version } of audit.versions) {
     }
   });
   test(`${version}: UI selection and Search hover/mobile-tap contrast limits remain explicit`, async () => {
-    const readme = await readText("ports/obsidian/README.md");
+    const implementation = await readText("ports/obsidian/IMPLEMENTATION.md");
     for (const state of ["hover", "mobile-tap"]) {
       const node = element("div", ["search-result-file-match", ...(state === "mobile-tap" ? [state] : [])], body(), {}, state === "hover" ? [state] : []);
       const result = cascade(css, node), contrast = pair(result.value("color"), result.value("background-color"));
@@ -231,7 +246,12 @@ for (const { version } of audit.versions) {
     }
     for (const fg of ["color.text.default", "color.text.muted", "color.text.subtle"]) assert.equal(pair(role(fg), role("color.interaction.text-selection.bg")).pass, false);
     assert.ok(pair(role("color.interaction.text-selection.text"), role("color.interaction.text-selection.bg")).pass);
-    for (const text of ["3.96:1", "below the 4.5:1", "muted/faint", "`:hover`", "`.mobile-tap`", "not a contrast waiver"]) assert.ok(readme.includes(text), text);
+    const preview = element("div", ["markdown-preview-view"], body());
+    assert.equal(cascade(css, preview).value("color"), role("color.text.default"));
+    assert.equal(pair(cascade(css, preview).value("color"), cascade(css, preview).value("--text-selection")).pass, false, "native Reading View selection needs host-selected foreground handling");
+    const cm = element("div", ["cm-content"], element("div", ["cm-scroller"], element("div", ["markdown-source-view", "mod-cm6"], body())));
+    assert.ok(pair(cascade(css, cm).value("color"), cascade(css, cm).value("--text-selection")).pass, "CM6 scoped fill contrasts with ordinary rose text; selected syntax behavior remains host-owned");
+    for (const text of ["3.96:1", "below the 4.5:1", "muted/faint", "`:hover`", "`.mobile-tap`", "not a contrast waiver"]) assert.ok(implementation.includes(text), text);
   });
   test(`${version}: selected tree and main/sidebar tab borders keep label geometry constant`, () => {
     for (const mobile of [false, true]) for (const dir of ["ltr", "rtl"]) {

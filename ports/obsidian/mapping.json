@@ -56,19 +56,13 @@
       "--nav-heading-color",
       "--titlebar-text-color-focused",
       "--metadata-input-text-color",
-      ".theme-dark .tooltip | color"
+      ".theme-dark .tooltip | color",
+      ".theme-dark .markdown-preview-view | color",
+      ".theme-dark .markdown-source-view.mod-cm6 .cm-content | color"
     ],
     "color.text.bright": [
-      "--bold-color",
       "--italic-color",
-      "--inline-title-color",
-      "--setting-group-heading-color",
-      "--h1-color",
-      "--h2-color",
-      "--h3-color",
-      "--h4-color",
-      "--h5-color",
-      "--h6-color"
+      "--setting-group-heading-color"
     ],
     "color.text.muted": [
       "--text-muted",
@@ -340,8 +334,14 @@
       "--touch-radius-xl"
     ],
     "color.text.prose": [
-      ".theme-dark .markdown-preview-view | color",
-      ".theme-dark .markdown-source-view.mod-cm6 .cm-content | color"
+      "--bold-color",
+      "--inline-title-color",
+      "--h1-color",
+      "--h2-color",
+      "--h3-color",
+      "--h4-color",
+      "--h5-color",
+      "--h6-color"
     ],
     "color.code.selection-bg": [
       ".theme-dark .markdown-source-view.mod-cm6 .cm-scroller | --text-selection"
@@ -575,7 +575,7 @@
     "color.code.whitespace": "Native whitespace rendering is retained; no whitespace-marker selector override is installed.",
     "color.code.syntax.constant": "Native --code-tag/--code-value conflate constants with tags/values; tag and number own those keys.",
     "color.code.syntax.type": "Native --code-function conflates types/classes with functions; function owns that key.",
-    "color.code.syntax.heading": "Native Markdown headings use h1–h6 color variables, owned by text.bright; no separate code syntax heading channel.",
+    "color.code.syntax.heading": "Native Markdown headings use h1–h6 color variables, owned by text.prose; no separate code syntax heading channel.",
     "color.code.syntax.attribute": "Native --code-property also styles attributes; property owns that key without claiming distinct attribute coverage.",
     "color.code.syntax.invalid": "Native invalid code uses --text-error; no separate syntax-invalid color plus wavy-underline contract is installed.",
     "color.code.syntax.deprecated": "No independent deprecated-code token/strike-through contract is exposed by the mapped native syntax variables.",

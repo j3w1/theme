@@ -38,6 +38,9 @@ export default function copyExports() {
           downloads.add(target);
           await writeFileEnsured(path.join(out, target), await fs.readFile(path.join(repoRoot, file.source)));
         }
+        const installer = "ports/obsidian/install.ps1";
+        if (downloads.has(installer)) throw new Error(`A port file would overwrite ${installer}`);
+        await writeFileEnsured(path.join(out, installer), await fs.readFile(path.join(repoRoot, installer)));
         await fs.writeFile(path.join(out, ".nojekyll"), "");
       },
     },

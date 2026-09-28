@@ -2,6 +2,7 @@
    same components, same anchors, same token paths, same export bytes. */
 
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 import { listFiles, readJson, readText } from "../../scripts/lib/fs.mjs";
 import { listComponentFiles, componentIdOf } from "../../scripts/lib/spec.mjs";
@@ -56,6 +57,13 @@ test("every port file is served byte-identical under /theme/ports/ and linked fr
     assert.equal(await readText(`dist/${target}`), await readText(source), target);
     assert.ok(page.includes(`href="/theme/${target}" download`), `Ports page links ${target}`);
   }
+});
+
+test("reviewed Obsidian installer is served byte-identically but is not a native theme artifact", async () => {
+  const source = "ports/obsidian/install.ps1";
+  assert.deepEqual(await readFile(`dist/${source}`), await readFile(source));
+  const port = await readJson("ports/obsidian/port.json");
+  assert.deepEqual(port.files.map(file => file.path), ["dist/manifest.json", "dist/theme.css"]);
 });
 
 test("ids are unique, every contents link has a target, and nothing normative hides inside details", () => {
