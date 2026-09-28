@@ -106,19 +106,27 @@ cleanup() {
     # lead outside the vault.
     if [ -z "$keep" ] && [ -n "$staging$backup" ] && ! confined; then keep=1; fi
     if [ -n "$keep" ]; then
-        # Advice follows what is actually on disk; a path is named only if it exists.
+        # The only place recovery paths are printed: a path is named only if it
+        # exists now, and advice follows what is on disk. Nothing here deletes.
         say 'Recovery copies were kept; nothing was deleted.'
-        if [ -n "$backup" ] && [ -e "$backup/j3w1" ]; then
-            say "previous theme: $backup/j3w1"
+        previous=''
+        if [ -n "$backup" ] && [ -e "$backup/j3w1" ]; then previous="$backup/j3w1"; fi
+        fresh=''
+        if [ -n "$staging" ] && [ -e "$staging" ]; then fresh=$staging; fi
+        if [ -n "$previous$fresh" ]; then
+            say 'Keep recovery copies at these paths until you have checked them:'
+            if [ -n "$previous" ]; then say "previous theme: $previous"; fi
+            if [ -n "$fresh" ]; then say "new pair: $fresh"; fi
+        fi
+        if [ -n "$previous" ]; then
             if [ ! -L "$theme" ] && [ -f "$theme/manifest.json" ] && [ -f "$theme/theme.css" ]; then
                 say 'j3w1 holds a complete pair; delete the previous copy once Obsidian shows the theme.'
             else
-                say 'Before starting Obsidian, delete what is left of j3w1, then move the previous theme folder back to j3w1.'
+                say 'Before starting Obsidian, move whatever is at j3w1 to a folder outside .obsidian/themes and check it, then move the previous theme folder back to j3w1.'
             fi
         elif [ -n "$backup" ]; then
             say 'The themes folder was moved or replaced. Find the folder that now holds the hidden .j3w1-backup- and .j3w1-install- folders and check both copies before starting Obsidian.'
         fi
-        if [ -n "$staging" ] && [ -e "$staging" ]; then say "new pair: $staging"; fi
     else
         if [ -n "$staging" ]; then remove_owned "$staging"; fi
         if [ -n "$backup" ]; then remove_owned "$backup"; fi
@@ -201,20 +209,20 @@ if [ -d "$theme" ]; then
             keep=''
             die 'Could not move the existing theme aside; nothing was replaced.'
         fi
-        die "Could not move the existing theme aside. Keep recovery copies at $backup."
+        die 'Could not move the existing theme aside completely.'
     fi
     confined || die "$moved"
-    if [ -e "$theme" ] || [ -L "$theme" ]; then die "$changed Keep recovery copies at $backup."; fi
+    if [ -e "$theme" ] || [ -L "$theme" ]; then die "$changed"; fi
     if ! mv -- "$staging" "$theme"; then
         if [ ! -e "$theme" ] && [ ! -L "$theme" ] && mv -- "$backup/j3w1" "$theme"; then
             keep=''
             die 'Replacement failed; previous theme pair restored.'
         fi
-        die "Replacement failed and restoration failed. Keep recovery copies at $backup."
+        die 'Replacement failed and restoration failed.'
     fi
     if ! installed; then
         if [ -e "$nested" ]; then staging=$nested; fi
-        die "$changed Keep recovery copies at $backup."
+        die "$changed"
     fi
     staging=''
     keep=''

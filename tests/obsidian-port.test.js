@@ -216,6 +216,7 @@ test("Android shares the port: one README entry, an operational guide and the sa
   for (const file of ["manifest.json", "theme.css"]) assert.ok(android.includes(`https://j3w1.github.io/theme/ports/obsidian/${file}`), file);
   // Recovery after an abrupt stop, and the audited versions, are stated rather than implied.
   for (const line of [".j3w1-backup-…", ".j3w1-install-…", "as long as no other app changes", "later versions are not"]) assert.ok(android.includes(line), `ANDROID.md: ${line}`);
+  assert.doesNotMatch(android, /delete what is left/, "recovery never tells the user to delete unknown content");
   assert.match(readme, /source-audited on 1\.13\.4\s+and\s+1\.13\.7\s+only;\s+later\s+versions\s+are\s+not\s+audited\s+or\s+imported/);
   for (const [name, text] of [["README.md", readme], ["ANDROID.md", android]]) {
     assert.doesNotMatch(text, /\|\s*(?:ba|da)?sh\b/, `${name} never pipes a download into a shell`);

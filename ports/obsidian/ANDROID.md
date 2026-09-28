@@ -65,9 +65,9 @@ Do not pipe a download straight into a shell. The helper works in this order:
    during the swap, or if you stop it with Ctrl+C, it deletes nothing and
    prints what it kept: the previous theme's path while that path still
    exists, and whether `j3w1` already holds a complete new pair. If it does,
-   keep it and delete the hidden copies later. Otherwise delete what is left
-   of `j3w1` and move the previous `j3w1` folder back from `.j3w1-backup-…`
-   before you start Obsidian.
+   keep it and delete the hidden copies later. Otherwise move whatever is at
+   `j3w1` to a folder outside `.obsidian/themes` and check it, then move the
+   previous `j3w1` folder back from `.j3w1-backup-…` before you start Obsidian.
 7. After success it removes its temporary and hidden folders and prints the
    installed version. If it cannot remove one, it says which.
 
@@ -75,8 +75,9 @@ An abrupt stop the helper cannot notice, such as force-closing Termux, a
 restart or a flat battery, prints nothing. Before starting Obsidian after one,
 look in `.obsidian/themes` for `.j3w1-backup-…` and `.j3w1-install-…`
 folders. If `j3w1` holds both files, keep it and delete the hidden folders.
-If it is missing or incomplete, delete what is left of it, then move the
-`j3w1` folder from inside `.j3w1-backup-…` back into `.obsidian/themes`.
+If it is missing or incomplete, move whatever is at `j3w1` to a folder outside
+`.obsidian/themes` and check it, then move the `j3w1` folder from inside
+`.j3w1-backup-…` back into `.obsidian/themes`.
 
 It writes only inside `.obsidian/themes`, as long as no other app changes the
 vault's folders while it runs. Between steps it checks that its own folders

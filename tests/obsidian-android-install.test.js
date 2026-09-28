@@ -62,6 +62,10 @@ case ",$STUB_MV_FAIL," in *,replace,*) case $dst in */.j3w1-backup-*/j3w1)
   themes=\${src%/j3w1}
   "$REAL_MV" -- "$src" "$dst" && "$REAL_MV" -- "$themes" "$themes.moved" && exec mkdir -- "$themes" ;; esac ;; esac
 case ",$STUB_MV_FAIL," in *,term-after,*) case \${src##*/} in .j3w1-install-*) "$REAL_MV" -- "$src" "$dst" && kill -s TERM "$PPID"; exit 0 ;; esac ;; esac
+case ",$STUB_MV_FAIL," in *,late-swap,*) case \${src##*/} in .j3w1-install-*)
+  themes=\${src%/*}
+  "$REAL_MV" -- "$themes" "$themes.moved" && mkdir -- "$themes"; exit 1 ;; esac ;; esac
+case ",$STUB_MV_FAIL," in *,compete,*) case \${src##*/} in .j3w1-install-*) mkdir -- "$dst" && : >"$dst/keep.txt" ;; esac ;; esac
 case ",$STUB_MV_FAIL," in *,recreate,*) case \${src##*/} in .j3w1-install-*) mkdir -- "$dst" ;; esac ;; esac
 case ",$STUB_MV_FAIL," in *,staging,*) case \${src##*/} in .j3w1-install-*) exit 1 ;; esac ;; esac
 case ",$STUB_MV_FAIL," in *,term,*) case \${src##*/} in .j3w1-install-*) kill -s TERM "$PPID"; exit 1 ;; esac ;; esac
@@ -264,7 +268,8 @@ for (const shell of SHELLS) {
       const v = await setup(t, shell, { mvFail: "staging,restore" });
       const result = v.run();
       assert.notEqual(result.status, 0);
-      assert.match(result.stderr, /Replacement failed and restoration failed\. Keep recovery copies at /);
+      assert.match(result.stderr, /Replacement failed and restoration failed\./);
+      assert.match(result.stderr, /Keep recovery copies at these paths until you have checked them:/);
       const previous = result.stderr.match(/^j3w1: previous theme: (.*)$/m)?.[1], next = result.stderr.match(/^j3w1: new pair: (.*)$/m)?.[1];
       assert.ok(previous && next, result.stderr);
       assert.deepEqual(await pair(previous), OLD);
@@ -280,7 +285,8 @@ for (const shell of SHELLS) {
       const result = v.run();
       assert.notEqual(result.status, 0, result.stdout);
       assert.doesNotMatch(result.stdout, /Installed/);
-      assert.match(result.stderr, /The theme folder changed during replacement; nothing was deleted\. Keep recovery copies at /);
+      assert.match(result.stderr, /The theme folder changed during replacement; nothing was deleted\./);
+      assert.match(result.stderr, /Keep recovery copies at these paths until you have checked them:/);
       const { previous, next } = recovery(result.stderr);
       assert.ok(previous && next, result.stderr);
       assert.deepEqual(await pair(previous), OLD, "the previous pair survives");
@@ -297,7 +303,7 @@ for (const shell of SHELLS) {
       const back = await setup(t, shell, { mvFail: "reappear" });
       const third = back.run();
       assert.notEqual(third.status, 0);
-      assert.match(third.stderr, /The theme folder changed during replacement; nothing was deleted\. Keep recovery copies at /);
+      assert.match(third.stderr, /The theme folder changed during replacement; nothing was deleted\./);
       assert.deepEqual(await pair(recovery(third.stderr).previous), OLD);
       assert.deepEqual(await pair(recovery(third.stderr).next), DIST);
     });
@@ -331,6 +337,31 @@ for (const shell of SHELLS) {
       assert.deepEqual(await fs.readdir(v.themes), [], "the replacement folder is left untouched");
     });
 
+    await t.test("recovery never names a path that is gone and never advises deleting unknown content", async (t) => {
+      // themes is moved and replaced while the staged folder is being renamed.
+      const late = await setup(t, shell, { mvFail: "late-swap" });
+      const result = late.run();
+      assert.notEqual(result.status, 0);
+      assert.match(result.stderr, /Replacement failed and restoration failed\./);
+      assert.match(result.stderr, /The themes folder was moved or replaced\. Find the folder that now holds/);
+      for (const line of result.stderr.split("\n")) {
+        const named = line.match(/^j3w1: (?:previous theme|new pair): (.*)$/)?.[1];
+        if (named) assert.ok(await fs.stat(named).catch(() => null), `named path exists: ${named}`);
+      }
+      assert.doesNotMatch(result.stderr, /Keep recovery copies at /);
+      const moved = `${late.themes}.moved`, names = await fs.readdir(moved);
+      assert.deepEqual(await pair(path.join(moved, names.find((name) => name.startsWith(".j3w1-backup-")), "j3w1")), OLD);
+      assert.deepEqual(await pair(path.join(moved, names.find((name) => name.startsWith(".j3w1-install-")))), DIST);
+      // Another app's file appears in j3w1 during the swap: it is kept, and the advice is to move it aside.
+      const other = await setup(t, shell, { mvFail: "compete" });
+      const second = other.run();
+      assert.notEqual(second.status, 0);
+      assert.equal(await fs.readFile(path.join(other.theme, "keep.txt"), "utf8"), "");
+      assert.deepEqual(await pair(recovery(second.stderr).previous), OLD);
+      assert.match(second.stderr, /move whatever is at j3w1 to a folder outside \.obsidian\/themes and check it/);
+      assert.doesNotMatch(second.stderr, /\bdelete what\b/);
+    });
+
     await t.test("a backup that cannot be removed is reported after a successful install", async (t) => {
       const v = await setup(t, shell, { rmFail: true });
       const result = v.run();
@@ -347,7 +378,7 @@ for (const shell of SHELLS) {
       const previous = result.stderr.match(/^j3w1: previous theme: (.*)$/m)?.[1];
       assert.ok(previous, result.stderr);
       assert.deepEqual(await pair(previous), OLD);
-      assert.match(result.stderr, /delete what is left of j3w1, then move the previous theme folder back to j3w1/);
+      assert.match(result.stderr, /move whatever is at j3w1 to a folder outside \.obsidian\/themes and check it, then move the previous theme folder back to j3w1/);
       assert.deepEqual(await fs.readdir(v.tmp), []);
       // Stopped just after the new pair landed: j3w1 is complete, so the advice says keep it.
       const after = await setup(t, shell, { mvFail: "term-after" });
