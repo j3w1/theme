@@ -221,19 +221,23 @@ the whole `j3w1` folder aside and renames the staged folder into place, so it
 refuses a `j3w1` folder that holds anything but the pair, or holds only one
 of the two files, or is a link. `mv` into an existing folder nests instead of
 replacing, so the Android helper claims success only when the pair is
-directly in `j3w1` and the staged folder is gone. It rechecks that `.obsidian`
-and `themes` are still real folders before each change. It keeps both hidden
-folders, and removes nothing under `themes`, when a swap fails, is stopped by
-a signal it can catch, or finds a folder changed. Shell code cannot confine
-writes against an app that changes the vault concurrently, or run cleanup
-after an uncatchable stop; ANDROID.md states both limits and the manual
-recovery.
+directly in `j3w1` and the staged folder is gone. Between steps it checks
+that `.obsidian` and `themes` are still real folders and that its own hidden
+folders are still in `themes`, which also catches a `themes` folder moved or
+replaced by another real folder. It deletes nothing under `themes` when a
+swap fails, is stopped by a signal it can catch, or notices a folder changed.
+Its recovery advice names only paths that exist and depends on whether `j3w1`
+already holds a complete pair. Shell code cannot confine writes against an
+app that changes the vault at the same moment, or run cleanup after an
+uncatchable stop; ANDROID.md states both limits and the manual recovery.
 
 `tests/obsidian-android-install.test.js` runs the real Android script against
 scratch vaults under `sh` and, when installed, dash and busybox, with stub
 `curl`, `mv` and `rm` and a PATH that holds only the declared tools. The stubs
-also act as a concurrent app: they recreate `j3w1` or turn `themes` into a
-link mid-swap. It proves the shell contract, not an Android import. `tests/obsidian-port.test.js` holds the
+also act as a concurrent app: they recreate `j3w1`, move or replace `themes`
+or turn it into a link mid-swap, and signal the helper before and after the
+new pair lands. It proves the shell contract, not an Android import.
+`tests/obsidian-port.test.js` holds the
 PowerShell text contract; no PowerShell run of `install.ps1` is recorded.
 
 ## Verification before claiming a real import

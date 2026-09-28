@@ -194,7 +194,8 @@ test("the 1.13 hook audit, selector ledger and dark-only hazard contracts stay c
   const readme = await readText("ports/obsidian/README.md");
   assert.match(readme, /experimental/i);
   assert.match(readme, /user-reported/i);
-  assert.match(readme, /1\.13\.4\+/);
+  assert.match(readme, /minimum app version \*\*1\.13\.4\*\*/);
+  assert.doesNotMatch(readme, /1\.13\.4\+/, "no open-ended version claim beyond the audited targets");
   assert.match(readme, /install\.ps1/);
   assert.match(readme, /IMPLEMENTATION\.md/);
   for (const file of ["manifest.json", "theme.css"]) assert.ok(readme.includes(`https://j3w1.github.io/theme/ports/obsidian/${file}`));
@@ -215,7 +216,7 @@ test("Android shares the port: one README entry, an operational guide and the sa
   for (const file of ["manifest.json", "theme.css"]) assert.ok(android.includes(`https://j3w1.github.io/theme/ports/obsidian/${file}`), file);
   // Recovery after an abrupt stop, and the audited versions, are stated rather than implied.
   for (const line of [".j3w1-backup-…", ".j3w1-install-…", "as long as no other app changes", "later versions are not"]) assert.ok(android.includes(line), `ANDROID.md: ${line}`);
-  assert.match(readme, /source-audited on 1\.13\.4\s+and 1\.13\.7 only; later versions are not audited or imported/);
+  assert.match(readme, /source-audited on 1\.13\.4\s+and\s+1\.13\.7\s+only;\s+later\s+versions\s+are\s+not\s+audited\s+or\s+imported/);
   for (const [name, text] of [["README.md", readme], ["ANDROID.md", android]]) {
     assert.doesNotMatch(text, /\|\s*(?:ba|da)?sh\b/, `${name} never pipes a download into a shell`);
     assert.doesNotMatch(text, /\/main\//, `${name} links no branch`);

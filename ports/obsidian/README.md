@@ -1,13 +1,12 @@
 # j3w1 for Obsidian
 
-Experimental, dark-only theme for Obsidian **1.13.4+**: the manifest's minimum
-app version is 1.13.4, and the hooks it relies on are source-audited on 1.13.4
-and 1.13.7 only; later versions are not audited or imported. Windows and
-Android use the same two files,
-`manifest.json` and `theme.css`. A Windows 1.13.7 import and visible rendering
-were **user-reported**; no Android import is recorded. Repository real-import
-verification, including manual keyboard, zoom and screen-reader checks, is not
-recorded. The port is not `verified`.
+Experimental, dark-only theme for Obsidian, minimum app version **1.13.4**.
+The hooks it relies on are source-audited on 1.13.4 and 1.13.7 only; later
+versions are not audited or imported. Windows and Android use the same two
+files, `manifest.json` and `theme.css`. A Windows 1.13.7 import and visible
+rendering were **user-reported**; no Android import is recorded. Repository
+real-import verification, including manual keyboard, zoom and screen-reader
+checks, is not recorded. The port is not `verified`.
 
 ## Install on Windows (recommended helper)
 

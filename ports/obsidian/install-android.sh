@@ -2,9 +2,10 @@
 # Reviewed j3w1 installer for an Obsidian vault on Android device storage,
 # run from Termux. It replaces only <vault>/.obsidian/themes/j3w1 and never
 # touches notes, plugins, other themes or other vault configuration, provided
-# nothing else changes the vault's folders while it runs: it rechecks them
-# before each change and stops if they moved. Read ANDROID.md first and keep
-# Obsidian (and any app that syncs the vault) closed until it finishes.
+# nothing else changes the vault's folders while it runs. It checks them
+# between steps and stops if it notices they moved; shell code cannot rule out
+# every concurrent change. Read ANDROID.md first and keep Obsidian (and any app
+# that syncs the vault) closed until it finishes.
 #
 #   sh install-android.sh --vault "$HOME/storage/shared/Documents/MyVault"
 
@@ -66,9 +67,16 @@ backup=''
 created_themes=''
 keep=''
 
-# True while .obsidian and its themes folder are still real folders, not links.
+# True while .obsidian and themes are real folders, not links, and this run's
+# own hidden folders are still where it made them: a themes folder that was
+# moved or replaced, even by another real folder, fails this.
 confined() {
-    [ ! -L "$config" ] && [ -d "$config" ] && [ ! -L "$themes" ] && [ -d "$themes" ]
+    [ ! -L "$config" ] && [ -d "$config" ] && [ ! -L "$themes" ] && [ -d "$themes" ] &&
+        { [ -z "$staging" ] || [ -d "$staging" ]; } && { [ -z "$backup" ] || [ -d "$backup" ]; }
+}
+
+say() {
+    printf 'j3w1: %s\n' "$*" >&2
 }
 
 # Removes only folders this run created with mktemp inside the themes folder.
@@ -76,7 +84,7 @@ remove_owned() {
     case $1 in
         "$themes"/.j3w1-install-* | "$themes"/.j3w1-backup-*)
             if [ -e "$1" ] && ! rm -rf -- "$1"; then
-                printf 'j3w1: could not remove %s; delete it after closing Obsidian.\n' "$1" >&2
+                say "could not remove $1; delete it after closing Obsidian."
             fi
             ;;
     esac
@@ -98,9 +106,19 @@ cleanup() {
     # lead outside the vault.
     if [ -z "$keep" ] && [ -n "$staging$backup" ] && ! confined; then keep=1; fi
     if [ -n "$keep" ]; then
-        printf 'j3w1: %s\n' 'Recovery copies were kept; restore the previous pair to j3w1 before starting Obsidian.' >&2
-        if [ -n "$backup" ] && [ -e "$backup/j3w1" ]; then printf 'j3w1: previous theme: %s\n' "$backup/j3w1" >&2; fi
-        if [ -n "$staging" ] && [ -e "$staging" ]; then printf 'j3w1: new pair: %s\n' "$staging" >&2; fi
+        # Advice follows what is actually on disk; a path is named only if it exists.
+        say 'Recovery copies were kept; nothing was deleted.'
+        if [ -n "$backup" ] && [ -e "$backup/j3w1" ]; then
+            say "previous theme: $backup/j3w1"
+            if [ ! -L "$theme" ] && [ -f "$theme/manifest.json" ] && [ -f "$theme/theme.css" ]; then
+                say 'j3w1 holds a complete pair; delete the previous copy once Obsidian shows the theme.'
+            else
+                say 'Before starting Obsidian, delete what is left of j3w1, then move the previous theme folder back to j3w1.'
+            fi
+        elif [ -n "$backup" ]; then
+            say 'The themes folder was moved or replaced. Find the folder that now holds the hidden .j3w1-backup- and .j3w1-install- folders and check both copies before starting Obsidian.'
+        fi
+        if [ -n "$staging" ] && [ -e "$staging" ]; then say "new pair: $staging"; fi
     else
         if [ -n "$staging" ]; then remove_owned "$staging"; fi
         if [ -n "$backup" ]; then remove_owned "$backup"; fi
@@ -157,7 +175,7 @@ elif [ -e "$theme" ]; then
     die "Theme path is not a directory: $theme"
 fi
 
-moved='The vault folders changed during installation; stopping.'
+moved='The vault folders changed during installation; stopping. Nothing was deleted.'
 if [ ! -d "$themes" ]; then
     mkdir -- "$themes" || die "Could not create $themes"
     created_themes=1
@@ -185,7 +203,7 @@ if [ -d "$theme" ]; then
         fi
         die "Could not move the existing theme aside. Keep recovery copies at $backup."
     fi
-    confined || die "$moved Keep recovery copies at $backup."
+    confined || die "$moved"
     if [ -e "$theme" ] || [ -L "$theme" ]; then die "$changed Keep recovery copies at $backup."; fi
     if ! mv -- "$staging" "$theme"; then
         if [ ! -e "$theme" ] && [ ! -L "$theme" ] && mv -- "$backup/j3w1" "$theme"; then
