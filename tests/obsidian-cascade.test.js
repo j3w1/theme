@@ -147,7 +147,7 @@ for (const { version } of audit.versions) {
     const broken = cascade(native + removeRule(emitted, ".theme-dark.is-mobile"), element("input", [], body(true), { type: "text" }));
     assert.equal(pair(broken.value("color"), broken.value("background-color")).pass, false);
   });
-  test(`${version}: transparent phone, drawer, metadata and Bases fields keep readable placeholders`, () => {
+  test(`${version}: native transparent phone, drawer, metadata and Bases fields receive the approved input/placeholder pair`, () => {
     const phone = body(true); phone.classes.add("is-phone");
     const raisedSearch = element("div", ["search-input-container", "mod-raised"], phone);
     const drawer = element("div", ["workspace-drawer"], body(true));
@@ -160,19 +160,22 @@ for (const { version } of audit.versions) {
     const basesRow = element("div", ["bases-search-row"], leaf);
     const basesSearch = element("div", ["search-input-container"], basesRow);
     for (const [selector, container, underlay, surface] of [
-      [".theme-dark.is-phone .search-input-container.mod-raised", raisedSearch, raisedSearch, "color.surface.raised"],
-      [".theme-dark .workspace-drawer .search-input-container", drawerSearch, drawer, "color.surface.default"],
-      [".theme-dark .metadata-property-value .multi-select-container", multiSelect, metadata, "color.surface.default"],
-      [".theme-dark .bases-search-row", basesRow, leaf, "color.surface.default"]
+      [".theme-dark.is-phone .search-input-container.mod-raised input", raisedSearch, raisedSearch, "color.surface.raised"],
+      [".theme-dark .workspace-drawer .search-input-container input", drawerSearch, drawer, "color.surface.default"],
+      [".theme-dark .metadata-property-value .multi-select-container input", multiSelect, metadata, "color.surface.default"],
+      [".theme-dark .bases-search-row .search-input-container input", basesRow, leaf, "color.surface.default"]
     ]) {
       const input = element("input", [], container === basesRow ? basesSearch : container, { type: "text" });
-      const field = cascade(css, input), bg = cascade(css, underlay).value("background-color");
-      assert.equal(bg, role(surface), selector);
-      assert.equal(field.value("background-color"), "transparent", selector);
-      assert.equal(field.value("--input-placeholder-color"), role("color.text.muted"), selector);
-      assert.ok(pair(field.value("--input-placeholder-color"), bg).pass, selector);
+      const underlayColor = cascade(css, underlay).value("background-color");
+      assert.equal(underlayColor, role(surface), selector);
+      const field = cascade(css, input);
+      assert.equal(field.value("background-color"), role("color.surface.input"), selector);
+      assert.equal(field.value("--input-placeholder-color"), role("color.text.placeholder"), selector);
+      assert.ok(pair(field.value("--input-placeholder-color"), field.value("background-color")).pass, selector);
       const broken = cascade(native + removeRule(emitted, selector), input);
-      assert.equal(pair(broken.value("--input-placeholder-color"), bg).pass, false, `${selector} regression`);
+      assert.equal(broken.value("background-color"), "transparent", `${selector} native field`);
+      assert.equal(broken.value("--input-placeholder-color"), role("color.text.placeholder"));
+      assert.equal(pair(broken.value("--input-placeholder-color"), underlayColor).pass, false, `${selector} regression`);
     }
     assert.equal(audit.transparentFieldFacts.length, 12);
   });

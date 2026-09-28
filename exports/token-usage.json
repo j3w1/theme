@@ -57542,7 +57542,7 @@
               "source": {
                 "file": "ports/obsidian/mapping.json",
                 "pointer": "/mappings/color.surface.backdrop/0",
-                "line": 47
+                "line": 51
               }
             }
           ],
@@ -60437,7 +60437,7 @@
               "source": {
                 "file": "ports/obsidian/mapping.json",
                 "pointer": "/mappings/color.surface.chrome/5",
-                "line": 40
+                "line": 44
               }
             },
             {
@@ -60452,7 +60452,7 @@
               "source": {
                 "file": "ports/obsidian/mapping.json",
                 "pointer": "/mappings/color.surface.chrome/1",
-                "line": 36
+                "line": 40
               }
             },
             {
@@ -60467,7 +60467,7 @@
               "source": {
                 "file": "ports/obsidian/mapping.json",
                 "pointer": "/mappings/color.surface.chrome/0",
-                "line": 35
+                "line": 39
               }
             },
             {
@@ -60482,7 +60482,7 @@
               "source": {
                 "file": "ports/obsidian/mapping.json",
                 "pointer": "/mappings/color.surface.chrome/4",
-                "line": 39
+                "line": 43
               }
             },
             {
@@ -60497,7 +60497,7 @@
               "source": {
                 "file": "ports/obsidian/mapping.json",
                 "pointer": "/mappings/color.surface.chrome/3",
-                "line": 38
+                "line": 42
               }
             },
             {
@@ -60512,7 +60512,7 @@
               "source": {
                 "file": "ports/obsidian/mapping.json",
                 "pointer": "/mappings/color.surface.chrome/2",
-                "line": 37
+                "line": 41
               }
             },
             {
@@ -60925,7 +60925,7 @@
               "source": {
                 "file": "ports/obsidian/mapping.json",
                 "pointer": "/mappings/color.surface.chrome-alt/1",
-                "line": 44
+                "line": 48
               }
             },
             {
@@ -60940,7 +60940,7 @@
               "source": {
                 "file": "ports/obsidian/mapping.json",
                 "pointer": "/mappings/color.surface.chrome-alt/0",
-                "line": 43
+                "line": 47
               }
             },
             {
@@ -70082,6 +70082,36 @@
               "state": null,
               "variant": null,
               "surface": null,
+              "nativeKey": ".theme-dark .bases-search-row .search-input-container input | background-color",
+              "port": "obsidian",
+              "source": {
+                "file": "ports/obsidian/mapping.json",
+                "pointer": "/mappings/color.surface.input/8",
+                "line": 36
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": ".theme-dark .metadata-property-value .multi-select-container input | background-color",
+              "port": "obsidian",
+              "source": {
+                "file": "ports/obsidian/mapping.json",
+                "pointer": "/mappings/color.surface.input/7",
+                "line": 35
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
               "nativeKey": ".theme-dark .prompt input.prompt-input | background-color",
               "port": "obsidian",
               "source": {
@@ -70103,6 +70133,36 @@
                 "file": "ports/obsidian/mapping.json",
                 "pointer": "/mappings/color.surface.input/4",
                 "line": 32
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": ".theme-dark .workspace-drawer .search-input-container input | background-color",
+              "port": "obsidian",
+              "source": {
+                "file": "ports/obsidian/mapping.json",
+                "pointer": "/mappings/color.surface.input/6",
+                "line": 34
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": ".theme-dark.is-phone .search-input-container.mod-raised input | background-color",
+              "port": "obsidian",
+              "source": {
+                "file": "ports/obsidian/mapping.json",
+                "pointer": "/mappings/color.surface.input/5",
+                "line": 33
               }
             },
             {
@@ -80937,7 +80997,7 @@
               "source": {
                 "file": "ports/obsidian/mapping.json",
                 "pointer": "/mappings/color.text.bright/0",
-                "line": 58
+                "line": 62
               }
             },
             {
@@ -80952,7 +81012,7 @@
               "source": {
                 "file": "ports/obsidian/mapping.json",
                 "pointer": "/mappings/color.text.bright/4",
-                "line": 62
+                "line": 66
               }
             },
             {
@@ -80967,7 +81027,7 @@
               "source": {
                 "file": "ports/obsidian/mapping.json",
                 "pointer": "/mappings/color.text.bright/5",
-                "line": 63
+                "line": 67
               }
             },
             {
@@ -80982,7 +81042,7 @@
               "source": {
                 "file": "ports/obsidian/mapping.json",
                 "pointer": "/mappings/color.text.bright/6",
-                "line": 64
+                "line": 68
               }
             },
             {
@@ -80997,7 +81057,7 @@
               "source": {
                 "file": "ports/obsidian/mapping.json",
                 "pointer": "/mappings/color.text.bright/7",
-                "line": 65
+                "line": 69
               }
             },
             {
@@ -81012,7 +81072,7 @@
               "source": {
                 "file": "ports/obsidian/mapping.json",
                 "pointer": "/mappings/color.text.bright/8",
-                "line": 66
+                "line": 70
               }
             },
             {
@@ -81027,7 +81087,7 @@
               "source": {
                 "file": "ports/obsidian/mapping.json",
                 "pointer": "/mappings/color.text.bright/9",
-                "line": 67
+                "line": 71
               }
             },
             {
@@ -81042,7 +81102,7 @@
               "source": {
                 "file": "ports/obsidian/mapping.json",
                 "pointer": "/mappings/color.text.bright/2",
-                "line": 60
+                "line": 64
               }
             },
             {
@@ -81057,7 +81117,7 @@
               "source": {
                 "file": "ports/obsidian/mapping.json",
                 "pointer": "/mappings/color.text.bright/1",
-                "line": 59
+                "line": 63
               }
             },
             {
@@ -81072,7 +81132,7 @@
               "source": {
                 "file": "ports/obsidian/mapping.json",
                 "pointer": "/mappings/color.text.bright/3",
-                "line": 61
+                "line": 65
               }
             },
             {
@@ -83990,7 +84050,7 @@
               "source": {
                 "file": "ports/obsidian/mapping.json",
                 "pointer": "/mappings/color.text.default/4",
-                "line": 54
+                "line": 58
               }
             },
             {
@@ -84005,7 +84065,7 @@
               "source": {
                 "file": "ports/obsidian/mapping.json",
                 "pointer": "/mappings/color.text.default/2",
-                "line": 52
+                "line": 56
               }
             },
             {
@@ -84020,7 +84080,7 @@
               "source": {
                 "file": "ports/obsidian/mapping.json",
                 "pointer": "/mappings/color.text.default/1",
-                "line": 51
+                "line": 55
               }
             },
             {
@@ -84035,7 +84095,7 @@
               "source": {
                 "file": "ports/obsidian/mapping.json",
                 "pointer": "/mappings/color.text.default/0",
-                "line": 50
+                "line": 54
               }
             },
             {
@@ -84050,7 +84110,7 @@
               "source": {
                 "file": "ports/obsidian/mapping.json",
                 "pointer": "/mappings/color.text.default/3",
-                "line": 53
+                "line": 57
               }
             },
             {
@@ -84065,7 +84125,7 @@
               "source": {
                 "file": "ports/obsidian/mapping.json",
                 "pointer": "/mappings/color.text.default/5",
-                "line": 55
+                "line": 59
               }
             },
             {
@@ -93149,7 +93209,7 @@
               "source": {
                 "file": "ports/obsidian/mapping.json",
                 "pointer": "/mappings/color.text.muted/5",
-                "line": 75
+                "line": 79
               }
             },
             {
@@ -93164,7 +93224,7 @@
               "source": {
                 "file": "ports/obsidian/mapping.json",
                 "pointer": "/mappings/color.text.muted/6",
-                "line": 76
+                "line": 80
               }
             },
             {
@@ -93179,7 +93239,7 @@
               "source": {
                 "file": "ports/obsidian/mapping.json",
                 "pointer": "/mappings/color.text.muted/7",
-                "line": 77
+                "line": 81
               }
             },
             {
@@ -93194,7 +93254,7 @@
               "source": {
                 "file": "ports/obsidian/mapping.json",
                 "pointer": "/mappings/color.text.muted/2",
-                "line": 72
+                "line": 76
               }
             },
             {
@@ -93209,7 +93269,7 @@
               "source": {
                 "file": "ports/obsidian/mapping.json",
                 "pointer": "/mappings/color.text.muted/4",
-                "line": 74
+                "line": 78
               }
             },
             {
@@ -93224,7 +93284,7 @@
               "source": {
                 "file": "ports/obsidian/mapping.json",
                 "pointer": "/mappings/color.text.muted/3",
-                "line": 73
+                "line": 77
               }
             },
             {
@@ -93239,7 +93299,7 @@
               "source": {
                 "file": "ports/obsidian/mapping.json",
                 "pointer": "/mappings/color.text.muted/0",
-                "line": 70
+                "line": 74
               }
             },
             {
@@ -93254,67 +93314,7 @@
               "source": {
                 "file": "ports/obsidian/mapping.json",
                 "pointer": "/mappings/color.text.muted/1",
-                "line": 71
-              }
-            },
-            {
-              "kind": "port",
-              "component": null,
-              "part": null,
-              "state": null,
-              "variant": null,
-              "surface": null,
-              "nativeKey": ".theme-dark .bases-search-row | --input-placeholder-color",
-              "port": "obsidian",
-              "source": {
-                "file": "ports/obsidian/mapping.json",
-                "pointer": "/mappings/color.text.muted/11",
-                "line": 81
-              }
-            },
-            {
-              "kind": "port",
-              "component": null,
-              "part": null,
-              "state": null,
-              "variant": null,
-              "surface": null,
-              "nativeKey": ".theme-dark .metadata-property-value .multi-select-container | --input-placeholder-color",
-              "port": "obsidian",
-              "source": {
-                "file": "ports/obsidian/mapping.json",
-                "pointer": "/mappings/color.text.muted/10",
-                "line": 80
-              }
-            },
-            {
-              "kind": "port",
-              "component": null,
-              "part": null,
-              "state": null,
-              "variant": null,
-              "surface": null,
-              "nativeKey": ".theme-dark .workspace-drawer .search-input-container | --input-placeholder-color",
-              "port": "obsidian",
-              "source": {
-                "file": "ports/obsidian/mapping.json",
-                "pointer": "/mappings/color.text.muted/9",
-                "line": 79
-              }
-            },
-            {
-              "kind": "port",
-              "component": null,
-              "part": null,
-              "state": null,
-              "variant": null,
-              "surface": null,
-              "nativeKey": ".theme-dark.is-phone .search-input-container.mod-raised | --input-placeholder-color",
-              "port": "obsidian",
-              "source": {
-                "file": "ports/obsidian/mapping.json",
-                "pointer": "/mappings/color.text.muted/8",
-                "line": 78
+                "line": 75
               }
             },
             {

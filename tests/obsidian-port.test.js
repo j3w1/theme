@@ -93,7 +93,8 @@ test("native semantic families keep surfaces, text, controls, status, focus and 
     "--modal-background": "color.surface.overlay", "--background-modifier-form-field": "color.surface.input",
     "--ribbon-background": "color.surface.chrome", "--settings-background": "color.surface.default",
     "--text-normal": "color.text.default", "--h1-color": "color.text.bright", "--text-muted": "color.text.muted",
-    "--text-faint": "color.text.subtle", "--background-modifier-border": "color.border.control",
+    "--text-faint": "color.text.subtle", "--input-placeholder-color": "color.text.placeholder",
+    "--background-modifier-border": "color.border.control",
     "--color-accent": "color.text.accent-strong",
     "--background-modifier-border-focus": "color.interaction.focus.ring", "--caret-color": "color.code.caret",
     "--nav-item-background-selected": "color.interaction.selection.bg", "--nav-item-color-selected": "color.interaction.selection.text",
@@ -102,6 +103,13 @@ test("native semantic families keep surfaces, text, controls, status, focus and 
     "--text-success": "color.status.success.text", "--callout-info": "color.status.info.text",
     "--code-background": "color.code.bg", "--code-keyword": "color.code.syntax.keyword"
   })) assertRole(key, role);
+  for (const selector of [
+    ".theme-dark.is-phone .search-input-container.mod-raised input",
+    ".theme-dark .workspace-drawer .search-input-container input",
+    ".theme-dark .metadata-property-value .multi-select-container input",
+    ".theme-dark .bases-search-row .search-input-container input"
+  ]) assertRole(`${selector} | background-color`, "color.surface.input");
+  assert.deepEqual(Object.keys(owner).filter(key => key.endsWith("| --input-placeholder-color")), [], "scoped fields keep the approved placeholder role");
   for (const key of Object.keys(OBSIDIAN_VARIABLE_TYPES).filter(k => /radius|tab-curve/.test(k))) assertRole(key, "radius.none");
   for (const [key, role] of Object.entries(owner)) if (/^color\.status\.(warning|success|info)\./.test(role)) assert.match(key, /^--(?:text-(?:warning|success)|background-modifier-(?:warning|success)|callout-(?:warning|success|info))/);
   for (const key of Object.keys(owner).filter(k => k.startsWith("--code-") && k !== "--code-background" && !k.includes("border") && k !== "--code-radius")) assert.match(owner[key], /^color\.code\.syntax\./);

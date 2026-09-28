@@ -29,7 +29,11 @@
       "--background-modifier-form-field-hover",
       "--dropdown-background",
       ".theme-dark .prompt input.prompt-input | background-color",
-      ".theme-dark .prompt input.prompt-input:hover | background-color"
+      ".theme-dark .prompt input.prompt-input:hover | background-color",
+      ".theme-dark.is-phone .search-input-container.mod-raised input | background-color",
+      ".theme-dark .workspace-drawer .search-input-container input | background-color",
+      ".theme-dark .metadata-property-value .multi-select-container input | background-color",
+      ".theme-dark .bases-search-row .search-input-container input | background-color"
     ],
     "color.surface.chrome": [
       "--ribbon-background",
@@ -74,11 +78,7 @@
       "--tab-text-color-focused",
       "--metadata-label-text-color",
       "--nav-heading-color-collapsed",
-      "--nav-tag-color",
-      ".theme-dark.is-phone .search-input-container.mod-raised | --input-placeholder-color",
-      ".theme-dark .workspace-drawer .search-input-container | --input-placeholder-color",
-      ".theme-dark .metadata-property-value .multi-select-container | --input-placeholder-color",
-      ".theme-dark .bases-search-row | --input-placeholder-color"
+      "--nav-tag-color"
     ],
     "color.text.subtle": [
       "--text-faint",

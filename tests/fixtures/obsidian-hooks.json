@@ -976,10 +976,10 @@
     "--touch-radius-xxs"
   ],
   "selectors": [
-    ".theme-dark.is-phone .search-input-container.mod-raised",
-    ".theme-dark .workspace-drawer .search-input-container",
-    ".theme-dark .metadata-property-value .multi-select-container",
-    ".theme-dark .bases-search-row",
+    ".theme-dark.is-phone .search-input-container.mod-raised input",
+    ".theme-dark .workspace-drawer .search-input-container input",
+    ".theme-dark .metadata-property-value .multi-select-container input",
+    ".theme-dark .bases-search-row .search-input-container input",
     ".theme-dark .markdown-preview-view",
     ".theme-dark .markdown-source-view.mod-cm6 .cm-content",
     ".theme-dark .markdown-source-view.mod-cm6 .cm-scroller",

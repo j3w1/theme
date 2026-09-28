@@ -45,7 +45,7 @@ D-007 (control boundary) and D-008 (divider); this port does not approve them.
 
 Native surface variables keep the Markdown canvas true black, sidebars and
 settings panels on the default surface, menus/popovers/command surfaces raised,
-dialogs on the overlay, ordinary fields on the input surface and bars on chrome. UI text
+dialogs on the overlay, fields on the input surface and bars on chrome. UI text
 stays rose, headings/emphasis bright rose, secondary chrome muted and metadata
 subtle. Near-white prose is limited to Reading View and CM6 content roots, so
 settings descriptions, command results and other rendered UI keep rose text.
@@ -53,9 +53,9 @@ Obsidian redeclares several of these variables on mobile dark roots with higher
 specificity. The generated CSS repeats their existing mapped values at matching
 specificity for mobile, tablet and phone roots. This keeps standard and tapped
 buttons, warning confirmations and ordinary text fields readable on mobile.
-Four audited Search, drawer, metadata and Bases field contexts intentionally
-keep native transparent fills; they use the approved muted text role for their
-placeholders so those fields remain readable on their actual surfaces.
+Four audited Search, drawer, metadata and Bases contexts clear the native field
+fill. Scoped input rules restore `color.surface.input` behind the approved
+`color.text.placeholder` role, including in mobile layouts.
 
 File Explorer, Search and Backlinks inherit these native variables. Navigation,
 tabs and prompt results have recessed selections with a two-pixel indicator;
@@ -117,8 +117,9 @@ Documentation is pinned to official developer-docs revision
   inactive-navigation, diagnostic stripe/underline and editor search/current-line
   roles have precise capability reasons; equal hex values do not add coverage.
 - Phone raised Search, mobile drawer Search, metadata multi-select and side-dock
-  Bases Search retain their transparent native fields. Their scoped muted
-  placeholders meet the text floor on the audited raised/default surfaces.
+  Bases Search use scoped black input fills where native transparency would put
+  approved placeholder text below the contrast floor. Their surrounding rows
+  and panels retain the native geometry and surface assignments.
   A core input inside a mobile menu is not established by the source audit;
   plugin-inserted menu controls are outside this port's selector claims.
 - Shadows and raised blur are disabled through native variables, retaining the
@@ -174,10 +175,10 @@ not validated in a running app; regression contracts pin their scope.
 | Selector | Why a variable alone is insufficient |
 | --- | --- |
 | `.theme-dark .markdown-preview-view` | Reading View root uses --text-normal, also used by UI; set only note content color. |
-| `.theme-dark.is-phone .search-input-container.mod-raised` | Phone raised Search makes its field transparent; muted placeholder text remains readable on the raised surface. |
-| `.theme-dark .workspace-drawer .search-input-container` | Mobile drawer Search keeps its native transparent field; muted placeholder text remains readable on the drawer surface. |
-| `.theme-dark .metadata-property-value .multi-select-container` | Metadata multi-select inputs are directly transparent; muted placeholder text remains readable on the surrounding panel. |
-| `.theme-dark .bases-search-row` | Bases Search retains its integrated transparent row; muted placeholder text remains readable in a side dock. |
+| `.theme-dark.is-phone .search-input-container.mod-raised input` | Phone raised Search clears the field fill; restore the approved input surface behind its placeholder. |
+| `.theme-dark .workspace-drawer .search-input-container input` | Mobile drawer Search clears its field fill; restore the approved input surface behind its placeholder. |
+| `.theme-dark .metadata-property-value .multi-select-container input` | Metadata multi-select inputs are directly transparent; restore the approved input surface behind their placeholders. |
+| `.theme-dark .bases-search-row .search-input-container input` | Bases Search clears its field fill in a side dock; restore the approved input surface behind its placeholder. |
 | `.theme-dark .markdown-source-view.mod-cm6 .cm-content` | CM6 content root separates prose from interface widgets. |
 | `.theme-dark .markdown-source-view.mod-cm6 .cm-scroller` | CM6 scroller contains both content and the sibling drawn-selection layer; scope editor selection above both. |
 | `.theme-dark .popover` | File preview popovers use the canvas variable locally; raised content requires a scoped value. |

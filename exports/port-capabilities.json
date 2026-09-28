@@ -21295,7 +21295,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-djjTzqN3A8LRViYm8CloSyEAqP7/DTh4f7sCr/LNWjk=",
+      "subjectDigest": "sha256-kmyS9DnQKYEZEMVOtmHFOSt/F5MSSwyq9PlFB/G8hKg=",
       "evidencePath": null,
       "surfaces": {
         "interface": {
@@ -21342,7 +21342,7 @@
           "path": "dist/theme.css",
           "install": "Copy beside manifest.json in <vault>/.obsidian/themes/j3w1/; restart Obsidian after a manifest update.",
           "source": "ports/obsidian/dist/theme.css",
-          "digest": "sha256-KtEdiYSIONWwwpaiRoLcy8LYDM8r1S3srx8Q3l/ye1g="
+          "digest": "sha256-c+fcq98MglbZ8vMzLoUX1CUOd0XSWGc8phxht33Pn+Y="
         }
       ],
       "rollback": "Select the previous theme or Default in Settings → Appearance → Themes; restore both previous files together to roll back a j3w1 update.",
@@ -25083,7 +25083,11 @@
             "--background-modifier-form-field-hover",
             "--dropdown-background",
             ".theme-dark .prompt input.prompt-input | background-color",
-            ".theme-dark .prompt input.prompt-input:hover | background-color"
+            ".theme-dark .prompt input.prompt-input:hover | background-color",
+            ".theme-dark.is-phone .search-input-container.mod-raised input | background-color",
+            ".theme-dark .workspace-drawer .search-input-container input | background-color",
+            ".theme-dark .metadata-property-value .multi-select-container input | background-color",
+            ".theme-dark .bases-search-row .search-input-container input | background-color"
           ],
           "value": "#000000",
           "eligibility": {
@@ -25694,11 +25698,7 @@
             "--tab-text-color-focused",
             "--metadata-label-text-color",
             "--nav-heading-color-collapsed",
-            "--nav-tag-color",
-            ".theme-dark.is-phone .search-input-container.mod-raised | --input-placeholder-color",
-            ".theme-dark .workspace-drawer .search-input-container | --input-placeholder-color",
-            ".theme-dark .metadata-property-value .multi-select-container | --input-placeholder-color",
-            ".theme-dark .bases-search-row | --input-placeholder-color"
+            "--nav-tag-color"
           ],
           "value": "#bd787d",
           "eligibility": {

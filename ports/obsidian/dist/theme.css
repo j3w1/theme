@@ -239,24 +239,24 @@
 }
 
 
-/* Phone raised Search makes its field transparent; muted placeholder text remains readable on the raised surface. */
-.theme-dark.is-phone .search-input-container.mod-raised {
-  --input-placeholder-color: #bd787d;
+/* Phone raised Search clears the field fill; restore the approved input surface behind its placeholder. */
+.theme-dark.is-phone .search-input-container.mod-raised input {
+  background-color: #000000;
 }
 
-/* Mobile drawer Search keeps its native transparent field; muted placeholder text remains readable on the drawer surface. */
-.theme-dark .workspace-drawer .search-input-container {
-  --input-placeholder-color: #bd787d;
+/* Mobile drawer Search clears its field fill; restore the approved input surface behind its placeholder. */
+.theme-dark .workspace-drawer .search-input-container input {
+  background-color: #000000;
 }
 
-/* Metadata multi-select inputs are directly transparent; muted placeholder text remains readable on the surrounding panel. */
-.theme-dark .metadata-property-value .multi-select-container {
-  --input-placeholder-color: #bd787d;
+/* Metadata multi-select inputs are directly transparent; restore the approved input surface behind their placeholders. */
+.theme-dark .metadata-property-value .multi-select-container input {
+  background-color: #000000;
 }
 
-/* Bases Search retains its integrated transparent row; muted placeholder text remains readable in a side dock. */
-.theme-dark .bases-search-row {
-  --input-placeholder-color: #bd787d;
+/* Bases Search clears its field fill in a side dock; restore the approved input surface behind its placeholder. */
+.theme-dark .bases-search-row .search-input-container input {
+  background-color: #000000;
 }
 
 /* Reading View root uses --text-normal, also used by UI; set only note content color. */
