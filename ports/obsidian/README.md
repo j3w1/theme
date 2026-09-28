@@ -49,6 +49,10 @@ dialogs on the overlay, fields on the input surface and bars on chrome. UI text
 stays rose, headings/emphasis bright rose, secondary chrome muted and metadata
 subtle. Near-white prose is limited to Reading View and CM6 content roots, so
 settings descriptions, command results and other rendered UI keep rose text.
+Obsidian redeclares several of these variables on mobile dark roots with higher
+specificity. The generated CSS repeats their existing mapped values at matching
+specificity for mobile, tablet and phone roots. This keeps standard and tapped
+buttons, warning confirmations, text fields and placeholders readable on mobile.
 
 File Explorer, Search and Backlinks inherit these native variables. Navigation,
 tabs and prompt results have recessed selections with a two-pixel indicator;
@@ -103,7 +107,8 @@ Documentation is pinned to official developer-docs revision
 - Plain destructive buttons keep danger text/borders at rest and use the
   canonical destructive hover pair on hover and mobile tap, with the same native
   focus shadow recolored. Warning confirmations keep native desktop error fills
-  and mobile neutral fills. Disabled/aria-disabled overrides win over every
+  and mobile transparent fills over the host surface (4.94:1 on the modal
+  overlay). Disabled/aria-disabled overrides win over every
   variant, including the mobile warning button's direct foreground.
 - Native action variables conflate some pressed/hover states. Unmapped action,
   inactive-navigation, diagnostic stripe/underline and editor search/current-line
@@ -143,8 +148,19 @@ Sources: [official theme tutorial](https://github.com/obsidianmd/obsidian-develo
 
 Keys containing ` | ` in `mapping.json` name an exact selector/property pair.
 Every other mapped key is a native variable on `.theme-dark`; that root and its
-variable-only resets are the documented theme extension point. The following
-bounded gaps have no adequate global variable. These selectors are source-audited,
+variable-only resets are the documented theme extension point. Obsidian also
+redeclares mapped keys on four compound dark roots. The generated CSS repeats
+only those existing mappings after the base root, with equal specificity to the
+native declarations:
+
+| Generated root | Native declaration it counters |
+| --- | --- |
+| `.theme-dark.is-mobile` | 11 mapped mobile variables, including standard button and form-field fills. |
+| `.theme-dark.is-mobile.is-tablet` | Tablet settings background. |
+| `.theme-dark.is-tablet` | Tablet titlebar backgrounds. |
+| `.theme-dark.is-phone` | Phone modal sidebar background. |
+
+The following bounded gaps have no adequate global variable. These selectors are source-audited,
 not validated in a running app; regression contracts pin their scope.
 
 | Selector | Why a variable alone is insufficient |

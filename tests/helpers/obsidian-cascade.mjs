@@ -15,7 +15,7 @@ const matchesCompound = (compound, node) => {
     if (part[0] === ".") return node.classes.has(part.slice(1));
     if (part[0] === ":") return node.states.has(part.slice(1));
     if (part[0] === "[") {
-      const [, key, value] = part.match(/^\[([\w-]+)(?:="([^"]*)")?\]$/) ?? [];
+      const [, key, , value] = part.match(/^\[([\w-]+)(?:=(["'])(.*?)\2)?\]$/) ?? [];
       assert.ok(key, part);
       return key in node.attrs && (value === undefined || node.attrs[key] === value);
     }
@@ -38,6 +38,7 @@ export const specificity = selector => selector.trim().split(/\s+/).flatMap(toke
 }, 0);
 const expanded = (prop, value) => {
   if (prop === "border" && value === "0") return [["border-width", "0"], ["border-color", "currentColor"]];
+  if (prop === "background" && /^var\(--[\w-]+\)$/.test(value)) return [["background-color", value]];
   if (prop === "padding") return ["padding-block-start", "padding-block-end", "padding-inline-start", "padding-inline-end"].map(p => [p, value]);
   if (prop === "padding-inline") return [["padding-inline-start", value], ["padding-inline-end", value]];
   return [[prop, value]];

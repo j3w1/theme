@@ -194,6 +194,24 @@ export const OBSIDIAN_VARIABLE_TYPES = {
   "--touch-radius-xl": "dimension"
 };
 
+// Obsidian sets these mapped variables again on compound dark-mode roots.
+// Match each native root's specificity and emit later, reusing the mapped role.
+export const OBSIDIAN_ROOT_VARIANTS = [
+  {
+    selector: ".theme-dark.is-mobile",
+    keys: [
+      "--search-result-background", "--background-modifier-form-field",
+      "--background-modifier-cover", "--background-modifier-hover",
+      "--background-modifier-message", "--modal-border-color",
+      "--settings-background", "--setting-items-background",
+      "--modal-background", "--interactive-normal", "--interactive-hover"
+    ]
+  },
+  { selector: ".theme-dark.is-mobile.is-tablet", keys: ["--settings-background"] },
+  { selector: ".theme-dark.is-tablet", keys: ["--titlebar-background", "--titlebar-background-focused"] },
+  { selector: ".theme-dark.is-phone", keys: ["--modal-sidebar-background"] }
+];
+
 export const OBSIDIAN_RULES = [
   {
     "selector": ".theme-dark .markdown-preview-view",
@@ -573,6 +591,8 @@ export const obsidianCss = ({ manifest, port, mapping, resolved }) => {
   const block = (selector, entries) => `${selector} {\n${entries.map(([key, value]) => `  ${key}: ${value};`).join("\n")}\n}\n`;
   let css = `/* j3w1 theme ${manifest.version}, default profile, for Obsidian.\n * Generated from ports/obsidian/mapping.json by npm run generate; do not edit.\n * MIT; dark only; no font files or runtime dependencies.\n */\n`;
   css += block(".theme-dark", [...Object.keys(OBSIDIAN_VARIABLE_TYPES).map(key => [key, values.get(key)]), ...Object.entries(RESET_VARIABLES)]);
+  css += "\n/* Preserve mapped roles where native dark mobile roots redeclare them. */\n";
+  for (const { selector, keys } of OBSIDIAN_ROOT_VARIANTS) css += block(selector, keys.map(key => [key, values.get(key)])) + "\n";
   for (const rule of OBSIDIAN_RULES) {
     const body = block(rule.selector, [...Object.keys(rule.properties).map(property => [property, values.get(`${rule.selector} | ${property}`)]), ...Object.entries(rule.fixed ?? {})]);
     css += `\n/* ${rule.reason} */\n` + (rule.media ? `@media ${rule.media} {\n${body}}\n` : body);

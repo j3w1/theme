@@ -5,7 +5,7 @@ import test from "node:test";
 import postcss from "postcss";
 import { readJson, readText } from "../scripts/lib/fs.mjs";
 import { loadResolvedProfile, toCss } from "../scripts/lib/tokens.mjs";
-import { obsidianArtifacts } from "../scripts/lib/obsidian-port.mjs";
+import { obsidianArtifacts, OBSIDIAN_ROOT_VARIANTS } from "../scripts/lib/obsidian-port.mjs";
 import { evaluatePair } from "../scripts/lib/contrast.mjs";
 import { cascade, element, specificity } from "./helpers/obsidian-cascade.mjs";
 
@@ -23,7 +23,7 @@ const pair = (fg, bg, min = 4.5) => evaluatePair({ fg: color(fg), bg: color(bg),
 const nativeCss = version => {
   // Test-only projection of normalized facts: exact property, selector,
   // media and source order, independently captured from both app.css files.
-  return '.theme-dark { --size-4-6: 24px; --size-4-12: 48px; --color-accent: native-accent; }\n' + audit.cascadeFacts
+  return '.theme-dark { --size-4-6: 24px; --size-4-12: 48px; --color-accent: native-accent; }\n' + [...audit.cascadeFacts, ...audit.rootVariantFacts]
     .toSorted((a, b) => a.lines[version] - b.lines[version])
     .map(f => `${f.media ? `@media ${f.media} {` : ""}${f.selector} { ${f.property}: ${f.value}; }${f.media ? "}" : ""}`).join("\n");
 };
@@ -33,6 +33,7 @@ const removeRule = (css, selector) => {
   return ast.toString();
 };
 const body = (mobile = false, focused = true) => element("body", ["theme-dark", ...(mobile ? ["is-mobile"] : []), ...(focused ? ["is-focused"] : [])]);
+const owner = Object.fromEntries(Object.entries(mapping.mappings).flatMap(([name, keys]) => keys.map(key => [key, name])));
 
 test("specificity includes :not and variants; same-weight source order remains decisive", () => {
   assert.equal(specificity(".theme-dark button:not(.clickable-icon)"), 201);
@@ -46,6 +47,23 @@ test("specificity includes :not and variants; same-weight source order remains d
 
 for (const { version } of audit.versions) {
   const native = nativeCss(version), css = native + emitted;
+  test(`${version}: every audited compound dark root keeps its mapped values`, () => {
+    const actual = audit.rootVariantFacts.map(f => `${f.selector} | ${f.property}`).sort();
+    const expected = OBSIDIAN_ROOT_VARIANTS.flatMap(({ selector, keys }) => keys.map(key => `${[...selector.matchAll(/\.[\w-]+/g)].map(m => m[0]).toSorted().join("")} | ${key}`)).sort();
+    const normalized = actual.map(key => key.replace(/^[^|]+(?= \|)/, selector => [...selector.matchAll(/\.[\w-]+/g)].map(m => m[0]).toSorted().join(""))).sort();
+    assert.deepEqual(normalized, expected, "fixture covers every mapped native root collision");
+    for (const { selector, keys } of OBSIDIAN_ROOT_VARIANTS) {
+      const root = element("body", [...selector.matchAll(/\.([\w-]+)/g)].map(m => m[1]));
+      const result = cascade(css, root);
+      for (const key of keys) {
+        assert.equal(result.value(key), role(owner[key]), `${selector} ${key}`);
+        assert.equal(result.winner(key).selector, selector, `${selector} wins ${key}`);
+      }
+    }
+    const mobile = body(true);
+    const broken = cascade(native + removeRule(emitted, ".theme-dark.is-mobile"), mobile);
+    for (const key of ["--interactive-normal", "--background-modifier-form-field"]) assert.notEqual(broken.value(key), role(owner[key]), key);
+  });
   test(`${version}: consumed accent is fixed independently of the user's Accent setting`, () => {
     const root = body();
     assert.equal(cascade(css, root).value("--color-accent"), role("color.text.accent-strong"));
@@ -114,6 +132,20 @@ for (const { version } of audit.versions) {
     const broken = cascade(css + `.theme-dark button.mod-warning { background-color: ${role("color.action.destructive.filled-bg")}; }`, node);
     assert.equal(pair(broken.value("color"), broken.value("background-color")).pass, false);
     assert.equal(pair(broken.value("color"), broken.value("background-color")).display, "1.30");
+  });
+  test(`${version}: mobile standard buttons and text fields retain readable fills`, () => {
+    const root = body(true);
+    for (const classes of [[], ["mobile-tap"]]) {
+      const result = cascade(css, element("button", classes, root));
+      assert.equal(result.value("background-color"), role(classes.length ? "color.action.secondary.hover-bg" : "color.action.secondary.bg"));
+      assert.ok(pair(result.value("color"), result.value("background-color")).pass);
+    }
+    const field = cascade(css, element("input", [], root, { type: "text" }));
+    assert.equal(field.value("background-color"), role("color.surface.input"));
+    assert.ok(pair(field.value("color"), field.value("background-color")).pass);
+    assert.ok(pair(field.value("--input-placeholder-color"), field.value("background-color")).pass);
+    const broken = cascade(native + removeRule(emitted, ".theme-dark.is-mobile"), element("input", [], body(true), { type: "text" }));
+    assert.equal(pair(broken.value("color"), broken.value("background-color")).pass, false);
   });
   test(`${version}: both prompt entrypoints keep notes, flair, faint children and actions readable in every selected combination`, () => {
     for (const entrypoint of ["command-palette", "quick-switcher"]) for (const mobile of [false, true]) for (const extra of [[], ["mobile-tap"], ["mod-downranked"], ["mobile-tap", "mod-downranked"]]) {

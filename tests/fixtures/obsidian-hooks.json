@@ -1423,7 +1423,44 @@
         "1.13.4": 20604,
         "1.13.7": 20612
       }
+    },
+    {
+      "selector": "textarea,\n.multi-select-container,\ninput.metadata-input-text,\ninput[type='date'],\ninput[type='datetime-local'],\ninput[type='text'],\ninput[type='search'],\ninput[type='email'],\ninput[type='password'],\ninput[type='number']",
+      "property": "background",
+      "value": "var(--background-modifier-form-field)",
+      "media": null,
+      "lines": {
+        "1.13.4": 8188,
+        "1.13.7": 8230
+      }
+    },
+    {
+      "selector": "textarea,\n.multi-select-container,\ninput.metadata-input-text,\ninput[type='date'],\ninput[type='datetime-local'],\ninput[type='text'],\ninput[type='search'],\ninput[type='email'],\ninput[type='password'],\ninput[type='number']",
+      "property": "color",
+      "value": "var(--text-normal)",
+      "media": null,
+      "lines": {
+        "1.13.4": 8190,
+        "1.13.7": 8232
+      }
     }
+  ],
+  "rootVariantFacts": [
+    {"selector":".is-mobile.theme-dark","property":"--search-result-background","value":"var(--background-secondary)","media":null,"lines":{"1.13.4":18811,"1.13.7":18859}},
+    {"selector":".is-mobile.theme-dark","property":"--background-modifier-form-field","value":"var(--background-modifier-border)","media":null,"lines":{"1.13.4":18812,"1.13.7":18860}},
+    {"selector":".is-mobile.theme-dark","property":"--background-modifier-cover","value":"color-mix(in oklch, var(--background-secondary) 35%, transparent)","media":null,"lines":{"1.13.4":18813,"1.13.7":18861}},
+    {"selector":".is-mobile.theme-dark","property":"--background-modifier-hover","value":"color-mix(in oklch, var(--mono-100) 15%, transparent)","media":null,"lines":{"1.13.4":18814,"1.13.7":18862}},
+    {"selector":".is-mobile.theme-dark","property":"--background-modifier-message","value":"var(--background-secondary)","media":null,"lines":{"1.13.4":18815,"1.13.7":18863}},
+    {"selector":".is-mobile.theme-dark","property":"--modal-border-color","value":"var(--background-modifier-border)","media":null,"lines":{"1.13.4":18816,"1.13.7":18864}},
+    {"selector":".is-mobile.theme-dark","property":"--settings-background","value":"var(--background-primary)","media":null,"lines":{"1.13.4":18818,"1.13.7":18866}},
+    {"selector":".is-mobile.theme-dark","property":"--setting-items-background","value":"var(--background-secondary)","media":null,"lines":{"1.13.4":18819,"1.13.7":18867}},
+    {"selector":".is-mobile.theme-dark","property":"--modal-background","value":"var(--background-secondary)","media":null,"lines":{"1.13.4":18822,"1.13.7":18870}},
+    {"selector":".is-mobile.theme-dark","property":"--interactive-normal","value":"var(--background-modifier-border)","media":null,"lines":{"1.13.4":18823,"1.13.7":18871}},
+    {"selector":".is-mobile.theme-dark","property":"--interactive-hover","value":"var(--background-modifier-border-hover)","media":null,"lines":{"1.13.4":18824,"1.13.7":18872}},
+    {"selector":".is-mobile.theme-dark.is-tablet","property":"--settings-background","value":"var(--background-primary-alt)","media":null,"lines":{"1.13.4":18827,"1.13.7":18875}},
+    {"selector":".is-tablet.theme-dark","property":"--titlebar-background","value":"var(--background-primary)","media":null,"lines":{"1.13.4":18886,"1.13.7":18934}},
+    {"selector":".is-tablet.theme-dark","property":"--titlebar-background-focused","value":"var(--background-primary)","media":null,"lines":{"1.13.4":18887,"1.13.7":18935}},
+    {"selector":".is-phone.theme-dark","property":"--modal-sidebar-background","value":"var(--background-primary)","media":null,"lines":{"1.13.4":18893,"1.13.7":18941}}
   ],
   "cascadeLimits": "Normalized declaration facts for bounded structural regression models, not bundled native CSS or evidence of runtime DOM. Both source hashes are pinned above; no native import."
 }

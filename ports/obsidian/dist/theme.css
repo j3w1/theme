@@ -210,6 +210,35 @@
   --icon-opacity: 1;
 }
 
+/* Preserve mapped roles where native dark mobile roots redeclare them. */
+.theme-dark.is-mobile {
+  --search-result-background: #100c0c;
+  --background-modifier-form-field: #000000;
+  --background-modifier-cover: rgb(0 0 0 / 65%);
+  --background-modifier-hover: #1c0a09;
+  --background-modifier-message: #160b0b;
+  --modal-border-color: #e53935;
+  --settings-background: #100c0c;
+  --setting-items-background: #100c0c;
+  --modal-background: #241010;
+  --interactive-normal: rgb(0 0 0 / 0%);
+  --interactive-hover: #630f0d;
+}
+
+.theme-dark.is-mobile.is-tablet {
+  --settings-background: #100c0c;
+}
+
+.theme-dark.is-tablet {
+  --titlebar-background: #090707;
+  --titlebar-background-focused: #1c0a09;
+}
+
+.theme-dark.is-phone {
+  --modal-sidebar-background: #100c0c;
+}
+
+
 /* Reading View root uses --text-normal, also used by UI; set only note content color. */
 .theme-dark .markdown-preview-view {
   color: #f4eeee;

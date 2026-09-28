@@ -21295,7 +21295,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-IYK5Nwz30Ms0cz4IDn7urnUP9SrsCLdlisttoSma1KA=",
+      "subjectDigest": "sha256-OOf1YnBVTWh9eiQYCETHiDgtjwoTAlNFfErSTUncRD0=",
       "evidencePath": null,
       "surfaces": {
         "interface": {
@@ -21342,7 +21342,7 @@
           "path": "dist/theme.css",
           "install": "Copy beside manifest.json in <vault>/.obsidian/themes/j3w1/; restart Obsidian after a manifest update.",
           "source": "ports/obsidian/dist/theme.css",
-          "digest": "sha256-6PWMsbw9ZNjRKPvU+JUhPrRjIvsViZY3704FVUfyi8w="
+          "digest": "sha256-unuXbZjTLTqrrCcqXtecaBi5zYnYhTqDjjwAoKtabV4="
         }
       ],
       "rollback": "Select the previous theme or Default in Settings → Appearance → Themes; restore both previous files together to roll back a j3w1 update.",
