@@ -10,6 +10,7 @@ import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { accessSync, constants, promises as fs } from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import test from "node:test";
 import { readText, repoRoot } from "../scripts/lib/fs.mjs";
@@ -37,6 +38,20 @@ const SHELLS = [
   { label: "dash", command: which("dash"), args: [] },
   { label: "busybox sh", command: which("busybox"), args: ["sh"] },
 ];
+/* The failure cases need the shell to run the stub mv and rm on PATH. BusyBox
+   ash runs its own applets instead, so there those cases cannot inject a
+   fault; they are skipped with that reason rather than passed. */
+const STUB_FREE = "this shell runs its own mv/rm applets, so PATH fault stubs cannot reach it";
+const interposes = async (shell) => {
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "j3w1-probe-"));
+  try {
+    await fs.writeFile(path.join(dir, "mv"), "#!/bin/sh\nexit 7\n", { mode: 0o755 });
+    return spawnSync(shell.command, [...shell.args, "-c", "mv a b"], { cwd: dir, env: { PATH: dir } }).status === 7;
+  } finally {
+    await fs.rm(dir, { recursive: true, force: true });
+  }
+};
+for (const shell of SHELLS) shell.interposes = shell.command ? await interposes(shell) : false;
 
 const CURL = `#!/bin/sh
 printf '%s\\n' "$*" >>"$STUB_LOG"
@@ -143,7 +158,10 @@ const refused = async (v, pattern, args) => {
   return result;
 };
 
-test("the installer requires sh", () => assert.ok(SHELLS[0].command, "sh is on PATH"));
+test("the installer requires sh, and sh and dash run PATH stubs so no failure case is skipped there", () => {
+  assert.ok(SHELLS[0].command, "sh is on PATH");
+  for (const shell of SHELLS.slice(0, 2)) if (shell.command) assert.ok(shell.interposes, `${shell.label} honours PATH stubs`);
+});
 
 for (const shell of SHELLS) {
   test(`${shell.label}: installs, updates and refuses without touching anything else`, async (t) => {
@@ -256,6 +274,7 @@ for (const shell of SHELLS) {
     });
 
     await t.test("a failed swap restores the previous pair", async (t) => {
+      if (!shell.interposes) return t.skip(STUB_FREE);
       const v = await setup(t, shell, { mvFail: "staging" });
       await refused(v, /Replacement failed; previous theme pair restored\./);
       assert.deepEqual(await pair(v.theme), OLD);
@@ -266,6 +285,7 @@ for (const shell of SHELLS) {
     });
 
     await t.test("a failed restore keeps both copies and names them", async (t) => {
+      if (!shell.interposes) return t.skip(STUB_FREE);
       const v = await setup(t, shell, { mvFail: "staging,restore" });
       const result = v.run();
       assert.notEqual(result.status, 0);
@@ -282,6 +302,7 @@ for (const shell of SHELLS) {
     const recovery = (stderr) => ({ previous: stderr.match(/^j3w1: previous theme: (.*)$/m)?.[1], next: stderr.match(/^j3w1: new pair: (.*)$/m)?.[1] });
 
     await t.test("a j3w1 folder created during the swap is never mistaken for success", async (t) => {
+      if (!shell.interposes) return t.skip(STUB_FREE);
       const v = await setup(t, shell, { mvFail: "recreate" });
       const result = v.run();
       assert.notEqual(result.status, 0, result.stdout);
@@ -310,6 +331,7 @@ for (const shell of SHELLS) {
     });
 
     await t.test("a themes folder that becomes a link mid-install stops the swap and removes nothing", async (t) => {
+      if (!shell.interposes) return t.skip(STUB_FREE);
       const v = await setup(t, shell, { mvFail: "relink" });
       const result = v.run();
       assert.notEqual(result.status, 0);
@@ -323,6 +345,7 @@ for (const shell of SHELLS) {
     });
 
     await t.test("a themes folder replaced by another real folder mid-install is noticed and no false path is named", async (t) => {
+      if (!shell.interposes) return t.skip(STUB_FREE);
       const v = await setup(t, shell, { mvFail: "replace" });
       const result = v.run();
       assert.notEqual(result.status, 0);
@@ -339,6 +362,7 @@ for (const shell of SHELLS) {
     });
 
     await t.test("recovery never names a path that is gone and never advises deleting unknown content", async (t) => {
+      if (!shell.interposes) return t.skip(STUB_FREE);
       // themes is moved and replaced while the staged folder is being renamed.
       const late = await setup(t, shell, { mvFail: "late-swap" });
       const result = late.run();
@@ -364,6 +388,7 @@ for (const shell of SHELLS) {
     });
 
     await t.test("a backup that cannot be removed is reported after a successful install", async (t) => {
+      if (!shell.interposes) return t.skip(STUB_FREE);
       const v = await setup(t, shell, { rmFail: true });
       const result = v.run();
       assert.equal(result.status, 0, result.stderr);
@@ -373,6 +398,7 @@ for (const shell of SHELLS) {
     });
 
     await t.test("an interruption during the swap never deletes the only copy", async (t) => {
+      if (!shell.interposes) return t.skip(STUB_FREE);
       const v = await setup(t, shell, { mvFail: "term" });
       const result = v.run();
       assert.equal(result.status, 143, result.stderr);

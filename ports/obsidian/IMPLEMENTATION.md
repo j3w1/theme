@@ -245,7 +245,10 @@ scratch vaults under `sh` and, when installed, dash and busybox, with stub
 `curl`, `mv` and `rm` and a PATH that holds only the declared tools. The stubs
 also act as a concurrent app: they recreate `j3w1`, move or replace `themes`
 or turn it into a link mid-swap, and signal the helper before and after the
-new pair lands. It proves the shell contract, not an Android import.
+new pair lands. BusyBox ash runs its own `mv` and `rm` applets rather than
+the stubs on PATH, so under BusyBox those fault cases are skipped with that
+reason; its install, update and refusal cases still run. `sh` and dash must
+run every case. It proves the shell contract, not an Android import.
 `tests/obsidian-port.test.js` holds the
 PowerShell text contract; no PowerShell run of `install.ps1` is recorded.
 
