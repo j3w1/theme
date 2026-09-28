@@ -239,6 +239,26 @@
 }
 
 
+/* Phone raised Search makes its field transparent; muted placeholder text remains readable on the raised surface. */
+.theme-dark.is-phone .search-input-container.mod-raised {
+  --input-placeholder-color: #bd787d;
+}
+
+/* Mobile drawer Search keeps its native transparent field; muted placeholder text remains readable on the drawer surface. */
+.theme-dark .workspace-drawer .search-input-container {
+  --input-placeholder-color: #bd787d;
+}
+
+/* Metadata multi-select inputs are directly transparent; muted placeholder text remains readable on the surrounding panel. */
+.theme-dark .metadata-property-value .multi-select-container {
+  --input-placeholder-color: #bd787d;
+}
+
+/* Bases Search retains its integrated transparent row; muted placeholder text remains readable in a side dock. */
+.theme-dark .bases-search-row {
+  --input-placeholder-color: #bd787d;
+}
+
 /* Reading View root uses --text-normal, also used by UI; set only note content color. */
 .theme-dark .markdown-preview-view {
   color: #f4eeee;

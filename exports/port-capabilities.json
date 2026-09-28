@@ -21295,7 +21295,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-OOf1YnBVTWh9eiQYCETHiDgtjwoTAlNFfErSTUncRD0=",
+      "subjectDigest": "sha256-djjTzqN3A8LRViYm8CloSyEAqP7/DTh4f7sCr/LNWjk=",
       "evidencePath": null,
       "surfaces": {
         "interface": {
@@ -21342,7 +21342,7 @@
           "path": "dist/theme.css",
           "install": "Copy beside manifest.json in <vault>/.obsidian/themes/j3w1/; restart Obsidian after a manifest update.",
           "source": "ports/obsidian/dist/theme.css",
-          "digest": "sha256-unuXbZjTLTqrrCcqXtecaBi5zYnYhTqDjjwAoKtabV4="
+          "digest": "sha256-KtEdiYSIONWwwpaiRoLcy8LYDM8r1S3srx8Q3l/ye1g="
         }
       ],
       "rollback": "Select the previous theme or Default in Settings → Appearance → Themes; restore both previous files together to roll back a j3w1 update.",
@@ -25694,7 +25694,11 @@
             "--tab-text-color-focused",
             "--metadata-label-text-color",
             "--nav-heading-color-collapsed",
-            "--nav-tag-color"
+            "--nav-tag-color",
+            ".theme-dark.is-phone .search-input-container.mod-raised | --input-placeholder-color",
+            ".theme-dark .workspace-drawer .search-input-container | --input-placeholder-color",
+            ".theme-dark .metadata-property-value .multi-select-container | --input-placeholder-color",
+            ".theme-dark .bases-search-row | --input-placeholder-color"
           ],
           "value": "#bd787d",
           "eligibility": {

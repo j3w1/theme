@@ -74,7 +74,11 @@
       "--tab-text-color-focused",
       "--metadata-label-text-color",
       "--nav-heading-color-collapsed",
-      "--nav-tag-color"
+      "--nav-tag-color",
+      ".theme-dark.is-phone .search-input-container.mod-raised | --input-placeholder-color",
+      ".theme-dark .workspace-drawer .search-input-container | --input-placeholder-color",
+      ".theme-dark .metadata-property-value .multi-select-container | --input-placeholder-color",
+      ".theme-dark .bases-search-row | --input-placeholder-color"
     ],
     "color.text.subtle": [
       "--text-faint",

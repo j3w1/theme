@@ -214,6 +214,26 @@ export const OBSIDIAN_ROOT_VARIANTS = [
 
 export const OBSIDIAN_RULES = [
   {
+    "selector": ".theme-dark.is-phone .search-input-container.mod-raised",
+    "properties": { "--input-placeholder-color": "color" },
+    "reason": "Phone raised Search makes its field transparent; muted placeholder text remains readable on the raised surface."
+  },
+  {
+    "selector": ".theme-dark .workspace-drawer .search-input-container",
+    "properties": { "--input-placeholder-color": "color" },
+    "reason": "Mobile drawer Search keeps its native transparent field; muted placeholder text remains readable on the drawer surface."
+  },
+  {
+    "selector": ".theme-dark .metadata-property-value .multi-select-container",
+    "properties": { "--input-placeholder-color": "color" },
+    "reason": "Metadata multi-select inputs are directly transparent; muted placeholder text remains readable on the surrounding panel."
+  },
+  {
+    "selector": ".theme-dark .bases-search-row",
+    "properties": { "--input-placeholder-color": "color" },
+    "reason": "Bases Search retains its integrated transparent row; muted placeholder text remains readable in a side dock."
+  },
+  {
     "selector": ".theme-dark .markdown-preview-view",
     "properties": {
       "color": "color"

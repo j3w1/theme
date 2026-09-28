@@ -976,6 +976,10 @@
     "--touch-radius-xxs"
   ],
   "selectors": [
+    ".theme-dark.is-phone .search-input-container.mod-raised",
+    ".theme-dark .workspace-drawer .search-input-container",
+    ".theme-dark .metadata-property-value .multi-select-container",
+    ".theme-dark .bases-search-row",
     ".theme-dark .markdown-preview-view",
     ".theme-dark .markdown-source-view.mod-cm6 .cm-content",
     ".theme-dark .markdown-source-view.mod-cm6 .cm-scroller",
@@ -1461,6 +1465,20 @@
     {"selector":".is-tablet.theme-dark","property":"--titlebar-background","value":"var(--background-primary)","media":null,"lines":{"1.13.4":18886,"1.13.7":18934}},
     {"selector":".is-tablet.theme-dark","property":"--titlebar-background-focused","value":"var(--background-primary)","media":null,"lines":{"1.13.4":18887,"1.13.7":18935}},
     {"selector":".is-phone.theme-dark","property":"--modal-sidebar-background","value":"var(--background-primary)","media":null,"lines":{"1.13.4":18893,"1.13.7":18941}}
+  ],
+  "transparentFieldFacts": [
+    {"selector":".theme-dark.is-phone .search-input-container.mod-raised","property":"--background-modifier-form-field","value":"transparent","media":null,"lines":{"1.13.4":19538,"1.13.7":19586}},
+    {"selector":".is-phone .mod-raised","property":"background","value":"var(--raised-background)","media":null,"lines":{"1.13.4":21323,"1.13.7":21359}},
+    {"selector":".workspace-drawer .search-input-container","property":"--background-modifier-form-field","value":"transparent","media":null,"lines":{"1.13.4":19843,"1.13.7":19851}},
+    {"selector":".workspace-drawer .search-input-container","property":"--background-modifier-form-field-hover","value":"transparent","media":null,"lines":{"1.13.4":19844,"1.13.7":19852}},
+    {"selector":".workspace-drawer","property":"background-color","value":"var(--mobile-sidebar-background)","media":null,"lines":{"1.13.4":19830,"1.13.7":19838}},
+    {"selector":".is-mobile.theme-dark","property":"--mobile-sidebar-background","value":"var(--background-secondary)","media":null,"lines":{"1.13.4":18821,"1.13.7":18869}},
+    {"selector":".metadata-property-value .multi-select-container","property":"--background-modifier-form-field","value":"transparent","media":null,"lines":{"1.13.4":12542,"1.13.7":12590}},
+    {"selector":".metadata-property-value .multi-select-container input","property":"background-color","value":"transparent","media":null,"lines":{"1.13.4":12548,"1.13.7":12596}},
+    {"selector":".is-mobile .metadata-content","property":"background-color","value":"var(--background-primary-alt)","media":null,"lines":{"1.13.4":20435,"1.13.7":20443}},
+    {"selector":".bases-search-row","property":"--background-modifier-form-field","value":"transparent","media":null,"lines":{"1.13.4":14963,"1.13.7":15011}},
+    {"selector":".bases-search-row","property":"--background-modifier-form-field-hover","value":"transparent","media":null,"lines":{"1.13.4":14964,"1.13.7":15012}},
+    {"selector":".workspace-tabs .workspace-leaf","property":"background-color","value":"var(--background-secondary)","media":null,"lines":{"1.13.4":6606,"1.13.7":6637}}
   ],
   "cascadeLimits": "Normalized declaration facts for bounded structural regression models, not bundled native CSS or evidence of runtime DOM. Both source hashes are pinned above; no native import."
 }
