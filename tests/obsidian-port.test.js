@@ -37,7 +37,7 @@ test("Obsidian is a normal experimental two-artifact default-profile port", () =
   assert.equal(port.format, "obsidian-theme");
   assert.equal(port.status, "experimental");
   assert.equal(port.profile, "default");
-  assert.deepEqual(port.targetVersions, ["1.13.x"]);
+  assert.deepEqual(port.targetVersions, ["1.13.4", "1.13.7"]);
   assert.deepEqual(port.testedVersions, []);
   assert.deepEqual(port.evidence, []);
   assert.deepEqual(port.os, ["any"]);
@@ -162,6 +162,7 @@ test("the 1.13 hook audit, selector ledger and dark-only hazard contracts stay c
   assert.deepEqual(audit.nativeVariables.sort(), Object.keys(OBSIDIAN_VARIABLE_TYPES).sort());
   assert.deepEqual(audit.selectors.sort(), OBSIDIAN_RULES.map(r => r.selector).sort());
   assert.deepEqual(audit.versions.map(v => v.version), ["1.13.4", "1.13.7"]);
+  assert.deepEqual(port.targetVersions, audit.versions.map(v => v.version), "targets are exactly the audited host versions");
   for (const version of audit.versions) {
     for (const key of [...audit.nativeVariables, ...audit.resetVariables]) {
       assert.ok(version.hooks[key].definitionLine > 0, `${version.version}: ${key} definition`);
@@ -200,6 +201,22 @@ test("the 1.13 hook audit, selector ledger and dark-only hazard contracts stay c
   for (const instruction of ["Get-Content -LiteralPath $installer", "& $installer -VaultPath $vault", "Invoke-WebRequest", "Restart Obsidian", "roll back", "Base color scheme → Dark"]) assert.ok(readme.includes(instruction), instruction);
   assert.match(implementation, /NOT_RUN/);
   assert.match(implementation, /user/);
+  assert.match(implementation, /platform[\s\S]*`android`/);
+  assert.match(readme, /no Android import is recorded/);
+});
+test("Android shares the port: one README entry, an operational guide and the same reviewed-download discipline", async () => {
+  const readme = await readText("ports/obsidian/README.md"), android = await readText("ports/obsidian/ANDROID.md");
+  const termux = [
+    "curl -fL --proto '=https' https://j3w1.github.io/theme/ports/obsidian/install-android.sh -o \"$HOME/j3w1-install-android.sh\"",
+    "cat \"$HOME/j3w1-install-android.sh\"", "sh \"$HOME/j3w1-install-android.sh\" --vault \"$vault\"",
+  ];
+  for (const line of [...termux, "termux-setup-storage", "pkg install curl jq", "device storage", "(ANDROID.md)"]) assert.ok(readme.includes(line), `README: ${line}`);
+  for (const line of [...termux, "termux-setup-storage", "pkg install curl jq", "**Device storage**", "**App storage**", "Manual fallback without Termux", "roll back", "Base color scheme → Dark", "No Android import", "(README.md)", "(IMPLEMENTATION.md)"]) assert.ok(android.includes(line), `ANDROID.md: ${line}`);
+  for (const file of ["manifest.json", "theme.css"]) assert.ok(android.includes(`https://j3w1.github.io/theme/ports/obsidian/${file}`), file);
+  for (const [name, text] of [["README.md", readme], ["ANDROID.md", android]]) {
+    assert.doesNotMatch(text, /\|\s*(?:ba|da)?sh\b/, `${name} never pipes a download into a shell`);
+    assert.doesNotMatch(text, /\/main\//, `${name} links no branch`);
+  }
 });
 test("contrast pairs validate actual native values without rounding a failure into a pass", () => {
   const check = (foreground, background, min = 4.5) => {

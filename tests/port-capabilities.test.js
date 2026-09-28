@@ -3,10 +3,13 @@ import assert from "node:assert/strict";
 import { z } from "zod";
 import { readJson } from "../scripts/lib/fs.mjs";
 import { describePort, portSubject } from "../scripts/lib/port-capabilities.mjs";
-import { portCapabilitiesSchema, portCatalogueSchema, assertCapabilities, MAPPING_STATES } from "../schemas/port-capabilities.mjs";
+import { portCapabilitiesSchema, portCatalogueSchema, portImportEvidenceSchema, assertCapabilities, MAPPING_STATES } from "../schemas/port-capabilities.mjs";
+import { portSchema } from "../schemas/port.mjs";
 import { fixture } from "./fixtures/port-capabilities.mjs";
 import { renderPortCatalogue } from "../scripts/lib/port-presentation.mjs";
 import { validatePorts } from "../scripts/lib/validators.mjs";
+
+const validPort = await readJson("ports/obsidian/port.json");
 test("the real catalogue lists exactly the ports on disk, none verified without evidence, and synthetic mapping states never become published support", async () => {
   const { ports } = await readJson("exports/port-capabilities.json");
   assert.deepEqual(ports.map(port => port.id), (await validatePorts()).map(port => port.id));
@@ -40,6 +43,16 @@ test("verified imports require an exact subject and stale claims do not survive 
   ]) assert.equal(describePort({ ...input, ...change, evidence }).verification.status, "stale");
   assert.equal(describePort({ ...input, evidence: { ...evidence, result: "failed" } }).verification.status, "not verified");
   assert.equal(describePort({ ...input, evidence: { ...evidence, platform: "windows" } }).verification.status, "not verified");
+  // Android is a platform like any other: declared (or "any") verifies, undeclared does not.
+  const android = { ...evidence, platform: "android", os: "Synthetic Android fixture" };
+  for (const os of [["android"], ["any"], ["linux", "android"]]) {
+    const port = { ...input.port, os };
+    assert.equal(describePort({ ...input, port, evidence: { ...android, subjectDigest: portSubject({ ...input, port }) } }).verification.status, "verified", os.join());
+  }
+  assert.equal(describePort({ ...input, evidence: android }).verification.status, "not verified");
+  assert.equal(portImportEvidenceSchema(z).safeParse({ ...evidence, platform: "ios" }).success, false);
+  assert.equal(portSchema(z).safeParse({ ...validPort, os: ["android"] }).success, true);
+  assert.equal(portSchema(z).safeParse({ ...validPort, os: ["ios"] }).success, false);
   assert.equal(describePort({ ...input, tokenDigest: "changed", evidence }).mappings[0].value, null);
   assert.equal(describePort({ ...input, port: { ...input.port, status: "experimental" }, evidence }).verification.status, "not verified");
 });

@@ -27,6 +27,17 @@ performed. `theme.json.release` continues to identify the published v3.0.0.
   restore the previous two files or select the previous theme to roll back.
   Published v3.1.0 links require the separately authorized release action.
   Canonical roles, values, focus/selection rules and licensing do not change.
+- **Obsidian on Android** uses the same port and the same two artifacts. A
+  reviewed POSIX `sh` helper, `ports/obsidian/install-android.sh`, is served
+  beside `install.ps1` for Termux and device-storage vaults. It keeps the
+  Windows helper's checks and messages, and replaces the whole `j3w1` folder
+  by renaming within `themes/`. It refuses a folder holding anything but the
+  pair and keeps both copies if a swap is interrupted. `ANDROID.md` covers
+  storage, a manual fallback and rollback. Its tests run the real script
+  against scratch vaults; no Android import is recorded.
+- Ports and real-import evidence can name `android` as a platform. Obsidian's
+  `targetVersions` are now the audited 1.13.4 and 1.13.7 instead of `1.13.x`,
+  which no recorded version could ever match.
 
 ## [3.0.0] - 2026-09-26
 

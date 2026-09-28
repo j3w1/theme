@@ -1,10 +1,11 @@
 # j3w1 for Obsidian
 
 Experimental, dark-only theme for Obsidian **1.13.4+** (including the declared
-minimum supported by 1.13.7). A Windows 1.13.7 import and visible rendering
-were **user-reported**; repository real-import verification, including manual
-keyboard, zoom and screen-reader checks, is not recorded. The port is not
-`verified`.
+minimum supported by 1.13.7). Windows and Android use the same two files,
+`manifest.json` and `theme.css`. A Windows 1.13.7 import and visible rendering
+were **user-reported**; no Android import is recorded. Repository real-import
+verification, including manual keyboard, zoom and screen-reader checks, is not
+recorded. The port is not `verified`.
 
 ## Install on Windows (recommended helper)
 
@@ -64,19 +65,44 @@ files can also be inspected separately:
 [manifest.json](https://j3w1.github.io/theme/ports/obsidian/manifest.json) and
 [theme.css](https://j3w1.github.io/theme/ports/obsidian/theme.css).
 
+## Install on Android (Termux helper)
+
+Only vaults in Obsidian's **device storage** are supported; Termux cannot reach
+a vault in app storage. Read the [Android guide](ANDROID.md) first: it covers
+storage, the vault path, what the helper checks, a manual fallback without
+Termux, and rollback. Completely close Obsidian, including from recent apps.
+In Termux, edit `vault` to your own existing vault path, download the
+[reviewed installer](https://j3w1.github.io/theme/ports/obsidian/install-android.sh),
+**inspect it before running it**, then execute it:
+
+```sh
+termux-setup-storage # once: allow Termux to use shared storage
+pkg install curl jq # once
+vault="$HOME/storage/shared/Documents/MyVault" # edit this path
+curl -fL --proto '=https' https://j3w1.github.io/theme/ports/obsidian/install-android.sh -o "$HOME/j3w1-install-android.sh"
+cat "$HOME/j3w1-install-android.sh" # review the entire downloaded script before continuing
+sh "$HOME/j3w1-install-android.sh" --vault "$vault"
+```
+
+Do not pipe a remote download into a shell. The helper validates the
+downloaded pair as the Windows helper does, stages it beside the theme, swaps
+the whole `j3w1` folder and restores the previous one if the swap fails.
+
 ## Enable and verify
 
-The final folder should contain exactly the two native theme artifacts:
+The final folder should contain exactly the two native theme artifacts
+(Windows shows the separators as `\`):
 
 ```text
-<vault>\.obsidian\themes\j3w1\
+<vault>/.obsidian/themes/j3w1/
   manifest.json
   theme.css
 ```
 
-Check both files exist and have nonzero `Length` with
+On Windows, check both files exist and have nonzero `Length` with
 `Get-Item -LiteralPath $manifest,$css` (set `$theme` and those two paths as
-shown above if you used the helper). Restart Obsidian, set
+shown above if you used the helper); in Termux, use
+`ls -l "$vault/.obsidian/themes/j3w1"`. Restart Obsidian, set
 **Settings → Appearance → Base color scheme → Dark**, then select **j3w1**
 under **Themes**. Light mode is not supported. Expect black note backgrounds,
 rose ordinary Reading View and editor text, near-white headings, inline title
@@ -86,10 +112,11 @@ own colors. The installed manifest declares `minAppVersion: 1.13.4`.
 ## Update or roll back
 
 To update, close Obsidian, save **both** installed files together outside the
-active theme directory, then rerun the reviewed helper with the same vault path
-(or both pasteable downloads). Verify both files, restart Obsidian and reselect
-the theme if necessary. Do not mix versions; the live URLs may change as the
-site publishes a new release.
+active theme directory (each helper keeps its backup only until the new pair is
+in place), then rerun the reviewed helper for your platform with the same vault
+path (or both pasteable downloads). Verify both files, restart Obsidian and
+reselect the theme if necessary. Do not mix versions; the live URLs may change
+as the site publishes a new release.
 
 To roll back an update, close Obsidian, restore **both** saved files together
 to `j3w1`, then restart. To stop using the theme, select Default or your

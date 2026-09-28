@@ -103,7 +103,7 @@ valid, but the explorer reports unclassified unmapped roles and missing pins.
 
 An optional `verificationPath` identifies a real-import JSON protocol under
 `evidence/`, validated by `schemas/json/port-import-evidence.schema.json`.
-Record the application version, platform (`windows`, `linux` or `macos`),
+Record the application version, platform (`windows`, `linux`, `macos` or `android`),
 actual OS version, checks, outcomes, protocol and
 limits. Compute `subjectDigest` with `portSubject` in
 `scripts/lib/port-capabilities.mjs` over the manifest (excluding its claimed

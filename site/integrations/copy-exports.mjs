@@ -8,6 +8,7 @@ import { fileURLToPath } from "node:url";
 import { readJson, repoRoot, writeFileEnsured } from "../../scripts/lib/fs.mjs";
 import { KIT_SHARED_FILES } from "../../scripts/lib/task-inputs-generator.mjs";
 import { portDownloadPath } from "../../scripts/lib/port-presentation.mjs";
+import { OBSIDIAN_INSTALLERS } from "../../scripts/lib/obsidian-port.mjs";
 
 const copyDir = (from, to) => fs.cp(from, to, { recursive: true });
 
@@ -38,9 +39,11 @@ export default function copyExports() {
           downloads.add(target);
           await writeFileEnsured(path.join(out, target), await fs.readFile(path.join(repoRoot, file.source)));
         }
-        const installer = "ports/obsidian/install.ps1";
-        if (downloads.has(installer)) throw new Error(`A port file would overwrite ${installer}`);
-        await writeFileEnsured(path.join(out, installer), await fs.readFile(path.join(repoRoot, installer)));
+        for (const name of OBSIDIAN_INSTALLERS) {
+          const installer = `ports/obsidian/${name}`;
+          if (downloads.has(installer)) throw new Error(`A port file would overwrite ${installer}`);
+          await writeFileEnsured(path.join(out, installer), await fs.readFile(path.join(repoRoot, installer)));
+        }
         await fs.writeFile(path.join(out, ".nojekyll"), "");
       },
     },

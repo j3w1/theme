@@ -5,8 +5,9 @@ The port remains **experimental**, dark-only, and unverified by the repository's
 real-import protocol. A Windows Obsidian 1.13.7 import and visible rendering were
 reported by the user; that report does not establish the exact artifact digests,
 manual keyboard, zoom, screen-reader or full protocol observations. The recorded
-`testedVersions` and `evidence` arrays therefore remain empty. Structural source
-checks against 1.13.4 and 1.13.7 are not real imports.
+`testedVersions` and `evidence` arrays therefore remain empty. No Android import
+is recorded; the mobile, tablet and phone root rules are source-audited only.
+Structural source checks against 1.13.4 and 1.13.7 are not real imports.
 
 ## Scope and semantic mapping
 
@@ -199,6 +200,34 @@ The forced-colors block repeats `.theme-dark`, the same primary/destructive/
 checked-control selectors and prompt `:focus-visible` selector solely to use
 system `Highlight` focus color. It adds no host hook.
 
+## Installers
+
+Both platforms install the same two artifacts; there is no Android variant of
+the theme. `OBSIDIAN_INSTALLERS` in `scripts/lib/obsidian-port.mjs` names the
+two reviewed helpers the site serves byte-identically beside the artifacts:
+`install.ps1` (Windows PowerShell) and `install-android.sh` (POSIX `sh`, for
+Termux and device-storage vaults, see [ANDROID.md](ANDROID.md)). Neither is a
+native artifact, and neither is listed in `port.json`.
+
+They share one contract. Resolve an existing vault and require `.obsidian`.
+Download both live files to a temporary folder. Require the `j3w1` name and
+dotted versions in the manifest, and a non-empty CSS whose first line names
+the same version. Stage the complete pair inside `themes/`, keep the previous
+pair until replacement succeeds, restore it on failure, report retained
+recovery copies when restoration fails, and remove temporary files. Their
+user-facing messages match. They differ in the replacement step: the Windows
+helper copies two files over the old pair, while the Android helper renames
+the whole `j3w1` folder aside and renames the staged folder into place, so it
+refuses a `j3w1` folder that holds anything but the pair, or holds only one
+of the two files, or is a link. An interruption during the Android swap keeps
+both hidden folders rather than deleting the only copy.
+
+`tests/obsidian-android-install.test.js` runs the real Android script against
+scratch vaults under `sh` and, when installed, dash and busybox, with stub
+`curl` and `mv` and a PATH that holds only the declared tools. It proves the
+shell contract, not an Android import. `tests/obsidian-port.test.js` holds the
+PowerShell text contract; no PowerShell run of `install.ps1` is recorded.
+
 ## Verification before claiming a real import
 
 Use a disposable vault on the intended host. Record app version, OS, font,
@@ -207,5 +236,21 @@ Search, Backlinks, CM6/Live Preview, Reading View, split panes and tabs, both
 command prompts, menus, popovers, tooltips, dialogs, controls, status messages,
 focus, selection and caret. Record actual observations and `NOT_RUN` checks in
 the repository real-import protocol before changing `testedVersions` or status.
-The current `targetVersions` range `1.13.x` must also be reconciled with the
-exact-version membership contract before any promotion to `verified`.
+
+On Android, also record the device, Android version, Obsidian version, that the
+vault is in device storage, and whether the phone or tablet layout ran (both
+when available). Inspect the left and right drawers, the mobile toolbar, the
+phone raised Search and drawer Search fields, tapped buttons (`.mobile-tap`),
+warning and destructive confirmations, both prompts and settings. Touch input
+does not normally show keyboard focus rings; record a hardware-keyboard focus
+check separately or as `NOT_RUN`.
+
+Record each platform in its own evidence file with its own `platform`
+(`windows` or `android`); mobile CSS that passes a source audit is not an
+Android import. `port.json` `evidence[]` may list both records, but
+`capabilities.verificationPath` binds one protocol to the catalogue at a time.
+
+`targetVersions` lists exactly the audited host versions, 1.13.4 and 1.13.7,
+because verification requires the recorded application version to be both a
+target and tested. A new Obsidian version becomes a target only after its hook
+audit is added to `tests/fixtures/obsidian-hooks.json`.
