@@ -224,12 +224,17 @@ replacing, so the Android helper claims success only when the pair is
 directly in `j3w1` and the staged folder is gone. Between steps it checks
 that `.obsidian` and `themes` are still real folders and that its own hidden
 folders are still in `themes`, which also catches a `themes` folder moved or
-replaced by another real folder. When a swap fails it restores the previous
-theme or, if it cannot, keeps every copy needed for recovery; after a
-successful restore it removes only its own staging and empty backup folders.
-When it is stopped by a signal it can catch or notices a folder changed, it
-removes nothing under `themes`. Its recovery advice names only paths that
-exist and depends on whether `j3w1` already holds a complete pair. Shell code cannot confine writes against an
+replaced by another real folder. Until the old folder has moved aside, a
+failure or a signal it can catch (including a failed attempt to move the old
+folder) leaves the previous theme where it was and removes only the helper's
+own staging and empty backup folders. From that move until the new pair is
+verified in place, a signal, a failed restore or a noticed change removes
+nothing under `themes`, and the helper reports what it kept. If only the
+staged rename fails and the old folder moves back, it then removes its own
+staging and empty backup folders. Whenever it notices that `.obsidian` or
+`themes` moved, it removes nothing under `themes`. Its recovery advice names
+only paths that exist, and it depends on whether `j3w1` already holds a
+complete pair. Shell code cannot confine writes against an
 app that changes the vault at the same moment, or run cleanup after an
 uncatchable stop; ANDROID.md states both limits and the manual recovery.
 
