@@ -47,6 +47,23 @@ test("Obsidian is a normal experimental two-artifact default-profile port", () =
   assert.deepEqual(port.files.map(f => f.path), ["dist/manifest.json", "dist/theme.css"]);
   assert.equal(port.themeVersion, manifest.version);
 });
+test("reviewed Windows helper stages a validated pair before replacement and preserves a recovery path", async () => {
+  const installer = await readText("ports/obsidian/install.ps1");
+  assert.match(installer, /^param\(\[Parameter\(Mandatory\)\]\[string\]\$VaultPath\)/);
+  assert.match(installer, /\$ErrorActionPreference = 'Stop'/);
+  assert.match(installer, /https:\/\/j3w1\.github\.io\/theme\/ports\/obsidian\//);
+  assert.match(installer, /\$names = @\('manifest\.json', 'theme\.css'\)/);
+  assert.match(installer, /ConvertFrom-Json -ErrorAction Stop/);
+  assert.match(installer, /\$manifest\.name -cne 'j3w1'/);
+  assert.match(installer, /\$manifest\.minAppVersion -notmatch/);
+  assert.match(installer, /\$header -cne \$expected/);
+  assert.ok(installer.indexOf("$header -cne $expected") < installer.indexOf("New-Item -ItemType Directory -Path $themes"));
+  assert.match(installer, /Existing theme has only one of the two files/);
+  assert.match(installer, /previous theme pair restored/);
+  assert.match(installer, /Keep recovery copies at \$staging/);
+  assert.match(installer, /\} finally \{/);
+  assert.doesNotMatch(installer, /Invoke-Expression|iex\b|ExecutionPolicy|Set-Content|\.obsidian[\\/]plugins/i);
+});
 test("native manifest and exact artifact bytes are deterministic and current", async () => {
   assert.deepEqual(native, { name: "j3w1", version: manifest.version, minAppVersion: "1.13.4", author: "j3w1", authorUrl: "https://github.com/j3w1" });
   assert.equal(native.minAppVersion, OBSIDIAN_MIN_APP_VERSION);
@@ -92,7 +109,11 @@ test("native semantic families keep surfaces, text, controls, status, focus and 
     "--menu-background": "color.surface.raised", "--prompt-background": "color.surface.raised",
     "--modal-background": "color.surface.overlay", "--background-modifier-form-field": "color.surface.input",
     "--ribbon-background": "color.surface.chrome", "--settings-background": "color.surface.default",
-    "--text-normal": "color.text.default", "--h1-color": "color.text.bright", "--text-muted": "color.text.muted",
+    "--text-normal": "color.text.default", "--text-muted": "color.text.muted",
+    "--bold-color": "color.text.prose", "--inline-title-color": "color.text.prose",
+    "--h1-color": "color.text.prose", "--h2-color": "color.text.prose", "--h3-color": "color.text.prose",
+    "--h4-color": "color.text.prose", "--h5-color": "color.text.prose", "--h6-color": "color.text.prose",
+    "--italic-color": "color.text.bright", "--setting-group-heading-color": "color.text.bright",
     "--text-faint": "color.text.subtle", "--input-placeholder-color": "color.text.placeholder",
     "--background-modifier-border": "color.border.control",
     "--color-accent": "color.text.accent-strong",
@@ -114,10 +135,12 @@ test("native semantic families keep surfaces, text, controls, status, focus and 
   for (const [key, role] of Object.entries(owner)) if (/^color\.status\.(warning|success|info)\./.test(role)) assert.match(key, /^--(?:text-(?:warning|success)|background-modifier-(?:warning|success)|callout-(?:warning|success|info))/);
   for (const key of Object.keys(owner).filter(k => k.startsWith("--code-") && k !== "--code-background" && !k.includes("border") && k !== "--code-radius")) assert.match(owner[key], /^color\.code\.syntax\./);
 });
-test("prose scopes, compact command rows and filled focus match the audited gaps", () => {
-  assertRole(".theme-dark .markdown-preview-view | color", "color.text.prose");
-  assertRole(".theme-dark .markdown-source-view.mod-cm6 .cm-content | color", "color.text.prose");
-  assert.equal(Object.keys(owner).filter(k => owner[k] === "color.text.prose").length, 2);
+test("rose reading scopes, near-white note emphasis, compact command rows and filled focus match the audited gaps", () => {
+  assert.equal(exported["color.text.default"].css, "#e99499");
+  assert.equal(exported["color.text.prose"].css, "#f4eeee");
+  assertRole(".theme-dark .markdown-preview-view | color", "color.text.default");
+  assertRole(".theme-dark .markdown-source-view.mod-cm6 .cm-content | color", "color.text.default");
+  assert.deepEqual(Object.keys(owner).filter(k => owner[k] === "color.text.prose").sort(), ["--bold-color", "--h1-color", "--h2-color", "--h3-color", "--h4-color", "--h5-color", "--h6-color", "--inline-title-color"].sort());
   assertRole(".theme-dark .prompt .suggestion-item.is-selected | background-color", "color.interaction.selection.bg");
   assertRole(".theme-dark .prompt .suggestion-item.is-selected | border-inline-start-color", "color.border.selected-indicator");
   assertRole(".theme-dark .prompt .suggestion-item | min-height", "density.compact.row-height");
@@ -155,9 +178,9 @@ test("the 1.13 hook audit, selector ledger and dark-only hazard contracts stay c
   assert.equal(capabilities.roles["color.action.destructive.text"].state, "mapped");
   assert.equal(capabilities.roles["color.action.destructive.filled-bg"].state, "inherited");
   assert.doesNotMatch(css, /--color-accent-[12]\s*:/);
-  const readme = await readText("ports/obsidian/README.md");
+  const implementation = await readText("ports/obsidian/IMPLEMENTATION.md");
   for (const rule of OBSIDIAN_RULES) {
-    assert.ok(readme.includes('`' + rule.selector + '`'), rule.selector);
+    assert.ok(implementation.includes('`' + rule.selector + '`'), rule.selector);
     assert.ok(rule.reason.length > 20);
   }
   ast.walkRules(rule => {
@@ -167,8 +190,16 @@ test("the 1.13 hook audit, selector ledger and dark-only hazard contracts stay c
   });
   assert.doesNotMatch(css, /\.theme-light|!important|:has\(|@import|@font-face|url\(|https?:|OLED|telemetry|--[a-z-]*(?:rgb|hsl)|--accent-[hsl]\s*:/i);
   assert.doesNotMatch(await readText("scripts/lib/obsidian-port.mjs"), /#[0-9a-f]{3,8}\b/i, "no literal palette in renderer");
-  assert.match(readme, /NOT_RUN/);
+  const readme = await readText("ports/obsidian/README.md");
   assert.match(readme, /experimental/i);
+  assert.match(readme, /user-reported/i);
+  assert.match(readme, /1\.13\.4\+/);
+  assert.match(readme, /install\.ps1/);
+  assert.match(readme, /IMPLEMENTATION\.md/);
+  for (const file of ["manifest.json", "theme.css"]) assert.ok(readme.includes(`https://j3w1.github.io/theme/ports/obsidian/${file}`));
+  for (const instruction of ["Get-Content -LiteralPath $installer", "& $installer -VaultPath $vault", "Invoke-WebRequest", "Restart Obsidian", "roll back", "Base color scheme → Dark"]) assert.ok(readme.includes(instruction), instruction);
+  assert.match(implementation, /NOT_RUN/);
+  assert.match(implementation, /user/);
 });
 test("contrast pairs validate actual native values without rounding a failure into a pass", () => {
   const check = (foreground, background, min = 4.5) => {

@@ -9,7 +9,7 @@
     },
     "markdown": {
       "state": "supported",
-      "reason": "Reading View, CM6 content and monochrome code variables; structural checks only."
+      "reason": "Rose Reading View and CM6 note text, near-white note headings/title/bold and monochrome code variables; structural checks only."
     },
     "commands": {
       "state": "supported",
@@ -500,17 +500,17 @@
     "color.text.default": {
       "state": "mapped",
       "surface": "interface",
-      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+      "reason": "Rose for interface text and scoped Reading View/CM6 note bodies; source-audited in Obsidian 1.13.4 and 1.13.7, not verified by a recorded import."
     },
     "color.text.bright": {
       "state": "mapped",
       "surface": "interface",
-      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+      "reason": "Bright rose remains on italic note emphasis and interface setting-group headings; source-audited in Obsidian 1.13.4 and 1.13.7."
     },
     "color.text.prose": {
       "state": "mapped",
       "surface": "markdown",
-      "reason": "Mapped only at the native keys in mapping.json; source-audited in Obsidian 1.13.4 and 1.13.7, not imported."
+      "reason": "Near-white is reserved for note headings (h1–h6), inline title and bold; a documented Obsidian-only semantic deviation, not a token change."
     },
     "color.text.muted": {
       "state": "mapped",
@@ -1060,7 +1060,7 @@
     "color.code.syntax.heading": {
       "state": "unsupported",
       "surface": "unsupported-hooks",
-      "reason": "Native Markdown headings use h1–h6 color variables, owned by text.bright; no separate code syntax heading channel."
+      "reason": "Native Markdown headings use h1–h6 color variables, owned by text.prose; no separate code syntax heading channel."
     },
     "color.code.syntax.tag": {
       "state": "mapped",
