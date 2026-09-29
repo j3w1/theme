@@ -7,10 +7,12 @@
       "powertoys.highlight",
       "windhawk.resource.SystemAccentColor",
       "windhawk.resource.SystemControlHighlightAccentBrush",
-      "windows-11-start-menu-styler | Button > Grid@CommonStates > Border | BorderBrush@PointerOver",
-      "windows-11-start-menu-styler | Button > Grid@CommonStates > Border | BorderBrush@Pressed",
       "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | BorderBrush@PointerOver",
-      "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | BorderBrush@Pressed"
+      "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | BorderBrush@Pressed",
+      "windows-11-start-menu-styler | Button#ShowMoreSuggestionsButton > Grid@CommonStates > Border | BorderBrush@PointerOver",
+      "windows-11-start-menu-styler | Button#ShowMoreSuggestionsButton > Grid@CommonStates > Border | BorderBrush@Pressed",
+      "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | BorderBrush@PointerOver",
+      "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | BorderBrush@Pressed"
     ],
     "color.surface.desktop": [
       "native.desktop"
@@ -91,8 +93,9 @@
     "color.border.control": [
       "powertoys.border",
       "windhawk.resource.ControlStrokeColorDefault",
-      "windows-11-start-menu-styler | Button > Grid@CommonStates > Border | BorderBrush@Normal",
       "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | BorderBrush@Normal",
+      "windows-11-start-menu-styler | Button#ShowMoreSuggestionsButton > Grid@CommonStates > Border | BorderBrush@Normal",
+      "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | BorderBrush@Normal",
       "windows-11-start-menu-styler | StartDocked.SearchBoxToggleButton > Grid > Border#BorderElement | BorderBrush",
       "windows-11-start-menu-styler | StartMenu.SearchBoxToggleButton > Grid > Border#BorderElement | BorderBrush"
     ],
@@ -169,20 +172,23 @@
     ],
     "color.surface.input": [
       "windhawk.resource.ControlFillColorDefault",
-      "windows-11-start-menu-styler | Button > Grid@CommonStates > Border | Background@Normal",
       "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | Background@Normal",
+      "windows-11-start-menu-styler | Button#ShowMoreSuggestionsButton > Grid@CommonStates > Border | Background@Normal",
+      "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | Background@Normal",
       "windows-11-start-menu-styler | StartDocked.SearchBoxToggleButton > Grid > Border#BorderElement | Background",
       "windows-11-start-menu-styler | StartMenu.SearchBoxToggleButton > Grid > Border#BorderElement | Background"
     ],
     "color.interaction.hover.bg": [
       "windhawk.resource.ControlFillColorSecondary",
-      "windows-11-start-menu-styler | Button > Grid@CommonStates > Border | Background@PointerOver",
-      "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | Background@PointerOver"
+      "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | Background@PointerOver",
+      "windows-11-start-menu-styler | Button#ShowMoreSuggestionsButton > Grid@CommonStates > Border | Background@PointerOver",
+      "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | Background@PointerOver"
     ],
     "color.interaction.pressed.bg": [
       "windhawk.resource.ControlFillColorTertiary",
-      "windows-11-start-menu-styler | Button > Grid@CommonStates > Border | Background@Pressed",
-      "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | Background@Pressed"
+      "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | Background@Pressed",
+      "windows-11-start-menu-styler | Button#ShowMoreSuggestionsButton > Grid@CommonStates > Border | Background@Pressed",
+      "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | Background@Pressed"
     ],
     "color.action.primary.bg": [
       "windhawk.resource.AccentFillColorDefault"
@@ -198,8 +204,9 @@
     "border.width.default": [
       "windows-11-start-menu-styler | Border#AcrylicBorder | BorderThickness",
       "windows-11-start-menu-styler | Grid#CompanionRoot > Border#AcrylicBorder | BorderThickness",
-      "windows-11-start-menu-styler | Button > Grid@CommonStates > Border | BorderThickness",
       "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | BorderThickness",
+      "windows-11-start-menu-styler | Button#ShowMoreSuggestionsButton > Grid@CommonStates > Border | BorderThickness",
+      "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | BorderThickness",
       "windows-11-start-menu-styler | StartDocked.SearchBoxToggleButton > Grid > Border#BorderElement | BorderThickness",
       "windows-11-start-menu-styler | StartMenu.SearchBoxToggleButton > Grid > Border#BorderElement | BorderThickness",
       "windows-11-start-menu-styler | StartMenu.CategoryControl > Grid > Border | BorderThickness",
@@ -214,22 +221,28 @@
       "windows-11-start-menu-styler | Grid#MainContent | CornerRadius",
       "windows-11-start-menu-styler | Grid#CompanionRoot > Border#AcrylicBorder | CornerRadius",
       "windows-11-start-menu-styler | Grid#CompanionRoot > Grid#MainContent > Border#AcrylicOverlay | CornerRadius",
-      "windows-11-start-menu-styler | Button > Grid@CommonStates > Border | CornerRadius",
       "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | CornerRadius",
+      "windows-11-start-menu-styler | Button#ShowMoreSuggestionsButton > Grid@CommonStates > Border | CornerRadius",
+      "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | CornerRadius",
       "windows-11-start-menu-styler | StartDocked.SearchBoxToggleButton > Grid > Border#BorderElement | CornerRadius",
       "windows-11-start-menu-styler | StartMenu.SearchBoxToggleButton > Grid > Border#BorderElement | CornerRadius",
       "windows-11-start-menu-styler | StartMenu.StartBlendedFlexFrame | CornerRadius",
       "windows-11-start-menu-styler | StartMenu.CategoryControl > Grid > Border | CornerRadius",
       "windows-11-start-menu-styler | StartMenu.FolderModal > Grid > Border | CornerRadius",
-      "windows-11-start-menu-styler | Grid#DroppedFlickerWorkaroundWrapper > Border#BackgroundBorder | CornerRadius"
+      "windows-11-start-menu-styler | Grid#DroppedFlickerWorkaroundWrapper > Border#BackgroundBorder | CornerRadius",
+      "windows-11-start-menu-styler | Button#LogoContainer > Grid@CommonStates > Border | CornerRadius",
+      "windows-11-start-menu-styler | Button#FolderPlate > Grid@CommonStates > Border | CornerRadius",
+      "windows-11-start-menu-styler | Button#Header > Grid@CommonStates > Border | CornerRadius"
     ],
     "color.interaction.disabled.bg": [
-      "windows-11-start-menu-styler | Button > Grid@CommonStates > Border | Background@Disabled",
-      "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | Background@Disabled"
+      "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | Background@Disabled",
+      "windows-11-start-menu-styler | Button#ShowMoreSuggestionsButton > Grid@CommonStates > Border | Background@Disabled",
+      "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | Background@Disabled"
     ],
     "color.border.disabled": [
-      "windows-11-start-menu-styler | Button > Grid@CommonStates > Border | BorderBrush@Disabled",
-      "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | BorderBrush@Disabled"
+      "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | BorderBrush@Disabled",
+      "windows-11-start-menu-styler | Button#ShowMoreSuggestionsButton > Grid@CommonStates > Border | BorderBrush@Disabled",
+      "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | BorderBrush@Disabled"
     ],
     "color.border.default": [
       "windows-11-start-menu-styler | StartMenu.CategoryControl > Grid > Border | BorderBrush"

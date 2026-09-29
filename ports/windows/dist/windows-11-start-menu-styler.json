@@ -113,7 +113,7 @@
       ]
     },
     {
-      "target": "Button > Grid@CommonStates > Border",
+      "target": "Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates",
       "styles": [
         "CornerRadius=0",
         "BorderThickness=1",
@@ -128,7 +128,22 @@
       ]
     },
     {
-      "target": "Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates",
+      "target": "Button#ShowMoreSuggestionsButton > Grid@CommonStates > Border",
+      "styles": [
+        "CornerRadius=0",
+        "BorderThickness=1",
+        "BorderBrush@Normal=#a3676b",
+        "Background@Normal=#000000",
+        "Background@PointerOver=#1c0a09",
+        "Background@Pressed=#420f0c",
+        "Background@Disabled=#160b0b",
+        "BorderBrush@PointerOver=#e53935",
+        "BorderBrush@Pressed=#e53935",
+        "BorderBrush@Disabled=#7d1310"
+      ]
+    },
+    {
+      "target": "Button#HideMoreSuggestionsButton > Grid@CommonStates > Border",
       "styles": [
         "CornerRadius=0",
         "BorderThickness=1",

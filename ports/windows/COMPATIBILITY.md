@@ -123,7 +123,11 @@ Theme restore retains installed shared tools and fonts; automatic dependency rem
 
 The generated mapping covers opaque raised/black surfaces, red 1px outer
 frames, zero corner radii, rectangular search/category/folder containers and
-token-based normal/hover/pressed/disabled button fills. The companion phone
+token-based normal/hover/pressed/disabled fills on section-expansion controls.
+A generic Button border selector initially framed nested category icons and
+captions; owner feedback removed it. Category containers keep one subtle outer
+outline, while named inner icon/folder/header targets receive square corners
+only and retain their native fill, border and focus behavior. The companion phone
 panel uses its existing AcrylicBorder/AcrylicOverlay controls. Classic and
 redesigned selectors remain separate; the current host uses redesigned Start.
 Target names are grounded in the pinned Start Menu Styler 1.7 source examples.

@@ -178,6 +178,12 @@ test('Start geometry and font values use XAML syntax without changing layout or 
   if(/^(?:CornerRadius|BorderThickness)=/.test(style))assert.match(style,/=\d+$/);
  }
  assert.ok(variants.redesigned.some(t=>t.target==='StartMenu.CategoryControl > Grid > Border'));
+ assert.ok(!all.some(t=>t.target==='Button > Grid@CommonStates > Border'),'no broad rule should frame each category icon/caption');
+ for(const name of ['LogoContainer','FolderPlate','Header']){
+  const tile=variants.redesigned.find(t=>t.target===`Button#${name} > Grid@CommonStates > Border`);
+  assert.deepEqual(tile.styles,['CornerRadius=0'],'category internals must not acquire nested borders or fills');
+ }
+
  assert.ok(payload.controlStyles.some(t=>t.target==='Grid#CompanionRoot > Border#AcrylicBorder'));
  assert.throws(()=>windowsStyleValue('CornerRadius',{type:'dimension',resolved:{value:1,unit:'rem'}}),/pixel dimension/);
  assert.throws(()=>windowsStyleValue('FontFamily',{type:'number',resolved:1}),/font-family/);

@@ -66,7 +66,9 @@ before resolving a conflict or interrupted installation.
 ## What changes
 
 Start uses opaque canonical surfaces, square panel/search/category corners,
-thin red outer frames and token-based hover/pressed button fills. Named text
+thin red outer frames and token-based hover/pressed fills on section controls.
+Category groups have one subtle outer outline; their icon tiles and captions
+retain native border/fill treatments without added rose boxes. Named text
 labels use SauceCodePro NFM at the existing size; symbol icons retain their font.
 Pinned apps, Recent, category view, phone integration, scrolling and native
 keyboard-focus/selection behavior are preserved. The phone panel receives the

@@ -208,7 +208,7 @@
           }
         },
         {
-          "target": "Button > Grid@CommonStates > Border",
+          "target": "Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates",
           "styles": {
             "CornerRadius": "radius.none",
             "BorderThickness": "border.width.default",
@@ -223,7 +223,22 @@
           }
         },
         {
-          "target": "Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates",
+          "target": "Button#ShowMoreSuggestionsButton > Grid@CommonStates > Border",
+          "styles": {
+            "CornerRadius": "radius.none",
+            "BorderThickness": "border.width.default",
+            "BorderBrush@Normal": "color.border.control",
+            "Background@Normal": "color.surface.input",
+            "Background@PointerOver": "color.interaction.hover.bg",
+            "Background@Pressed": "color.interaction.pressed.bg",
+            "Background@Disabled": "color.interaction.disabled.bg",
+            "BorderBrush@PointerOver": "color.border.active",
+            "BorderBrush@Pressed": "color.border.active",
+            "BorderBrush@Disabled": "color.border.disabled"
+          }
+        },
+        {
+          "target": "Button#HideMoreSuggestionsButton > Grid@CommonStates > Border",
           "styles": {
             "CornerRadius": "radius.none",
             "BorderThickness": "border.width.default",
@@ -292,6 +307,24 @@
           },
           {
             "target": "Grid#DroppedFlickerWorkaroundWrapper > Border#BackgroundBorder",
+            "styles": {
+              "CornerRadius": "radius.none"
+            }
+          },
+          {
+            "target": "Button#LogoContainer > Grid@CommonStates > Border",
+            "styles": {
+              "CornerRadius": "radius.none"
+            }
+          },
+          {
+            "target": "Button#FolderPlate > Grid@CommonStates > Border",
+            "styles": {
+              "CornerRadius": "radius.none"
+            }
+          },
+          {
+            "target": "Button#Header > Grid@CommonStates > Border",
             "styles": {
               "CornerRadius": "radius.none"
             }

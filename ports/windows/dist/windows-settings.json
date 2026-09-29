@@ -98,6 +98,24 @@
           "styles": [
             "CornerRadius=0"
           ]
+        },
+        {
+          "target": "Button#LogoContainer > Grid@CommonStates > Border",
+          "styles": [
+            "CornerRadius=0"
+          ]
+        },
+        {
+          "target": "Button#FolderPlate > Grid@CommonStates > Border",
+          "styles": [
+            "CornerRadius=0"
+          ]
+        },
+        {
+          "target": "Button#Header > Grid@CommonStates > Border",
+          "styles": [
+            "CornerRadius=0"
+          ]
         }
       ]
     }
