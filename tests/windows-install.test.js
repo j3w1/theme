@@ -85,3 +85,14 @@ test('unavailable offline revision fails before registry writes and retains no v
  assert.notEqual(failed.status,0);assert.match(failed.stderr,/Pinned Git read failed/);
  assert.ok(!fs.existsSync(path.join(f.state,'journal.json')));assert.ok(!fs.existsSync(path.join(f.state,'releases',revision,'verified.json')));
 });
+
+test('native registry adapter preserves the unsigned high bit of ARGB DWORD colors', {skip:unavailable}, () => {
+ const script=`$ast=[Management.Automation.Language.Parser]::ParseFile($env:J3W1_ADAPTER_TEST_PATH,[ref]$null,[ref]$null)
+ $function=$ast.Find({param($node) $node -is [Management.Automation.Language.FunctionDefinitionAst] -and $node.Name -eq 'ConvertFrom-RegistryDword'},$true)
+ if(-not $function){throw 'Missing adapter conversion'}
+ . ([scriptblock]::Create($function.Extent.Text))
+ @(0,2147483647,-2147483648,-1,-15990576)|ForEach-Object {ConvertFrom-RegistryDword $_}|ConvertTo-Json -Compress`;
+ const result=spawnSync(pwsh,['-NoProfile','-NonInteractive','-Command',script],{encoding:'utf8',env:{...process.env,J3W1_ADAPTER_TEST_PATH:path.join(repoRoot,'ports/windows/adapter.ps1')}});
+ assert.equal(result.status,0,result.stderr);
+ assert.deepEqual(JSON.parse(result.stdout),[0,2147483647,2147483648,4294967295,4278976720]);
+});

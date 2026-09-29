@@ -2,6 +2,9 @@
 # personalization refresh. No UI automation, process termination or privilege change.
 Set-StrictMode -Version Latest
 $ErrorActionPreference='Stop'
+function ConvertFrom-RegistryDword([int]$Value){
+  return [BitConverter]::ToUInt32([BitConverter]::GetBytes($Value),0)
+}
 $request=[Console]::In.ReadToEnd() | ConvertFrom-Json -AsHashtable
 switch($request.operation) {
   'environment' {
@@ -48,7 +51,7 @@ public static class J3w1StartLayoutProbe {
     try {
       if($request.operation -eq 'get') {
         if($null -eq $key -or $request.name -notin $key.GetValueNames()){@{exists=$false}|ConvertTo-Json -Compress}
-        else{$kind=$key.GetValueKind($request.name).ToString();$value=$key.GetValue($request.name,$null,[Microsoft.Win32.RegistryValueOptions]::DoNotExpandEnvironmentNames);if($kind -eq 'DWord'){$value=[uint32]([int64]$value -band 0xffffffff)};@{exists=$true;type=$kind;value=$value}|ConvertTo-Json -Compress -Depth 10}
+        else{$kind=$key.GetValueKind($request.name).ToString();$value=$key.GetValue($request.name,$null,[Microsoft.Win32.RegistryValueOptions]::DoNotExpandEnvironmentNames);if($kind -eq 'DWord'){$value=ConvertFrom-RegistryDword $value};@{exists=$true;type=$kind;value=$value}|ConvertTo-Json -Compress -Depth 10}
       } else {
         if($request.value.exists){if($null -eq $key){$key=[Microsoft.Win32.Registry]::CurrentUser.CreateSubKey($request.key)};$value=$request.value.value;if($request.value.type -eq 'DWord'){$value=[BitConverter]::ToInt32([BitConverter]::GetBytes([uint32]$value),0)};$key.SetValue($request.name,$value,[Microsoft.Win32.RegistryValueKind]$request.value.type)}
         elseif($null -ne $key){$key.DeleteValue($request.name,$false)}
