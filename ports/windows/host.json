@@ -1,0 +1,261 @@
+{
+  "schemaVersion": 1,
+  "roles": {
+    "native.accent": "color.border.active",
+    "native.desktop": "color.surface.desktop",
+    "terminal.foreground": "color.terminal.fg",
+    "terminal.background": "color.surface.canvas",
+    "terminal.cursor": "color.terminal.cursor",
+    "terminal.selection": "color.code.selection-bg",
+    "terminal.chrome": "color.surface.chrome",
+    "native.foreground": "color.text.default",
+    "native.bright": "color.text.bright",
+    "native.heading": "color.text.heading",
+    "native.highlight": "color.text.highlight",
+    "native.muted": "color.text.muted",
+    "native.disabled": "color.text.disabled",
+    "native.selection": "color.interaction.selection.bg",
+    "cursor.foreground": "color.text.default",
+    "cursor.outline": "color.surface.canvas",
+    "powertoys.highlight": "color.border.active",
+    "powertoys.inactive": "color.surface.raised",
+    "powertoys.border": "color.border.control",
+    "powertoys.number": "color.text.bright",
+    "font.family": "font.family.mono",
+    "terminal.ansi.0": "color.terminal.ansi.0",
+    "terminal.ansi.1": "color.terminal.ansi.1",
+    "terminal.ansi.2": "color.terminal.ansi.2",
+    "terminal.ansi.3": "color.terminal.ansi.3",
+    "terminal.ansi.4": "color.terminal.ansi.4",
+    "terminal.ansi.5": "color.terminal.ansi.5",
+    "terminal.ansi.6": "color.terminal.ansi.6",
+    "terminal.ansi.7": "color.terminal.ansi.7",
+    "terminal.ansi.8": "color.terminal.ansi.8",
+    "terminal.ansi.9": "color.terminal.ansi.9",
+    "terminal.ansi.10": "color.terminal.ansi.10",
+    "terminal.ansi.11": "color.terminal.ansi.11",
+    "terminal.ansi.12": "color.terminal.ansi.12",
+    "terminal.ansi.13": "color.terminal.ansi.13",
+    "terminal.ansi.14": "color.terminal.ansi.14",
+    "terminal.ansi.15": "color.terminal.ansi.15"
+  },
+  "resources": {
+    "TextFillColorPrimary": "color.text.default",
+    "TextFillColorSecondary": "color.text.muted",
+    "TextFillColorTertiary": "color.text.subtle",
+    "TextFillColorDisabled": "color.text.disabled",
+    "SystemControlForegroundBaseHighBrush": "color.text.default",
+    "SystemControlForegroundBaseMediumBrush": "color.text.muted",
+    "SystemControlForegroundBaseLowBrush": "color.text.disabled",
+    "SolidBackgroundFillColorBase": "color.surface.canvas",
+    "SolidBackgroundFillColorSecondary": "color.surface.default",
+    "LayerFillColorDefault": "color.surface.default",
+    "LayerFillColorAlt": "color.surface.raised",
+    "CardBackgroundFillColorDefault": "color.surface.default",
+    "CardBackgroundFillColorSecondary": "color.surface.raised",
+    "ControlFillColorDefault": "color.surface.input",
+    "ControlFillColorSecondary": "color.interaction.hover.bg",
+    "ControlFillColorTertiary": "color.interaction.pressed.bg",
+    "ControlStrokeColorDefault": "color.border.control",
+    "AccentFillColorDefault": "color.action.primary.bg",
+    "AccentTextFillColorPrimary": "color.text.bright",
+    "TextOnAccentFillColorPrimary": "color.text.on-action",
+    "SystemAccentColor": "color.border.active",
+    "SystemControlHighlightAccentBrush": "color.border.active"
+  },
+  "stylers": [
+    {
+      "id": "windows-11-taskbar-styler",
+      "targets": [
+        {
+          "target": "TextBlock",
+          "styles": {
+            "Foreground": "color.text.default"
+          }
+        },
+        {
+          "target": "Control",
+          "styles": {
+            "Foreground": "color.text.default"
+          }
+        },
+        {
+          "target": "Taskbar.TaskbarFrame > Grid#RootGrid",
+          "styles": {
+            "Background": "color.surface.chrome"
+          }
+        },
+        {
+          "target": "Rectangle#BackgroundFill",
+          "styles": {
+            "Fill": "color.surface.chrome"
+          }
+        }
+      ]
+    },
+    {
+      "id": "windows-11-start-menu-styler",
+      "targets": [
+        {
+          "target": "TextBlock",
+          "styles": {
+            "Foreground": "color.text.default"
+          }
+        },
+        {
+          "target": "Control",
+          "styles": {
+            "Foreground": "color.text.default"
+          }
+        },
+        {
+          "target": "Border#AcrylicBorder",
+          "styles": {
+            "Background": "color.surface.default"
+          }
+        }
+      ],
+      "variants": {
+        "classic": [
+          {
+            "target": "StartDocked.StartSizingFrame",
+            "styles": {
+              "Background": "color.surface.canvas"
+            }
+          },
+          {
+            "target": "StartDocked.SearchBoxToggleButton > Grid > Border#BorderElement",
+            "styles": {
+              "Background": "color.surface.input"
+            }
+          }
+        ],
+        "redesigned": [
+          {
+            "target": "StartMenu.SearchBoxToggleButton > Grid > Border#BorderElement",
+            "styles": {
+              "Background": "color.surface.input"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "windows-11-file-explorer-styler",
+      "targets": [
+        {
+          "target": "TextBlock",
+          "styles": {
+            "Foreground": "color.text.default"
+          }
+        },
+        {
+          "target": "Control",
+          "styles": {
+            "Foreground": "color.text.default"
+          }
+        },
+        {
+          "target": "Grid#RootGrid",
+          "styles": {
+            "Background": "color.surface.chrome"
+          }
+        },
+        {
+          "target": "Grid#NavigationBarControlGrid",
+          "styles": {
+            "Background": "color.surface.default"
+          }
+        }
+      ]
+    },
+    {
+      "id": "windows-11-notification-center-styler",
+      "targets": [
+        {
+          "target": "TextBlock",
+          "styles": {
+            "Foreground": "color.text.default"
+          }
+        },
+        {
+          "target": "Control",
+          "styles": {
+            "Foreground": "color.text.default"
+          }
+        },
+        {
+          "target": "Grid#ControlCenterRegion",
+          "styles": {
+            "Background": "color.surface.default"
+          }
+        },
+        {
+          "target": "Grid#NotificationCenterGrid",
+          "styles": {
+            "Background": "color.surface.default"
+          }
+        },
+        {
+          "target": "Border#AcrylicBorder",
+          "styles": {
+            "Background": "color.surface.default"
+          }
+        }
+      ]
+    },
+    {
+      "id": "windows-11-settings-styler",
+      "targets": [
+        {
+          "target": "TextBlock",
+          "styles": {
+            "Foreground": "color.text.default"
+          }
+        },
+        {
+          "target": "Control",
+          "styles": {
+            "Foreground": "color.text.default"
+          }
+        },
+        {
+          "target": "SystemSettings.View.RootPage",
+          "styles": {
+            "Background": "color.surface.canvas"
+          }
+        },
+        {
+          "target": "Grid#RootPageGrid",
+          "styles": {
+            "Background": "color.surface.canvas"
+          }
+        }
+      ]
+    }
+  ],
+  "compatibility": [
+    {
+      "build": 26200,
+      "ubr": 9550,
+      "architecture": "X64",
+      "explorerVersion": "10.0.26100.8117",
+      "startDockedVersion": "10.0.26100.9549",
+      "status": "candidate",
+      "settingsVersion": "10.0.26100.9549",
+      "shellExperienceVersion": "10.0.26100.9549",
+      "searchVersion": "2608.25008.200.0",
+      "startPackageVersion": "10.0.26100.4768",
+      "shellPackageVersion": "10.0.26100.8115",
+      "clientPackageVersion": "1000.26100.372.0",
+      "startLayout": "redesigned"
+    }
+  ],
+  "limitations": [
+    "Windows owns arbitrary application title bars and unsupported Win32 control foregrounds.",
+    "Command Palette custom tint cannot independently assign every foreground.",
+    "Lock-screen application requires a supported API and recoverable previous image; otherwise it is not applied.",
+    "Windows/Start updates outside the tested compatibility entry disable managed shell styling until reviewed.",
+    "Static cursor shapes preserve roles; host accessibility pointer overrides take priority."
+  ]
+}

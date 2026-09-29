@@ -1,0 +1,92 @@
+# Windows compatibility, verification and recovery
+
+## Compatibility boundary
+
+The current candidate is Windows 11 x64 build 26200.9550 with the redesigned
+Start layout. `host.json` records exact Explorer, StartDocked, SystemSettings,
+ShellExperienceHost and SearchHost versions, plus Start, shell and Client.CBS
+package versions. A changed, absent or unreadable input refuses Full mode.
+
+Start detection reads the same three feature-state inputs as pinned Start Menu
+Styler 1.7. It does not modify feature flags. Default/unknown/query failure is
+unknown; no marketing version or guessed layout grants compatibility. This
+read-only native query is coupled to the reviewed adapter pin, not a stable
+Windows API guarantee. The active layout was also observed on the candidate
+host through Computer Use. This is not a generic XAML-tree inspection claim.
+
+Classic and redesigned Start selectors are separate. Only the detected list is
+combined with common semantic resources. The styler is explicitly kept on
+Windows' default layout. Classic selectors have no verified host entry yet.
+No visibility, navigation, sizing or feature-removal rules are applied.
+
+Apply and Update check before mutation and again before enabling mods. Test
+rechecks the fingerprint. The current-user sign-in guard disables managed mods
+before deciding whether to enable them. Unknown compatibility leaves them
+disabled. Missing-cache or corrupted-cache failures require recovery; do not
+assume a failed guard successfully disabled anything.
+
+## What the checks establish
+
+Fixture tests cover transaction rollback, idempotency, JSONC preservation,
+profile/layout identity, conflicts, reparse paths, corrupt caches, missing refs,
+partial dependency installation and incompatible shell inputs. Native Windows
+CI runs the PowerShell wrapper and generated-port tests against isolated state.
+They do not change the CI runner's live theme.
+
+The 2026-09-29 development session imported all five pinned mods disabled and
+read their generated settings back through the actual Windhawk CLI. It restored
+the original disabled Taskbar Styler and removed the other temporary mods.
+Lock-screen black-image apply and original-image restore both passed exact byte
+readback through the supported WinRT API after correcting the PowerShell await
+bridge. The original image remains private in local recovery storage.
+
+Obsidian 1.13.7 displayed the candidate pair in a disposable vault in Reading
+View and CM6 Live Preview: prose and bold body text were rose, H1-H6 were
+near-white, and nested bold inherited heading/link/quotation colors. Its actual
+installed theme pair was backed up and replaced; pair hashes matched and the
+appearance preferences were preserved. This observation does not certify all
+Obsidian states or the separate Windows shell stylers.
+
+Full live Apply/Update/Restore/Reapply, shell state inspection, sign-in guard
+execution and released-artifact reconciliation remain pending. Therefore the
+port remains experimental. Windows owns unsupported Win32 control foregrounds,
+arbitrary application title bars and accessibility cursor overrides. Command
+Palette offers a tint rather than independent control of every foreground.
+
+## Recovery
+
+State is under `%LOCALAPPDATA%/j3w1-theme/windows`: immutable `releases`,
+`journal.json`, `current.json`, `backups`, `recovery`, `downloads`, and `tools`.
+Journals and backups may contain private settings or image bytes. Never attach
+them to public issues or commit them. Only redacted outcomes belong in evidence.
+
+1. On failure, retain the state directory. The runtime reverses completed
+   changes and reports any unresolved conflicts.
+2. Run the installed script with `-Action Restore`. It can find a pending
+   transaction even when the first installation did not write `current.json`.
+3. If a later managed value differs, Restore preserves it and lists the target.
+   Inspect its original, installed and current values locally. To finish the
+   rollback, deliberately return that value to the recorded installed value,
+   then rerun Restore. Do not replace whole settings files to resolve one key.
+4. A stale `bootstrap.lock` or `lifecycle.lock` blocks mutation. Read its recorded
+   PID and verify that process is no longer running before removing only that
+   stale lock. Never remove a live process's lock.
+5. Cache digest failure blocks execution. Restore the exact retained release
+   bytes from the same immutable revision; do not edit the digest manifest or
+   `verified.json` to bless changed bytes. Recovery performs no network fetch.
+
+Font receipts record pending ownership before files are installed. An interrupted
+installation resumes only when already written files still match its receipt.
+Unowned or changed destination fonts are conflicts. Theme restore retains
+installed shared tools and fonts; automatic dependency removal is unsupported.
+
+## Required real-machine protocol before promotion
+
+Record the immutable source revision, generated artifact digests, exact host and
+app/mod versions, and observed limits. Use nonprivate specimens. Exercise Full
+Apply, repeated Apply, explicit Update, Restore Latest, original Restore and
+Reapply; check preservation of unrelated Terminal/PowerToys state. Observe each
+shell surface in normal, hover, selected, disabled and keyboard-focus states.
+Check supported cursor shapes and sizes without changing accessibility settings.
+Record the sign-in guard and final installed release reconciliation separately.
+Configuration readback alone must never promote the port to verified.

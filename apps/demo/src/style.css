@@ -9,7 +9,7 @@ button:disabled { cursor: default; color: var(--color-text-muted); }
 :focus-visible { outline: var(--focus-ring); outline-offset: var(--focus-offset); }
 a { color: var(--color-text-link); text-decoration: underline; text-decoration-color: var(--color-text-link-underline); text-decoration-thickness: var(--border-width-default); text-underline-offset: var(--space-2); }
 a:hover { color: var(--color-text-link-hover); background: var(--color-interaction-hover-bg-strong); text-decoration-color: currentColor; text-decoration-thickness: var(--border-width-emphasis); }
-h1,h2,h3 { color: var(--color-text-bright); line-height: 1.3; margin: 0; }
+h1,h2,h3 { color: var(--color-text-heading); line-height: 1.3; margin: 0; }
 h1 { font-size: clamp(26px, 3vw, 38px); letter-spacing: -.04em; }
 h2 { font-size: 18px; }
 h3 { font-size: 15px; }
@@ -96,10 +96,10 @@ pre { overflow: auto; }
 .records-table tbody th { color:inherit; font-weight:var(--font-weight-regular); }
 
 /* Application hierarchy: page title, section, subheading and supporting copy. */
-.view-heading h1 { color: var(--color-text-prose); font-weight: var(--font-weight-bold); }
+.view-heading h1 { color: var(--color-text-heading); font-weight: var(--font-weight-bold); }
 .view-heading > div > p:last-child { color: var(--color-text-muted); font-size: var(--font-size-ui-lg); line-height: 1.8; margin-top: var(--space-12); }
-main h2 { color: var(--color-text-bright); font-weight: var(--font-weight-bold); }
-main h3 { color: var(--color-text-default); font-weight: var(--font-weight-bold); font-size: var(--font-size-ui-lg); }
+main h2 { color: var(--color-text-heading); font-weight: var(--font-weight-bold); }
+main h3 { color: var(--color-text-heading); font-weight: var(--font-weight-bold); font-size: var(--font-size-ui-lg); }
 .demo-sidebar nav section { margin-top: var(--space-32); }
 .demo-sidebar .nav-caption { color: var(--color-text-bright); font-size: var(--font-size-ui-sm); font-weight: var(--font-weight-bold); letter-spacing: .12em; margin: 0 var(--space-8) var(--space-12); padding-bottom: var(--space-8); border-bottom: var(--border-width-default) solid var(--color-border-default); }
 .demo-sidebar nav a { font-weight: var(--font-weight-regular); padding-inline-start: var(--space-12); }

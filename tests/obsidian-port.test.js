@@ -49,7 +49,7 @@ test("Obsidian is a normal experimental two-artifact default-profile port", () =
 });
 test("reviewed Windows helper stages a validated pair before replacement and preserves a recovery path", async () => {
   const installer = await readText("ports/obsidian/install.ps1");
-  assert.match(installer, /^param\(\[Parameter\(Mandatory\)\]\[string\]\$VaultPath\)/);
+  assert.match(installer, /^param\(\s*\[Parameter\(Mandatory\)\]\[string\]\$VaultPath,\s*\[string\]\$SourcePath\s*\)/);
   assert.match(installer, /\$ErrorActionPreference = 'Stop'/);
   assert.match(installer, /https:\/\/j3w1\.github\.io\/theme\/ports\/obsidian\//);
   assert.match(installer, /\$names = @\('manifest\.json', 'theme\.css'\)/);
@@ -110,9 +110,9 @@ test("native semantic families keep surfaces, text, controls, status, focus and 
     "--modal-background": "color.surface.overlay", "--background-modifier-form-field": "color.surface.input",
     "--ribbon-background": "color.surface.chrome", "--settings-background": "color.surface.default",
     "--text-normal": "color.text.default", "--text-muted": "color.text.muted",
-    "--bold-color": "color.text.prose", "--inline-title-color": "color.text.prose",
-    "--h1-color": "color.text.prose", "--h2-color": "color.text.prose", "--h3-color": "color.text.prose",
-    "--h4-color": "color.text.prose", "--h5-color": "color.text.prose", "--h6-color": "color.text.prose",
+    "--inline-title-color": "color.text.heading",
+    "--h1-color": "color.text.heading", "--h2-color": "color.text.heading", "--h3-color": "color.text.heading",
+    "--h4-color": "color.text.heading", "--h5-color": "color.text.heading", "--h6-color": "color.text.heading",
     "--italic-color": "color.text.bright", "--setting-group-heading-color": "color.text.bright",
     "--text-faint": "color.text.subtle", "--input-placeholder-color": "color.text.placeholder",
     "--background-modifier-border": "color.border.control",
@@ -135,12 +135,12 @@ test("native semantic families keep surfaces, text, controls, status, focus and 
   for (const [key, role] of Object.entries(owner)) if (/^color\.status\.(warning|success|info)\./.test(role)) assert.match(key, /^--(?:text-(?:warning|success)|background-modifier-(?:warning|success)|callout-(?:warning|success|info))/);
   for (const key of Object.keys(owner).filter(k => k.startsWith("--code-") && k !== "--code-background" && !k.includes("border") && k !== "--code-radius")) assert.match(owner[key], /^color\.code\.syntax\./);
 });
-test("rose reading scopes, near-white note emphasis, compact command rows and filled focus match the audited gaps", () => {
+test("rose reading scopes, semantic headings and inherited bold, compact command rows and filled focus match the audited gaps", () => {
   assert.equal(exported["color.text.default"].css, "#e99499");
-  assert.equal(exported["color.text.prose"].css, "#f4eeee");
-  assertRole(".theme-dark .markdown-preview-view | color", "color.text.default");
-  assertRole(".theme-dark .markdown-source-view.mod-cm6 .cm-content | color", "color.text.default");
-  assert.deepEqual(Object.keys(owner).filter(k => owner[k] === "color.text.prose").sort(), ["--bold-color", "--h1-color", "--h2-color", "--h3-color", "--h4-color", "--h5-color", "--h6-color", "--inline-title-color"].sort());
+  assert.equal(exported["color.text.prose"].css, "#e99499");
+  assertRole(".theme-dark .markdown-preview-view | color", "color.text.prose");
+  assertRole(".theme-dark .markdown-source-view.mod-cm6 .cm-content | color", "color.text.prose");
+  assert.deepEqual(Object.keys(owner).filter(k => owner[k] === "color.text.heading").sort(), ["--h1-color", "--h2-color", "--h3-color", "--h4-color", "--h5-color", "--h6-color", "--inline-title-color"].sort());
   assertRole(".theme-dark .prompt .suggestion-item.is-selected | background-color", "color.interaction.selection.bg");
   assertRole(".theme-dark .prompt .suggestion-item.is-selected | border-inline-start-color", "color.border.selected-indicator");
   assertRole(".theme-dark .prompt .suggestion-item | min-height", "density.compact.row-height");
@@ -245,10 +245,10 @@ test("contrast pairs validate actual native values without rounding a failure in
   for (const property of ["color", "--text-muted", "--text-faint", "--text-accent"]) check(`.theme-dark .prompt .suggestion-item.is-selected | ${property}`, ".theme-dark .prompt .suggestion-item.is-selected | background-color");
 });
 test("source preparation pins Obsidian downloads to the next version and preserves the latest published release", async () => {
-  assert.equal(manifest.version, "3.1.0");
+  assert.equal(manifest.version, "4.0.0");
   assert.deepEqual(manifest.release, { tag: "v3.0.0", commit: "f0e9e25a00357c0b47ae3d1392b87e5bc0aa91e6" });
   const rows = downloadsTable(manifest, [{ ...port, verification: { status: "not verified" } }]).join("\n");
-  for (const file of port.files) assert.ok(rows.includes(`/v3.1.0/ports/obsidian/${file.path}`));
+  for (const file of port.files) assert.ok(rows.includes(`/v4.0.0/ports/obsidian/${file.path}`));
   assert.doesNotMatch(rows, /\/v3.0.0\/ports\/obsidian|\/main\//);
   const catalog = await readJson("exports/port-capabilities.json");
   assert.equal(catalog.ports.find(p => p.id === "obsidian").verification.status, "not verified");

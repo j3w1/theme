@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "component": "skeleton",
-  "version": "3.1.0",
-  "contract": "https://github.com/j3w1/theme/blob/v3.1.0/spec/components/skeleton.md",
+  "version": "4.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/skeleton.md",
   "dependencies": [
     "register/skeleton.js",
     "chunks/element-C1XeXVYC.js",
@@ -14,13 +14,13 @@
     "runtime/register/skeleton.js": "sha256-LZWZWuDy/lr/JDq+2VL59KCkU2EurStRQaUsuNF4US4=",
     "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
     "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-    "runtime/components/skeleton.js": "sha256-X6gyyPlGbhHzWXe5JPXuQB3ArumfiTvAyrqlO9dIgKI=",
+    "runtime/components/skeleton.js": "sha256-Ou8+/8NCHGRzG6ik6k6762M8G4PMLaBQXj4aPynetXo=",
     "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-    "tokens.css": "sha256-c/NmCkdHsOHiHx4q0evmxTKbpeLSU3Eoo2b0S7PYNzU=",
+    "tokens.css": "sha256-gjEwadB0zTFK+892nxLpStOcmcjP5pxj2Pe/By5vwPE=",
     "component.css": "sha256-JI92x7GOktbjpIm0AQnODJ4rVTJnEQA4DLP34bflM4k=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-/g7jxryHfbaG3yxoxK8NfCh2k5U92wPPELD/107+2Ps=",
     "index.html": "sha256-wOHcfVLjvDJzcjrxHt2FdIU6zvsgQKyM+mk68FWiW1g=",
-    "README.md": "sha256-DOTpSqHTnbBiL02WBWikvw0VISXHyGjrQmIttwKW/Mk="
+    "README.md": "sha256-nzNnLPK+pu75MG+iTs+EMp/xOyJFTC/9GM9JCwIoCno="
   }
 }

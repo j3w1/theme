@@ -1,7 +1,7 @@
 * { box-sizing: border-box; }
 body { margin: var(--space-16); background: var(--color-surface-canvas); color: var(--color-text-default); font: var(--font-size-ui-md)/1.6 var(--font-family-mono); }
 a { color: var(--color-text-bright); }
-h1, h2, th { color: var(--color-text-prose); }
+h1, h2, th { color: var(--color-text-heading); }
 table { border-collapse: collapse; width: 100%; }
 td, th { padding: var(--space-8); text-align: start; vertical-align: top; border: var(--border-width-default) solid var(--color-border-divider); }
 .group { background: var(--color-surface-raised); }

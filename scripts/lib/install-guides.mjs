@@ -24,7 +24,36 @@ const fence = (lang, lines, indent = "") => [`${indent}\`\`\`${lang}`, ...lines.
 
 const cloneNote = `In your clone of this repository (\`~/dev/theme\` on the CE devbox; if you have none, run \`git clone ${CLONE} ~/dev/theme\` and \`cd\` into it), paste:`;
 
+const windowsScript = commit => `pwsh -NoProfile -File "$env:LOCALAPPDATA\\j3w1-theme\\windows\\releases\\${commit}\\install.ps1"`;
+export const firstInstallerTag = file => file === 'ports/windows/README.md' ? 'v4.0.0' : FIRST_INSTALLER_TAG;
+const windowsPending = 'Install commands appear here once v4.0.0 is released.';
+const windowsReleased = release => Number(release.tag.match(/^v(\d+)/)?.[1] ?? 0) >= 4;
 const blocks = {
+  "ports/windows/README.md": {
+    install: release => !windowsReleased(release) ? [windowsPending] : [
+      `Release ${release.tag} (commit \`${release.commit}\`).`, '',
+      ...fence('powershell', [
+        "$installer = Join-Path $env:TEMP 'j3w1-windows-install.ps1'",
+        `Invoke-WebRequest '${RAW}/${release.commit}/ports/windows/install.ps1' -OutFile $installer -ErrorAction Stop`,
+        'Get-Content -LiteralPath $installer # review before running',
+        `& $installer -Action Plan -Mode Full -Revision ${release.commit}`,
+        `& $installer -Action Apply -Mode Full -Revision ${release.commit}`,
+        `${windowsScript(release.commit)} -Action Test`,
+      ]),
+    ],
+    update: release => !windowsReleased(release) ? [windowsPending] : fence('powershell',[
+      "$installer = Join-Path $env:TEMP 'j3w1-windows-install.ps1'",
+      `Invoke-WebRequest '${RAW}/${release.commit}/ports/windows/install.ps1' -OutFile $installer -ErrorAction Stop`,
+      'Get-Content -LiteralPath $installer # review before running',
+      `& $installer -Action Update -Version ${release.tag}`,
+      `${windowsScript(release.commit)} -Action Test`,
+    ]),
+    restore: release => !windowsReleased(release) ? [windowsPending] : fence('powershell',[
+      `${windowsScript(release.commit)} -Action Restore -Latest # last transaction`,
+      `${windowsScript(release.commit)} -Action Restore # original baseline`,
+      `${windowsScript(release.commit)} -Action Uninstall # restore owned integration`,
+    ]),
+  },
   "ports/README.md": {
     install: ({ tag, commit }) => [
       `Release ${tag} (commit \`${commit}\`):`,
@@ -100,4 +129,4 @@ export const INSTALL_GUIDES = Object.keys(blocks);
 
 /* Marker block name -> body, for one guide. */
 export const guideBlocks = (manifest, file) =>
-  Object.fromEntries(Object.entries(blocks[file]).map(([name, body]) => [name, manifest.release ? body(manifest.release).join("\n") : pending(name)]));
+  Object.fromEntries(Object.entries(blocks[file]).map(([name, body]) => [name, manifest.release ? body(manifest.release).join("\n") : file === "ports/windows/README.md" ? windowsPending : pending(name)]));

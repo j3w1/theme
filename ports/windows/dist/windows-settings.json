@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "version": "4.0.0",
+  "values": {
+    "native.accent": "#e53935",
+    "native.desktop": "#000000",
+    "terminal.foreground": "#e99499",
+    "terminal.background": "#000000",
+    "terminal.cursor": "#e99499",
+    "terminal.selection": "#420f0c",
+    "terminal.chrome": "#090707",
+    "native.foreground": "#e99499",
+    "native.bright": "#ffa2a7",
+    "native.heading": "#f4eeee",
+    "native.highlight": "#f4eeee",
+    "native.muted": "#bd787d",
+    "native.disabled": "#8a5559",
+    "native.selection": "#531310",
+    "cursor.foreground": "#e99499",
+    "cursor.outline": "#000000",
+    "powertoys.highlight": "#e53935",
+    "powertoys.inactive": "#160b0b",
+    "powertoys.border": "#a3676b",
+    "powertoys.number": "#ffa2a7",
+    "font.family": "\"SauceCodePro NFM\", \"Source Code Pro\", \"Cascadia Mono\", \"Consolas\", \"Liberation Mono\", \"DejaVu Sans Mono\", monospace",
+    "terminal.ansi.0": "#0c0909",
+    "terminal.ansi.1": "#e84b4b",
+    "terminal.ansi.2": "#bd787d",
+    "terminal.ansi.3": "#d4868b",
+    "terminal.ansi.4": "#e53131",
+    "terminal.ansi.5": "#f73f35",
+    "terminal.ansi.6": "#ff7a66",
+    "terminal.ansi.7": "#ffa2a7",
+    "terminal.ansi.8": "#b71c17",
+    "terminal.ansi.9": "#ea3833",
+    "terminal.ansi.10": "#dc4f49",
+    "terminal.ansi.11": "#b37175",
+    "terminal.ansi.12": "#db433a",
+    "terminal.ansi.13": "#ed5360",
+    "terminal.ansi.14": "#e6565a",
+    "terminal.ansi.15": "#b17e81"
+  },
+  "stylerVariants": {
+    "windows-11-start-menu-styler": {
+      "classic": [
+        {
+          "target": "StartDocked.StartSizingFrame",
+          "styles": [
+            "Background=#000000"
+          ]
+        },
+        {
+          "target": "StartDocked.SearchBoxToggleButton > Grid > Border#BorderElement",
+          "styles": [
+            "Background=#000000"
+          ]
+        }
+      ],
+      "redesigned": [
+        {
+          "target": "StartMenu.SearchBoxToggleButton > Grid > Border#BorderElement",
+          "styles": [
+            "Background=#000000"
+          ]
+        }
+      ]
+    }
+  },
+  "compatibility": [
+    {
+      "build": 26200,
+      "ubr": 9550,
+      "architecture": "X64",
+      "explorerVersion": "10.0.26100.8117",
+      "startDockedVersion": "10.0.26100.9549",
+      "status": "candidate",
+      "settingsVersion": "10.0.26100.9549",
+      "shellExperienceVersion": "10.0.26100.9549",
+      "searchVersion": "2608.25008.200.0",
+      "startPackageVersion": "10.0.26100.4768",
+      "shellPackageVersion": "10.0.26100.8115",
+      "clientPackageVersion": "1000.26100.372.0",
+      "startLayout": "redesigned"
+    }
+  ],
+  "limitations": [
+    "Windows owns arbitrary application title bars and unsupported Win32 control foregrounds.",
+    "Command Palette custom tint cannot independently assign every foreground.",
+    "Lock-screen application requires a supported API and recoverable previous image; otherwise it is not applied.",
+    "Windows/Start updates outside the tested compatibility entry disable managed shell styling until reviewed.",
+    "Static cursor shapes preserve roles; host accessibility pointer overrides take priority."
+  ]
+}

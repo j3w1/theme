@@ -805,9 +805,12 @@ test("a write that fails after its rename stays in the manifest, so restore undo
   const { h, paths, opts } = await inProcess(t);
   /* The rename lands other bytes than the installer's (a host rewrote the
      file in between), so it does not read back as written. */
-  const temp = path.join(path.dirname(h.settings), `.settings.json.j3w1-${process.pid}.tmp`);
   const race = async (file) => {
-    if (file === h.settings) await fs.writeFile(temp, (await fs.readFile(temp, "utf8")).replace('"theme": "custom:j3w1"', '"theme": "custom:j3w1", "n": 1'));
+    if (file !== h.settings) return;
+    const candidates = (await fs.readdir(path.dirname(file))).filter(name => /^\.settings\.json\.j3w1-.*\.tmp$/.test(name));
+    assert.equal(candidates.length, 1, "exactly one staged settings write exists");
+    const temp = path.join(path.dirname(file), candidates[0]);
+    await fs.writeFile(temp, (await fs.readFile(temp, "utf8")).replace('"theme": "custom:j3w1"', '"theme": "custom:j3w1", "n": 1'));
   };
   await assert.rejects(apply(opts({ beforeCommit: race }), paths, quiet), (e) => e instanceof KitError && /settings\.json: writing it failed \(.*did not read back as written\).*Already written: .*j3w1\.json, .*settings\.json;/s.test(e.message));
   const record = await manifestOf(h, (await backups(h)).at(-1));

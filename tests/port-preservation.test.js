@@ -14,6 +14,11 @@ for (const fixture of baseline.files) test(`${fixture.path}: identical 3.0.0 inp
   const port = { ...await readJson(`ports/${id}/port.json`), themeVersion: baseline.version };
   const profile = manifest.profiles.find(p => p.id === port.profile);
   const resolved = await loadResolvedProfile(profile.tokens);
+  // Restore the historical input changed by D-033; baseline bytes stay immutable.
+  if (id === "claude-code") {
+    const historical = resolved.get("color.text.prose");
+    resolved.set("color.text.prose", { ...historical, resolved: resolved.get("color.primitive.paper.90").resolved });
+  }
   const exported = toResolvedExport(resolved, profile);
   const args = { manifest, port, resolved, exported, mapping: await readJson(`ports/${id}/mapping.json`),
     host: await exists(`ports/${id}/host.json`) ? await readJson(`ports/${id}/host.json`) : null,

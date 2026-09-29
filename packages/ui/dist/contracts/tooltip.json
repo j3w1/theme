@@ -1,10 +1,10 @@
 {
   "id": "tooltip",
   "name": "Tooltip",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "tag": "j3w1-tooltip",
-  "contract": "https://github.com/j3w1/theme/blob/v3.1.0/spec/components/tooltip.md",
-  "source": "https://github.com/j3w1/theme/blob/v3.1.0/packages/ui/src/behaviors/overlays.js",
+  "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/tooltip.md",
+  "source": "https://github.com/j3w1/theme/blob/v4.0.0/packages/ui/src/behaviors/overlays.js",
   "imports": {
     "class": "@j3w1/ui/components/tooltip",
     "register": "@j3w1/ui/register/tooltip",
@@ -357,6 +357,6 @@
   "copy": {
     "directory": "copy/tooltip/",
     "manifest": "copy/tooltip/manifest.json",
-    "digest": "sha256-vxRLYEzP0F8lyId0hSmvNG0CSh3tnkWVVFtaBQ37Ts8="
+    "digest": "sha256-1XLfFIY+OBFzTI46s7eWLZKaSfdWI5DePLfE5pWH1YM="
   }
 }

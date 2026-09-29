@@ -3,8 +3,8 @@ import { n as modal } from "../chunks/overlays-C6nlCHqg.js";
 //#region .cache/ui-build/entries/components/dialog.js
 var J3w1Dialog = class extends J3w1Element {
 	static componentId = "dialog";
-	static version = "3.1.0";
-	static implementationId = "sha256-evvoeuYTpfIxSHTgkn/IgxArYy0I5bP+jDXctDeVUt8=";
+	static version = "4.0.0";
+	static implementationId = "sha256-klBSVv/73RVF8H8z45KqQcsbWhHl+/t4VEl+jC/2v9Q=";
 	static connect = modal;
 	static upgradeProperties = [
 		"disabled",

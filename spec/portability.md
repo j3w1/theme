@@ -11,7 +11,7 @@ A port themes only what the host documents as customisable. Editor colours,
 application chrome, terminal colours and plugin surfaces are separate scopes;
 a file that changes one does not claim the others. A port never:
 
-- patches binaries or injects unsupported hacks;
+- patches binaries or injects unsupported hacks (D-034 permits only the pinned, compatibility-checked Windows Windhawk styling adapter);
 - overwrites a user's whole settings file;
 - replaces keybindings, credentials or unrelated preferences.
 
@@ -21,7 +21,7 @@ to roll back.
 ## What every port must reproduce
 
 1. The surface ladder: canvas, default, raised, overlay, input.
-2. The text ladder: default, bright, prose, muted, subtle, disabled.
+2. The text ladder: default, bright, prose, heading, highlight, muted, subtle, disabled; bold inherits color.
 3. Focus as a ring distinct from selection as a fill, with the ring recoloured
    on fills.
 4. Selection, inactive selection and hover as three distinguishable fills.
@@ -86,8 +86,9 @@ placeholder directory. `templates/port/` is a starting aid when work begins.
 - `npm run generate` writes `dist/` for every port whose `format` has an
   emitter in `scripts/lib/port-artifacts.mjs` (`warp-yaml`, `ghostty-config`,
   `claude-theme-json`, `codex-tmtheme`, `chatgpt-appearance` and
-  `obsidian-theme` today). Each emitter returns the complete declared array of
-  text artifacts. Unsafe or duplicate paths and missing/extra outputs fail
+  `obsidian-theme` and `windows-theme` today). Each emitter returns the complete
+  declared array of text or byte artifacts. Binary files are hashed and copied
+  byte for byte; text files retain the existing line-ending convention. Unsafe or duplicate paths and missing/extra outputs fail
   before any port artifact is written; Obsidian emits a manifest and CSS together.
 - The README downloads table links each file at the release tag, and the site
   serves a copy at `ports/<slug>/<file>`.

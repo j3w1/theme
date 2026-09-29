@@ -8,7 +8,7 @@ import { safeKitPath } from "./task-kit.mjs";
 /* The native formats ports publish, a closed list. A format with an emitter
    in scripts/lib/port-artifacts.mjs is generated; a new port adds its format
    here in the same change. */
-export const PORT_FORMATS = ["ghostty-config", "warp-yaml", "claude-theme-json", "codex-tmtheme", "chatgpt-appearance", "obsidian-theme"];
+export const PORT_FORMATS = ["ghostty-config", "warp-yaml", "claude-theme-json", "codex-tmtheme", "chatgpt-appearance", "obsidian-theme", "windows-theme"];
 
 /* The operating systems a port can target and an import can be recorded on,
    a closed list; a port manifest may also declare "any". */

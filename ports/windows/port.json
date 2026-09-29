@@ -1,0 +1,156 @@
+{
+  "schemaVersion": 1,
+  "id": "windows",
+  "displayName": "Windows 11 native and Windhawk theme",
+  "status": "experimental",
+  "themeVersion": "4.0.0",
+  "tokenDigest": "sha256-bjLt9I1rgwkQvq+nljduQ/4rM4UOF3s237u8hbRk0ao=",
+  "profile": "default",
+  "format": "windows-theme",
+  "targetVersions": [
+    "26200.9550"
+  ],
+  "testedVersions": [],
+  "os": [
+    "windows"
+  ],
+  "surfaces": {
+    "supported": [
+      "desktop",
+      "shell",
+      "terminal",
+      "powertoys"
+    ],
+    "inherited": [
+      "host-behavior"
+    ],
+    "unsupported": [
+      "unsupported"
+    ]
+  },
+  "files": [
+    {
+      "path": "dist/windows-settings.json",
+      "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings."
+    },
+    {
+      "path": "dist/terminal-fragment.json",
+      "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings."
+    },
+    {
+      "path": "dist/terminal-theme.json",
+      "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings."
+    },
+    {
+      "path": "dist/fancyzones-layouts.json",
+      "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings."
+    },
+    {
+      "path": "dist/windows-11-taskbar-styler.json",
+      "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings."
+    },
+    {
+      "path": "dist/windows-11-start-menu-styler.json",
+      "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings."
+    },
+    {
+      "path": "dist/windows-11-file-explorer-styler.json",
+      "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings."
+    },
+    {
+      "path": "dist/windows-11-notification-center-styler.json",
+      "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings."
+    },
+    {
+      "path": "dist/windows-11-settings-styler.json",
+      "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings."
+    },
+    {
+      "path": "dist/j3w1-wallpaper.bmp",
+      "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings."
+    },
+    {
+      "path": "dist/j3w1.theme",
+      "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings."
+    },
+    {
+      "path": "dist/j3w1-arrow.cur",
+      "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings."
+    },
+    {
+      "path": "dist/j3w1-help.cur",
+      "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings."
+    },
+    {
+      "path": "dist/j3w1-appstarting.cur",
+      "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings."
+    },
+    {
+      "path": "dist/j3w1-wait.cur",
+      "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings."
+    },
+    {
+      "path": "dist/j3w1-crosshair.cur",
+      "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings."
+    },
+    {
+      "path": "dist/j3w1-ibeam.cur",
+      "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings."
+    },
+    {
+      "path": "dist/j3w1-nwpen.cur",
+      "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings."
+    },
+    {
+      "path": "dist/j3w1-no.cur",
+      "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings."
+    },
+    {
+      "path": "dist/j3w1-sizens.cur",
+      "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings."
+    },
+    {
+      "path": "dist/j3w1-sizewe.cur",
+      "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings."
+    },
+    {
+      "path": "dist/j3w1-sizenwse.cur",
+      "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings."
+    },
+    {
+      "path": "dist/j3w1-sizenesw.cur",
+      "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings."
+    },
+    {
+      "path": "dist/j3w1-sizeall.cur",
+      "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings."
+    },
+    {
+      "path": "dist/j3w1-uparrow.cur",
+      "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings."
+    },
+    {
+      "path": "dist/j3w1-hand.cur",
+      "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings."
+    },
+    {
+      "path": "dist/j3w1-pin.cur",
+      "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings."
+    },
+    {
+      "path": "dist/j3w1-person.cur",
+      "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings."
+    },
+    {
+      "path": "dist/runtime.cjs",
+      "install": "Use the pinned Windows lifecycle installer."
+    },
+    {
+      "path": "dist/install-manifest.json",
+      "install": "Use the pinned Windows lifecycle installer."
+    }
+  ],
+  "mappingPath": "mapping.json",
+  "capabilitiesPath": "capabilities.json",
+  "evidence": []
+}

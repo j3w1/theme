@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "windhawk": {
+    "version": "2.0.0-alpha.6",
+    "url": "https://github.com/ramensoftware/windhawk/releases/download/2.0.0-alpha.6/windhawk_setup_offline.exe",
+    "sha256": "eac905e2e0d87c53241f3a06721124b83a56e7736695eedf1e1a40b536523d23",
+    "publisher": "Open Source Developer, Michael Maltsev"
+  },
+  "mods": [
+    {
+      "id": "windows-11-taskbar-styler",
+      "version": "1.10",
+      "revision": "651e01908512da9fa4935a9ef2859741c7e69240",
+      "url": "https://raw.githubusercontent.com/ramensoftware/windhawk-mods/651e01908512da9fa4935a9ef2859741c7e69240/mods/windows-11-taskbar-styler.wh.cpp",
+      "sha256": "88d2d43768a2e8d92522f9c1615bcd2b6c209dd32e1610426738e4c5af40d592"
+    },
+    {
+      "id": "windows-11-start-menu-styler",
+      "version": "1.7",
+      "revision": "651e01908512da9fa4935a9ef2859741c7e69240",
+      "url": "https://raw.githubusercontent.com/ramensoftware/windhawk-mods/651e01908512da9fa4935a9ef2859741c7e69240/mods/windows-11-start-menu-styler.wh.cpp",
+      "sha256": "73911e0f8d0619c9b175b492d585e2a11ce3c731bcd1c31b04a976e8a10d6457"
+    },
+    {
+      "id": "windows-11-file-explorer-styler",
+      "version": "1.7",
+      "revision": "651e01908512da9fa4935a9ef2859741c7e69240",
+      "url": "https://raw.githubusercontent.com/ramensoftware/windhawk-mods/651e01908512da9fa4935a9ef2859741c7e69240/mods/windows-11-file-explorer-styler.wh.cpp",
+      "sha256": "f5fff06bc65a6d4c154378f8c1916fc98dc40bf35671d24a1643893042f033f6"
+    },
+    {
+      "id": "windows-11-notification-center-styler",
+      "version": "1.7",
+      "revision": "651e01908512da9fa4935a9ef2859741c7e69240",
+      "url": "https://raw.githubusercontent.com/ramensoftware/windhawk-mods/651e01908512da9fa4935a9ef2859741c7e69240/mods/windows-11-notification-center-styler.wh.cpp",
+      "sha256": "fa34c1de8c3ca3482ec21860f96170bb9ab47bcf7c4bfcdbe91cd300818cdd1c"
+    },
+    {
+      "id": "windows-11-settings-styler",
+      "version": "1.1",
+      "revision": "651e01908512da9fa4935a9ef2859741c7e69240",
+      "url": "https://raw.githubusercontent.com/ramensoftware/windhawk-mods/651e01908512da9fa4935a9ef2859741c7e69240/mods/windows-11-settings-styler.wh.cpp",
+      "sha256": "7424d3b2298d06b4c8dc0e2b16a6e49011c4af2e97ec92ef28ecd2ad53bf8571"
+    }
+  ],
+  "font": {
+    "family": "SauceCodePro NFM",
+    "version": "3.5.1",
+    "url": "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.1/SourceCodePro.zip",
+    "sha256": "e0000bc77cd77279840d8613e98727548f81f291a571be0be8699c8e3be36fd3",
+    "files": {
+      "SauceCodeProNerdFontMono-Regular.ttf": "SauceCodePro NFM (TrueType)",
+      "SauceCodeProNerdFontMono-Bold.ttf": "SauceCodePro NFM Bold (TrueType)",
+      "SauceCodeProNerdFontMono-Italic.ttf": "SauceCodePro NFM Italic (TrueType)",
+      "SauceCodeProNerdFontMono-BoldItalic.ttf": "SauceCodePro NFM Bold Italic (TrueType)"
+    }
+  }
+}

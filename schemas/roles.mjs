@@ -8,7 +8,7 @@ const under = (prefix, roles) => roles.map((role) => `${prefix}.${role}`);
 
 export const REQUIRED_COLOR_ROLES = [
   ...under("color.surface", ["desktop", "canvas", "chrome", "chrome-alt", "sunken", "default", "raised", "overlay", "input", "backdrop", "code", "terminal"]),
-  ...under("color.text", ["default", "bright", "prose", "muted", "subtle", "disabled", "placeholder", "accent", "accent-strong", "link", "link-underline", "link-hover", "on-selection", "on-action", "on-danger", "on-light", "inverse"]),
+  ...under("color.text", ["default", "bright", "prose", "heading", "highlight", "muted", "subtle", "disabled", "placeholder", "accent", "accent-strong", "link", "link-underline", "link-hover", "on-selection", "on-action", "on-danger", "on-light", "inverse"]),
   ...under("color.border", ["divider", "default", "strong", "control", "active", "overlay", "disabled", "selected-indicator", "selected-indicator-inactive"]),
   ...under("color.interaction.focus", ["ring", "ring-container"]),
   ...under("color.interaction.selection", ["bg", "text", "inactive-bg", "inactive-text"]),

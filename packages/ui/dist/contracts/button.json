@@ -1,10 +1,10 @@
 {
   "id": "button",
   "name": "Button",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "tag": "j3w1-button",
-  "contract": "https://github.com/j3w1/theme/blob/v3.1.0/spec/components/button.md",
-  "source": "https://github.com/j3w1/theme/blob/v3.1.0/packages/ui/src/behaviors/native.js",
+  "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/button.md",
+  "source": "https://github.com/j3w1/theme/blob/v4.0.0/packages/ui/src/behaviors/native.js",
   "imports": {
     "class": "@j3w1/ui/components/button",
     "register": "@j3w1/ui/register/button",
@@ -239,8 +239,10 @@
       "color.primitive.rose.700",
       "color.primitive.rose.800",
       "color.surface.canvas",
+      "color.text.bright",
       "color.text.default",
       "color.text.disabled",
+      "color.text.on-action",
       "density.comfortable.control-height",
       "density.comfortable.control-padding-x",
       "density.compact.control-height",
@@ -508,6 +510,6 @@
   "copy": {
     "directory": "copy/button/",
     "manifest": "copy/button/manifest.json",
-    "digest": "sha256-dvjA0ROLFln0WCDFu/RLYzHZy6w6QvUhCrhUzHt305E="
+    "digest": "sha256-XVWyIYfgwibdeZSXYgFdJqKIzPkYZGj8Foq2+9WdJu8="
   }
 }

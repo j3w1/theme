@@ -1,10 +1,10 @@
 {
   "id": "settings-panel",
   "name": "Settings panel",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "tag": "j3w1-settings-panel",
-  "contract": "https://github.com/j3w1/theme/blob/v3.1.0/spec/components/settings-panel.md",
-  "source": "https://github.com/j3w1/theme/blob/v3.1.0/packages/ui/src/behaviors/forms.js",
+  "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/settings-panel.md",
+  "source": "https://github.com/j3w1/theme/blob/v4.0.0/packages/ui/src/behaviors/forms.js",
   "imports": {
     "class": "@j3w1/ui/components/settings-panel",
     "register": "@j3w1/ui/register/settings-panel",
@@ -298,6 +298,7 @@
       "color.text.default",
       "color.text.disabled",
       "color.text.muted",
+      "color.text.on-action",
       "color.text.placeholder",
       "density.comfortable.control-height",
       "density.comfortable.control-padding-x",
@@ -816,6 +817,6 @@
   "copy": {
     "directory": "copy/settings-panel/",
     "manifest": "copy/settings-panel/manifest.json",
-    "digest": "sha256-X0iBNQHKcGU/lVdXocOB2PhIU7f88h9dpXdw59fKx90="
+    "digest": "sha256-ZSUy5A0BODPO24N9UV3R1AVhdjUIAm0mQJ6q9oCPn+s="
   }
 }

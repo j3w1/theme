@@ -9,6 +9,8 @@
    installed pin recorded, before a single value is used. */
 
 import { createHash } from "node:crypto";
+import {sha256Hex} from "./files.mjs";
+export {sha256Hex};
 import { execFileSync } from "node:child_process";
 import { existsSync } from "node:fs";
 import path from "node:path";
@@ -39,7 +41,7 @@ const HEX6 = /^#[0-9a-f]{6}$/;
 export class KitError extends Error {}
 
 export const sha256Base64 = (bytes) => `sha256-${createHash("sha256").update(Buffer.from(bytes).toString("utf8").replaceAll("\r\n", "\n")).digest("base64")}`;
-export const sha256Hex = (bytes) => createHash("sha256").update(bytes).digest("hex");
+
 
 const git = (root, args) => execFileSync("git", ["-C", root, ...args], { stdio: ["ignore", "pipe", "ignore"], maxBuffer: 64 * 1024 * 1024 });
 const gitText = (root, args) => {

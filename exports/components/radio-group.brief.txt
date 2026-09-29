@@ -1,6 +1,6 @@
 j3w1/theme implementation brief — radio-group
-theme: j3w1-theme 3.1.0  profile: default  sourceDigest: sha256-MOuqI0ddpI8r/kqzJMDhPHu5yZQrlrZ2LrbWIvNGGAw=
-pin: https://raw.githubusercontent.com/j3w1/theme/v3.1.0/exports/components/radio-group.json
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-lYCeahYByMe6IB0c/kb+1ReT0XZFpjawue/30DNEY6o=
+pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/radio-group.json
 spec: spec/components/radio-group.md  site: https://j3w1.github.io/theme/reference/#c-radio-group
 maturity: stable  priority: R1
 
@@ -14,7 +14,7 @@ Tokens (resolved):
   box.ring              #e53935  ({color.interaction.focus.ring})  use
   box.bg-checked        #7d1310  ({color.action.primary.bg})  use
   box.bg-checked-hover  #911410  ({color.action.primary.hover-bg})  use
-  box.dot               #f4eeee  ({color.action.primary.text})  use
+  box.dot               #ffa2a7  ({color.action.primary.text})  use
   box.ring-checked      #ffa2a7  ({color.interaction.focus.ring-container})  use
   box.border-invalid    #e53935  ({color.status.danger.border})  use
   box.bg-disabled       #160b0b  ({color.interaction.disabled.bg})  use

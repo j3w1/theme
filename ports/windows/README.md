@@ -1,0 +1,78 @@
+# j3w1 for Windows 11
+
+Black surfaces, rose ordinary text and original static cursors, generated from
+the canonical tokens. Content headings use near-white. Windhawk **2.0 alpha 6**
+is an explicitly pinned prerelease dependency. The port remains experimental
+while the real-machine lifecycle and per-surface checks are in progress.
+
+## Install
+
+Use native Windows 11 x64, PowerShell 7.4+ and Node 24+. Open PowerShell as the
+intended desktop user. Plan reports proposed targets and shell compatibility
+without modifying settings or installing dependencies. Full mode requires the
+exact fingerprint documented in [compatibility and recovery](COMPATIBILITY.md).
+Native mode omits all Windhawk changes.
+
+<!-- install:start -->
+Install commands appear here once v4.0.0 is released.
+<!-- install:end -->
+
+Before the first release, use a reviewed immutable checkout:
+
+```powershell
+$revision = git rev-parse HEAD
+& ./ports/windows/install.ps1 -Action Plan -SourceRoot . -Revision $revision -Mode Full
+& ./ports/windows/install.ps1 -Action Apply -SourceRoot . -Revision $revision -Mode Full
+```
+
+Uncommitted edits are excluded. The offline route reads Git objects at that
+revision and validates every artifact. Missing dependencies still require
+network access unless their verified downloads already exist in the state
+directory. PowerShell and Node are prerequisites; missing versions produce an
+actionable error before any theme changes. Existing compatible applications and
+fonts are reused. A missing font or Windhawk is fetched from its official pinned
+source and digest-checked; Windhawk also requires a valid publisher signature.
+
+## Update and test
+
+Updates are explicit. Use an exact release tag or full revision, and close
+application settings windows before applying. Never edit the immutable cache.
+
+<!-- update:start -->
+Install commands appear here once v4.0.0 is released.
+<!-- update:end -->
+
+The installed entry point is printed after Apply. Invoke that script with
+`-Action Test` to check effective managed settings, shell compatibility and
+Windhawk settings/version/enabled state. Check the actual visual surfaces after
+reopening affected apps; configuration readback is not visual verification.
+
+## Restore and uninstall
+
+<!-- restore:start -->
+Install commands appear here once v4.0.0 is released.
+<!-- restore:end -->
+
+`Restore -Latest` undoes one transaction. `Restore` returns all managed theme
+settings to the original baseline. `Uninstall` also removes owned assets and
+startup integration through that same journal. Shared applications, fonts and
+recovery data remain. Later edits to managed values are reported as conflicts;
+unrelated settings and documents are preserved. See [recovery](COMPATIBILITY.md)
+before resolving a conflict or interrupted installation.
+
+## What changes
+
+- Dark mode, transparency off, red accent/borders, a generated black wallpaper,
+  recoverable lock-screen image and 17 standard cursor roles in four sizes.
+- Windows Terminal scheme, font, opaque surfaces and dark chrome, including
+  explicit per-profile overrides. Commands, sizes and shortcuts are preserved.
+- Existing PowerToys FancyZones overlays, Always On Top border and Command
+  Palette appearance. Four optional layouts are added without assigning them.
+- Full mode: five pinned Windhawk shell stylers and a current-user sign-in
+  compatibility guard. The guard never downloads updates.
+
+Desktop icons, shortcuts, utility enabled states, window placement and assigned
+layouts are preserved. Unsupported Win32 foregrounds remain host-controlled.
+No binary theme patching or shell replacement is used. Reopen affected apps
+gracefully when required; the installer never force-kills terminals or reboots.
+All distribution files are generated. Edit semantic mappings and regenerate.

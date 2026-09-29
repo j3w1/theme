@@ -1754,6 +1754,16 @@
       "state": "out-of-scope",
       "surface": "outside-claude",
       "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "color.text.heading": {
+      "state": "unsupported",
+      "surface": "terminal-palette",
+      "reason": "Host exposes no separately mapped content heading/highlight foreground in this port."
+    },
+    "color.text.highlight": {
+      "state": "unsupported",
+      "surface": "terminal-palette",
+      "reason": "Host exposes no separately mapped content heading/highlight foreground in this port."
     }
   },
   "rollback": "Run node ports/claude-code/install.mjs restore in the same clone. By hand: set \"theme\" in ~/.claude/settings.json back to your previous theme (or remove the key) and delete ~/.claude/themes/j3w1.json."
