@@ -136,6 +136,15 @@ Native focus and selection remain host treatments. Setting readback proves
 imported rules, not that every selector matched a rendered element: actual
 surface/state observation is required before claiming visual verification.
 
+The expanded Start mapping was imported on the documented host through the
+immutable Update action, and native Test passed with no failed checks. Computer
+Use then observed square main/phone-panel frames, thin red outer borders, a
+rectangular search field, dark surfaces, monospace app labels and rectangular
+category containers. Pinned apps, Recent, category view and the phone companion
+remained visible. The observed Recent-item hover and tooltip still used native
+host treatment. This bounded observation does not certify every hover, pressed,
+disabled, selection or keyboard-focus state, nor every companion-panel label.
+
 The owner separately confirmed that Terminal looks fine. That records general
 appearance feedback, not an exhaustive keyboard/interaction-state protocol.
 
