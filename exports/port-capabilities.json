@@ -37749,7 +37749,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-c1/4qXMQ08zBLU7lTaXcRdv4tyaMV2qpG5gqst0jXkE=",
+      "subjectDigest": "sha256-wwcTxutGvgnkGFi+mgnV33IDRV3DvRd3NEQniDmsnBc=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37956,7 +37956,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-Qx9j5bSSLYc8kWjpVKV5rG80DTaMEBqnrwZsLK/Y5cM="
+          "digest": "sha256-/mu1Tk9Z3/eCcyHFc4wagU0U7m51TI49Ryd8TEn3Y4U="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
@@ -37980,7 +37980,7 @@
           "path": "dist/j3w1-powertoys-preview.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/j3w1-powertoys-preview.json",
-          "digest": "sha256-qgFBQqAWgxOnZd0SEcTGBes/FRB6sOGifsRyFwpfvso="
+          "digest": "sha256-+lwIdlLbogmrj/YARkIQargB+Gxd4ZfFpIhE2gZtznM="
         }
       ],
       "rollback": "Run install.ps1 -Action Restore for original settings, or add -Latest for the previous transaction; Uninstall also removes owned theme assets.",
