@@ -43,7 +43,8 @@ in [Compatibility](COMPATIBILITY.md#developer-and-offline-installation).
 Install commands appear here once v4.0.0 is released.
 <!-- update:end -->
 
-Every setup ends with Test. To check again, run the printed Test command from
+Prepared immutable releases are reused from the verified local cache, avoiding
+repeat bootstrap downloads. Changed cache files are refused. Every setup ends with Test. To check again, run the printed Test command from
 `%LOCALAPPDATA%\j3w1-theme\windows\recovery-commands.txt`.
 Test verifies artifacts, managed settings and compatibility; it is not a visual
 inspection. Close app settings windows before updating to avoid concurrent edits.

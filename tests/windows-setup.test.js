@@ -13,7 +13,7 @@ for(const engine of engines){
  if(process.platform==='win32')for(const key of Object.keys(engineEnv))if(key.toLowerCase()==='psmodulepath')delete engineEnv[key];
  const available=spawnSync(engine,['-NoProfile','-NonInteractive','-Command','$PSVersionTable.PSVersion.ToString()'],{encoding:'utf8',env:engineEnv}).status===0;
  if(!available&&process.env.CI)test(`Windows setup requires ${engine}`,()=>assert.fail('The selected setup test engine must be available in CI'));
- for(const scenario of ['identity','runtime-selection','modes','download','recovery','legacy-recovery','orchestration','child-failure'])test(`Windows setup ${scenario} (${path.basename(engine)})`,{skip:available?false:'PowerShell unavailable'},t=>{
+ for(const scenario of ['identity','runtime-selection','modes','download','recovery','legacy-recovery','orchestration','cached-setup','child-failure'])test(`Windows setup ${scenario} (${path.basename(engine)})`,{skip:available?false:'PowerShell unavailable'},t=>{
   const root=fs.mkdtempSync(path.join(os.tmpdir(),'j3w1-setup-test-'));
   t.after(()=>fs.rmSync(root,{recursive:true,force:true}));
   const r=spawnSync(engine,['-NoProfile','-NonInteractive','-File',path.join(repoRoot,'tests/helpers/windows-setup-fixture.ps1'),'-Setup',path.join(repoRoot,'ports/windows/setup.ps1'),'-Root',root,'-Case',scenario],{encoding:'utf8',timeout:60000,env:{...engineEnv,LOCALAPPDATA:root}});

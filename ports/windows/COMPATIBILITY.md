@@ -381,3 +381,9 @@ See [PowerToys preview implementation](https://github.com/microsoft/PowerToys/tr
 
 Actual high-contrast mode switching, DPI variants and full state coverage remain
 unverified. Tests and compilation do not certify those visual cases.
+
+Setup also reuses an already prepared immutable release: its recorded manifest,
+installer and dependency hashes are checked before invocation, then Prepare
+checks the full release. A missing or changed existing cache is refused without
+network replacement. A fresh revision still follows pinned online bootstrap.
+This removes a repeat manifest download that stalled on the development host.

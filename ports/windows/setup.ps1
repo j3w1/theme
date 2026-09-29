@@ -217,17 +217,26 @@ function Invoke-J3w1WindowsSetup([string]$Revision,[string]$Version,[string]$Mod
  try{$lock=[IO.File]::Open($lockPath,[IO.FileMode]::CreateNew,[IO.FileAccess]::Write,[IO.FileShare]::None)}catch{throw 'Another setup owns setup.lock; do not remove a live setup lock.'}
  try{
   $bytes=[Text.Encoding]::UTF8.GetBytes("pid=$PID");$lock.Write($bytes,0,$bytes.Length);$lock.Flush($true)
-  $stage=Join-Path $StateRoot ('setup-'+[guid]::NewGuid().ToString('N'));Assert-J3w1SetupPath $stage;[IO.Directory]::CreateDirectory($stage)|Out-Null
-  $base="https://raw.githubusercontent.com/j3w1/theme/$Revision/ports/windows"
-  $manifestPath=Join-Path $stage 'install-manifest.json';Get-J3w1SetupFile "$base/dist/install-manifest.json" $manifestPath ''
-  $manifest=Get-Content -LiteralPath $manifestPath -Raw|ConvertFrom-Json
-  if($manifest.schemaVersion -ne 1){throw 'Unsupported install manifest'}
-  foreach($name in @('install.ps1','dependencies.json')){
-   $entry=@($manifest.files|Where-Object path -CEQ $name)
-   if($entry.Count -ne 1 -or $entry[0].sha256 -cnotmatch '^[0-9a-f]{64}$'){throw "Invalid manifest entry for $name"}
-   Get-J3w1SetupFile "$base/$name" (Join-Path $stage $name) $entry[0].sha256
+  $cached=Join-Path $StateRoot "releases\$Revision";Assert-J3w1SetupPath $cached
+  if(Test-Path -LiteralPath $cached){
+   # A prepared immutable release must not depend on another network fetch.
+   # Verify bootstrap bytes here; Prepare validates the full release before use.
+   $verified=Get-J3w1VerifiedRecoveryRelease $StateRoot $Revision
+   $installer=Join-Path $verified.path 'install.ps1';$deps=$verified.dependencies
+   Write-Host 'Reusing the verified local release; no bootstrap download is needed.'
+  }else{
+   $stage=Join-Path $StateRoot ('setup-'+[guid]::NewGuid().ToString('N'));Assert-J3w1SetupPath $stage;[IO.Directory]::CreateDirectory($stage)|Out-Null
+   $base="https://raw.githubusercontent.com/j3w1/theme/$Revision/ports/windows"
+   $manifestPath=Join-Path $stage 'install-manifest.json';Get-J3w1SetupFile "$base/dist/install-manifest.json" $manifestPath ''
+   $manifest=Get-Content -LiteralPath $manifestPath -Raw|ConvertFrom-Json
+   if($manifest.schemaVersion -ne 1){throw 'Unsupported install manifest'}
+   foreach($name in @('install.ps1','dependencies.json')){
+    $entry=@($manifest.files|Where-Object path -CEQ $name)
+    if($entry.Count -ne 1 -or $entry[0].sha256 -cnotmatch '^[0-9a-f]{64}$'){throw "Invalid manifest entry for $name"}
+    Get-J3w1SetupFile "$base/$name" (Join-Path $stage $name) $entry[0].sha256
+   }
+   $installer=Join-Path $stage 'install.ps1';$deps=Get-Content -LiteralPath (Join-Path $stage 'dependencies.json') -Raw|ConvertFrom-Json
   }
-  $installer=Join-Path $stage 'install.ps1';$deps=Get-Content -LiteralPath (Join-Path $stage 'dependencies.json') -Raw|ConvertFrom-Json
   Write-Host "Preparing j3w1 Windows from immutable revision $Revision"
   $powerShell=Find-J3w1SetupPowerShell
   if(-not $powerShell){Write-Host 'Installing the pinned Microsoft PowerShell runtime for this user...';$powerShell=Install-J3w1SetupPowerShell $deps.powershell $StateRoot}

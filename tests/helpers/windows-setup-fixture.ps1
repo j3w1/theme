@@ -114,6 +114,31 @@ elseif($Case -eq 'orchestration'){
  Invoke-J3w1WindowsSetup $rev '' 'Native' $true $Root
  Check (($script:actions -join ',') -eq 'Prepare:Full,Apply:Native,Test:Native') 'Explicit Native routing failed'
 }
+elseif($Case -eq 'cached-setup'){
+ $env:OS='Windows_NT';$env:PROCESSOR_ARCHITECTURE='AMD64'
+ function Get-ItemPropertyValue {return 26200}
+ function Find-J3w1SetupPowerShell {return 'fixture-pwsh'}
+ function Invoke-WebRequest {throw 'CACHED SETUP MUST NOT DOWNLOAD'}
+ function Invoke-RestMethod {throw 'CACHED SETUP MUST NOT DOWNLOAD'}
+ $release=Join-Path $Root "releases/$rev";[IO.Directory]::CreateDirectory($release)|Out-Null
+ [IO.File]::WriteAllText((Join-Path $release 'install.ps1'),'# verified cached installer')
+ WriteJson (Join-Path $release 'dependencies.json') @{}
+ $files=@('install.ps1','dependencies.json')|ForEach-Object {@{path=$_;sha256=(Get-FileHash (Join-Path $release $_)).Hash.ToLowerInvariant()}}
+ $manifest=Join-Path $release 'install-manifest.json';WriteJson $manifest @{schemaVersion=1;files=$files}
+ WriteJson (Join-Path $release 'verified.json') @{revision=$rev;manifestSha256=(Get-FileHash $manifest).Hash}
+ $script:actions=@()
+ function Invoke-J3w1SetupLifecycle($PowerShell,$Installer,$Action,$Mode,$Revision,$StateRoot){
+  Check ($Installer -eq (Join-Path $release 'install.ps1')) 'Did not use the retained installer'
+  $script:actions+=@($Action)
+  if($Action -eq 'Prepare'){return (@{compatible=$true}|ConvertTo-Json -Compress)}
+ }
+ Invoke-J3w1WindowsSetup $rev '' 'Full' $true $Root
+ Check (($script:actions -join ',') -eq 'Prepare,Apply,Test') 'Cached setup did not validate before mutation'
+ $script:actions=@();[IO.File]::AppendAllText((Join-Path $release 'install.ps1'),'# tampered')
+ Reject {Invoke-J3w1WindowsSetup $rev '' 'Full' $true $Root} 'missing or changed'
+ Check ($script:actions.Count -eq 0) 'Tampered bootstrap executed'
+ Check (-not(Test-Path -LiteralPath (Join-Path $Root 'setup.lock'))) 'Failed cached setup leaked lock'
+}
 elseif($Case -eq 'child-failure'){
  [IO.Directory]::CreateDirectory($Root)|Out-Null;$bad=Join-Path $Root 'failure.ps1';[IO.File]::WriteAllText($bad,'param($Action,$Mode,$StateRoot) exit 23')
  Reject {Invoke-J3w1SetupLifecycle (Get-Process -Id $PID).Path $bad 'Restore' 'Native' '' $Root} 'exit 23'
