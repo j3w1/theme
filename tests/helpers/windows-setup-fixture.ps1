@@ -128,7 +128,7 @@ elseif($Case -eq 'cached-setup'){
  WriteJson (Join-Path $release 'verified.json') @{revision=$rev;manifestSha256=(Get-FileHash $manifest).Hash}
  $script:actions=@()
  function Invoke-J3w1SetupLifecycle($PowerShell,$Installer,$Action,$Mode,$Revision,$StateRoot){
-  Check ($Installer -eq (Join-Path $release 'install.ps1')) 'Did not use the retained installer'
+  Check ([IO.Path]::GetFullPath($Installer) -eq [IO.Path]::GetFullPath((Join-Path $release 'install.ps1'))) 'Did not use the retained installer'
   $script:actions+=@($Action)
   if($Action -eq 'Prepare'){return (@{compatible=$true}|ConvertTo-Json -Compress)}
  }
