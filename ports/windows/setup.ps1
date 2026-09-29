@@ -139,6 +139,42 @@ function Get-J3w1SetupRecovery([string]$PowerShell,[string]$Installer,[string]$S
  $prefix="& '"+$PowerShell.Replace("'","''")+"' -NoProfile -File '"+$Installer.Replace("'","''")+"' -StateRoot '"+$StateRoot.Replace("'","''")+"'"
  return @("$prefix -Action Test","$prefix -Action Restore -Latest","$prefix -Action Restore","$prefix -Action Uninstall")
 }
+function Get-J3w1VerifiedRecoveryRelease([string]$StateRoot,[string]$Revision) {
+ if($Revision -cnotmatch '^[0-9a-f]{40}$'){throw 'Invalid recovery release identity'}
+ $release=Join-Path $StateRoot "releases\$Revision";Assert-J3w1SetupPath $release
+ $manifestPath=Join-Path $release 'install-manifest.json';$markerPath=Join-Path $release 'verified.json'
+ foreach($path in @($manifestPath,$markerPath)){Assert-J3w1SetupPath $path;if(-not(Test-Path -LiteralPath $path)){throw 'Recovery cache is missing. Restore the saved cache; no download was attempted.'}}
+ $marker=Get-Content -LiteralPath $markerPath -Raw|ConvertFrom-Json
+ if($marker.revision -ne $Revision -or (Get-FileHash -LiteralPath $manifestPath -Algorithm SHA256).Hash -ne $marker.manifestSha256){throw 'Recovery manifest changed'}
+ $manifest=Get-Content -LiteralPath $manifestPath -Raw|ConvertFrom-Json
+ if($manifest.schemaVersion -ne 1){throw 'Unsupported recovery manifest'}
+ foreach($name in @('install.ps1','dependencies.json')){
+  $entry=@($manifest.files|Where-Object path -CEQ $name);$file=Join-Path $release $name;Assert-J3w1SetupPath $file
+  if($entry.Count -ne 1 -or $entry[0].sha256 -cnotmatch '^[0-9a-f]{64}$' -or -not(Test-Path -LiteralPath $file) -or (Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne $entry[0].sha256){throw "Recovery file is missing or changed: $name"}
+ }
+ return @{path=$release;dependencies=(Get-Content -LiteralPath (Join-Path $release 'dependencies.json') -Raw|ConvertFrom-Json)}
+}
+function Get-J3w1RecoveryPowerShellPin($Release,[string]$StateRoot) {
+ $pin=$Release.dependencies.PSObject.Properties['powershell']
+ if($pin){return $pin.Value}
+ # A rollback can select a release that predates setup. The retained runtime
+ # belongs to setup, not to the theme revision being restored. Recover its pin
+ # from verified installation history, including rolled-back transactions.
+ $journal=Join-Path $StateRoot 'journal.json';Assert-J3w1SetupPath $journal
+ if(Test-Path -LiteralPath $journal){
+  $history=Get-Content -LiteralPath $journal -Raw|ConvertFrom-Json
+  if($history.schemaVersion -ne 1){throw 'Unsupported recovery journal'}
+  $transactions=@($history.transactions);[array]::Reverse($transactions)
+  $seen=[Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
+  foreach($transaction in $transactions){
+   if(-not $seen.Add([string]$transaction.revision)){continue}
+   $candidate=Get-J3w1VerifiedRecoveryRelease $StateRoot $transaction.revision
+   $pin=$candidate.dependencies.PSObject.Properties['powershell']
+   if($pin){return $pin.Value}
+  }
+ }
+ throw 'No verified offline PowerShell dependency pin was found. Restore the saved setup release cache; no download was attempted.'
+}
 function Invoke-J3w1WindowsRecovery([string]$Action,[bool]$Latest,[string]$StateRoot) {
  if($env:OS -ne 'Windows_NT'){throw 'Run recovery on native Windows'}
  $StateRoot=[IO.Path]::GetFullPath($StateRoot);Assert-J3w1SetupPath $StateRoot
@@ -158,21 +194,12 @@ function Invoke-J3w1WindowsRecovery([string]$Action,[bool]$Latest,[string]$State
   $pointer=Get-Content -LiteralPath $current -Raw|ConvertFrom-Json
  }
  if($pointer.revision -cnotmatch '^[0-9a-f]{40}$' -or $pointer.mode -notin 'Full','Native'){throw 'Invalid installed recovery identity'}
- $release=Join-Path $StateRoot "releases\$($pointer.revision)";Assert-J3w1SetupPath $release
- $manifestPath=Join-Path $release 'install-manifest.json';$markerPath=Join-Path $release 'verified.json'
- foreach($path in @($manifestPath,$markerPath)){Assert-J3w1SetupPath $path;if(-not(Test-Path -LiteralPath $path)){throw 'Recovery cache is missing. Restore the saved cache; no download was attempted.'}}
- $marker=Get-Content -LiteralPath $markerPath -Raw|ConvertFrom-Json
- if($marker.revision -ne $pointer.revision -or (Get-FileHash -LiteralPath $manifestPath -Algorithm SHA256).Hash -ne $marker.manifestSha256){throw 'Recovery manifest changed'}
- $manifest=Get-Content -LiteralPath $manifestPath -Raw|ConvertFrom-Json
- if($manifest.schemaVersion -ne 1){throw 'Unsupported recovery manifest'}
- foreach($name in @('install.ps1','dependencies.json')){
-  $entry=@($manifest.files|Where-Object path -CEQ $name);$file=Join-Path $release $name;Assert-J3w1SetupPath $file
-  if($entry.Count -ne 1 -or $entry[0].sha256 -cnotmatch '^[0-9a-f]{64}$' -or -not(Test-Path -LiteralPath $file) -or (Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne $entry[0].sha256){throw "Recovery file is missing or changed: $name"}
- }
+ $verifiedRelease=Get-J3w1VerifiedRecoveryRelease $StateRoot $pointer.revision
+ $release=$verifiedRelease.path
  $powerShell=Find-J3w1SetupPowerShell
  if(-not $powerShell){
-  $deps=Get-Content -LiteralPath (Join-Path $release 'dependencies.json') -Raw|ConvertFrom-Json
-  $powerShell=Install-J3w1SetupPowerShell $deps.powershell $StateRoot -Offline
+  $pin=Get-J3w1RecoveryPowerShellPin $verifiedRelease $StateRoot
+  $powerShell=Install-J3w1SetupPowerShell $pin $StateRoot -Offline
  }
  Write-Host "Running $Action using verified local recovery data. No release download is needed."
  Invoke-J3w1SetupLifecycle $powerShell (Join-Path $release 'install.ps1') $Action $pointer.mode '' $StateRoot -Latest:$Latest|Write-Output

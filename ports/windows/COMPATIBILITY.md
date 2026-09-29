@@ -277,7 +277,12 @@ Choose one command: undo the last update, restore the original appearance,
 uninstall theme integration, or verify. Recovery uses the existing lifecycle
 and validates the retained entry point before invoking it. A pending first
 installation can be recovered even before `current.json` exists. Missing or
-changed recovery files fail without a network download. The underlying journal
+changed recovery files fail without a network download. If rollback selects a
+release from before setup existed, recovery obtains the retained PowerShell pin
+from the newest verified release in installation history, including restored
+transactions. It verifies that release manifest and dependency bytes before
+verifying the runtime against its archive; it never substitutes the Store alias
+or downloads a recovery runtime. Keep the release cache with the journal. The underlying journal
 preserves later edits and returns a nonzero result for unresolved conflicts;
 the wrapper must not print completion for those results.
 
@@ -310,3 +315,19 @@ pinned private runtime; installation and sign-in Guard use the same runtime.
 Direct lifecycle execution from a packaged WindowsApps runtime is refused with
 instructions to use setup. Earlier Store-alias guard invocation evidence remains
 historical and does not establish a correct registry view or actual sign-in.
+
+
+### Native bootstrap and legacy rollback check
+
+The bootstrap applied the standalone-runtime candidate and Test passed on the
+owner's Windows host. Setup then completed offline Restore Latest without
+conflicts. Its next Test exposed a missing PowerShell dependency field in the
+older restored release. Recovery now verifies the retained runtime pin through
+installation history; the corrected setup completed offline Test on that older
+release. Both native PowerShell engines passed the legacy recovery fixture,
+including altered dependency rejection and a forbidden-network stub.
+
+These checks used an immutable source-prepared release cache and an already
+verified PowerShell archive. They establish native bootstrap/recovery behavior,
+not a clean-PC online installation or visual acceptance. Explorer's native panes
+remain dark gray, and standalone popup rendering still needs direct observation.

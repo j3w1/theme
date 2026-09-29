@@ -46,7 +46,7 @@ elseif($Case -eq 'download'){
  Check ($ProgressPreference -eq $beforeProgress) 'Caller progress preference changed'
  Check (@(Get-ChildItem -LiteralPath $Root -Filter '*.download-*').Count -eq 0) 'Partial download left behind'
 }
-elseif($Case -eq 'recovery'){
+elseif($Case -in @('recovery','legacy-recovery')){
  $env:OS='Windows_NT';$release=Join-Path $Root "releases/$rev";[IO.Directory]::CreateDirectory($release)|Out-Null
  [IO.File]::WriteAllText((Join-Path $release 'install.ps1'),'# verified fixture')
  WriteJson (Join-Path $release 'dependencies.json') @{}
@@ -58,6 +58,28 @@ elseif($Case -eq 'recovery'){
  function Invoke-RestMethod {throw 'RECOVERY MUST STAY OFFLINE'}
  function Invoke-WebRequest {throw 'RECOVERY MUST STAY OFFLINE'}
  function Invoke-J3w1SetupLifecycle($PowerShell,$Installer,$Action,$Mode,$Revision,$StateRoot,[switch]$Latest){$script:called=@($Action,$Mode,$Revision,[bool]$Latest)}
+ if($Case -eq 'legacy-recovery'){
+  function Find-J3w1SetupPowerShell {return $null}
+  Reject {Invoke-J3w1WindowsRecovery 'Test' $false $Root} 'No installed theme'
+  WriteJson (Join-Path $Root 'current.json') @{revision=$rev;mode='Full'}
+  Reject {Invoke-J3w1WindowsRecovery 'Test' $false $Root} 'No verified offline PowerShell'
+  $newRev='b'*40;$newRelease=Join-Path $Root "releases/$newRev"
+  [IO.Directory]::CreateDirectory($newRelease)|Out-Null
+  [IO.File]::WriteAllText((Join-Path $newRelease 'install.ps1'),'# newer fixture')
+  WriteJson (Join-Path $newRelease 'dependencies.json') @{powershell=@{version='7.6.6';sha256=('c'*64)}}
+  $newFiles=@('install.ps1','dependencies.json')|ForEach-Object {@{path=$_;sha256=(Get-FileHash (Join-Path $newRelease $_)).Hash.ToLowerInvariant()}}
+  $newManifest=Join-Path $newRelease 'install-manifest.json';WriteJson $newManifest @{schemaVersion=1;files=$newFiles}
+  WriteJson (Join-Path $newRelease 'verified.json') @{revision=$newRev;manifestSha256=(Get-FileHash $newManifest).Hash}
+  WriteJson (Join-Path $Root 'journal.json') @{schemaVersion=1;transactions=@(@{revision=$rev;mode='Full';status='applied'},@{revision=$newRev;mode='Full';status='restored'})}
+  function Install-J3w1SetupPowerShell($Pin,$Root,[switch]$Offline){Check ([bool]$Offline) 'Legacy recovery attempted online runtime installation';Check ($Pin.version -eq '7.6.6' -and $Pin.sha256 -eq ('c'*64)) 'Legacy recovery used an unverified runtime pin';return 'verified-private-pwsh'}
+  Invoke-J3w1WindowsRecovery 'Test' $false $Root
+  Check ($script:called[0] -eq 'Test') 'Legacy Test failed to use retained setup runtime'
+  Invoke-J3w1WindowsRecovery 'Uninstall' $false $Root
+  Check ($script:called[0] -eq 'Uninstall') 'Legacy Uninstall failed to use retained setup runtime'
+  [IO.File]::AppendAllText((Join-Path $newRelease 'dependencies.json'),' ')
+  Reject {Invoke-J3w1WindowsRecovery 'Test' $false $Root} 'missing or changed'
+  WriteJson (Join-Path $newRelease 'dependencies.json') @{powershell=@{version='7.6.6';sha256=('c'*64)}}
+ }
  Invoke-J3w1WindowsRecovery 'Restore' $true $Root
  Check ($script:called[0] -eq 'Restore' -and $script:called[1] -eq 'Full' -and $script:called[2] -eq '' -and $script:called[3]) 'Pending first apply recovery routing failed'
  [IO.File]::AppendAllText((Join-Path $release 'install.ps1'),'# altered')
