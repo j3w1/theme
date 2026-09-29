@@ -199,9 +199,33 @@ The attempted Explorer `none` backdrop with an entire-window effect produced
 bright red native panes on the candidate host instead of black. The owner
 rejected the result, and the native transaction was rolled back. That option
 and its speculative coverage claim are removed. Explorer retains its native
-backdrop with the earlier rose XAML chrome mapping. Native file-list/tree text
-and backgrounds are unresolved; successful settings readback did not establish
-correct visual rendering. The failed attempt remains historical evidence.
+backdrop with the earlier rose XAML chrome mapping. That failed attempt remains historical evidence.
+
+A separate source-owned native Explorer adapter now maps neutral canvas paints
+to black and ordinary neutral text to rose. Buffered painting is tracked per
+Explorer paint thread, because memory DCs have no window owner. Column headers, native tree/list selection and hover paints, scrollbar parts
+and separators use the black/red/rose palette. The native theme draws its
+geometry into an isolated bitmap; only neutral theme pixels receive the
+semantic palette. Colored icons and application content are not recolored.
+XAML command bars and tabs have separate token mappings. Unknown transforms
+and unsupported drawing flags retain native rendering and remain a limit. The adapter does not change system colors,
+window geometry, font sizes, input handling or other applications. Rich-edit preview controls, colored text and high-contrast rendering pass through. Third-party preview
+handlers and all native interaction states are not claimed as visually verified.
+
+The generated C++ source and settings are hashed in the immutable installation
+manifest. Full mode compiles it with the pinned Windhawk tool, stages it disabled,
+checks settings, and journals backup/enable/restore through the same lifecycle
+as the upstream stylers. Restore removes an owned adapter or restores its prior
+backup. The temporary diagnostic probe is not a dependency. No extra download
+is needed. Both the lifecycle and the adapter gate Explorer on its fixed file
+version; descriptive FileVersion alone can differ from the binary version.
+
+On 2026-09-30, the temporary probe visibly produced black file-list, navigation,
+column-header and preview-placeholder surfaces with rose text. Disabling it
+visibly restored gray panes and native text. Computer Use captures succeeded,
+but clicks were refused because its target geometry landed on the chat window,
+even after activation. Selection/rename/high-contrast visual checks remain open;
+the generated adapter must not be described as full native visual acceptance.
 
 Task Manager, third-party application bodies and arbitrary classic dialogs
 have no dedicated adapter in this port. Native dark mode and accent are only
@@ -329,5 +353,31 @@ including altered dependency rejection and a forbidden-network stub.
 
 These checks used an immutable source-prepared release cache and an already
 verified PowerShell archive. They establish native bootstrap/recovery behavior,
-not a clean-PC online installation or visual acceptance. Explorer's native panes
-remain dark gray, and standalone popup rendering still needs direct observation.
+not a clean-PC online installation or visual acceptance. At that checkpoint Explorer's native panes
+remained dark gray; the later native-adapter investigation is recorded above.
+Standalone popup rendering still needs direct observation.
+
+The no-gray Explorer request adds explicit command-bar/tab surfaces and native
+interaction/scrollbar palette mappings. It does not claim every Explorer
+dialog, third-party preview handler or unobserved state is covered. Selection,
+rename and high-contrast visual acceptance remain separate from CLI readback.
+
+### Native readback on 2026-09-30
+
+On the candidate host, the generated native adapter compiled in pinned Windhawk.
+A selected sample row visibly used dark red on the black file list; navigation
+and normal headers were black. The rename edit retained readable selected text
+and canceled without changing the filename. A live standalone notification was
+also observed with a black background, rose text and a thin red frame. No
+notification was opened or dismissed by this check; its content was not saved.
+
+The sample's embedded source-code preview is PowerToys.MonacoPreviewHandler,
+which uses its own Monaco vs-dark editor theme. Its gray content background is
+not Explorer's native canvas. The installed provider exposes light/dark theme
+selection, not a supported custom j3w1 palette. Modifying its installed assets,
+disabling the provider or hiding the pane is not part of this adapter. Therefore
+the owner's no-gray visual target is still not fully satisfied in this provider.
+See [PowerToys preview implementation](https://github.com/microsoft/PowerToys/tree/main/src/common/FilePreviewCommon).
+
+Actual high-contrast mode switching, DPI variants and full state coverage remain
+unverified. Tests and compilation do not certify those visual cases.

@@ -28,6 +28,7 @@ var FINGERPRINT_KEYS = [
   "ubr",
   "architecture",
   "explorerVersion",
+  "explorerFixedVersion",
   "startDockedVersion",
   "settingsVersion",
   "shellExperienceVersion",
@@ -1742,8 +1743,12 @@ function stageMods(tx) {
   if (!compat()) throw Error("Unsupported Windows/shell fingerprint. Full mode refused; Native remains available.");
   if (!fixture && !import_node_fs2.default.existsSync(windhawk)) throw Error("Pinned Windhawk CLI missing. Run the dependency bootstrap first.");
   const deps = json(import_node_path2.default.join(source, "dependencies.json"));
-  for (const mod of deps.mods) {
-    const src = import_node_path2.default.join(state, "downloads", mod.id + ".wh.cpp");
+  const bundled = settings.bundledMods ?? [];
+  for (const mod of bundled) if (!/^[a-z0-9-]+$/.test(mod.id) || mod.path !== `dist/${mod.id}.wh.cpp` || !/^[a-f0-9]{64}$/.test(mod.sha256)) throw Error("Invalid bundled Windhawk source");
+  const mods = [...deps.mods.map((m) => ({ ...m, sourcePath: import_node_path2.default.join(state, "downloads", m.id + ".wh.cpp") })), ...bundled.map((m) => ({ ...m, sourcePath: import_node_path2.default.join(source, m.path) }))];
+  if (new Set(mods.map((m) => m.id)).size !== mods.length) throw Error("Duplicate Windhawk adapter identity");
+  for (const mod of mods) {
+    const src = safe(mod.sourcePath);
     if (!import_node_fs2.default.existsSync(src) || sha256Hex(import_node_fs2.default.readFileSync(src)) !== mod.sha256) throw Error(`Missing verified mod source: ${mod.id}`);
     if (wh(["mod", "show", mod.id], true)) throw Error(`An upstream-ID copy of ${mod.id} is already installed. Resolve that duplicate explicitly before staging the pinned local adapter.`);
     const installedId = "local@" + mod.id;

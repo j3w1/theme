@@ -92,7 +92,19 @@ export function windowsArtifacts({manifest,host,resolved}){
   return `${key}=${windowsStyleValue(key,resolved.get(role))}`;
  })}));
  const stylerVariants=Object.fromEntries(host.stylers.filter(s=>s.variants).map(s=>[s.id,Object.fromEntries(Object.entries(s.variants).map(([layout,items])=>[layout,targets(items)]))]));
- json('windows-settings.json',{schemaVersion:1,version:manifest.version,values:settings,stylerVariants,compatibility:host.compatibility,limitations:host.limitations});
+ const native=host.nativeExplorer,id='j3w1-explorer-native';
+ const fixed=[...new Set(host.compatibility.map(c=>c.explorerFixedVersion))];
+ if(fixed.length!==1 || !/^\d+\.\d+\.\d+\.\d+$/.test(fixed[0]))throw Error('Native Explorer requires one exact fixed executable version');
+ const parts=fixed[0].split('.');
+ if(parts.some(p=>Number(p)>65535))throw Error('Invalid native Explorer fixed version');
+ const nativeSettings=Object.fromEntries(Object.entries(native).filter(([key])=>key!=='version').map(([key,role])=>[key,val(role)]));
+ const substitutions={...Object.fromEntries(Object.entries(nativeSettings).map(([key,value])=>[key.toUpperCase(),value])),VERSION:native.version,
+  VERSION_MAJOR:parts[0],VERSION_MINOR:parts[1],VERSION_BUILD:parts[2],VERSION_REVISION:parts[3]};
+ const nativeSource=readFileSync(path.join(repoRoot,'ports/windows/src/j3w1-explorer-native.wh.cpp.in'),'utf8').replace(/@([A-Z_]+)@/g,(_,key)=>{if(!(key in substitutions))throw Error(`Unknown native source placeholder ${key}`);return substitutions[key];});
+ artifacts.push({path:`dist/${id}.wh.cpp`,text:nativeSource});
+ json(`${id}.json`,nativeSettings);
+ const bundledMods=[{id,version:native.version,path:`dist/${id}.wh.cpp`,sha256:createHash('sha256').update(nativeSource).digest('hex')}];
+ json('windows-settings.json',{schemaVersion:1,version:manifest.version,values:settings,stylerVariants,bundledMods,compatibility:host.compatibility,limitations:host.limitations});
  const ansi=['black','red','green','yellow','blue','purple','cyan','white','brightBlack','brightRed','brightGreen','brightYellow','brightBlue','brightPurple','brightCyan','brightWhite'];
  const scheme={name:'j3w1',foreground:val('color.terminal.fg'),background:val('color.surface.canvas'),cursorColor:val('color.terminal.cursor'),selectionBackground:val('color.code.selection-bg')};ansi.forEach((k,i)=>scheme[k]=val(`color.terminal.ansi.${i}`));
  json('terminal-fragment.json',{schemes:[scheme]});

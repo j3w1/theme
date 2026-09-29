@@ -1,6 +1,6 @@
 // Exact host inputs; a Windows marketing version never grants compatibility.
 export const FINGERPRINT_KEYS = ['build','ubr','architecture','explorerVersion',
- 'startDockedVersion','settingsVersion','shellExperienceVersion','searchVersion',
+ 'explorerFixedVersion','startDockedVersion','settingsVersion','shellExperienceVersion','searchVersion',
  'startPackageVersion','shellPackageVersion','clientPackageVersion','startLayout'];
 export function shellCompatibility(actual, entries) {
  const missing=FINGERPRINT_KEYS.filter(key=>actual?.[key]===undefined||actual[key]===''||actual[key]==='unknown');

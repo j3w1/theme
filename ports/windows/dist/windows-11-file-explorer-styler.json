@@ -24,6 +24,53 @@
       "styles": [
         "Background=#100c0c"
       ]
+    },
+    {
+      "target": "FileExplorerExtensions.CommandBarControl_Wave1 > Grid, Grid#CommandBarControlRootGrid",
+      "styles": [
+        "Background=#000000"
+      ]
+    },
+    {
+      "target": "CommandBar#FileExplorerCommandBar",
+      "styles": [
+        "Background=#000000"
+      ]
+    },
+    {
+      "target": "CommandBar#FileExplorerSecondaryCommandBar",
+      "styles": [
+        "Background=#000000"
+      ]
+    },
+    {
+      "target": "Grid#TabContainerGrid",
+      "styles": [
+        "Background=#000000"
+      ]
+    },
+    {
+      "target": "Grid#PART_LayoutRoot",
+      "styles": [
+        "Background=#000000"
+      ]
+    },
+    {
+      "target": "CommandBar > Grid#LayoutRoot > Grid#ContentRoot",
+      "styles": [
+        "Background=#000000"
+      ]
+    },
+    {
+      "target": "TabViewItem > Grid#LayoutRoot@CommonStates",
+      "styles": [
+        "Background@Normal=#000000",
+        "Background@Selected=#531310",
+        "Background@PointerOver=#1c0a09",
+        "Background@PointerOverSelected=#531310",
+        "Background@Pressed=#420f0c",
+        "Background@PressedSelected=#531310"
+      ]
     }
   ],
   "themeResourceVariables": [

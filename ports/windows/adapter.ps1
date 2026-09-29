@@ -14,6 +14,11 @@ switch($request.operation) {
       if(Test-Path -LiteralPath $file){return (Get-Item -LiteralPath $file).VersionInfo.FileVersion.Split(' ')[0]}
       return ''
     }
+    function FixedFileVersion([string]$Relative){
+      $file=Join-Path $env:windir $Relative
+      if(Test-Path -LiteralPath $file){$v=(Get-Item -LiteralPath $file).VersionInfo;return "$($v.FileMajorPart).$($v.FileMinorPart).$($v.FileBuildPart).$($v.FilePrivatePart)"}
+      return ''
+    }
     function PackageVersion([string]$Name){
       $file=Join-Path $env:windir "SystemApps/$Name/AppxManifest.xml"
       if(Test-Path -LiteralPath $file){return ([xml](Get-Content -LiteralPath $file -Raw)).Package.Identity.Version}
@@ -35,6 +40,7 @@ public static class J3w1StartLayoutProbe {
     @{
       build=[int]$os.CurrentBuild;ubr=[int]$os.UBR;architecture=[Runtime.InteropServices.RuntimeInformation]::OSArchitecture.ToString()
       explorerVersion=FileVersion 'explorer.exe'
+      explorerFixedVersion=FixedFileVersion 'explorer.exe'
       startDockedVersion=FileVersion 'SystemApps/Microsoft.Windows.StartMenuExperienceHost_cw5n1h2txyewy/StartDocked.dll'
       settingsVersion=FileVersion 'ImmersiveControlPanel/SystemSettings.exe'
       shellExperienceVersion=FileVersion 'SystemApps/ShellExperienceHost_cw5n1h2txyewy/ShellExperienceHost.exe'

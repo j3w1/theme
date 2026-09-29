@@ -358,6 +358,53 @@
           "styles": {
             "Background": "color.surface.default"
           }
+        },
+        {
+          "target": "FileExplorerExtensions.CommandBarControl_Wave1 > Grid, Grid#CommandBarControlRootGrid",
+          "styles": {
+            "Background": "color.surface.canvas"
+          }
+        },
+        {
+          "target": "CommandBar#FileExplorerCommandBar",
+          "styles": {
+            "Background": "color.surface.canvas"
+          }
+        },
+        {
+          "target": "CommandBar#FileExplorerSecondaryCommandBar",
+          "styles": {
+            "Background": "color.surface.canvas"
+          }
+        },
+        {
+          "target": "Grid#TabContainerGrid",
+          "styles": {
+            "Background": "color.surface.canvas"
+          }
+        },
+        {
+          "target": "Grid#PART_LayoutRoot",
+          "styles": {
+            "Background": "color.surface.canvas"
+          }
+        },
+        {
+          "target": "CommandBar > Grid#LayoutRoot > Grid#ContentRoot",
+          "styles": {
+            "Background": "color.surface.canvas"
+          }
+        },
+        {
+          "target": "TabViewItem > Grid#LayoutRoot@CommonStates",
+          "styles": {
+            "Background@Normal": "color.surface.canvas",
+            "Background@Selected": "color.interaction.selection.bg",
+            "Background@PointerOver": "color.interaction.hover.bg",
+            "Background@PointerOverSelected": "color.interaction.selection.bg",
+            "Background@Pressed": "color.interaction.pressed.bg",
+            "Background@PressedSelected": "color.interaction.selection.bg"
+          }
         }
       ]
     },
@@ -606,7 +653,8 @@
       "startPackageVersion": "10.0.26100.4768",
       "shellPackageVersion": "10.0.26100.8115",
       "clientPackageVersion": "1000.26100.372.0",
-      "startLayout": "redesigned"
+      "startLayout": "redesigned",
+      "explorerFixedVersion": "10.0.26100.9549"
     }
   ],
   "limitations": [
@@ -615,5 +663,17 @@
     "Lock-screen application requires a supported API and recoverable previous image; otherwise it is not applied.",
     "Windows/Start updates outside the tested compatibility entry disable managed shell styling until reviewed.",
     "Static cursor shapes preserve roles; host accessibility pointer overrides take priority."
-  ]
+  ],
+  "nativeExplorer": {
+    "version": "1.0",
+    "background": "color.surface.canvas",
+    "foreground": "color.text.default",
+    "hover": "color.interaction.hover.bg",
+    "selected": "color.interaction.selection.bg",
+    "inactive": "color.interaction.selection.inactive-bg",
+    "border": "color.border.divider",
+    "scrollbar": "color.interaction.scrollbar.thumb",
+    "scrollbarHover": "color.interaction.scrollbar.thumb-hover",
+    "disabled": "color.text.disabled"
+  }
 }

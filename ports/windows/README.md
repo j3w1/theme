@@ -21,7 +21,7 @@ Microsoft-signed runtime for this user. It does not change system execution
 policy or require you to elevate the whole installation. Managed-device policy
 can still prevent execution; use your administrator's approved process.
 
-**Full mode** adds the five pinned Windhawk shell stylers. It requires the exact
+**Full mode** adds five pinned Windhawk shell stylers and the bundled Explorer native-color adapter. It requires the exact
 reviewed Windows/shell fingerprint and uses Windhawk 2.0 alpha 6. On other
 builds, setup explains the limit and asks whether to install **Native mode**:
 personalization, wallpaper, cursors and supported existing app settings, without
@@ -93,11 +93,15 @@ same frame/surface rules where its XAML controls expose them. See
   explicit per-profile overrides. Commands, sizes and shortcuts are preserved.
 - Existing PowerToys FancyZones overlays, Always On Top border and Command
   Palette appearance. Four optional layouts are added without assigning them.
-- Full mode: five pinned Windhawk shell stylers and a current-user sign-in
+- Full mode: five pinned Windhawk shell stylers, a bundled native Explorer
+  canvas/text adapter and a current-user sign-in
   compatibility guard. The guard never downloads updates.
 
 Desktop icons, shortcuts, utility enabled states, window placement and assigned
-layouts are preserved. Unsupported Win32 foregrounds remain host-controlled.
+layouts are preserved. Explorer native file-list, navigation, resting column
+headers and preview-placeholder surfaces use black/rose on the exact supported
+host. Native selection, hover and scrollbar paint geometry is retained with token
+colors. Input behavior and third-party preview content remain host-controlled. Other unsupported Win32 foregrounds remain host-controlled.
 No binary theme patching or shell replacement is used. Reopen affected apps
 gracefully when required; the installer never force-kills terminals or reboots.
 All distribution files are generated. Edit semantic mappings and regenerate.

@@ -120,6 +120,14 @@
       ]
     }
   },
+  "bundledMods": [
+    {
+      "id": "j3w1-explorer-native",
+      "version": "1.0",
+      "path": "dist/j3w1-explorer-native.wh.cpp",
+      "sha256": "4d9b0e4a69a312c22288a520eecbf2c84942b66ab84b209b18af91ab6ba31447"
+    }
+  ],
   "compatibility": [
     {
       "build": 26200,
@@ -134,7 +142,8 @@
       "startPackageVersion": "10.0.26100.4768",
       "shellPackageVersion": "10.0.26100.8115",
       "clientPackageVersion": "1000.26100.372.0",
-      "startLayout": "redesigned"
+      "startLayout": "redesigned",
+      "explorerFixedVersion": "10.0.26100.9549"
     }
   ],
   "limitations": [

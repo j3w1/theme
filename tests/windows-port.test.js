@@ -120,6 +120,9 @@ function windhawkFixture(t){
 test('Windhawk uses local installed IDs, verifies staged version and nested enabled state, and removes owned mods',t=>{
  const f=windhawkFixture(t);f.ok('Apply',f.args);f.ok('Test',f.args);
  assert.equal(f.journal().transactions[0].mods[0].id,'local@fixture-styler');
+ assert.equal(f.journal().transactions[0].mods[1].id,'local@j3w1-explorer-native');
+ assert.equal(f.db()['local@j3w1-explorer-native'].settings.background,'#000000');
+ assert.equal(f.db()['local@j3w1-explorer-native'].settings.foreground,'#e99499');
  assert.equal(f.db()['local@fixture-styler'].config.disabled,false);
  const db=f.db();db['local@fixture-styler'].config.disabled=true;write(path.join(f.state,'fixture-windhawk.json'),db);
  const failed=f.run('Test',f.args);assert.equal(failed.status,1);assert.match(failed.stdout,/disabled or unknown state/);
@@ -221,4 +224,14 @@ test('standalone toast variants use black surfaces with one outer frame',async()
   const styles=payload.controlStyles.find(t=>t.target===target).styles;
   for(const value of ['Background=#000000','BorderThickness=1','BorderBrush=#e53935','CornerRadius=0'])assert.ok(styles.includes(value));
  }
+});
+
+test('bundled native source is generated, pinned and rejected on tampering',t=>{
+ const f=windhawkFixture(t),file=path.join(f.args.source,'dist/j3w1-explorer-native.wh.cpp');
+ const text=fs.readFileSync(file,'utf8');
+ assert.match(text,/@include explorer.exe/);assert.doesNotMatch(text,/@[A-Z_]+@|native-probe|CreateFileW|SetSysColors/);
+ assert.match(text,/MAKELONG\(9549,26100\)/);
+ fs.appendFileSync(file,'\n// changed');
+ const result=f.run('Apply',f.args);assert.notEqual(result.status,0);assert.match(result.stderr,/Missing verified mod source/);
+ assert.deepEqual(f.db(),{});
 });

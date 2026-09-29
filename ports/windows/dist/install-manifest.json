@@ -3,8 +3,16 @@
   "version": "4.0.0",
   "files": [
     {
+      "path": "dist/j3w1-explorer-native.wh.cpp",
+      "sha256": "4d9b0e4a69a312c22288a520eecbf2c84942b66ab84b209b18af91ab6ba31447"
+    },
+    {
+      "path": "dist/j3w1-explorer-native.json",
+      "sha256": "b016ba28b651c0bb9c774cdfa3659dd28d989c4874de433b0ad6fcc3deee0175"
+    },
+    {
       "path": "dist/windows-settings.json",
-      "sha256": "7e747095caad2afbe45496dc3770585a176fbab6c5da6e8fb803a545129bf8ad"
+      "sha256": "b02cea382a706bdae541c577e03e1911be2b33e4ab7677bec2130d030256e2ff"
     },
     {
       "path": "dist/terminal-fragment.json",
@@ -28,7 +36,7 @@
     },
     {
       "path": "dist/windows-11-file-explorer-styler.json",
-      "sha256": "d76b46116a942fd140714cce799e2f9c31a0f778d761993a17056bcb8fe1c84c"
+      "sha256": "2dae23f60667d5021e8212e4d81679c088153ad19982f5ccf2658ddae3de4aef"
     },
     {
       "path": "dist/windows-11-notification-center-styler.json",
@@ -116,7 +124,7 @@
     },
     {
       "path": "dist/runtime.cjs",
-      "sha256": "8c6a95d6469c0a69268edcf906c950e08e172994179ec9e21f86c2d44582edfb"
+      "sha256": "84bdd1f5a2219f8a103779dc32e21f322b8894619763c4f8ee482313d97134c5"
     },
     {
       "path": "install.ps1",
@@ -128,7 +136,7 @@
     },
     {
       "path": "adapter.ps1",
-      "sha256": "6448b212f5e4fc68049613fd5aaeafb19415dcd68ed4b2b73080fbb831103f70"
+      "sha256": "3ce586fa7554f0a8a5c9e5fd0e01e3e3ba14af206a6928b56215b1aa21ec5900"
     },
     {
       "path": "lockscreen.ps1",
@@ -140,7 +148,7 @@
     },
     {
       "path": "host.json",
-      "sha256": "d68fa146d5bb1561011c9736e64ae0fa57d287d871d3891e3e35f4841fd79fb0"
+      "sha256": "f8a7c1e563c80aceb52f0691dc2a135713bbfe76235159ccdf7ff35adeb065e6"
     }
   ]
 }

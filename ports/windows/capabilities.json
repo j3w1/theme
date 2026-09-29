@@ -585,9 +585,9 @@
       "reason": "Canonical semantic role mapped by host.json."
     },
     "color.border.divider": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Native Explorer color adapter."
     },
     "color.border.default": {
       "state": "mapped",
@@ -650,9 +650,9 @@
       "reason": "Outside Windows visual adapter scope; preserve host semantics."
     },
     "color.interaction.selection.inactive-bg": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Native Explorer color adapter."
     },
     "color.interaction.selection.inactive-text": {
       "state": "unsupported",
@@ -705,14 +705,14 @@
       "reason": "Outside Windows visual adapter scope; preserve host semantics."
     },
     "color.interaction.scrollbar.thumb": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Native Explorer color adapter."
     },
     "color.interaction.scrollbar.thumb-hover": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Native Explorer color adapter."
     },
     "color.action.primary.bg": {
       "state": "mapped",
