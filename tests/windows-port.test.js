@@ -235,3 +235,20 @@ test('bundled native source is generated, pinned and rejected on tampering',t=>{
  const result=f.run('Apply',f.args);assert.notEqual(result.status,0);assert.match(result.stderr,/Missing verified mod source/);
  assert.deepEqual(f.db(),{});
 });
+
+test('preview adapter is pinned and journaled; taskbar edge uses the canonical divider',t=>{
+ const f=windhawkFixture(t);
+ const settings=read(path.join(source,'dist/windows-settings.json'));
+ const mod=settings.bundledMods.find(m=>m.id==='j3w1-powertoys-preview');
+ const file=path.join(f.args.source,mod.path),bytes=fs.readFileSync(file);
+ assert.equal(sha(bytes),mod.sha256);
+ assert.doesNotMatch(bytes.toString(),/@[A-Z0-9_]+@/);
+ assert.match(bytes.toString(),/7e8f2bfb81aa6498bd2d236c3eae54c8e42633cf288f9299df62d2537b553bac/);
+ f.ok('Apply',f.args);f.ok('Test',f.args);
+ assert.equal(f.db()['local@j3w1-powertoys-preview'].config.disabled,false);
+ f.ok('Restore',f.args);assert.equal(f.db()['local@j3w1-powertoys-preview'],undefined);
+ fs.appendFileSync(file,'// corrupt source');
+ assert.match(f.run('Apply',f.args).stderr,/Missing verified mod source/);
+ const taskbar=read(path.join(source,'dist/windows-11-taskbar-styler.json'));
+ assert.deepEqual(taskbar.controlStyles.find(t=>t.target==='Rectangle#BackgroundStroke').styles,['Fill=#2b0e0d']);
+});

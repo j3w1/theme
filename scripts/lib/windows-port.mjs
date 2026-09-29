@@ -100,10 +100,23 @@ export function windowsArtifacts({manifest,host,resolved}){
  const nativeSettings=Object.fromEntries(Object.entries(native).filter(([key])=>key!=='version').map(([key,role])=>[key,val(role)]));
  const substitutions={...Object.fromEntries(Object.entries(nativeSettings).map(([key,value])=>[key.toUpperCase(),value])),VERSION:native.version,
   VERSION_MAJOR:parts[0],VERSION_MINOR:parts[1],VERSION_BUILD:parts[2],VERSION_REVISION:parts[3]};
- const nativeSource=readFileSync(path.join(repoRoot,'ports/windows/src/j3w1-explorer-native.wh.cpp.in'),'utf8').replace(/@([A-Z_]+)@/g,(_,key)=>{if(!(key in substitutions))throw Error(`Unknown native source placeholder ${key}`);return substitutions[key];});
+ const nativeSource=readFileSync(path.join(repoRoot,'ports/windows/src/j3w1-explorer-native.wh.cpp.in'),'utf8').replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in substitutions))throw Error(`Unknown native source placeholder ${key}`);return substitutions[key];});
  artifacts.push({path:`dist/${id}.wh.cpp`,text:nativeSource});
  json(`${id}.json`,nativeSettings);
  const bundledMods=[{id,version:native.version,path:`dist/${id}.wh.cpp`,sha256:createHash('sha256').update(nativeSource).digest('hex')}];
+ const preview=host.monacoPreview,previewId='j3w1-powertoys-preview';
+ if(!/^\d+\.\d+\.\d+\.\d+$/.test(preview.hostVersion)||! /^[a-f0-9]{64}$/.test(preview.templateSha256))throw Error('Preview requires exact host and template identities');
+ const previewParts=preview.hostVersion.split('.');
+ if(previewParts.some(p=>Number(p)>65535))throw Error('Invalid preview fixed version');
+ const previewColors=Object.fromEntries(Object.entries(preview.colors).map(([key,role])=>[key,val(role)]));
+ const previewSubs={VERSION:preview.version,VERSION_MAJOR:previewParts[0],VERSION_MINOR:previewParts[1],VERSION_BUILD:previewParts[2],VERSION_REVISION:previewParts[3],
+  TEMPLATE_SHA256:preview.templateSha256,COLORS_JSON:JSON.stringify(previewColors),
+  RULES_JSON:JSON.stringify(Object.entries(preview.syntax).map(([token,role])=>({token,foreground:val(role).slice(1)}))),
+  MEDIA_CSS:`@media (forced-colors: none) { html, body, #container { background: ${val('color.surface.canvas')}; color: ${val('color.text.default')}; } }`};
+ const previewSource=readFileSync(path.join(repoRoot,'ports/windows/src/j3w1-powertoys-preview.wh.cpp.in'),'utf8').replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in previewSubs))throw Error(`Unknown preview source placeholder ${key}`);return previewSubs[key];});
+ artifacts.push({path:`dist/${previewId}.wh.cpp`,text:previewSource});
+ json(`${previewId}.json`,{enabled:true});
+ bundledMods.push({id:previewId,version:preview.version,path:`dist/${previewId}.wh.cpp`,sha256:createHash('sha256').update(previewSource).digest('hex')});
  json('windows-settings.json',{schemaVersion:1,version:manifest.version,values:settings,stylerVariants,bundledMods,compatibility:host.compatibility,limitations:host.limitations});
  const ansi=['black','red','green','yellow','blue','purple','cyan','white','brightBlack','brightRed','brightGreen','brightYellow','brightBlue','brightPurple','brightCyan','brightWhite'];
  const scheme={name:'j3w1',foreground:val('color.terminal.fg'),background:val('color.surface.canvas'),cursorColor:val('color.terminal.cursor'),selectionBackground:val('color.code.selection-bg')};ansi.forEach((k,i)=>scheme[k]=val(`color.terminal.ansi.${i}`));

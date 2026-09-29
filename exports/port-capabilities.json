@@ -37749,7 +37749,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-tet2gmhAF37HaO1MVOOlv8Y5KAcat748fCL7KR47ehQ=",
+      "subjectDigest": "sha256-c1/4qXMQ08zBLU7lTaXcRdv4tyaMV2qpG5gqst0jXkE=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37782,7 +37782,7 @@
           "path": "dist/windows-settings.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-settings.json",
-          "digest": "sha256-sCzqOCpwa9rlQcV34D4ZEb4rM+Srdne+whMNAwJW4v8="
+          "digest": "sha256-Adx/juSPv/dtO25mt8yfmjjI2/mGJYiQRCJtSVEquAI="
         },
         {
           "path": "dist/terminal-fragment.json",
@@ -37806,7 +37806,7 @@
           "path": "dist/windows-11-taskbar-styler.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-11-taskbar-styler.json",
-          "digest": "sha256-6zflZJWhn9ih2e0zV4K1mCS/73GEHGVBUQHbF45znv4="
+          "digest": "sha256-t/SacZMEqkLKYprVRtJXIhjOP+Mfn2EaFa8ec5TWJxA="
         },
         {
           "path": "dist/windows-11-start-menu-styler.json",
@@ -37956,7 +37956,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-DIX3bLjznbYlSMMnohk4KHsD/pmTBGUXqQhdKohHH+o="
+          "digest": "sha256-Qx9j5bSSLYc8kWjpVKV5rG80DTaMEBqnrwZsLK/Y5cM="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
@@ -37969,6 +37969,18 @@
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/j3w1-explorer-native.json",
           "digest": "sha256-sBa6KLZRwLucd0zfo2Wd0o2YnEh03kM7Ctb8w97uAXU="
+        },
+        {
+          "path": "dist/j3w1-powertoys-preview.wh.cpp",
+          "install": "Use the pinned Windows lifecycle installer.",
+          "source": "ports/windows/dist/j3w1-powertoys-preview.wh.cpp",
+          "digest": "sha256-/h6QHqnqKtpflRp7gEoHKib28c4DjX3a0XaBbCDK8KU="
+        },
+        {
+          "path": "dist/j3w1-powertoys-preview.json",
+          "install": "Use the pinned Windows lifecycle installer.",
+          "source": "ports/windows/dist/j3w1-powertoys-preview.json",
+          "digest": "sha256-qgFBQqAWgxOnZd0SEcTGBes/FRB6sOGifsRyFwpfvso="
         }
       ],
       "rollback": "Run install.ps1 -Action Restore for original settings, or add -Latest for the previous transaction; Uninstall also removes owned theme assets.",

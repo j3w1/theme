@@ -387,3 +387,27 @@ installer and dependency hashes are checked before invocation, then Prepare
 checks the full release. A missing or changed existing cache is refused without
 network replacement. A fresh revision still follows pinned online bootstrap.
 This removes a repeat manifest download that stalled on the development host.
+
+
+### Preview and taskbar follow-up (candidate, visual verification pending)
+
+The earlier gray-preview limitation motivated a source-owned Windhawk rendering
+adapter for the exact PowerToys.MonacoPreviewHandler executable version
+0.101.2362.0 and SHA-256-pinned `Assets/Monaco/index.html`. The reviewed
+[PowerToys loader](https://github.com/microsoft/PowerToys/blob/v0.101.2362.0/src/common/FilePreviewCommon/MonacoHelper.cs)
+opens that template read-only before
+[document substitution](https://github.com/microsoft/PowerToys/blob/v0.101.2362.0/src/modules/previewpane/MonacoPreviewHandler/MonacoPreviewHandlerControl.cs).
+Only that resolved file is redirected to a private-lifetime, read-only template
+handle. Its temporary file is exclusively created with a random name and deleted
+on close. The original asset, preview-provider registration and user files remain
+untouched. Mismatch, write/async opens, unavailable temporary storage and
+high-contrast initialization pass through. On unload, future reads are native;
+reselect the file to refresh an existing preview. The normal install journal
+stages, enables, backs up and removes the adapter alongside the other stylers.
+
+Taskbar `Rectangle#BackgroundStroke`, present in the pinned upstream styler,
+now maps Fill to `color.border.divider`. It is independent of BackgroundFill.
+This adds no line, changes no geometry and avoids leaving the host gray stroke.
+
+These source changes alone are not native visual acceptance. The earlier
+observations remain historical; new installed/rendered evidence is required.

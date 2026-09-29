@@ -11,8 +11,16 @@
       "sha256": "b016ba28b651c0bb9c774cdfa3659dd28d989c4874de433b0ad6fcc3deee0175"
     },
     {
+      "path": "dist/j3w1-powertoys-preview.wh.cpp",
+      "sha256": "fe1e901ea9ea2ada5f951a7b804a072a26f6f1ce038d7ddad176816c20caf0a5"
+    },
+    {
+      "path": "dist/j3w1-powertoys-preview.json",
+      "sha256": "aa014142a0168313a765dd1211c4c605eb3f15107ab0e1a27ec472170a5fbeca"
+    },
+    {
       "path": "dist/windows-settings.json",
-      "sha256": "b02cea382a706bdae541c577e03e1911be2b33e4ab7677bec2130d030256e2ff"
+      "sha256": "01dc7f8ee48fbff76d3b6e66b7cc9f9a38c8dbf98625889044226d49512ab802"
     },
     {
       "path": "dist/terminal-fragment.json",
@@ -28,7 +36,7 @@
     },
     {
       "path": "dist/windows-11-taskbar-styler.json",
-      "sha256": "eb37e56495a19fd8a1d9ed335782b59824bfef71841c65415101db178e739efe"
+      "sha256": "b7f49a719304aa42ca629ad546d2572218ce3fe31f9f611a15af1e7394d62710"
     },
     {
       "path": "dist/windows-11-start-menu-styler.json",
@@ -148,7 +156,7 @@
     },
     {
       "path": "host.json",
-      "sha256": "f8a7c1e563c80aceb52f0691dc2a135713bbfe76235159ccdf7ff35adeb065e6"
+      "sha256": "7ba9c7459776d61ea3ade4d0f290193798a97b44c920a52dcf23138ae74f2ee0"
     }
   ]
 }

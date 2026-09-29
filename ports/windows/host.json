@@ -90,6 +90,12 @@
           "styles": {
             "Fill": "color.surface.chrome"
           }
+        },
+        {
+          "target": "Rectangle#BackgroundStroke",
+          "styles": {
+            "Fill": "color.border.divider"
+          }
         }
       ]
     },
@@ -675,5 +681,60 @@
     "scrollbar": "color.interaction.scrollbar.thumb",
     "scrollbarHover": "color.interaction.scrollbar.thumb-hover",
     "disabled": "color.text.disabled"
+  },
+  "monacoPreview": {
+    "version": "1.0",
+    "hostVersion": "0.101.2362.0",
+    "templateSha256": "7e8f2bfb81aa6498bd2d236c3eae54c8e42633cf288f9299df62d2537b553bac",
+    "colors": {
+      "editor.background": "color.surface.canvas",
+      "editor.foreground": "color.text.default",
+      "editorGutter.background": "color.surface.canvas",
+      "editorLineNumber.foreground": "color.text.subtle",
+      "editorLineNumber.activeForeground": "color.text.bright",
+      "editor.selectionBackground": "color.code.selection-bg",
+      "editor.inactiveSelectionBackground": "color.interaction.selection.inactive-bg",
+      "editor.selectionForeground": "color.text.default",
+      "editor.lineHighlightBackground": "color.surface.canvas",
+      "editor.lineHighlightBorder": "color.surface.canvas",
+      "editorCursor.foreground": "color.code.caret",
+      "editorIndentGuide.background1": "color.code.indent-guide",
+      "editorWhitespace.foreground": "color.code.whitespace",
+      "editorStickyScroll.background": "color.surface.canvas",
+      "editorStickyScrollHover.background": "color.interaction.hover.bg",
+      "minimap.background": "color.surface.canvas",
+      "scrollbarSlider.background": "color.interaction.scrollbar.thumb",
+      "scrollbarSlider.hoverBackground": "color.interaction.scrollbar.thumb-hover",
+      "scrollbarSlider.activeBackground": "color.interaction.scrollbar.thumb-hover",
+      "editorWidget.background": "color.surface.overlay",
+      "editorWidget.foreground": "color.text.default",
+      "editorWidget.border": "color.border.overlay",
+      "menu.background": "color.surface.overlay",
+      "menu.foreground": "color.text.default",
+      "menu.selectionBackground": "color.interaction.selection.bg",
+      "menu.selectionForeground": "color.text.default",
+      "menu.border": "color.border.overlay",
+      "menu.separatorBackground": "color.border.divider",
+      "focusBorder": "color.border.active",
+      "descriptionForeground": "color.text.muted",
+      "input.background": "color.surface.input",
+      "input.foreground": "color.text.default",
+      "input.border": "color.border.control"
+    },
+    "syntax": {
+      "": "color.text.default",
+      "comment": "color.code.syntax.comment",
+      "string": "color.code.syntax.string",
+      "keyword": "color.code.syntax.keyword",
+      "number": "color.code.syntax.number",
+      "regexp": "color.code.syntax.escape",
+      "operator": "color.code.syntax.operator",
+      "delimiter": "color.code.syntax.punctuation",
+      "type": "color.code.syntax.type",
+      "variable": "color.code.syntax.variable",
+      "function": "color.code.syntax.function",
+      "tag": "color.code.syntax.tag",
+      "attribute.name": "color.code.syntax.property"
+    }
   }
 }

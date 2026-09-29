@@ -21,7 +21,7 @@ Microsoft-signed runtime for this user. It does not change system execution
 policy or require you to elevate the whole installation. Managed-device policy
 can still prevent execution; use your administrator's approved process.
 
-**Full mode** adds five pinned Windhawk shell stylers and the bundled Explorer native-color adapter. It requires the exact
+**Full mode** adds five pinned Windhawk shell stylers and the bundled Explorer native-color and PowerToys text-preview adapters. It requires the exact
 reviewed Windows/shell fingerprint and uses Windhawk 2.0 alpha 6. On other
 builds, setup explains the limit and asks whether to install **Native mode**:
 personalization, wallpaper, cursors and supported existing app settings, without
@@ -106,3 +106,24 @@ colors. Input behavior and third-party preview content remain host-controlled. O
 No binary theme patching or shell replacement is used. Reopen affected apps
 gracefully when required; the installer never force-kills terminals or reboots.
 All distribution files are generated. Edit semantic mappings and regenerate.
+
+### PowerToys text-preview palette
+
+Full mode includes a rendering adapter for PowerToys Monaco preview build
+0.101.2362.0. It checks the exact executable version and installed HTML template
+digest before supplying a token-colored temporary template. The installed
+PowerToys assets and previewed files are unchanged. Document content is inserted
+later by PowerToys; the adapter never handles it. Unknown versions/templates and
+high-contrast initialization pass through without theme modification.
+
+The preview canvas/gutter are black, ordinary foregrounds rose, selection dark
+red and scrollbars red. Language tokenization and custom syntax tokens are retained; common code-token
+colors use canonical code roles. Font size, wrapping,
+minimap, keyboard behavior and preview registration remain controlled by PowerToys.
+Reselect the file after changing or restoring this adapter; an already rendered
+preview keeps its current document until the host reloads it. PowerToys updates
+require a new reviewed template/version pair. No PowerToys install is required
+on machines that do not use this optional application.
+
+The taskbar's separate background-stroke rectangle maps to the dark-red divider
+role, including its top edge. Thickness, layout and taskbar behavior are preserved.

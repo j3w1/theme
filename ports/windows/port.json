@@ -156,6 +156,14 @@
     {
       "path": "dist/j3w1-explorer-native.json",
       "install": "Use the pinned Windows lifecycle installer."
+    },
+    {
+      "path": "dist/j3w1-powertoys-preview.wh.cpp",
+      "install": "Use the pinned Windows lifecycle installer."
+    },
+    {
+      "path": "dist/j3w1-powertoys-preview.json",
+      "install": "Use the pinned Windows lifecycle installer."
     }
   ],
   "mappingPath": "mapping.json",
