@@ -71,6 +71,36 @@
         "Background@Pressed=#420f0c",
         "Background@PressedSelected=#531310"
       ]
+    },
+    {
+      "target": "Grid#HomeViewRootGrid",
+      "styles": [
+        "Background=#000000"
+      ]
+    },
+    {
+      "target": "ListViewItemPresenter",
+      "styles": [
+        "PointerOverBackground=#1c0a09",
+        "PressedBackground=#420f0c",
+        "SelectedBackground=#531310",
+        "SelectedPointerOverBackground=#531310",
+        "SelectedPressedBackground=#420f0c",
+        "PointerOverForeground=#e99499",
+        "SelectedForeground=#f4eeee"
+      ]
+    },
+    {
+      "target": "GridViewItemPresenter",
+      "styles": [
+        "PointerOverBackground=#1c0a09",
+        "PressedBackground=#420f0c",
+        "SelectedBackground=#531310",
+        "SelectedPointerOverBackground=#531310",
+        "SelectedPressedBackground=#420f0c",
+        "PointerOverForeground=#e99499",
+        "SelectedForeground=#f4eeee"
+      ]
     }
   ],
   "themeResourceVariables": [

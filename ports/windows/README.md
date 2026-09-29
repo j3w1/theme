@@ -95,7 +95,7 @@ same frame/surface rules where its XAML controls expose them. See
 - Existing PowerToys FancyZones overlays, Always On Top border and Command
   Palette appearance. Four optional layouts are added without assigning them.
 - Full mode: five pinned Windhawk shell stylers, a bundled native Explorer
-  canvas/text adapter and a current-user sign-in
+  canvas/text adapter, a PowerToys text-preview adapter and a current-user sign-in
   compatibility guard. The guard never downloads updates.
 
 Desktop icons, shortcuts, utility enabled states, window placement and assigned
@@ -111,7 +111,8 @@ All distribution files are generated. Edit semantic mappings and regenerate.
 
 Full mode includes a rendering adapter for PowerToys Monaco preview build
 0.101.2362.0. It checks the exact executable version and installed HTML template
-digest before supplying a token-colored temporary template. The installed
+digest before supplying a token-colored temporary template in Windows' existing
+low-integrity data folder. No folder permissions or preview isolation are changed. The installed
 PowerToys assets and previewed files are unchanged. Document content is inserted
 later by PowerToys; the adapter never handles it. Unknown versions/templates and
 high-contrast initialization pass through without theme modification.
@@ -127,3 +128,6 @@ on machines that do not use this optional application.
 
 The taskbar's separate background-stroke rectangle maps to the dark-red divider
 role, including its top edge. Thickness, layout and taskbar behavior are preserved.
+
+Explorer Home has its own black root background and token-based list/grid hover,
+pressed and selected fills. These mappings preserve layout, icons and focus behavior.

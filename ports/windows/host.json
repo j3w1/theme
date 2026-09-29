@@ -411,6 +411,36 @@
             "Background@Pressed": "color.interaction.pressed.bg",
             "Background@PressedSelected": "color.interaction.selection.bg"
           }
+        },
+        {
+          "target": "Grid#HomeViewRootGrid",
+          "styles": {
+            "Background": "color.surface.canvas"
+          }
+        },
+        {
+          "target": "ListViewItemPresenter",
+          "styles": {
+            "PointerOverBackground": "color.interaction.hover.bg",
+            "PressedBackground": "color.interaction.pressed.bg",
+            "SelectedBackground": "color.interaction.selection.bg",
+            "SelectedPointerOverBackground": "color.interaction.selection.bg",
+            "SelectedPressedBackground": "color.interaction.pressed.bg",
+            "PointerOverForeground": "color.text.default",
+            "SelectedForeground": "color.interaction.selection.text"
+          }
+        },
+        {
+          "target": "GridViewItemPresenter",
+          "styles": {
+            "PointerOverBackground": "color.interaction.hover.bg",
+            "PressedBackground": "color.interaction.pressed.bg",
+            "SelectedBackground": "color.interaction.selection.bg",
+            "SelectedPointerOverBackground": "color.interaction.selection.bg",
+            "SelectedPressedBackground": "color.interaction.pressed.bg",
+            "PointerOverForeground": "color.text.default",
+            "SelectedForeground": "color.interaction.selection.text"
+          }
         }
       ]
     },

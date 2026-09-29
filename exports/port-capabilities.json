@@ -37749,7 +37749,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-wwcTxutGvgnkGFi+mgnV33IDRV3DvRd3NEQniDmsnBc=",
+      "subjectDigest": "sha256-t/tIPqEIUrr1eGLz+3xwVQxmj3pXNLpWd9STLY/D+os=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37782,7 +37782,7 @@
           "path": "dist/windows-settings.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-settings.json",
-          "digest": "sha256-Adx/juSPv/dtO25mt8yfmjjI2/mGJYiQRCJtSVEquAI="
+          "digest": "sha256-NummYyAA8f2iSKx8V7PbxbDRuYdbLc0azdxO3eR9d44="
         },
         {
           "path": "dist/terminal-fragment.json",
@@ -37818,7 +37818,7 @@
           "path": "dist/windows-11-file-explorer-styler.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-11-file-explorer-styler.json",
-          "digest": "sha256-La4j9gZn1QIeghLk2BZ5wIgVOtGZgvXM8mWN2uPeSu8="
+          "digest": "sha256-DRLBsVVdBbEUqK+STIPo1/fk/HLDQ8d1sgwwhPXXjvE="
         },
         {
           "path": "dist/windows-11-notification-center-styler.json",
@@ -37956,7 +37956,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-/mu1Tk9Z3/eCcyHFc4wagU0U7m51TI49Ryd8TEn3Y4U="
+          "digest": "sha256-efHRuk+21ekkN/rqizfM2Hajhh3uq+bSh7ajx/S+x9s="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
@@ -37974,7 +37974,7 @@
           "path": "dist/j3w1-powertoys-preview.wh.cpp",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/j3w1-powertoys-preview.wh.cpp",
-          "digest": "sha256-/h6QHqnqKtpflRp7gEoHKib28c4DjX3a0XaBbCDK8KU="
+          "digest": "sha256-oYg7RNVoo1rKqm/EgBfLv7LFRNffsymvqMNabyzKPJs="
         },
         {
           "path": "dist/j3w1-powertoys-preview.json",

@@ -411,3 +411,16 @@ This adds no line, changes no geometry and avoids leaving the host gray stroke.
 
 These source changes alone are not native visual acceptance. The earlier
 observations remain historical; new installed/rendered evidence is required.
+
+
+The initial preview installation passed settings checks but still rendered gray.
+A numeric-only probe in the real preview host confirmed that default-temp creation
+failed with Windows error 5 (access denied); the same exclusive/delete-on-close
+creation succeeded in FOLDERID_LocalAppDataLow. The adapter now uses that existing
+Windows folder without changing ACLs or process integrity. No diagnostic probe is
+part of the distribution. Refreshed rendering still needs visual confirmation.
+
+Owner screenshots also exposed Home's separate gray root and item hover fills,
+and a briefly gray native scrollbar during folder navigation. Home now has
+explicit root and item-presenter mappings. The scrollbar transition remains
+unresolved until its transient paint path is diagnosed and verified.

@@ -6,7 +6,7 @@
 // @author j3w1
 // @include PowerToys.MonacoPreviewHandler.exe
 // @architecture x86-64
-// @compilerOptions -lbcrypt -lversion -luser32
+// @compilerOptions -lbcrypt -lversion -luser32 -lshell32 -lole32 -luuid
 // ==/WindhawkMod==
 // ==WindhawkModSettings==
 /*
@@ -15,6 +15,7 @@
 // ==/WindhawkModSettings==
 #include <windows.h>
 #include <bcrypt.h>
+#include <shlobj.h>
 #include <string>
 #include <vector>
 #include <atomic>
@@ -78,9 +79,16 @@ static HANDLE ThemedTemplate(HANDLE source) {
     if(!SetFilePointerEx(source,zero,nullptr,FILE_BEGIN) || !read || !ReviewedTemplate(html) || !ApplyPalette(html)) return INVALID_HANDLE_VALUE;
     // An exclusive, delete-on-close temporary template leaves Program Files and
     // previewed documents untouched. It contains no previewed file content.
-    wchar_t temp[MAX_PATH+1]{};
-    DWORD length=GetTempPathW(MAX_PATH,temp);
-    if(!length || length>=MAX_PATH) return INVALID_HANDLE_VALUE;
+    // Preview handlers run at low integrity. The ordinary temp directory can
+    // be readable but not writable there. Use Windows' existing low-integrity
+    // data folder; never alter ACLs, token integrity or preview isolation.
+    PWSTR low=nullptr;
+    if(FAILED(SHGetKnownFolderPath(FOLDERID_LocalAppDataLow,0,nullptr,&low))) return INVALID_HANDLE_VALUE;
+    std::wstring temp;
+    try { temp=low; } catch(...) { CoTaskMemFree(low);throw; }
+    CoTaskMemFree(low);
+    if(temp.empty()) return INVALID_HANDLE_VALUE;
+    if(temp.back()!=L'\\')temp+=L'\\';
     unsigned char random[16]{};
     if(BCryptGenRandom(nullptr,random,sizeof(random),BCRYPT_USE_SYSTEM_PREFERRED_RNG)<0) return INVALID_HANDLE_VALUE;
     const wchar_t hex[]=L"0123456789abcdef";
