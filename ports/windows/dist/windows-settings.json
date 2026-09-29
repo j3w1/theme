@@ -52,7 +52,10 @@
         {
           "target": "StartDocked.SearchBoxToggleButton > Grid > Border#BorderElement",
           "styles": [
-            "Background=#000000"
+            "Background=#000000",
+            "BorderBrush=#a3676b",
+            "BorderThickness=1",
+            "CornerRadius=0"
           ]
         }
       ],
@@ -60,7 +63,40 @@
         {
           "target": "StartMenu.SearchBoxToggleButton > Grid > Border#BorderElement",
           "styles": [
-            "Background=#000000"
+            "Background=#000000",
+            "BorderBrush=#a3676b",
+            "BorderThickness=1",
+            "CornerRadius=0"
+          ]
+        },
+        {
+          "target": "StartMenu.StartBlendedFlexFrame",
+          "styles": [
+            "CornerRadius=0"
+          ]
+        },
+        {
+          "target": "StartMenu.CategoryControl > Grid > Border",
+          "styles": [
+            "Background=#100c0c",
+            "BorderBrush=#531310",
+            "BorderThickness=1",
+            "CornerRadius=0"
+          ]
+        },
+        {
+          "target": "StartMenu.FolderModal > Grid > Border",
+          "styles": [
+            "Background=#160b0b",
+            "BorderBrush=#e53935",
+            "BorderThickness=1",
+            "CornerRadius=0"
+          ]
+        },
+        {
+          "target": "Grid#DroppedFlickerWorkaroundWrapper > Border#BackgroundBorder",
+          "styles": [
+            "CornerRadius=0"
           ]
         }
       ]

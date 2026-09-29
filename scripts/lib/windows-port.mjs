@@ -70,11 +70,27 @@ export function cursorFile(name,foreground,outline){
  const sizes=[32,48,64,96],head=Buffer.alloc(6+16*sizes.length);head.writeUInt16LE(2,2);head.writeUInt16LE(sizes.length,4);let offset=head.length;const data=[];
  sizes.forEach((size,i)=>{const img=cursorImage(name,size,foreground,outline),n=6+16*i;head[n]=size;head[n+1]=size;head.writeUInt16LE(img.hot[0],n+4);head.writeUInt16LE(img.hot[1],n+6);head.writeUInt32LE(img.data.length,n+8);head.writeUInt32LE(offset,n+12);offset+=img.data.length;data.push(img.data);});return Buffer.concat([head,...data]);
 }
+// XAML uses unitless device-independent pixels and a native family name, not CSS.
+export function windowsStyleValue(property, token) {
+ const key=property.split('@')[0];
+ if(key==='CornerRadius'||key==='BorderThickness'){
+  if(token.type!=='dimension'||token.resolved.unit!=='px')throw Error(`Windows ${key} requires a pixel dimension`);
+  return String(token.resolved.value);
+ }
+ if(key==='FontFamily'){
+  if(token.type!=='fontFamily')throw Error('Windows FontFamily requires a font-family token');
+  return Array.isArray(token.resolved)?token.resolved[0]:token.resolved;
+ }
+ return toCss(token.type,token.resolved);
+}
 export function windowsArtifacts({manifest,host,resolved}){
  const val=role=>{const t=resolved.get(role);if(!t||role.startsWith('color.primitive.'))throw Error(`Invalid Windows semantic role ${role}`);return toCss(t.type,t.resolved);};
  const artifacts=[],json=(name,x)=>artifacts.push({path:`dist/${name}`,text:stableJson(x)});
  const settings=Object.fromEntries(Object.entries(host.roles).map(([key,role])=>[key,val(role)]));
- const targets=items=>items.map(t=>({target:t.target,styles:Object.entries(t.styles).map(([key,role])=>`${key}=${val(role)}`)}));
+ const targets=items=>items.map(t=>({target:t.target,styles:Object.entries(t.styles).map(([key,role])=>{
+  val(role); // Retain semantic-role validation for every native property.
+  return `${key}=${windowsStyleValue(key,resolved.get(role))}`;
+ })}));
  const stylerVariants=Object.fromEntries(host.stylers.filter(s=>s.variants).map(s=>[s.id,Object.fromEntries(Object.entries(s.variants).map(([layout,items])=>[layout,targets(items)]))]));
  json('windows-settings.json',{schemaVersion:1,version:manifest.version,values:settings,stylerVariants,compatibility:host.compatibility,limitations:host.limitations});
  const ansi=['black','red','green','yellow','blue','purple','cyan','white','brightBlack','brightRed','brightGreen','brightYellow','brightBlue','brightPurple','brightCyan','brightWhite'];
@@ -88,7 +104,7 @@ export function windowsArtifacts({manifest,host,resolved}){
  {uuid:'{15E5C3A1-92E4-40FC-A9B0-B24F580CF504}',name:'j3w1 main and stack',type:'grid',info:{rows:2,columns:2,'rows-percentage':[5000,5000],'columns-percentage':[6500,3500],'cell-child-map':[[0,1],[0,2]],'show-spacing':true,spacing:8,'sensitivity-radius':20}}
  ]});
  for(const mod of host.stylers){
-  const controlStyles=mod.targets.map(t=>({target:t.target,styles:Object.entries(t.styles).map(([key,role])=>`${key}=${val(role)}`)}));
+  const controlStyles=targets(mod.targets);
   const payload={theme:'',controlStyles,themeResourceVariables:Object.entries(host.resources).map(([key,role])=>`${key}=${val(role)}`)};
   json(`${mod.id}.json`,payload);
  }

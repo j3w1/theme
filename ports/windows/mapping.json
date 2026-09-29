@@ -3,10 +3,14 @@
   "mappings": {
     "color.border.active": [
       "native.accent",
+      "cursor.outline",
       "powertoys.highlight",
       "windhawk.resource.SystemAccentColor",
       "windhawk.resource.SystemControlHighlightAccentBrush",
-      "cursor.outline"
+      "windows-11-start-menu-styler | Button > Grid@CommonStates > Border | BorderBrush@PointerOver",
+      "windows-11-start-menu-styler | Button > Grid@CommonStates > Border | BorderBrush@Pressed",
+      "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | BorderBrush@PointerOver",
+      "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | BorderBrush@Pressed"
     ],
     "color.surface.desktop": [
       "native.desktop"
@@ -16,12 +20,12 @@
     ],
     "color.surface.canvas": [
       "terminal.background",
+      "cursor.foreground",
       "windhawk.resource.SolidBackgroundFillColorBase",
+      "windows-11-start-menu-styler | Grid#MainContent | Background",
       "windows-11-start-menu-styler | StartDocked.StartSizingFrame | Background",
-      "windows-11-start-menu-styler | StartMenu.StartInnerFrame | Background",
       "windows-11-settings-styler | SystemSettings.View.RootPage | Background",
-      "windows-11-settings-styler | Grid#RootPageGrid | Background",
-      "cursor.foreground"
+      "windows-11-settings-styler | Grid#RootPageGrid | Background"
     ],
     "color.terminal.cursor": [
       "terminal.cursor"
@@ -33,6 +37,8 @@
       "terminal.chrome",
       "windows-11-taskbar-styler | Taskbar.TaskbarFrame > Grid#RootGrid | Background",
       "windows-11-taskbar-styler | Rectangle#BackgroundFill | Fill",
+      "windows-11-start-menu-styler | Border#AcrylicOverlay | Background",
+      "windows-11-start-menu-styler | Grid#CompanionRoot > Grid#MainContent > Border#AcrylicOverlay | Background",
       "windows-11-file-explorer-styler | Grid#RootGrid | Background"
     ],
     "color.text.default": [
@@ -77,14 +83,28 @@
     "color.surface.raised": [
       "powertoys.inactive",
       "windhawk.resource.LayerFillColorAlt",
-      "windhawk.resource.CardBackgroundFillColorSecondary"
+      "windhawk.resource.CardBackgroundFillColorSecondary",
+      "windows-11-start-menu-styler | Border#AcrylicBorder | Background",
+      "windows-11-start-menu-styler | Grid#CompanionRoot > Border#AcrylicBorder | Background",
+      "windows-11-start-menu-styler | StartMenu.FolderModal > Grid > Border | Background"
     ],
     "color.border.control": [
       "powertoys.border",
-      "windhawk.resource.ControlStrokeColorDefault"
+      "windhawk.resource.ControlStrokeColorDefault",
+      "windows-11-start-menu-styler | Button > Grid@CommonStates > Border | BorderBrush@Normal",
+      "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | BorderBrush@Normal",
+      "windows-11-start-menu-styler | StartDocked.SearchBoxToggleButton > Grid > Border#BorderElement | BorderBrush",
+      "windows-11-start-menu-styler | StartMenu.SearchBoxToggleButton > Grid > Border#BorderElement | BorderBrush"
     ],
     "font.family.mono": [
-      "font.family"
+      "font.family",
+      "windows-11-start-menu-styler | TextBlock#DisplayName | FontFamily",
+      "windows-11-start-menu-styler | TextBlock#AppDisplayName | FontFamily",
+      "windows-11-start-menu-styler | TextBlock#PinnedListHeaderText | FontFamily",
+      "windows-11-start-menu-styler | TextBlock#AllListHeadingText | FontFamily",
+      "windows-11-start-menu-styler | TextBlock#UserTileNameText | FontFamily",
+      "windows-11-start-menu-styler | TextBlock#PlaceholderText | FontFamily",
+      "windows-11-start-menu-styler | TextBlock#RecommendedListHeaderText | FontFamily"
     ],
     "color.terminal.ansi.0": [
       "terminal.ansi.0"
@@ -141,26 +161,78 @@
       "windhawk.resource.SolidBackgroundFillColorSecondary",
       "windhawk.resource.LayerFillColorDefault",
       "windhawk.resource.CardBackgroundFillColorDefault",
-      "windows-11-start-menu-styler | Border#AcrylicBorder | Background",
+      "windows-11-start-menu-styler | StartMenu.CategoryControl > Grid > Border | Background",
       "windows-11-file-explorer-styler | Grid#NavigationBarControlGrid | Background",
       "windows-11-notification-center-styler | Grid#ControlCenterRegion | Background",
       "windows-11-notification-center-styler | Grid#NotificationCenterGrid | Background",
       "windows-11-notification-center-styler | Border#AcrylicBorder | Background"
     ],
     "color.surface.input": [
-      "windhawk.resource.ControlFillColorDefault"
+      "windhawk.resource.ControlFillColorDefault",
+      "windows-11-start-menu-styler | Button > Grid@CommonStates > Border | Background@Normal",
+      "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | Background@Normal",
+      "windows-11-start-menu-styler | StartDocked.SearchBoxToggleButton > Grid > Border#BorderElement | Background",
+      "windows-11-start-menu-styler | StartMenu.SearchBoxToggleButton > Grid > Border#BorderElement | Background"
     ],
     "color.interaction.hover.bg": [
-      "windhawk.resource.ControlFillColorSecondary"
+      "windhawk.resource.ControlFillColorSecondary",
+      "windows-11-start-menu-styler | Button > Grid@CommonStates > Border | Background@PointerOver",
+      "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | Background@PointerOver"
     ],
     "color.interaction.pressed.bg": [
-      "windhawk.resource.ControlFillColorTertiary"
+      "windhawk.resource.ControlFillColorTertiary",
+      "windows-11-start-menu-styler | Button > Grid@CommonStates > Border | Background@Pressed",
+      "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | Background@Pressed"
     ],
     "color.action.primary.bg": [
       "windhawk.resource.AccentFillColorDefault"
     ],
     "color.text.on-action": [
       "windhawk.resource.TextOnAccentFillColorPrimary"
+    ],
+    "color.border.overlay": [
+      "windows-11-start-menu-styler | Border#AcrylicBorder | BorderBrush",
+      "windows-11-start-menu-styler | Grid#CompanionRoot > Border#AcrylicBorder | BorderBrush",
+      "windows-11-start-menu-styler | StartMenu.FolderModal > Grid > Border | BorderBrush"
+    ],
+    "border.width.default": [
+      "windows-11-start-menu-styler | Border#AcrylicBorder | BorderThickness",
+      "windows-11-start-menu-styler | Grid#CompanionRoot > Border#AcrylicBorder | BorderThickness",
+      "windows-11-start-menu-styler | Button > Grid@CommonStates > Border | BorderThickness",
+      "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | BorderThickness",
+      "windows-11-start-menu-styler | StartDocked.SearchBoxToggleButton > Grid > Border#BorderElement | BorderThickness",
+      "windows-11-start-menu-styler | StartMenu.SearchBoxToggleButton > Grid > Border#BorderElement | BorderThickness",
+      "windows-11-start-menu-styler | StartMenu.CategoryControl > Grid > Border | BorderThickness",
+      "windows-11-start-menu-styler | StartMenu.FolderModal > Grid > Border | BorderThickness"
+    ],
+    "radius.none": [
+      "windows-11-start-menu-styler | Border#AcrylicBorder | CornerRadius",
+      "windows-11-start-menu-styler | Border#StartDropShadow | CornerRadius",
+      "windows-11-start-menu-styler | Border#RightCompanionDropShadow | CornerRadius",
+      "windows-11-start-menu-styler | Border#dropshadow | CornerRadius",
+      "windows-11-start-menu-styler | Border#AcrylicOverlay | CornerRadius",
+      "windows-11-start-menu-styler | Grid#MainContent | CornerRadius",
+      "windows-11-start-menu-styler | Grid#CompanionRoot > Border#AcrylicBorder | CornerRadius",
+      "windows-11-start-menu-styler | Grid#CompanionRoot > Grid#MainContent > Border#AcrylicOverlay | CornerRadius",
+      "windows-11-start-menu-styler | Button > Grid@CommonStates > Border | CornerRadius",
+      "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | CornerRadius",
+      "windows-11-start-menu-styler | StartDocked.SearchBoxToggleButton > Grid > Border#BorderElement | CornerRadius",
+      "windows-11-start-menu-styler | StartMenu.SearchBoxToggleButton > Grid > Border#BorderElement | CornerRadius",
+      "windows-11-start-menu-styler | StartMenu.StartBlendedFlexFrame | CornerRadius",
+      "windows-11-start-menu-styler | StartMenu.CategoryControl > Grid > Border | CornerRadius",
+      "windows-11-start-menu-styler | StartMenu.FolderModal > Grid > Border | CornerRadius",
+      "windows-11-start-menu-styler | Grid#DroppedFlickerWorkaroundWrapper > Border#BackgroundBorder | CornerRadius"
+    ],
+    "color.interaction.disabled.bg": [
+      "windows-11-start-menu-styler | Button > Grid@CommonStates > Border | Background@Disabled",
+      "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | Background@Disabled"
+    ],
+    "color.border.disabled": [
+      "windows-11-start-menu-styler | Button > Grid@CommonStates > Border | BorderBrush@Disabled",
+      "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | BorderBrush@Disabled"
+    ],
+    "color.border.default": [
+      "windows-11-start-menu-styler | StartMenu.CategoryControl > Grid > Border | BorderBrush"
     ]
   },
   "unmapped": {
@@ -262,10 +334,7 @@
     "color.text.on-light": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.text.inverse": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.border.divider": "Outside Windows visual adapter scope; preserve host semantics.",
-    "color.border.default": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.border.strong": "Outside Windows visual adapter scope; preserve host semantics.",
-    "color.border.overlay": "Outside Windows visual adapter scope; preserve host semantics.",
-    "color.border.disabled": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.border.selected-indicator": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.border.selected-indicator-inactive": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.interaction.focus.ring": "Outside Windows visual adapter scope; preserve host semantics.",
@@ -276,7 +345,6 @@
     "color.interaction.text-selection.bg": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.interaction.text-selection.text": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.interaction.hover.bg-strong": "Outside Windows visual adapter scope; preserve host semantics.",
-    "color.interaction.disabled.bg": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.interaction.marquee": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.interaction.drop-target": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.interaction.scrollbar.track": "Outside Windows visual adapter scope; preserve host semantics.",
@@ -409,9 +477,7 @@
     "space.24": "Outside Windows visual adapter scope; preserve host semantics.",
     "space.32": "Outside Windows visual adapter scope; preserve host semantics.",
     "space.48": "Outside Windows visual adapter scope; preserve host semantics.",
-    "border.width.default": "Outside Windows visual adapter scope; preserve host semantics.",
     "border.width.emphasis": "Outside Windows visual adapter scope; preserve host semantics.",
-    "radius.none": "Outside Windows visual adapter scope; preserve host semantics.",
     "font.weight.regular": "Outside Windows visual adapter scope; preserve host semantics.",
     "font.weight.bold": "Outside Windows visual adapter scope; preserve host semantics.",
     "font.size.ui-sm": "Outside Windows visual adapter scope; preserve host semantics.",

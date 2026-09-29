@@ -119,6 +119,26 @@ The existing PowerShell Store alias is preferred for startup when available,
 so an agent runtime cache or a version-specific Store package path is not needed.
 Theme restore retains installed shared tools and fonts; automatic dependency removal is unsupported.
 
+## Start-menu styling
+
+The generated mapping covers opaque raised/black surfaces, red 1px outer
+frames, zero corner radii, rectangular search/category/folder containers and
+token-based normal/hover/pressed/disabled button fills. The companion phone
+panel uses its existing AcrylicBorder/AcrylicOverlay controls. Classic and
+redesigned selectors remain separate; the current host uses redesigned Start.
+Target names are grounded in the pinned Start Menu Styler 1.7 source examples.
+
+The generator serializes pixel dimensions as unitless XAML values and the
+canonical font family's first installed face as a native family name. Font
+rules target named textual labels only; FontIcon/SymbolIcon glyphs, images,
+font sizes, app placement, section visibility and navigation are not changed.
+Native focus and selection remain host treatments. Setting readback proves
+imported rules, not that every selector matched a rendered element: actual
+surface/state observation is required before claiming visual verification.
+
+The owner separately confirmed that Terminal looks fine. That records general
+appearance feedback, not an exhaustive keyboard/interaction-state protocol.
+
 ## Cursor treatment
 
 The owner revised the native cursor treatment on 2026-09-29 after trying the

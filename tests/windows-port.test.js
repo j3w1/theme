@@ -8,7 +8,7 @@ import {spawnSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {repoRoot,readJson} from '../scripts/lib/fs.mjs';
 import {assertPortArtifacts} from '../scripts/lib/port-artifacts.mjs';
-import {CURSOR_NAMES} from '../scripts/lib/windows-port.mjs';
+import {CURSOR_NAMES,windowsStyleValue} from '../scripts/lib/windows-port.mjs';
 
 const source=path.join(repoRoot,'ports/windows');
 const runtime=path.join(source,'dist/runtime.cjs');
@@ -50,7 +50,7 @@ test('Windows native values, Terminal ANSI and styler selectors resolve from can
  assert.equal(terminal.schemes[0].foreground,'#e99499');
  const ansi=['black','red','green','yellow','blue','purple','cyan','white','brightBlack','brightRed','brightGreen','brightYellow','brightBlue','brightPurple','brightCyan','brightWhite'];
  ansi.forEach((key,i)=>assert.equal(terminal.schemes[0][key],tokens[`color.terminal.ansi.${i}`].css));
- for(const styler of host.stylers){const x=await readJson(`ports/windows/dist/${styler.id}.json`);assert.deepEqual(x.controlStyles,styler.targets.map(t=>({target:t.target,styles:Object.entries(t.styles).map(([k,r])=>`${k}=${tokens[r].css}`)})));}
+ for(const styler of host.stylers){const x=await readJson(`ports/windows/dist/${styler.id}.json`);assert.deepEqual(x.controlStyles,styler.targets.map(t=>({target:t.target,styles:Object.entries(t.styles).map(([k,r])=>`${k}=${windowsStyleValue(k,{type:tokens[r].type,resolved:tokens[r].value})}`)})));}
  assert.equal(settings.version,(await readJson('theme.json')).version);
 });
 
@@ -160,4 +160,25 @@ test('compact cursors use a black body and canonical red edge with visible bound
    assert.ok(points.some(([x,y])=>Math.hypot(x-hx,y-hy)<=Math.ceil(size/16)),`${name}: hotspot near artwork`);
   }
  }
+});
+
+test('Start geometry and font values use XAML syntax without changing layout or icon fonts',async()=>{
+ const payload=await readJson('ports/windows/dist/windows-11-start-menu-styler.json');
+ const variants=(await readJson('ports/windows/dist/windows-settings.json')).stylerVariants['windows-11-start-menu-styler'];
+ const all=[...payload.controlStyles,...Object.values(variants).flat()];
+ const acrylic=payload.controlStyles.find(t=>t.target==='Border#AcrylicBorder');
+ assert.ok(acrylic.styles.includes('CornerRadius=0'));
+ assert.ok(acrylic.styles.includes('BorderThickness=1'));
+ assert.ok(acrylic.styles.includes('BorderBrush=#e53935'));
+ const fonts=all.filter(t=>t.styles.some(s=>s.startsWith('FontFamily=')));
+ assert.ok(fonts.length>0);
+ for(const t of fonts){assert.match(t.target,/^TextBlock#[A-Za-z]+$/);assert.ok(t.styles.includes('FontFamily=SauceCodePro NFM'));}
+ for(const t of all)for(const style of t.styles){
+  assert.doesNotMatch(style,/^(?:Visibility|Width|Height|MinWidth|MaxWidth|Margin|Padding|FontSize|Text|Glyph|Source|RenderTransform|FocusVisualPrimaryBrush|FocusVisualSecondaryBrush)=/);
+  if(/^(?:CornerRadius|BorderThickness)=/.test(style))assert.match(style,/=\d+$/);
+ }
+ assert.ok(variants.redesigned.some(t=>t.target==='StartMenu.CategoryControl > Grid > Border'));
+ assert.ok(payload.controlStyles.some(t=>t.target==='Grid#CompanionRoot > Border#AcrylicBorder'));
+ assert.throws(()=>windowsStyleValue('CornerRadius',{type:'dimension',resolved:{value:1,unit:'rem'}}),/pixel dimension/);
+ assert.throws(()=>windowsStyleValue('FontFamily',{type:'number',resolved:1}),/font-family/);
 });

@@ -16,7 +16,130 @@
     {
       "target": "Border#AcrylicBorder",
       "styles": [
-        "Background=#100c0c"
+        "Background=#160b0b",
+        "BorderBrush=#e53935",
+        "BorderThickness=1",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Border#StartDropShadow",
+      "styles": [
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Border#RightCompanionDropShadow",
+      "styles": [
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Border#dropshadow",
+      "styles": [
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Border#AcrylicOverlay",
+      "styles": [
+        "Background=#090707",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Grid#MainContent",
+      "styles": [
+        "Background=#000000",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Grid#CompanionRoot > Border#AcrylicBorder",
+      "styles": [
+        "Background=#160b0b",
+        "BorderBrush=#e53935",
+        "BorderThickness=1",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Grid#CompanionRoot > Grid#MainContent > Border#AcrylicOverlay",
+      "styles": [
+        "Background=#090707",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "TextBlock#DisplayName",
+      "styles": [
+        "FontFamily=SauceCodePro NFM"
+      ]
+    },
+    {
+      "target": "TextBlock#AppDisplayName",
+      "styles": [
+        "FontFamily=SauceCodePro NFM"
+      ]
+    },
+    {
+      "target": "TextBlock#PinnedListHeaderText",
+      "styles": [
+        "FontFamily=SauceCodePro NFM"
+      ]
+    },
+    {
+      "target": "TextBlock#AllListHeadingText",
+      "styles": [
+        "FontFamily=SauceCodePro NFM"
+      ]
+    },
+    {
+      "target": "TextBlock#UserTileNameText",
+      "styles": [
+        "FontFamily=SauceCodePro NFM"
+      ]
+    },
+    {
+      "target": "TextBlock#PlaceholderText",
+      "styles": [
+        "FontFamily=SauceCodePro NFM"
+      ]
+    },
+    {
+      "target": "TextBlock#RecommendedListHeaderText",
+      "styles": [
+        "FontFamily=SauceCodePro NFM"
+      ]
+    },
+    {
+      "target": "Button > Grid@CommonStates > Border",
+      "styles": [
+        "CornerRadius=0",
+        "BorderThickness=1",
+        "BorderBrush@Normal=#a3676b",
+        "Background@Normal=#000000",
+        "Background@PointerOver=#1c0a09",
+        "Background@Pressed=#420f0c",
+        "Background@Disabled=#160b0b",
+        "BorderBrush@PointerOver=#e53935",
+        "BorderBrush@Pressed=#e53935",
+        "BorderBrush@Disabled=#7d1310"
+      ]
+    },
+    {
+      "target": "Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates",
+      "styles": [
+        "CornerRadius=0",
+        "BorderThickness=1",
+        "BorderBrush@Normal=#a3676b",
+        "Background@Normal=#000000",
+        "Background@PointerOver=#1c0a09",
+        "Background@Pressed=#420f0c",
+        "Background@Disabled=#160b0b",
+        "BorderBrush@PointerOver=#e53935",
+        "BorderBrush@Pressed=#e53935",
+        "BorderBrush@Disabled=#7d1310"
       ]
     }
   ],

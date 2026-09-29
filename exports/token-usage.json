@@ -84,15 +84,6 @@
                 "pointer": "/unmapped/border.width.default",
                 "line": 66
               }
-            },
-            {
-              "port": "windows",
-              "reason": "Outside Windows visual adapter scope; preserve host semantics.",
-              "source": {
-                "file": "ports/windows/mapping.json",
-                "pointer": "/unmapped/border.width.default",
-                "line": 412
-              }
             }
           ],
           "uses": [
@@ -590,6 +581,126 @@
                 "pointer": "/mappings/border.width.default/11",
                 "line": 295
               }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Border#AcrylicBorder | BorderThickness",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/border.width.default/0",
+                "line": 199
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Button > Grid@CommonStates > Border | BorderThickness",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/border.width.default/2",
+                "line": 201
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Grid#CompanionRoot > Border#AcrylicBorder | BorderThickness",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/border.width.default/1",
+                "line": 200
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | BorderThickness",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/border.width.default/3",
+                "line": 202
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | StartDocked.SearchBoxToggleButton > Grid > Border#BorderElement | BorderThickness",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/border.width.default/4",
+                "line": 203
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | StartMenu.CategoryControl > Grid > Border | BorderThickness",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/border.width.default/6",
+                "line": 205
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | StartMenu.FolderModal > Grid > Border | BorderThickness",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/border.width.default/7",
+                "line": 206
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | StartMenu.SearchBoxToggleButton > Grid > Border#BorderElement | BorderThickness",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/border.width.default/5",
+                "line": 204
+              }
             }
           ],
           "contrast": []
@@ -678,7 +789,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/border.width.emphasis",
-                "line": 413
+                "line": 480
               }
             }
           ],
@@ -1002,7 +1113,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/breakpoint.lg",
-                "line": 463
+                "line": 529
               }
             }
           ],
@@ -1100,7 +1211,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/breakpoint.md",
-                "line": 462
+                "line": 528
               }
             }
           ],
@@ -1198,7 +1309,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/breakpoint.sm",
-                "line": 461
+                "line": 527
               }
             }
           ],
@@ -1296,7 +1407,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/breakpoint.xs",
-                "line": 460
+                "line": 526
               }
             }
           ],
@@ -1387,7 +1498,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.action.destructive.border",
-                "line": 297
+                "line": 365
               }
             }
           ],
@@ -1590,7 +1701,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.action.destructive.filled-bg",
-                "line": 301
+                "line": 369
               }
             }
           ],
@@ -1817,7 +1928,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.action.destructive.filled-text",
-                "line": 302
+                "line": 370
               }
             }
           ],
@@ -2078,7 +2189,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.action.destructive.hover-bg",
-                "line": 298
+                "line": 366
               }
             }
           ],
@@ -2309,7 +2420,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.action.destructive.hover-text",
-                "line": 299
+                "line": 367
               }
             }
           ],
@@ -2590,7 +2701,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.action.destructive.pressed-bg",
-                "line": 300
+                "line": 368
               }
             }
           ],
@@ -2739,7 +2850,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.action.destructive.text",
-                "line": 296
+                "line": 364
               }
             }
           ],
@@ -3407,7 +3518,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.action.primary.bg/0",
-                "line": 160
+                "line": 188
               }
             },
             {
@@ -4027,7 +4138,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.action.primary.border",
-                "line": 288
+                "line": 356
               }
             }
           ],
@@ -4206,7 +4317,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.action.primary.hover-bg",
-                "line": 286
+                "line": 354
               }
             }
           ],
@@ -4588,7 +4699,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.action.primary.pressed-bg",
-                "line": 287
+                "line": 355
               }
             }
           ],
@@ -4770,7 +4881,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.action.primary.text",
-                "line": 285
+                "line": 353
               }
             }
           ],
@@ -5858,7 +5969,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.action.secondary.bg",
-                "line": 289
+                "line": 357
               }
             }
           ],
@@ -6204,7 +6315,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.action.secondary.border",
-                "line": 291
+                "line": 359
               }
             }
           ],
@@ -6677,7 +6788,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.action.secondary.hover-bg",
-                "line": 292
+                "line": 360
               }
             }
           ],
@@ -6947,7 +7058,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.action.secondary.pressed-bg",
-                "line": 293
+                "line": 361
               }
             }
           ],
@@ -7096,7 +7207,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.action.secondary.text",
-                "line": 290
+                "line": 358
               }
             }
           ],
@@ -7604,7 +7715,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.action.tertiary.hover-bg",
-                "line": 295
+                "line": 363
               }
             }
           ],
@@ -8083,7 +8194,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.action.tertiary.text",
-                "line": 294
+                "line": 362
               }
             }
           ],
@@ -9305,8 +9416,8 @@
               "port": "windows",
               "source": {
                 "file": "ports/windows/mapping.json",
-                "pointer": "/mappings/color.border.active/4",
-                "line": 9
+                "pointer": "/mappings/color.border.active/1",
+                "line": 6
               }
             },
             {
@@ -9335,8 +9446,8 @@
               "port": "windows",
               "source": {
                 "file": "ports/windows/mapping.json",
-                "pointer": "/mappings/color.border.active/1",
-                "line": 6
+                "pointer": "/mappings/color.border.active/2",
+                "line": 7
               }
             },
             {
@@ -9365,8 +9476,8 @@
               "port": "windows",
               "source": {
                 "file": "ports/windows/mapping.json",
-                "pointer": "/mappings/color.border.active/2",
-                "line": 7
+                "pointer": "/mappings/color.border.active/3",
+                "line": 8
               }
             },
             {
@@ -9380,8 +9491,68 @@
               "port": "windows",
               "source": {
                 "file": "ports/windows/mapping.json",
-                "pointer": "/mappings/color.border.active/3",
-                "line": 8
+                "pointer": "/mappings/color.border.active/4",
+                "line": 9
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Button > Grid@CommonStates > Border | BorderBrush@PointerOver",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/color.border.active/5",
+                "line": 10
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Button > Grid@CommonStates > Border | BorderBrush@Pressed",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/color.border.active/6",
+                "line": 11
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | BorderBrush@PointerOver",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/color.border.active/7",
+                "line": 12
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | BorderBrush@Pressed",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/color.border.active/8",
+                "line": 13
               }
             },
             {
@@ -11141,7 +11312,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.border.control/0",
-                "line": 83
+                "line": 92
               }
             },
             {
@@ -11156,7 +11327,67 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.border.control/1",
-                "line": 84
+                "line": 93
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Button > Grid@CommonStates > Border | BorderBrush@Normal",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/color.border.control/2",
+                "line": 94
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | BorderBrush@Normal",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/color.border.control/3",
+                "line": 95
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | StartDocked.SearchBoxToggleButton > Grid > Border#BorderElement | BorderBrush",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/color.border.control/4",
+                "line": 96
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | StartMenu.SearchBoxToggleButton > Grid > Border#BorderElement | BorderBrush",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/color.border.control/5",
+                "line": 97
               }
             },
             {
@@ -13286,15 +13517,6 @@
                 "pointer": "/unmapped/color.border.default",
                 "line": 93
               }
-            },
-            {
-              "port": "windows",
-              "reason": "Outside Windows visual adapter scope; preserve host semantics.",
-              "source": {
-                "file": "ports/windows/mapping.json",
-                "pointer": "/unmapped/color.border.default",
-                "line": 265
-              }
             }
           ],
           "uses": [
@@ -13642,6 +13864,21 @@
                 "pointer": "/mappings/color.border.default/1",
                 "line": 124
               }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | StartMenu.CategoryControl > Grid > Border | BorderBrush",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/color.border.default/0",
+                "line": 235
+              }
             }
           ],
           "contrast": [
@@ -13833,15 +14070,6 @@
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.border.disabled",
                 "line": 94
-              }
-            },
-            {
-              "port": "windows",
-              "reason": "Outside Windows visual adapter scope; preserve host semantics.",
-              "source": {
-                "file": "ports/windows/mapping.json",
-                "pointer": "/unmapped/color.border.disabled",
-                "line": 268
               }
             }
           ],
@@ -14520,6 +14748,36 @@
                 "pointer": "/mappings/color.border.disabled/0",
                 "line": 420
               }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Button > Grid@CommonStates > Border | BorderBrush@Disabled",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/color.border.disabled/0",
+                "line": 231
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | BorderBrush@Disabled",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/color.border.disabled/1",
+                "line": 232
+              }
             }
           ],
           "contrast": [
@@ -14796,7 +15054,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.border.divider",
-                "line": 264
+                "line": 336
               }
             }
           ],
@@ -16060,15 +16318,6 @@
                 "pointer": "/unmapped/color.border.overlay",
                 "line": 96
               }
-            },
-            {
-              "port": "windows",
-              "reason": "Outside Windows visual adapter scope; preserve host semantics.",
-              "source": {
-                "file": "ports/windows/mapping.json",
-                "pointer": "/unmapped/color.border.overlay",
-                "line": 267
-              }
             }
           ],
           "uses": [
@@ -16325,6 +16574,51 @@
                 "file": "ports/claude-code/mapping.json",
                 "pointer": "/mappings/color.border.overlay/0",
                 "line": 9
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Border#AcrylicBorder | BorderBrush",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/color.border.overlay/0",
+                "line": 194
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Grid#CompanionRoot > Border#AcrylicBorder | BorderBrush",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/color.border.overlay/1",
+                "line": 195
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | StartMenu.FolderModal > Grid > Border | BorderBrush",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/color.border.overlay/2",
+                "line": 196
               }
             },
             {
@@ -16894,7 +17188,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.border.selected-indicator",
-                "line": 269
+                "line": 338
               }
             }
           ],
@@ -17446,7 +17740,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.border.selected-indicator-inactive",
-                "line": 270
+                "line": 339
               }
             }
           ],
@@ -17660,7 +17954,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.border.strong",
-                "line": 266
+                "line": 337
               }
             }
           ],
@@ -17952,7 +18246,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.chart.axis",
-                "line": 397
+                "line": 465
               }
             }
           ],
@@ -18059,7 +18353,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.chart.grid",
-                "line": 398
+                "line": 466
               }
             }
           ],
@@ -18190,7 +18484,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.chart.label",
-                "line": 399
+                "line": 467
               }
             }
           ],
@@ -18333,7 +18627,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.chart.series-1",
-                "line": 393
+                "line": 461
               }
             }
           ],
@@ -18424,7 +18718,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.chart.series-2",
-                "line": 394
+                "line": 462
               }
             }
           ],
@@ -18555,7 +18849,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.chart.series-3",
-                "line": 395
+                "line": 463
               }
             }
           ],
@@ -18655,7 +18949,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.chart.series-4",
-                "line": 396
+                "line": 464
               }
             }
           ],
@@ -18774,7 +19068,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.bg",
-                "line": 328
+                "line": 396
               }
             }
           ],
@@ -19931,7 +20225,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.bracket-match",
-                "line": 338
+                "line": 406
               }
             }
           ],
@@ -20117,7 +20411,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.caret",
-                "line": 334
+                "line": 402
               }
             }
           ],
@@ -20406,7 +20700,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.current-line",
-                "line": 329
+                "line": 397
               }
             }
           ],
@@ -20731,7 +21025,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.gutter-bg",
-                "line": 330
+                "line": 398
               }
             }
           ],
@@ -20874,7 +21168,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.gutter-rule",
-                "line": 333
+                "line": 401
               }
             }
           ],
@@ -21043,7 +21337,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.hued.attribute",
-                "line": 362
+                "line": 430
               }
             }
           ],
@@ -21155,7 +21449,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.hued.constant",
-                "line": 360
+                "line": 428
               }
             }
           ],
@@ -21267,7 +21561,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.hued.escape",
-                "line": 363
+                "line": 431
               }
             }
           ],
@@ -21379,7 +21673,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.hued.function",
-                "line": 361
+                "line": 429
               }
             }
           ],
@@ -21491,7 +21785,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.hued.number",
-                "line": 359
+                "line": 427
               }
             }
           ],
@@ -21618,7 +21912,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.hued.operator",
-                "line": 366
+                "line": 434
               }
             }
           ],
@@ -21730,7 +22024,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.hued.property",
-                "line": 365
+                "line": 433
               }
             }
           ],
@@ -21842,7 +22136,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.hued.string",
-                "line": 358
+                "line": 426
               }
             }
           ],
@@ -21969,7 +22263,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.hued.type",
-                "line": 364
+                "line": 432
               }
             }
           ],
@@ -22091,7 +22385,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.indent-guide",
-                "line": 339
+                "line": 407
               }
             }
           ],
@@ -22269,7 +22563,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.line-number",
-                "line": 331
+                "line": 399
               }
             }
           ],
@@ -22494,7 +22788,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.line-number-active",
-                "line": 332
+                "line": 400
               }
             }
           ],
@@ -22637,7 +22931,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.search-current-bg",
-                "line": 336
+                "line": 404
               }
             }
           ],
@@ -22780,7 +23074,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.search-current-text",
-                "line": 337
+                "line": 405
               }
             }
           ],
@@ -22914,7 +23208,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.search-match-bg",
-                "line": 335
+                "line": 403
               }
             }
           ],
@@ -23170,7 +23464,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.code.selection-bg/0",
-                "line": 30
+                "line": 34
               }
             },
             {
@@ -23351,7 +23645,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.syntax.attribute",
-                "line": 354
+                "line": 422
               }
             }
           ],
@@ -23481,7 +23775,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.syntax.comment",
-                "line": 343
+                "line": 411
               }
             }
           ],
@@ -23680,7 +23974,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.syntax.constant",
-                "line": 345
+                "line": 413
               }
             }
           ],
@@ -23787,7 +24081,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.syntax.deprecated",
-                "line": 357
+                "line": 425
               }
             }
           ],
@@ -23977,7 +24271,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.syntax.escape",
-                "line": 355
+                "line": 423
               }
             }
           ],
@@ -24099,7 +24393,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.syntax.function",
-                "line": 346
+                "line": 414
               }
             }
           ],
@@ -24253,7 +24547,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.syntax.heading",
-                "line": 352
+                "line": 420
               }
             }
           ],
@@ -24380,7 +24674,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.syntax.invalid",
-                "line": 356
+                "line": 424
               }
             }
           ],
@@ -24498,7 +24792,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.syntax.keyword",
-                "line": 341
+                "line": 409
               }
             }
           ],
@@ -24714,7 +25008,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.syntax.number",
-                "line": 344
+                "line": 412
               }
             }
           ],
@@ -24863,7 +25157,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.syntax.operator",
-                "line": 349
+                "line": 417
               }
             }
           ],
@@ -24990,7 +25284,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.syntax.property",
-                "line": 351
+                "line": 419
               }
             }
           ],
@@ -25156,7 +25450,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.syntax.punctuation",
-                "line": 350
+                "line": 418
               }
             }
           ],
@@ -25293,7 +25587,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.syntax.string",
-                "line": 342
+                "line": 410
               }
             }
           ],
@@ -25490,7 +25784,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.syntax.tag",
-                "line": 353
+                "line": 421
               }
             }
           ],
@@ -25663,7 +25957,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.syntax.type",
-                "line": 348
+                "line": 416
               }
             }
           ],
@@ -25814,7 +26108,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.syntax.variable",
-                "line": 347
+                "line": 415
               }
             }
           ],
@@ -26080,7 +26374,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.code.whitespace",
-                "line": 340
+                "line": 408
               }
             }
           ],
@@ -26223,7 +26517,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.diagnostic.error.bg",
-                "line": 370
+                "line": 438
               }
             }
           ],
@@ -26418,7 +26712,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.diagnostic.error.stripe",
-                "line": 369
+                "line": 437
               }
             }
           ],
@@ -26561,7 +26855,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.diagnostic.error.text",
-                "line": 368
+                "line": 436
               }
             }
           ],
@@ -26782,7 +27076,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.diagnostic.error.underline",
-                "line": 367
+                "line": 435
               }
             }
           ],
@@ -26951,7 +27245,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.diagnostic.hint.underline",
-                "line": 376
+                "line": 444
               }
             }
           ],
@@ -27099,7 +27393,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.diagnostic.info.text",
-                "line": 375
+                "line": 443
               }
             }
           ],
@@ -27299,7 +27593,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.diagnostic.info.underline",
-                "line": 374
+                "line": 442
               }
             }
           ],
@@ -27442,7 +27736,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.diagnostic.unused.text",
-                "line": 377
+                "line": 445
               }
             }
           ],
@@ -27590,7 +27884,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.diagnostic.warning.stripe",
-                "line": 373
+                "line": 441
               }
             }
           ],
@@ -27738,7 +28032,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.diagnostic.warning.text",
-                "line": 372
+                "line": 440
               }
             }
           ],
@@ -27912,7 +28206,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.diagnostic.warning.underline",
-                "line": 371
+                "line": 439
               }
             }
           ],
@@ -28068,7 +28362,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.diff.added.bg",
-                "line": 378
+                "line": 446
               }
             }
           ],
@@ -28391,7 +28685,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.diff.added.emphasis",
-                "line": 380
+                "line": 448
               }
             }
           ],
@@ -28539,7 +28833,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.diff.added.gutter",
-                "line": 379
+                "line": 447
               }
             }
           ],
@@ -28682,7 +28976,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.diff.conflict-border",
-                "line": 386
+                "line": 454
               }
             }
           ],
@@ -28825,7 +29119,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.diff.header-bg",
-                "line": 387
+                "line": 455
               }
             }
           ],
@@ -29103,7 +29397,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.diff.modified.bg",
-                "line": 384
+                "line": 452
               }
             }
           ],
@@ -29346,7 +29640,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.diff.modified.gutter",
-                "line": 385
+                "line": 453
               }
             }
           ],
@@ -29486,7 +29780,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.diff.removed.bg",
-                "line": 381
+                "line": 449
               }
             }
           ],
@@ -29804,7 +30098,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.diff.removed.emphasis",
-                "line": 383
+                "line": 451
               }
             }
           ],
@@ -29947,7 +30241,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.diff.removed.gutter",
-                "line": 382
+                "line": 450
               }
             }
           ],
@@ -30090,7 +30384,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.icon.decorative",
-                "line": 401
+                "line": 469
               }
             }
           ],
@@ -30403,7 +30697,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.icon.default",
-                "line": 400
+                "line": 468
               }
             }
           ],
@@ -30666,15 +30960,6 @@
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/color.interaction.disabled.bg",
                 "line": 170
-              }
-            },
-            {
-              "port": "windows",
-              "reason": "Outside Windows visual adapter scope; preserve host semantics.",
-              "source": {
-                "file": "ports/windows/mapping.json",
-                "pointer": "/unmapped/color.interaction.disabled.bg",
-                "line": 279
               }
             }
           ],
@@ -31653,6 +31938,36 @@
                 "pointer": "/mappings/color.interaction.disabled.bg/1",
                 "line": 30
               }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Button > Grid@CommonStates > Border | Background@Disabled",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/color.interaction.disabled.bg/0",
+                "line": 227
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | Background@Disabled",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/color.interaction.disabled.bg/1",
+                "line": 228
+              }
             }
           ],
           "contrast": [
@@ -32147,7 +32462,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.interaction.drop-target",
-                "line": 281
+                "line": 349
               }
             }
           ],
@@ -32300,7 +32615,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.interaction.focus.ring",
-                "line": 271
+                "line": 340
               }
             }
           ],
@@ -34491,7 +34806,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.interaction.focus.ring-container",
-                "line": 272
+                "line": 341
               }
             }
           ],
@@ -36605,7 +36920,37 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.interaction.hover.bg/0",
-                "line": 154
+                "line": 178
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Button > Grid@CommonStates > Border | Background@PointerOver",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/color.interaction.hover.bg/1",
+                "line": 179
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | Background@PointerOver",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/color.interaction.hover.bg/2",
+                "line": 180
               }
             },
             {
@@ -37450,7 +37795,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.interaction.hover.bg-strong",
-                "line": 278
+                "line": 347
               }
             }
           ],
@@ -37910,7 +38255,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.interaction.marquee",
-                "line": 280
+                "line": 348
               }
             }
           ],
@@ -38348,7 +38693,37 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.interaction.pressed.bg/0",
-                "line": 157
+                "line": 183
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Button > Grid@CommonStates > Border | Background@Pressed",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/color.interaction.pressed.bg/1",
+                "line": 184
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | Background@Pressed",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/color.interaction.pressed.bg/2",
+                "line": 185
               }
             },
             {
@@ -38616,7 +38991,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.interaction.scrollbar.thumb",
-                "line": 283
+                "line": 351
               }
             }
           ],
@@ -38723,7 +39098,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.interaction.scrollbar.thumb-hover",
-                "line": 284
+                "line": 352
               }
             }
           ],
@@ -38830,7 +39205,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.interaction.scrollbar.track",
-                "line": 282
+                "line": 350
               }
             }
           ],
@@ -39481,7 +39856,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.interaction.selection.bg/0",
-                "line": 75
+                "line": 81
               }
             },
             {
@@ -40342,7 +40717,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.interaction.selection.inactive-bg",
-                "line": 274
+                "line": 343
               }
             }
           ],
@@ -40640,7 +41015,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.interaction.selection.inactive-text",
-                "line": 275
+                "line": 344
               }
             }
           ],
@@ -40929,7 +41304,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.interaction.selection.text",
-                "line": 273
+                "line": 342
               }
             }
           ],
@@ -42040,7 +42415,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.interaction.text-selection.bg",
-                "line": 276
+                "line": 345
               }
             }
           ],
@@ -42186,7 +42561,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.interaction.text-selection.text",
-                "line": 277
+                "line": 346
               }
             }
           ],
@@ -42324,7 +42699,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.alpha.black-55",
-                "line": 218
+                "line": 290
               }
             }
           ],
@@ -42434,7 +42809,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.alpha.black-65",
-                "line": 219
+                "line": 291
               }
             }
           ],
@@ -42541,7 +42916,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.alpha.red-12",
-                "line": 221
+                "line": 293
               }
             }
           ],
@@ -42646,7 +43021,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.alpha.red-6",
-                "line": 220
+                "line": 292
               }
             }
           ],
@@ -42753,7 +43128,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.alpha.transparent",
-                "line": 217
+                "line": 289
               }
             }
           ],
@@ -42874,7 +43249,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.amber.500",
-                "line": 208
+                "line": 280
               }
             }
           ],
@@ -42979,7 +43354,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.amber.600",
-                "line": 209
+                "line": 281
               }
             }
           ],
@@ -43089,7 +43464,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.amber.tint",
-                "line": 210
+                "line": 282
               }
             }
           ],
@@ -43200,7 +43575,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi-readable.1",
-                "line": 238
+                "line": 310
               }
             }
           ],
@@ -43311,7 +43686,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi-readable.10",
-                "line": 242
+                "line": 314
               }
             }
           ],
@@ -43422,7 +43797,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi-readable.12",
-                "line": 243
+                "line": 315
               }
             }
           ],
@@ -43533,7 +43908,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi-readable.13",
-                "line": 244
+                "line": 316
               }
             }
           ],
@@ -43644,7 +44019,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi-readable.14",
-                "line": 245
+                "line": 317
               }
             }
           ],
@@ -43755,7 +44130,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi-readable.15",
-                "line": 246
+                "line": 318
               }
             }
           ],
@@ -43866,7 +44241,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi-readable.4",
-                "line": 239
+                "line": 311
               }
             }
           ],
@@ -43977,7 +44352,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi-readable.8",
-                "line": 240
+                "line": 312
               }
             }
           ],
@@ -44088,7 +44463,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi-readable.9",
-                "line": 241
+                "line": 313
               }
             }
           ],
@@ -44190,7 +44565,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.0",
-                "line": 222
+                "line": 294
               }
             }
           ],
@@ -44290,7 +44665,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.1",
-                "line": 223
+                "line": 295
               }
             }
           ],
@@ -44390,7 +44765,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.10",
-                "line": 232
+                "line": 304
               }
             }
           ],
@@ -44492,7 +44867,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.11",
-                "line": 233
+                "line": 305
               }
             }
           ],
@@ -44592,7 +44967,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.12",
-                "line": 234
+                "line": 306
               }
             }
           ],
@@ -44692,7 +45067,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.13",
-                "line": 235
+                "line": 307
               }
             }
           ],
@@ -44792,7 +45167,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.14",
-                "line": 236
+                "line": 308
               }
             }
           ],
@@ -44892,7 +45267,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.15",
-                "line": 237
+                "line": 309
               }
             }
           ],
@@ -44994,7 +45369,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.2",
-                "line": 224
+                "line": 296
               }
             }
           ],
@@ -45096,7 +45471,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.3",
-                "line": 225
+                "line": 297
               }
             }
           ],
@@ -45198,7 +45573,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.4",
-                "line": 226
+                "line": 298
               }
             }
           ],
@@ -45300,7 +45675,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.5",
-                "line": 227
+                "line": 299
               }
             }
           ],
@@ -45400,7 +45775,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.6",
-                "line": 228
+                "line": 300
               }
             }
           ],
@@ -45502,7 +45877,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.7",
-                "line": 229
+                "line": 301
               }
             }
           ],
@@ -45602,7 +45977,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.8",
-                "line": 230
+                "line": 302
               }
             }
           ],
@@ -45702,7 +46077,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.ansi.9",
-                "line": 231
+                "line": 303
               }
             }
           ],
@@ -45818,7 +46193,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.blue.500",
-                "line": 214
+                "line": 286
               }
             }
           ],
@@ -45923,7 +46298,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.blue.600",
-                "line": 215
+                "line": 287
               }
             }
           ],
@@ -46032,7 +46407,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.blue.tint",
-                "line": 216
+                "line": 288
               }
             }
           ],
@@ -46143,7 +46518,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.coral.700",
-                "line": 205
+                "line": 277
               }
             }
           ],
@@ -46258,7 +46633,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.green.500",
-                "line": 211
+                "line": 283
               }
             }
           ],
@@ -46364,7 +46739,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.green.600",
-                "line": 212
+                "line": 284
               }
             }
           ],
@@ -46474,7 +46849,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.green.tint",
-                "line": 213
+                "line": 285
               }
             }
           ],
@@ -46587,7 +46962,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.ink.0",
-                "line": 167
+                "line": 239
               }
             }
           ],
@@ -46697,7 +47072,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.ink.14",
-                "line": 168
+                "line": 240
               }
             }
           ],
@@ -46805,7 +47180,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.ink.15",
-                "line": 169
+                "line": 241
               }
             }
           ],
@@ -46923,7 +47298,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.ink.20",
-                "line": 170
+                "line": 242
               }
             }
           ],
@@ -47028,7 +47403,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.ink.25",
-                "line": 171
+                "line": 243
               }
             }
           ],
@@ -47138,7 +47513,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.ink.28",
-                "line": 172
+                "line": 244
               }
             }
           ],
@@ -47246,7 +47621,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.ink.30",
-                "line": 173
+                "line": 245
               }
             }
           ],
@@ -47356,7 +47731,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.ink.40",
-                "line": 174
+                "line": 246
               }
             }
           ],
@@ -47465,7 +47840,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.ink.52",
-                "line": 175
+                "line": 247
               }
             }
           ],
@@ -47580,7 +47955,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.ink.60",
-                "line": 176
+                "line": 248
               }
             }
           ],
@@ -47691,7 +48066,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.paper.100",
-                "line": 207
+                "line": 279
               }
             }
           ],
@@ -47805,7 +48180,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.paper.90",
-                "line": 206
+                "line": 278
               }
             }
           ],
@@ -47914,7 +48289,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.red.100",
-                "line": 178
+                "line": 250
               }
             }
           ],
@@ -48024,7 +48399,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.red.150",
-                "line": 179
+                "line": 251
               }
             }
           ],
@@ -48134,7 +48509,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.red.200",
-                "line": 180
+                "line": 252
               }
             }
           ],
@@ -48242,7 +48617,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.red.250",
-                "line": 181
+                "line": 253
               }
             }
           ],
@@ -48349,7 +48724,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.red.300",
-                "line": 182
+                "line": 254
               }
             }
           ],
@@ -48459,7 +48834,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.red.350",
-                "line": 183
+                "line": 255
               }
             }
           ],
@@ -48569,7 +48944,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.red.400",
-                "line": 184
+                "line": 256
               }
             }
           ],
@@ -48676,7 +49051,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.red.450",
-                "line": 185
+                "line": 257
               }
             }
           ],
@@ -48787,7 +49162,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.red.50",
-                "line": 177
+                "line": 249
               }
             }
           ],
@@ -48894,7 +49269,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.red.500",
-                "line": 186
+                "line": 258
               }
             }
           ],
@@ -49001,7 +49376,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.red.550",
-                "line": 187
+                "line": 259
               }
             }
           ],
@@ -49108,7 +49483,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.red.650",
-                "line": 188
+                "line": 260
               }
             }
           ],
@@ -49218,7 +49593,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.red.750",
-                "line": 189
+                "line": 261
               }
             }
           ],
@@ -49325,7 +49700,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.red.760",
-                "line": 190
+                "line": 262
               }
             }
           ],
@@ -49432,7 +49807,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.red.770",
-                "line": 191
+                "line": 263
               }
             }
           ],
@@ -49551,7 +49926,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.red.800",
-                "line": 192
+                "line": 264
               }
             }
           ],
@@ -49664,7 +50039,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.red.810",
-                "line": 193
+                "line": 265
               }
             }
           ],
@@ -49779,7 +50154,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.red.850",
-                "line": 194
+                "line": 266
               }
             }
           ],
@@ -49891,7 +50266,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.red.860",
-                "line": 195
+                "line": 267
               }
             }
           ],
@@ -50001,7 +50376,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.rose.300",
-                "line": 196
+                "line": 268
               }
             }
           ],
@@ -50109,7 +50484,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.rose.320",
-                "line": 197
+                "line": 269
               }
             }
           ],
@@ -50224,7 +50599,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.rose.350",
-                "line": 198
+                "line": 270
               }
             }
           ],
@@ -50338,7 +50713,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.rose.450",
-                "line": 199
+                "line": 271
               }
             }
           ],
@@ -50448,7 +50823,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.rose.550",
-                "line": 200
+                "line": 272
               }
             }
           ],
@@ -50563,7 +50938,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.rose.600",
-                "line": 201
+                "line": 273
               }
             }
           ],
@@ -50676,7 +51051,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.rose.650",
-                "line": 202
+                "line": 274
               }
             }
           ],
@@ -50795,7 +51170,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.rose.700",
-                "line": 203
+                "line": 275
               }
             }
           ],
@@ -50914,7 +51289,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.primitive.rose.800",
-                "line": 204
+                "line": 276
               }
             }
           ],
@@ -51014,7 +51389,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.status.danger.border",
-                "line": 307
+                "line": 375
               }
             }
           ],
@@ -52046,7 +52421,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.status.danger.fill",
-                "line": 304
+                "line": 372
               }
             }
           ],
@@ -52489,7 +52864,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.status.danger.on-fill",
-                "line": 305
+                "line": 373
               }
             }
           ],
@@ -52754,7 +53129,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.status.danger.text",
-                "line": 303
+                "line": 371
               }
             }
           ],
@@ -54024,7 +54399,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.status.danger.tint",
-                "line": 306
+                "line": 374
               }
             }
           ],
@@ -54313,7 +54688,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.status.info.border",
-                "line": 322
+                "line": 390
               }
             }
           ],
@@ -54558,7 +54933,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.status.info.fill",
-                "line": 319
+                "line": 387
               }
             }
           ],
@@ -54799,7 +55174,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.status.info.on-fill",
-                "line": 320
+                "line": 388
               }
             }
           ],
@@ -54996,7 +55371,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.status.info.text",
-                "line": 318
+                "line": 386
               }
             }
           ],
@@ -55405,7 +55780,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.status.info.tint",
-                "line": 321
+                "line": 389
               }
             }
           ],
@@ -55875,7 +56250,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.status.neutral.border",
-                "line": 327
+                "line": 395
               }
             }
           ],
@@ -56100,7 +56475,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.status.neutral.fill",
-                "line": 324
+                "line": 392
               }
             }
           ],
@@ -56295,7 +56670,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.status.neutral.on-fill",
-                "line": 325
+                "line": 393
               }
             }
           ],
@@ -56464,7 +56839,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.status.neutral.text",
-                "line": 323
+                "line": 391
               }
             }
           ],
@@ -56689,7 +57064,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.status.neutral.tint",
-                "line": 326
+                "line": 394
               }
             }
           ],
@@ -56982,7 +57357,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.status.success.border",
-                "line": 317
+                "line": 385
               }
             }
           ],
@@ -57212,7 +57587,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.status.success.fill",
-                "line": 314
+                "line": 382
               }
             }
           ],
@@ -57453,7 +57828,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.status.success.on-fill",
-                "line": 315
+                "line": 383
               }
             }
           ],
@@ -57641,7 +58016,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.status.success.text",
-                "line": 313
+                "line": 381
               }
             }
           ],
@@ -58097,7 +58472,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.status.success.tint",
-                "line": 316
+                "line": 384
               }
             }
           ],
@@ -58431,7 +58806,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.status.warning.border",
-                "line": 312
+                "line": 380
               }
             }
           ],
@@ -58661,7 +59036,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.status.warning.fill",
-                "line": 309
+                "line": 377
               }
             }
           ],
@@ -58861,7 +59236,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.status.warning.on-fill",
-                "line": 310
+                "line": 378
               }
             }
           ],
@@ -59017,7 +59392,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.status.warning.text",
-                "line": 308
+                "line": 376
               }
             }
           ],
@@ -59389,7 +59764,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.status.warning.tint",
-                "line": 311
+                "line": 379
               }
             }
           ],
@@ -59701,7 +60076,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.surface.backdrop",
-                "line": 250
+                "line": 322
               }
             }
           ],
@@ -60801,8 +61176,8 @@
               "port": "windows",
               "source": {
                 "file": "ports/windows/mapping.json",
-                "pointer": "/mappings/color.surface.canvas/6",
-                "line": 24
+                "pointer": "/mappings/color.surface.canvas/1",
+                "line": 23
               }
             },
             {
@@ -60817,7 +61192,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.surface.canvas/0",
-                "line": 18
+                "line": 22
               }
             },
             {
@@ -60846,8 +61221,8 @@
               "port": "windows",
               "source": {
                 "file": "ports/windows/mapping.json",
-                "pointer": "/mappings/color.surface.canvas/1",
-                "line": 19
+                "pointer": "/mappings/color.surface.canvas/2",
+                "line": 24
               }
             },
             {
@@ -60861,8 +61236,8 @@
               "port": "windows",
               "source": {
                 "file": "ports/windows/mapping.json",
-                "pointer": "/mappings/color.surface.canvas/5",
-                "line": 23
+                "pointer": "/mappings/color.surface.canvas/6",
+                "line": 28
               }
             },
             {
@@ -60876,8 +61251,23 @@
               "port": "windows",
               "source": {
                 "file": "ports/windows/mapping.json",
-                "pointer": "/mappings/color.surface.canvas/4",
-                "line": 22
+                "pointer": "/mappings/color.surface.canvas/5",
+                "line": 27
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Grid#MainContent | Background",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/color.surface.canvas/3",
+                "line": 25
               }
             },
             {
@@ -60891,23 +61281,8 @@
               "port": "windows",
               "source": {
                 "file": "ports/windows/mapping.json",
-                "pointer": "/mappings/color.surface.canvas/2",
-                "line": 20
-              }
-            },
-            {
-              "kind": "port",
-              "component": null,
-              "part": null,
-              "state": null,
-              "variant": null,
-              "surface": null,
-              "nativeKey": "windows-11-start-menu-styler | StartMenu.StartInnerFrame | Background",
-              "port": "windows",
-              "source": {
-                "file": "ports/windows/mapping.json",
-                "pointer": "/mappings/color.surface.canvas/3",
-                "line": 21
+                "pointer": "/mappings/color.surface.canvas/4",
+                "line": 26
               }
             },
             {
@@ -62868,7 +63243,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.surface.chrome/0",
-                "line": 33
+                "line": 37
               }
             },
             {
@@ -62882,8 +63257,38 @@
               "port": "windows",
               "source": {
                 "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/color.surface.chrome/5",
+                "line": 42
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Border#AcrylicOverlay | Background",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.surface.chrome/3",
-                "line": 36
+                "line": 40
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Grid#CompanionRoot > Grid#MainContent > Border#AcrylicOverlay | Background",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/color.surface.chrome/4",
+                "line": 41
               }
             },
             {
@@ -62898,7 +63303,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.surface.chrome/2",
-                "line": 35
+                "line": 39
               }
             },
             {
@@ -62913,7 +63318,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.surface.chrome/1",
-                "line": 34
+                "line": 38
               }
             },
             {
@@ -63273,7 +63678,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.surface.chrome-alt",
-                "line": 247
+                "line": 319
               }
             }
           ],
@@ -63488,7 +63893,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.surface.code",
-                "line": 251
+                "line": 323
               }
             }
           ],
@@ -67079,7 +67484,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.surface.default/2",
-                "line": 143
+                "line": 163
               }
             },
             {
@@ -67094,7 +67499,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.surface.default/1",
-                "line": 142
+                "line": 162
               }
             },
             {
@@ -67109,7 +67514,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.surface.default/0",
-                "line": 141
+                "line": 161
               }
             },
             {
@@ -67124,7 +67529,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.surface.default/4",
-                "line": 145
+                "line": 165
               }
             },
             {
@@ -67139,7 +67544,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.surface.default/7",
-                "line": 148
+                "line": 168
               }
             },
             {
@@ -67154,7 +67559,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.surface.default/5",
-                "line": 146
+                "line": 166
               }
             },
             {
@@ -67169,7 +67574,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.surface.default/6",
-                "line": 147
+                "line": 167
               }
             },
             {
@@ -67179,12 +67584,12 @@
               "state": null,
               "variant": null,
               "surface": null,
-              "nativeKey": "windows-11-start-menu-styler | Border#AcrylicBorder | Background",
+              "nativeKey": "windows-11-start-menu-styler | StartMenu.CategoryControl > Grid > Border | Background",
               "port": "windows",
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.surface.default/3",
-                "line": 144
+                "line": 164
               }
             },
             {
@@ -71727,7 +72132,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.surface.desktop/0",
-                "line": 12
+                "line": 16
               }
             }
           ],
@@ -72794,7 +73199,67 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.surface.input/0",
-                "line": 151
+                "line": 171
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Button > Grid@CommonStates > Border | Background@Normal",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/color.surface.input/1",
+                "line": 172
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | Background@Normal",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/color.surface.input/2",
+                "line": 173
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | StartDocked.SearchBoxToggleButton > Grid > Border#BorderElement | Background",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/color.surface.input/3",
+                "line": 174
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | StartMenu.SearchBoxToggleButton > Grid > Border#BorderElement | Background",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/color.surface.input/4",
+                "line": 175
               }
             },
             {
@@ -74905,7 +75370,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.surface.overlay",
-                "line": 249
+                "line": 321
               }
             }
           ],
@@ -76282,7 +76747,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.surface.raised/0",
-                "line": 78
+                "line": 84
               }
             },
             {
@@ -76297,7 +76762,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.surface.raised/2",
-                "line": 80
+                "line": 86
               }
             },
             {
@@ -76312,7 +76777,52 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.surface.raised/1",
-                "line": 79
+                "line": 85
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Border#AcrylicBorder | Background",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/color.surface.raised/3",
+                "line": 87
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Grid#CompanionRoot > Border#AcrylicBorder | Background",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/color.surface.raised/4",
+                "line": 88
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | StartMenu.FolderModal > Grid > Border | Background",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/color.surface.raised/5",
+                "line": 89
               }
             },
             {
@@ -76959,7 +77469,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.surface.sunken",
-                "line": 248
+                "line": 320
               }
             }
           ],
@@ -77133,7 +77643,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.surface.terminal",
-                "line": 252
+                "line": 324
               }
             }
           ],
@@ -77290,7 +77800,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.terminal.ansi.0/0",
-                "line": 90
+                "line": 110
               }
             }
           ],
@@ -77462,7 +77972,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.terminal.ansi.1/0",
-                "line": 93
+                "line": 113
               }
             }
           ],
@@ -77634,7 +78144,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.terminal.ansi.10/0",
-                "line": 120
+                "line": 140
               }
             }
           ],
@@ -77802,7 +78312,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.terminal.ansi.11/0",
-                "line": 123
+                "line": 143
               }
             }
           ],
@@ -77974,7 +78484,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.terminal.ansi.12/0",
-                "line": 126
+                "line": 146
               }
             }
           ],
@@ -78146,7 +78656,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.terminal.ansi.13/0",
-                "line": 129
+                "line": 149
               }
             }
           ],
@@ -78318,7 +78828,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.terminal.ansi.14/0",
-                "line": 132
+                "line": 152
               }
             }
           ],
@@ -78490,7 +79000,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.terminal.ansi.15/0",
-                "line": 135
+                "line": 155
               }
             }
           ],
@@ -78658,7 +79168,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.terminal.ansi.2/0",
-                "line": 96
+                "line": 116
               }
             }
           ],
@@ -78856,7 +79366,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.terminal.ansi.3/0",
-                "line": 99
+                "line": 119
               }
             }
           ],
@@ -79039,7 +79549,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.terminal.ansi.4/0",
-                "line": 102
+                "line": 122
               }
             }
           ],
@@ -79207,7 +79717,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.terminal.ansi.5/0",
-                "line": 105
+                "line": 125
               }
             }
           ],
@@ -79379,7 +79889,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.terminal.ansi.6/0",
-                "line": 108
+                "line": 128
               }
             }
           ],
@@ -79547,7 +80057,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.terminal.ansi.7/0",
-                "line": 111
+                "line": 131
               }
             }
           ],
@@ -79719,7 +80229,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.terminal.ansi.8/0",
-                "line": 114
+                "line": 134
               }
             }
           ],
@@ -79891,7 +80401,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.terminal.ansi.9/0",
-                "line": 117
+                "line": 137
               }
             }
           ],
@@ -79966,7 +80476,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.terminal.bg",
-                "line": 388
+                "line": 456
               }
             }
           ],
@@ -80976,7 +81486,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.terminal.cursor/0",
-                "line": 27
+                "line": 31
               }
             },
             {
@@ -81240,7 +81750,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.terminal.fg/0",
-                "line": 15
+                "line": 19
               }
             },
             {
@@ -81446,7 +81956,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.terminal.prompt-bg",
-                "line": 391
+                "line": 459
               }
             }
           ],
@@ -81620,7 +82130,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.terminal.prompt-text",
-                "line": 392
+                "line": 460
               }
             }
           ],
@@ -81745,7 +82255,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.terminal.selection-bg",
-                "line": 389
+                "line": 457
               }
             }
           ],
@@ -81900,7 +82410,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.terminal.selection-text",
-                "line": 390
+                "line": 458
               }
             }
           ],
@@ -82037,7 +82547,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.text.accent",
-                "line": 255
+                "line": 327
               }
             }
           ],
@@ -82383,7 +82893,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.text.accent-strong",
-                "line": 256
+                "line": 328
               }
             }
           ],
@@ -84235,7 +84745,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.text.bright/0",
-                "line": 54
+                "line": 60
               }
             },
             {
@@ -84265,7 +84775,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.text.bright/1",
-                "line": 55
+                "line": 61
               }
             },
             {
@@ -84325,7 +84835,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.text.bright/2",
-                "line": 56
+                "line": 62
               }
             },
             {
@@ -87230,7 +87740,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.text.default/0",
-                "line": 39
+                "line": 45
               }
             },
             {
@@ -87275,7 +87785,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.text.default/2",
-                "line": 41
+                "line": 47
               }
             },
             {
@@ -87290,7 +87800,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.text.default/1",
-                "line": 40
+                "line": 46
               }
             },
             {
@@ -87305,7 +87815,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.text.default/8",
-                "line": 47
+                "line": 53
               }
             },
             {
@@ -87320,7 +87830,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.text.default/7",
-                "line": 46
+                "line": 52
               }
             },
             {
@@ -87335,7 +87845,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.text.default/10",
-                "line": 49
+                "line": 55
               }
             },
             {
@@ -87350,7 +87860,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.text.default/9",
-                "line": 48
+                "line": 54
               }
             },
             {
@@ -87365,7 +87875,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.text.default/12",
-                "line": 51
+                "line": 57
               }
             },
             {
@@ -87380,7 +87890,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.text.default/11",
-                "line": 50
+                "line": 56
               }
             },
             {
@@ -87395,7 +87905,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.text.default/6",
-                "line": 45
+                "line": 51
               }
             },
             {
@@ -87410,7 +87920,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.text.default/5",
-                "line": 44
+                "line": 50
               }
             },
             {
@@ -87425,7 +87935,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.text.default/4",
-                "line": 43
+                "line": 49
               }
             },
             {
@@ -87440,7 +87950,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.text.default/3",
-                "line": 42
+                "line": 48
               }
             },
             {
@@ -92624,7 +93134,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.text.disabled/0",
-                "line": 70
+                "line": 76
               }
             },
             {
@@ -92639,7 +93149,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.text.disabled/2",
-                "line": 72
+                "line": 78
               }
             },
             {
@@ -92654,7 +93164,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.text.disabled/1",
-                "line": 71
+                "line": 77
               }
             }
           ],
@@ -93245,7 +93755,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.text.heading/0",
-                "line": 59
+                "line": 65
               }
             }
           ],
@@ -93410,7 +93920,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.text.highlight/0",
-                "line": 62
+                "line": 68
               }
             }
           ],
@@ -93523,7 +94033,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.text.inverse",
-                "line": 263
+                "line": 335
               }
             }
           ],
@@ -93626,7 +94136,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.text.link",
-                "line": 257
+                "line": 329
               }
             }
           ],
@@ -94207,7 +94717,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.text.link-hover",
-                "line": 259
+                "line": 331
               }
             }
           ],
@@ -94626,7 +95136,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.text.link-underline",
-                "line": 258
+                "line": 330
               }
             }
           ],
@@ -97121,7 +97631,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.text.muted/0",
-                "line": 65
+                "line": 71
               }
             },
             {
@@ -97166,7 +97676,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.text.muted/2",
-                "line": 67
+                "line": 73
               }
             },
             {
@@ -97181,7 +97691,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.text.muted/1",
-                "line": 66
+                "line": 72
               }
             },
             {
@@ -98298,7 +98808,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.text.on-action/0",
-                "line": 163
+                "line": 191
               }
             }
           ],
@@ -98397,7 +98907,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.text.on-danger",
-                "line": 261
+                "line": 333
               }
             }
           ],
@@ -98497,7 +99007,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.text.on-light",
-                "line": 262
+                "line": 334
               }
             }
           ],
@@ -98597,7 +99107,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.text.on-selection",
-                "line": 260
+                "line": 332
               }
             }
           ],
@@ -98736,7 +99246,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.text.placeholder",
-                "line": 254
+                "line": 326
               }
             }
           ],
@@ -99020,7 +99530,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/color.text.prose",
-                "line": 253
+                "line": 325
               }
             }
           ],
@@ -99446,7 +99956,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/color.text.subtle/0",
-                "line": 138
+                "line": 158
               }
             },
             {
@@ -99605,7 +100115,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/density.comfortable.control-height",
-                "line": 443
+                "line": 509
               }
             }
           ],
@@ -99914,7 +100424,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/density.comfortable.control-padding-x",
-                "line": 445
+                "line": 511
               }
             }
           ],
@@ -100012,7 +100522,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/density.comfortable.gap",
-                "line": 447
+                "line": 513
               }
             }
           ],
@@ -100110,7 +100620,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/density.comfortable.icon",
-                "line": 446
+                "line": 512
               }
             }
           ],
@@ -100208,7 +100718,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/density.comfortable.row-height",
-                "line": 444
+                "line": 510
               }
             }
           ],
@@ -100306,7 +100816,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/density.compact.control-height",
-                "line": 438
+                "line": 504
               }
             }
           ],
@@ -100591,7 +101101,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/density.compact.control-padding-x",
-                "line": 440
+                "line": 506
               }
             }
           ],
@@ -100720,7 +101230,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/density.compact.gap",
-                "line": 442
+                "line": 508
               }
             }
           ],
@@ -100818,7 +101328,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/density.compact.icon",
-                "line": 441
+                "line": 507
               }
             }
           ],
@@ -100907,7 +101417,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/density.compact.row-height",
-                "line": 439
+                "line": 505
               }
             }
           ],
@@ -101012,7 +101522,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/focus.offset",
-                "line": 450
+                "line": 516
               }
             }
           ],
@@ -101156,7 +101666,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/focus.offset-container",
-                "line": 451
+                "line": 517
               }
             }
           ],
@@ -101254,7 +101764,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/focus.offset-invalid",
-                "line": 452
+                "line": 518
               }
             }
           ],
@@ -101346,7 +101856,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/focus.ring",
-                "line": 448
+                "line": 514
               }
             }
           ],
@@ -101493,7 +102003,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/focus.ring-container",
-                "line": 449
+                "line": 515
               }
             }
           ],
@@ -101641,7 +102151,112 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/mappings/font.family.mono/0",
-                "line": 87
+                "line": 100
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | TextBlock#AllListHeadingText | FontFamily",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/font.family.mono/4",
+                "line": 104
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | TextBlock#AppDisplayName | FontFamily",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/font.family.mono/2",
+                "line": 102
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | TextBlock#DisplayName | FontFamily",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/font.family.mono/1",
+                "line": 101
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | TextBlock#PinnedListHeaderText | FontFamily",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/font.family.mono/3",
+                "line": 103
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | TextBlock#PlaceholderText | FontFamily",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/font.family.mono/6",
+                "line": 106
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | TextBlock#RecommendedListHeaderText | FontFamily",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/font.family.mono/7",
+                "line": 107
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | TextBlock#UserTileNameText | FontFamily",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/font.family.mono/5",
+                "line": 105
               }
             }
           ],
@@ -101738,7 +102353,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/font.letter-spacing.terminal",
-                "line": 437
+                "line": 503
               }
             }
           ],
@@ -101836,7 +102451,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/font.line-height.caption",
-                "line": 436
+                "line": 502
               }
             }
           ],
@@ -101934,7 +102549,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/font.line-height.code",
-                "line": 431
+                "line": 497
               }
             }
           ],
@@ -102032,7 +102647,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/font.line-height.h1",
-                "line": 433
+                "line": 499
               }
             }
           ],
@@ -102130,7 +102745,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/font.line-height.h2",
-                "line": 434
+                "line": 500
               }
             }
           ],
@@ -102228,7 +102843,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/font.line-height.h3",
-                "line": 435
+                "line": 501
               }
             }
           ],
@@ -102326,7 +102941,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/font.line-height.reading",
-                "line": 430
+                "line": 496
               }
             }
           ],
@@ -102424,7 +103039,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/font.line-height.terminal",
-                "line": 432
+                "line": 498
               }
             }
           ],
@@ -102522,7 +103137,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/font.line-height.ui-lg",
-                "line": 429
+                "line": 495
               }
             }
           ],
@@ -102620,7 +103235,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/font.line-height.ui-md",
-                "line": 428
+                "line": 494
               }
             }
           ],
@@ -102749,7 +103364,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/font.line-height.ui-sm",
-                "line": 427
+                "line": 493
               }
             }
           ],
@@ -102878,7 +103493,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/font.size.caption",
-                "line": 426
+                "line": 492
               }
             }
           ],
@@ -102967,7 +103582,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/font.size.code",
-                "line": 421
+                "line": 487
               }
             }
           ],
@@ -103081,7 +103696,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/font.size.h1",
-                "line": 423
+                "line": 489
               }
             }
           ],
@@ -103179,7 +103794,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/font.size.h2",
-                "line": 424
+                "line": 490
               }
             }
           ],
@@ -103293,7 +103908,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/font.size.h3",
-                "line": 425
+                "line": 491
               }
             }
           ],
@@ -103382,7 +103997,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/font.size.reading",
-                "line": 420
+                "line": 486
               }
             }
           ],
@@ -103487,7 +104102,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/font.size.terminal",
-                "line": 422
+                "line": 488
               }
             }
           ],
@@ -103601,7 +104216,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/font.size.ui-lg",
-                "line": 419
+                "line": 485
               }
             }
           ],
@@ -103699,7 +104314,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/font.size.ui-md",
-                "line": 418
+                "line": 484
               }
             }
           ],
@@ -103828,7 +104443,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/font.size.ui-sm",
-                "line": 417
+                "line": 483
               }
             }
           ],
@@ -103948,7 +104563,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/font.weight.bold",
-                "line": 416
+                "line": 482
               }
             }
           ],
@@ -104068,7 +104683,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/font.weight.regular",
-                "line": 415
+                "line": 481
               }
             }
           ],
@@ -104182,7 +104797,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/icon.size.lg",
-                "line": 466
+                "line": 532
               }
             }
           ],
@@ -104280,7 +104895,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/icon.size.md",
-                "line": 465
+                "line": 531
               }
             }
           ],
@@ -104409,7 +105024,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/icon.size.sm",
-                "line": 464
+                "line": 530
               }
             }
           ],
@@ -104507,7 +105122,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/icon.stroke",
-                "line": 467
+                "line": 533
               }
             }
           ],
@@ -104605,7 +105220,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/layout.app-max",
-                "line": 459
+                "line": 525
               }
             }
           ],
@@ -104703,7 +105318,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/layout.content-max",
-                "line": 458
+                "line": 524
               }
             }
           ],
@@ -104801,7 +105416,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/layout.measure",
-                "line": 457
+                "line": 523
               }
             }
           ],
@@ -104899,7 +105514,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/motion.duration.base",
-                "line": 454
+                "line": 520
               }
             }
           ],
@@ -104997,7 +105612,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/motion.duration.fast",
-                "line": 453
+                "line": 519
               }
             }
           ],
@@ -105095,7 +105710,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/motion.duration.slow",
-                "line": 455
+                "line": 521
               }
             }
           ],
@@ -105176,15 +105791,6 @@
                 "file": "ports/warp/mapping.json",
                 "pointer": "/unmapped/radius.none",
                 "line": 373
-              }
-            },
-            {
-              "port": "windows",
-              "reason": "Outside Windows visual adapter scope; preserve host semantics.",
-              "source": {
-                "file": "ports/windows/mapping.json",
-                "pointer": "/unmapped/radius.none",
-                "line": 414
               }
             }
           ],
@@ -105968,6 +106574,246 @@
                 "pointer": "/mappings/radius.none/28",
                 "line": 328
               }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Border#AcrylicBorder | CornerRadius",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/radius.none/0",
+                "line": 209
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Border#AcrylicOverlay | CornerRadius",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/radius.none/4",
+                "line": 213
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Border#dropshadow | CornerRadius",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/radius.none/3",
+                "line": 212
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Border#RightCompanionDropShadow | CornerRadius",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/radius.none/2",
+                "line": 211
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Border#StartDropShadow | CornerRadius",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/radius.none/1",
+                "line": 210
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Button > Grid@CommonStates > Border | CornerRadius",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/radius.none/8",
+                "line": 217
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Grid#CompanionRoot > Border#AcrylicBorder | CornerRadius",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/radius.none/6",
+                "line": 215
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Grid#CompanionRoot > Grid#MainContent > Border#AcrylicOverlay | CornerRadius",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/radius.none/7",
+                "line": 216
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Grid#DroppedFlickerWorkaroundWrapper > Border#BackgroundBorder | CornerRadius",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/radius.none/15",
+                "line": 224
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Grid#MainContent | CornerRadius",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/radius.none/5",
+                "line": 214
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | CornerRadius",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/radius.none/9",
+                "line": 218
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | StartDocked.SearchBoxToggleButton > Grid > Border#BorderElement | CornerRadius",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/radius.none/10",
+                "line": 219
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | StartMenu.CategoryControl > Grid > Border | CornerRadius",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/radius.none/13",
+                "line": 222
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | StartMenu.FolderModal > Grid > Border | CornerRadius",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/radius.none/14",
+                "line": 223
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | StartMenu.SearchBoxToggleButton > Grid > Border#BorderElement | CornerRadius",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/radius.none/11",
+                "line": 220
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "windows-11-start-menu-styler | StartMenu.StartBlendedFlexFrame | CornerRadius",
+              "port": "windows",
+              "source": {
+                "file": "ports/windows/mapping.json",
+                "pointer": "/mappings/radius.none/12",
+                "line": 221
+              }
             }
           ],
           "contrast": []
@@ -106066,7 +106912,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/shadow.floating",
-                "line": 456
+                "line": 522
               }
             }
           ],
@@ -106182,7 +107028,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/space.0",
-                "line": 402
+                "line": 470
               }
             }
           ],
@@ -106280,7 +107126,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/space.1",
-                "line": 403
+                "line": 471
               }
             }
           ],
@@ -106378,7 +107224,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/space.12",
-                "line": 407
+                "line": 475
               }
             }
           ],
@@ -106762,7 +107608,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/space.16",
-                "line": 408
+                "line": 476
               }
             }
           ],
@@ -106951,7 +107797,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/space.2",
-                "line": 404
+                "line": 472
               }
             }
           ],
@@ -107335,7 +108181,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/space.24",
-                "line": 409
+                "line": 477
               }
             }
           ],
@@ -107479,7 +108325,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/space.32",
-                "line": 410
+                "line": 478
               }
             }
           ],
@@ -107584,7 +108430,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/space.4",
-                "line": 405
+                "line": 473
               }
             }
           ],
@@ -107803,7 +108649,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/space.48",
-                "line": 411
+                "line": 479
               }
             }
           ],
@@ -107901,7 +108747,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/space.8",
-                "line": 406
+                "line": 474
               }
             }
           ],
@@ -108225,7 +109071,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/z.canvas",
-                "line": 468
+                "line": 534
               }
             }
           ],
@@ -108323,7 +109169,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/z.dialog",
-                "line": 472
+                "line": 538
               }
             }
           ],
@@ -108437,7 +109283,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/z.drawer",
-                "line": 471
+                "line": 537
               }
             }
           ],
@@ -108551,7 +109397,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/z.popover",
-                "line": 470
+                "line": 536
               }
             }
           ],
@@ -108665,7 +109511,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/z.raised",
-                "line": 469
+                "line": 535
               }
             }
           ],
@@ -108763,7 +109609,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/z.skip-link",
-                "line": 474
+                "line": 540
               }
             }
           ],
@@ -108861,7 +109707,7 @@
               "source": {
                 "file": "ports/windows/mapping.json",
                 "pointer": "/unmapped/z.toast",
-                "line": 473
+                "line": 539
               }
             }
           ],

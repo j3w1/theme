@@ -65,6 +65,14 @@ before resolving a conflict or interrupted installation.
 
 ## What changes
 
+Start uses opaque canonical surfaces, square panel/search/category corners,
+thin red outer frames and token-based hover/pressed button fills. Named text
+labels use SauceCodePro NFM at the existing size; symbol icons retain their font.
+Pinned apps, Recent, category view, phone integration, scrolling and native
+keyboard-focus/selection behavior are preserved. The phone panel receives the
+same frame/surface rules where its XAML controls expose them. See
+[compatibility and verification limits](COMPATIBILITY.md#start-menu-styling).
+
 - Dark mode, transparency off, red accent/borders, a generated black wallpaper,
   recoverable lock-screen image and 17 standard cursor roles in four DPI sizes.
   Cursor artwork is 35% smaller within those images, with a slim black pointer

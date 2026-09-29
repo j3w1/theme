@@ -111,7 +111,130 @@
         {
           "target": "Border#AcrylicBorder",
           "styles": {
-            "Background": "color.surface.default"
+            "Background": "color.surface.raised",
+            "BorderBrush": "color.border.overlay",
+            "BorderThickness": "border.width.default",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Border#StartDropShadow",
+          "styles": {
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Border#RightCompanionDropShadow",
+          "styles": {
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Border#dropshadow",
+          "styles": {
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Border#AcrylicOverlay",
+          "styles": {
+            "Background": "color.surface.chrome",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Grid#MainContent",
+          "styles": {
+            "Background": "color.surface.canvas",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Grid#CompanionRoot > Border#AcrylicBorder",
+          "styles": {
+            "Background": "color.surface.raised",
+            "BorderBrush": "color.border.overlay",
+            "BorderThickness": "border.width.default",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Grid#CompanionRoot > Grid#MainContent > Border#AcrylicOverlay",
+          "styles": {
+            "Background": "color.surface.chrome",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "TextBlock#DisplayName",
+          "styles": {
+            "FontFamily": "font.family.mono"
+          }
+        },
+        {
+          "target": "TextBlock#AppDisplayName",
+          "styles": {
+            "FontFamily": "font.family.mono"
+          }
+        },
+        {
+          "target": "TextBlock#PinnedListHeaderText",
+          "styles": {
+            "FontFamily": "font.family.mono"
+          }
+        },
+        {
+          "target": "TextBlock#AllListHeadingText",
+          "styles": {
+            "FontFamily": "font.family.mono"
+          }
+        },
+        {
+          "target": "TextBlock#UserTileNameText",
+          "styles": {
+            "FontFamily": "font.family.mono"
+          }
+        },
+        {
+          "target": "TextBlock#PlaceholderText",
+          "styles": {
+            "FontFamily": "font.family.mono"
+          }
+        },
+        {
+          "target": "TextBlock#RecommendedListHeaderText",
+          "styles": {
+            "FontFamily": "font.family.mono"
+          }
+        },
+        {
+          "target": "Button > Grid@CommonStates > Border",
+          "styles": {
+            "CornerRadius": "radius.none",
+            "BorderThickness": "border.width.default",
+            "BorderBrush@Normal": "color.border.control",
+            "Background@Normal": "color.surface.input",
+            "Background@PointerOver": "color.interaction.hover.bg",
+            "Background@Pressed": "color.interaction.pressed.bg",
+            "Background@Disabled": "color.interaction.disabled.bg",
+            "BorderBrush@PointerOver": "color.border.active",
+            "BorderBrush@Pressed": "color.border.active",
+            "BorderBrush@Disabled": "color.border.disabled"
+          }
+        },
+        {
+          "target": "Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates",
+          "styles": {
+            "CornerRadius": "radius.none",
+            "BorderThickness": "border.width.default",
+            "BorderBrush@Normal": "color.border.control",
+            "Background@Normal": "color.surface.input",
+            "Background@PointerOver": "color.interaction.hover.bg",
+            "Background@Pressed": "color.interaction.pressed.bg",
+            "Background@Disabled": "color.interaction.disabled.bg",
+            "BorderBrush@PointerOver": "color.border.active",
+            "BorderBrush@Pressed": "color.border.active",
+            "BorderBrush@Disabled": "color.border.disabled"
           }
         }
       ],
@@ -126,7 +249,10 @@
           {
             "target": "StartDocked.SearchBoxToggleButton > Grid > Border#BorderElement",
             "styles": {
-              "Background": "color.surface.input"
+              "Background": "color.surface.input",
+              "BorderBrush": "color.border.control",
+              "BorderThickness": "border.width.default",
+              "CornerRadius": "radius.none"
             }
           }
         ],
@@ -134,7 +260,40 @@
           {
             "target": "StartMenu.SearchBoxToggleButton > Grid > Border#BorderElement",
             "styles": {
-              "Background": "color.surface.input"
+              "Background": "color.surface.input",
+              "BorderBrush": "color.border.control",
+              "BorderThickness": "border.width.default",
+              "CornerRadius": "radius.none"
+            }
+          },
+          {
+            "target": "StartMenu.StartBlendedFlexFrame",
+            "styles": {
+              "CornerRadius": "radius.none"
+            }
+          },
+          {
+            "target": "StartMenu.CategoryControl > Grid > Border",
+            "styles": {
+              "Background": "color.surface.default",
+              "BorderBrush": "color.border.default",
+              "BorderThickness": "border.width.default",
+              "CornerRadius": "radius.none"
+            }
+          },
+          {
+            "target": "StartMenu.FolderModal > Grid > Border",
+            "styles": {
+              "Background": "color.surface.raised",
+              "BorderBrush": "color.border.overlay",
+              "BorderThickness": "border.width.default",
+              "CornerRadius": "radius.none"
+            }
+          },
+          {
+            "target": "Grid#DroppedFlickerWorkaroundWrapper > Border#BackgroundBorder",
+            "styles": {
+              "CornerRadius": "radius.none"
             }
           }
         ]
