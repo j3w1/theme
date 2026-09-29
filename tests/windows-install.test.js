@@ -56,6 +56,22 @@ test('missing recovery cache does not download or create a replacement',options,
  const f=fixture(t);write(path.join(f.state,'current.json'),{revision:f.first,mode:'Native'});
  const r=f.run('Restore');assert.notEqual(r.status,0);assert.match(r.stderr,/cache is unavailable/);assert.ok(!fs.existsSync(path.join(f.state,'releases')));
 });
+test('explicit fixed offline revision restores old journal without replacing old cache provenance',options,t=>{
+ const f=fixture(t),before=fs.readFileSync(f.terminal,'utf8');
+ f.ok('Apply',['-Revision',f.first]);
+ const oldMarker=path.join(f.state,'releases',f.first,'verified.json'),oldBytes=fs.readFileSync(oldMarker);
+ const second=f.commit();assert.notEqual(second,f.first);
+ assert.ok(!fs.existsSync(path.join(f.state,'releases',second)));
+ f.ok('Restore',['-Revision',second]);
+ assert.equal(fs.readFileSync(f.terminal,'utf8'),before);
+ assert.deepEqual(fs.readFileSync(oldMarker),oldBytes);
+ assert.equal(read(path.join(f.state,'releases',second,'verified.json')).revision,second);
+ const transactions=read(path.join(f.state,'journal.json')).transactions;
+ assert.equal(transactions.length,1);assert.equal(transactions[0].revision,f.first);
+ assert.equal(transactions[0].status,'restored');
+ assert.ok(!fs.existsSync(path.join(f.state,'current.json')));
+});
+
 for(const kind of ['unsafe','duplicate','digest'])test(`release preflight rejects ${kind} manifests without settings writes`,options,t=>{
  const f=fixture(t),p=path.join(f.source,'ports/windows/dist/install-manifest.json'),manifest=read(p);
  if(kind==='unsafe')manifest.files[0].path='dist/../../escape';

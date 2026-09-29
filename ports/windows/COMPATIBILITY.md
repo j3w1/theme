@@ -73,12 +73,25 @@ them to public issues or commit them. Only redacted outcomes belong in evidence.
    stale lock. Never remove a live process's lock.
 5. Cache digest failure blocks execution. Restore the exact retained release
    bytes from the same immutable revision; do not edit the digest manifest or
-   `verified.json` to bless changed bytes. Recovery performs no network fetch.
+   `verified.json` to bless changed bytes. Recovery performs no network fetch. If a defect in an older adapter prevents
+   its refresh or restore, a reviewed fixed revision can read the existing
+   journal through an explicit offline source:
+
+   ```powershell
+   & ./ports/windows/install.ps1 -Action Restore -SourceRoot . -Revision (git rev-parse HEAD)
+   ```
+
+   This validates the fixed release from immutable Git objects, retains the old
+   cache and journal history, and applies only the recorded restoration.
 
 Font receipts record pending ownership before files are installed. An interrupted
 installation resumes only when already written files still match its receipt.
-Unowned or changed destination fonts are conflicts. Theme restore retains
-installed shared tools and fonts; automatic dependency removal is unsupported.
+Unowned or changed destination fonts are conflicts. A compatible Node installation on the ordinary user/machine PATH is reused.
+Otherwise Apply downloads the pinned official executable, verifies its digest
+and publisher, and retains it under `tools/node` for sign-in and recovery.
+The existing PowerShell Store alias is preferred for startup when available,
+so an agent runtime cache or a version-specific Store package path is not needed.
+Theme restore retains installed shared tools and fonts; automatic dependency removal is unsupported.
 
 ## Required real-machine protocol before promotion
 

@@ -7,7 +7,7 @@ while the real-machine lifecycle and per-surface checks are in progress.
 
 ## Install
 
-Use native Windows 11 x64, PowerShell 7.4+ and Node 24+. Open PowerShell as the
+Use native Windows 11 x64 and PowerShell 7.4+. Plan also needs Node 24+. Open PowerShell as the
 intended desktop user. Plan reports proposed targets and shell compatibility
 without modifying settings or installing dependencies. Full mode requires the
 exact fingerprint documented in [compatibility and recovery](COMPATIBILITY.md).
@@ -28,8 +28,10 @@ $revision = git rev-parse HEAD
 Uncommitted edits are excluded. The offline route reads Git objects at that
 revision and validates every artifact. Missing dependencies still require
 network access unless their verified downloads already exist in the state
-directory. PowerShell and Node are prerequisites; missing versions produce an
-actionable error before any theme changes. Existing compatible applications and
+directory. PowerShell is a prerequisite. Apply retains an official pinned Node 24 runtime
+when no compatible Node installation is available on the ordinary user/machine
+PATH; it does not depend on an agent tool cache at sign-in. Standalone Plan
+requires Node to inspect settings. Existing compatible applications and
 fonts are reused. A missing font or Windhawk is fetched from its official pinned
 source and digest-checked; Windhawk also requires a valid publisher signature.
 

@@ -106,7 +106,7 @@ const file=(dest,from)=>ops.push({kind:'file',path:safe(dest),after:{exists:true
 const set=(p,keys,value)=>ops.push({kind:'json',path:safe(p),keys,after:{exists:true,value}});
 const member=(p,collection,key,value,item)=>ops.push({kind:'json',path:safe(p),keys:[],member:{collection,key,value},after:{exists:true,value:item}});
 if(args.mode==='Full'&&(!fixture||args.fixtureWindhawk)){
- const command=`"${args.pwsh}" -NoLogo -NoProfile -NonInteractive -WindowStyle Hidden -File "${path.join(source,'install.ps1')}" -Action Guard -StateRoot "${state}"`;
+ const command=`"${args.guardPwsh??args.pwsh}" -NoLogo -NoProfile -NonInteractive -WindowStyle Hidden -File "${path.join(source,'install.ps1')}" -Action Guard -StateRoot "${state}"`;
  reg('Software\\Microsoft\\Windows\\CurrentVersion\\Run','j3w1ThemeGuard',command,'String');
  ops.push({kind:'windhawk-setting',name:'disableUpdateCheck',after:{exists:true,value:true}});
 }

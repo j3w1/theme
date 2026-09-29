@@ -175,7 +175,7 @@ try{
  }
  Assert-SafePath $release
  if(-not(Test-Path -LiteralPath (Join-Path $release 'verified.json'))){
-  if($Action -in 'Restore','Uninstall','Guard','Test'){throw 'Installed release cache is unavailable; restore the saved cache before recovery. No network fetch is performed.'}
+  if($Action -in 'Restore','Uninstall','Guard','Test' -and -not ($Action -in 'Restore','Uninstall' -and $SourceRoot -and $PSBoundParameters.ContainsKey('Revision'))){throw 'Installed release cache is unavailable; restore the saved cache before recovery, or supply an exact offline SourceRoot and Revision. No network fetch is performed.'}
   [IO.Directory]::CreateDirectory($release)|Out-Null
   Get-PinnedFile 'ports/windows/dist/install-manifest.json' (Join-Path $release 'install-manifest.json')
   $manifest=Get-Content -LiteralPath (Join-Path $release 'install-manifest.json') -Raw|ConvertFrom-Json
@@ -195,11 +195,50 @@ try{
  $manifest=Get-Content -LiteralPath (Join-Path $release 'install-manifest.json') -Raw|ConvertFrom-Json
   Assert-ReleaseManifest $manifest
  foreach($entry in $manifest.files){$f=Join-Path $release $entry.path;Assert-SafePath $f;if((Get-FileHash -LiteralPath $f -Algorithm SHA256).Hash.ToLowerInvariant() -ne $entry.sha256){throw "Cached release changed: $($entry.path)"}}
+ $deps=Get-Content -LiteralPath (Join-Path $release 'dependencies.json') -Raw|ConvertFrom-Json
  $node=Get-Command node -ErrorAction SilentlyContinue
- if(-not $node){throw 'Node 24+ is required for lossless JSONC edits. Install OpenJS.NodeJS.LTS with WinGet, then rerun; no theme settings were changed.'}
+ $ownedNode=Join-Path $StateRoot "tools/node/$($deps.node.version)/node.exe"
+ Assert-SafePath $ownedNode
+ if(-not $Fixture){
+  # A process-injected tool cache may disappear and is absent from sign-in PATH.
+  # Reuse a compatible ordinary installation; otherwise retain a pinned runtime.
+  $ordinaryPath=@(([Environment]::GetEnvironmentVariable('Path','User') -split ';')+([Environment]::GetEnvironmentVariable('Path','Machine') -split ';'))
+  $ordinaryNode=$false
+  foreach($directory in $ordinaryPath){
+   if($directory -and [IO.Path]::IsPathFullyQualified([Environment]::ExpandEnvironmentVariables($directory))){
+    $candidate=Join-Path ([Environment]::ExpandEnvironmentVariables($directory)) 'node.exe'
+    if(Test-Path -LiteralPath $candidate -PathType Leaf){
+     $candidateVersion=& $candidate --version
+     if($LASTEXITCODE -eq 0 -and $candidateVersion -match '^v(\d+)\.' -and [int]$Matches[1] -ge 24){
+      $node=[pscustomobject]@{Source=$candidate};$ordinaryNode=$true;break
+     }
+    }
+   }
+  }
+  if(-not $ordinaryNode -and $Action -in 'Apply','Update'){
+   [IO.Directory]::CreateDirectory([IO.Path]::GetDirectoryName($ownedNode))|Out-Null
+   Get-VerifiedDownload $deps.node $ownedNode
+   $signature=Get-AuthenticodeSignature -LiteralPath $ownedNode
+   if($signature.Status -ne 'Valid' -or $signature.SignerCertificate.Subject -notlike "*$($deps.node.publisher)*"){throw 'Node runtime publisher verification failed'}
+  }
+  if(Test-Path -LiteralPath $ownedNode){
+   if((Get-FileHash -LiteralPath $ownedNode -Algorithm SHA256).Hash.ToLowerInvariant() -ne $deps.node.sha256){throw 'Retained Node runtime digest mismatch'}
+   $node=Get-Item -LiteralPath $ownedNode
+   $node=[pscustomobject]@{Source=$node.FullName}
+  }
+ }
+ if(-not $node){throw 'Node 24+ is required to inspect settings. Apply installs the pinned runtime when no compatible ordinary installation exists.'}
  if([int]((& $node.Source --version).TrimStart('v').Split('.')[0]) -lt 24){throw 'Node 24+ is required.'}
+ $guardPowerShell=(Get-Process -Id $PID).Path
+ if(-not $Fixture){
+  $alias=Join-Path $env:LOCALAPPDATA 'Microsoft/WindowsApps/pwsh.exe'
+  if(Test-Path -LiteralPath $alias){
+   $aliasVersion=& $alias -NoProfile -NonInteractive -Command '$PSVersionTable.PSVersion.ToString()'
+   if($LASTEXITCODE -eq 0 -and [version]$aliasVersion -ge [version]'7.4'){$guardPowerShell=$alias}
+  }
+ }
  if($FixtureFailAfter -and -not $Fixture){throw 'Failure injection is available only in isolated fixtures'}
- $request=@{failAfter=$FixtureFailAfter;source=$release;state=$StateRoot;action=$Action;mode=$Mode;revision=$Revision;latest=[bool]$Latest;pwsh=(Get-Process -Id $PID).Path;fixture=[bool]$Fixture}
+ $request=@{guardPwsh=$guardPowerShell;failAfter=$FixtureFailAfter;source=$release;state=$StateRoot;action=$Action;mode=$Mode;revision=$Revision;latest=[bool]$Latest;pwsh=(Get-Process -Id $PID).Path;fixture=[bool]$Fixture}
  if($Action -in 'Apply','Update'){
   $preflight=$request.Clone();$preflight.action='Plan'
   $report=$preflight|ConvertTo-Json -Compress|& $node.Source (Join-Path $release 'dist/runtime.cjs')

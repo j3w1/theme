@@ -65,12 +65,13 @@ using System;
 using System.Runtime.InteropServices;
 public static class J3w1Personalization {
  [DllImport("user32.dll",CharSet=CharSet.Unicode,SetLastError=true)] public static extern bool SystemParametersInfo(uint action,uint param,string value,uint flags);
+ [DllImport("user32.dll",EntryPoint="SystemParametersInfoW",SetLastError=true)] public static extern bool ReloadPointers(uint action,uint param,IntPtr value,uint flags);
  [DllImport("user32.dll",CharSet=CharSet.Unicode,SetLastError=true)] public static extern IntPtr SendMessageTimeout(IntPtr window,uint msg,UIntPtr wParam,string lParam,uint flags,uint timeout,out UIntPtr result);
 }
 '@
     $wallpaper=(Get-ItemProperty 'HKCU:\Control Panel\Desktop').Wallpaper
     if(-not [J3w1Personalization]::SystemParametersInfo(20,0,$wallpaper,3)){throw 'Wallpaper refresh failed'}
-    if(-not [J3w1Personalization]::SystemParametersInfo(87,0,$null,3)){throw 'Cursor refresh failed'}
+    if(-not [J3w1Personalization]::ReloadPointers(87,0,[IntPtr]::Zero,0)){throw ('Cursor refresh failed: Win32 '+[Runtime.InteropServices.Marshal]::GetLastWin32Error())}
     $result=[UIntPtr]::Zero
     [void][J3w1Personalization]::SendMessageTimeout([IntPtr]0xffff,0x1a,[UIntPtr]::Zero,'ImmersiveColorSet',2,2000,[ref]$result)
     @{ok=$true}|ConvertTo-Json -Compress
