@@ -47,11 +47,37 @@ installed theme pair was backed up and replaced; pair hashes matched and the
 appearance preferences were preserved. This observation does not certify all
 Obsidian states or the separate Windows shell stylers.
 
-Full live Apply/Update/Restore/Reapply, shell state inspection, sign-in guard
-execution and released-artifact reconciliation remain pending. Therefore the
-port remains experimental. Windows owns unsupported Win32 control foregrounds,
-arbitrary application title bars and accessibility cursor overrides. Command
-Palette offers a tint rather than independent control of every foreground.
+The native Full lifecycle subsequently passed: Apply made 97 managed changes,
+repeated Apply returned unchanged, and an explicit Update applied the compact
+cursor revision. Test passed before and after that update. Restore Latest
+returned to the prior revision and passed Test. Original Restore returned all
+eight tracked Terminal/PowerToys settings files to their byte-exact baselines;
+reapply of the compact cursor revision then passed Test. Unrelated JSON
+properties, existing layouts and assignments were preserved. A transient
+Windows file-sharing error on journal replacement interrupted one Restore;
+rerunning Restore completed recovery without changing cache digests or backups.
+Do not hold the journal open without delete sharing while a lifecycle writes it.
+
+The guard was invoked with the ordinary user/machine PATH through the installed
+PowerShell Store alias. It enabled the managed mods with no failures, using the
+retained digest- and publisher-verified Node executable. This is an invocation
+test of the sign-in command, not evidence from a new Windows sign-in.
+
+Computer Use observed black Settings surfaces and rose labels, the mode menu's
+selected state, and visible keyboard focus without changing the selections.
+The visible part of Start also had rose labels. This is bounded observation:
+full Start/taskbar/Explorer/notification/Quick Settings/PowerToys interaction-state
+coverage, native Terminal visual inspection, an actual sign-in, and released
+artifact reconciliation remain unverified. The port remains experimental.
+Windows owns unsupported Win32 foregrounds, native focus treatments, arbitrary
+application title bars and accessibility cursor overrides. Command Palette
+offers a tint rather than independent control of every foreground.
+
+The full hosted matrix, including browser shards, consumers, native installer
+fixtures, combined evidence and release gate, passed for implementation commit
+`4e02fc11dab26cf2cfbe0a0b1b19db8220510a75` in
+[the recorded workflow](https://github.com/j3w1/theme/actions/runs/36551129686).
+That does not certify the remaining native visual states.
 
 ## Recovery
 

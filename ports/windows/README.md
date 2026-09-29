@@ -3,7 +3,8 @@
 Black surfaces, rose ordinary text and compact black cursors with red outlines, generated from
 the canonical tokens. Content headings use near-white. Windhawk **2.0 alpha 6**
 is an explicitly pinned prerelease dependency. The port remains experimental
-while the real-machine lifecycle and per-surface checks are in progress.
+while the remaining per-surface visual checks are in progress. The native
+apply/update/restore/reapply lifecycle has passed on the documented host.
 
 ## Install
 
