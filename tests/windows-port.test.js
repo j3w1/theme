@@ -188,3 +188,22 @@ test('Start geometry and font values use XAML syntax without changing layout or 
  assert.throws(()=>windowsStyleValue('CornerRadius',{type:'dimension',resolved:{value:1,unit:'rem'}}),/pixel dimension/);
  assert.throws(()=>windowsStyleValue('FontFamily',{type:'number',resolved:1}),/font-family/);
 });
+
+test('notification styling preserves content, layout and native focus without nested frames',async()=>{
+ const payload=await readJson('ports/windows/dist/windows-11-notification-center-styler.json');
+ const styles=target=>payload.controlStyles.find(t=>t.target===target)?.styles??[];
+ for(const target of ['Grid#NotificationCenterGrid','Grid#CalendarCenterGrid','Grid#ControlCenterRegion']){
+  assert.ok(styles(target).includes('Background=#000000'));
+  assert.ok(styles(target).includes('CornerRadius=0'));
+  assert.ok(styles(target).includes('BorderThickness=1'));
+ }
+ for(const target of ['Border#ItemOpaquePlating','Border#ToastBackgroundBorder','Border#ToastBackgroundBorder2'])
+  assert.ok(!styles(target).some(s=>s.startsWith('Border')), 'cards must not acquire nested frames');
+ const calendar=styles('CalendarView');
+ assert.ok(calendar.includes('CalendarItemForeground=#e99499'));
+ assert.ok(calendar.includes('TodayForeground=#ffa2a7'));
+ for(const {target,styles:values} of payload.controlStyles)for(const value of values){
+  assert.doesNotMatch(value,/^(?:Visibility|Width|Height|MinWidth|MaxWidth|Margin|Padding|FontSize|Text|Glyph|Source|RenderTransform|FocusVisualPrimaryBrush|FocusVisualSecondaryBrush|SelectedDates|IsEnabled)=/);
+  if(value.startsWith('FontFamily='))assert.match(target,/TextBlock#/);
+ }
+});

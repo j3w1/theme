@@ -36,6 +36,16 @@ requires Node to inspect settings. Existing compatible applications and
 fonts are reused. A missing font or Windhawk is fetched from its official pinned
 source and digest-checked; Windhawk also requires a valid publisher signature.
 
+## Notification sidebar
+
+Full mode styles the notification/calendar outer frames with black surfaces,
+square corners and one thin red border. Notification cards use the near-black
+panel role; calendar chrome and the Focus section use the chrome role. Named
+header labels use the canonical monospace family without changing font sizes.
+The calendar's current day uses dark-red action colors with readable rose text.
+Notification contents, actions, grouping, calendar layout and Focus behavior
+remain native. Internal cards do not acquire additional rose frames.
+
 ## Update and test
 
 Updates are explicit. Use an exact release tag or full revision, and close

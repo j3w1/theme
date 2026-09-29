@@ -26,6 +26,11 @@
       "windhawk.resource.SolidBackgroundFillColorBase",
       "windows-11-start-menu-styler | Grid#MainContent | Background",
       "windows-11-start-menu-styler | StartDocked.StartSizingFrame | Background",
+      "windows-11-notification-center-styler | Grid#ControlCenterRegion | Background",
+      "windows-11-notification-center-styler | Grid#NotificationCenterGrid | Background",
+      "windows-11-notification-center-styler | Grid#CalendarCenterGrid | Background",
+      "windows-11-notification-center-styler | CalendarView | Background",
+      "windows-11-notification-center-styler | CalendarView | CalendarItemBackground",
       "windows-11-settings-styler | SystemSettings.View.RootPage | Background",
       "windows-11-settings-styler | Grid#RootPageGrid | Background"
     ],
@@ -41,7 +46,11 @@
       "windows-11-taskbar-styler | Rectangle#BackgroundFill | Fill",
       "windows-11-start-menu-styler | Border#AcrylicOverlay | Background",
       "windows-11-start-menu-styler | Grid#CompanionRoot > Grid#MainContent > Border#AcrylicOverlay | Background",
-      "windows-11-file-explorer-styler | Grid#RootGrid | Background"
+      "windows-11-file-explorer-styler | Grid#RootGrid | Background",
+      "windows-11-notification-center-styler | ScrollViewer#CalendarControlScrollViewer | Background",
+      "windows-11-notification-center-styler | Border#CalendarHeaderMinimizedOverlay | Background",
+      "windows-11-notification-center-styler | ActionCenter.FocusSessionControl#FocusSessionControl > Grid#FocusGrid | Background",
+      "windows-11-notification-center-styler | Grid#NotificationCenterTopBanner | Background"
     ],
     "color.text.default": [
       "native.foreground",
@@ -55,6 +64,7 @@
       "windows-11-file-explorer-styler | Control | Foreground",
       "windows-11-notification-center-styler | TextBlock | Foreground",
       "windows-11-notification-center-styler | Control | Foreground",
+      "windows-11-notification-center-styler | CalendarView | CalendarItemForeground",
       "windows-11-settings-styler | TextBlock | Foreground",
       "windows-11-settings-styler | Control | Foreground"
     ],
@@ -72,12 +82,14 @@
     "color.text.muted": [
       "native.muted",
       "windhawk.resource.TextFillColorSecondary",
-      "windhawk.resource.SystemControlForegroundBaseMediumBrush"
+      "windhawk.resource.SystemControlForegroundBaseMediumBrush",
+      "windows-11-notification-center-styler | CalendarView | OutOfScopeForeground"
     ],
     "color.text.disabled": [
       "native.disabled",
       "windhawk.resource.TextFillColorDisabled",
-      "windhawk.resource.SystemControlForegroundBaseLowBrush"
+      "windhawk.resource.SystemControlForegroundBaseLowBrush",
+      "windows-11-notification-center-styler | CalendarView | DisabledForeground"
     ],
     "color.interaction.selection.bg": [
       "native.selection"
@@ -107,7 +119,10 @@
       "windows-11-start-menu-styler | TextBlock#AllListHeadingText | FontFamily",
       "windows-11-start-menu-styler | TextBlock#UserTileNameText | FontFamily",
       "windows-11-start-menu-styler | TextBlock#PlaceholderText | FontFamily",
-      "windows-11-start-menu-styler | TextBlock#RecommendedListHeaderText | FontFamily"
+      "windows-11-start-menu-styler | TextBlock#RecommendedListHeaderText | FontFamily",
+      "windows-11-notification-center-styler | TextBlock#NotificationsTextBlock | FontFamily",
+      "windows-11-notification-center-styler | Grid#GroupTitleGrid > TextBlock#Title | FontFamily",
+      "windows-11-notification-center-styler | Grid#ToastTitleBar > TextBlock#SenderName | FontFamily"
     ],
     "color.terminal.ansi.0": [
       "terminal.ansi.0"
@@ -166,9 +181,10 @@
       "windhawk.resource.CardBackgroundFillColorDefault",
       "windows-11-start-menu-styler | StartMenu.CategoryControl > Grid > Border | Background",
       "windows-11-file-explorer-styler | Grid#NavigationBarControlGrid | Background",
-      "windows-11-notification-center-styler | Grid#ControlCenterRegion | Background",
-      "windows-11-notification-center-styler | Grid#NotificationCenterGrid | Background",
-      "windows-11-notification-center-styler | Border#AcrylicBorder | Background"
+      "windows-11-notification-center-styler | Border#AcrylicBorder | Background",
+      "windows-11-notification-center-styler | Border#ItemOpaquePlating | Background",
+      "windows-11-notification-center-styler | Border#ToastBackgroundBorder | Background",
+      "windows-11-notification-center-styler | Border#ToastBackgroundBorder2 | Background"
     ],
     "color.surface.input": [
       "windhawk.resource.ControlFillColorDefault",
@@ -191,15 +207,20 @@
       "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | Background@Pressed"
     ],
     "color.action.primary.bg": [
-      "windhawk.resource.AccentFillColorDefault"
+      "windhawk.resource.AccentFillColorDefault",
+      "windows-11-notification-center-styler | CalendarView | TodayBackground"
     ],
     "color.text.on-action": [
-      "windhawk.resource.TextOnAccentFillColorPrimary"
+      "windhawk.resource.TextOnAccentFillColorPrimary",
+      "windows-11-notification-center-styler | CalendarView | TodayForeground"
     ],
     "color.border.overlay": [
       "windows-11-start-menu-styler | Border#AcrylicBorder | BorderBrush",
       "windows-11-start-menu-styler | Grid#CompanionRoot > Border#AcrylicBorder | BorderBrush",
-      "windows-11-start-menu-styler | StartMenu.FolderModal > Grid > Border | BorderBrush"
+      "windows-11-start-menu-styler | StartMenu.FolderModal > Grid > Border | BorderBrush",
+      "windows-11-notification-center-styler | Grid#ControlCenterRegion | BorderBrush",
+      "windows-11-notification-center-styler | Grid#NotificationCenterGrid | BorderBrush",
+      "windows-11-notification-center-styler | Grid#CalendarCenterGrid | BorderBrush"
     ],
     "border.width.default": [
       "windows-11-start-menu-styler | Border#AcrylicBorder | BorderThickness",
@@ -210,7 +231,10 @@
       "windows-11-start-menu-styler | StartDocked.SearchBoxToggleButton > Grid > Border#BorderElement | BorderThickness",
       "windows-11-start-menu-styler | StartMenu.SearchBoxToggleButton > Grid > Border#BorderElement | BorderThickness",
       "windows-11-start-menu-styler | StartMenu.CategoryControl > Grid > Border | BorderThickness",
-      "windows-11-start-menu-styler | StartMenu.FolderModal > Grid > Border | BorderThickness"
+      "windows-11-start-menu-styler | StartMenu.FolderModal > Grid > Border | BorderThickness",
+      "windows-11-notification-center-styler | Grid#ControlCenterRegion | BorderThickness",
+      "windows-11-notification-center-styler | Grid#NotificationCenterGrid | BorderThickness",
+      "windows-11-notification-center-styler | Grid#CalendarCenterGrid | BorderThickness"
     ],
     "radius.none": [
       "windows-11-start-menu-styler | Border#AcrylicBorder | CornerRadius",
@@ -232,7 +256,26 @@
       "windows-11-start-menu-styler | Grid#DroppedFlickerWorkaroundWrapper > Border#BackgroundBorder | CornerRadius",
       "windows-11-start-menu-styler | Button#LogoContainer > Grid@CommonStates > Border | CornerRadius",
       "windows-11-start-menu-styler | Button#FolderPlate > Grid@CommonStates > Border | CornerRadius",
-      "windows-11-start-menu-styler | Button#Header > Grid@CommonStates > Border | CornerRadius"
+      "windows-11-start-menu-styler | Button#Header > Grid@CommonStates > Border | CornerRadius",
+      "windows-11-notification-center-styler | Grid#ControlCenterRegion | CornerRadius",
+      "windows-11-notification-center-styler | Grid#NotificationCenterGrid | CornerRadius",
+      "windows-11-notification-center-styler | Grid#CalendarCenterGrid | CornerRadius",
+      "windows-11-notification-center-styler | ScrollViewer#CalendarControlScrollViewer | CornerRadius",
+      "windows-11-notification-center-styler | Border#CalendarHeaderMinimizedOverlay | CornerRadius",
+      "windows-11-notification-center-styler | ActionCenter.FocusSessionControl#FocusSessionControl > Grid#FocusGrid | CornerRadius",
+      "windows-11-notification-center-styler | Grid#NotificationCenterTopBanner | CornerRadius",
+      "windows-11-notification-center-styler | Border#ItemOpaquePlating | CornerRadius",
+      "windows-11-notification-center-styler | Border#ToastBackgroundBorder | CornerRadius",
+      "windows-11-notification-center-styler | Border#ToastBackgroundBorder2 | CornerRadius",
+      "windows-11-notification-center-styler | ActionCenter.FlexibleItemView | CornerRadius",
+      "windows-11-notification-center-styler | CalendarViewDayItem | CornerRadius",
+      "windows-11-notification-center-styler | CalendarViewDayItem > Border | CornerRadius",
+      "windows-11-notification-center-styler | Windows.UI.Xaml.Controls.Primitives.CalendarViewItem | CornerRadius",
+      "windows-11-notification-center-styler | Button#ClearAll | CornerRadius",
+      "windows-11-notification-center-styler | Button#ExpandCollapseButton | CornerRadius",
+      "windows-11-notification-center-styler | Button#IncreaseTimeButton | CornerRadius",
+      "windows-11-notification-center-styler | Button#DecreaseTimeButton | CornerRadius",
+      "windows-11-notification-center-styler | Button#StartButton | CornerRadius"
     ],
     "color.interaction.disabled.bg": [
       "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | Background@Disabled",
@@ -246,6 +289,12 @@
     ],
     "color.border.default": [
       "windows-11-start-menu-styler | StartMenu.CategoryControl > Grid > Border | BorderBrush"
+    ],
+    "color.action.primary.hover-bg": [
+      "windows-11-notification-center-styler | CalendarView | TodayHoverBackground"
+    ],
+    "color.action.primary.pressed-bg": [
+      "windows-11-notification-center-styler | CalendarView | TodayPressedBackground"
     ]
   },
   "unmapped": {
@@ -364,8 +413,6 @@
     "color.interaction.scrollbar.thumb": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.interaction.scrollbar.thumb-hover": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.action.primary.text": "Outside Windows visual adapter scope; preserve host semantics.",
-    "color.action.primary.hover-bg": "Outside Windows visual adapter scope; preserve host semantics.",
-    "color.action.primary.pressed-bg": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.action.primary.border": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.action.secondary.bg": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.action.secondary.text": "Outside Windows visual adapter scope; preserve host semantics.",

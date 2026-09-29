@@ -173,3 +173,19 @@ shell surface in normal, hover, selected, disabled and keyboard-focus states.
 Check supported cursor shapes and sizes without changing accessibility settings.
 Record the sign-in guard and final installed release reconciliation separately.
 Configuration readback alone must never promote the port to verified.
+
+## Notification sidebar mapping
+
+The notification/calendar/Quick Settings outer grids use black surfaces,
+square corners and one token-based 1px red frame. Named notification plating
+and toast backgrounds use near-black panels without added inner borders.
+Calendar chrome and the Focus section use the chrome surface; day geometry
+and named action corners are squared without changing sizes or visibility.
+CalendarView brushes map ordinary/muted/disabled text and current-day
+normal/hover/pressed colors separately. Selection and keyboard focus remain
+host-owned. Monospace rules target named text labels, never icon fonts.
+
+Selectors are drawn from the pinned Notification Center Styler source;
+CalendarView brush properties use the Windows XAML API. Import/readback and
+native visual checks are separate gates. No notification dismissal, expansion,
+Focus activation or setting change is required to inspect this treatment.

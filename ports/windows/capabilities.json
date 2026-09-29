@@ -725,14 +725,14 @@
       "reason": "Outside Windows visual adapter scope; preserve host semantics."
     },
     "color.action.primary.hover-bg": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Canonical semantic role mapped to generated shell XAML styling; native observation determines matched surfaces."
     },
     "color.action.primary.pressed-bg": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Canonical semantic role mapped to generated shell XAML styling; native observation determines matched surfaces."
     },
     "color.action.primary.border": {
       "state": "unsupported",

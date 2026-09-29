@@ -379,19 +379,169 @@
         {
           "target": "Grid#ControlCenterRegion",
           "styles": {
-            "Background": "color.surface.default"
+            "Background": "color.surface.canvas",
+            "BorderBrush": "color.border.overlay",
+            "BorderThickness": "border.width.default",
+            "CornerRadius": "radius.none"
           }
         },
         {
           "target": "Grid#NotificationCenterGrid",
           "styles": {
-            "Background": "color.surface.default"
+            "Background": "color.surface.canvas",
+            "BorderBrush": "color.border.overlay",
+            "BorderThickness": "border.width.default",
+            "CornerRadius": "radius.none"
           }
         },
         {
           "target": "Border#AcrylicBorder",
           "styles": {
             "Background": "color.surface.default"
+          }
+        },
+        {
+          "target": "Grid#CalendarCenterGrid",
+          "styles": {
+            "Background": "color.surface.canvas",
+            "BorderBrush": "color.border.overlay",
+            "BorderThickness": "border.width.default",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "ScrollViewer#CalendarControlScrollViewer",
+          "styles": {
+            "Background": "color.surface.chrome",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Border#CalendarHeaderMinimizedOverlay",
+          "styles": {
+            "Background": "color.surface.chrome",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "ActionCenter.FocusSessionControl#FocusSessionControl > Grid#FocusGrid",
+          "styles": {
+            "Background": "color.surface.chrome",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Grid#NotificationCenterTopBanner",
+          "styles": {
+            "Background": "color.surface.chrome",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Border#ItemOpaquePlating",
+          "styles": {
+            "Background": "color.surface.default",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Border#ToastBackgroundBorder",
+          "styles": {
+            "Background": "color.surface.default",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Border#ToastBackgroundBorder2",
+          "styles": {
+            "Background": "color.surface.default",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "ActionCenter.FlexibleItemView",
+          "styles": {
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "CalendarViewDayItem",
+          "styles": {
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "CalendarViewDayItem > Border",
+          "styles": {
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Windows.UI.Xaml.Controls.Primitives.CalendarViewItem",
+          "styles": {
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Button#ClearAll",
+          "styles": {
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Button#ExpandCollapseButton",
+          "styles": {
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Button#IncreaseTimeButton",
+          "styles": {
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Button#DecreaseTimeButton",
+          "styles": {
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Button#StartButton",
+          "styles": {
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "TextBlock#NotificationsTextBlock",
+          "styles": {
+            "FontFamily": "font.family.mono"
+          }
+        },
+        {
+          "target": "Grid#GroupTitleGrid > TextBlock#Title",
+          "styles": {
+            "FontFamily": "font.family.mono"
+          }
+        },
+        {
+          "target": "Grid#ToastTitleBar > TextBlock#SenderName",
+          "styles": {
+            "FontFamily": "font.family.mono"
+          }
+        },
+        {
+          "target": "CalendarView",
+          "styles": {
+            "Background": "color.surface.canvas",
+            "CalendarItemBackground": "color.surface.canvas",
+            "CalendarItemForeground": "color.text.default",
+            "OutOfScopeForeground": "color.text.muted",
+            "DisabledForeground": "color.text.disabled",
+            "TodayBackground": "color.action.primary.bg",
+            "TodayForeground": "color.text.on-action",
+            "TodayHoverBackground": "color.action.primary.hover-bg",
+            "TodayPressedBackground": "color.action.primary.pressed-bg"
           }
         }
       ]
