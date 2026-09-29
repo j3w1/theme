@@ -246,6 +246,7 @@ test('preview adapter is pinned and journaled; taskbar edge uses the canonical d
  assert.match(bytes.toString(),/7e8f2bfb81aa6498bd2d236c3eae54c8e42633cf288f9299df62d2537b553bac/);
  f.ok('Apply',f.args);f.ok('Test',f.args);
  assert.equal(f.db()['local@j3w1-powertoys-preview'].config.disabled,false);
+ assert.equal(f.db()['local@j3w1-powertoys-preview'].settings.enabled,'1');
  f.ok('Restore',f.args);assert.equal(f.db()['local@j3w1-powertoys-preview'],undefined);
  fs.appendFileSync(file,'// corrupt source');
  assert.match(f.run('Apply',f.args).stderr,/Missing verified mod source/);

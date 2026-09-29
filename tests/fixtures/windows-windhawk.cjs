@@ -15,7 +15,7 @@ else if(args[0]==='data'){
  else if(!db[id])missing();
  else if(action==='show'){const {settings,...shown}=db[id];done(shown);}
  else if(action==='settings'){
-  if(args[2]==='set')for(const pair of args.slice(4)){const i=pair.indexOf('=');db[id].settings[pair.slice(0,i)]=pair.slice(i+1);}
+  if(args[2]==='set')for(const pair of args.slice(4)){const i=pair.indexOf('=');const value=pair.slice(i+1);db[id].settings[pair.slice(0,i)]=value==='true'?'1':value==='false'?'0':value;}
   done({id,settings:db[id].settings});
  }else if(action==='enable'||action==='disable'){db[id].config.disabled=action==='disable';done({id});}
  else if(action==='remove'){delete db[id];done({id});}
