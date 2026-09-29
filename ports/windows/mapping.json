@@ -32,7 +32,11 @@
       "windows-11-notification-center-styler | CalendarView | Background",
       "windows-11-notification-center-styler | CalendarView | CalendarItemBackground",
       "windows-11-settings-styler | SystemSettings.View.RootPage | Background",
-      "windows-11-settings-styler | Grid#RootPageGrid | Background"
+      "windows-11-settings-styler | Grid#RootPageGrid | Background",
+      "windows-11-file-explorer-styler | Grid#HomeViewRootGrid | Background",
+      "windows-11-file-explorer-styler | FileExplorerExtensions.GalleryViewControl#GalleryViewControl > Grid | Background",
+      "windows-11-file-explorer-styler | Grid#GalleryRootGrid | Background",
+      "windows-11-file-explorer-styler | Grid#DetailsViewControlRootGrid | Background"
     ],
     "color.terminal.cursor": [
       "terminal.cursor"
@@ -50,7 +54,10 @@
       "windows-11-notification-center-styler | ScrollViewer#CalendarControlScrollViewer | Background",
       "windows-11-notification-center-styler | Border#CalendarHeaderMinimizedOverlay | Background",
       "windows-11-notification-center-styler | ActionCenter.FocusSessionControl#FocusSessionControl > Grid#FocusGrid | Background",
-      "windows-11-notification-center-styler | Grid#NotificationCenterTopBanner | Background"
+      "windows-11-notification-center-styler | Grid#NotificationCenterTopBanner | Background",
+      "windows-11-file-explorer-styler | FileExplorerExtensions.CommandBarControl_Wave1 > Grid | Background",
+      "windows-11-file-explorer-styler | Grid#CommandBarControlRootGrid | Background",
+      "windows-11-file-explorer-styler | CommandBar#FileExplorerCommandBar | Background"
     ],
     "color.text.default": [
       "native.foreground",

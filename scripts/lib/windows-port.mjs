@@ -106,6 +106,13 @@ export function windowsArtifacts({manifest,host,resolved}){
  for(const mod of host.stylers){
   const controlStyles=targets(mod.targets);
   const payload={theme:'',controlStyles,themeResourceVariables:Object.entries(host.resources).map(([key,role])=>`${key}=${val(role)}`)};
+  if(mod.backgroundEffect!==undefined){
+   // The pinned Explorer adapter uses BLACK_BRUSH for the extended native
+   // client area when its backdrop is disabled. Fail if that ceases to match.
+   if(mod.id!=='windows-11-file-explorer-styler'||mod.backgroundEffect!=='none'||val('color.surface.canvas')!=='#000000')throw Error('Unsupported Windows whole-window background mapping');
+   payload.backgroundTranslucentEffect='none';
+   payload.backgroundTranslucentEffectRegion='';
+  }
   json(`${mod.id}.json`,payload);
  }
  artifacts.push({path:'dist/j3w1-wallpaper.bmp',bytes:wallpaperBmp(val('color.surface.desktop'))});

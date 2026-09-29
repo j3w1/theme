@@ -37749,7 +37749,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-3vdaPw/daZpyh9q6qzXtifLM/4+YobSsVqFIMRoj68k=",
+      "subjectDigest": "sha256-oi/Nrpqy3tB77WrixT5Hc5yO0JDY0UU9chaVVaEraIQ=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37818,7 +37818,7 @@
           "path": "dist/windows-11-file-explorer-styler.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-11-file-explorer-styler.json",
-          "digest": "sha256-12tGEWqUL9FAcUzOeZ4vnDGg93jXYZk6FwVry4/hyEw="
+          "digest": "sha256-fMlipvpvfj8ENdAQG199PXrv4VtcNYbtCEUGb2rQvV0="
         },
         {
           "path": "dist/windows-11-notification-center-styler.json",
@@ -37956,7 +37956,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-fjs1u6fRRMIMfPqbH67NQ9JwGPANWV0gYT/juR3UWqE="
+          "digest": "sha256-GsdjgGOH1b8UbwRPvDLi1qaGdDegI0Qoi+3dUKC5fps="
         }
       ],
       "rollback": "Run install.ps1 -Action Restore for original settings, or add -Latest for the previous transaction; Uninstall also removes owned theme assets.",
@@ -41460,7 +41460,11 @@
             "windows-11-notification-center-styler | CalendarView | Background",
             "windows-11-notification-center-styler | CalendarView | CalendarItemBackground",
             "windows-11-settings-styler | SystemSettings.View.RootPage | Background",
-            "windows-11-settings-styler | Grid#RootPageGrid | Background"
+            "windows-11-settings-styler | Grid#RootPageGrid | Background",
+            "windows-11-file-explorer-styler | Grid#HomeViewRootGrid | Background",
+            "windows-11-file-explorer-styler | FileExplorerExtensions.GalleryViewControl#GalleryViewControl > Grid | Background",
+            "windows-11-file-explorer-styler | Grid#GalleryRootGrid | Background",
+            "windows-11-file-explorer-styler | Grid#DetailsViewControlRootGrid | Background"
           ],
           "value": "#000000",
           "eligibility": {
@@ -41486,7 +41490,10 @@
             "windows-11-notification-center-styler | ScrollViewer#CalendarControlScrollViewer | Background",
             "windows-11-notification-center-styler | Border#CalendarHeaderMinimizedOverlay | Background",
             "windows-11-notification-center-styler | ActionCenter.FocusSessionControl#FocusSessionControl > Grid#FocusGrid | Background",
-            "windows-11-notification-center-styler | Grid#NotificationCenterTopBanner | Background"
+            "windows-11-notification-center-styler | Grid#NotificationCenterTopBanner | Background",
+            "windows-11-file-explorer-styler | FileExplorerExtensions.CommandBarControl_Wave1 > Grid | Background",
+            "windows-11-file-explorer-styler | Grid#CommandBarControlRootGrid | Background",
+            "windows-11-file-explorer-styler | CommandBar#FileExplorerCommandBar | Background"
           ],
           "value": "#090707",
           "eligibility": {

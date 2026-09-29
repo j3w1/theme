@@ -207,3 +207,11 @@ test('notification styling preserves content, layout and native focus without ne
   if(value.startsWith('FontFamily='))assert.match(target,/TextBlock#/);
  }
 });
+
+test('Explorer disables the backdrop across its whole window without enabling a third-party theme',async()=>{
+ const payload=await readJson('ports/windows/dist/windows-11-file-explorer-styler.json');
+ assert.equal(payload.theme,'');
+ assert.equal(payload.backgroundTranslucentEffect,'none');
+ assert.equal(payload.backgroundTranslucentEffectRegion,'');
+ assert.ok(payload.controlStyles.find(t=>t.target==='Grid#HomeViewRootGrid').styles.includes('Background=#000000'));
+});

@@ -24,6 +24,48 @@
       "styles": [
         "Background=#100c0c"
       ]
+    },
+    {
+      "target": "FileExplorerExtensions.CommandBarControl_Wave1 > Grid",
+      "styles": [
+        "Background=#090707"
+      ]
+    },
+    {
+      "target": "Grid#CommandBarControlRootGrid",
+      "styles": [
+        "Background=#090707"
+      ]
+    },
+    {
+      "target": "CommandBar#FileExplorerCommandBar",
+      "styles": [
+        "Background=#090707"
+      ]
+    },
+    {
+      "target": "Grid#HomeViewRootGrid",
+      "styles": [
+        "Background=#000000"
+      ]
+    },
+    {
+      "target": "FileExplorerExtensions.GalleryViewControl#GalleryViewControl > Grid",
+      "styles": [
+        "Background=#000000"
+      ]
+    },
+    {
+      "target": "Grid#GalleryRootGrid",
+      "styles": [
+        "Background=#000000"
+      ]
+    },
+    {
+      "target": "Grid#DetailsViewControlRootGrid",
+      "styles": [
+        "Background=#000000"
+      ]
     }
   ],
   "themeResourceVariables": [
@@ -49,5 +91,7 @@
     "TextOnAccentFillColorPrimary=#ffa2a7",
     "SystemAccentColor=#e53935",
     "SystemControlHighlightAccentBrush=#e53935"
-  ]
+  ],
+  "backgroundTranslucentEffect": "none",
+  "backgroundTranslucentEffectRegion": ""
 }

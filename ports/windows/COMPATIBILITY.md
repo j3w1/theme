@@ -189,3 +189,18 @@ Selectors are drawn from the pinned Notification Center Styler source;
 CalendarView brush properties use the Windows XAML API. Import/readback and
 native visual checks are separate gates. No notification dismissal, expansion,
 Focus activation or setting change is required to inspect this treatment.
+
+## Explorer whole-window background
+
+The pinned Explorer Styler's background effect is explicitly `none`, with the
+effect region set to its documented entire-window default. Its native drawing
+adapter uses a black brush behind supported GDI client surfaces when the DWM
+backdrop is disabled. Generation requires the canonical canvas to remain black
+for this host substitution. Named command, Home, Gallery and details XAML
+surfaces also receive canonical backgrounds. Native file-list/tree text is
+not recolored by these XAML rules. Import/readback does not prove whole-window
+visual coverage; the native result must be observed on the exact host.
+
+Task Manager, third-party application bodies and arbitrary classic dialogs
+have no dedicated adapter in this port. Native dark mode and accent are only
+partial treatment there. No universal Windows-wide visual match is claimed.

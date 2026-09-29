@@ -358,8 +358,51 @@
           "styles": {
             "Background": "color.surface.default"
           }
+        },
+        {
+          "target": "FileExplorerExtensions.CommandBarControl_Wave1 > Grid",
+          "styles": {
+            "Background": "color.surface.chrome"
+          }
+        },
+        {
+          "target": "Grid#CommandBarControlRootGrid",
+          "styles": {
+            "Background": "color.surface.chrome"
+          }
+        },
+        {
+          "target": "CommandBar#FileExplorerCommandBar",
+          "styles": {
+            "Background": "color.surface.chrome"
+          }
+        },
+        {
+          "target": "Grid#HomeViewRootGrid",
+          "styles": {
+            "Background": "color.surface.canvas"
+          }
+        },
+        {
+          "target": "FileExplorerExtensions.GalleryViewControl#GalleryViewControl > Grid",
+          "styles": {
+            "Background": "color.surface.canvas"
+          }
+        },
+        {
+          "target": "Grid#GalleryRootGrid",
+          "styles": {
+            "Background": "color.surface.canvas"
+          }
+        },
+        {
+          "target": "Grid#DetailsViewControlRootGrid",
+          "styles": {
+            "Background": "color.surface.canvas"
+          }
         }
-      ]
+      ],
+      "backgroundEffect": "none"
     },
     {
       "id": "windows-11-notification-center-styler",
