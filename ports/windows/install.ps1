@@ -16,6 +16,7 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference='Stop'
 if(-not $IsWindows -and -not $Fixture){throw 'Run this installer on native Windows.'}
 if($PSVersionTable.PSVersion -lt [version]'7.4'){throw 'PowerShell 7.4+ is required.'}
+if(-not $Fixture -and (Get-Process -Id $PID).Path -match '\\WindowsApps\\'){throw 'Packaged PowerShell registry views are unsupported. Run setup.ps1 from Windows PowerShell to use a verified standalone runtime.'}
 function Assert-SafePath([string]$Path){
  $p=[IO.Path]::GetFullPath($Path)
  while($p){if(Test-Path -LiteralPath $p){if((Get-Item -LiteralPath $p -Force).Attributes -band [IO.FileAttributes]::ReparsePoint){throw "Reparse target refused: $p"}};$parent=[IO.Path]::GetDirectoryName($p);if($parent -eq $p){break};$p=$parent}
@@ -231,13 +232,7 @@ try{
  if(-not $node){throw 'Node 24+ is required to inspect settings. Apply installs the pinned runtime when no compatible ordinary installation exists.'}
  if([int]((& $node.Source --version).TrimStart('v').Split('.')[0]) -lt 24){throw 'Node 24+ is required.'}
  $guardPowerShell=(Get-Process -Id $PID).Path
- if(-not $Fixture){
-  $alias=Join-Path $env:LOCALAPPDATA 'Microsoft/WindowsApps/pwsh.exe'
-  if(Test-Path -LiteralPath $alias){
-   $aliasVersion=& $alias -NoProfile -NonInteractive -Command '$PSVersionTable.PSVersion.ToString()'
-   if($LASTEXITCODE -eq 0 -and [version]$aliasVersion -ge [version]'7.4'){$guardPowerShell=$alias}
-  }
- }
+ # Keep Guard on the same unpackaged runtime as installation and recovery.
  if($FixtureFailAfter -and -not $Fixture){throw 'Failure injection is available only in isolated fixtures'}
  $request=@{guardPwsh=$guardPowerShell;failAfter=$FixtureFailAfter;source=$release;state=$StateRoot;action=$Action;mode=$Mode;revision=$Revision;latest=[bool]$Latest;pwsh=(Get-Process -Id $PID).Path;fixture=[bool]$Fixture}
  if($Action -in 'Apply','Update'){

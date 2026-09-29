@@ -37749,7 +37749,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-YRH/fpXDav7kDibFuPXhzGlGfxYAZEYMwh2xM4yl4Zc=",
+      "subjectDigest": "sha256-a9IXyd3yZhHx3WfGXSy7JiK6yTUgGilTTOvEan+qQZE=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37956,7 +37956,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-uy08jNEnQYDeOFBAFBeB0ZVEXAsINkenUa6n8vbFYEQ="
+          "digest": "sha256-QwqktIhnKAu8EDLVLWqFi8f3M8Pyth311Pzwkdido1Y="
         }
       ],
       "rollback": "Run install.ps1 -Action Restore for original settings, or add -Latest for the previous transaction; Uninstall also removes owned theme assets.",

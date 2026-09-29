@@ -16,7 +16,7 @@ Install commands appear here once v4.0.0 is released.
 <!-- install:end -->
 
 No Git, manual Node install or preinstalled PowerShell 7 is needed. Setup reuses
-PowerShell 7.4+ when available; otherwise it retains a pinned, hash-checked and
+an unpackaged PowerShell 7.4+ installation under Program Files when available; otherwise it retains a pinned, hash-checked and
 Microsoft-signed runtime for this user. It does not change system execution
 policy or require you to elevate the whole installation. Managed-device policy
 can still prevent execution; use your administrator's approved process.

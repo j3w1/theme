@@ -52,10 +52,9 @@ function Resolve-J3w1SetupRevision([string]$Revision,[string]$Version) {
  return $Revision
 }
 function Find-J3w1SetupPowerShell {
- $candidates=@()
- if($PSVersionTable.PSVersion -ge [version]'7.4'){$candidates+=Join-Path $PSHOME 'pwsh.exe'}
- $candidates+=Join-Path $env:ProgramFiles 'PowerShell\7\pwsh.exe'
- $candidates+=Join-Path $env:LOCALAPPDATA 'Microsoft\WindowsApps\pwsh.exe'
+ # Store PowerShell can expose a different registry view. Use the ordinary
+ # system install, otherwise the verified private runtime retained by setup.
+ $candidates=@(Join-Path $env:ProgramFiles 'PowerShell\7\pwsh.exe')
  foreach($candidate in ($candidates|Select-Object -Unique)){
   if(Test-Path -LiteralPath $candidate -PathType Leaf){
    $reported=& $candidate -NoProfile -NonInteractive -Command '$PSVersionTable.PSVersion.ToString()'

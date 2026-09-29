@@ -115,8 +115,9 @@ installation resumes only when already written files still match its receipt.
 Unowned or changed destination fonts are conflicts. A compatible Node installation on the ordinary user/machine PATH is reused.
 Otherwise Apply downloads the pinned official executable, verifies its digest
 and publisher, and retains it under `tools/node` for sign-in and recovery.
-The existing PowerShell Store alias is preferred for startup when available,
-so an agent runtime cache or a version-specific Store package path is not needed.
+Setup uses an ordinary unpackaged PowerShell installation or its own pinned
+private runtime. The sign-in guard uses that same runtime. Microsoft Store
+PowerShell is excluded because its registry view differed during native checks.
 Theme restore retains installed shared tools and fonts; automatic dependency removal is unsupported.
 
 ## Start-menu styling
@@ -212,7 +213,7 @@ partial treatment there. No universal Windows-wide visual match is claimed.
 Windows 11 x64, TLS HTTPS access to GitHub and the pinned dependency publishers,
 and an explicit release tag or full commit. Tags resolve once to an immutable
 commit. Setup verifies the install script and dependency metadata against that
-commit's manifest before running them. It reuses compatible PowerShell or
+commit's manifest before running them. It reuses compatible unpackaged PowerShell under Program Files or
 retains the official pinned ZIP after digest and Microsoft publisher checks.
 Retained PowerShell files are verified against the pinned archive on reuse.
 ZIP entries are bounded and reject traversal, duplicate paths and symlinks.
@@ -240,7 +241,7 @@ only after checking its recorded process has ended, like the lifecycle locks.
 
 ## Developer and offline installation
 
-From an immutable checkout, with PowerShell 7.4+ and Node 24+ available:
+From an immutable checkout, with unpackaged PowerShell 7.4+ and Node 24+ available:
 
 ```powershell
 $revision = git rev-parse HEAD
@@ -297,3 +298,15 @@ it was stopped before theme mutation. Connection success is not a complete
 download. Hash validation must succeed before a release is marked verified.
 The documented immutable source-checkout route remains available when release
 downloads cannot complete; no cache digest or safety check is bypassed.
+
+
+### Runtime registry boundary
+
+A native bootstrap attempt using the PowerShell Store alias stopped on the
+managed startup-guard conflict before mutation. Read-only comparison found the
+existing guard through standalone PowerShell but not through the Store runtime.
+Setup therefore selects the ordinary Program Files installation or retains its
+pinned private runtime; installation and sign-in Guard use the same runtime.
+Direct lifecycle execution from a packaged WindowsApps runtime is refused with
+instructions to use setup. Earlier Store-alias guard invocation evidence remains
+historical and does not establish a correct registry view or actual sign-in.

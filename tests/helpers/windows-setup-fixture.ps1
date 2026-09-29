@@ -15,6 +15,14 @@ if($Case -eq 'identity'){
  Check ((Resolve-J3w1SetupRevision '' 'v4.0.0') -eq $rev) 'Annotated tag did not resolve'
  Check ($script:urls.Count -eq 2 -and $script:urls[1] -eq ('https://api.github.com/repos/j3w1/theme/git/tags/'+('b'*40))) 'Untrusted tag URL followed'
 }
+elseif($Case -eq 'runtime-selection'){
+ $env:ProgramFiles=Join-Path $Root 'program-files';$env:LOCALAPPDATA=Join-Path $Root 'local'
+ $script:probed=@()
+ function Test-Path($LiteralPath,$Path,[string]$PathType){$script:probed+=@($LiteralPath,$Path)|Where-Object {$_};return $false}
+ Check ($null -eq (Find-J3w1SetupPowerShell)) 'No ordinary runtime should select private bootstrap'
+ Check ($script:probed.Count -eq 1) 'Runtime discovery probed additional unsafe candidates'
+ Check ($script:probed[0] -eq (Join-Path $env:ProgramFiles 'PowerShell\7\pwsh.exe')) 'Runtime discovery did not use the ordinary installation'
+}
 elseif($Case -eq 'modes'){
  Check ((Select-J3w1SetupMode @{compatible=$true} 'Auto' $true) -eq 'Full') 'Supported Auto should use Full'
  Check ((Select-J3w1SetupMode @{compatible=$false} 'Native' $true) -eq 'Native') 'Explicit Native refused'
