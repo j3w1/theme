@@ -67,8 +67,10 @@ before resolving a conflict or interrupted installation.
 
 - Dark mode, transparency off, red accent/borders, a generated black wallpaper,
   recoverable lock-screen image and 17 standard cursor roles in four DPI sizes.
-  Cursor artwork is 25% smaller within those images, with a slim black pointer
-  and canonical red outline; Windows pointer-size preferences are preserved.
+  Cursor artwork is 35% smaller within those images, with a slim black pointer
+  and canonical red outline. The arrow has no projecting tail; the hand has a
+  distinct index finger, thumb and rounded palm. Windows pointer-size preferences
+  are preserved.
 - Windows Terminal scheme, font, opaque surfaces and dark chrome, including
   explicit per-profile overrides. Commands, sizes and shortcuts are preserved.
 - Existing PowerToys FancyZones overlays, Always On Top border and Command

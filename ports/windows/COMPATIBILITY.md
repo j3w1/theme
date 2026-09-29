@@ -124,8 +124,10 @@ Theme restore retains installed shared tools and fonts; automatic dependency rem
 The owner revised the native cursor treatment on 2026-09-29 after trying the
 first live install: compact black fill with a red outline replaces the larger
 rose fill. The generator uses the existing canvas and active-border roles,
-shrinks artwork to 75% within each DPI image, and transforms hotspots with it.
-All 17 standard roles retain recognizable shapes; no pointer accessibility
+shrinks artwork to 65% within each DPI image, and transforms hotspots with it.
+The arrow, help and working pointers use a small notched arrowhead without a
+projecting tail. The hand has an extended index finger, curled fingers, a bent
+thumb and a rounded palm. All 17 standard roles retain recognizable shapes; no pointer accessibility
 setting is changed.
 
 ## Required real-machine protocol before promotion

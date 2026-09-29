@@ -18,10 +18,8 @@ function cursorImage(name,size,foreground,outline) {
   const scale=size/32, rgba=Buffer.alloc(size*size*4), mask=Buffer.alloc(Math.ceil(size/32)*4*size);
   const pixels=new Set(), add=(x,y)=>{if(x>=0&&x<32&&y>=0&&y<32)pixels.add(`${x},${y}`);};
   const line=(x0,y0,x1,y1,width=1)=>{const n=Math.max(Math.abs(x1-x0),Math.abs(y1-y0));for(let i=0;i<=n;i++)for(let a=0;a<width;a++)for(let z=0;z<width;z++)add(Math.round(x0+(x1-x0)*i/(n||1))+a,Math.round(y0+(y1-y0)*i/(n||1))+z);};
-  // Compact conventional pointer: straight left edge, clear notch and narrow stem.
-  const arrow=()=>{
-    const polygon=[[2,2],[2,24],[8,18],[12,27],[16,25],[12,17],[21,17]];
-    for(let y=2;y<=27;y++)for(let x=2;x<=21;x++){
+  const fillPolygon=polygon=>{
+    for(let y=0;y<32;y++)for(let x=0;x<32;x++){
       let inside=false;
       for(let i=0,j=polygon.length-1;i<polygon.length;j=i++){
         const [xi,yi]=polygon[i],[xj,yj]=polygon[j];
@@ -30,27 +28,39 @@ function cursorImage(name,size,foreground,outline) {
       if(inside)add(x,y);
     }
   };
+  // Small arrowhead with a shallow notch and no projecting tail.
+  const arrow=()=>fillPolygon([[2,2],[2,22],[8,16],[19,16]]);
   let hot=[2,2];
   if(['Arrow','Help','AppStarting'].includes(name)){arrow();if(name==='Help'){line(19,7,24,7,2);line(24,7,24,12,2);line(24,12,20,16,2);line(20,20,20,20,2);}if(name==='AppStarting'){for(let y=19;y<28;y++)for(let x=21;x<29;x++)if(x===21||x===28||y===19||y===27)add(x,y);}}
   else if(name==='IBeam'){hot=[15,15];line(15,4,15,27,2);line(10,4,21,4,2);line(10,27,21,27,2);}
   else if(name==='Crosshair'){hot=[15,15];line(15,2,15,29);line(2,15,29,15);}
   else if(name.startsWith('Size')){hot=[15,15];const dirs=name==='SizeNS'?[[0,1]]:name==='SizeWE'?[[1,0]]:name==='SizeNWSE'?[[1,1]]:name==='SizeNESW'?[[1,-1]]:[[1,0],[0,1]];for(const [dx,dy] of dirs){line(15-dx*11,15-dy*11,15+dx*11,15+dy*11,2);for(const s of [-1,1]){const x=15+s*dx*11,y=15+s*dy*11;line(x,y,x-s*dx*5-dy*4,y-s*dy*5+dx*4,2);line(x,y,x-s*dx*5+dy*4,y-s*dy*5-dx*4,2);}}}
   else if(name==='Wait'||name==='No'){hot=[15,15];for(let y=3;y<29;y++)for(let x=3;x<29;x++){const d=Math.hypot(x-15,y-15);if(d>9&&d<12)add(x,y);}if(name==='No')line(7,7,23,23,2);else{line(15,7,15,15,2);line(15,15,21,18,2);}}
-  else if(name==='Hand'){hot=[11,3];for(let y=4;y<26;y++)for(let x=9;x<24;x++)if((x<13)||(y>11&&y<24))add(x,y);line(5,15,11,25,3);}
+  else if(name==='Hand'){
+    hot=[11,3];
+    // Extended index finger, stepped curled fingers, bent thumb and rounded palm.
+    fillPolygon([[10,14],[10,5],[11,3],[13,3],[14,5],[14,12],
+      [15,10],[17,10],[18,12],[20,11],[22,12],[22,14],[24,13],
+      [26,15],[26,22],[25,25],[23,28],[14,28],[11,26],[8,22],
+      [5,19],[5,17],[7,15],[9,16],[11,19]]);
+  }
   else if(name==='NWPen'){hot=[4,27];line(5,26,23,5,4);line(4,27,8,25,2);}
   else if(name==='UpArrow'){hot=[15,3];line(15,4,15,28,3);line(15,4,7,13,2);line(15,4,23,13,2);}
   else if(name==='Pin'){hot=[15,27];line(15,12,15,27,2);for(let y=4;y<15;y++)for(let x=9;x<22;x++)if(Math.hypot(x-15,y-9)<6)add(x,y);}
   else {hot=[15,4];for(let y=3;y<11;y++)for(let x=11;x<20;x++)if(Math.hypot(x-15,y-7)<4)add(x,y);line(15,12,15,21,3);line(7,14,23,14,2);line(15,21,8,28,2);line(15,21,22,28,2);}
   const fg=rgb(foreground),edge=rgb(outline);
   // Keep DPI image sizes and Windows accessibility preferences; shrink the artwork.
-  const artworkScale=.75, inset=2;
+  const artworkScale=.65, inset=2;
   // Map occupied source pixels forward so thin crosshair strokes cannot vanish.
   const compactPixels=new Set([...pixels].map(p=>p.split(',').map(v=>Math.round(inset+Number(v)*artworkScale)).join(',')));
+  // Thin red creases separate the curled fingers from the black palm.
+  const detailPixels=new Set(name==='Hand'?[...Array(6)].flatMap((_,i)=>[[17,14+i],[21,15+i]])
+    .map(p=>p.map(v=>Math.round(inset+v*artworkScale)).join(',')):[]);
   for(let y=0;y<size;y++)for(let x=0;x<size;x++){
     const a=Math.floor(x/scale),b=Math.floor(y/scale),inside=compactPixels.has(`${a},${b}`);
     const border=!inside&&[-1,0,1].some(dx=>[-1,0,1].some(dy=>compactPixels.has(`${a+dx},${b+dy}`)));
     const o=((size-1-y)*size+x)*4;
-    if(inside||border){const c=inside?fg:edge;rgba[o]=c[2];rgba[o+1]=c[1];rgba[o+2]=c[0];rgba[o+3]=255;}
+    if(inside||border){const c=inside&&!detailPixels.has(`${a},${b}`)?fg:edge;rgba[o]=c[2];rgba[o+1]=c[1];rgba[o+2]=c[0];rgba[o+3]=255;}
     else mask[(size-1-y)*Math.ceil(size/32)*4+(x>>3)]|=128>>(x%8);
   }
   const dib=Buffer.alloc(40);dib.writeUInt32LE(40);dib.writeInt32LE(size,4);dib.writeInt32LE(size*2,8);dib.writeUInt16LE(1,12);dib.writeUInt16LE(32,14);dib.writeUInt32LE(rgba.length+mask.length,20);
