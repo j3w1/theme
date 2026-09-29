@@ -48,11 +48,14 @@ const blocks = {
       `& $installer -Action Update -Version ${release.tag}`,
       `${windowsScript(release.commit)} -Action Test`,
     ]),
-    restore: release => !windowsReleased(release) ? [windowsPending] : fence('powershell',[
-      `${windowsScript(release.commit)} -Action Restore -Latest # last transaction`,
-      `${windowsScript(release.commit)} -Action Restore # original baseline`,
-      `${windowsScript(release.commit)} -Action Uninstall # restore owned integration`,
-    ]),
+    restore: release => !windowsReleased(release) ? [windowsPending] : [
+      'Choose one recovery action. To undo the last transaction:', '',
+      ...fence('powershell',[`${windowsScript(release.commit)} -Action Restore -Latest`]), '',
+      'To restore the original baseline across all theme transactions:', '',
+      ...fence('powershell',[`${windowsScript(release.commit)} -Action Restore`]), '',
+      'To restore the baseline and remove owned theme integration:', '',
+      ...fence('powershell',[`${windowsScript(release.commit)} -Action Uninstall`]),
+    ],
   },
   "ports/README.md": {
     install: ({ tag, commit }) => [

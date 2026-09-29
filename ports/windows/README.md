@@ -1,6 +1,6 @@
 # j3w1 for Windows 11
 
-Black surfaces, rose ordinary text and original static cursors, generated from
+Black surfaces, rose ordinary text and compact black cursors with red outlines, generated from
 the canonical tokens. Content headings use near-white. Windhawk **2.0 alpha 6**
 is an explicitly pinned prerelease dependency. The port remains experimental
 while the real-machine lifecycle and per-surface checks are in progress.
@@ -65,7 +65,9 @@ before resolving a conflict or interrupted installation.
 ## What changes
 
 - Dark mode, transparency off, red accent/borders, a generated black wallpaper,
-  recoverable lock-screen image and 17 standard cursor roles in four sizes.
+  recoverable lock-screen image and 17 standard cursor roles in four DPI sizes.
+  Cursor artwork is 25% smaller within those images, with a slim black pointer
+  and canonical red outline; Windows pointer-size preferences are preserved.
 - Windows Terminal scheme, font, opaque surfaces and dark chrome, including
   explicit per-profile overrides. Commands, sizes and shortcuts are preserved.
 - Existing PowerToys FancyZones overlays, Always On Top border and Command

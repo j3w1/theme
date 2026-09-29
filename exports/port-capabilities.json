@@ -37749,7 +37749,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-dITZshT4JVhYk+lv7g2nHuiB8mi/wOt5DvQxs/RDVnQ=",
+      "subjectDigest": "sha256-T8+PCaKA93sX1fY9WEH8JBtTZK0fmXQlQxxU51/nF8I=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37782,7 +37782,7 @@
           "path": "dist/windows-settings.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-settings.json",
-          "digest": "sha256-OOc7vC/TpBV3KAJDmHki8LVe9W+ZWoB9wYq+NlkWWWU="
+          "digest": "sha256-gP3CzxXL3S5lqC/uaI5gEBazM82MdzBXZg+a8QOgaMU="
         },
         {
           "path": "dist/terminal-fragment.json",
@@ -37848,103 +37848,103 @@
           "path": "dist/j3w1-arrow.cur",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/j3w1-arrow.cur",
-          "digest": "sha256-ZdsolV8QMxr4D0CdBylw1ziwRaQ5BCnSLwtIKfyxNbw="
+          "digest": "sha256-wOM0UM7gADNRBLpYrFxY2BgFU3oBV4fwBt/A/hDWIdk="
         },
         {
           "path": "dist/j3w1-help.cur",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/j3w1-help.cur",
-          "digest": "sha256-Z8xFW2BR2zx9RhJpix2MPwMV/eX6qDySC9k9/QzKUxo="
+          "digest": "sha256-C1iJb44Fb8qz8vf4LnX+aqcML6mZkezSRsFEpUbDtB0="
         },
         {
           "path": "dist/j3w1-appstarting.cur",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/j3w1-appstarting.cur",
-          "digest": "sha256-9v9Q5uOD7Eu3CbDuwzl6A//2jzEiLGFy6o5Fk5WMitc="
+          "digest": "sha256-G9ke3Xjzxw8OTDXzOHbWSYi423bsXP4958Qcj051/o0="
         },
         {
           "path": "dist/j3w1-wait.cur",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/j3w1-wait.cur",
-          "digest": "sha256-p3+QwYtsdVkatssUvhpke4b2d+KKIbGpsoVNYET7p9M="
+          "digest": "sha256-TGR7442f8Ul1MMCaL6vFR99YEDL2oc+MhZ0R27QqTKE="
         },
         {
           "path": "dist/j3w1-crosshair.cur",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/j3w1-crosshair.cur",
-          "digest": "sha256-K24b2nxpmM3sGOSRnP05tv7cvZM20Lo+9qRb5028wTA="
+          "digest": "sha256-2jr2DIVsxXlOgq6yugMM2sVxYxnYT8uemaAWDxjwkQQ="
         },
         {
           "path": "dist/j3w1-ibeam.cur",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/j3w1-ibeam.cur",
-          "digest": "sha256-NT1Q5U1Uk6tOAEnDfFkoumNV9RiOpXzho4FS3JZmgoA="
+          "digest": "sha256-+fr89NbpwvPnyraIDCXXUOSzu3x9X9/VLUh9v8HRXs4="
         },
         {
           "path": "dist/j3w1-nwpen.cur",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/j3w1-nwpen.cur",
-          "digest": "sha256-VxzN8BmvJ9JzNGKFnSgoDIeSctigO4UBO8li1mjdi14="
+          "digest": "sha256-Mdiz/hQgMBV5avYMGlrfHObkLet6kVzEUHol9TB/fVs="
         },
         {
           "path": "dist/j3w1-no.cur",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/j3w1-no.cur",
-          "digest": "sha256-xSAoRIreTzHtxaFTBvzD9FQIu0EcXM/GQ6l8StVViSw="
+          "digest": "sha256-NM+nmk83ymgwi+biM5wU6wEYtxDUmWEbFIi9YIC9KNE="
         },
         {
           "path": "dist/j3w1-sizens.cur",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/j3w1-sizens.cur",
-          "digest": "sha256-xr52vR6oTdfVgjwrTzhIanyz8aCsjgoeqwKZxMKVSxI="
+          "digest": "sha256-r51C7TJs/cFrPyLIQPbaI0Pyos55fJdd36xibQ0NtuQ="
         },
         {
           "path": "dist/j3w1-sizewe.cur",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/j3w1-sizewe.cur",
-          "digest": "sha256-DaG2mwZ7S6sCJ6gTaB1I9oRhTArkLkAjWwvSxMQwbZQ="
+          "digest": "sha256-IWGTESFFoOUQeqog7mvQacvBWX6JqHaekbEQ+5Ff5Cc="
         },
         {
           "path": "dist/j3w1-sizenwse.cur",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/j3w1-sizenwse.cur",
-          "digest": "sha256-8GW3T2IDFK9xEHpLzfSQiU59Ln4rKuOguhD6cboWaHQ="
+          "digest": "sha256-cqasDbSvpr4nMTHN+a7tg47ahvVi7CIsk8/6BTNuJWc="
         },
         {
           "path": "dist/j3w1-sizenesw.cur",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/j3w1-sizenesw.cur",
-          "digest": "sha256-gFMSdZYVOCLNMsP54pnV3CLQeznJrCtDACyzCPjdkZM="
+          "digest": "sha256-10x4c1o3/IfFwP08ifinVOLzKqZ7Zrge1DteQEHy9Ew="
         },
         {
           "path": "dist/j3w1-sizeall.cur",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/j3w1-sizeall.cur",
-          "digest": "sha256-iBykZ2+XZhK+qi/a7r98SeQsYJTBSYHcNecxozmT3aA="
+          "digest": "sha256-QmbKQ+6ylpckfQ89qumlidFZpiVSwPKlughCJUFvYmU="
         },
         {
           "path": "dist/j3w1-uparrow.cur",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/j3w1-uparrow.cur",
-          "digest": "sha256-HeJi+cKKmuUf6hX5IoxYktTaK8X8mlcTQoULVYmwihg="
+          "digest": "sha256-5dcMOSzqbaALMIcUjsm8mHlHgkkPu84WlzP/MqLHOcQ="
         },
         {
           "path": "dist/j3w1-hand.cur",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/j3w1-hand.cur",
-          "digest": "sha256-TCbgP6dwP4xhA4Zng4yicx3Z5GY4ouVrAhaphwQxOk0="
+          "digest": "sha256-sRZMrOQ6E/JbQ7XZuoq4/WDlvRCAtUmVrdjqXxHWBOQ="
         },
         {
           "path": "dist/j3w1-pin.cur",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/j3w1-pin.cur",
-          "digest": "sha256-zGY/IPSikQ90Cq0jVr4F0S+JECQuiCRc0fL7+lGnp34="
+          "digest": "sha256-6qLzIQGsUqt+3tzCK8aTRPfPtdCP/I5ugk8OduV/+40="
         },
         {
           "path": "dist/j3w1-person.cur",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/j3w1-person.cur",
-          "digest": "sha256-YfKLKPnRS5M8Btzvye9xQww0Zq2amGDcVPbhViDjiRg="
+          "digest": "sha256-2GKy6UojTBq95HF7tAIoGtDANEH8Ot9z1YZtxVQ7jsE="
         },
         {
           "path": "dist/runtime.cjs",
@@ -37956,7 +37956,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-1je5EuCJuJNV0l/LOoFKUP3dibz3glILV5caS3dRI8o="
+          "digest": "sha256-ggDq8UrW1N1agnG/1QKUttRSaP0TEFaR5gC8VNK+EQI="
         }
       ],
       "rollback": "Run install.ps1 -Action Restore for original settings, or add -Latest for the previous transaction; Uninstall also removes owned theme assets.",
@@ -38345,7 +38345,8 @@
             "native.accent",
             "powertoys.highlight",
             "windhawk.resource.SystemAccentColor",
-            "windhawk.resource.SystemControlHighlightAccentBrush"
+            "windhawk.resource.SystemControlHighlightAccentBrush",
+            "cursor.outline"
           ],
           "value": "#e53935",
           "eligibility": {
@@ -41397,12 +41398,12 @@
           "role": "color.surface.canvas",
           "nativeKeys": [
             "terminal.background",
-            "cursor.outline",
             "windhawk.resource.SolidBackgroundFillColorBase",
             "windows-11-start-menu-styler | StartDocked.StartSizingFrame | Background",
             "windows-11-start-menu-styler | StartMenu.StartInnerFrame | Background",
             "windows-11-settings-styler | SystemSettings.View.RootPage | Background",
-            "windows-11-settings-styler | Grid#RootPageGrid | Background"
+            "windows-11-settings-styler | Grid#RootPageGrid | Background",
+            "cursor.foreground"
           ],
           "value": "#000000",
           "eligibility": {
@@ -42022,7 +42023,6 @@
           "role": "color.text.default",
           "nativeKeys": [
             "native.foreground",
-            "cursor.foreground",
             "windhawk.resource.TextFillColorPrimary",
             "windhawk.resource.SystemControlForegroundBaseHighBrush",
             "windows-11-taskbar-styler | TextBlock | Foreground",

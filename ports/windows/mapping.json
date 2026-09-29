@@ -5,7 +5,8 @@
       "native.accent",
       "powertoys.highlight",
       "windhawk.resource.SystemAccentColor",
-      "windhawk.resource.SystemControlHighlightAccentBrush"
+      "windhawk.resource.SystemControlHighlightAccentBrush",
+      "cursor.outline"
     ],
     "color.surface.desktop": [
       "native.desktop"
@@ -15,12 +16,12 @@
     ],
     "color.surface.canvas": [
       "terminal.background",
-      "cursor.outline",
       "windhawk.resource.SolidBackgroundFillColorBase",
       "windows-11-start-menu-styler | StartDocked.StartSizingFrame | Background",
       "windows-11-start-menu-styler | StartMenu.StartInnerFrame | Background",
       "windows-11-settings-styler | SystemSettings.View.RootPage | Background",
-      "windows-11-settings-styler | Grid#RootPageGrid | Background"
+      "windows-11-settings-styler | Grid#RootPageGrid | Background",
+      "cursor.foreground"
     ],
     "color.terminal.cursor": [
       "terminal.cursor"
@@ -36,7 +37,6 @@
     ],
     "color.text.default": [
       "native.foreground",
-      "cursor.foreground",
       "windhawk.resource.TextFillColorPrimary",
       "windhawk.resource.SystemControlForegroundBaseHighBrush",
       "windows-11-taskbar-styler | TextBlock | Foreground",

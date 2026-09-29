@@ -137,3 +137,27 @@ test('recoverable lock-screen image is journaled and restored; later image edits
  write(file,before);f.ok('Apply');assert.equal(read(file).extension,'.bmp');f.ok('Test');f.ok('Restore');assert.deepEqual(read(file),before);
  f.ok('Apply');const managed=read(file);write(file,{...before,value:Buffer.from('later image').toString('base64')});assert.equal(f.run('Restore').status,2);write(file,managed);f.ok('Restore');assert.deepEqual(read(file),before);
 });
+
+test('compact cursors use a black body and canonical red edge with visible bounded hotspots',async()=>{
+ const tokens=(await readJson('exports/tokens.resolved.json')).profiles.default.tokens;
+ const black=tokens['color.surface.canvas'].css,red=tokens['color.border.active'].css;
+ const colors=new Set([black,red]);
+ for(const name of CURSOR_NAMES){
+  const b=fs.readFileSync(path.join(source,`dist/j3w1-${name.toLowerCase()}.cur`));
+  for(let i=0;i<4;i++){
+   const n=6+16*i,size=b[n],start=b.readUInt32LE(n+12)+40,points=[],seen=new Set();
+   for(let y=0;y<size;y++)for(let x=0;x<size;x++){
+    const o=start+((size-1-y)*size+x)*4;if(!b[o+3])continue;
+    const color='#'+[b[o+2],b[o+1],b[o]].map(v=>v.toString(16).padStart(2,'0')).join('');
+    assert.ok(colors.has(color),`${name}: unexpected cursor color ${color}`);seen.add(color);points.push([x,y]);
+   }
+   assert.deepEqual(seen,colors,`${name} has both fill and outline`);
+   const xs=points.map(p=>p[0]),ys=points.map(p=>p[1]);
+   assert.ok(Math.max(...xs)-Math.min(...xs)+1<=Math.ceil(size*.75),`${name}: width`);
+   assert.ok(Math.max(...ys)-Math.min(...ys)+1<=Math.ceil(size*.75),`${name}: height`);
+   const hx=b.readUInt16LE(n+4),hy=b.readUInt16LE(n+6);
+   // Crosshair/resize hotspots may be centered in a transparent crossing gap.
+   assert.ok(points.some(([x,y])=>Math.hypot(x-hx,y-hy)<=Math.ceil(size/16)),`${name}: hotspot near artwork`);
+  }
+ }
+});

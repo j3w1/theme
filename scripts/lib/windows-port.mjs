@@ -18,7 +18,18 @@ function cursorImage(name,size,foreground,outline) {
   const scale=size/32, rgba=Buffer.alloc(size*size*4), mask=Buffer.alloc(Math.ceil(size/32)*4*size);
   const pixels=new Set(), add=(x,y)=>{if(x>=0&&x<32&&y>=0&&y<32)pixels.add(`${x},${y}`);};
   const line=(x0,y0,x1,y1,width=1)=>{const n=Math.max(Math.abs(x1-x0),Math.abs(y1-y0));for(let i=0;i<=n;i++)for(let a=0;a<width;a++)for(let z=0;z<width;z++)add(Math.round(x0+(x1-x0)*i/(n||1))+a,Math.round(y0+(y1-y0)*i/(n||1))+z);};
-  const arrow=()=>{for(let y=2;y<25;y++)for(let x=2;x<=2+(y-2)*.57;x++)if(y<17||x<6||x>8)add(x,y);line(8,15,14,27,3);};
+  // Compact conventional pointer: straight left edge, clear notch and narrow stem.
+  const arrow=()=>{
+    const polygon=[[2,2],[2,24],[8,18],[12,27],[16,25],[12,17],[21,17]];
+    for(let y=2;y<=27;y++)for(let x=2;x<=21;x++){
+      let inside=false;
+      for(let i=0,j=polygon.length-1;i<polygon.length;j=i++){
+        const [xi,yi]=polygon[i],[xj,yj]=polygon[j];
+        if((yi>y)!==(yj>y)&&x<(xj-xi)*(y-yi)/(yj-yi)+xi)inside=!inside;
+      }
+      if(inside)add(x,y);
+    }
+  };
   let hot=[2,2];
   if(['Arrow','Help','AppStarting'].includes(name)){arrow();if(name==='Help'){line(19,7,24,7,2);line(24,7,24,12,2);line(24,12,20,16,2);line(20,20,20,20,2);}if(name==='AppStarting'){for(let y=19;y<28;y++)for(let x=21;x<29;x++)if(x===21||x===28||y===19||y===27)add(x,y);}}
   else if(name==='IBeam'){hot=[15,15];line(15,4,15,27,2);line(10,4,21,4,2);line(10,27,21,27,2);}
@@ -31,15 +42,19 @@ function cursorImage(name,size,foreground,outline) {
   else if(name==='Pin'){hot=[15,27];line(15,12,15,27,2);for(let y=4;y<15;y++)for(let x=9;x<22;x++)if(Math.hypot(x-15,y-9)<6)add(x,y);}
   else {hot=[15,4];for(let y=3;y<11;y++)for(let x=11;x<20;x++)if(Math.hypot(x-15,y-7)<4)add(x,y);line(15,12,15,21,3);line(7,14,23,14,2);line(15,21,8,28,2);line(15,21,22,28,2);}
   const fg=rgb(foreground),edge=rgb(outline);
+  // Keep DPI image sizes and Windows accessibility preferences; shrink the artwork.
+  const artworkScale=.75, inset=2;
+  // Map occupied source pixels forward so thin crosshair strokes cannot vanish.
+  const compactPixels=new Set([...pixels].map(p=>p.split(',').map(v=>Math.round(inset+Number(v)*artworkScale)).join(',')));
   for(let y=0;y<size;y++)for(let x=0;x<size;x++){
-    const a=Math.floor(x/scale),b=Math.floor(y/scale),inside=pixels.has(`${a},${b}`);
-    const border=!inside&&[-1,0,1].some(dx=>[-1,0,1].some(dy=>pixels.has(`${a+dx},${b+dy}`)));
+    const a=Math.floor(x/scale),b=Math.floor(y/scale),inside=compactPixels.has(`${a},${b}`);
+    const border=!inside&&[-1,0,1].some(dx=>[-1,0,1].some(dy=>compactPixels.has(`${a+dx},${b+dy}`)));
     const o=((size-1-y)*size+x)*4;
     if(inside||border){const c=inside?fg:edge;rgba[o]=c[2];rgba[o+1]=c[1];rgba[o+2]=c[0];rgba[o+3]=255;}
     else mask[(size-1-y)*Math.ceil(size/32)*4+(x>>3)]|=128>>(x%8);
   }
   const dib=Buffer.alloc(40);dib.writeUInt32LE(40);dib.writeInt32LE(size,4);dib.writeInt32LE(size*2,8);dib.writeUInt16LE(1,12);dib.writeUInt16LE(32,14);dib.writeUInt32LE(rgba.length+mask.length,20);
-  return {data:Buffer.concat([dib,rgba,mask]),hot:hot.map(v=>Math.round(v*scale))};
+  return {data:Buffer.concat([dib,rgba,mask]),hot:hot.map(v=>Math.round((inset+v*artworkScale)*scale))};
 }
 export function cursorFile(name,foreground,outline){
  const sizes=[32,48,64,96],head=Buffer.alloc(6+16*sizes.length);head.writeUInt16LE(2,2);head.writeUInt16LE(sizes.length,4);let offset=head.length;const data=[];
@@ -68,7 +83,7 @@ export function windowsArtifacts({manifest,host,resolved}){
   json(`${mod.id}.json`,payload);
  }
  artifacts.push({path:'dist/j3w1-wallpaper.bmp',bytes:wallpaperBmp(val('color.surface.desktop'))});
- for(const name of CURSOR_NAMES)artifacts.push({path:`dist/j3w1-${name.toLowerCase()}.cur`,bytes:cursorFile(name,val('color.text.default'),val('color.surface.canvas'))});
+ for(const name of CURSOR_NAMES)artifacts.push({path:`dist/j3w1-${name.toLowerCase()}.cur`,bytes:cursorFile(name,val(host.roles['cursor.foreground']),val(host.roles['cursor.outline']))});
  artifacts.push({path:'dist/j3w1.theme',text:`; Generated j3w1 ${manifest.version}\n[Theme]\nDisplayName=j3w1\n[Control Panel\\Colors]\nBackground=${rgb(val('color.surface.desktop')).join(' ')}\n[VisualStyles]\nPath=%ResourceDir%\\Themes\\Aero\\Aero.msstyles\nColorStyle=NormalColor\nSize=NormalSize\nColorizationColor=0XFF${val('color.border.active').slice(1).toUpperCase()}\nSystemMode=Dark\nAppMode=Dark\n`});
  const runtime=buildSync({entryPoints:[path.join(repoRoot,'ports/windows/src/runtime.mjs')],bundle:true,mainFields:['module','main'],platform:'node',target:'node24',format:'cjs',write:false,legalComments:'eof'}).outputFiles[0].text;
  artifacts.push({path:'dist/runtime.cjs',text:runtime});

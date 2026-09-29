@@ -93,6 +93,15 @@ The existing PowerShell Store alias is preferred for startup when available,
 so an agent runtime cache or a version-specific Store package path is not needed.
 Theme restore retains installed shared tools and fonts; automatic dependency removal is unsupported.
 
+## Cursor treatment
+
+The owner revised the native cursor treatment on 2026-09-29 after trying the
+first live install: compact black fill with a red outline replaces the larger
+rose fill. The generator uses the existing canvas and active-border roles,
+shrinks artwork to 75% within each DPI image, and transforms hotspots with it.
+All 17 standard roles retain recognizable shapes; no pointer accessibility
+setting is changed.
+
 ## Required real-machine protocol before promotion
 
 Record the immutable source revision, generated artifact digests, exact host and
