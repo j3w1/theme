@@ -37749,7 +37749,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-t/tIPqEIUrr1eGLz+3xwVQxmj3pXNLpWd9STLY/D+os=",
+      "subjectDigest": "sha256-waXOwOpH8DAaqrtwgkIfv6f/rdgmaKEVj5sHgpuv6/A=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37782,7 +37782,7 @@
           "path": "dist/windows-settings.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-settings.json",
-          "digest": "sha256-NummYyAA8f2iSKx8V7PbxbDRuYdbLc0azdxO3eR9d44="
+          "digest": "sha256-IxzjRpdWJFlHgpoNZawgabeu3w3RzPhw5EmBBg1Fpnw="
         },
         {
           "path": "dist/terminal-fragment.json",
@@ -37956,13 +37956,13 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-efHRuk+21ekkN/rqizfM2Hajhh3uq+bSh7ajx/S+x9s="
+          "digest": "sha256-I4nB1P9LHQPb4r4nTuyONrGfKfgiBR6PNgU8aZ6ir+Y="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/j3w1-explorer-native.wh.cpp",
-          "digest": "sha256-TZsOSmmjEsIiiKUg7svyyElCtmq4SyCbGK+Rq2ujFEc="
+          "digest": "sha256-Ondwb6GCXzqr2VLdzbMWO3hxxllwBSrOVOCrp1M/DAI="
         },
         {
           "path": "dist/j3w1-explorer-native.json",
@@ -37974,7 +37974,7 @@
           "path": "dist/j3w1-powertoys-preview.wh.cpp",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/j3w1-powertoys-preview.wh.cpp",
-          "digest": "sha256-oYg7RNVoo1rKqm/EgBfLv7LFRNffsymvqMNabyzKPJs="
+          "digest": "sha256-KRmMFdaJQKEotEl01JVW+owe3n/6a8MOC1lNPWz5NvM="
         },
         {
           "path": "dist/j3w1-powertoys-preview.json",

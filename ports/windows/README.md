@@ -131,3 +131,19 @@ role, including its top edge. Thickness, layout and taskbar behavior are preserv
 
 Explorer Home has its own black root background and token-based list/grid hover,
 pressed and selected fills. These mappings preserve layout, icons and focus behavior.
+
+The pinned PowerToys native loading panel is separate from its HTML preview.
+Its WinForms background and label text are mapped to the same canvas and text
+roles during painting; shared brushes, progress behavior, images and WebView
+content are not modified. High contrast and unrelated control classes pass through.
+Explorer nonclient scrollbar painting also retains its originating window during
+default window processing, including nested calls. Only ScrollBar theme draws
+use that additional scope; unrelated application windows are excluded.
+
+Native offscreen regressions live in `tests/windows-preview-paint-native.cpp`
+and `tests/windows-scroll-paint-native.cpp`. Compile them on Windows with the
+pinned Windhawk x64 compiler, `--target=x86_64-w64-mingw32 -std=c++20 -static`,
+and libraries `-lbcrypt -lversion -luser32 -lgdi32 -lshell32 -lole32 -luuid -luxtheme`.
+Run each executable with high contrast off. They exercise native GDI pixels,
+paint ownership, nested scopes and passthrough without desktop input or capture.
+They do not establish visual acceptance of the real host's loading transition.

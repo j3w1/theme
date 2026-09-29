@@ -6,7 +6,7 @@
 // @author j3w1
 // @include PowerToys.MonacoPreviewHandler.exe
 // @architecture x86-64
-// @compilerOptions -lbcrypt -lversion -luser32 -lshell32 -lole32 -luuid
+// @compilerOptions -lbcrypt -lversion -luser32 -lshell32 -lole32 -luuid -lgdi32
 // ==/WindhawkMod==
 // ==WindhawkModSettings==
 /*
@@ -24,11 +24,64 @@ static decltype(&CreateFileW) originalCreateFile;
 static std::wstring templatePath;
 static std::atomic<bool> enabled{false};
 static thread_local bool redirecting=false;
+static decltype(&FillRect) originalFillRect;
+static decltype(&SetTextColor) originalSetTextColor;
+static decltype(&SetBkColor) originalSetBkColor;
+static decltype(&BeginPaint) originalBeginPaint;
+static decltype(&EndPaint) originalEndPaint;
+static thread_local std::vector<HWND> paintWindows;
+static constexpr COLORREF loadingBackground=RGB(@LOADING_BACKGROUND@);
+static constexpr COLORREF loadingForeground=RGB(@LOADING_FOREGROUND@);
 
 static bool HighContrast() {
     HIGHCONTRASTW value{sizeof(value)};
     return !SystemParametersInfoW(SPI_GETHIGHCONTRAST,sizeof(value),&value,0)
         || (value.dwFlags&HCF_HIGHCONTRASTON);
+}
+// The pinned host's loading UI uses WinForms Window/STATIC controls. Its
+// opaque BackColor is painted with GDI FillRect; label text uses TextRenderer.
+// Scope memory DCs to the originating paint HWND. Never recolor WebView content,
+// arbitrary bitmaps, editors, or cached shared brushes.
+static bool LoadingWindow(HWND window) {
+    DWORD process=0;wchar_t name[128]{};
+    if(!window || !GetWindowThreadProcessId(window,&process) || process!=GetCurrentProcessId()
+        || !GetClassNameW(window,name,128)) return false;
+    return wcsncmp(name,L"WindowsForms10.Window.",22)==0
+        || wcsncmp(name,L"WindowsForms10.STATIC.",22)==0;
+}
+static bool LoadingDC(HDC dc) {
+    if(!enabled.load() || HighContrast()) return false;
+    HWND owner=WindowFromDC(dc);
+    return LoadingWindow(owner?owner:paintWindows.empty()?nullptr:paintWindows.back());
+}
+static HDC WINAPI BeginPaintHook(HWND window,LPPAINTSTRUCT paint) {
+    HDC dc=originalBeginPaint(window,paint);
+    if(dc)paintWindows.push_back(window);
+    return dc;
+}
+static BOOL WINAPI EndPaintHook(HWND window,const PAINTSTRUCT* paint) {
+    for(auto it=paintWindows.end();it!=paintWindows.begin();) {
+        --it;if(*it==window){paintWindows.erase(it);break;}
+    }
+    return originalEndPaint(window,paint);
+}
+static int WINAPI LoadingFillHook(HDC dc,const RECT* rect,HBRUSH brush) {
+    LOGBRUSH data{};
+    // Exact dark-mode BackColor from the pinned PowerToys Settings class.
+    if(LoadingDC(dc) && GetObjectW(brush,sizeof(data),&data)==sizeof(data)
+        && data.lbStyle==BS_SOLID && data.lbColor==RGB(30,30,30)) {
+        HBRUSH themed=CreateSolidBrush(loadingBackground);
+        if(themed){int result=originalFillRect(dc,rect,themed);DeleteObject(themed);return result;}
+    }
+    return originalFillRect(dc,rect,brush);
+}
+static COLORREF WINAPI LoadingTextHook(HDC dc,COLORREF color) {
+    if(color==RGB(255,255,255) && LoadingDC(dc))color=loadingForeground;
+    return originalSetTextColor(dc,color);
+}
+static COLORREF WINAPI LoadingBkHook(HDC dc,COLORREF color) {
+    if(color==RGB(30,30,30) && LoadingDC(dc))color=loadingBackground;
+    return originalSetBkColor(dc,color);
 }
 static bool ReviewedVersion(const wchar_t* exe) {
     DWORD ignored=0,size=GetFileVersionInfoSizeW(exe,&ignored);
@@ -55,6 +108,23 @@ static bool ReviewedTemplate(const std::string& bytes) {
     const char hex[]="0123456789abcdef";std::string actual;
     for(auto byte:digest){actual+=hex[byte>>4];actual+=hex[byte&15];}
     return actual=="@TEMPLATE_SHA256@";
+}
+// The loading panel paints before the host reads its HTML. Validate the same
+// pinned template at initialization so native styling also fails closed.
+static bool ReviewedInstalledTemplate() {
+    HANDLE source=CreateFileW(templatePath.c_str(),GENERIC_READ,FILE_SHARE_READ|FILE_SHARE_WRITE|FILE_SHARE_DELETE,
+        nullptr,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,nullptr);
+    if(source==INVALID_HANDLE_VALUE)return false;
+    bool reviewed=false;
+    try {
+        LARGE_INTEGER size{};
+        if(GetFileSizeEx(source,&size) && size.QuadPart>0 && size.QuadPart<=65536) {
+            std::string bytes(static_cast<size_t>(size.QuadPart),'\0');DWORD count=0;
+            reviewed=ReadFile(source,bytes.data(),static_cast<DWORD>(bytes.size()),&count,nullptr)
+                && count==bytes.size() && ReviewedTemplate(bytes);
+        }
+    } catch(...) { reviewed=false; }
+    CloseHandle(source);return reviewed;
 }
 static bool ReplaceOnce(std::string& text,const std::string& from,const std::string& to) {
     auto offset=text.find(from);
@@ -132,7 +202,13 @@ BOOL Wh_ModInit() {
     std::wstring path=exe;auto split=path.find_last_of(L"\\");
     if(split==std::wstring::npos || _wcsicmp(path.c_str()+split+1,L"PowerToys.MonacoPreviewHandler.exe")!=0) return FALSE;
     templatePath=L"\\\\?\\"+path.substr(0,split)+L"\\Assets\\Monaco\\index.html";
+    if(!ReviewedInstalledTemplate())return FALSE;
     if(!Wh_SetFunctionHook(reinterpret_cast<void*>(CreateFileW),reinterpret_cast<void*>(CreateFileHook),reinterpret_cast<void**>(&originalCreateFile))) return FALSE;
+    if(!Wh_SetFunctionHook(reinterpret_cast<void*>(FillRect),reinterpret_cast<void*>(LoadingFillHook),reinterpret_cast<void**>(&originalFillRect))
+        || !Wh_SetFunctionHook(reinterpret_cast<void*>(SetTextColor),reinterpret_cast<void*>(LoadingTextHook),reinterpret_cast<void**>(&originalSetTextColor))
+        || !Wh_SetFunctionHook(reinterpret_cast<void*>(SetBkColor),reinterpret_cast<void*>(LoadingBkHook),reinterpret_cast<void**>(&originalSetBkColor))
+        || !Wh_SetFunctionHook(reinterpret_cast<void*>(BeginPaint),reinterpret_cast<void*>(BeginPaintHook),reinterpret_cast<void**>(&originalBeginPaint))
+        || !Wh_SetFunctionHook(reinterpret_cast<void*>(EndPaint),reinterpret_cast<void*>(EndPaintHook),reinterpret_cast<void**>(&originalEndPaint))) return FALSE;
     enabled=Wh_GetIntSetting(L"enabled")!=0;return TRUE;
 }
 void Wh_ModSettingsChanged(){enabled=Wh_GetIntSetting(L"enabled")!=0;}

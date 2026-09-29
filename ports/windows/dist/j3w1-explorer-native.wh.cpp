@@ -45,6 +45,19 @@ static decltype(&DrawThemeBackgroundEx) originalDrawThemeBackgroundEx;
 static thread_local std::vector<HWND> paintWindows;
 static std::atomic<bool> enabled{false};
 static thread_local bool drawingTheme=false;
+static decltype(&DefWindowProcW) originalDefWindowProc;
+static thread_local HWND defaultWindow=nullptr;
+// Nonclient scrollbars also paint synchronously during default window handling,
+// outside BeginPaint. Retain the actual originating HWND, including nested calls.
+struct DefaultPaintScope {
+    HWND previous;
+    explicit DefaultPaintScope(HWND window):previous(defaultWindow){defaultWindow=window;}
+    ~DefaultPaintScope(){defaultWindow=previous;}
+};
+static LRESULT WINAPI DefaultWindowHook(HWND window,UINT message,WPARAM wParam,LPARAM lParam) {
+    DefaultPaintScope scope(window);
+    return originalDefWindowProc(window,message,wParam,lParam);
+}
 
 static bool HighContrast() {
     HIGHCONTRASTW value{sizeof(value)};
@@ -59,9 +72,12 @@ static bool ExplorerWindow(HWND window) {
     if(!GetClassNameW(GetAncestor(window,GA_ROOT),name,64)) return false;
     return _wcsicmp(name,L"CabinetWClass")==0 && !HighContrast();
 }
-static bool ExplorerDC(HDC dc) {
+static bool ExplorerDC(HDC dc,bool nonclientScrollbar=false) {
     HWND owner=WindowFromDC(dc);
-    return enabled.load() && !drawingTheme && !HighContrast() && (owner?ExplorerWindow(owner):(!paintWindows.empty() && ExplorerWindow(paintWindows.back())));
+    if(!enabled.load() || drawingTheme || HighContrast())return false;
+    if(owner)return ExplorerWindow(owner);
+    if(nonclientScrollbar && defaultWindow)return ExplorerWindow(defaultWindow);
+    return !paintWindows.empty() && ExplorerWindow(paintWindows.back());
 }
 // Memory DCs have no WindowFromDC owner. Preserve nested paint scope per thread.
 static HDC WINAPI BeginPaintHook(HWND window,LPPAINTSTRUCT paint) {
@@ -154,7 +170,11 @@ static HRESULT WINAPI TextExHook(HTHEME theme,HDC dc,int part,int state,LPCWSTR 
 static HRESULT PaintTheme(HTHEME theme,HDC dc,int part,int state,const RECT* rect,
                           const RECT* clip,const DTBGOPTS* options,bool extended) {
     auto original=[&](HDC target){return extended?originalDrawThemeBackgroundEx(theme,target,part,state,rect,options):originalDrawThemeBackground(theme,target,part,state,rect,clip);};
-    if(drawingTheme || !rect || !ExplorerDC(dc) || !NativeClass(theme) || GetMapMode(dc)!=MM_TEXT || GetLayout(dc)!=0
+    wchar_t themeName[128]{};
+    if(themeClass)themeClass(theme,themeName,128);
+    const wchar_t* themeKind=wcsrchr(themeName,L':');themeKind=themeKind?themeKind+1:themeName;
+    bool nonclientScrollbar=_wcsicmp(themeKind,L"ScrollBar")==0;
+    if(drawingTheme || !rect || !ExplorerDC(dc,nonclientScrollbar) || !NativeClass(theme) || GetMapMode(dc)!=MM_TEXT || GetLayout(dc)!=0
        || (options && (options->dwSize!=sizeof(DTBGOPTS) || (options->dwFlags&~DTBG_CLIPRECT))))return original(dc);
     int width=rect->right-rect->left,height=rect->bottom-rect->top;
     if(width<=0 || height<=0 || width>8192 || height>4096 || (long long)width*height>8388608)return original(dc);
@@ -243,6 +263,7 @@ BOOL Wh_ModInit() {
         && Wh_SetFunctionHook((void*)DrawThemeTextEx,(void*)TextExHook,(void**)&originalDrawThemeTextEx)
         && Wh_SetFunctionHook((void*)BeginPaint,(void*)BeginPaintHook,(void**)&originalBeginPaint)
         && Wh_SetFunctionHook((void*)EndPaint,(void*)EndPaintHook,(void**)&originalEndPaint)
+        && Wh_SetFunctionHook((void*)DefWindowProcW,(void*)DefaultWindowHook,(void**)&originalDefWindowProc)
         && Wh_SetFunctionHook((void*)DrawThemeBackground,(void*)BackgroundHook,(void**)&originalDrawThemeBackground)
         && Wh_SetFunctionHook((void*)DrawThemeBackgroundEx,(void*)BackgroundExHook,(void**)&originalDrawThemeBackgroundEx);
 

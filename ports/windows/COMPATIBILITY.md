@@ -424,3 +424,20 @@ Owner screenshots also exposed Home's separate gray root and item hover fills,
 and a briefly gray native scrollbar during folder navigation. Home now has
 explicit root and item-presenter mappings. The scrollbar transition remains
 unresolved until its transient paint path is diagnosed and verified.
+
+
+### Loading and navigation transition correction
+
+The owner confirmed the loaded Monaco preview now has a black background and
+rose text, but its loading screen remained gray. The pinned PowerToys
+[Settings](https://github.com/microsoft/PowerToys/blob/v0.101.2362.0/src/modules/previewpane/MonacoPreviewHandler/Settings.cs)
+and loading-control sources establish a separate opaque WinForms background and
+label. The adapter now maps those native paint calls only for the pinned host's
+WinForms panel/label classes. It preserves brushes, geometry, progress and text.
+This correction still requires observation of the refreshed loading screen.
+
+A numeric-only scrollbar trace observed drawing inside DefWindowProcW with no
+BeginPaint scope or DC owner. The native adapter now uses that actual window
+origin for ScrollBar theme calls. Nested scopes restore their previous owner.
+The transient folder-navigation result, Home and taskbar edge still require
+visual confirmation; source tests and native compilation are not substitutes.
