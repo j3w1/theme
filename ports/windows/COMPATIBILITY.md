@@ -279,3 +279,21 @@ installation can be recovered even before `current.json` exists. Missing or
 changed recovery files fail without a network download. The underlying journal
 preserves later edits and returns a nonzero result for unresolved conflicts;
 the wrapper must not print completion for those results.
+
+
+### Setup runtime verification
+
+Native Windows PowerShell 5.1 fixtures exercised identity, explicit mode
+selection, digest rejection, pending-first-install recovery, lifecycle ordering
+and child failure propagation. A real isolated test downloaded pinned PowerShell
+7.6.6, verified its archive and Microsoft signature, executed it and verified the
+retained runtime offline. These are bounded checks, not a clean-PC full install.
+
+Progress rendering is suppressed only during bootstrap downloads, with the
+caller preference restored afterward. PowerShell 7.4+ downloads set both
+connection and stream-idle timeouts: `TimeoutSec` alone only bounds connection
+waiting on those engines. A native raw-GitHub response stalled during Prepare;
+it was stopped before theme mutation. Connection success is not a complete
+download. Hash validation must succeed before a release is marked verified.
+The documented immutable source-checkout route remains available when release
+downloads cannot complete; no cache digest or safety check is bypassed.

@@ -29,7 +29,8 @@ function Get-J3w1SetupFile([string]$Uri,[string]$Path,[string]$Sha256,[switch]$O
  try {
   # Windows PowerShell 5.1 progress rendering can dominate large downloads.
   $ProgressPreference='SilentlyContinue'
-  Invoke-WebRequest -UseBasicParsing -Uri $Uri -OutFile $pending -TimeoutSec 300 -ErrorAction Stop
+  $readTimeout=@{};if($PSVersionTable.PSVersion -ge [version]'7.4'){$readTimeout.OperationTimeoutSeconds=60}
+  Invoke-WebRequest -UseBasicParsing -Uri $Uri -OutFile $pending -TimeoutSec 300 @readTimeout -ErrorAction Stop
   if($Sha256 -and (Get-FileHash -LiteralPath $pending -Algorithm SHA256).Hash -ne $Sha256){throw 'Setup download digest mismatch'}
   Assert-J3w1SetupPath $Path;[IO.File]::Move($pending,$Path)
  } finally {$ProgressPreference=$previousProgress;if(Test-Path -LiteralPath $pending){Remove-Item -LiteralPath $pending}}
@@ -38,10 +39,11 @@ function Resolve-J3w1SetupRevision([string]$Revision,[string]$Version) {
  if($Revision -and $Version){throw 'Choose either -Revision or -Version, not both.'}
  if($Version){
   if($Version -cnotmatch '^v\d+\.\d+\.\d+$'){throw 'Use an explicit release tag such as v4.0.0.'}
-  $ref=Invoke-RestMethod -Uri "https://api.github.com/repos/j3w1/theme/git/ref/tags/$Version" -ErrorAction Stop
+  $readTimeout=@{};if($PSVersionTable.PSVersion -ge [version]'7.4'){$readTimeout.OperationTimeoutSeconds=60}
+  $ref=Invoke-RestMethod -Uri "https://api.github.com/repos/j3w1/theme/git/ref/tags/$Version" -TimeoutSec 60 @readTimeout -ErrorAction Stop
   if($ref.object.type -eq 'tag'){
    if($ref.object.sha -cnotmatch '^[0-9a-f]{40}$'){throw 'Invalid annotated tag identity'}
-   $ref=Invoke-RestMethod -Uri "https://api.github.com/repos/j3w1/theme/git/tags/$($ref.object.sha)" -ErrorAction Stop
+   $ref=Invoke-RestMethod -Uri "https://api.github.com/repos/j3w1/theme/git/tags/$($ref.object.sha)" -TimeoutSec 60 @readTimeout -ErrorAction Stop
   }
   if($ref.object.type -ne 'commit'){throw 'Release tag does not resolve to a commit'}
   $Revision=$ref.object.sha

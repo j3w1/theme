@@ -41,7 +41,7 @@ function Get-PinnedFile([string]$Relative,[string]$Destination){
   $proc=[Diagnostics.Process]::Start($start);$stream=[IO.File]::Create($Destination)
   try{$proc.StandardOutput.BaseStream.CopyTo($stream)}finally{$stream.Dispose()}
   $err=$proc.StandardError.ReadToEnd();$proc.WaitForExit();if($proc.ExitCode -ne 0){throw "Pinned Git read failed: $Relative; $err"}
- }else{Invoke-WebRequest -Uri "https://raw.githubusercontent.com/j3w1/theme/$Revision/$Relative" -OutFile $Destination -TimeoutSec 60}
+ }else{Invoke-WebRequest -Uri "https://raw.githubusercontent.com/j3w1/theme/$Revision/$Relative" -OutFile $Destination -TimeoutSec 60 -OperationTimeoutSeconds 60}
 }
 function Get-VerifiedDownload($Item,[string]$Destination){
  Assert-SafePath $Destination
@@ -51,7 +51,7 @@ function Get-VerifiedDownload($Item,[string]$Destination){
  }
  $pending=$Destination+'.download-'+[guid]::NewGuid().ToString('N')
  try{
-  Invoke-WebRequest -Uri $Item.url -OutFile $pending -TimeoutSec 180
+  Invoke-WebRequest -Uri $Item.url -OutFile $pending -TimeoutSec 180 -OperationTimeoutSeconds 60
   if((Get-FileHash -LiteralPath $pending -Algorithm SHA256).Hash.ToLowerInvariant() -ne $Item.sha256){throw "Dependency digest mismatch: $Destination"}
   Assert-SafePath $Destination
   [IO.File]::Move($pending,$Destination)
@@ -136,8 +136,8 @@ if($Version){
   $Revision=(& git -C $SourceRoot rev-parse --verify "refs/tags/$Version^{commit}").Trim()
   if($LASTEXITCODE){throw 'Requested release tag is unavailable in the offline source'}
  }else{
- $ref=Invoke-RestMethod "https://api.github.com/repos/j3w1/theme/git/ref/tags/$Version"
- if($ref.object.type -eq 'tag'){$tag=Invoke-RestMethod $ref.object.url;$Revision=$tag.object.sha}else{$Revision=$ref.object.sha}
+ $ref=Invoke-RestMethod "https://api.github.com/repos/j3w1/theme/git/ref/tags/$Version" -TimeoutSec 60 -OperationTimeoutSeconds 60
+ if($ref.object.type -eq 'tag'){$tag=Invoke-RestMethod $ref.object.url -TimeoutSec 60 -OperationTimeoutSeconds 60;$Revision=$tag.object.sha}else{$Revision=$ref.object.sha}
  }
 }
 $current=Join-Path $StateRoot 'current.json'
