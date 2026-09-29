@@ -1,77 +1,75 @@
 # j3w1 for Windows 11
 
-Black surfaces, rose ordinary text and compact black cursors with red outlines, generated from
-the canonical tokens. Content headings use near-white. Windhawk **2.0 alpha 6**
-is an explicitly pinned prerelease dependency. The port remains experimental
-while the remaining per-surface visual checks are in progress. The native
-apply/update/restore/reapply lifecycle has passed on the documented host.
+Black surfaces, rose text, red accents and small black/red cursors, generated
+from the canonical j3w1 tokens. The Windows port is experimental; the exact
+supported host and remaining visual limits are in [Compatibility](COMPATIBILITY.md).
 
 ## Install
 
-Use native Windows 11 x64 and PowerShell 7.4+. Plan also needs Node 24+. Open PowerShell as the
-intended desktop user. Plan reports proposed targets and shell compatibility
-without modifying settings or installing dependencies. Full mode requires the
-exact fingerprint documented in [compatibility and recovery](COMPATIBILITY.md).
-Native mode omits all Windhawk changes.
+1. Open **Windows PowerShell** as your normal desktop user on Windows 11 x64.
+2. Paste the command below. Setup obtains required runtimes, checks compatibility,
+   installs the theme, runs Test, and prints the exact recovery commands.
+3. Reopen affected apps and check their appearance.
 
 <!-- install:start -->
 Install commands appear here once v4.0.0 is released.
 <!-- install:end -->
 
-Before the first release, use a reviewed immutable checkout:
+No Git, manual Node install or preinstalled PowerShell 7 is needed. Setup reuses
+PowerShell 7.4+ when available; otherwise it retains a pinned, hash-checked and
+Microsoft-signed runtime for this user. It does not change system execution
+policy or require you to elevate the whole installation. Managed-device policy
+can still prevent execution; use your administrator's approved process.
 
-```powershell
-$revision = git rev-parse HEAD
-& ./ports/windows/install.ps1 -Action Plan -SourceRoot . -Revision $revision -Mode Full
-& ./ports/windows/install.ps1 -Action Apply -SourceRoot . -Revision $revision -Mode Full
-```
+**Full mode** adds the five pinned Windhawk shell stylers. It requires the exact
+reviewed Windows/shell fingerprint and uses Windhawk 2.0 alpha 6. On other
+builds, setup explains the limit and asks whether to install **Native mode**:
+personalization, wallpaper, cursors and supported existing app settings, without
+the shell stylers. Nothing silently falls back. Cancel leaves theme settings
+unchanged, though downloaded setup dependencies are retained.
 
-Uncommitted edits are excluded. The offline route reads Git objects at that
-revision and validates every artifact. Missing dependencies still require
-network access unless their verified downloads already exist in the state
-directory. PowerShell is a prerequisite. Apply retains an official pinned Node 24 runtime
-when no compatible Node installation is available on the ordinary user/machine
-PATH; it does not depend on an agent tool cache at sign-in. Standalone Plan
-requires Node to inspect settings. Existing compatible applications and
-fonts are reused. A missing font or Windhawk is fetched from its official pinned
-source and digest-checked; Windhawk also requires a valid publisher signature.
+Windows Terminal and PowerToys are **optional**. Existing supported installations
+are themed; setup does not install those apps. The canonical font, Node and
+Full-mode Windhawk dependencies are obtained automatically when needed.
 
-## Notification sidebar
-
-Full mode styles the notification/calendar outer frames with black surfaces,
-square corners and one thin red border. Notification cards use the near-black
-panel role; calendar chrome and the Focus section use the chrome role. Named
-header labels use the canonical monospace family without changing font sizes.
-The calendar's current day uses dark-red action colors with readable rose text.
-Notification contents, actions, grouping, calendar layout and Focus behavior
-remain native. Internal cards do not acquire additional rose frames.
+Before v4.0.0 is published, download `ports/windows/setup.ps1` from the full
+immutable commit supplied with the reviewed PR and run it with `-Revision` and
+that same commit. Do not use a branch URL. Developer/offline instructions are
+in [Compatibility](COMPATIBILITY.md#developer-and-offline-installation).
 
 ## Update and test
-
-Updates are explicit. Use an exact release tag or full revision, and close
-application settings windows before applying. Never edit the immutable cache.
 
 <!-- update:start -->
 Install commands appear here once v4.0.0 is released.
 <!-- update:end -->
 
-The installed entry point is printed after Apply. Invoke that script with
-`-Action Test` to check effective managed settings, shell compatibility and
-Windhawk settings/version/enabled state. Check the actual visual surfaces after
-reopening affected apps; configuration readback is not visual verification.
+Every setup ends with Test. To check again, run the printed Test command from
+`%LOCALAPPDATA%\j3w1-theme\windows\recovery-commands.txt`.
+Test verifies artifacts, managed settings and compatibility; it is not a visual
+inspection. Close app settings windows before updating to avoid concurrent edits.
 
-## Restore and uninstall
+## Undo
+
+Run **one** command with the same setup script you downloaded:
+
+```powershell
+& ./setup.ps1 -Action Restore -Latest  # undo the last update
+& ./setup.ps1 -Action Restore         # restore the original appearance
+& ./setup.ps1 -Action Uninstall       # restore and remove theme integration
+```
+
+Recovery is offline and finds the installed version and runtime automatically.
+Use your downloaded script's actual filename, or use the exact saved commands below.
+
+Copy the appropriate command from `recovery-commands.txt`: **Restore -Latest**
+undoes the last transaction, **Restore** returns the original baseline, and
+**Uninstall** restores it and removes owned theme integration. Later user edits
+are preserved as reported conflicts. Shared tools, fonts and recovery data are
+retained. See [recovery](COMPATIBILITY.md#recovery) if an operation was interrupted.
 
 <!-- restore:start -->
 Install commands appear here once v4.0.0 is released.
 <!-- restore:end -->
-
-`Restore -Latest` undoes one transaction. `Restore` returns all managed theme
-settings to the original baseline. `Uninstall` also removes owned assets and
-startup integration through that same journal. Shared applications, fonts and
-recovery data remain. Later edits to managed values are reported as conflicts;
-unrelated settings and documents are preserved. See [recovery](COMPATIBILITY.md)
-before resolving a conflict or interrupted installation.
 
 ## What changes
 

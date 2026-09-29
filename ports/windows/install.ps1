@@ -1,9 +1,10 @@
 <# j3w1 Windows lifecycle. Run with PowerShell 7.4+ and Node 24+.
    Sources are fetched from immutable Git objects or commit-pinned HTTPS URLs.
-   Plan never installs dependencies or changes application settings. #>
+   Plan never installs dependencies or changes application settings. Prepare
+   retains the verified release and Node, then reports the same compatibility plan. #>
 [CmdletBinding()]
 param(
- [ValidateSet('Plan','Apply','Update','Test','Restore','Uninstall','Guard')][string]$Action='Plan',
+ [ValidateSet('Plan','Prepare','Apply','Update','Test','Restore','Uninstall','Guard')][string]$Action='Plan',
  [ValidateSet('Full','Native')][string]$Mode='Full',
  [string]$Revision,[string]$Version,[string]$SourceRoot,
  [string]$StateRoot=(Join-Path $env:LOCALAPPDATA 'j3w1-theme\windows'),
@@ -25,7 +26,7 @@ function Assert-ReleaseManifest($Manifest){
  if($Manifest.schemaVersion -ne 1 -or -not $Manifest.files -or $Manifest.files.Count -lt 6){throw 'Invalid release manifest'}
  $seen=[Collections.Generic.HashSet[string]]::new([StringComparer]::OrdinalIgnoreCase)
  foreach($entry in $Manifest.files){
-  if($entry.path -notmatch '^(dist/[a-z0-9][a-z0-9.-]*|install\.ps1|adapter\.ps1|lockscreen\.ps1|dependencies\.json|host\.json)$' -or $entry.path.Contains('..') -or $entry.sha256 -notmatch '^[0-9a-f]{64}$' -or -not $seen.Add($entry.path)){throw 'Unsafe, duplicate or malformed release manifest entry'}
+  if($entry.path -notmatch '^(dist/[a-z0-9][a-z0-9.-]*|install\.ps1|setup\.ps1|adapter\.ps1|lockscreen\.ps1|dependencies\.json|host\.json)$' -or $entry.path.Contains('..') -or $entry.sha256 -notmatch '^[0-9a-f]{64}$' -or -not $seen.Add($entry.path)){throw 'Unsafe, duplicate or malformed release manifest entry'}
  }
  foreach($required in @('dist/runtime.cjs','dist/windows-settings.json','install.ps1','adapter.ps1','lockscreen.ps1','dependencies.json','host.json')){if(-not $seen.Contains($required)){throw "Incomplete release: $required"}}
 }
@@ -215,7 +216,7 @@ try{
     }
    }
   }
-  if(-not $ordinaryNode -and $Action -in 'Apply','Update'){
+  if(-not $ordinaryNode -and $Action -in 'Prepare','Apply','Update'){
    [IO.Directory]::CreateDirectory([IO.Path]::GetDirectoryName($ownedNode))|Out-Null
    Get-VerifiedDownload $deps.node $ownedNode
    $signature=Get-AuthenticodeSignature -LiteralPath $ownedNode
@@ -263,6 +264,7 @@ try{
   if((& $cli --version) -ne 'windhawk-cli 2.0.0-alpha.6'){throw 'Windhawk version differs from the reviewed pin'}
   foreach($mod in $deps.mods){Get-VerifiedDownload $mod (Join-Path $downloads "$($mod.id).wh.cpp")}
  }
+  if($Action -eq 'Prepare'){$request.action='Plan'}
   $request|ConvertTo-Json -Compress|& $node.Source (Join-Path $release 'dist\runtime.cjs')
  if($LASTEXITCODE -ne 0){throw "Lifecycle $Action failed with exit code $LASTEXITCODE. Recovery: install.ps1 -Action Restore"}
  if($Action -in 'Apply','Update'){

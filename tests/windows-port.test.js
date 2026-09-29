@@ -32,7 +32,7 @@ test('Windows manifest covers every binary and executable artifact byte exactly'
  const manifest=await readJson('ports/windows/dist/install-manifest.json');
  assert.deepEqual(new Set(manifest.files.filter(f=>f.path.startsWith('dist/')).map(f=>f.path)),new Set(port.files.map(f=>f.path).filter(p=>!p.endsWith('/install-manifest.json'))));
  assert.equal(new Set(manifest.files.map(f=>f.path.toLowerCase())).size,manifest.files.length);
- for(const file of manifest.files){assert.match(file.path,/^(?:dist\/[a-z0-9.-]+|install\.ps1|adapter\.ps1|lockscreen\.ps1|dependencies\.json|host\.json)$/);assert.equal(sha(fs.readFileSync(path.join(source,file.path))),file.sha256,file.path);}
+ for(const file of manifest.files){assert.match(file.path,/^(?:dist\/[a-z0-9.-]+|install\.ps1|setup\.ps1|adapter\.ps1|lockscreen\.ps1|dependencies\.json|host\.json)$/);assert.equal(sha(fs.readFileSync(path.join(source,file.path))),file.sha256,file.path);}
  const emitted=port.files.map(f=>({path:f.path,bytes:fs.readFileSync(path.join(source,f.path))}));
  assert.doesNotThrow(()=>assertPortArtifacts(port,emitted));
  assert.throws(()=>assertPortArtifacts(port,[...emitted,{...emitted[0]}]),/duplicate/);
@@ -197,7 +197,7 @@ test('notification styling preserves content, layout and native focus without ne
   assert.ok(styles(target).includes('CornerRadius=0'));
   assert.ok(styles(target).includes('BorderThickness=1'));
  }
- for(const target of ['Border#ItemOpaquePlating','Border#ToastBackgroundBorder','Border#ToastBackgroundBorder2'])
+ for(const target of ['Border#ItemOpaquePlating'])
   assert.ok(!styles(target).some(s=>s.startsWith('Border')), 'cards must not acquire nested frames');
  const calendar=styles('CalendarView');
  assert.ok(calendar.includes('CalendarItemForeground=#e99499'));
@@ -208,10 +208,17 @@ test('notification styling preserves content, layout and native focus without ne
  }
 });
 
-test('Explorer disables the backdrop across its whole window without enabling a third-party theme',async()=>{
+test('Explorer retains the native backdrop after the whole-window red-accent regression',async()=>{
  const payload=await readJson('ports/windows/dist/windows-11-file-explorer-styler.json');
  assert.equal(payload.theme,'');
- assert.equal(payload.backgroundTranslucentEffect,'none');
- assert.equal(payload.backgroundTranslucentEffectRegion,'');
- assert.ok(payload.controlStyles.find(t=>t.target==='Grid#HomeViewRootGrid').styles.includes('Background=#000000'));
+ assert.ok(!Object.hasOwn(payload,'backgroundTranslucentEffect'));
+ assert.ok(!Object.hasOwn(payload,'backgroundTranslucentEffectRegion'));
+});
+
+test('standalone toast variants use black surfaces with one outer frame',async()=>{
+ const payload=await readJson('ports/windows/dist/windows-11-notification-center-styler.json');
+ for(const target of ['Border#ToastBackgroundBorder','Border#ToastBackgroundBorder2']){
+  const styles=payload.controlStyles.find(t=>t.target===target).styles;
+  for(const value of ['Background=#000000','BorderThickness=1','BorderBrush=#e53935','CornerRadius=0'])assert.ok(styles.includes(value));
+ }
 });

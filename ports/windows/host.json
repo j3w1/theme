@@ -358,51 +358,8 @@
           "styles": {
             "Background": "color.surface.default"
           }
-        },
-        {
-          "target": "FileExplorerExtensions.CommandBarControl_Wave1 > Grid",
-          "styles": {
-            "Background": "color.surface.chrome"
-          }
-        },
-        {
-          "target": "Grid#CommandBarControlRootGrid",
-          "styles": {
-            "Background": "color.surface.chrome"
-          }
-        },
-        {
-          "target": "CommandBar#FileExplorerCommandBar",
-          "styles": {
-            "Background": "color.surface.chrome"
-          }
-        },
-        {
-          "target": "Grid#HomeViewRootGrid",
-          "styles": {
-            "Background": "color.surface.canvas"
-          }
-        },
-        {
-          "target": "FileExplorerExtensions.GalleryViewControl#GalleryViewControl > Grid",
-          "styles": {
-            "Background": "color.surface.canvas"
-          }
-        },
-        {
-          "target": "Grid#GalleryRootGrid",
-          "styles": {
-            "Background": "color.surface.canvas"
-          }
-        },
-        {
-          "target": "Grid#DetailsViewControlRootGrid",
-          "styles": {
-            "Background": "color.surface.canvas"
-          }
         }
-      ],
-      "backgroundEffect": "none"
+      ]
     },
     {
       "id": "windows-11-notification-center-styler",
@@ -490,15 +447,19 @@
         {
           "target": "Border#ToastBackgroundBorder",
           "styles": {
-            "Background": "color.surface.default",
-            "CornerRadius": "radius.none"
+            "Background": "color.surface.canvas",
+            "CornerRadius": "radius.none",
+            "BorderBrush": "color.border.overlay",
+            "BorderThickness": "border.width.default"
           }
         },
         {
           "target": "Border#ToastBackgroundBorder2",
           "styles": {
-            "Background": "color.surface.default",
-            "CornerRadius": "radius.none"
+            "Background": "color.surface.canvas",
+            "CornerRadius": "radius.none",
+            "BorderBrush": "color.border.overlay",
+            "BorderThickness": "border.width.default"
           }
         },
         {
@@ -585,6 +546,18 @@
             "TodayForeground": "color.text.on-action",
             "TodayHoverBackground": "color.action.primary.hover-bg",
             "TodayPressedBackground": "color.action.primary.pressed-bg"
+          }
+        },
+        {
+          "target": "ActionCenter.FlexibleToastView#FlexibleNormalToastView",
+          "styles": {
+            "Background": "color.surface.canvas"
+          }
+        },
+        {
+          "target": "Button#VerbButton",
+          "styles": {
+            "CornerRadius": "radius.none"
           }
         }
       ]

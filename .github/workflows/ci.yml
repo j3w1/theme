@@ -124,7 +124,7 @@ jobs:
       - run: npm ci --prefer-offline --no-audit --no-fund
       - name: Native Windows lifecycle and generated port contracts
         shell: pwsh
-        run: node --test tests/windows-port.test.js tests/windows-install.test.js tests/windows-font.test.js tests/windows-compatibility.test.js
+        run: node --test tests/windows-port.test.js tests/windows-install.test.js tests/windows-font.test.js tests/windows-compatibility.test.js tests/windows-setup.test.js
 
   # Informational proposal only: no write token and no change to release-gate.
   # Use the PR head, not GitHub's synthetic merge commit, for an applicable patch.

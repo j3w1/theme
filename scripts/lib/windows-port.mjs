@@ -106,13 +106,6 @@ export function windowsArtifacts({manifest,host,resolved}){
  for(const mod of host.stylers){
   const controlStyles=targets(mod.targets);
   const payload={theme:'',controlStyles,themeResourceVariables:Object.entries(host.resources).map(([key,role])=>`${key}=${val(role)}`)};
-  if(mod.backgroundEffect!==undefined){
-   // The pinned Explorer adapter uses BLACK_BRUSH for the extended native
-   // client area when its backdrop is disabled. Fail if that ceases to match.
-   if(mod.id!=='windows-11-file-explorer-styler'||mod.backgroundEffect!=='none'||val('color.surface.canvas')!=='#000000')throw Error('Unsupported Windows whole-window background mapping');
-   payload.backgroundTranslucentEffect='none';
-   payload.backgroundTranslucentEffectRegion='';
-  }
   json(`${mod.id}.json`,payload);
  }
  artifacts.push({path:'dist/j3w1-wallpaper.bmp',bytes:wallpaperBmp(val('color.surface.desktop'))});
@@ -121,7 +114,7 @@ export function windowsArtifacts({manifest,host,resolved}){
  const runtime=buildSync({entryPoints:[path.join(repoRoot,'ports/windows/src/runtime.mjs')],bundle:true,mainFields:['module','main'],platform:'node',target:'node24',format:'cjs',write:false,legalComments:'eof'}).outputFiles[0].text;
  artifacts.push({path:'dist/runtime.cjs',text:runtime});
  const files=artifacts.map(a=>({path:a.path,sha256:createHash('sha256').update(a.bytes??a.text).digest('hex')}));
- for(const name of ['install.ps1','adapter.ps1','lockscreen.ps1','dependencies.json','host.json'])files.push({path:name,sha256:createHash('sha256').update(readFileSync(path.join(repoRoot,'ports/windows',name))).digest('hex')});
+ for(const name of ['install.ps1','setup.ps1','adapter.ps1','lockscreen.ps1','dependencies.json','host.json'])files.push({path:name,sha256:createHash('sha256').update(readFileSync(path.join(repoRoot,'ports/windows',name))).digest('hex')});
  json('install-manifest.json',{schemaVersion:1,version:manifest.version,files});
  return artifacts;
 }

@@ -24,7 +24,7 @@ const fence = (lang, lines, indent = "") => [`${indent}\`\`\`${lang}`, ...lines.
 
 const cloneNote = `In your clone of this repository (\`~/dev/theme\` on the CE devbox; if you have none, run \`git clone ${CLONE} ~/dev/theme\` and \`cd\` into it), paste:`;
 
-const windowsScript = commit => `pwsh -NoProfile -File "$env:LOCALAPPDATA\\j3w1-theme\\windows\\releases\\${commit}\\install.ps1"`;
+const windowsScript = commit => `& "$env:LOCALAPPDATA\\j3w1-theme\\windows\\releases\\${commit}\\setup.ps1"`;
 export const firstInstallerTag = file => file === 'ports/windows/README.md' ? 'v4.0.0' : FIRST_INSTALLER_TAG;
 const windowsPending = 'Install commands appear here once v4.0.0 is released.';
 const windowsReleased = release => Number(release.tag.match(/^v(\d+)/)?.[1] ?? 0) >= 4;
@@ -33,21 +33,14 @@ const blocks = {
     install: release => !windowsReleased(release) ? [windowsPending] : [
       `Release ${release.tag} (commit \`${release.commit}\`).`, '',
       ...fence('powershell', [
-        "$installer = Join-Path $env:TEMP 'j3w1-windows-install.ps1'",
-        `Invoke-WebRequest '${RAW}/${release.commit}/ports/windows/install.ps1' -OutFile $installer -ErrorAction Stop`,
-        'Get-Content -LiteralPath $installer # review before running',
-        `& $installer -Action Plan -Mode Full -Revision ${release.commit}`,
-        `& $installer -Action Apply -Mode Full -Revision ${release.commit}`,
-        `${windowsScript(release.commit)} -Action Test`,
+        "$setup = Join-Path $env:TEMP ('j3w1-setup-' + [guid]::NewGuid().ToString('N') + '.ps1')",
+        `Invoke-WebRequest -UseBasicParsing '${RAW}/${release.commit}/ports/windows/setup.ps1' -OutFile $setup -ErrorAction Stop`,
+        `& $setup -Revision ${release.commit}`,
       ]),
     ],
-    update: release => !windowsReleased(release) ? [windowsPending] : fence('powershell',[
-      "$installer = Join-Path $env:TEMP 'j3w1-windows-install.ps1'",
-      `Invoke-WebRequest '${RAW}/${release.commit}/ports/windows/install.ps1' -OutFile $installer -ErrorAction Stop`,
-      'Get-Content -LiteralPath $installer # review before running',
-      `& $installer -Action Update -Version ${release.tag}`,
-      `${windowsScript(release.commit)} -Action Test`,
-    ]),
+    update: release => !windowsReleased(release) ? [windowsPending] : [
+      'Run the Install command from the newer release. It prepares that exact revision, applies the changes and runs Test. Repeating the same revision is safe. Updates are never automatic.',
+    ],
     restore: release => !windowsReleased(release) ? [windowsPending] : [
       'Choose one recovery action. To undo the last transaction:', '',
       ...fence('powershell',[`${windowsScript(release.commit)} -Action Restore -Latest`]), '',

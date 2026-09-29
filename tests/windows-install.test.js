@@ -112,3 +112,15 @@ test('native registry adapter preserves the unsigned high bit of ARGB DWORD colo
  assert.equal(result.status,0,result.stderr);
  assert.deepEqual(JSON.parse(result.stdout),[0,2147483647,2147483648,4294967295,4278976720]);
 });
+
+test('Prepare retains verified release and returns a plan without mutating theme settings',options,t=>{
+ const f=fixture(t),before=fs.readFileSync(f.terminal,'utf8');
+ const result=f.ok('Prepare',['-Revision',f.first]);
+ const plan=JSON.parse(result.stdout);
+ assert.equal(plan.action,'Plan');assert.equal(plan.compatible,true);
+ assert.equal(fs.readFileSync(f.terminal,'utf8'),before);
+ assert.ok(!fs.existsSync(path.join(f.state,'journal.json')));
+ assert.ok(!fs.existsSync(path.join(f.state,'current.json')));
+ assert.ok(fs.existsSync(path.join(f.state,'releases',f.first,'verified.json')));
+ f.ok('Apply',['-Revision',f.first]);f.ok('Test');
+});

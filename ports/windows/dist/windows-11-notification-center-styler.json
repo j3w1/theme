@@ -84,15 +84,19 @@
     {
       "target": "Border#ToastBackgroundBorder",
       "styles": [
-        "Background=#100c0c",
-        "CornerRadius=0"
+        "Background=#000000",
+        "CornerRadius=0",
+        "BorderBrush=#e53935",
+        "BorderThickness=1"
       ]
     },
     {
       "target": "Border#ToastBackgroundBorder2",
       "styles": [
-        "Background=#100c0c",
-        "CornerRadius=0"
+        "Background=#000000",
+        "CornerRadius=0",
+        "BorderBrush=#e53935",
+        "BorderThickness=1"
       ]
     },
     {
@@ -179,6 +183,18 @@
         "TodayForeground=#ffa2a7",
         "TodayHoverBackground=#911410",
         "TodayPressedBackground=#630f0d"
+      ]
+    },
+    {
+      "target": "ActionCenter.FlexibleToastView#FlexibleNormalToastView",
+      "styles": [
+        "Background=#000000"
+      ]
+    },
+    {
+      "target": "Button#VerbButton",
+      "styles": [
+        "CornerRadius=0"
       ]
     }
   ],

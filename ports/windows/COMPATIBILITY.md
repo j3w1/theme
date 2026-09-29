@@ -178,7 +178,9 @@ Configuration readback alone must never promote the port to verified.
 
 The notification/calendar/Quick Settings outer grids use black surfaces,
 square corners and one token-based 1px red frame. Named notification plating
-and toast backgrounds use near-black panels without added inner borders.
+use near-black panels without added inner borders. Standalone toast background
+variants instead use a pure-black canvas and one red 1px outer frame; their
+named action buttons have square corners.
 Calendar chrome and the Focus section use the chrome surface; day geometry
 and named action corners are squared without changing sizes or visibility.
 CalendarView brushes map ordinary/muted/disabled text and current-day
@@ -190,17 +192,90 @@ CalendarView brush properties use the Windows XAML API. Import/readback and
 native visual checks are separate gates. No notification dismissal, expansion,
 Focus activation or setting change is required to inspect this treatment.
 
-## Explorer whole-window background
+## Explorer and application limits
 
-The pinned Explorer Styler's background effect is explicitly `none`, with the
-effect region set to its documented entire-window default. Its native drawing
-adapter uses a black brush behind supported GDI client surfaces when the DWM
-backdrop is disabled. Generation requires the canonical canvas to remain black
-for this host substitution. Named command, Home, Gallery and details XAML
-surfaces also receive canonical backgrounds. Native file-list/tree text is
-not recolored by these XAML rules. Import/readback does not prove whole-window
-visual coverage; the native result must be observed on the exact host.
+The attempted Explorer `none` backdrop with an entire-window effect produced
+bright red native panes on the candidate host instead of black. The owner
+rejected the result, and the native transaction was rolled back. That option
+and its speculative coverage claim are removed. Explorer retains its native
+backdrop with the earlier rose XAML chrome mapping. Native file-list/tree text
+and backgrounds are unresolved; successful settings readback did not establish
+correct visual rendering. The failed attempt remains historical evidence.
 
 Task Manager, third-party application bodies and arbitrary classic dialogs
 have no dedicated adapter in this port. Native dark mode and accent are only
 partial treatment there. No universal Windows-wide visual match is claimed.
+
+## Automated setup
+
+`setup.ps1` runs under native Windows PowerShell 5.1 or PowerShell 7. It requires
+Windows 11 x64, TLS HTTPS access to GitHub and the pinned dependency publishers,
+and an explicit release tag or full commit. Tags resolve once to an immutable
+commit. Setup verifies the install script and dependency metadata against that
+commit's manifest before running them. It reuses compatible PowerShell or
+retains the official pinned ZIP after digest and Microsoft publisher checks.
+Retained PowerShell files are verified against the pinned archive on reuse.
+ZIP entries are bounded and reject traversal, duplicate paths and symlinks.
+Existing reparse targets and concurrent setup are refused.
+
+The lifecycle's `Prepare` action retains the complete validated release and
+Node dependency, then returns the existing Plan result. It changes no theme
+settings and installs neither fonts nor Windhawk. Unlike read-only `Plan`, it
+does write release/dependency caches. Setup uses it to offer Native mode when
+Full compatibility is unavailable. `-Mode Full` fails closed; `-Mode Native`
+is explicit. `-NonInteractive` with the default Auto mode refuses an unsupported
+host rather than prompting or silently applying Native mode. After selection,
+the existing Apply and Test actions remain the only theme mutation/verification
+path. Recovery commands are printed and saved before Apply so failures retain
+an actionable recovery route. No failure is reported as a successful setup.
+
+PowerShell, Node and the font are required dependencies; Full mode also needs
+Windhawk. Terminal and PowerToys are optional existing-app integrations. ZIP
+PowerShell stays alongside existing installations without PATH or machine-wide
+changes. Shared dependencies remain on Restore/Uninstall. Setup does not restart
+working apps, reboot, downgrade dependencies or bypass managed security policy.
+Preparation failure may retain verified downloads; retry the same immutable
+revision. A live `setup.lock` must never be removed. A stale one can be removed
+only after checking its recorded process has ended, like the lifecycle locks.
+
+## Developer and offline installation
+
+From an immutable checkout, with PowerShell 7.4+ and Node 24+ available:
+
+```powershell
+$revision = git rev-parse HEAD
+& ./ports/windows/install.ps1 -Action Plan -SourceRoot . -Revision $revision -Mode Full
+& ./ports/windows/install.ps1 -Action Apply -SourceRoot . -Revision $revision -Mode Full
+& ./ports/windows/install.ps1 -Action Test
+```
+
+Uncommitted files are excluded. The source route reads Git objects; ordinary
+setup uses pinned HTTPS downloads and needs no Git. Offline use also requires
+the previously verified dependency downloads. `Update` requires an explicit
+`-Version` or `-Revision`; recovery actions use the installed cache without
+network access. Full-mode support always remains tied to the exact fingerprint.
+
+The owner confirmed the notification sidebar looks good after the notification
+and calendar update. Native Update and Test passed for that candidate. This is
+general appearance feedback, not exhaustive verification of all interaction
+states. The pending Start category border correction was installed with it.
+
+### One-command recovery
+
+The same downloaded `setup.ps1` handles setup and recovery from Windows
+PowerShell 5.1. No revision or runtime path is required:
+
+```powershell
+& ./setup.ps1 -Action Restore -Latest
+& ./setup.ps1 -Action Restore
+& ./setup.ps1 -Action Uninstall
+& ./setup.ps1 -Action Test
+```
+
+Choose one command: undo the last update, restore the original appearance,
+uninstall theme integration, or verify. Recovery uses the existing lifecycle
+and validates the retained entry point before invoking it. A pending first
+installation can be recovered even before `current.json` exists. Missing or
+changed recovery files fail without a network download. The underlying journal
+preserves later edits and returns a nonzero result for unresolved conflicts;
+the wrapper must not print completion for those results.

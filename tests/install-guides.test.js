@@ -106,8 +106,12 @@ test("Windows guides do not name an older release that did not contain the port"
     }
   }
   const ready=guideBlocks({...manifest,release:{tag:"v4.0.0",commit}},"ports/windows/README.md");
-  assert.ok(ready.install.includes(`/`+commit+`/ports/windows/install.ps1`));
-  assert.ok(ready.update.includes(`-Action Update -Version v4.0.0`));
-  assert.ok(ready.update.includes(`Invoke-WebRequest`));
+  assert.ok(ready.install.includes(`/`+commit+`/ports/windows/setup.ps1`));
+  assert.ok(ready.update.includes(`newer release`));
+  assert.ok(ready.install.includes(`Invoke-WebRequest -UseBasicParsing`));
+  assert.ok(ready.install.includes(`& $setup -Revision ${commit}`));
+  assert.ok(!ready.install.includes(`-Action Plan`));
   assert.ok(ready.restore.includes(`-Action Restore -Latest`));
+  assert.ok(ready.restore.includes(`setup.ps1`));
+  assert.doesNotMatch(ready.restore, /\bpwsh\b|install\.ps1/);
 });

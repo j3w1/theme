@@ -37749,7 +37749,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-oi/Nrpqy3tB77WrixT5Hc5yO0JDY0UU9chaVVaEraIQ=",
+      "subjectDigest": "sha256-jLpl5iJUyz0jmUOeY5VEcOSYAQrurcT6XXTP4rTUsq0=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37818,13 +37818,13 @@
           "path": "dist/windows-11-file-explorer-styler.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-11-file-explorer-styler.json",
-          "digest": "sha256-fMlipvpvfj8ENdAQG199PXrv4VtcNYbtCEUGb2rQvV0="
+          "digest": "sha256-12tGEWqUL9FAcUzOeZ4vnDGg93jXYZk6FwVry4/hyEw="
         },
         {
           "path": "dist/windows-11-notification-center-styler.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-11-notification-center-styler.json",
-          "digest": "sha256-FYZgn1REc7KwdL3Jvxw1+dmlrVLbVhyJUWqecSwt+ww="
+          "digest": "sha256-xo+X3AXpK8LYLMl2gN225JkJw4VxfpReafMUodpOZ4M="
         },
         {
           "path": "dist/windows-11-settings-styler.json",
@@ -37956,7 +37956,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-GsdjgGOH1b8UbwRPvDLi1qaGdDegI0Qoi+3dUKC5fps="
+          "digest": "sha256-EhrYWwAuvXnpoaDtbqfU1TsqVOskESLRLJWZcrOuL6g="
         }
       ],
       "rollback": "Run install.ps1 -Action Restore for original settings, or add -Latest for the previous transaction; Uninstall also removes owned theme assets.",
@@ -37976,7 +37976,9 @@
             "windows-11-start-menu-styler | StartMenu.FolderModal > Grid > Border | BorderThickness",
             "windows-11-notification-center-styler | Grid#ControlCenterRegion | BorderThickness",
             "windows-11-notification-center-styler | Grid#NotificationCenterGrid | BorderThickness",
-            "windows-11-notification-center-styler | Grid#CalendarCenterGrid | BorderThickness"
+            "windows-11-notification-center-styler | Grid#CalendarCenterGrid | BorderThickness",
+            "windows-11-notification-center-styler | Border#ToastBackgroundBorder | BorderThickness",
+            "windows-11-notification-center-styler | Border#ToastBackgroundBorder2 | BorderThickness"
           ],
           "value": "1px",
           "eligibility": {
@@ -38470,7 +38472,9 @@
             "windows-11-start-menu-styler | StartMenu.FolderModal > Grid > Border | BorderBrush",
             "windows-11-notification-center-styler | Grid#ControlCenterRegion | BorderBrush",
             "windows-11-notification-center-styler | Grid#NotificationCenterGrid | BorderBrush",
-            "windows-11-notification-center-styler | Grid#CalendarCenterGrid | BorderBrush"
+            "windows-11-notification-center-styler | Grid#CalendarCenterGrid | BorderBrush",
+            "windows-11-notification-center-styler | Border#ToastBackgroundBorder | BorderBrush",
+            "windows-11-notification-center-styler | Border#ToastBackgroundBorder2 | BorderBrush"
           ],
           "value": "#e53935",
           "eligibility": {
@@ -41457,14 +41461,13 @@
             "windows-11-notification-center-styler | Grid#ControlCenterRegion | Background",
             "windows-11-notification-center-styler | Grid#NotificationCenterGrid | Background",
             "windows-11-notification-center-styler | Grid#CalendarCenterGrid | Background",
+            "windows-11-notification-center-styler | Border#ToastBackgroundBorder | Background",
+            "windows-11-notification-center-styler | Border#ToastBackgroundBorder2 | Background",
             "windows-11-notification-center-styler | CalendarView | Background",
             "windows-11-notification-center-styler | CalendarView | CalendarItemBackground",
+            "windows-11-notification-center-styler | ActionCenter.FlexibleToastView#FlexibleNormalToastView | Background",
             "windows-11-settings-styler | SystemSettings.View.RootPage | Background",
-            "windows-11-settings-styler | Grid#RootPageGrid | Background",
-            "windows-11-file-explorer-styler | Grid#HomeViewRootGrid | Background",
-            "windows-11-file-explorer-styler | FileExplorerExtensions.GalleryViewControl#GalleryViewControl > Grid | Background",
-            "windows-11-file-explorer-styler | Grid#GalleryRootGrid | Background",
-            "windows-11-file-explorer-styler | Grid#DetailsViewControlRootGrid | Background"
+            "windows-11-settings-styler | Grid#RootPageGrid | Background"
           ],
           "value": "#000000",
           "eligibility": {
@@ -41490,10 +41493,7 @@
             "windows-11-notification-center-styler | ScrollViewer#CalendarControlScrollViewer | Background",
             "windows-11-notification-center-styler | Border#CalendarHeaderMinimizedOverlay | Background",
             "windows-11-notification-center-styler | ActionCenter.FocusSessionControl#FocusSessionControl > Grid#FocusGrid | Background",
-            "windows-11-notification-center-styler | Grid#NotificationCenterTopBanner | Background",
-            "windows-11-file-explorer-styler | FileExplorerExtensions.CommandBarControl_Wave1 > Grid | Background",
-            "windows-11-file-explorer-styler | Grid#CommandBarControlRootGrid | Background",
-            "windows-11-file-explorer-styler | CommandBar#FileExplorerCommandBar | Background"
+            "windows-11-notification-center-styler | Grid#NotificationCenterTopBanner | Background"
           ],
           "value": "#090707",
           "eligibility": {
@@ -41546,9 +41546,7 @@
             "windows-11-start-menu-styler | StartMenu.CategoryControl > Grid > Border | Background",
             "windows-11-file-explorer-styler | Grid#NavigationBarControlGrid | Background",
             "windows-11-notification-center-styler | Border#AcrylicBorder | Background",
-            "windows-11-notification-center-styler | Border#ItemOpaquePlating | Background",
-            "windows-11-notification-center-styler | Border#ToastBackgroundBorder | Background",
-            "windows-11-notification-center-styler | Border#ToastBackgroundBorder2 | Background"
+            "windows-11-notification-center-styler | Border#ItemOpaquePlating | Background"
           ],
           "value": "#100c0c",
           "eligibility": {
@@ -43160,7 +43158,8 @@
             "windows-11-notification-center-styler | Button#ExpandCollapseButton | CornerRadius",
             "windows-11-notification-center-styler | Button#IncreaseTimeButton | CornerRadius",
             "windows-11-notification-center-styler | Button#DecreaseTimeButton | CornerRadius",
-            "windows-11-notification-center-styler | Button#StartButton | CornerRadius"
+            "windows-11-notification-center-styler | Button#StartButton | CornerRadius",
+            "windows-11-notification-center-styler | Button#VerbButton | CornerRadius"
           ],
           "value": "0px",
           "eligibility": {
