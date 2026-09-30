@@ -134,7 +134,7 @@ pressed and selected fills. These mappings preserve layout, icons and focus beha
 
 The pinned PowerToys native loading panel is separate from its HTML preview.
 Its WinForms background and label text are mapped to the same canvas and text
-roles during painting; shared brushes, progress behavior, images and WebView
+roles during painting; shared brushes, progress values/extent, images and WebView
 content are not modified. High contrast and unrelated control classes pass through.
 Explorer nonclient scrollbar painting also retains its originating window during
 default window processing, including nested calls. Only ScrollBar theme draws
@@ -147,3 +147,11 @@ and libraries `-lbcrypt -lversion -luser32 -lgdi32 -lshell32 -lole32 -luuid -lux
 Run each executable with high contrast off. They exercise native GDI pixels,
 paint ownership, nested scopes and passthrough without desktop input or capture.
 They do not establish visual acceptance of the real host's loading transition.
+
+The loading label matcher follows Windows class-name case insensitivity, including
+the observed .NET 10 `WindowsForms10.Static` spelling. The determinate progress
+bar uses the existing progress track, primary fill and control-border roles.
+Only the observed normal fill and transparent track theme parts are recolored,
+keeping the native pixel mask, clipping, position, value and accessibility.
+Other progress states and unsupported drawing transforms pass through. The
+host still controls progress timing/animation; this is not a replacement control.

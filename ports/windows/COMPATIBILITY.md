@@ -441,3 +441,14 @@ BeginPaint scope or DC owner. The native adapter now uses that actual window
 origin for ScrollBar theme calls. Nested scopes restore their previous owner.
 The transient folder-navigation result, Home and taskbar edge still require
 visual confirmation; source tests and native compilation are not substitutes.
+
+
+The owner rejected the first loading correction: gray labels and green progress
+remained. A live drawing trace established `WindowsForms10.Static` (mixed case),
+while the adapter matched uppercase `STATIC` case-sensitively. The matcher now
+uses Windows' case-insensitive class convention. The same trace identified
+`Progress` PP_TRANSPARENTBAR/state 0 and PP_FILL/PBFS_NORMAL in the native
+progress control. Those draws now map to canonical progress tokens while
+retaining their native mask and clipping. The regression fixture uses the real
+observed class spelling and checks the progress paint path. Visual verification
+of this correction is distinct from the earlier failed candidate's test passes.

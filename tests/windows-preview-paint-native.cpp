@@ -16,7 +16,7 @@ int main(){
     templatePath=L"not-a-preview-template";assert(!ReviewedInstalledTemplate());
     assert(!Wh_ModInit()); // This synthetic executable is not the pinned host.
     originalFillRect=FillRect;originalSetTextColor=SetTextColor;originalSetBkColor=SetBkColor;
-    HWND label=Window(L"WindowsForms10.STATIC.test"),panel=Window(L"WindowsForms10.Window.test"),other=Window(L"WindowsForms10.EDIT.test");
+    HWND label=Window(L"WindowsForms10.Static.app.0.2360855_r3_ad1"),panel=Window(L"WindowsForms10.Window.test"),other=Window(L"WindowsForms10.EDIT.test");
     assert(LoadingWindow(label)&&LoadingWindow(panel)&&!LoadingWindow(other));
     assert(!LoadingWindow(Window(L"WindowsForms10.STATICinvalid")));
     HDC dc=CreateCompatibleDC(nullptr);assert(dc);
@@ -33,7 +33,26 @@ int main(){
     LoadingFillHook(dc,&r,data);assert(GetPixel(dc,4,4)==RGB(12,40,90));
     paintWindows.push_back(other);LoadingFillHook(dc,&r,gray);assert(GetPixel(dc,4,4)==RGB(30,30,30));paintWindows.pop_back();
     enabled=false;LoadingFillHook(dc,&r,gray);assert(GetPixel(dc,4,4)==RGB(30,30,30));
-    paintWindows.clear();DeleteObject(gray);DeleteObject(data);SelectObject(dc,old);DeleteObject(bitmap);DeleteDC(dc);
+    paintWindows.clear();
+    HWND progress=Window(L"WindowsForms10.msctls_progress32.app.0.2360855_r3_ad1");
+    enabled=true;paintWindows.push_back(progress);
+    themeClass=[](HTHEME,LPWSTR name,int size)->HRESULT{wcscpy_s(name,size,L"Progress");return S_OK;};
+    originalProgressBackground=[](HTHEME,HDC target,int part,int,const RECT* rect,const RECT*)->HRESULT{
+        RECT inner{rect->left+2,rect->top+2,rect->right-2,rect->bottom-2};
+        HBRUSH brush=CreateSolidBrush(part==PP_FILL?RGB(0,160,0):RGB(40,40,40));
+        FillRect(target,&inner,brush);DeleteObject(brush);return S_OK;
+    };
+    originalFillRect(dc,&r,gray);RECT clip{0,0,16,32};
+    assert(SUCCEEDED(ProgressBackgroundHook(nullptr,dc,PP_FILL,PBFS_NORMAL,&r,&clip)));
+    assert(GetPixel(dc,4,4)==progressFill);assert(GetPixel(dc,20,4)==RGB(30,30,30));
+    assert(GetPixel(dc,0,0)==RGB(30,30,30)); // Native mask remains intact.
+    assert(SUCCEEDED(ProgressBackgroundHook(nullptr,dc,PP_TRANSPARENTBAR,0,&r,nullptr)));
+    assert(GetPixel(dc,4,4)==progressTrack);
+    assert(SUCCEEDED(ProgressBackgroundHook(nullptr,dc,PP_FILL,PBFS_ERROR,&r,nullptr)));
+    assert(GetPixel(dc,4,4)==RGB(0,160,0)); // Unobserved states remain native.
+    enabled=false;ProgressBackgroundHook(nullptr,dc,PP_FILL,PBFS_NORMAL,&r,nullptr);assert(GetPixel(dc,4,4)==RGB(0,160,0));
+    enabled=true;paintWindows.push_back(other);ProgressBackgroundHook(nullptr,dc,PP_FILL,PBFS_NORMAL,&r,nullptr);assert(GetPixel(dc,4,4)==RGB(0,160,0));
+    paintWindows.clear();DestroyWindow(progress);DeleteObject(gray);DeleteObject(data);SelectObject(dc,old);DeleteObject(bitmap);DeleteDC(dc);
     DestroyWindow(label);DestroyWindow(panel);DestroyWindow(other);
-    puts("PASS: scoped loading canvas/text pixels; unrelated and disabled passthrough; shared brush unchanged; nested paint isolation");
+    puts("PASS: scoped loading canvas/text pixels; unrelated and disabled passthrough; shared brush unchanged; nested paint isolation; progress palette, native mask, clipping and state passthrough");
 }

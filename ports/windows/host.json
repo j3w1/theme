@@ -765,6 +765,13 @@
       "function": "color.code.syntax.function",
       "tag": "color.code.syntax.tag",
       "attribute.name": "color.code.syntax.property"
+    },
+    "loading": {
+      "background": "color.surface.canvas",
+      "foreground": "color.text.default",
+      "track": "color.interaction.pressed.bg",
+      "fill": "color.action.primary.bg",
+      "border": "color.border.control"
     }
   }
 }

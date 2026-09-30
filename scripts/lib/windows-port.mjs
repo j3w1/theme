@@ -111,8 +111,10 @@ export function windowsArtifacts({manifest,host,resolved}){
  const previewColors=Object.fromEntries(Object.entries(preview.colors).map(([key,role])=>[key,val(role)]));
  const previewSubs={VERSION:preview.version,VERSION_MAJOR:previewParts[0],VERSION_MINOR:previewParts[1],VERSION_BUILD:previewParts[2],VERSION_REVISION:previewParts[3],
   TEMPLATE_SHA256:preview.templateSha256,COLORS_JSON:JSON.stringify(previewColors),
-  LOADING_BACKGROUND:rgb(val(preview.colors['editor.background'])).join(','),
-  LOADING_FOREGROUND:rgb(val(preview.colors['editor.foreground'])).join(','),
+  LOADING_BACKGROUND:rgb(val(preview.loading.background)).join(','),
+  LOADING_FOREGROUND:rgb(val(preview.loading.foreground)).join(','),
+  PROGRESS_TRACK:rgb(val(preview.loading.track)).join(','),PROGRESS_FILL:rgb(val(preview.loading.fill)).join(','),
+  PROGRESS_BORDER:rgb(val(preview.loading.border)).join(','),
   RULES_JSON:JSON.stringify(Object.entries(preview.syntax).map(([token,role])=>({token,foreground:val(role).slice(1)}))),
   MEDIA_CSS:`@media (forced-colors: none) { html, body, #container { background: ${val('color.surface.canvas')}; color: ${val('color.text.default')}; } }`};
  const previewSource=readFileSync(path.join(repoRoot,'ports/windows/src/j3w1-powertoys-preview.wh.cpp.in'),'utf8').replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in previewSubs))throw Error(`Unknown preview source placeholder ${key}`);return previewSubs[key];});

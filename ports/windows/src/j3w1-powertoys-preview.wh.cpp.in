@@ -6,7 +6,7 @@
 // @author j3w1
 // @include PowerToys.MonacoPreviewHandler.exe
 // @architecture x86-64
-// @compilerOptions -lbcrypt -lversion -luser32 -lshell32 -lole32 -luuid -lgdi32
+// @compilerOptions -lbcrypt -lversion -luser32 -lshell32 -lole32 -luuid -lgdi32 -luxtheme
 // ==/WindhawkMod==
 // ==WindhawkModSettings==
 /*
@@ -16,6 +16,8 @@
 #include <windows.h>
 #include <bcrypt.h>
 #include <shlobj.h>
+#include <uxtheme.h>
+#include <vsstyle.h>
 #include <string>
 #include <vector>
 #include <atomic>
@@ -32,6 +34,13 @@ static decltype(&EndPaint) originalEndPaint;
 static thread_local std::vector<HWND> paintWindows;
 static constexpr COLORREF loadingBackground=RGB(@LOADING_BACKGROUND@);
 static constexpr COLORREF loadingForeground=RGB(@LOADING_FOREGROUND@);
+static constexpr COLORREF progressTrack=RGB(@PROGRESS_TRACK@);
+static constexpr COLORREF progressFill=RGB(@PROGRESS_FILL@);
+static constexpr COLORREF progressBorder=RGB(@PROGRESS_BORDER@);
+static decltype(&DrawThemeBackground) originalProgressBackground;
+using ThemeClassFn=HRESULT(WINAPI*)(HTHEME,LPWSTR,int);
+static ThemeClassFn themeClass;
+static thread_local bool paintingProgress=false;
 
 static bool HighContrast() {
     HIGHCONTRASTW value{sizeof(value)};
@@ -46,8 +55,10 @@ static bool LoadingWindow(HWND window) {
     DWORD process=0;wchar_t name[128]{};
     if(!window || !GetWindowThreadProcessId(window,&process) || process!=GetCurrentProcessId()
         || !GetClassNameW(window,name,128)) return false;
-    return wcsncmp(name,L"WindowsForms10.Window.",22)==0
-        || wcsncmp(name,L"WindowsForms10.STATIC.",22)==0;
+    // GetClassName returns "Static" on the reviewed .NET 10 host. Windows class
+    // names are case-insensitive; do not impose a different matching rule.
+    return _wcsnicmp(name,L"WindowsForms10.Window.",22)==0
+        || _wcsnicmp(name,L"WindowsForms10.Static.",22)==0;
 }
 static bool LoadingDC(HDC dc) {
     if(!enabled.load() || HighContrast()) return false;
@@ -82,6 +93,67 @@ static COLORREF WINAPI LoadingTextHook(HDC dc,COLORREF color) {
 static COLORREF WINAPI LoadingBkHook(HDC dc,COLORREF color) {
     if(color==RGB(30,30,30) && LoadingDC(dc))color=loadingBackground;
     return originalSetBkColor(dc,color);
+}
+static bool ProgressDC(HDC dc) {
+    if(!enabled.load() || paintingProgress || HighContrast())return false;
+    HWND owner=WindowFromDC(dc);
+    HWND window=owner?owner:paintWindows.empty()?nullptr:paintWindows.back();
+    DWORD process=0;wchar_t name[128]{};
+    if(!window || !GetWindowThreadProcessId(window,&process) || process!=GetCurrentProcessId()
+        || !GetClassNameW(window,name,128))return false;
+    constexpr wchar_t prefix[]=L"WindowsForms10.msctls_progress32.";
+    return _wcsnicmp(name,prefix,ARRAYSIZE(prefix)-1)==0;
+}
+// The live pinned host draws PP_TRANSPARENTBAR and PP_FILL in a memory DC.
+// Keep its extent, rounded/native mask, clipping and value-driven geometry. Only
+// pixels painted by these exact parts are recolored; user bitmaps are never read.
+static HRESULT WINAPI ProgressBackgroundHook(HTHEME theme,HDC dc,int part,int state,const RECT* rect,const RECT* clip) {
+    auto native=[&](){return originalProgressBackground(theme,dc,part,state,rect,clip);};
+    wchar_t name[64]{};
+    if(!rect || !ProgressDC(dc) || !themeClass || FAILED(themeClass(theme,name,64)) || _wcsicmp(name,L"Progress")
+        || !((part==PP_TRANSPARENTBAR && state==0) || (part==PP_FILL && state==PBFS_NORMAL))
+        || GetMapMode(dc)!=MM_TEXT || GetLayout(dc)!=0)return native();
+    if(GetGraphicsMode(dc)==GM_ADVANCED) {
+        XFORM x{};
+        if(!GetWorldTransform(dc,&x) || x.eM11!=1 || x.eM22!=1 || x.eM12!=0 || x.eM21!=0 || x.eDx!=0 || x.eDy!=0)return native();
+    }
+    const long long wide=static_cast<long long>(rect->right)-rect->left,high=static_cast<long long>(rect->bottom)-rect->top;
+    if(wide<=0 || high<=0 || wide>8192 || high>4096 || wide*high>8388608)return native();
+    const int width=static_cast<int>(wide),height=static_cast<int>(high);
+    // Allocate before creating GDI resources so allocation failure cannot leak them.
+    std::vector<DWORD> before;
+    try {before.resize(static_cast<size_t>(width)*height);}catch(...){return native();}
+    HDC buffer=CreateCompatibleDC(dc);if(!buffer)return native();
+    BITMAPINFO info{};info.bmiHeader.biSize=sizeof(BITMAPINFOHEADER);info.bmiHeader.biWidth=width;info.bmiHeader.biHeight=-height;
+    info.bmiHeader.biPlanes=1;info.bmiHeader.biBitCount=32;info.bmiHeader.biCompression=BI_RGB;
+    DWORD* pixels=nullptr;HBITMAP bitmap=CreateDIBSection(dc,&info,DIB_RGB_COLORS,reinterpret_cast<void**>(&pixels),nullptr,0);
+    if(!bitmap){DeleteDC(buffer);return native();}
+    HGDIOBJ previous=SelectObject(buffer,bitmap);HRESULT result=E_FAIL;
+    if(previous && previous!=HGDI_ERROR) {
+        if(BitBlt(buffer,0,0,width,height,dc,rect->left,rect->top,SRCCOPY)) {
+            GdiFlush();CopyMemory(before.data(),pixels,before.size()*sizeof(DWORD));
+            if(SetViewportOrgEx(buffer,-rect->left,-rect->top,nullptr)) {
+                paintingProgress=true;result=originalProgressBackground(theme,buffer,part,state,rect,clip);paintingProgress=false;
+                GdiFlush();
+                if(SUCCEEDED(result)) {
+                    for(size_t i=0;i<before.size();i++) {
+                        DWORD pixel=pixels[i];if((pixel&0xffffff)==(before[i]&0xffffff))continue;
+                        const BYTE r=(pixel>>16)&255,g=(pixel>>8)&255,b=pixel&255;
+                        COLORREF mapped=part==PP_FILL?progressFill:(r>=128 && g>=128 && b>=128?progressBorder:progressTrack);
+                        pixels[i]=(pixel&0xff000000)|(GetRValue(mapped)<<16)|(GetGValue(mapped)<<8)|GetBValue(mapped);
+                    }
+                    int saved=SaveDC(dc);
+                    if(saved) {
+                        bool clipped=!clip || IntersectClipRect(dc,clip->left,clip->top,clip->right,clip->bottom)!=ERROR;
+                        if(!clipped || !BitBlt(dc,rect->left,rect->top,width,height,buffer,rect->left,rect->top,SRCCOPY))result=E_FAIL;
+                        RestoreDC(dc,saved);
+                    } else result=E_FAIL;
+                }
+            }
+        }
+        SelectObject(buffer,previous);
+    }
+    DeleteObject(bitmap);DeleteDC(buffer);return FAILED(result)?native():result;
 }
 static bool ReviewedVersion(const wchar_t* exe) {
     DWORD ignored=0,size=GetFileVersionInfoSizeW(exe,&ignored);
@@ -203,8 +275,11 @@ BOOL Wh_ModInit() {
     if(split==std::wstring::npos || _wcsicmp(path.c_str()+split+1,L"PowerToys.MonacoPreviewHandler.exe")!=0) return FALSE;
     templatePath=L"\\\\?\\"+path.substr(0,split)+L"\\Assets\\Monaco\\index.html";
     if(!ReviewedInstalledTemplate())return FALSE;
+    themeClass=reinterpret_cast<ThemeClassFn>(GetProcAddress(GetModuleHandleW(L"uxtheme.dll"),MAKEINTRESOURCEA(74)));
+    if(!themeClass)return FALSE;
     if(!Wh_SetFunctionHook(reinterpret_cast<void*>(CreateFileW),reinterpret_cast<void*>(CreateFileHook),reinterpret_cast<void**>(&originalCreateFile))) return FALSE;
-    if(!Wh_SetFunctionHook(reinterpret_cast<void*>(FillRect),reinterpret_cast<void*>(LoadingFillHook),reinterpret_cast<void**>(&originalFillRect))
+    if(!Wh_SetFunctionHook(reinterpret_cast<void*>(DrawThemeBackground),reinterpret_cast<void*>(ProgressBackgroundHook),reinterpret_cast<void**>(&originalProgressBackground))
+        || !Wh_SetFunctionHook(reinterpret_cast<void*>(FillRect),reinterpret_cast<void*>(LoadingFillHook),reinterpret_cast<void**>(&originalFillRect))
         || !Wh_SetFunctionHook(reinterpret_cast<void*>(SetTextColor),reinterpret_cast<void*>(LoadingTextHook),reinterpret_cast<void**>(&originalSetTextColor))
         || !Wh_SetFunctionHook(reinterpret_cast<void*>(SetBkColor),reinterpret_cast<void*>(LoadingBkHook),reinterpret_cast<void**>(&originalSetBkColor))
         || !Wh_SetFunctionHook(reinterpret_cast<void*>(BeginPaint),reinterpret_cast<void*>(BeginPaintHook),reinterpret_cast<void**>(&originalBeginPaint))
