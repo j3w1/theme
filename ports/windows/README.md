@@ -161,6 +161,11 @@ Run each executable with high contrast off. They exercise native GDI pixels,
 paint ownership, nested scopes and passthrough without desktop input or capture.
 They do not establish visual acceptance of the real host's loading transition or caption buttons.
 
+The owner has confirmed the real Explorer header is black, all three native
+white window-button symbols are visible and acceptable, and the drag-selection
+area is red with rose borders. This observation does not cover every window,
+DPI setting, inactive state or accessibility configuration.
+
 The loading label matcher follows Windows class-name case insensitivity, including
 the observed .NET 10 `WindowsForms10.Static` spelling. The determinate progress
 bar uses the existing progress track, primary fill and control-border roles.

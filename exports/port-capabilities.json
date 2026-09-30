@@ -37749,7 +37749,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-04IhjrJKcIOnBz4nEPdfiRlkFS4xffWi1S73jDEgL9E=",
+      "subjectDigest": "sha256-JXQgqT7PmIGof7L4tfUhhHfLW7Cxzf6nW+v8HUF1GfI=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37950,13 +37950,13 @@
           "path": "dist/runtime.cjs",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/runtime.cjs",
-          "digest": "sha256-1R26BmHLyC445nGiwNUJKiTI/iAkuaWVzZJCjm1bozI="
+          "digest": "sha256-NPncRpQzE4wK3juOF64qpeE+sKcKZOMAluQsdqHxstk="
         },
         {
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-UcI+pQ7kLYYe4dxYWs1wp8jxAIpgfYo7UTf5fwWjUtE="
+          "digest": "sha256-G70bMoYChZlyZ4TbqPR4vmrAetiEeK7NX3cBrsaNUN0="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",

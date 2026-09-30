@@ -9,6 +9,7 @@ import {createHash} from 'node:crypto';
 import {repoRoot,readJson} from '../scripts/lib/fs.mjs';
 import {assertPortArtifacts} from '../scripts/lib/port-artifacts.mjs';
 import {CURSOR_NAMES,windowsStyleValue} from '../scripts/lib/windows-port.mjs';
+import {flattenStylerSettings} from '../ports/windows/src/compatibility.mjs';
 
 const source=path.join(repoRoot,'ports/windows');
 const runtime=path.join(source,'dist/runtime.cjs');
@@ -325,6 +326,26 @@ test('Explorer preserves the native caption composition layer and scopes address
  assert.match(native,/DWMWA_CAPTION_COLOR/);assert.match(native,/DWMWA_TEXT_COLOR/);
  assert.match(native,/process==GetCurrentProcessId\(\)/);
  assert.doesNotMatch(native,/WS_(?:MINIMIZEBOX|MAXIMIZEBOX)|SC_(?:CLOSE|MINIMIZE|MAXIMIZE)/);
+});
+
+test('shorter styler arrays terminate retained targets, nested styles and resources on update',()=>{
+ const old={theme:'',controlStyles:[{target:'OldRoot',styles:['Background=old','Foreground=old']},{target:'ObsoleteRoot',styles:['Background=old']}],themeResourceVariables:['One=old','Two=old']};
+ const next={theme:'',controlStyles:[{target:'NewRoot',styles:['Background=black']}],themeResourceVariables:['One=rose']};
+ const live={...flattenStylerSettings(old),...flattenStylerSettings(next)};
+ const styles=[];for(let i=0;live[`controlStyles[0].styles[${i}]`];i++)styles.push(live[`controlStyles[0].styles[${i}]`]);
+ const targets=[];for(let i=0;live[`controlStyles[${i}].target`];i++)targets.push(live[`controlStyles[${i}].target`]);
+ const resources=[];for(let i=0;live[`themeResourceVariables[${i}]`];i++)resources.push(live[`themeResourceVariables[${i}]`]);
+ assert.deepEqual(targets,['NewRoot']);assert.deepEqual(styles,['Background=black']);assert.deepEqual(resources,['One=rose']);
+ assert.equal(live['controlStyles[1].target'],'');
+ assert.equal(live['controlStyles[0].styles[1]'],'');
+ assert.equal(live['themeResourceVariables[1]'],'');
+ assert.equal(live['styleConstants[0]'],'');
+ const empty=flattenStylerSettings({controlStyles:[],themeResourceVariables:[],styleConstants:[]});
+ assert.deepEqual(empty,{'controlStyles[0].target':'','themeResourceVariables[0]':'','styleConstants[0]':''});
+ const omitted=flattenStylerSettings({controlStyles:[{target:'NewRoot',styles:[]}]});
+ assert.equal(omitted['themeResourceVariables[0]'],'');assert.equal(omitted['styleConstants[0]'],'');
+ assert.equal(omitted['controlStyles[0].styles[0]'],'');
+ assert.deepEqual(flattenStylerSettings({background:'#000000',version:'1.2'}),{background:'#000000',version:'1.2'});
 });
 
 test('standalone toast variants use black surfaces with one outer frame',async()=>{

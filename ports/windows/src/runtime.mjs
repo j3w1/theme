@@ -1,4 +1,4 @@
-import {shellCompatibility,stylerSettings} from './compatibility.mjs';
+import {shellCompatibility,stylerSettings,flattenStylerSettings} from './compatibility.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
@@ -177,7 +177,6 @@ function startWindhawk(){
  child.on('error',()=>{});child.unref();
  if(!engineRunning(15000))throw Error('Theme engine failed to start; enabled settings do not establish active rendering');
 }
-function flatten(value,prefix='',out={}){if(Array.isArray(value))value.forEach((v,i)=>flatten(v,`${prefix}[${i}]`,out));else if(value!==null&&typeof value==='object')for(const [k,v]of Object.entries(value))flatten(v,prefix?`${prefix}.${k}`:k,out);else out[prefix]=value;return out;}
 function stageMods(tx){
  if(args.mode!=='Full')return;
  if(fixture&&!args.fixtureWindhawk) { tx.mods=[];return; }
@@ -199,7 +198,7 @@ function stageMods(tx){
   if(installed?.id!==installedId)throw Error('Windhawk returned an unexpected installed identity');
   const staged=wh(['mod','show',installedId]);
   if(staged?.config?.disabled!==true||staged?.metadata?.version!==mod.version)throw Error('Windhawk disabled staging or version readback failed');
-  const values=flatten(stylerSettings(json(path.join(source,'dist',mod.id+'.json')),settings.stylerVariants?.[mod.id],compatibility().startLayout));
+  const values=flattenStylerSettings(stylerSettings(json(path.join(source,'dist',mod.id+'.json')),settings.stylerVariants?.[mod.id],compatibility().startLayout));
   wh(['mod','settings','set',installedId,...Object.entries(values).map(([k,v])=>`${k}=${v}`)]);
   const got=wh(['mod','settings','get',installedId]);
   const actual=got.settings??got;

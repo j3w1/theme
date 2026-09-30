@@ -540,6 +540,15 @@ passthrough; live appearance remains a separate acceptance gate.
 
 See Microsoft's [DWM window-attribute contract](https://learn.microsoft.com/en-us/windows/win32/api/dwmapi/ne-dwmapi-dwmwindowattribute).
 
+The pinned stylers terminate indexed target, style and resource arrays at an
+empty string. Updating a shorter list through the CLI otherwise leaves old
+indexed settings behind. Installation writes an explicit end marker after
+each complete replacement list, including every control's nested styles.
+Empty targets are never inserted between active rules. Backup and restoration
+retain the original settings, and Test verifies the new markers with the other
+managed values. The regression exercises shortening targets, nested styles
+and resources while excluding obsolete entries from the effective list.
+
 ## Native selected-row focus
 
 The recorded Explorer host draws the rename row outline through ListView part 1,

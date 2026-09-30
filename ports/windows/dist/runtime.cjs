@@ -50,6 +50,21 @@ function stylerSettings(base, variants, layout) {
   if (!Object.hasOwn(variants, layout)) throw Error("Unknown Start layout; styler remains disabled");
   return { ...base, disableNewStartMenuLayout: "default", controlStyles: [...base.controlStyles, ...variants[layout]] };
 }
+function flattenStylerSettings(value, prefix = "", out = {}) {
+  if (prefix === "" && value && Array.isArray(value.controlStyles)) {
+    for (const key of ["themeResourceVariables", "styleConstants"])
+      if (!Object.hasOwn(value, key)) out[`${key}[0]`] = "";
+  }
+  if (Array.isArray(value)) {
+    value.forEach((item, index) => flattenStylerSettings(item, `${prefix}[${index}]`, out));
+    if (prefix === "controlStyles") out[`${prefix}[${value.length}].target`] = "";
+    else if (prefix === "themeResourceVariables" || prefix === "styleConstants" || /^controlStyles\[\d+\]\.styles$/.test(prefix))
+      out[`${prefix}[${value.length}]`] = "";
+  } else if (value !== null && typeof value === "object") {
+    for (const [key, item] of Object.entries(value)) flattenStylerSettings(item, prefix ? `${prefix}.${key}` : key, out);
+  } else out[prefix] = value;
+  return out;
+}
 
 // ports/windows/src/runtime.mjs
 var import_node_fs2 = __toESM(require("node:fs"), 1);
@@ -1744,12 +1759,6 @@ function startWindhawk() {
   child.unref();
   if (!engineRunning(15e3)) throw Error("Theme engine failed to start; enabled settings do not establish active rendering");
 }
-function flatten(value, prefix = "", out = {}) {
-  if (Array.isArray(value)) value.forEach((v2, i) => flatten(v2, `${prefix}[${i}]`, out));
-  else if (value !== null && typeof value === "object") for (const [k, v2] of Object.entries(value)) flatten(v2, prefix ? `${prefix}.${k}` : k, out);
-  else out[prefix] = value;
-  return out;
-}
 function stageMods(tx) {
   if (args.mode !== "Full") return;
   if (fixture && !args.fixtureWindhawk) {
@@ -1779,7 +1788,7 @@ function stageMods(tx) {
     if (installed?.id !== installedId) throw Error("Windhawk returned an unexpected installed identity");
     const staged = wh(["mod", "show", installedId]);
     if (staged?.config?.disabled !== true || staged?.metadata?.version !== mod.version) throw Error("Windhawk disabled staging or version readback failed");
-    const values = flatten(stylerSettings(json(import_node_path2.default.join(source, "dist", mod.id + ".json")), settings.stylerVariants?.[mod.id], compatibility().startLayout));
+    const values = flattenStylerSettings(stylerSettings(json(import_node_path2.default.join(source, "dist", mod.id + ".json")), settings.stylerVariants?.[mod.id], compatibility().startLayout));
     wh(["mod", "settings", "set", installedId, ...Object.entries(values).map(([k, v2]) => `${k}=${v2}`)]);
     const got = wh(["mod", "settings", "get", installedId]);
     const actual = got.settings ?? got;
