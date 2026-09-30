@@ -101,6 +101,107 @@
         "PointerOverForeground=#e99499",
         "SelectedForeground=#f4eeee"
       ]
+    },
+    {
+      "target": "Microsoft.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar",
+      "styles": [
+        "Background=#000000",
+        "BorderBrush=#2b0e0d",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Microsoft.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar > Grid#LayoutRoot > Grid#OuterContentRoot > Grid#ContentRoot > Grid#PrimaryItemsRoot",
+      "styles": [
+        "Background=#000000",
+        "BorderBrush=#2b0e0d",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "CommandBarOverflowPresenter#SecondaryItemsControl > Grid#LayoutRoot",
+      "styles": [
+        "Background=#000000",
+        "BorderBrush=#2b0e0d",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "MenuFlyoutPresenter > Border",
+      "styles": [
+        "Background=#000000",
+        "BorderBrush=#2b0e0d",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "AppBarSeparator",
+      "styles": [
+        "Foreground=#2b0e0d"
+      ]
+    },
+    {
+      "target": "AppBarSeparator > Grid#RootGrid > Rectangle#SeparatorRectangle",
+      "styles": [
+        "Fill=#2b0e0d"
+      ]
+    },
+    {
+      "target": "MenuFlyoutSeparator",
+      "styles": [
+        "Background=#2b0e0d"
+      ]
+    },
+    {
+      "target": "MenuFlyoutSeparator > Rectangle",
+      "styles": [
+        "Fill=#2b0e0d"
+      ]
+    },
+    {
+      "target": "AppBarButton > Grid#Root@CommonStates > Border#AppBarButtonInnerBorder",
+      "styles": [
+        "Background@Normal=#000000",
+        "Background@PointerOver=#1c0a09",
+        "Background@Pressed=#420f0c",
+        "Background@Disabled=#000000",
+        "Background@OverflowNormal=#000000",
+        "Background@OverflowPointerOver=#1c0a09",
+        "Background@OverflowPressed=#420f0c",
+        "Background@OverflowDisabled=#000000",
+        "BorderBrush=#2b0e0d",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "MenuFlyoutItem > Grid#LayoutRoot@CommonStates",
+      "styles": [
+        "Background@Normal=#000000",
+        "Background@PointerOver=#1c0a09",
+        "Background@Pressed=#420f0c",
+        "Background@Disabled=#000000",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates",
+      "styles": [
+        "Background@Normal=#000000",
+        "Background@PointerOver=#1c0a09",
+        "Background@Pressed=#420f0c",
+        "Background@Disabled=#000000",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates",
+      "styles": [
+        "Background@Normal=#000000",
+        "Background@PointerOver=#1c0a09",
+        "Background@Pressed=#420f0c",
+        "Background@Disabled=#000000",
+        "CornerRadius=0"
+      ]
     }
   ],
   "themeResourceVariables": [

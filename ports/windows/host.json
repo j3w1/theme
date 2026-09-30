@@ -441,6 +441,107 @@
             "PointerOverForeground": "color.text.default",
             "SelectedForeground": "color.interaction.selection.text"
           }
+        },
+        {
+          "target": "Microsoft.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar",
+          "styles": {
+            "Background": "color.surface.canvas",
+            "BorderBrush": "color.border.divider",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Microsoft.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar > Grid#LayoutRoot > Grid#OuterContentRoot > Grid#ContentRoot > Grid#PrimaryItemsRoot",
+          "styles": {
+            "Background": "color.surface.canvas",
+            "BorderBrush": "color.border.divider",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "CommandBarOverflowPresenter#SecondaryItemsControl > Grid#LayoutRoot",
+          "styles": {
+            "Background": "color.surface.canvas",
+            "BorderBrush": "color.border.divider",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "MenuFlyoutPresenter > Border",
+          "styles": {
+            "Background": "color.surface.canvas",
+            "BorderBrush": "color.border.divider",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "AppBarSeparator",
+          "styles": {
+            "Foreground": "color.border.divider"
+          }
+        },
+        {
+          "target": "AppBarSeparator > Grid#RootGrid > Rectangle#SeparatorRectangle",
+          "styles": {
+            "Fill": "color.border.divider"
+          }
+        },
+        {
+          "target": "MenuFlyoutSeparator",
+          "styles": {
+            "Background": "color.border.divider"
+          }
+        },
+        {
+          "target": "MenuFlyoutSeparator > Rectangle",
+          "styles": {
+            "Fill": "color.border.divider"
+          }
+        },
+        {
+          "target": "AppBarButton > Grid#Root@CommonStates > Border#AppBarButtonInnerBorder",
+          "styles": {
+            "Background@Normal": "color.surface.canvas",
+            "Background@PointerOver": "color.interaction.hover.bg",
+            "Background@Pressed": "color.interaction.pressed.bg",
+            "Background@Disabled": "color.surface.canvas",
+            "Background@OverflowNormal": "color.surface.canvas",
+            "Background@OverflowPointerOver": "color.interaction.hover.bg",
+            "Background@OverflowPressed": "color.interaction.pressed.bg",
+            "Background@OverflowDisabled": "color.surface.canvas",
+            "BorderBrush": "color.border.divider",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "MenuFlyoutItem > Grid#LayoutRoot@CommonStates",
+          "styles": {
+            "Background@Normal": "color.surface.canvas",
+            "Background@PointerOver": "color.interaction.hover.bg",
+            "Background@Pressed": "color.interaction.pressed.bg",
+            "Background@Disabled": "color.surface.canvas",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates",
+          "styles": {
+            "Background@Normal": "color.surface.canvas",
+            "Background@PointerOver": "color.interaction.hover.bg",
+            "Background@Pressed": "color.interaction.pressed.bg",
+            "Background@Disabled": "color.surface.canvas",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates",
+          "styles": {
+            "Background@Normal": "color.surface.canvas",
+            "Background@PointerOver": "color.interaction.hover.bg",
+            "Background@Pressed": "color.interaction.pressed.bg",
+            "Background@Disabled": "color.surface.canvas",
+            "CornerRadius": "radius.none"
+          }
         }
       ]
     },
@@ -710,7 +811,9 @@
     "border": "color.border.divider",
     "scrollbar": "color.interaction.scrollbar.thumb",
     "scrollbarHover": "color.interaction.scrollbar.thumb-hover",
-    "disabled": "color.text.disabled"
+    "disabled": "color.text.disabled",
+    "textSelection": "color.interaction.text-selection.bg",
+    "textSelectionText": "color.interaction.text-selection.text"
   },
   "monacoPreview": {
     "version": "1.0",

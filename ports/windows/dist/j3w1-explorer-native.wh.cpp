@@ -19,6 +19,8 @@
 - scrollbar: "#420f0c"
 - scrollbarHover: "#911410"
 - disabled: "#8a5559"
+- textSelection: "#911410"
+- textSelectionText: "#f4eeee"
 */
 // ==/WindhawkModSettings==
 #include <windows.h>
@@ -29,12 +31,14 @@
 #include <atomic>
 
 static COLORREF background, foreground, hover, selected, inactive, border, scrollbar, scrollbarHover, disabled;
+static COLORREF textSelection, textSelectionText;
 static HBRUSH backgroundBrush;
 using ThemeClassFn=HRESULT(WINAPI*)(HTHEME,LPWSTR,int);
 static ThemeClassFn themeClass;
 static decltype(&FillRect) originalFillRect;
 static decltype(&SetTextColor) originalSetTextColor;
 static decltype(&SetBkColor) originalSetBkColor;
+static decltype(&ExtTextOutW) originalExtTextOut;
 static decltype(&PatBlt) originalPatBlt;
 static decltype(&GetThemeColor) originalGetThemeColor;
 static decltype(&DrawThemeTextEx) originalDrawThemeTextEx;
@@ -46,9 +50,11 @@ static thread_local std::vector<HWND> paintWindows;
 static std::atomic<bool> enabled{false};
 static thread_local bool drawingTheme=false;
 static decltype(&DefWindowProcW) originalDefWindowProc;
+static decltype(&SetScrollInfo) originalSetScrollInfo;
 static thread_local HWND defaultWindow=nullptr;
-// Nonclient scrollbars also paint synchronously during default window handling,
-// outside BeginPaint. Retain the actual originating HWND, including nested calls.
+// Nonclient scrollbars paint during default window handling and SetScrollInfo,
+// outside BeginPaint. Both paths share the most recent actual HWND; nested calls
+// restore the previous origin. This scope is used only for ScrollBar theme draws.
 struct DefaultPaintScope {
     HWND previous;
     explicit DefaultPaintScope(HWND window):previous(defaultWindow){defaultWindow=window;}
@@ -57,6 +63,11 @@ struct DefaultPaintScope {
 static LRESULT WINAPI DefaultWindowHook(HWND window,UINT message,WPARAM wParam,LPARAM lParam) {
     DefaultPaintScope scope(window);
     return originalDefWindowProc(window,message,wParam,lParam);
+}
+
+static int WINAPI ScrollInfoHook(HWND window,int bar,LPCSCROLLINFO info,BOOL redraw) {
+    DefaultPaintScope scope(window);
+    return originalSetScrollInfo(window,bar,info,redraw);
 }
 
 static bool HighContrast() {
@@ -78,6 +89,33 @@ static bool ExplorerDC(HDC dc,bool nonclientScrollbar=false) {
     if(owner)return ExplorerWindow(owner);
     if(nonclientScrollbar && defaultWindow)return ExplorerWindow(defaultWindow);
     return !paintWindows.empty() && ExplorerWindow(paintWindows.back());
+}
+// The observed native filename editor is Edit inside CtrlNotifySink. Do not
+// broaden this to arbitrary edit controls or infer a target from focus alone.
+static bool RenameDC(HDC dc) {
+    if(!enabled.load() || drawingTheme || HighContrast())return false;
+    HWND window=WindowFromDC(dc);
+    if(!window && !paintWindows.empty())window=paintWindows.back();
+    wchar_t name[64]{},parent[64]{};
+    return ExplorerWindow(window) && GetClassNameW(window,name,64)
+        && _wcsicmp(name,L"Edit")==0 && GetClassNameW(GetParent(window),parent,64)
+        && _wcsicmp(parent,L"CtrlNotifySink")==0;
+}
+// The native Edit paints its selected run with ExtTextOutW and a system
+// highlight background set internally, bypassing exported SetBkColor. Replace
+// only that observed selected-run color; preserve shaping, flags and DC state.
+static BOOL WINAPI RenameTextHook(HDC dc,int x,int y,UINT options,const RECT* rect,
+                                 LPCWSTR text,UINT count,const INT* spacing) {
+    COLORREF oldBackground=GetBkColor(dc);
+    if(!RenameDC(dc) || oldBackground!=GetSysColor(COLOR_HIGHLIGHT))
+        return originalExtTextOut(dc,x,y,options,rect,text,count,spacing);
+    int saved=SaveDC(dc);
+    if(!saved)return originalExtTextOut(dc,x,y,options,rect,text,count,spacing);
+    originalSetBkColor(dc,textSelection);
+    originalSetTextColor(dc,textSelectionText);
+    BOOL result=originalExtTextOut(dc,x,y,options,rect,text,count,spacing);
+    RestoreDC(dc,saved);
+    return result;
 }
 // Memory DCs have no WindowFromDC owner. Preserve nested paint scope per thread.
 static HDC WINAPI BeginPaintHook(HWND window,LPPAINTSTRUCT paint) {
@@ -243,7 +281,7 @@ static bool ReadColor(PCWSTR key,COLORREF* output) {
 BOOL Wh_ModInit() {
 
     if(HighContrast()) {return FALSE;}
-    if(!ReadColor(L"background",&background) || !ReadColor(L"foreground",&foreground) || !ReadColor(L"hover",&hover) || !ReadColor(L"selected",&selected) || !ReadColor(L"inactive",&inactive) || !ReadColor(L"border",&border) || !ReadColor(L"scrollbar",&scrollbar) || !ReadColor(L"scrollbarHover",&scrollbarHover) || !ReadColor(L"disabled",&disabled)) {return FALSE;}
+    if(!ReadColor(L"background",&background) || !ReadColor(L"foreground",&foreground) || !ReadColor(L"hover",&hover) || !ReadColor(L"selected",&selected) || !ReadColor(L"inactive",&inactive) || !ReadColor(L"border",&border) || !ReadColor(L"scrollbar",&scrollbar) || !ReadColor(L"scrollbarHover",&scrollbarHover) || !ReadColor(L"disabled",&disabled) || !ReadColor(L"textSelection",&textSelection) || !ReadColor(L"textSelectionText",&textSelectionText)) {return FALSE;}
     wchar_t executable[MAX_PATH]{};
     if(!GetModuleFileNameW(nullptr,executable,MAX_PATH)) return FALSE;
     DWORD ignored=0,size=GetFileVersionInfoSizeW(executable,&ignored);
@@ -259,11 +297,13 @@ BOOL Wh_ModInit() {
         && Wh_SetFunctionHook((void*)SetTextColor,(void*)TextColorHook,(void**)&originalSetTextColor)
         && Wh_SetFunctionHook((void*)PatBlt,(void*)PatBltHook,(void**)&originalPatBlt)
         && Wh_SetFunctionHook((void*)SetBkColor,(void*)BkColorHook,(void**)&originalSetBkColor)
+        && Wh_SetFunctionHook((void*)ExtTextOutW,(void*)RenameTextHook,(void**)&originalExtTextOut)
         && Wh_SetFunctionHook((void*)GetThemeColor,(void*)ThemeColorHook,(void**)&originalGetThemeColor)
         && Wh_SetFunctionHook((void*)DrawThemeTextEx,(void*)TextExHook,(void**)&originalDrawThemeTextEx)
         && Wh_SetFunctionHook((void*)BeginPaint,(void*)BeginPaintHook,(void**)&originalBeginPaint)
         && Wh_SetFunctionHook((void*)EndPaint,(void*)EndPaintHook,(void**)&originalEndPaint)
         && Wh_SetFunctionHook((void*)DefWindowProcW,(void*)DefaultWindowHook,(void**)&originalDefWindowProc)
+        && Wh_SetFunctionHook((void*)SetScrollInfo,(void*)ScrollInfoHook,(void**)&originalSetScrollInfo)
         && Wh_SetFunctionHook((void*)DrawThemeBackground,(void*)BackgroundHook,(void**)&originalDrawThemeBackground)
         && Wh_SetFunctionHook((void*)DrawThemeBackgroundEx,(void*)BackgroundExHook,(void**)&originalDrawThemeBackgroundEx);
 

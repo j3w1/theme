@@ -452,3 +452,26 @@ progress control. Those draws now map to canonical progress tokens while
 retaining their native mask and clipping. The regression fixture uses the real
 observed class spelling and checks the progress paint path. Visual verification
 of this correction is distinct from the earlier failed candidate's test passes.
+
+
+### Explorer interaction correction
+
+The owner accepted the corrected loading control, then reported that scrolling
+still restored a gray scrollbar, filename renaming selected text in blue, and
+the modern context menu retained a gray background. The retained numeric trace
+shows ScrollBar theme draws inside SetScrollInfo with no DC owner, BeginPaint or
+DefWindowProcW scope. The adapter now preserves the real originating window for
+both synchronous scrollbar entry points; nested calls restore the previous scope.
+It does not change scroll ranges, positions, redraw flags or return values.
+
+A separate live color/class trace identifies the rename path as Edit under
+CtrlNotifySink. ExtTextOutW receives the system highlight background internally,
+without calling the exported SetBkColor hook. Only this selected-run paint is
+mapped to text-selection roles, with the original text, flags and DC state kept.
+Other editors and high-contrast mode are excluded.
+
+The context-menu targets follow the pinned upstream File Explorer styler's
+primary and overflow flyout roots and the official WinUI AppBarSeparator and
+MenuFlyoutSeparator templates. Paint colors change; menu actions, order, icons,
+keyboard behavior and separator geometry remain native. These changes require
+fresh host readback and are not accepted based on generation or compilation.

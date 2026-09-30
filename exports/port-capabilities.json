@@ -37749,7 +37749,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-h1B2eLyh8zGy1KBbemFe3ANBwcfrLXIgBYQmFxWYk5A=",
+      "subjectDigest": "sha256-feZm2tgIRFrGsGyXWCou7JpidJtbnzoE7I+DKu3FG1o=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37782,7 +37782,7 @@
           "path": "dist/windows-settings.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-settings.json",
-          "digest": "sha256-h4E7db0YLWtxIGfJzuchSuoPczgWUsLb9tXDfqTaeZ4="
+          "digest": "sha256-nVawEn6wA46PB8oacizjMNdWJOgbpiIgiBytb/xvGEc="
         },
         {
           "path": "dist/terminal-fragment.json",
@@ -37818,7 +37818,7 @@
           "path": "dist/windows-11-file-explorer-styler.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-11-file-explorer-styler.json",
-          "digest": "sha256-DRLBsVVdBbEUqK+STIPo1/fk/HLDQ8d1sgwwhPXXjvE="
+          "digest": "sha256-gg+Xvc1afABU92huX6k+ua01MVoY1BhamWDtPKA2+DU="
         },
         {
           "path": "dist/windows-11-notification-center-styler.json",
@@ -37956,19 +37956,19 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-BrfUYZPn4GaiCFVhmcLGoA6J9Wi62K6XGLlbk3r+oYU="
+          "digest": "sha256-g8xbHd5w3wGUToMLOhUka6i4SIuOn0Y7qV/+qj6lV6A="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/j3w1-explorer-native.wh.cpp",
-          "digest": "sha256-Ondwb6GCXzqr2VLdzbMWO3hxxllwBSrOVOCrp1M/DAI="
+          "digest": "sha256-z2FBJLfqTsrqF4vink1JTKlr4Y+gDb0niQBFKIxCzec="
         },
         {
           "path": "dist/j3w1-explorer-native.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/j3w1-explorer-native.json",
-          "digest": "sha256-sBa6KLZRwLucd0zfo2Wd0o2YnEh03kM7Ctb8w97uAXU="
+          "digest": "sha256-owPYGwbh2Po2GIMLjjfp51rhz5JVOwCWu4JUrkypCMU="
         },
         {
           "path": "dist/j3w1-powertoys-preview.wh.cpp",

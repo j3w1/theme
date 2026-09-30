@@ -137,11 +137,21 @@ Its WinForms background and label text are mapped to the same canvas and text
 roles during painting; shared brushes, progress values/extent, images and WebView
 content are not modified. High contrast and unrelated control classes pass through.
 Explorer nonclient scrollbar painting also retains its originating window during
-default window processing, including nested calls. Only ScrollBar theme draws
+default window processing and SetScrollInfo redraws, including nested calls.
+The latter is used when scrolling and when a new folder updates the scroll range.
+Only ScrollBar theme draws
 use that additional scope; unrelated application windows are excluded.
 
+The native filename editor uses canonical text-selection background and on-fill
+text roles. Only the observed Edit/CtrlNotifySink path under an Explorer window
+is covered; arbitrary editors, unknown colors and high contrast pass through.
+Text, selection ranges, IME behavior and drawing-context state are preserved.
+Modern context-menu primary/overflow surfaces and submenu surfaces use black,
+with canonical divider colors; native action order, icons and menu behavior remain.
+
 Native offscreen regressions live in `tests/windows-preview-paint-native.cpp`
-and `tests/windows-scroll-paint-native.cpp`. Compile them on Windows with the
+`tests/windows-scroll-paint-native.cpp`, and
+`tests/windows-explorer-interaction-native.cpp`. Compile them on Windows with the
 pinned Windhawk x64 compiler, `--target=x86_64-w64-mingw32 -std=c++20 -static`,
 and libraries `-lbcrypt -lversion -luser32 -lgdi32 -lshell32 -lole32 -luuid -luxtheme`.
 Run each executable with high contrast off. They exercise native GDI pixels,
