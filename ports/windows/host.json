@@ -530,7 +530,8 @@
             "Background@PointerOver": "color.interaction.hover.bg",
             "Background@Pressed": "color.interaction.pressed.bg",
             "Background@Disabled": "color.surface.canvas",
-            "CornerRadius": "radius.none"
+            "CornerRadius": "radius.none",
+            "Background@SubMenuOpened": "color.interaction.hover.bg"
           }
         },
         {

@@ -54,6 +54,16 @@ test('Windows native values, Terminal ANSI and styler selectors resolve from can
  assert.equal(settings.version,(await readJson('theme.json')).version);
 });
 
+test('Explorer submenu stays on the hover palette while its child flyout is open',async()=>{
+ const config=await readJson('ports/windows/dist/windows-11-file-explorer-styler.json');
+ const submenu=config.controlStyles.find(x=>x.target==='MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates');
+ const value=name=>submenu.styles.find(s=>s.startsWith(`${name}=`))?.split('=').slice(1).join('=');
+ assert.equal(value('Background@SubMenuOpened'),value('Background@PointerOver'));
+ assert.ok(value('Background@SubMenuOpened'));
+ assert.notEqual(value('Background@SubMenuOpened'),value('Background@Normal'));
+ assert.notEqual(value('Background@SubMenuOpened'),value('Background@Disabled'));
+});
+
 test('Windows theme has required registration sections and retains the installed assets',t=>{
  const theme=fs.readFileSync(path.join(source,'dist/j3w1.theme'),'utf8');
  assert.match(theme,/\[Control Panel\\Desktop\]\nWallpaper=%LOCALAPPDATA%\\j3w1-theme\\windows\\assets\\j3w1-wallpaper\.bmp/);

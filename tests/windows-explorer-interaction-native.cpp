@@ -79,6 +79,28 @@ int main(){
     RECT focusClip{2,2,30,30};assert(SUCCEEDED(BackgroundHook(nullptr,target,1,3,&rect,&focusClip)));
     assert(GetPixel(target,0,5)==RGB(96,205,255));
     enabled=false;assert(SUCCEEDED(BackgroundHook(nullptr,target,1,3,&rect,nullptr)));assert(GetPixel(target,0,5)==RGB(96,205,255));enabled=true;
+    // The navigation trace reproduces TreeView 1/3, including the same
+    // corners. Unknown colors, interior content, other parts/states and owners
+    // must remain untouched; accessibility continues to take precedence.
+    themeClass=[](HTHEME,LPWSTR name,int size)->HRESULT{wcscpy_s(name,size,L"TreeView");return S_OK;};
+    FillRect(target,&rect,black);
+    assert(SUCCEEDED(BackgroundHook(nullptr,target,1,3,&rect,nullptr)));
+    assert(GetPixel(target,0,5)==focusRing && GetPixel(target,1,1)==RGB(211,53,49));
+    assert(GetPixel(target,0,1)==RGB(78,19,18));
+    assert(GetPixel(target,5,5)==RGB(96,205,255) && GetPixel(target,0,8)==RGB(0,120,215));
+    for(int state:{1,2,4,5,6}){
+        BackgroundHook(nullptr,target,1,state,&rect,nullptr);
+        assert(GetPixel(target,0,5)==RGB(96,205,255));
+    }
+    BackgroundHook(nullptr,target,2,3,&rect,nullptr);assert(GetPixel(target,0,5)==RGB(96,205,255));
+    BackgroundHook(nullptr,target,1,3,&rect,&focusClip);assert(GetPixel(target,0,5)==RGB(96,205,255));
+    fixtureHighContrast=true;
+    BackgroundHook(nullptr,target,1,3,&rect,nullptr);assert(GetPixel(target,0,5)==RGB(96,205,255));
+    fixtureHighContrast=false;
+    paintWindows.push_back(unrelated);
+    BackgroundHook(nullptr,target,1,3,&rect,nullptr);assert(GetPixel(target,0,5)==RGB(96,205,255));
+    paintWindows.pop_back();enabled=false;
+    BackgroundHook(nullptr,target,1,3,&rect,nullptr);assert(GetPixel(target,0,5)==RGB(96,205,255));enabled=true;
     // Menu popup regressions use hidden owners and offscreen pixels. No live
     // menu is opened and no input, screen capture or accessibility setting changes.
     paintWindows.clear();menuHover=RGB(50,17,16);menuHoverText=RGB(240,169,173);

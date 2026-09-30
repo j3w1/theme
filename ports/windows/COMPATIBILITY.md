@@ -479,7 +479,7 @@ fresh host readback and are not accepted based on generation or compilation.
 ## Native selected-row focus
 
 The recorded Explorer host draws the rename row outline through ListView part 1,
-selected state 3. Its three observed blue perimeter colors now map to
+selected state 3, and the navigation outline through TreeView part 1/state 3. Its three observed blue perimeter colors now map to
 `color.interaction.focus.ring`, retaining native geometry and antialiasing.
 The two-pixel perimeter restriction leaves the same colors inside the row
 untouched. Other states, colors, unrelated windows, unsupported transforms,
@@ -524,3 +524,14 @@ admit color-hint properties. Unknown hints and parts, unrelated popup owners,
 disabled adapters and high-contrast mode retain the host value. The native
 offscreen regression covers these boundaries. This query trace explains the
 previous gray frame; it is separate from live visual acceptance.
+
+### Modern submenu-open state
+
+The owner recording shows a modern flyout parent switching from the hover
+palette to gray when its child flyout opens. The Microsoft
+[MenuFlyoutSubItem template](https://github.com/microsoft/microsoft-ui-xaml/blob/main/controls/dev/CommonStyles/MenuFlyout_themeresources.xaml)
+defines `SubMenuOpened` in `Grid#LayoutRoot`'s `CommonStates`. The Explorer
+mapping now keeps that state on `color.interaction.hover.bg`; Normal, Pressed
+and Disabled keep their separate mappings. This matches the already styled
+hover surface without replacing the flyout or changing its commands. Generated
+palette regression is distinct from live verification on the recorded host.

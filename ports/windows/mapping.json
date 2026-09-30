@@ -215,7 +215,8 @@
       "windows-11-start-menu-styler | Button#ShowMoreSuggestionsButton > Grid@CommonStates > Border | Background@PointerOver",
       "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | Background@PointerOver",
       "nativeExplorer.hover",
-      "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@PointerOver"
+      "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@PointerOver",
+      "windows-11-file-explorer-styler | MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates | Background@SubMenuOpened"
     ],
     "color.interaction.pressed.bg": [
       "windhawk.resource.ControlFillColorTertiary",

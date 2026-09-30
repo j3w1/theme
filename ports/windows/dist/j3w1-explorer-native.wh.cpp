@@ -329,12 +329,12 @@ static HRESULT PaintTheme(HTHEME theme,HDC dc,int part,int state,const RECT* rec
     if(SUCCEEDED(result)) {
         for(int i=0;i<width*height;i++) {
             DWORD pixel=pixels[i];BYTE blue=pixel&255,green=(pixel>>8)&255,red=(pixel>>16)&255;
-            // The exact host paints its selected-row outline in ListView 1/3,
-            // independently of the native Edit selection. The live offscreen
-            // trace identified these three border pixels (including corners).
-            // Restrict the conversion to that draw's two-pixel perimeter: blue
-            // file icons/content in the interior and every other state survive.
-            bool focusEdge=_wcsicmp(kind,L"ListView")==0 && part==1 && state==3
+            // The recorded host paints selected outlines through ListView
+            // and TreeView part 1/state 3. Both live offscreen traces identify
+            // the same three blue perimeter colors, including corner blends.
+            // Keep the conversion at the two-pixel perimeter: interior images,
+            // unknown border colors and every other part/state survive.
+            bool focusEdge=(tree || _wcsicmp(kind,L"ListView")==0) && part==1 && state==3
                 && (i%width<2 || i%width>=width-2 || i/width<2 || i/width>=height-2);
             DWORD rgb=pixel&0xffffff;
             if(focusEdge && (rgb==0x60cdff || rgb==0x58bdeb || rgb==0x214657)) {

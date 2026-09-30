@@ -37749,7 +37749,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-R5ua8sv/RXHlRtDslMjXykLNpZetjrBkAVGoj3yk3t4=",
+      "subjectDigest": "sha256-HTQXSGUF5kgUZM/1KXAbrwxOiIvzVuEHyDUOKlr/KcM=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37782,7 +37782,7 @@
           "path": "dist/windows-settings.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-settings.json",
-          "digest": "sha256-y7ZkCr6OqIBI90N1viLXR3zIBsCu2njasM29XxT7TSI="
+          "digest": "sha256-8DxXi5KdW5hlbqwX5m+Qo3/fkjCIzR1HchaQHDIi0GI="
         },
         {
           "path": "dist/terminal-fragment.json",
@@ -37818,7 +37818,7 @@
           "path": "dist/windows-11-file-explorer-styler.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-11-file-explorer-styler.json",
-          "digest": "sha256-gg+Xvc1afABU92huX6k+ua01MVoY1BhamWDtPKA2+DU="
+          "digest": "sha256-5pzr9z7evYqKuLK3CquWzGazmQBMiAuy9o7WVrzIywQ="
         },
         {
           "path": "dist/windows-11-notification-center-styler.json",
@@ -37956,13 +37956,13 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-2X602CMP05Sg59fZcOsT1OUv2c4uC5zdidAiWHrznTc="
+          "digest": "sha256-rZLFJOgCGXIwvyHYX24FMlE/n3tGPHI5yf8FtzHx4XA="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/j3w1-explorer-native.wh.cpp",
-          "digest": "sha256-sOYvVFMUIQpw9HnpxrQQ753zkPM+eGfN+k/jCQSb074="
+          "digest": "sha256-NV8vEDVeNNe0PV0AYABH/RIPks3BllZOGqaSeDaDewU="
         },
         {
           "path": "dist/j3w1-explorer-native.json",
@@ -39688,7 +39688,8 @@
             "windows-11-start-menu-styler | Button#ShowMoreSuggestionsButton > Grid@CommonStates > Border | Background@PointerOver",
             "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | Background@PointerOver",
             "nativeExplorer.hover",
-            "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@PointerOver"
+            "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@PointerOver",
+            "windows-11-file-explorer-styler | MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates | Background@SubMenuOpened"
           ],
           "value": "#1c0a09",
           "eligibility": {
