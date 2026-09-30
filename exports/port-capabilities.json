@@ -37749,7 +37749,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-feZm2tgIRFrGsGyXWCou7JpidJtbnzoE7I+DKu3FG1o=",
+      "subjectDigest": "sha256-6bLEuzcw2qblHvqT09ETFcR3+oUvBZNO9Pwr2p+eqX4=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37782,7 +37782,7 @@
           "path": "dist/windows-settings.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-settings.json",
-          "digest": "sha256-nVawEn6wA46PB8oacizjMNdWJOgbpiIgiBytb/xvGEc="
+          "digest": "sha256-NG6dP7+hmJarXeCAlR1cJQBCglR1Vf4ygECAzUwlfdM="
         },
         {
           "path": "dist/terminal-fragment.json",
@@ -37956,19 +37956,19 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-g8xbHd5w3wGUToMLOhUka6i4SIuOn0Y7qV/+qj6lV6A="
+          "digest": "sha256-od4KOu41jXAElOZ79KILEQM2XIrE3eIcFrxkMebZFAQ="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/j3w1-explorer-native.wh.cpp",
-          "digest": "sha256-z2FBJLfqTsrqF4vink1JTKlr4Y+gDb0niQBFKIxCzec="
+          "digest": "sha256-v+j6DkYsho2u99t0Ur16zhZoD+U+66BSRyBPDmIZo+0="
         },
         {
           "path": "dist/j3w1-explorer-native.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/j3w1-explorer-native.json",
-          "digest": "sha256-owPYGwbh2Po2GIMLjjfp51rhz5JVOwCWu4JUrkypCMU="
+          "digest": "sha256-kVyUPwnpoGr54BiRl8E6gK7Maoa1Bctr7U1zY7Bv4sk="
         },
         {
           "path": "dist/j3w1-powertoys-preview.wh.cpp",
@@ -39649,16 +39649,18 @@
         },
         {
           "role": "color.interaction.focus.ring",
-          "nativeKeys": [],
+          "nativeKeys": [
+            "nativeExplorer.focusRing"
+          ],
           "value": "#e53935",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
-          "state": "unsupported",
-          "surface": "unsupported",
-          "reason": "Outside Windows visual adapter scope; preserve host semantics.",
+          "state": "mapped",
+          "surface": "desktop",
+          "reason": "Native selected-row focus color; Windows owns outline geometry.",
           "source": "ports/windows/mapping.json",
           "spec": "spec/portability.md"
         },

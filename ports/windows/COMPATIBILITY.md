@@ -475,3 +475,17 @@ primary and overflow flyout roots and the official WinUI AppBarSeparator and
 MenuFlyoutSeparator templates. Paint colors change; menu actions, order, icons,
 keyboard behavior and separator geometry remain native. These changes require
 fresh host readback and are not accepted based on generation or compilation.
+
+## Native selected-row focus
+
+The recorded Explorer host draws the rename row outline through ListView part 1,
+selected state 3. Its three observed blue perimeter colors now map to
+`color.interaction.focus.ring`, retaining native geometry and antialiasing.
+The two-pixel perimeter restriction leaves the same colors inside the row
+untouched. Other states, colors, unrelated windows, unsupported transforms,
+drawing flags and high contrast pass through. This is a color adapter, not a
+replacement for native focus behavior; dashed geometry remains unsupported.
+
+The hidden-window native regression checks the border and corner pixels,
+interior color preservation, other states, clipping, disabled passthrough and
+DC restoration. Live rename acceptance is recorded separately.

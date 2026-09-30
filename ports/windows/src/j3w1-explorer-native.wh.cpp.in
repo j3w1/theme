@@ -21,6 +21,7 @@
 - disabled: "@DISABLED@"
 - textSelection: "@TEXTSELECTION@"
 - textSelectionText: "@TEXTSELECTIONTEXT@"
+- focusRing: "@FOCUSRING@"
 */
 // ==/WindhawkModSettings==
 #include <windows.h>
@@ -31,7 +32,7 @@
 #include <atomic>
 
 static COLORREF background, foreground, hover, selected, inactive, border, scrollbar, scrollbarHover, disabled;
-static COLORREF textSelection, textSelectionText;
+static COLORREF textSelection, textSelectionText, focusRing;
 static HBRUSH backgroundBrush;
 using ThemeClassFn=HRESULT(WINAPI*)(HTHEME,LPWSTR,int);
 static ThemeClassFn themeClass;
@@ -241,6 +242,20 @@ static HRESULT PaintTheme(HTHEME theme,HDC dc,int part,int state,const RECT* rec
     if(SUCCEEDED(result)) {
         for(int i=0;i<width*height;i++) {
             DWORD pixel=pixels[i];BYTE blue=pixel&255,green=(pixel>>8)&255,red=(pixel>>16)&255;
+            // The exact host paints its selected-row outline in ListView 1/3,
+            // independently of the native Edit selection. The live offscreen
+            // trace identified these three border pixels (including corners).
+            // Restrict the conversion to that draw's two-pixel perimeter: blue
+            // file icons/content in the interior and every other state survive.
+            bool focusEdge=_wcsicmp(kind,L"ListView")==0 && part==1 && state==3
+                && (i%width<2 || i%width>=width-2 || i/width<2 || i/width>=height-2);
+            DWORD rgb=pixel&0xffffff;
+            if(focusEdge && (rgb==0x60cdff || rgb==0x58bdeb || rgb==0x214657)) {
+                auto blend=[&](BYTE channel){return (channel*blue+127)/255;};
+                pixels[i]=(pixel&0xff000000)|(blend(GetRValue(focusRing))<<16)
+                    |(blend(GetGValue(focusRing))<<8)|blend(GetBValue(focusRing));
+                continue;
+            }
             if(red!=green || green!=blue)continue;
             COLORREF color=red<=48?background:red<160?fill:foreground;
             pixels[i]=(pixel&0xff000000)|(GetRValue(color)<<16)|(GetGValue(color)<<8)|GetBValue(color);
@@ -281,7 +296,7 @@ static bool ReadColor(PCWSTR key,COLORREF* output) {
 BOOL Wh_ModInit() {
 
     if(HighContrast()) {return FALSE;}
-    if(!ReadColor(L"background",&background) || !ReadColor(L"foreground",&foreground) || !ReadColor(L"hover",&hover) || !ReadColor(L"selected",&selected) || !ReadColor(L"inactive",&inactive) || !ReadColor(L"border",&border) || !ReadColor(L"scrollbar",&scrollbar) || !ReadColor(L"scrollbarHover",&scrollbarHover) || !ReadColor(L"disabled",&disabled) || !ReadColor(L"textSelection",&textSelection) || !ReadColor(L"textSelectionText",&textSelectionText)) {return FALSE;}
+    if(!ReadColor(L"background",&background) || !ReadColor(L"foreground",&foreground) || !ReadColor(L"hover",&hover) || !ReadColor(L"selected",&selected) || !ReadColor(L"inactive",&inactive) || !ReadColor(L"border",&border) || !ReadColor(L"scrollbar",&scrollbar) || !ReadColor(L"scrollbarHover",&scrollbarHover) || !ReadColor(L"disabled",&disabled) || !ReadColor(L"textSelection",&textSelection) || !ReadColor(L"textSelectionText",&textSelectionText) || !ReadColor(L"focusRing",&focusRing)) {return FALSE;}
     wchar_t executable[MAX_PATH]{};
     if(!GetModuleFileNameW(nullptr,executable,MAX_PATH)) return FALSE;
     DWORD ignored=0,size=GetFileVersionInfoSizeW(executable,&ignored);

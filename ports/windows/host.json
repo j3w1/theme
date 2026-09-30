@@ -813,7 +813,8 @@
     "scrollbarHover": "color.interaction.scrollbar.thumb-hover",
     "disabled": "color.text.disabled",
     "textSelection": "color.interaction.text-selection.bg",
-    "textSelectionText": "color.interaction.text-selection.text"
+    "textSelectionText": "color.interaction.text-selection.text",
+    "focusRing": "color.interaction.focus.ring"
   },
   "monacoPreview": {
     "version": "1.0",

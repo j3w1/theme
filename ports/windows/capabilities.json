@@ -630,9 +630,9 @@
       "reason": "Outside Windows visual adapter scope; preserve host semantics."
     },
     "color.interaction.focus.ring": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "desktop",
+      "reason": "Native selected-row focus color; Windows owns outline geometry."
     },
     "color.interaction.focus.ring-container": {
       "state": "unsupported",

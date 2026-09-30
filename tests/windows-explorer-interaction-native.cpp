@@ -52,7 +52,25 @@ int main(){
     RenameTextHook(target,4,4,ETO_OPAQUE,&selectedRect,L"",0,nullptr);assert(GetPixel(target,1,1)==GetSysColor(COLOR_HIGHLIGHT));paintWindows.pop_back();
     enabled=false;RenameTextHook(target,4,4,ETO_OPAQUE,&selectedRect,L"",0,nullptr);assert(GetPixel(target,1,1)==GetSysColor(COLOR_HIGHLIGHT));enabled=true;
     HDC other=GetDC(unrelated);assert(!RenameDC(other));ReleaseDC(unrelated,other);
+    // Reproduce the live ListView selected-row border, its antialiased corners,
+    // and an identically colored interior image. Only the border may change.
+    paintWindows.clear();paintWindows.push_back(folder);focusRing=RGB(229,57,53);
+    themeClass=[](HTHEME,LPWSTR name,int size)->HRESULT{wcscpy_s(name,size,L"ListView");return S_OK;};
+    originalDrawThemeBackground=[](HTHEME,HDC dc,int,int,const RECT*,const RECT*)->HRESULT{
+        SetPixel(dc,0,5,RGB(96,205,255));SetPixel(dc,1,1,RGB(88,189,235));
+        SetPixel(dc,0,1,RGB(33,70,87));SetPixel(dc,5,5,RGB(96,205,255));
+        SetPixel(dc,0,8,RGB(0,120,215));return S_OK;};
+    FillRect(target,&rect,black);POINT originBefore{};GetViewportOrgEx(target,&originBefore);
+    assert(SUCCEEDED(BackgroundHook(nullptr,target,1,3,&rect,nullptr)));
+    assert(GetPixel(target,0,5)==focusRing);assert(GetPixel(target,1,1)==RGB(211,53,49));
+    assert(GetPixel(target,0,1)==RGB(78,19,18));assert(GetPixel(target,5,5)==RGB(96,205,255));
+    assert(GetPixel(target,0,8)==RGB(0,120,215));POINT originAfter{};GetViewportOrgEx(target,&originAfter);
+    assert(originBefore.x==originAfter.x && originBefore.y==originAfter.y);
+    assert(SUCCEEDED(BackgroundHook(nullptr,target,1,6,&rect,nullptr)));assert(GetPixel(target,0,5)==RGB(96,205,255));
+    RECT focusClip{2,2,30,30};assert(SUCCEEDED(BackgroundHook(nullptr,target,1,3,&rect,&focusClip)));
+    assert(GetPixel(target,0,5)==RGB(96,205,255));
+    enabled=false;assert(SUCCEEDED(BackgroundHook(nullptr,target,1,3,&rect,nullptr)));assert(GetPixel(target,0,5)==RGB(96,205,255));enabled=true;
     paintWindows.clear();assert(!RenameDC(target));DeleteObject(black);SelectObject(target,old);DeleteObject(bitmap);DeleteDC(target);
     DestroyWindow(edit);DestroyWindow(otherEdit);DestroyWindow(sink);DestroyWindow(folder);DestroyWindow(unrelated);
-    puts("PASS: SetScrollInfo-owned native paint pixels, clipping, nested scope and argument/return preservation; native rename selection pixels and DC restoration; unknown color, other edit, unrelated owner and disabled passthrough");
+    puts("PASS: native focus border, antialiased corners, preserved interior/unknown colors, state and clipping; SetScrollInfo-owned native paint pixels, clipping, nested scope and argument/return preservation; native rename selection pixels and DC restoration; unknown color, other edit, unrelated owner and disabled passthrough");
 }

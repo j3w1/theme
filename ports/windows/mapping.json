@@ -330,6 +330,9 @@
     ],
     "color.interaction.scrollbar.thumb-hover": [
       "nativeExplorer.scrollbarHover"
+    ],
+    "color.interaction.focus.ring": [
+      "nativeExplorer.focusRing"
     ]
   },
   "unmapped": {
@@ -433,7 +436,6 @@
     "color.border.strong": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.border.selected-indicator": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.border.selected-indicator-inactive": "Outside Windows visual adapter scope; preserve host semantics.",
-    "color.interaction.focus.ring": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.interaction.focus.ring-container": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.interaction.selection.text": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.interaction.selection.inactive-text": "Outside Windows visual adapter scope; preserve host semantics.",
