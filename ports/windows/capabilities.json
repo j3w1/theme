@@ -545,9 +545,9 @@
       "reason": "Outside Windows visual adapter scope; preserve host semantics."
     },
     "color.text.link-hover": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Scoped native Explorer popup menu color; native geometry and input remain host-owned."
     },
     "color.text.on-selection": {
       "state": "unsupported",
@@ -612,7 +612,7 @@
     "color.border.overlay": {
       "state": "mapped",
       "surface": "shell",
-      "reason": "Canonical semantic role mapped to generated Start-menu XAML styling; selector matching still requires native visual evidence."
+      "reason": "Scoped native Explorer popup menu color; native geometry and input remain host-owned."
     },
     "color.border.disabled": {
       "state": "mapped",
@@ -675,9 +675,9 @@
       "reason": "Canonical semantic role mapped by host.json."
     },
     "color.interaction.hover.bg-strong": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Scoped native Explorer popup menu color; native geometry and input remain host-owned."
     },
     "color.interaction.pressed.bg": {
       "state": "mapped",

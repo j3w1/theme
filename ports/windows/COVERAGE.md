@@ -1,0 +1,89 @@
+# Windows and application coverage
+
+The Windows installer applies the adapters listed below. It does not make every
+application inherit a global j3w1 palette. Windows personalization, Win32 theme
+parts, Windows.UI.Xaml, WinUI 3 and embedded web renderers have different color
+ownership. A black title bar is not evidence that an application's body is themed.
+
+This is the current implementation inventory, not a visual acceptance record.
+Exact shell compatibility and historical observations remain in
+[COMPATIBILITY.md](COMPATIBILITY.md). All ports remain experimental until their
+own import evidence meets the port contract.
+
+| Surface | Current treatment | Remaining evidence or implementation |
+| --- | --- | --- |
+| Desktop, accent, supported borders, wallpaper and standard cursors | Native personalization and generated assets | Accessibility overrides take priority; arbitrary app title bars are not covered |
+| Start and Search | Pinned Start styler with separate layout selectors | Full interaction and layout acceptance remains open |
+| Taskbar | Pinned taskbar styler, including mapped top divider | Top-edge visual acceptance remains open |
+| Notifications, calendar, Quick Settings and toast variants | Pinned notification styler | Notification sidebar and loading controls have owner feedback; not every toast or Quick Settings state has been observed |
+| Windows Settings | Pinned Windows.UI.Xaml Settings styler | Bounded native observation only; not a universal application adapter |
+| Explorer chrome and modern context menus | Pinned Explorer XAML styler | Modern menu and submenu observations exist; classic popup menus use a separate path |
+| Explorer native file list, navigation, Home, selection and scrollbars | Exact-version native theme/GDI adapter | Millisecond scrollbar flashes, DPI variants and runtime high-contrast switching remain open |
+| Explorer filename selection and selected-row outline | Scoped Edit selection and native ListView border color mappings | Border pixel regression passes; corrected live rename outline still needs acceptance |
+| PowerToys plain-text/code preview and loading controls | Exact-version, hash-checked Monaco template adapter and native loading palette | Owner confirmed loaded preview and loading control; this does not cover Markdown |
+| PowerToys Markdown preview | No adapter yet | Separate generated HTML and WebView2 pipeline; gray preview remains unresolved |
+| Explorer classic “Show more options” menu | Scoped exact-host Win32 popup palette | Confirmed owner/paint trace and native regressions; live normal, hot, disabled and submenu appearance still need verification |
+| Notepad | Native dark-mode/accent treatment only | Modern WinUI 3 chrome and editor need a dedicated adapter; not the legacy Notepad dark-mode mod |
+| Calculator | Native dark-mode/accent treatment only | Its Windows.UI.Xaml resources need an app-specific, version-gated adapter |
+| Paint | Native dark-mode/accent treatment only | WinUI 3 toolbars and panels need an adapter; artwork canvas and color swatches must retain their colors |
+| Terminal | Native generated scheme, font and opaque chrome | Owner confirmed appearance; command output can intentionally choose other colors |
+| PowerToys utilities | Configurable FancyZones, Always On Top and Command Palette appearance | Command Palette exposes tint, not every text role |
+| Obsidian | Separate j3w1 CSS/manifest port | Installed pair readback is separate from Windows installation; third-party plugin surfaces may override it |
+| Orca, Warp, Ghostty, Codex CLI, Claude Code and ChatGPT Appearance | Separate repository ports | Import only through the corresponding port guide; the Windows installer does not claim these imports |
+| Notepad++, browsers, Office, media and archive apps | No application-specific port installed by Windows setup | Use documented theme APIs where available; dark mode alone is not a complete j3w1 match |
+| Secure desktop, authentication, protected system surfaces and arbitrary document/media colors | Host-owned | No binary patching, isolation changes, or whole-screen color filters |
+
+## Shared adapters and their boundaries
+
+Reuse token mappings across renderers, not executable include lists. The pinned
+Settings styler initializes through Windows.UI.Xaml CoreWindow and its resource
+dictionary. The inspected modern Notepad and Paint packages depend on the
+Windows App Runtime; Notepad was also observed loading Microsoft.UI.Xaml.dll.
+Calculator's inspected package depends on Microsoft.UI.Xaml 2.8 and .NET Native.
+Adding all three executables to the Settings styler would not establish coverage.
+
+The next app adapter must identify its exact package/runtime and validate its
+resource tree, preserve application content and accessibility, journal every
+change, and reverse it through the same installer. Rendered data colors, images,
+status meanings, Paint artwork and color choices are not palette candidates.
+These are implementation requirements, not implemented capabilities.
+
+## Markdown preview boundary
+
+The inspected PowerToys 0.101.2362.0 renderer constructs its own inline CSS in
+`MarkdownHelper` and supplies the result to WebView2. It does not read the Monaco
+template. The normal route uses `NavigateToString`; HTML above its UTF-8 size
+threshold uses a generated local HTML file. Any adapter must handle both routes,
+match the reviewed generated header, and leave the appended document unchanged.
+
+Keep the host CSP, resource filter, local-image path validation, disabled
+scripts/host objects/web messages and navigation restrictions. Do not enable
+scripts or developer tools to inject a theme. Do not modify installed PowerToys
+assemblies or redirect Markdown files to another preview provider. A public
+WebView2 rendering-boundary adapter is a candidate design, not delivered code.
+
+Pinned upstream source:
+
+- [Markdown helper](https://github.com/microsoft/PowerToys/blob/v0.101.2362.0/src/common/FilePreviewCommon/MarkdownHelper.cs)
+- [Markdown preview control](https://github.com/microsoft/PowerToys/blob/v0.101.2362.0/src/modules/previewpane/MarkdownPreviewHandler/MarkdownPreviewHandlerControl.cs)
+
+## Other applications
+
+Prefer first-class import formats and preserve unrelated preferences. For
+example, Notepad++ distinguishes editor theme XML from dark-mode chrome;
+Firefox distinguishes browser theme colors from website appearance; Office
+offers application themes but document themes change document formatting.
+None of these interfaces makes the existing Windows port an installed app theme.
+
+- [Notepad++ configuration files](https://npp-user-manual.org/docs/config-files/)
+- [Firefox themes](https://support.mozilla.org/en-US/kb/use-themes-change-look-of-firefox)
+- [Office application appearance](https://support.microsoft.com/en-us/office/foundations-experiences/change-the-look-and-feel-of-microsoft-365)
+- [Microsoft XAML theme resources](https://learn.microsoft.com/en-us/windows/apps/design/style/xaml-theme-resources)
+
+## Acceptance still required
+
+Keep the Windows candidate draft while the owner-reported rename outline,
+scrollbar transient, classic menu, Markdown, Notepad, Calculator and Paint
+requirements remain unresolved or unverified. Installer Test checks managed
+state, hashes and compatibility; it cannot accept visual behavior. A Computer
+Use cancellation message does not prove that the owner pressed a physical key.

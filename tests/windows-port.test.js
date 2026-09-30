@@ -54,6 +54,22 @@ test('Windows native values, Terminal ANSI and styler selectors resolve from can
  assert.equal(settings.version,(await readJson('theme.json')).version);
 });
 
+test('Windows theme has required registration sections and retains the installed assets',t=>{
+ const theme=fs.readFileSync(path.join(source,'dist/j3w1.theme'),'utf8');
+ assert.match(theme,/\[Control Panel\\Desktop\]\nWallpaper=%LOCALAPPDATA%\\j3w1-theme\\windows\\assets\\j3w1-wallpaper\.bmp/);
+ assert.match(theme,/\[MasterThemeSelector\]\nMTSM=DABJDKT/);
+ assert.doesNotMatch(theme,/HighContrast=/);
+ for(const name of CURSOR_NAMES)assert.ok(theme.includes(`${name}=%LOCALAPPDATA%\\j3w1-theme\\windows\\assets\\j3w1-${name.toLowerCase()}.cur`));
+ const f=fixture(t),file=path.join(f.state,'fixture/Microsoft/Windows/Themes/j3w1-managed.theme');
+ const ownerFile=path.join(f.state,'fixture/Microsoft/Windows/Themes/j3w1.theme');
+ write(ownerFile,'owner-created theme');f.ok('Apply');
+ const installed=fs.readFileSync(file,'utf8');
+ assert.ok(installed.includes(path.join(f.state,'assets').replaceAll('/','\\')));
+ assert.ok(!installed.includes('%LOCALAPPDATA%\\j3w1-theme\\windows\\assets'));
+ f.ok('Test');f.ok('Restore');assert.ok(!fs.existsSync(file));
+ assert.equal(fs.readFileSync(ownerFile,'utf8'),'owner-created theme');
+});
+
 test('all standard cursors have bounded hotspots, four scaled images and complete bitmap planes',()=>{
  for(const name of CURSOR_NAMES){const b=fs.readFileSync(path.join(source,`dist/j3w1-${name.toLowerCase()}.cur`));assert.equal(b.readUInt16LE(0),0);assert.equal(b.readUInt16LE(2),2);assert.equal(b.readUInt16LE(4),4);let end=70;
   [32,48,64,96].forEach((size,i)=>{const n=6+16*i,start=b.readUInt32LE(n+12),length=b.readUInt32LE(n+8);assert.equal(b[n],size);assert.equal(b[n+1],size);assert.ok(b.readUInt16LE(n+4)<size);assert.ok(b.readUInt16LE(n+6)<size);assert.equal(start,end);assert.equal(length,40+size*size*4+Math.ceil(size/32)*4*size);assert.equal(b.readUInt32LE(start),40);assert.equal(b.readInt32LE(start+8),size*2);assert.equal(b.readUInt16LE(start+14),32);end=start+length;});assert.equal(end,b.length);
@@ -128,6 +144,22 @@ test('Windhawk uses local installed IDs, verifies staged version and nested enab
  const failed=f.run('Test',f.args);assert.equal(failed.status,1);assert.match(failed.stdout,/disabled or unknown state/);
  f.ok('Guard',f.args);f.ok('Test',f.args);f.ok('Uninstall',f.args);assert.deepEqual(f.db(),{appSettings:{disableUpdateCheck:false}});
 });
+test('Full Test reports a stopped engine and idempotent Apply restarts without recompilation',t=>{
+ const f=windhawkFixture(t);f.ok('Apply',f.args);
+ const stopped=f.run('Test',{...f.args,fixtureEngineStopped:true});assert.equal(stopped.status,1);assert.match(stopped.stdout,/theme engine is not running/);
+ const before=JSON.stringify(f.db()),count=f.journal().transactions.length;
+ assert.equal(JSON.parse(f.ok('Apply',{...f.args,fixtureEngineStopped:true}).stdout).result,'unchanged');
+ assert.equal(JSON.stringify(f.db()),before);assert.equal(f.journal().transactions.length,count);
+ assert.match(f.run('Apply',{...f.args,fixtureEngineStopped:true,fixtureEngineStartupFails:true}).stderr,/Theme engine failed to start/);
+});
+
+test('first-install engine startup failure rolls back managed settings and mods',t=>{
+ const f=windhawkFixture(t),failed=f.run('Apply',{...f.args,fixtureEngineStopped:true,fixtureEngineStartupFails:true});
+ assert.notEqual(failed.status,0);assert.match(failed.stderr,/Theme engine failed to start; rollback completed/);
+ assert.equal(f.journal().transactions[0].status,'restored');assert.equal(fs.readFileSync(f.terminal,'utf8'),f.before);
+ assert.deepEqual(f.db(),{appSettings:{disableUpdateCheck:false}});
+});
+
 test('Windhawk backup restores original disabled mod settings; incompatible guard disables managed mods',t=>{
  const f=windhawkFixture(t),before={'local@fixture-styler':{id:'local@fixture-styler',metadata:{version:'0.9'},config:{disabled:true},settings:{theme:'original'}}};
  write(path.join(f.state,'fixture-windhawk.json'),before);f.ok('Apply',f.args);

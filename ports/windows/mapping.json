@@ -240,7 +240,8 @@
       "windows-11-notification-center-styler | Grid#NotificationCenterGrid | BorderBrush",
       "windows-11-notification-center-styler | Grid#CalendarCenterGrid | BorderBrush",
       "windows-11-notification-center-styler | Border#ToastBackgroundBorder | BorderBrush",
-      "windows-11-notification-center-styler | Border#ToastBackgroundBorder2 | BorderBrush"
+      "windows-11-notification-center-styler | Border#ToastBackgroundBorder2 | BorderBrush",
+      "nativeExplorer.menuBorder"
     ],
     "border.width.default": [
       "windows-11-start-menu-styler | Border#AcrylicBorder | BorderThickness",
@@ -333,6 +334,12 @@
     ],
     "color.interaction.focus.ring": [
       "nativeExplorer.focusRing"
+    ],
+    "color.interaction.hover.bg-strong": [
+      "nativeExplorer.menuHover"
+    ],
+    "color.text.link-hover": [
+      "nativeExplorer.menuHoverText"
     ]
   },
   "unmapped": {
@@ -428,7 +435,6 @@
     "color.text.accent-strong": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.text.link": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.text.link-underline": "Outside Windows visual adapter scope; preserve host semantics.",
-    "color.text.link-hover": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.text.on-selection": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.text.on-danger": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.text.on-light": "Outside Windows visual adapter scope; preserve host semantics.",
@@ -441,7 +447,6 @@
     "color.interaction.selection.inactive-text": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.interaction.text-selection.bg": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.interaction.text-selection.text": "Outside Windows visual adapter scope; preserve host semantics.",
-    "color.interaction.hover.bg-strong": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.interaction.marquee": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.interaction.drop-target": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.interaction.scrollbar.track": "Outside Windows visual adapter scope; preserve host semantics.",

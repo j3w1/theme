@@ -2,6 +2,15 @@
 #include <windows.h>
 #include <cassert>
 #include <cstdio>
+static HWND fixtureActiveWindow=nullptr;
+static bool fixtureHighContrast=false;
+static HWND FixtureGetActiveWindow(){return fixtureActiveWindow;}
+static BOOL WINAPI FixtureSystemParametersInfo(UINT action,UINT size,PVOID value,UINT flags){
+    if(action==SPI_GETHIGHCONTRAST){auto contrast=static_cast<HIGHCONTRASTW*>(value);contrast->dwFlags=fixtureHighContrast?HCF_HIGHCONTRASTON:0;return TRUE;}
+    return SystemParametersInfoW(action,size,value,flags);
+}
+#define GetActiveWindow FixtureGetActiveWindow
+#define SystemParametersInfoW FixtureSystemParametersInfo
 static BOOL Wh_SetFunctionHook(void*,void*,void**){return TRUE;}
 static PCWSTR Wh_GetStringSetting(PCWSTR){return L"#000000";}
 static void Wh_FreeStringSetting(PCWSTR){}
@@ -70,7 +79,102 @@ int main(){
     RECT focusClip{2,2,30,30};assert(SUCCEEDED(BackgroundHook(nullptr,target,1,3,&rect,&focusClip)));
     assert(GetPixel(target,0,5)==RGB(96,205,255));
     enabled=false;assert(SUCCEEDED(BackgroundHook(nullptr,target,1,3,&rect,nullptr)));assert(GetPixel(target,0,5)==RGB(96,205,255));enabled=true;
+    // Menu popup regressions use hidden owners and offscreen pixels. No live
+    // menu is opened and no input, screen capture or accessibility setting changes.
+    paintWindows.clear();menuHover=RGB(50,17,16);menuHoverText=RGB(240,169,173);
+    menuBorder=RGB(207,137,133);border=RGB(43,14,13);disabled=RGB(138,85,89);
+    themeClass=[](HTHEME,LPWSTR name,int size)->HRESULT{wcscpy_s(name,size,L"DarkMode::Menu");return S_OK;};
+    originalDrawThemeBackground=[](HTHEME,HDC dc,int,int,const RECT* r,const RECT*)->HRESULT{
+        HBRUSH gray=CreateSolidBrush(RGB(62,62,62));FillRect(dc,r,gray);DeleteObject(gray);
+        SetPixel(dc,6,6,RGB(0,120,215));return S_OK;};
+    originalDrawThemeBackgroundEx=[](HTHEME t,HDC dc,int p,int s,const RECT* r,const DTBGOPTS*)->HRESULT{
+        return originalDrawThemeBackground(t,dc,p,s,r,nullptr);};
+    assert(!MenuOrigin());assert(!MenuDC(target));
+    {MenuPaintScope popup(sink);
+        assert(MenuOrigin() && MenuDC(target));
+        for(int state:{MPI_NORMAL,MPI_DISABLED,MPI_DISABLEDHOT}){
+            assert(SUCCEEDED(BackgroundHook(nullptr,target,hostPopupItem,state,&rect,nullptr)));
+            assert(GetPixel(target,2,2)==background);assert(GetPixel(target,6,6)==RGB(0,120,215));
+        }
+        assert(SUCCEEDED(BackgroundHook(nullptr,target,hostPopupItem,MPI_HOT,&rect,nullptr)));
+        assert(GetPixel(target,2,2)==menuHover);
+        assert(SUCCEEDED(BackgroundHook(nullptr,target,MENU_POPUPBORDERS,0,&rect,nullptr)));
+        assert(GetPixel(target,2,2)==menuBorder);
+        assert(SUCCEEDED(BackgroundHook(nullptr,target,MENU_POPUPSEPARATOR,3,&rect,nullptr)));
+        assert(GetPixel(target,2,2)==border);
+        FillRect(target,&rect,black);RECT menuClip{0,0,16,32};
+        assert(SUCCEEDED(BackgroundHook(nullptr,target,hostPopupItem,MPI_HOT,&rect,&menuClip)));
+        assert(GetPixel(target,2,2)==menuHover && GetPixel(target,20,2)==background);
+        FillRect(target,&rect,black);DTBGOPTS drawOptions{sizeof(drawOptions),DTBG_CLIPRECT,menuClip};
+        assert(SUCCEEDED(BackgroundExHook(nullptr,target,hostPopupItem,MPI_HOT,&rect,&drawOptions)));
+        assert(GetPixel(target,2,2)==menuHover && GetPixel(target,20,2)==background);
+        assert(SUCCEEDED(BackgroundHook(nullptr,target,1234,MPI_HOT,&rect,nullptr)));
+        assert(GetPixel(target,2,2)==RGB(62,62,62));
+        assert(SUCCEEDED(BackgroundHook(nullptr,target,hostPopupItem,99,&rect,nullptr)));
+        assert(GetPixel(target,2,2)==RGB(62,62,62));
+        {MenuPaintScope unrelatedMenu(unrelated);assert(!MenuOrigin());
+            BackgroundHook(nullptr,target,hostPopupItem,MPI_HOT,&rect,nullptr);
+            assert(GetPixel(target,2,2)==RGB(62,62,62));}
+        assert(MenuOrigin());
+        HDC unrelatedDC=GetDC(unrelated);assert(!MenuDC(unrelatedDC));ReleaseDC(unrelated,unrelatedDC);
+        enabled=false;assert(!MenuDC(target));enabled=true;
+        fixtureHighContrast=true;assert(!MenuDC(target));fixtureHighContrast=false;
+    }
+    assert(menuOwner==nullptr && menuDepth==0);
+    // The exported APIs must forward every argument and their native result.
+    static HWND expectedMenuOwner;expectedMenuOwner=sink;
+    static HMENU expectedMenu=reinterpret_cast<HMENU>(1234);
+    static RECT exclusion{1,2,3,4};static TPMPARAMS parameters{sizeof(parameters),exclusion};
+    originalTrackPopupMenu=[](HMENU menu,UINT flags,int x,int y,int reserved,HWND owner,const RECT* exclude)->BOOL{
+        assert(menu==expectedMenu && flags==(TPM_RETURNCMD|TPM_RIGHTBUTTON));
+        assert(x==10 && y==20 && reserved==0 && owner==expectedMenuOwner && exclude==&exclusion);
+        assert(MenuOrigin());{MenuPaintScope nested(nullptr);assert(!MenuOrigin());}assert(MenuOrigin());
+        return 123;};
+    assert(PopupHook(expectedMenu,TPM_RETURNCMD|TPM_RIGHTBUTTON,10,20,0,sink,&exclusion)==123);
+    assert(menuDepth==0 && menuOwner==nullptr);
+    originalTrackPopupMenuEx=[](HMENU menu,UINT flags,int x,int y,HWND owner,LPTPMPARAMS value)->BOOL{
+        assert(menu==expectedMenu && flags==TPM_RETURNCMD && x==10 && y==20 && owner==expectedMenuOwner && value==&parameters);
+        assert(MenuOrigin());return 321;};
+    assert(PopupExHook(expectedMenu,TPM_RETURNCMD,10,20,sink,&parameters)==321);
+    assert(menuDepth==0 && menuOwner==nullptr);
+    static COLORREF queryColor=RGB(44,44,44);static HRESULT queryResult=S_OK;
+    originalGetThemeColor=[](HTHEME,int,int,int,COLORREF* color)->HRESULT{if(color)*color=queryColor;return queryResult;};
+    COLORREF readback;fixtureActiveWindow=folder;
+    ThemeColorHook(nullptr,MENU_POPUPBACKGROUND,0,TMT_FILLCOLOR,&readback);assert(readback==background);
+    ThemeColorHook(nullptr,MENU_POPUPBORDERS,0,TMT_FILLCOLOR,&readback);assert(readback==queryColor);
+    fixtureActiveWindow=unrelated;
+    ThemeColorHook(nullptr,MENU_POPUPBACKGROUND,0,TMT_FILLCOLOR,&readback);assert(readback==queryColor);
+    {MenuPaintScope popup(sink);
+        ThemeColorHook(nullptr,MENU_POPUPBORDERS,0,TMT_FILLCOLOR,&readback);assert(readback==menuBorder);
+        queryColor=RGB(121,121,121);
+        ThemeColorHook(nullptr,hostPopupItem,MPI_DISABLED,TMT_TEXTCOLOR,&readback);assert(readback==disabled);
+        ThemeColorHook(nullptr,hostPopupItem,MPI_HOT,TMT_TEXTCOLOR,&readback);assert(readback==menuHoverText);
+        queryColor=RGB(0,120,215);
+        ThemeColorHook(nullptr,hostPopupItem,MPI_NORMAL,TMT_TEXTCOLOR,&readback);assert(readback==queryColor);
+        queryResult=E_FAIL;assert(FAILED(ThemeColorHook(nullptr,hostPopupItem,MPI_NORMAL,TMT_TEXTCOLOR,&readback)));queryResult=S_OK;
+        static COLORREF drawnText;static bool hasOptions;static DWORD drawnFlags;
+        originalDrawThemeTextEx=[](HTHEME,HDC,int,int,LPCWSTR label,int count,DWORD flags,LPRECT r,const DTTOPTS* opts)->HRESULT{
+            assert(count==1 && label[0]==L'A' && flags==DT_LEFT && r->right==32);
+            hasOptions=opts!=nullptr;drawnText=opts?opts->crText:CLR_INVALID;drawnFlags=opts?opts->dwFlags:0;return 23;};
+        queryColor=RGB(255,255,255);
+        assert(TextExHook(nullptr,target,hostPopupItem,MPI_NORMAL,L"A",1,DT_LEFT,&rect,nullptr)==23);
+        assert(drawnText==foreground && hasOptions);
+        queryColor=RGB(121,121,121);
+        DTTOPTS opts{};opts.dwSize=sizeof(opts);opts.dwFlags=DTT_TEXTCOLOR|DTT_GLOWSIZE;opts.crText=queryColor;opts.iGlowSize=4;
+        DTTOPTS before=opts;
+        TextExHook(nullptr,target,hostPopupItem,MPI_DISABLED,L"A",1,DT_LEFT,&rect,&opts);
+        assert(drawnText==disabled && drawnFlags==opts.dwFlags && memcmp(&opts,&before,sizeof(opts))==0);
+        opts.crText=RGB(0,120,215);TextExHook(nullptr,target,hostPopupItem,MPI_HOT,L"A",1,DT_LEFT,&rect,&opts);
+        assert(drawnText==RGB(0,120,215));
+        TextExHook(nullptr,target,hostPopupItem,99,L"A",1,DT_LEFT,&rect,nullptr);assert(!hasOptions);
+        fixtureHighContrast=true;
+        TextExHook(nullptr,target,hostPopupItem,MPI_NORMAL,L"A",1,DT_LEFT,&rect,nullptr);assert(!hasOptions);
+        fixtureHighContrast=false;
+        {MenuPaintScope unrelatedMenu(unrelated);fixtureActiveWindow=folder;queryColor=RGB(44,44,44);
+            ThemeColorHook(nullptr,MENU_POPUPBACKGROUND,0,TMT_FILLCOLOR,&readback);assert(readback==queryColor);}
+    }
+    fixtureActiveWindow=nullptr;
     paintWindows.clear();assert(!RenameDC(target));DeleteObject(black);SelectObject(target,old);DeleteObject(bitmap);DeleteDC(target);
     DestroyWindow(edit);DestroyWindow(otherEdit);DestroyWindow(sink);DestroyWindow(folder);DestroyWindow(unrelated);
-    puts("PASS: native focus border, antialiased corners, preserved interior/unknown colors, state and clipping; SetScrollInfo-owned native paint pixels, clipping, nested scope and argument/return preservation; native rename selection pixels and DC restoration; unknown color, other edit, unrelated owner and disabled passthrough");
+    puts("PASS: scoped menu pixels/text, disabled and hot states, clipping, nested and unrelated owners, high contrast, early-query boundaries and API arguments/return values; native focus border, antialiased corners, preserved interior/unknown colors, state and clipping; SetScrollInfo-owned native paint pixels, clipping, nested scope and argument/return preservation; native rename selection pixels and DC restoration; unknown color, other edit, unrelated owner and disabled passthrough");
 }

@@ -3,6 +3,8 @@
 Black surfaces, rose text, red accents and small black/red cursors, generated
 from the canonical j3w1 tokens. The Windows port is experimental; the exact
 supported host and remaining visual limits are in [Compatibility](COMPATIBILITY.md).
+[Application coverage](COVERAGE.md) distinguishes implemented shell styling from
+Markdown, classic menus and applications that still need their own adapters.
 
 ## Install
 
@@ -165,3 +167,30 @@ Only the observed normal fill and transparent track theme parts are recolored,
 keeping the native pixel mask, clipping, position, value and accessibility.
 Other progress states and unsupported drawing transforms pass through. The
 host still controls progress timing/animation; this is not a replacement control.
+
+## Named Windows theme and active engine
+
+Setup installs a complete `j3w1-managed.theme` in the current user's Windows
+theme directory alongside existing themes. Its required desktop and master
+selector sections, black wallpaper and all generated cursors come from the
+source generator. A custom StateRoot resolves its own asset paths. The managed
+file is journaled; Restore removes it or restores its previous bytes. An
+owner-created `j3w1.theme` is a separate file and is preserved.
+
+Native personalization applies during setup. To select the saved gallery name,
+open `%LOCALAPPDATA%\Microsoft\Windows\Themes\j3w1-managed.theme` through
+Windows, then select it in Personalization if Windows opens the gallery. Theme
+file registration and selection use the documented Windows file association;
+the installer does not write a fake CurrentTheme registry value. Gallery
+selection is currently a separate action from setup and its journaled recovery.
+
+Full Apply and the sign-in guard start the retained Windhawk engine and wait up
+to 15 seconds for its running process. Test reports a stopped engine as a
+failure, even when every stored mod is enabled. Repeating Apply on an unchanged
+release validates managed state and restarts a stopped engine without compiling
+the adapters again. It does not repair user setting conflicts. If first-start
+fails during installation, the existing transaction rolls back. Running-engine
+readback is separate from actual adapter loading and visual acceptance.
+
+The documented Windows theme format is described in
+[Microsoft's theme file reference](https://learn.microsoft.com/en-us/windows/win32/controls/themesfileformat-overview).

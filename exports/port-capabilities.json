@@ -37749,7 +37749,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-6bLEuzcw2qblHvqT09ETFcR3+oUvBZNO9Pwr2p+eqX4=",
+      "subjectDigest": "sha256-96NJQO+o6aa6hCiZ/i3oNwhXRpE+G/cxQ1yMJVbsEPE=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37782,7 +37782,7 @@
           "path": "dist/windows-settings.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-settings.json",
-          "digest": "sha256-NG6dP7+hmJarXeCAlR1cJQBCglR1Vf4ygECAzUwlfdM="
+          "digest": "sha256-WnEUuvjy6QlUsA97Eo1tTYj1bHwA3XZYK50bHBCIJ0A="
         },
         {
           "path": "dist/terminal-fragment.json",
@@ -37842,7 +37842,7 @@
           "path": "dist/j3w1.theme",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/j3w1.theme",
-          "digest": "sha256-kbV5VhvAjBJkNkfRHovYbIxbWfKS1l0I82OcxmKUc0k="
+          "digest": "sha256-CMVkrW+zW81GRGDbKB0osA0314zS5JvVh2w5BYJ7AVc="
         },
         {
           "path": "dist/j3w1-arrow.cur",
@@ -37950,25 +37950,25 @@
           "path": "dist/runtime.cjs",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/runtime.cjs",
-          "digest": "sha256-hL3R9aIhn4oQN3ncMuIfMiuIlGGXY8T47kgjE9lxNMU="
+          "digest": "sha256-1R26BmHLyC445nGiwNUJKiTI/iAkuaWVzZJCjm1bozI="
         },
         {
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-od4KOu41jXAElOZ79KILEQM2XIrE3eIcFrxkMebZFAQ="
+          "digest": "sha256-62mruEeEOudxnQTo5tWk5fTno/ixshdvGjtM0uNaXjY="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/j3w1-explorer-native.wh.cpp",
-          "digest": "sha256-v+j6DkYsho2u99t0Ur16zhZoD+U+66BSRyBPDmIZo+0="
+          "digest": "sha256-njowt+OZXiuVcFbhZaI1xhnBp+1cHEW5BojylCsoIUI="
         },
         {
           "path": "dist/j3w1-explorer-native.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/j3w1-explorer-native.json",
-          "digest": "sha256-kVyUPwnpoGr54BiRl8E6gK7Maoa1Bctr7U1zY7Bv4sk="
+          "digest": "sha256-ILgsYhNz4YyskpTChZlMJRnmU3CwzYjb9XJl6riOV2E="
         },
         {
           "path": "dist/j3w1-powertoys-preview.wh.cpp",
@@ -38500,7 +38500,8 @@
             "windows-11-notification-center-styler | Grid#NotificationCenterGrid | BorderBrush",
             "windows-11-notification-center-styler | Grid#CalendarCenterGrid | BorderBrush",
             "windows-11-notification-center-styler | Border#ToastBackgroundBorder | BorderBrush",
-            "windows-11-notification-center-styler | Border#ToastBackgroundBorder2 | BorderBrush"
+            "windows-11-notification-center-styler | Border#ToastBackgroundBorder2 | BorderBrush",
+            "nativeExplorer.menuBorder"
           ],
           "value": "#e53935",
           "eligibility": {
@@ -38512,7 +38513,7 @@
           },
           "state": "mapped",
           "surface": "shell",
-          "reason": "Canonical semantic role mapped to generated Start-menu XAML styling; selector matching still requires native visual evidence.",
+          "reason": "Scoped native Explorer popup menu color; native geometry and input remain host-owned.",
           "source": "ports/windows/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -39703,16 +39704,18 @@
         },
         {
           "role": "color.interaction.hover.bg-strong",
-          "nativeKeys": [],
+          "nativeKeys": [
+            "nativeExplorer.menuHover"
+          ],
           "value": "#630f0d",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
-          "state": "unsupported",
-          "surface": "unsupported",
-          "reason": "Outside Windows visual adapter scope; preserve host semantics.",
+          "state": "mapped",
+          "surface": "shell",
+          "reason": "Scoped native Explorer popup menu color; native geometry and input remain host-owned.",
           "source": "ports/windows/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -42263,16 +42266,18 @@
         },
         {
           "role": "color.text.link-hover",
-          "nativeKeys": [],
+          "nativeKeys": [
+            "nativeExplorer.menuHoverText"
+          ],
           "value": "#f4eeee",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
-          "state": "unsupported",
-          "surface": "unsupported",
-          "reason": "Outside Windows visual adapter scope; preserve host semantics.",
+          "state": "mapped",
+          "surface": "shell",
+          "reason": "Scoped native Explorer popup menu color; native geometry and input remain host-owned.",
           "source": "ports/windows/mapping.json",
           "spec": "spec/portability.md"
         },

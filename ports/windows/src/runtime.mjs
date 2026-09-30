@@ -121,6 +121,12 @@ if(lockBaseline.exists)ops.push({kind:'lockscreen',after:{exists:true,value:fs.r
 reg('Control Panel\\Desktop','Wallpaper',path.join(assets,'j3w1-wallpaper.bmp'),'String');reg('Control Panel\\Desktop','WallpaperStyle','10','String');reg('Control Panel\\Desktop','TileWallpaper','0','String');
 const cursorNames=['Arrow','Help','AppStarting','Wait','Crosshair','IBeam','NWPen','No','SizeNS','SizeWE','SizeNWSE','SizeNESW','SizeAll','UpArrow','Hand','Pin','Person'];
 for(const name of cursorNames){const f='j3w1-'+name.toLowerCase()+'.cur';file(path.join(assets,f),f);reg('Control Panel\\Cursors',name,path.join(assets,f),'ExpandString');}
+// Keep the owner-created j3w1.theme separate from this installed asset.
+// Resolve the generated asset root for a custom StateRoot without INI injection.
+if(/[\r\n]/.test(assets))throw Error('Theme asset path contains a line break');
+const themeText=read(path.join(source,'dist/j3w1.theme')).replaceAll('%LOCALAPPDATA%\\j3w1-theme\\windows\\assets',assets.replaceAll('/','\\'));
+ops.push({kind:'file',path:safe(path.join(root,'Microsoft/Windows/Themes/j3w1-managed.theme')),after:{exists:true,value:Buffer.from(themeText).toString('base64')}});
+
 const terminal=fixture?path.join(root,'terminal/settings.json'):path.join(root,'Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json');
 if(fs.existsSync(terminal)){
  file(path.join(root,'Microsoft/Windows Terminal/Fragments/j3w1/j3w1.json'),'terminal-fragment.json');
@@ -157,7 +163,20 @@ function compatibility(){
 function compat(){return compatibility().compatible;}
 const windhawk=path.join(state,'tools/windhawk/2.0.0-alpha.6/windhawk-cli.exe');
 function wh(argv,allowMissing=false){const command=fixture&&args.fixtureWindhawk?process.execPath:windhawk;const prefix=fixture&&args.fixtureWindhawk?[args.fixtureWindhawk,state]:[];const r=spawnSync(command,[...prefix,'--json',...argv],{encoding:'utf8',windowsHide:true,maxBuffer:8*1024*1024});if(r.error)throw r.error;const result=r.stdout.trim()?JSON.parse(r.stdout):null;if(allowMissing&&result?.error?.code==='MOD_NOT_INSTALLED')return null;if(r.status!==0||result?.success===false)throw Error(`Windhawk ${argv.slice(0,3).join(' ')} failed: ${result?.error?.message??r.stderr.trim()}`);return result?.data;}
-function startWindhawk(){if(fixture)return;const child=spawn(path.join(path.dirname(windhawk),'windhawk.exe'),['-tray-only'],{detached:true,stdio:'ignore',windowsHide:true});child.on('error',()=>{});child.unref();}
+let fixtureEngineRunning=args.fixtureEngineStopped!==true;
+function engineRunning(waitMs=0){
+ if(fixture)return fixtureEngineRunning;
+ return ps({operation:'engine',path:safe(path.join(path.dirname(windhawk),'windhawk.exe')),waitMs}).running===true;
+}
+function startWindhawk(){
+ if(engineRunning())return;
+ if(fixture){if(args.fixtureEngineStartupFails)throw Error('Theme engine failed to start');fixtureEngineRunning=true;return;}
+ const executable=safe(path.join(path.dirname(windhawk),'windhawk.exe'));
+ if(!fs.existsSync(executable))throw Error('Retained theme engine is missing');
+ const child=spawn(executable,['-tray-only'],{detached:true,stdio:'ignore',windowsHide:true});
+ child.on('error',()=>{});child.unref();
+ if(!engineRunning(15000))throw Error('Theme engine failed to start; enabled settings do not establish active rendering');
+}
 function flatten(value,prefix='',out={}){if(Array.isArray(value))value.forEach((v,i)=>flatten(v,`${prefix}[${i}]`,out));else if(value!==null&&typeof value==='object')for(const [k,v]of Object.entries(value))flatten(v,prefix?`${prefix}.${k}`:k,out);else out[prefix]=value;return out;}
 function stageMods(tx){
  if(args.mode!=='Full')return;
@@ -236,7 +255,7 @@ function restore(tx) {
  tx.status=conflicts.length?'restore-conflict':'restored';persist();
  return [...new Set(conflicts)];
 }
-function verify() {
+function verify({checkEngine=true}={}) {
  const active=history.transactions.filter(t=>t.status==='applied');
  const tx=active.at(-1);
  if(!tx)throw Error('No installed transaction');
@@ -245,6 +264,7 @@ function verify() {
  const failed=[];
  for(const op of effective.values())try{if(!eq(get(op),op.after))failed.push(label(op));}catch(error){failed.push(label(op));}
  if(tx.mode==='Full') {
+  if(checkEngine&&!engineRunning())failed.push('theme engine is not running');
   if(!compat())failed.push('shell compatibility');
   for(const mod of tx.mods??[])try{
    if(!eq(wh(['mod','settings','get',mod.id]),mod.settings))failed.push(`${mod.id}: settings drift`);
@@ -284,7 +304,7 @@ if(action==='Plan') {
    if(shown.metadata?.version!==mod.version||!eq(wh(['mod','settings','get',mod.id]),mod.settings))failures.push(`${mod.id}: version or settings drift`);
   }catch(error){failures.push(`${mod.id}: ${error.message}`);}
   if(wh(['app','settings','get']).settings.disableUpdateCheck!==true)failures.push('dependency update policy changed');
-  if(!failures.length){for(const mod of tx.mods??[])wh(['mod','enable',mod.id]);startWindhawk();}
+  if(!failures.length)try{for(const mod of tx.mods??[])wh(['mod','enable',mod.id]);startWindhawk();}catch(error){failures.push(error.message);for(const mod of tx.mods??[])try{wh(['mod','disable',mod.id]);}catch{}}
   console.log(JSON.stringify({shell:failures.length?'disabled-incompatible':'enabled',failures}));
   if(failures.length)process.exitCode=2;
  }
@@ -301,7 +321,8 @@ if(action==='Plan') {
  const planned=ops.map(op=>({...op,before:get(op)})).filter(op=>!eq(op.before,op.after));
  const previous=history.transactions.filter(t=>t.status==='applied').at(-1);
  if(!planned.length&&previous?.revision===args.revision&&previous?.mode===args.mode) {
-  const checked=verify();if(checked.failed.length)throw Error('Installed state drift; run Test for details');
+  const checked=verify({checkEngine:false});if(checked.failed.length)throw Error('Installed state drift; run Test for details');
+  if(args.mode==='Full')startWindhawk();
   console.log(JSON.stringify({result:'unchanged',revision:args.revision}));
  }else {
   const documents=[...new Set(planned.filter(op=>op.kind==='json').map(op=>op.path))].map(p=>({path:p,before:get({kind:'file',path:p})}));
@@ -321,8 +342,8 @@ if(action==='Plan') {
    ps({operation:'refresh'});
    if(args.mode==='Full'&&!compat())throw Error('Compatibility changed during apply');
    for(const mod of tx.mods)wh(['mod','enable',mod.id]);
-   tx.status='applied';persist();updatePointer();
    if(args.mode==='Full')startWindhawk();
+   tx.status='applied';persist();updatePointer();
    console.log(JSON.stringify({result:'applied',revision:args.revision,changes:planned.length,limitations:settings.limitations}));
   }catch(error) {
    for(const mod of tx.mods)try{wh(['mod','disable',mod.id]);}catch{}

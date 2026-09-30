@@ -4,11 +4,11 @@
   "files": [
     {
       "path": "dist/j3w1-explorer-native.wh.cpp",
-      "sha256": "bfe8fa0e462c868daef7db7452bd7ace16680fe53eeba05247204f0e6219a3ed"
+      "sha256": "9e3a30b7e3995e2b957056e165a235c619c1a7ed5c1c45b90688f2942b282142"
     },
     {
       "path": "dist/j3w1-explorer-native.json",
-      "sha256": "915c943f09e9a06af9e0189197c13a80aecc6a86b505cb6bed4d7363b06fe2c9"
+      "sha256": "20b82c621373e18cac9294c285994c2519e65370b0cd88dbf57265eab88e5761"
     },
     {
       "path": "dist/j3w1-powertoys-preview.wh.cpp",
@@ -20,7 +20,7 @@
     },
     {
       "path": "dist/windows-settings.json",
-      "sha256": "346e9d3fbfa19896ab5de080951d5c25004282547555fe32804080cd4c257dd3"
+      "sha256": "5a7114baf8f2e90954b00f7b128d6d4d88f56c7c00dd76582b9d1b1c10882740"
     },
     {
       "path": "dist/terminal-fragment.json",
@@ -128,11 +128,11 @@
     },
     {
       "path": "dist/j3w1.theme",
-      "sha256": "91b579561bc08c12643647d11e8bd86c8c5b59f292d65d08f3639cc662947349"
+      "sha256": "08c564ad6fb35bcd464460db281d28b00d37d78cd2e49bd5876c3905827b0157"
     },
     {
       "path": "dist/runtime.cjs",
-      "sha256": "84bdd1f5a2219f8a103779dc32e21f322b8894619763c4f8ee482313d97134c5"
+      "sha256": "d51dba0661cbc82e38e671a2c0d5092a24c8fe2024b9a595cd92428e6d5ba332"
     },
     {
       "path": "install.ps1",
@@ -140,11 +140,11 @@
     },
     {
       "path": "setup.ps1",
-      "sha256": "2c80ad37126eb33187b5fd585b8e99478a1b8648748bde37901510a0571b1c16"
+      "sha256": "07084e97372dfde0e064e42d431c99a7562266cea0f65ecb43a3dac719097146"
     },
     {
       "path": "adapter.ps1",
-      "sha256": "3ce586fa7554f0a8a5c9e5fd0e01e3e3ba14af206a6928b56215b1aa21ec5900"
+      "sha256": "5724c8ad6528a873c4bc70d9a787970b7030f6679bfe0a2c023826795ccc2fce"
     },
     {
       "path": "lockscreen.ps1",
@@ -156,7 +156,7 @@
     },
     {
       "path": "host.json",
-      "sha256": "fb317cefadbdaabe1e8fa235360914ba020f1d01c500878ecd771f70a0ff62a8"
+      "sha256": "d700b1c83db120fdd5ccc0f04a72148a48f2b24ce4e2d033a6fcb5c444a219e4"
     }
   ]
 }

@@ -3,10 +3,36 @@
 DisplayName=j3w1
 [Control Panel\Colors]
 Background=0 0 0
+[Control Panel\Desktop]
+Wallpaper=%LOCALAPPDATA%\j3w1-theme\windows\assets\j3w1-wallpaper.bmp
+TileWallpaper=0
+WallpaperStyle=10
+[Control Panel\Cursors]
+Arrow=%LOCALAPPDATA%\j3w1-theme\windows\assets\j3w1-arrow.cur
+Help=%LOCALAPPDATA%\j3w1-theme\windows\assets\j3w1-help.cur
+AppStarting=%LOCALAPPDATA%\j3w1-theme\windows\assets\j3w1-appstarting.cur
+Wait=%LOCALAPPDATA%\j3w1-theme\windows\assets\j3w1-wait.cur
+Crosshair=%LOCALAPPDATA%\j3w1-theme\windows\assets\j3w1-crosshair.cur
+IBeam=%LOCALAPPDATA%\j3w1-theme\windows\assets\j3w1-ibeam.cur
+NWPen=%LOCALAPPDATA%\j3w1-theme\windows\assets\j3w1-nwpen.cur
+No=%LOCALAPPDATA%\j3w1-theme\windows\assets\j3w1-no.cur
+SizeNS=%LOCALAPPDATA%\j3w1-theme\windows\assets\j3w1-sizens.cur
+SizeWE=%LOCALAPPDATA%\j3w1-theme\windows\assets\j3w1-sizewe.cur
+SizeNWSE=%LOCALAPPDATA%\j3w1-theme\windows\assets\j3w1-sizenwse.cur
+SizeNESW=%LOCALAPPDATA%\j3w1-theme\windows\assets\j3w1-sizenesw.cur
+SizeAll=%LOCALAPPDATA%\j3w1-theme\windows\assets\j3w1-sizeall.cur
+UpArrow=%LOCALAPPDATA%\j3w1-theme\windows\assets\j3w1-uparrow.cur
+Hand=%LOCALAPPDATA%\j3w1-theme\windows\assets\j3w1-hand.cur
+Pin=%LOCALAPPDATA%\j3w1-theme\windows\assets\j3w1-pin.cur
+Person=%LOCALAPPDATA%\j3w1-theme\windows\assets\j3w1-person.cur
+DefaultValue=j3w1
 [VisualStyles]
 Path=%ResourceDir%\Themes\Aero\Aero.msstyles
 ColorStyle=NormalColor
 Size=NormalSize
 ColorizationColor=0XFFE53935
+AutoColorization=0
 SystemMode=Dark
 AppMode=Dark
+[MasterThemeSelector]
+MTSM=DABJDKT

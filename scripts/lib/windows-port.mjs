@@ -140,7 +140,9 @@ export function windowsArtifacts({manifest,host,resolved}){
  }
  artifacts.push({path:'dist/j3w1-wallpaper.bmp',bytes:wallpaperBmp(val('color.surface.desktop'))});
  for(const name of CURSOR_NAMES)artifacts.push({path:`dist/j3w1-${name.toLowerCase()}.cur`,bytes:cursorFile(name,val(host.roles['cursor.foreground']),val(host.roles['cursor.outline']))});
- artifacts.push({path:'dist/j3w1.theme',text:`; Generated j3w1 ${manifest.version}\n[Theme]\nDisplayName=j3w1\n[Control Panel\\Colors]\nBackground=${rgb(val('color.surface.desktop')).join(' ')}\n[VisualStyles]\nPath=%ResourceDir%\\Themes\\Aero\\Aero.msstyles\nColorStyle=NormalColor\nSize=NormalSize\nColorizationColor=0XFF${val('color.border.active').slice(1).toUpperCase()}\nSystemMode=Dark\nAppMode=Dark\n`});
+ const themeAssets='%LOCALAPPDATA%\\j3w1-theme\\windows\\assets';
+ const themeCursors=CURSOR_NAMES.map(name=>`${name}=${themeAssets}\\j3w1-${name.toLowerCase()}.cur`).join('\n');
+ artifacts.push({path:'dist/j3w1.theme',text:`; Generated j3w1 ${manifest.version}\n[Theme]\nDisplayName=j3w1\n[Control Panel\\Colors]\nBackground=${rgb(val('color.surface.desktop')).join(' ')}\n[Control Panel\\Desktop]\nWallpaper=${themeAssets}\\j3w1-wallpaper.bmp\nTileWallpaper=0\nWallpaperStyle=10\n[Control Panel\\Cursors]\n${themeCursors}\nDefaultValue=j3w1\n[VisualStyles]\nPath=%ResourceDir%\\Themes\\Aero\\Aero.msstyles\nColorStyle=NormalColor\nSize=NormalSize\nColorizationColor=0XFF${val('color.border.active').slice(1).toUpperCase()}\nAutoColorization=0\nSystemMode=Dark\nAppMode=Dark\n[MasterThemeSelector]\nMTSM=DABJDKT\n`});
  const runtime=buildSync({entryPoints:[path.join(repoRoot,'ports/windows/src/runtime.mjs')],bundle:true,mainFields:['module','main'],platform:'node',target:'node24',format:'cjs',write:false,legalComments:'eof'}).outputFiles[0].text;
  artifacts.push({path:'dist/runtime.cjs',text:runtime});
  const files=artifacts.map(a=>({path:a.path,sha256:createHash('sha256').update(a.bytes??a.text).digest('hex')}));

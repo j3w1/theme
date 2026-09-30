@@ -814,7 +814,10 @@
     "disabled": "color.text.disabled",
     "textSelection": "color.interaction.text-selection.bg",
     "textSelectionText": "color.interaction.text-selection.text",
-    "focusRing": "color.interaction.focus.ring"
+    "focusRing": "color.interaction.focus.ring",
+    "menuHover": "color.interaction.hover.bg-strong",
+    "menuHoverText": "color.text.link-hover",
+    "menuBorder": "color.border.overlay"
   },
   "monacoPreview": {
     "version": "1.0",

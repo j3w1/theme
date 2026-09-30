@@ -489,3 +489,28 @@ replacement for native focus behavior; dashed geometry remains unsupported.
 The hidden-window native regression checks the border and corner pixels,
 interior color preservation, other states, clipping, disabled passthrough and
 DC restoration. Live rename acceptance is recorded separately.
+
+## Classic Explorer popup palette
+
+The recorded host's “Show more options” menu uses `TrackPopupMenu` with a
+`SHELLDLL_DefView` owner rooted at `CabinetWClass`, class `#32768` and the
+`Menu` theme. The trace identifies item part 27, states 1 and 3, background
+part 9, border part 10 and separator part 15. Part 27 is an exact-host fact,
+not a portable SDK constant. Both popup entry points carry a nested owner
+scope; unrelated owners and unknown parts/states pass through.
+
+The early popup-background color query can precede the popup entry point.
+Only `Menu` part 9/state 0's fill property may use the calling thread's active
+Explorer window as context. It cannot select a window on another thread or
+extend the fallback to text, borders or glyphs. See Microsoft's
+[active-window contract](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getactivewindow).
+
+The owner-requested black canvas uses `color.surface.canvas`. Normal labels
+use `color.text.default`; disabled labels use `color.text.disabled`; hot
+items use `color.interaction.hover.bg-strong` and `color.text.link-hover`.
+Frames use `color.border.overlay` and separators use `color.border.divider`.
+The native API does not distinguish pointer hover from keyboard hot state;
+both retain that host state, rather than inventing separate input behavior.
+Native geometry, ordering, icons, commands and return values are preserved.
+High contrast takes precedence; no replacement menu or owner-draw conversion
+is installed. Pixel/argument regressions are distinct from visual acceptance.

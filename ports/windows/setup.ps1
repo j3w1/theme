@@ -67,10 +67,14 @@ function Install-J3w1SetupPowerShell($Pin,[string]$Root,[switch]$Offline) {
  if($Pin.version -cnotmatch '^\d+\.\d+\.\d+$' -or $Pin.sha256 -cnotmatch '^[0-9a-f]{64}$' -or $Pin.url -cne "https://github.com/PowerShell/PowerShell/releases/download/v$($Pin.version)/PowerShell-$($Pin.version)-win-x64.zip"){throw 'Invalid PowerShell dependency pin'}
  $tools=Join-Path $Root 'tools\powershell';Assert-J3w1SetupPath $tools;[IO.Directory]::CreateDirectory($tools)|Out-Null
  $archive=Join-Path $tools "PowerShell-$($Pin.version)-win-x64.zip"
+ if(Test-Path -LiteralPath $archive){Write-Host 'Verifying the cached PowerShell archive; no download is needed.'}
+ elseif(-not $Offline){Write-Host 'Downloading the pinned Microsoft PowerShell archive...'}
  Get-J3w1SetupFile $Pin.url $archive $Pin.sha256 -Offline:$Offline
  Add-Type -AssemblyName System.IO.Compression.FileSystem
  $destination=Join-Path $tools $Pin.version;Assert-J3w1SetupPath $destination
  $existing=Test-Path -LiteralPath $destination
+ if($existing){Write-Host 'Verifying retained PowerShell files and publisher. This can take a minute.'}
+ else{Write-Host 'Extracting the verified PowerShell runtime...'}
  $stage=if($existing){$destination}else{Join-Path $tools ($Pin.version+'.pending-'+[guid]::NewGuid().ToString('N'))}
  Assert-J3w1SetupPath $stage;[IO.Directory]::CreateDirectory($stage)|Out-Null
  $zip=[IO.Compression.ZipFile]::OpenRead($archive)
@@ -239,7 +243,7 @@ function Invoke-J3w1WindowsSetup([string]$Revision,[string]$Version,[string]$Mod
   }
   Write-Host "Preparing j3w1 Windows from immutable revision $Revision"
   $powerShell=Find-J3w1SetupPowerShell
-  if(-not $powerShell){Write-Host 'Installing the pinned Microsoft PowerShell runtime for this user...';$powerShell=Install-J3w1SetupPowerShell $deps.powershell $StateRoot}
+  if(-not $powerShell){Write-Host 'Checking the pinned private PowerShell runtime...';$powerShell=Install-J3w1SetupPowerShell $deps.powershell $StateRoot}
   Write-Host 'Preparing verified files and Node if needed; checking shell compatibility...'
   $plan=(Invoke-J3w1SetupLifecycle $powerShell $installer 'Prepare' 'Full' $Revision $StateRoot)|ConvertFrom-Json
   $chosen=Select-J3w1SetupMode $plan $Mode $NonInteractive

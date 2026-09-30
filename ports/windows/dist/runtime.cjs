@@ -1658,6 +1658,9 @@ if (["Plan", "Apply", "Update"].includes(action)) {
     file(import_node_path2.default.join(assets, f), f);
     reg("Control Panel\\Cursors", name, import_node_path2.default.join(assets, f), "ExpandString");
   }
+  if (/[\r\n]/.test(assets)) throw Error("Theme asset path contains a line break");
+  const themeText = read(import_node_path2.default.join(source, "dist/j3w1.theme")).replaceAll("%LOCALAPPDATA%\\j3w1-theme\\windows\\assets", assets.replaceAll("/", "\\"));
+  ops.push({ kind: "file", path: safe(import_node_path2.default.join(root, "Microsoft/Windows/Themes/j3w1-managed.theme")), after: { exists: true, value: Buffer.from(themeText).toString("base64") } });
   const terminal = fixture ? import_node_path2.default.join(root, "terminal/settings.json") : import_node_path2.default.join(root, "Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json");
   if (import_node_fs2.default.existsSync(terminal)) {
     file(import_node_path2.default.join(root, "Microsoft/Windows Terminal/Fragments/j3w1/j3w1.json"), "terminal-fragment.json");
@@ -1721,12 +1724,25 @@ function wh(argv, allowMissing = false) {
   if (r.status !== 0 || result?.success === false) throw Error(`Windhawk ${argv.slice(0, 3).join(" ")} failed: ${result?.error?.message ?? r.stderr.trim()}`);
   return result?.data;
 }
+var fixtureEngineRunning = args.fixtureEngineStopped !== true;
+function engineRunning(waitMs = 0) {
+  if (fixture) return fixtureEngineRunning;
+  return ps({ operation: "engine", path: safe(import_node_path2.default.join(import_node_path2.default.dirname(windhawk), "windhawk.exe")), waitMs }).running === true;
+}
 function startWindhawk() {
-  if (fixture) return;
-  const child = (0, import_node_child_process.spawn)(import_node_path2.default.join(import_node_path2.default.dirname(windhawk), "windhawk.exe"), ["-tray-only"], { detached: true, stdio: "ignore", windowsHide: true });
+  if (engineRunning()) return;
+  if (fixture) {
+    if (args.fixtureEngineStartupFails) throw Error("Theme engine failed to start");
+    fixtureEngineRunning = true;
+    return;
+  }
+  const executable = safe(import_node_path2.default.join(import_node_path2.default.dirname(windhawk), "windhawk.exe"));
+  if (!import_node_fs2.default.existsSync(executable)) throw Error("Retained theme engine is missing");
+  const child = (0, import_node_child_process.spawn)(executable, ["-tray-only"], { detached: true, stdio: "ignore", windowsHide: true });
   child.on("error", () => {
   });
   child.unref();
+  if (!engineRunning(15e3)) throw Error("Theme engine failed to start; enabled settings do not establish active rendering");
 }
 function flatten(value, prefix = "", out = {}) {
   if (Array.isArray(value)) value.forEach((v2, i) => flatten(v2, `${prefix}[${i}]`, out));
@@ -1842,7 +1858,7 @@ function restore(tx) {
   persist();
   return [...new Set(conflicts)];
 }
-function verify() {
+function verify({ checkEngine = true } = {}) {
   const active = history.transactions.filter((t) => t.status === "applied");
   const tx = active.at(-1);
   if (!tx) throw Error("No installed transaction");
@@ -1855,6 +1871,7 @@ function verify() {
     failed.push(label(op));
   }
   if (tx.mode === "Full") {
+    if (checkEngine && !engineRunning()) failed.push("theme engine is not running");
     if (!compat()) failed.push("shell compatibility");
     for (const mod of tx.mods ?? []) try {
       if (!eq(wh(["mod", "settings", "get", mod.id]), mod.settings)) failed.push(`${mod.id}: settings drift`);
@@ -1902,9 +1919,15 @@ if (action === "Plan") {
       failures.push(`${mod.id}: ${error.message}`);
     }
     if (wh(["app", "settings", "get"]).settings.disableUpdateCheck !== true) failures.push("dependency update policy changed");
-    if (!failures.length) {
+    if (!failures.length) try {
       for (const mod of tx.mods ?? []) wh(["mod", "enable", mod.id]);
       startWindhawk();
+    } catch (error) {
+      failures.push(error.message);
+      for (const mod of tx.mods ?? []) try {
+        wh(["mod", "disable", mod.id]);
+      } catch {
+      }
     }
     console.log(JSON.stringify({ shell: failures.length ? "disabled-incompatible" : "enabled", failures }));
     if (failures.length) process.exitCode = 2;
@@ -1924,8 +1947,9 @@ if (action === "Plan") {
   const planned = ops.map((op) => ({ ...op, before: get(op) })).filter((op) => !eq(op.before, op.after));
   const previous = history.transactions.filter((t) => t.status === "applied").at(-1);
   if (!planned.length && previous?.revision === args.revision && previous?.mode === args.mode) {
-    const checked = verify();
+    const checked = verify({ checkEngine: false });
     if (checked.failed.length) throw Error("Installed state drift; run Test for details");
+    if (args.mode === "Full") startWindhawk();
     console.log(JSON.stringify({ result: "unchanged", revision: args.revision }));
   } else {
     const documents = [...new Set(planned.filter((op) => op.kind === "json").map((op) => op.path))].map((p) => ({ path: p, before: get({ kind: "file", path: p }) }));
@@ -1951,10 +1975,10 @@ if (action === "Plan") {
       ps({ operation: "refresh" });
       if (args.mode === "Full" && !compat()) throw Error("Compatibility changed during apply");
       for (const mod of tx.mods) wh(["mod", "enable", mod.id]);
+      if (args.mode === "Full") startWindhawk();
       tx.status = "applied";
       persist();
       updatePointer();
-      if (args.mode === "Full") startWindhawk();
       console.log(JSON.stringify({ result: "applied", revision: args.revision, changes: planned.length, limitations: settings.limitations }));
     } catch (error) {
       for (const mod of tx.mods) try {

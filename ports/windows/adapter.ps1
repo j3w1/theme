@@ -65,6 +65,19 @@ public static class J3w1StartLayoutProbe {
       }
     } finally {if($null -ne $key){$key.Dispose()}}
   }
+  'engine' {
+    $expected=[IO.Path]::GetFullPath($request.path)
+    if([IO.Path]::GetFileName($expected) -cne 'windhawk.exe' -or $expected -match '[\r\n]'){throw 'Invalid theme engine path'}
+    $waitMs=[int]$request.waitMs
+    if($waitMs -lt 0 -or $waitMs -gt 15000){throw 'Invalid engine wait limit'}
+    $deadline=[DateTime]::UtcNow.AddMilliseconds($waitMs)
+    do {
+      $running=@(Get-Process -Name windhawk -ErrorAction SilentlyContinue | Where-Object { [StringComparer]::OrdinalIgnoreCase.Equals($_.Path,$expected) }).Count -gt 0
+      if($running -or [DateTime]::UtcNow -ge $deadline){break}
+      Start-Sleep -Milliseconds 100
+    } while($true)
+    @{running=$running}|ConvertTo-Json -Compress
+  }
   'refresh' {
     Add-Type -TypeDefinition @'
 using System;
