@@ -19,6 +19,7 @@ own import evidence meets the port contract.
 | Windows Settings | Pinned Windows.UI.Xaml Settings styler | Bounded native observation only; not a universal application adapter |
 | Explorer chrome and modern context menus | Pinned Explorer XAML styler | Modern menu and submenu observations exist; classic popup menus use a separate path |
 | Explorer native file list, navigation, Home, selection and scrollbars | Exact-version native theme/GDI adapter | Millisecond scrollbar flashes, DPI variants and runtime high-contrast switching remain open |
+| Explorer drag-selection rectangle | Symbol-identified UIMarqueeSelector rooted at the actual Explorer UIItemsView; canonical red fill at 12% and red border | Native solid border is a geometry deviation; live appearance and DPI acceptance remain open |
 | Explorer filename selection and selected-row outline | Scoped Edit selection and native ListView border color mappings | Border pixel regression passes; corrected live rename outline still needs acceptance |
 | PowerToys plain-text/code preview and loading controls | Exact-version, hash-checked Monaco template adapter and native loading palette | Owner confirmed loaded preview and loading control; this does not cover Markdown |
 | PowerToys Markdown preview | No adapter yet | Separate generated HTML and WebView2 pipeline; gray preview remains unresolved |

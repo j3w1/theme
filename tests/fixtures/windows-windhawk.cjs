@@ -11,7 +11,12 @@ else if(args[0]==='data'){
  else {if(!raw.includes('--yes'))throw Error('data import requires --yes');Object.assign(db,JSON.parse(fs.readFileSync(args[2],'utf8')));done({});}
 }else if(args[0]==='mod'){
  const action=args[1],id=action==='settings'?args[3]:args[2];
- if(action==='install'){const installedId='local@'+id;db[installedId]={id:installedId,metadata:{version:'1.0'},config:{disabled:true},settings:{theme:'',extraDefault:'keep'}};done({id:installedId,version:'1.0',compiledLocally:true});}
+ if(action==='install'){
+  const installedId='local@'+id,source=fs.readFileSync(args[args.indexOf('--file')+1],'utf8');
+  const version=source.match(/^\/\/\s*@version\s+(\S+)/m)?.[1]??'1.0';
+  db[installedId]={id:installedId,metadata:{version},config:{disabled:true},settings:{theme:'',extraDefault:'keep'}};
+  done({id:installedId,version,compiledLocally:true});
+ }
  else if(!db[id])missing();
  else if(action==='show'){const {settings,...shown}=db[id];done(shown);}
  else if(action==='settings'){

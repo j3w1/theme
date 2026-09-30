@@ -72,6 +72,21 @@ test('XAML color values preserve RGB and encode transparency in native ARGB orde
  assert.ok(payload.controlStyles.find(x=>x.target==='Button#VerbButton').styles.includes('Background=#00000000'));
 });
 
+test('Explorer marquee settings encode canonical alpha and module compatibility',async()=>{
+ const settings=await readJson('ports/windows/dist/j3w1-explorer-native.json');
+ const tokens=(await readJson('exports/tokens.resolved.json')).profiles.default.tokens;
+ for(const [key,role] of Object.entries((await readJson('ports/windows/host.json')).nativeExplorer)){
+  if(key==='version')continue;
+  assert.equal(settings[key],windowsStyleValue(key,{type:tokens[role].type,resolved:tokens[role].value}));
+ }
+ assert.equal(settings.marquee,'#1f911410');
+ assert.equal(settings.marqueeBorder,'#e53935');
+ const source=fs.readFileSync(path.join(repoRoot,'ports/windows/dist/j3w1-explorer-native.wh.cpp'),'utf8');
+ assert.match(source,/FixedModuleVersion\(frame,MAKELONG\(0,10\),MAKELONG\(9549,26100\)\)/);
+ assert.match(source,/FixedModuleVersion\(dui,MAKELONG\(0,10\),MAKELONG\(9549,26100\)\)/);
+ assert.doesNotMatch(source,/@[A-Z0-9_]+@/);
+});
+
 test('Explorer submenu stays on the hover palette while its child flyout is open',async()=>{
  const config=await readJson('ports/windows/dist/windows-11-file-explorer-styler.json');
  const submenu=config.controlStyles.find(x=>x.target==='MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates');

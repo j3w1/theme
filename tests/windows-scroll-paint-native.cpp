@@ -5,6 +5,7 @@
 static BOOL Wh_SetFunctionHook(void*,void*,void**){return TRUE;}
 static PCWSTR Wh_GetStringSetting(PCWSTR){return L"#000000";}
 static void Wh_FreeStringSetting(PCWSTR){}
+#include "windows-windhawk-symbol-stubs.h"
 #include "../ports/windows/dist/j3w1-explorer-native.wh.cpp"
 static HWND Window(const wchar_t* name){
     WNDCLASSW c{};c.lpfnWndProc=DefWindowProcW;c.hInstance=GetModuleHandleW(nullptr);c.lpszClassName=name;

@@ -823,7 +823,7 @@
     "Static cursor shapes preserve roles; host accessibility pointer overrides take priority."
   ],
   "nativeExplorer": {
-    "version": "1.0",
+    "version": "1.1",
     "background": "color.surface.canvas",
     "foreground": "color.text.default",
     "hover": "color.interaction.hover.bg",
@@ -838,7 +838,13 @@
     "focusRing": "color.interaction.focus.ring",
     "menuHover": "color.interaction.hover.bg-strong",
     "menuHoverText": "color.text.link-hover",
-    "menuBorder": "color.border.overlay"
+    "menuBorder": "color.border.overlay",
+    "marquee": "color.interaction.marquee",
+    "marqueeBorder": "color.interaction.drop-target"
+  },
+  "nativeExplorerModules": {
+    "FRAME": "10.0.26100.9549",
+    "DUI": "10.0.26100.9549"
   },
   "monacoPreview": {
     "version": "1.0",

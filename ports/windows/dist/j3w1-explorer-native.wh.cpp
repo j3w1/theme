@@ -2,11 +2,11 @@
 // @id j3w1-explorer-native
 // @name j3w1 Explorer native colors
 // @description Generated native Explorer canvas and text adapter; exact host only
-// @version 1.0
+// @version 1.1
 // @author j3w1
 // @include explorer.exe
 // @architecture x86-64
-// @compilerOptions -luxtheme -lgdi32 -luser32 -lversion
+// @compilerOptions -luxtheme -lgdi32 -luser32 -lversion -lmsimg32
 // ==/WindhawkMod==
 // ==WindhawkModSettings==
 /*
@@ -25,6 +25,8 @@
 - menuHover: "#630f0d"
 - menuHoverText: "#f4eeee"
 - menuBorder: "#e53935"
+- marquee: "#1f911410"
+- marqueeBorder: "#e53935"
 */
 // ==/WindhawkModSettings==
 #include <windows.h>
@@ -37,6 +39,8 @@
 
 static COLORREF background, foreground, hover, selected, inactive, border, scrollbar, scrollbarHover, disabled;
 static COLORREF textSelection, textSelectionText, focusRing, menuHover, menuHoverText, menuBorder;
+static COLORREF marquee, marqueeBorder;
+static BYTE marqueeAlpha;
 static HBRUSH backgroundBrush;
 using ThemeClassFn=HRESULT(WINAPI*)(HTHEME,LPWSTR,int);
 static ThemeClassFn themeClass;
@@ -91,6 +95,96 @@ static bool ExplorerWindow(HWND window) {
     wchar_t name[64]{};
     if(!GetClassNameW(GetAncestor(window,GA_ROOT),name,64)) return false;
     return _wcsicmp(name,L"CabinetWClass")==0 && !HighContrast();
+}
+// The recorded UIMarqueeSelector has no control ID. Match public vtable
+// symbols and its actual UIItemsView root/ HWND, never foreground or blue pixels.
+using ElementRootFn=void*(__cdecl*)(void*);
+using ElementWindowFn=HWND(__cdecl*)(void*);
+using ElementBackgroundFn=void(__cdecl*)(void*,HDC,void*,const RECT&,const RECT&,const RECT&,const RECT&);
+using ElementBorderFn=void(__cdecl*)(void*,HDC,void*,RECT*,const RECT&);
+static void* marqueeVtable;
+static void* itemsViewVtable;
+static ElementRootFn elementRoot;
+static ElementWindowFn elementWindow;
+static ElementBackgroundFn originalElementBackground;
+static ElementBorderFn originalElementBorder;
+static decltype(&GetSysColor) originalSysColor;
+static decltype(&GdiAlphaBlend) originalAlphaBlend;
+enum class MarqueePaint { None, Background, Border };
+static thread_local MarqueePaint marqueePaint=MarqueePaint::None;
+static bool MarqueeElement(void* element) {
+    if(!enabled.load() || drawingTheme || HighContrast() || !element || !marqueeVtable
+       || !itemsViewVtable || !elementRoot || !elementWindow || *(void**)element!=marqueeVtable)return false;
+    void* root=elementRoot(element);
+    return root && *(void**)root==itemsViewVtable && ExplorerWindow(elementWindow(root));
+}
+struct MarqueePaintScope {
+    MarqueePaint previous;
+    MarqueePaintScope(void* element,MarqueePaint kind):previous(marqueePaint) {
+        marqueePaint=MarqueeElement(element)?kind:MarqueePaint::None;
+    }
+    ~MarqueePaintScope(){marqueePaint=previous;}
+};
+static void __cdecl ElementBackgroundHook(void* element,HDC dc,void* value,
+    const RECT& a,const RECT& b,const RECT& c,const RECT& d) {
+    MarqueePaintScope scope(element,MarqueePaint::Background);
+    originalElementBackground(element,dc,value,a,b,c,d);
+}
+static void __cdecl ElementBorderHook(void* element,HDC dc,void* value,RECT* rect,const RECT& clip) {
+    MarqueePaintScope scope(element,MarqueePaint::Border);
+    originalElementBorder(element,dc,value,rect,clip);
+}
+static DWORD WINAPI SysColorHook(int index) {
+    if(enabled.load() && !drawingTheme && !HighContrast()) {
+        if(marqueePaint==MarqueePaint::Background && index==COLOR_HOTLIGHT)return marquee;
+        if(marqueePaint==MarqueePaint::Border && index==COLOR_HIGHLIGHT)return marqueeBorder;
+    }
+    return originalSysColor(index);
+}
+static BOOL WINAPI AlphaBlendHook(HDC dest,int x,int y,int width,int height,HDC src,
+    int sx,int sy,int sw,int sh,BLENDFUNCTION blend) {
+    // Observed native constant-alpha background composition. Keep per-pixel
+    // alpha, other opacity values and all source pixels untouched.
+    if(enabled.load() && !drawingTheme && !HighContrast() && marqueePaint==MarqueePaint::Background
+       && blend.BlendOp==AC_SRC_OVER && blend.BlendFlags==0
+       && blend.AlphaFormat==0 && blend.SourceConstantAlpha==85)blend.SourceConstantAlpha=marqueeAlpha;
+    return originalAlphaBlend(dest,x,y,width,height,src,sx,sy,sw,sh,blend);
+}
+static void* FindExactSymbol(HMODULE module,PCWSTR expected) {
+    WH_FIND_SYMBOL symbol{};
+    HANDLE search=Wh_FindFirstSymbol(module,nullptr,&symbol);
+    if(!search)return nullptr;
+    void* found=nullptr;
+    do {if(symbol.symbol && wcscmp(symbol.symbol,expected)==0){found=symbol.address;break;}}
+    while(Wh_FindNextSymbol(search,&symbol));
+    Wh_FindCloseSymbol(search);
+    return found;
+}
+static bool FixedModuleVersion(HMODULE module,DWORD ms,DWORD ls) {
+    if(!module)return false;
+    wchar_t file[MAX_PATH]{};
+    if(!GetModuleFileNameW(module,file,MAX_PATH))return false;
+    DWORD ignored=0,size=GetFileVersionInfoSizeW(file,&ignored);
+    std::vector<BYTE> bytes(size);VS_FIXEDFILEINFO* version=nullptr;UINT length=0;
+    return size && GetFileVersionInfoW(file,0,size,bytes.data())
+        && VerQueryValueW(bytes.data(),L"\\",(void**)&version,&length)
+        && length>=sizeof(*version) && version->dwFileVersionMS==ms && version->dwFileVersionLS==ls;
+}
+static bool InitMarquee() {
+    HMODULE frame=GetModuleHandleW(L"ExplorerFrame.dll"),dui=GetModuleHandleW(L"dui70.dll");
+    if(!FixedModuleVersion(frame,MAKELONG(0,10),MAKELONG(9549,26100))
+       || !FixedModuleVersion(dui,MAKELONG(0,10),MAKELONG(9549,26100)))return false;
+    marqueeVtable=FindExactSymbol(frame,L"const UIMarqueeSelector::`vftable'{for `DirectUI::Element'}");
+    itemsViewVtable=FindExactSymbol(frame,L"const UIItemsView::`vftable'{for `DirectUI::HWNDElement'}");
+    elementRoot=(ElementRootFn)FindExactSymbol(dui,L"public: class DirectUI::Element * __cdecl DirectUI::Element::GetRoot(void)");
+    elementWindow=(ElementWindowFn)FindExactSymbol(dui,L"public: virtual struct HWND__ * __cdecl DirectUI::HWNDElement::GetHWND(void)");
+    void* bg=FindExactSymbol(dui,L"public: void __cdecl DirectUI::Element::PaintBackground(struct HDC__ *,class DirectUI::Value *,struct tagRECT const &,struct tagRECT const &,struct tagRECT const &,struct tagRECT const &)");
+    void* br=FindExactSymbol(dui,L"public: void __cdecl DirectUI::Element::PaintBorder(struct HDC__ *,class DirectUI::Value *,struct tagRECT *,struct tagRECT const &)");
+    return marqueeVtable && itemsViewVtable && elementRoot && elementWindow && bg && br
+        && Wh_SetFunctionHook(bg,(void*)ElementBackgroundHook,(void**)&originalElementBackground)
+        && Wh_SetFunctionHook(br,(void*)ElementBorderHook,(void**)&originalElementBorder)
+        && Wh_SetFunctionHook((void*)GetSysColor,(void*)SysColorHook,(void**)&originalSysColor)
+        && Wh_SetFunctionHook((void*)GdiAlphaBlend,(void*)AlphaBlendHook,(void**)&originalAlphaBlend);
 }
 // TrackPopupMenu carries the actual owner. Scope both entry points and restore
 // it across nested calls, including unrelated owners; do not infer popup
@@ -385,6 +479,13 @@ static bool ReadColor(PCWSTR key,COLORREF* output) {
     Wh_FreeStringSetting(input);
     return valid;
 }
+static bool ReadMarquee() {
+    PCWSTR input=Wh_GetStringSetting(L"marquee");unsigned a,r,g,b;int used=0;
+    bool valid=input && wcslen(input)==9 && swscanf(input,L"#%2x%2x%2x%2x%n",&a,&r,&g,&b,&used)==4 && used==9;
+    if(valid){marquee=RGB(r,g,b);marqueeAlpha=(BYTE)a;}
+    Wh_FreeStringSetting(input);
+    return valid && ReadColor(L"marqueeBorder",&marqueeBorder);
+}
 // Refuse unknown fixed executable versions even if descriptive metadata matches.
 BOOL Wh_ModInit() {
 
@@ -399,6 +500,7 @@ BOOL Wh_ModInit() {
         || length<sizeof(*version) || version->dwFileVersionMS!=MAKELONG(0,10) || version->dwFileVersionLS!=MAKELONG(9549,26100)) {return FALSE;}
     themeClass=(ThemeClassFn)GetProcAddress(GetModuleHandleW(L"uxtheme.dll"),MAKEINTRESOURCEA(74));
     if(!themeClass) {return FALSE;}
+    if(!ReadMarquee() || !InitMarquee())return FALSE;
     backgroundBrush=CreateSolidBrush(background);
     if(!backgroundBrush) return FALSE;
     bool hooked=Wh_SetFunctionHook((void*)TrackPopupMenu,(void*)PopupHook,(void**)&originalTrackPopupMenu)

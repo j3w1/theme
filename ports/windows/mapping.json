@@ -340,6 +340,12 @@
     "color.interaction.focus.ring": [
       "nativeExplorer.focusRing"
     ],
+    "color.interaction.marquee": [
+      "nativeExplorer.marquee"
+    ],
+    "color.interaction.drop-target": [
+      "nativeExplorer.marqueeBorder"
+    ],
     "color.interaction.hover.bg-strong": [
       "nativeExplorer.menuHover"
     ],
@@ -473,8 +479,6 @@
     "color.interaction.selection.inactive-text": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.interaction.text-selection.bg": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.interaction.text-selection.text": "Outside Windows visual adapter scope; preserve host semantics.",
-    "color.interaction.marquee": "Outside Windows visual adapter scope; preserve host semantics.",
-    "color.interaction.drop-target": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.interaction.scrollbar.track": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.action.primary.text": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.action.primary.border": "Outside Windows visual adapter scope; preserve host semantics.",

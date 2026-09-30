@@ -476,6 +476,30 @@ MenuFlyoutSeparator templates. Paint colors change; menu actions, order, icons,
 keyboard behavior and separator geometry remain native. These changes require
 fresh host readback and are not accepted based on generation or compilation.
 
+## Native drag-selection rectangle
+
+The candidate's ExplorerFrame.dll and dui70.dll both have fixed version
+10.0.26100.9549. The adapter checks these module versions independently of the
+Explorer executable and resolves exact public symbols. Missing modules,
+different versions or unresolved symbols refuse initialization; no offsets are
+hard-coded. The observed control is UIMarqueeSelector (control ID 0), rooted
+at UIItemsView's HWNDElement vtable with an actual CabinetWClass HWND.
+
+Only that control's background COLOR_HOTLIGHT query maps to
+`color.interaction.marquee`, and its border COLOR_HIGHLIGHT query maps to
+`color.interaction.drop-target`. Its observed GdiAlphaBlend background path uses
+constant opacity 85/255; the rendering scope substitutes the canonical 12%
+encoded as 31/255. Per-pixel alpha and other blend operations pass through.
+The native solid border remains a documented deviation from dashed geometry.
+
+Nested background and border scopes restore their previous state, including
+unrelated controls. High contrast, disabled/unloading adapters, recursion,
+different roots and non-Explorer windows pass through. No persistent control
+property, global system color or source pixel is changed. Unloading restores
+future native paints through the same lifecycle. Hidden-window/offscreen native
+regressions cover ownership, canonical pixels/opacity, nested scopes, unknown
+blend formats and API arguments/return values. Live acceptance is separate.
+
 ## Native selected-row focus
 
 The recorded Explorer host draws the rename row outline through ListView part 1,
