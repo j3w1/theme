@@ -546,3 +546,15 @@ and border roles. Native focus visuals retain their host behavior; no focus
 visual property is overridden. Button text, actions, enabled state, dimensions, padding, order and border
 thickness remain native. This covers the action button separately from the
 already themed toast body; actual popup matching still needs live verification.
+
+### Native XAML color serialization
+
+Windhawk passes generated setter values to the Windows XAML parser. Color
+properties and resource variables therefore use native `#RRGGBB` or
+`#AARRGGBB`, including transparent secondary-button backgrounds. CSS `rgb()`
+is not a native color and can cause the parser to reject a control's setters.
+The generator preserves RGB and rounds alpha to the nearest native 8-bit
+channel. This is output-format conversion, not a token-value change. The
+regression checks alpha order, transparent fills and every generated shell
+color against the native grammar. See Microsoft's
+[Color syntax](https://learn.microsoft.com/en-us/uwp/api/windows.ui.color).

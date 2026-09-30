@@ -73,6 +73,13 @@ export function cursorFile(name,foreground,outline){
 // XAML uses unitless device-independent pixels and a native family name, not CSS.
 export function windowsStyleValue(property, token) {
  const key=property.split('@')[0];
+ if(token.type==='color'){
+  const {colorSpace,hex,alpha=1}=token.resolved;
+  if(colorSpace!=='srgb'||!/^#[0-9a-f]{6}$/i.test(hex)||!Number.isFinite(alpha)||alpha<0||alpha>1)
+   throw Error('Windows color requires a valid sRGB color and alpha');
+  // Native XAML accepts ARGB hex, not CSS rgb(). Alpha is an 8-bit channel.
+  return alpha===1?hex:`#${Math.round(alpha*255).toString(16).padStart(2,'0')}${hex.slice(1)}`;
+ }
  if(key==='CornerRadius'||key==='BorderThickness'){
   if(token.type!=='dimension'||token.resolved.unit!=='px')throw Error(`Windows ${key} requires a pixel dimension`);
   return String(token.resolved.value);
@@ -135,7 +142,7 @@ export function windowsArtifacts({manifest,host,resolved}){
  ]});
  for(const mod of host.stylers){
   const controlStyles=targets(mod.targets);
-  const payload={theme:'',controlStyles,themeResourceVariables:Object.entries(host.resources).map(([key,role])=>`${key}=${val(role)}`)};
+  const payload={theme:'',controlStyles,themeResourceVariables:Object.entries(host.resources).map(([key,role])=>{val(role);return `${key}=${windowsStyleValue(key,resolved.get(role))}`;})};
   json(`${mod.id}.json`,payload);
  }
  artifacts.push({path:'dist/j3w1-wallpaper.bmp',bytes:wallpaperBmp(val('color.surface.desktop'))});

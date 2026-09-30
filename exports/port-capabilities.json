@@ -37749,7 +37749,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-K5wtoc02knTqjue1W+jkvj7m0A5eq/m6G7B3WMTNlMc=",
+      "subjectDigest": "sha256-75GAsUmR50lCfRxsQaRPe8ti0FEoi3mlwetDKA7l4QQ=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37824,7 +37824,7 @@
           "path": "dist/windows-11-notification-center-styler.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-11-notification-center-styler.json",
-          "digest": "sha256-YU5Sb+mKmKkRAACrcd3MglDLv8p4iLvfWs1MCXiGVdk="
+          "digest": "sha256-kbOe6Z6fiejG1Hp3KINZpJQhrPjBLLGohEJP2T5Rfd4="
         },
         {
           "path": "dist/windows-11-settings-styler.json",
@@ -37956,7 +37956,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-c+99N2B6m+LHMP7Egc7MTSBZy2W5TuOSYLKSOkDPdgE="
+          "digest": "sha256-XaAOMHiIuvpPU9oTqCuQPgrjSVF0ugx+lfZvoD21XVA="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",

@@ -54,6 +54,24 @@ test('Windows native values, Terminal ANSI and styler selectors resolve from can
  assert.equal(settings.version,(await readJson('theme.json')).version);
 });
 
+test('XAML color values preserve RGB and encode transparency in native ARGB order',async()=>{
+ const value=alpha=>({type:'color',resolved:{colorSpace:'srgb',hex:'#112233',alpha}});
+ for(const [alpha,expected]of [[0,'#00112233'],[.12,'#1f112233'],[.5,'#80112233'],[1,'#112233']])
+  assert.equal(windowsStyleValue('Background@Normal',value(alpha)),expected);
+ for(const alpha of [-1,1.1,NaN,Infinity])assert.throws(()=>windowsStyleValue('Background',value(alpha)),/valid sRGB/);
+ const host=await readJson('ports/windows/host.json');
+ for(const styler of host.stylers){
+  const payload=await readJson(`ports/windows/dist/${styler.id}.json`);
+  for(const target of payload.controlStyles)for(const style of target.styles){
+   const [key,color]=style.split('=');
+   if(/^(Background|Foreground|BorderBrush|Fill)(@|$)/.test(key))assert.match(color,/^#(?:[0-9a-f]{6}|[0-9a-f]{8})$/i,style);
+  }
+  for(const resource of payload.themeResourceVariables)assert.match(resource.split('=')[1],/^#(?:[0-9a-f]{6}|[0-9a-f]{8})$/i,resource);
+ }
+ const payload=await readJson('ports/windows/dist/windows-11-notification-center-styler.json');
+ assert.ok(payload.controlStyles.find(x=>x.target==='Button#VerbButton').styles.includes('Background=#00000000'));
+});
+
 test('Explorer submenu stays on the hover palette while its child flyout is open',async()=>{
  const config=await readJson('ports/windows/dist/windows-11-file-explorer-styler.json');
  const submenu=config.controlStyles.find(x=>x.target==='MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates');
