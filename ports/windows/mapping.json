@@ -41,10 +41,9 @@
       "windows-11-file-explorer-styler | FileExplorerExtensions.CommandBarControl_Wave1 > Grid, Grid#CommandBarControlRootGrid | Background",
       "windows-11-file-explorer-styler | CommandBar#FileExplorerCommandBar | Background",
       "windows-11-file-explorer-styler | CommandBar#FileExplorerSecondaryCommandBar | Background",
-      "windows-11-file-explorer-styler | Grid#TabContainerGrid | Background",
-      "windows-11-file-explorer-styler | Grid#PART_LayoutRoot | Background",
       "windows-11-file-explorer-styler | CommandBar > Grid#LayoutRoot > Grid#ContentRoot | Background",
-      "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@Normal"
+      "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@Normal",
+      "windows-11-file-explorer-styler | FileExplorerExtensions.AddressBarControl > Grid#PART_LayoutRoot | Background"
     ],
     "color.terminal.cursor": [
       "terminal.cursor"
@@ -58,7 +57,6 @@
       "windows-11-taskbar-styler | Rectangle#BackgroundFill | Fill",
       "windows-11-start-menu-styler | Border#AcrylicOverlay | Background",
       "windows-11-start-menu-styler | Grid#CompanionRoot > Grid#MainContent > Border#AcrylicOverlay | Background",
-      "windows-11-file-explorer-styler | Grid#RootGrid | Background",
       "windows-11-notification-center-styler | ScrollViewer#CalendarControlScrollViewer | Background",
       "windows-11-notification-center-styler | Border#CalendarHeaderMinimizedOverlay | Background",
       "windows-11-notification-center-styler | ActionCenter.FocusSessionControl#FocusSessionControl > Grid#FocusGrid | Background",

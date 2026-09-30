@@ -492,13 +492,53 @@ constant opacity 85/255; the rendering scope substitutes the canonical 12%
 encoded as 31/255. Per-pixel alpha and other blend operations pass through.
 The native solid border remains a documented deviation from dashed geometry.
 
+The live paint trace also identifies a cached COLOR_HOTLIGHT system brush at
+the background's PATCOPY operation. A color query cannot recolor that cached
+brush. Within the same admitted background scope, the adapter replaces only
+that exact brush for the synchronous draw and restores the original selected
+brush afterward. A separately allocated brush of the same color, other raster
+operations, and border paints retain their brushes. System brushes are never
+changed or deleted. See Microsoft's [cached system-brush contract](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getsyscolorbrush).
+
 Nested background and border scopes restore their previous state, including
 unrelated controls. High contrast, disabled/unloading adapters, recursion,
 different roots and non-Explorer windows pass through. No persistent control
-property, global system color or source pixel is changed. Unloading restores
+property or global system color is changed. Only the admitted native fill draw
+uses canonical source pixels before native composition. Unloading restores
 future native paints through the same lifecycle. Hidden-window/offscreen native
 regressions cover ownership, canonical pixels/opacity, nested scopes, unknown
 blend formats and API arguments/return values. Live acceptance is separate.
+
+## Explorer native caption composition
+
+The recorded Explorer host composes its native Minimize, Maximize/Restore and
+Close buttons over the XAML title strip. An opaque `Grid#TabContainerGrid`
+background hid their glyphs while accessibility still exposed the commands.
+The owner confirmed that excluding this background restored all three buttons.
+Broad root/layout backgrounds are also excluded; the address-bar background
+uses its specific `AddressBarControl` ancestor and tab-item fills keep their
+existing state mappings. No button, hit-test region, window style or command is
+removed or replaced.
+
+The native adapter applies `color.surface.canvas` and `color.text.default`
+through DWM caption/text attributes, with a nonmaterial backdrop. Its scope is
+top-level `CabinetWClass` windows owned by the injected Explorer process. New
+windows and theme/settings refreshes use the same path; unrelated application
+windows and Explorer children are excluded. The XAML styler's whole-window
+background-effect setting remains unset because it caused red accent fills.
+
+DWM caption/text colors are write-only attributes on this host. The supported
+baseline is the native Windows default, without a competing caption-color
+adapter. Unload restores the documented native default; application requests
+made after admission are captured and restored verbatim instead. The backdrop
+attribute can be read and its original value is restored. No global
+personalization value changes, no polling service is added, and high contrast
+takes priority. This is an Explorer-specific adapter, not an arbitrary-app
+caption-color guarantee. The native regression covers admission, window-style
+preservation, new-window cleanup, request restoration and failure/high-contrast
+passthrough; live appearance remains a separate acceptance gate.
+
+See Microsoft's [DWM window-attribute contract](https://learn.microsoft.com/en-us/windows/win32/api/dwmapi/ne-dwmapi-dwmwindowattribute).
 
 ## Native selected-row focus
 

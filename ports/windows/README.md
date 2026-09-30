@@ -153,12 +153,13 @@ with canonical divider colors; native action order, icons and menu behavior rema
 
 Native offscreen regressions live in `tests/windows-preview-paint-native.cpp`
 `tests/windows-scroll-paint-native.cpp`, and
-`tests/windows-explorer-interaction-native.cpp`. Compile them on Windows with the
+`tests/windows-explorer-interaction-native.cpp`, `tests/windows-marquee-paint-native.cpp`
+and `tests/windows-caption-native.cpp`. Compile them on Windows with the
 pinned Windhawk x64 compiler, `--target=x86_64-w64-mingw32 -std=c++20 -static`,
-and libraries `-lbcrypt -lversion -luser32 -lgdi32 -lshell32 -lole32 -luuid -luxtheme`.
+and libraries `-lbcrypt -lversion -luser32 -lgdi32 -lshell32 -lole32 -luuid -luxtheme -lmsimg32 -ldwmapi`.
 Run each executable with high contrast off. They exercise native GDI pixels,
 paint ownership, nested scopes and passthrough without desktop input or capture.
-They do not establish visual acceptance of the real host's loading transition.
+They do not establish visual acceptance of the real host's loading transition or caption buttons.
 
 The loading label matcher follows Windows class-name case insensitivity, including
 the observed .NET 10 `WindowsForms10.Static` spelling. The determinate progress

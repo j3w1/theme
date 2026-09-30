@@ -692,7 +692,7 @@
     "color.interaction.marquee": {
       "state": "mapped",
       "surface": "shell",
-      "reason": "Exact-version Explorer UIMarqueeSelector background and constant-alpha composition; unknown controls and high contrast retain host rendering."
+        "reason": "Exact-version Explorer UIMarqueeSelector background, cached system-brush fill and constant-alpha composition; unknown controls and high contrast retain host rendering."
     },
     "color.interaction.drop-target": {
       "state": "mapped",

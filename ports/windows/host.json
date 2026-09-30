@@ -354,12 +354,6 @@
           }
         },
         {
-          "target": "Grid#RootGrid",
-          "styles": {
-            "Background": "color.surface.chrome"
-          }
-        },
-        {
           "target": "Grid#NavigationBarControlGrid",
           "styles": {
             "Background": "color.surface.default"
@@ -379,18 +373,6 @@
         },
         {
           "target": "CommandBar#FileExplorerSecondaryCommandBar",
-          "styles": {
-            "Background": "color.surface.canvas"
-          }
-        },
-        {
-          "target": "Grid#TabContainerGrid",
-          "styles": {
-            "Background": "color.surface.canvas"
-          }
-        },
-        {
-          "target": "Grid#PART_LayoutRoot",
           "styles": {
             "Background": "color.surface.canvas"
           }
@@ -542,6 +524,12 @@
             "Background@Pressed": "color.interaction.pressed.bg",
             "Background@Disabled": "color.surface.canvas",
             "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "FileExplorerExtensions.AddressBarControl > Grid#PART_LayoutRoot",
+          "styles": {
+            "Background": "color.surface.canvas"
           }
         }
       ]
@@ -823,7 +811,7 @@
     "Static cursor shapes preserve roles; host accessibility pointer overrides take priority."
   ],
   "nativeExplorer": {
-    "version": "1.1",
+    "version": "1.2",
     "background": "color.surface.canvas",
     "foreground": "color.text.default",
     "hover": "color.interaction.hover.bg",

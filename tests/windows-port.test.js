@@ -313,6 +313,20 @@ test('Explorer retains the native backdrop after the whole-window red-accent reg
  assert.ok(!Object.hasOwn(payload,'backgroundTranslucentEffectRegion'));
 });
 
+test('Explorer preserves the native caption composition layer and scopes address backgrounds',async()=>{
+ const payload=await readJson('ports/windows/dist/windows-11-file-explorer-styler.json');
+ for(const target of ['Grid#RootGrid','Grid#TabContainerGrid','Grid#PART_LayoutRoot'])
+  assert.ok(!payload.controlStyles.some(t=>t.target===target && t.styles.some(s=>s.startsWith('Background='))),target);
+ const address=payload.controlStyles.find(t=>t.target==='FileExplorerExtensions.AddressBarControl > Grid#PART_LayoutRoot');
+ assert.ok(address.styles.includes('Background=#000000'));
+ const tab=payload.controlStyles.find(t=>t.target==='TabViewItem > Grid#LayoutRoot@CommonStates');
+ assert.ok(tab.styles.includes('Background@Normal=#000000'));
+ const native=fs.readFileSync(path.join(source,'dist/j3w1-explorer-native.wh.cpp'),'utf8');
+ assert.match(native,/DWMWA_CAPTION_COLOR/);assert.match(native,/DWMWA_TEXT_COLOR/);
+ assert.match(native,/process==GetCurrentProcessId\(\)/);
+ assert.doesNotMatch(native,/WS_(?:MINIMIZEBOX|MAXIMIZEBOX)|SC_(?:CLOSE|MINIMIZE|MAXIMIZE)/);
+});
+
 test('standalone toast variants use black surfaces with one outer frame',async()=>{
  const payload=await readJson('ports/windows/dist/windows-11-notification-center-styler.json');
  for(const target of ['Border#ToastBackgroundBorder','Border#ToastBackgroundBorder2']){

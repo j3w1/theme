@@ -17,9 +17,9 @@ own import evidence meets the port contract.
 | Taskbar | Pinned taskbar styler, including mapped top divider | Top-edge visual acceptance remains open |
 | Notifications, calendar, Quick Settings and toast variants | Pinned notification styler | Notification sidebar and loading controls have owner feedback; not every toast or Quick Settings state has been observed |
 | Windows Settings | Pinned Windows.UI.Xaml Settings styler | Bounded native observation only; not a universal application adapter |
-| Explorer chrome and modern context menus | Pinned Explorer XAML styler | Modern menu and submenu observations exist; classic popup menus use a separate path |
+| Explorer chrome, native caption buttons and modern context menus | Pinned Explorer XAML styler with a transparent caption composition layer; exact-host native black/rose DWM caption adapter | Owner isolated the opaque tab-container background hiding the buttons. Corrected live caption and menu appearance still need verification; classic popup menus use a separate path |
 | Explorer native file list, navigation, Home, selection and scrollbars | Exact-version native theme/GDI adapter | Millisecond scrollbar flashes, DPI variants and runtime high-contrast switching remain open |
-| Explorer drag-selection rectangle | Symbol-identified UIMarqueeSelector rooted at the actual Explorer UIItemsView; canonical red fill at 12% and red border | Native solid border is a geometry deviation; live appearance and DPI acceptance remain open |
+| Explorer drag-selection rectangle | Symbol-identified UIMarqueeSelector rooted at the actual Explorer UIItemsView; scoped cached-system-brush substitution, canonical red fill at 12% and red border | Native solid border is a geometry deviation; live appearance and DPI acceptance remain open |
 | Explorer filename selection and selected-row outline | Scoped Edit selection and native ListView border color mappings | Border pixel regression passes; corrected live rename outline still needs acceptance |
 | PowerToys plain-text/code preview and loading controls | Exact-version, hash-checked Monaco template adapter and native loading palette | Owner confirmed loaded preview and loading control; this does not cover Markdown |
 | PowerToys Markdown preview | No adapter yet | Separate generated HTML and WebView2 pipeline; gray preview remains unresolved |
@@ -83,7 +83,7 @@ None of these interfaces makes the existing Windows port an installed app theme.
 
 ## Acceptance still required
 
-Keep the Windows candidate draft while the owner-reported rename outline,
+Keep the Windows candidate draft while the owner-reported caption buttons, rename outline,
 scrollbar transient, classic menu, Markdown, Notepad, Calculator and Paint
 requirements remain unresolved or unverified. Installer Test checks managed
 state, hashes and compatibility; it cannot accept visual behavior. A Computer

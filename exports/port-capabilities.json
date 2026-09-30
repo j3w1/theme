@@ -37749,7 +37749,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-G9gG5fCfmagRiFWVTjNrkBbFjOpTG2Cejch6Z0Jgw9g=",
+      "subjectDigest": "sha256-04IhjrJKcIOnBz4nEPdfiRlkFS4xffWi1S73jDEgL9E=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37782,7 +37782,7 @@
           "path": "dist/windows-settings.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-settings.json",
-          "digest": "sha256-uF7orRlimsL3kcOHeeM6XcUUsZ9WjOF5ozwwK3W1/2M="
+          "digest": "sha256-8/b+PILlQuPHC6n6WINj0kUAbZ8sfFhZgwVmlANKRc0="
         },
         {
           "path": "dist/terminal-fragment.json",
@@ -37818,7 +37818,7 @@
           "path": "dist/windows-11-file-explorer-styler.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-11-file-explorer-styler.json",
-          "digest": "sha256-5pzr9z7evYqKuLK3CquWzGazmQBMiAuy9o7WVrzIywQ="
+          "digest": "sha256-qXqryEpB7NUosW64AXh6hI9QcOJK048FC+Cxw1iDmaI="
         },
         {
           "path": "dist/windows-11-notification-center-styler.json",
@@ -37956,13 +37956,13 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-tlb4dUA4Hw6Y+lcfk/i4f7bTB78Pdm3osCBO0plxIdI="
+          "digest": "sha256-UcI+pQ7kLYYe4dxYWs1wp8jxAIpgfYo7UTf5fwWjUtE="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/j3w1-explorer-native.wh.cpp",
-          "digest": "sha256-RKVVcVeU0XUCDX5hpaz8q3CRCCxBadVXY/P5BzQi47M="
+          "digest": "sha256-P1jhJLQOD+RJT4wBZfS8TPh5ghs+PnTp3MnCxCQ1Iak="
         },
         {
           "path": "dist/j3w1-explorer-native.json",
@@ -39754,7 +39754,7 @@
           },
           "state": "mapped",
           "surface": "shell",
-          "reason": "Exact-version Explorer UIMarqueeSelector background and constant-alpha composition; unknown controls and high contrast retain host rendering.",
+          "reason": "Exact-version Explorer UIMarqueeSelector background, cached system-brush fill and constant-alpha composition; unknown controls and high contrast retain host rendering.",
           "source": "ports/windows/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -41540,10 +41540,9 @@
             "windows-11-file-explorer-styler | FileExplorerExtensions.CommandBarControl_Wave1 > Grid, Grid#CommandBarControlRootGrid | Background",
             "windows-11-file-explorer-styler | CommandBar#FileExplorerCommandBar | Background",
             "windows-11-file-explorer-styler | CommandBar#FileExplorerSecondaryCommandBar | Background",
-            "windows-11-file-explorer-styler | Grid#TabContainerGrid | Background",
-            "windows-11-file-explorer-styler | Grid#PART_LayoutRoot | Background",
             "windows-11-file-explorer-styler | CommandBar > Grid#LayoutRoot > Grid#ContentRoot | Background",
-            "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@Normal"
+            "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@Normal",
+            "windows-11-file-explorer-styler | FileExplorerExtensions.AddressBarControl > Grid#PART_LayoutRoot | Background"
           ],
           "value": "#000000",
           "eligibility": {
@@ -41565,7 +41564,6 @@
             "windows-11-taskbar-styler | Rectangle#BackgroundFill | Fill",
             "windows-11-start-menu-styler | Border#AcrylicOverlay | Background",
             "windows-11-start-menu-styler | Grid#CompanionRoot > Grid#MainContent > Border#AcrylicOverlay | Background",
-            "windows-11-file-explorer-styler | Grid#RootGrid | Background",
             "windows-11-notification-center-styler | ScrollViewer#CalendarControlScrollViewer | Background",
             "windows-11-notification-center-styler | Border#CalendarHeaderMinimizedOverlay | Background",
             "windows-11-notification-center-styler | ActionCenter.FocusSessionControl#FocusSessionControl > Grid#FocusGrid | Background",

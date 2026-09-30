@@ -43,7 +43,7 @@ int main(){
     Element root{itemsViewVtable,nullptr,cabinet},target{marqueeVtable,&root,nullptr},unknown{&unknownTable,&root,nullptr};
     elementRoot=[](void* element)->void*{return static_cast<Element*>(element)->root;};
     elementWindow=[](void* element)->HWND{return static_cast<Element*>(element)->window;};
-    originalSysColor=GetSysColor;originalAlphaBlend=Blend;enabled=true;
+    originalSysColor=GetSysColor;originalAlphaBlend=Blend;originalPatBlt=PatBlt;enabled=true;
     assert(MarqueeElement(&target) && !MarqueeElement(&unknown) && !MarqueeElement(nullptr));
     root.window=other;assert(!MarqueeElement(&target));root.window=cabinet;
     root.table=&unknownTable;assert(!MarqueeElement(&target));root.table=itemsViewVtable;
@@ -79,10 +79,41 @@ int main(){
     ElementBorderHook(&target,dc,marker,&rect,rect);assert(GetPixel(dc,4,4)==marqueeBorder);
     fixtureHighContrast=true;assert(!MarqueeElement(&target));ElementBackgroundHook(&target,dc,marker,rect,rect,rect,rect);assert(GetPixel(dc,4,4)==GetSysColor(COLOR_HOTLIGHT));fixtureHighContrast=false;
     enabled=false;assert(!MarqueeElement(&target));ElementBorderHook(&target,dc,marker,&rect,rect);assert(GetPixel(dc,4,4)==GetSysColor(COLOR_HIGHLIGHT));enabled=true;
+    // Reproduce the actual cached-system-brush fill, which bypasses GetSysColor.
+    HBRUSH cached=GetSysColorBrush(COLOR_HOTLIGHT);
+    HGDIOBJ previousBrush=SelectObject(dc,cached);assert(previousBrush && previousBrush!=HGDI_ERROR);
+    auto pat=[&](DWORD operation=PATCOPY){return PatBltHook(dc,0,0,32,32,operation);};
+    {MarqueePaintScope scope(&target,MarqueePaint::Background);
+        assert(pat());assert(GetPixel(dc,4,4)==marquee);assert(GetCurrentObject(dc,OBJ_BRUSH)==cached);
+        {MarqueePaintScope nested(&unknown,MarqueePaint::Background);assert(pat());assert(GetPixel(dc,4,4)==GetSysColor(COLOR_HOTLIGHT));}
+        assert(pat());assert(GetPixel(dc,4,4)==marquee);
+        {MarqueePaintScope nested(&target,MarqueePaint::Border);assert(pat());assert(GetPixel(dc,4,4)==GetSysColor(COLOR_HOTLIGHT));}
+        fixtureHighContrast=true;assert(pat());assert(GetPixel(dc,4,4)==GetSysColor(COLOR_HOTLIGHT));fixtureHighContrast=false;
+        enabled=false;assert(pat());assert(GetPixel(dc,4,4)==GetSysColor(COLOR_HOTLIGHT));enabled=true;
+        drawingTheme=true;assert(pat());assert(GetPixel(dc,4,4)==GetSysColor(COLOR_HOTLIGHT));drawingTheme=false;
+        HBRUSH lookalike=CreateSolidBrush(GetSysColor(COLOR_HOTLIGHT));assert(lookalike);
+        SelectObject(dc,lookalike);assert(pat());assert(GetPixel(dc,4,4)==GetSysColor(COLOR_HOTLIGHT));
+        SelectObject(dc,cached);DeleteObject(lookalike);
+        assert(pat(BLACKNESS));assert(GetPixel(dc,4,4)==RGB(0,0,0));
+        originalPatBlt=[](HDC dc,int x,int y,int w,int h,DWORD operation)->BOOL {
+            assert(dc && x==0 && y==0 && w==32 && h==32 && operation==PATCOPY);
+            LOGBRUSH brush{};assert(GetObjectW(GetCurrentObject(dc,OBJ_BRUSH),sizeof(brush),&brush)==sizeof(brush));
+            assert(brush.lbColor==marquee);return 47;
+        };
+        assert(pat()==47 && GetCurrentObject(dc,OBJ_BRUSH)==cached);
+        originalPatBlt=[](HDC,int,int,int,int,DWORD)->BOOL{return FALSE;};
+        assert(!pat() && GetCurrentObject(dc,OBJ_BRUSH)==cached);originalPatBlt=PatBlt;
+    }
+    assert(pat());assert(GetPixel(dc,4,4)==GetSysColor(COLOR_HOTLIGHT));
+    root.window=other;{MarqueePaintScope scope(&target,MarqueePaint::Background);assert(pat());assert(GetPixel(dc,4,4)==GetSysColor(COLOR_HOTLIGHT));}root.window=cabinet;
+    SelectObject(dc,previousBrush);
     // Compare actual compositing with a separate canonical-alpha GDI baseline.
     HBITMAP sourceBitmap,baselineBitmap;HGDIOBJ sourceOld,baselineOld;
     HDC source=Surface(&sourceBitmap,&sourceOld),baseline=Surface(&baselineBitmap,&baselineOld);
-    Paint(source,rect,marquee);Paint(dc,rect,RGB(0,0,0));Paint(baseline,rect,RGB(0,0,0));originalAlphaBlend=GdiAlphaBlend;
+    HGDIOBJ sourceBrush=SelectObject(source,cached);
+    {MarqueePaintScope scope(&target,MarqueePaint::Background);assert(PatBltHook(source,0,0,32,32,PATCOPY));}
+    assert(GetPixel(source,4,4)==marquee && GetCurrentObject(source,OBJ_BRUSH)==cached);SelectObject(source,sourceBrush);
+    Paint(dc,rect,RGB(0,0,0));Paint(baseline,rect,RGB(0,0,0));originalAlphaBlend=GdiAlphaBlend;
     {MarqueePaintScope scope(&target,MarqueePaint::Background);assert(AlphaBlendHook(dc,0,0,32,32,source,0,0,32,32,native));}
     BLENDFUNCTION canonical{AC_SRC_OVER,0,31,0};assert(GdiAlphaBlend(baseline,0,0,32,32,source,0,0,32,32,canonical));
     assert(GetPixel(dc,4,4)==GetPixel(baseline,4,4) && GetPixel(dc,4,4)!=marquee);
@@ -90,5 +121,5 @@ int main(){
     SelectObject(source,sourceOld);DeleteObject(sourceBitmap);DeleteDC(source);
     SelectObject(baseline,baselineOld);DeleteObject(baselineBitmap);DeleteDC(baseline);
     SelectObject(dc,old);DeleteObject(bitmap);DeleteDC(dc);DestroyWindow(cabinet);DestroyWindow(other);
-    puts("PASS: scoped marquee identity, actual owner, canonical ARGB/alpha and offscreen pixels; nested restoration, unrelated colors and controls, unsupported blends, missing symbols, high contrast, disabled/unload and API argument/return preservation");
+    puts("PASS: scoped marquee identity, actual owner, cached system brush and DC restoration, canonical ARGB/alpha and offscreen pixels; nested restoration, unrelated brushes and controls, unsupported blends/operations, missing symbols, high contrast, disabled/unload and API argument/return preservation");
 }

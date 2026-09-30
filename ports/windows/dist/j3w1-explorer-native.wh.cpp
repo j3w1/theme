@@ -2,11 +2,11 @@
 // @id j3w1-explorer-native
 // @name j3w1 Explorer native colors
 // @description Generated native Explorer canvas and text adapter; exact host only
-// @version 1.1
+// @version 1.2
 // @author j3w1
 // @include explorer.exe
 // @architecture x86-64
-// @compilerOptions -luxtheme -lgdi32 -luser32 -lversion -lmsimg32
+// @compilerOptions -luxtheme -lgdi32 -luser32 -lversion -lmsimg32 -ldwmapi
 // ==/WindhawkMod==
 // ==WindhawkModSettings==
 /*
@@ -36,6 +36,10 @@
 #include <vector>
 #include <cwchar>
 #include <atomic>
+#include <dwmapi.h>
+#include <algorithm>
+#include <new>
+#include <cstring>
 
 static COLORREF background, foreground, hover, selected, inactive, border, scrollbar, scrollbarHover, disabled;
 static COLORREF textSelection, textSelectionText, focusRing, menuHover, menuHoverText, menuBorder;
@@ -65,6 +69,7 @@ static thread_local bool drawingTheme=false;
 static decltype(&DefWindowProcW) originalDefWindowProc;
 static decltype(&SetScrollInfo) originalSetScrollInfo;
 static thread_local HWND defaultWindow=nullptr;
+static void RefreshCaption(HWND window);
 // Nonclient scrollbars paint during default window handling and SetScrollInfo,
 // outside BeginPaint. Both paths share the most recent actual HWND; nested calls
 // restore the previous origin. This scope is used only for ScrollBar theme draws.
@@ -75,6 +80,7 @@ struct DefaultPaintScope {
 };
 static LRESULT WINAPI DefaultWindowHook(HWND window,UINT message,WPARAM wParam,LPARAM lParam) {
     DefaultPaintScope scope(window);
+    if(message==WM_THEMECHANGED || message==WM_SETTINGCHANGE)RefreshCaption(window);
     return originalDefWindowProc(window,message,wParam,lParam);
 }
 
@@ -96,6 +102,98 @@ static bool ExplorerWindow(HWND window) {
     if(!GetClassNameW(GetAncestor(window,GA_ROOT),name,64)) return false;
     return _wcsicmp(name,L"CabinetWClass")==0 && !HighContrast();
 }
+// Native caption buttons are composed above a transparent XAML title strip.
+// Keep their hit testing, geometry and commands; color the DWM backing instead.
+// Caption/text colors are write-only DWM attributes. The admitted native host
+// starts with default colors; later application requests are captured verbatim.
+struct CaptionState {
+    HWND window;
+    COLORREF caption=DWMWA_COLOR_DEFAULT,text=DWMWA_COLOR_DEFAULT;
+    DWORD backdrop;
+};
+static std::vector<CaptionState*> captionStates;
+static SRWLOCK captionLock=SRWLOCK_INIT;
+static constexpr PCWSTR captionProperty=L"j3w1-explorer-native-caption";
+static decltype(&DwmSetWindowAttribute) originalDwmSetWindowAttribute;
+static decltype(&CreateWindowExW) originalCreateWindowEx;
+static decltype(&DestroyWindow) originalDestroyWindow;
+static bool CaptionWindow(HWND window) {
+    DWORD process=0;GetWindowThreadProcessId(window,&process);
+    wchar_t name[64]{};
+    return process==GetCurrentProcessId() && GetAncestor(window,GA_ROOT)==window
+        && GetClassNameW(window,name,64) && _wcsicmp(name,L"CabinetWClass")==0;
+}
+struct CaptionGuard {
+    CaptionGuard(){AcquireSRWLockExclusive(&captionLock);}
+    ~CaptionGuard(){ReleaseSRWLockExclusive(&captionLock);}
+};
+static CaptionState* OwnedCaption(HWND window) {
+    auto state=(CaptionState*)GetPropW(window,captionProperty);
+    return std::find(captionStates.begin(),captionStates.end(),state)!=captionStates.end()?state:nullptr;
+}
+static void RestoreCaptionLocked(CaptionState* state) {
+    if(GetPropW(state->window,captionProperty)==state) {
+        originalDwmSetWindowAttribute(state->window,DWMWA_CAPTION_COLOR,&state->caption,sizeof(state->caption));
+        originalDwmSetWindowAttribute(state->window,DWMWA_TEXT_COLOR,&state->text,sizeof(state->text));
+        originalDwmSetWindowAttribute(state->window,DWMWA_SYSTEMBACKDROP_TYPE,&state->backdrop,sizeof(state->backdrop));
+        RemovePropW(state->window,captionProperty);
+    }
+    captionStates.erase(std::remove(captionStates.begin(),captionStates.end(),state),captionStates.end());
+    delete state;
+}
+static bool PaintCaptionLocked(CaptionState* state) {
+    DWORD none=DWMSBT_NONE;
+    return SUCCEEDED(originalDwmSetWindowAttribute(state->window,DWMWA_CAPTION_COLOR,&background,sizeof(background)))
+        && SUCCEEDED(originalDwmSetWindowAttribute(state->window,DWMWA_TEXT_COLOR,&foreground,sizeof(foreground)))
+        && SUCCEEDED(originalDwmSetWindowAttribute(state->window,DWMWA_SYSTEMBACKDROP_TYPE,&none,sizeof(none)));
+}
+static void RefreshCaption(HWND window) {
+    if(!CaptionWindow(window) || !originalDwmSetWindowAttribute)return;
+    CaptionGuard guard;
+    auto state=OwnedCaption(window);
+    if(!state && GetPropW(window,captionProperty))return;
+    if(!enabled.load() || HighContrast()) {if(state)RestoreCaptionLocked(state);return;}
+    if(!state) {
+        DWORD backdrop=0;
+        if(FAILED(DwmGetWindowAttribute(window,DWMWA_SYSTEMBACKDROP_TYPE,&backdrop,sizeof(backdrop))))return;
+        state=new(std::nothrow) CaptionState{window,DWMWA_COLOR_DEFAULT,DWMWA_COLOR_DEFAULT,backdrop};
+        if(!state)return;
+        if(!SetPropW(window,captionProperty,state)){delete state;return;}
+        captionStates.push_back(state);
+    }
+    if(!PaintCaptionLocked(state))RestoreCaptionLocked(state);
+}
+static HRESULT WINAPI DwmAttributeHook(HWND window,DWORD attribute,LPCVOID value,DWORD size) {
+    if(!CaptionWindow(window) || !value || size!=sizeof(DWORD)
+       || (attribute!=DWMWA_CAPTION_COLOR && attribute!=DWMWA_TEXT_COLOR && attribute!=DWMWA_SYSTEMBACKDROP_TYPE))
+        return originalDwmSetWindowAttribute(window,attribute,value,size);
+    CaptionGuard guard;
+    auto state=OwnedCaption(window);
+    if(!state)return originalDwmSetWindowAttribute(window,attribute,value,size);
+    DWORD requested;memcpy(&requested,value,sizeof(requested));
+    DWORD themed=attribute==DWMWA_CAPTION_COLOR?background:attribute==DWMWA_TEXT_COLOR?foreground:DWMSBT_NONE;
+    bool active=enabled.load() && !HighContrast();
+    HRESULT result=originalDwmSetWindowAttribute(window,attribute,active?&themed:value,size);
+    if(SUCCEEDED(result)) {
+        if(attribute==DWMWA_CAPTION_COLOR)state->caption=requested;
+        else if(attribute==DWMWA_TEXT_COLOR)state->text=requested;
+        else state->backdrop=requested;
+    }
+    if(!active)RestoreCaptionLocked(state);
+    return result;
+}
+static HWND WINAPI CreateWindowHook(DWORD exStyle,LPCWSTR className,LPCWSTR title,DWORD style,
+    int x,int y,int width,int height,HWND parent,HMENU menu,HINSTANCE instance,LPVOID parameter) {
+    HWND window=originalCreateWindowEx(exStyle,className,title,style,x,y,width,height,parent,menu,instance,parameter);
+    if(window)RefreshCaption(window);
+    return window;
+}
+static BOOL WINAPI DestroyWindowHook(HWND window) {
+    {CaptionGuard guard;auto state=OwnedCaption(window);if(state)RestoreCaptionLocked(state);}
+    return originalDestroyWindow(window);
+}
+static BOOL CALLBACK RefreshFolderCaption(HWND window,LPARAM) {RefreshCaption(window);return TRUE;}
+static void RestoreCaptions() {CaptionGuard guard;while(!captionStates.empty())RestoreCaptionLocked(captionStates.back());}
 // The recorded UIMarqueeSelector has no control ID. Match public vtable
 // symbols and its actual UIItemsView root/ HWND, never foreground or blue pixels.
 using ElementRootFn=void*(__cdecl*)(void*);
@@ -313,6 +411,23 @@ static int WINAPI FillRectHook(HDC dc,const RECT* rect,HBRUSH brush) {
     return originalFillRect(dc,rect,brush);
 }
 static BOOL WINAPI PatBltHook(HDC dc,int x,int y,int width,int height,DWORD operation) {
+    // The observed marquee fill selects a cached COLOR_HOTLIGHT system brush;
+    // GetSysColor alone cannot recolor it. Replace that exact brush only while
+    // this control paints its background, then restore the caller's DC brush.
+    if(operation==PATCOPY && enabled.load() && !drawingTheme && !HighContrast()
+       && marqueePaint==MarqueePaint::Background
+       && GetCurrentObject(dc,OBJ_BRUSH)==GetSysColorBrush(COLOR_HOTLIGHT)) {
+        HBRUSH brush=CreateSolidBrush(marquee);
+        if(brush) {
+            HGDIOBJ before=SelectObject(dc,brush);
+            if(before && before!=HGDI_ERROR) {
+                BOOL result=originalPatBlt(dc,x,y,width,height,operation);
+                SelectObject(dc,before);DeleteObject(brush);return result;
+            }
+            DeleteObject(brush);
+        }
+        return originalPatBlt(dc,x,y,width,height,operation);
+    }
     if(operation==PATCOPY && ExplorerDC(dc)) {
         LOGBRUSH data{};
         if(GetObjectW(GetCurrentObject(dc,OBJ_BRUSH),sizeof(data),&data)==sizeof(data) && data.lbStyle==BS_SOLID && Gray(data.lbColor,0,255)) {
@@ -503,7 +618,10 @@ BOOL Wh_ModInit() {
     if(!ReadMarquee() || !InitMarquee())return FALSE;
     backgroundBrush=CreateSolidBrush(background);
     if(!backgroundBrush) return FALSE;
-    bool hooked=Wh_SetFunctionHook((void*)TrackPopupMenu,(void*)PopupHook,(void**)&originalTrackPopupMenu)
+    bool hooked=Wh_SetFunctionHook((void*)DwmSetWindowAttribute,(void*)DwmAttributeHook,(void**)&originalDwmSetWindowAttribute)
+        && Wh_SetFunctionHook((void*)CreateWindowExW,(void*)CreateWindowHook,(void**)&originalCreateWindowEx)
+        && Wh_SetFunctionHook((void*)DestroyWindow,(void*)DestroyWindowHook,(void**)&originalDestroyWindow)
+        && Wh_SetFunctionHook((void*)TrackPopupMenu,(void*)PopupHook,(void**)&originalTrackPopupMenu)
         && Wh_SetFunctionHook((void*)TrackPopupMenuEx,(void*)PopupExHook,(void**)&originalTrackPopupMenuEx)
         && Wh_SetFunctionHook((void*)FillRect,(void*)FillRectHook,(void**)&originalFillRect)
         && Wh_SetFunctionHook((void*)SetTextColor,(void*)TextColorHook,(void**)&originalSetTextColor)
@@ -523,6 +641,6 @@ BOOL Wh_ModInit() {
     enabled.store(hooked);
     return hooked;
 }
-void Wh_ModAfterInit() {EnumWindows(RepaintFolder,0);}
-void Wh_ModBeforeUninit() { enabled.store(false); }
+void Wh_ModAfterInit() {EnumWindows(RefreshFolderCaption,0);EnumWindows(RepaintFolder,0);}
+void Wh_ModBeforeUninit() { enabled.store(false);RestoreCaptions(); }
 void Wh_ModUninit() { if(backgroundBrush) {DeleteObject(backgroundBrush);backgroundBrush=nullptr;} EnumWindows(RepaintFolder,0); }

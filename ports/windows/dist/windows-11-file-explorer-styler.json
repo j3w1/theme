@@ -14,12 +14,6 @@
       ]
     },
     {
-      "target": "Grid#RootGrid",
-      "styles": [
-        "Background=#090707"
-      ]
-    },
-    {
       "target": "Grid#NavigationBarControlGrid",
       "styles": [
         "Background=#100c0c"
@@ -39,18 +33,6 @@
     },
     {
       "target": "CommandBar#FileExplorerSecondaryCommandBar",
-      "styles": [
-        "Background=#000000"
-      ]
-    },
-    {
-      "target": "Grid#TabContainerGrid",
-      "styles": [
-        "Background=#000000"
-      ]
-    },
-    {
-      "target": "Grid#PART_LayoutRoot",
       "styles": [
         "Background=#000000"
       ]
@@ -202,6 +184,12 @@
         "Background@Pressed=#420f0c",
         "Background@Disabled=#000000",
         "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "FileExplorerExtensions.AddressBarControl > Grid#PART_LayoutRoot",
+      "styles": [
+        "Background=#000000"
       ]
     }
   ],
