@@ -1772,7 +1772,8 @@ function stageMods(tx) {
   for (const mod of bundled) if (!/^[a-z0-9-]+$/.test(mod.id) || mod.path !== `dist/${mod.id}.wh.cpp` || !/^[a-f0-9]{64}$/.test(mod.sha256)) throw Error("Invalid bundled Windhawk source");
   const mods = [...deps.mods.map((m) => ({ ...m, sourcePath: import_node_path2.default.join(state, "downloads", m.id + ".wh.cpp") })), ...bundled.map((m) => ({ ...m, sourcePath: import_node_path2.default.join(source, m.path) }))];
   if (new Set(mods.map((m) => m.id)).size !== mods.length) throw Error("Duplicate Windhawk adapter identity");
-  for (const mod of mods) {
+  for (const [index, mod] of mods.entries()) {
+    console.error(`Preparing theme adapter ${index + 1} of ${mods.length}: ${mod.id}. Compilation can take a minute.`);
     const src = safe(mod.sourcePath);
     if (!import_node_fs2.default.existsSync(src) || sha256Hex(import_node_fs2.default.readFileSync(src)) !== mod.sha256) throw Error(`Missing verified mod source: ${mod.id}`);
     if (wh(["mod", "show", mod.id], true)) throw Error(`An upstream-ID copy of ${mod.id} is already installed. Resolve that duplicate explicitly before staging the pinned local adapter.`);
@@ -1795,6 +1796,7 @@ function stageMods(tx) {
     if (!Object.entries(values).every(([key, value]) => String(actual[key]) === String(value))) throw Error(`Windhawk settings readback differs: ${mod.id}`);
     tx.mods.at(-1).settings = got;
     persist();
+    console.error(`Theme adapter ${index + 1} of ${mods.length} verified.`);
   }
 }
 var label = (op) => op.kind === "lockscreen" ? "Windows lock-screen image" : op.kind === "windhawk-setting" ? `Windhawk/${op.name}` : op.kind === "registry" ? `${op.key}/${op.name}` : op.path;
@@ -1809,6 +1811,7 @@ function restore(tx) {
   const conflicts = [];
   for (const mod of [...tx.mods ?? []].reverse()) {
     if (mod.restored) continue;
+    console.error(`Restoring theme adapter ${mod.sourceId ?? mod.id}. Saved source may need compilation.`);
     try {
       if (!wh(["mod", "show", mod.id], true) && !mod.before) {
         mod.restored = true;
@@ -1828,6 +1831,7 @@ function restore(tx) {
       conflicts.push(`${mod.id}: ${error.message}`);
     }
   }
+  console.error("Restoring saved personalization and application settings.");
   const exact = /* @__PURE__ */ new Set();
   for (const snapshot of tx.documents ?? []) {
     if (!snapshot.after) continue;
@@ -1903,7 +1907,8 @@ if (action === "Plan") {
   const candidates = history.transactions.filter((t) => t.status !== "restored");
   const selected = args.latest ? candidates.slice(-1) : candidates;
   const conflicts = [];
-  for (const tx of selected.toReversed()) {
+  for (const [index, tx] of selected.toReversed().entries()) {
+    console.error(`Restoring saved update ${index + 1} of ${selected.length}.`);
     conflicts.push(...restore(tx));
     if (conflicts.length) break;
   }
@@ -1967,6 +1972,7 @@ if (action === "Plan") {
     persist();
     try {
       stageMods(tx);
+      console.error("Applying personalization and application settings.");
       let completed = 0;
       for (const op of planned) {
         if (!eq(get(op), op.before)) throw Error("Concurrent edit before write");
@@ -1981,6 +1987,7 @@ if (action === "Plan") {
         }
         if (fixture && args.failAfter === ++completed) throw Error("Injected partial failure");
       }
+      console.error("Refreshing the theme and verifying activation.");
       ps({ operation: "refresh" });
       if (args.mode === "Full" && !compat()) throw Error("Compatibility changed during apply");
       for (const mod of tx.mods) wh(["mod", "enable", mod.id]);
@@ -1990,6 +1997,7 @@ if (action === "Plan") {
       updatePointer();
       console.log(JSON.stringify({ result: "applied", revision: args.revision, changes: planned.length, limitations: settings.limitations }));
     } catch (error) {
+      console.error("Installation failed; reversing this transaction before returning the error.");
       for (const mod of tx.mods) try {
         wh(["mod", "disable", mod.id]);
       } catch {

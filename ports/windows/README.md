@@ -62,6 +62,10 @@ Run **one** command with the same setup script you downloaded:
 ```
 
 Recovery is offline and finds the installed version and runtime automatically.
+Setup reports the adapter being compiled or restored. Original-state restore
+walks saved updates in reverse and can take several minutes after many updates.
+Leave the command running until it prints its final result; progress messages
+are not completion. Reported conflicts retain the recovery data for retry.
 Use your downloaded script's actual filename, or use the exact saved commands below.
 
 Copy the appropriate command from `recovery-commands.txt`: **Restore -Latest**

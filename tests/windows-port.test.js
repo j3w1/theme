@@ -229,6 +229,23 @@ test('Windhawk uses local installed IDs, verifies staged version and nested enab
  const failed=f.run('Test',f.args);assert.equal(failed.status,1);assert.match(failed.stdout,/disabled or unknown state/);
  f.ok('Guard',f.args);f.ok('Test',f.args);f.ok('Uninstall',f.args);assert.deepEqual(f.db(),{appSettings:{disableUpdateCheck:false}});
 });
+test('lifecycle progress preserves JSON results and reports every restored update',t=>{
+ const f=windhawkFixture(t);
+ const first=f.ok('Apply',f.args);
+ assert.equal(JSON.parse(first.stdout).result,'applied');
+ assert.match(first.stderr,/Preparing theme adapter 1 of \d+/);
+ assert.match(first.stderr,/verified\./);
+ const second=f.ok('Apply',{...f.args,revision:'2'.repeat(40)});
+ assert.equal(JSON.parse(second.stdout).result,'applied');
+ const restored=f.ok('Restore',f.args);
+ assert.equal(JSON.parse(restored.stdout).result,'restored');
+ assert.match(restored.stderr,/Restoring saved update 1 of 2\./);
+ assert.match(restored.stderr,/Restoring saved update 2 of 2\./);
+ assert.match(restored.stderr,/Restoring saved personalization and application settings/);
+ assert.deepEqual(f.db(),{appSettings:{disableUpdateCheck:false}});
+ assert.ok(f.journal().transactions.every(tx=>tx.status==='restored'));
+});
+
 test('Full Test reports a stopped engine and idempotent Apply restarts without recompilation',t=>{
  const f=windhawkFixture(t);f.ok('Apply',f.args);
  const stopped=f.run('Test',{...f.args,fixtureEngineStopped:true});assert.equal(stopped.status,1);assert.match(stopped.stdout,/theme engine is not running/);
