@@ -73,6 +73,27 @@ test('XAML color values preserve RGB and encode transparency in native ARGB orde
  assert.ok(payload.controlStyles.find(x=>x.target==='Button#VerbButton').styles.includes('Background=#00000000'));
 });
 
+test('Calculator uses an exact package and separate primary, disabled and interaction brushes',async()=>{
+ const host=await readJson('ports/windows/host.json');
+ assert.equal(host.calculator.packageFullName,'Microsoft.WindowsCalculator_11.2607.0.0_x64__8wekyb3d8bbwe');
+ const roles=host.calculator.resources;
+ assert.equal(roles.CalcButtonTextFillColorDefaultBrush,'color.text.default');
+ assert.equal(roles.CalcButtonTextFillColorDisabledBrush,'color.text.disabled');
+ assert.equal(roles.CalcButtonFillColorHoverBrush,'color.interaction.hover.bg');
+ assert.equal(roles.CalcButtonFillColorPressedBrush,'color.interaction.pressed.bg');
+ assert.equal(roles.AccentFillColorDefaultBrush,'color.action.primary.bg');
+ assert.equal(roles.TextOnAccentFillColorPrimaryBrush,'color.text.bright');
+ assert.ok(!Object.keys(roles).some(key=>key.startsWith('Equation')));
+ const settings=await readJson('ports/windows/dist/windows-settings.json');
+ const mod=settings.bundledMods.find(x=>x.id==='j3w1-calculator');
+ const bytes=fs.readFileSync(path.join(source,mod.path));
+ assert.equal(sha(bytes),mod.sha256);
+ assert.match(bytes.toString(),/GetCurrentPackageFullName/);
+ assert.match(bytes.toString(),/Microsoft\.WindowsCalculator_11\.2607\.0\.0_x64__8wekyb3d8bbwe/);
+ assert.doesNotMatch(bytes.toString(),/@[A-Z0-9_]+@/);
+ assert.deepEqual(await readJson('ports/windows/dist/j3w1-calculator.json'),{enabled:1});
+});
+
 test('Explorer marquee settings encode canonical alpha and module compatibility',async()=>{
  const settings=await readJson('ports/windows/dist/j3w1-explorer-native.json');
  const tokens=(await readJson('exports/tokens.resolved.json')).profiles.default.tokens;

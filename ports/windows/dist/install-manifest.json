@@ -19,8 +19,16 @@
       "sha256": "fa5c087652dba209ab8ff6004642106ab801f86c5de197c5a48844da066dce73"
     },
     {
+      "path": "dist/j3w1-calculator.wh.cpp",
+      "sha256": "7b813a9a74c6e0d2e5e658472df08416f8cf1044f7f8c550bab609f585545639"
+    },
+    {
+      "path": "dist/j3w1-calculator.json",
+      "sha256": "fa5c087652dba209ab8ff6004642106ab801f86c5de197c5a48844da066dce73"
+    },
+    {
       "path": "dist/windows-settings.json",
-      "sha256": "f3f6fe3c82e542e3c70ba9fa588363d245006d9f2c7c585983056694034a45cd"
+      "sha256": "ef76826a3e6313d21d2effeb2e3d5e57cd707b0f1005d0feb3e24d2b4d177808"
     },
     {
       "path": "dist/terminal-fragment.json",
@@ -156,7 +164,7 @@
     },
     {
       "path": "host.json",
-      "sha256": "05b9fa6e88d92de20e2e40bbfb4429994141b6ac78765d7296da49b7eeb87ff1"
+      "sha256": "fdf1162d6286e760530152c8eee23c5d793834cfc5adbb2a9ad0b2e8ae0d3ba1"
     }
   ]
 }

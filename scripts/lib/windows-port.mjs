@@ -140,6 +140,18 @@ export function windowsArtifacts({manifest,host,resolved}){
  // Windhawk stores checkbox settings as integer strings (1/0).
  json(`${previewId}.json`,{enabled:1});
  bundledMods.push({id:previewId,version:preview.version,path:`dist/${previewId}.wh.cpp`,sha256:createHash('sha256').update(previewSource).digest('hex')});
+ const calculator=host.calculator,calculatorId='j3w1-calculator';
+ if(!/^Microsoft\.WindowsCalculator_\d+\.\d+\.\d+\.\d+_x64__8wekyb3d8bbwe$/.test(calculator.packageFullName))throw Error('Calculator requires an exact package identity');
+ const calculatorRules=Object.entries(calculator.resources).map(([key,role])=>{
+  if(!/^[A-Za-z][A-Za-z0-9]+(?:Brush|Background)$/.test(key)||key.startsWith('Equation'))throw Error('Invalid Calculator UI brush');
+  const [r,g,b]=rgb(val(role));
+  return `    {L"${key}",{255,${r},${g},${b}}},`;
+ }).join('\n');
+ const calculatorSubs={VERSION:calculator.version,PACKAGE_FULL_NAME:calculator.packageFullName,RESOURCE_RULES:calculatorRules};
+ const calculatorSource=readFileSync(path.join(repoRoot,'ports/windows/src/j3w1-calculator.wh.cpp.in'),'utf8').replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in calculatorSubs))throw Error(`Unknown Calculator source placeholder ${key}`);return calculatorSubs[key];});
+ artifacts.push({path:`dist/${calculatorId}.wh.cpp`,text:calculatorSource});
+ json(`${calculatorId}.json`,{enabled:1});
+ bundledMods.push({id:calculatorId,version:calculator.version,path:`dist/${calculatorId}.wh.cpp`,sha256:createHash('sha256').update(calculatorSource).digest('hex')});
  json('windows-settings.json',{schemaVersion:1,version:manifest.version,values:settings,stylerVariants,bundledMods,compatibility:host.compatibility,limitations:host.limitations});
  const ansi=['black','red','green','yellow','blue','purple','cyan','white','brightBlack','brightRed','brightGreen','brightYellow','brightBlue','brightPurple','brightCyan','brightWhite'];
  const scheme={name:'j3w1',foreground:val('color.terminal.fg'),background:val('color.surface.canvas'),cursorColor:val('color.terminal.cursor'),selectionBackground:val('color.code.selection-bg')};ansi.forEach((k,i)=>scheme[k]=val(`color.terminal.ansi.${i}`));

@@ -1,0 +1,231 @@
+// ==WindhawkMod==
+// @id j3w1-calculator
+// @name j3w1 Calculator resources
+// @description Version-checked Calculator UI brushes; equation colors remain native
+// @version @VERSION@
+// @author j3w1
+// @include CalculatorApp.exe
+// @architecture x86-64
+// @compilerOptions -lcomctl32 -lole32 -lruntimeobject
+// ==/WindhawkMod==
+// ==WindhawkModSettings==
+/*
+- enabled: true
+*/
+// ==/WindhawkModSettings==
+#include <windows.h>
+#include <commctrl.h>
+#include <appmodel.h>
+#undef GetCurrentTime
+#include <winrt/Windows.Foundation.h>
+#include <winrt/Windows.UI.Xaml.h>
+#include <winrt/Windows.UI.Xaml.Media.h>
+#include <vector>
+#include <string>
+#include <atomic>
+
+using namespace winrt;
+using namespace Windows::UI;
+using namespace Windows::UI::Xaml;
+using namespace Windows::UI::Xaml::Media;
+struct Rule { const wchar_t* key; Color color; };
+static constexpr Rule rules[] = {
+@RESOURCE_RULES@
+};
+static std::atomic<bool> enabled{false};
+static std::atomic<HWND> coreWindow{nullptr};
+static UINT dispatchMessage=0;
+static constexpr UINT_PTR timerId=0x4a334342;
+static decltype(&DefWindowProcW) originalDefWindowProc;
+static unsigned attempts=0;
+struct Change {
+    Brush brush{nullptr};
+    Color color{},fallback{},applied{};
+    double opacity=1;
+    bool acrylic=false,useFallback=false;
+};
+// All XAML references are acquired, changed and released on the owning UI thread.
+static std::vector<Change> changes;
+static bool restoring=false;
+static bool HighContrast() {
+    HIGHCONTRASTW value{sizeof(value)};
+    return !SystemParametersInfoW(SPI_GETHIGHCONTRAST,sizeof(value),&value,0)
+        || (value.dwFlags&HCF_HIGHCONTRASTON);
+}
+static bool ReviewedPackage() {
+    UINT32 length=0;
+    if(GetCurrentPackageFullName(&length,nullptr)!=ERROR_INSUFFICIENT_BUFFER || length>512)return false;
+    std::vector<wchar_t> name(length);
+    return GetCurrentPackageFullName(&length,name.data())==ERROR_SUCCESS
+        && wcscmp(name.data(),L"@PACKAGE_FULL_NAME@") == 0;
+}
+static bool Same(Color a,Color b) {return a.A==b.A&&a.R==b.R&&a.G==b.G&&a.B==b.B;}
+static void Restore() noexcept {
+    restoring=true;
+    for(auto it=changes.rbegin();it!=changes.rend();++it) {
+        try {
+            // Preserve a later host edit rather than overwriting it on unload.
+            if(auto solid=it->brush.try_as<SolidColorBrush>()) {
+                if(Same(solid.Color(),it->applied))solid.Color(it->color);
+            } else if(auto acrylic=it->brush.try_as<AcrylicBrush>()) {
+                if(Same(acrylic.TintColor(),it->applied))acrylic.TintColor(it->color);
+                if(Same(acrylic.FallbackColor(),it->applied))acrylic.FallbackColor(it->fallback);
+                if(acrylic.AlwaysUseFallback())acrylic.AlwaysUseFallback(it->useFallback);
+            }
+            if(it->brush.Opacity()==1)it->brush.Opacity(it->opacity);
+        }catch(...){}
+    }
+    changes.clear();
+    restoring=false;
+}
+static bool Apply() {
+    if(!enabled.load() || HighContrast() || !changes.empty())return false;
+    try {
+        auto app=Application::Current();
+        if(!app)return false;
+        auto resources=app.Resources();
+        auto dict=resources.ThemeDictionaries().TryLookup(box_value(L"Default")).try_as<ResourceDictionary>();
+        if(!dict)return false;
+        // App-specific anchors admit the resource tree, never an arbitrary UWP app.
+        for(auto key:{L"CalcButtonFillColorDefaultBrush",L"CalcButtonAltFillColorDefaultBrush",
+            L"CalcButtonTextFillColorDefaultBrush",L"AppControlPageTextBaseHighColorBrush"})
+            if(!dict.TryLookup(box_value(key)).try_as<SolidColorBrush>())return false;
+        std::vector<Brush> dataBrushes;
+        for(auto theme:{L"Default",L"Light",L"HighContrast"}) {
+            auto themed=resources.ThemeDictionaries().TryLookup(box_value(theme)).try_as<ResourceDictionary>();
+            if(!themed)continue;
+            for(unsigned i=1;i<=14;i++) {
+                auto key=L"EquationBrush"+std::to_wstring(i);
+                if(auto brush=themed.TryLookup(box_value(key)).try_as<Brush>())dataBrushes.push_back(brush);
+            }
+        }
+        std::vector<Change> pending;
+        for(const auto& rule:rules) {
+            auto value=dict.TryLookup(box_value(rule.key));
+            if(!value)value=resources.TryLookup(box_value(rule.key));
+            auto brush=value.try_as<Brush>();
+            if(!brush)continue;
+            for(const auto& data:dataBrushes)if(get_abi(data)==get_abi(brush))return false;
+            bool duplicate=false;
+            for(const auto& old:pending)if(get_abi(old.brush)==get_abi(brush)) {
+                if(!Same(old.applied,rule.color)){Wh_Log(L"Calculator resource alias requires different roles; palette refused");return false;}
+                duplicate=true;
+            }
+            if(duplicate)continue;
+            Change change;change.brush=brush;change.opacity=brush.Opacity();change.applied=rule.color;
+            if(auto solid=brush.try_as<SolidColorBrush>())change.color=solid.Color();
+            else if(auto acrylic=brush.try_as<AcrylicBrush>()) {
+                change.acrylic=true;change.color=acrylic.TintColor();
+                change.fallback=acrylic.FallbackColor();change.useFallback=acrylic.AlwaysUseFallback();
+            }else continue;
+            pending.push_back(change);
+        }
+        if(pending.size()<4)return false;
+        changes=std::move(pending);
+        try {
+            for(auto& change:changes) {
+                if(change.acrylic) {
+                    auto brush=change.brush.as<AcrylicBrush>();
+                    brush.TintColor(change.applied);brush.FallbackColor(change.applied);brush.AlwaysUseFallback(true);
+                }else change.brush.as<SolidColorBrush>().Color(change.applied);
+                change.brush.Opacity(1);
+            }
+        }catch(...){Restore();return false;}
+        Wh_Log(L"Calculator UI resources admitted: %u",static_cast<unsigned>(changes.size()));
+        return true;
+    }catch(const hresult_error& error){Wh_Log(L"Calculator resource admission failed: %08X",static_cast<unsigned>(error.code().value));return false;}
+    catch(...){return false;}
+}
+static void Refresh() {
+    if(restoring)return;
+    Restore();
+    attempts=0;
+    if(enabled.load()&&!HighContrast()&&!Apply())SetTimer(coreWindow,timerId,100,nullptr);
+}
+static LRESULT WINAPI DefWindowProcHook(HWND window,UINT message,WPARAM wParam,LPARAM lParam) {
+    auto result=originalDefWindowProc(window,message,wParam,lParam);
+    if(window==coreWindow) {
+        if(message==WM_SETTINGCHANGE || message==WM_THEMECHANGED)Refresh();
+        if(message==WM_TIMER && wParam==timerId) {
+            if(!enabled.load() || HighContrast() || ++attempts>20 || Apply())KillTimer(window,timerId);
+        }
+        if(message==WM_NCDESTROY) {KillTimer(window,timerId);Restore();coreWindow=nullptr;}
+    }
+    return result;
+}
+static bool IsCoreWindow(HWND window) {
+    DWORD process=0;wchar_t name[64]{};
+    return window && GetWindowThreadProcessId(window,&process) && process==GetCurrentProcessId()
+        && GetClassNameW(window,name,64) && _wcsicmp(name,L"Windows.UI.Core.CoreWindow")==0;
+}
+static void Initialize(HWND window) {
+    if(!IsCoreWindow(window))return;
+    if(coreWindow==window){Refresh();return;}
+    if(coreWindow)return;
+    coreWindow=window;Refresh();
+}
+// Synchronous dispatch carries no callback beyond the SendMessage call. The
+// hook is removed before this function returns, including failed admission.
+static LRESULT CALLBACK DispatchHook(int code,WPARAM wParam,LPARAM lParam) {
+    if(code==HC_ACTION) {
+        auto message=reinterpret_cast<CWPSTRUCT*>(lParam);
+        if(message->message==dispatchMessage) {
+            if(message->lParam==0 && message->wParam<=1 && IsCoreWindow(message->hwnd)) {
+                if(message->wParam==1) {
+                    KillTimer(message->hwnd,timerId);Restore();
+                    coreWindow=nullptr;
+                }else Initialize(message->hwnd);
+            }
+        }
+    }
+    return CallNextHookEx(nullptr,code,wParam,lParam);
+}
+static void DispatchTo(HWND window,bool cleanup) {
+    DWORD thread=GetWindowThreadProcessId(window,nullptr);
+    if(!thread)return;
+    if(thread==GetCurrentThreadId()) {
+        if(cleanup){KillTimer(window,timerId);Restore();coreWindow=nullptr;}
+        else Initialize(window);
+        return;
+    }
+    HHOOK hook=SetWindowsHookExW(WH_CALLWNDPROC,DispatchHook,nullptr,thread);
+    if(!hook)return;
+    SendMessageW(window,dispatchMessage,cleanup?1:0,0);
+    UnhookWindowsHookEx(hook);
+}
+static HWND FindCoreWindow() {
+    HWND found=nullptr;
+    EnumWindows([](HWND parent,LPARAM parameter)->BOOL {
+        auto found=reinterpret_cast<HWND*>(parameter);
+        if(IsCoreWindow(parent)){*found=parent;return FALSE;}
+        EnumChildWindows(parent,[](HWND child,LPARAM parameter)->BOOL {
+            if(IsCoreWindow(child)){*reinterpret_cast<HWND*>(parameter)=child;return FALSE;}
+            return TRUE;
+        },parameter);
+        return !*found;
+    },reinterpret_cast<LPARAM>(&found));
+    return found;
+}
+using CreateInBand=HWND(WINAPI*)(DWORD,LPCWSTR,LPCWSTR,DWORD,int,int,int,int,HWND,HMENU,HINSTANCE,LPVOID,DWORD);
+static CreateInBand originalCreateInBand;
+static HWND WINAPI CreateInBandHook(DWORD ex,LPCWSTR cls,LPCWSTR title,DWORD style,int x,int y,int width,int height,
+    HWND parent,HMENU menu,HINSTANCE instance,LPVOID parameter,DWORD band) {
+    HWND window=originalCreateInBand(ex,cls,title,style,x,y,width,height,parent,menu,instance,parameter,band);
+    if(enabled.load()&&IsCoreWindow(window))Initialize(window);
+    return window;
+}
+BOOL Wh_ModInit() {
+    if(!ReviewedPackage())return FALSE;
+    dispatchMessage=RegisterWindowMessageW(L"j3w1-calculator-resource-dispatch");
+    if(!dispatchMessage)return FALSE;
+    auto address=GetProcAddress(GetModuleHandleW(L"user32.dll"),"CreateWindowInBand");
+    if(!address || !Wh_SetFunctionHook(reinterpret_cast<void*>(address),reinterpret_cast<void*>(CreateInBandHook),
+        reinterpret_cast<void**>(&originalCreateInBand)))return FALSE;
+    if(!Wh_SetFunctionHook(reinterpret_cast<void*>(DefWindowProcW),reinterpret_cast<void*>(DefWindowProcHook),
+        reinterpret_cast<void**>(&originalDefWindowProc)))return FALSE;
+    enabled=Wh_GetIntSetting(L"enabled")!=0;
+    return TRUE;
+}
+void Wh_ModAfterInit(){if(auto window=FindCoreWindow())DispatchTo(window,false);}
+void Wh_ModUninit(){enabled=false;if(auto window=FindCoreWindow())DispatchTo(window,true);}
+void Wh_ModSettingsChanged(){enabled=Wh_GetIntSetting(L"enabled")!=0;if(auto window=FindCoreWindow()){DispatchTo(window,true);if(enabled.load())DispatchTo(window,false);}}

@@ -25,7 +25,7 @@ own import evidence meets the port contract.
 | PowerToys Markdown preview | No adapter yet | Separate generated HTML and WebView2 pipeline; gray preview remains unresolved |
 | Explorer classic “Show more options” menu | Scoped exact-host Win32 popup palette | Confirmed owner/paint trace and native regressions; live normal, hot, disabled and submenu appearance still need verification |
 | Notepad | Native dark-mode/accent treatment only | Modern WinUI 3 chrome and editor need a dedicated adapter; not the legacy Notepad dark-mode mod |
-| Calculator | Native dark-mode/accent treatment only | Its Windows.UI.Xaml resources need an app-specific, version-gated adapter |
+| Calculator | Bundled package-gated Windows.UI.Xaml brush adapter for the recorded 11.2607.0.0 package | Live body/buttons, startup, restore and accessibility acceptance remain open; graph-series brushes are excluded |
 | Paint | Native dark-mode/accent treatment only | WinUI 3 toolbars and panels need an adapter; artwork canvas and color swatches must retain their colors |
 | Terminal | Native generated scheme, font and opaque chrome | Owner confirmed appearance; command output can intentionally choose other colors |
 | PowerToys utilities | Configurable FancyZones, Always On Top and Command Palette appearance | Command Palette exposes tint, not every text role |
@@ -48,6 +48,28 @@ resource tree, preserve application content and accessibility, journal every
 change, and reverse it through the same installer. Rendered data colors, images,
 status meanings, Paint artwork and color choices are not palette candidates.
 These are implementation requirements, not implemented capabilities.
+
+### Calculator resources
+
+The bundled Calculator adapter admits only the recorded x64 package identity
+and its app-specific resource anchors. It maps the named UI brushes in
+`host.json` on the owning CoreWindow thread and retains the original brush
+colors, opacity and acrylic fallback settings for restore. Shared brush aliases
+that demand conflicting semantic colors refuse the palette, as does an alias
+to any of Calculator's fourteen equation-series brushes. Equation and graph
+data colors, calculations, labels, commands, dimensions and keyboard handling
+remain host-owned. Missing optional keys are left native. This inventory does
+not claim that every Calculator mode has been observed.
+
+High contrast takes precedence; native theme/settings messages restore the
+ordinary-theme brushes before reevaluating admission. Unload dispatches restore
+to the UI thread and removes the bounded startup timer. No XAML dictionary is
+replaced, no application preference is written, and no pending asynchronous
+callback can outlive the adapter. Actual startup, runtime contrast switching,
+rendering and unload still require native acceptance.
+
+The resource ownership was inspected in the pinned
+[Calculator application resources](https://github.com/microsoft/calculator/blob/d125246a4e19842ce1332e6c7839cf0e110027d8/src/Calculator/App.xaml).
 
 ## Markdown preview boundary
 
