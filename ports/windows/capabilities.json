@@ -740,29 +740,29 @@
       "reason": "Outside Windows visual adapter scope; preserve host semantics."
     },
     "color.action.secondary.bg": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Canonical secondary-button palette mapped to notification action buttons and their native states; live selector verification remains required."
     },
     "color.action.secondary.text": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Canonical secondary-button palette mapped to notification action buttons and their native states; live selector verification remains required."
     },
     "color.action.secondary.border": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Canonical secondary-button palette mapped to notification action buttons and their native states; live selector verification remains required."
     },
     "color.action.secondary.hover-bg": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Canonical secondary-button palette mapped to notification action buttons and their native states; live selector verification remains required."
     },
     "color.action.secondary.pressed-bg": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Canonical secondary-button palette mapped to notification action buttons and their native states; live selector verification remains required."
     },
     "color.action.tertiary.text": {
       "state": "unsupported",

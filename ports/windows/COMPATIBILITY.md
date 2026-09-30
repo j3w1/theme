@@ -535,3 +535,14 @@ mapping now keeps that state on `color.interaction.hover.bg`; Normal, Pressed
 and Disabled keep their separate mappings. This matches the already styled
 hover surface without replacing the flyout or changing its commands. Generated
 palette regression is distinct from live verification on the recorded host.
+
+### Notification action buttons
+
+Toast action buttons (`Button#VerbButton`) use the canonical secondary-button
+palette. The native `ContentPresenter` owns `CommonStates`, as documented by the
+Microsoft [Button template](https://github.com/microsoft/microsoft-ui-xaml/blob/main/controls/dev/CommonStyles/Button_themeresources.xaml).
+Normal, PointerOver, Pressed and Disabled receive their approved fill, label
+and border roles. Native focus visuals retain their host behavior; no focus
+visual property is overridden. Button text, actions, enabled state, dimensions, padding, order and border
+thickness remain native. This covers the action button separately from the
+already themed toast body; actual popup matching still needs live verification.

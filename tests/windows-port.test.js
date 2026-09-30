@@ -64,6 +64,26 @@ test('Explorer submenu stays on the hover palette while its child flyout is open
  assert.notEqual(value('Background@SubMenuOpened'),value('Background@Disabled'));
 });
 
+test('toast actions use the secondary palette across native states without changing content or geometry',async()=>{
+ const payload=await readJson('ports/windows/dist/windows-11-notification-center-styler.json');
+ const tokens=(await readJson('exports/tokens.resolved.json')).profiles.default.tokens;
+ const button=payload.controlStyles.find(t=>t.target==='Button#VerbButton');
+ const presenter=payload.controlStyles.find(t=>t.target==='Button#VerbButton > ContentPresenter@CommonStates');
+ const expected=(key,role)=>`${key}=${windowsStyleValue(key,{type:tokens[role].type,resolved:tokens[role].value})}`;
+ for(const [state,bg,fg,border] of [
+  ['Normal','color.action.secondary.bg','color.action.secondary.text','color.action.secondary.border'],
+  ['PointerOver','color.action.secondary.hover-bg','color.action.secondary.text','color.action.secondary.border'],
+  ['Pressed','color.action.secondary.pressed-bg','color.action.secondary.text','color.border.active'],
+  ['Disabled','color.interaction.disabled.bg','color.text.disabled','color.border.disabled'],
+ ]){
+  for(const [key,role] of [['Background',bg],['Foreground',fg],['BorderBrush',border]])
+   assert.ok(presenter.styles.includes(expected(`${key}@${state}`,role)),`${key}@${state}`);
+ }
+ assert.ok(button.styles.includes(expected('Foreground','color.action.secondary.text')));
+ for(const entry of [button,presenter])for(const style of entry.styles)
+  assert.doesNotMatch(style,/^(?:Content|Text|Command|IsEnabled|Width|Height|MinWidth|MinHeight|Padding|Margin|BorderThickness|UseSystemFocusVisuals)=/);
+});
+
 test('Windows theme has required registration sections and retains the installed assets',t=>{
  const theme=fs.readFileSync(path.join(source,'dist/j3w1.theme'),'utf8');
  assert.match(theme,/\[Control Panel\\Desktop\]\nWallpaper=%LOCALAPPDATA%\\j3w1-theme\\windows\\assets\\j3w1-wallpaper\.bmp/);

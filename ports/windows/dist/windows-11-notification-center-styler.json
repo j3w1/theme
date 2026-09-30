@@ -194,7 +194,27 @@
     {
       "target": "Button#VerbButton",
       "styles": [
-        "CornerRadius=0"
+        "CornerRadius=0",
+        "Background=rgb(0 0 0 / 0%)",
+        "Foreground=#ffa2a7",
+        "BorderBrush=#a3676b"
+      ]
+    },
+    {
+      "target": "Button#VerbButton > ContentPresenter@CommonStates",
+      "styles": [
+        "Background@Normal=rgb(0 0 0 / 0%)",
+        "Foreground@Normal=#ffa2a7",
+        "BorderBrush@Normal=#a3676b",
+        "Background@PointerOver=#630f0d",
+        "Foreground@PointerOver=#ffa2a7",
+        "BorderBrush@PointerOver=#a3676b",
+        "Background@Pressed=#420f0c",
+        "Foreground@Pressed=#ffa2a7",
+        "BorderBrush@Pressed=#e53935",
+        "Background@Disabled=#160b0b",
+        "Foreground@Disabled=#8a5559",
+        "BorderBrush@Disabled=#7d1310"
       ]
     }
   ],

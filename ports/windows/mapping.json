@@ -12,7 +12,8 @@
       "windows-11-start-menu-styler | Button#ShowMoreSuggestionsButton > Grid@CommonStates > Border | BorderBrush@PointerOver",
       "windows-11-start-menu-styler | Button#ShowMoreSuggestionsButton > Grid@CommonStates > Border | BorderBrush@Pressed",
       "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | BorderBrush@PointerOver",
-      "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | BorderBrush@Pressed"
+      "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | BorderBrush@Pressed",
+      "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | BorderBrush@Pressed"
     ],
     "color.surface.desktop": [
       "native.desktop"
@@ -102,7 +103,8 @@
       "windhawk.resource.TextFillColorDisabled",
       "windhawk.resource.SystemControlForegroundBaseLowBrush",
       "windows-11-notification-center-styler | CalendarView | DisabledForeground",
-      "nativeExplorer.disabled"
+      "nativeExplorer.disabled",
+      "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Foreground@Disabled"
     ],
     "color.interaction.selection.bg": [
       "native.selection",
@@ -305,12 +307,14 @@
     "color.interaction.disabled.bg": [
       "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | Background@Disabled",
       "windows-11-start-menu-styler | Button#ShowMoreSuggestionsButton > Grid@CommonStates > Border | Background@Disabled",
-      "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | Background@Disabled"
+      "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | Background@Disabled",
+      "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Background@Disabled"
     ],
     "color.border.disabled": [
       "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | BorderBrush@Disabled",
       "windows-11-start-menu-styler | Button#ShowMoreSuggestionsButton > Grid@CommonStates > Border | BorderBrush@Disabled",
-      "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | BorderBrush@Disabled"
+      "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | BorderBrush@Disabled",
+      "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | BorderBrush@Disabled"
     ],
     "color.border.default": [
       "windows-11-start-menu-styler | StartMenu.CategoryControl > Grid > Border | BorderBrush"
@@ -341,6 +345,27 @@
     ],
     "color.text.link-hover": [
       "nativeExplorer.menuHoverText"
+    ],
+    "color.action.secondary.bg": [
+      "windows-11-notification-center-styler | Button#VerbButton | Background",
+      "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Background@Normal"
+    ],
+    "color.action.secondary.text": [
+      "windows-11-notification-center-styler | Button#VerbButton | Foreground",
+      "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Foreground@Normal",
+      "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Foreground@PointerOver",
+      "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Foreground@Pressed"
+    ],
+    "color.action.secondary.border": [
+      "windows-11-notification-center-styler | Button#VerbButton | BorderBrush",
+      "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | BorderBrush@Normal",
+      "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | BorderBrush@PointerOver"
+    ],
+    "color.action.secondary.hover-bg": [
+      "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Background@PointerOver"
+    ],
+    "color.action.secondary.pressed-bg": [
+      "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Background@Pressed"
     ]
   },
   "unmapped": {
@@ -453,11 +478,6 @@
     "color.interaction.scrollbar.track": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.action.primary.text": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.action.primary.border": "Outside Windows visual adapter scope; preserve host semantics.",
-    "color.action.secondary.bg": "Outside Windows visual adapter scope; preserve host semantics.",
-    "color.action.secondary.text": "Outside Windows visual adapter scope; preserve host semantics.",
-    "color.action.secondary.border": "Outside Windows visual adapter scope; preserve host semantics.",
-    "color.action.secondary.hover-bg": "Outside Windows visual adapter scope; preserve host semantics.",
-    "color.action.secondary.pressed-bg": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.action.tertiary.text": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.action.tertiary.hover-bg": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.action.destructive.text": "Outside Windows visual adapter scope; preserve host semantics.",
