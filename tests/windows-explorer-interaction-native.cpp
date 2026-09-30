@@ -146,6 +146,20 @@ int main(){
     ThemeColorHook(nullptr,MENU_POPUPBACKGROUND,0,TMT_FILLCOLOR,&readback);assert(readback==queryColor);
     {MenuPaintScope popup(sink);
         ThemeColorHook(nullptr,MENU_POPUPBORDERS,0,TMT_FILLCOLOR,&readback);assert(readback==menuBorder);
+        // Reproduce the live frame query: its color hint must be mapped without
+        // changing an unknown hint, another part, or the native HRESULT.
+        assert(ThemeColorHook(nullptr,MENU_POPUPBORDERS,0,TMT_FILLCOLORHINT,&readback)==S_OK);
+        assert(readback==menuBorder);
+        ThemeColorHook(nullptr,hostPopupItem,MPI_NORMAL,TMT_FILLCOLORHINT,&readback);assert(readback==queryColor);
+        ThemeColorHook(nullptr,MENU_POPUPBORDERS,0,TMT_BORDERCOLORHINT,&readback);assert(readback==queryColor);
+        fixtureHighContrast=true;
+        ThemeColorHook(nullptr,MENU_POPUPBORDERS,0,TMT_FILLCOLORHINT,&readback);assert(readback==queryColor);
+        fixtureHighContrast=false;
+        {MenuPaintScope unrelatedMenu(unrelated);
+            ThemeColorHook(nullptr,MENU_POPUPBORDERS,0,TMT_FILLCOLORHINT,&readback);assert(readback==queryColor);}
+        enabled=false;
+        ThemeColorHook(nullptr,MENU_POPUPBORDERS,0,TMT_FILLCOLORHINT,&readback);assert(readback==queryColor);
+        enabled=true;
         queryColor=RGB(121,121,121);
         ThemeColorHook(nullptr,hostPopupItem,MPI_DISABLED,TMT_TEXTCOLOR,&readback);assert(readback==disabled);
         ThemeColorHook(nullptr,hostPopupItem,MPI_HOT,TMT_TEXTCOLOR,&readback);assert(readback==menuHoverText);

@@ -251,7 +251,10 @@ static HRESULT WINAPI ThemeColorHook(HTHEME theme,int part,int state,int propert
             && property==TMT_FILLCOLOR && ExplorerWindow(GetActiveWindow());
         if(MenuPart(part,state) && (MenuOrigin() || earlyBackground) && Gray(*color,0,255)) {
             if(property==TMT_TEXTCOLOR && (MenuItem(part) || part==MENU_POPUPCHECK || part==MENU_POPUPSUBMENU))*color=MenuText(part,state);
-            else if(property==TMT_FILLCOLOR || property==TMT_BORDERCOLOR) {
+            // The recorded host queries its popup frame through FILLCOLORHINT
+            // (not FILLCOLOR). Admit that observed hint only for the frame part.
+            else if(property==TMT_FILLCOLOR || property==TMT_BORDERCOLOR
+                    || (part==MENU_POPUPBORDERS && property==TMT_FILLCOLORHINT)) {
                 if(part==MENU_POPUPBORDERS)*color=menuBorder;
                 else if(part==MENU_POPUPSEPARATOR)*color=border;
                 else if(part==MENU_POPUPBACKGROUND || part==MENU_POPUPGUTTER || MenuItem(part))

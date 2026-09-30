@@ -514,3 +514,13 @@ both retain that host state, rather than inventing separate input behavior.
 Native geometry, ordering, icons, commands and return values are preserved.
 High contrast takes precedence; no replacement menu or owner-draw conversion
 is installed. Pixel/argument regressions are distinct from visual acceptance.
+
+### Classic popup frame color
+
+On the recorded host, the classic Explorer popup frame queries Menu part 10,
+state 0, `TMT_FILLCOLORHINT` (3821). The scoped adapter maps this observed hint
+to `color.border.overlay`; its ordinary fill/text palette does not otherwise
+admit color-hint properties. Unknown hints and parts, unrelated popup owners,
+disabled adapters and high-contrast mode retain the host value. The native
+offscreen regression covers these boundaries. This query trace explains the
+previous gray frame; it is separate from live visual acceptance.
