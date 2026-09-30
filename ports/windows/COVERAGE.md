@@ -61,6 +61,20 @@ data colors, calculations, labels, commands, dimensions and keyboard handling
 remain host-owned. Missing optional keys are left native. This inventory does
 not claim that every Calculator mode has been observed.
 
+The Windows CI job builds complete bundled adapter DLLs using the pinned
+Windhawk compiler and engine import library, then runs the offscreen caption,
+scrollbar, popup, selection and preview-paint regressions. A complete link
+checks Windows library dependencies that object compilation cannot check.
+These gates do not establish live resource admission or visual acceptance.
+
+To run the same native gate on an installed Windows development machine, set
+`J3W1_WINDHAWK_ROOT` to the portable Windhawk 2.0.0-alpha.6 folder and run
+`node --test tests/windows-native.test.js` in the repository. Without that
+explicit toolchain, the native cases report skips; they never report a pass.
+CI obtains the pinned and publisher-checked compiler in its temporary folder.
+The generated DLLs are linked but not loaded into apps; the paint regressions
+use hidden synthetic windows and offscreen buffers without desktop input.
+
 High contrast takes precedence; native theme/settings messages restore the
 ordinary-theme brushes before reevaluating admission. Unload dispatches restore
 to the UI thread and removes the bounded startup timer. No XAML dictionary is

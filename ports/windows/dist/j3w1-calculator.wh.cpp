@@ -2,11 +2,11 @@
 // @id j3w1-calculator
 // @name j3w1 Calculator resources
 // @description Version-checked Calculator UI brushes; equation colors remain native
-// @version 1.0
+// @version 1.0.1
 // @author j3w1
 // @include CalculatorApp.exe
 // @architecture x86-64
-// @compilerOptions -lcomctl32 -lole32 -lruntimeobject
+// @compilerOptions -lcomctl32 -lole32 -loleaut32 -lruntimeobject
 // ==/WindhawkMod==
 // ==WindhawkModSettings==
 /*

@@ -37749,7 +37749,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-J+ozVgtyuKjH6kcsmCNI5dScHCkAXhsMm9x4hlHohLE=",
+      "subjectDigest": "sha256-czknc5lu15zkqWq9aiVVD1/7AF79HAI25HzdARsvfts=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37782,7 +37782,7 @@
           "path": "dist/windows-settings.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-settings.json",
-          "digest": "sha256-73aCaj5jE9IdLv/rLj1eV81wew8QBdD+s+JNK00XeAg="
+          "digest": "sha256-o0F6u5phMdGBEMknrUPwDRdlEA57y1XUAc90rRApdq8="
         },
         {
           "path": "dist/terminal-fragment.json",
@@ -37956,7 +37956,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-8RXChSYaoWWRT4TQWJkbM5BM6Yswll+Pt35bZVH0hqA="
+          "digest": "sha256-ol4v/VZYS+C6wyArKy2tVeTmnTsG+cktaMMGBX2X6PI="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
@@ -37986,7 +37986,7 @@
           "path": "dist/j3w1-calculator.wh.cpp",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/j3w1-calculator.wh.cpp",
-          "digest": "sha256-e4E6mnTG4NLl5lhHLfCEFvjPEET3+MVQurYJ9YVUVjk="
+          "digest": "sha256-tG7Ghv7LDFQaicPY12ySApqGOYOfJTx/UxfpQL/2b1I="
         },
         {
           "path": "dist/j3w1-calculator.json",

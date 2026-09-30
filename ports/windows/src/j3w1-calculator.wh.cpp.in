@@ -6,7 +6,7 @@
 // @author j3w1
 // @include CalculatorApp.exe
 // @architecture x86-64
-// @compilerOptions -lcomctl32 -lole32 -lruntimeobject
+// @compilerOptions -lcomctl32 -lole32 -loleaut32 -lruntimeobject
 // ==/WindhawkMod==
 // ==WindhawkModSettings==
 /*
