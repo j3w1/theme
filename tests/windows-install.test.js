@@ -37,11 +37,18 @@ test('pinned PowerShell lifecycle plans without state, applies offline tags, upd
  fs.appendFileSync(path.join(f.source,'ports/windows/adapter.ps1'),'\nthrow "uncommitted"\n');
  f.ok('Apply',['-Revision',f.first]);f.ok('Test');
  assert.equal(read(path.join(f.state,'current.json')).revision,f.first);
+ const recovery=()=>fs.readFileSync(path.join(f.state,'recovery-commands.txt'),'utf8');
+ const firstRecovery=recovery();
+ assert.ok(firstRecovery.includes(path.join(f.state,'releases',f.first,'install.ps1')));
+ assert.equal(firstRecovery.trim().split(/\r?\n/).length,4);
  f.ok('Apply',['-Revision',f.first]);assert.equal(read(path.join(f.state,'journal.json')).transactions.length,1);
  f.git('restore','ports/windows/adapter.ps1');const second=f.commit();
  const denied=f.run('Update');assert.notEqual(denied.status,0);assert.match(denied.stderr,/Update requires an explicit/);
  f.ok('Update',['-Revision',second]);assert.equal(read(path.join(f.state,'current.json')).revision,second);
+ assert.ok(recovery().includes(path.join(f.state,'releases',second,'install.ps1')));
+ assert.ok(!recovery().includes(f.first));
  f.ok('Restore',['-Latest']);assert.equal(read(path.join(f.state,'current.json')).revision,f.first);f.ok('Test');
+ assert.equal(recovery(),firstRecovery);
  f.ok('Uninstall');assert.equal(fs.readFileSync(f.terminal,'utf8'),before);assert.ok(!fs.existsSync(path.join(f.state,'current.json')));
 });
 test('cached executable or manifest changes are rejected before invocation',options,t=>{

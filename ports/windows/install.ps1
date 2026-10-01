@@ -148,6 +148,25 @@ function Get-J3w1SetupRecovery([string]$PowerShell,[string]$Installer,[string]$S
  $prefix="& '"+$PowerShell.Replace("'","''")+"' -NoProfile -File '"+$Installer.Replace("'","''")+"' -StateRoot '"+$StateRoot.Replace("'","''")+"'"
  return @("$prefix -Action Test","$prefix -Action Restore -Latest","$prefix -Action Restore","$prefix -Action Uninstall")
 }
+function Save-J3w1SetupRecovery([string]$PowerShell,[string]$Installer,[string]$StateRoot) {
+ $commands=Get-J3w1SetupRecovery $PowerShell $Installer $StateRoot
+ $file=Join-Path $StateRoot 'recovery-commands.txt';Assert-J3w1SetupPath $file
+ $pending=$file+'.pending-'+[guid]::NewGuid().ToString('N');Assert-J3w1SetupPath $pending
+ try {
+  [IO.File]::WriteAllLines($pending,$commands)
+  Assert-J3w1SetupPath $file
+  if(Test-Path -LiteralPath $file){[IO.File]::Replace($pending,$file,[NullString]::Value)}else{[IO.File]::Move($pending,$file)}
+ } finally {if(Test-Path -LiteralPath $pending){Remove-Item -LiteralPath $pending}}
+ Write-Host "Recovery commands (also saved in $file):"
+ $commands|ForEach-Object {Write-Host $_}
+}
+function Sync-J3w1SetupRecovery([string]$PowerShell,[string]$StateRoot) {
+ $current=Join-Path $StateRoot 'current.json';Assert-J3w1SetupPath $current
+ if(-not(Test-Path -LiteralPath $current)){return}
+ $pointer=Get-Content -LiteralPath $current -Raw|ConvertFrom-Json
+ $verified=Get-J3w1VerifiedRecoveryRelease $StateRoot $pointer.revision
+ Save-J3w1SetupRecovery $PowerShell (Join-Path $verified.path 'install.ps1') $StateRoot
+}
 function Get-J3w1VerifiedRecoveryRelease([string]$StateRoot,[string]$Revision) {
  if($Revision -cnotmatch '^[0-9a-f]{40}$'){throw 'Invalid recovery release identity'}
  $release=Join-Path $StateRoot "releases\$Revision";Assert-J3w1SetupPath $release
@@ -212,6 +231,7 @@ function Invoke-J3w1WindowsRecovery([string]$Action,[bool]$Latest,[string]$State
  }
  Write-Host "Running $Action using verified local recovery data. No release download is needed."
  Invoke-J3w1SetupLifecycle $powerShell (Join-Path $release 'install.ps1') $Action $pointer.mode '' $StateRoot -Latest:$Latest|Write-Output
+ if($Action -in 'Restore','Uninstall'){Sync-J3w1SetupRecovery $powerShell $StateRoot}
  Write-Host "$Action completed. Reopen affected apps to see the restored appearance."
 }
 function Invoke-J3w1WindowsSetup([string]$Revision,[string]$Version,[string]$Mode,[bool]$NonInteractive,[string]$StateRoot) {
@@ -253,11 +273,7 @@ function Invoke-J3w1WindowsSetup([string]$Revision,[string]$Version,[string]$Mod
   $plan=(Invoke-J3w1SetupLifecycle $powerShell $installer 'Prepare' 'Full' $Revision $StateRoot)|ConvertFrom-Json
   $chosen=Select-J3w1SetupMode $plan $Mode $NonInteractive
   $retained=Join-Path $StateRoot "releases\$Revision\install.ps1"
-  $recovery=Get-J3w1SetupRecovery $powerShell (Join-Path $StateRoot "releases\$Revision\install.ps1") $StateRoot
-  Write-Host "Recovery commands (also saved in $StateRoot\recovery-commands.txt):"
-  $recovery|ForEach-Object {Write-Host $_}
-  $recoveryFile=Join-Path $StateRoot 'recovery-commands.txt';Assert-J3w1SetupPath $recoveryFile
-  [IO.File]::WriteAllLines($recoveryFile,$recovery)
+  Save-J3w1SetupRecovery $powerShell $retained $StateRoot
   Write-Host "Installing $chosen mode. PowerToys and Terminal are optional; existing installations are themed where supported."
   Invoke-J3w1SetupLifecycle $powerShell $installer 'Apply' $chosen $Revision $StateRoot|Write-Output
   Invoke-J3w1SetupLifecycle $powerShell $retained 'Test' $chosen $Revision $StateRoot|Write-Output
@@ -527,11 +543,17 @@ try{
   foreach($mod in $deps.mods){Get-VerifiedDownload $mod (Join-Path $downloads "$($mod.id).wh.cpp")}
  }
   if($Action -eq 'Prepare'){$request.action='Plan'}
+  # Every apply path retains recovery before settings change, including a
+  # source checkout and the internal lifecycle invoked by the bootstrap.
+  if($Action -in 'Apply','Update'){
+   Save-J3w1SetupRecovery $guardPowerShell (Join-Path $release 'install.ps1') $StateRoot
+  }
   $request|ConvertTo-Json -Compress|& $node.Source (Join-Path $release 'dist\runtime.cjs')
  if($LASTEXITCODE -ne 0){throw "Lifecycle $Action failed with exit code $LASTEXITCODE. Recovery: install.ps1 -Action Restore"}
  if($Action -in 'Apply','Update'){
     Write-Output "Installed entry point: $release\install.ps1"
  }
+ if($Action -in 'Restore','Uninstall'){Sync-J3w1SetupRecovery $guardPowerShell $StateRoot}
 } finally {
  if($null -ne $bootstrapLock){$bootstrapLock.Dispose();Remove-Item -LiteralPath $bootstrapLockPath}
  if($temporary -and(Test-Path -LiteralPath $release)){

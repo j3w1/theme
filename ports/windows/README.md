@@ -76,6 +76,9 @@ undoes the last transaction, **Restore** returns the original baseline, and
 **Uninstall** restores it and removes owned theme integration. Later user edits
 are preserved as reported conflicts. Shared tools, fonts and recovery data are
 retained. See [recovery](COMPATIBILITY.md#recovery) if an operation was interrupted.
+The saved commands refresh for every update route, including a source checkout,
+and follow the remaining installed version after **Restore -Latest**. They are
+retained before settings change so a failed installation can still be undone.
 
 <!-- restore:start -->
 Install commands appear here once v4.0.0 is released.
