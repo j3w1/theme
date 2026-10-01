@@ -24,7 +24,7 @@ const fence = (lang, lines, indent = "") => [`${indent}\`\`\`${lang}`, ...lines.
 
 const cloneNote = `In your clone of this repository (\`~/dev/theme\` on the CE devbox; if you have none, run \`git clone ${CLONE} ~/dev/theme\` and \`cd\` into it), paste:`;
 
-const windowsScript = commit => `& "$env:LOCALAPPDATA\\j3w1-theme\\windows\\releases\\${commit}\\setup.ps1"`;
+const windowsScript = commit => `& "$env:LOCALAPPDATA\\j3w1-theme\\windows\\releases\\${commit}\\install.ps1"`;
 export const firstInstallerTag = file => file === 'ports/windows/README.md' ? 'v4.0.0' : FIRST_INSTALLER_TAG;
 const windowsPending = 'Install commands appear here once v4.0.0 is released.';
 const windowsReleased = release => Number(release.tag.match(/^v(\d+)/)?.[1] ?? 0) >= 4;
@@ -33,8 +33,8 @@ const blocks = {
     install: release => !windowsReleased(release) ? [windowsPending] : [
       `Release ${release.tag} (commit \`${release.commit}\`).`, '',
       ...fence('powershell', [
-        "$setup = Join-Path $env:TEMP ('j3w1-setup-' + [guid]::NewGuid().ToString('N') + '.ps1')",
-        `Invoke-WebRequest -UseBasicParsing '${RAW}/${release.commit}/ports/windows/setup.ps1' -OutFile $setup -ErrorAction Stop`,
+        "$setup = Join-Path $env:TEMP ('j3w1-install-' + [guid]::NewGuid().ToString('N') + '.ps1')",
+        `Invoke-WebRequest -UseBasicParsing '${RAW}/${release.commit}/ports/windows/install.ps1' -OutFile $setup -ErrorAction Stop`,
         `& $setup -Revision ${release.commit}`,
       ]),
     ],

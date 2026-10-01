@@ -20,13 +20,14 @@ export function stylerSettings(base, variants, layout) {
 export function flattenStylerSettings(value,prefix='',out={}) {
  if(prefix==='' && value && Array.isArray(value.controlStyles)) {
   // Omitted optional lists also replace any values retained from an older theme.
+  if(!Object.hasOwn(value,'webContentStyles'))out['webContentStyles[0].target']='';
   for(const key of ['themeResourceVariables','styleConstants'])
    if(!Object.hasOwn(value,key))out[`${key}[0]`]='';
  }
  if(Array.isArray(value)) {
   value.forEach((item,index)=>flattenStylerSettings(item,`${prefix}[${index}]`,out));
-  if(prefix==='controlStyles')out[`${prefix}[${value.length}].target`]='';
-  else if(prefix==='themeResourceVariables' || prefix==='styleConstants' || /^controlStyles\[\d+\]\.styles$/.test(prefix))
+  if(prefix==='controlStyles' || prefix==='webContentStyles')out[`${prefix}[${value.length}].target`]='';
+  else if(prefix==='themeResourceVariables' || prefix==='styleConstants' || /^(?:controlStyles|webContentStyles)\[\d+\]\.styles$/.test(prefix))
    out[`${prefix}[${value.length}]`]='';
  } else if(value!==null && typeof value==='object') {
   for(const [key,item] of Object.entries(value))flattenStylerSettings(item,prefix?`${prefix}.${key}`:key,out);

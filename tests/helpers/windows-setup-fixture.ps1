@@ -142,7 +142,7 @@ elseif($Case -eq 'cached-setup'){
 elseif($Case -eq 'child-failure'){
  [IO.Directory]::CreateDirectory($Root)|Out-Null;$bad=Join-Path $Root 'failure.ps1';[IO.File]::WriteAllText($bad,'param($Action,$Mode,$StateRoot) exit 23')
  Reject {Invoke-J3w1SetupLifecycle (Get-Process -Id $PID).Path $bad 'Restore' 'Native' '' $Root} 'exit 23'
- $commands=Get-J3w1SetupRecovery "C:\test's runtime\pwsh.exe" "C:\some folder\setup.ps1" "C:\user's theme"
+ $commands=Get-J3w1SetupRecovery "C:\test's runtime\pwsh.exe" "C:\some folder\install.ps1" "C:\user's theme"
  Check ($commands.Count -eq 4 -and $commands[1].EndsWith('-Action Restore -Latest')) 'Recovery actions missing'
  foreach($line in $commands){$tokens=$null;$errors=$null;[void][Management.Automation.Language.Parser]::ParseInput($line,[ref]$tokens,[ref]$errors);Check ($errors.Count -eq 0) 'Recovery command is not valid PowerShell'}
 }

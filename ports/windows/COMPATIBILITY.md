@@ -94,7 +94,7 @@ them to public issues or commit them. Only redacted outcomes belong in evidence.
    Inspect its original, installed and current values locally. To finish the
    rollback, deliberately return that value to the recorded installed value,
    then rerun Restore. Do not replace whole settings files to resolve one key.
-4. A stale `bootstrap.lock` or `lifecycle.lock` blocks mutation. Read its recorded
+4. A stale `setup.lock`, `bootstrap.lock` or `lifecycle.lock` blocks mutation. Read its recorded
    PID and verify that process is no longer running before removing only that
    stale lock. Never remove a live process's lock.
 5. Cache digest failure blocks execution. Restore the exact retained release
@@ -233,7 +233,7 @@ partial treatment there. No universal Windows-wide visual match is claimed.
 
 ## Automated setup
 
-`setup.ps1` runs under native Windows PowerShell 5.1 or PowerShell 7. It requires
+`install.ps1` runs under native Windows PowerShell 5.1 or PowerShell 7. It requires
 Windows 11 x64, TLS HTTPS access to GitHub and the pinned dependency publishers,
 and an explicit release tag or full commit. Tags resolve once to an immutable
 commit. Setup verifies the install script and dependency metadata against that
@@ -287,14 +287,14 @@ states. The pending Start category border correction was installed with it.
 
 ### One-command recovery
 
-The same downloaded `setup.ps1` handles setup and recovery from Windows
+The same downloaded `install.ps1` handles setup and recovery from Windows
 PowerShell 5.1. No revision or runtime path is required:
 
 ```powershell
-& ./setup.ps1 -Action Restore -Latest
-& ./setup.ps1 -Action Restore
-& ./setup.ps1 -Action Uninstall
-& ./setup.ps1 -Action Test
+& ./install.ps1 -Action Restore -Latest
+& ./install.ps1 -Action Restore
+& ./install.ps1 -Action Uninstall
+& ./install.ps1 -Action Test
 ```
 
 Choose one command: undo the last update, restore the original appearance,

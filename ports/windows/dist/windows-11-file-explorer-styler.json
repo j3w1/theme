@@ -191,6 +191,25 @@
       "styles": [
         "Background=#000000"
       ]
+    },
+    {
+      "target": "Border#BottomBorderLine, Border#LeftBottomBorderLine, Border#RightBottomBorderLine",
+      "styles": [
+        "Background=#2b0e0d",
+        "BorderBrush=#2b0e0d"
+      ]
+    },
+    {
+      "target": "FileExplorerExtensions.CommandBarControl_Wave1 > Grid, Grid#CommandBarControlRootGrid",
+      "styles": [
+        "BorderBrush=#2b0e0d"
+      ]
+    },
+    {
+      "target": "CommandBar#FileExplorerCommandBar, CommandBar#FileExplorerSecondaryCommandBar",
+      "styles": [
+        "BorderBrush=#2b0e0d"
+      ]
     }
   ],
   "themeResourceVariables": [

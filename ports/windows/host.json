@@ -37,7 +37,9 @@
     "terminal.ansi.12": "color.terminal.ansi.12",
     "terminal.ansi.13": "color.terminal.ansi.13",
     "terminal.ansi.14": "color.terminal.ansi.14",
-    "terminal.ansi.15": "color.terminal.ansi.15"
+    "terminal.ansi.15": "color.terminal.ansi.15",
+    "folder.fill": "color.action.primary.bg",
+    "folder.edge": "color.border.active"
   },
   "resources": {
     "TextFillColorPrimary": "color.text.default",
@@ -257,6 +259,37 @@
             "BorderBrush@Pressed": "color.border.active",
             "BorderBrush@Disabled": "color.border.disabled"
           }
+        },
+        {
+          "target": "Border#AppBorder",
+          "styles": {
+            "Background": "color.surface.canvas",
+            "BorderBrush": "color.border.active",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Border#TaskbarSearchBackground",
+          "styles": {
+            "Background": "color.surface.canvas",
+            "BorderBrush": "color.border.active",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Cortana.UI.Views.RichSearchBoxControl#SearchBoxControl > Grid#RootGrid",
+          "styles": {
+            "Background": "color.surface.canvas",
+            "BorderBrush": "color.border.active",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Cortana.UI.Views.RichSearchBoxControl > Grid > Border#BorderElement",
+          "styles": {
+            "Background": "color.surface.input",
+            "BorderBrush": "color.border.control"
+          }
         }
       ],
       "variants": {
@@ -336,7 +369,87 @@
             }
           }
         ]
-      }
+      },
+      "webContentStyles": [
+        {
+          "target": "body, #root, #root.darkTheme, .scope-with-background, .suggsList, .suggsListContainer, .suggContainer, .previewContainer, .suggDetailsContainer, .contextMenu, #menuContainer",
+          "styles": {
+            "background-color": "color.surface.canvas",
+            "color": "color.text.default",
+            "border-color": "color.border.divider"
+          }
+        },
+        {
+          "target": "h1, h2, h3, h4, p, .title, .details, .secondaryText, .groupTitle, .suggestion, .scope-tile > div, .menu-item_details, .previewContainer, button",
+          "styles": {
+            "color": "color.text.default"
+          }
+        },
+        {
+          "target": ".secondaryText, .details .secondaryText",
+          "styles": {
+            "color": "color.text.muted"
+          }
+        },
+        {
+          "target": ".iconContainer, .previewContainer .imageContainer, .scope-tile > div, button, .button, .actionButton",
+          "styles": {
+            "background-color": "color.surface.input",
+            "border-color": "color.border.control",
+            "color": "color.text.default"
+          }
+        },
+        {
+          "target": ".suggestion:hover, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover",
+          "styles": {
+            "background-color": "color.interaction.hover.bg",
+            "color": "color.text.default"
+          }
+        },
+        {
+          "target": ".suggestion[aria-selected=\"true\"], .suggestion[aria-selected=\"true\"] .details, .suggestion[aria-selected=\"true\"] .iconContainer, .scope-tile--selected > div",
+          "styles": {
+            "background-color": "color.interaction.selection.bg",
+            "color": "color.interaction.selection.text"
+          }
+        },
+        {
+          "target": "button:active, .button:active, .actionButton:active",
+          "styles": {
+            "background-color": "color.interaction.pressed.bg"
+          }
+        },
+        {
+          "target": ":focus-visible",
+          "styles": {
+            "outline-color": "color.interaction.focus.ring"
+          }
+        },
+        {
+          "target": "*",
+          "styles": {
+            "scrollbar-color": "color.interaction.scrollbar.thumb"
+          }
+        },
+        {
+          "target": "::-webkit-scrollbar-track",
+          "styles": {
+            "background-color": "color.surface.canvas"
+          }
+        },
+        {
+          "target": "::-webkit-scrollbar-thumb",
+          "styles": {
+            "background-color": "color.interaction.scrollbar.thumb"
+          }
+        },
+        {
+          "target": ".leftPill::before",
+          "styles": {
+            "background-color": "color.border.active"
+          }
+        }
+      ]
     },
     {
       "id": "windows-11-file-explorer-styler",
@@ -530,6 +643,25 @@
           "target": "FileExplorerExtensions.AddressBarControl > Grid#PART_LayoutRoot",
           "styles": {
             "Background": "color.surface.canvas"
+          }
+        },
+        {
+          "target": "Border#BottomBorderLine, Border#LeftBottomBorderLine, Border#RightBottomBorderLine",
+          "styles": {
+            "Background": "color.border.divider",
+            "BorderBrush": "color.border.divider"
+          }
+        },
+        {
+          "target": "FileExplorerExtensions.CommandBarControl_Wave1 > Grid, Grid#CommandBarControlRootGrid",
+          "styles": {
+            "BorderBrush": "color.border.divider"
+          }
+        },
+        {
+          "target": "CommandBar#FileExplorerCommandBar, CommandBar#FileExplorerSecondaryCommandBar",
+          "styles": {
+            "BorderBrush": "color.border.divider"
           }
         }
       ]
@@ -811,13 +943,14 @@
     "Static cursor shapes preserve roles; host accessibility pointer overrides take priority."
   ],
   "nativeExplorer": {
-    "version": "1.2",
+    "version": "1.3",
     "background": "color.surface.canvas",
     "foreground": "color.text.default",
     "hover": "color.interaction.hover.bg",
     "selected": "color.interaction.selection.bg",
     "inactive": "color.interaction.selection.inactive-bg",
     "border": "color.border.divider",
+    "pin": "color.border.active",
     "scrollbar": "color.interaction.scrollbar.thumb",
     "scrollbarHover": "color.interaction.scrollbar.thumb-hover",
     "disabled": "color.text.disabled",
@@ -832,7 +965,8 @@
   },
   "nativeExplorerModules": {
     "FRAME": "10.0.26100.9549",
-    "DUI": "10.0.26100.9549"
+    "DUI": "10.0.26100.9549",
+    "COMCTL": "6.10.26100.9549"
   },
   "monacoPreview": {
     "version": "1.0",

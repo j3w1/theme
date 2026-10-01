@@ -4,11 +4,11 @@
   "files": [
     {
       "path": "dist/j3w1-explorer-native.wh.cpp",
-      "sha256": "3f58e124b40e0fe4494f8c0165f4bc4cf879821b3e3e74e9dcc9c2c4243521a9"
+      "sha256": "ab307e1938c58b89212b845e097fc062d7858d3b940e57fcaa432ca3a05a1e38"
     },
     {
       "path": "dist/j3w1-explorer-native.json",
-      "sha256": "67729b3413636525fc2f4e4410c7a769495f1fdba77c7fdca1afc0f3c09ceaa5"
+      "sha256": "a3b0a1b9be5da59e6c500b21068a06922666a9d9ecb38c472bf365da3088286b"
     },
     {
       "path": "dist/j3w1-powertoys-preview.wh.cpp",
@@ -40,7 +40,7 @@
     },
     {
       "path": "dist/windows-settings.json",
-      "sha256": "fdd9de09f5ef91a5487dea9e9c7f1cb97d00bfd989d4a21777dd29becbb6d43d"
+      "sha256": "e6f5d04bb95184b4879e78e78a6aa9e1ba2bc31e89817a450c3bdcad3d7c9cef"
     },
     {
       "path": "dist/terminal-fragment.json",
@@ -60,11 +60,11 @@
     },
     {
       "path": "dist/windows-11-start-menu-styler.json",
-      "sha256": "13d6cae1f0f25d271cb0078377209564dac7ff4f51096d536f0af6cd8477f0b6"
+      "sha256": "46e7bc152694bf6029220916f48135c67712e6a7d6d7e6e643650cd3193b567e"
     },
     {
       "path": "dist/windows-11-file-explorer-styler.json",
-      "sha256": "a97aabc84a41ecd528b16eb801787a848f5070e24ad38f050be0b1c3588399a2"
+      "sha256": "5086158baca1d441fe3b099122d6442c75440dd5d3157338387af8149fe0dd01"
     },
     {
       "path": "dist/windows-11-notification-center-styler.json",
@@ -147,24 +147,28 @@
       "sha256": "6deffb78dbc3288f2469dbacf4979d5af0d58d032a9fc87eea1293aba43649ab"
     },
     {
+      "path": "dist/j3w1-folder.ico",
+      "sha256": "bbbb1ed968451931de82129c80021e2478ef32c8d9e5182f8d4d35a1e999f356"
+    },
+    {
+      "path": "dist/j3w1-folder-open.ico",
+      "sha256": "b497297f23afe8ef867f5373a8cc6cfb7c4faecb5814088920a025c34d94b1d1"
+    },
+    {
       "path": "dist/j3w1.theme",
       "sha256": "08c564ad6fb35bcd464460db281d28b00d37d78cd2e49bd5876c3905827b0157"
     },
     {
       "path": "dist/runtime.cjs",
-      "sha256": "4ffbcefb92e0fd659e44efd7760234cee8e146aac5ead355c8bf8c9a291e451a"
+      "sha256": "2731cbc802c230819cae9952c5363d2501008858ce49c45cb064276efc59d5db"
     },
     {
       "path": "install.ps1",
-      "sha256": "b986d4b61d0b8e7fae8ba6019b38c5d60a35e1fe9f91fb8d5403521cfdff15a9"
-    },
-    {
-      "path": "setup.ps1",
-      "sha256": "07084e97372dfde0e064e42d431c99a7562266cea0f65ecb43a3dac719097146"
+      "sha256": "5dfb515d5a4ca197d099a39a814e6d75837b97b187ba5d2174d25d88ada4e388"
     },
     {
       "path": "adapter.ps1",
-      "sha256": "5724c8ad6528a873c4bc70d9a787970b7030f6679bfe0a2c023826795ccc2fce"
+      "sha256": "1d8f2f2f6db5a12a274ef73941373a79829809def8ea0e79540cf54635377e5d"
     },
     {
       "path": "lockscreen.ps1",
@@ -176,7 +180,7 @@
     },
     {
       "path": "host.json",
-      "sha256": "be91aa0c26bd7cff1d6349ba16b4d14486989f32653b6e7fc5f0b0784de57a4d"
+      "sha256": "a184624482d163e811c58d6f519a0da53757b3cfaeb611b813e28d7617d904aa"
     }
   ]
 }

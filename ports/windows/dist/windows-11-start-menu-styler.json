@@ -156,6 +156,37 @@
         "BorderBrush@Pressed=#e53935",
         "BorderBrush@Disabled=#7d1310"
       ]
+    },
+    {
+      "target": "Border#AppBorder",
+      "styles": [
+        "Background=#000000",
+        "BorderBrush=#e53935",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Border#TaskbarSearchBackground",
+      "styles": [
+        "Background=#000000",
+        "BorderBrush=#e53935",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Cortana.UI.Views.RichSearchBoxControl#SearchBoxControl > Grid#RootGrid",
+      "styles": [
+        "Background=#000000",
+        "BorderBrush=#e53935",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Cortana.UI.Views.RichSearchBoxControl > Grid > Border#BorderElement",
+      "styles": [
+        "Background=#000000",
+        "BorderBrush=#a3676b"
+      ]
     }
   ],
   "themeResourceVariables": [
@@ -181,5 +212,86 @@
     "TextOnAccentFillColorPrimary=#ffa2a7",
     "SystemAccentColor=#e53935",
     "SystemControlHighlightAccentBrush=#e53935"
-  ]
+  ],
+  "webContentStyles": [
+    {
+      "target": "body, #root, #root.darkTheme, .scope-with-background, .suggsList, .suggsListContainer, .suggContainer, .previewContainer, .suggDetailsContainer, .contextMenu, #menuContainer",
+      "styles": [
+        "background-color: #000000 !important",
+        "color: #e99499 !important",
+        "border-color: #2b0e0d !important"
+      ]
+    },
+    {
+      "target": "h1, h2, h3, h4, p, .title, .details, .secondaryText, .groupTitle, .suggestion, .scope-tile > div, .menu-item_details, .previewContainer, button",
+      "styles": [
+        "color: #e99499 !important"
+      ]
+    },
+    {
+      "target": ".secondaryText, .details .secondaryText",
+      "styles": [
+        "color: #bd787d !important"
+      ]
+    },
+    {
+      "target": ".iconContainer, .previewContainer .imageContainer, .scope-tile > div, button, .button, .actionButton",
+      "styles": [
+        "background-color: #000000 !important",
+        "border-color: #a3676b !important",
+        "color: #e99499 !important"
+      ]
+    },
+    {
+      "target": ".suggestion:hover, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover",
+      "styles": [
+        "background-color: #1c0a09 !important",
+        "color: #e99499 !important"
+      ]
+    },
+    {
+      "target": ".suggestion[aria-selected=\"true\"], .suggestion[aria-selected=\"true\"] .details, .suggestion[aria-selected=\"true\"] .iconContainer, .scope-tile--selected > div",
+      "styles": [
+        "background-color: #531310 !important",
+        "color: #f4eeee !important"
+      ]
+    },
+    {
+      "target": "button:active, .button:active, .actionButton:active",
+      "styles": [
+        "background-color: #420f0c !important"
+      ]
+    },
+    {
+      "target": ":focus-visible",
+      "styles": [
+        "outline-color: #e53935 !important"
+      ]
+    },
+    {
+      "target": "*",
+      "styles": [
+        "scrollbar-color: #420f0c #000000 !important"
+      ]
+    },
+    {
+      "target": "::-webkit-scrollbar-track",
+      "styles": [
+        "background-color: #000000 !important"
+      ]
+    },
+    {
+      "target": "::-webkit-scrollbar-thumb",
+      "styles": [
+        "background-color: #420f0c !important"
+      ]
+    },
+    {
+      "target": ".leftPill::before",
+      "styles": [
+        "background-color: #e53935 !important"
+      ]
+    }
+  ],
+  "webContentCustomJs": ""
 }

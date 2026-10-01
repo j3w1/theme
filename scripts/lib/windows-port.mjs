@@ -1,3 +1,4 @@
+import {folderIconFile} from './windows-folder-icon.mjs';
 /* Windows native artifacts. Host definitions own selectors; tokens own colors.
    Raster assets are deterministic original geometry, not downloaded artwork. */
 import { toCss } from './tokens.mjs';
@@ -113,7 +114,7 @@ export function windowsArtifacts({manifest,host,resolved}){
   if(!/^\d+\.\d+\.\d+\.\d+$/.test(version)||version.split('.').some(p=>Number(p)>65535))throw Error('Invalid native Explorer module version');
   return [key,version.split('.')];
  }));
- const moduleSubs=Object.fromEntries(['FRAME','DUI'].flatMap(key=>{
+ const moduleSubs=Object.fromEntries(['FRAME','DUI','COMCTL'].flatMap(key=>{
   if(!moduleParts[key])throw Error(`Missing native Explorer module ${key}`);
   return ['MAJOR','MINOR','BUILD','REVISION'].map((field,i)=>[`${key}_${field}`,moduleParts[key][i]]);
  }));
@@ -171,17 +172,23 @@ export function windowsArtifacts({manifest,host,resolved}){
  for(const mod of host.stylers){
   const controlStyles=targets(mod.targets);
   const payload={theme:'',controlStyles,themeResourceVariables:Object.entries(host.resources).map(([key,role])=>{val(role);return `${key}=${windowsStyleValue(key,resolved.get(role))}`;})};
+  if(mod.webContentStyles)payload.webContentStyles=mod.webContentStyles.map(t=>({target:t.target,styles:Object.entries(t.styles).map(([key,role])=>{
+   const value=val(role);
+   return `${key}: ${key==='scrollbar-color'?`${value} ${val('color.surface.canvas')}`:value} !important`;
+  })}));
+  if(mod.webContentStyles)payload.webContentCustomJs='';
   json(`${mod.id}.json`,payload);
  }
  artifacts.push({path:'dist/j3w1-wallpaper.bmp',bytes:wallpaperBmp(val('color.surface.desktop'))});
  for(const name of CURSOR_NAMES)artifacts.push({path:`dist/j3w1-${name.toLowerCase()}.cur`,bytes:cursorFile(name,val(host.roles['cursor.foreground']),val(host.roles['cursor.outline']))});
+ for(const open of [false,true])artifacts.push({path:`dist/j3w1-folder${open?'-open':''}.ico`,bytes:folderIconFile(val('color.action.primary.bg'),val('color.border.active'),open)});
  const themeAssets='%LOCALAPPDATA%\\j3w1-theme\\windows\\assets';
  const themeCursors=CURSOR_NAMES.map(name=>`${name}=${themeAssets}\\j3w1-${name.toLowerCase()}.cur`).join('\n');
  artifacts.push({path:'dist/j3w1.theme',text:`; Generated j3w1 ${manifest.version}\n[Theme]\nDisplayName=j3w1\n[Control Panel\\Colors]\nBackground=${rgb(val('color.surface.desktop')).join(' ')}\n[Control Panel\\Desktop]\nWallpaper=${themeAssets}\\j3w1-wallpaper.bmp\nTileWallpaper=0\nWallpaperStyle=10\n[Control Panel\\Cursors]\n${themeCursors}\nDefaultValue=j3w1\n[VisualStyles]\nPath=%ResourceDir%\\Themes\\Aero\\Aero.msstyles\nColorStyle=NormalColor\nSize=NormalSize\nColorizationColor=0XFF${val('color.border.active').slice(1).toUpperCase()}\nAutoColorization=0\nSystemMode=Dark\nAppMode=Dark\n[MasterThemeSelector]\nMTSM=DABJDKT\n`});
  const runtime=buildSync({entryPoints:[path.join(repoRoot,'ports/windows/src/runtime.mjs')],bundle:true,mainFields:['module','main'],platform:'node',target:'node24',format:'cjs',write:false,legalComments:'eof'}).outputFiles[0].text;
  artifacts.push({path:'dist/runtime.cjs',text:runtime});
  const files=artifacts.map(a=>({path:a.path,sha256:createHash('sha256').update(a.bytes??a.text).digest('hex')}));
- for(const name of ['install.ps1','setup.ps1','adapter.ps1','lockscreen.ps1','dependencies.json','host.json'])files.push({path:name,sha256:createHash('sha256').update(readFileSync(path.join(repoRoot,'ports/windows',name))).digest('hex')});
+ for(const name of ['install.ps1','adapter.ps1','lockscreen.ps1','dependencies.json','host.json'])files.push({path:name,sha256:createHash('sha256').update(readFileSync(path.join(repoRoot,'ports/windows',name))).digest('hex')});
  json('install-manifest.json',{schemaVersion:1,version:manifest.version,files});
  return artifacts;
 }

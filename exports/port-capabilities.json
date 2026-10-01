@@ -37749,7 +37749,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-4FPeb5b2n36KS/q3CN1Iz1mViSnhD+OiseyLQCGoP8M=",
+      "subjectDigest": "sha256-+4KzcM7yydtCYSooqgRpfBe4eN6qHYz2vNdIqVp29Zs=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37782,7 +37782,7 @@
           "path": "dist/windows-settings.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-settings.json",
-          "digest": "sha256-/dneCfXvkaVIfeqenH8cuX0Av9mJ1KIXd90pvsu21D0="
+          "digest": "sha256-5vXQS7lRhLSHnnjnimqp4borwx6JgXpFDDvcrT18nO8="
         },
         {
           "path": "dist/terminal-fragment.json",
@@ -37812,13 +37812,13 @@
           "path": "dist/windows-11-start-menu-styler.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-11-start-menu-styler.json",
-          "digest": "sha256-E9bK4fDyXSccsAeDdyCVZNrH/09RCW1Tbwr2zYR38LY="
+          "digest": "sha256-Rue8FSaUv2ApIgkW9IE1xncS5qfW1+bmQ2UM0xk7Vn4="
         },
         {
           "path": "dist/windows-11-file-explorer-styler.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-11-file-explorer-styler.json",
-          "digest": "sha256-qXqryEpB7NUosW64AXh6hI9QcOJK048FC+Cxw1iDmaI="
+          "digest": "sha256-UIYVi6yh1EH+OwmRItZELHVEDdXTFXM4OHr4FJ/g3QE="
         },
         {
           "path": "dist/windows-11-notification-center-styler.json",
@@ -37950,25 +37950,25 @@
           "path": "dist/runtime.cjs",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/runtime.cjs",
-          "digest": "sha256-T/vO+5Lg/WWeRO/XdgI0zujhRqrF6tNVyL+MmikeRRo="
+          "digest": "sha256-JzHLyALCMIGcrplSxTY9JQEAiFjOScRcsGQnbvxZ1ds="
         },
         {
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-2+2elWA2EVPmSx3fz18bQFv90Eo6cef9VDMehX/bvkk="
+          "digest": "sha256-yr234zt+kIooev34nyiZMzhpN8FpfpL/XxPeezcs4ZU="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/j3w1-explorer-native.wh.cpp",
-          "digest": "sha256-P1jhJLQOD+RJT4wBZfS8TPh5ghs+PnTp3MnCxCQ1Iak="
+          "digest": "sha256-qzB+GTjFi4khK4ReCX/AYteFjTuUDlf8qkMso6BaHjg="
         },
         {
           "path": "dist/j3w1-explorer-native.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/j3w1-explorer-native.json",
-          "digest": "sha256-Z3KbNBNjZSX8L05EEMenaUlfH9unfH/coa/A88Cc6qU="
+          "digest": "sha256-o7Chub5dpZ5sUAshBooGkiZmqdnss4xHK/Nl2jCIKGs="
         },
         {
           "path": "dist/j3w1-powertoys-preview.wh.cpp",
@@ -38011,6 +38011,18 @@
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/markdown-theme.css",
           "digest": "sha256-m8FKRZq8tsK+6aALp6L8lbF2YbBI/zpVpKQzgudC4yM="
+        },
+        {
+          "path": "dist/j3w1-folder.ico",
+          "install": "Run the single pinned ports/windows/install.ps1; folder defaults are included in its saved rollback.",
+          "source": "ports/windows/dist/j3w1-folder.ico",
+          "digest": "sha256-u7se2WhFGTHeghKcgAIeJHjvMsjZ5RgvjU01oemZ81Y="
+        },
+        {
+          "path": "dist/j3w1-folder-open.ico",
+          "install": "Run the single pinned ports/windows/install.ps1; folder defaults are included in its saved rollback.",
+          "source": "ports/windows/dist/j3w1-folder-open.ico",
+          "digest": "sha256-tJcpfyOv6O+Gf1NzqMxs+3xPrstYFAiJIKAlw02UsdE="
         }
       ],
       "rollback": "Run install.ps1 -Action Restore for original settings, or add -Latest for the previous transaction; Uninstall also removes owned theme assets.",
@@ -38234,7 +38246,8 @@
             "windows-11-notification-center-styler | CalendarView | TodayBackground",
             "calculator.resource.AccentFillColorDefaultBrush",
             "calculator.resource.AppControlHighlightCalcButtonBrush",
-            "calculator.resource.AppControlHighlightCalcButtonToggledBrush"
+            "calculator.resource.AppControlHighlightCalcButtonToggledBrush",
+            "folder.fill"
           ],
           "value": "#7d1310",
           "eligibility": {
@@ -38440,6 +38453,7 @@
           "role": "color.border.active",
           "nativeKeys": [
             "native.accent",
+            "nativeExplorer.pin",
             "cursor.outline",
             "powertoys.highlight",
             "windhawk.resource.SystemAccentColor",
@@ -38452,7 +38466,12 @@
             "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | BorderBrush@Pressed",
             "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | BorderBrush@Pressed",
             "calculator.resource.SystemControlHighlightAccentBrush",
-            "powertoys.markdown.QUOTE_BORDER"
+            "powertoys.markdown.QUOTE_BORDER",
+            "windows-11-start-menu-styler | Border#AppBorder | BorderBrush",
+            "windows-11-start-menu-styler | Border#TaskbarSearchBackground | BorderBrush",
+            "windows-11-start-menu-styler | Cortana.UI.Views.RichSearchBoxControl#SearchBoxControl > Grid#RootGrid | BorderBrush",
+            "windows-11-start-menu-styler | web .leftPill::before | background-color",
+            "folder.edge"
           ],
           "value": "#e53935",
           "eligibility": {
@@ -38461,8 +38480,8 @@
             "decisionIds": []
           },
           "state": "mapped",
-          "surface": "powertoys",
-          "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate.",
+          "surface": "shell",
+          "reason": "Native red accent, owner-requested folder edges and navigation pins, shell control borders and supported PowerToys accents; import and visual acceptance are separate.",
           "source": "ports/windows/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -38477,7 +38496,9 @@
             "windows-11-start-menu-styler | StartDocked.SearchBoxToggleButton > Grid > Border#BorderElement | BorderBrush",
             "windows-11-start-menu-styler | StartMenu.SearchBoxToggleButton > Grid > Border#BorderElement | BorderBrush",
             "calculator.resource.ControlStrokeColorDefaultBrush",
-            "powertoys.markdown.CODE_BORDER"
+            "powertoys.markdown.CODE_BORDER",
+            "windows-11-start-menu-styler | Cortana.UI.Views.RichSearchBoxControl > Grid > Border#BorderElement | BorderBrush",
+            "windows-11-start-menu-styler | web .iconContainer, .previewContainer .imageContainer, .scope-tile > div, button, .button, .actionButton | border-color"
           ],
           "value": "#a3676b",
           "eligibility": {
@@ -38534,7 +38555,12 @@
           "role": "color.border.divider",
           "nativeKeys": [
             "nativeExplorer.border",
-            "powertoys.markdown.DIVIDER"
+            "powertoys.markdown.DIVIDER",
+            "windows-11-start-menu-styler | web body, #root, #root.darkTheme, .scope-with-background, .suggsList, .suggsListContainer, .suggContainer, .previewContainer, .suggDetailsContainer, .contextMenu, #menuContainer | border-color",
+            "windows-11-file-explorer-styler | Border#BottomBorderLine, Border#LeftBottomBorderLine, Border#RightBottomBorderLine | Background",
+            "windows-11-file-explorer-styler | Border#BottomBorderLine, Border#LeftBottomBorderLine, Border#RightBottomBorderLine | BorderBrush",
+            "windows-11-file-explorer-styler | FileExplorerExtensions.CommandBarControl_Wave1 > Grid, Grid#CommandBarControlRootGrid | BorderBrush",
+            "windows-11-file-explorer-styler | CommandBar#FileExplorerCommandBar, CommandBar#FileExplorerSecondaryCommandBar | BorderBrush"
           ],
           "value": "#2b0e0d",
           "eligibility": {
@@ -39717,7 +39743,8 @@
           "role": "color.interaction.focus.ring",
           "nativeKeys": [
             "nativeExplorer.focusRing",
-            "powertoys.markdown.FOCUS"
+            "powertoys.markdown.FOCUS",
+            "windows-11-start-menu-styler | web :focus-visible | outline-color"
           ],
           "value": "#e53935",
           "eligibility": {
@@ -39759,7 +39786,8 @@
             "calculator.resource.CalcButtonFillColorHoverBrush",
             "calculator.resource.CalcButtonAltFillColorHoverBrush",
             "calculator.resource.SubtleFillColorSecondaryBrush",
-            "calculator.resource.AppControlBackgroundSecondaryBrush"
+            "calculator.resource.AppControlBackgroundSecondaryBrush",
+            "windows-11-start-menu-styler | web .suggestion:hover, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover | background-color"
           ],
           "value": "#1c0a09",
           "eligibility": {
@@ -39818,7 +39846,8 @@
             "calculator.resource.CalcButtonFillColorPressedBrush",
             "calculator.resource.CalcButtonAltFillColorPressedBrush",
             "calculator.resource.AppControlBackgroundTertiaryBrush",
-            "calculator.resource.SubtleFillColorTertiaryBrush"
+            "calculator.resource.SubtleFillColorTertiaryBrush",
+            "windows-11-start-menu-styler | web button:active, .button:active, .actionButton:active | background-color"
           ],
           "value": "#420f0c",
           "eligibility": {
@@ -39836,7 +39865,9 @@
           "role": "color.interaction.scrollbar.thumb",
           "nativeKeys": [
             "nativeExplorer.scrollbar",
-            "powertoys.markdown.SCROLLBAR"
+            "powertoys.markdown.SCROLLBAR",
+            "windows-11-start-menu-styler | web * | scrollbar-color",
+            "windows-11-start-menu-styler | web ::-webkit-scrollbar-thumb | background-color"
           ],
           "value": "#420f0c",
           "eligibility": {
@@ -39889,7 +39920,8 @@
             "nativeExplorer.selected",
             "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@Selected",
             "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@PointerOverSelected",
-            "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@PressedSelected"
+            "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@PressedSelected",
+            "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"], .suggestion[aria-selected=\"true\"] .details, .suggestion[aria-selected=\"true\"] .iconContainer, .scope-tile--selected > div | background-color"
           ],
           "value": "#531310",
           "eligibility": {
@@ -39937,16 +39969,18 @@
         },
         {
           "role": "color.interaction.selection.text",
-          "nativeKeys": [],
+          "nativeKeys": [
+            "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"], .suggestion[aria-selected=\"true\"] .details, .suggestion[aria-selected=\"true\"] .iconContainer, .scope-tile--selected > div | color"
+          ],
           "value": "#f4eeee",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
-          "state": "unsupported",
-          "surface": "unsupported",
-          "reason": "Outside Windows visual adapter scope; preserve host semantics.",
+          "state": "mapped",
+          "surface": "shell",
+          "reason": "Search WebView selected-result foreground; native semantics and forced colors are retained.",
           "source": "ports/windows/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -41607,7 +41641,12 @@
             "calculator.resource.SystemControlBackgroundAltHighBrush",
             "calculator.resource.SystemControlBackgroundChromeMediumLowBrush",
             "calculator.resource.SolidBackgroundFillColorBaseBrush",
-            "powertoys.markdown.CANVAS"
+            "powertoys.markdown.CANVAS",
+            "windows-11-start-menu-styler | Border#AppBorder | Background",
+            "windows-11-start-menu-styler | Border#TaskbarSearchBackground | Background",
+            "windows-11-start-menu-styler | Cortana.UI.Views.RichSearchBoxControl#SearchBoxControl > Grid#RootGrid | Background",
+            "windows-11-start-menu-styler | web body, #root, #root.darkTheme, .scope-with-background, .suggsList, .suggsListContainer, .suggContainer, .previewContainer, .suggDetailsContainer, .contextMenu, #menuContainer | background-color",
+            "windows-11-start-menu-styler | web ::-webkit-scrollbar-track | background-color"
           ],
           "value": "#000000",
           "eligibility": {
@@ -41728,7 +41767,9 @@
             "windows-11-start-menu-styler | StartDocked.SearchBoxToggleButton > Grid > Border#BorderElement | Background",
             "windows-11-start-menu-styler | StartMenu.SearchBoxToggleButton > Grid > Border#BorderElement | Background",
             "calculator.resource.CalcButtonFillColorDefaultBrush",
-            "calculator.resource.CalcButtonAltFillColorDefaultBrush"
+            "calculator.resource.CalcButtonAltFillColorDefaultBrush",
+            "windows-11-start-menu-styler | Cortana.UI.Views.RichSearchBoxControl > Grid > Border#BorderElement | Background",
+            "windows-11-start-menu-styler | web .iconContainer, .previewContainer .imageContainer, .scope-tile > div, button, .button, .actionButton | background-color"
           ],
           "value": "#000000",
           "eligibility": {
@@ -42267,7 +42308,11 @@
             "calculator.resource.CalcButtonTextFillColorDefaultBrush",
             "calculator.resource.CalcButtonTextFillColorHoverBrush",
             "calculator.resource.AppControlPageTextBaseHighColorBrush",
-            "calculator.resource.TextFillColorPrimaryBrush"
+            "calculator.resource.TextFillColorPrimaryBrush",
+            "windows-11-start-menu-styler | web body, #root, #root.darkTheme, .scope-with-background, .suggsList, .suggsListContainer, .suggContainer, .previewContainer, .suggDetailsContainer, .contextMenu, #menuContainer | color",
+            "windows-11-start-menu-styler | web h1, h2, h3, h4, p, .title, .details, .secondaryText, .groupTitle, .suggestion, .scope-tile > div, .menu-item_details, .previewContainer, button | color",
+            "windows-11-start-menu-styler | web .iconContainer, .previewContainer .imageContainer, .scope-tile > div, button, .button, .actionButton | color",
+            "windows-11-start-menu-styler | web .suggestion:hover, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover | color"
           ],
           "value": "#e99499",
           "eligibility": {
@@ -42417,7 +42462,8 @@
             "calculator.resource.CalcButtonTextFillColorPressedBrush",
             "calculator.resource.AppControlPageTextBaseMediumHighBrush",
             "calculator.resource.AppControlForegroundSecondaryBrush",
-            "calculator.resource.TextFillColorSecondaryBrush"
+            "calculator.resource.TextFillColorSecondaryBrush",
+            "windows-11-start-menu-styler | web .secondaryText, .details .secondaryText | color"
           ],
           "value": "#bd787d",
           "eligibility": {
@@ -43359,7 +43405,10 @@
             "windows-11-notification-center-styler | Button#IncreaseTimeButton | CornerRadius",
             "windows-11-notification-center-styler | Button#DecreaseTimeButton | CornerRadius",
             "windows-11-notification-center-styler | Button#StartButton | CornerRadius",
-            "windows-11-notification-center-styler | Button#VerbButton | CornerRadius"
+            "windows-11-notification-center-styler | Button#VerbButton | CornerRadius",
+            "windows-11-start-menu-styler | Border#AppBorder | CornerRadius",
+            "windows-11-start-menu-styler | Border#TaskbarSearchBackground | CornerRadius",
+            "windows-11-start-menu-styler | Cortana.UI.Views.RichSearchBoxControl#SearchBoxControl > Grid#RootGrid | CornerRadius"
           ],
           "value": "0px",
           "eligibility": {

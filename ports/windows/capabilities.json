@@ -606,8 +606,8 @@
     },
     "color.border.active": {
       "state": "mapped",
-      "surface": "powertoys",
-      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
+      "surface": "shell",
+      "reason": "Native red accent, owner-requested folder edges and navigation pins, shell control borders and supported PowerToys accents; import and visual acceptance are separate."
     },
     "color.border.overlay": {
       "state": "mapped",
@@ -645,9 +645,9 @@
       "reason": "Canonical semantic role mapped by host.json."
     },
     "color.interaction.selection.text": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Search WebView selected-result foreground; native semantics and forced colors are retained."
     },
     "color.interaction.selection.inactive-bg": {
       "state": "mapped",

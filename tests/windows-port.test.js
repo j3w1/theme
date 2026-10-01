@@ -9,6 +9,7 @@ import {createHash} from 'node:crypto';
 import {repoRoot,readJson} from '../scripts/lib/fs.mjs';
 import {assertPortArtifacts} from '../scripts/lib/port-artifacts.mjs';
 import {CURSOR_NAMES,windowsStyleValue} from '../scripts/lib/windows-port.mjs';
+import {folderIconFile} from '../scripts/lib/windows-folder-icon.mjs';
 import {flattenStylerSettings} from '../ports/windows/src/compatibility.mjs';
 
 const source=path.join(repoRoot,'ports/windows');
@@ -17,6 +18,36 @@ const sha=b=>createHash('sha256').update(b).digest('hex');
 const read=p=>JSON.parse(fs.readFileSync(p,'utf8').replace(/^\uFEFF/,''));
 const readConfig=p=>{const errors=[];const value=parse(fs.readFileSync(p,'utf8').replace(/^\uFEFF/,''),errors,{allowTrailingComma:true});assert.deepEqual(errors,[],`Invalid settings: ${p}`);return value;};
 const write=(p,x)=>{fs.mkdirSync(path.dirname(p),{recursive:true});fs.writeFileSync(p,typeof x==='string'?x:JSON.stringify(x,null,2)+'\n');};
+
+test('folder ICO retains transparent multiscale silhouettes and only the requested palette',()=>{
+ const colors=['#bc1111','#e53131'];
+ for(const open of [false,true]){
+  const bytes=folderIconFile(...colors,open);
+  assert.equal(bytes.readUInt16LE(2),1);
+  assert.equal(bytes.readUInt16LE(4),10);
+  for(let i=0;i<10;i++){
+   const entry=6+16*i,size=bytes[entry]||256,offset=bytes.readUInt32LE(entry+12);
+   assert.equal(bytes.readInt32LE(offset+4),size);
+   assert.equal(bytes.readInt32LE(offset+8),size*2);
+   let transparent=0,opaque=0,partial=0;
+   for(let p=offset+40;p<offset+40+size*size*4;p+=4){
+    const alpha=bytes[p+3];if(!alpha){transparent++;continue;}
+    if(alpha===255)opaque++;else partial++;
+    // A red folder has no surviving yellow/cyan/neutral source pixels.
+    assert.ok(bytes[p+2]>bytes[p+1] && bytes[p+1]===bytes[p]);
+   }
+   assert.ok(transparent>0 && opaque>0 && partial>0);
+  }
+ }
+ assert.notDeepEqual(folderIconFile(...colors),folderIconFile(...colors,true));
+});
+
+test('Search web-style replacement terminates old selectors and leaves input behavior intact',()=>{
+ const result=flattenStylerSettings({controlStyles:[],webContentStyles:[{target:'.suggestion',styles:['background-color: black !important']}]});
+ assert.equal(result['webContentStyles[1].target'],'');
+ assert.equal(result['webContentStyles[0].styles[1]'],'');
+ assert.equal(flattenStylerSettings({controlStyles:[]})['webContentStyles[0].target'],'');
+});
 function fixture(t) {
  const state=fs.mkdtempSync(path.join(os.tmpdir(),'j3w1-windows-test-'));
  t.after(()=>fs.rmSync(state,{recursive:true,force:true}));
@@ -24,7 +55,7 @@ function fixture(t) {
  const before='\uFEFF{\n // keep this comment\n "profiles": {"list": [{"guid":"one","commandline":"keep-one","font":{"size":17},"colorScheme":"j3w1zsh"},{"guid":"two","commandline":"keep-two"}]},\n "keybindings": [{"command":"paste","keys":"ctrl+v"}],\n}\n';
  write(terminal,before);
  const run=(action,extra={})=>spawnSync(process.execPath,[runtime],{input:JSON.stringify({action,source,state,fixture:true,mode:'Native',revision:'1'.repeat(40),...extra}),encoding:'utf8',timeout:30000});
- const ok=(action,extra={})=>{const r=run(action,extra);assert.equal(r.status,0,`${action}: ${r.stderr}`);return r;};
+ const ok=(action,extra={})=>{const r=run(action,extra);assert.equal(r.status,0,`${action}: ${r.stdout}\n${r.stderr}`);return r;};
  return {state,terminal,before,run,ok,journal:()=>read(path.join(state,'journal.json'))};
 }
 
@@ -379,7 +410,7 @@ test('shorter styler arrays terminate retained targets, nested styles and resour
  assert.equal(live['themeResourceVariables[1]'],'');
  assert.equal(live['styleConstants[0]'],'');
  const empty=flattenStylerSettings({controlStyles:[],themeResourceVariables:[],styleConstants:[]});
- assert.deepEqual(empty,{'controlStyles[0].target':'','themeResourceVariables[0]':'','styleConstants[0]':''});
+ assert.deepEqual(empty,{'controlStyles[0].target':'','webContentStyles[0].target':'','themeResourceVariables[0]':'','styleConstants[0]':''});
  const omitted=flattenStylerSettings({controlStyles:[{target:'NewRoot',styles:[]}]});
  assert.equal(omitted['themeResourceVariables[0]'],'');assert.equal(omitted['styleConstants[0]'],'');
  assert.equal(omitted['controlStyles[0].styles[0]'],'');

@@ -52,7 +52,9 @@ public static class J3w1StartLayoutProbe {
     } | ConvertTo-Json -Compress
   }
   {$_ -in 'get','set'} {
-    if($request.key -notmatch '^(Software\\Microsoft\\Windows\\(DWM|CurrentVersion\\(Themes\\Personalize|Explorer\\Accent|Run))|Control Panel\\(Desktop|Cursors|Colors))$'){throw 'Registry target outside the Windows visual adapter scope'}
+    $folderDefault=($request.key -in 'Software\Classes\Folder\DefaultIcon','Software\Classes\Directory\DefaultIcon') -and $request.name -ceq ''
+    $folderShell=$request.key -ceq 'Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons' -and $request.name -in '3','4'
+    if(-not $folderDefault -and -not $folderShell -and $request.key -notmatch '^(Software\\Microsoft\\Windows\\(DWM|CurrentVersion\\(Themes\\Personalize|Explorer\\Accent|Run))|Control Panel\\(Desktop|Cursors|Colors))$'){throw 'Registry target outside the Windows visual adapter scope'}
     $key=[Microsoft.Win32.Registry]::CurrentUser.OpenSubKey($request.key,$request.operation -eq 'set')
     try {
       if($request.operation -eq 'get') {
@@ -83,6 +85,7 @@ public static class J3w1StartLayoutProbe {
 using System;
 using System.Runtime.InteropServices;
 public static class J3w1Personalization {
+ [DllImport("shell32.dll")] public static extern void SHChangeNotify(uint kind,uint flags,IntPtr first,IntPtr second);
  [DllImport("user32.dll",CharSet=CharSet.Unicode,SetLastError=true)] public static extern bool SystemParametersInfo(uint action,uint param,string value,uint flags);
  [DllImport("user32.dll",EntryPoint="SystemParametersInfoW",SetLastError=true)] public static extern bool ReloadPointers(uint action,uint param,IntPtr value,uint flags);
  [DllImport("user32.dll",CharSet=CharSet.Unicode,SetLastError=true)] public static extern IntPtr SendMessageTimeout(IntPtr window,uint msg,UIntPtr wParam,string lParam,uint flags,uint timeout,out UIntPtr result);
@@ -93,6 +96,7 @@ public static class J3w1Personalization {
     if(-not [J3w1Personalization]::ReloadPointers(87,0,[IntPtr]::Zero,0)){throw ('Cursor refresh failed: Win32 '+[Runtime.InteropServices.Marshal]::GetLastWin32Error())}
     $result=[UIntPtr]::Zero
     [void][J3w1Personalization]::SendMessageTimeout([IntPtr]0xffff,0x1a,[UIntPtr]::Zero,'ImmersiveColorSet',2,2000,[ref]$result)
+    [J3w1Personalization]::SHChangeNotify(0x08000000,0x2000,[IntPtr]::Zero,[IntPtr]::Zero)
     @{ok=$true}|ConvertTo-Json -Compress
   }
   default {throw 'Unknown Windows adapter operation'}

@@ -184,6 +184,14 @@
     {
       "path": "dist/markdown-theme.css",
       "install": "Use the pinned Windows lifecycle installer."
+    },
+    {
+      "path": "dist/j3w1-folder.ico",
+      "install": "Run the single pinned ports/windows/install.ps1; folder defaults are included in its saved rollback."
+    },
+    {
+      "path": "dist/j3w1-folder-open.ico",
+      "install": "Run the single pinned ports/windows/install.ps1; folder defaults are included in its saved rollback."
     }
   ],
   "mappingPath": "mapping.json",

@@ -8,6 +8,9 @@ Markdown and classic-menu adapters from applications that still need their own s
 
 ## Install
 
+Download **install.ps1** and run it. The same file installs, updates, tests,
+restores and uninstalls the port. There is no separate setup script.
+
 1. Open **Windows PowerShell** as your normal desktop user on Windows 11 x64.
 2. Paste the command below. Setup obtains required runtimes, checks compatibility,
    installs the theme, runs Test, and prints the exact recovery commands.
@@ -34,7 +37,7 @@ Windows Terminal and PowerToys are **optional**. Existing supported installation
 are themed; setup does not install those apps. The canonical font, Node and
 Full-mode Windhawk dependencies are obtained automatically when needed.
 
-Before v4.0.0 is published, download `ports/windows/setup.ps1` from the full
+Before v4.0.0 is published, download `ports/windows/install.ps1` from the full
 immutable commit supplied with the reviewed PR and run it with `-Revision` and
 that same commit. Do not use a branch URL. Developer/offline instructions are
 in [Compatibility](COMPATIBILITY.md#developer-and-offline-installation).
@@ -56,9 +59,9 @@ inspection. Close app settings windows before updating to avoid concurrent edits
 Run **one** command with the same setup script you downloaded:
 
 ```powershell
-& ./setup.ps1 -Action Restore -Latest  # undo the last update
-& ./setup.ps1 -Action Restore         # restore the original appearance
-& ./setup.ps1 -Action Uninstall       # restore and remove theme integration
+& ./install.ps1 -Action Restore -Latest  # undo the last update
+& ./install.ps1 -Action Restore         # restore the original appearance
+& ./install.ps1 -Action Uninstall       # restore and remove theme integration
 ```
 
 Recovery is offline and finds the installed version and runtime automatically.
@@ -106,13 +109,31 @@ same frame/surface rules where its XAML controls expose them. See
   compatibility guard. The guard never downloads updates.
 
 Desktop icons, shortcuts, utility enabled states, window placement and assigned
-layouts are preserved. Explorer native file-list, navigation, resting column
+layouts are preserved. Generic folder defaults use original red folder artwork
+in ten native icon sizes, including a separate open-folder silhouette. The same
+transaction saves the earlier folder registrations and restores them on rollback.
+Explicit per-folder and shortcut icons retain their own registrations. Icon-cache
+refresh is requested through the shell; no cache files are deleted and Explorer
+is never force-restarted. Live coverage of every Explorer view remains pending.
+Navigation pins retain their native silhouette with a red accent. The native
+sidebar separator retains its DPI width and uses the canonical divider color;
+the XAML command-bar divider lines use that same role. These adapters change
+paint output without replacing image lists, altering folder contents or hiding
+controls. Their exact-version and high-contrast boundaries remain in force.
+Explorer native file-list, navigation, resting column
 headers and preview-placeholder surfaces use black/rose on the exact supported
 host. Native selection, hover and scrollbar paint geometry is retained with token
 colors. Input behavior and third-party preview content remain host-controlled. Other unsupported Win32 foregrounds remain host-controlled.
 No binary theme patching or shell replacement is used. Reopen affected apps
 gracefully when required; the installer never force-kills terminals or reboots.
 All distribution files are generated. Edit semantic mappings and regenerate.
+
+Search is a separate interface from the pinned-app Start page. Its XAML frame and
+WebView recent/results/category/preview panels now use the same token palette.
+The existing pinned styler applies CSS through its supported `webContentStyles`
+field; there is no custom JavaScript, behavior replacement or remote-debugging
+configuration. Search icons retain their fonts and images, and forced colors
+retain native priority. Live interaction acceptance remains open.
 
 ### PowerToys text-preview palette
 

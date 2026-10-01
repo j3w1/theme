@@ -6,7 +6,7 @@ $tokens=$null;$errors=$null
 $ast=[Management.Automation.Language.Parser]::ParseFile($Installer,[ref]$tokens,[ref]$errors)
 if($errors.Count){throw ($errors|Out-String)}
 $names=@('Assert-SafePath','Get-VerifiedDownload','Test-ThemeFont','Install-ThemeFont','Write-PrivateJson')
-foreach($fn in $ast.FindAll({param($n) $n -is [Management.Automation.Language.FunctionDefinitionAst]},$false)){
+foreach($fn in $ast.FindAll({param($n) $n -is [Management.Automation.Language.FunctionDefinitionAst]},$true)){
  if($fn.Name -in $names){. ([scriptblock]::Create($fn.Extent.Text))}
 }
 $downloads=Join-Path $Root 'downloads';New-Item -ItemType Directory $downloads|Out-Null

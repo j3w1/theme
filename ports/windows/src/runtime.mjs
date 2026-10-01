@@ -116,6 +116,13 @@ const accent=v['native.accent'].slice(1),rgb=accent.match(/../g),abgr=parseInt('
 reg('Software\\Microsoft\\Windows\\DWM','AccentColor',abgr);reg('Software\\Microsoft\\Windows\\DWM','ColorizationColor',argb);reg('Software\\Microsoft\\Windows\\DWM','ColorPrevalence',1);
 reg('Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Accent','AccentColorMenu',abgr);
 const assets=path.join(state,'assets');file(path.join(assets,'j3w1-wallpaper.bmp'),'j3w1-wallpaper.bmp');
+// Only generic folder defaults change. Per-folder desktop.ini and shortcuts
+// retain their own icon registrations; defaults and assets share the journal.
+for(const open of [false,true]){
+ const name='j3w1-folder'+(open?'-open':'')+'.ico';file(path.join(assets,name),name);
+ reg('Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Icons',open?'4':'3',path.join(assets,name),'String');
+}
+for(const category of ['Folder','Directory'])reg('Software\\Classes\\'+category+'\\DefaultIcon','',path.join(assets,'j3w1-folder.ico'),'String');
 const lockBaseline=lockscreen({operation:'get'});
 if(lockBaseline.exists)ops.push({kind:'lockscreen',after:{exists:true,value:fs.readFileSync(path.join(source,'dist/j3w1-wallpaper.bmp')).toString('base64'),extension:'.bmp'}});
 reg('Control Panel\\Desktop','Wallpaper',path.join(assets,'j3w1-wallpaper.bmp'),'String');reg('Control Panel\\Desktop','WallpaperStyle','10','String');reg('Control Panel\\Desktop','TileWallpaper','0','String');

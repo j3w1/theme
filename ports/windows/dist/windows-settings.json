@@ -38,7 +38,9 @@
     "terminal.ansi.12": "#db433a",
     "terminal.ansi.13": "#ed5360",
     "terminal.ansi.14": "#e6565a",
-    "terminal.ansi.15": "#b17e81"
+    "terminal.ansi.15": "#b17e81",
+    "folder.fill": "#7d1310",
+    "folder.edge": "#e53935"
   },
   "stylerVariants": {
     "windows-11-start-menu-styler": {
@@ -123,9 +125,9 @@
   "bundledMods": [
     {
       "id": "j3w1-explorer-native",
-      "version": "1.2",
+      "version": "1.3",
       "path": "dist/j3w1-explorer-native.wh.cpp",
-      "sha256": "3f58e124b40e0fe4494f8c0165f4bc4cf879821b3e3e74e9dcc9c2c4243521a9"
+      "sha256": "ab307e1938c58b89212b845e097fc062d7858d3b940e57fcaa432ca3a05a1e38"
     },
     {
       "id": "j3w1-powertoys-preview",

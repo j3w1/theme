@@ -25,6 +25,11 @@ static HDC target;
 static HWND expectedWindow;
 static LPCSCROLLINFO expectedInfo;
 static int calls;
+static HIMAGELIST fixtureStateImages=(HIMAGELIST)0x1234;
+static LRESULT CALLBACK FixtureTreeProc(HWND window,UINT message,WPARAM wParam,LPARAM lParam){
+    if(message==TVM_GETIMAGELIST)return wParam==TVSIL_STATE?(LRESULT)fixtureStateImages:0;
+    return DefWindowProcW(window,message,wParam,lParam);
+}
 static int WINAPI ScrollPaint(HWND window,int bar,LPCSCROLLINFO info,BOOL redraw){
     assert(window==expectedWindow && bar==SB_VERT && info==expectedInfo && redraw==TRUE);calls++;
     RECT rect{0,0,32,32},clip{0,0,16,32};
@@ -211,6 +216,57 @@ int main(){
             ThemeColorHook(nullptr,MENU_POPUPBACKGROUND,0,TMT_FILLCOLOR,&readback);assert(readback==queryColor);}
     }
     fixtureActiveWindow=nullptr;
+    // Real GDI line pixels and unchanged selected pen, including memory paint
+    // ownership, DPI width, high contrast and unrelated-control boundaries.
+    HWND tree=Window(L"SysTreeView32",folder);
+    originalPolyline=Polyline;border=RGB(43,14,13);
+    HPEN neutral=CreatePen(PS_SOLID,2,RGB(56,56,56));assert(neutral);
+    HGDIOBJ oldPen=SelectObject(target,neutral);
+    POINT separator[]={{2,12},{30,12}};
+    paintWindows.clear();paintWindows.push_back(tree);
+    assert(NavigationLineHook(target,separator,2));GdiFlush();
+    assert(GetPixel(target,16,12)==border && GetCurrentObject(target,OBJ_PEN)==neutral);
+    fixtureHighContrast=true;
+    assert(NavigationLineHook(target,separator,2));GdiFlush();
+    assert(GetPixel(target,16,12)==RGB(56,56,56));fixtureHighContrast=false;
+    paintWindows.back()=sink;
+    assert(NavigationLineHook(target,separator,2));GdiFlush();
+    assert(GetPixel(target,16,12)==RGB(56,56,56));
+    paintWindows.back()=tree;enabled=false;
+    assert(NavigationLineHook(target,separator,2));GdiFlush();
+    assert(GetPixel(target,16,12)==RGB(56,56,56));enabled=true;
+    SelectObject(target,oldPen);DeleteObject(neutral);
+    SetWindowLongPtrW(tree,GWLP_WNDPROC,(LONG_PTR)FixtureTreeProc);
+    pin=RGB(181,27,22);imageListCount=[](HIMAGELIST list)->int{assert(list==fixtureStateImages);return 3;};
+    static HDC pinDestination;pinDestination=target;
+    static bool pinPassThrough;
+    originalImageListDraw=[](void* self,IMAGELISTDRAWPARAMS* p)->HRESULT {
+        assert(self==(void*)fixtureStateImages && p->i==1 && p->cx==8 && p->cy==8);
+        pinPassThrough=p->hdcDst==pinDestination;
+        if(pinPassThrough)return 37;
+        DIBSECTION dib{};assert(GetObjectW(GetCurrentObject(p->hdcDst,OBJ_BITMAP),sizeof(dib),&dib)==sizeof(dib));
+        auto pixels=(DWORD*)dib.dsBm.bmBits;
+        pixels[2*8+2]=0xff95a0a6;pixels[2*8+3]=0x804a5053;
+        return S_OK;
+    };
+    IMAGELISTDRAWPARAMS request{};request.cbSize=sizeof(request);request.himl=fixtureStateImages;
+    request.i=1;request.hdcDst=target;request.x=request.y=2;request.cx=request.cy=8;
+    request.fStyle=ILD_SCALE;request.rgbBk=CLR_NONE;
+    auto beforeRequest=request;FillRect(target,&rect,black);
+    assert(NavigationPinHook((void*)fixtureStateImages,&request)==S_OK);GdiFlush();
+    assert(!pinPassThrough && GetPixel(target,4,4)==pin && GetPixel(target,2,2)==RGB(0,0,0));
+    COLORREF edgePixel=GetPixel(target,5,4);
+    assert(GetRValue(edgePixel)>0 && GetRValue(edgePixel)<GetRValue(pin));
+    assert(memcmp(&request,&beforeRequest,sizeof(request))==0);
+    fixtureHighContrast=true;
+    assert(NavigationPinHook((void*)fixtureStateImages,&request)==37 && pinPassThrough);
+    fixtureHighContrast=false;paintWindows.back()=sink;
+    assert(NavigationPinHook((void*)fixtureStateImages,&request)==37 && pinPassThrough);
+    paintWindows.back()=tree;request.fStyle=ILD_NORMAL;
+    assert(NavigationPinHook((void*)fixtureStateImages,&request)==37 && pinPassThrough);
+    request.fStyle=ILD_SCALE;enabled=false;
+    assert(NavigationPinHook((void*)fixtureStateImages,&request)==37 && pinPassThrough);enabled=true;
+    DestroyWindow(tree);
     paintWindows.clear();assert(!RenameDC(target));DeleteObject(black);SelectObject(target,old);DeleteObject(bitmap);DeleteDC(target);
     DestroyWindow(edit);DestroyWindow(otherEdit);DestroyWindow(sink);DestroyWindow(folder);DestroyWindow(unrelated);
     puts("PASS: scoped menu pixels/text, disabled and hot states, clipping, nested and unrelated owners, high contrast, early-query boundaries and API arguments/return values; native focus border, antialiased corners, preserved interior/unknown colors, state and clipping; SetScrollInfo-owned native paint pixels, clipping, nested scope and argument/return preservation; native rename selection pixels and DC restoration; unknown color, other edit, unrelated owner and disabled passthrough");
