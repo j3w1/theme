@@ -45,11 +45,28 @@ int main(){
  HeaderPin bad=pin;bad.styleOffset=pin.length+1;assert(!PaletteString((prefix+suffix).c_str(),themed,&bad,1));
  assert(GuidHtml(L"01234567-89ab-cdef-0123-456789abcdef.html"));assert(!GuidHtml(L"user.html"));
  wchar_t temp[MAX_PATH]{};assert(GetTempPathW(MAX_PATH,temp));tempFolder=std::wstring(temp)+L"j3w1-markdown-regression-"+std::to_wstring(GetCurrentProcessId())+L"\\";
- assert(CreateDirectoryW(tempFolder.c_str(),nullptr));enabled=true;originalCreateFile=CreateFileW;
+ assert(CreateDirectoryW(tempFolder.c_str(),nullptr));
+ // GetTempPathW may return an 8.3 alias on hosted Windows. Admit only the
+ // canonical specimen path; production deliberately refuses aliases.
+ HANDLE directory=CreateFileW(tempFolder.c_str(),FILE_READ_ATTRIBUTES,FILE_SHARE_READ|FILE_SHARE_WRITE|FILE_SHARE_DELETE,
+  nullptr,OPEN_EXISTING,FILE_FLAG_BACKUP_SEMANTICS|FILE_FLAG_OPEN_REPARSE_POINT,nullptr);assert(directory!=INVALID_HANDLE_VALUE);
+ wchar_t canonical[32768]{};DWORD canonicalLength=GetFinalPathNameByHandleW(directory,canonical,32768,FILE_NAME_NORMALIZED|VOLUME_NAME_DOS);
+ assert(CloseHandle(directory));assert(canonicalLength>4&&canonicalLength<32768&&wcsncmp(canonical,L"\\\\?\\",4)==0);
+ tempFolder=canonical+4;if(tempFolder.back()!=L'\\')tempFolder+=L'\\';assert(NoReparseParents(tempFolder));
+ enabled=true;originalCreateFile=CreateFileW;
  std::wstring file=tempFolder+L"01234567-89ab-cdef-0123-456789abcdef.html",unowned=tempFolder+L"11234567-89ab-cdef-0123-456789abcdef.html",link=tempFolder+L"21234567-89ab-cdef-0123-456789abcdef.html";
  std::string document=head+std::string(1500010,'z')+"</body></html>";
  Save(unowned,document,false);assert(PaletteFile(unowned,&pin,1)==FilePaletteResult::unchanged);assert(Read(unowned)==document);
- Save(file,document,true);assert(PaletteFile(file,&pin,1)==FilePaletteResult::changed);
+ Save(file,document,true);assert(createdFiles.size()==1);
+ // A file reached through a short-name alias is still rejected, even when it
+ // has the tracked numeric identity. Do not weaken the production boundary.
+ wchar_t alias[32768]{};DWORD aliasLength=GetShortPathNameW(file.c_str(),alias,32768);
+ if(aliasLength&&aliasLength<32768&&_wcsicmp(alias,file.c_str())!=0){
+  HANDLE aliased=CreateFileW(alias,GENERIC_READ,FILE_SHARE_READ,nullptr,OPEN_EXISTING,0,nullptr);assert(aliased!=INVALID_HANDLE_VALUE);
+  FILE_ID_INFO identity{};assert(!FileIdentity(aliased,alias,identity));assert(CloseHandle(aliased));
+  assert(PaletteFile(alias,&pin,1)==FilePaletteResult::unchanged);assert(Read(file)==document);
+ }
+ assert(PaletteFile(file,&pin,1)==FilePaletteResult::changed);
  std::string expected=document;expected.replace(pin.styleOffset,pin.styleLength,Style(pin));assert(Read(file)==expected);
  // Only the same-length CSS extent changes; the entire synthetic suffix is exact.
  Save(file,document,false);writeFault=1;assert(PaletteFile(file,&pin,1)==FilePaletteResult::unchanged);assert(Read(file)==document);

@@ -662,3 +662,26 @@ open. Windows startup/loading surfaces before HTML navigation, other DPI,
 high-contrast switching and additional document features are not certified.
 Setup Test checks managed artifacts/settings; it does not prove native admission
 or appearance. Reselect a file after update, disable, Restore or Uninstall.
+
+
+### Markdown reading layout acceptance and hosted fixture correction
+
+The owner accepted the improved heading sizes, spacing, code block, quotation
+and table formatting after refreshing the live Markdown specimen. This is
+bounded appearance acceptance; other DPI and runtime high-contrast cases remain
+open. The installed managed adapter remains enabled and PowerToys remains the
+parser and renderer.
+
+The first hosted run after integration failed in two test fixtures. The native
+Markdown test used the temporary directory spelling returned by Windows, which
+can be an 8.3 alias. Its specimen now obtains the canonical path through a
+directory handle, asserts non-reparse parents and separately tests alias
+rejection. The production identity and path checks are unchanged.
+
+The narrow composed-consumption trace showed Escape closing normally and the
+later Confirm leaving the dialog open. Native dialog close queues an event;
+opening the next confirmation before the sealed fixture's close handler ran
+allowed the previous handler to clear its new pending state. The browser test
+now observes the complete close event before the next open. The historical
+candidate bytes, focus assertions, accessibility scan and all four closing
+actions are retained. This corrects test scheduling, not the sealed candidate.

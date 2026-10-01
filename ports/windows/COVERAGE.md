@@ -22,7 +22,7 @@ own import evidence meets the port contract.
 | Explorer drag-selection rectangle | Symbol-identified UIMarqueeSelector rooted at the actual Explorer UIItemsView; scoped cached-system-brush substitution, canonical red fill at 12% and themed border | Owner accepted the live red selection area with rose borders. Native solid border is a geometry deviation; other DPI and accessibility cases remain open |
 | Explorer filename selection and selected-row outline | Scoped Edit selection and native ListView border color mappings | Border pixel regression passes; corrected live rename outline still needs acceptance |
 | PowerToys plain-text/code preview and loading controls | Exact-version, hash-checked Monaco template adapter and native loading palette | Owner confirmed loaded preview and loading control; this does not cover Markdown |
-| PowerToys Markdown preview | Digest-pinned WebView2 HTML-boundary adapter and token-derived reading CSS for normal and large-file routes | Synthetic native preservation/rejection/recovery tests and bounded live sample checks; visual quality acceptance, other DPI and runtime accessibility cases remain open |
+| PowerToys Markdown preview | Digest-pinned WebView2 HTML-boundary adapter and token-derived reading CSS for normal and large-file routes | Synthetic native preservation/rejection/recovery tests and bounded live sample checks; owner accepted heading size, spacing, code, quotation and table formatting. Other DPI and runtime accessibility cases remain open |
 | Explorer classic “Show more options” menu | Scoped exact-host Win32 popup palette | Confirmed owner/paint trace and native regressions; live normal, hot, disabled and submenu appearance still need verification |
 | Notepad | Native dark-mode/accent treatment only | Modern WinUI 3 chrome and editor need a dedicated adapter; not the legacy Notepad dark-mode mod |
 | Calculator | Bundled package-gated Windows.UI.Xaml brush adapter for the recorded 11.2607.0.0 package | Live body/buttons, startup, restore and accessibility acceptance remain open; graph-series brushes are excluded |
@@ -139,7 +139,7 @@ symbols and the red drag-selection area with rose borders. These are bounded
 live observations, not whole-ecosystem or accessibility acceptance.
 
 Keep the Windows candidate draft while the owner-reported rename outline,
-scrollbar transient, classic menu, Markdown, Notepad, Calculator and Paint
+scrollbar transient, classic menu, Notepad, Calculator and Paint
 requirements remain unresolved or unverified. Installer Test checks managed
 state, hashes and compatibility; it cannot accept visual behavior. A Computer
 Use cancellation message does not prove that the owner pressed a physical key.
