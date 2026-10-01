@@ -10,7 +10,7 @@ import {repoRoot,readJson} from '../scripts/lib/fs.mjs';
 import {assertPortArtifacts} from '../scripts/lib/port-artifacts.mjs';
 import {CURSOR_NAMES,windowsStyleValue} from '../scripts/lib/windows-port.mjs';
 import {folderIconFile} from '../scripts/lib/windows-folder-icon.mjs';
-import {flattenStylerSettings} from '../ports/windows/src/compatibility.mjs';
+import {flattenStylerSettings,stylerSettings} from '../ports/windows/src/compatibility.mjs';
 
 const source=path.join(repoRoot,'ports/windows');
 const runtime=path.join(source,'dist/runtime.cjs');
@@ -46,7 +46,10 @@ test('Search web-style replacement terminates old selectors and leaves input beh
  const result=flattenStylerSettings({controlStyles:[],webContentStyles:[{target:'.suggestion',styles:['background-color: black !important']}]});
  assert.equal(result['webContentStyles[1].target'],'');
  assert.equal(result['webContentStyles[0].styles[1]'],'');
- assert.equal(flattenStylerSettings({controlStyles:[]})['webContentStyles[0].target'],'');
+ // Taskbar/Explorer/Settings do not declare Start's Search interface. Their
+ // native CLI rejects this key rather than silently accepting an unused value.
+ assert.equal(flattenStylerSettings({controlStyles:[]})['webContentStyles[0].target'],undefined);
+ assert.equal(flattenStylerSettings(stylerSettings({controlStyles:[]},{redesigned:[]},'redesigned'))['webContentStyles[0].target'],'');
 });
 function fixture(t) {
  const state=fs.mkdtempSync(path.join(os.tmpdir(),'j3w1-windows-test-'));
@@ -410,7 +413,9 @@ test('shorter styler arrays terminate retained targets, nested styles and resour
  assert.equal(live['themeResourceVariables[1]'],'');
  assert.equal(live['styleConstants[0]'],'');
  const empty=flattenStylerSettings({controlStyles:[],themeResourceVariables:[],styleConstants:[]});
- assert.deepEqual(empty,{'controlStyles[0].target':'','webContentStyles[0].target':'','themeResourceVariables[0]':'','styleConstants[0]':''});
+ assert.deepEqual(empty,{'controlStyles[0].target':'','themeResourceVariables[0]':'','styleConstants[0]':''});
+ const startEmpty=flattenStylerSettings(stylerSettings({controlStyles:[],themeResourceVariables:[],styleConstants:[]},{redesigned:[]},'redesigned'));
+ assert.equal(startEmpty['webContentStyles[0].target'],'');
  const omitted=flattenStylerSettings({controlStyles:[{target:'NewRoot',styles:[]}]});
  assert.equal(omitted['themeResourceVariables[0]'],'');assert.equal(omitted['styleConstants[0]'],'');
  assert.equal(omitted['controlStyles[0].styles[0]'],'');

@@ -48,11 +48,10 @@ function shellCompatibility(actual, entries) {
 function stylerSettings(base, variants, layout) {
   if (!variants) return base;
   if (!Object.hasOwn(variants, layout)) throw Error("Unknown Start layout; styler remains disabled");
-  return { ...base, disableNewStartMenuLayout: "default", controlStyles: [...base.controlStyles, ...variants[layout]] };
+  return { webContentStyles: [], ...base, disableNewStartMenuLayout: "default", controlStyles: [...base.controlStyles, ...variants[layout]] };
 }
 function flattenStylerSettings(value, prefix = "", out = {}) {
   if (prefix === "" && value && Array.isArray(value.controlStyles)) {
-    if (!Object.hasOwn(value, "webContentStyles")) out["webContentStyles[0].target"] = "";
     for (const key of ["themeResourceVariables", "styleConstants"])
       if (!Object.hasOwn(value, key)) out[`${key}[0]`] = "";
   }

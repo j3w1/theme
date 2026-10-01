@@ -12,7 +12,9 @@ export function shellCompatibility(actual, entries) {
 export function stylerSettings(base, variants, layout) {
  if(!variants)return base;
  if(!Object.hasOwn(variants,layout))throw Error('Unknown Start layout; styler remains disabled');
- return {...base,disableNewStartMenuLayout:'default',controlStyles:[...base.controlStyles,...variants[layout]]};
+ // Only this pinned Start interface declares Search WebView settings. An empty
+ // replacement also clears retained Search styles from an earlier candidate.
+ return {webContentStyles:[],...base,disableNewStartMenuLayout:'default',controlStyles:[...base.controlStyles,...variants[layout]]};
 }
 
 // Windhawk retains old indexed entries on update. Its pinned stylers stop at
@@ -20,7 +22,6 @@ export function stylerSettings(base, variants, layout) {
 export function flattenStylerSettings(value,prefix='',out={}) {
  if(prefix==='' && value && Array.isArray(value.controlStyles)) {
   // Omitted optional lists also replace any values retained from an older theme.
-  if(!Object.hasOwn(value,'webContentStyles'))out['webContentStyles[0].target']='';
   for(const key of ['themeResourceVariables','styleConstants'])
    if(!Object.hasOwn(value,key))out[`${key}[0]`]='';
  }
