@@ -38,16 +38,30 @@ test('pinned PowerShell lifecycle plans without state, applies offline tags, upd
  f.ok('Apply',['-Revision',f.first]);f.ok('Test');
  assert.equal(read(path.join(f.state,'current.json')).revision,f.first);
  const recovery=()=>fs.readFileSync(path.join(f.state,'recovery-commands.txt'),'utf8');
+ const assertRecovery=revision=>{
+  // PowerShell can expand an 8.3 TEMP alias or normalize path casing. Verify
+  // the actual retained file and state directory, not their input spelling.
+  const identity=p=>{const real=fs.realpathSync.native(p);return process.platform==='win32'?real.toLowerCase():real;};
+  const commands=recovery().trim().split(/\r?\n/);
+  assert.equal(commands.length,4);
+  for(const line of commands){
+   const match=line.match(/ -File '((?:[^']|'')+)' -StateRoot '((?:[^']|'')+)' -Action /);
+   assert.ok(match,`Missing quoted installer or state argument: ${line}`);
+   assert.equal(identity(match[1].replaceAll("''","'")),identity(path.join(f.state,'releases',revision,'install.ps1')));
+   assert.equal(identity(match[2].replaceAll("''","'")),identity(f.state));
+  }
+  assert.deepEqual(commands.map(line=>line.slice(line.lastIndexOf(' -Action '))),[' -Action Test',' -Action Restore -Latest',' -Action Restore',' -Action Uninstall']);
+ };
  const firstRecovery=recovery();
- assert.ok(firstRecovery.includes(path.join(f.state,'releases',f.first,'install.ps1')));
- assert.equal(firstRecovery.trim().split(/\r?\n/).length,4);
+ assertRecovery(f.first);
  f.ok('Apply',['-Revision',f.first]);assert.equal(read(path.join(f.state,'journal.json')).transactions.length,1);
  f.git('restore','ports/windows/adapter.ps1');const second=f.commit();
  const denied=f.run('Update');assert.notEqual(denied.status,0);assert.match(denied.stderr,/Update requires an explicit/);
  f.ok('Update',['-Revision',second]);assert.equal(read(path.join(f.state,'current.json')).revision,second);
- assert.ok(recovery().includes(path.join(f.state,'releases',second,'install.ps1')));
+ assertRecovery(second);
  assert.ok(!recovery().includes(f.first));
  f.ok('Restore',['-Latest']);assert.equal(read(path.join(f.state,'current.json')).revision,f.first);f.ok('Test');
+ assertRecovery(f.first);
  assert.equal(recovery(),firstRecovery);
  f.ok('Uninstall');assert.equal(fs.readFileSync(f.terminal,'utf8'),before);assert.ok(!fs.existsSync(path.join(f.state,'current.json')));
 });
