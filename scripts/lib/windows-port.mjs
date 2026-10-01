@@ -10,6 +10,30 @@ import { buildSync } from 'esbuild';
 import path from 'node:path';
 
 export const CURSOR_NAMES = ['Arrow','Help','AppStarting','Wait','Crosshair','IBeam','NWPen','No','SizeNS','SizeWE','SizeNWSE','SizeNESW','SizeAll','UpArrow','Hand','Pin','Person'];
+// Search permits only these non-token presentation choices. Colors and
+// geometry still resolve from approved roles; arbitrary CSS/JS is not accepted.
+const webPresentation = new Map([
+ ['border-style',new Set(['none'])],
+ ['box-shadow',new Set(['none'])],
+ ['background-image',new Set(['none'])],
+ ['outline-style',new Set(['dashed'])],
+ ['border-bottom-style',new Set(['solid'])],
+]);
+export function windowsWebContentStyles(items,val) {
+ return items.map(t=>{
+  if(typeof t.target!=='string'||/[{};]/.test(t.target))throw Error('Invalid Search selector');
+  const styles=Object.entries(t.styles).map(([key,role])=>{
+   if(!/^[a-z]+(?:-[a-z]+)*$/.test(key))throw Error('Invalid Search style property');
+   const value=val(role);
+   return `${key}: ${key==='scrollbar-color'?`${value} ${val('color.surface.canvas')}`:value} !important`;
+  });
+  for(const [key,value] of Object.entries(t.presentation??{})){
+   if(!webPresentation.get(key)?.has(value))throw Error(`Unsupported Search presentation: ${key}`);
+   styles.push(`${key}: ${value} !important`);
+  }
+  return {target:t.target,styles};
+ });
+}
 const rgb = hex => [1,3,5].map(i => Number.parseInt(hex.slice(i,i+2),16));
 export const wallpaperBmp = hex => {
   const b=Buffer.alloc(58); b.write('BM'); b.writeUInt32LE(58,2); b.writeUInt32LE(54,10);
@@ -172,10 +196,7 @@ export function windowsArtifacts({manifest,host,resolved}){
  for(const mod of host.stylers){
   const controlStyles=targets(mod.targets);
   const payload={theme:'',controlStyles,themeResourceVariables:Object.entries(host.resources).map(([key,role])=>{val(role);return `${key}=${windowsStyleValue(key,resolved.get(role))}`;})};
-  if(mod.webContentStyles)payload.webContentStyles=mod.webContentStyles.map(t=>({target:t.target,styles:Object.entries(t.styles).map(([key,role])=>{
-   const value=val(role);
-   return `${key}: ${key==='scrollbar-color'?`${value} ${val('color.surface.canvas')}`:value} !important`;
-  })}));
+  if(mod.webContentStyles)payload.webContentStyles=windowsWebContentStyles(mod.webContentStyles,val);
   if(mod.webContentStyles)payload.webContentCustomJs='';
   json(`${mod.id}.json`,payload);
  }

@@ -436,8 +436,8 @@
     },
     "color.surface.canvas": {
       "state": "mapped",
-      "surface": "powertoys",
-      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
+      "surface": "shell",
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
     },
     "color.surface.chrome": {
       "state": "mapped",
@@ -491,13 +491,13 @@
     },
     "color.text.default": {
       "state": "mapped",
-      "surface": "desktop",
-      "reason": "Canonical semantic role mapped by host.json."
+      "surface": "shell",
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
     },
     "color.text.bright": {
       "state": "mapped",
-      "surface": "desktop",
-      "reason": "Canonical semantic role mapped by host.json."
+      "surface": "shell",
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
     },
     "color.text.prose": {
       "state": "mapped",
@@ -506,8 +506,8 @@
     },
     "color.text.muted": {
       "state": "mapped",
-      "surface": "desktop",
-      "reason": "Canonical semantic role mapped by host.json."
+      "surface": "shell",
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
     },
     "color.text.subtle": {
       "state": "mapped",
@@ -586,8 +586,8 @@
     },
     "color.border.divider": {
       "state": "mapped",
-      "surface": "powertoys",
-      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
+      "surface": "shell",
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
     },
     "color.border.default": {
       "state": "mapped",
@@ -607,7 +607,7 @@
     "color.border.active": {
       "state": "mapped",
       "surface": "shell",
-      "reason": "Native red accent, owner-requested folder edges and navigation pins, shell control borders and supported PowerToys accents; import and visual acceptance are separate."
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
     },
     "color.border.overlay": {
       "state": "mapped",
@@ -620,9 +620,9 @@
       "reason": "Canonical semantic role mapped to generated Start-menu XAML styling; selector matching still requires native visual evidence."
     },
     "color.border.selected-indicator": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
     },
     "color.border.selected-indicator-inactive": {
       "state": "unsupported",
@@ -631,23 +631,23 @@
     },
     "color.interaction.focus.ring": {
       "state": "mapped",
-      "surface": "powertoys",
-      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
+      "surface": "shell",
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
     },
     "color.interaction.focus.ring-container": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
     },
     "color.interaction.selection.bg": {
       "state": "mapped",
-      "surface": "desktop",
-      "reason": "Canonical semantic role mapped by host.json."
+      "surface": "shell",
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
     },
     "color.interaction.selection.text": {
       "state": "mapped",
       "surface": "shell",
-      "reason": "Search WebView selected-result foreground; native semantics and forced colors are retained."
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
     },
     "color.interaction.selection.inactive-bg": {
       "state": "mapped",
@@ -671,8 +671,8 @@
     },
     "color.interaction.hover.bg": {
       "state": "mapped",
-      "surface": "desktop",
-      "reason": "Canonical semantic role mapped by host.json."
+      "surface": "shell",
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
     },
     "color.interaction.hover.bg-strong": {
       "state": "mapped",
@@ -681,8 +681,8 @@
     },
     "color.interaction.pressed.bg": {
       "state": "mapped",
-      "surface": "desktop",
-      "reason": "Canonical semantic role mapped by host.json."
+      "surface": "shell",
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
     },
     "color.interaction.disabled.bg": {
       "state": "mapped",
@@ -706,8 +706,8 @@
     },
     "color.interaction.scrollbar.thumb": {
       "state": "mapped",
-      "surface": "powertoys",
-      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
+      "surface": "shell",
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
     },
     "color.interaction.scrollbar.thumb-hover": {
       "state": "mapped",
@@ -765,9 +765,9 @@
       "reason": "Canonical secondary-button palette mapped to notification action buttons and their native states; live selector verification remains required."
     },
     "color.action.tertiary.text": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
     },
     "color.action.tertiary.hover-bg": {
       "state": "unsupported",
@@ -1451,18 +1451,18 @@
     },
     "border.width.default": {
       "state": "mapped",
-      "surface": "powertoys",
-      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
+      "surface": "shell",
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
     },
     "border.width.emphasis": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
     },
     "radius.none": {
       "state": "mapped",
       "surface": "shell",
-      "reason": "Generated Start-menu XAML geometry uses canonical tokens; other native surfaces retain host geometry."
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
     },
     "font.family.mono": {
       "state": "mapped",
@@ -1645,9 +1645,9 @@
       "reason": "Outside Windows visual adapter scope; preserve host semantics."
     },
     "focus.offset": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
     },
     "focus.offset-container": {
       "state": "unsupported",

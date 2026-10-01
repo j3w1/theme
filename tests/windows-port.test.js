@@ -8,7 +8,7 @@ import {spawnSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {repoRoot,readJson} from '../scripts/lib/fs.mjs';
 import {assertPortArtifacts} from '../scripts/lib/port-artifacts.mjs';
-import {CURSOR_NAMES,windowsStyleValue} from '../scripts/lib/windows-port.mjs';
+import {CURSOR_NAMES,windowsStyleValue,windowsWebContentStyles} from '../scripts/lib/windows-port.mjs';
 import {folderIconFile} from '../scripts/lib/windows-folder-icon.mjs';
 import {flattenStylerSettings,stylerSettings} from '../ports/windows/src/compatibility.mjs';
 
@@ -50,6 +50,16 @@ test('Search web-style replacement terminates old selectors and leaves input beh
  // native CLI rejects this key rather than silently accepting an unused value.
  assert.equal(flattenStylerSettings({controlStyles:[]})['webContentStyles[0].target'],undefined);
  assert.equal(flattenStylerSettings(stylerSettings({controlStyles:[]},{redesigned:[]},'redesigned'))['webContentStyles[0].target'],'');
+});
+
+test('Search presentation cannot hide controls, accept scripts or substitute literal colors',()=>{
+ const value=role=>{assert.equal(role,'color.surface.canvas');return '#000000';};
+ const rule={target:'button',styles:{'background-color':'color.surface.canvas'},presentation:{'border-style':'none'}};
+ assert.deepEqual(windowsWebContentStyles([rule],value),[{target:'button',styles:['background-color: #000000 !important','border-style: none !important']}]);
+ for(const presentation of [{display:'none'},{position:'fixed'},{'background-image':'url(https://example.invalid)'},{'border-style':'none; color: white'},{'outline-style':'none'}])
+  assert.throws(()=>windowsWebContentStyles([{...rule,presentation}],value),/Unsupported Search presentation/);
+ assert.throws(()=>windowsWebContentStyles([{...rule,target:'button {} body'}],value),/Invalid Search selector/);
+ assert.throws(()=>windowsWebContentStyles([{...rule,styles:{'color; display':'color.surface.canvas'}}],value),/Invalid Search style property/);
 });
 function fixture(t) {
  const state=fs.mkdtempSync(path.join(os.tmpdir(),'j3w1-windows-test-'));

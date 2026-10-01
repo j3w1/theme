@@ -394,20 +394,36 @@
         {
           "target": ".iconContainer, .previewContainer .imageContainer, .scope-tile > div, button, .button, .actionButton",
           "styles": {
-            "background-color": "color.surface.input",
-            "border-color": "color.border.control",
-            "color": "color.text.default"
+            "background-color": "color.surface.canvas",
+            "color": "color.action.tertiary.text",
+            "border-radius": "radius.none"
+          },
+          "presentation": {
+            "border-style": "none",
+            "box-shadow": "none",
+            "background-image": "none"
           }
         },
         {
-          "target": ".suggestion:hover, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover",
+          "target": ".suggestion, .contextMenu li",
+          "styles": {
+            "background-color": "color.surface.canvas",
+            "border-radius": "radius.none"
+          },
+          "presentation": {
+            "border-style": "none",
+            "box-shadow": "none"
+          }
+        },
+        {
+          "target": ".suggestion:hover, .suggestion:hover .details, .suggestion:hover .iconContainer, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover",
           "styles": {
             "background-color": "color.interaction.hover.bg",
             "color": "color.text.default"
           }
         },
         {
-          "target": ".suggestion[aria-selected=\"true\"], .suggestion[aria-selected=\"true\"] .details, .suggestion[aria-selected=\"true\"] .iconContainer, .scope-tile--selected > div",
+          "target": ".suggestion[aria-selected=\"true\"], .suggestion[aria-selected=\"true\"] .details, .suggestion[aria-selected=\"true\"] .iconContainer, .suggestion[aria-selected=\"true\"] .title, .suggestion[aria-selected=\"true\"] .secondaryText",
           "styles": {
             "background-color": "color.interaction.selection.bg",
             "color": "color.interaction.selection.text"
@@ -422,7 +438,30 @@
         {
           "target": ":focus-visible",
           "styles": {
-            "outline-color": "color.interaction.focus.ring"
+            "outline-color": "color.interaction.focus.ring",
+            "outline-width": "border.width.default",
+            "outline-offset": "focus.offset"
+          },
+          "presentation": {
+            "outline-style": "dashed"
+          }
+        },
+        {
+          "target": ".suggestion[aria-selected=\"true\"]:focus-visible",
+          "styles": {
+            "outline-color": "color.interaction.focus.ring-container"
+          }
+        },
+        {
+          "target": ".scope-tile--selected > div",
+          "styles": {
+            "background-color": "color.surface.canvas",
+            "color": "color.text.bright",
+            "border-bottom-color": "color.border.selected-indicator",
+            "border-bottom-width": "border.width.emphasis"
+          },
+          "presentation": {
+            "border-bottom-style": "solid"
           }
         },
         {

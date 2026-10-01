@@ -37,6 +37,15 @@ own import evidence meets the port contract.
 
 ## Shared adapters and their boundaries
 
+Search WebView rows and action buttons use the tertiary action palette with no
+individual frame. Selected rows share one fill across their text and icon
+containers, category selection keeps an accent underline, and keyboard focus
+uses the canonical dashed control ring. Color and geometry values resolve from
+roles. Non-token presentation declarations are limited to removing borders,
+shadows and background images, and choosing the specified ring/underline style;
+the generator refuses other properties and values. Custom Search JavaScript
+remains empty. This describes the generated mapping, not a live acceptance.
+
 Reuse token mappings across renderers, not executable include lists. The pinned
 Settings styler initializes through Windows.UI.Xaml CoreWindow and its resource
 dictionary. The inspected modern Notepad and Paint packages depend on the

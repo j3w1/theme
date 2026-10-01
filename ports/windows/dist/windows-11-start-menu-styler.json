@@ -238,19 +238,31 @@
       "target": ".iconContainer, .previewContainer .imageContainer, .scope-tile > div, button, .button, .actionButton",
       "styles": [
         "background-color: #000000 !important",
-        "border-color: #a3676b !important",
-        "color: #e99499 !important"
+        "color: #e99499 !important",
+        "border-radius: 0px !important",
+        "border-style: none !important",
+        "box-shadow: none !important",
+        "background-image: none !important"
       ]
     },
     {
-      "target": ".suggestion:hover, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover",
+      "target": ".suggestion, .contextMenu li",
+      "styles": [
+        "background-color: #000000 !important",
+        "border-radius: 0px !important",
+        "border-style: none !important",
+        "box-shadow: none !important"
+      ]
+    },
+    {
+      "target": ".suggestion:hover, .suggestion:hover .details, .suggestion:hover .iconContainer, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover",
       "styles": [
         "background-color: #1c0a09 !important",
         "color: #e99499 !important"
       ]
     },
     {
-      "target": ".suggestion[aria-selected=\"true\"], .suggestion[aria-selected=\"true\"] .details, .suggestion[aria-selected=\"true\"] .iconContainer, .scope-tile--selected > div",
+      "target": ".suggestion[aria-selected=\"true\"], .suggestion[aria-selected=\"true\"] .details, .suggestion[aria-selected=\"true\"] .iconContainer, .suggestion[aria-selected=\"true\"] .title, .suggestion[aria-selected=\"true\"] .secondaryText",
       "styles": [
         "background-color: #531310 !important",
         "color: #f4eeee !important"
@@ -265,7 +277,26 @@
     {
       "target": ":focus-visible",
       "styles": [
-        "outline-color: #e53935 !important"
+        "outline-color: #e53935 !important",
+        "outline-width: 1px !important",
+        "outline-offset: -2px !important",
+        "outline-style: dashed !important"
+      ]
+    },
+    {
+      "target": ".suggestion[aria-selected=\"true\"]:focus-visible",
+      "styles": [
+        "outline-color: #ffa2a7 !important"
+      ]
+    },
+    {
+      "target": ".scope-tile--selected > div",
+      "styles": [
+        "background-color: #000000 !important",
+        "color: #ffa2a7 !important",
+        "border-bottom-color: #e53935 !important",
+        "border-bottom-width: 2px !important",
+        "border-bottom-style: solid !important"
       ]
     },
     {

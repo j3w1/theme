@@ -37749,7 +37749,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-007HwqO/fcbrVq0ykdq1B49jePKqFhAiyUTwhqVWXnw=",
+      "subjectDigest": "sha256-CqnfNoECOibqm7pvfbdnOY+HINSKGJdnIVlAeBstwRY=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37812,7 +37812,7 @@
           "path": "dist/windows-11-start-menu-styler.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-11-start-menu-styler.json",
-          "digest": "sha256-Rue8FSaUv2ApIgkW9IE1xncS5qfW1+bmQ2UM0xk7Vn4="
+          "digest": "sha256-pZchk3cXtPppSuD+FXDVYKItYnENIpG24p8oSG7x3z4="
         },
         {
           "path": "dist/windows-11-file-explorer-styler.json",
@@ -37956,7 +37956,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-I0XVvsU/ac+EvoefqNoJigFlS0RAJEVauUssULartLc="
+          "digest": "sha256-pE622QuGzCAtHjuSCexwOOg+/f+7/yP0fGd0rrQ1Jsk="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
@@ -38045,7 +38045,8 @@
             "windows-11-notification-center-styler | Grid#CalendarCenterGrid | BorderThickness",
             "windows-11-notification-center-styler | Border#ToastBackgroundBorder | BorderThickness",
             "windows-11-notification-center-styler | Border#ToastBackgroundBorder2 | BorderThickness",
-            "powertoys.markdown.BORDER_WIDTH"
+            "powertoys.markdown.BORDER_WIDTH",
+            "windows-11-start-menu-styler | web :focus-visible | outline-width"
           ],
           "value": "1px",
           "eligibility": {
@@ -38054,23 +38055,25 @@
             "decisionIds": []
           },
           "state": "mapped",
-          "surface": "powertoys",
-          "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate.",
+          "surface": "shell",
+          "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate.",
           "source": "ports/windows/mapping.json",
           "spec": "spec/portability.md"
         },
         {
           "role": "border.width.emphasis",
-          "nativeKeys": [],
+          "nativeKeys": [
+            "windows-11-start-menu-styler | web .scope-tile--selected > div | border-bottom-width"
+          ],
           "value": "2px",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
-          "state": "unsupported",
-          "surface": "unsupported",
-          "reason": "Outside Windows visual adapter scope; preserve host semantics.",
+          "state": "mapped",
+          "surface": "shell",
+          "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate.",
           "source": "ports/windows/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -38436,16 +38439,18 @@
         },
         {
           "role": "color.action.tertiary.text",
-          "nativeKeys": [],
+          "nativeKeys": [
+            "windows-11-start-menu-styler | web .iconContainer, .previewContainer .imageContainer, .scope-tile > div, button, .button, .actionButton | color"
+          ],
           "value": "#e99499",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
-          "state": "unsupported",
-          "surface": "unsupported",
-          "reason": "Outside Windows visual adapter scope; preserve host semantics.",
+          "state": "mapped",
+          "surface": "shell",
+          "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate.",
           "source": "ports/windows/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -38470,8 +38475,8 @@
             "windows-11-start-menu-styler | Border#AppBorder | BorderBrush",
             "windows-11-start-menu-styler | Border#TaskbarSearchBackground | BorderBrush",
             "windows-11-start-menu-styler | Cortana.UI.Views.RichSearchBoxControl#SearchBoxControl > Grid#RootGrid | BorderBrush",
-            "windows-11-start-menu-styler | web .leftPill::before | background-color",
-            "folder.edge"
+            "folder.edge",
+            "windows-11-start-menu-styler | web .leftPill::before | background-color"
           ],
           "value": "#e53935",
           "eligibility": {
@@ -38481,7 +38486,7 @@
           },
           "state": "mapped",
           "surface": "shell",
-          "reason": "Native red accent, owner-requested folder edges and navigation pins, shell control borders and supported PowerToys accents; import and visual acceptance are separate.",
+          "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate.",
           "source": "ports/windows/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -38497,8 +38502,7 @@
             "windows-11-start-menu-styler | StartMenu.SearchBoxToggleButton > Grid > Border#BorderElement | BorderBrush",
             "calculator.resource.ControlStrokeColorDefaultBrush",
             "powertoys.markdown.CODE_BORDER",
-            "windows-11-start-menu-styler | Cortana.UI.Views.RichSearchBoxControl > Grid > Border#BorderElement | BorderBrush",
-            "windows-11-start-menu-styler | web .iconContainer, .previewContainer .imageContainer, .scope-tile > div, button, .button, .actionButton | border-color"
+            "windows-11-start-menu-styler | Cortana.UI.Views.RichSearchBoxControl > Grid > Border#BorderElement | BorderBrush"
           ],
           "value": "#a3676b",
           "eligibility": {
@@ -38556,11 +38560,11 @@
           "nativeKeys": [
             "nativeExplorer.border",
             "powertoys.markdown.DIVIDER",
-            "windows-11-start-menu-styler | web body, #root, #root.darkTheme, .scope-with-background, .suggsList, .suggsListContainer, .suggContainer, .previewContainer, .suggDetailsContainer, .contextMenu, #menuContainer | border-color",
             "windows-11-file-explorer-styler | Border#BottomBorderLine, Border#LeftBottomBorderLine, Border#RightBottomBorderLine | Background",
             "windows-11-file-explorer-styler | Border#BottomBorderLine, Border#LeftBottomBorderLine, Border#RightBottomBorderLine | BorderBrush",
             "windows-11-file-explorer-styler | FileExplorerExtensions.CommandBarControl_Wave1 > Grid, Grid#CommandBarControlRootGrid | BorderBrush",
-            "windows-11-file-explorer-styler | CommandBar#FileExplorerCommandBar, CommandBar#FileExplorerSecondaryCommandBar | BorderBrush"
+            "windows-11-file-explorer-styler | CommandBar#FileExplorerCommandBar, CommandBar#FileExplorerSecondaryCommandBar | BorderBrush",
+            "windows-11-start-menu-styler | web body, #root, #root.darkTheme, .scope-with-background, .suggsList, .suggsListContainer, .suggContainer, .previewContainer, .suggDetailsContainer, .contextMenu, #menuContainer | border-color"
           ],
           "value": "#2b0e0d",
           "eligibility": {
@@ -38571,8 +38575,8 @@
             ]
           },
           "state": "mapped",
-          "surface": "powertoys",
-          "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate.",
+          "surface": "shell",
+          "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate.",
           "source": "ports/windows/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -38605,16 +38609,18 @@
         },
         {
           "role": "color.border.selected-indicator",
-          "nativeKeys": [],
+          "nativeKeys": [
+            "windows-11-start-menu-styler | web .scope-tile--selected > div | border-bottom-color"
+          ],
           "value": "#e53935",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
-          "state": "unsupported",
-          "surface": "unsupported",
-          "reason": "Outside Windows visual adapter scope; preserve host semantics.",
+          "state": "mapped",
+          "surface": "shell",
+          "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate.",
           "source": "ports/windows/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -39753,23 +39759,25 @@
             "decisionIds": []
           },
           "state": "mapped",
-          "surface": "powertoys",
-          "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate.",
+          "surface": "shell",
+          "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate.",
           "source": "ports/windows/mapping.json",
           "spec": "spec/portability.md"
         },
         {
           "role": "color.interaction.focus.ring-container",
-          "nativeKeys": [],
+          "nativeKeys": [
+            "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"]:focus-visible | outline-color"
+          ],
           "value": "#ffa2a7",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
-          "state": "unsupported",
-          "surface": "unsupported",
-          "reason": "Outside Windows visual adapter scope; preserve host semantics.",
+          "state": "mapped",
+          "surface": "shell",
+          "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate.",
           "source": "ports/windows/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -39787,7 +39795,7 @@
             "calculator.resource.CalcButtonAltFillColorHoverBrush",
             "calculator.resource.SubtleFillColorSecondaryBrush",
             "calculator.resource.AppControlBackgroundSecondaryBrush",
-            "windows-11-start-menu-styler | web .suggestion:hover, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover | background-color"
+            "windows-11-start-menu-styler | web .suggestion:hover, .suggestion:hover .details, .suggestion:hover .iconContainer, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover | background-color"
           ],
           "value": "#1c0a09",
           "eligibility": {
@@ -39796,8 +39804,8 @@
             "decisionIds": []
           },
           "state": "mapped",
-          "surface": "desktop",
-          "reason": "Canonical semantic role mapped by host.json.",
+          "surface": "shell",
+          "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate.",
           "source": "ports/windows/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -39856,8 +39864,8 @@
             "decisionIds": []
           },
           "state": "mapped",
-          "surface": "desktop",
-          "reason": "Canonical semantic role mapped by host.json.",
+          "surface": "shell",
+          "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate.",
           "source": "ports/windows/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -39876,8 +39884,8 @@
             "decisionIds": []
           },
           "state": "mapped",
-          "surface": "powertoys",
-          "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate.",
+          "surface": "shell",
+          "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate.",
           "source": "ports/windows/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -39921,7 +39929,7 @@
             "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@Selected",
             "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@PointerOverSelected",
             "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@PressedSelected",
-            "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"], .suggestion[aria-selected=\"true\"] .details, .suggestion[aria-selected=\"true\"] .iconContainer, .scope-tile--selected > div | background-color"
+            "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"], .suggestion[aria-selected=\"true\"] .details, .suggestion[aria-selected=\"true\"] .iconContainer, .suggestion[aria-selected=\"true\"] .title, .suggestion[aria-selected=\"true\"] .secondaryText | background-color"
           ],
           "value": "#531310",
           "eligibility": {
@@ -39930,8 +39938,8 @@
             "decisionIds": []
           },
           "state": "mapped",
-          "surface": "desktop",
-          "reason": "Canonical semantic role mapped by host.json.",
+          "surface": "shell",
+          "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate.",
           "source": "ports/windows/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -39970,7 +39978,7 @@
         {
           "role": "color.interaction.selection.text",
           "nativeKeys": [
-            "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"], .suggestion[aria-selected=\"true\"] .details, .suggestion[aria-selected=\"true\"] .iconContainer, .scope-tile--selected > div | color"
+            "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"], .suggestion[aria-selected=\"true\"] .details, .suggestion[aria-selected=\"true\"] .iconContainer, .suggestion[aria-selected=\"true\"] .title, .suggestion[aria-selected=\"true\"] .secondaryText | color"
           ],
           "value": "#f4eeee",
           "eligibility": {
@@ -39980,7 +39988,7 @@
           },
           "state": "mapped",
           "surface": "shell",
-          "reason": "Search WebView selected-result foreground; native semantics and forced colors are retained.",
+          "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate.",
           "source": "ports/windows/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -41646,6 +41654,9 @@
             "windows-11-start-menu-styler | Border#TaskbarSearchBackground | Background",
             "windows-11-start-menu-styler | Cortana.UI.Views.RichSearchBoxControl#SearchBoxControl > Grid#RootGrid | Background",
             "windows-11-start-menu-styler | web body, #root, #root.darkTheme, .scope-with-background, .suggsList, .suggsListContainer, .suggContainer, .previewContainer, .suggDetailsContainer, .contextMenu, #menuContainer | background-color",
+            "windows-11-start-menu-styler | web .iconContainer, .previewContainer .imageContainer, .scope-tile > div, button, .button, .actionButton | background-color",
+            "windows-11-start-menu-styler | web .suggestion, .contextMenu li | background-color",
+            "windows-11-start-menu-styler | web .scope-tile--selected > div | background-color",
             "windows-11-start-menu-styler | web ::-webkit-scrollbar-track | background-color"
           ],
           "value": "#000000",
@@ -41655,8 +41666,8 @@
             "decisionIds": []
           },
           "state": "mapped",
-          "surface": "powertoys",
-          "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate.",
+          "surface": "shell",
+          "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate.",
           "source": "ports/windows/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -41768,8 +41779,7 @@
             "windows-11-start-menu-styler | StartMenu.SearchBoxToggleButton > Grid > Border#BorderElement | Background",
             "calculator.resource.CalcButtonFillColorDefaultBrush",
             "calculator.resource.CalcButtonAltFillColorDefaultBrush",
-            "windows-11-start-menu-styler | Cortana.UI.Views.RichSearchBoxControl > Grid > Border#BorderElement | Background",
-            "windows-11-start-menu-styler | web .iconContainer, .previewContainer .imageContainer, .scope-tile > div, button, .button, .actionButton | background-color"
+            "windows-11-start-menu-styler | Cortana.UI.Views.RichSearchBoxControl > Grid > Border#BorderElement | Background"
           ],
           "value": "#000000",
           "eligibility": {
@@ -42273,7 +42283,8 @@
             "calculator.resource.AppControlForegroundAccentBrush",
             "calculator.resource.AccentTextFillColorPrimaryBrush",
             "calculator.resource.TextOnAccentFillColorPrimaryBrush",
-            "calculator.resource.TextOnAccentFillColorSecondaryBrush"
+            "calculator.resource.TextOnAccentFillColorSecondaryBrush",
+            "windows-11-start-menu-styler | web .scope-tile--selected > div | color"
           ],
           "value": "#ffa2a7",
           "eligibility": {
@@ -42282,8 +42293,8 @@
             "decisionIds": []
           },
           "state": "mapped",
-          "surface": "desktop",
-          "reason": "Canonical semantic role mapped by host.json.",
+          "surface": "shell",
+          "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate.",
           "source": "ports/windows/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -42311,8 +42322,7 @@
             "calculator.resource.TextFillColorPrimaryBrush",
             "windows-11-start-menu-styler | web body, #root, #root.darkTheme, .scope-with-background, .suggsList, .suggsListContainer, .suggContainer, .previewContainer, .suggDetailsContainer, .contextMenu, #menuContainer | color",
             "windows-11-start-menu-styler | web h1, h2, h3, h4, p, .title, .details, .secondaryText, .groupTitle, .suggestion, .scope-tile > div, .menu-item_details, .previewContainer, button | color",
-            "windows-11-start-menu-styler | web .iconContainer, .previewContainer .imageContainer, .scope-tile > div, button, .button, .actionButton | color",
-            "windows-11-start-menu-styler | web .suggestion:hover, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover | color"
+            "windows-11-start-menu-styler | web .suggestion:hover, .suggestion:hover .details, .suggestion:hover .iconContainer, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover | color"
           ],
           "value": "#e99499",
           "eligibility": {
@@ -42321,8 +42331,8 @@
             "decisionIds": []
           },
           "state": "mapped",
-          "surface": "desktop",
-          "reason": "Canonical semantic role mapped by host.json.",
+          "surface": "shell",
+          "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate.",
           "source": "ports/windows/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -42472,8 +42482,8 @@
             "decisionIds": []
           },
           "state": "mapped",
-          "surface": "desktop",
-          "reason": "Canonical semantic role mapped by host.json.",
+          "surface": "shell",
+          "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate.",
           "source": "ports/windows/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -42741,16 +42751,18 @@
         },
         {
           "role": "focus.offset",
-          "nativeKeys": [],
+          "nativeKeys": [
+            "windows-11-start-menu-styler | web :focus-visible | outline-offset"
+          ],
           "value": "-2px",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
-          "state": "unsupported",
-          "surface": "unsupported",
-          "reason": "Outside Windows visual adapter scope; preserve host semantics.",
+          "state": "mapped",
+          "surface": "shell",
+          "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate.",
           "source": "ports/windows/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -43408,7 +43420,9 @@
             "windows-11-notification-center-styler | Button#VerbButton | CornerRadius",
             "windows-11-start-menu-styler | Border#AppBorder | CornerRadius",
             "windows-11-start-menu-styler | Border#TaskbarSearchBackground | CornerRadius",
-            "windows-11-start-menu-styler | Cortana.UI.Views.RichSearchBoxControl#SearchBoxControl > Grid#RootGrid | CornerRadius"
+            "windows-11-start-menu-styler | Cortana.UI.Views.RichSearchBoxControl#SearchBoxControl > Grid#RootGrid | CornerRadius",
+            "windows-11-start-menu-styler | web .iconContainer, .previewContainer .imageContainer, .scope-tile > div, button, .button, .actionButton | border-radius",
+            "windows-11-start-menu-styler | web .suggestion, .contextMenu li | border-radius"
           ],
           "value": "0px",
           "eligibility": {
@@ -43418,7 +43432,7 @@
           },
           "state": "mapped",
           "surface": "shell",
-          "reason": "Generated Start-menu XAML geometry uses canonical tokens; other native surfaces retain host geometry.",
+          "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate.",
           "source": "ports/windows/mapping.json",
           "spec": "spec/portability.md"
         },
