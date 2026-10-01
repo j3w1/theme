@@ -40,7 +40,7 @@ for(const mod of settings.bundledMods)test(`complete native DLL link: ${mod.id}`
 for(const [name,mod] of [
  ['caption','j3w1-explorer-native'],['scroll-paint','j3w1-explorer-native'],
  ['explorer-interaction','j3w1-explorer-native'],['marquee-paint','j3w1-explorer-native'],
- ['preview-paint','j3w1-powertoys-preview'],
+ ['preview-paint','j3w1-powertoys-preview'],['markdown','j3w1-powertoys-markdown'],
 ])test(`native offscreen regression: ${name}`,options,t=>{
  const tools=toolchain(),folder=fs.mkdtempSync(path.join(os.tmpdir(),'j3w1-native-regression-'));
  t.after(()=>fs.rmSync(folder,{recursive:true,force:true}));

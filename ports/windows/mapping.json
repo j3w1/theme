@@ -14,7 +14,8 @@
       "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | BorderBrush@PointerOver",
       "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | BorderBrush@Pressed",
       "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | BorderBrush@Pressed",
-      "calculator.resource.SystemControlHighlightAccentBrush"
+      "calculator.resource.SystemControlHighlightAccentBrush",
+      "powertoys.markdown.QUOTE_BORDER"
     ],
     "color.surface.desktop": [
       "native.desktop"
@@ -50,7 +51,8 @@
       "calculator.resource.AppOperatorPanelBackground",
       "calculator.resource.SystemControlBackgroundAltHighBrush",
       "calculator.resource.SystemControlBackgroundChromeMediumLowBrush",
-      "calculator.resource.SolidBackgroundFillColorBaseBrush"
+      "calculator.resource.SolidBackgroundFillColorBaseBrush",
+      "powertoys.markdown.CANVAS"
     ],
     "color.terminal.cursor": [
       "terminal.cursor"
@@ -100,7 +102,8 @@
       "calculator.resource.TextOnAccentFillColorSecondaryBrush"
     ],
     "color.text.heading": [
-      "native.heading"
+      "native.heading",
+      "powertoys.markdown.HEADING"
     ],
     "color.text.highlight": [
       "native.highlight"
@@ -140,7 +143,8 @@
       "windows-11-start-menu-styler | Grid#CompanionRoot > Border#AcrylicBorder | Background",
       "windows-11-start-menu-styler | StartMenu.FolderModal > Grid > Border | Background",
       "calculator.resource.AppChromeAcrylicOperatorFlyoutBackgroundBrush",
-      "calculator.resource.NavigationViewDefaultPaneBackground"
+      "calculator.resource.NavigationViewDefaultPaneBackground",
+      "powertoys.markdown.QUOTE"
     ],
     "color.border.control": [
       "powertoys.border",
@@ -150,7 +154,8 @@
       "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | BorderBrush@Normal",
       "windows-11-start-menu-styler | StartDocked.SearchBoxToggleButton > Grid > Border#BorderElement | BorderBrush",
       "windows-11-start-menu-styler | StartMenu.SearchBoxToggleButton > Grid > Border#BorderElement | BorderBrush",
-      "calculator.resource.ControlStrokeColorDefaultBrush"
+      "calculator.resource.ControlStrokeColorDefaultBrush",
+      "powertoys.markdown.CODE_BORDER"
     ],
     "font.family.mono": [
       "font.family",
@@ -163,7 +168,8 @@
       "windows-11-start-menu-styler | TextBlock#RecommendedListHeaderText | FontFamily",
       "windows-11-notification-center-styler | TextBlock#NotificationsTextBlock | FontFamily",
       "windows-11-notification-center-styler | Grid#GroupTitleGrid > TextBlock#Title | FontFamily",
-      "windows-11-notification-center-styler | Grid#ToastTitleBar > TextBlock#SenderName | FontFamily"
+      "windows-11-notification-center-styler | Grid#ToastTitleBar > TextBlock#SenderName | FontFamily",
+      "powertoys.markdown.FONT"
     ],
     "color.terminal.ansi.0": [
       "terminal.ansi.0"
@@ -295,7 +301,8 @@
       "windows-11-notification-center-styler | Grid#NotificationCenterGrid | BorderThickness",
       "windows-11-notification-center-styler | Grid#CalendarCenterGrid | BorderThickness",
       "windows-11-notification-center-styler | Border#ToastBackgroundBorder | BorderThickness",
-      "windows-11-notification-center-styler | Border#ToastBackgroundBorder2 | BorderThickness"
+      "windows-11-notification-center-styler | Border#ToastBackgroundBorder2 | BorderThickness",
+      "powertoys.markdown.BORDER_WIDTH"
     ],
     "radius.none": [
       "windows-11-start-menu-styler | Border#AcrylicBorder | CornerRadius",
@@ -369,16 +376,19 @@
       "nativeExplorer.inactive"
     ],
     "color.border.divider": [
-      "nativeExplorer.border"
+      "nativeExplorer.border",
+      "powertoys.markdown.DIVIDER"
     ],
     "color.interaction.scrollbar.thumb": [
-      "nativeExplorer.scrollbar"
+      "nativeExplorer.scrollbar",
+      "powertoys.markdown.SCROLLBAR"
     ],
     "color.interaction.scrollbar.thumb-hover": [
       "nativeExplorer.scrollbarHover"
     ],
     "color.interaction.focus.ring": [
-      "nativeExplorer.focusRing"
+      "nativeExplorer.focusRing",
+      "powertoys.markdown.FOCUS"
     ],
     "color.interaction.marquee": [
       "nativeExplorer.marquee"
@@ -390,7 +400,8 @@
       "nativeExplorer.menuHover"
     ],
     "color.text.link-hover": [
-      "nativeExplorer.menuHoverText"
+      "nativeExplorer.menuHoverText",
+      "powertoys.markdown.LINK_HOVER"
     ],
     "color.action.secondary.bg": [
       "windows-11-notification-center-styler | Button#VerbButton | Background",
@@ -412,6 +423,81 @@
     ],
     "color.action.secondary.pressed-bg": [
       "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Background@Pressed"
+    ],
+    "color.text.prose": [
+      "powertoys.markdown.PROSE"
+    ],
+    "color.surface.code": [
+      "powertoys.markdown.CODE"
+    ],
+    "color.text.link": [
+      "powertoys.markdown.LINK"
+    ],
+    "color.text.link-underline": [
+      "powertoys.markdown.LINK_UNDERLINE"
+    ],
+    "color.interaction.text-selection.bg": [
+      "powertoys.markdown.SELECTION"
+    ],
+    "color.interaction.text-selection.text": [
+      "powertoys.markdown.SELECTION_TEXT"
+    ],
+    "font.size.reading": [
+      "powertoys.markdown.READING_SIZE"
+    ],
+    "font.line-height.reading": [
+      "powertoys.markdown.READING_LINE"
+    ],
+    "font.size.code": [
+      "powertoys.markdown.CODE_SIZE"
+    ],
+    "font.line-height.code": [
+      "powertoys.markdown.CODE_LINE"
+    ],
+    "font.size.h1": [
+      "powertoys.markdown.H1_SIZE"
+    ],
+    "font.line-height.h1": [
+      "powertoys.markdown.H1_LINE"
+    ],
+    "font.size.h2": [
+      "powertoys.markdown.H2_SIZE"
+    ],
+    "font.line-height.h2": [
+      "powertoys.markdown.H2_LINE"
+    ],
+    "font.weight.bold": [
+      "powertoys.markdown.BOLD"
+    ],
+    "space.2": [
+      "powertoys.markdown.SPACE2"
+    ],
+    "space.4": [
+      "powertoys.markdown.SPACE4"
+    ],
+    "space.8": [
+      "powertoys.markdown.SPACE8"
+    ],
+    "space.12": [
+      "powertoys.markdown.SPACE12"
+    ],
+    "space.16": [
+      "powertoys.markdown.SPACE16"
+    ],
+    "space.24": [
+      "powertoys.markdown.SPACE24"
+    ],
+    "font.size.h3": [
+      "powertoys.markdown.H3_SIZE"
+    ],
+    "font.line-height.h3": [
+      "powertoys.markdown.H3_LINE"
+    ],
+    "layout.measure": [
+      "powertoys.markdown.MEASURE"
+    ],
+    "layout.content-max": [
+      "powertoys.markdown.CONTENT_MAX"
     ]
   },
   "unmapped": {
@@ -499,14 +585,10 @@
     "color.surface.sunken": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.surface.overlay": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.surface.backdrop": "Outside Windows visual adapter scope; preserve host semantics.",
-    "color.surface.code": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.surface.terminal": "Outside Windows visual adapter scope; preserve host semantics.",
-    "color.text.prose": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.text.placeholder": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.text.accent": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.text.accent-strong": "Outside Windows visual adapter scope; preserve host semantics.",
-    "color.text.link": "Outside Windows visual adapter scope; preserve host semantics.",
-    "color.text.link-underline": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.text.on-selection": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.text.on-danger": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.text.on-light": "Outside Windows visual adapter scope; preserve host semantics.",
@@ -517,8 +599,6 @@
     "color.interaction.focus.ring-container": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.interaction.selection.text": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.interaction.selection.inactive-text": "Outside Windows visual adapter scope; preserve host semantics.",
-    "color.interaction.text-selection.bg": "Outside Windows visual adapter scope; preserve host semantics.",
-    "color.interaction.text-selection.text": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.interaction.scrollbar.track": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.action.primary.text": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.action.primary.border": "Outside Windows visual adapter scope; preserve host semantics.",
@@ -632,36 +712,19 @@
     "color.icon.decorative": "Outside Windows visual adapter scope; preserve host semantics.",
     "space.0": "Outside Windows visual adapter scope; preserve host semantics.",
     "space.1": "Outside Windows visual adapter scope; preserve host semantics.",
-    "space.2": "Outside Windows visual adapter scope; preserve host semantics.",
-    "space.4": "Outside Windows visual adapter scope; preserve host semantics.",
-    "space.8": "Outside Windows visual adapter scope; preserve host semantics.",
-    "space.12": "Outside Windows visual adapter scope; preserve host semantics.",
-    "space.16": "Outside Windows visual adapter scope; preserve host semantics.",
-    "space.24": "Outside Windows visual adapter scope; preserve host semantics.",
     "space.32": "Outside Windows visual adapter scope; preserve host semantics.",
     "space.48": "Outside Windows visual adapter scope; preserve host semantics.",
     "border.width.emphasis": "Outside Windows visual adapter scope; preserve host semantics.",
     "font.weight.regular": "Outside Windows visual adapter scope; preserve host semantics.",
-    "font.weight.bold": "Outside Windows visual adapter scope; preserve host semantics.",
     "font.size.ui-sm": "Outside Windows visual adapter scope; preserve host semantics.",
     "font.size.ui-md": "Outside Windows visual adapter scope; preserve host semantics.",
     "font.size.ui-lg": "Outside Windows visual adapter scope; preserve host semantics.",
-    "font.size.reading": "Outside Windows visual adapter scope; preserve host semantics.",
-    "font.size.code": "Outside Windows visual adapter scope; preserve host semantics.",
     "font.size.terminal": "Outside Windows visual adapter scope; preserve host semantics.",
-    "font.size.h1": "Outside Windows visual adapter scope; preserve host semantics.",
-    "font.size.h2": "Outside Windows visual adapter scope; preserve host semantics.",
-    "font.size.h3": "Outside Windows visual adapter scope; preserve host semantics.",
     "font.size.caption": "Outside Windows visual adapter scope; preserve host semantics.",
     "font.line-height.ui-sm": "Outside Windows visual adapter scope; preserve host semantics.",
     "font.line-height.ui-md": "Outside Windows visual adapter scope; preserve host semantics.",
     "font.line-height.ui-lg": "Outside Windows visual adapter scope; preserve host semantics.",
-    "font.line-height.reading": "Outside Windows visual adapter scope; preserve host semantics.",
-    "font.line-height.code": "Outside Windows visual adapter scope; preserve host semantics.",
     "font.line-height.terminal": "Outside Windows visual adapter scope; preserve host semantics.",
-    "font.line-height.h1": "Outside Windows visual adapter scope; preserve host semantics.",
-    "font.line-height.h2": "Outside Windows visual adapter scope; preserve host semantics.",
-    "font.line-height.h3": "Outside Windows visual adapter scope; preserve host semantics.",
     "font.line-height.caption": "Outside Windows visual adapter scope; preserve host semantics.",
     "font.letter-spacing.terminal": "Outside Windows visual adapter scope; preserve host semantics.",
     "density.compact.control-height": "Outside Windows visual adapter scope; preserve host semantics.",
@@ -683,8 +746,6 @@
     "motion.duration.base": "Outside Windows visual adapter scope; preserve host semantics.",
     "motion.duration.slow": "Outside Windows visual adapter scope; preserve host semantics.",
     "shadow.floating": "Outside Windows visual adapter scope; preserve host semantics.",
-    "layout.measure": "Outside Windows visual adapter scope; preserve host semantics.",
-    "layout.content-max": "Outside Windows visual adapter scope; preserve host semantics.",
     "layout.app-max": "Outside Windows visual adapter scope; preserve host semantics.",
     "breakpoint.xs": "Outside Windows visual adapter scope; preserve host semantics.",
     "breakpoint.sm": "Outside Windows visual adapter scope; preserve host semantics.",

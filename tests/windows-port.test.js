@@ -421,3 +421,11 @@ test('preview adapter is pinned and journaled; taskbar edge uses the canonical d
  const taskbar=read(path.join(source,'dist/windows-11-taskbar-styler.json'));
  assert.deepEqual(taskbar.controlStyles.find(t=>t.target==='Rectangle#BackgroundStroke').styles,['Fill=#2b0e0d']);
 });
+
+test('Markdown adapter settings and source follow setup update, Test and rollback',t=>{
+ const f=windhawkFixture(t);f.ok('Apply',f.args);
+ assert.equal(f.db()['local@j3w1-powertoys-markdown'].config.disabled,false);
+ assert.equal(f.db()['local@j3w1-powertoys-markdown'].settings.enabled,'1');
+ f.ok('Test',f.args);f.ok('Restore',f.args);
+ assert.equal(f.db()['local@j3w1-powertoys-markdown'],undefined);
+});

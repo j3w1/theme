@@ -436,8 +436,8 @@
     },
     "color.surface.canvas": {
       "state": "mapped",
-      "surface": "desktop",
-      "reason": "Canonical semantic role mapped by host.json."
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "color.surface.chrome": {
       "state": "mapped",
@@ -461,8 +461,8 @@
     },
     "color.surface.raised": {
       "state": "mapped",
-      "surface": "desktop",
-      "reason": "Canonical semantic role mapped by host.json."
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "color.surface.overlay": {
       "state": "unsupported",
@@ -480,9 +480,9 @@
       "reason": "Outside Windows visual adapter scope; preserve host semantics."
     },
     "color.surface.code": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "color.surface.terminal": {
       "state": "unsupported",
@@ -500,9 +500,9 @@
       "reason": "Canonical semantic role mapped by host.json."
     },
     "color.text.prose": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "color.text.muted": {
       "state": "mapped",
@@ -535,19 +535,19 @@
       "reason": "Outside Windows visual adapter scope; preserve host semantics."
     },
     "color.text.link": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "color.text.link-underline": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "color.text.link-hover": {
       "state": "mapped",
-      "surface": "shell",
-      "reason": "Scoped native Explorer popup menu color; native geometry and input remain host-owned."
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "color.text.on-selection": {
       "state": "unsupported",
@@ -576,8 +576,8 @@
     },
     "color.text.heading": {
       "state": "mapped",
-      "surface": "desktop",
-      "reason": "Canonical semantic role mapped by host.json."
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "color.text.highlight": {
       "state": "mapped",
@@ -586,8 +586,8 @@
     },
     "color.border.divider": {
       "state": "mapped",
-      "surface": "shell",
-      "reason": "Native Explorer color adapter."
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "color.border.default": {
       "state": "mapped",
@@ -601,13 +601,13 @@
     },
     "color.border.control": {
       "state": "mapped",
-      "surface": "desktop",
-      "reason": "Canonical semantic role mapped by host.json."
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "color.border.active": {
       "state": "mapped",
-      "surface": "desktop",
-      "reason": "Canonical semantic role mapped by host.json."
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "color.border.overlay": {
       "state": "mapped",
@@ -631,8 +631,8 @@
     },
     "color.interaction.focus.ring": {
       "state": "mapped",
-      "surface": "desktop",
-      "reason": "Native selected-row focus color; Windows owns outline geometry."
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "color.interaction.focus.ring-container": {
       "state": "unsupported",
@@ -660,14 +660,14 @@
       "reason": "Outside Windows visual adapter scope; preserve host semantics."
     },
     "color.interaction.text-selection.bg": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "color.interaction.text-selection.text": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "color.interaction.hover.bg": {
       "state": "mapped",
@@ -692,7 +692,7 @@
     "color.interaction.marquee": {
       "state": "mapped",
       "surface": "shell",
-        "reason": "Exact-version Explorer UIMarqueeSelector background, cached system-brush fill and constant-alpha composition; unknown controls and high contrast retain host rendering."
+      "reason": "Exact-version Explorer UIMarqueeSelector background, cached system-brush fill and constant-alpha composition; unknown controls and high contrast retain host rendering."
     },
     "color.interaction.drop-target": {
       "state": "mapped",
@@ -706,8 +706,8 @@
     },
     "color.interaction.scrollbar.thumb": {
       "state": "mapped",
-      "surface": "shell",
-      "reason": "Native Explorer color adapter."
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "color.interaction.scrollbar.thumb-hover": {
       "state": "mapped",
@@ -1410,34 +1410,34 @@
       "reason": "Outside Windows visual adapter scope; preserve host semantics."
     },
     "space.2": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "space.4": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "space.8": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "space.12": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "space.16": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "space.24": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "space.32": {
       "state": "unsupported",
@@ -1451,8 +1451,8 @@
     },
     "border.width.default": {
       "state": "mapped",
-      "surface": "shell",
-      "reason": "Generated Start-menu XAML geometry uses canonical tokens; other native surfaces retain host geometry."
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "border.width.emphasis": {
       "state": "unsupported",
@@ -1466,8 +1466,8 @@
     },
     "font.family.mono": {
       "state": "mapped",
-      "surface": "desktop",
-      "reason": "Canonical semantic role mapped by host.json."
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "font.weight.regular": {
       "state": "unsupported",
@@ -1475,9 +1475,9 @@
       "reason": "Outside Windows visual adapter scope; preserve host semantics."
     },
     "font.weight.bold": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "font.size.ui-sm": {
       "state": "unsupported",
@@ -1495,14 +1495,14 @@
       "reason": "Outside Windows visual adapter scope; preserve host semantics."
     },
     "font.size.reading": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "font.size.code": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "font.size.terminal": {
       "state": "unsupported",
@@ -1510,19 +1510,19 @@
       "reason": "Outside Windows visual adapter scope; preserve host semantics."
     },
     "font.size.h1": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "font.size.h2": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "font.size.h3": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "font.size.caption": {
       "state": "unsupported",
@@ -1545,14 +1545,14 @@
       "reason": "Outside Windows visual adapter scope; preserve host semantics."
     },
     "font.line-height.reading": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "font.line-height.code": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "font.line-height.terminal": {
       "state": "unsupported",
@@ -1560,19 +1560,19 @@
       "reason": "Outside Windows visual adapter scope; preserve host semantics."
     },
     "font.line-height.h1": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "font.line-height.h2": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "font.line-height.h3": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "font.line-height.caption": {
       "state": "unsupported",
@@ -1680,14 +1680,14 @@
       "reason": "Outside Windows visual adapter scope; preserve host semantics."
     },
     "layout.measure": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "layout.content-max": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "layout.app-max": {
       "state": "unsupported",

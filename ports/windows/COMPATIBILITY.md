@@ -631,3 +631,34 @@ channel. This is output-format conversion, not a token-value change. The
 regression checks alpha order, transparent fills and every generated shell
 color against the native grammar. See Microsoft's
 [Color syntax](https://learn.microsoft.com/en-us/uwp/api/windows.ui.color).
+
+
+## PowerToys Markdown adapter
+
+`host.json` records PowerToys 0.101.2362.0 executable/control/helper digests,
+WebView native build 154.0.4258.37 and digest, observed NavigateToString/Navigate
+method offsets, and four generated-header identities (dark/light, with/without
+local images). A different identity passes through. The public SDK vtable was
+observed with an isolated synthetic controller, then the normal route was
+confirmed in the real preview process. The adapter never hooks a managed
+callback thunk or retains a WebView interface.
+
+CSS fits all four admitted extents and is padded to preserve length. The
+normal route preserves the complete Unicode suffix. The route above the
+PowerToys 1,500,000 UTF-8 byte threshold edits only that CSS extent in a fresh
+host-created GUID HTML file under PowerToys' LocalLow MarkdownPreview-Temp
+directory, with numeric file identity, final path, reparse and hard-link checks.
+Partial writes restore original CSS, or refuse navigation if restoration
+fails. CSP, original URI, suffix, local-image checks, resource/navigation
+filters and disabled scripts/host objects/web messages remain host-owned.
+The installed assemblies and original Markdown files are never changed.
+
+The native regression covers synthetic Unicode/content preservation, header
+refusal, bounded file edits, ownership/path/hard-link rejection, BOM handling,
+partial-write recovery and unload state. Both live normal and large sample
+routes were observed on the recorded host. Typography was revised after the
+owner rejected the initial layout; final visual quality acceptance is still
+open. Windows startup/loading surfaces before HTML navigation, other DPI,
+high-contrast switching and additional document features are not certified.
+Setup Test checks managed artifacts/settings; it does not prove native admission
+or appearance. Reselect a file after update, disable, Restore or Uninstall.

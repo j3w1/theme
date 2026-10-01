@@ -22,7 +22,7 @@ own import evidence meets the port contract.
 | Explorer drag-selection rectangle | Symbol-identified UIMarqueeSelector rooted at the actual Explorer UIItemsView; scoped cached-system-brush substitution, canonical red fill at 12% and themed border | Owner accepted the live red selection area with rose borders. Native solid border is a geometry deviation; other DPI and accessibility cases remain open |
 | Explorer filename selection and selected-row outline | Scoped Edit selection and native ListView border color mappings | Border pixel regression passes; corrected live rename outline still needs acceptance |
 | PowerToys plain-text/code preview and loading controls | Exact-version, hash-checked Monaco template adapter and native loading palette | Owner confirmed loaded preview and loading control; this does not cover Markdown |
-| PowerToys Markdown preview | No adapter yet | Separate generated HTML and WebView2 pipeline; gray preview remains unresolved |
+| PowerToys Markdown preview | Digest-pinned WebView2 HTML-boundary adapter and token-derived reading CSS for normal and large-file routes | Synthetic native preservation/rejection/recovery tests and bounded live sample checks; visual quality acceptance, other DPI and runtime accessibility cases remain open |
 | Explorer classic “Show more options” menu | Scoped exact-host Win32 popup palette | Confirmed owner/paint trace and native regressions; live normal, hot, disabled and submenu appearance still need verification |
 | Notepad | Native dark-mode/accent treatment only | Modern WinUI 3 chrome and editor need a dedicated adapter; not the legacy Notepad dark-mode mod |
 | Calculator | Bundled package-gated Windows.UI.Xaml brush adapter for the recorded 11.2607.0.0 package | Live body/buttons, startup, restore and accessibility acceptance remain open; graph-series brushes are excluded |
@@ -96,8 +96,23 @@ match the reviewed generated header, and leave the appended document unchanged.
 Keep the host CSP, resource filter, local-image path validation, disabled
 scripts/host objects/web messages and navigation restrictions. Do not enable
 scripts or developer tools to inject a theme. Do not modify installed PowerToys
-assemblies or redirect Markdown files to another preview provider. A public
-WebView2 rendering-boundary adapter is a candidate design, not delivered code.
+assemblies or redirect Markdown files to another preview provider. The bundled WebView2 adapter matches complete executable/control/helper/native
+module digests and the four reviewed generated headers. It uses public COM
+method addresses observed from an isolated SDK controller and pinned to that
+native module digest. Normal HTML is passed synchronously with only the CSS
+extent replaced. Large HTML keeps its original URI and file length: only the
+same CSS extent of a newly host-created GUID temporary HTML file is changed.
+Numeric file identity, resolved path, non-reparse parents and a single hard
+link are required; unknown files and headers are left alone. A failed partial
+write is restored; if restoration fails, navigation is refused. No document
+content, filename or URI is logged. Disabling/removal stops future styling;
+refresh an existing preview. PowerToys retains cleanup ownership of its files.
+
+Reading typography and spacing use canonical tokens, including 15/24 prose,
+20/28 H1, 16/24 H2, 13/18 lower headings, 13/19 code and a 72ch/680px maximum.
+This changes presentation, not the Markdown parser or its feature set. Native
+regressions use synthetic HTML instead of redistributing upstream templates.
+Live sample checks are bounded observations, not approval of every document.
 
 Pinned upstream source:
 

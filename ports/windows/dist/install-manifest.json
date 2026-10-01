@@ -27,8 +27,20 @@
       "sha256": "fa5c087652dba209ab8ff6004642106ab801f86c5de197c5a48844da066dce73"
     },
     {
+      "path": "dist/j3w1-powertoys-markdown.wh.cpp",
+      "sha256": "bdd6075e209ee0da155cf24a47eb1425ab3d72963e59293debd4e625e53d9705"
+    },
+    {
+      "path": "dist/markdown-theme.css",
+      "sha256": "9bc14a459abcb6c2bee9a00ba7a2fc95b17661b048ff3a55a4a43382e742e323"
+    },
+    {
+      "path": "dist/j3w1-powertoys-markdown.json",
+      "sha256": "fa5c087652dba209ab8ff6004642106ab801f86c5de197c5a48844da066dce73"
+    },
+    {
       "path": "dist/windows-settings.json",
-      "sha256": "a3417abb9a6131d18110c927ad43f00d1765100e7bcb55d401cf74ad102976af"
+      "sha256": "fdd9de09f5ef91a5487dea9e9c7f1cb97d00bfd989d4a21777dd29becbb6d43d"
     },
     {
       "path": "dist/terminal-fragment.json",
@@ -164,7 +176,7 @@
     },
     {
       "path": "host.json",
-      "sha256": "ec210645bd765daeb592ff2aaa71bee4a685ecc653570d9def24f77aafcf469f"
+      "sha256": "be91aa0c26bd7cff1d6349ba16b4d14486989f32653b6e7fc5f0b0784de57a4d"
     }
   ]
 }

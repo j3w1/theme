@@ -1,6 +1,7 @@
 /* Windows native artifacts. Host definitions own selectors; tokens own colors.
    Raster assets are deterministic original geometry, not downloaded artwork. */
 import { toCss } from './tokens.mjs';
+import {windowsMarkdownArtifacts} from './windows-markdown.mjs';
 import { stableJson, repoRoot } from './fs.mjs';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
@@ -152,6 +153,10 @@ export function windowsArtifacts({manifest,host,resolved}){
  artifacts.push({path:`dist/${calculatorId}.wh.cpp`,text:calculatorSource});
  json(`${calculatorId}.json`,{enabled:1});
  bundledMods.push({id:calculatorId,version:calculator.version,path:`dist/${calculatorId}.wh.cpp`,sha256:createHash('sha256').update(calculatorSource).digest('hex')});
+ const markdown=windowsMarkdownArtifacts(host,resolved);
+ artifacts.push({path:`dist/${markdown.id}.wh.cpp`,text:markdown.source},{path:'dist/markdown-theme.css',text:markdown.css});
+ json(`${markdown.id}.json`,{enabled:1});
+ bundledMods.push({id:markdown.id,version:markdown.version,path:`dist/${markdown.id}.wh.cpp`,sha256:createHash('sha256').update(markdown.source).digest('hex')});
  json('windows-settings.json',{schemaVersion:1,version:manifest.version,values:settings,stylerVariants,bundledMods,compatibility:host.compatibility,limitations:host.limitations});
  const ansi=['black','red','green','yellow','blue','purple','cyan','white','brightBlack','brightRed','brightGreen','brightYellow','brightBlue','brightPurple','brightCyan','brightWhite'];
  const scheme={name:'j3w1',foreground:val('color.terminal.fg'),background:val('color.surface.canvas'),cursorColor:val('color.terminal.cursor'),selectionBackground:val('color.code.selection-bg')};ansi.forEach((k,i)=>scheme[k]=val(`color.terminal.ansi.${i}`));
