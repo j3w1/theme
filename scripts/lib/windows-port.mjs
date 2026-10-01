@@ -169,15 +169,22 @@ export function windowsArtifacts({manifest,host,resolved}){
  const calculator=host.calculator,calculatorId='j3w1-calculator';
  if(!/^Microsoft\.WindowsCalculator_\d+\.\d+\.\d+\.\d+_x64__8wekyb3d8bbwe$/.test(calculator.packageFullName))throw Error('Calculator requires an exact package identity');
  const calculatorRules=Object.entries(calculator.resources).map(([key,role])=>{
-  if(!/^[A-Za-z][A-Za-z0-9]+(?:Brush|Background)$/.test(key)||key.startsWith('Equation'))throw Error('Invalid Calculator UI brush');
+  if(!/^[A-Za-z][A-Za-z0-9]+(?:Brush(?:PointerOver|Pressed|Disabled)?|Background|Foreground)$/.test(key)||key.startsWith('Equation'))throw Error('Invalid Calculator UI brush');
   const [r,g,b]=rgb(val(role));
-  return `    {L"${key}",{255,${r},${g},${b}}},`;
+  return `    {L"${key}",{255,${r},${g},${b}},L"${role}"},`;
  }).join('\n');
  const calculatorSubs={VERSION:calculator.version,PACKAGE_FULL_NAME:calculator.packageFullName,RESOURCE_RULES:calculatorRules};
  const calculatorSource=readFileSync(path.join(repoRoot,'ports/windows/src/j3w1-calculator.wh.cpp.in'),'utf8').replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in calculatorSubs))throw Error(`Unknown Calculator source placeholder ${key}`);return calculatorSubs[key];});
  artifacts.push({path:`dist/${calculatorId}.wh.cpp`,text:calculatorSource});
  json(`${calculatorId}.json`,{enabled:1});
  bundledMods.push({id:calculatorId,version:calculator.version,path:`dist/${calculatorId}.wh.cpp`,sha256:createHash('sha256').update(calculatorSource).digest('hex')});
+ const notepad=host.notepadNative,notepadId='j3w1-notepad-native';
+ if(!/^Microsoft\.WindowsNotepad_\d+\.\d+\.\d+\.\d+_x64__8wekyb3d8bbwe$/.test(notepad.packageFullName)||! /^[a-f0-9]{64}$/.test(notepad.editorSha256))throw Error('Notepad editor requires exact package and binary identities');
+ const notepadSubs={VERSION:notepad.version,PACKAGE_FULL_NAME:notepad.packageFullName,EDITOR_SHA256:notepad.editorSha256};
+ for(const [key,role] of Object.entries(notepad.roles))notepadSubs[key]='RGB('+rgb(val(role)).join(',')+')';
+ const notepadSource=readFileSync(path.join(repoRoot,'ports/windows/src/j3w1-notepad-native.wh.cpp.in'),'utf8').replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in notepadSubs))throw Error('Unknown Notepad source placeholder '+key);return notepadSubs[key];});
+ artifacts.push({path:'dist/'+notepadId+'.wh.cpp',text:notepadSource});json(notepadId+'.json',{enabled:1});
+ bundledMods.push({id:notepadId,version:notepad.version,path:'dist/'+notepadId+'.wh.cpp',sha256:createHash('sha256').update(notepadSource).digest('hex')});
  const markdown=windowsMarkdownArtifacts(host,resolved);
  artifacts.push({path:`dist/${markdown.id}.wh.cpp`,text:markdown.source},{path:'dist/markdown-theme.css',text:markdown.css});
  json(`${markdown.id}.json`,{enabled:1});

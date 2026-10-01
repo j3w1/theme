@@ -1070,7 +1070,7 @@
     }
   },
   "calculator": {
-    "version": "1.0.1",
+    "version": "1.3.3",
     "packageFullName": "Microsoft.WindowsCalculator_11.2607.0.0_x64__8wekyb3d8bbwe",
     "resources": {
       "AppChromeAcrylicHostBackdropMediumLowBrush": "color.surface.canvas",
@@ -1080,7 +1080,7 @@
       "SystemControlBackgroundChromeMediumLowBrush": "color.surface.canvas",
       "SolidBackgroundFillColorBaseBrush": "color.surface.canvas",
       "AppChromeAcrylicOperatorFlyoutBackgroundBrush": "color.surface.raised",
-      "NavigationViewDefaultPaneBackground": "color.surface.raised",
+      "NavigationViewDefaultPaneBackground": "color.surface.canvas",
       "CalcButtonTextFillColorDefaultBrush": "color.text.default",
       "CalcButtonTextFillColorHoverBrush": "color.text.default",
       "AppControlPageTextBaseHighColorBrush": "color.text.default",
@@ -1114,7 +1114,24 @@
       "AppControlHighlightCalcButtonHoverBrush": "color.action.primary.hover-bg",
       "AccentFillColorTertiaryBrush": "color.action.primary.pressed-bg",
       "ControlStrokeColorDefaultBrush": "color.border.control",
-      "SystemControlHighlightAccentBrush": "color.border.active"
+      "SystemControlHighlightAccentBrush": "color.border.active",
+      "SystemControlPageTextBaseHighBrush": "color.text.default",
+      "SystemControlPageTextBaseMediumBrush": "color.text.muted",
+      "SystemControlForegroundBaseHighBrush": "color.text.default",
+      "ButtonBorderBrush": "color.border.control",
+      "ButtonBorderBrushPointerOver": "color.border.active",
+      "ButtonBorderBrushPressed": "color.border.active",
+      "ButtonBorderBrushDisabled": "color.border.disabled",
+      "DividerStrokeColorDefaultBrush": "color.border.divider",
+      "SystemControlFocusVisualPrimaryBrush": "color.interaction.focus.ring",
+      "SystemControlFocusVisualSecondaryBrush": "color.surface.canvas",
+      "NavigationViewExpandedPaneBackground": "color.surface.canvas",
+      "NavigationViewTopPaneBackground": "color.surface.canvas",
+      "ControlStrokeColorSecondaryBrush": "color.border.control",
+      "ControlElevationBorderBrush": "color.border.control",
+      "ToolTipBackground": "color.surface.overlay",
+      "ToolTipForeground": "color.text.default",
+      "ToolTipBorderBrush": "color.border.control"
     }
   },
   "markdownPreview": {
@@ -1198,6 +1215,17 @@
       "MEASURE": "layout.measure",
       "CONTENT_MAX": "layout.content-max",
       "BORDER_WIDTH": "border.width.default"
+    }
+  },
+  "notepadNative": {
+    "version": "1.1.1",
+    "packageFullName": "Microsoft.WindowsNotepad_11.2607.14.0_x64__8wekyb3d8bbwe",
+    "editorSha256": "e7babd9942e133c690b4144657956af890912d130f81a81650f3a5597b5e5dbc",
+    "roles": {
+      "CANVAS": "color.surface.canvas",
+      "PROSE": "color.text.prose",
+      "SELECTION": "color.interaction.text-selection.bg",
+      "SELECTED_TEXT": "color.interaction.text-selection.text"
     }
   }
 }

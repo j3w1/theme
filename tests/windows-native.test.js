@@ -51,3 +51,23 @@ for(const [name,mod] of [
  const result=spawnSync(output,[],{encoding:'utf8',windowsHide:true,timeout:30000});
  assert.equal(result.status,0,result.stdout+'\n'+result.stderr);
 });
+
+for(const [id,define] of [['j3w1-calculator','1'],['j3w1-notepad-native','0']])test('native app worker shutdown: '+id,options,t=>{
+ const tools=toolchain(),folder=fs.mkdtempSync(path.join(os.tmpdir(),'j3w1-native-lifetime-'));
+ t.after(()=>fs.rmSync(folder,{recursive:true,force:true}));
+ const file=path.join(repoRoot,'tests/windows-app-lifetime-native.cpp'),output=path.join(folder,id+'.exe');
+ compile(tools.compiler,['-static','-DJ3W1_TEST_CALCULATOR='+define,file,...libraries(path.join(source,'dist/'+id+'.wh.cpp')),'-o',output]);
+ for(const state of ['exit-active','exit-completed','unload','reconfigure']){
+  const result=spawnSync(output,[state],{encoding:'utf8',windowsHide:true,timeout:15000});
+  assert.equal(result.status,0,state+': '+result.stdout+'\n'+result.stderr);
+ }
+});
+
+test('native Notepad editor preservation',options,t=>{
+ const tools=toolchain(),folder=fs.mkdtempSync(path.join(os.tmpdir(),'j3w1-native-editor-'));
+ t.after(()=>fs.rmSync(folder,{recursive:true,force:true}));
+ const output=path.join(folder,'notepad-editor.exe');
+ compile(tools.compiler,['-static',path.join(repoRoot,'tests/windows-notepad-editor-native.cpp'),...libraries(path.join(source,'dist/j3w1-notepad-native.wh.cpp')),'-ldwrite','-o',output]);
+ const result=spawnSync(output,[],{encoding:'utf8',windowsHide:true,timeout:30000});
+ assert.equal(result.status,0,result.stdout+'\n'+result.stderr);
+});

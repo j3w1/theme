@@ -192,6 +192,14 @@
     {
       "path": "dist/j3w1-folder-open.ico",
       "install": "Run the single pinned ports/windows/install.ps1; folder defaults are included in its saved rollback."
+    },
+    {
+      "path": "dist/j3w1-notepad-native.wh.cpp",
+      "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings."
+    },
+    {
+      "path": "dist/j3w1-notepad-native.json",
+      "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings."
     }
   ],
   "mappingPath": "mapping.json",

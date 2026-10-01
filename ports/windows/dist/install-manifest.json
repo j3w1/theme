@@ -20,10 +20,18 @@
     },
     {
       "path": "dist/j3w1-calculator.wh.cpp",
-      "sha256": "b46ec686fecb0c541a89c3d8d76c92029a8639839f253c7f5317e940bff66f52"
+      "sha256": "9753aa117842f0ce6869233b33bb9017801eea1790165ec49f40e21281248f4f"
     },
     {
       "path": "dist/j3w1-calculator.json",
+      "sha256": "fa5c087652dba209ab8ff6004642106ab801f86c5de197c5a48844da066dce73"
+    },
+    {
+      "path": "dist/j3w1-notepad-native.wh.cpp",
+      "sha256": "55f6825db1f71a0f7da4504cc38bac93e99b1f7a71137b0199420bb8797d50aa"
+    },
+    {
+      "path": "dist/j3w1-notepad-native.json",
       "sha256": "fa5c087652dba209ab8ff6004642106ab801f86c5de197c5a48844da066dce73"
     },
     {
@@ -40,7 +48,7 @@
     },
     {
       "path": "dist/windows-settings.json",
-      "sha256": "e6f5d04bb95184b4879e78e78a6aa9e1ba2bc31e89817a450c3bdcad3d7c9cef"
+      "sha256": "e0a8264fb1f5f2ff908cf421a8a01a7915d353c4da44f9dbf2ad46d679a6745b"
     },
     {
       "path": "dist/terminal-fragment.json",
@@ -180,7 +188,7 @@
     },
     {
       "path": "host.json",
-      "sha256": "f7c67b8d4a59564f5391fa14559d6e4bf01e04c1f8b1b2724a8d76a7a6466a1b"
+      "sha256": "cab519813f3c65cb70804a672b69e3dba1d681ce58f4b361b8dc41af4a0de984"
     }
   ]
 }

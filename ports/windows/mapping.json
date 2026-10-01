@@ -15,13 +15,15 @@
       "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | BorderBrush@PointerOver",
       "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | BorderBrush@Pressed",
       "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | BorderBrush@Pressed",
-      "calculator.resource.SystemControlHighlightAccentBrush",
       "powertoys.markdown.QUOTE_BORDER",
       "windows-11-start-menu-styler | Border#AppBorder | BorderBrush",
       "windows-11-start-menu-styler | Border#TaskbarSearchBackground | BorderBrush",
       "windows-11-start-menu-styler | Cortana.UI.Views.RichSearchBoxControl#SearchBoxControl > Grid#RootGrid | BorderBrush",
       "folder.edge",
-      "windows-11-start-menu-styler | web .leftPill::before | background-color"
+      "windows-11-start-menu-styler | web .leftPill::before | background-color",
+      "calculator.resource.SystemControlHighlightAccentBrush",
+      "calculator.resource.ButtonBorderBrushPointerOver",
+      "calculator.resource.ButtonBorderBrushPressed"
     ],
     "color.surface.desktop": [
       "native.desktop"
@@ -52,12 +54,6 @@
       "windows-11-file-explorer-styler | CommandBar > Grid#LayoutRoot > Grid#ContentRoot | Background",
       "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@Normal",
       "windows-11-file-explorer-styler | FileExplorerExtensions.AddressBarControl > Grid#PART_LayoutRoot | Background",
-      "calculator.resource.AppChromeAcrylicHostBackdropMediumLowBrush",
-      "calculator.resource.AppBackgroundAltMediumLowBrush",
-      "calculator.resource.AppOperatorPanelBackground",
-      "calculator.resource.SystemControlBackgroundAltHighBrush",
-      "calculator.resource.SystemControlBackgroundChromeMediumLowBrush",
-      "calculator.resource.SolidBackgroundFillColorBaseBrush",
       "powertoys.markdown.CANVAS",
       "windows-11-start-menu-styler | Border#AppBorder | Background",
       "windows-11-start-menu-styler | Border#TaskbarSearchBackground | Background",
@@ -66,7 +62,18 @@
       "windows-11-start-menu-styler | web .iconContainer, .previewContainer .imageContainer, .scope-tile > div, button, .button, .actionButton | background-color",
       "windows-11-start-menu-styler | web .suggestion, .contextMenu li | background-color",
       "windows-11-start-menu-styler | web .scope-tile--selected > div | background-color",
-      "windows-11-start-menu-styler | web ::-webkit-scrollbar-track | background-color"
+      "windows-11-start-menu-styler | web ::-webkit-scrollbar-track | background-color",
+      "calculator.resource.AppChromeAcrylicHostBackdropMediumLowBrush",
+      "calculator.resource.AppBackgroundAltMediumLowBrush",
+      "calculator.resource.AppOperatorPanelBackground",
+      "calculator.resource.SystemControlBackgroundAltHighBrush",
+      "calculator.resource.SystemControlBackgroundChromeMediumLowBrush",
+      "calculator.resource.SolidBackgroundFillColorBaseBrush",
+      "calculator.resource.NavigationViewDefaultPaneBackground",
+      "calculator.resource.SystemControlFocusVisualSecondaryBrush",
+      "calculator.resource.NavigationViewExpandedPaneBackground",
+      "calculator.resource.NavigationViewTopPaneBackground",
+      "notepad-native.CANVAS"
     ],
     "color.terminal.cursor": [
       "terminal.cursor"
@@ -101,23 +108,26 @@
       "windows-11-settings-styler | TextBlock | Foreground",
       "windows-11-settings-styler | Control | Foreground",
       "nativeExplorer.foreground",
+      "windows-11-start-menu-styler | web body, #root, #root.darkTheme, .scope-with-background, .suggsList, .suggsListContainer, .suggContainer, .previewContainer, .suggDetailsContainer, .contextMenu, #menuContainer | color",
+      "windows-11-start-menu-styler | web h1, h2, h3, h4, p, .title, .details, .secondaryText, .groupTitle, .suggestion, .scope-tile > div, .menu-item_details, .previewContainer, button | color",
+      "windows-11-start-menu-styler | web .suggestion:hover, .suggestion:hover .details, .suggestion:hover .iconContainer, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover | color",
       "calculator.resource.CalcButtonTextFillColorDefaultBrush",
       "calculator.resource.CalcButtonTextFillColorHoverBrush",
       "calculator.resource.AppControlPageTextBaseHighColorBrush",
       "calculator.resource.TextFillColorPrimaryBrush",
-      "windows-11-start-menu-styler | web body, #root, #root.darkTheme, .scope-with-background, .suggsList, .suggsListContainer, .suggContainer, .previewContainer, .suggDetailsContainer, .contextMenu, #menuContainer | color",
-      "windows-11-start-menu-styler | web h1, h2, h3, h4, p, .title, .details, .secondaryText, .groupTitle, .suggestion, .scope-tile > div, .menu-item_details, .previewContainer, button | color",
-      "windows-11-start-menu-styler | web .suggestion:hover, .suggestion:hover .details, .suggestion:hover .iconContainer, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover | color"
+      "calculator.resource.SystemControlPageTextBaseHighBrush",
+      "calculator.resource.SystemControlForegroundBaseHighBrush",
+      "calculator.resource.ToolTipForeground"
     ],
     "color.text.bright": [
       "native.bright",
       "powertoys.number",
       "windhawk.resource.AccentTextFillColorPrimary",
+      "windows-11-start-menu-styler | web .scope-tile--selected > div | color",
       "calculator.resource.AppControlForegroundAccentBrush",
       "calculator.resource.AccentTextFillColorPrimaryBrush",
       "calculator.resource.TextOnAccentFillColorPrimaryBrush",
-      "calculator.resource.TextOnAccentFillColorSecondaryBrush",
-      "windows-11-start-menu-styler | web .scope-tile--selected > div | color"
+      "calculator.resource.TextOnAccentFillColorSecondaryBrush"
     ],
     "color.text.heading": [
       "native.heading",
@@ -131,11 +141,12 @@
       "windhawk.resource.TextFillColorSecondary",
       "windhawk.resource.SystemControlForegroundBaseMediumBrush",
       "windows-11-notification-center-styler | CalendarView | OutOfScopeForeground",
+      "windows-11-start-menu-styler | web .secondaryText, .details .secondaryText | color",
       "calculator.resource.CalcButtonTextFillColorPressedBrush",
       "calculator.resource.AppControlPageTextBaseMediumHighBrush",
       "calculator.resource.AppControlForegroundSecondaryBrush",
       "calculator.resource.TextFillColorSecondaryBrush",
-      "windows-11-start-menu-styler | web .secondaryText, .details .secondaryText | color"
+      "calculator.resource.SystemControlPageTextBaseMediumBrush"
     ],
     "color.text.disabled": [
       "native.disabled",
@@ -162,9 +173,8 @@
       "windows-11-start-menu-styler | Border#AcrylicBorder | Background",
       "windows-11-start-menu-styler | Grid#CompanionRoot > Border#AcrylicBorder | Background",
       "windows-11-start-menu-styler | StartMenu.FolderModal > Grid > Border | Background",
-      "calculator.resource.AppChromeAcrylicOperatorFlyoutBackgroundBrush",
-      "calculator.resource.NavigationViewDefaultPaneBackground",
-      "powertoys.markdown.QUOTE"
+      "powertoys.markdown.QUOTE",
+      "calculator.resource.AppChromeAcrylicOperatorFlyoutBackgroundBrush"
     ],
     "color.border.control": [
       "powertoys.border",
@@ -174,9 +184,13 @@
       "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | BorderBrush@Normal",
       "windows-11-start-menu-styler | StartDocked.SearchBoxToggleButton > Grid > Border#BorderElement | BorderBrush",
       "windows-11-start-menu-styler | StartMenu.SearchBoxToggleButton > Grid > Border#BorderElement | BorderBrush",
-      "calculator.resource.ControlStrokeColorDefaultBrush",
       "powertoys.markdown.CODE_BORDER",
-      "windows-11-start-menu-styler | Cortana.UI.Views.RichSearchBoxControl > Grid > Border#BorderElement | BorderBrush"
+      "windows-11-start-menu-styler | Cortana.UI.Views.RichSearchBoxControl > Grid > Border#BorderElement | BorderBrush",
+      "calculator.resource.ControlStrokeColorDefaultBrush",
+      "calculator.resource.ButtonBorderBrush",
+      "calculator.resource.ControlStrokeColorSecondaryBrush",
+      "calculator.resource.ControlElevationBorderBrush",
+      "calculator.resource.ToolTipBorderBrush"
     ],
     "font.family.mono": [
       "font.family",
@@ -259,9 +273,9 @@
       "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | Background@Normal",
       "windows-11-start-menu-styler | StartDocked.SearchBoxToggleButton > Grid > Border#BorderElement | Background",
       "windows-11-start-menu-styler | StartMenu.SearchBoxToggleButton > Grid > Border#BorderElement | Background",
+      "windows-11-start-menu-styler | Cortana.UI.Views.RichSearchBoxControl > Grid > Border#BorderElement | Background",
       "calculator.resource.CalcButtonFillColorDefaultBrush",
-      "calculator.resource.CalcButtonAltFillColorDefaultBrush",
-      "windows-11-start-menu-styler | Cortana.UI.Views.RichSearchBoxControl > Grid > Border#BorderElement | Background"
+      "calculator.resource.CalcButtonAltFillColorDefaultBrush"
     ],
     "color.interaction.hover.bg": [
       "windhawk.resource.ControlFillColorSecondary",
@@ -271,11 +285,11 @@
       "nativeExplorer.hover",
       "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@PointerOver",
       "windows-11-file-explorer-styler | MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates | Background@SubMenuOpened",
+      "windows-11-start-menu-styler | web .suggestion:hover, .suggestion:hover .details, .suggestion:hover .iconContainer, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover | background-color",
       "calculator.resource.CalcButtonFillColorHoverBrush",
       "calculator.resource.CalcButtonAltFillColorHoverBrush",
       "calculator.resource.SubtleFillColorSecondaryBrush",
-      "calculator.resource.AppControlBackgroundSecondaryBrush",
-      "windows-11-start-menu-styler | web .suggestion:hover, .suggestion:hover .details, .suggestion:hover .iconContainer, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover | background-color"
+      "calculator.resource.AppControlBackgroundSecondaryBrush"
     ],
     "color.interaction.pressed.bg": [
       "windhawk.resource.ControlFillColorTertiary",
@@ -283,19 +297,19 @@
       "windows-11-start-menu-styler | Button#ShowMoreSuggestionsButton > Grid@CommonStates > Border | Background@Pressed",
       "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | Background@Pressed",
       "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@Pressed",
+      "windows-11-start-menu-styler | web button:active, .button:active, .actionButton:active | background-color",
       "calculator.resource.CalcButtonFillColorPressedBrush",
       "calculator.resource.CalcButtonAltFillColorPressedBrush",
       "calculator.resource.AppControlBackgroundTertiaryBrush",
-      "calculator.resource.SubtleFillColorTertiaryBrush",
-      "windows-11-start-menu-styler | web button:active, .button:active, .actionButton:active | background-color"
+      "calculator.resource.SubtleFillColorTertiaryBrush"
     ],
     "color.action.primary.bg": [
       "windhawk.resource.AccentFillColorDefault",
       "windows-11-notification-center-styler | CalendarView | TodayBackground",
+      "folder.fill",
       "calculator.resource.AccentFillColorDefaultBrush",
       "calculator.resource.AppControlHighlightCalcButtonBrush",
-      "calculator.resource.AppControlHighlightCalcButtonToggledBrush",
-      "folder.fill"
+      "calculator.resource.AppControlHighlightCalcButtonToggledBrush"
     ],
     "color.text.on-action": [
       "windhawk.resource.TextOnAccentFillColorPrimary",
@@ -389,7 +403,8 @@
       "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | BorderBrush@Disabled",
       "windows-11-start-menu-styler | Button#ShowMoreSuggestionsButton > Grid@CommonStates > Border | BorderBrush@Disabled",
       "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | BorderBrush@Disabled",
-      "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | BorderBrush@Disabled"
+      "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | BorderBrush@Disabled",
+      "calculator.resource.ButtonBorderBrushDisabled"
     ],
     "color.border.default": [
       "windows-11-start-menu-styler | StartMenu.CategoryControl > Grid > Border | BorderBrush"
@@ -413,7 +428,8 @@
       "windows-11-file-explorer-styler | Border#BottomBorderLine, Border#LeftBottomBorderLine, Border#RightBottomBorderLine | BorderBrush",
       "windows-11-file-explorer-styler | FileExplorerExtensions.CommandBarControl_Wave1 > Grid, Grid#CommandBarControlRootGrid | BorderBrush",
       "windows-11-file-explorer-styler | CommandBar#FileExplorerCommandBar, CommandBar#FileExplorerSecondaryCommandBar | BorderBrush",
-      "windows-11-start-menu-styler | web body, #root, #root.darkTheme, .scope-with-background, .suggsList, .suggsListContainer, .suggContainer, .previewContainer, .suggDetailsContainer, .contextMenu, #menuContainer | border-color"
+      "windows-11-start-menu-styler | web body, #root, #root.darkTheme, .scope-with-background, .suggsList, .suggsListContainer, .suggContainer, .previewContainer, .suggDetailsContainer, .contextMenu, #menuContainer | border-color",
+      "calculator.resource.DividerStrokeColorDefaultBrush"
     ],
     "color.interaction.scrollbar.thumb": [
       "nativeExplorer.scrollbar",
@@ -427,7 +443,8 @@
     "color.interaction.focus.ring": [
       "nativeExplorer.focusRing",
       "powertoys.markdown.FOCUS",
-      "windows-11-start-menu-styler | web :focus-visible | outline-color"
+      "windows-11-start-menu-styler | web :focus-visible | outline-color",
+      "calculator.resource.SystemControlFocusVisualPrimaryBrush"
     ],
     "color.interaction.marquee": [
       "nativeExplorer.marquee"
@@ -464,7 +481,8 @@
       "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Background@Pressed"
     ],
     "color.text.prose": [
-      "powertoys.markdown.PROSE"
+      "powertoys.markdown.PROSE",
+      "notepad-native.PROSE"
     ],
     "color.surface.code": [
       "powertoys.markdown.CODE"
@@ -476,10 +494,12 @@
       "powertoys.markdown.LINK_UNDERLINE"
     ],
     "color.interaction.text-selection.bg": [
-      "powertoys.markdown.SELECTION"
+      "powertoys.markdown.SELECTION",
+      "notepad-native.SELECTION"
     ],
     "color.interaction.text-selection.text": [
-      "powertoys.markdown.SELECTION_TEXT"
+      "powertoys.markdown.SELECTION_TEXT",
+      "notepad-native.SELECTED_TEXT"
     ],
     "font.size.reading": [
       "powertoys.markdown.READING_SIZE"
@@ -555,6 +575,9 @@
     ],
     "border.width.emphasis": [
       "windows-11-start-menu-styler | web .scope-tile--selected > div | border-bottom-width"
+    ],
+    "color.surface.overlay": [
+      "calculator.resource.ToolTipBackground"
     ]
   },
   "unmapped": {
@@ -640,7 +663,6 @@
     "color.primitive.ansi-readable.15": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.surface.chrome-alt": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.surface.sunken": "Outside Windows visual adapter scope; preserve host semantics.",
-    "color.surface.overlay": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.surface.backdrop": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.surface.terminal": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.text.placeholder": "Outside Windows visual adapter scope; preserve host semantics.",

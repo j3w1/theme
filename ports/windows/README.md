@@ -26,7 +26,7 @@ Microsoft-signed runtime for this user. It does not change system execution
 policy or require you to elevate the whole installation. Managed-device policy
 can still prevent execution; use your administrator's approved process.
 
-**Full mode** adds five pinned Windhawk shell stylers and the bundled Explorer native-color, PowerToys text/Markdown-preview and Calculator resource adapters. It requires the exact
+**Full mode** adds five pinned Windhawk shell stylers and the bundled Explorer native-color, PowerToys text/Markdown-preview, Calculator resource and Notepad native editor adapters. It requires the exact
 reviewed Windows/shell fingerprint and uses Windhawk 2.0 alpha 6. On other
 builds, setup explains the limit and asks whether to install **Native mode**:
 personalization, wallpaper, cursors and supported existing app settings, without
@@ -56,7 +56,7 @@ inspection. Close app settings windows before updating to avoid concurrent edits
 
 ## Undo
 
-Run **one** command with the same setup script you downloaded:
+Run **one** command with the same **install.ps1** file you downloaded:
 
 ```powershell
 & ./install.ps1 -Action Restore -Latest  # undo the last update
@@ -105,7 +105,7 @@ same frame/surface rules where its XAML controls expose them. See
   Palette appearance. Four optional layouts are added without assigning them.
 - Full mode: five pinned Windhawk shell stylers, a bundled native Explorer
   canvas/text adapter, PowerToys text and Markdown preview adapters, a package-gated Calculator
-  resource adapter and a current-user sign-in
+  resource adapter, the Notepad editor adapter and a current-user sign-in
   compatibility guard. The guard never downloads updates.
 
 Desktop icons, shortcuts, utility enabled states, window placement and assigned
