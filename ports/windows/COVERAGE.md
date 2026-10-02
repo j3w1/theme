@@ -299,3 +299,14 @@ and [CommandBarFlyout template](https://github.com/microsoft/microsoft-ui-xaml/b
 The result TextBlock receives the same restorable focus-brush mapping as native
 controls; its selection, commands and text remain native. Installed popup,
 hover exit and accessibility acceptance remain separate checks.
+
+The first popup resource-host correction passed its structural/lifecycle checks
+but the live result menu remained gray. A read-only control/brush trace found a
+native Windows.UI.Xaml MenuFlyoutPresenter whose default-style acrylic tint was
+neutral gray, outside the application resource aliases. The adapter now colors
+only MenuFlyoutPresenter and ToolTip frame Background, Foreground and BorderBrush
+through their public dependency properties. It retains each exact local value,
+restores only its owned brush, and preserves later application replacements.
+Row state backgrounds, templates, commands, selection and text are untouched.
+The live result-popup gate remains open until the corrected installation is
+inspected; the previous installation check was not visual acceptance.

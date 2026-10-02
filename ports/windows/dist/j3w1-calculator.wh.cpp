@@ -2,7 +2,7 @@
 // @id j3w1-calculator
 // @name j3w1 Calculator resources
 // @description Version-checked Calculator UI resources; equation colors remain native
-// @version 1.4.3
+// @version 1.4.4
 // @author j3w1
 // @include CalculatorApp.exe
 // @architecture x86-64
@@ -585,13 +585,24 @@ static bool RestoreButtonStyles() noexcept {
  if(restored)stylesChanged.clear();return restored;
 }
 
-static void ApplyFocusBrush(DependencyObject const& object,DependencyProperty const& property,PCWSTR key) {
+static void ApplyOwnedBrush(DependencyObject const& object,DependencyProperty const& property,PCWSTR key) {
  for(auto const& prior:visualsChanged)if(prior.property==property&&Identity(prior.object.get(),object))return;
  auto local=object.ReadLocalValue(property);
  if(local&&!Identity(local,DependencyProperty::UnsetValue())&&!local.try_as<Brush>())return;
  SolidColorBrush applied(PaletteRule(key).color);
  visualsChanged.push_back({make_weak(object),property,local,applied});
  object.SetValue(property,applied);
+}
+// Native OS popup presenters may have a default-style acrylic brush that is
+// not an alias of the application's resource dictionaries. Their frame colors
+// are stable public properties, unlike a row's hover/pressed background.
+// Preserve the exact local baseline and later app changes with the same owned
+// dependency-property path used by focus brushes. Never change item templates.
+static void ApplyPopupFrame(DependencyObject const& object) {
+ if(!object.try_as<MenuFlyoutPresenter>()&&!object.try_as<ToolTip>())return;
+ ApplyOwnedBrush(object,Control::BackgroundProperty(),object.try_as<ToolTip>()?L"ToolTipBackgroundBrush":L"SolidBackgroundFillColorBaseBrush");
+ ApplyOwnedBrush(object,Control::ForegroundProperty(),L"TextFillColorPrimaryBrush");
+ ApplyOwnedBrush(object,Control::BorderBrushProperty(),L"SystemControlTransientBorderBrush");
 }
 static void BridgeStaticText(DependencyObject const& object) {
  auto set=[&](DependencyProperty const& property,PropertyKind kind) {
@@ -610,8 +621,8 @@ static void BridgeStaticText(DependencyObject const& object) {
 
  if(object.try_as<Control>()||object.try_as<TextBlock>()) {
   // CalculationResult gives its TextBlock programmatic keyboard focus.
-  ApplyFocusBrush(object,FrameworkElement::FocusVisualPrimaryBrushProperty(),L"SystemControlFocusVisualPrimaryBrush");
-  ApplyFocusBrush(object,FrameworkElement::FocusVisualSecondaryBrushProperty(),L"SystemControlFocusVisualSecondaryBrush");
+  ApplyOwnedBrush(object,FrameworkElement::FocusVisualPrimaryBrushProperty(),L"SystemControlFocusVisualPrimaryBrush");
+  ApplyOwnedBrush(object,FrameworkElement::FocusVisualSecondaryBrushProperty(),L"SystemControlFocusVisualSecondaryBrush");
  }
  // Only stable textual leaves; template backgrounds stay state-driven.
  if(object.try_as<TextBlock>())set(TextBlock::ForegroundProperty(),PropertyKind::Foreground);
@@ -649,6 +660,7 @@ static void BridgeViews() {
     while(!stack.empty() && count++<4096) {
         auto object=stack.back();stack.pop_back();
         RefreshControlResources(object);
+        ApplyPopupFrame(object);
         ApplyButtonStyle(object);
         ApplyAnimationPalette(object);
         BridgeStaticText(object);
