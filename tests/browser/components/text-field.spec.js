@@ -26,6 +26,10 @@ test.describe("text-field", () => {
     const input = live.locator("input");
     const root = live.locator(".text-field-root");
     await input.focus();
+    await expect(input).toBeFocused();
+    // Read the palette only after the browser has rendered the real focus state.
+    // Keep the same exact colors, geometry and subsequent interaction checks.
+    await expect(root).toHaveCSS("outline-style", "dashed");
     const focused = await root.evaluate((el) => {
       const s = getComputedStyle(el);
       return { outlineStyle: s.outlineStyle, outlineColor: s.outlineColor, outlineWidth: s.outlineWidth, borderColor: s.borderTopColor, radius: s.borderRadius };
