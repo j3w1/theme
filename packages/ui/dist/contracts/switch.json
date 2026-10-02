@@ -1,10 +1,10 @@
 {
   "id": "switch",
   "name": "Switch",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "tag": "j3w1-switch",
-  "contract": "https://github.com/j3w1/theme/blob/v3.1.0/spec/components/switch.md",
-  "source": "https://github.com/j3w1/theme/blob/v3.1.0/packages/ui/src/behaviors/native.js",
+  "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/switch.md",
+  "source": "https://github.com/j3w1/theme/blob/v4.0.0/packages/ui/src/behaviors/native.js",
   "imports": {
     "class": "@j3w1/ui/components/switch",
     "register": "@j3w1/ui/register/switch",
@@ -190,9 +190,11 @@
       "color.primitive.rose.800",
       "color.surface.canvas",
       "color.surface.input",
+      "color.text.bright",
       "color.text.default",
       "color.text.disabled",
       "color.text.muted",
+      "color.text.on-action",
       "focus.offset",
       "focus.ring",
       "font.family.mono",
@@ -393,6 +395,6 @@
   "copy": {
     "directory": "copy/switch/",
     "manifest": "copy/switch/manifest.json",
-    "digest": "sha256-e10rdjDFpBTVHtwoF3YRKTqPb/wSRWjg6wuaFwxYX80="
+    "digest": "sha256-hCWuI5qaRqrrq1xNOYJkVhIxFNf3qteKF50eL3kOaLA="
   }
 }

@@ -72,7 +72,10 @@ export async function buildUI({ check = false } = {}) {
     await put(entries, `enhance/${id}.js`, `export { ${name} } from ${JSON.stringify(source)};\n`);
     input[`enhance/${id}`] = path.join(entries, `enhance/${id}.js`);
   }
-  await build({ configFile: false, root: repoRoot, logLevel: "warn", build: { outDir: output, emptyOutDir: true, target: "es2022", minify: false, sourcemap: false, rollupOptions: { preserveEntrySignatures: "strict", input, output: { format: "es", entryFileNames: "[name].js", chunkFileNames: "chunks/[name]-[hash].js" } } } });
+  // Rolldown's source-region comments and chunk hashes use its own cwd,
+  // independently of Vite's root. Anchor both so callers outside the checkout
+  // reproduce the same emitted bytes and component implementation identities.
+  await build({ configFile: false, root: repoRoot, logLevel: "warn", build: { outDir: output, emptyOutDir: true, target: "es2022", minify: false, sourcemap: false, rolldownOptions: { cwd: repoRoot, preserveEntrySignatures: "strict", input, output: { format: "es", entryFileNames: "[name].js", chunkFileNames: "chunks/[name]-[hash].js" } } } });
   await assignImplementationIds(output, definitions, ids);
   for (const [file, text] of types) await put(output, file, text);
   await put(output, "index.d.ts", index.join("\n") + "\n");

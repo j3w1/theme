@@ -22,6 +22,8 @@ const notFound = async (res) => {
   }
 };
 
-serveTree({ root: dist, base, notFound }).listen(port, () => {
+// This test server is local to the browser runner. Do not open a LAN listener
+// or require a Windows firewall grant for a local appearance check.
+serveTree({ root: dist, base, notFound }).listen(port, "localhost", () => {
   console.log(`serving dist at http://localhost:${port}${base}`);
 });

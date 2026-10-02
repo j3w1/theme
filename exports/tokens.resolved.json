@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "theme": "j3w1-theme",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "tokenFormat": "dtcg-2025.10",
   "defaultProfile": "default",
   "release": {
-    "version": "3.1.0",
+    "version": "4.0.0",
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
@@ -2263,7 +2263,7 @@
           },
           "css": "#ffa2a7",
           "aliasOf": "color.primitive.rose.800",
-          "description": "Headings and emphasis. Links use color.text.link.",
+          "description": "Brighter rose interface labels and explicit semantic emphasis. Bold itself inherits color; content headings use text.heading (D-033).",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -2278,19 +2278,19 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9569,
-              0.9333,
-              0.9333
+              0.9137,
+              0.5804,
+              0.6
             ],
             "alpha": 1,
-            "hex": "#f4eeee"
+            "hex": "#e99499"
           },
-          "css": "#f4eeee",
-          "aliasOf": "color.primitive.paper.90",
-          "description": "Long-form reading text.",
-          "status": "observed",
+          "css": "#e99499",
+          "aliasOf": "color.text.default",
+          "description": "Long-form reading and body text; rose, never an on-fill or heading shortcut (D-033).",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-033",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -2542,19 +2542,19 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9569,
-              0.9333,
-              0.9333
+              1,
+              0.6353,
+              0.6549
             ],
             "alpha": 1,
-            "hex": "#f4eeee"
+            "hex": "#ffa2a7"
           },
-          "css": "#f4eeee",
-          "aliasOf": "color.primitive.paper.90",
-          "description": "Text on the primary action fill.",
-          "status": "observed",
+          "css": "#ffa2a7",
+          "aliasOf": "color.text.bright",
+          "description": "Bright rose text on primary-action fills in every state (D-033).",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-033",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -2627,6 +2627,54 @@
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
+        },
+        "color.text.heading": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9569,
+              0.9333,
+              0.9333
+            ],
+            "alpha": 1,
+            "hex": "#f4eeee"
+          },
+          "css": "#f4eeee",
+          "aliasOf": "color.primitive.paper.90",
+          "description": "Content titles and H1–H6. Window/chrome titles use text.default or text.bright (D-033).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-033",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
+        },
+        "color.text.highlight": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9569,
+              0.9333,
+              0.9333
+            ],
+            "alpha": 1,
+            "hex": "#f4eeee"
+          },
+          "css": "#f4eeee",
+          "aliasOf": "color.primitive.paper.90",
+          "description": "Exceptional, deliberately highlighted text; not ordinary prose or a bold treatment (D-033).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-033",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -3292,19 +3340,19 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9569,
-              0.9333,
-              0.9333
+              1,
+              0.6353,
+              0.6549
             ],
             "alpha": 1,
-            "hex": "#f4eeee"
+            "hex": "#ffa2a7"
           },
-          "css": "#f4eeee",
-          "aliasOf": "color.primitive.paper.90",
-          "description": "Primary button text (9.28:1).",
-          "status": "observed",
+          "css": "#ffa2a7",
+          "aliasOf": "color.text.on-action",
+          "description": "Primary action labels: bright rose across rest, hover and pressed states (D-033).",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-033",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -3325,7 +3373,7 @@
           },
           "css": "#911410",
           "aliasOf": "color.primitive.red.350",
-          "description": "Primary button hover (7.92:1 with prose).",
+          "description": "Primary button hover; pair with action.primary.text (D-033).",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -10163,7 +10211,7 @@
           },
           "css": "#ffa2a7",
           "aliasOf": "color.primitive.rose.800",
-          "description": "Headings and emphasis. Links use color.text.link.",
+          "description": "Brighter rose interface labels and explicit semantic emphasis. Bold itself inherits color; content headings use text.heading (D-033).",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -10178,19 +10226,19 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9569,
-              0.9333,
-              0.9333
+              0.9137,
+              0.5804,
+              0.6
             ],
             "alpha": 1,
-            "hex": "#f4eeee"
+            "hex": "#e99499"
           },
-          "css": "#f4eeee",
-          "aliasOf": "color.primitive.paper.90",
-          "description": "Long-form reading text.",
-          "status": "observed",
+          "css": "#e99499",
+          "aliasOf": "color.text.default",
+          "description": "Long-form reading and body text; rose, never an on-fill or heading shortcut (D-033).",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-033",
           "eligibility": {
             "action": "historical-only",
             "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
@@ -10442,19 +10490,19 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9569,
-              0.9333,
-              0.9333
+              1,
+              0.6353,
+              0.6549
             ],
             "alpha": 1,
-            "hex": "#f4eeee"
+            "hex": "#ffa2a7"
           },
-          "css": "#f4eeee",
-          "aliasOf": "color.primitive.paper.90",
-          "description": "Text on the primary action fill.",
-          "status": "observed",
+          "css": "#ffa2a7",
+          "aliasOf": "color.text.bright",
+          "description": "Bright rose text on primary-action fills in every state (D-033).",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-033",
           "eligibility": {
             "action": "historical-only",
             "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
@@ -10527,6 +10575,54 @@
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
+        "color.text.heading": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9569,
+              0.9333,
+              0.9333
+            ],
+            "alpha": 1,
+            "hex": "#f4eeee"
+          },
+          "css": "#f4eeee",
+          "aliasOf": "color.primitive.paper.90",
+          "description": "Content titles and H1–H6. Window/chrome titles use text.default or text.bright (D-033).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-033",
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
+        "color.text.highlight": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9569,
+              0.9333,
+              0.9333
+            ],
+            "alpha": 1,
+            "hex": "#f4eeee"
+          },
+          "css": "#f4eeee",
+          "aliasOf": "color.primitive.paper.90",
+          "description": "Exceptional, deliberately highlighted text; not ordinary prose or a bold treatment (D-033).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-033",
           "eligibility": {
             "action": "historical-only",
             "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
@@ -11190,19 +11286,19 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9569,
-              0.9333,
-              0.9333
+              1,
+              0.6353,
+              0.6549
             ],
             "alpha": 1,
-            "hex": "#f4eeee"
+            "hex": "#ffa2a7"
           },
-          "css": "#f4eeee",
-          "aliasOf": "color.primitive.paper.90",
-          "description": "Primary button text (9.28:1).",
-          "status": "observed",
+          "css": "#ffa2a7",
+          "aliasOf": "color.text.on-action",
+          "description": "Primary action labels: bright rose across rest, hover and pressed states (D-033).",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-033",
           "eligibility": {
             "action": "historical-only",
             "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
@@ -11223,7 +11319,7 @@
           },
           "css": "#911410",
           "aliasOf": "color.primitive.red.350",
-          "description": "Primary button hover (7.92:1 with prose).",
+          "description": "Primary button hover; pair with action.primary.text (D-033).",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -18061,7 +18157,7 @@
           },
           "css": "#ffa2a7",
           "aliasOf": "color.primitive.rose.800",
-          "description": "Headings and emphasis. Links use color.text.link.",
+          "description": "Brighter rose interface labels and explicit semantic emphasis. Bold itself inherits color; content headings use text.heading (D-033).",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -18076,19 +18172,19 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9569,
-              0.9333,
-              0.9333
+              0.9137,
+              0.5804,
+              0.6
             ],
             "alpha": 1,
-            "hex": "#f4eeee"
+            "hex": "#e99499"
           },
-          "css": "#f4eeee",
-          "aliasOf": "color.primitive.paper.90",
-          "description": "Long-form reading text.",
-          "status": "observed",
+          "css": "#e99499",
+          "aliasOf": "color.text.default",
+          "description": "Long-form reading and body text; rose, never an on-fill or heading shortcut (D-033).",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-033",
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",
@@ -18340,19 +18436,19 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9569,
-              0.9333,
-              0.9333
+              1,
+              0.6353,
+              0.6549
             ],
             "alpha": 1,
-            "hex": "#f4eeee"
+            "hex": "#ffa2a7"
           },
-          "css": "#f4eeee",
-          "aliasOf": "color.primitive.paper.90",
-          "description": "Text on the primary action fill.",
-          "status": "observed",
+          "css": "#ffa2a7",
+          "aliasOf": "color.text.bright",
+          "description": "Bright rose text on primary-action fills in every state (D-033).",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-033",
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",
@@ -18425,6 +18521,54 @@
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "color.text.heading": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9569,
+              0.9333,
+              0.9333
+            ],
+            "alpha": 1,
+            "hex": "#f4eeee"
+          },
+          "css": "#f4eeee",
+          "aliasOf": "color.primitive.paper.90",
+          "description": "Content titles and H1–H6. Window/chrome titles use text.default or text.bright (D-033).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-033",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "color.text.highlight": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9569,
+              0.9333,
+              0.9333
+            ],
+            "alpha": 1,
+            "hex": "#f4eeee"
+          },
+          "css": "#f4eeee",
+          "aliasOf": "color.primitive.paper.90",
+          "description": "Exceptional, deliberately highlighted text; not ordinary prose or a bold treatment (D-033).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-033",
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",
@@ -19090,19 +19234,19 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9569,
-              0.9333,
-              0.9333
+              1,
+              0.6353,
+              0.6549
             ],
             "alpha": 1,
-            "hex": "#f4eeee"
+            "hex": "#ffa2a7"
           },
-          "css": "#f4eeee",
-          "aliasOf": "color.primitive.paper.90",
-          "description": "Primary button text (9.28:1).",
-          "status": "observed",
+          "css": "#ffa2a7",
+          "aliasOf": "color.text.on-action",
+          "description": "Primary action labels: bright rose across rest, hover and pressed states (D-033).",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-033",
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",
@@ -19123,7 +19267,7 @@
           },
           "css": "#911410",
           "aliasOf": "color.primitive.red.350",
-          "description": "Primary button hover (7.92:1 with prose).",
+          "description": "Primary button hover; pair with action.primary.text (D-033).",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,

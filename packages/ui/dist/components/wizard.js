@@ -3,8 +3,8 @@ import { n as wizard } from "../chunks/forms-BT3z7lNC.js";
 //#region .cache/ui-build/entries/components/wizard.js
 var J3w1Wizard = class extends J3w1Element {
 	static componentId = "wizard";
-	static version = "3.1.0";
-	static implementationId = "sha256-WrAfZY9nEEHvUo+7AlgdDuhlEmmdfbM/5N4oMupPNrY=";
+	static version = "4.0.0";
+	static implementationId = "sha256-io0DYHj45iX5Dvck9xDTbxK9av2V6Z42KQERETAWGb4=";
 	static connect = wizard;
 	static upgradeProperties = [
 		"disabled",

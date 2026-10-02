@@ -13,14 +13,22 @@ test("port explorer lists every published port with a working download and the c
   expect(ports.length).toBeGreaterThan(0);
   await expect(page.locator("[data-port-empty]")).toHaveCount(0);
   await expect(page.locator("[data-port-entry]")).toHaveCount(ports.length);
+  // Read static link attributes once. Repeated whole-catalogue accessibility
+  // queries scale with every role table and used the test budget before the
+  // added binary downloads could all be verified.
+  const downloads=await page.getByRole("link",{name:/^Download /}).evaluateAll(links=>links.map(link=>({
+    name:link.textContent.trim(),href:link.getAttribute("href"),download:link.getAttribute("download")
+  })));
   for (const port of ports) {
     await expect(page.getByRole("heading", { name: port.displayName, exact: true })).toBeVisible();
     for (const file of port.files) {
       const name = file.path.split("/").at(-1);
-      const link = page.getByRole("link", { name: `Download ${name}`, exact: true });
-      await expect(link).toHaveAttribute("href", new RegExp(`/theme/ports/${port.id}/${name.replace(".", "\\.")}$`));
-      await expect(link).toHaveAttribute("download", "");
-      const response = await page.request.get(await link.getAttribute("href"));
+      const matches=downloads.filter(link=>link.name===`Download ${name}`);
+      expect(matches).toHaveLength(1);
+      const [link]=matches;
+      expect(link.href).toBe(`/theme/ports/${port.id}/${name}`);
+      expect(link.download).toBe("");
+      const response = await page.request.get(link.href);
       expect(response.ok()).toBe(true);
       expect(sha256(await response.body())).toBe(file.digest);
     }

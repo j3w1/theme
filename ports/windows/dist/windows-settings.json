@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 1,
+  "version": "4.0.0",
+  "values": {
+    "native.accent": "#e53935",
+    "native.desktop": "#000000",
+    "terminal.foreground": "#e99499",
+    "terminal.background": "#000000",
+    "terminal.cursor": "#e99499",
+    "terminal.selection": "#420f0c",
+    "terminal.chrome": "#090707",
+    "native.foreground": "#e99499",
+    "native.bright": "#ffa2a7",
+    "native.heading": "#f4eeee",
+    "native.highlight": "#f4eeee",
+    "native.muted": "#bd787d",
+    "native.disabled": "#8a5559",
+    "native.selection": "#531310",
+    "cursor.foreground": "#000000",
+    "cursor.outline": "#e53935",
+    "powertoys.highlight": "#e53935",
+    "powertoys.inactive": "#160b0b",
+    "powertoys.border": "#a3676b",
+    "powertoys.number": "#ffa2a7",
+    "font.family": "\"SauceCodePro NFM\", \"Source Code Pro\", \"Cascadia Mono\", \"Consolas\", \"Liberation Mono\", \"DejaVu Sans Mono\", monospace",
+    "terminal.ansi.0": "#0c0909",
+    "terminal.ansi.1": "#e84b4b",
+    "terminal.ansi.2": "#bd787d",
+    "terminal.ansi.3": "#d4868b",
+    "terminal.ansi.4": "#e53131",
+    "terminal.ansi.5": "#f73f35",
+    "terminal.ansi.6": "#ff7a66",
+    "terminal.ansi.7": "#ffa2a7",
+    "terminal.ansi.8": "#b71c17",
+    "terminal.ansi.9": "#ea3833",
+    "terminal.ansi.10": "#dc4f49",
+    "terminal.ansi.11": "#b37175",
+    "terminal.ansi.12": "#db433a",
+    "terminal.ansi.13": "#ed5360",
+    "terminal.ansi.14": "#e6565a",
+    "terminal.ansi.15": "#b17e81",
+    "folder.fill": "#7d1310",
+    "folder.edge": "#e53935"
+  },
+  "stylerVariants": {
+    "windows-11-start-menu-styler": {
+      "classic": [
+        {
+          "target": "StartDocked.StartSizingFrame",
+          "styles": [
+            "Background=#000000"
+          ]
+        },
+        {
+          "target": "StartDocked.SearchBoxToggleButton > Grid > Border#BorderElement",
+          "styles": [
+            "Background=#000000",
+            "BorderBrush=#a3676b",
+            "BorderThickness=1",
+            "CornerRadius=0"
+          ]
+        }
+      ],
+      "redesigned": [
+        {
+          "target": "StartMenu.SearchBoxToggleButton > Grid > Border#BorderElement",
+          "styles": [
+            "Background=#000000",
+            "BorderBrush=#a3676b",
+            "BorderThickness=1",
+            "CornerRadius=0"
+          ]
+        },
+        {
+          "target": "StartMenu.StartBlendedFlexFrame",
+          "styles": [
+            "CornerRadius=0"
+          ]
+        },
+        {
+          "target": "StartMenu.CategoryControl > Grid > Border",
+          "styles": [
+            "Background=#100c0c",
+            "BorderBrush=#531310",
+            "BorderThickness=1",
+            "CornerRadius=0"
+          ]
+        },
+        {
+          "target": "StartMenu.FolderModal > Grid > Border",
+          "styles": [
+            "Background=#160b0b",
+            "BorderBrush=#e53935",
+            "BorderThickness=1",
+            "CornerRadius=0"
+          ]
+        },
+        {
+          "target": "Grid#DroppedFlickerWorkaroundWrapper > Border#BackgroundBorder",
+          "styles": [
+            "CornerRadius=0"
+          ]
+        },
+        {
+          "target": "Button#LogoContainer > Grid@CommonStates > Border",
+          "styles": [
+            "CornerRadius=0"
+          ]
+        },
+        {
+          "target": "Button#FolderPlate > Grid@CommonStates > Border",
+          "styles": [
+            "CornerRadius=0"
+          ]
+        },
+        {
+          "target": "Button#Header > Grid@CommonStates > Border",
+          "styles": [
+            "CornerRadius=0"
+          ]
+        }
+      ]
+    }
+  },
+  "bundledMods": [
+    {
+      "id": "j3w1-explorer-native",
+      "version": "1.3",
+      "path": "dist/j3w1-explorer-native.wh.cpp",
+      "sha256": "ab307e1938c58b89212b845e097fc062d7858d3b940e57fcaa432ca3a05a1e38"
+    },
+    {
+      "id": "j3w1-powertoys-preview",
+      "version": "1.0",
+      "path": "dist/j3w1-powertoys-preview.wh.cpp",
+      "sha256": "dddc752fabd4c4047013c55de1a299a21b4f017be15386100e9292364ba5cafa"
+    },
+    {
+      "id": "j3w1-calculator",
+      "version": "1.3.3",
+      "path": "dist/j3w1-calculator.wh.cpp",
+      "sha256": "9753aa117842f0ce6869233b33bb9017801eea1790165ec49f40e21281248f4f"
+    },
+    {
+      "id": "j3w1-notepad-native",
+      "version": "1.1.1",
+      "path": "dist/j3w1-notepad-native.wh.cpp",
+      "sha256": "55f6825db1f71a0f7da4504cc38bac93e99b1f7a71137b0199420bb8797d50aa"
+    },
+    {
+      "id": "j3w1-powertoys-markdown",
+      "version": "1.0.0",
+      "path": "dist/j3w1-powertoys-markdown.wh.cpp",
+      "sha256": "bdd6075e209ee0da155cf24a47eb1425ab3d72963e59293debd4e625e53d9705"
+    }
+  ],
+  "compatibility": [
+    {
+      "build": 26200,
+      "ubr": 9550,
+      "architecture": "X64",
+      "explorerVersion": "10.0.26100.8117",
+      "startDockedVersion": "10.0.26100.9549",
+      "status": "candidate",
+      "settingsVersion": "10.0.26100.9549",
+      "shellExperienceVersion": "10.0.26100.9549",
+      "searchVersion": "2608.25008.200.0",
+      "startPackageVersion": "10.0.26100.4768",
+      "shellPackageVersion": "10.0.26100.8115",
+      "clientPackageVersion": "1000.26100.372.0",
+      "startLayout": "redesigned",
+      "explorerFixedVersion": "10.0.26100.9549"
+    }
+  ],
+  "limitations": [
+    "Windows owns arbitrary application title bars and unsupported Win32 control foregrounds.",
+    "Command Palette custom tint cannot independently assign every foreground.",
+    "Lock-screen application requires a supported API and recoverable previous image; otherwise it is not applied.",
+    "Windows/Start updates outside the tested compatibility entry disable managed shell styling until reviewed.",
+    "Static cursor shapes preserve roles; host accessibility pointer overrides take priority."
+  ]
+}

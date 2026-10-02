@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.0] - 2026-09-28
+
+- Rose prose and inherited bold across the canonical theme; dedicated heading
+  and highlight roles (D-033), with audited selection/on-fill exceptions.
+- Generated Windows native and Windhawk port with pinned installation lifecycle
+  (D-034). See the Windows guide and typography migration note.
+
 ## [3.1.0] - 2026-09-27
 
 Additive minor preparation, following the first downloadable application-port

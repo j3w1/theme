@@ -1,6 +1,6 @@
 j3w1/theme implementation brief — multiselect
-theme: j3w1-theme 3.1.0  profile: default  sourceDigest: sha256-MOuqI0ddpI8r/kqzJMDhPHu5yZQrlrZ2LrbWIvNGGAw=
-pin: https://raw.githubusercontent.com/j3w1/theme/v3.1.0/exports/components/multiselect.json
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-lYCeahYByMe6IB0c/kb+1ReT0XZFpjawue/30DNEY6o=
+pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/multiselect.json
 spec: spec/components/multiselect.md  site: https://j3w1.github.io/theme/reference/#c-multiselect
 maturity: stable  priority: R2
 
@@ -19,7 +19,7 @@ Tokens (resolved):
   dependency.role-border-width-emphasis                   2px  ({border.width.emphasis})  use
   dependency.role-color-action-primary-bg                 #7d1310  ({color.action.primary.bg})  use
   dependency.role-color-action-primary-hover-bg           #911410  ({color.action.primary.hover-bg})  use
-  dependency.role-color-action-primary-text               #f4eeee  ({color.action.primary.text})  use
+  dependency.role-color-action-primary-text               #ffa2a7  ({color.action.primary.text})  use
   dependency.role-color-border-active                     #e53935  ({color.border.active})  use
   dependency.role-color-border-disabled                   #7d1310  ({color.border.disabled})  use
   dependency.role-color-interaction-disabled-bg           #160b0b  ({color.interaction.disabled.bg})  use

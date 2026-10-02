@@ -278,3 +278,12 @@ Android import. `port.json` `evidence[]` may list both records, but
 because verification requires the recorded application version to be both a
 target and tested. A new Obsidian version becomes a target only after its hook
 audit is added to `tests/fixtures/obsidian-hooks.json`.
+
+## Canonical typography in 4.0.0
+
+D-033 replaces the earlier port-only reading override. Body and prose use
+`text.prose` (`#e99499`); content titles and H1–H6 use `text.heading`
+(`#f4eeee`). Bold inherits its surrounding foreground, including rose body,
+muted text, links and near-white headings. `--bold-color: inherit` is an
+explicit structural rule, not a fixed color mapping. Android uses the same
+generated theme. Existing historical implementation evidence remains historical.

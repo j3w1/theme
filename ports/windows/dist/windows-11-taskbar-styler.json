@@ -1,0 +1,59 @@
+{
+  "theme": "",
+  "controlStyles": [
+    {
+      "target": "TextBlock",
+      "styles": [
+        "Foreground=#e99499"
+      ]
+    },
+    {
+      "target": "Control",
+      "styles": [
+        "Foreground=#e99499"
+      ]
+    },
+    {
+      "target": "Taskbar.TaskbarFrame > Grid#RootGrid",
+      "styles": [
+        "Background=#090707"
+      ]
+    },
+    {
+      "target": "Rectangle#BackgroundFill",
+      "styles": [
+        "Fill=#090707"
+      ]
+    },
+    {
+      "target": "Rectangle#BackgroundStroke",
+      "styles": [
+        "Fill=#2b0e0d"
+      ]
+    }
+  ],
+  "themeResourceVariables": [
+    "TextFillColorPrimary=#e99499",
+    "TextFillColorSecondary=#bd787d",
+    "TextFillColorTertiary=#ad7175",
+    "TextFillColorDisabled=#8a5559",
+    "SystemControlForegroundBaseHighBrush=#e99499",
+    "SystemControlForegroundBaseMediumBrush=#bd787d",
+    "SystemControlForegroundBaseLowBrush=#8a5559",
+    "SolidBackgroundFillColorBase=#000000",
+    "SolidBackgroundFillColorSecondary=#100c0c",
+    "LayerFillColorDefault=#100c0c",
+    "LayerFillColorAlt=#160b0b",
+    "CardBackgroundFillColorDefault=#100c0c",
+    "CardBackgroundFillColorSecondary=#160b0b",
+    "ControlFillColorDefault=#000000",
+    "ControlFillColorSecondary=#1c0a09",
+    "ControlFillColorTertiary=#420f0c",
+    "ControlStrokeColorDefault=#a3676b",
+    "AccentFillColorDefault=#7d1310",
+    "AccentTextFillColorPrimary=#ffa2a7",
+    "TextOnAccentFillColorPrimary=#ffa2a7",
+    "SystemAccentColor=#e53935",
+    "SystemControlHighlightAccentBrush=#e53935"
+  ]
+}

@@ -1,0 +1,194 @@
+{
+  "schemaVersion": 1,
+  "version": "4.0.0",
+  "files": [
+    {
+      "path": "dist/j3w1-explorer-native.wh.cpp",
+      "sha256": "ab307e1938c58b89212b845e097fc062d7858d3b940e57fcaa432ca3a05a1e38"
+    },
+    {
+      "path": "dist/j3w1-explorer-native.json",
+      "sha256": "a3b0a1b9be5da59e6c500b21068a06922666a9d9ecb38c472bf365da3088286b"
+    },
+    {
+      "path": "dist/j3w1-powertoys-preview.wh.cpp",
+      "sha256": "dddc752fabd4c4047013c55de1a299a21b4f017be15386100e9292364ba5cafa"
+    },
+    {
+      "path": "dist/j3w1-powertoys-preview.json",
+      "sha256": "fa5c087652dba209ab8ff6004642106ab801f86c5de197c5a48844da066dce73"
+    },
+    {
+      "path": "dist/j3w1-calculator.wh.cpp",
+      "sha256": "9753aa117842f0ce6869233b33bb9017801eea1790165ec49f40e21281248f4f"
+    },
+    {
+      "path": "dist/j3w1-calculator.json",
+      "sha256": "fa5c087652dba209ab8ff6004642106ab801f86c5de197c5a48844da066dce73"
+    },
+    {
+      "path": "dist/j3w1-notepad-native.wh.cpp",
+      "sha256": "55f6825db1f71a0f7da4504cc38bac93e99b1f7a71137b0199420bb8797d50aa"
+    },
+    {
+      "path": "dist/j3w1-notepad-native.json",
+      "sha256": "fa5c087652dba209ab8ff6004642106ab801f86c5de197c5a48844da066dce73"
+    },
+    {
+      "path": "dist/j3w1-powertoys-markdown.wh.cpp",
+      "sha256": "bdd6075e209ee0da155cf24a47eb1425ab3d72963e59293debd4e625e53d9705"
+    },
+    {
+      "path": "dist/markdown-theme.css",
+      "sha256": "9bc14a459abcb6c2bee9a00ba7a2fc95b17661b048ff3a55a4a43382e742e323"
+    },
+    {
+      "path": "dist/j3w1-powertoys-markdown.json",
+      "sha256": "fa5c087652dba209ab8ff6004642106ab801f86c5de197c5a48844da066dce73"
+    },
+    {
+      "path": "dist/windows-settings.json",
+      "sha256": "e0a8264fb1f5f2ff908cf421a8a01a7915d353c4da44f9dbf2ad46d679a6745b"
+    },
+    {
+      "path": "dist/terminal-fragment.json",
+      "sha256": "8257fa6a6ef05f94246773880df133893eb26c3ac1f7629bda62bea71c1d1f05"
+    },
+    {
+      "path": "dist/terminal-theme.json",
+      "sha256": "603542a9c0dcd021411370773b1831c94fdc90a665cac589af245fbbfc86b622"
+    },
+    {
+      "path": "dist/fancyzones-layouts.json",
+      "sha256": "b41b752a34bb033c394ceac3ac33a4cac2050cdc14e6b9c752d3191ebf42c112"
+    },
+    {
+      "path": "dist/windows-11-taskbar-styler.json",
+      "sha256": "b7f49a719304aa42ca629ad546d2572218ce3fe31f9f611a15af1e7394d62710"
+    },
+    {
+      "path": "dist/windows-11-start-menu-styler.json",
+      "sha256": "a59721937717b4fa694ae0fe1570d560a22d62710d2291b6e29f28486ef1df3e"
+    },
+    {
+      "path": "dist/windows-11-file-explorer-styler.json",
+      "sha256": "5086158baca1d441fe3b099122d6442c75440dd5d3157338387af8149fe0dd01"
+    },
+    {
+      "path": "dist/windows-11-notification-center-styler.json",
+      "sha256": "91b39ee99e9f89e8c6d47a77288359a49421acf8c12cb1a884424fd93e517dde"
+    },
+    {
+      "path": "dist/windows-11-settings-styler.json",
+      "sha256": "813872189b459aae3eec11390e7ba1e1608064fe224a9e8f16dc55d154dd4b65"
+    },
+    {
+      "path": "dist/j3w1-wallpaper.bmp",
+      "sha256": "9cb9e6b276d18f2cef7607d7f81ba7074b658cd64a93493d78aa7a5a501e1860"
+    },
+    {
+      "path": "dist/j3w1-arrow.cur",
+      "sha256": "a3fd7513a4e8c1395285cf81e597b89a7b45b8e0df87b50075cf33e7d3e3ac1a"
+    },
+    {
+      "path": "dist/j3w1-help.cur",
+      "sha256": "a7699325b4a1aafba5c2d87a250cc00287dfaf0e97dd3d79f31f4669e10c3fc6"
+    },
+    {
+      "path": "dist/j3w1-appstarting.cur",
+      "sha256": "127f668d8139ef5c622d4f7a8c7d33db35fe2cc69b37e2397d979fb1e5098da4"
+    },
+    {
+      "path": "dist/j3w1-wait.cur",
+      "sha256": "a974ad405b5aea0900f830be831ffb968c6ebf8b3a9a8e3ded553b6f33a07026"
+    },
+    {
+      "path": "dist/j3w1-crosshair.cur",
+      "sha256": "363403fdc4bbe80fe57fe6ae487d93e4f8f2fa47fc1af82a959c3cc8aa11f30c"
+    },
+    {
+      "path": "dist/j3w1-ibeam.cur",
+      "sha256": "30ba29cdc939eea8c47cfa51e58b2fd8c6b57b8ac64d56026aa8968b89c40761"
+    },
+    {
+      "path": "dist/j3w1-nwpen.cur",
+      "sha256": "60bf05da6f1c942feb8764b8d20089d6af9459ef82fb619b69fff8eb26d99cba"
+    },
+    {
+      "path": "dist/j3w1-no.cur",
+      "sha256": "54df1c9c6af045966c3b1bef1a34cf850ba285907806389a4146395fd2bf9d56"
+    },
+    {
+      "path": "dist/j3w1-sizens.cur",
+      "sha256": "5ddd4ec190cf329e8de3d144603be2279437641552a088b4a6e20a54554a2584"
+    },
+    {
+      "path": "dist/j3w1-sizewe.cur",
+      "sha256": "55d340b248e5afd27e4093878eec1bcf442e9ad73b46dabe94b191a84485eb22"
+    },
+    {
+      "path": "dist/j3w1-sizenwse.cur",
+      "sha256": "9e3d8759a88d0689ee9558aca3c924a59ca8f3a0304cf432a55534be0a74de17"
+    },
+    {
+      "path": "dist/j3w1-sizenesw.cur",
+      "sha256": "bac966f3e21cef9edc24dc02469dd658ee17b907b534990bdc75f946816215d4"
+    },
+    {
+      "path": "dist/j3w1-sizeall.cur",
+      "sha256": "fe9232e34e50d9e32d68923368ff319f04c75ed6d23f89194f1d7d0d6197a0f7"
+    },
+    {
+      "path": "dist/j3w1-uparrow.cur",
+      "sha256": "e20fd197bda4b86e841f1cfb2cb4e5cfe78d2024a94fffb5ae7e279a31e02524"
+    },
+    {
+      "path": "dist/j3w1-hand.cur",
+      "sha256": "cb551846b479491fa9b4414acac30a829669eb3973fa826e6459c7f3844b4f23"
+    },
+    {
+      "path": "dist/j3w1-pin.cur",
+      "sha256": "60ca05302442a3a86806148e26512c7228989ef986202c6d12b99d4b44ab25e8"
+    },
+    {
+      "path": "dist/j3w1-person.cur",
+      "sha256": "6deffb78dbc3288f2469dbacf4979d5af0d58d032a9fc87eea1293aba43649ab"
+    },
+    {
+      "path": "dist/j3w1-folder.ico",
+      "sha256": "bbbb1ed968451931de82129c80021e2478ef32c8d9e5182f8d4d35a1e999f356"
+    },
+    {
+      "path": "dist/j3w1-folder-open.ico",
+      "sha256": "b497297f23afe8ef867f5373a8cc6cfb7c4faecb5814088920a025c34d94b1d1"
+    },
+    {
+      "path": "dist/j3w1.theme",
+      "sha256": "08c564ad6fb35bcd464460db281d28b00d37d78cd2e49bd5876c3905827b0157"
+    },
+    {
+      "path": "dist/runtime.cjs",
+      "sha256": "132425e2586a152e7db315abec0bea14d00cecd33dce7283f05d7435bc5202f7"
+    },
+    {
+      "path": "install.ps1",
+      "sha256": "acb227e9d6ed74edd5d52602abb339b33d252df38f992799d1c2a2eec15649a5"
+    },
+    {
+      "path": "adapter.ps1",
+      "sha256": "1d8f2f2f6db5a12a274ef73941373a79829809def8ea0e79540cf54635377e5d"
+    },
+    {
+      "path": "lockscreen.ps1",
+      "sha256": "fcdbbdc6aeb18a4abbea1a3092173782ceada7461e2de06e0628ed1bfab2900d"
+    },
+    {
+      "path": "dependencies.json",
+      "sha256": "d886fdf91111d0baf557a841e1bba8cf9513a6ffcb15cf010be8ec5567294877"
+    },
+    {
+      "path": "host.json",
+      "sha256": "cab519813f3c65cb70804a672b69e3dba1d681ce58f4b361b8dc41af4a0de984"
+    }
+  ]
+}

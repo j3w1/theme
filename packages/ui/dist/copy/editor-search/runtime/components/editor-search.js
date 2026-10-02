@@ -3,8 +3,8 @@ import { i as editorSearch } from "../chunks/display-dj9YaBfn.js";
 //#region .cache/ui-build/entries/components/editor-search.js
 var J3w1EditorSearch = class extends J3w1Element {
 	static componentId = "editor-search";
-	static version = "3.1.0";
-	static implementationId = "sha256-694ZbN7G/2L7YsY31D/fi6RXLlrgAxB+MdTCzoRf+Ec=";
+	static version = "4.0.0";
+	static implementationId = "sha256-9KkGT11jVqC1mIIjjeR24BOy0FxKESmTA8B47/6yZHg=";
 	static connect = editorSearch;
 	static upgradeProperties = [
 		"disabled",

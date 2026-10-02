@@ -1,4 +1,4 @@
-/* j3w1 theme 3.1.0, default profile, for Obsidian.
+/* j3w1 theme 4.0.0, default profile, for Obsidian.
  * Generated from ports/obsidian/mapping.json by npm run generate; do not edit.
  * MIT; dark only; no font files or runtime dependencies.
  */
@@ -34,7 +34,6 @@
   --nav-heading-color: #e99499;
   --titlebar-text-color-focused: #e99499;
   --metadata-input-text-color: #e99499;
-  --bold-color: #f4eeee;
   --italic-color: #ffa2a7;
   --inline-title-color: #f4eeee;
   --setting-group-heading-color: #ffa2a7;
@@ -102,9 +101,9 @@
   --scrollbar-active-thumb-bg: #911410;
   --interactive-accent: #7d1310;
   --checkbox-color: #7d1310;
-  --text-on-accent: #f4eeee;
-  --checkbox-marker-color: #f4eeee;
-  --toggle-thumb-color: #f4eeee;
+  --text-on-accent: #ffa2a7;
+  --checkbox-marker-color: #ffa2a7;
+  --toggle-thumb-color: #ffa2a7;
   --interactive-accent-hover: #911410;
   --checkbox-color-hover: #911410;
   --interactive-normal: rgb(0 0 0 / 0%);
@@ -187,6 +186,7 @@
   --touch-radius-s: 0px;
   --touch-radius-m: 0px;
   --touch-radius-xl: 0px;
+  --bold-color: inherit;
   --input-shadow: none;
   --input-shadow-hover: none;
   --shadow-xs: none;
@@ -385,7 +385,7 @@
 .theme-dark button.mod-cta {
   --background-modifier-border-focus: #ffa2a7;
   border-color: #9e231f;
-  --text-color: #f4eeee;
+  --text-color: #ffa2a7;
 }
 
 /* Recolor the existing toggle outline on primary fill. */

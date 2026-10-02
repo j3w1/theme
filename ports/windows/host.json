@@ -1,0 +1,1231 @@
+{
+  "schemaVersion": 1,
+  "roles": {
+    "native.accent": "color.border.active",
+    "native.desktop": "color.surface.desktop",
+    "terminal.foreground": "color.terminal.fg",
+    "terminal.background": "color.surface.canvas",
+    "terminal.cursor": "color.terminal.cursor",
+    "terminal.selection": "color.code.selection-bg",
+    "terminal.chrome": "color.surface.chrome",
+    "native.foreground": "color.text.default",
+    "native.bright": "color.text.bright",
+    "native.heading": "color.text.heading",
+    "native.highlight": "color.text.highlight",
+    "native.muted": "color.text.muted",
+    "native.disabled": "color.text.disabled",
+    "native.selection": "color.interaction.selection.bg",
+    "cursor.foreground": "color.surface.canvas",
+    "cursor.outline": "color.border.active",
+    "powertoys.highlight": "color.border.active",
+    "powertoys.inactive": "color.surface.raised",
+    "powertoys.border": "color.border.control",
+    "powertoys.number": "color.text.bright",
+    "font.family": "font.family.mono",
+    "terminal.ansi.0": "color.terminal.ansi.0",
+    "terminal.ansi.1": "color.terminal.ansi.1",
+    "terminal.ansi.2": "color.terminal.ansi.2",
+    "terminal.ansi.3": "color.terminal.ansi.3",
+    "terminal.ansi.4": "color.terminal.ansi.4",
+    "terminal.ansi.5": "color.terminal.ansi.5",
+    "terminal.ansi.6": "color.terminal.ansi.6",
+    "terminal.ansi.7": "color.terminal.ansi.7",
+    "terminal.ansi.8": "color.terminal.ansi.8",
+    "terminal.ansi.9": "color.terminal.ansi.9",
+    "terminal.ansi.10": "color.terminal.ansi.10",
+    "terminal.ansi.11": "color.terminal.ansi.11",
+    "terminal.ansi.12": "color.terminal.ansi.12",
+    "terminal.ansi.13": "color.terminal.ansi.13",
+    "terminal.ansi.14": "color.terminal.ansi.14",
+    "terminal.ansi.15": "color.terminal.ansi.15",
+    "folder.fill": "color.action.primary.bg",
+    "folder.edge": "color.border.active"
+  },
+  "resources": {
+    "TextFillColorPrimary": "color.text.default",
+    "TextFillColorSecondary": "color.text.muted",
+    "TextFillColorTertiary": "color.text.subtle",
+    "TextFillColorDisabled": "color.text.disabled",
+    "SystemControlForegroundBaseHighBrush": "color.text.default",
+    "SystemControlForegroundBaseMediumBrush": "color.text.muted",
+    "SystemControlForegroundBaseLowBrush": "color.text.disabled",
+    "SolidBackgroundFillColorBase": "color.surface.canvas",
+    "SolidBackgroundFillColorSecondary": "color.surface.default",
+    "LayerFillColorDefault": "color.surface.default",
+    "LayerFillColorAlt": "color.surface.raised",
+    "CardBackgroundFillColorDefault": "color.surface.default",
+    "CardBackgroundFillColorSecondary": "color.surface.raised",
+    "ControlFillColorDefault": "color.surface.input",
+    "ControlFillColorSecondary": "color.interaction.hover.bg",
+    "ControlFillColorTertiary": "color.interaction.pressed.bg",
+    "ControlStrokeColorDefault": "color.border.control",
+    "AccentFillColorDefault": "color.action.primary.bg",
+    "AccentTextFillColorPrimary": "color.text.bright",
+    "TextOnAccentFillColorPrimary": "color.text.on-action",
+    "SystemAccentColor": "color.border.active",
+    "SystemControlHighlightAccentBrush": "color.border.active"
+  },
+  "stylers": [
+    {
+      "id": "windows-11-taskbar-styler",
+      "targets": [
+        {
+          "target": "TextBlock",
+          "styles": {
+            "Foreground": "color.text.default"
+          }
+        },
+        {
+          "target": "Control",
+          "styles": {
+            "Foreground": "color.text.default"
+          }
+        },
+        {
+          "target": "Taskbar.TaskbarFrame > Grid#RootGrid",
+          "styles": {
+            "Background": "color.surface.chrome"
+          }
+        },
+        {
+          "target": "Rectangle#BackgroundFill",
+          "styles": {
+            "Fill": "color.surface.chrome"
+          }
+        },
+        {
+          "target": "Rectangle#BackgroundStroke",
+          "styles": {
+            "Fill": "color.border.divider"
+          }
+        }
+      ]
+    },
+    {
+      "id": "windows-11-start-menu-styler",
+      "targets": [
+        {
+          "target": "TextBlock",
+          "styles": {
+            "Foreground": "color.text.default"
+          }
+        },
+        {
+          "target": "Control",
+          "styles": {
+            "Foreground": "color.text.default"
+          }
+        },
+        {
+          "target": "Border#AcrylicBorder",
+          "styles": {
+            "Background": "color.surface.raised",
+            "BorderBrush": "color.border.overlay",
+            "BorderThickness": "border.width.default",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Border#StartDropShadow",
+          "styles": {
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Border#RightCompanionDropShadow",
+          "styles": {
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Border#dropshadow",
+          "styles": {
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Border#AcrylicOverlay",
+          "styles": {
+            "Background": "color.surface.chrome",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Grid#MainContent",
+          "styles": {
+            "Background": "color.surface.canvas",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Grid#CompanionRoot > Border#AcrylicBorder",
+          "styles": {
+            "Background": "color.surface.raised",
+            "BorderBrush": "color.border.overlay",
+            "BorderThickness": "border.width.default",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Grid#CompanionRoot > Grid#MainContent > Border#AcrylicOverlay",
+          "styles": {
+            "Background": "color.surface.chrome",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "TextBlock#DisplayName",
+          "styles": {
+            "FontFamily": "font.family.mono"
+          }
+        },
+        {
+          "target": "TextBlock#AppDisplayName",
+          "styles": {
+            "FontFamily": "font.family.mono"
+          }
+        },
+        {
+          "target": "TextBlock#PinnedListHeaderText",
+          "styles": {
+            "FontFamily": "font.family.mono"
+          }
+        },
+        {
+          "target": "TextBlock#AllListHeadingText",
+          "styles": {
+            "FontFamily": "font.family.mono"
+          }
+        },
+        {
+          "target": "TextBlock#UserTileNameText",
+          "styles": {
+            "FontFamily": "font.family.mono"
+          }
+        },
+        {
+          "target": "TextBlock#PlaceholderText",
+          "styles": {
+            "FontFamily": "font.family.mono"
+          }
+        },
+        {
+          "target": "TextBlock#RecommendedListHeaderText",
+          "styles": {
+            "FontFamily": "font.family.mono"
+          }
+        },
+        {
+          "target": "Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates",
+          "styles": {
+            "CornerRadius": "radius.none",
+            "BorderThickness": "border.width.default",
+            "BorderBrush@Normal": "color.border.control",
+            "Background@Normal": "color.surface.input",
+            "Background@PointerOver": "color.interaction.hover.bg",
+            "Background@Pressed": "color.interaction.pressed.bg",
+            "Background@Disabled": "color.interaction.disabled.bg",
+            "BorderBrush@PointerOver": "color.border.active",
+            "BorderBrush@Pressed": "color.border.active",
+            "BorderBrush@Disabled": "color.border.disabled"
+          }
+        },
+        {
+          "target": "Button#ShowMoreSuggestionsButton > Grid@CommonStates > Border",
+          "styles": {
+            "CornerRadius": "radius.none",
+            "BorderThickness": "border.width.default",
+            "BorderBrush@Normal": "color.border.control",
+            "Background@Normal": "color.surface.input",
+            "Background@PointerOver": "color.interaction.hover.bg",
+            "Background@Pressed": "color.interaction.pressed.bg",
+            "Background@Disabled": "color.interaction.disabled.bg",
+            "BorderBrush@PointerOver": "color.border.active",
+            "BorderBrush@Pressed": "color.border.active",
+            "BorderBrush@Disabled": "color.border.disabled"
+          }
+        },
+        {
+          "target": "Button#HideMoreSuggestionsButton > Grid@CommonStates > Border",
+          "styles": {
+            "CornerRadius": "radius.none",
+            "BorderThickness": "border.width.default",
+            "BorderBrush@Normal": "color.border.control",
+            "Background@Normal": "color.surface.input",
+            "Background@PointerOver": "color.interaction.hover.bg",
+            "Background@Pressed": "color.interaction.pressed.bg",
+            "Background@Disabled": "color.interaction.disabled.bg",
+            "BorderBrush@PointerOver": "color.border.active",
+            "BorderBrush@Pressed": "color.border.active",
+            "BorderBrush@Disabled": "color.border.disabled"
+          }
+        },
+        {
+          "target": "Border#AppBorder",
+          "styles": {
+            "Background": "color.surface.canvas",
+            "BorderBrush": "color.border.active",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Border#TaskbarSearchBackground",
+          "styles": {
+            "Background": "color.surface.canvas",
+            "BorderBrush": "color.border.active",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Cortana.UI.Views.RichSearchBoxControl#SearchBoxControl > Grid#RootGrid",
+          "styles": {
+            "Background": "color.surface.canvas",
+            "BorderBrush": "color.border.active",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Cortana.UI.Views.RichSearchBoxControl > Grid > Border#BorderElement",
+          "styles": {
+            "Background": "color.surface.input",
+            "BorderBrush": "color.border.control"
+          }
+        }
+      ],
+      "variants": {
+        "classic": [
+          {
+            "target": "StartDocked.StartSizingFrame",
+            "styles": {
+              "Background": "color.surface.canvas"
+            }
+          },
+          {
+            "target": "StartDocked.SearchBoxToggleButton > Grid > Border#BorderElement",
+            "styles": {
+              "Background": "color.surface.input",
+              "BorderBrush": "color.border.control",
+              "BorderThickness": "border.width.default",
+              "CornerRadius": "radius.none"
+            }
+          }
+        ],
+        "redesigned": [
+          {
+            "target": "StartMenu.SearchBoxToggleButton > Grid > Border#BorderElement",
+            "styles": {
+              "Background": "color.surface.input",
+              "BorderBrush": "color.border.control",
+              "BorderThickness": "border.width.default",
+              "CornerRadius": "radius.none"
+            }
+          },
+          {
+            "target": "StartMenu.StartBlendedFlexFrame",
+            "styles": {
+              "CornerRadius": "radius.none"
+            }
+          },
+          {
+            "target": "StartMenu.CategoryControl > Grid > Border",
+            "styles": {
+              "Background": "color.surface.default",
+              "BorderBrush": "color.border.default",
+              "BorderThickness": "border.width.default",
+              "CornerRadius": "radius.none"
+            }
+          },
+          {
+            "target": "StartMenu.FolderModal > Grid > Border",
+            "styles": {
+              "Background": "color.surface.raised",
+              "BorderBrush": "color.border.overlay",
+              "BorderThickness": "border.width.default",
+              "CornerRadius": "radius.none"
+            }
+          },
+          {
+            "target": "Grid#DroppedFlickerWorkaroundWrapper > Border#BackgroundBorder",
+            "styles": {
+              "CornerRadius": "radius.none"
+            }
+          },
+          {
+            "target": "Button#LogoContainer > Grid@CommonStates > Border",
+            "styles": {
+              "CornerRadius": "radius.none"
+            }
+          },
+          {
+            "target": "Button#FolderPlate > Grid@CommonStates > Border",
+            "styles": {
+              "CornerRadius": "radius.none"
+            }
+          },
+          {
+            "target": "Button#Header > Grid@CommonStates > Border",
+            "styles": {
+              "CornerRadius": "radius.none"
+            }
+          }
+        ]
+      },
+      "webContentStyles": [
+        {
+          "target": "body, #root, #root.darkTheme, .scope-with-background, .suggsList, .suggsListContainer, .suggContainer, .previewContainer, .suggDetailsContainer, .contextMenu, #menuContainer",
+          "styles": {
+            "background-color": "color.surface.canvas",
+            "color": "color.text.default",
+            "border-color": "color.border.divider"
+          }
+        },
+        {
+          "target": "h1, h2, h3, h4, p, .title, .details, .secondaryText, .groupTitle, .suggestion, .scope-tile > div, .menu-item_details, .previewContainer, button",
+          "styles": {
+            "color": "color.text.default"
+          }
+        },
+        {
+          "target": ".secondaryText, .details .secondaryText",
+          "styles": {
+            "color": "color.text.muted"
+          }
+        },
+        {
+          "target": ".iconContainer, .previewContainer .imageContainer, .scope-tile > div, button, .button, .actionButton",
+          "styles": {
+            "background-color": "color.surface.canvas",
+            "color": "color.action.tertiary.text",
+            "border-radius": "radius.none"
+          },
+          "presentation": {
+            "border-style": "none",
+            "box-shadow": "none",
+            "background-image": "none"
+          }
+        },
+        {
+          "target": ".suggestion, .contextMenu li",
+          "styles": {
+            "background-color": "color.surface.canvas",
+            "border-radius": "radius.none"
+          },
+          "presentation": {
+            "border-style": "none",
+            "box-shadow": "none"
+          }
+        },
+        {
+          "target": ".suggestion:hover, .suggestion:hover .details, .suggestion:hover .iconContainer, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover",
+          "styles": {
+            "background-color": "color.interaction.hover.bg",
+            "color": "color.text.default"
+          }
+        },
+        {
+          "target": ".suggestion[aria-selected=\"true\"], .suggestion[aria-selected=\"true\"] .details, .suggestion[aria-selected=\"true\"] .iconContainer, .suggestion[aria-selected=\"true\"] .title, .suggestion[aria-selected=\"true\"] .secondaryText",
+          "styles": {
+            "background-color": "color.interaction.selection.bg",
+            "color": "color.interaction.selection.text"
+          }
+        },
+        {
+          "target": "button:active, .button:active, .actionButton:active",
+          "styles": {
+            "background-color": "color.interaction.pressed.bg"
+          }
+        },
+        {
+          "target": ":focus-visible",
+          "styles": {
+            "outline-color": "color.interaction.focus.ring",
+            "outline-width": "border.width.default",
+            "outline-offset": "focus.offset"
+          },
+          "presentation": {
+            "outline-style": "dashed"
+          }
+        },
+        {
+          "target": ".suggestion[aria-selected=\"true\"]:focus-visible",
+          "styles": {
+            "outline-color": "color.interaction.focus.ring-container"
+          }
+        },
+        {
+          "target": ".scope-tile--selected > div",
+          "styles": {
+            "background-color": "color.surface.canvas",
+            "color": "color.text.bright",
+            "border-bottom-color": "color.border.selected-indicator",
+            "border-bottom-width": "border.width.emphasis"
+          },
+          "presentation": {
+            "border-bottom-style": "solid"
+          }
+        },
+        {
+          "target": "*",
+          "styles": {
+            "scrollbar-color": "color.interaction.scrollbar.thumb"
+          }
+        },
+        {
+          "target": "::-webkit-scrollbar-track",
+          "styles": {
+            "background-color": "color.surface.canvas"
+          }
+        },
+        {
+          "target": "::-webkit-scrollbar-thumb",
+          "styles": {
+            "background-color": "color.interaction.scrollbar.thumb"
+          }
+        },
+        {
+          "target": ".leftPill::before",
+          "styles": {
+            "background-color": "color.border.active"
+          }
+        }
+      ]
+    },
+    {
+      "id": "windows-11-file-explorer-styler",
+      "targets": [
+        {
+          "target": "TextBlock",
+          "styles": {
+            "Foreground": "color.text.default"
+          }
+        },
+        {
+          "target": "Control",
+          "styles": {
+            "Foreground": "color.text.default"
+          }
+        },
+        {
+          "target": "Grid#NavigationBarControlGrid",
+          "styles": {
+            "Background": "color.surface.default"
+          }
+        },
+        {
+          "target": "FileExplorerExtensions.CommandBarControl_Wave1 > Grid, Grid#CommandBarControlRootGrid",
+          "styles": {
+            "Background": "color.surface.canvas"
+          }
+        },
+        {
+          "target": "CommandBar#FileExplorerCommandBar",
+          "styles": {
+            "Background": "color.surface.canvas"
+          }
+        },
+        {
+          "target": "CommandBar#FileExplorerSecondaryCommandBar",
+          "styles": {
+            "Background": "color.surface.canvas"
+          }
+        },
+        {
+          "target": "CommandBar > Grid#LayoutRoot > Grid#ContentRoot",
+          "styles": {
+            "Background": "color.surface.canvas"
+          }
+        },
+        {
+          "target": "TabViewItem > Grid#LayoutRoot@CommonStates",
+          "styles": {
+            "Background@Normal": "color.surface.canvas",
+            "Background@Selected": "color.interaction.selection.bg",
+            "Background@PointerOver": "color.interaction.hover.bg",
+            "Background@PointerOverSelected": "color.interaction.selection.bg",
+            "Background@Pressed": "color.interaction.pressed.bg",
+            "Background@PressedSelected": "color.interaction.selection.bg"
+          }
+        },
+        {
+          "target": "Grid#HomeViewRootGrid",
+          "styles": {
+            "Background": "color.surface.canvas"
+          }
+        },
+        {
+          "target": "ListViewItemPresenter",
+          "styles": {
+            "PointerOverBackground": "color.interaction.hover.bg",
+            "PressedBackground": "color.interaction.pressed.bg",
+            "SelectedBackground": "color.interaction.selection.bg",
+            "SelectedPointerOverBackground": "color.interaction.selection.bg",
+            "SelectedPressedBackground": "color.interaction.pressed.bg",
+            "PointerOverForeground": "color.text.default",
+            "SelectedForeground": "color.interaction.selection.text"
+          }
+        },
+        {
+          "target": "GridViewItemPresenter",
+          "styles": {
+            "PointerOverBackground": "color.interaction.hover.bg",
+            "PressedBackground": "color.interaction.pressed.bg",
+            "SelectedBackground": "color.interaction.selection.bg",
+            "SelectedPointerOverBackground": "color.interaction.selection.bg",
+            "SelectedPressedBackground": "color.interaction.pressed.bg",
+            "PointerOverForeground": "color.text.default",
+            "SelectedForeground": "color.interaction.selection.text"
+          }
+        },
+        {
+          "target": "Microsoft.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar",
+          "styles": {
+            "Background": "color.surface.canvas",
+            "BorderBrush": "color.border.divider",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Microsoft.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar > Grid#LayoutRoot > Grid#OuterContentRoot > Grid#ContentRoot > Grid#PrimaryItemsRoot",
+          "styles": {
+            "Background": "color.surface.canvas",
+            "BorderBrush": "color.border.divider",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "CommandBarOverflowPresenter#SecondaryItemsControl > Grid#LayoutRoot",
+          "styles": {
+            "Background": "color.surface.canvas",
+            "BorderBrush": "color.border.divider",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "MenuFlyoutPresenter > Border",
+          "styles": {
+            "Background": "color.surface.canvas",
+            "BorderBrush": "color.border.divider",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "AppBarSeparator",
+          "styles": {
+            "Foreground": "color.border.divider"
+          }
+        },
+        {
+          "target": "AppBarSeparator > Grid#RootGrid > Rectangle#SeparatorRectangle",
+          "styles": {
+            "Fill": "color.border.divider"
+          }
+        },
+        {
+          "target": "MenuFlyoutSeparator",
+          "styles": {
+            "Background": "color.border.divider"
+          }
+        },
+        {
+          "target": "MenuFlyoutSeparator > Rectangle",
+          "styles": {
+            "Fill": "color.border.divider"
+          }
+        },
+        {
+          "target": "AppBarButton > Grid#Root@CommonStates > Border#AppBarButtonInnerBorder",
+          "styles": {
+            "Background@Normal": "color.surface.canvas",
+            "Background@PointerOver": "color.interaction.hover.bg",
+            "Background@Pressed": "color.interaction.pressed.bg",
+            "Background@Disabled": "color.surface.canvas",
+            "Background@OverflowNormal": "color.surface.canvas",
+            "Background@OverflowPointerOver": "color.interaction.hover.bg",
+            "Background@OverflowPressed": "color.interaction.pressed.bg",
+            "Background@OverflowDisabled": "color.surface.canvas",
+            "BorderBrush": "color.border.divider",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "MenuFlyoutItem > Grid#LayoutRoot@CommonStates",
+          "styles": {
+            "Background@Normal": "color.surface.canvas",
+            "Background@PointerOver": "color.interaction.hover.bg",
+            "Background@Pressed": "color.interaction.pressed.bg",
+            "Background@Disabled": "color.surface.canvas",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates",
+          "styles": {
+            "Background@Normal": "color.surface.canvas",
+            "Background@PointerOver": "color.interaction.hover.bg",
+            "Background@Pressed": "color.interaction.pressed.bg",
+            "Background@Disabled": "color.surface.canvas",
+            "CornerRadius": "radius.none",
+            "Background@SubMenuOpened": "color.interaction.hover.bg"
+          }
+        },
+        {
+          "target": "ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates",
+          "styles": {
+            "Background@Normal": "color.surface.canvas",
+            "Background@PointerOver": "color.interaction.hover.bg",
+            "Background@Pressed": "color.interaction.pressed.bg",
+            "Background@Disabled": "color.surface.canvas",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "FileExplorerExtensions.AddressBarControl > Grid#PART_LayoutRoot",
+          "styles": {
+            "Background": "color.surface.canvas"
+          }
+        },
+        {
+          "target": "Border#BottomBorderLine, Border#LeftBottomBorderLine, Border#RightBottomBorderLine",
+          "styles": {
+            "Background": "color.border.divider",
+            "BorderBrush": "color.border.divider"
+          }
+        },
+        {
+          "target": "FileExplorerExtensions.CommandBarControl_Wave1 > Grid, Grid#CommandBarControlRootGrid",
+          "styles": {
+            "BorderBrush": "color.border.divider"
+          }
+        },
+        {
+          "target": "CommandBar#FileExplorerCommandBar, CommandBar#FileExplorerSecondaryCommandBar",
+          "styles": {
+            "BorderBrush": "color.border.divider"
+          }
+        }
+      ]
+    },
+    {
+      "id": "windows-11-notification-center-styler",
+      "targets": [
+        {
+          "target": "TextBlock",
+          "styles": {
+            "Foreground": "color.text.default"
+          }
+        },
+        {
+          "target": "Control",
+          "styles": {
+            "Foreground": "color.text.default"
+          }
+        },
+        {
+          "target": "Grid#ControlCenterRegion",
+          "styles": {
+            "Background": "color.surface.canvas",
+            "BorderBrush": "color.border.overlay",
+            "BorderThickness": "border.width.default",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Grid#NotificationCenterGrid",
+          "styles": {
+            "Background": "color.surface.canvas",
+            "BorderBrush": "color.border.overlay",
+            "BorderThickness": "border.width.default",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Border#AcrylicBorder",
+          "styles": {
+            "Background": "color.surface.default"
+          }
+        },
+        {
+          "target": "Grid#CalendarCenterGrid",
+          "styles": {
+            "Background": "color.surface.canvas",
+            "BorderBrush": "color.border.overlay",
+            "BorderThickness": "border.width.default",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "ScrollViewer#CalendarControlScrollViewer",
+          "styles": {
+            "Background": "color.surface.chrome",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Border#CalendarHeaderMinimizedOverlay",
+          "styles": {
+            "Background": "color.surface.chrome",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "ActionCenter.FocusSessionControl#FocusSessionControl > Grid#FocusGrid",
+          "styles": {
+            "Background": "color.surface.chrome",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Grid#NotificationCenterTopBanner",
+          "styles": {
+            "Background": "color.surface.chrome",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Border#ItemOpaquePlating",
+          "styles": {
+            "Background": "color.surface.default",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Border#ToastBackgroundBorder",
+          "styles": {
+            "Background": "color.surface.canvas",
+            "CornerRadius": "radius.none",
+            "BorderBrush": "color.border.overlay",
+            "BorderThickness": "border.width.default"
+          }
+        },
+        {
+          "target": "Border#ToastBackgroundBorder2",
+          "styles": {
+            "Background": "color.surface.canvas",
+            "CornerRadius": "radius.none",
+            "BorderBrush": "color.border.overlay",
+            "BorderThickness": "border.width.default"
+          }
+        },
+        {
+          "target": "ActionCenter.FlexibleItemView",
+          "styles": {
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "CalendarViewDayItem",
+          "styles": {
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "CalendarViewDayItem > Border",
+          "styles": {
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Windows.UI.Xaml.Controls.Primitives.CalendarViewItem",
+          "styles": {
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Button#ClearAll",
+          "styles": {
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Button#ExpandCollapseButton",
+          "styles": {
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Button#IncreaseTimeButton",
+          "styles": {
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Button#DecreaseTimeButton",
+          "styles": {
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Button#StartButton",
+          "styles": {
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "TextBlock#NotificationsTextBlock",
+          "styles": {
+            "FontFamily": "font.family.mono"
+          }
+        },
+        {
+          "target": "Grid#GroupTitleGrid > TextBlock#Title",
+          "styles": {
+            "FontFamily": "font.family.mono"
+          }
+        },
+        {
+          "target": "Grid#ToastTitleBar > TextBlock#SenderName",
+          "styles": {
+            "FontFamily": "font.family.mono"
+          }
+        },
+        {
+          "target": "CalendarView",
+          "styles": {
+            "Background": "color.surface.canvas",
+            "CalendarItemBackground": "color.surface.canvas",
+            "CalendarItemForeground": "color.text.default",
+            "OutOfScopeForeground": "color.text.muted",
+            "DisabledForeground": "color.text.disabled",
+            "TodayBackground": "color.action.primary.bg",
+            "TodayForeground": "color.text.on-action",
+            "TodayHoverBackground": "color.action.primary.hover-bg",
+            "TodayPressedBackground": "color.action.primary.pressed-bg"
+          }
+        },
+        {
+          "target": "ActionCenter.FlexibleToastView#FlexibleNormalToastView",
+          "styles": {
+            "Background": "color.surface.canvas"
+          }
+        },
+        {
+          "target": "Button#VerbButton",
+          "styles": {
+            "CornerRadius": "radius.none",
+            "Background": "color.action.secondary.bg",
+            "Foreground": "color.action.secondary.text",
+            "BorderBrush": "color.action.secondary.border"
+          }
+        },
+        {
+          "target": "Button#VerbButton > ContentPresenter@CommonStates",
+          "styles": {
+            "Background@Normal": "color.action.secondary.bg",
+            "Foreground@Normal": "color.action.secondary.text",
+            "BorderBrush@Normal": "color.action.secondary.border",
+            "Background@PointerOver": "color.action.secondary.hover-bg",
+            "Foreground@PointerOver": "color.action.secondary.text",
+            "BorderBrush@PointerOver": "color.action.secondary.border",
+            "Background@Pressed": "color.action.secondary.pressed-bg",
+            "Foreground@Pressed": "color.action.secondary.text",
+            "BorderBrush@Pressed": "color.border.active",
+            "Background@Disabled": "color.interaction.disabled.bg",
+            "Foreground@Disabled": "color.text.disabled",
+            "BorderBrush@Disabled": "color.border.disabled"
+          }
+        }
+      ]
+    },
+    {
+      "id": "windows-11-settings-styler",
+      "targets": [
+        {
+          "target": "TextBlock",
+          "styles": {
+            "Foreground": "color.text.default"
+          }
+        },
+        {
+          "target": "Control",
+          "styles": {
+            "Foreground": "color.text.default"
+          }
+        },
+        {
+          "target": "SystemSettings.View.RootPage",
+          "styles": {
+            "Background": "color.surface.canvas"
+          }
+        },
+        {
+          "target": "Grid#RootPageGrid",
+          "styles": {
+            "Background": "color.surface.canvas"
+          }
+        }
+      ]
+    }
+  ],
+  "compatibility": [
+    {
+      "build": 26200,
+      "ubr": 9550,
+      "architecture": "X64",
+      "explorerVersion": "10.0.26100.8117",
+      "startDockedVersion": "10.0.26100.9549",
+      "status": "candidate",
+      "settingsVersion": "10.0.26100.9549",
+      "shellExperienceVersion": "10.0.26100.9549",
+      "searchVersion": "2608.25008.200.0",
+      "startPackageVersion": "10.0.26100.4768",
+      "shellPackageVersion": "10.0.26100.8115",
+      "clientPackageVersion": "1000.26100.372.0",
+      "startLayout": "redesigned",
+      "explorerFixedVersion": "10.0.26100.9549"
+    }
+  ],
+  "limitations": [
+    "Windows owns arbitrary application title bars and unsupported Win32 control foregrounds.",
+    "Command Palette custom tint cannot independently assign every foreground.",
+    "Lock-screen application requires a supported API and recoverable previous image; otherwise it is not applied.",
+    "Windows/Start updates outside the tested compatibility entry disable managed shell styling until reviewed.",
+    "Static cursor shapes preserve roles; host accessibility pointer overrides take priority."
+  ],
+  "nativeExplorer": {
+    "version": "1.3",
+    "background": "color.surface.canvas",
+    "foreground": "color.text.default",
+    "hover": "color.interaction.hover.bg",
+    "selected": "color.interaction.selection.bg",
+    "inactive": "color.interaction.selection.inactive-bg",
+    "border": "color.border.divider",
+    "pin": "color.border.active",
+    "scrollbar": "color.interaction.scrollbar.thumb",
+    "scrollbarHover": "color.interaction.scrollbar.thumb-hover",
+    "disabled": "color.text.disabled",
+    "textSelection": "color.interaction.text-selection.bg",
+    "textSelectionText": "color.interaction.text-selection.text",
+    "focusRing": "color.interaction.focus.ring",
+    "menuHover": "color.interaction.hover.bg-strong",
+    "menuHoverText": "color.text.link-hover",
+    "menuBorder": "color.border.overlay",
+    "marquee": "color.interaction.marquee",
+    "marqueeBorder": "color.interaction.drop-target"
+  },
+  "nativeExplorerModules": {
+    "FRAME": "10.0.26100.9549",
+    "DUI": "10.0.26100.9549",
+    "COMCTL": "6.10.26100.9549"
+  },
+  "monacoPreview": {
+    "version": "1.0",
+    "hostVersion": "0.101.2362.0",
+    "templateSha256": "7e8f2bfb81aa6498bd2d236c3eae54c8e42633cf288f9299df62d2537b553bac",
+    "colors": {
+      "editor.background": "color.surface.canvas",
+      "editor.foreground": "color.text.default",
+      "editorGutter.background": "color.surface.canvas",
+      "editorLineNumber.foreground": "color.text.subtle",
+      "editorLineNumber.activeForeground": "color.text.bright",
+      "editor.selectionBackground": "color.code.selection-bg",
+      "editor.inactiveSelectionBackground": "color.interaction.selection.inactive-bg",
+      "editor.selectionForeground": "color.text.default",
+      "editor.lineHighlightBackground": "color.surface.canvas",
+      "editor.lineHighlightBorder": "color.surface.canvas",
+      "editorCursor.foreground": "color.code.caret",
+      "editorIndentGuide.background1": "color.code.indent-guide",
+      "editorWhitespace.foreground": "color.code.whitespace",
+      "editorStickyScroll.background": "color.surface.canvas",
+      "editorStickyScrollHover.background": "color.interaction.hover.bg",
+      "minimap.background": "color.surface.canvas",
+      "scrollbarSlider.background": "color.interaction.scrollbar.thumb",
+      "scrollbarSlider.hoverBackground": "color.interaction.scrollbar.thumb-hover",
+      "scrollbarSlider.activeBackground": "color.interaction.scrollbar.thumb-hover",
+      "editorWidget.background": "color.surface.overlay",
+      "editorWidget.foreground": "color.text.default",
+      "editorWidget.border": "color.border.overlay",
+      "menu.background": "color.surface.overlay",
+      "menu.foreground": "color.text.default",
+      "menu.selectionBackground": "color.interaction.selection.bg",
+      "menu.selectionForeground": "color.text.default",
+      "menu.border": "color.border.overlay",
+      "menu.separatorBackground": "color.border.divider",
+      "focusBorder": "color.border.active",
+      "descriptionForeground": "color.text.muted",
+      "input.background": "color.surface.input",
+      "input.foreground": "color.text.default",
+      "input.border": "color.border.control"
+    },
+    "syntax": {
+      "": "color.text.default",
+      "comment": "color.code.syntax.comment",
+      "string": "color.code.syntax.string",
+      "keyword": "color.code.syntax.keyword",
+      "number": "color.code.syntax.number",
+      "regexp": "color.code.syntax.escape",
+      "operator": "color.code.syntax.operator",
+      "delimiter": "color.code.syntax.punctuation",
+      "type": "color.code.syntax.type",
+      "variable": "color.code.syntax.variable",
+      "function": "color.code.syntax.function",
+      "tag": "color.code.syntax.tag",
+      "attribute.name": "color.code.syntax.property"
+    },
+    "loading": {
+      "background": "color.surface.canvas",
+      "foreground": "color.text.default",
+      "track": "color.interaction.pressed.bg",
+      "fill": "color.action.primary.bg",
+      "border": "color.border.control"
+    }
+  },
+  "calculator": {
+    "version": "1.3.3",
+    "packageFullName": "Microsoft.WindowsCalculator_11.2607.0.0_x64__8wekyb3d8bbwe",
+    "resources": {
+      "AppChromeAcrylicHostBackdropMediumLowBrush": "color.surface.canvas",
+      "AppBackgroundAltMediumLowBrush": "color.surface.canvas",
+      "AppOperatorPanelBackground": "color.surface.canvas",
+      "SystemControlBackgroundAltHighBrush": "color.surface.canvas",
+      "SystemControlBackgroundChromeMediumLowBrush": "color.surface.canvas",
+      "SolidBackgroundFillColorBaseBrush": "color.surface.canvas",
+      "AppChromeAcrylicOperatorFlyoutBackgroundBrush": "color.surface.raised",
+      "NavigationViewDefaultPaneBackground": "color.surface.canvas",
+      "CalcButtonTextFillColorDefaultBrush": "color.text.default",
+      "CalcButtonTextFillColorHoverBrush": "color.text.default",
+      "AppControlPageTextBaseHighColorBrush": "color.text.default",
+      "TextFillColorPrimaryBrush": "color.text.default",
+      "CalcButtonTextFillColorPressedBrush": "color.text.muted",
+      "AppControlPageTextBaseMediumHighBrush": "color.text.muted",
+      "AppControlForegroundSecondaryBrush": "color.text.muted",
+      "TextFillColorSecondaryBrush": "color.text.muted",
+      "CalcButtonTextFillColorDisabledBrush": "color.text.disabled",
+      "TextFillColorDisabledBrush": "color.text.disabled",
+      "AppControlForegroundAccentBrush": "color.text.bright",
+      "AccentTextFillColorPrimaryBrush": "color.text.bright",
+      "TextOnAccentFillColorPrimaryBrush": "color.text.bright",
+      "TextOnAccentFillColorSecondaryBrush": "color.text.bright",
+      "CalcButtonFillColorDefaultBrush": "color.surface.input",
+      "CalcButtonAltFillColorDefaultBrush": "color.surface.input",
+      "CalcButtonFillColorHoverBrush": "color.interaction.hover.bg",
+      "CalcButtonAltFillColorHoverBrush": "color.interaction.hover.bg",
+      "SubtleFillColorSecondaryBrush": "color.interaction.hover.bg",
+      "AppControlBackgroundSecondaryBrush": "color.interaction.hover.bg",
+      "CalcButtonFillColorPressedBrush": "color.interaction.pressed.bg",
+      "CalcButtonAltFillColorPressedBrush": "color.interaction.pressed.bg",
+      "AppControlBackgroundTertiaryBrush": "color.interaction.pressed.bg",
+      "SubtleFillColorTertiaryBrush": "color.interaction.pressed.bg",
+      "CalcButtonFillColorDisabledBrush": "color.interaction.disabled.bg",
+      "CalcButtonAltFillColorDisabledBrush": "color.interaction.disabled.bg",
+      "AccentFillColorDefaultBrush": "color.action.primary.bg",
+      "AppControlHighlightCalcButtonBrush": "color.action.primary.bg",
+      "AppControlHighlightCalcButtonToggledBrush": "color.action.primary.bg",
+      "AccentFillColorSecondaryBrush": "color.action.primary.hover-bg",
+      "AppControlHighlightCalcButtonHoverBrush": "color.action.primary.hover-bg",
+      "AccentFillColorTertiaryBrush": "color.action.primary.pressed-bg",
+      "ControlStrokeColorDefaultBrush": "color.border.control",
+      "SystemControlHighlightAccentBrush": "color.border.active",
+      "SystemControlPageTextBaseHighBrush": "color.text.default",
+      "SystemControlPageTextBaseMediumBrush": "color.text.muted",
+      "SystemControlForegroundBaseHighBrush": "color.text.default",
+      "ButtonBorderBrush": "color.border.control",
+      "ButtonBorderBrushPointerOver": "color.border.active",
+      "ButtonBorderBrushPressed": "color.border.active",
+      "ButtonBorderBrushDisabled": "color.border.disabled",
+      "DividerStrokeColorDefaultBrush": "color.border.divider",
+      "SystemControlFocusVisualPrimaryBrush": "color.interaction.focus.ring",
+      "SystemControlFocusVisualSecondaryBrush": "color.surface.canvas",
+      "NavigationViewExpandedPaneBackground": "color.surface.canvas",
+      "NavigationViewTopPaneBackground": "color.surface.canvas",
+      "ControlStrokeColorSecondaryBrush": "color.border.control",
+      "ControlElevationBorderBrush": "color.border.control",
+      "ToolTipBackground": "color.surface.overlay",
+      "ToolTipForeground": "color.text.default",
+      "ToolTipBorderBrush": "color.border.control"
+    }
+  },
+  "markdownPreview": {
+    "version": "1.0.0",
+    "hostVersion": "0.101.2362.0",
+    "hostSha256": "d48704360aa8c8d5a3f572a055b176d50d58206f386cda49b2760beb3fd00cd9",
+    "controlSha256": "e47fcc38944ab5920aa49a31a2d0fef212865d1f5a62a65a08012a1767bed9cc",
+    "helperSha256": "35cb5f5e8e1d201d22db5d6b956195c04ae1a79469d36f25b90b6eeee6240ab7",
+    "webviewVersion": "154.0.4258.37",
+    "webviewSha256": "b08c60a6d316ad3e50c2a1d00f146d90fca3a8da08f22aef71722ac0ccebd6b7",
+    "navigateToStringRva": 562928,
+    "navigateRva": 562768,
+    "headers": [
+      {
+        "theme": "dark",
+        "localImages": false,
+        "length": 2461,
+        "sha256": "8a07eee9ee0b2317281ad2509d57e2db301db69bca04687e76b300e44a2c602d",
+        "styleOffset": 175,
+        "styleLength": 2249
+      },
+      {
+        "theme": "dark",
+        "localImages": true,
+        "length": 2476,
+        "sha256": "9b36963064d58718d4ac74a87e15e76c1a6f9085b2802e5ba206b881ca92fc79",
+        "styleOffset": 190,
+        "styleLength": 2249
+      },
+      {
+        "theme": "light",
+        "localImages": false,
+        "length": 2452,
+        "sha256": "449a8fe0d7c0bca0b8792cf7d9597d0702773cb3ef71daf09c783c8bc39839ab",
+        "styleOffset": 175,
+        "styleLength": 2240
+      },
+      {
+        "theme": "light",
+        "localImages": true,
+        "length": 2467,
+        "sha256": "30bebcadec2095b34c18f9a77e85dd3327b556a6864b84b5e55bb15eafecd651",
+        "styleOffset": 190,
+        "styleLength": 2240
+      }
+    ],
+    "roles": {
+      "CANVAS": "color.surface.canvas",
+      "PROSE": "color.text.prose",
+      "HEADING": "color.text.heading",
+      "DIVIDER": "color.border.divider",
+      "CODE": "color.surface.code",
+      "QUOTE": "color.surface.raised",
+      "QUOTE_BORDER": "color.border.active",
+      "LINK": "color.text.link",
+      "LINK_UNDERLINE": "color.text.link-underline",
+      "LINK_HOVER": "color.text.link-hover",
+      "FOCUS": "color.interaction.focus.ring",
+      "SELECTION": "color.interaction.text-selection.bg",
+      "SELECTION_TEXT": "color.interaction.text-selection.text",
+      "SCROLLBAR": "color.interaction.scrollbar.thumb",
+      "FONT": "font.family.mono",
+      "CODE_BORDER": "color.border.control",
+      "READING_SIZE": "font.size.reading",
+      "READING_LINE": "font.line-height.reading",
+      "CODE_SIZE": "font.size.code",
+      "CODE_LINE": "font.line-height.code",
+      "H1_SIZE": "font.size.h1",
+      "H1_LINE": "font.line-height.h1",
+      "H2_SIZE": "font.size.h2",
+      "H2_LINE": "font.line-height.h2",
+      "BOLD": "font.weight.bold",
+      "SPACE2": "space.2",
+      "SPACE4": "space.4",
+      "SPACE8": "space.8",
+      "SPACE12": "space.12",
+      "SPACE16": "space.16",
+      "SPACE24": "space.24",
+      "H3_SIZE": "font.size.h3",
+      "H3_LINE": "font.line-height.h3",
+      "MEASURE": "layout.measure",
+      "CONTENT_MAX": "layout.content-max",
+      "BORDER_WIDTH": "border.width.default"
+    }
+  },
+  "notepadNative": {
+    "version": "1.1.1",
+    "packageFullName": "Microsoft.WindowsNotepad_11.2607.14.0_x64__8wekyb3d8bbwe",
+    "editorSha256": "e7babd9942e133c690b4144657956af890912d130f81a81650f3a5597b5e5dbc",
+    "roles": {
+      "CANVAS": "color.surface.canvas",
+      "PROSE": "color.text.prose",
+      "SELECTION": "color.interaction.text-selection.bg",
+      "SELECTED_TEXT": "color.interaction.text-selection.text"
+    }
+  }
+}

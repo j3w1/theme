@@ -1,10 +1,10 @@
 {
   "id": "command-palette",
   "name": "Command palette",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "tag": "j3w1-command-palette",
-  "contract": "https://github.com/j3w1/theme/blob/v3.1.0/spec/components/command-palette.md",
-  "source": "https://github.com/j3w1/theme/blob/v3.1.0/packages/ui/src/behaviors/advanced.js",
+  "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/command-palette.md",
+  "source": "https://github.com/j3w1/theme/blob/v4.0.0/packages/ui/src/behaviors/advanced.js",
   "imports": {
     "class": "@j3w1/ui/components/command-palette",
     "register": "@j3w1/ui/register/command-palette",
@@ -145,9 +145,9 @@
       "color.surface.overlay",
       "color.text.bright",
       "color.text.default",
+      "color.text.heading",
       "color.text.muted",
       "color.text.placeholder",
-      "color.text.prose",
       "density.comfortable.control-height",
       "density.compact.control-height",
       "font.family.mono",
@@ -195,9 +195,9 @@
       "color.surface.overlay",
       "color.text.bright",
       "color.text.default",
+      "color.text.heading",
       "color.text.muted",
       "color.text.placeholder",
-      "color.text.prose",
       "density.comfortable.control-height",
       "density.compact.control-height",
       "font.family.mono",
@@ -311,17 +311,17 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "color.text.heading": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "color.text.muted": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
       "color.text.placeholder": {
-        "action": "use",
-        "reason": "Use within the role's documented scope and restrictions.",
-        "decisionIds": []
-      },
-      "color.text.prose": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -407,6 +407,6 @@
   "copy": {
     "directory": "copy/command-palette/",
     "manifest": "copy/command-palette/manifest.json",
-    "digest": "sha256-3IcvttJMgOkde+knFfxmbMrbLsVvoVO8upKQb7HX2Qo="
+    "digest": "sha256-32E4drny7VumlSzFS7iTQAvnmHkj24IGp+h8vVgIc3E="
   }
 }

@@ -1,0 +1,328 @@
+{
+  "theme": "",
+  "controlStyles": [
+    {
+      "target": "TextBlock",
+      "styles": [
+        "Foreground=#e99499"
+      ]
+    },
+    {
+      "target": "Control",
+      "styles": [
+        "Foreground=#e99499"
+      ]
+    },
+    {
+      "target": "Border#AcrylicBorder",
+      "styles": [
+        "Background=#160b0b",
+        "BorderBrush=#e53935",
+        "BorderThickness=1",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Border#StartDropShadow",
+      "styles": [
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Border#RightCompanionDropShadow",
+      "styles": [
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Border#dropshadow",
+      "styles": [
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Border#AcrylicOverlay",
+      "styles": [
+        "Background=#090707",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Grid#MainContent",
+      "styles": [
+        "Background=#000000",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Grid#CompanionRoot > Border#AcrylicBorder",
+      "styles": [
+        "Background=#160b0b",
+        "BorderBrush=#e53935",
+        "BorderThickness=1",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Grid#CompanionRoot > Grid#MainContent > Border#AcrylicOverlay",
+      "styles": [
+        "Background=#090707",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "TextBlock#DisplayName",
+      "styles": [
+        "FontFamily=SauceCodePro NFM"
+      ]
+    },
+    {
+      "target": "TextBlock#AppDisplayName",
+      "styles": [
+        "FontFamily=SauceCodePro NFM"
+      ]
+    },
+    {
+      "target": "TextBlock#PinnedListHeaderText",
+      "styles": [
+        "FontFamily=SauceCodePro NFM"
+      ]
+    },
+    {
+      "target": "TextBlock#AllListHeadingText",
+      "styles": [
+        "FontFamily=SauceCodePro NFM"
+      ]
+    },
+    {
+      "target": "TextBlock#UserTileNameText",
+      "styles": [
+        "FontFamily=SauceCodePro NFM"
+      ]
+    },
+    {
+      "target": "TextBlock#PlaceholderText",
+      "styles": [
+        "FontFamily=SauceCodePro NFM"
+      ]
+    },
+    {
+      "target": "TextBlock#RecommendedListHeaderText",
+      "styles": [
+        "FontFamily=SauceCodePro NFM"
+      ]
+    },
+    {
+      "target": "Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates",
+      "styles": [
+        "CornerRadius=0",
+        "BorderThickness=1",
+        "BorderBrush@Normal=#a3676b",
+        "Background@Normal=#000000",
+        "Background@PointerOver=#1c0a09",
+        "Background@Pressed=#420f0c",
+        "Background@Disabled=#160b0b",
+        "BorderBrush@PointerOver=#e53935",
+        "BorderBrush@Pressed=#e53935",
+        "BorderBrush@Disabled=#7d1310"
+      ]
+    },
+    {
+      "target": "Button#ShowMoreSuggestionsButton > Grid@CommonStates > Border",
+      "styles": [
+        "CornerRadius=0",
+        "BorderThickness=1",
+        "BorderBrush@Normal=#a3676b",
+        "Background@Normal=#000000",
+        "Background@PointerOver=#1c0a09",
+        "Background@Pressed=#420f0c",
+        "Background@Disabled=#160b0b",
+        "BorderBrush@PointerOver=#e53935",
+        "BorderBrush@Pressed=#e53935",
+        "BorderBrush@Disabled=#7d1310"
+      ]
+    },
+    {
+      "target": "Button#HideMoreSuggestionsButton > Grid@CommonStates > Border",
+      "styles": [
+        "CornerRadius=0",
+        "BorderThickness=1",
+        "BorderBrush@Normal=#a3676b",
+        "Background@Normal=#000000",
+        "Background@PointerOver=#1c0a09",
+        "Background@Pressed=#420f0c",
+        "Background@Disabled=#160b0b",
+        "BorderBrush@PointerOver=#e53935",
+        "BorderBrush@Pressed=#e53935",
+        "BorderBrush@Disabled=#7d1310"
+      ]
+    },
+    {
+      "target": "Border#AppBorder",
+      "styles": [
+        "Background=#000000",
+        "BorderBrush=#e53935",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Border#TaskbarSearchBackground",
+      "styles": [
+        "Background=#000000",
+        "BorderBrush=#e53935",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Cortana.UI.Views.RichSearchBoxControl#SearchBoxControl > Grid#RootGrid",
+      "styles": [
+        "Background=#000000",
+        "BorderBrush=#e53935",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Cortana.UI.Views.RichSearchBoxControl > Grid > Border#BorderElement",
+      "styles": [
+        "Background=#000000",
+        "BorderBrush=#a3676b"
+      ]
+    }
+  ],
+  "themeResourceVariables": [
+    "TextFillColorPrimary=#e99499",
+    "TextFillColorSecondary=#bd787d",
+    "TextFillColorTertiary=#ad7175",
+    "TextFillColorDisabled=#8a5559",
+    "SystemControlForegroundBaseHighBrush=#e99499",
+    "SystemControlForegroundBaseMediumBrush=#bd787d",
+    "SystemControlForegroundBaseLowBrush=#8a5559",
+    "SolidBackgroundFillColorBase=#000000",
+    "SolidBackgroundFillColorSecondary=#100c0c",
+    "LayerFillColorDefault=#100c0c",
+    "LayerFillColorAlt=#160b0b",
+    "CardBackgroundFillColorDefault=#100c0c",
+    "CardBackgroundFillColorSecondary=#160b0b",
+    "ControlFillColorDefault=#000000",
+    "ControlFillColorSecondary=#1c0a09",
+    "ControlFillColorTertiary=#420f0c",
+    "ControlStrokeColorDefault=#a3676b",
+    "AccentFillColorDefault=#7d1310",
+    "AccentTextFillColorPrimary=#ffa2a7",
+    "TextOnAccentFillColorPrimary=#ffa2a7",
+    "SystemAccentColor=#e53935",
+    "SystemControlHighlightAccentBrush=#e53935"
+  ],
+  "webContentStyles": [
+    {
+      "target": "body, #root, #root.darkTheme, .scope-with-background, .suggsList, .suggsListContainer, .suggContainer, .previewContainer, .suggDetailsContainer, .contextMenu, #menuContainer",
+      "styles": [
+        "background-color: #000000 !important",
+        "color: #e99499 !important",
+        "border-color: #2b0e0d !important"
+      ]
+    },
+    {
+      "target": "h1, h2, h3, h4, p, .title, .details, .secondaryText, .groupTitle, .suggestion, .scope-tile > div, .menu-item_details, .previewContainer, button",
+      "styles": [
+        "color: #e99499 !important"
+      ]
+    },
+    {
+      "target": ".secondaryText, .details .secondaryText",
+      "styles": [
+        "color: #bd787d !important"
+      ]
+    },
+    {
+      "target": ".iconContainer, .previewContainer .imageContainer, .scope-tile > div, button, .button, .actionButton",
+      "styles": [
+        "background-color: #000000 !important",
+        "color: #e99499 !important",
+        "border-radius: 0px !important",
+        "border-style: none !important",
+        "box-shadow: none !important",
+        "background-image: none !important"
+      ]
+    },
+    {
+      "target": ".suggestion, .contextMenu li",
+      "styles": [
+        "background-color: #000000 !important",
+        "border-radius: 0px !important",
+        "border-style: none !important",
+        "box-shadow: none !important"
+      ]
+    },
+    {
+      "target": ".suggestion:hover, .suggestion:hover .details, .suggestion:hover .iconContainer, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover",
+      "styles": [
+        "background-color: #1c0a09 !important",
+        "color: #e99499 !important"
+      ]
+    },
+    {
+      "target": ".suggestion[aria-selected=\"true\"], .suggestion[aria-selected=\"true\"] .details, .suggestion[aria-selected=\"true\"] .iconContainer, .suggestion[aria-selected=\"true\"] .title, .suggestion[aria-selected=\"true\"] .secondaryText",
+      "styles": [
+        "background-color: #531310 !important",
+        "color: #f4eeee !important"
+      ]
+    },
+    {
+      "target": "button:active, .button:active, .actionButton:active",
+      "styles": [
+        "background-color: #420f0c !important"
+      ]
+    },
+    {
+      "target": ":focus-visible",
+      "styles": [
+        "outline-color: #e53935 !important",
+        "outline-width: 1px !important",
+        "outline-offset: -2px !important",
+        "outline-style: dashed !important"
+      ]
+    },
+    {
+      "target": ".suggestion[aria-selected=\"true\"]:focus-visible",
+      "styles": [
+        "outline-color: #ffa2a7 !important"
+      ]
+    },
+    {
+      "target": ".scope-tile--selected > div",
+      "styles": [
+        "background-color: #000000 !important",
+        "color: #ffa2a7 !important",
+        "border-bottom-color: #e53935 !important",
+        "border-bottom-width: 2px !important",
+        "border-bottom-style: solid !important"
+      ]
+    },
+    {
+      "target": "*",
+      "styles": [
+        "scrollbar-color: #420f0c #000000 !important"
+      ]
+    },
+    {
+      "target": "::-webkit-scrollbar-track",
+      "styles": [
+        "background-color: #000000 !important"
+      ]
+    },
+    {
+      "target": "::-webkit-scrollbar-thumb",
+      "styles": [
+        "background-color: #420f0c !important"
+      ]
+    },
+    {
+      "target": ".leftPill::before",
+      "styles": [
+        "background-color: #e53935 !important"
+      ]
+    }
+  ],
+  "webContentCustomJs": ""
+}

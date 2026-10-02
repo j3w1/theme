@@ -1,0 +1,40 @@
+/* PowerToys owns Markdown parsing, document bytes and WebView restrictions.
+   This renderer only supplies token-derived CSS at the pinned HTML boundary. */
+import {readFileSync} from 'node:fs';
+import path from 'node:path';
+import {repoRoot} from './fs.mjs';
+import {toCss} from './tokens.mjs';
+
+export function windowsMarkdownArtifacts(host,resolved){
+ const md=host.markdownPreview,id='j3w1-powertoys-markdown';
+ if(!md||!/^\d+\.\d+\.\d+$/.test(md.version))throw Error('Markdown requires a version');
+ for(const key of ['hostVersion','webviewVersion'])if(!/^\d+\.\d+\.\d+\.\d+$/.test(md[key]))throw Error(`Invalid Markdown ${key}`);
+ for(const key of ['hostSha256','controlSha256','helperSha256','webviewSha256'])if(!/^[a-f0-9]{64}$/.test(md[key]))throw Error(`Invalid Markdown ${key}`);
+ for(const key of ['navigateToStringRva','navigateRva'])if(!Number.isSafeInteger(md[key])||md[key]<=0||md[key]>0x7fffffff)throw Error(`Invalid Markdown ${key}`);
+ if(!Array.isArray(md.headers)||md.headers.length!==4)throw Error('Markdown requires the four reviewed headers');
+ const variants=new Set();
+ for(const pin of md.headers){
+  if(!['dark','light'].includes(pin.theme)||typeof pin.localImages!=='boolean'||variants.has(`${pin.theme}:${pin.localImages}`))throw Error('Invalid Markdown header variant');
+  variants.add(`${pin.theme}:${pin.localImages}`);
+  for(const key of ['length','styleOffset','styleLength'])if(!Number.isSafeInteger(pin[key])||pin[key]<=0||pin[key]>32768)throw Error('Invalid Markdown header extent');
+  if(pin.styleOffset+pin.styleLength>pin.length||!/^[a-f0-9]{64}$/.test(pin.sha256))throw Error('Invalid Markdown header identity');
+ }
+ const render=(template,substitutions)=>{
+  const text=template.replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in substitutions))throw Error(`Unknown Markdown placeholder ${key}`);return substitutions[key];});
+  if(/@[A-Z0-9_]+@/.test(text))throw Error('Unresolved Markdown placeholder');
+  return text;
+ };
+ const roles=Object.fromEntries(Object.entries(md.roles).map(([key,role])=>{
+  const token=resolved.get(role);if(!token||role.startsWith('color.primitive.'))throw Error(`Invalid Markdown semantic role ${role}`);
+  return [key,toCss(token.type,token.resolved)];
+ }));
+ const css=render(readFileSync(path.join(repoRoot,'ports/windows/src/markdown-theme.css.in'),'utf8'),roles).replace(/\r?\n/g,'');
+ if(/[^\x20-\x7e]/.test(css))throw Error('Markdown CSS must be ASCII for the same-length boundary');
+ if(md.headers.some(pin=>css.length>pin.styleLength))throw Error('Markdown CSS exceeds admitted extent');
+ const subs={VERSION:md.version,HEADER_PINS:md.headers.map(p=>` {${p.length},${p.styleOffset},${p.styleLength},"${p.sha256}"},`).join('\n'),
+  PALETTE_CSS:css,WEBVIEW_SHA256:md.webviewSha256,HOST_SHA256:md.hostSha256,CONTROL_SHA256:md.controlSha256,HELPER_SHA256:md.helperSha256,
+  STRING_RVA:'0x'+md.navigateToStringRva.toString(16),NAVIGATE_RVA:'0x'+md.navigateRva.toString(16)};
+ if(css.includes(')MD"'))throw Error('Invalid Markdown CSS literal delimiter');
+ const source=render(readFileSync(path.join(repoRoot,`ports/windows/src/${id}.wh.cpp.in`),'utf8'),subs);
+ return {id,version:md.version,source,css};
+}

@@ -1,10 +1,10 @@
 {
   "id": "chart",
   "name": "Chart",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "tag": "j3w1-chart",
-  "contract": "https://github.com/j3w1/theme/blob/v3.1.0/spec/components/chart.md",
-  "source": "https://github.com/j3w1/theme/blob/v3.1.0/packages/ui/src/behaviors/display.js",
+  "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/chart.md",
+  "source": "https://github.com/j3w1/theme/blob/v4.0.0/packages/ui/src/behaviors/display.js",
   "imports": {
     "class": "@j3w1/ui/components/chart",
     "register": "@j3w1/ui/register/chart",
@@ -336,6 +336,6 @@
   "copy": {
     "directory": "copy/chart/",
     "manifest": "copy/chart/manifest.json",
-    "digest": "sha256-RA4SXox3OiNKDB6Z7HzbpuyYP50y6vZ6HnNtDurvy+g="
+    "digest": "sha256-D55GvA07U5Xw7+HjX/agtrwp3CuGfGjdC3qYW+wfO5g="
   }
 }

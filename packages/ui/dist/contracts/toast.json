@@ -1,10 +1,10 @@
 {
   "id": "toast",
   "name": "Toast",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "tag": "j3w1-toast",
-  "contract": "https://github.com/j3w1/theme/blob/v3.1.0/spec/components/toast.md",
-  "source": "https://github.com/j3w1/theme/blob/v3.1.0/packages/ui/src/behaviors/overlays.js",
+  "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/toast.md",
+  "source": "https://github.com/j3w1/theme/blob/v4.0.0/packages/ui/src/behaviors/overlays.js",
   "imports": {
     "class": "@j3w1/ui/components/toast",
     "register": "@j3w1/ui/register/toast",
@@ -524,6 +524,6 @@
   "copy": {
     "directory": "copy/toast/",
     "manifest": "copy/toast/manifest.json",
-    "digest": "sha256-MqCh9SvGagzOe23fAib/zxfdqoslIsWM/3BS+PzknRc="
+    "digest": "sha256-GCHp1WDaRRng5K1gCnZExgrnE7zG/o3h33bybLzvQnI="
   }
 }

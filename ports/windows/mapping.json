@@ -1,0 +1,839 @@
+{
+  "schemaVersion": 1,
+  "mappings": {
+    "color.border.active": [
+      "native.accent",
+      "nativeExplorer.pin",
+      "cursor.outline",
+      "powertoys.highlight",
+      "windhawk.resource.SystemAccentColor",
+      "windhawk.resource.SystemControlHighlightAccentBrush",
+      "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | BorderBrush@PointerOver",
+      "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | BorderBrush@Pressed",
+      "windows-11-start-menu-styler | Button#ShowMoreSuggestionsButton > Grid@CommonStates > Border | BorderBrush@PointerOver",
+      "windows-11-start-menu-styler | Button#ShowMoreSuggestionsButton > Grid@CommonStates > Border | BorderBrush@Pressed",
+      "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | BorderBrush@PointerOver",
+      "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | BorderBrush@Pressed",
+      "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | BorderBrush@Pressed",
+      "powertoys.markdown.QUOTE_BORDER",
+      "windows-11-start-menu-styler | Border#AppBorder | BorderBrush",
+      "windows-11-start-menu-styler | Border#TaskbarSearchBackground | BorderBrush",
+      "windows-11-start-menu-styler | Cortana.UI.Views.RichSearchBoxControl#SearchBoxControl > Grid#RootGrid | BorderBrush",
+      "folder.edge",
+      "windows-11-start-menu-styler | web .leftPill::before | background-color",
+      "calculator.resource.SystemControlHighlightAccentBrush",
+      "calculator.resource.ButtonBorderBrushPointerOver",
+      "calculator.resource.ButtonBorderBrushPressed"
+    ],
+    "color.surface.desktop": [
+      "native.desktop"
+    ],
+    "color.terminal.fg": [
+      "terminal.foreground"
+    ],
+    "color.surface.canvas": [
+      "terminal.background",
+      "cursor.foreground",
+      "windhawk.resource.SolidBackgroundFillColorBase",
+      "windows-11-start-menu-styler | Grid#MainContent | Background",
+      "windows-11-start-menu-styler | StartDocked.StartSizingFrame | Background",
+      "windows-11-notification-center-styler | Grid#ControlCenterRegion | Background",
+      "windows-11-notification-center-styler | Grid#NotificationCenterGrid | Background",
+      "windows-11-notification-center-styler | Grid#CalendarCenterGrid | Background",
+      "windows-11-notification-center-styler | Border#ToastBackgroundBorder | Background",
+      "windows-11-notification-center-styler | Border#ToastBackgroundBorder2 | Background",
+      "windows-11-notification-center-styler | CalendarView | Background",
+      "windows-11-notification-center-styler | CalendarView | CalendarItemBackground",
+      "windows-11-notification-center-styler | ActionCenter.FlexibleToastView#FlexibleNormalToastView | Background",
+      "windows-11-settings-styler | SystemSettings.View.RootPage | Background",
+      "windows-11-settings-styler | Grid#RootPageGrid | Background",
+      "nativeExplorer.background",
+      "windows-11-file-explorer-styler | FileExplorerExtensions.CommandBarControl_Wave1 > Grid, Grid#CommandBarControlRootGrid | Background",
+      "windows-11-file-explorer-styler | CommandBar#FileExplorerCommandBar | Background",
+      "windows-11-file-explorer-styler | CommandBar#FileExplorerSecondaryCommandBar | Background",
+      "windows-11-file-explorer-styler | CommandBar > Grid#LayoutRoot > Grid#ContentRoot | Background",
+      "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@Normal",
+      "windows-11-file-explorer-styler | FileExplorerExtensions.AddressBarControl > Grid#PART_LayoutRoot | Background",
+      "powertoys.markdown.CANVAS",
+      "windows-11-start-menu-styler | Border#AppBorder | Background",
+      "windows-11-start-menu-styler | Border#TaskbarSearchBackground | Background",
+      "windows-11-start-menu-styler | Cortana.UI.Views.RichSearchBoxControl#SearchBoxControl > Grid#RootGrid | Background",
+      "windows-11-start-menu-styler | web body, #root, #root.darkTheme, .scope-with-background, .suggsList, .suggsListContainer, .suggContainer, .previewContainer, .suggDetailsContainer, .contextMenu, #menuContainer | background-color",
+      "windows-11-start-menu-styler | web .iconContainer, .previewContainer .imageContainer, .scope-tile > div, button, .button, .actionButton | background-color",
+      "windows-11-start-menu-styler | web .suggestion, .contextMenu li | background-color",
+      "windows-11-start-menu-styler | web .scope-tile--selected > div | background-color",
+      "windows-11-start-menu-styler | web ::-webkit-scrollbar-track | background-color",
+      "calculator.resource.AppChromeAcrylicHostBackdropMediumLowBrush",
+      "calculator.resource.AppBackgroundAltMediumLowBrush",
+      "calculator.resource.AppOperatorPanelBackground",
+      "calculator.resource.SystemControlBackgroundAltHighBrush",
+      "calculator.resource.SystemControlBackgroundChromeMediumLowBrush",
+      "calculator.resource.SolidBackgroundFillColorBaseBrush",
+      "calculator.resource.NavigationViewDefaultPaneBackground",
+      "calculator.resource.SystemControlFocusVisualSecondaryBrush",
+      "calculator.resource.NavigationViewExpandedPaneBackground",
+      "calculator.resource.NavigationViewTopPaneBackground",
+      "notepad-native.CANVAS"
+    ],
+    "color.terminal.cursor": [
+      "terminal.cursor"
+    ],
+    "color.code.selection-bg": [
+      "terminal.selection"
+    ],
+    "color.surface.chrome": [
+      "terminal.chrome",
+      "windows-11-taskbar-styler | Taskbar.TaskbarFrame > Grid#RootGrid | Background",
+      "windows-11-taskbar-styler | Rectangle#BackgroundFill | Fill",
+      "windows-11-start-menu-styler | Border#AcrylicOverlay | Background",
+      "windows-11-start-menu-styler | Grid#CompanionRoot > Grid#MainContent > Border#AcrylicOverlay | Background",
+      "windows-11-notification-center-styler | ScrollViewer#CalendarControlScrollViewer | Background",
+      "windows-11-notification-center-styler | Border#CalendarHeaderMinimizedOverlay | Background",
+      "windows-11-notification-center-styler | ActionCenter.FocusSessionControl#FocusSessionControl > Grid#FocusGrid | Background",
+      "windows-11-notification-center-styler | Grid#NotificationCenterTopBanner | Background"
+    ],
+    "color.text.default": [
+      "native.foreground",
+      "windhawk.resource.TextFillColorPrimary",
+      "windhawk.resource.SystemControlForegroundBaseHighBrush",
+      "windows-11-taskbar-styler | TextBlock | Foreground",
+      "windows-11-taskbar-styler | Control | Foreground",
+      "windows-11-start-menu-styler | TextBlock | Foreground",
+      "windows-11-start-menu-styler | Control | Foreground",
+      "windows-11-file-explorer-styler | TextBlock | Foreground",
+      "windows-11-file-explorer-styler | Control | Foreground",
+      "windows-11-notification-center-styler | TextBlock | Foreground",
+      "windows-11-notification-center-styler | Control | Foreground",
+      "windows-11-notification-center-styler | CalendarView | CalendarItemForeground",
+      "windows-11-settings-styler | TextBlock | Foreground",
+      "windows-11-settings-styler | Control | Foreground",
+      "nativeExplorer.foreground",
+      "windows-11-start-menu-styler | web body, #root, #root.darkTheme, .scope-with-background, .suggsList, .suggsListContainer, .suggContainer, .previewContainer, .suggDetailsContainer, .contextMenu, #menuContainer | color",
+      "windows-11-start-menu-styler | web h1, h2, h3, h4, p, .title, .details, .secondaryText, .groupTitle, .suggestion, .scope-tile > div, .menu-item_details, .previewContainer, button | color",
+      "windows-11-start-menu-styler | web .suggestion:hover, .suggestion:hover .details, .suggestion:hover .iconContainer, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover | color",
+      "calculator.resource.CalcButtonTextFillColorDefaultBrush",
+      "calculator.resource.CalcButtonTextFillColorHoverBrush",
+      "calculator.resource.AppControlPageTextBaseHighColorBrush",
+      "calculator.resource.TextFillColorPrimaryBrush",
+      "calculator.resource.SystemControlPageTextBaseHighBrush",
+      "calculator.resource.SystemControlForegroundBaseHighBrush",
+      "calculator.resource.ToolTipForeground"
+    ],
+    "color.text.bright": [
+      "native.bright",
+      "powertoys.number",
+      "windhawk.resource.AccentTextFillColorPrimary",
+      "windows-11-start-menu-styler | web .scope-tile--selected > div | color",
+      "calculator.resource.AppControlForegroundAccentBrush",
+      "calculator.resource.AccentTextFillColorPrimaryBrush",
+      "calculator.resource.TextOnAccentFillColorPrimaryBrush",
+      "calculator.resource.TextOnAccentFillColorSecondaryBrush"
+    ],
+    "color.text.heading": [
+      "native.heading",
+      "powertoys.markdown.HEADING"
+    ],
+    "color.text.highlight": [
+      "native.highlight"
+    ],
+    "color.text.muted": [
+      "native.muted",
+      "windhawk.resource.TextFillColorSecondary",
+      "windhawk.resource.SystemControlForegroundBaseMediumBrush",
+      "windows-11-notification-center-styler | CalendarView | OutOfScopeForeground",
+      "windows-11-start-menu-styler | web .secondaryText, .details .secondaryText | color",
+      "calculator.resource.CalcButtonTextFillColorPressedBrush",
+      "calculator.resource.AppControlPageTextBaseMediumHighBrush",
+      "calculator.resource.AppControlForegroundSecondaryBrush",
+      "calculator.resource.TextFillColorSecondaryBrush",
+      "calculator.resource.SystemControlPageTextBaseMediumBrush"
+    ],
+    "color.text.disabled": [
+      "native.disabled",
+      "windhawk.resource.TextFillColorDisabled",
+      "windhawk.resource.SystemControlForegroundBaseLowBrush",
+      "windows-11-notification-center-styler | CalendarView | DisabledForeground",
+      "nativeExplorer.disabled",
+      "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Foreground@Disabled",
+      "calculator.resource.CalcButtonTextFillColorDisabledBrush",
+      "calculator.resource.TextFillColorDisabledBrush"
+    ],
+    "color.interaction.selection.bg": [
+      "native.selection",
+      "nativeExplorer.selected",
+      "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@Selected",
+      "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@PointerOverSelected",
+      "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@PressedSelected",
+      "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"], .suggestion[aria-selected=\"true\"] .details, .suggestion[aria-selected=\"true\"] .iconContainer, .suggestion[aria-selected=\"true\"] .title, .suggestion[aria-selected=\"true\"] .secondaryText | background-color"
+    ],
+    "color.surface.raised": [
+      "powertoys.inactive",
+      "windhawk.resource.LayerFillColorAlt",
+      "windhawk.resource.CardBackgroundFillColorSecondary",
+      "windows-11-start-menu-styler | Border#AcrylicBorder | Background",
+      "windows-11-start-menu-styler | Grid#CompanionRoot > Border#AcrylicBorder | Background",
+      "windows-11-start-menu-styler | StartMenu.FolderModal > Grid > Border | Background",
+      "powertoys.markdown.QUOTE",
+      "calculator.resource.AppChromeAcrylicOperatorFlyoutBackgroundBrush"
+    ],
+    "color.border.control": [
+      "powertoys.border",
+      "windhawk.resource.ControlStrokeColorDefault",
+      "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | BorderBrush@Normal",
+      "windows-11-start-menu-styler | Button#ShowMoreSuggestionsButton > Grid@CommonStates > Border | BorderBrush@Normal",
+      "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | BorderBrush@Normal",
+      "windows-11-start-menu-styler | StartDocked.SearchBoxToggleButton > Grid > Border#BorderElement | BorderBrush",
+      "windows-11-start-menu-styler | StartMenu.SearchBoxToggleButton > Grid > Border#BorderElement | BorderBrush",
+      "powertoys.markdown.CODE_BORDER",
+      "windows-11-start-menu-styler | Cortana.UI.Views.RichSearchBoxControl > Grid > Border#BorderElement | BorderBrush",
+      "calculator.resource.ControlStrokeColorDefaultBrush",
+      "calculator.resource.ButtonBorderBrush",
+      "calculator.resource.ControlStrokeColorSecondaryBrush",
+      "calculator.resource.ControlElevationBorderBrush",
+      "calculator.resource.ToolTipBorderBrush"
+    ],
+    "font.family.mono": [
+      "font.family",
+      "windows-11-start-menu-styler | TextBlock#DisplayName | FontFamily",
+      "windows-11-start-menu-styler | TextBlock#AppDisplayName | FontFamily",
+      "windows-11-start-menu-styler | TextBlock#PinnedListHeaderText | FontFamily",
+      "windows-11-start-menu-styler | TextBlock#AllListHeadingText | FontFamily",
+      "windows-11-start-menu-styler | TextBlock#UserTileNameText | FontFamily",
+      "windows-11-start-menu-styler | TextBlock#PlaceholderText | FontFamily",
+      "windows-11-start-menu-styler | TextBlock#RecommendedListHeaderText | FontFamily",
+      "windows-11-notification-center-styler | TextBlock#NotificationsTextBlock | FontFamily",
+      "windows-11-notification-center-styler | Grid#GroupTitleGrid > TextBlock#Title | FontFamily",
+      "windows-11-notification-center-styler | Grid#ToastTitleBar > TextBlock#SenderName | FontFamily",
+      "powertoys.markdown.FONT"
+    ],
+    "color.terminal.ansi.0": [
+      "terminal.ansi.0"
+    ],
+    "color.terminal.ansi.1": [
+      "terminal.ansi.1"
+    ],
+    "color.terminal.ansi.2": [
+      "terminal.ansi.2"
+    ],
+    "color.terminal.ansi.3": [
+      "terminal.ansi.3"
+    ],
+    "color.terminal.ansi.4": [
+      "terminal.ansi.4"
+    ],
+    "color.terminal.ansi.5": [
+      "terminal.ansi.5"
+    ],
+    "color.terminal.ansi.6": [
+      "terminal.ansi.6"
+    ],
+    "color.terminal.ansi.7": [
+      "terminal.ansi.7"
+    ],
+    "color.terminal.ansi.8": [
+      "terminal.ansi.8"
+    ],
+    "color.terminal.ansi.9": [
+      "terminal.ansi.9"
+    ],
+    "color.terminal.ansi.10": [
+      "terminal.ansi.10"
+    ],
+    "color.terminal.ansi.11": [
+      "terminal.ansi.11"
+    ],
+    "color.terminal.ansi.12": [
+      "terminal.ansi.12"
+    ],
+    "color.terminal.ansi.13": [
+      "terminal.ansi.13"
+    ],
+    "color.terminal.ansi.14": [
+      "terminal.ansi.14"
+    ],
+    "color.terminal.ansi.15": [
+      "terminal.ansi.15"
+    ],
+    "color.text.subtle": [
+      "windhawk.resource.TextFillColorTertiary"
+    ],
+    "color.surface.default": [
+      "windhawk.resource.SolidBackgroundFillColorSecondary",
+      "windhawk.resource.LayerFillColorDefault",
+      "windhawk.resource.CardBackgroundFillColorDefault",
+      "windows-11-start-menu-styler | StartMenu.CategoryControl > Grid > Border | Background",
+      "windows-11-file-explorer-styler | Grid#NavigationBarControlGrid | Background",
+      "windows-11-notification-center-styler | Border#AcrylicBorder | Background",
+      "windows-11-notification-center-styler | Border#ItemOpaquePlating | Background"
+    ],
+    "color.surface.input": [
+      "windhawk.resource.ControlFillColorDefault",
+      "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | Background@Normal",
+      "windows-11-start-menu-styler | Button#ShowMoreSuggestionsButton > Grid@CommonStates > Border | Background@Normal",
+      "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | Background@Normal",
+      "windows-11-start-menu-styler | StartDocked.SearchBoxToggleButton > Grid > Border#BorderElement | Background",
+      "windows-11-start-menu-styler | StartMenu.SearchBoxToggleButton > Grid > Border#BorderElement | Background",
+      "windows-11-start-menu-styler | Cortana.UI.Views.RichSearchBoxControl > Grid > Border#BorderElement | Background",
+      "calculator.resource.CalcButtonFillColorDefaultBrush",
+      "calculator.resource.CalcButtonAltFillColorDefaultBrush"
+    ],
+    "color.interaction.hover.bg": [
+      "windhawk.resource.ControlFillColorSecondary",
+      "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | Background@PointerOver",
+      "windows-11-start-menu-styler | Button#ShowMoreSuggestionsButton > Grid@CommonStates > Border | Background@PointerOver",
+      "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | Background@PointerOver",
+      "nativeExplorer.hover",
+      "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@PointerOver",
+      "windows-11-file-explorer-styler | MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates | Background@SubMenuOpened",
+      "windows-11-start-menu-styler | web .suggestion:hover, .suggestion:hover .details, .suggestion:hover .iconContainer, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover | background-color",
+      "calculator.resource.CalcButtonFillColorHoverBrush",
+      "calculator.resource.CalcButtonAltFillColorHoverBrush",
+      "calculator.resource.SubtleFillColorSecondaryBrush",
+      "calculator.resource.AppControlBackgroundSecondaryBrush"
+    ],
+    "color.interaction.pressed.bg": [
+      "windhawk.resource.ControlFillColorTertiary",
+      "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | Background@Pressed",
+      "windows-11-start-menu-styler | Button#ShowMoreSuggestionsButton > Grid@CommonStates > Border | Background@Pressed",
+      "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | Background@Pressed",
+      "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@Pressed",
+      "windows-11-start-menu-styler | web button:active, .button:active, .actionButton:active | background-color",
+      "calculator.resource.CalcButtonFillColorPressedBrush",
+      "calculator.resource.CalcButtonAltFillColorPressedBrush",
+      "calculator.resource.AppControlBackgroundTertiaryBrush",
+      "calculator.resource.SubtleFillColorTertiaryBrush"
+    ],
+    "color.action.primary.bg": [
+      "windhawk.resource.AccentFillColorDefault",
+      "windows-11-notification-center-styler | CalendarView | TodayBackground",
+      "folder.fill",
+      "calculator.resource.AccentFillColorDefaultBrush",
+      "calculator.resource.AppControlHighlightCalcButtonBrush",
+      "calculator.resource.AppControlHighlightCalcButtonToggledBrush"
+    ],
+    "color.text.on-action": [
+      "windhawk.resource.TextOnAccentFillColorPrimary",
+      "windows-11-notification-center-styler | CalendarView | TodayForeground"
+    ],
+    "color.border.overlay": [
+      "windows-11-start-menu-styler | Border#AcrylicBorder | BorderBrush",
+      "windows-11-start-menu-styler | Grid#CompanionRoot > Border#AcrylicBorder | BorderBrush",
+      "windows-11-start-menu-styler | StartMenu.FolderModal > Grid > Border | BorderBrush",
+      "windows-11-notification-center-styler | Grid#ControlCenterRegion | BorderBrush",
+      "windows-11-notification-center-styler | Grid#NotificationCenterGrid | BorderBrush",
+      "windows-11-notification-center-styler | Grid#CalendarCenterGrid | BorderBrush",
+      "windows-11-notification-center-styler | Border#ToastBackgroundBorder | BorderBrush",
+      "windows-11-notification-center-styler | Border#ToastBackgroundBorder2 | BorderBrush",
+      "nativeExplorer.menuBorder"
+    ],
+    "border.width.default": [
+      "windows-11-start-menu-styler | Border#AcrylicBorder | BorderThickness",
+      "windows-11-start-menu-styler | Grid#CompanionRoot > Border#AcrylicBorder | BorderThickness",
+      "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | BorderThickness",
+      "windows-11-start-menu-styler | Button#ShowMoreSuggestionsButton > Grid@CommonStates > Border | BorderThickness",
+      "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | BorderThickness",
+      "windows-11-start-menu-styler | StartDocked.SearchBoxToggleButton > Grid > Border#BorderElement | BorderThickness",
+      "windows-11-start-menu-styler | StartMenu.SearchBoxToggleButton > Grid > Border#BorderElement | BorderThickness",
+      "windows-11-start-menu-styler | StartMenu.CategoryControl > Grid > Border | BorderThickness",
+      "windows-11-start-menu-styler | StartMenu.FolderModal > Grid > Border | BorderThickness",
+      "windows-11-notification-center-styler | Grid#ControlCenterRegion | BorderThickness",
+      "windows-11-notification-center-styler | Grid#NotificationCenterGrid | BorderThickness",
+      "windows-11-notification-center-styler | Grid#CalendarCenterGrid | BorderThickness",
+      "windows-11-notification-center-styler | Border#ToastBackgroundBorder | BorderThickness",
+      "windows-11-notification-center-styler | Border#ToastBackgroundBorder2 | BorderThickness",
+      "powertoys.markdown.BORDER_WIDTH",
+      "windows-11-start-menu-styler | web :focus-visible | outline-width"
+    ],
+    "radius.none": [
+      "windows-11-start-menu-styler | Border#AcrylicBorder | CornerRadius",
+      "windows-11-start-menu-styler | Border#StartDropShadow | CornerRadius",
+      "windows-11-start-menu-styler | Border#RightCompanionDropShadow | CornerRadius",
+      "windows-11-start-menu-styler | Border#dropshadow | CornerRadius",
+      "windows-11-start-menu-styler | Border#AcrylicOverlay | CornerRadius",
+      "windows-11-start-menu-styler | Grid#MainContent | CornerRadius",
+      "windows-11-start-menu-styler | Grid#CompanionRoot > Border#AcrylicBorder | CornerRadius",
+      "windows-11-start-menu-styler | Grid#CompanionRoot > Grid#MainContent > Border#AcrylicOverlay | CornerRadius",
+      "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | CornerRadius",
+      "windows-11-start-menu-styler | Button#ShowMoreSuggestionsButton > Grid@CommonStates > Border | CornerRadius",
+      "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | CornerRadius",
+      "windows-11-start-menu-styler | StartDocked.SearchBoxToggleButton > Grid > Border#BorderElement | CornerRadius",
+      "windows-11-start-menu-styler | StartMenu.SearchBoxToggleButton > Grid > Border#BorderElement | CornerRadius",
+      "windows-11-start-menu-styler | StartMenu.StartBlendedFlexFrame | CornerRadius",
+      "windows-11-start-menu-styler | StartMenu.CategoryControl > Grid > Border | CornerRadius",
+      "windows-11-start-menu-styler | StartMenu.FolderModal > Grid > Border | CornerRadius",
+      "windows-11-start-menu-styler | Grid#DroppedFlickerWorkaroundWrapper > Border#BackgroundBorder | CornerRadius",
+      "windows-11-start-menu-styler | Button#LogoContainer > Grid@CommonStates > Border | CornerRadius",
+      "windows-11-start-menu-styler | Button#FolderPlate > Grid@CommonStates > Border | CornerRadius",
+      "windows-11-start-menu-styler | Button#Header > Grid@CommonStates > Border | CornerRadius",
+      "windows-11-notification-center-styler | Grid#ControlCenterRegion | CornerRadius",
+      "windows-11-notification-center-styler | Grid#NotificationCenterGrid | CornerRadius",
+      "windows-11-notification-center-styler | Grid#CalendarCenterGrid | CornerRadius",
+      "windows-11-notification-center-styler | ScrollViewer#CalendarControlScrollViewer | CornerRadius",
+      "windows-11-notification-center-styler | Border#CalendarHeaderMinimizedOverlay | CornerRadius",
+      "windows-11-notification-center-styler | ActionCenter.FocusSessionControl#FocusSessionControl > Grid#FocusGrid | CornerRadius",
+      "windows-11-notification-center-styler | Grid#NotificationCenterTopBanner | CornerRadius",
+      "windows-11-notification-center-styler | Border#ItemOpaquePlating | CornerRadius",
+      "windows-11-notification-center-styler | Border#ToastBackgroundBorder | CornerRadius",
+      "windows-11-notification-center-styler | Border#ToastBackgroundBorder2 | CornerRadius",
+      "windows-11-notification-center-styler | ActionCenter.FlexibleItemView | CornerRadius",
+      "windows-11-notification-center-styler | CalendarViewDayItem | CornerRadius",
+      "windows-11-notification-center-styler | CalendarViewDayItem > Border | CornerRadius",
+      "windows-11-notification-center-styler | Windows.UI.Xaml.Controls.Primitives.CalendarViewItem | CornerRadius",
+      "windows-11-notification-center-styler | Button#ClearAll | CornerRadius",
+      "windows-11-notification-center-styler | Button#ExpandCollapseButton | CornerRadius",
+      "windows-11-notification-center-styler | Button#IncreaseTimeButton | CornerRadius",
+      "windows-11-notification-center-styler | Button#DecreaseTimeButton | CornerRadius",
+      "windows-11-notification-center-styler | Button#StartButton | CornerRadius",
+      "windows-11-notification-center-styler | Button#VerbButton | CornerRadius",
+      "windows-11-start-menu-styler | Border#AppBorder | CornerRadius",
+      "windows-11-start-menu-styler | Border#TaskbarSearchBackground | CornerRadius",
+      "windows-11-start-menu-styler | Cortana.UI.Views.RichSearchBoxControl#SearchBoxControl > Grid#RootGrid | CornerRadius",
+      "windows-11-start-menu-styler | web .iconContainer, .previewContainer .imageContainer, .scope-tile > div, button, .button, .actionButton | border-radius",
+      "windows-11-start-menu-styler | web .suggestion, .contextMenu li | border-radius"
+    ],
+    "color.interaction.disabled.bg": [
+      "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | Background@Disabled",
+      "windows-11-start-menu-styler | Button#ShowMoreSuggestionsButton > Grid@CommonStates > Border | Background@Disabled",
+      "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | Background@Disabled",
+      "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Background@Disabled",
+      "calculator.resource.CalcButtonFillColorDisabledBrush",
+      "calculator.resource.CalcButtonAltFillColorDisabledBrush"
+    ],
+    "color.border.disabled": [
+      "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | BorderBrush@Disabled",
+      "windows-11-start-menu-styler | Button#ShowMoreSuggestionsButton > Grid@CommonStates > Border | BorderBrush@Disabled",
+      "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | BorderBrush@Disabled",
+      "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | BorderBrush@Disabled",
+      "calculator.resource.ButtonBorderBrushDisabled"
+    ],
+    "color.border.default": [
+      "windows-11-start-menu-styler | StartMenu.CategoryControl > Grid > Border | BorderBrush"
+    ],
+    "color.action.primary.hover-bg": [
+      "windows-11-notification-center-styler | CalendarView | TodayHoverBackground",
+      "calculator.resource.AccentFillColorSecondaryBrush",
+      "calculator.resource.AppControlHighlightCalcButtonHoverBrush"
+    ],
+    "color.action.primary.pressed-bg": [
+      "windows-11-notification-center-styler | CalendarView | TodayPressedBackground",
+      "calculator.resource.AccentFillColorTertiaryBrush"
+    ],
+    "color.interaction.selection.inactive-bg": [
+      "nativeExplorer.inactive"
+    ],
+    "color.border.divider": [
+      "nativeExplorer.border",
+      "powertoys.markdown.DIVIDER",
+      "windows-11-file-explorer-styler | Border#BottomBorderLine, Border#LeftBottomBorderLine, Border#RightBottomBorderLine | Background",
+      "windows-11-file-explorer-styler | Border#BottomBorderLine, Border#LeftBottomBorderLine, Border#RightBottomBorderLine | BorderBrush",
+      "windows-11-file-explorer-styler | FileExplorerExtensions.CommandBarControl_Wave1 > Grid, Grid#CommandBarControlRootGrid | BorderBrush",
+      "windows-11-file-explorer-styler | CommandBar#FileExplorerCommandBar, CommandBar#FileExplorerSecondaryCommandBar | BorderBrush",
+      "windows-11-start-menu-styler | web body, #root, #root.darkTheme, .scope-with-background, .suggsList, .suggsListContainer, .suggContainer, .previewContainer, .suggDetailsContainer, .contextMenu, #menuContainer | border-color",
+      "calculator.resource.DividerStrokeColorDefaultBrush"
+    ],
+    "color.interaction.scrollbar.thumb": [
+      "nativeExplorer.scrollbar",
+      "powertoys.markdown.SCROLLBAR",
+      "windows-11-start-menu-styler | web * | scrollbar-color",
+      "windows-11-start-menu-styler | web ::-webkit-scrollbar-thumb | background-color"
+    ],
+    "color.interaction.scrollbar.thumb-hover": [
+      "nativeExplorer.scrollbarHover"
+    ],
+    "color.interaction.focus.ring": [
+      "nativeExplorer.focusRing",
+      "powertoys.markdown.FOCUS",
+      "windows-11-start-menu-styler | web :focus-visible | outline-color",
+      "calculator.resource.SystemControlFocusVisualPrimaryBrush"
+    ],
+    "color.interaction.marquee": [
+      "nativeExplorer.marquee"
+    ],
+    "color.interaction.drop-target": [
+      "nativeExplorer.marqueeBorder"
+    ],
+    "color.interaction.hover.bg-strong": [
+      "nativeExplorer.menuHover"
+    ],
+    "color.text.link-hover": [
+      "nativeExplorer.menuHoverText",
+      "powertoys.markdown.LINK_HOVER"
+    ],
+    "color.action.secondary.bg": [
+      "windows-11-notification-center-styler | Button#VerbButton | Background",
+      "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Background@Normal"
+    ],
+    "color.action.secondary.text": [
+      "windows-11-notification-center-styler | Button#VerbButton | Foreground",
+      "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Foreground@Normal",
+      "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Foreground@PointerOver",
+      "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Foreground@Pressed"
+    ],
+    "color.action.secondary.border": [
+      "windows-11-notification-center-styler | Button#VerbButton | BorderBrush",
+      "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | BorderBrush@Normal",
+      "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | BorderBrush@PointerOver"
+    ],
+    "color.action.secondary.hover-bg": [
+      "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Background@PointerOver"
+    ],
+    "color.action.secondary.pressed-bg": [
+      "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Background@Pressed"
+    ],
+    "color.text.prose": [
+      "powertoys.markdown.PROSE",
+      "notepad-native.PROSE"
+    ],
+    "color.surface.code": [
+      "powertoys.markdown.CODE"
+    ],
+    "color.text.link": [
+      "powertoys.markdown.LINK"
+    ],
+    "color.text.link-underline": [
+      "powertoys.markdown.LINK_UNDERLINE"
+    ],
+    "color.interaction.text-selection.bg": [
+      "powertoys.markdown.SELECTION",
+      "notepad-native.SELECTION"
+    ],
+    "color.interaction.text-selection.text": [
+      "powertoys.markdown.SELECTION_TEXT",
+      "notepad-native.SELECTED_TEXT"
+    ],
+    "font.size.reading": [
+      "powertoys.markdown.READING_SIZE"
+    ],
+    "font.line-height.reading": [
+      "powertoys.markdown.READING_LINE"
+    ],
+    "font.size.code": [
+      "powertoys.markdown.CODE_SIZE"
+    ],
+    "font.line-height.code": [
+      "powertoys.markdown.CODE_LINE"
+    ],
+    "font.size.h1": [
+      "powertoys.markdown.H1_SIZE"
+    ],
+    "font.line-height.h1": [
+      "powertoys.markdown.H1_LINE"
+    ],
+    "font.size.h2": [
+      "powertoys.markdown.H2_SIZE"
+    ],
+    "font.line-height.h2": [
+      "powertoys.markdown.H2_LINE"
+    ],
+    "font.weight.bold": [
+      "powertoys.markdown.BOLD"
+    ],
+    "space.2": [
+      "powertoys.markdown.SPACE2"
+    ],
+    "space.4": [
+      "powertoys.markdown.SPACE4"
+    ],
+    "space.8": [
+      "powertoys.markdown.SPACE8"
+    ],
+    "space.12": [
+      "powertoys.markdown.SPACE12"
+    ],
+    "space.16": [
+      "powertoys.markdown.SPACE16"
+    ],
+    "space.24": [
+      "powertoys.markdown.SPACE24"
+    ],
+    "font.size.h3": [
+      "powertoys.markdown.H3_SIZE"
+    ],
+    "font.line-height.h3": [
+      "powertoys.markdown.H3_LINE"
+    ],
+    "layout.measure": [
+      "powertoys.markdown.MEASURE"
+    ],
+    "layout.content-max": [
+      "powertoys.markdown.CONTENT_MAX"
+    ],
+    "color.action.tertiary.text": [
+      "windows-11-start-menu-styler | web .iconContainer, .previewContainer .imageContainer, .scope-tile > div, button, .button, .actionButton | color"
+    ],
+    "color.interaction.selection.text": [
+      "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"], .suggestion[aria-selected=\"true\"] .details, .suggestion[aria-selected=\"true\"] .iconContainer, .suggestion[aria-selected=\"true\"] .title, .suggestion[aria-selected=\"true\"] .secondaryText | color"
+    ],
+    "focus.offset": [
+      "windows-11-start-menu-styler | web :focus-visible | outline-offset"
+    ],
+    "color.interaction.focus.ring-container": [
+      "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"]:focus-visible | outline-color"
+    ],
+    "color.border.selected-indicator": [
+      "windows-11-start-menu-styler | web .scope-tile--selected > div | border-bottom-color"
+    ],
+    "border.width.emphasis": [
+      "windows-11-start-menu-styler | web .scope-tile--selected > div | border-bottom-width"
+    ],
+    "color.surface.overlay": [
+      "calculator.resource.ToolTipBackground"
+    ]
+  },
+  "unmapped": {
+    "color.primitive.ink.0": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.ink.14": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.ink.15": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.ink.20": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.ink.25": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.ink.28": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.ink.30": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.ink.40": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.ink.52": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.ink.60": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.red.50": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.red.100": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.red.150": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.red.200": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.red.250": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.red.300": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.red.350": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.red.400": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.red.450": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.red.500": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.red.550": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.red.650": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.red.750": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.red.760": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.red.770": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.red.800": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.red.810": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.red.850": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.red.860": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.rose.300": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.rose.320": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.rose.350": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.rose.450": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.rose.550": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.rose.600": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.rose.650": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.rose.700": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.rose.800": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.coral.700": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.paper.90": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.paper.100": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.amber.500": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.amber.600": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.amber.tint": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.green.500": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.green.600": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.green.tint": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.blue.500": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.blue.600": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.blue.tint": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.alpha.transparent": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.alpha.black-55": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.alpha.black-65": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.alpha.red-6": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.alpha.red-12": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.ansi.0": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.ansi.1": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.ansi.2": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.ansi.3": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.ansi.4": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.ansi.5": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.ansi.6": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.ansi.7": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.ansi.8": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.ansi.9": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.ansi.10": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.ansi.11": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.ansi.12": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.ansi.13": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.ansi.14": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.ansi.15": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.ansi-readable.1": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.ansi-readable.4": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.ansi-readable.8": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.ansi-readable.9": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.ansi-readable.10": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.ansi-readable.12": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.ansi-readable.13": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.ansi-readable.14": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.ansi-readable.15": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.surface.chrome-alt": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.surface.sunken": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.surface.backdrop": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.surface.terminal": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.text.placeholder": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.text.accent": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.text.accent-strong": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.text.on-selection": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.text.on-danger": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.text.on-light": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.text.inverse": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.border.strong": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.border.selected-indicator-inactive": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.interaction.selection.inactive-text": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.interaction.scrollbar.track": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.action.primary.text": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.action.primary.border": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.action.tertiary.hover-bg": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.action.destructive.text": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.action.destructive.border": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.action.destructive.hover-bg": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.action.destructive.hover-text": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.action.destructive.pressed-bg": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.action.destructive.filled-bg": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.action.destructive.filled-text": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.status.danger.text": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.status.danger.fill": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.status.danger.on-fill": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.status.danger.tint": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.status.danger.border": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.status.warning.text": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.status.warning.fill": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.status.warning.on-fill": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.status.warning.tint": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.status.warning.border": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.status.success.text": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.status.success.fill": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.status.success.on-fill": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.status.success.tint": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.status.success.border": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.status.info.text": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.status.info.fill": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.status.info.on-fill": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.status.info.tint": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.status.info.border": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.status.neutral.text": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.status.neutral.fill": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.status.neutral.on-fill": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.status.neutral.tint": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.status.neutral.border": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.bg": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.current-line": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.gutter-bg": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.line-number": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.line-number-active": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.gutter-rule": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.caret": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.search-match-bg": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.search-current-bg": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.search-current-text": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.bracket-match": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.indent-guide": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.whitespace": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.syntax.keyword": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.syntax.string": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.syntax.comment": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.syntax.number": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.syntax.constant": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.syntax.function": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.syntax.variable": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.syntax.type": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.syntax.operator": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.syntax.punctuation": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.syntax.property": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.syntax.heading": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.syntax.tag": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.syntax.attribute": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.syntax.escape": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.syntax.invalid": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.syntax.deprecated": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.hued.string": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.hued.number": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.hued.constant": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.hued.function": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.hued.attribute": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.hued.escape": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.hued.type": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.hued.property": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.code.hued.operator": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.diagnostic.error.underline": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.diagnostic.error.text": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.diagnostic.error.stripe": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.diagnostic.error.bg": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.diagnostic.warning.underline": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.diagnostic.warning.text": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.diagnostic.warning.stripe": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.diagnostic.info.underline": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.diagnostic.info.text": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.diagnostic.hint.underline": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.diagnostic.unused.text": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.diff.added.bg": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.diff.added.gutter": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.diff.added.emphasis": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.diff.removed.bg": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.diff.removed.gutter": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.diff.removed.emphasis": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.diff.modified.bg": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.diff.modified.gutter": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.diff.conflict-border": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.diff.header-bg": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.terminal.bg": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.terminal.selection-bg": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.terminal.selection-text": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.terminal.prompt-bg": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.terminal.prompt-text": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.chart.series-1": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.chart.series-2": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.chart.series-3": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.chart.series-4": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.chart.axis": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.chart.grid": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.chart.label": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.icon.default": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.icon.decorative": "Outside Windows visual adapter scope; preserve host semantics.",
+    "space.0": "Outside Windows visual adapter scope; preserve host semantics.",
+    "space.1": "Outside Windows visual adapter scope; preserve host semantics.",
+    "space.32": "Outside Windows visual adapter scope; preserve host semantics.",
+    "space.48": "Outside Windows visual adapter scope; preserve host semantics.",
+    "font.weight.regular": "Outside Windows visual adapter scope; preserve host semantics.",
+    "font.size.ui-sm": "Outside Windows visual adapter scope; preserve host semantics.",
+    "font.size.ui-md": "Outside Windows visual adapter scope; preserve host semantics.",
+    "font.size.ui-lg": "Outside Windows visual adapter scope; preserve host semantics.",
+    "font.size.terminal": "Outside Windows visual adapter scope; preserve host semantics.",
+    "font.size.caption": "Outside Windows visual adapter scope; preserve host semantics.",
+    "font.line-height.ui-sm": "Outside Windows visual adapter scope; preserve host semantics.",
+    "font.line-height.ui-md": "Outside Windows visual adapter scope; preserve host semantics.",
+    "font.line-height.ui-lg": "Outside Windows visual adapter scope; preserve host semantics.",
+    "font.line-height.terminal": "Outside Windows visual adapter scope; preserve host semantics.",
+    "font.line-height.caption": "Outside Windows visual adapter scope; preserve host semantics.",
+    "font.letter-spacing.terminal": "Outside Windows visual adapter scope; preserve host semantics.",
+    "density.compact.control-height": "Outside Windows visual adapter scope; preserve host semantics.",
+    "density.compact.row-height": "Outside Windows visual adapter scope; preserve host semantics.",
+    "density.compact.control-padding-x": "Outside Windows visual adapter scope; preserve host semantics.",
+    "density.compact.icon": "Outside Windows visual adapter scope; preserve host semantics.",
+    "density.compact.gap": "Outside Windows visual adapter scope; preserve host semantics.",
+    "density.comfortable.control-height": "Outside Windows visual adapter scope; preserve host semantics.",
+    "density.comfortable.row-height": "Outside Windows visual adapter scope; preserve host semantics.",
+    "density.comfortable.control-padding-x": "Outside Windows visual adapter scope; preserve host semantics.",
+    "density.comfortable.icon": "Outside Windows visual adapter scope; preserve host semantics.",
+    "density.comfortable.gap": "Outside Windows visual adapter scope; preserve host semantics.",
+    "focus.ring": "Outside Windows visual adapter scope; preserve host semantics.",
+    "focus.ring-container": "Outside Windows visual adapter scope; preserve host semantics.",
+    "focus.offset-container": "Outside Windows visual adapter scope; preserve host semantics.",
+    "focus.offset-invalid": "Outside Windows visual adapter scope; preserve host semantics.",
+    "motion.duration.fast": "Outside Windows visual adapter scope; preserve host semantics.",
+    "motion.duration.base": "Outside Windows visual adapter scope; preserve host semantics.",
+    "motion.duration.slow": "Outside Windows visual adapter scope; preserve host semantics.",
+    "shadow.floating": "Outside Windows visual adapter scope; preserve host semantics.",
+    "layout.app-max": "Outside Windows visual adapter scope; preserve host semantics.",
+    "breakpoint.xs": "Outside Windows visual adapter scope; preserve host semantics.",
+    "breakpoint.sm": "Outside Windows visual adapter scope; preserve host semantics.",
+    "breakpoint.md": "Outside Windows visual adapter scope; preserve host semantics.",
+    "breakpoint.lg": "Outside Windows visual adapter scope; preserve host semantics.",
+    "icon.size.sm": "Outside Windows visual adapter scope; preserve host semantics.",
+    "icon.size.md": "Outside Windows visual adapter scope; preserve host semantics.",
+    "icon.size.lg": "Outside Windows visual adapter scope; preserve host semantics.",
+    "icon.stroke": "Outside Windows visual adapter scope; preserve host semantics.",
+    "z.canvas": "Outside Windows visual adapter scope; preserve host semantics.",
+    "z.raised": "Outside Windows visual adapter scope; preserve host semantics.",
+    "z.popover": "Outside Windows visual adapter scope; preserve host semantics.",
+    "z.drawer": "Outside Windows visual adapter scope; preserve host semantics.",
+    "z.dialog": "Outside Windows visual adapter scope; preserve host semantics.",
+    "z.toast": "Outside Windows visual adapter scope; preserve host semantics.",
+    "z.skip-link": "Outside Windows visual adapter scope; preserve host semantics."
+  }
+}

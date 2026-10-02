@@ -1,0 +1,245 @@
+{
+  "theme": "",
+  "controlStyles": [
+    {
+      "target": "TextBlock",
+      "styles": [
+        "Foreground=#e99499"
+      ]
+    },
+    {
+      "target": "Control",
+      "styles": [
+        "Foreground=#e99499"
+      ]
+    },
+    {
+      "target": "Grid#ControlCenterRegion",
+      "styles": [
+        "Background=#000000",
+        "BorderBrush=#e53935",
+        "BorderThickness=1",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Grid#NotificationCenterGrid",
+      "styles": [
+        "Background=#000000",
+        "BorderBrush=#e53935",
+        "BorderThickness=1",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Border#AcrylicBorder",
+      "styles": [
+        "Background=#100c0c"
+      ]
+    },
+    {
+      "target": "Grid#CalendarCenterGrid",
+      "styles": [
+        "Background=#000000",
+        "BorderBrush=#e53935",
+        "BorderThickness=1",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "ScrollViewer#CalendarControlScrollViewer",
+      "styles": [
+        "Background=#090707",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Border#CalendarHeaderMinimizedOverlay",
+      "styles": [
+        "Background=#090707",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "ActionCenter.FocusSessionControl#FocusSessionControl > Grid#FocusGrid",
+      "styles": [
+        "Background=#090707",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Grid#NotificationCenterTopBanner",
+      "styles": [
+        "Background=#090707",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Border#ItemOpaquePlating",
+      "styles": [
+        "Background=#100c0c",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Border#ToastBackgroundBorder",
+      "styles": [
+        "Background=#000000",
+        "CornerRadius=0",
+        "BorderBrush=#e53935",
+        "BorderThickness=1"
+      ]
+    },
+    {
+      "target": "Border#ToastBackgroundBorder2",
+      "styles": [
+        "Background=#000000",
+        "CornerRadius=0",
+        "BorderBrush=#e53935",
+        "BorderThickness=1"
+      ]
+    },
+    {
+      "target": "ActionCenter.FlexibleItemView",
+      "styles": [
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "CalendarViewDayItem",
+      "styles": [
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "CalendarViewDayItem > Border",
+      "styles": [
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Windows.UI.Xaml.Controls.Primitives.CalendarViewItem",
+      "styles": [
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Button#ClearAll",
+      "styles": [
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Button#ExpandCollapseButton",
+      "styles": [
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Button#IncreaseTimeButton",
+      "styles": [
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Button#DecreaseTimeButton",
+      "styles": [
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Button#StartButton",
+      "styles": [
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "TextBlock#NotificationsTextBlock",
+      "styles": [
+        "FontFamily=SauceCodePro NFM"
+      ]
+    },
+    {
+      "target": "Grid#GroupTitleGrid > TextBlock#Title",
+      "styles": [
+        "FontFamily=SauceCodePro NFM"
+      ]
+    },
+    {
+      "target": "Grid#ToastTitleBar > TextBlock#SenderName",
+      "styles": [
+        "FontFamily=SauceCodePro NFM"
+      ]
+    },
+    {
+      "target": "CalendarView",
+      "styles": [
+        "Background=#000000",
+        "CalendarItemBackground=#000000",
+        "CalendarItemForeground=#e99499",
+        "OutOfScopeForeground=#bd787d",
+        "DisabledForeground=#8a5559",
+        "TodayBackground=#7d1310",
+        "TodayForeground=#ffa2a7",
+        "TodayHoverBackground=#911410",
+        "TodayPressedBackground=#630f0d"
+      ]
+    },
+    {
+      "target": "ActionCenter.FlexibleToastView#FlexibleNormalToastView",
+      "styles": [
+        "Background=#000000"
+      ]
+    },
+    {
+      "target": "Button#VerbButton",
+      "styles": [
+        "CornerRadius=0",
+        "Background=#00000000",
+        "Foreground=#ffa2a7",
+        "BorderBrush=#a3676b"
+      ]
+    },
+    {
+      "target": "Button#VerbButton > ContentPresenter@CommonStates",
+      "styles": [
+        "Background@Normal=#00000000",
+        "Foreground@Normal=#ffa2a7",
+        "BorderBrush@Normal=#a3676b",
+        "Background@PointerOver=#630f0d",
+        "Foreground@PointerOver=#ffa2a7",
+        "BorderBrush@PointerOver=#a3676b",
+        "Background@Pressed=#420f0c",
+        "Foreground@Pressed=#ffa2a7",
+        "BorderBrush@Pressed=#e53935",
+        "Background@Disabled=#160b0b",
+        "Foreground@Disabled=#8a5559",
+        "BorderBrush@Disabled=#7d1310"
+      ]
+    }
+  ],
+  "themeResourceVariables": [
+    "TextFillColorPrimary=#e99499",
+    "TextFillColorSecondary=#bd787d",
+    "TextFillColorTertiary=#ad7175",
+    "TextFillColorDisabled=#8a5559",
+    "SystemControlForegroundBaseHighBrush=#e99499",
+    "SystemControlForegroundBaseMediumBrush=#bd787d",
+    "SystemControlForegroundBaseLowBrush=#8a5559",
+    "SolidBackgroundFillColorBase=#000000",
+    "SolidBackgroundFillColorSecondary=#100c0c",
+    "LayerFillColorDefault=#100c0c",
+    "LayerFillColorAlt=#160b0b",
+    "CardBackgroundFillColorDefault=#100c0c",
+    "CardBackgroundFillColorSecondary=#160b0b",
+    "ControlFillColorDefault=#000000",
+    "ControlFillColorSecondary=#1c0a09",
+    "ControlFillColorTertiary=#420f0c",
+    "ControlStrokeColorDefault=#a3676b",
+    "AccentFillColorDefault=#7d1310",
+    "AccentTextFillColorPrimary=#ffa2a7",
+    "TextOnAccentFillColorPrimary=#ffa2a7",
+    "SystemAccentColor=#e53935",
+    "SystemControlHighlightAccentBrush=#e53935"
+  ]
+}

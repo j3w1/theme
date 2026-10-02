@@ -1,0 +1,1774 @@
+{
+  "schemaVersion": 1,
+  "integrationKind": "other",
+  "themeRevision": "edf3c50d768f1f8663a2e8e470c4f21a69718b0f",
+  "surfaces": {
+    "desktop": {
+      "state": "supported",
+      "reason": "Native personalization and generated original cursors; real import evidence pending."
+    },
+    "shell": {
+      "state": "supported",
+      "reason": "Pinned Windhawk selectors and resources on the declared Windows candidate."
+    },
+    "terminal": {
+      "state": "supported",
+      "reason": "Native Terminal scheme and chrome settings."
+    },
+    "powertoys": {
+      "state": "supported",
+      "reason": "Existing configurable visual settings; behavior and shortcuts preserved."
+    },
+    "host-behavior": {
+      "state": "inherited",
+      "reason": "Windows input, accessibility, layouts and native focus remain host-owned."
+    },
+    "unsupported": {
+      "state": "unsupported",
+      "reason": "No faithful supported adapter hook; see host limitations."
+    }
+  },
+  "roles": {
+    "color.primitive.ink.0": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.ink.14": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.ink.15": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.ink.20": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.ink.25": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.ink.28": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.ink.30": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.ink.40": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.ink.52": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.ink.60": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.red.50": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.red.100": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.red.150": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.red.200": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.red.250": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.red.300": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.red.350": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.red.400": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.red.450": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.red.500": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.red.550": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.red.650": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.red.750": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.red.760": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.red.770": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.red.800": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.red.810": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.red.850": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.red.860": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.rose.300": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.rose.320": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.rose.350": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.rose.450": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.rose.550": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.rose.600": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.rose.650": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.rose.700": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.rose.800": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.coral.700": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.paper.90": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.paper.100": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.amber.500": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.amber.600": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.amber.tint": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.green.500": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.green.600": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.green.tint": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.blue.500": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.blue.600": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.blue.tint": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.alpha.transparent": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.alpha.black-55": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.alpha.black-65": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.alpha.red-6": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.alpha.red-12": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.ansi.0": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.ansi.1": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.ansi.2": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.ansi.3": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.ansi.4": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.ansi.5": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.ansi.6": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.ansi.7": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.ansi.8": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.ansi.9": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.ansi.10": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.ansi.11": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.ansi.12": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.ansi.13": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.ansi.14": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.ansi.15": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.ansi-readable.1": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.ansi-readable.4": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.ansi-readable.8": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.ansi-readable.9": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.ansi-readable.10": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.ansi-readable.12": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.ansi-readable.13": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.ansi-readable.14": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.ansi-readable.15": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.surface.desktop": {
+      "state": "mapped",
+      "surface": "desktop",
+      "reason": "Canonical semantic role mapped by host.json."
+    },
+    "color.surface.canvas": {
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
+    },
+    "color.surface.chrome": {
+      "state": "mapped",
+      "surface": "desktop",
+      "reason": "Canonical semantic role mapped by host.json."
+    },
+    "color.surface.chrome-alt": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.surface.sunken": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.surface.default": {
+      "state": "mapped",
+      "surface": "desktop",
+      "reason": "Canonical semantic role mapped by host.json."
+    },
+    "color.surface.raised": {
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
+    },
+    "color.surface.overlay": {
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Mapped by the exact-package Calculator UI resource adapter; real import evidence is tracked separately."
+    },
+    "color.surface.input": {
+      "state": "mapped",
+      "surface": "desktop",
+      "reason": "Canonical semantic role mapped by host.json."
+    },
+    "color.surface.backdrop": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.surface.code": {
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
+    },
+    "color.surface.terminal": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.text.default": {
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
+    },
+    "color.text.bright": {
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
+    },
+    "color.text.prose": {
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
+    },
+    "color.text.muted": {
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
+    },
+    "color.text.subtle": {
+      "state": "mapped",
+      "surface": "desktop",
+      "reason": "Canonical semantic role mapped by host.json."
+    },
+    "color.text.disabled": {
+      "state": "mapped",
+      "surface": "desktop",
+      "reason": "Canonical semantic role mapped by host.json."
+    },
+    "color.text.placeholder": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.text.accent": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.text.accent-strong": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.text.link": {
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
+    },
+    "color.text.link-underline": {
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
+    },
+    "color.text.link-hover": {
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
+    },
+    "color.text.on-selection": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.text.on-action": {
+      "state": "mapped",
+      "surface": "desktop",
+      "reason": "Canonical semantic role mapped by host.json."
+    },
+    "color.text.on-danger": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.text.on-light": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.text.inverse": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.text.heading": {
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
+    },
+    "color.text.highlight": {
+      "state": "mapped",
+      "surface": "desktop",
+      "reason": "Canonical semantic role mapped by host.json."
+    },
+    "color.border.divider": {
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
+    },
+    "color.border.default": {
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Canonical semantic role mapped to generated Start-menu XAML styling; selector matching still requires native visual evidence."
+    },
+    "color.border.strong": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.border.control": {
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
+    },
+    "color.border.active": {
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
+    },
+    "color.border.overlay": {
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Scoped native Explorer popup menu color; native geometry and input remain host-owned."
+    },
+    "color.border.disabled": {
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Canonical semantic role mapped to generated Start-menu XAML styling; selector matching still requires native visual evidence."
+    },
+    "color.border.selected-indicator": {
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
+    },
+    "color.border.selected-indicator-inactive": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.interaction.focus.ring": {
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
+    },
+    "color.interaction.focus.ring-container": {
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
+    },
+    "color.interaction.selection.bg": {
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
+    },
+    "color.interaction.selection.text": {
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
+    },
+    "color.interaction.selection.inactive-bg": {
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Native Explorer color adapter."
+    },
+    "color.interaction.selection.inactive-text": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.interaction.text-selection.bg": {
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
+    },
+    "color.interaction.text-selection.text": {
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
+    },
+    "color.interaction.hover.bg": {
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
+    },
+    "color.interaction.hover.bg-strong": {
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Scoped native Explorer popup menu color; native geometry and input remain host-owned."
+    },
+    "color.interaction.pressed.bg": {
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
+    },
+    "color.interaction.disabled.bg": {
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Canonical semantic role mapped to generated Start-menu XAML styling; selector matching still requires native visual evidence."
+    },
+    "color.interaction.marquee": {
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Exact-version Explorer UIMarqueeSelector background, cached system-brush fill and constant-alpha composition; unknown controls and high contrast retain host rendering."
+    },
+    "color.interaction.drop-target": {
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Exact-version Explorer marquee border color; solid native border geometry remains a documented deviation."
+    },
+    "color.interaction.scrollbar.track": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.interaction.scrollbar.thumb": {
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
+    },
+    "color.interaction.scrollbar.thumb-hover": {
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Native Explorer color adapter."
+    },
+    "color.action.primary.bg": {
+      "state": "mapped",
+      "surface": "desktop",
+      "reason": "Canonical semantic role mapped by host.json."
+    },
+    "color.action.primary.text": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.action.primary.hover-bg": {
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Canonical semantic role mapped to generated shell XAML styling; native observation determines matched surfaces."
+    },
+    "color.action.primary.pressed-bg": {
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Canonical semantic role mapped to generated shell XAML styling; native observation determines matched surfaces."
+    },
+    "color.action.primary.border": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.action.secondary.bg": {
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Canonical secondary-button palette mapped to notification action buttons and their native states; live selector verification remains required."
+    },
+    "color.action.secondary.text": {
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Canonical secondary-button palette mapped to notification action buttons and their native states; live selector verification remains required."
+    },
+    "color.action.secondary.border": {
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Canonical secondary-button palette mapped to notification action buttons and their native states; live selector verification remains required."
+    },
+    "color.action.secondary.hover-bg": {
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Canonical secondary-button palette mapped to notification action buttons and their native states; live selector verification remains required."
+    },
+    "color.action.secondary.pressed-bg": {
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Canonical secondary-button palette mapped to notification action buttons and their native states; live selector verification remains required."
+    },
+    "color.action.tertiary.text": {
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
+    },
+    "color.action.tertiary.hover-bg": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.action.destructive.text": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.action.destructive.border": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.action.destructive.hover-bg": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.action.destructive.hover-text": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.action.destructive.pressed-bg": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.action.destructive.filled-bg": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.action.destructive.filled-text": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.status.danger.text": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.status.danger.fill": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.status.danger.on-fill": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.status.danger.tint": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.status.danger.border": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.status.warning.text": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.status.warning.fill": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.status.warning.on-fill": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.status.warning.tint": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.status.warning.border": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.status.success.text": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.status.success.fill": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.status.success.on-fill": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.status.success.tint": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.status.success.border": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.status.info.text": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.status.info.fill": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.status.info.on-fill": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.status.info.tint": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.status.info.border": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.status.neutral.text": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.status.neutral.fill": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.status.neutral.on-fill": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.status.neutral.tint": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.status.neutral.border": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.bg": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.current-line": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.gutter-bg": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.line-number": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.line-number-active": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.gutter-rule": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.caret": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.selection-bg": {
+      "state": "mapped",
+      "surface": "desktop",
+      "reason": "Canonical semantic role mapped by host.json."
+    },
+    "color.code.search-match-bg": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.search-current-bg": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.search-current-text": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.bracket-match": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.indent-guide": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.whitespace": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.syntax.keyword": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.syntax.string": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.syntax.comment": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.syntax.number": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.syntax.constant": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.syntax.function": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.syntax.variable": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.syntax.type": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.syntax.operator": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.syntax.punctuation": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.syntax.property": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.syntax.heading": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.syntax.tag": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.syntax.attribute": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.syntax.escape": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.syntax.invalid": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.syntax.deprecated": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.hued.string": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.hued.number": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.hued.constant": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.hued.function": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.hued.attribute": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.hued.escape": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.hued.type": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.hued.property": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.code.hued.operator": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.diagnostic.error.underline": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.diagnostic.error.text": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.diagnostic.error.stripe": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.diagnostic.error.bg": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.diagnostic.warning.underline": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.diagnostic.warning.text": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.diagnostic.warning.stripe": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.diagnostic.info.underline": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.diagnostic.info.text": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.diagnostic.hint.underline": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.diagnostic.unused.text": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.diff.added.bg": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.diff.added.gutter": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.diff.added.emphasis": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.diff.removed.bg": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.diff.removed.gutter": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.diff.removed.emphasis": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.diff.modified.bg": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.diff.modified.gutter": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.diff.conflict-border": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.diff.header-bg": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.terminal.bg": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.terminal.fg": {
+      "state": "mapped",
+      "surface": "desktop",
+      "reason": "Canonical semantic role mapped by host.json."
+    },
+    "color.terminal.cursor": {
+      "state": "mapped",
+      "surface": "desktop",
+      "reason": "Canonical semantic role mapped by host.json."
+    },
+    "color.terminal.selection-bg": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.terminal.selection-text": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.terminal.prompt-bg": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.terminal.prompt-text": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.terminal.ansi.0": {
+      "state": "mapped",
+      "surface": "desktop",
+      "reason": "Canonical semantic role mapped by host.json."
+    },
+    "color.terminal.ansi.1": {
+      "state": "mapped",
+      "surface": "desktop",
+      "reason": "Canonical semantic role mapped by host.json."
+    },
+    "color.terminal.ansi.2": {
+      "state": "mapped",
+      "surface": "desktop",
+      "reason": "Canonical semantic role mapped by host.json."
+    },
+    "color.terminal.ansi.3": {
+      "state": "mapped",
+      "surface": "desktop",
+      "reason": "Canonical semantic role mapped by host.json."
+    },
+    "color.terminal.ansi.4": {
+      "state": "mapped",
+      "surface": "desktop",
+      "reason": "Canonical semantic role mapped by host.json."
+    },
+    "color.terminal.ansi.5": {
+      "state": "mapped",
+      "surface": "desktop",
+      "reason": "Canonical semantic role mapped by host.json."
+    },
+    "color.terminal.ansi.6": {
+      "state": "mapped",
+      "surface": "desktop",
+      "reason": "Canonical semantic role mapped by host.json."
+    },
+    "color.terminal.ansi.7": {
+      "state": "mapped",
+      "surface": "desktop",
+      "reason": "Canonical semantic role mapped by host.json."
+    },
+    "color.terminal.ansi.8": {
+      "state": "mapped",
+      "surface": "desktop",
+      "reason": "Canonical semantic role mapped by host.json."
+    },
+    "color.terminal.ansi.9": {
+      "state": "mapped",
+      "surface": "desktop",
+      "reason": "Canonical semantic role mapped by host.json."
+    },
+    "color.terminal.ansi.10": {
+      "state": "mapped",
+      "surface": "desktop",
+      "reason": "Canonical semantic role mapped by host.json."
+    },
+    "color.terminal.ansi.11": {
+      "state": "mapped",
+      "surface": "desktop",
+      "reason": "Canonical semantic role mapped by host.json."
+    },
+    "color.terminal.ansi.12": {
+      "state": "mapped",
+      "surface": "desktop",
+      "reason": "Canonical semantic role mapped by host.json."
+    },
+    "color.terminal.ansi.13": {
+      "state": "mapped",
+      "surface": "desktop",
+      "reason": "Canonical semantic role mapped by host.json."
+    },
+    "color.terminal.ansi.14": {
+      "state": "mapped",
+      "surface": "desktop",
+      "reason": "Canonical semantic role mapped by host.json."
+    },
+    "color.terminal.ansi.15": {
+      "state": "mapped",
+      "surface": "desktop",
+      "reason": "Canonical semantic role mapped by host.json."
+    },
+    "color.chart.series-1": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.chart.series-2": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.chart.series-3": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.chart.series-4": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.chart.axis": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.chart.grid": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.chart.label": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.icon.default": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.icon.decorative": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "space.0": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "space.1": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "space.2": {
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
+    },
+    "space.4": {
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
+    },
+    "space.8": {
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
+    },
+    "space.12": {
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
+    },
+    "space.16": {
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
+    },
+    "space.24": {
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
+    },
+    "space.32": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "space.48": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "border.width.default": {
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
+    },
+    "border.width.emphasis": {
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
+    },
+    "radius.none": {
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
+    },
+    "font.family.mono": {
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
+    },
+    "font.weight.regular": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "font.weight.bold": {
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
+    },
+    "font.size.ui-sm": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "font.size.ui-md": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "font.size.ui-lg": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "font.size.reading": {
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
+    },
+    "font.size.code": {
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
+    },
+    "font.size.terminal": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "font.size.h1": {
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
+    },
+    "font.size.h2": {
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
+    },
+    "font.size.h3": {
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
+    },
+    "font.size.caption": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "font.line-height.ui-sm": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "font.line-height.ui-md": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "font.line-height.ui-lg": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "font.line-height.reading": {
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
+    },
+    "font.line-height.code": {
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
+    },
+    "font.line-height.terminal": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "font.line-height.h1": {
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
+    },
+    "font.line-height.h2": {
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
+    },
+    "font.line-height.h3": {
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
+    },
+    "font.line-height.caption": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "font.letter-spacing.terminal": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "density.compact.control-height": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "density.compact.row-height": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "density.compact.control-padding-x": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "density.compact.icon": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "density.compact.gap": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "density.comfortable.control-height": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "density.comfortable.row-height": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "density.comfortable.control-padding-x": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "density.comfortable.icon": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "density.comfortable.gap": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "focus.ring": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "focus.ring-container": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "focus.offset": {
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
+    },
+    "focus.offset-container": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "focus.offset-invalid": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "motion.duration.fast": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "motion.duration.base": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "motion.duration.slow": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "shadow.floating": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "layout.measure": {
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
+    },
+    "layout.content-max": {
+      "state": "mapped",
+      "surface": "powertoys",
+      "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
+    },
+    "layout.app-max": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "breakpoint.xs": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "breakpoint.sm": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "breakpoint.md": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "breakpoint.lg": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "icon.size.sm": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "icon.size.md": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "icon.size.lg": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "icon.stroke": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "z.canvas": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "z.raised": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "z.popover": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "z.drawer": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "z.dialog": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "z.toast": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "z.skip-link": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    }
+  },
+  "rollback": "Run install.ps1 -Action Restore for original settings, or add -Latest for the previous transaction; Uninstall also removes owned theme assets."
+}

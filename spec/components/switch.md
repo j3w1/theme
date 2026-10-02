@@ -66,7 +66,7 @@ anatomy:
   - part: track
     description: A 32×16px box, 1px border.control on surface.input, radius 0; holds the thumb at its start or end.
   - part: thumb
-    description: A 10px square in text.default; text (prose) white on the on fill.
+    description: A 10px square in text.default; bright rose action text on the on fill.
   - part: name
     description: Optional visible name before the track, linked with aria-labelledby.
   - part: state

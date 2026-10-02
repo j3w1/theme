@@ -6,6 +6,7 @@
 
 import { promises as fs } from "node:fs";
 import path from "node:path";
+import {writeDurableTemp} from "./files.mjs";
 import { isDeepStrictEqual } from "node:util";
 
 export class EditError extends Error {}
@@ -416,14 +417,7 @@ export const atomicWrite = async (file, bytes, { mode = 0o644, expect, beforeCom
     if (error.code !== "ENOENT") throw error;
   }
   await fs.mkdir(path.dirname(target), { recursive: true });
-  const temp = path.join(path.dirname(target), `.${path.basename(target)}.j3w1-${process.pid}.tmp`);
-  const handle = await fs.open(temp, "w", keepMode);
-  try {
-    await handle.writeFile(bytes);
-    await handle.sync();
-  } finally {
-    await handle.close();
-  }
+  const temp = writeDurableTemp(target, bytes, {mode:keepMode});
   await fs.chmod(temp, keepMode);
   try {
     await unchanged(file, target, expect, beforeCommit);

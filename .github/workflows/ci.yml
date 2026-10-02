@@ -108,6 +108,32 @@ jobs:
         env:
           PLAN: ${{ needs.select.outputs.plan }}
 
+  windows-install:
+    needs: select
+    if: needs.select.outputs.checks == 'true'
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci --prefer-offline --no-audit --no-fund
+      - name: Native Windows lifecycle and generated port contracts
+        shell: pwsh
+        run: node --test tests/windows-port.test.js tests/windows-install.test.js tests/windows-font.test.js tests/windows-compatibility.test.js tests/windows-setup.test.js
+      - name: Prepare the pinned native compiler without applying a theme
+        shell: pwsh
+        run: ./scripts/ci/prepare-windows-compiler.ps1 -Root "$env:RUNNER_TEMP/j3w1-native-toolchain"
+      - name: Link bundled adapters and run offscreen native regressions
+        shell: pwsh
+        run: node --test tests/windows-native.test.js
+        env:
+          J3W1_WINDHAWK_ROOT: ${{ runner.temp }}/j3w1-native-toolchain
+
   # Informational proposal only: no write token and no change to release-gate.
   # Use the PR head, not GitHub's synthetic merge commit, for an applicable patch.
   dependabot-refresh:
@@ -356,7 +382,7 @@ jobs:
           if-no-files-found: ignore
 
   release-gate:
-    needs: [select, checks, build, browser, consumers, evidence]
+    needs: [select, checks, windows-install, build, browser, consumers, evidence]
     if: always()
     runs-on: ubuntu-latest
     timeout-minutes: 3

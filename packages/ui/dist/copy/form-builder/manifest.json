@@ -1,30 +1,30 @@
 {
   "schemaVersion": 1,
   "component": "form-builder",
-  "version": "3.1.0",
-  "contract": "https://github.com/j3w1/theme/blob/v3.1.0/spec/components/form-builder.md",
+  "version": "4.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/form-builder.md",
   "dependencies": [
     "register/form-builder.js",
     "chunks/element-C1XeXVYC.js",
     "chunks/choice-Db_w_BOQ.js",
-    "chunks/form-builder-DXMFkryA.js",
-    "chunks/form-builder-DbAc2RUU.js",
+    "chunks/form-builder-D4tSM-ba.js",
+    "chunks/form-builder-DEBGiPNS.js",
     "chunks/form-workflow-DMGni-Gs.js",
     "chunks/markup-DeQ4bEMR.js"
   ],
   "files": {
-    "runtime/register/form-builder.js": "sha256-Fn+8TUDSdkRxZRCjl5lJL3HMuSZZTgHk9las30ICftU=",
+    "runtime/register/form-builder.js": "sha256-5DEjl0TFZOSyD8ZH+mbtVtvvsGuOwpkcDIuT1CfqZ9U=",
     "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
     "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-    "runtime/chunks/form-builder-DXMFkryA.js": "sha256-Dg0ArYcxMoFQdsx2F/7FSbgKsWFzCU6ZoA6Njb8Ss2A=",
-    "runtime/chunks/form-builder-DbAc2RUU.js": "sha256-lx87WmBa9uN2dvCX8SgicbCSU3fTcj3t8piydHwsXsA=",
+    "runtime/chunks/form-builder-D4tSM-ba.js": "sha256-Jjq30X5GIaP7o453Mr0opJz0/LF4M/7Ob4cyMFpUWX4=",
+    "runtime/chunks/form-builder-DEBGiPNS.js": "sha256-3n0LhakavwV2M3ZM2KXcWelw/fsIUTtTj21TzBiRNsU=",
     "runtime/chunks/form-workflow-DMGni-Gs.js": "sha256-g3g/Afxx3XsClDK4ZfvWQjZKprT6z7Qp1lULS48F0rY=",
     "runtime/chunks/markup-DeQ4bEMR.js": "sha256-Eyyx7MKBoqXK4i2HaVUQhKUM066L2wIggABt6jAdgas=",
-    "tokens.css": "sha256-c/NmCkdHsOHiHx4q0evmxTKbpeLSU3Eoo2b0S7PYNzU=",
+    "tokens.css": "sha256-gjEwadB0zTFK+892nxLpStOcmcjP5pxj2Pe/By5vwPE=",
     "component.css": "sha256-dgVsrgYuHrvBt6OjTg069abl7yU4iwgXOXUw3n9cB7g=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-vq61pWv0xeMFu0tTsDtRWWpAr16AFefjpz5JTSyF440=",
     "index.html": "sha256-v74xLbiCzhGoMsKDM8vIO3nwDmWQJymihSOqXqvPlkk=",
-    "README.md": "sha256-iFIC6BF2ljY6n6swXeZPDaC3EdBtyieDsNJfSTYeXy4="
+    "README.md": "sha256-MGlPh4CEW6DLecBSj7Ym9ww3NAGe8r5V9uANRpZLY48="
   }
 }

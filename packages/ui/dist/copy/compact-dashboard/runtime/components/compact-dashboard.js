@@ -3,8 +3,8 @@ import { t as dashboard } from "../chunks/compositions-d6BkKTYf.js";
 //#region .cache/ui-build/entries/components/compact-dashboard.js
 var J3w1CompactDashboard = class extends J3w1Element {
 	static componentId = "compact-dashboard";
-	static version = "3.1.0";
-	static implementationId = "sha256-X3ZmP5wuAhOlvMaIkPAbKn0snpCt5CEQEwl5JG3JJTI=";
+	static version = "4.0.0";
+	static implementationId = "sha256-HehbhZc0CAfJPPd19KsqWamAD2EgvREZQU0pBPncnJI=";
 	static connect = dashboard;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];
