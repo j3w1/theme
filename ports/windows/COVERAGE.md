@@ -36,7 +36,7 @@ and accessibility acceptance remain open.
 | PowerToys plain-text/code preview and loading controls | Exact-version, hash-checked Monaco template adapter and native loading palette | Owner confirmed loaded preview and loading control; this does not cover Markdown |
 | PowerToys Markdown preview | Digest-pinned WebView2 HTML-boundary adapter and token-derived reading CSS for normal and large-file routes | Synthetic native preservation/rejection/recovery tests and bounded live sample checks; owner accepted heading size, spacing, code, quotation and table formatting. Other DPI and runtime accessibility cases remain open |
 | Explorer classic “Show more options” menu | Scoped exact-host Win32 popup palette | Confirmed owner/paint trace and native regressions; live normal, hot, disabled and submenu appearance still need verification |
-| Notepad | Bundled exact-package WinUI chrome resource adapter plus the RichEdit-binary editor adapter | A fresh sample window showed black/rose, native gray/white on disable, and the same unmodified character count. Native regressions cover ordinary glyph paint, color emoji, background restoration, high contrast and worker shutdown. Fresh-window chrome checks showed black tabs/toolbar/status regions, rose labels, a dark-red popup and red/rose keyboard focus. Existing windows must be reopened after injection; full hover, startup and accessibility acceptance remain open |
+| Notepad | Bundled exact-package WinUI chrome resource adapter plus the RichEdit-binary editor adapter | A fresh sample window showed black/rose, native gray/white on disable, and the same unmodified character count. Native regressions cover ordinary glyph paint, color emoji, background restoration, high contrast and worker shutdown. Fresh-window chrome checks showed black tabs/toolbar/status regions, rose labels, a dark-red popup and red/rose keyboard focus. Existing chrome is discovered through the exact-runtime diagnostics bridge; full hover, startup and accessibility acceptance remain open |
 | Calculator | Bundled package-gated Windows.UI.Xaml brush adapter for the recorded 11.2607.0.0 package | Bounded Scientific-mode black/rose and disable/reapply were observed. Native worker shutdown and a deliberate post-apply restoration fault passed. Other modes, final installer startup and live accessibility acceptance remain open; graph-series brushes are excluded |
 | Paint | Native dark-mode/accent treatment only | WinUI 3 toolbars and panels need an adapter; artwork canvas and color swatches must retain their colors |
 | Terminal | Native generated scheme, font and opaque chrome | Owner confirmed appearance; command output can intentionally choose other colors |
@@ -245,3 +245,22 @@ waits for discovery and retries incomplete cleanup. High contrast bypasses the
 palette. The same installer journals this adapter, verifies its compiled
 artifact and removes/restores it with the other owned adapters. Diagnostic
 file logging is absent from the shipped source.
+
+
+### Existing WinUI root discovery
+
+The Notepad chrome adapter connects to its own admitted process using the
+inspected WinUI diagnostics COM contracts. The bridge beside the loaded WinUI
+runtime has its own exact SHA-256 gate. It registers no COM class or persistent
+process setting and downloads no additional executable. Initial and subsequent
+notifications admit only named chrome classes on their owning UI dispatcher;
+the callback queues existing ownership-based styling and reads no document
+text, application names or data colors. Constructor discovery remains available.
+
+Subscription runs on a background worker because initial enumeration waits for
+UI dispatchers. Unload stops admission, unregisters the exact callback and waits
+for active callbacks before dropping COM references. A bounded shutdown failure
+retains its worker, callback and module until cleanup succeeds or the process
+exits. Reconfiguration asks the same worker to enumerate the existing roots.
+Another tool already owning the diagnostics connection or an unknown bridge
+leaves undiscovered roots native. No connection error grants generic admission.

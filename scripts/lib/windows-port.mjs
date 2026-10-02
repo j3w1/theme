@@ -200,7 +200,10 @@ export function windowsArtifacts({manifest,host,resolved}){
   const token=resolved.get(role);val(role);
   return ' {L"'+key+'",{'+Math.round((token.resolved.alpha??1)*255)+','+rgb(val(role)).join(',')+'},L"'+role+'"},';
  }).join('\n');
- const chromeSubs={VERSION:chrome.version,PACKAGE_FULL_NAME:chrome.packageFullName,RUNTIME_PACKAGE:chrome.runtimePackage,RUNTIME_SHA256:chrome.runtimeSha256,RESOURCE_RULES:chromeRules};
+ if(!/^[a-f0-9]{64}$/.test(chrome.diagnosticsBridgeSha256))throw Error('Notepad root discovery requires an exact diagnostics bridge identity');
+ const discoverySubs={DIAGNOSTICS_BRIDGE_SHA256:chrome.diagnosticsBridgeSha256,DIAGNOSTICS_CLSID:'0x9f12b9c4,0x7b9d,0x489f,{0x8e,0x31,0x4a,0x81,0x10,0x32,0x6b,0xc4}'};
+ const rootDiscovery=readFileSync(path.join(repoRoot,'ports/windows/src/winui-root-discovery.cpp.in'),'utf8').replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in discoverySubs))throw Error('Unknown WinUI discovery placeholder '+key);return discoverySubs[key];});
+ const chromeSubs={ROOT_DISCOVERY:rootDiscovery,VERSION:chrome.version,PACKAGE_FULL_NAME:chrome.packageFullName,RUNTIME_PACKAGE:chrome.runtimePackage,RUNTIME_SHA256:chrome.runtimeSha256,RESOURCE_RULES:chromeRules};
  const chromeSource=readFileSync(path.join(repoRoot,'ports/windows/src/'+chromeId+'.wh.cpp.in'),'utf8').replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in chromeSubs))throw Error('Unknown Notepad chrome source placeholder '+key);return chromeSubs[key];});
  artifacts.push({path:'dist/'+chromeId+'.wh.cpp',text:chromeSource});json(chromeId+'.json',{enabled:1});
  bundledMods.push({id:chromeId,version:chrome.version,path:'dist/'+chromeId+'.wh.cpp',sha256:createHash('sha256').update(chromeSource).digest('hex')});

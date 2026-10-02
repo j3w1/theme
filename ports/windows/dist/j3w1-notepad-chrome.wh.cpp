@@ -2,7 +2,7 @@
 // @id j3w1-notepad-chrome
 // @name j3w1 Notepad chrome
 // @description Exact-package Notepad chrome resources; editor contents remain native
-// @version 1.0.0
+// @version 1.1.0
 // @author j3w1
 // @include Notepad.exe
 // @architecture x86-64
@@ -17,6 +17,8 @@
 #include <appmodel.h>
 #include <bcrypt.h>
 #include <dwmapi.h>
+#include <ocidl.h>
+#include <xamlom.h>
 #undef GetCurrentTime
 #include <winrt/Windows.Foundation.h>
 #include <winrt/Windows.Foundation.Collections.h>
@@ -37,12 +39,13 @@
 #include <mutex>
 #include <algorithm>
 #include <cstdio>
+#include <memory>
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;
 using namespace Microsoft::UI::Xaml::Media;
 using namespace Microsoft::UI::Xaml::Controls;
 using namespace Microsoft::UI::Xaml::Hosting;
-using Windows::Foundation::IInspectable;
+using ProjectedObject=winrt::Windows::Foundation::IInspectable;
 using Windows::UI::Color;
 struct Rule { const wchar_t* key; Color color; const wchar_t* role; };
 static constexpr Rule rules[]={
@@ -236,7 +239,7 @@ static constexpr Rule rules[]={
  {L"ToggleButtonBorderBrushIndeterminateDisabled",{255,125,19,16},L"color.border.disabled"},
 };
 static bool Same(Color a,Color b){return a.A==b.A&&a.R==b.R&&a.G==b.G&&a.B==b.B;}
-static bool Identity(IInspectable const& a,IInspectable const& b){
+static bool Identity(ProjectedObject const& a,ProjectedObject const& b){
  return a&&b&&get_abi(a.as<Windows::Foundation::IUnknown>())==get_abi(b.as<Windows::Foundation::IUnknown>());
 }
 static bool HighContrast(){HIGHCONTRASTW value{sizeof(value)};
@@ -291,18 +294,18 @@ static Windows::Foundation::IActivationFactory Factory(wchar_t const* name) {
 static void Log(unsigned,unsigned=0,unsigned=0) {}
 
 struct Palette { const Rule* rule; SolidColorBrush applied{nullptr}; std::vector<Brush> aliases; };
-struct Visual { weak_ref<DependencyObject> object; DependencyProperty property{nullptr}; IInspectable before{nullptr}; Brush applied{nullptr}; };
+struct Visual { weak_ref<DependencyObject> object; DependencyProperty property{nullptr}; ProjectedObject before{nullptr}; Brush applied{nullptr}; };
 // Reevaluate named theme resources on an admitted chrome control. Native
 // Background/Foreground expressions and visual-state setters remain intact.
 // A failed restoration retains its exact local baseline for the UI-thread
 // cleanup path. No document, palette, root layout or caption is refreshed.
 struct OwnedThemeRefresh {
  weak_ref<FrameworkElement> element;
- IInspectable before{nullptr};
+ ProjectedObject before{nullptr};
  ElementTheme requested=ElementTheme::Default;
  bool pending=false,complete=false;
 };
-static bool SameLocalTheme(IInspectable const& local,ElementTheme theme) {
+static bool SameLocalTheme(ProjectedObject const& local,ElementTheme theme) {
  auto value=local.try_as<Windows::Foundation::IReference<ElementTheme>>();
  return value&&value.Value()==theme;
 }
@@ -339,12 +342,12 @@ static bool RefreshThemeSource(OwnedThemeRefresh& entry) noexcept {
 }
 
 struct ControlKey {
- hstring key; IInspectable before{nullptr},applied{nullptr}; bool local=false,owned=false;
+ hstring key; ProjectedObject before{nullptr},applied{nullptr}; bool local=false,owned=false;
 };
 struct ControlResources {
  weak_ref<FrameworkElement> element; ResourceDictionary owner{nullptr}; std::vector<ControlKey> keys; OwnedThemeRefresh refresh;
 };
-struct LocalResourceValue { bool exists=false; IInspectable value{nullptr}; };
+struct LocalResourceValue { bool exists=false; ProjectedObject value{nullptr}; };
 static LocalResourceValue LocalResource(ResourceDictionary const& owner,hstring const& key) {
  // Lookup may resolve an inherited value. Enumeration records only local keys,
  // including explicitly present null values, so rollback restores exact state.
@@ -380,7 +383,7 @@ static bool RestoreControlResources(ControlResources& entry) noexcept {
  return restored;
 }
 
-struct Root { weak_ref<FrameworkElement> element; weak_ref<FrameworkElement> backgroundElement; weak_ref<DesktopWindowXamlSource> source; weak_ref<Window> window; event_token layout{}; ResourceDictionary owner{nullptr},overlay{nullptr}; IInspectable themeBefore{nullptr}; bool themeTouched=false; SystemBackdrop backdropBefore{nullptr}; bool backdropTracked=false; DependencyProperty backgroundProperty{nullptr}; IInspectable backgroundBefore{nullptr}; SolidColorBrush backgroundApplied{nullptr}; std::vector<Palette> palette; std::vector<Visual> changes; std::deque<OwnedThemeRefresh> refreshes; std::deque<ControlResources> controls; };
+struct Root { weak_ref<FrameworkElement> element; weak_ref<FrameworkElement> backgroundElement; weak_ref<DesktopWindowXamlSource> source; weak_ref<Window> window; event_token layout{}; ResourceDictionary owner{nullptr},overlay{nullptr}; ProjectedObject themeBefore{nullptr}; bool themeTouched=false; SystemBackdrop backdropBefore{nullptr}; bool backdropTracked=false; DependencyProperty backgroundProperty{nullptr}; ProjectedObject backgroundBefore{nullptr}; SolidColorBrush backgroundApplied{nullptr}; std::vector<Palette> palette; std::vector<Visual> changes; std::deque<OwnedThemeRefresh> refreshes; std::deque<ControlResources> controls; };
 struct PendingRoot { weak_ref<FrameworkElement> element; unsigned attempts=0; };
 // The app owns its custom title composition. Do not acquire AppWindow.TitleBar
 // or write its public color properties: the inspected Notepad runtime replaces
@@ -947,12 +950,202 @@ static void Track(UIElement const& content,DesktopWindowXamlSource const& source
  Root root;root.element=make_weak(element);if(source)root.source=make_weak(source);if(window)root.window=make_weak(window);root.layout=element.LayoutUpdated([](auto const&,auto const&){Schedule();});
  uiState->roots.push_back(std::move(root));Log(10,static_cast<unsigned>(uiState->roots.size()));Schedule();
 }
+// Original adapter discovery through the WinUI diagnostics COM contracts.
+// The packaged WinUI bridge is verified before it is loaded. The connection
+// targets this admitted process and passes our already-loaded adapter DLL.
+// Existing roots and later mutations arrive on each object's UI dispatcher.
+static bool ReviewedDiagnosticsBridge(std::wstring const& path) {
+ HANDLE file=CreateFileW(path.c_str(),GENERIC_READ,FILE_SHARE_READ,nullptr,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,nullptr);
+ if(file==INVALID_HANDLE_VALUE)return false;
+ BCRYPT_ALG_HANDLE algorithm=nullptr;BCRYPT_HASH_HANDLE hash=nullptr;
+ DWORD size=0,written=0;std::vector<BYTE> object;BYTE digest[32]{};bool valid=false;
+ if(BCryptOpenAlgorithmProvider(&algorithm,BCRYPT_SHA256_ALGORITHM,nullptr,0)>=0
+  &&BCryptGetProperty(algorithm,BCRYPT_OBJECT_LENGTH,reinterpret_cast<PUCHAR>(&size),sizeof(size),&written,0)>=0) {
+  object.resize(size);
+  if(BCryptCreateHash(algorithm,&hash,object.data(),size,nullptr,0,0)>=0) {
+   BYTE buffer[65536];DWORD count=0;bool complete=false;
+   for(;;){if(!ReadFile(file,buffer,sizeof(buffer),&count,nullptr))break;
+    if(!count){complete=true;break;}if(BCryptHashData(hash,buffer,count,0)<0)break;}
+   if(complete&&BCryptFinishHash(hash,digest,sizeof(digest),0)>=0) {
+    constexpr char hex[]="0123456789abcdef";std::string actual;
+    for(BYTE byte:digest){actual+=hex[byte>>4];actual+=hex[byte&15];}
+    valid=actual=="76fa4a93d1ae9c77f8c89222fbe7870e9b7c6eccf8d35d91ec43404df180e29c";
+   }
+  }
+ }
+ if(hash)BCryptDestroyHash(hash);if(algorithm)BCryptCloseAlgorithmProvider(algorithm,0);CloseHandle(file);return valid;
+}
+struct RootDiscoverySession {
+ std::mutex mutex;
+ com_ptr<IXamlDiagnostics> diagnostics;
+ com_ptr<IVisualTreeService> service;
+ com_ptr<IVisualTreeServiceCallback> callback;
+ std::atomic<bool> stopping{false};std::atomic<unsigned> callbacks{0};
+ HANDLE stop=nullptr,refresh=nullptr,worker=nullptr;bool advised=false;
+};
+// The pinned compiler does not implement atomic<shared_ptr>. Keep both reader
+// copies and lifecycle replacement under one short lock, never a COM call.
+struct RootDiscoverySlot {
+ std::mutex mutex;std::shared_ptr<RootDiscoverySession> value;
+ std::shared_ptr<RootDiscoverySession> load(){std::lock_guard guard(mutex);return value;}
+ void store(std::shared_ptr<RootDiscoverySession> next){std::lock_guard guard(mutex);value=std::move(next);}
+};
+[[clang::no_destroy]] static RootDiscoverySlot rootDiscovery;
+static constexpr CLSID rootDiscoveryClsid={0x9f12b9c4,0x7b9d,0x489f,{0x8e,0x31,0x4a,0x81,0x10,0x32,0x6b,0xc4}};
+static bool DiscoveryAdmission(std::wstring_view type,bool uiThread,bool active) noexcept {
+ return active&&uiThread&&RootCandidateClass(type);
+}
+struct RootDiscoveryTap : implements<RootDiscoveryTap,IObjectWithSite,IVisualTreeServiceCallback> {
+ std::shared_ptr<RootDiscoverySession> state;
+ explicit RootDiscoveryTap(std::shared_ptr<RootDiscoverySession> value):state(std::move(value)){}
+ HRESULT STDMETHODCALLTYPE SetSite(::IUnknown* site) noexcept final {
+  if(!site)return S_OK;
+  if(state->stopping.load()||!ReviewedPackage()||!ReviewedRuntime())return E_ACCESSDENIED;
+  try {
+   com_ptr<IXamlDiagnostics> diagnostics;com_ptr<IVisualTreeService> service;
+   check_hresult(site->QueryInterface(__uuidof(IXamlDiagnostics),diagnostics.put_void()));
+   check_hresult(site->QueryInterface(__uuidof(IVisualTreeService),service.put_void()));
+   com_ptr<IVisualTreeServiceCallback> callback;callback.copy_from(static_cast<IVisualTreeServiceCallback*>(this));
+   std::lock_guard guard(state->mutex);
+   if(state->stopping.load()||state->diagnostics)return E_UNEXPECTED;
+   state->diagnostics=diagnostics;state->service=service;state->callback=callback;
+   // SetSite is called on the UI thread. Subscription runs on our worker,
+   // because WinUI's initial enumeration waits for all UI dispatchers.
+   return S_OK;
+  }catch(hresult_error const& error){return error.code();}catch(...){return E_FAIL;}
+ }
+ HRESULT STDMETHODCALLTYPE GetSite(REFIID iid,void** output) noexcept final {
+  if(!output)return E_POINTER;*output=nullptr;
+  com_ptr<IXamlDiagnostics> diagnostics;{std::lock_guard guard(state->mutex);diagnostics=state->diagnostics;}
+  return diagnostics?diagnostics->QueryInterface(iid,output):E_FAIL;
+ }
+ HRESULT STDMETHODCALLTYPE OnVisualTreeChange(ParentChildRelation,VisualElement element,VisualMutationType mutation) noexcept final {
+  struct Activity {std::atomic<unsigned>& count;Activity(std::atomic<unsigned>& value):count(value){++count;}~Activity(){--count;}} activity(state->callbacks);
+  if(state->stopping.load()||!enabled.load()||mutation!=VisualMutationType::Add||!element.Type)return S_OK;
+  // Type is metadata. Do not query names, document contents or data controls.
+  std::wstring_view type(element.Type,SysStringLen(element.Type));if(!RootCandidateClass(type))return S_OK;
+  try {
+   com_ptr<IXamlDiagnostics> diagnostics;{std::lock_guard guard(state->mutex);diagnostics=state->diagnostics;}
+   if(!diagnostics)return S_OK;
+   com_ptr<::IInspectable> instance;check_hresult(diagnostics->GetIInspectableFromHandle(element.Handle,instance.put()));
+   Windows::Foundation::IInspectable value{nullptr};copy_from_abi(value,instance.get());
+   auto framework=value.try_as<FrameworkElement>();
+   if(framework&&DiscoveryAdmission(type,framework.DispatcherQueue().HasThreadAccess(),!state->stopping.load()&&enabled.load()))
+    ObserveRoot(framework);
+  }catch(...){/* An expired diagnostics handle never grants fallback admission. */}
+  return S_OK;
+ }
+};
+struct RootDiscoveryFactory : implements<RootDiscoveryFactory,IClassFactory> {
+ std::shared_ptr<RootDiscoverySession> state;
+ explicit RootDiscoveryFactory(std::shared_ptr<RootDiscoverySession> value):state(std::move(value)){}
+ HRESULT STDMETHODCALLTYPE CreateInstance(::IUnknown* outer,REFIID iid,void** output) noexcept final {
+  if(!output)return E_POINTER;*output=nullptr;if(outer)return CLASS_E_NOAGGREGATION;
+  if(state->stopping.load())return E_ACCESSDENIED;
+  try{return make<RootDiscoveryTap>(state).as<::IUnknown>()->QueryInterface(iid,output);}catch(...){return E_FAIL;}
+ }
+ HRESULT STDMETHODCALLTYPE LockServer(BOOL) noexcept final {return E_NOTIMPL;}
+};
+extern "C" __declspec(dllexport) HRESULT WINAPI DllGetClassObject(REFCLSID clsid,REFIID iid,void** output) {
+ if(!output)return E_POINTER;*output=nullptr;
+ auto state=rootDiscovery.load();if(clsid!=rootDiscoveryClsid||!state||state->stopping.load())return CLASS_E_CLASSNOTAVAILABLE;
+ try{return make<RootDiscoveryFactory>(state).as<::IUnknown>()->QueryInterface(iid,output);}catch(...){return E_FAIL;}
+}
+static bool DiscoveryDetach(RootDiscoverySession& state) noexcept {
+ com_ptr<IVisualTreeService> service;com_ptr<IVisualTreeServiceCallback> callback;bool advised=false;
+ {std::lock_guard guard(state.mutex);service=state.service;callback=state.callback;advised=state.advised;}
+ if(advised&&service&&callback&&FAILED(service->UnadviseVisualTreeChange(callback.get())))return false;
+ {std::lock_guard guard(state.mutex);state.advised=false;}
+ for(unsigned attempt=0;state.callbacks.load()&&attempt<500;++attempt)Sleep(10);
+ if(state.callbacks.load())return false;
+ return true;
+}
+static bool DiscoverySubscribe(RootDiscoverySession& state) noexcept {
+ if(!DiscoveryDetach(state)||state.stopping.load())return false;
+ com_ptr<IVisualTreeService> service;com_ptr<IVisualTreeServiceCallback> callback;
+ {std::lock_guard guard(state.mutex);service=state.service;callback=state.callback;}
+ if(!service||!callback)return false;
+ const HRESULT result=service->AdviseVisualTreeChange(callback.get());
+ {std::lock_guard guard(state.mutex);state.advised=SUCCEEDED(result);}
+ // A failed Advise can retain its callback in the inspected runtime. Try the
+ // same exact callback when detaching even if enumeration returned a failure.
+ if(FAILED(result)){std::lock_guard guard(state.mutex);state.advised=true;return false;}
+ return true;
+}
+static DWORD WINAPI RootDiscoveryWorker(void* parameter) {
+ auto state=*static_cast<std::shared_ptr<RootDiscoverySession>*>(parameter);
+ delete static_cast<std::shared_ptr<RootDiscoverySession>*>(parameter);
+ bool apartment=false;
+ try {
+  init_apartment(apartment_type::multi_threaded);apartment=true;
+  for(unsigned attempt=0;attempt<50&&!state->stopping.load();++attempt) {
+   if(ReviewedRuntime()) {
+    auto runtime=GetModuleHandleW(L"Microsoft.UI.Xaml.dll");HMODULE self=nullptr;
+    wchar_t path[32768]{},runtimePath[32768]{};
+    DWORD runtimeLength=GetModuleFileNameW(runtime,runtimePath,std::size(runtimePath));
+    if(!runtimeLength||runtimeLength>=std::size(runtimePath)
+     ||!GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS|GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,reinterpret_cast<LPCWSTR>(RootDiscoveryWorker),&self))break;
+    DWORD selfLength=GetModuleFileNameW(self,path,std::size(path));if(!selfLength||selfLength>=std::size(path))break;
+    std::wstring bridgePath=runtimePath;auto slash=bridgePath.find_last_of(L"\\");if(slash==std::wstring::npos)break;
+    bridgePath.resize(slash+1);bridgePath+=L"Microsoft.Internal.FrameworkUdk.dll";
+    if(!ReviewedDiagnosticsBridge(bridgePath))break;
+    auto bridge=LoadLibraryExW(bridgePath.c_str(),nullptr,LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR|LOAD_LIBRARY_SEARCH_SYSTEM32);
+    if(!bridge)break;
+    auto initialize=reinterpret_cast<HRESULT(WINAPI*)(LPCWSTR,DWORD,LPCWSTR,LPCWSTR,CLSID,LPCWSTR)>(GetProcAddress(bridge,"InitializeXamlDiagnosticsEx"));
+    HRESULT result=initialize?initialize(L"WinUIVisualDiagConnection1",GetCurrentProcessId(),runtimePath,path,rootDiscoveryClsid,nullptr):E_NOINTERFACE;
+    FreeLibrary(bridge);
+    if(FAILED(result))break;
+    for(unsigned wait=0;wait<50&&!state->stopping.load();++wait) {
+     bool ready=false;{std::lock_guard guard(state->mutex);ready=state->service&&state->callback;}
+     if(ready)break;if(WaitForSingleObject(state->stop,100)!=WAIT_TIMEOUT)break;
+    }
+    if(!state->stopping.load()&&DiscoverySubscribe(*state)) {
+     HANDLE events[]={state->stop,state->refresh};
+     while(!state->stopping.load()) {
+      DWORD wait=WaitForMultipleObjects(2,events,FALSE,INFINITE);
+      if(wait!=WAIT_OBJECT_0+1||!DiscoverySubscribe(*state))break;
+     }
+    }
+    break;
+   }
+   if(WaitForSingleObject(state->stop,100)!=WAIT_TIMEOUT)break;
+  }
+ }catch(...){/* Missing or inaccessible diagnostics leave native roots intact. */}
+ if(!DiscoveryDetach(*state))PinForCleanup();
+ else {std::lock_guard guard(state->mutex);state->callback=nullptr;state->service=nullptr;state->diagnostics=nullptr;}
+ if(apartment)uninit_apartment();return 0;
+}
+static bool StartRootDiscovery() noexcept {
+ if(rootDiscovery.load())return false;
+ try {
+  auto state=std::make_shared<RootDiscoverySession>();
+  state->stop=CreateEventW(nullptr,TRUE,FALSE,nullptr);state->refresh=CreateEventW(nullptr,FALSE,FALSE,nullptr);
+  if(!state->stop||!state->refresh){if(state->stop)CloseHandle(state->stop);if(state->refresh)CloseHandle(state->refresh);return false;}
+  auto argument=new(std::nothrow) std::shared_ptr<RootDiscoverySession>(state);
+  if(!argument){CloseHandle(state->stop);CloseHandle(state->refresh);return false;}
+  rootDiscovery.store(state);state->worker=CreateThread(nullptr,0,RootDiscoveryWorker,argument,0,nullptr);
+  if(!state->worker){delete argument;rootDiscovery.store(nullptr);CloseHandle(state->stop);CloseHandle(state->refresh);return false;}
+  return true;
+ }catch(...){return false;}
+}
+static bool StopRootDiscovery() noexcept {
+ auto state=rootDiscovery.load();if(!state)return true;
+ state->stopping=true;SetEvent(state->stop);
+ if(WaitForSingleObject(state->worker,5000)!=WAIT_OBJECT_0){PinForCleanup();return false;}
+ if(!DiscoveryDetach(*state)){PinForCleanup();return false;}
+ bool retained=false;{std::lock_guard guard(state->mutex);state->callback=nullptr;state->service=nullptr;state->diagnostics=nullptr;retained=state->advised;}
+ if(retained){PinForCleanup();return false;}
+ CloseHandle(state->worker);CloseHandle(state->stop);CloseHandle(state->refresh);rootDiscovery.store(nullptr);return true;
+}
+static void RefreshRootDiscovery() noexcept {auto state=rootDiscovery.load();if(state&&!state->stopping.load())SetEvent(state->refresh);}
+
+
 using Create=HRESULT(STDMETHODCALLTYPE*)(void*,void*,void**,void**);
 static constexpr unsigned factoryCount=7;
 static Create originalCreate[factoryCount]{};
 static std::atomic<void*> factoryTable[factoryCount]{};
 static std::atomic<void*> factoryFunction[factoryCount]{};
-[[clang::no_destroy]] static std::array<IInspectable,factoryCount> factoryIdentity{},activationIdentity{};
+[[clang::no_destroy]] static std::array<ProjectedObject,factoryCount> factoryIdentity{},activationIdentity{};
 static std::atomic<bool> hooked[factoryCount]{};
 using Activate=HRESULT(STDMETHODCALLTYPE*)(void*,void**);
 static Activate originalActivate[factoryCount]{};
@@ -961,9 +1154,9 @@ static std::atomic<bool> activationHooked[factoryCount]{};
 static std::atomic<bool> activationReady{false};
 using ContentSetter=HRESULT(STDMETHODCALLTYPE*)(void*,void*);
 static ContentSetter originalIslandContent=nullptr,originalWindowContent=nullptr;
-static bool SameFactory(void* self,IInspectable const& expected) noexcept {
+static bool SameFactory(void* self,ProjectedObject const& expected) noexcept {
  if(!self||!expected)return false;
- try{IInspectable actual{nullptr};copy_from_abi(actual,self);return Identity(actual,expected);}catch(hresult_error const& error){Log(252,static_cast<unsigned>(error.code().value));return false;}catch(...){return false;}
+ try{ProjectedObject actual{nullptr};copy_from_abi(actual,self);return Identity(actual,expected);}catch(hresult_error const& error){Log(252,static_cast<unsigned>(error.code().value));return false;}catch(...){return false;}
 }
 static bool RuntimeFunction(void* function) {
  HMODULE module=nullptr;return GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS|GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,reinterpret_cast<LPCWSTR>(function),&module)&&module==GetModuleHandleW(L"Microsoft.UI.Xaml.dll");
@@ -982,7 +1175,7 @@ static HRESULT STDMETHODCALLTYPE WindowContentHook(void* instance,void* content)
  }catch(hresult_error const& error){Log(199,static_cast<unsigned>(error.code().value));}
  return result;
 }
-static void AdmitSource(IInspectable const& object) {
+static void AdmitSource(ProjectedObject const& object) {
  if(auto api=object.try_as<IDesktopWindowXamlSource>();api&&!contentReady.load()) {
   auto function=(*reinterpret_cast<void***>(get_abi(api)))[7];
   if(RuntimeFunction(function)&&Wh_SetFunctionHook(function,reinterpret_cast<void*>(IslandContentHook),reinterpret_cast<void**>(&originalIslandContent))&&Wh_ApplyHookOperations()){contentReady=true;Log(200,1);}
@@ -1002,7 +1195,7 @@ static bool RootCandidateClass(std::wstring_view name) {
  for(auto known:{L"NotepadXamlUI.MainMenuBar",L"NotepadXamlUI.StatusBar",L"NotepadXamlUI.TabsBar",L"NotepadXamlUI.NotepadSettingsPage"})if(name==known)return true;
  return false;
 }
-static void ObserveConstructedContainer(IInspectable const& value) {
+static void ObserveConstructedContainer(ProjectedObject const& value) {
  auto element=value.try_as<FrameworkElement>();
  if(element&&RootCandidateClass(std::wstring_view{get_class_name(element)})
    &&element.DispatcherQueue().HasThreadAccess())ObserveRoot(element);
@@ -1014,7 +1207,7 @@ template<unsigned N> static HRESULT STDMETHODCALLTYPE CreateHook(void* self,void
  if(self)for(unsigned at=0;at<factoryCount;at++)if(hooked[at].load()&&factoryFunction[at].load()==factoryFunction[N].load()&&SameFactory(self,factoryIdentity[at])){admitted=true;break;}
  Log(240,N,admitted);
  if(SUCCEEDED(result)&&object&&*object)try {
-  IInspectable value{nullptr};copy_from_abi(value,*object);
+  ProjectedObject value{nullptr};copy_from_abi(value,*object);
   unsigned mask=0;
   if(auto element=value.try_as<FrameworkElement>()) {
    mask|=1;if(element.DispatcherQueue().HasThreadAccess())mask|=8;
@@ -1026,7 +1219,7 @@ template<unsigned N> static HRESULT STDMETHODCALLTYPE CreateHook(void* self,void
  }catch(hresult_error const& error){Log(264,N,static_cast<unsigned>(error.code().value));}
 
  if(enabled.load()&&SUCCEEDED(result)&&object&&*object&&!HighContrast())try{
-  IInspectable value{nullptr};copy_from_abi(value,*object);
+  ProjectedObject value{nullptr};copy_from_abi(value,*object);
   if(admitted)AdmitSource(value);
   ObserveConstructedContainer(value);
  }catch(hresult_error const& e){Log(29,e.code().value);}catch(...){Log(28);}
@@ -1046,7 +1239,7 @@ template<unsigned N> static HRESULT STDMETHODCALLTYPE ActivationHook(void* self,
  // Diagnostic only: public interface capabilities of the returned object.
  // No document properties, paths, text, or object state are changed here.
  if(SUCCEEDED(result)&&object&&*object)try {
-  IInspectable value{nullptr};copy_from_abi(value,*object);
+  ProjectedObject value{nullptr};copy_from_abi(value,*object);
   unsigned mask=0;
   if(auto element=value.try_as<FrameworkElement>()) {
    mask|=1;if(element.DispatcherQueue().HasThreadAccess())mask|=8;
@@ -1059,7 +1252,7 @@ template<unsigned N> static HRESULT STDMETHODCALLTYPE ActivationHook(void* self,
  }catch(hresult_error const& error){Log(255,N,static_cast<unsigned>(error.code().value));}
 
  if(enabled.load()&&SUCCEEDED(result)&&object&&*object&&admitted&&!HighContrast())try {
-  IInspectable value{nullptr};copy_from_abi(value,*object);AdmitSource(value);
+  ProjectedObject value{nullptr};copy_from_abi(value,*object);AdmitSource(value);
   if(auto source=value.try_as<DesktopWindowXamlSource>();source&&source.Content())Track(source.Content(),source);
   if(auto window=value.try_as<Window>();window&&window.Content())Track(window.Content(),nullptr,window);
   if(auto element=value.try_as<FrameworkElement>())ObserveRoot(element);
@@ -1211,6 +1404,10 @@ static HRESULT WINAPI RoFactoryHook(void* name,REFIID iid,void** factory) {
 // A failed hook admission must release the stop event even when the engine
 // never calls Uninit for an Init that returned FALSE.
 static bool StartHooks() {
+ if(rootDiscovery.load()||!channels.empty())return false;
+ factoryReady=false;activationReady=false;contentReady=false;windowContentReady=false;
+ for(unsigned at=0;at<factoryCount;++at){hooked[at]=false;activationHooked[at]=false;factoryFunction[at]=nullptr;activationFunction[at]=nullptr;factoryTable[at]=nullptr;activationTable[at]=nullptr;factoryIdentity[at]=nullptr;activationIdentity[at]=nullptr;originalCreate[at]=nullptr;originalActivate[at]=nullptr;}
+ originalIslandContent=nullptr;originalWindowContent=nullptr;
  enabled=Wh_GetIntSetting(L"enabled")!=0;
  dispatchMessage=RegisterWindowMessageW(L"j3w1-notepad-chrome");
  stopDiscovery=CreateEventW(nullptr,TRUE,FALSE,nullptr);
@@ -1226,9 +1423,9 @@ static bool StartHooks() {
  return admitted;
 }
 BOOL Wh_ModInit(){bool ready=ReviewedPackage()&&StartHooks();Log(253,ready,enabled.load());return ready;}
-void Wh_ModAfterInit(){Admit();discovery=CreateThread(nullptr,0,[](LPVOID)->DWORD{
+void Wh_ModAfterInit(){StartRootDiscovery();Admit();discovery=CreateThread(nullptr,0,[](LPVOID)->DWORD{
  try{init_apartment(apartment_type::multi_threaded);try{for(unsigned i=0;i<50&&!factoryReady.load()&&WaitForSingleObject(stopDiscovery,100)==WAIT_TIMEOUT;i++)Admit();}catch(...){}uninit_apartment();}
  catch(hresult_error const& error){Log(7,static_cast<unsigned>(error.code().value));}catch(...){}return 0;
  },nullptr,0,nullptr);}
-void Wh_ModUninit(){enabled=false;RestoreCaptions();SetEvent(stopDiscovery);if(discovery){WaitForSingleObject(discovery,INFINITE);CloseHandle(discovery);discovery=nullptr;}std::vector<HWND> copy;{std::lock_guard guard(channelMutex);copy=channels;}for(HWND window:copy)if(IsWindow(window))SendMessageW(window,dispatchMessage,1,0);CloseHandle(stopDiscovery);stopDiscovery=nullptr;for(auto& value:factoryIdentity)value=nullptr;for(auto& value:activationIdentity)value=nullptr;}
-void Wh_ModSettingsChanged(){enabled=Wh_GetIntSetting(L"enabled")!=0;RefreshCaptions();std::vector<HWND> copy;{std::lock_guard guard(channelMutex);copy=channels;}for(HWND window:copy)if(IsWindow(window))SendMessageW(window,dispatchMessage,0,0);}
+void Wh_ModUninit(){enabled=false;StopRootDiscovery();RestoreCaptions();SetEvent(stopDiscovery);if(discovery){WaitForSingleObject(discovery,INFINITE);CloseHandle(discovery);discovery=nullptr;}std::vector<HWND> copy;{std::lock_guard guard(channelMutex);copy=channels;}for(HWND window:copy)if(IsWindow(window))SendMessageW(window,dispatchMessage,1,0);CloseHandle(stopDiscovery);stopDiscovery=nullptr;for(auto& value:factoryIdentity)value=nullptr;for(auto& value:activationIdentity)value=nullptr;}
+void Wh_ModSettingsChanged(){enabled=Wh_GetIntSetting(L"enabled")!=0;if(enabled.load())RefreshRootDiscovery();RefreshCaptions();std::vector<HWND> copy;{std::lock_guard guard(channelMutex);copy=channels;}for(HWND window:copy)if(IsWindow(window))SendMessageW(window,dispatchMessage,0,0);}

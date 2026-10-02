@@ -8,6 +8,13 @@ static BOOL Wh_SetFunctionHook(void*, void*, void**) { return ++hookCall != fail
 static BOOL Wh_ApplyHookOperations() { return TRUE; }
 static int setting = 1;
 static int Wh_GetIntSetting(PCWSTR) { return setting; }
+static unsigned failEventAt=0,eventCalls=0;static bool failWorker=false;static HANDLE failWaitHandle=nullptr;
+static HANDLE WINAPI TestCreateEvent(LPSECURITY_ATTRIBUTES security,BOOL manual,BOOL initial,LPCWSTR name){if(failEventAt&&++eventCalls==failEventAt)return nullptr;return ::CreateEventW(security,manual,initial,name);}
+static HANDLE WINAPI TestCreateThread(LPSECURITY_ATTRIBUTES security,SIZE_T stack,LPTHREAD_START_ROUTINE entry,LPVOID data,DWORD flags,LPDWORD id){if(failWorker)return nullptr;return ::CreateThread(security,stack,entry,data,flags,id);}
+static DWORD WINAPI TestWait(HANDLE handle,DWORD timeout){if(failWaitHandle&&handle==failWaitHandle){failWaitHandle=nullptr;return WAIT_TIMEOUT;}return ::WaitForSingleObject(handle,timeout);}
+#define CreateEventW TestCreateEvent
+#define CreateThread TestCreateThread
+#define WaitForSingleObject TestWait
 #include "../ports/windows/dist/j3w1-notepad-chrome.wh.cpp"
 static DWORD Handles() {
     DWORD result = 0;
@@ -34,6 +41,37 @@ static void Stop() {
 }
 int main(int argc, char** argv) {
     assert(argc == 2);
+    if(strcmp(argv[1], "discovery-admission") == 0) {
+        assert(DiscoveryAdmission(L"NotepadXamlUI.MainMenuBar",true,true));
+        assert(!DiscoveryAdmission(L"NotepadXamlUI.MainMenuBar",false,true));
+        assert(!DiscoveryAdmission(L"NotepadXamlUI.MainMenuBar",true,false));
+        for(auto rejected:{L"NotepadXamlUI.Document",L"Microsoft.UI.Xaml.Controls.Grid",L"PaintUI.AppChrome",L"NotepadXamlUI.MainMenuBarExtra"})assert(!DiscoveryAdmission(rejected,true,true));
+        winrt::init_apartment(winrt::apartment_type::multi_threaded);
+        auto state=std::make_shared<RootDiscoverySession>();
+        auto factory=make<RootDiscoveryFactory>(state).as<IClassFactory>();void* output=reinterpret_cast<void*>(1);
+        assert(factory->CreateInstance(reinterpret_cast<::IUnknown*>(1),__uuidof(IObjectWithSite),&output)==CLASS_E_NOAGGREGATION&&!output);
+        assert(factory->CreateInstance(nullptr,__uuidof(IObjectWithSite),nullptr)==E_POINTER);
+        com_ptr<IObjectWithSite> site;assert(SUCCEEDED(factory->CreateInstance(nullptr,__uuidof(IObjectWithSite),site.put_void())));
+        output=reinterpret_cast<void*>(1);assert(site->GetSite(__uuidof(IXamlDiagnostics),&output)==E_FAIL&&!output);
+        state->stopping=true;output=reinterpret_cast<void*>(1);
+        assert(factory->CreateInstance(nullptr,__uuidof(IObjectWithSite),&output)==E_ACCESSDENIED&&!output);
+        rootDiscovery.store(state);CLSID unknown{};output=reinterpret_cast<void*>(1);
+        assert(DllGetClassObject(unknown,__uuidof(IClassFactory),&output)==CLASS_E_CLASSNOTAVAILABLE&&!output);
+        assert(DllGetClassObject(rootDiscoveryClsid,__uuidof(IClassFactory),&output)==CLASS_E_CLASSNOTAVAILABLE&&!output);
+        rootDiscovery.store(nullptr);site=nullptr;factory=nullptr;state.reset();uninit_apartment();
+        puts("PASS: exact class/UI-thread/active admission and COM factory denial boundaries");return 0;
+    }
+    if(strcmp(argv[1], "discovery-lifecycle") == 0) {
+        winrt::init_apartment(winrt::apartment_type::multi_threaded);
+        const DWORD baseline=Handles();
+        for(unsigned failed=1;failed<=2;++failed){eventCalls=0;failEventAt=failed;assert(!StartRootDiscovery());assert(!rootDiscovery.load()&&Handles()==baseline);}
+        failEventAt=0;failWorker=true;assert(!StartRootDiscovery());assert(!rootDiscovery.load()&&Handles()==baseline);failWorker=false;
+        for(unsigned repeat=0;repeat<5;++repeat){assert(StartRootDiscovery());assert(!StartRootDiscovery());auto state=rootDiscovery.load();assert(state&&state->stop&&state->refresh&&state->worker);RefreshRootDiscovery();assert(StopRootDiscovery());assert(!rootDiscovery.load()&&Handles()==baseline);}
+        assert(StartRootDiscovery());auto state=rootDiscovery.load();failWaitHandle=state->worker;
+        assert(!StopRootDiscovery());assert(rootDiscovery.load()==state&&state->stopping&&state->stop&&state->refresh&&state->worker);
+        assert(StopRootDiscovery());assert(!rootDiscovery.load()&&Handles()==baseline);
+        uninit_apartment();puts("PASS: partial event/thread failure, exact handle restoration, reconfiguration, bounded-stop retention and subsequent retry");return 0;
+    }
     if(strcmp(argv[1], "partial-init") == 0) {
         winrt::init_apartment(winrt::apartment_type::multi_threaded);
         const DWORD baseline = Handles();

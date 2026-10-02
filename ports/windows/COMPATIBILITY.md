@@ -715,3 +715,22 @@ The restored Calculator export was verified and recompiled, and the retained
 previous Test runtime accepted its new effective compilation receipt. Reapply
 of the corrected candidate then passed the installer's automatic Test. This is
 lifecycle evidence; it does not accept the remaining visual states.
+
+
+### Notepad production installation and existing-window discovery
+
+The single installer updated the real Full installation with the production
+chrome adapter and passed automatic Test; ten existing adapters were reused.
+A fresh empty window displayed black toolbar/status/caption surfaces, rose
+labels and a dark-red selected tab. Its File menu was dark red and native
+keyboard focus used the red/rose brushes. Returning focus to the editor restored
+the File control's normal background. Latest Restore restored native chrome
+in that same unmodified window. Test through the retained previous runtime and
+reapply with automatic Test then passed. These are bounded observations.
+
+The existing-window discovery probe found the admitted Notepad chrome and
+Paint ribbon classes on their UI threads in all open inspected processes,
+then unregistered its callback successfully. The production adapter uses an
+original shared discovery source and the WinUI bridge's exact binary digest;
+it does not redistribute or copy a third-party shell styler. Live acceptance
+of that production discovery path remains a separate gate.

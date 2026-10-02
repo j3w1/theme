@@ -89,7 +89,7 @@ test('native Notepad chrome ownership and worker shutdown',options,t=>{
  t.after(()=>fs.rmSync(folder,{recursive:true,force:true}));
  const output=path.join(folder,'notepad-chrome.exe');
  compile(tools.compiler,['-static',path.join(repoRoot,'tests/windows-notepad-chrome-native.cpp'),...libraries(path.join(source,'dist/j3w1-notepad-chrome.wh.cpp')),'-o',output]);
- for(const state of ['partial-init','state-ownership','resource-ownership','cleanup-retry','notepad-chrome-admission','exit-active','exit-completed','unload','reconfigure']){
+ for(const state of ['partial-init','state-ownership','resource-ownership','cleanup-retry','notepad-chrome-admission','discovery-admission','discovery-lifecycle','exit-active','exit-completed','unload','reconfigure']){
   const result=spawnSync(output,[state],{encoding:'utf8',windowsHide:true,timeout:15000});
   assert.equal(result.status,0,state+': '+result.stdout+'\n'+result.stderr);
  }
