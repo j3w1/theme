@@ -132,6 +132,12 @@ compiled DLL drift. Restore uses saved settings without compilation only for
 a reused DLL with the same configuration and exact settings-key set; unknown,
 changed, absent or older receipts use the existing offline import path. No
 precompiled download or private Windhawk storage write is introduced.
+Saved exports carry exact digests. A managed offline restore verifies the saved
+source, version, settings and configuration, then appends a receipt for its
+newly compiled DLL; original compilation receipts remain historical. Test and
+Guard use the latest verified restoration receipt and still reject binary drift.
+Windows file-sharing refusals receive a bounded atomic-replacement retry; the
+destination is never deleted or truncated to bypass a lock.
 
 Theme restore retains installed shared tools and fonts; automatic dependency removal is unsupported.
 

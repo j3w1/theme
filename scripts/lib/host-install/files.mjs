@@ -19,3 +19,17 @@ export function writeDurableTemp(target,bytes,{mode=0o600}={}){
   throw error;
  }
 }
+
+// Windows readers and scanners can briefly deny replacement. Never remove the
+// destination or turn an atomic replace into a truncating write. Callers keep
+// their path/reparse checks on every attempt; permanent errors still fail.
+export function replaceDurableTemp(temp,target,{beforeAttempt=()=>{},attempts=40,delay=25,
+ rename=fs.renameSync,sleep=ms=>Atomics.wait(new Int32Array(new SharedArrayBuffer(4)),0,0,ms),platform=process.platform}={}){
+ for(let attempt=0;;attempt++){
+  beforeAttempt();
+  try{return rename(temp,target);}catch(error){
+   if(platform!=='win32'||!['EPERM','EACCES','EBUSY'].includes(error.code)||attempt+1>=attempts)throw error;
+   sleep(delay);
+  }
+ }
+}

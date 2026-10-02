@@ -552,3 +552,40 @@ test('legacy receipts and changed adapter configurations require a managed recom
  assert.equal(f.journal().transactions[1].mods[1].reused,false);
  f.ok('Test',f.args);
 });
+
+
+test('offline rollback credits a verified recompile without rewriting its original receipt',t=>{
+ const f=windhawkFixture(t);f.ok('Apply',f.args);
+ const initial=f.journal().transactions[0].mods[0].artifact;
+ write(path.join(f.state,'fixture-recompile-import'),'enabled');
+ const modPath=path.join(f.state,'downloads/fixture-styler.wh.cpp'),depsPath=path.join(f.args.source,'dependencies.json');
+ const oldBytes=fs.readFileSync(modPath),oldDeps=fs.readFileSync(depsPath);
+ const changed=Buffer.from('// @version 1.1\n// changed pinned source\n');write(modPath,changed.toString());
+ const deps=read(depsPath);deps.mods[0].version='1.1';deps.mods[0].sha256=sha(changed);write(depsPath,deps);
+ f.ok('Update',{...f.args,revision:'2'.repeat(40)});f.ok('Restore',{...f.args,latest:true});
+ const prior=f.journal().transactions[0].mods[0],receipt=prior.restorationReceipts.at(-1);
+ assert.deepEqual(prior.compilationHistory[0].artifact,initial);
+ assert.deepEqual(prior.artifact,receipt.artifact);assert.notEqual(receipt.artifact.sha256,initial.sha256);
+ assert.equal(receipt.sourceSha256,prior.sourceSha256);f.ok('Test',f.args);f.ok('Guard',f.args);
+ fs.writeFileSync(modPath,oldBytes);fs.writeFileSync(depsPath,oldDeps);
+ const count=read(path.join(f.state,'fixture-windhawk-activity.json')).compiles;
+ f.ok('Update',{...f.args,revision:'3'.repeat(40)});
+ assert.equal(read(path.join(f.state,'fixture-windhawk-activity.json')).compiles,count);
+ assert.ok(f.journal().transactions.at(-1).mods[0].reused);
+ const library=path.join(f.state,'tools/windhawk/2.0.0-alpha.6/AppData/Engine/Mods/64',receipt.artifact.config.libraryFileName);
+ fs.appendFileSync(library,' altered after restoration');assert.match(f.run('Test',f.args).stdout,/compiled artifact drift/);
+});
+
+test('tampered saved adapter export refuses offline import and keeps recoverable history',t=>{
+ const f=windhawkFixture(t);f.ok('Apply',f.args);
+ const config=path.join(f.args.source,'dist/fixture-styler.json'),next=read(config);
+ next.controlStyles.push({target:'Border',styles:['Background=#000000']});write(config,next);
+ f.ok('Update',{...f.args,revision:'2'.repeat(40)});
+ const mod=f.journal().transactions.at(-1).mods[0],backup=fs.readFileSync(mod.backup);
+ fs.appendFileSync(mod.backup,' ');
+ const result=f.run('Restore',{...f.args,latest:true});assert.equal(result.status,2);
+ assert.match(result.stdout,/Saved adapter export digest mismatch/);
+ assert.equal(read(path.join(f.state,'fixture-windhawk-activity.json')).imports,0);
+ assert.equal(f.journal().transactions.at(-1).status,'restore-conflict');
+ fs.writeFileSync(mod.backup,backup);f.ok('Restore',{...f.args,latest:true});f.ok('Test',f.args);
+});

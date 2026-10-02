@@ -1,6 +1,8 @@
 // Protocol fixture for the pinned Windhawk CLI. Never touches the real tool.
 const fs=require('node:fs'),path=require('node:path');
 const [state,...raw]=process.argv.slice(2),args=raw.filter(a=>!['--json','--yes'].includes(a));
+const sourceFile=path.join(state,'fixture-windhawk-sources.json');
+const sources=fs.existsSync(sourceFile)?JSON.parse(fs.readFileSync(sourceFile,'utf8')):{};
 const file=path.join(state,'fixture-windhawk.json');
 const db=fs.existsSync(file)?JSON.parse(fs.readFileSync(file,'utf8')):{};
 const done=data=>{fs.writeFileSync(file,JSON.stringify(db));console.log(JSON.stringify({schemaVersion:1,success:true,data}));};
@@ -11,13 +13,24 @@ function record(kind){activity[kind]++;fs.writeFileSync(activityFile,JSON.string
 const missing=()=>{console.log(JSON.stringify({schemaVersion:1,success:false,error:{code:'MOD_NOT_INSTALLED',message:'Missing'}}));process.exit(1);};
 if(args[0]==='app'){if(args[2]==='set')db.appSettings={disableUpdateCheck:args[4]==='true'};done({settings:db.appSettings??{disableUpdateCheck:false}});}
 else if(args[0]==='data'){
- if(args[1]==='export'){const id=args[args.indexOf('--mods')+1];fs.writeFileSync(args[args.indexOf('--out')+1],JSON.stringify({[id]:db[id]}));done({});}
- else {if(!raw.includes('--yes'))throw Error('data import requires --yes');record('imports');Object.assign(db,JSON.parse(fs.readFileSync(args[2],'utf8')));done({});}
+ if(args[1]==='export'){const id=args[args.indexOf('--mods')+1];fs.writeFileSync(args[args.indexOf('--out')+1],JSON.stringify({format:'windhawk-user-data-v1',mods:[{modId:id,version:db[id].metadata.version,source:sources[id]??'// unmanaged fixture source',settings:db[id].settings,fixtureState:db[id]}]}));done({});}
+ else {if(!raw.includes('--yes'))throw Error('data import requires --yes');record('imports');const imported=JSON.parse(fs.readFileSync(args[2],'utf8'));
+  for(const m of imported.mods){
+   db[m.modId]=m.fixtureState;sources[m.modId]=m.source;
+   if(fs.existsSync(path.join(state,'fixture-recompile-import'))){
+    record('compiles');const name=m.modId+'_'+m.version+'_restored_'+activity.compiles+'.dll';
+    const library=path.join(state,'tools/windhawk/2.0.0-alpha.6/AppData/Engine/Mods/64',name);
+    fs.writeFileSync(library,'fixture restored compilation '+activity.compiles+'\n'+m.source);
+    db[m.modId].config.libraryFileName=name;
+   }
+  }
+  fs.writeFileSync(sourceFile,JSON.stringify(sources));done({});}
 }else if(args[0]==='mod'){
  const action=args[1],id=action==='settings'?args[3]:args[2];
  if(action==='install'){
   const installedId='local@'+id,source=fs.readFileSync(args[args.indexOf('--file')+1],'utf8');
   const version=source.match(/^\/\/\s*@version\s+(\S+)/m)?.[1]??'1.0';
+  sources[installedId]=source;fs.writeFileSync(sourceFile,JSON.stringify(sources));
   record('compiles');
   const libraryFileName=installedId+'_'+version+'_'+activity.compiles+'.dll';
   const library=path.join(state,'tools/windhawk/2.0.0-alpha.6/AppData/Engine/Mods/64',libraryFileName);

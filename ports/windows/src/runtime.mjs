@@ -5,7 +5,7 @@ import crypto from 'node:crypto';
 import {spawn,spawnSync} from 'node:child_process';
 import {isDeepStrictEqual} from 'node:util';
 import {parse,modify,applyEdits} from 'jsonc-parser';
-import {sha256Hex as hash,writeDurableTemp} from '../../../scripts/lib/host-install/files.mjs';
+import {sha256Hex as hash,writeDurableTemp,replaceDurableTemp} from '../../../scripts/lib/host-install/files.mjs';
 const args=JSON.parse(fs.readFileSync(0,'utf8'));
 const source=path.resolve(args.source), state=path.resolve(args.state), action=args.action;
 const fixture=args.fixture===true;
@@ -39,7 +39,7 @@ function safe(p) {
  }
  return p;
 }
-function atomic(p,b){safe(p);fs.mkdirSync(path.dirname(p),{recursive:true});const temp=writeDurableTemp(p,b);try{safe(p);fs.renameSync(temp,p);}finally{if(fs.existsSync(temp))fs.unlinkSync(temp);}}
+function atomic(p,b){safe(p);fs.mkdirSync(path.dirname(p),{recursive:true});const temp=writeDurableTemp(p,b);try{replaceDurableTemp(temp,p,{beforeAttempt:()=>safe(p)});}finally{if(fs.existsSync(temp))fs.unlinkSync(temp);}}
 function persist(){atomic(journal,JSON.stringify(history,null,2)+'\n');}
 function ps(request){
  if(fixture){const p=path.join(root,'registry.json'),reg=fs.existsSync(p)?json(p):{};if(request.operation==='get'){const key=request.key+'|'+request.name;return reg[key]??{exists:false};}if(request.operation==='set'){const key=request.key+'|'+request.name;if(request.value.exists)reg[key]=request.value;else delete reg[key];atomic(p,JSON.stringify(reg));return {ok:true};}return {ok:true};}
@@ -193,6 +193,25 @@ function modArtifact(shown) {
  if(!fs.existsSync(file)||!fs.statSync(file).isFile())return null;
  return {id:shown.id,version:shown.metadata?.version,config:shown.config,sha256:hash(fs.readFileSync(file))};
 }
+function compiledReceipt(mod) {
+ return mod.restorationReceipts?.at(-1)?.artifact??mod.artifact;
+}
+function previousManagedMod(tx,id) {
+ return history.transactions.slice(0,history.transactions.indexOf(tx)).filter(t=>t.status==='applied').at(-1)?.mods?.find(m=>m.id===id);
+}
+function exportedSourceDigest(file,id) {
+ const data=json(file);
+ if(data.format!=='windhawk-user-data-v1'||!Array.isArray(data.mods))return null;
+ const mods=data.mods.filter(m=>m.modId===id);
+ if(mods.length!==1||typeof mods[0].source!=='string')return null;
+ // Windhawk exports source using CRLF. Only normalize that representation;
+ // preserve all other bytes, including the exact trailing newline.
+ return hash(Buffer.from(mods[0].source.replace(/\r\n/g,'\n')));
+}
+function sameRestoredConfig(actual,expected) {
+ const {libraryFileName:a,...left}=actual??{}, {libraryFileName:b,...right}=expected??{};
+ return typeof a==='string'&&typeof b==='string'&&eq(left,right);
+}
 function sameModArtifact(shown,recorded) {
  if(!recorded)return false;
  const actual=modArtifact(shown);
@@ -224,9 +243,11 @@ function stageMods(tx){
   const beforeSettings=before?wh(['mod','settings','get',installedId]):null;
   const prior=history.transactions.filter(t=>t.status==='applied').at(-1)?.mods?.find(m=>m.id===installedId);
   const reuse=before?.metadata?.version===mod.version&&prior?.sourceSha256===mod.sha256
-   &&eq(beforeSettings,prior.settings)&&sameModArtifact(before,prior.artifact);
+   &&eq(beforeSettings,prior.settings)&&sameModArtifact(before,compiledReceipt(prior));
   tx.mods.push({id:installedId,sourceId:mod.id,version:mod.version,sourceSha256:mod.sha256,
-   before:before?{id:before.id,config:before.config}:null,beforeSettings,backup:before?backup:null,reused:reuse});persist();
+   before:before?{id:before.id,version:before.metadata?.version,config:before.config}:null,beforeSettings,backup:before?backup:null,
+   backupSha256:before?hash(fs.readFileSync(safe(backup))):null,
+   beforeSourceSha256:before&&prior?.sourceSha256===exportedSourceDigest(backup,installedId)?prior.sourceSha256:null,reused:reuse});persist();
   if(reuse){
    console.error('Reusing the verified compiled adapter: '+mod.id+'.');
    wh(['mod','disable',installedId]);
@@ -263,11 +284,12 @@ function restore(tx) {
    if(!wh(['mod','show',mod.id],true)&&!mod.before){mod.restored=true;persist();continue;}
    const shown=wh(['mod','show',mod.id]),currentSettings=wh(['mod','settings','get',mod.id]);
    const reuseRestore=mod.reused&&mod.before&&sameSettingKeys(currentSettings,mod.beforeSettings)
-    &&sameModArtifact(shown,mod.artifact);
+    &&sameModArtifact(shown,compiledReceipt(mod));
    // An interrupted settings-only restore may already have written the exact
    // saved values. Require the same binary/config proof before resuming it.
    if(mod.settings&&!eq(currentSettings,mod.settings)
       &&!(reuseRestore&&eq(currentSettings,mod.beforeSettings))){conflicts.push(mod.id);continue;}
+   if(!reuseRestore&&mod.backup&&mod.backupSha256&&hash(fs.readFileSync(safe(mod.backup)))!==mod.backupSha256)throw Error('Saved adapter export digest mismatch');
    wh(['mod','disable',mod.id]);
    if(reuseRestore){
     console.error('Restoring saved settings using the verified compiled adapter: '+mod.sourceId+'.');
@@ -275,7 +297,24 @@ function restore(tx) {
     if(!eq(wh(['mod','settings','get',mod.id]),mod.beforeSettings))throw Error('Saved settings readback differs');
     if(mod.before.config.disabled===false)wh(['mod','enable',mod.id]);
     if(!eq(wh(['mod','show',mod.id]).config,mod.before.config))throw Error('Saved configuration readback differs');
-   }else if(mod.backup)wh(['--yes','data','import',mod.backup,'--mods',mod.id,'--no-app-settings','--offline']);
+   }else if(mod.backup){
+    wh(['--yes','data','import',mod.backup,'--mods',mod.id,'--no-app-settings','--offline']);
+    if(mod.beforeSourceSha256){
+     const prior=previousManagedMod(tx,mod.id),restored=wh(['mod','show',mod.id]);
+     if(!prior||prior.sourceSha256!==mod.beforeSourceSha256||exportedSourceDigest(mod.backup,mod.id)!==prior.sourceSha256
+       ||restored.metadata?.version!==prior.version||!eq(wh(['mod','settings','get',mod.id]),mod.beforeSettings)
+       ||!sameRestoredConfig(restored.config,mod.before.config))throw Error('Restored adapter identity or settings mismatch');
+     const artifact=modArtifact(restored);if(!artifact)throw Error('Restored adapter has no compiled artifact');
+     // A managed offline import recompiles the exact saved source. Retain the
+     // original compilation receipt as history and append the new identity.
+     prior.compilationHistory??=[];
+     prior.compilationHistory.push({sourceSha256:prior.sourceSha256,artifact:prior.artifact});
+     prior.restorationReceipts??=[];
+     prior.restorationReceipts.push({restoredBy:tx.id,sourceSha256:prior.sourceSha256,artifact});
+     // The effective field remains readable by retained older Test/Guard runtimes.
+     prior.artifact=artifact;
+    }
+   }
    else wh(['--yes','mod','remove',mod.id]);
    mod.restored=true;persist();
   }catch(error){conflicts.push(`${mod.id}: ${error.message}`);}
@@ -323,7 +362,7 @@ function verify({checkEngine=true}={}) {
    const shown=wh(['mod','show',mod.id]);
    if(shown?.config?.disabled!==false)failed.push(`${mod.id}: disabled or unknown state`);
    if(shown?.metadata?.version!==mod.version)failed.push(`${mod.id}: version drift`);
-   if(mod.artifact&&!sameModArtifact(shown,mod.artifact))failed.push(`${mod.id}: compiled artifact drift`);
+   if(compiledReceipt(mod)&&!sameModArtifact(shown,compiledReceipt(mod)))failed.push(`${mod.id}: compiled artifact drift`);
   }catch(error){failed.push(`${mod.id}: ${error.message}`);}
  }
  return {result:failed.length?'failed':'passed',revision:tx.revision,failed,limitations:settings.limitations};
@@ -356,7 +395,7 @@ if(action==='Plan') {
   for(const mod of tx.mods??[])try{
    const shown=wh(['mod','show',mod.id]);
    if(shown.metadata?.version!==mod.version||!eq(wh(['mod','settings','get',mod.id]),mod.settings))failures.push(`${mod.id}: version or settings drift`);
-   if(mod.artifact&&!sameModArtifact(shown,mod.artifact))failures.push(`${mod.id}: compiled artifact drift`);
+   if(compiledReceipt(mod)&&!sameModArtifact(shown,compiledReceipt(mod)))failures.push(`${mod.id}: compiled artifact drift`);
   }catch(error){failures.push(`${mod.id}: ${error.message}`);}
   if(wh(['app','settings','get']).settings.disableUpdateCheck!==true)failures.push('dependency update policy changed');
   if(!failures.length)try{for(const mod of tx.mods??[])wh(['mod','enable',mod.id]);startWindhawk();}catch(error){failures.push(error.message);for(const mod of tx.mods??[])try{wh(['mod','disable',mod.id]);}catch{}}
