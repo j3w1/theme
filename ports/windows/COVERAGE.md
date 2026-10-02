@@ -84,6 +84,15 @@ restarts the same native state. Unknown storyboard shapes and failed clock
 operations refuse the change. Restoration preserves subsequent app changes.
 Layout and Closed handlers are removed before cleanup on unload.
 
+The NavigationView parent and category headers receive local resource
+overrides as well as the rows. The native SplitView pane and content-grid
+ThemeResources resolve at that parent; refreshing row resources alone leaves
+the pane gray. The parent uses the same identity-preserving resource and
+RequestedTheme restoration path, without replacing the template or changing
+mode, layout or keyboard behavior. The pane, header, divider and current-item
+indicator mappings come from the pinned WinUI 2 template. Final installed
+pane appearance and remaining focus behavior require live verification.
+
 NavigationViewItem and its presenter receive the reviewed WinUI 2 normal,
 hover, pressed, checked, selected and disabled resource keys separately.
 Selection remains a fill and keyboard focus keeps its native geometry with

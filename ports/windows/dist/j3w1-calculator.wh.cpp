@@ -2,7 +2,7 @@
 // @id j3w1-calculator
 // @name j3w1 Calculator resources
 // @description Version-checked Calculator UI resources; equation colors remain native
-// @version 1.4.1
+// @version 1.4.2
 // @author j3w1
 // @include CalculatorApp.exe
 // @architecture x86-64
@@ -125,6 +125,10 @@ static constexpr Rule rules[] = {
     {L"NavigationViewItemBackgroundSelectedDisabled",{255,22,11,11},L"color.interaction.disabled.bg"},
     {L"NavigationViewItemForegroundSelectedDisabled",{255,138,85,89},L"color.text.disabled"},
     {L"NavigationViewItemSeparatorForeground",{255,43,14,13},L"color.border.divider"},
+    {L"NavigationViewContentBackground",{255,0,0,0},L"color.surface.canvas"},
+    {L"NavigationViewItemHeaderForeground",{255,189,120,125},L"color.text.muted"},
+    {L"NavigationViewContentGridBorderBrush",{255,43,14,13},L"color.border.divider"},
+    {L"NavigationViewSelectionIndicatorForeground",{255,229,57,53},L"color.border.active"},
 };
 static std::atomic<bool> enabled{false}, admitted{false};
 static std::atomic<HWND> coreWindow{nullptr};
@@ -356,7 +360,10 @@ static bool RestoreControlResources(ControlResources& entry) noexcept {
 [[clang::no_destroy]] static std::deque<ControlResources> controlsChanged;
 static bool ChromeControl(DependencyObject const& object) {
     auto type=get_class_name(object);
-    if(type==L"Microsoft.UI.Xaml.Controls.NavigationViewItem"
+    // Pane ThemeResources resolve at NavigationView, above its row controls.
+    if(type==L"Microsoft.UI.Xaml.Controls.NavigationView"
+        ||type==L"Microsoft.UI.Xaml.Controls.NavigationViewItemHeader"
+        ||type==L"Microsoft.UI.Xaml.Controls.NavigationViewItem"
         ||type==L"Microsoft.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter")return true;
     return object.try_as<Windows::UI::Xaml::Controls::Primitives::ButtonBase>()
         ||object.try_as<MenuFlyoutPresenter>()||object.try_as<MenuFlyoutItem>()||object.try_as<MenuFlyoutSubItem>()

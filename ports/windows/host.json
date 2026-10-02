@@ -1094,7 +1094,7 @@
     }
   },
   "calculator": {
-    "version": "1.4.1",
+    "version": "1.4.2",
     "packageFullName": "Microsoft.WindowsCalculator_11.2607.0.0_x64__8wekyb3d8bbwe",
     "resources": {
       "AppChromeAcrylicHostBackdropMediumLowBrush": "color.surface.canvas",
@@ -1180,7 +1180,11 @@
       "NavigationViewItemForegroundSelectedPressed": "color.interaction.selection.text",
       "NavigationViewItemBackgroundSelectedDisabled": "color.interaction.disabled.bg",
       "NavigationViewItemForegroundSelectedDisabled": "color.text.disabled",
-      "NavigationViewItemSeparatorForeground": "color.border.divider"
+      "NavigationViewItemSeparatorForeground": "color.border.divider",
+      "NavigationViewContentBackground": "color.surface.canvas",
+      "NavigationViewItemHeaderForeground": "color.text.muted",
+      "NavigationViewContentGridBorderBrush": "color.border.divider",
+      "NavigationViewSelectionIndicatorForeground": "color.border.active"
     },
     "buttonStyleTarget": "CalculatorApp.Controls.CalculatorButton, CalculatorApp, Version=11.2607.0.0, Culture=neutral, PublicKeyToken=null"
   },

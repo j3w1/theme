@@ -273,7 +273,10 @@ static bool RestoreControlResources(ControlResources& entry) noexcept {
 [[clang::no_destroy]] static std::deque<ControlResources> controlsChanged;
 static bool ChromeControl(DependencyObject const& object) {
     auto type=get_class_name(object);
-    if(type==L"Microsoft.UI.Xaml.Controls.NavigationViewItem"
+    // Pane ThemeResources resolve at NavigationView, above its row controls.
+    if(type==L"Microsoft.UI.Xaml.Controls.NavigationView"
+        ||type==L"Microsoft.UI.Xaml.Controls.NavigationViewItemHeader"
+        ||type==L"Microsoft.UI.Xaml.Controls.NavigationViewItem"
         ||type==L"Microsoft.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter")return true;
     return object.try_as<Windows::UI::Xaml::Controls::Primitives::ButtonBase>()
         ||object.try_as<MenuFlyoutPresenter>()||object.try_as<MenuFlyoutItem>()||object.try_as<MenuFlyoutSubItem>()

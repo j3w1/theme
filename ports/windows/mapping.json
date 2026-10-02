@@ -23,7 +23,8 @@
       "windows-11-start-menu-styler | web .leftPill::before | background-color",
       "calculator.resource.SystemControlHighlightAccentBrush",
       "calculator.resource.ButtonBorderBrushPointerOver",
-      "calculator.resource.ButtonBorderBrushPressed"
+      "calculator.resource.ButtonBorderBrushPressed",
+      "calculator.resource.NavigationViewSelectionIndicatorForeground"
     ],
     "color.surface.desktop": [
       "native.desktop"
@@ -74,7 +75,8 @@
       "calculator.resource.NavigationViewExpandedPaneBackground",
       "calculator.resource.NavigationViewTopPaneBackground",
       "notepad-native.CANVAS",
-      "calculator.resource.NavigationViewItemBackground"
+      "calculator.resource.NavigationViewItemBackground",
+      "calculator.resource.NavigationViewContentBackground"
     ],
     "color.terminal.cursor": [
       "terminal.cursor"
@@ -150,7 +152,8 @@
       "calculator.resource.AppControlForegroundSecondaryBrush",
       "calculator.resource.TextFillColorSecondaryBrush",
       "calculator.resource.SystemControlPageTextBaseMediumBrush",
-      "calculator.resource.NavigationViewItemForegroundPressed"
+      "calculator.resource.NavigationViewItemForegroundPressed",
+      "calculator.resource.NavigationViewItemHeaderForeground"
     ],
     "color.text.disabled": [
       "native.disabled",
@@ -448,7 +451,8 @@
       "windows-11-file-explorer-styler | CommandBar#FileExplorerCommandBar, CommandBar#FileExplorerSecondaryCommandBar | BorderBrush",
       "windows-11-start-menu-styler | web body, #root, #root.darkTheme, .scope-with-background, .suggsList, .suggsListContainer, .suggContainer, .previewContainer, .suggDetailsContainer, .contextMenu, #menuContainer | border-color",
       "calculator.resource.DividerStrokeColorDefaultBrush",
-      "calculator.resource.NavigationViewItemSeparatorForeground"
+      "calculator.resource.NavigationViewItemSeparatorForeground",
+      "calculator.resource.NavigationViewContentGridBorderBrush"
     ],
     "color.interaction.scrollbar.thumb": [
       "nativeExplorer.scrollbar",

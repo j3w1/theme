@@ -37749,7 +37749,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-RAzqAZ78WbgrI8MXJuLjaMbUciH8lozUZNgyGwyiXRE=",
+      "subjectDigest": "sha256-gaqyoW2t9Ph19XFk8WF8sajvvzICrql6GCm9akMJ2hY=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37782,7 +37782,7 @@
           "path": "dist/windows-settings.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-settings.json",
-          "digest": "sha256-sQ/QdZZ/nWwH+RL0yx17Ey1rDpIyS8Gt+KtsJgMtOf4="
+          "digest": "sha256-qZYWKZzj8+hXTQlVg96BA6MqMnTmx6BuhmigZe9PXgA="
         },
         {
           "path": "dist/terminal-fragment.json",
@@ -37956,7 +37956,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-mCr9HPd6LL56qbuJvobRelefDf4yfqQH/W6Z5a/ptyo="
+          "digest": "sha256-dQ4gtA6oAq10VdSs/sgY+GO04WuKXUvr/Wzp/dHV3uA="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
@@ -37986,7 +37986,7 @@
           "path": "dist/j3w1-calculator.wh.cpp",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/j3w1-calculator.wh.cpp",
-          "digest": "sha256-MoNcMbkNiJZ8EKs6OYGq9Fc6rSiuoB6AcJUbON7p0ZY="
+          "digest": "sha256-PZK8IuGnskdbXqR1eWj45kKOxex5MAI3R7mlmT1MbQo="
         },
         {
           "path": "dist/j3w1-calculator.json",
@@ -38491,7 +38491,8 @@
             "windows-11-start-menu-styler | web .leftPill::before | background-color",
             "calculator.resource.SystemControlHighlightAccentBrush",
             "calculator.resource.ButtonBorderBrushPointerOver",
-            "calculator.resource.ButtonBorderBrushPressed"
+            "calculator.resource.ButtonBorderBrushPressed",
+            "calculator.resource.NavigationViewSelectionIndicatorForeground"
           ],
           "value": "#e53935",
           "eligibility": {
@@ -38586,7 +38587,8 @@
             "windows-11-file-explorer-styler | CommandBar#FileExplorerCommandBar, CommandBar#FileExplorerSecondaryCommandBar | BorderBrush",
             "windows-11-start-menu-styler | web body, #root, #root.darkTheme, .scope-with-background, .suggsList, .suggsListContainer, .suggContainer, .previewContainer, .suggDetailsContainer, .contextMenu, #menuContainer | border-color",
             "calculator.resource.DividerStrokeColorDefaultBrush",
-            "calculator.resource.NavigationViewItemSeparatorForeground"
+            "calculator.resource.NavigationViewItemSeparatorForeground",
+            "calculator.resource.NavigationViewContentGridBorderBrush"
           ],
           "value": "#2b0e0d",
           "eligibility": {
@@ -41707,7 +41709,8 @@
             "calculator.resource.NavigationViewExpandedPaneBackground",
             "calculator.resource.NavigationViewTopPaneBackground",
             "notepad-native.CANVAS",
-            "calculator.resource.NavigationViewItemBackground"
+            "calculator.resource.NavigationViewItemBackground",
+            "calculator.resource.NavigationViewContentBackground"
           ],
           "value": "#000000",
           "eligibility": {
@@ -42534,7 +42537,8 @@
             "calculator.resource.AppControlForegroundSecondaryBrush",
             "calculator.resource.TextFillColorSecondaryBrush",
             "calculator.resource.SystemControlPageTextBaseMediumBrush",
-            "calculator.resource.NavigationViewItemForegroundPressed"
+            "calculator.resource.NavigationViewItemForegroundPressed",
+            "calculator.resource.NavigationViewItemHeaderForeground"
           ],
           "value": "#bd787d",
           "eligibility": {
