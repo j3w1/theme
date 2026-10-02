@@ -2,7 +2,7 @@
 // @id j3w1-paint-chrome
 // @name j3w1 Paint chrome
 // @description Exact-package Paint chrome resources; document and artwork colors remain native
-// @version 1.0.1
+// @version 1.0.2
 // @author j3w1
 // @include mspaint.exe
 // @architecture x86-64
@@ -553,17 +553,18 @@ static bool PaintBackingAdmission(std::wstring_view owner,std::wstring_view chil
 }
 static void ApplyRootBackground(Root& root) {
  auto element=root.element.get();if(!element)return;
- auto boundary=ChromeBackgroundBoundary(element);
- if(!Identity(boundary,element))element=boundary;
- // UserControl.Background is not necessarily consumed by its Content. Use
- // only the immediate content panel of this admitted root, never all panels.
- if(auto control=element.try_as<UserControl>()) {
-  if(auto panel=control.Content().try_as<Panel>())element=panel;
- }
- 
+ // Select the app's rendered backing before walking outward into scroll
+ // wrappers. Paint's outer ScrollViewer does not consume its own Background.
+ bool paintBacking=false;
  if(get_class_name(element)==L"PaintUI.AppChrome"&&VisualTreeHelper::GetChildrenCount(element)==1) {
   auto child=VisualTreeHelper::GetChild(element,0).try_as<Grid>();
-  if(child&&PaintBackingAdmission(std::wstring_view{get_class_name(element)},std::wstring_view{get_class_name(child)},1,Identity(element.XamlRoot(),child.XamlRoot())))element=child;
+  if(child&&PaintBackingAdmission(std::wstring_view{get_class_name(element)},std::wstring_view{get_class_name(child)},1,Identity(element.XamlRoot(),child.XamlRoot()))){element=child;paintBacking=true;}
+ }
+ if(!paintBacking) {
+  auto boundary=ChromeBackgroundBoundary(element);
+  if(!Identity(boundary,element))element=boundary;
+  // Only the immediate content panel of an admitted root, never all panels.
+  if(auto control=element.try_as<UserControl>())if(auto panel=control.Content().try_as<Panel>())element=panel;
  }
  // This exact package's Settings Page forwards rendering to a ScrollViewer;
  // its own Control.Background is not consumed by that child template.

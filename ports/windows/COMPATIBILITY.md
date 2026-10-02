@@ -766,3 +766,10 @@ removed; both its value and later application requests are preserved. Existing
 unknown captions stay native until a captured request or a newly opened window
 supplies a baseline. Live verification of the corrected Paint candidate remains
 required.
+
+The first opaque-backing candidate passed its installation checks and retained
+the native backdrop, eliminating transparency. Its workspace remained gray:
+the generic wrapper walk selected an outer ScrollViewer before the Paint Grid.
+The backing selector now resolves Paint's direct Grid first; the earlier wrapper
+logic remains available to the other admitted chrome roots. Live verification
+of this selection correction remains required.
