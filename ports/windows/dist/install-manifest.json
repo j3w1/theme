@@ -35,6 +35,14 @@
       "sha256": "fa5c087652dba209ab8ff6004642106ab801f86c5de197c5a48844da066dce73"
     },
     {
+      "path": "dist/j3w1-notepad-chrome.wh.cpp",
+      "sha256": "9f7d42d19de35508410d8a6a2287c4bd5ff5238d07c0d232e013c4fa5f2a2700"
+    },
+    {
+      "path": "dist/j3w1-notepad-chrome.json",
+      "sha256": "fa5c087652dba209ab8ff6004642106ab801f86c5de197c5a48844da066dce73"
+    },
+    {
       "path": "dist/j3w1-powertoys-markdown.wh.cpp",
       "sha256": "bdd6075e209ee0da155cf24a47eb1425ab3d72963e59293debd4e625e53d9705"
     },
@@ -48,7 +56,7 @@
     },
     {
       "path": "dist/windows-settings.json",
-      "sha256": "a99616299ce3f3e8574d095583de8103a32a3274e6c7a06e8668a065ef4f5e00"
+      "sha256": "74ddc22d7526350031797747c657c828f3cb51b216e53e1795da318d1266592b"
     },
     {
       "path": "dist/terminal-fragment.json",
@@ -188,7 +196,7 @@
     },
     {
       "path": "host.json",
-      "sha256": "56088399f2d50babd454e54f7b75a35f4174b5c2a9f0a15c150cbec24e2960f0"
+      "sha256": "96a65e6186545f7e7f94f9cddd84f4cc1dd562789c8aa7a3cce25c42638919d0"
     }
   ]
 }

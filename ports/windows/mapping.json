@@ -24,7 +24,19 @@
       "calculator.resource.SystemControlHighlightAccentBrush",
       "calculator.resource.ButtonBorderBrushPointerOver",
       "calculator.resource.ButtonBorderBrushPressed",
-      "calculator.resource.NavigationViewSelectionIndicatorForeground"
+      "calculator.resource.NavigationViewSelectionIndicatorForeground",
+      "notepad-chrome.resource.MenuBarItemBorderBrushPointerOver",
+      "notepad-chrome.resource.MenuBarItemBorderBrushPressed",
+      "notepad-chrome.resource.MenuBarItemBorderBrushSelected",
+      "notepad-chrome.resource.ButtonBorderBrushPointerOver",
+      "notepad-chrome.resource.ButtonBorderBrushPressed",
+      "notepad-chrome.resource.ToggleButtonBorderBrushPointerOver",
+      "notepad-chrome.resource.ToggleButtonBorderBrushPressed",
+      "notepad-chrome.resource.ToggleButtonBorderBrushChecked",
+      "notepad-chrome.resource.ToggleButtonBorderBrushCheckedPointerOver",
+      "notepad-chrome.resource.ToggleButtonBorderBrushCheckedPressed",
+      "notepad-chrome.resource.ToggleButtonBorderBrushIndeterminatePointerOver",
+      "notepad-chrome.resource.ToggleButtonBorderBrushIndeterminatePressed"
     ],
     "color.surface.desktop": [
       "native.desktop"
@@ -76,7 +88,31 @@
       "calculator.resource.NavigationViewTopPaneBackground",
       "notepad-native.CANVAS",
       "calculator.resource.NavigationViewItemBackground",
-      "calculator.resource.NavigationViewContentBackground"
+      "calculator.resource.NavigationViewContentBackground",
+      "notepad-chrome.resource.MenuBarBackgroundBrush",
+      "notepad-chrome.resource.RibbonBackground",
+      "notepad-chrome.resource.SolidBackgroundFillColorBaseBrush",
+      "notepad-chrome.resource.SolidBackgroundFillColorSecondaryBrush",
+      "notepad-chrome.resource.SolidBackgroundFillColorTertiaryBrush",
+      "notepad-chrome.resource.LayerFillColorDefaultBrush",
+      "notepad-chrome.resource.LayerFillColorAltBrush",
+      "notepad-chrome.resource.LayerOnMicaBaseAltFillColorDefaultBrush",
+      "notepad-chrome.resource.NavigationViewDefaultPaneBackground",
+      "notepad-chrome.resource.NavigationViewExpandedPaneBackground",
+      "notepad-chrome.resource.NavigationViewTopPaneBackground",
+      "notepad-chrome.resource.ApplicationPageBackgroundThemeBrush",
+      "notepad-chrome.resource.PageBackground",
+      "notepad-chrome.resource.WindowBackground",
+      "notepad-chrome.resource.SystemControlBackgroundChromeMediumLowBrush",
+      "notepad-chrome.resource.SystemControlBackgroundChromeLowBrush",
+      "notepad-chrome.resource.MenuBarBackground",
+      "notepad-chrome.resource.MenuBarItemBackground",
+      "notepad-chrome.resource.AppBarButtonBackground",
+      "notepad-chrome.resource.AppBarToggleButtonBackground",
+      "notepad-chrome.resource.CommandBarBackground",
+      "notepad-chrome.resource.CommandBarBackgroundOpen",
+      "notepad-chrome.resource.ToggleButtonBackground",
+      "notepad-chrome.resource.ToggleButtonBackgroundIndeterminate"
     ],
     "color.terminal.cursor": [
       "terminal.cursor"
@@ -93,7 +129,8 @@
       "windows-11-notification-center-styler | ScrollViewer#CalendarControlScrollViewer | Background",
       "windows-11-notification-center-styler | Border#CalendarHeaderMinimizedOverlay | Background",
       "windows-11-notification-center-styler | ActionCenter.FocusSessionControl#FocusSessionControl > Grid#FocusGrid | Background",
-      "windows-11-notification-center-styler | Grid#NotificationCenterTopBanner | Background"
+      "windows-11-notification-center-styler | Grid#NotificationCenterTopBanner | Background",
+      "notepad-chrome.resource.TabViewItemHeaderBackground"
     ],
     "color.text.default": [
       "native.foreground",
@@ -122,7 +159,46 @@
       "calculator.resource.SystemControlForegroundBaseHighBrush",
       "calculator.resource.ToolTipForeground",
       "calculator.resource.NavigationViewItemForeground",
-      "calculator.resource.NavigationViewItemForegroundPointerOver"
+      "calculator.resource.NavigationViewItemForegroundPointerOver",
+      "notepad-chrome.resource.TextFillColorPrimaryBrush",
+      "notepad-chrome.resource.TextControlForeground",
+      "notepad-chrome.resource.ButtonForeground",
+      "notepad-chrome.resource.DefaultTextForegroundThemeBrush",
+      "notepad-chrome.resource.SystemControlForegroundBaseHighBrush",
+      "notepad-chrome.resource.ToggleSwitchForeground",
+      "notepad-chrome.resource.ToggleSwitchForegroundPointerOver",
+      "notepad-chrome.resource.ToggleSwitchForegroundPressed",
+      "notepad-chrome.resource.ComboBoxForeground",
+      "notepad-chrome.resource.ToggleSwitchHeaderForegroundOn",
+      "notepad-chrome.resource.MenuFlyoutItemForeground",
+      "notepad-chrome.resource.MenuFlyoutItemForegroundPointerOver",
+      "notepad-chrome.resource.MenuFlyoutItemForegroundPressed",
+      "notepad-chrome.resource.MenuFlyoutSubItemForeground",
+      "notepad-chrome.resource.MenuFlyoutSubItemForegroundSubMenuOpened",
+      "notepad-chrome.resource.MenuBarItemForeground",
+      "notepad-chrome.resource.ButtonForegroundPointerOver",
+      "notepad-chrome.resource.ButtonForegroundPressed",
+      "notepad-chrome.resource.MenuFlyoutSubItemForegroundPointerOver",
+      "notepad-chrome.resource.MenuFlyoutSubItemForegroundPressed",
+      "notepad-chrome.resource.AppBarButtonForeground",
+      "notepad-chrome.resource.AppBarButtonForegroundPointerOver",
+      "notepad-chrome.resource.AppBarButtonForegroundPressed",
+      "notepad-chrome.resource.AppBarToggleButtonForeground",
+      "notepad-chrome.resource.AppBarToggleButtonForegroundPointerOver",
+      "notepad-chrome.resource.AppBarToggleButtonForegroundPressed",
+      "notepad-chrome.resource.AppBarToggleButtonForegroundChecked",
+      "notepad-chrome.resource.AppBarToggleButtonForegroundCheckedPointerOver",
+      "notepad-chrome.resource.AppBarToggleButtonForegroundCheckedPressed",
+      "notepad-chrome.resource.CommandBarForeground",
+      "notepad-chrome.resource.ToggleButtonForeground",
+      "notepad-chrome.resource.ToggleButtonForegroundPointerOver",
+      "notepad-chrome.resource.ToggleButtonForegroundPressed",
+      "notepad-chrome.resource.ToggleButtonForegroundChecked",
+      "notepad-chrome.resource.ToggleButtonForegroundCheckedPointerOver",
+      "notepad-chrome.resource.ToggleButtonForegroundCheckedPressed",
+      "notepad-chrome.resource.ToggleButtonForegroundIndeterminate",
+      "notepad-chrome.resource.ToggleButtonForegroundIndeterminatePointerOver",
+      "notepad-chrome.resource.ToggleButtonForegroundIndeterminatePressed"
     ],
     "color.text.bright": [
       "native.bright",
@@ -132,7 +208,9 @@
       "calculator.resource.AppControlForegroundAccentBrush",
       "calculator.resource.AccentTextFillColorPrimaryBrush",
       "calculator.resource.TextOnAccentFillColorPrimaryBrush",
-      "calculator.resource.TextOnAccentFillColorSecondaryBrush"
+      "calculator.resource.TextOnAccentFillColorSecondaryBrush",
+      "notepad-chrome.resource.AccentTextFillColorPrimaryBrush",
+      "notepad-chrome.resource.TextOnAccentFillColorPrimaryBrush"
     ],
     "color.text.heading": [
       "native.heading",
@@ -153,7 +231,13 @@
       "calculator.resource.TextFillColorSecondaryBrush",
       "calculator.resource.SystemControlPageTextBaseMediumBrush",
       "calculator.resource.NavigationViewItemForegroundPressed",
-      "calculator.resource.NavigationViewItemHeaderForeground"
+      "calculator.resource.NavigationViewItemHeaderForeground",
+      "notepad-chrome.resource.TextFillColorSecondaryBrush",
+      "notepad-chrome.resource.TextFillColorTertiaryBrush",
+      "notepad-chrome.resource.MenuFlyoutItemKeyboardAcceleratorTextForeground",
+      "notepad-chrome.resource.MenuFlyoutSubItemChevron",
+      "notepad-chrome.resource.MenuFlyoutItemKeyboardAcceleratorTextForegroundPointerOver",
+      "notepad-chrome.resource.MenuFlyoutItemKeyboardAcceleratorTextForegroundPressed"
     ],
     "color.text.disabled": [
       "native.disabled",
@@ -166,7 +250,17 @@
       "calculator.resource.TextFillColorDisabledBrush",
       "calculator.resource.NavigationViewItemForegroundDisabled",
       "calculator.resource.NavigationViewItemForegroundCheckedDisabled",
-      "calculator.resource.NavigationViewItemForegroundSelectedDisabled"
+      "calculator.resource.NavigationViewItemForegroundSelectedDisabled",
+      "notepad-chrome.resource.TextFillColorDisabledBrush",
+      "notepad-chrome.resource.MenuFlyoutItemForegroundDisabled",
+      "notepad-chrome.resource.MenuFlyoutSubItemForegroundDisabled",
+      "notepad-chrome.resource.ButtonForegroundDisabled",
+      "notepad-chrome.resource.AppBarButtonForegroundDisabled",
+      "notepad-chrome.resource.AppBarToggleButtonForegroundDisabled",
+      "notepad-chrome.resource.MenuFlyoutItemKeyboardAcceleratorTextForegroundDisabled",
+      "notepad-chrome.resource.ToggleButtonForegroundDisabled",
+      "notepad-chrome.resource.ToggleButtonForegroundCheckedDisabled",
+      "notepad-chrome.resource.ToggleButtonForegroundIndeterminateDisabled"
     ],
     "color.interaction.selection.bg": [
       "native.selection",
@@ -180,7 +274,16 @@
       "calculator.resource.NavigationViewItemBackgroundCheckedPressed",
       "calculator.resource.NavigationViewItemBackgroundSelected",
       "calculator.resource.NavigationViewItemBackgroundSelectedPointerOver",
-      "calculator.resource.NavigationViewItemBackgroundSelectedPressed"
+      "calculator.resource.NavigationViewItemBackgroundSelectedPressed",
+      "notepad-chrome.resource.PaintButtonSelectedBackground",
+      "notepad-chrome.resource.PaintToggleButtonSelectedBackground",
+      "notepad-chrome.resource.MenuItemSelectedBackgroundBrush",
+      "notepad-chrome.resource.TabViewItemHeaderBackgroundSelected",
+      "notepad-chrome.resource.MenuBarItemBackgroundSelected",
+      "notepad-chrome.resource.AppBarToggleButtonBackgroundChecked",
+      "notepad-chrome.resource.AppBarToggleButtonBackgroundCheckedPointerOver",
+      "notepad-chrome.resource.ToggleButtonBackgroundChecked",
+      "notepad-chrome.resource.ToggleButtonBackgroundCheckedPointerOver"
     ],
     "color.surface.raised": [
       "powertoys.inactive",
@@ -190,7 +293,14 @@
       "windows-11-start-menu-styler | Grid#CompanionRoot > Border#AcrylicBorder | Background",
       "windows-11-start-menu-styler | StartMenu.FolderModal > Grid > Border | Background",
       "powertoys.markdown.QUOTE",
-      "calculator.resource.AppChromeAcrylicOperatorFlyoutBackgroundBrush"
+      "calculator.resource.AppChromeAcrylicOperatorFlyoutBackgroundBrush",
+      "notepad-chrome.resource.OverlayButtonBackgroundBrush",
+      "notepad-chrome.resource.MenuFlyoutItemBackgroundBrush",
+      "notepad-chrome.resource.MenuFlyoutPresenterBackground",
+      "notepad-chrome.resource.MenuFlyoutItemBackground",
+      "notepad-chrome.resource.MenuFlyoutItemBackgroundDisabled",
+      "notepad-chrome.resource.MenuFlyoutSubItemBackground",
+      "notepad-chrome.resource.MenuFlyoutSubItemBackgroundDisabled"
     ],
     "color.border.control": [
       "powertoys.border",
@@ -206,7 +316,15 @@
       "calculator.resource.ButtonBorderBrush",
       "calculator.resource.ControlStrokeColorSecondaryBrush",
       "calculator.resource.ControlElevationBorderBrush",
-      "calculator.resource.ToolTipBorderBrush"
+      "calculator.resource.ToolTipBorderBrush",
+      "notepad-chrome.resource.OverlayButtonBorderBrush",
+      "notepad-chrome.resource.ControlStrokeColorDefaultBrush",
+      "notepad-chrome.resource.ControlStrokeColorSecondaryBrush",
+      "notepad-chrome.resource.ControlStrongStrokeColorDefaultBrush",
+      "notepad-chrome.resource.TextControlBorderBrush",
+      "notepad-chrome.resource.ButtonBorderBrush",
+      "notepad-chrome.resource.ToggleButtonBorderBrush",
+      "notepad-chrome.resource.ToggleButtonBorderBrushIndeterminate"
     ],
     "font.family.mono": [
       "font.family",
@@ -291,7 +409,14 @@
       "windows-11-start-menu-styler | StartMenu.SearchBoxToggleButton > Grid > Border#BorderElement | Background",
       "windows-11-start-menu-styler | Cortana.UI.Views.RichSearchBoxControl > Grid > Border#BorderElement | Background",
       "calculator.resource.CalcButtonFillColorDefaultBrush",
-      "calculator.resource.CalcButtonAltFillColorDefaultBrush"
+      "calculator.resource.CalcButtonAltFillColorDefaultBrush",
+      "notepad-chrome.resource.PaintButtonRestBackground",
+      "notepad-chrome.resource.PanelHeaderIconButtonBackground",
+      "notepad-chrome.resource.CardBackgroundFillColorDefaultBrush",
+      "notepad-chrome.resource.CardBackgroundFillColorSecondaryBrush",
+      "notepad-chrome.resource.ControlFillColorDefaultBrush",
+      "notepad-chrome.resource.TextControlBackground",
+      "notepad-chrome.resource.ButtonBackground"
     ],
     "color.interaction.hover.bg": [
       "windhawk.resource.ControlFillColorSecondary",
@@ -306,7 +431,15 @@
       "calculator.resource.CalcButtonAltFillColorHoverBrush",
       "calculator.resource.SubtleFillColorSecondaryBrush",
       "calculator.resource.AppControlBackgroundSecondaryBrush",
-      "calculator.resource.NavigationViewItemBackgroundPointerOver"
+      "calculator.resource.NavigationViewItemBackgroundPointerOver",
+      "notepad-chrome.resource.PaintButtonHoverBackground",
+      "notepad-chrome.resource.ControlFillColorSecondaryBrush",
+      "notepad-chrome.resource.ButtonBackgroundPointerOver",
+      "notepad-chrome.resource.MenuBarItemBackgroundPointerOver",
+      "notepad-chrome.resource.AppBarButtonBackgroundPointerOver",
+      "notepad-chrome.resource.AppBarToggleButtonBackgroundPointerOver",
+      "notepad-chrome.resource.ToggleButtonBackgroundPointerOver",
+      "notepad-chrome.resource.ToggleButtonBackgroundIndeterminatePointerOver"
     ],
     "color.interaction.pressed.bg": [
       "windhawk.resource.ControlFillColorTertiary",
@@ -319,7 +452,20 @@
       "calculator.resource.CalcButtonAltFillColorPressedBrush",
       "calculator.resource.AppControlBackgroundTertiaryBrush",
       "calculator.resource.SubtleFillColorTertiaryBrush",
-      "calculator.resource.NavigationViewItemBackgroundPressed"
+      "calculator.resource.NavigationViewItemBackgroundPressed",
+      "notepad-chrome.resource.PaintButtonPressedBackground",
+      "notepad-chrome.resource.PressedMenuItemSelectedBackgroundBrush",
+      "notepad-chrome.resource.ControlFillColorTertiaryBrush",
+      "notepad-chrome.resource.ButtonBackgroundPressed",
+      "notepad-chrome.resource.MenuFlyoutItemBackgroundPressed",
+      "notepad-chrome.resource.MenuFlyoutSubItemBackgroundPressed",
+      "notepad-chrome.resource.MenuBarItemBackgroundPressed",
+      "notepad-chrome.resource.AppBarButtonBackgroundPressed",
+      "notepad-chrome.resource.AppBarToggleButtonBackgroundPressed",
+      "notepad-chrome.resource.AppBarToggleButtonBackgroundCheckedPressed",
+      "notepad-chrome.resource.ToggleButtonBackgroundPressed",
+      "notepad-chrome.resource.ToggleButtonBackgroundCheckedPressed",
+      "notepad-chrome.resource.ToggleButtonBackgroundIndeterminatePressed"
     ],
     "color.action.primary.bg": [
       "windhawk.resource.AccentFillColorDefault",
@@ -327,7 +473,10 @@
       "folder.fill",
       "calculator.resource.AccentFillColorDefaultBrush",
       "calculator.resource.AppControlHighlightCalcButtonBrush",
-      "calculator.resource.AppControlHighlightCalcButtonToggledBrush"
+      "calculator.resource.AppControlHighlightCalcButtonToggledBrush",
+      "notepad-chrome.resource.AccentFillColorDefaultBrush",
+      "notepad-chrome.resource.ToggleSwitchFillOn",
+      "notepad-chrome.resource.ToggleSwitchStrokeOn"
     ],
     "color.text.on-action": [
       "windhawk.resource.TextOnAccentFillColorPrimary",
@@ -342,7 +491,9 @@
       "windows-11-notification-center-styler | Grid#CalendarCenterGrid | BorderBrush",
       "windows-11-notification-center-styler | Border#ToastBackgroundBorder | BorderBrush",
       "windows-11-notification-center-styler | Border#ToastBackgroundBorder2 | BorderBrush",
-      "nativeExplorer.menuBorder"
+      "nativeExplorer.menuBorder",
+      "notepad-chrome.resource.MenuFlyoutPresenterBorderBrush",
+      "notepad-chrome.resource.SurfaceStrokeColorFlyoutBrush"
     ],
     "border.width.default": [
       "windows-11-start-menu-styler | Border#AcrylicBorder | BorderThickness",
@@ -418,14 +569,24 @@
       "calculator.resource.CalcButtonAltFillColorDisabledBrush",
       "calculator.resource.NavigationViewItemBackgroundDisabled",
       "calculator.resource.NavigationViewItemBackgroundCheckedDisabled",
-      "calculator.resource.NavigationViewItemBackgroundSelectedDisabled"
+      "calculator.resource.NavigationViewItemBackgroundSelectedDisabled",
+      "notepad-chrome.resource.ControlFillColorDisabledBrush",
+      "notepad-chrome.resource.AppBarButtonBackgroundDisabled",
+      "notepad-chrome.resource.AppBarToggleButtonBackgroundDisabled",
+      "notepad-chrome.resource.ToggleButtonBackgroundDisabled",
+      "notepad-chrome.resource.ToggleButtonBackgroundCheckedDisabled",
+      "notepad-chrome.resource.ToggleButtonBackgroundIndeterminateDisabled"
     ],
     "color.border.disabled": [
       "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | BorderBrush@Disabled",
       "windows-11-start-menu-styler | Button#ShowMoreSuggestionsButton > Grid@CommonStates > Border | BorderBrush@Disabled",
       "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | BorderBrush@Disabled",
       "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | BorderBrush@Disabled",
-      "calculator.resource.ButtonBorderBrushDisabled"
+      "calculator.resource.ButtonBorderBrushDisabled",
+      "notepad-chrome.resource.ButtonBorderBrushDisabled",
+      "notepad-chrome.resource.ToggleButtonBorderBrushDisabled",
+      "notepad-chrome.resource.ToggleButtonBorderBrushCheckedDisabled",
+      "notepad-chrome.resource.ToggleButtonBorderBrushIndeterminateDisabled"
     ],
     "color.border.default": [
       "windows-11-start-menu-styler | StartMenu.CategoryControl > Grid > Border | BorderBrush"
@@ -433,11 +594,17 @@
     "color.action.primary.hover-bg": [
       "windows-11-notification-center-styler | CalendarView | TodayHoverBackground",
       "calculator.resource.AccentFillColorSecondaryBrush",
-      "calculator.resource.AppControlHighlightCalcButtonHoverBrush"
+      "calculator.resource.AppControlHighlightCalcButtonHoverBrush",
+      "notepad-chrome.resource.AccentFillColorSecondaryBrush",
+      "notepad-chrome.resource.ToggleSwitchFillOnPointerOver",
+      "notepad-chrome.resource.ToggleSwitchStrokeOnPointerOver"
     ],
     "color.action.primary.pressed-bg": [
       "windows-11-notification-center-styler | CalendarView | TodayPressedBackground",
-      "calculator.resource.AccentFillColorTertiaryBrush"
+      "calculator.resource.AccentFillColorTertiaryBrush",
+      "notepad-chrome.resource.AccentFillColorTertiaryBrush",
+      "notepad-chrome.resource.ToggleSwitchFillOnPressed",
+      "notepad-chrome.resource.ToggleSwitchStrokeOnPressed"
     ],
     "color.interaction.selection.inactive-bg": [
       "nativeExplorer.inactive"
@@ -452,13 +619,22 @@
       "windows-11-start-menu-styler | web body, #root, #root.darkTheme, .scope-with-background, .suggsList, .suggsListContainer, .suggContainer, .previewContainer, .suggDetailsContainer, .contextMenu, #menuContainer | border-color",
       "calculator.resource.DividerStrokeColorDefaultBrush",
       "calculator.resource.NavigationViewItemSeparatorForeground",
-      "calculator.resource.NavigationViewContentGridBorderBrush"
+      "calculator.resource.NavigationViewContentGridBorderBrush",
+      "notepad-chrome.resource.PanelHeaderIconButtonBorderBrush",
+      "notepad-chrome.resource.DividerStrokeColorDefaultBrush",
+      "notepad-chrome.resource.SurfaceStrokeColorDefaultBrush",
+      "notepad-chrome.resource.CardStrokeColorDefaultBrush",
+      "notepad-chrome.resource.ExpanderContentBorderBrush",
+      "notepad-chrome.resource.ExpanderHeaderBorderBrush",
+      "notepad-chrome.resource.MenuFlyoutSeparatorBackground",
+      "notepad-chrome.resource.MenuBarItemBorderBrush"
     ],
     "color.interaction.scrollbar.thumb": [
       "nativeExplorer.scrollbar",
       "powertoys.markdown.SCROLLBAR",
       "windows-11-start-menu-styler | web * | scrollbar-color",
-      "windows-11-start-menu-styler | web ::-webkit-scrollbar-thumb | background-color"
+      "windows-11-start-menu-styler | web ::-webkit-scrollbar-thumb | background-color",
+      "notepad-chrome.resource.J3w1ScrollBarThumb"
     ],
     "color.interaction.scrollbar.thumb-hover": [
       "nativeExplorer.scrollbarHover"
@@ -468,7 +644,9 @@
       "powertoys.markdown.FOCUS",
       "windows-11-start-menu-styler | web :focus-visible | outline-color",
       "calculator.resource.SystemControlFocusVisualPrimaryBrush",
-      "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"]:focus-visible | outline-color"
+      "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"]:focus-visible | outline-color",
+      "notepad-chrome.resource.SystemControlFocusVisualPrimaryBrush",
+      "notepad-chrome.resource.FocusStrokeColorOuterBrush"
     ],
     "color.interaction.marquee": [
       "nativeExplorer.marquee"
@@ -477,7 +655,11 @@
       "nativeExplorer.marqueeBorder"
     ],
     "color.interaction.hover.bg-strong": [
-      "nativeExplorer.menuHover"
+      "nativeExplorer.menuHover",
+      "notepad-chrome.resource.HoverMenuItemSelectedBackgroundBrush",
+      "notepad-chrome.resource.MenuFlyoutItemBackgroundPointerOver",
+      "notepad-chrome.resource.MenuFlyoutSubItemBackgroundPointerOver",
+      "notepad-chrome.resource.MenuFlyoutSubItemBackgroundSubMenuOpened"
     ],
     "color.text.link-hover": [
       "nativeExplorer.menuHoverText",
@@ -519,7 +701,8 @@
     ],
     "color.interaction.text-selection.bg": [
       "powertoys.markdown.SELECTION",
-      "notepad-native.SELECTION"
+      "notepad-native.SELECTION",
+      "notepad-chrome.resource.TextSelectionHighlightColorThemeBrush"
     ],
     "color.interaction.text-selection.text": [
       "powertoys.markdown.SELECTION_TEXT",
@@ -599,7 +782,9 @@
       "windows-11-start-menu-styler | web :focus-visible | outline-offset"
     ],
     "color.interaction.focus.ring-container": [
-      "windows-11-start-menu-styler | web .previewContainer:focus-visible | outline-color"
+      "windows-11-start-menu-styler | web .previewContainer:focus-visible | outline-color",
+      "notepad-chrome.resource.SystemControlFocusVisualSecondaryBrush",
+      "notepad-chrome.resource.FocusStrokeColorInnerBrush"
     ],
     "color.border.selected-indicator": [
       "windows-11-start-menu-styler | web .scope-tile--selected > div | border-bottom-color"
@@ -613,6 +798,11 @@
     ],
     "focus.offset-container": [
       "windows-11-start-menu-styler | web .previewContainer:focus-visible | outline-offset"
+    ],
+    "color.action.primary.text": [
+      "notepad-chrome.resource.ToggleSwitchKnobFillOn",
+      "notepad-chrome.resource.ToggleSwitchKnobFillOnPointerOver",
+      "notepad-chrome.resource.ToggleSwitchKnobFillOnPressed"
     ]
   },
   "unmapped": {
@@ -711,7 +901,6 @@
     "color.border.selected-indicator-inactive": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.interaction.selection.inactive-text": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.interaction.scrollbar.track": "Outside Windows visual adapter scope; preserve host semantics.",
-    "color.action.primary.text": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.action.primary.border": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.action.tertiary.hover-bg": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.action.destructive.text": "Outside Windows visual adapter scope; preserve host semantics.",

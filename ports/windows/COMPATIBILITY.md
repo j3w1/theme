@@ -706,3 +706,12 @@ allowed the previous handler to clear its new pending state. The browser test
 now observes the complete close event before the next open. The historical
 candidate bytes, focus assertions, accessibility scan and all four closing
 actions are retained. This corrects test scheduling, not the sealed candidate.
+
+### Recompiled rollback and retained recovery verification
+
+A real Latest Restore returned to the previous managed revision after changing
+the Calculator adapter. Nine unchanged compiled adapters kept their identities.
+The restored Calculator export was verified and recompiled, and the retained
+previous Test runtime accepted its new effective compilation receipt. Reapply
+of the corrected candidate then passed the installer's automatic Test. This is
+lifecycle evidence; it does not accept the remaining visual states.

@@ -192,6 +192,18 @@ export function windowsArtifacts({manifest,host,resolved}){
  const notepadSource=readFileSync(path.join(repoRoot,'ports/windows/src/j3w1-notepad-native.wh.cpp.in'),'utf8').replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in notepadSubs))throw Error('Unknown Notepad source placeholder '+key);return notepadSubs[key];});
  artifacts.push({path:'dist/'+notepadId+'.wh.cpp',text:notepadSource});json(notepadId+'.json',{enabled:1});
  bundledMods.push({id:notepadId,version:notepad.version,path:'dist/'+notepadId+'.wh.cpp',sha256:createHash('sha256').update(notepadSource).digest('hex')});
+
+ const chrome=host.notepadChrome,chromeId='j3w1-notepad-chrome';
+ if(chrome.packageFullName!==notepad.packageFullName||!/^Microsoft\.WindowsAppRuntime\.2_\d+\.\d+\.\d+\.\d+_x64__8wekyb3d8bbwe$/.test(chrome.runtimePackage)||! /^[a-f0-9]{64}$/.test(chrome.runtimeSha256))throw Error('Notepad chrome requires the exact editor package and WinUI runtime identities');
+ const chromeRules=Object.entries(chrome.resources).map(([key,role])=>{
+  if(!/^[A-Za-z][A-Za-z0-9]*$/.test(key))throw Error('Unsafe Notepad chrome resource key');
+  const token=resolved.get(role);val(role);
+  return ' {L"'+key+'",{'+Math.round((token.resolved.alpha??1)*255)+','+rgb(val(role)).join(',')+'},L"'+role+'"},';
+ }).join('\n');
+ const chromeSubs={VERSION:chrome.version,PACKAGE_FULL_NAME:chrome.packageFullName,RUNTIME_PACKAGE:chrome.runtimePackage,RUNTIME_SHA256:chrome.runtimeSha256,RESOURCE_RULES:chromeRules};
+ const chromeSource=readFileSync(path.join(repoRoot,'ports/windows/src/'+chromeId+'.wh.cpp.in'),'utf8').replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in chromeSubs))throw Error('Unknown Notepad chrome source placeholder '+key);return chromeSubs[key];});
+ artifacts.push({path:'dist/'+chromeId+'.wh.cpp',text:chromeSource});json(chromeId+'.json',{enabled:1});
+ bundledMods.push({id:chromeId,version:chrome.version,path:'dist/'+chromeId+'.wh.cpp',sha256:createHash('sha256').update(chromeSource).digest('hex')});
  const markdown=windowsMarkdownArtifacts(host,resolved);
  artifacts.push({path:`dist/${markdown.id}.wh.cpp`,text:markdown.source},{path:'dist/markdown-theme.css',text:markdown.css});
  json(`${markdown.id}.json`,{enabled:1});

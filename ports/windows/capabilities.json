@@ -720,9 +720,9 @@
       "reason": "Canonical semantic role mapped by host.json."
     },
     "color.action.primary.text": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Mapped to the exact-package Notepad chrome resource adapter; native geometry is retained."
     },
     "color.action.primary.hover-bg": {
       "state": "mapped",

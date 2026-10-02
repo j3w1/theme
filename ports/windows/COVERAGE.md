@@ -36,7 +36,7 @@ and accessibility acceptance remain open.
 | PowerToys plain-text/code preview and loading controls | Exact-version, hash-checked Monaco template adapter and native loading palette | Owner confirmed loaded preview and loading control; this does not cover Markdown |
 | PowerToys Markdown preview | Digest-pinned WebView2 HTML-boundary adapter and token-derived reading CSS for normal and large-file routes | Synthetic native preservation/rejection/recovery tests and bounded live sample checks; owner accepted heading size, spacing, code, quotation and table formatting. Other DPI and runtime accessibility cases remain open |
 | Explorer classic “Show more options” menu | Scoped exact-host Win32 popup palette | Confirmed owner/paint trace and native regressions; live normal, hot, disabled and submenu appearance still need verification |
-| Notepad | Bundled exact-package and RichEdit-binary editor adapter | A fresh sample window showed black/rose, native gray/white on disable, and the same unmodified character count. Native regressions cover ordinary glyph paint, color emoji, background restoration, high contrast and worker shutdown. WinUI chrome and final live startup/accessibility acceptance remain open |
+| Notepad | Bundled exact-package WinUI chrome resource adapter plus the RichEdit-binary editor adapter | A fresh sample window showed black/rose, native gray/white on disable, and the same unmodified character count. Native regressions cover ordinary glyph paint, color emoji, background restoration, high contrast and worker shutdown. Fresh-window chrome checks showed black tabs/toolbar/status regions, rose labels, a dark-red popup and red/rose keyboard focus. Existing windows must be reopened after injection; full hover, startup and accessibility acceptance remain open |
 | Calculator | Bundled package-gated Windows.UI.Xaml brush adapter for the recorded 11.2607.0.0 package | Bounded Scientific-mode black/rose and disable/reapply were observed. Native worker shutdown and a deliberate post-apply restoration fault passed. Other modes, final installer startup and live accessibility acceptance remain open; graph-series brushes are excluded |
 | Paint | Native dark-mode/accent treatment only | WinUI 3 toolbars and panels need an adapter; artwork canvas and color swatches must retain their colors |
 | Terminal | Native generated scheme, font and opaque chrome | Owner confirmed appearance; command output can intentionally choose other colors |
@@ -90,8 +90,7 @@ ThemeResources resolve at that parent; refreshing row resources alone leaves
 the pane gray. The parent uses the same identity-preserving resource and
 RequestedTheme restoration path, without replacing the template or changing
 mode, layout or keyboard behavior. The pane, header, divider and current-item
-indicator mappings come from the pinned WinUI 2 template. Final installed
-pane appearance and remaining focus behavior require live verification.
+indicator mappings come from the pinned WinUI 2 template. The installed Scientific navigation pane was observed black with rose labels, a dark-red selected row and dark-red dividers. Remaining result-focus and mode coverage require live verification.
 
 NavigationViewItem and its presenter receive the reviewed WinUI 2 normal,
 hover, pressed, checked, selected and disabled resource keys separately.
@@ -228,3 +227,21 @@ A fresh sample window displayed black with rose text. Disabling restored its
 native gray editor and white text; both states reported the same unmodified
 44-character document and the sample bytes were unchanged. This bounded check
 is not fresh-process, color-emoji or runtime accessibility acceptance.
+
+### Notepad chrome ownership
+
+The chrome adapter admits only the recorded Notepad package, loaded WinUI 3
+runtime digest and named application islands. It layers token-derived resources
+at their UI-thread owner and refreshes native theme expressions while retaining
+bindings, templates, commands, dimensions and document text. Exact static
+template fills require their observed class, parent, property and neutral ARGB.
+Native focus rendering receives the focus-role brushes without changing its
+geometry. Unknown roots and document surfaces are refused.
+
+Every local brush, resource key, theme refresh and backdrop retains its prior
+value and is restored only while the adapter still owns it. Failed restoration
+retains cleanup state; controlled unload removes handlers on the owning thread,
+waits for discovery and retries incomplete cleanup. High contrast bypasses the
+palette. The same installer journals this adapter, verifies its compiled
+artifact and removes/restores it with the other owned adapters. Diagnostic
+file logging is absent from the shipped source.

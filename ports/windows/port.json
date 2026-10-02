@@ -200,6 +200,14 @@
     {
       "path": "dist/j3w1-notepad-native.json",
       "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings."
+    },
+    {
+      "path": "dist/j3w1-notepad-chrome.wh.cpp",
+      "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback."
+    },
+    {
+      "path": "dist/j3w1-notepad-chrome.json",
+      "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback."
     }
   ],
   "mappingPath": "mapping.json",

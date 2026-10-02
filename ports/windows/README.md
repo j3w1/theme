@@ -35,7 +35,7 @@ desktop registry view.
 Managed-device policy
 can still prevent execution; use your administrator's approved process.
 
-**Full mode** adds five pinned Windhawk shell stylers and the bundled Explorer native-color, PowerToys text/Markdown-preview, Calculator resource and Notepad native editor adapters. It requires the exact
+**Full mode** adds five pinned Windhawk shell stylers and the bundled Explorer native-color, PowerToys text/Markdown-preview, Calculator resource and Notepad editor/chrome adapters. It requires the exact
 reviewed Windows/shell fingerprint and uses Windhawk 2.0 alpha 6. On other
 builds, setup explains the limit and asks whether to install **Native mode**:
 personalization, wallpaper, cursors and supported existing app settings, without
