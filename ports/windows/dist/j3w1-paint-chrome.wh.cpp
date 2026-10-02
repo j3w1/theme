@@ -2,7 +2,7 @@
 // @id j3w1-paint-chrome
 // @name j3w1 Paint chrome
 // @description Exact-package Paint chrome resources; document and artwork colors remain native
-// @version 1.0.0
+// @version 1.0.1
 // @author j3w1
 // @include mspaint.exe
 // @architecture x86-64
@@ -545,6 +545,12 @@ static FrameworkElement ChromeBackgroundBoundary(FrameworkElement const& content
  }
  return result;
 }
+// Paint's AppChrome is a UserControl whose Content getter does not expose its
+// rendered child Grid. Its transparent template relies on the native backdrop.
+// Admit only that direct same-root Grid; painting beneath artwork preserves it.
+static bool PaintBackingAdmission(std::wstring_view owner,std::wstring_view child,unsigned count,bool sameRoot) noexcept {
+ return owner==L"PaintUI.AppChrome"&&child==L"Microsoft.UI.Xaml.Controls.Grid"&&count==1&&sameRoot;
+}
 static void ApplyRootBackground(Root& root) {
  auto element=root.element.get();if(!element)return;
  auto boundary=ChromeBackgroundBoundary(element);
@@ -555,6 +561,10 @@ static void ApplyRootBackground(Root& root) {
   if(auto panel=control.Content().try_as<Panel>())element=panel;
  }
  
+ if(get_class_name(element)==L"PaintUI.AppChrome"&&VisualTreeHelper::GetChildrenCount(element)==1) {
+  auto child=VisualTreeHelper::GetChild(element,0).try_as<Grid>();
+  if(child&&PaintBackingAdmission(std::wstring_view{get_class_name(element)},std::wstring_view{get_class_name(child)},1,Identity(element.XamlRoot(),child.XamlRoot())))element=child;
+ }
  // This exact package's Settings Page forwards rendering to a ScrollViewer;
  // its own Control.Background is not consumed by that child template.
  if(get_class_name(element)==L"NotepadXamlUI.NotepadSettingsPage"&&VisualTreeHelper::GetChildrenCount(element)==1) {
@@ -852,11 +862,8 @@ static void Bridge(Root& root) {
 static bool RootCandidateClass(std::wstring_view name);
 static void Track(UIElement const& content,DesktopWindowXamlSource const& source,Window const& window=nullptr);
 
-static void RefreshBackdrops();
-static std::atomic<bool> nativeBackdropActive{false};
 static void Refresh(ThreadState& state) noexcept {
  if(state.busy)return;state.busy=true;state.queued=false;
- bool active=enabled.load()&&!HighContrast();if(nativeBackdropActive.exchange(active)!=active)RefreshBackdrops();
  if(!enabled.load()||HighContrast())RestoreNativeBrushes(state.nativeBrushes);
  for(auto it=state.pending.begin();it!=state.pending.end();) {
   bool finished=!enabled.load()||HighContrast();
@@ -1319,62 +1326,9 @@ static void RefreshCaptions() {
   ++it;
  }
 }
-struct NativeBackdrop {HWND window=nullptr;DWORD before=0;bool owned=false;};
-static constexpr PCWSTR backdropProperty=L"j3w1-paint-chrome-backdrop-owner";
-[[clang::no_destroy]] static std::vector<NativeBackdrop*> nativeBackdrops;
-[[clang::no_destroy]] static std::mutex backdropMutex;
-template<class Read,class Write> static bool UpdateBackdrop(NativeBackdrop& entry,bool active,Read read,Write write) noexcept {
- try {
-  DWORD current=0;if(FAILED(read(current)))return false;
-  if(entry.owned&&current!=DWMSBT_NONE){entry.owned=false;entry.before=current;}
-  if(active) {
-   if(entry.owned)return true;
-   entry.before=current;entry.owned=true;
-   if(FAILED(write(DWMSBT_NONE)))return false;
-  }else if(entry.owned) {
-   if(FAILED(write(entry.before)))return false;entry.owned=false;
-  }
-  return true;
- }catch(...){return false;}
-}
-static NativeBackdrop* FindBackdrop(HWND window) {
- auto value=static_cast<NativeBackdrop*>(GetPropW(window,backdropProperty));
- return std::find(nativeBackdrops.begin(),nativeBackdrops.end(),value)!=nativeBackdrops.end()?value:nullptr;
-}
-static bool ForgetBackdrop(NativeBackdrop* entry,bool restore) {
- if(GetPropW(entry->window,backdropProperty)==entry) {
-  if(restore&&IsWindow(entry->window)&&!UpdateBackdrop(*entry,false,
-   [&](DWORD& value){return DwmGetWindowAttribute(entry->window,DWMWA_SYSTEMBACKDROP_TYPE,&value,sizeof(value));},
-   [&](DWORD value){return originalDwmSet(entry->window,DWMWA_SYSTEMBACKDROP_TYPE,&value,sizeof(value));}))return false;
-  RemovePropW(entry->window,backdropProperty);
- }
- nativeBackdrops.erase(std::remove(nativeBackdrops.begin(),nativeBackdrops.end(),entry),nativeBackdrops.end());delete entry;return true;
-}
-static void RefreshBackdrop(HWND window) {
- if(!CaptionWindow(window)||!originalDwmSet)return;
- std::lock_guard guard(backdropMutex);auto entry=FindBackdrop(window);
- if(!enabled.load()||HighContrast()){if(entry&&!ForgetBackdrop(entry,true))PinForCleanup();return;}
- if(!entry) {
-  if(GetPropW(window,backdropProperty))return;
-  DWORD baseline=0;if(FAILED(DwmGetWindowAttribute(window,DWMWA_SYSTEMBACKDROP_TYPE,&baseline,sizeof(baseline))))return;
-  entry=new(std::nothrow) NativeBackdrop{window,baseline,false};if(!entry)return;
-  if(!SetPropW(window,backdropProperty,entry)){delete entry;return;}nativeBackdrops.push_back(entry);
- }
- if(!UpdateBackdrop(*entry,true,
-  [&](DWORD& value){return DwmGetWindowAttribute(window,DWMWA_SYSTEMBACKDROP_TYPE,&value,sizeof(value));},
-  [&](DWORD value){return originalDwmSet(window,DWMWA_SYSTEMBACKDROP_TYPE,&value,sizeof(value));}))PinForCleanup();
-}
-static void RefreshBackdrops(){EnumWindows([](HWND window,LPARAM)->BOOL{RefreshBackdrop(window);return TRUE;},0);}
-static void RestoreBackdrops(){std::lock_guard guard(backdropMutex);auto copy=nativeBackdrops;for(auto entry:copy)if(!ForgetBackdrop(entry,true))PinForCleanup();}
+// Preserve native backdrop requests. Opaque XAML backing and a captured
+// caption-color baseline provide black surfaces without exposing other windows.
 static HRESULT WINAPI DwmCaptionHook(HWND window,DWORD attribute,LPCVOID value,DWORD size) {
- if(attribute==DWMWA_SYSTEMBACKDROP_TYPE&&value&&size==sizeof(DWORD)&&CaptionWindow(window)) {
-  RefreshBackdrop(window);std::lock_guard guard(backdropMutex);auto entry=FindBackdrop(window);
-  DWORD requested;memcpy(&requested,value,sizeof(requested));
-  DWORD applied=entry&&enabled.load()&&!HighContrast()?DWMSBT_NONE:requested;
-  HRESULT result=originalDwmSet(window,attribute,&applied,sizeof(applied));
-  if(SUCCEEDED(result)&&entry){entry->before=requested;entry->owned=applied==DWMSBT_NONE;}
-  return result;
- }
  if(attribute!=DWMWA_CAPTION_COLOR||!value||size!=sizeof(COLORREF)||!CaptionWindow(window))return originalDwmSet(window,attribute,value,size);
  std::lock_guard guard(captionsMutex);COLORREF requested;memcpy(&requested,value,sizeof(requested));
  auto state=OwnedCaption(window);bool captured=!state;bool active=enabled.load()&&!HighContrast();
@@ -1391,10 +1345,9 @@ static HWND WINAPI CreateCaptionHook(DWORD exStyle,LPCWSTR type,LPCWSTR title,DW
   {std::lock_guard guard(captionsMutex);CaptureCaption(window,DWMWA_COLOR_DEFAULT);}
   if(ReviewedRuntime()&&EnsureChannel())Schedule();
  }
- RefreshBackdrop(window);RefreshCaptions();return window;
+ RefreshCaptions();return window;
 }
 static BOOL WINAPI DestroyCaptionHook(HWND window) {
- {std::lock_guard guard(backdropMutex);if(auto state=FindBackdrop(window))ForgetBackdrop(state,false);}
  {std::lock_guard guard(captionsMutex);if(auto state=OwnedCaption(window))ForgetCaption(state,false);}
  return originalDestroyWindow(window);
 }
@@ -1493,9 +1446,9 @@ static bool StartHooks() {
  return admitted;
 }
 BOOL Wh_ModInit(){bool ready=ReviewedPackage()&&StartHooks();Log(253,ready,enabled.load());return ready;}
-void Wh_ModAfterInit(){RefreshBackdrops();StartRootDiscovery();Admit();discovery=CreateThread(nullptr,0,[](LPVOID)->DWORD{
+void Wh_ModAfterInit(){StartRootDiscovery();Admit();discovery=CreateThread(nullptr,0,[](LPVOID)->DWORD{
  try{init_apartment(apartment_type::multi_threaded);try{for(unsigned i=0;i<50&&!factoryReady.load()&&WaitForSingleObject(stopDiscovery,100)==WAIT_TIMEOUT;i++)Admit();}catch(...){}uninit_apartment();}
  catch(hresult_error const& error){Log(7,static_cast<unsigned>(error.code().value));}catch(...){}return 0;
  },nullptr,0,nullptr);}
-void Wh_ModUninit(){enabled=false;StopRootDiscovery();RestoreBackdrops();RestoreCaptions();SetEvent(stopDiscovery);if(discovery){WaitForSingleObject(discovery,INFINITE);CloseHandle(discovery);discovery=nullptr;}std::vector<HWND> copy;{std::lock_guard guard(channelMutex);copy=channels;}for(HWND window:copy)if(IsWindow(window))SendMessageW(window,dispatchMessage,1,0);CloseHandle(stopDiscovery);stopDiscovery=nullptr;for(auto& value:factoryIdentity)value=nullptr;for(auto& value:activationIdentity)value=nullptr;}
-void Wh_ModSettingsChanged(){enabled=Wh_GetIntSetting(L"enabled")!=0;if(enabled.load())RefreshRootDiscovery();RefreshBackdrops();RefreshCaptions();std::vector<HWND> copy;{std::lock_guard guard(channelMutex);copy=channels;}for(HWND window:copy)if(IsWindow(window))SendMessageW(window,dispatchMessage,0,0);}
+void Wh_ModUninit(){enabled=false;StopRootDiscovery();RestoreCaptions();SetEvent(stopDiscovery);if(discovery){WaitForSingleObject(discovery,INFINITE);CloseHandle(discovery);discovery=nullptr;}std::vector<HWND> copy;{std::lock_guard guard(channelMutex);copy=channels;}for(HWND window:copy)if(IsWindow(window))SendMessageW(window,dispatchMessage,1,0);CloseHandle(stopDiscovery);stopDiscovery=nullptr;for(auto& value:factoryIdentity)value=nullptr;for(auto& value:activationIdentity)value=nullptr;}
+void Wh_ModSettingsChanged(){enabled=Wh_GetIntSetting(L"enabled")!=0;if(enabled.load())RefreshRootDiscovery();RefreshCaptions();std::vector<HWND> copy;{std::lock_guard guard(channelMutex);copy=channels;}for(HWND window:copy)if(IsWindow(window))SendMessageW(window,dispatchMessage,0,0);}

@@ -45,23 +45,37 @@ static void Stop() {
 }
 int main(int argc, char** argv) {
     assert(argc == 2);
-    if(strcmp(argv[1],"backdrop-ownership") == 0) {
-        DWORD current=DWMSBT_TABBEDWINDOW;NativeBackdrop entry;
-        auto read=[&](DWORD& value){value=current;return S_OK;};
-        auto write=[&](DWORD value){current=value;return S_OK;};
-        assert(UpdateBackdrop(entry,true,read,write)&&current==DWMSBT_NONE&&entry.before==DWMSBT_TABBEDWINDOW);
-        assert(UpdateBackdrop(entry,false,read,write)&&current==DWMSBT_TABBEDWINDOW&&!entry.owned);
-        assert(UpdateBackdrop(entry,true,read,write));current=DWMSBT_MAINWINDOW;
-        assert(UpdateBackdrop(entry,false,read,write)&&current==DWMSBT_MAINWINDOW);
-        auto deniedRead=[](DWORD&){return E_ACCESSDENIED;};
-        assert(!UpdateBackdrop(entry,true,deniedRead,write)&&current==DWMSBT_MAINWINDOW);
-        unsigned calls=0;auto partial=[&](DWORD value){current=value;return calls++?S_OK:E_FAIL;};
-        assert(!UpdateBackdrop(entry,true,read,partial)&&entry.owned&&current==DWMSBT_NONE);
-        assert(UpdateBackdrop(entry,false,read,write)&&current==DWMSBT_MAINWINDOW);
-        assert(UpdateBackdrop(entry,true,read,write));auto denied=[](DWORD){return E_ACCESSDENIED;};
-        assert(!UpdateBackdrop(entry,false,read,denied)&&entry.owned);
-        assert(UpdateBackdrop(entry,false,read,write)&&current==DWMSBT_MAINWINDOW);
-        puts("PASS: exact readable backdrop baseline, later app edit, read denial, partial write and restoration retry");return 0;
+    if(strcmp(argv[1],"backing-admission") == 0) {
+        assert(PaintBackingAdmission(L"PaintUI.AppChrome",L"Microsoft.UI.Xaml.Controls.Grid",1,true));
+        assert(!PaintBackingAdmission(L"PaintUI.Canvas",L"Microsoft.UI.Xaml.Controls.Grid",1,true));
+        assert(!PaintBackingAdmission(L"Microsoft.UI.Xaml.Controls.UserControl",L"Microsoft.UI.Xaml.Controls.Grid",1,true));
+        assert(!PaintBackingAdmission(L"PaintUI.AppChrome",L"PaintUI.D2DSwapChainPanel",1,true));
+        assert(!PaintBackingAdmission(L"PaintUI.AppChrome",L"Microsoft.UI.Xaml.Controls.Grid",2,true));
+        assert(!PaintBackingAdmission(L"PaintUI.AppChrome",L"Microsoft.UI.Xaml.Controls.Grid",1,false));
+        puts("PASS: exact opaque Paint backing and document/cross-root rejection");return 0;
+    }
+    if(strcmp(argv[1],"backdrop-passthrough") == 0) {
+        WNDCLASSW type{};type.lpfnWndProc=DefWindowProcW;type.hInstance=GetModuleHandleW(nullptr);
+#if J3W1_TEST_PAINT
+        type.lpszClassName=L"MSPaintApp";
+#else
+        type.lpszClassName=L"Notepad";
+#endif
+        assert(RegisterClassW(&type));
+        HWND window=CreateWindowExW(0,type.lpszClassName,L"",0,0,0,20,20,nullptr,nullptr,type.hInstance,nullptr);
+        assert(window&&CaptionWindow(window));
+        static DWORD attributeSeen=0,valueSeen=0;static unsigned calls=0;
+        originalDwmSet=+[](HWND,DWORD attribute,LPCVOID value,DWORD size)->HRESULT {
+            assert(value&&size==sizeof(DWORD));attributeSeen=attribute;memcpy(&valueSeen,value,size);++calls;return S_OK;
+        };
+        // The real generated hook must leave existing and later app backdrop
+        // requests untouched, independently of its theme activation state.
+        for(bool active:{false,true})for(DWORD backdrop:{DWORD(DWMSBT_MAINWINDOW),DWORD(DWMSBT_TABBEDWINDOW),DWORD(DWMSBT_NONE)}) {
+            enabled=active;assert(SUCCEEDED(DwmCaptionHook(window,DWMWA_SYSTEMBACKDROP_TYPE,&backdrop,sizeof(backdrop))));
+            assert(attributeSeen==DWMWA_SYSTEMBACKDROP_TYPE&&valueSeen==backdrop);
+        }
+        assert(calls==6);assert(DestroyWindow(window));assert(UnregisterClassW(type.lpszClassName,type.hInstance));
+        puts("PASS: native backdrop requests preserved in active and inactive adapter states");return 0;
     }
     if(strcmp(argv[1], "discovery-admission") == 0) {
 #if J3W1_TEST_PAINT

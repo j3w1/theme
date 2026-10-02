@@ -14,7 +14,9 @@ restores and uninstalls the port. There is no separate setup script.
 1. Open **Windows PowerShell** as your normal desktop user on Windows 11 x64.
 2. Paste the command below. Setup obtains required runtimes, checks compatibility,
    installs the theme, runs Test, and prints the exact recovery commands.
-3. Reopen affected apps and check their appearance.
+3. Reopen affected apps and check their appearance. Save documents first; setup
+   does not close them. Already-open Notepad/Paint caption backgrounds can remain
+   native until the app is reopened, so their original state stays recoverable.
 
 <!-- install:start -->
 Install commands appear here once v4.0.0 is released.

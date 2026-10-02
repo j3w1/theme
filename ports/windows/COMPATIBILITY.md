@@ -749,3 +749,20 @@ returns their actual baseline; caption-color reads were rejected. The shared
 adapter therefore restores the readable backdrop separately and never invents
 an original caption color for existing windows. Live appearance, state exit
 and lifecycle verification of this shared candidate remain required.
+
+
+### Opaque Paint backing and native backdrop preservation
+
+Live inspection of the initial shared candidate found that removing Paint's
+native backdrop exposed windows behind its transparent AppChrome template.
+Latest Restore returned its readable backdrop to value 2 and the opaque native
+workspace. A bounded read-only trace identified the direct same-root Grid as
+the app's backing layer. The corrected adapter retains and themes that Grid's
+local background, while drawing and color controls remain excluded.
+
+A new empty Notepad window at the previous revision demonstrated a black caption
+with the native backdrop still enabled. Native backdrop mutation is therefore
+removed; both its value and later application requests are preserved. Existing
+unknown captions stay native until a captured request or a newly opened window
+supplies a baseline. Live verification of the corrected Paint candidate remains
+required.

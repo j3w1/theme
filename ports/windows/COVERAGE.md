@@ -272,9 +272,15 @@ exact package gates and named chrome admission lists. Diagnostics below a generi
 island root select only the topmost named chrome ancestor in that XamlRoot.
 Drawing, swatch and document classes do not grant admission.
 
-The native system backdrop has a readable baseline, unlike caption colors.
-The adapter saves that exact value before removing Mica from an admitted existing
-window, restores it only while its own value remains active, and tracks later
-application requests. Failed restoration retains ownership for retry. Existing
-caption color remains native until an app request provides its baseline. No
-AppWindow title controller or window restart is used.
+Native DWM backdrop values and later app requests remain untouched. Removing
+Paint's native backdrop exposed other windows through its transparent chrome,
+so the adapter themes the actual opaque backing instead. A new empty Notepad
+window demonstrated a black caption while its native backdrop remained active.
+Existing caption color remains native until an app request provides a baseline;
+reopening an app provides a creation baseline without guessing its old value.
+No AppWindow title controller or forced window restart is used.
+
+Paint's admitted AppChrome renders through a single direct child Grid. Its
+background is made opaque using the canvas role, with the exact prior local
+value retained for restoration. The Grid must remain in the same XamlRoot;
+canvas, drawing, swatch and image properties are not written.
