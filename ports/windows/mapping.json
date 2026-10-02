@@ -194,7 +194,7 @@
       "calculator.resource.TextFillColorPrimaryBrush",
       "calculator.resource.SystemControlPageTextBaseHighBrush",
       "calculator.resource.SystemControlForegroundBaseHighBrush",
-      "calculator.resource.ToolTipForeground",
+      "calculator.resource.ToolTipForegroundBrush",
       "calculator.resource.NavigationViewItemForeground",
       "calculator.resource.NavigationViewItemForegroundPointerOver",
       "notepad-chrome.resource.TextFillColorPrimaryBrush",
@@ -410,7 +410,8 @@
       "paint-chrome.resource.MenuFlyoutItemBackground",
       "paint-chrome.resource.MenuFlyoutItemBackgroundDisabled",
       "paint-chrome.resource.MenuFlyoutSubItemBackground",
-      "paint-chrome.resource.MenuFlyoutSubItemBackgroundDisabled"
+      "paint-chrome.resource.MenuFlyoutSubItemBackgroundDisabled",
+      "calculator.resource.AcrylicInAppFillColorDefaultBrush"
     ],
     "color.border.control": [
       "powertoys.border",
@@ -644,7 +645,8 @@
       "notepad-chrome.resource.MenuFlyoutPresenterBorderBrush",
       "notepad-chrome.resource.SurfaceStrokeColorFlyoutBrush",
       "paint-chrome.resource.MenuFlyoutPresenterBorderBrush",
-      "paint-chrome.resource.SurfaceStrokeColorFlyoutBrush"
+      "paint-chrome.resource.SurfaceStrokeColorFlyoutBrush",
+      "calculator.resource.SystemControlTransientBorderBrush"
     ],
     "border.width.default": [
       "windows-11-start-menu-styler | Border#AcrylicBorder | BorderThickness",
@@ -979,7 +981,7 @@
       "windows-11-start-menu-styler | web .previewContainer:focus-visible | outline-width"
     ],
     "color.surface.overlay": [
-      "calculator.resource.ToolTipBackground"
+      "calculator.resource.ToolTipBackgroundBrush"
     ],
     "focus.offset-container": [
       "windows-11-start-menu-styler | web .previewContainer:focus-visible | outline-offset"

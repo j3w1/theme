@@ -2,7 +2,7 @@
 // @id j3w1-calculator
 // @name j3w1 Calculator resources
 // @description Version-checked Calculator UI resources; equation colors remain native
-// @version 1.4.2
+// @version 1.4.3
 // @author j3w1
 // @include CalculatorApp.exe
 // @architecture x86-64
@@ -97,8 +97,6 @@ static constexpr Rule rules[] = {
     {L"NavigationViewTopPaneBackground",{255,0,0,0},L"color.surface.canvas"},
     {L"ControlStrokeColorSecondaryBrush",{255,163,103,107},L"color.border.control"},
     {L"ControlElevationBorderBrush",{255,163,103,107},L"color.border.control"},
-    {L"ToolTipBackground",{255,36,16,16},L"color.surface.overlay"},
-    {L"ToolTipForeground",{255,233,148,153},L"color.text.default"},
     {L"ToolTipBorderBrush",{255,163,103,107},L"color.border.control"},
     {L"NavigationViewItemBackground",{255,0,0,0},L"color.surface.canvas"},
     {L"NavigationViewItemForeground",{255,233,148,153},L"color.text.default"},
@@ -129,6 +127,10 @@ static constexpr Rule rules[] = {
     {L"NavigationViewItemHeaderForeground",{255,189,120,125},L"color.text.muted"},
     {L"NavigationViewContentGridBorderBrush",{255,43,14,13},L"color.border.divider"},
     {L"NavigationViewSelectionIndicatorForeground",{255,229,57,53},L"color.border.active"},
+    {L"ToolTipBackgroundBrush",{255,36,16,16},L"color.surface.overlay"},
+    {L"ToolTipForegroundBrush",{255,233,148,153},L"color.text.default"},
+    {L"AcrylicInAppFillColorDefaultBrush",{255,22,11,11},L"color.surface.raised"},
+    {L"SystemControlTransientBorderBrush",{255,229,57,53},L"color.border.overlay"},
 };
 static std::atomic<bool> enabled{false}, admitted{false};
 static std::atomic<HWND> coreWindow{nullptr};
@@ -368,7 +370,9 @@ static bool ChromeControl(DependencyObject const& object) {
     return object.try_as<Windows::UI::Xaml::Controls::Primitives::ButtonBase>()
         ||object.try_as<MenuFlyoutPresenter>()||object.try_as<MenuFlyoutItem>()||object.try_as<MenuFlyoutSubItem>()
         ||object.try_as<ToggleSwitch>()||object.try_as<ComboBox>()||object.try_as<ListViewItem>()
-        ||object.try_as<TextBlock>()||object.try_as<IconElement>();
+        ||object.try_as<TextBlock>()||object.try_as<IconElement>()
+        // WinUI popup resources resolve at the host, above its buttons/text.
+        ||object.try_as<ToolTip>()||object.try_as<CommandBar>();
 }
 static void RefreshControlResources(DependencyObject const& object) {
     if(!ChromeControl(object))return;
@@ -604,7 +608,8 @@ static void BridgeStaticText(DependencyObject const& object) {
   object.SetValue(property,applied);
  };
 
- if(object.try_as<Control>()) {
+ if(object.try_as<Control>()||object.try_as<TextBlock>()) {
+  // CalculationResult gives its TextBlock programmatic keyboard focus.
   ApplyFocusBrush(object,FrameworkElement::FocusVisualPrimaryBrushProperty(),L"SystemControlFocusVisualPrimaryBrush");
   ApplyFocusBrush(object,FrameworkElement::FocusVisualSecondaryBrushProperty(),L"SystemControlFocusVisualSecondaryBrush");
  }

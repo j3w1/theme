@@ -1094,7 +1094,7 @@
     }
   },
   "calculator": {
-    "version": "1.4.2",
+    "version": "1.4.3",
     "packageFullName": "Microsoft.WindowsCalculator_11.2607.0.0_x64__8wekyb3d8bbwe",
     "resources": {
       "AppChromeAcrylicHostBackdropMediumLowBrush": "color.surface.canvas",
@@ -1153,8 +1153,6 @@
       "NavigationViewTopPaneBackground": "color.surface.canvas",
       "ControlStrokeColorSecondaryBrush": "color.border.control",
       "ControlElevationBorderBrush": "color.border.control",
-      "ToolTipBackground": "color.surface.overlay",
-      "ToolTipForeground": "color.text.default",
       "ToolTipBorderBrush": "color.border.control",
       "NavigationViewItemBackground": "color.surface.canvas",
       "NavigationViewItemForeground": "color.text.default",
@@ -1184,7 +1182,11 @@
       "NavigationViewContentBackground": "color.surface.canvas",
       "NavigationViewItemHeaderForeground": "color.text.muted",
       "NavigationViewContentGridBorderBrush": "color.border.divider",
-      "NavigationViewSelectionIndicatorForeground": "color.border.active"
+      "NavigationViewSelectionIndicatorForeground": "color.border.active",
+      "ToolTipBackgroundBrush": "color.surface.overlay",
+      "ToolTipForegroundBrush": "color.text.default",
+      "AcrylicInAppFillColorDefaultBrush": "color.surface.raised",
+      "SystemControlTransientBorderBrush": "color.border.overlay"
     },
     "buttonStyleTarget": "CalculatorApp.Controls.CalculatorButton, CalculatorApp, Version=11.2607.0.0, Culture=neutral, PublicKeyToken=null"
   },

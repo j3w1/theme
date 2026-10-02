@@ -281,7 +281,9 @@ static bool ChromeControl(DependencyObject const& object) {
     return object.try_as<Windows::UI::Xaml::Controls::Primitives::ButtonBase>()
         ||object.try_as<MenuFlyoutPresenter>()||object.try_as<MenuFlyoutItem>()||object.try_as<MenuFlyoutSubItem>()
         ||object.try_as<ToggleSwitch>()||object.try_as<ComboBox>()||object.try_as<ListViewItem>()
-        ||object.try_as<TextBlock>()||object.try_as<IconElement>();
+        ||object.try_as<TextBlock>()||object.try_as<IconElement>()
+        // WinUI popup resources resolve at the host, above its buttons/text.
+        ||object.try_as<ToolTip>()||object.try_as<CommandBar>();
 }
 static void RefreshControlResources(DependencyObject const& object) {
     if(!ChromeControl(object))return;
@@ -517,7 +519,8 @@ static void BridgeStaticText(DependencyObject const& object) {
   object.SetValue(property,applied);
  };
 
- if(object.try_as<Control>()) {
+ if(object.try_as<Control>()||object.try_as<TextBlock>()) {
+  // CalculationResult gives its TextBlock programmatic keyboard focus.
   ApplyFocusBrush(object,FrameworkElement::FocusVisualPrimaryBrushProperty(),L"SystemControlFocusVisualPrimaryBrush");
   ApplyFocusBrush(object,FrameworkElement::FocusVisualSecondaryBrushProperty(),L"SystemControlFocusVisualSecondaryBrush");
  }

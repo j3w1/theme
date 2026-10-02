@@ -37749,7 +37749,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-enQkmrSXVJCzfBD/pB4mnp8s7OuBvV2K1V9aBjhrT7Y=",
+      "subjectDigest": "sha256-SA5hlLcKXEaL4vrO6JttF/6V9+d2jG/E+mmaLpM1xig=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37782,7 +37782,7 @@
           "path": "dist/windows-settings.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-settings.json",
-          "digest": "sha256-BOTTPmKgUKmXTNf/VoemYXcDsa+ijolXMOjaTufRwec="
+          "digest": "sha256-7UU/vruKMD1HBQfFh0CN/mp5fBEAnLdESZvFR2m4VYo="
         },
         {
           "path": "dist/terminal-fragment.json",
@@ -37956,7 +37956,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-haGz2oNMCyaMwJkWc6wgG6Bt5AAMp+JvKgeYqnW0KnA="
+          "digest": "sha256-gXgBfmG2kR8uCtGZCRG62DosCa8aTMiQbpGvRBGK7a0="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
@@ -37986,7 +37986,7 @@
           "path": "dist/j3w1-calculator.wh.cpp",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/j3w1-calculator.wh.cpp",
-          "digest": "sha256-PZK8IuGnskdbXqR1eWj45kKOxex5MAI3R7mlmT1MbQo="
+          "digest": "sha256-kpNPk+MCQyY3XDOEPql7u+VVRV82MNJJ1Byu8IIlUHc="
         },
         {
           "path": "dist/j3w1-calculator.json",
@@ -38732,7 +38732,8 @@
             "notepad-chrome.resource.MenuFlyoutPresenterBorderBrush",
             "notepad-chrome.resource.SurfaceStrokeColorFlyoutBrush",
             "paint-chrome.resource.MenuFlyoutPresenterBorderBrush",
-            "paint-chrome.resource.SurfaceStrokeColorFlyoutBrush"
+            "paint-chrome.resource.SurfaceStrokeColorFlyoutBrush",
+            "calculator.resource.SystemControlTransientBorderBrush"
           ],
           "value": "#e53935",
           "eligibility": {
@@ -42122,7 +42123,7 @@
         {
           "role": "color.surface.overlay",
           "nativeKeys": [
-            "calculator.resource.ToolTipBackground"
+            "calculator.resource.ToolTipBackgroundBrush"
           ],
           "value": "#241010",
           "eligibility": {
@@ -42160,7 +42161,8 @@
             "paint-chrome.resource.MenuFlyoutItemBackground",
             "paint-chrome.resource.MenuFlyoutItemBackgroundDisabled",
             "paint-chrome.resource.MenuFlyoutSubItemBackground",
-            "paint-chrome.resource.MenuFlyoutSubItemBackgroundDisabled"
+            "paint-chrome.resource.MenuFlyoutSubItemBackgroundDisabled",
+            "calculator.resource.AcrylicInAppFillColorDefaultBrush"
           ],
           "value": "#160b0b",
           "eligibility": {
@@ -42670,7 +42672,7 @@
             "calculator.resource.TextFillColorPrimaryBrush",
             "calculator.resource.SystemControlPageTextBaseHighBrush",
             "calculator.resource.SystemControlForegroundBaseHighBrush",
-            "calculator.resource.ToolTipForeground",
+            "calculator.resource.ToolTipForegroundBrush",
             "calculator.resource.NavigationViewItemForeground",
             "calculator.resource.NavigationViewItemForegroundPointerOver",
             "notepad-chrome.resource.TextFillColorPrimaryBrush",

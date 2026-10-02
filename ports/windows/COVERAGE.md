@@ -284,3 +284,18 @@ Paint's admitted AppChrome renders through a single direct child Grid. Its
 background is made opaque using the canvas role, with the exact prior local
 value retained for restoration. The Grid must remain in the same XamlRoot;
 canvas, drawing, swatch and image properties are not written.
+
+### Calculator popup resource boundary
+
+Tooltips and the result text's command bar use parent-level theme resources.
+Refreshing only their child buttons leaves the host background native gray.
+The adapter now admits the native ToolTip and CommandBar hosts through the same
+local-resource ownership and refresh path as other chrome controls. It uses
+ToolTipBackgroundBrush and ToolTipForegroundBrush, correcting two unused key
+names, and the CommandBar's AcrylicInAppFillColorDefaultBrush and
+SystemControlTransientBorderBrush. These keys are from the pinned
+[WinUI 2.8.7 ToolTip template](https://github.com/microsoft/microsoft-ui-xaml/blob/v2.8.7/dev/CommonStyles/ToolTip_rs5_themeresources.xaml)
+and [CommandBarFlyout template](https://github.com/microsoft/microsoft-ui-xaml/blob/v2.8.7/dev/CommandBarFlyout/CommandBarFlyoutOS_themeresources.xaml).
+The result TextBlock receives the same restorable focus-brush mapping as native
+controls; its selection, commands and text remain native. Installed popup,
+hover exit and accessibility acceptance remain separate checks.
