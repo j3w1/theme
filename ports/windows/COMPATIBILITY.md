@@ -118,6 +118,13 @@ and publisher, and retains it under `tools/node` for sign-in and recovery.
 Setup uses an ordinary unpackaged PowerShell installation or its own pinned
 private runtime. The sign-in guard uses that same runtime. Microsoft Store
 PowerShell is excluded because its registry view differed during native checks.
+The installer queries actual process package identity before setup, recovery or
+lifecycle work. Checking the executable path alone is insufficient: a standalone
+child launched from Store PowerShell can inherit that package context.
+Packaged or unknown context refuses before dependency acquisition or settings
+changes. Use Windows PowerShell included with Windows to run the same script.
+A failed child lifecycle prints its diagnostic result before the wrapper error;
+Test reports verification and never claims to have restored the appearance.
 Theme restore retains installed shared tools and fonts; automatic dependency removal is unsupported.
 
 ## Start-menu styling

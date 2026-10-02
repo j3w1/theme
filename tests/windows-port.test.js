@@ -60,6 +60,9 @@ test('Search presentation cannot hide controls, accept scripts or substitute lit
   assert.throws(()=>windowsWebContentStyles([{...rule,presentation}],value),/Unsupported Search presentation/);
  assert.throws(()=>windowsWebContentStyles([{...rule,target:'button {} body'}],value),/Invalid Search selector/);
  assert.throws(()=>windowsWebContentStyles([{...rule,styles:{'color; display':'color.surface.canvas'}}],value),/Invalid Search style property/);
+ assert.deepEqual(windowsWebContentStyles([{target:'.suggestion .details',styles:{},presentation:{'background-color':'inherit'}}],value),[{target:'.suggestion .details',styles:['background-color: inherit !important']}]);
+ for(const fill of ['white','transparent','var(--unreviewed-color)'])
+  assert.throws(()=>windowsWebContentStyles([{target:'.suggestion .details',styles:{},presentation:{'background-color':fill}}],value),/Unsupported Search presentation/);
 });
 function fixture(t) {
  const state=fs.mkdtempSync(path.join(os.tmpdir(),'j3w1-windows-test-'));

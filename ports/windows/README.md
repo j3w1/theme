@@ -23,7 +23,16 @@ Install commands appear here once v4.0.0 is released.
 No Git, manual Node install or preinstalled PowerShell 7 is needed. Setup reuses
 an unpackaged PowerShell 7.4+ installation under Program Files when available; otherwise it retains a pinned, hash-checked and
 Microsoft-signed runtime for this user. It does not change system execution
-policy or require you to elevate the whole installation. Managed-device policy
+policy or require you to elevate the whole installation.
+
+Use **Windows PowerShell** or an ordinary standalone PowerShell. A process
+launched from Microsoft Store PowerShell can retain its package context even
+when it starts a standalone executable. Setup and recovery detect that context
+and refuse before downloads or settings changes; run the same command in
+Windows PowerShell already included with Windows. This preserves the real
+desktop registry view.
+
+Managed-device policy
 can still prevent execution; use your administrator's approved process.
 
 **Full mode** adds five pinned Windhawk shell stylers and the bundled Explorer native-color, PowerToys text/Markdown-preview, Calculator resource and Notepad native editor adapters. It requires the exact

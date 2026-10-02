@@ -255,17 +255,23 @@
       ]
     },
     {
-      "target": ".suggestion:hover, .suggestion:hover .details, .suggestion:hover .iconContainer, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover",
+      "target": ".suggestion:hover, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover",
       "styles": [
         "background-color: #1c0a09 !important",
         "color: #e99499 !important"
       ]
     },
     {
-      "target": ".suggestion[aria-selected=\"true\"], .suggestion[aria-selected=\"true\"] .details, .suggestion[aria-selected=\"true\"] .iconContainer, .suggestion[aria-selected=\"true\"] .title, .suggestion[aria-selected=\"true\"] .secondaryText",
+      "target": ".suggestion[aria-selected=\"true\"]",
       "styles": [
         "background-color: #531310 !important",
         "color: #f4eeee !important"
+      ]
+    },
+    {
+      "target": ".suggestion .details, .suggestion .iconContainer, .suggestion .title, .suggestion .secondaryText",
+      "styles": [
+        "background-color: inherit !important"
       ]
     },
     {
@@ -286,7 +292,7 @@
     {
       "target": ".suggestion[aria-selected=\"true\"]:focus-visible",
       "styles": [
-        "outline-color: #ffa2a7 !important"
+        "outline-color: #e53935 !important"
       ]
     },
     {
@@ -321,6 +327,21 @@
       "target": ".leftPill::before",
       "styles": [
         "background-color: #e53935 !important"
+      ]
+    },
+    {
+      "target": ".suggestion[aria-selected=\"true\"] .title, .suggestion[aria-selected=\"true\"] .secondaryText",
+      "styles": [
+        "color: #f4eeee !important"
+      ]
+    },
+    {
+      "target": ".previewContainer:focus-visible",
+      "styles": [
+        "outline-color: #ffa2a7 !important",
+        "outline-width: 2px !important",
+        "outline-offset: -3px !important",
+        "outline-style: solid !important"
       ]
     }
   ],

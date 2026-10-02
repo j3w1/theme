@@ -1,6 +1,8 @@
 param([string]$Setup,[string]$Root,[string]$Case)
 Set-StrictMode -Version Latest;$ErrorActionPreference='Stop'
 . $Setup
+# Ordinary process context for isolated cross-platform fixtures.
+function Get-J3w1ProcessPackageStatus {return 15700}
 function Check($Condition,[string]$Message){if(-not $Condition){throw $Message}}
 function Reject([scriptblock]$Block,[string]$Pattern){try{& $Block}catch{if($_.Exception.Message -match $Pattern){return};throw};throw "Expected rejection: $Pattern"}
 function WriteJson([string]$Path,$Value){[IO.Directory]::CreateDirectory([IO.Path]::GetDirectoryName($Path))|Out-Null;[IO.File]::WriteAllText($Path,($Value|ConvertTo-Json -Depth 10))}
@@ -14,6 +16,25 @@ if($Case -eq 'identity'){
  function Invoke-RestMethod($Uri){$script:urls+=$Uri;if($Uri -like '*/ref/tags/v4.0.0'){return @{object=@{type='tag';sha='b'*40;url='https://example.invalid/untrusted'}}};return @{object=@{type='commit';sha=$rev}}}
  Check ((Resolve-J3w1SetupRevision '' 'v4.0.0') -eq $rev) 'Annotated tag did not resolve'
  Check ($script:urls.Count -eq 2 -and $script:urls[1] -eq ('https://api.github.com/repos/j3w1/theme/git/tags/'+('b'*40))) 'Untrusted tag URL followed'
+}
+elseif($Case -eq 'process-context'){
+ $env:OS='Windows_NT'
+ $script:packageStatus=15700
+ function Get-J3w1ProcessPackageStatus {return $script:packageStatus}
+ Assert-J3w1NativeProcess
+ $script:packageStatus=122
+ function Find-J3w1SetupPowerShell {throw 'RUNTIME DISCOVERY MUST NOT RUN'}
+ function Invoke-WebRequest {throw 'DOWNLOAD MUST NOT RUN'}
+ function Invoke-RestMethod {throw 'DOWNLOAD MUST NOT RUN'}
+ # Windows may create its own Microsoft/Windows/Caches under LOCALAPPDATA
+ # during process startup. Keep theme state separate and require it to remain
+ # completely absent, rather than conflating OS cache creation with setup.
+ $contextState=Join-Path $Root 'theme-state'
+ Reject {Invoke-J3w1WindowsSetup $rev '' 'Full' $true $contextState} 'Microsoft Store package context'
+ Reject {Invoke-J3w1WindowsRecovery 'Restore' $false $contextState} 'Microsoft Store package context'
+ Reject {Invoke-J3w1WindowsLifecycle -Action Apply -Revision $rev -SourceRoot $Root -StateRoot $contextState} 'Microsoft Store package context'
+ Check (-not (Test-Path -LiteralPath $contextState)) 'Packaged-context rejection wrote state before refusing'
+ foreach($status in @(0,5,-1)){$script:packageStatus=$status;Reject {Assert-J3w1NativeProcess} 'could not be verified'}
 }
 elseif($Case -eq 'runtime-selection'){
  $env:ProgramFiles=Join-Path $Root 'program-files';$env:LOCALAPPDATA=Join-Path $Root 'local'
@@ -140,7 +161,7 @@ elseif($Case -eq 'cached-setup'){
  Check (-not(Test-Path -LiteralPath (Join-Path $Root 'setup.lock'))) 'Failed cached setup leaked lock'
 }
 elseif($Case -eq 'child-failure'){
- [IO.Directory]::CreateDirectory($Root)|Out-Null;$bad=Join-Path $Root 'failure.ps1';[IO.File]::WriteAllText($bad,'param($Action,$Mode,$StateRoot) exit 23')
+ [IO.Directory]::CreateDirectory($Root)|Out-Null;$bad=Join-Path $Root 'failure.ps1';[IO.File]::WriteAllText($bad,'param($Action,$Mode,$StateRoot) Write-Output FAILED_DIAGNOSTIC; exit 23')
  Reject {Invoke-J3w1SetupLifecycle (Get-Process -Id $PID).Path $bad 'Restore' 'Native' '' $Root} 'exit 23'
  $commands=Get-J3w1SetupRecovery "C:\test's runtime\pwsh.exe" "C:\some folder\install.ps1" "C:\user's theme"
  Check ($commands.Count -eq 4 -and $commands[1].EndsWith('-Action Restore -Latest')) 'Recovery actions missing'

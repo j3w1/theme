@@ -13,6 +13,28 @@ param(
  [switch]$Fixture,[int]$FixtureFailAfter=0,
  [switch]$Lifecycle
 )
+function Get-J3w1ProcessPackageStatus {
+ if(-not ('J3w1WindowsProcessIdentity' -as [type])){
+  Add-Type -TypeDefinition @'
+using System;
+using System.Runtime.InteropServices;
+public static class J3w1WindowsProcessIdentity {
+ [DllImport("kernel32.dll",CharSet=CharSet.Unicode)] private static extern int GetCurrentPackageFullName(ref uint length,IntPtr name);
+ public static int Status(){uint length=0;return GetCurrentPackageFullName(ref length,IntPtr.Zero);}
+}
+'@
+ }
+ return [J3w1WindowsProcessIdentity]::Status()
+}
+function Assert-J3w1NativeProcess {
+ if($env:OS -ne 'Windows_NT'){return}
+ # An unpackaged executable can inherit its Store parent's package context.
+ # Check the current process identity, not only the executable's path.
+ $status=Get-J3w1ProcessPackageStatus
+ if($status -eq 15700){return} # APPMODEL_ERROR_NO_PACKAGE
+ if($status -eq 122){throw 'This PowerShell process has a Microsoft Store package context. Open Windows PowerShell included with Windows and run the same install.ps1 command there. No theme settings were changed.'}
+ throw "Native Windows process identity could not be verified (code $status). No theme settings were changed."
+}
 function Assert-J3w1SetupPath([string]$Path) {
  $p=[IO.Path]::GetFullPath($Path)
  while($p){
@@ -131,7 +153,7 @@ function Invoke-J3w1SetupLifecycle([string]$PowerShell,[string]$Installer,[strin
  if($Revision){$arguments+=@('-Revision',$Revision)}
  if($Latest){$arguments+='-Latest'}
  $result=& $PowerShell @arguments
- if($LASTEXITCODE -ne 0){throw "Windows theme $Action failed (exit $LASTEXITCODE). See the printed recovery commands."}
+ if($LASTEXITCODE -ne 0){$result|Write-Output;throw "Windows theme $Action failed (exit $LASTEXITCODE). See the printed recovery commands."}
  return $result
 }
 function Select-J3w1SetupMode($Plan,[string]$Mode,[bool]$NonInteractive) {
@@ -204,6 +226,7 @@ function Get-J3w1RecoveryPowerShellPin($Release,[string]$StateRoot) {
  throw 'No verified offline PowerShell dependency pin was found. Restore the saved setup release cache; no download was attempted.'
 }
 function Invoke-J3w1WindowsRecovery([string]$Action,[bool]$Latest,[string]$StateRoot) {
+ Assert-J3w1NativeProcess
  if($env:OS -ne 'Windows_NT'){throw 'Run recovery on native Windows'}
  $StateRoot=[IO.Path]::GetFullPath($StateRoot);Assert-J3w1SetupPath $StateRoot
  $pointer=$null
@@ -232,9 +255,11 @@ function Invoke-J3w1WindowsRecovery([string]$Action,[bool]$Latest,[string]$State
  Write-Host "Running $Action using verified local recovery data. No release download is needed."
  Invoke-J3w1SetupLifecycle $powerShell (Join-Path $release 'install.ps1') $Action $pointer.mode '' $StateRoot -Latest:$Latest|Write-Output
  if($Action -in 'Restore','Uninstall'){Sync-J3w1SetupRecovery $powerShell $StateRoot}
- Write-Host "$Action completed. Reopen affected apps to see the restored appearance."
+ if($Action -eq 'Test'){Write-Host 'Test completed. Settings and compatibility were checked; inspect the appearance separately.'}
+ else{Write-Host "$Action completed. Reopen affected apps to see the restored appearance."}
 }
 function Invoke-J3w1WindowsSetup([string]$Revision,[string]$Version,[string]$Mode,[bool]$NonInteractive,[string]$StateRoot) {
+ Assert-J3w1NativeProcess
  if($env:OS -ne 'Windows_NT' -or -not [Environment]::Is64BitProcess -or $env:PROCESSOR_ARCHITECTURE -ne 'AMD64'){throw 'Run setup in native 64-bit Windows PowerShell on Windows 11 x64.'}
  if([int](Get-ItemPropertyValue 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion' 'CurrentBuildNumber') -lt 22000){throw 'Windows 11 is required'}
  $StateRoot=[IO.Path]::GetFullPath($StateRoot);Assert-J3w1SetupPath $StateRoot
@@ -297,9 +322,9 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference='Stop'
 $explicitOfflineRecovery=$SourceRoot -and ($Revision -or $Version)
+if(-not $Fixture){Assert-J3w1NativeProcess}
 if(-not $IsWindows -and -not $Fixture){throw 'Run this installer on native Windows.'}
 if($PSVersionTable.PSVersion -lt [version]'7.4'){throw 'PowerShell 7.4+ is required.'}
-if(-not $Fixture -and (Get-Process -Id $PID).Path -match '\\WindowsApps\\'){throw 'Packaged PowerShell registry views are unsupported. Run install.ps1 from Windows PowerShell to use a verified standalone runtime.'}
 function Assert-SafePath([string]$Path){
  $p=[IO.Path]::GetFullPath($Path)
  while($p){if(Test-Path -LiteralPath $p){if((Get-Item -LiteralPath $p -Force).Attributes -band [IO.FileAttributes]::ReparsePoint){throw "Reparse target refused: $p"}};$parent=[IO.Path]::GetDirectoryName($p);if($parent -eq $p){break};$p=$parent}
@@ -567,6 +592,7 @@ try{
 
 if($MyInvocation.InvocationName -ne '.'){
  Set-StrictMode -Version Latest;$ErrorActionPreference='Stop'
+ if(-not $Fixture){Assert-J3w1NativeProcess}
  if($Latest -and $Action -ne 'Restore'){throw '-Latest is only valid with -Action Restore'}
  if($Action -eq 'Update' -and -not $Revision -and -not $Version){throw 'Update requires an explicit -Version or -Revision.'}
  if($Lifecycle -or $SourceRoot -or $Fixture -or $Action -in 'Plan','Prepare','Guard'){

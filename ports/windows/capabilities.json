@@ -1650,9 +1650,9 @@
       "reason": "Token-derived Search WebView presentation through the pinned Start adapter; live acceptance is separate."
     },
     "focus.offset-container": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Token-derived Search preview focus geometry; native focusability is preserved and live acceptance is separate."
     },
     "focus.offset-invalid": {
       "state": "unsupported",

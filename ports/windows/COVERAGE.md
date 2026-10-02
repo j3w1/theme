@@ -10,6 +10,16 @@ Exact shell compatibility and historical observations remain in
 [COMPATIBILITY.md](COMPATIBILITY.md). All ports remain experimental until their
 own import evidence meets the port contract.
 
+Search result rows own their rest, hover and selected backgrounds. Their icon,
+label and detail containers inherit the row fill, avoiding separate overlapping
+rectangles. The selected row uses the approved dark-red selection role and the
+native red current-item indicator. Keyboard focus stays distinct from selection;
+the preview container retains native focusability. These CSS rules preserve
+Search input and navigation and add no script. A browser fixture verifies state
+transitions, focus geometry and forced-color behavior in
+`tests/browser/windows-search.spec.js`; native Search appearance acceptance
+remains open.
+
 | Surface | Current treatment | Remaining evidence or implementation |
 | --- | --- | --- |
 | Desktop, accent, supported borders, wallpaper and standard cursors | Native personalization and generated assets | Accessibility overrides take priority; arbitrary app title bars are not covered |
@@ -42,7 +52,8 @@ individual frame. Selected rows share one fill across their text and icon
 containers, category selection keeps an accent underline, and keyboard focus
 uses the canonical dashed control ring. Color and geometry values resolve from
 roles. Non-token presentation declarations are limited to removing borders,
-shadows and background images, and choosing the specified ring/underline style;
+shadows and background images, inheriting a row's fill, and choosing the
+specified ring/underline style;
 the generator refuses other properties and values. Custom Search JavaScript
 remains empty. This describes the generated mapping, not a live acceptance.
 

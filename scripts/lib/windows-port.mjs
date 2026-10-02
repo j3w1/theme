@@ -16,7 +16,8 @@ const webPresentation = new Map([
  ['border-style',new Set(['none'])],
  ['box-shadow',new Set(['none'])],
  ['background-image',new Set(['none'])],
- ['outline-style',new Set(['dashed'])],
+ ['background-color',new Set(['inherit'])],
+ ['outline-style',new Set(['dashed','solid'])],
  ['border-bottom-style',new Set(['solid'])],
 ]);
 export function windowsWebContentStyles(items,val) {

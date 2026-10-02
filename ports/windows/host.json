@@ -416,17 +416,24 @@
           }
         },
         {
-          "target": ".suggestion:hover, .suggestion:hover .details, .suggestion:hover .iconContainer, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover",
+          "target": ".suggestion:hover, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover",
           "styles": {
             "background-color": "color.interaction.hover.bg",
             "color": "color.text.default"
           }
         },
         {
-          "target": ".suggestion[aria-selected=\"true\"], .suggestion[aria-selected=\"true\"] .details, .suggestion[aria-selected=\"true\"] .iconContainer, .suggestion[aria-selected=\"true\"] .title, .suggestion[aria-selected=\"true\"] .secondaryText",
+          "target": ".suggestion[aria-selected=\"true\"]",
           "styles": {
             "background-color": "color.interaction.selection.bg",
             "color": "color.interaction.selection.text"
+          }
+        },
+        {
+          "target": ".suggestion .details, .suggestion .iconContainer, .suggestion .title, .suggestion .secondaryText",
+          "styles": {},
+          "presentation": {
+            "background-color": "inherit"
           }
         },
         {
@@ -449,7 +456,7 @@
         {
           "target": ".suggestion[aria-selected=\"true\"]:focus-visible",
           "styles": {
-            "outline-color": "color.interaction.focus.ring-container"
+            "outline-color": "color.interaction.focus.ring"
           }
         },
         {
@@ -486,6 +493,23 @@
           "target": ".leftPill::before",
           "styles": {
             "background-color": "color.border.active"
+          }
+        },
+        {
+          "target": ".suggestion[aria-selected=\"true\"] .title, .suggestion[aria-selected=\"true\"] .secondaryText",
+          "styles": {
+            "color": "color.interaction.selection.text"
+          }
+        },
+        {
+          "target": ".previewContainer:focus-visible",
+          "styles": {
+            "outline-color": "color.interaction.focus.ring-container",
+            "outline-width": "border.width.emphasis",
+            "outline-offset": "focus.offset-container"
+          },
+          "presentation": {
+            "outline-style": "solid"
           }
         }
       ]
