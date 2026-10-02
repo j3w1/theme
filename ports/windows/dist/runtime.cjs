@@ -1765,6 +1765,22 @@ function startWindhawk() {
   child.unref();
   if (!engineRunning(15e3)) throw Error("Theme engine failed to start; enabled settings do not establish active rendering");
 }
+function modArtifact(shown) {
+  const name = shown?.config?.libraryFileName;
+  if (typeof name !== "string" || !name.startsWith(shown.id + "_") || !/^[A-Za-z0-9@._-]+\.dll$/.test(name)) return null;
+  const file = safe(import_node_path2.default.join(import_node_path2.default.dirname(windhawk), "AppData/Engine/Mods/64", name));
+  if (!import_node_fs2.default.existsSync(file) || !import_node_fs2.default.statSync(file).isFile()) return null;
+  return { id: shown.id, version: shown.metadata?.version, config: shown.config, sha256: sha256Hex(import_node_fs2.default.readFileSync(file)) };
+}
+function sameModArtifact(shown, recorded) {
+  if (!recorded) return false;
+  const actual = modArtifact(shown);
+  return actual !== null && actual.id === recorded.id && actual.version === recorded.version && actual.sha256 === recorded.sha256 && eq(actual.config, { ...recorded.config, disabled: actual.config.disabled });
+}
+function sameSettingKeys(a, b) {
+  const left = a?.settings, right = b?.settings;
+  return left && right && eq(Object.keys(left).sort(), Object.keys(right).sort()) && Object.values(right).every((x) => ["string", "number", "boolean"].includes(typeof x));
+}
 function stageMods(tx) {
   if (args.mode !== "Full") return;
   if (fixture && !args.fixtureWindhawk) {
@@ -1789,10 +1805,27 @@ function stageMods(tx) {
       import_node_fs2.default.mkdirSync(import_node_path2.default.dirname(backup), { recursive: true });
       wh(["data", "export", "--out", backup, "--mods", installedId, "--no-app-settings", "--offline"]);
     }
-    tx.mods.push({ id: installedId, sourceId: mod.id, version: mod.version, before: before ? { id: before.id, config: before.config } : null, backup: before ? backup : null });
+    const beforeSettings = before ? wh(["mod", "settings", "get", installedId]) : null;
+    const prior = history.transactions.filter((t) => t.status === "applied").at(-1)?.mods?.find((m) => m.id === installedId);
+    const reuse = before?.metadata?.version === mod.version && prior?.sourceSha256 === mod.sha256 && eq(beforeSettings, prior.settings) && sameModArtifact(before, prior.artifact);
+    tx.mods.push({
+      id: installedId,
+      sourceId: mod.id,
+      version: mod.version,
+      sourceSha256: mod.sha256,
+      before: before ? { id: before.id, config: before.config } : null,
+      beforeSettings,
+      backup: before ? backup : null,
+      reused: reuse
+    });
     persist();
-    const installed = wh(["mod", "install", mod.id, "--file", src, "--disabled"]);
-    if (installed?.id !== installedId) throw Error("Windhawk returned an unexpected installed identity");
+    if (reuse) {
+      console.error("Reusing the verified compiled adapter: " + mod.id + ".");
+      wh(["mod", "disable", installedId]);
+    } else {
+      const installed = wh(["mod", "install", mod.id, "--file", src, "--disabled"]);
+      if (installed?.id !== installedId) throw Error("Windhawk returned an unexpected installed identity");
+    }
     const staged = wh(["mod", "show", installedId]);
     if (staged?.config?.disabled !== true || staged?.metadata?.version !== mod.version) throw Error("Windhawk disabled staging or version readback failed");
     const values = flattenStylerSettings(stylerSettings(json(import_node_path2.default.join(source, "dist", mod.id + ".json")), settings.stylerVariants?.[mod.id], compatibility().startLayout));
@@ -1801,6 +1834,7 @@ function stageMods(tx) {
     const actual = got.settings ?? got;
     if (!Object.entries(values).every(([key, value]) => String(actual[key]) === String(value))) throw Error(`Windhawk settings readback differs: ${mod.id}`);
     tx.mods.at(-1).settings = got;
+    tx.mods.at(-1).artifact = modArtifact(staged);
     persist();
     console.error(`Theme adapter ${index + 1} of ${mods.length} verified.`);
   }
@@ -1824,12 +1858,20 @@ function restore(tx) {
         persist();
         continue;
       }
-      if (mod.settings && !eq(wh(["mod", "settings", "get", mod.id]), mod.settings)) {
+      const shown = wh(["mod", "show", mod.id]), currentSettings = wh(["mod", "settings", "get", mod.id]);
+      const reuseRestore = mod.reused && mod.before && sameSettingKeys(currentSettings, mod.beforeSettings) && sameModArtifact(shown, mod.artifact);
+      if (mod.settings && !eq(currentSettings, mod.settings) && !(reuseRestore && eq(currentSettings, mod.beforeSettings))) {
         conflicts.push(mod.id);
         continue;
       }
       wh(["mod", "disable", mod.id]);
-      if (mod.backup) wh(["--yes", "data", "import", mod.backup, "--mods", mod.id, "--no-app-settings", "--offline"]);
+      if (reuseRestore) {
+        console.error("Restoring saved settings using the verified compiled adapter: " + mod.sourceId + ".");
+        wh(["mod", "settings", "set", mod.id, ...Object.entries(mod.beforeSettings.settings).map(([k, v2]) => k + "=" + v2)]);
+        if (!eq(wh(["mod", "settings", "get", mod.id]), mod.beforeSettings)) throw Error("Saved settings readback differs");
+        if (mod.before.config.disabled === false) wh(["mod", "enable", mod.id]);
+        if (!eq(wh(["mod", "show", mod.id]).config, mod.before.config)) throw Error("Saved configuration readback differs");
+      } else if (mod.backup) wh(["--yes", "data", "import", mod.backup, "--mods", mod.id, "--no-app-settings", "--offline"]);
       else wh(["--yes", "mod", "remove", mod.id]);
       mod.restored = true;
       persist();
@@ -1897,6 +1939,7 @@ function verify({ checkEngine = true } = {}) {
       const shown = wh(["mod", "show", mod.id]);
       if (shown?.config?.disabled !== false) failed.push(`${mod.id}: disabled or unknown state`);
       if (shown?.metadata?.version !== mod.version) failed.push(`${mod.id}: version drift`);
+      if (mod.artifact && !sameModArtifact(shown, mod.artifact)) failed.push(`${mod.id}: compiled artifact drift`);
     } catch (error) {
       failed.push(`${mod.id}: ${error.message}`);
     }
@@ -1935,6 +1978,7 @@ if (action === "Plan") {
     for (const mod of tx.mods ?? []) try {
       const shown = wh(["mod", "show", mod.id]);
       if (shown.metadata?.version !== mod.version || !eq(wh(["mod", "settings", "get", mod.id]), mod.settings)) failures.push(`${mod.id}: version or settings drift`);
+      if (mod.artifact && !sameModArtifact(shown, mod.artifact)) failures.push(`${mod.id}: compiled artifact drift`);
     } catch (error) {
       failures.push(`${mod.id}: ${error.message}`);
     }

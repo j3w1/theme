@@ -4,17 +4,25 @@ const [state,...raw]=process.argv.slice(2),args=raw.filter(a=>!['--json','--yes'
 const file=path.join(state,'fixture-windhawk.json');
 const db=fs.existsSync(file)?JSON.parse(fs.readFileSync(file,'utf8')):{};
 const done=data=>{fs.writeFileSync(file,JSON.stringify(db));console.log(JSON.stringify({schemaVersion:1,success:true,data}));};
+const activityFile=path.join(state,'fixture-windhawk-activity.json');
+const activity=fs.existsSync(activityFile)?JSON.parse(fs.readFileSync(activityFile,'utf8')):{compiles:0,imports:0};
+function record(kind){activity[kind]++;fs.writeFileSync(activityFile,JSON.stringify(activity));}
+
 const missing=()=>{console.log(JSON.stringify({schemaVersion:1,success:false,error:{code:'MOD_NOT_INSTALLED',message:'Missing'}}));process.exit(1);};
 if(args[0]==='app'){if(args[2]==='set')db.appSettings={disableUpdateCheck:args[4]==='true'};done({settings:db.appSettings??{disableUpdateCheck:false}});}
 else if(args[0]==='data'){
  if(args[1]==='export'){const id=args[args.indexOf('--mods')+1];fs.writeFileSync(args[args.indexOf('--out')+1],JSON.stringify({[id]:db[id]}));done({});}
- else {if(!raw.includes('--yes'))throw Error('data import requires --yes');Object.assign(db,JSON.parse(fs.readFileSync(args[2],'utf8')));done({});}
+ else {if(!raw.includes('--yes'))throw Error('data import requires --yes');record('imports');Object.assign(db,JSON.parse(fs.readFileSync(args[2],'utf8')));done({});}
 }else if(args[0]==='mod'){
  const action=args[1],id=action==='settings'?args[3]:args[2];
  if(action==='install'){
   const installedId='local@'+id,source=fs.readFileSync(args[args.indexOf('--file')+1],'utf8');
   const version=source.match(/^\/\/\s*@version\s+(\S+)/m)?.[1]??'1.0';
-  db[installedId]={id:installedId,metadata:{version},config:{disabled:true},settings:{theme:'',extraDefault:'keep'}};
+  record('compiles');
+  const libraryFileName=installedId+'_'+version+'_'+activity.compiles+'.dll';
+  const library=path.join(state,'tools/windhawk/2.0.0-alpha.6/AppData/Engine/Mods/64',libraryFileName);
+  fs.mkdirSync(path.dirname(library),{recursive:true});fs.writeFileSync(library,'fixture compilation\n'+source);
+  db[installedId]={id:installedId,metadata:{version},config:{disabled:true,libraryFileName},settings:{theme:'',extraDefault:'keep'}};
   done({id:installedId,version,compiledLocally:true});
  }
  else if(!db[id])missing();

@@ -125,6 +125,14 @@ Packaged or unknown context refuses before dependency acquisition or settings
 changes. Use Windows PowerShell included with Windows to run the same script.
 A failed child lifecycle prints its diagnostic result before the wrapper error;
 Test reports verification and never claims to have restored the appearance.
+Managed adapter receipts record the pinned source digest, exact compiled DLL
+digest and full configuration. Update reuses a compiled DLL only while all
+identities, settings and compatibility checks match. Test and Guard reject
+compiled DLL drift. Restore uses saved settings without compilation only for
+a reused DLL with the same configuration and exact settings-key set; unknown,
+changed, absent or older receipts use the existing offline import path. No
+precompiled download or private Windhawk storage write is introduced.
+
 Theme restore retains installed shared tools and fonts; automatic dependency removal is unsupported.
 
 ## Start-menu styling

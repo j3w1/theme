@@ -486,3 +486,69 @@ test('Markdown adapter settings and source follow setup update, Test and rollbac
  f.ok('Test',f.args);f.ok('Restore',f.args);
  assert.equal(f.db()['local@j3w1-powertoys-markdown'],undefined);
 });
+
+test('verified adapters survive a revision-only update and Latest rollback without compilation',t=>{
+ const f=windhawkFixture(t),activity=()=>read(path.join(f.state,'fixture-windhawk-activity.json'));
+ f.ok('Apply',f.args);const baseline=f.db(),compiled=activity().compiles;
+ assert.ok(f.journal().transactions[0].mods.every(m=>m.artifact&&m.sourceSha256));
+ f.ok('Update',{...f.args,revision:'2'.repeat(40)});
+ assert.equal(activity().compiles,compiled);
+ assert.ok(f.journal().transactions[1].mods.every(m=>m.reused));
+ const restored=f.ok('Restore',{...f.args,latest:true});
+ assert.match(restored.stderr,/Restoring saved settings using the verified compiled adapter/);
+ assert.equal(activity().compiles,compiled);assert.equal(activity().imports,0);
+ assert.deepEqual(f.db(),baseline);f.ok('Test',f.args);
+ f.ok('Restore',f.args);assert.deepEqual(f.db(),{appSettings:{disableUpdateCheck:false}});
+});
+
+test('binary drift refuses Test and Guard and triggers a fresh pinned compile on Update',t=>{
+ const f=windhawkFixture(t),activity=()=>read(path.join(f.state,'fixture-windhawk-activity.json'));
+ f.ok('Apply',f.args);const mod=f.journal().transactions[0].mods[0],compiled=activity().compiles;
+ const library=path.join(f.state,'tools/windhawk/2.0.0-alpha.6/AppData/Engine/Mods/64',mod.artifact.config.libraryFileName);
+ fs.appendFileSync(library,' altered binary');
+ assert.match(f.run('Test',f.args).stdout,/compiled artifact drift/);
+ const guard=f.run('Guard',f.args);assert.equal(guard.status,2);assert.match(guard.stdout,/compiled artifact drift/);
+ f.ok('Update',{...f.args,revision:'2'.repeat(40)});
+ assert.equal(activity().compiles,compiled+1);assert.equal(f.journal().transactions[1].mods[0].reused,false);
+ f.ok('Test',f.args);
+});
+
+test('changed settings-key sets use exact offline import on Latest restore',t=>{
+ const f=windhawkFixture(t),activity=()=>read(path.join(f.state,'fixture-windhawk-activity.json'));
+ f.ok('Apply',f.args);const baseline=f.db();
+ const config=path.join(f.args.source,'dist/fixture-styler.json');
+ const next=read(config);next.controlStyles.push({target:'Border',styles:['Background=#000000']});write(config,next);
+ f.ok('Update',{...f.args,revision:'2'.repeat(40)});
+ assert.equal(f.journal().transactions[1].mods[0].reused,true);
+ f.ok('Restore',{...f.args,latest:true});assert.equal(activity().imports,1);
+ assert.deepEqual(f.db(),baseline);f.ok('Test',f.args);
+});
+
+
+test('interrupted settings-only restore resumes only with the same artifact proof',t=>{
+ const f=windhawkFixture(t),activity=()=>read(path.join(f.state,'fixture-windhawk-activity.json'));
+ f.ok('Apply',f.args);const baseline=f.db();
+ const config=path.join(f.args.source,'dist/fixture-styler.json'),next=read(config);
+ next.controlStyles[0].styles[0]='Foreground=#ffa2a7';write(config,next);
+ f.ok('Update',{...f.args,revision:'2'.repeat(40)});
+ const mod=f.journal().transactions[1].mods[0];assert.equal(mod.reused,true);
+ assert.notDeepEqual(mod.beforeSettings,mod.settings);
+ const interrupted=f.db();interrupted[mod.id].settings=mod.beforeSettings.settings;
+ interrupted[mod.id].config.disabled=true;write(path.join(f.state,'fixture-windhawk.json'),interrupted);
+ f.ok('Restore',{...f.args,latest:true});assert.equal(activity().imports,0);
+ assert.deepEqual(f.db(),baseline);f.ok('Test',f.args);
+});
+
+test('legacy receipts and changed adapter configurations require a managed recompile',t=>{
+ const f=windhawkFixture(t),activity=()=>read(path.join(f.state,'fixture-windhawk-activity.json'));
+ f.ok('Apply',f.args);const compiled=activity().compiles;
+ const journal=f.journal();delete journal.transactions[0].mods[0].artifact;
+ write(path.join(f.state,'journal.json'),journal);
+ const changed=f.db(),second=journal.transactions[0].mods[1];
+ changed[second.id].config.includeCustom=['unrelated.exe'];write(path.join(f.state,'fixture-windhawk.json'),changed);
+ f.ok('Update',{...f.args,revision:'2'.repeat(40)});
+ assert.equal(activity().compiles,compiled+2);
+ assert.equal(f.journal().transactions[1].mods[0].reused,false);
+ assert.equal(f.journal().transactions[1].mods[1].reused,false);
+ f.ok('Test',f.args);
+});

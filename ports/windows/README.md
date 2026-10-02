@@ -58,7 +58,12 @@ Install commands appear here once v4.0.0 is released.
 <!-- update:end -->
 
 Prepared immutable releases are reused from the verified local cache, avoiding
-repeat bootstrap downloads. Changed cache files are refused. Every setup ends with Test. To check again, run the printed Test command from
+repeat bootstrap downloads. A managed compiled adapter is reused only when
+its pinned source, version, full configuration and saved DLL digest match.
+Settings-only rollback reuses that same verified DLL when the saved key set
+also matches; other restores use the retained offline source. Older installs
+without a compilation receipt compile once before becoming reusable. Changed
+cache files are refused. Every setup ends with Test. To check again, run the printed Test command from
 `%LOCALAPPDATA%\j3w1-theme\windows\recovery-commands.txt`.
 Test verifies artifacts, managed settings and compatibility; it is not a visual
 inspection. Close app settings windows before updating to avoid concurrent edits.
