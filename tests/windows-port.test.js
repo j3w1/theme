@@ -123,6 +123,7 @@ test('XAML color values preserve RGB and encode transparency in native ARGB orde
 test('Calculator uses an exact package and separate primary, disabled and interaction brushes',async()=>{
  const host=await readJson('ports/windows/host.json');
  assert.equal(host.calculator.packageFullName,'Microsoft.WindowsCalculator_11.2607.0.0_x64__8wekyb3d8bbwe');
+ assert.equal(host.calculator.buttonStyleTarget,'CalculatorApp.Controls.CalculatorButton, CalculatorApp, Version=11.2607.0.0, Culture=neutral, PublicKeyToken=null');
  const roles=host.calculator.resources;
  assert.equal(roles.CalcButtonTextFillColorDefaultBrush,'color.text.default');
  assert.equal(roles.CalcButtonTextFillColorDisabledBrush,'color.text.disabled');

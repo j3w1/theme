@@ -168,13 +168,17 @@ export function windowsArtifacts({manifest,host,resolved}){
  json(`${previewId}.json`,{enabled:1});
  bundledMods.push({id:previewId,version:preview.version,path:`dist/${previewId}.wh.cpp`,sha256:createHash('sha256').update(previewSource).digest('hex')});
  const calculator=host.calculator,calculatorId='j3w1-calculator';
+ const calculatorPackageVersion=calculator.packageFullName.split('_')[1];
+ if(calculator.buttonStyleTarget!==
+  'CalculatorApp.Controls.CalculatorButton, CalculatorApp, Version='+calculatorPackageVersion+', Culture=neutral, PublicKeyToken=null')
+  throw Error('Calculator requires the exact assembly-qualified native button style');
  if(!/^Microsoft\.WindowsCalculator_\d+\.\d+\.\d+\.\d+_x64__8wekyb3d8bbwe$/.test(calculator.packageFullName))throw Error('Calculator requires an exact package identity');
  const calculatorRules=Object.entries(calculator.resources).map(([key,role])=>{
   if(!/^[A-Za-z][A-Za-z0-9]+(?:Brush(?:PointerOver|Pressed|Disabled)?|Background|Foreground)$/.test(key)||key.startsWith('Equation'))throw Error('Invalid Calculator UI brush');
   const [r,g,b]=rgb(val(role));
   return `    {L"${key}",{255,${r},${g},${b}},L"${role}"},`;
  }).join('\n');
- const calculatorSubs={VERSION:calculator.version,PACKAGE_FULL_NAME:calculator.packageFullName,RESOURCE_RULES:calculatorRules};
+ const calculatorSubs={VERSION:calculator.version,PACKAGE_FULL_NAME:calculator.packageFullName,BUTTON_STYLE_TARGET:calculator.buttonStyleTarget,RESOURCE_RULES:calculatorRules};
  const calculatorSource=readFileSync(path.join(repoRoot,'ports/windows/src/j3w1-calculator.wh.cpp.in'),'utf8').replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in calculatorSubs))throw Error(`Unknown Calculator source placeholder ${key}`);return calculatorSubs[key];});
  artifacts.push({path:`dist/${calculatorId}.wh.cpp`,text:calculatorSource});
  json(`${calculatorId}.json`,{enabled:1});

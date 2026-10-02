@@ -2,7 +2,7 @@
 // @id j3w1-calculator
 // @name j3w1 Calculator resources
 // @description Version-checked Calculator UI resources; equation colors remain native
-// @version 1.3.3
+// @version 1.4.0
 // @author j3w1
 // @include CalculatorApp.exe
 // @architecture x86-64
@@ -15,17 +15,21 @@
 // ==/WindhawkModSettings==
 #include <windows.h>
 #include <appmodel.h>
+#include <cstdio>
 #undef GetCurrentTime
 #include <winrt/Windows.Foundation.h>
 #include <winrt/Windows.Foundation.Collections.h>
 #include <winrt/Windows.UI.Xaml.h>
 #include <winrt/Windows.UI.Xaml.Controls.h>
+#include <winrt/Windows.UI.Xaml.Automation.h>
 #include <winrt/Windows.UI.Xaml.Controls.Primitives.h>
 #include <winrt/Windows.UI.Xaml.Markup.h>
 #include <winrt/Windows.UI.Xaml.Media.h>
 #include <winrt/Windows.UI.Xaml.Shapes.h>
+#include <winrt/Windows.UI.Xaml.Media.Animation.h>
 #include <winrt/Windows.UI.ViewManagement.h>
 #include <vector>
+#include <deque>
 #include <string>
 #include <atomic>
 
@@ -239,75 +243,390 @@ static bool Matches(Rule const& rule,PropertyKind kind) {
     if(kind==PropertyKind::Border)return wcsncmp(rule.role,L"color.border.",13)==0;
     return wcsncmp(rule.role,L"color.surface.",14)==0 || wcsstr(rule.role,L".bg")!=nullptr;
 }
+struct OwnedThemeRefresh {
+ weak_ref<FrameworkElement> element;
+ IInspectable before{nullptr};
+ ElementTheme requested=ElementTheme::Default;
+ bool pending=false,complete=false;
+};
+static bool SameLocalTheme(IInspectable const& local,ElementTheme theme) {
+ auto value=local.try_as<Windows::Foundation::IReference<ElementTheme>>();
+ return value&&value.Value()==theme;
+}
+static bool RestoreThemeRefresh(OwnedThemeRefresh& entry) noexcept {
+ if(!entry.pending)return true;
+ try {
+  if(auto element=entry.element.get()) {
+   auto property=FrameworkElement::RequestedThemeProperty();
+   auto current=element.ReadLocalValue(property);
+   // Preserve a synchronous application change made during theme notification.
+   if(SameLocalTheme(current,entry.requested)) {
+    if(!entry.before||Identity(entry.before,DependencyProperty::UnsetValue()))element.ClearValue(property);
+    else element.SetValue(property,entry.before);
+   }
+  }
+  entry.pending=false;return true;
+ }catch(...){return false;}
+}
+static bool RefreshThemeSource(OwnedThemeRefresh& entry) noexcept {
+ if(entry.complete)return !entry.pending;
+ if(!RestoreThemeRefresh(entry))return false;
+ try {
+  auto element=entry.element.get();if(!element){entry.complete=true;return true;}
+  auto property=FrameworkElement::RequestedThemeProperty();
+  auto local=element.ReadLocalValue(property);
+  if(local&&!Identity(local,DependencyProperty::UnsetValue())&&!local.try_as<Windows::Foundation::IReference<ElementTheme>>())return false;
+  entry.before=local;
+  entry.requested=element.ActualTheme()==ElementTheme::Dark?ElementTheme::Light:ElementTheme::Dark;
+  entry.pending=true;
+  element.RequestedTheme(entry.requested);
+  if(!RestoreThemeRefresh(entry))return false;
+  entry.complete=true;return true;
+ }catch(...){RestoreThemeRefresh(entry);return false;}
+}
+
+struct ControlKey {
+ hstring key; IInspectable before{nullptr},applied{nullptr}; bool local=false,owned=false;
+};
+struct ControlResources {
+ weak_ref<FrameworkElement> element; ResourceDictionary owner{nullptr}; std::vector<ControlKey> keys; OwnedThemeRefresh refresh;
+};
+struct LocalResourceValue { bool exists=false; IInspectable value{nullptr}; };
+static LocalResourceValue LocalResource(ResourceDictionary const& owner,hstring const& key) {
+ // Lookup may resolve an inherited value. Enumeration records only local keys,
+ // including explicitly present null values, so rollback restores exact state.
+ for(auto const& pair:owner)if(auto name=pair.Key().try_as<Windows::Foundation::IReference<hstring>>();name&&name.Value()==key)return {true,pair.Value()};
+ return {};
+}
+template<class Read,class Write> static bool ApplyControlKey(ControlKey& key,Read read,Write write) noexcept {
+ if(key.owned)return true;
+ try {
+  auto before=read();key.before=before.value;key.local=before.exists;
+  // Ownership precedes the write: a setter can mutate and then throw.
+  key.owned=true;write(key.applied);return true;
+ }catch(...){return false;}
+}
+template<class Read,class Write,class Remove> static bool RestoreControlKey(ControlKey& key,Read read,Write write,Remove remove) noexcept {
+ if(!key.owned)return true;
+ try {
+  auto current=read();
+  // The application owns a replacement or deletion made after our write.
+  if(current.exists&&Identity(current.value,key.applied)) {
+   if(key.local)write(key.before);else remove();
+  }
+  key.owned=false;return true;
+ }catch(...){return false;}
+}
+static bool RestoreControlResources(ControlResources& entry) noexcept {
+ bool restored=RestoreThemeRefresh(entry.refresh);
+ for(auto& key:entry.keys)
+  restored=RestoreControlKey(key,[&]{return LocalResource(entry.owner,key.key);},
+   [&](auto const& value){entry.owner.Insert(box_value(key.key),value);},
+   [&]{entry.owner.Remove(box_value(key.key));})&&restored;
+ if(restored){entry.keys.clear();entry.owner=nullptr;}
+ return restored;
+}
+
+
+[[clang::no_destroy]] static std::deque<ControlResources> controlsChanged;
+static bool ChromeControl(DependencyObject const& object) {
+    return object.try_as<Windows::UI::Xaml::Controls::Primitives::ButtonBase>()
+        ||object.try_as<MenuFlyoutPresenter>()||object.try_as<MenuFlyoutItem>()||object.try_as<MenuFlyoutSubItem>()
+        ||object.try_as<ToggleSwitch>()||object.try_as<ComboBox>()||object.try_as<ListViewItem>()
+        ||object.try_as<TextBlock>()||object.try_as<IconElement>();
+}
+static void RefreshControlResources(DependencyObject const& object) {
+    if(!ChromeControl(object))return;
+    auto element=object.try_as<FrameworkElement>();if(!element||!element.IsLoaded())return;
+    for(auto& prior:controlsChanged)if(Identity(prior.element.get(),element)) {
+        if(!prior.refresh.complete&&!RefreshThemeSource(prior.refresh))throw hresult_error(E_FAIL);
+        return;
+    }
+    if(controlsChanged.size()>=1024)throw hresult_error(E_BOUNDS);
+    controlsChanged.push_back({make_weak(element),element.Resources(),{}, {make_weak(element)}});
+    auto& entry=controlsChanged.back();
+    // Framework theme keys can exist below Application.Resources. Supply the
+    // exact declared UI keys locally even when app-level lookup cannot find them.
+    // Each absent/null/existing local entry is independently restored.
+    for(auto const& rule:rules) {
+        auto key=hstring(rule.key);
+        entry.keys.push_back({key,nullptr,SolidColorBrush(rule.color)});auto& owned=entry.keys.back();
+        if(!ApplyControlKey(owned,[&]{return LocalResource(entry.owner,key);},
+            [&](auto const& value){entry.owner.Insert(box_value(key),value);}))throw hresult_error(E_FAIL);
+    }
+    if(!RefreshThemeSource(entry.refresh))throw hresult_error(E_FAIL);
+}
+
+struct ControlStyleChange { weak_ref<FrameworkElement> object; ControlKey value; };
+[[clang::no_destroy]] static std::deque<ControlStyleChange> stylesChanged;
+static Rule const& PaletteRule(PCWSTR key) {
+ for(auto const& rule:rules)if(wcscmp(rule.key,key)==0)return rule;
+ throw hresult_error(E_INVALIDARG);
+}
+static std::wstring PaletteHex(PCWSTR key) {
+ auto color=PaletteRule(key).color;wchar_t value[10];
+ swprintf_s(value,L"#%02X%02X%02X%02X",color.A,color.R,color.G,color.B);return value;
+}
+static LocalResourceValue LocalStyle(FrameworkElement const& element) {
+ auto value=element.ReadLocalValue(FrameworkElement::StyleProperty());
+ return {value&&!Identity(value,DependencyProperty::UnsetValue()),value};
+}
+
+
+static unsigned KnownState(hstring const& name) {
+ if(name==L"Normal")return 1;if(name==L"PointerOver")return 2;
+ if(name==L"Pressed")return 3;if(name==L"Disabled")return 4;return 0;
+}
+
+using namespace Windows::UI::Xaml::Media::Animation;
+struct AnimationFrameValue { bool exists=false; IInspectable value{nullptr}; };
+struct OwnedAnimationFrame { IInspectable original{nullptr},applied{nullptr};bool owned=false; };
+template<class Read,class Write> static bool ApplyAnimationFrame(OwnedAnimationFrame& entry,Read read,Write write) noexcept {
+ if(entry.owned)return true;
+ try {auto current=read();if(!current.exists||!Identity(current.value,entry.original))return false;
+  entry.owned=true;write(entry.applied);return true;
+ }catch(...){return false;}
+}
+template<class Read,class Write> static bool RestoreAnimationFrame(OwnedAnimationFrame& entry,Read read,Write write) noexcept {
+ if(!entry.owned)return true;
+ try {auto current=read();if(current.exists&&Identity(current.value,entry.applied))write(entry.original);
+  entry.owned=false;return true;
+ }catch(...){return false;}
+}
+// The native storyboard retains its core timeline, not its transient WinRT
+// peer. Keep the peer alive until its owned keyframe has been restored.
+
+template<class Read,class Stop> static bool EnsureStoppedClock(Read read,Stop stop) noexcept {
+ try {auto current=read();if(current==ClockState::Stopped)return true;
+  if(current!=ClockState::Active&&current!=ClockState::Filling)return false;
+  stop();return read()==ClockState::Stopped;}catch(...){return false;}
+}
+template<class Read,class Write,class Clock> static bool ApplyStoppedAnimationFrame(OwnedAnimationFrame& frame,Read read,Write write,Clock clock) noexcept {
+ try {if(clock()!=ClockState::Stopped)return false;return ApplyAnimationFrame(frame,read,write);}catch(...){return false;}
+}
+template<class Read,class Write,class Clock> static bool RestoreStoppedAnimationFrame(OwnedAnimationFrame& frame,Read read,Write write,Clock clock) noexcept {
+ try {if(clock()!=ClockState::Stopped)return false;return RestoreAnimationFrame(frame,read,write);}catch(...){return false;}
+}
+struct NativeStateRefresh {weak_ref<Button> button;VisualStateGroup group{nullptr};hstring state;};
+static bool ReviewedColorStoryboard(Storyboard const& storyboard) {
+ if(!storyboard||storyboard.Children().Size()!=3)return false;unsigned mask=0;
+ for(auto const& child:storyboard.Children()) {
+  auto animation=child.try_as<ObjectAnimationUsingKeyFrames>();
+  if(!animation||Storyboard::GetTargetName(animation)!=L"ContentPresenter"||animation.KeyFrames().Size()!=1)return false;
+  auto frame=animation.KeyFrames().GetAt(0).try_as<DiscreteObjectKeyFrame>();if(!frame||frame.KeyTime().TimeSpan.count()!=0||!frame.Value().try_as<Brush>())return false;
+  auto property=Storyboard::GetTargetProperty(animation);
+  unsigned bit=property==L"Background"?1:property==L"Foreground"?2:property==L"BorderBrush"?4:0;
+  if(!bit||(mask&bit))return false;mask|=bit;
+ }
+ return mask==7;
+}
+static bool StopNativeColorState(Button const& button,VisualStateGroup const& group,Storyboard const& storyboard,std::vector<NativeStateRefresh>& refresh) {
+ if(!ReviewedColorStoryboard(storyboard))return false;
+ if(storyboard.GetCurrentState()!=ClockState::Stopped) {
+  if(auto state=group.CurrentState();state&&KnownState(state.Name())) {
+   bool found=false;for(auto const& prior:refresh)if(Identity(prior.group,group)){found=true;break;}
+   if(!found)refresh.push_back({make_weak(button),group,state.Name()});
+  }
+ }
+ return EnsureStoppedClock([&]{return storyboard.GetCurrentState();},[&]{storyboard.Stop();});
+}
+static bool RefreshNativeColorStates(std::vector<NativeStateRefresh>& refresh) noexcept {
+ bool restored=true;
+ for(auto const& entry:refresh)try {
+  if(auto button=entry.button.get()) {
+   auto current=entry.group.CurrentState();
+   // Preserve an application state transition during a reentrant callback.
+   if(!current||current.Name()!=entry.state)continue;
+   restored=VisualStateManager::GoToState(button,L"Normal",false)&&restored;
+   restored=VisualStateManager::GoToState(button,entry.state,false)&&restored;
+  }
+ }catch(...){restored=false;}
+ refresh.clear();return restored;
+}
+
+struct AnimationChange {weak_ref<Button> button;ObjectAnimationUsingKeyFrames animation{nullptr};Storyboard storyboard{nullptr};VisualStateGroup group{nullptr};OwnedAnimationFrame frame;};
+[[clang::no_destroy]] static std::deque<AnimationChange> animationsChanged;
+
+static bool RestoreAnimations(std::vector<NativeStateRefresh>& refresh) noexcept {
+
+ bool restored=true;
+ for(auto const& entry:animationsChanged)try {
+  if(auto button=entry.button.get())restored=StopNativeColorState(button,entry.group,entry.storyboard,refresh)&&restored;
+  else restored=EnsureStoppedClock([&]{return entry.storyboard.GetCurrentState();},[&]{entry.storyboard.Stop();})&&restored;
+ }catch(...){restored=false;}
+ if(!restored)return false;
+ for(auto& entry:animationsChanged) {
+  if(auto animation=entry.animation) {
+   auto frames=animation.KeyFrames();
+   restored=RestoreStoppedAnimationFrame(entry.frame,[&]{return AnimationFrameValue{frames.Size()>0,frames.Size()>0?frames.GetAt(0):nullptr};},
+    [&](auto const& value){frames.SetAt(0,value.template as<ObjectKeyFrame>());},[&]{return entry.storyboard.GetCurrentState();})&&restored;
+  }else entry.frame.owned=false;
+ }
+ if(restored)animationsChanged.clear();return restored;
+}
+static void ApplyAnimationPalette(DependencyObject const& object) {
+ auto button=object.try_as<Button>();if(!button)return;
+ auto style=button.Style();
+ if(!style||style.TargetType().Name!=L"CalculatorApp.Controls.CalculatorButton, CalculatorApp, Version=11.2607.0.0, Culture=neutral, PublicKeyToken=null")return;
+ bool primary=Windows::UI::Xaml::Automation::AutomationProperties::GetAutomationId(button)==L"equalButton";
+ std::vector<DependencyObject> nodes{button};unsigned visited=0;
+ while(!nodes.empty()&&visited++<24) {
+  auto node=nodes.back();nodes.pop_back();
+  if(auto element=node.try_as<FrameworkElement>())for(auto const& group:VisualStateManager::GetVisualStateGroups(element)) {
+   if(group.Name()!=L"CommonStates")continue;
+   std::vector<NativeStateRefresh> refresh;
+   for(auto const& state:group.States()) {
+    auto stateId=KnownState(state.Name());auto storyboard=state.Storyboard();if(stateId<2||!ReviewedColorStoryboard(storyboard))continue;
+    bool tracked=false;for(auto const& entry:animationsChanged)if(Identity(entry.storyboard,storyboard)){tracked=true;break;}
+    if(tracked)continue;
+    if(!StopNativeColorState(button,group,storyboard,refresh))throw hresult_error(E_FAIL);
+    for(auto const& timeline:storyboard.Children()) {
+     auto animation=timeline.try_as<ObjectAnimationUsingKeyFrames>();
+     if(!animation||Storyboard::GetTargetName(animation)!=L"ContentPresenter")continue;
+     auto property=Storyboard::GetTargetProperty(animation);PCWSTR key=nullptr;
+     if(property==L"Background")key=stateId==2?(primary?L"AccentFillColorSecondaryBrush":L"CalcButtonFillColorHoverBrush"):
+      stateId==3?(primary?L"AccentFillColorTertiaryBrush":L"CalcButtonFillColorPressedBrush"):L"CalcButtonFillColorDisabledBrush";
+     if(property==L"Foreground")key=stateId==2?(primary?L"TextOnAccentFillColorPrimaryBrush":L"CalcButtonTextFillColorHoverBrush"):
+      stateId==3?(primary?L"TextOnAccentFillColorPrimaryBrush":L"CalcButtonTextFillColorPressedBrush"):L"CalcButtonTextFillColorDisabledBrush";
+     if(property==L"BorderBrush")key=stateId==4?L"ButtonBorderBrushDisabled":L"ButtonBorderBrushPointerOver";
+     auto frames=animation.KeyFrames();if(!key||frames.Size()!=1)continue;
+     auto original=frames.GetAt(0).try_as<DiscreteObjectKeyFrame>();if(!original||original.KeyTime().TimeSpan.count()!=0)continue;
+     bool seen=false;for(auto const& entry:animationsChanged)if(Identity(entry.animation,animation)){seen=true;break;}
+     if(seen)continue;if(animationsChanged.size()>=1024)throw hresult_error(E_BOUNDS);
+     // Retain the native keyframe object with its binding intact. Only the
+     // one brush-valued keyframe in a reviewed native state is exchanged.
+     DiscreteObjectKeyFrame applied;applied.KeyTime(original.KeyTime());applied.Value(SolidColorBrush(PaletteRule(key).color));
+     animationsChanged.push_back({make_weak(button),animation,storyboard,group,{original,applied}});
+     auto& entry=animationsChanged.back();
+     if(!ApplyStoppedAnimationFrame(entry.frame,[&]{return AnimationFrameValue{frames.Size()==1,frames.Size()==1?frames.GetAt(0):nullptr};},
+       [&](auto const& value){frames.SetAt(0,value.template as<ObjectKeyFrame>());},[&]{return storyboard.GetCurrentState();}))throw hresult_error(E_FAIL);
+    }
+   }
+   if(!RefreshNativeColorStates(refresh))throw hresult_error(E_FAIL);
+  }
+  for(int i=0;i<VisualTreeHelper::GetChildrenCount(node);i++)nodes.push_back(VisualTreeHelper::GetChild(node,i));
+ }
+}
+static void ApplyButtonStyle(DependencyObject const& object) {
+ auto button=object.try_as<Button>();if(!button)return;
+ auto base=button.Style();
+ if(!base||base.TargetType().Name!=L"CalculatorApp.Controls.CalculatorButton, CalculatorApp, Version=11.2607.0.0, Culture=neutral, PublicKeyToken=null")return;
+ for(auto const& prior:stylesChanged)if(Identity(prior.object.get(),button))return;
+ auto local=LocalStyle(button);if(local.exists&&!local.value.try_as<Style>())return;
+ if(stylesChanged.size()>=256)throw hresult_error(E_BOUNDS);
+ bool primary=Windows::UI::Xaml::Automation::AutomationProperties::GetAutomationId(button)==L"equalButton";
+ std::wstring xaml=L"<Style xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation' xmlns:calc='using:CalculatorApp.Controls' TargetType='calc:CalculatorButton'>";
+ auto setter=[&](PCWSTR name,PCWSTR key){xaml+=L"<Setter Property='";xaml+=name;xaml+=L"' Value='";xaml+=PaletteHex(key);xaml+=L"'/>";};
+ setter(L"Background",primary?L"AccentFillColorDefaultBrush":L"CalcButtonFillColorDefaultBrush");
+ setter(L"Foreground",primary?L"TextOnAccentFillColorPrimaryBrush":L"CalcButtonTextFillColorDefaultBrush");
+ setter(L"HoverBackground",primary?L"AccentFillColorSecondaryBrush":L"CalcButtonFillColorHoverBrush");
+ setter(L"HoverForeground",primary?L"TextOnAccentFillColorPrimaryBrush":L"CalcButtonTextFillColorHoverBrush");
+ setter(L"PressBackground",primary?L"AccentFillColorTertiaryBrush":L"CalcButtonFillColorPressedBrush");
+ setter(L"PressForeground",primary?L"TextOnAccentFillColorPrimaryBrush":L"CalcButtonTextFillColorPressedBrush");
+ setter(L"DisabledBackground",L"CalcButtonFillColorDisabledBrush");
+ setter(L"DisabledForeground",L"CalcButtonTextFillColorDisabledBrush");
+ xaml+=L"</Style>";
+ // XAML constructs the managed custom-property values. Retain the app's
+ // original style/template, commands, layout and native visual-state groups.
+ auto applied=Windows::UI::Xaml::Markup::XamlReader::Load(xaml).as<Style>();
+ applied.BasedOn(base);
+ stylesChanged.push_back({make_weak(button.as<FrameworkElement>()),{L"Style",nullptr,applied}});
+ auto& entry=stylesChanged.back();
+ if(!ApplyControlKey(entry.value,[&]{return LocalStyle(button);},
+    [&](auto const& value){button.SetValue(FrameworkElement::StyleProperty(),value);}))throw hresult_error(E_FAIL);
+}
+static bool RestoreButtonStyles() noexcept {
+ bool restored=true;
+ for(auto& entry:stylesChanged) {
+  if(auto object=entry.object.get())restored=RestoreControlKey(entry.value,[&]{return LocalStyle(object);},
+   [&](auto const& value){object.SetValue(FrameworkElement::StyleProperty(),value);},
+   [&]{object.ClearValue(FrameworkElement::StyleProperty());})&&restored;
+  else entry.value.owned=false;
+ }
+ if(restored)stylesChanged.clear();return restored;
+}
+
+static void ApplyFocusBrush(DependencyObject const& object,DependencyProperty const& property,PCWSTR key) {
+ for(auto const& prior:visualsChanged)if(prior.property==property&&Identity(prior.object.get(),object))return;
+ auto local=object.ReadLocalValue(property);
+ if(local&&!Identity(local,DependencyProperty::UnsetValue())&&!local.try_as<Brush>())return;
+ SolidColorBrush applied(PaletteRule(key).color);
+ visualsChanged.push_back({make_weak(object),property,local,applied});
+ object.SetValue(property,applied);
+}
+static void BridgeStaticText(DependencyObject const& object) {
+ auto set=[&](DependencyProperty const& property,PropertyKind kind) {
+  for(auto const& prior:visualsChanged)if(prior.property==property&&Identity(prior.object.get(),object))return;
+  auto local=object.ReadLocalValue(property);
+  if(local&&!Identity(local,DependencyProperty::UnsetValue())&&!local.try_as<Brush>())return;
+  auto current=object.GetValue(property).try_as<Brush>();if(!current)return;
+  Rule const* matched=nullptr;
+  for(auto const& resource:resourcesChanged)if(Matches(*resource.rule,kind))for(auto const& alias:resource.aliases)if(Identity(alias,current)) {
+   if(matched&&!Same(matched->color,resource.rule->color))return;matched=resource.rule;
+  }
+  if(!matched)return;
+  SolidColorBrush applied(matched->color);visualsChanged.push_back({make_weak(object),property,local,applied});
+  object.SetValue(property,applied);
+ };
+
+ if(object.try_as<Control>()) {
+  ApplyFocusBrush(object,FrameworkElement::FocusVisualPrimaryBrushProperty(),L"SystemControlFocusVisualPrimaryBrush");
+  ApplyFocusBrush(object,FrameworkElement::FocusVisualSecondaryBrushProperty(),L"SystemControlFocusVisualSecondaryBrush");
+ }
+ // Only stable textual leaves; template backgrounds stay state-driven.
+ if(object.try_as<TextBlock>())set(TextBlock::ForegroundProperty(),PropertyKind::Foreground);
+ if(object.try_as<IconElement>())set(IconElement::ForegroundProperty(),PropertyKind::Foreground);
+}
+
+static void PruneRetiredControls() {
+ for(auto it=animationsChanged.begin();it!=animationsChanged.end();) {
+  if(!it->button.get()) {
+   if(auto animation=it->animation) {
+    if(!EnsureStoppedClock([&]{return it->storyboard.GetCurrentState();},[&]{it->storyboard.Stop();}))throw hresult_error(E_FAIL);
+    auto frames=animation.KeyFrames();
+    if(!RestoreAnimationFrame(it->frame,[&]{return AnimationFrameValue{frames.Size()>0,frames.Size()>0?frames.GetAt(0):nullptr};},
+     [&](auto const& value){frames.SetAt(0,value.template as<ObjectKeyFrame>());}))throw hresult_error(E_FAIL);
+   }
+   it=animationsChanged.erase(it);
+  }else ++it;
+ }
+
+ for(auto it=controlsChanged.begin();it!=controlsChanged.end();) {
+  if(!it->element.get()) {
+   if(!RestoreControlResources(*it))throw hresult_error(E_FAIL);
+   it=controlsChanged.erase(it);
+  }else ++it;
+ }
+ for(auto it=stylesChanged.begin();it!=stylesChanged.end();) {
+  if(!it->object.get())it=stylesChanged.erase(it);else ++it;
+ }
+}
 static void BridgeViews() {
-    auto apply=[](DependencyObject const& object,DependencyProperty const& property,PropertyKind kind) {
-        auto focus=kind==PropertyKind::FocusPrimary || kind==PropertyKind::FocusSecondary;
-        auto brush=object.GetValue(property).try_as<Brush>();
-        if(!brush && !focus)return;
-        auto local=object.ReadLocalValue(property);
-        if(local && !Identity(local,DependencyProperty::UnsetValue()) && !local.try_as<Brush>())return;
-        for(auto const& resource:resourcesChanged)if(Identity(brush,resource.applied))return;
-        ResourceChange const* match=nullptr;
-        for(auto const& resource:resourcesChanged) {
-            if(!Matches(*resource.rule,kind))continue;
-            bool alias=focus;
-            for(auto const& before:resource.aliases)if(Identity(brush,before)){alias=true;break;}
-            if(!alias)continue;
-            // Resource overrides can split aliases; a visual without its key cannot.
-            if(match && !Same(match->rule->color,resource.rule->color))return;
-            match=&resource;
-        }
-        if(!match)return;
-        // Record before mutation, so a failed setter cannot escape restoration.
-        bool updated=false;
-        for(auto& prior:visualsChanged)if(Identity(prior.object.get(),object)&&Identity(prior.property,property)) {
-            prior.before=local;prior.applied=match->applied;updated=true;break;
-        }
-        if(!updated)visualsChanged.push_back({make_weak(object),property,local,match->applied});
-        object.SetValue(property,match->applied);
-    };
+    PruneRetiredControls();
     std::vector<DependencyObject> stack{observedRoot};
     for(auto popup:VisualTreeHelper::GetOpenPopups(Window::Current()))if(popup.Child())stack.push_back(popup.Child());
     unsigned count=0;
     while(!stack.empty() && count++<4096) {
         auto object=stack.back();stack.pop_back();
-        if(object.try_as<SplitView>()) {
-            apply(object,SplitView::PaneBackgroundProperty(),PropertyKind::Background);
-        }
-        if(object.try_as<Control>()) {
-            apply(object,Control::BackgroundProperty(),PropertyKind::Background);
-            apply(object,Control::ForegroundProperty(),PropertyKind::Foreground);
-            apply(object,Control::BorderBrushProperty(),PropertyKind::Border);
-        }
-        if(object.try_as<ContentPresenter>()) {
-            apply(object,ContentPresenter::BackgroundProperty(),PropertyKind::Background);
-            apply(object,ContentPresenter::ForegroundProperty(),PropertyKind::Foreground);
-            apply(object,ContentPresenter::BorderBrushProperty(),PropertyKind::Border);
-        }
-        if(object.try_as<Border>()) {
-            apply(object,Border::BackgroundProperty(),PropertyKind::Background);
-            apply(object,Border::BorderBrushProperty(),PropertyKind::Border);
-        }
-        if(object.try_as<Panel>())apply(object,Panel::BackgroundProperty(),PropertyKind::Background);
-        if(object.try_as<TextBlock>())apply(object,TextBlock::ForegroundProperty(),PropertyKind::Foreground);
-        if(object.try_as<IconElement>())apply(object,IconElement::ForegroundProperty(),PropertyKind::Foreground);
-        if(object.try_as<Windows::UI::Xaml::Shapes::Shape>()) {
-            apply(object,Windows::UI::Xaml::Shapes::Shape::FillProperty(),PropertyKind::Background);
-            apply(object,Windows::UI::Xaml::Shapes::Shape::StrokeProperty(),PropertyKind::Border);
-        }
-        if(object.try_as<FrameworkElement>()) {
-            apply(object,FrameworkElement::FocusVisualPrimaryBrushProperty(),PropertyKind::FocusPrimary);
-            apply(object,FrameworkElement::FocusVisualSecondaryBrushProperty(),PropertyKind::FocusSecondary);
-        }
+        RefreshControlResources(object);
+        ApplyButtonStyle(object);
+        ApplyAnimationPalette(object);
+        BridgeStaticText(object);
         for(int i=0;i<VisualTreeHelper::GetChildrenCount(object);i++)stack.push_back(VisualTreeHelper::GetChild(object,i));
     }
     for(auto it=visualsChanged.begin();it!=visualsChanged.end();) {
         if(!it->object.get())it=visualsChanged.erase(it);else ++it;
     }
 }
-static void RestorePalette() noexcept {
+static bool RestorePalette() noexcept {
     admitted=false;
-    bool restored=true;
+    std::vector<NativeStateRefresh> restartStates;
+    bool restored=RestoreAnimations(restartStates);
+    // A failed clock stop must not be followed by a template/style mutation.
+    // Restart clocks already stopped and retain all ownership for cleanup retry.
+    if(!restored){RefreshNativeColorStates(restartStates);return false;}
+    restored=RestoreButtonStyles()&&restored;
+    for(auto& entry:controlsChanged)restored=RestoreControlResources(entry)&&restored;
     if(applicationResources && ownedOverrides)try {
         auto merged=applicationResources.MergedDictionaries();unsigned index=0;
         if(merged.IndexOf(ownedOverrides,index))merged.RemoveAt(index);
@@ -319,9 +638,12 @@ static void RestorePalette() noexcept {
             else object.SetValue(it->property,it->before);
         }
     }catch(...){restored=false;}
+    for(auto& entry:controlsChanged){entry.refresh.complete=false;restored=RefreshThemeSource(entry.refresh)&&restored;}
     if(!RestorePage())restored=false;
-    if(restored){std::vector<VisualChange>{}.swap(visualsChanged);std::vector<ResourceChange>{}.swap(resourcesChanged);}
+    restored=RefreshNativeColorStates(restartStates)&&restored;
+    if(restored){controlsChanged.clear();std::vector<VisualChange>{}.swap(visualsChanged);std::vector<ResourceChange>{}.swap(resourcesChanged);}
     else Wh_Log(L"Calculator restoration incomplete; retaining baseline for retry");
+    return restored;
 }
 static bool ApplyPalette() {
     if(!enabled.load() || HighContrast() || admitted.load())return false;
@@ -392,11 +714,21 @@ static void OnLayout() noexcept {
     }catch(...){RestorePalette();}
     busy=false;
 }
+static std::atomic<bool> cleanupPinned{false};
+static void RetainCleanupCode() noexcept {
+    if(!cleanupPinned.exchange(true)){
+        HMODULE module=nullptr;
+        GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS,
+            reinterpret_cast<LPCWSTR>(RetainCleanupCode),&module);
+    }
+}
 static void Detach() noexcept {
     busy=true;
     if(observedRoot)try {observedRoot.LayoutUpdated(layoutToken);}catch(...){}
     if(observedWindow)try {observedWindow.Closed(closedToken);}catch(...){}
-    RestorePalette();observedRoot=nullptr;layoutToken={};admissionAttempts=0;
+    layoutToken={};closedToken={};
+    if(!RestorePalette()){RetainCleanupCode();coreWindow=nullptr;busy=false;return;}
+    observedRoot=nullptr;admissionAttempts=0;
     observedWindow=nullptr;closedToken={};
     coreWindow=nullptr;busy=false;
 }

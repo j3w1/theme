@@ -17,13 +17,14 @@ native red current-item indicator. Keyboard focus stays distinct from selection;
 the preview container retains native focusability. These CSS rules preserve
 Search input and navigation and add no script. A browser fixture verifies state
 transitions, focus geometry and forced-color behavior in
-`tests/browser/windows-search.spec.js`; native Search appearance acceptance
-remains open.
+`tests/browser/windows-search.spec.js`. The owner confirmed the installed
+single dark-red selected row and clean hover exit. Other native Search states
+and accessibility acceptance remain open.
 
 | Surface | Current treatment | Remaining evidence or implementation |
 | --- | --- | --- |
 | Desktop, accent, supported borders, wallpaper and standard cursors | Native personalization and generated assets | Accessibility overrides take priority; arbitrary app title bars are not covered |
-| Start and Search | Pinned Start styler with separate layout selectors, Search XAML frame and WebView CSS palette | Recent searches, typed results, categories, preview actions and runtime accessibility acceptance remain open |
+| Start and Search | Pinned Start styler with separate layout selectors, Search XAML frame and WebView CSS palette | Owner confirmed one dark-red fill across selected result icons and labels and correct hover exit. Recent searches, categories, preview actions and runtime accessibility acceptance remain open |
 | Taskbar | Pinned taskbar styler, including mapped top divider | Top-edge visual acceptance remains open |
 | Notifications, calendar, Quick Settings and toast variants | Pinned notification styler | Notification sidebar and loading controls have owner feedback; not every toast or Quick Settings state has been observed |
 | Windows Settings | Pinned Windows.UI.Xaml Settings styler | Bounded native observation only; not a universal application adapter |
@@ -71,6 +72,28 @@ status meanings, Paint artwork and color choices are not palette candidates.
 These are implementation requirements, not implemented capabilities.
 
 ### Calculator resources
+
+The exact recorded assembly-qualified CalculatorButton style keeps the native
+template, commands, dimensions and state groups. A derived style supplies the
+normal and custom hover/press/disabled brush properties. The reviewed
+CommonStates color storyboards also retain native brush-valued keyframes;
+these must be exchanged for the mapped state brushes. The adapter retains
+their WinRT peers and original keyframe objects until restoration, stops
+Active/Filling clocks before every keyframe change, verifies Stopped, and
+restarts the same native state. Unknown storyboard shapes and failed clock
+operations refuse the change. Restoration preserves subsequent app changes.
+Layout and Closed handlers are removed before cleanup on unload.
+
+Native synthetic regressions exercise stopped-clock admission, active/filling
+refusal, partial writes, retry, original object identity, absent/null resources
+and later app replacements/deletions. They use the generated production
+adapter. Live checks of the development prototype observed black/rose
+Scientific buttons, red equals hover, fresh-process startup and two successful
+disable operations while equals was hovered. These observations do not accept
+the final generated candidate. A gray selected navigation item and a white
+result-focus outline remain native visual gaps; all modes and runtime
+accessibility switching still require acceptance.
+
 
 The bundled Calculator adapter admits only the recorded x64 package identity
 and its app-specific resource anchors. It maps the named UI brushes in
