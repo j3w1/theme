@@ -73,7 +73,8 @@
       "calculator.resource.SystemControlFocusVisualSecondaryBrush",
       "calculator.resource.NavigationViewExpandedPaneBackground",
       "calculator.resource.NavigationViewTopPaneBackground",
-      "notepad-native.CANVAS"
+      "notepad-native.CANVAS",
+      "calculator.resource.NavigationViewItemBackground"
     ],
     "color.terminal.cursor": [
       "terminal.cursor"
@@ -117,7 +118,9 @@
       "calculator.resource.TextFillColorPrimaryBrush",
       "calculator.resource.SystemControlPageTextBaseHighBrush",
       "calculator.resource.SystemControlForegroundBaseHighBrush",
-      "calculator.resource.ToolTipForeground"
+      "calculator.resource.ToolTipForeground",
+      "calculator.resource.NavigationViewItemForeground",
+      "calculator.resource.NavigationViewItemForegroundPointerOver"
     ],
     "color.text.bright": [
       "native.bright",
@@ -146,7 +149,8 @@
       "calculator.resource.AppControlPageTextBaseMediumHighBrush",
       "calculator.resource.AppControlForegroundSecondaryBrush",
       "calculator.resource.TextFillColorSecondaryBrush",
-      "calculator.resource.SystemControlPageTextBaseMediumBrush"
+      "calculator.resource.SystemControlPageTextBaseMediumBrush",
+      "calculator.resource.NavigationViewItemForegroundPressed"
     ],
     "color.text.disabled": [
       "native.disabled",
@@ -156,7 +160,10 @@
       "nativeExplorer.disabled",
       "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Foreground@Disabled",
       "calculator.resource.CalcButtonTextFillColorDisabledBrush",
-      "calculator.resource.TextFillColorDisabledBrush"
+      "calculator.resource.TextFillColorDisabledBrush",
+      "calculator.resource.NavigationViewItemForegroundDisabled",
+      "calculator.resource.NavigationViewItemForegroundCheckedDisabled",
+      "calculator.resource.NavigationViewItemForegroundSelectedDisabled"
     ],
     "color.interaction.selection.bg": [
       "native.selection",
@@ -164,7 +171,13 @@
       "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@Selected",
       "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@PointerOverSelected",
       "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@PressedSelected",
-      "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"] | background-color"
+      "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"] | background-color",
+      "calculator.resource.NavigationViewItemBackgroundChecked",
+      "calculator.resource.NavigationViewItemBackgroundCheckedPointerOver",
+      "calculator.resource.NavigationViewItemBackgroundCheckedPressed",
+      "calculator.resource.NavigationViewItemBackgroundSelected",
+      "calculator.resource.NavigationViewItemBackgroundSelectedPointerOver",
+      "calculator.resource.NavigationViewItemBackgroundSelectedPressed"
     ],
     "color.surface.raised": [
       "powertoys.inactive",
@@ -289,7 +302,8 @@
       "calculator.resource.CalcButtonFillColorHoverBrush",
       "calculator.resource.CalcButtonAltFillColorHoverBrush",
       "calculator.resource.SubtleFillColorSecondaryBrush",
-      "calculator.resource.AppControlBackgroundSecondaryBrush"
+      "calculator.resource.AppControlBackgroundSecondaryBrush",
+      "calculator.resource.NavigationViewItemBackgroundPointerOver"
     ],
     "color.interaction.pressed.bg": [
       "windhawk.resource.ControlFillColorTertiary",
@@ -301,7 +315,8 @@
       "calculator.resource.CalcButtonFillColorPressedBrush",
       "calculator.resource.CalcButtonAltFillColorPressedBrush",
       "calculator.resource.AppControlBackgroundTertiaryBrush",
-      "calculator.resource.SubtleFillColorTertiaryBrush"
+      "calculator.resource.SubtleFillColorTertiaryBrush",
+      "calculator.resource.NavigationViewItemBackgroundPressed"
     ],
     "color.action.primary.bg": [
       "windhawk.resource.AccentFillColorDefault",
@@ -397,7 +412,10 @@
       "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | Background@Disabled",
       "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Background@Disabled",
       "calculator.resource.CalcButtonFillColorDisabledBrush",
-      "calculator.resource.CalcButtonAltFillColorDisabledBrush"
+      "calculator.resource.CalcButtonAltFillColorDisabledBrush",
+      "calculator.resource.NavigationViewItemBackgroundDisabled",
+      "calculator.resource.NavigationViewItemBackgroundCheckedDisabled",
+      "calculator.resource.NavigationViewItemBackgroundSelectedDisabled"
     ],
     "color.border.disabled": [
       "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | BorderBrush@Disabled",
@@ -429,7 +447,8 @@
       "windows-11-file-explorer-styler | FileExplorerExtensions.CommandBarControl_Wave1 > Grid, Grid#CommandBarControlRootGrid | BorderBrush",
       "windows-11-file-explorer-styler | CommandBar#FileExplorerCommandBar, CommandBar#FileExplorerSecondaryCommandBar | BorderBrush",
       "windows-11-start-menu-styler | web body, #root, #root.darkTheme, .scope-with-background, .suggsList, .suggsListContainer, .suggContainer, .previewContainer, .suggDetailsContainer, .contextMenu, #menuContainer | border-color",
-      "calculator.resource.DividerStrokeColorDefaultBrush"
+      "calculator.resource.DividerStrokeColorDefaultBrush",
+      "calculator.resource.NavigationViewItemSeparatorForeground"
     ],
     "color.interaction.scrollbar.thumb": [
       "nativeExplorer.scrollbar",
@@ -564,7 +583,13 @@
     ],
     "color.interaction.selection.text": [
       "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"] | color",
-      "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"] .title, .suggestion[aria-selected=\"true\"] .secondaryText | color"
+      "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"] .title, .suggestion[aria-selected=\"true\"] .secondaryText | color",
+      "calculator.resource.NavigationViewItemForegroundChecked",
+      "calculator.resource.NavigationViewItemForegroundCheckedPointerOver",
+      "calculator.resource.NavigationViewItemForegroundCheckedPressed",
+      "calculator.resource.NavigationViewItemForegroundSelected",
+      "calculator.resource.NavigationViewItemForegroundSelectedPointerOver",
+      "calculator.resource.NavigationViewItemForegroundSelectedPressed"
     ],
     "focus.offset": [
       "windows-11-start-menu-styler | web :focus-visible | outline-offset"

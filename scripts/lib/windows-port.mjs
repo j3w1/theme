@@ -174,7 +174,9 @@ export function windowsArtifacts({manifest,host,resolved}){
   throw Error('Calculator requires the exact assembly-qualified native button style');
  if(!/^Microsoft\.WindowsCalculator_\d+\.\d+\.\d+\.\d+_x64__8wekyb3d8bbwe$/.test(calculator.packageFullName))throw Error('Calculator requires an exact package identity');
  const calculatorRules=Object.entries(calculator.resources).map(([key,role])=>{
-  if(!/^[A-Za-z][A-Za-z0-9]+(?:Brush(?:PointerOver|Pressed|Disabled)?|Background|Foreground)$/.test(key)||key.startsWith('Equation'))throw Error('Invalid Calculator UI brush');
+  const navigation=/^NavigationViewItem(?:Background|Foreground)(?:PointerOver|Pressed|Disabled|Checked(?:PointerOver|Pressed|Disabled)?|Selected(?:PointerOver|Pressed|Disabled)?)?$/.test(key)
+   ||key==='NavigationViewItemSeparatorForeground';
+  if((!navigation&&!/^[A-Za-z][A-Za-z0-9]+(?:Brush(?:PointerOver|Pressed|Disabled)?|Background|Foreground)$/.test(key))||key.startsWith('Equation'))throw Error('Invalid Calculator UI brush');
   const [r,g,b]=rgb(val(role));
   return `    {L"${key}",{255,${r},${g},${b}},L"${role}"},`;
  }).join('\n');

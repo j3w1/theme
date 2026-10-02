@@ -37749,7 +37749,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-y3E+o1UcillQA+zg2sjHUjQLjcc+ikzfCZvvk7tKJ30=",
+      "subjectDigest": "sha256-bnF9VxfTvcc77Za62vO6MLu2DjRS3GgNVrH7xW52594=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37782,7 +37782,7 @@
           "path": "dist/windows-settings.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-settings.json",
-          "digest": "sha256-I+T95HHRmJRWMZaol8JgmL3mqUamSfGoXipLdZH7cUE="
+          "digest": "sha256-sQ/QdZZ/nWwH+RL0yx17Ey1rDpIyS8Gt+KtsJgMtOf4="
         },
         {
           "path": "dist/terminal-fragment.json",
@@ -37956,7 +37956,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-mAU9F3I/rHxaaNrFHykEVVI0u7Cuvdf1B8KB42hVQwg="
+          "digest": "sha256-wTSKDuxSsgbDMBHM0BuLFcqJ3rfSjO+CQLC8WVXVlHs="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
@@ -37986,7 +37986,7 @@
           "path": "dist/j3w1-calculator.wh.cpp",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/j3w1-calculator.wh.cpp",
-          "digest": "sha256-yXahoBr0EDzS3MJsvKOEHbTBgG4ssQv32QB9oa2OlyU="
+          "digest": "sha256-MoNcMbkNiJZ8EKs6OYGq9Fc6rSiuoB6AcJUbON7p0ZY="
         },
         {
           "path": "dist/j3w1-calculator.json",
@@ -38585,7 +38585,8 @@
             "windows-11-file-explorer-styler | FileExplorerExtensions.CommandBarControl_Wave1 > Grid, Grid#CommandBarControlRootGrid | BorderBrush",
             "windows-11-file-explorer-styler | CommandBar#FileExplorerCommandBar, CommandBar#FileExplorerSecondaryCommandBar | BorderBrush",
             "windows-11-start-menu-styler | web body, #root, #root.darkTheme, .scope-with-background, .suggsList, .suggsListContainer, .suggContainer, .previewContainer, .suggDetailsContainer, .contextMenu, #menuContainer | border-color",
-            "calculator.resource.DividerStrokeColorDefaultBrush"
+            "calculator.resource.DividerStrokeColorDefaultBrush",
+            "calculator.resource.NavigationViewItemSeparatorForeground"
           ],
           "value": "#2b0e0d",
           "eligibility": {
@@ -39735,7 +39736,10 @@
             "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | Background@Disabled",
             "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Background@Disabled",
             "calculator.resource.CalcButtonFillColorDisabledBrush",
-            "calculator.resource.CalcButtonAltFillColorDisabledBrush"
+            "calculator.resource.CalcButtonAltFillColorDisabledBrush",
+            "calculator.resource.NavigationViewItemBackgroundDisabled",
+            "calculator.resource.NavigationViewItemBackgroundCheckedDisabled",
+            "calculator.resource.NavigationViewItemBackgroundSelectedDisabled"
           ],
           "value": "#160b0b",
           "eligibility": {
@@ -39818,7 +39822,8 @@
             "calculator.resource.CalcButtonFillColorHoverBrush",
             "calculator.resource.CalcButtonAltFillColorHoverBrush",
             "calculator.resource.SubtleFillColorSecondaryBrush",
-            "calculator.resource.AppControlBackgroundSecondaryBrush"
+            "calculator.resource.AppControlBackgroundSecondaryBrush",
+            "calculator.resource.NavigationViewItemBackgroundPointerOver"
           ],
           "value": "#1c0a09",
           "eligibility": {
@@ -39878,7 +39883,8 @@
             "calculator.resource.CalcButtonFillColorPressedBrush",
             "calculator.resource.CalcButtonAltFillColorPressedBrush",
             "calculator.resource.AppControlBackgroundTertiaryBrush",
-            "calculator.resource.SubtleFillColorTertiaryBrush"
+            "calculator.resource.SubtleFillColorTertiaryBrush",
+            "calculator.resource.NavigationViewItemBackgroundPressed"
           ],
           "value": "#420f0c",
           "eligibility": {
@@ -39952,7 +39958,13 @@
             "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@Selected",
             "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@PointerOverSelected",
             "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@PressedSelected",
-            "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"] | background-color"
+            "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"] | background-color",
+            "calculator.resource.NavigationViewItemBackgroundChecked",
+            "calculator.resource.NavigationViewItemBackgroundCheckedPointerOver",
+            "calculator.resource.NavigationViewItemBackgroundCheckedPressed",
+            "calculator.resource.NavigationViewItemBackgroundSelected",
+            "calculator.resource.NavigationViewItemBackgroundSelectedPointerOver",
+            "calculator.resource.NavigationViewItemBackgroundSelectedPressed"
           ],
           "value": "#531310",
           "eligibility": {
@@ -40002,7 +40014,13 @@
           "role": "color.interaction.selection.text",
           "nativeKeys": [
             "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"] | color",
-            "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"] .title, .suggestion[aria-selected=\"true\"] .secondaryText | color"
+            "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"] .title, .suggestion[aria-selected=\"true\"] .secondaryText | color",
+            "calculator.resource.NavigationViewItemForegroundChecked",
+            "calculator.resource.NavigationViewItemForegroundCheckedPointerOver",
+            "calculator.resource.NavigationViewItemForegroundCheckedPressed",
+            "calculator.resource.NavigationViewItemForegroundSelected",
+            "calculator.resource.NavigationViewItemForegroundSelectedPointerOver",
+            "calculator.resource.NavigationViewItemForegroundSelectedPressed"
           ],
           "value": "#f4eeee",
           "eligibility": {
@@ -41688,7 +41706,8 @@
             "calculator.resource.SystemControlFocusVisualSecondaryBrush",
             "calculator.resource.NavigationViewExpandedPaneBackground",
             "calculator.resource.NavigationViewTopPaneBackground",
-            "notepad-native.CANVAS"
+            "notepad-native.CANVAS",
+            "calculator.resource.NavigationViewItemBackground"
           ],
           "value": "#000000",
           "eligibility": {
@@ -42357,7 +42376,9 @@
             "calculator.resource.TextFillColorPrimaryBrush",
             "calculator.resource.SystemControlPageTextBaseHighBrush",
             "calculator.resource.SystemControlForegroundBaseHighBrush",
-            "calculator.resource.ToolTipForeground"
+            "calculator.resource.ToolTipForeground",
+            "calculator.resource.NavigationViewItemForeground",
+            "calculator.resource.NavigationViewItemForegroundPointerOver"
           ],
           "value": "#e99499",
           "eligibility": {
@@ -42381,7 +42402,10 @@
             "nativeExplorer.disabled",
             "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Foreground@Disabled",
             "calculator.resource.CalcButtonTextFillColorDisabledBrush",
-            "calculator.resource.TextFillColorDisabledBrush"
+            "calculator.resource.TextFillColorDisabledBrush",
+            "calculator.resource.NavigationViewItemForegroundDisabled",
+            "calculator.resource.NavigationViewItemForegroundCheckedDisabled",
+            "calculator.resource.NavigationViewItemForegroundSelectedDisabled"
           ],
           "value": "#8a5559",
           "eligibility": {
@@ -42509,7 +42533,8 @@
             "calculator.resource.AppControlPageTextBaseMediumHighBrush",
             "calculator.resource.AppControlForegroundSecondaryBrush",
             "calculator.resource.TextFillColorSecondaryBrush",
-            "calculator.resource.SystemControlPageTextBaseMediumBrush"
+            "calculator.resource.SystemControlPageTextBaseMediumBrush",
+            "calculator.resource.NavigationViewItemForegroundPressed"
           ],
           "value": "#bd787d",
           "eligibility": {

@@ -84,15 +84,24 @@ restarts the same native state. Unknown storyboard shapes and failed clock
 operations refuse the change. Restoration preserves subsequent app changes.
 Layout and Closed handlers are removed before cleanup on unload.
 
+NavigationViewItem and its presenter receive the reviewed WinUI 2 normal,
+hover, pressed, checked, selected and disabled resource keys separately.
+Selection remains a fill and keyboard focus keeps its native geometry with
+the mapped brushes. Live prototype checks observed a dark-red selected row,
+the warm-red hover fill, a return to black after hover, and restoration of the
+native gray selection on disable without changing the current Calculator mode.
+These are bounded checks of Scientific navigation, not all-mode acceptance.
+The resource keys come from the pinned
+[WinUI 2 NavigationView theme](https://github.com/microsoft/microsoft-ui-xaml/blob/v2.8.0/dev/NavigationView/NavigationView_rs1_themeresources.xaml).
+
 Native synthetic regressions exercise stopped-clock admission, active/filling
 refusal, partial writes, retry, original object identity, absent/null resources
 and later app replacements/deletions. They use the generated production
 adapter. Live checks of the development prototype observed black/rose
 Scientific buttons, red equals hover, fresh-process startup and two successful
 disable operations while equals was hovered. These observations do not accept
-the final generated candidate. A gray selected navigation item and a white
-result-focus outline remain native visual gaps; all modes and runtime
-accessibility switching still require acceptance.
+the final generated candidate. A white result-focus outline remains a native visual gap; all modes and
+runtime accessibility switching still require acceptance.
 
 
 The bundled Calculator adapter admits only the recorded x64 package identity

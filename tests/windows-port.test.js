@@ -131,6 +131,13 @@ test('Calculator uses an exact package and separate primary, disabled and intera
  assert.equal(roles.CalcButtonFillColorPressedBrush,'color.interaction.pressed.bg');
  assert.equal(roles.AccentFillColorDefaultBrush,'color.action.primary.bg');
  assert.equal(roles.TextOnAccentFillColorPrimaryBrush,'color.text.bright');
+ assert.equal(roles.NavigationViewItemBackgroundSelected,'color.interaction.selection.bg');
+ assert.equal(roles.NavigationViewItemForegroundSelected,'color.interaction.selection.text');
+ assert.equal(roles.NavigationViewItemBackgroundPointerOver,'color.interaction.hover.bg');
+ assert.equal(roles.NavigationViewItemBackgroundPressed,'color.interaction.pressed.bg');
+ assert.equal(roles.NavigationViewItemBackgroundDisabled,'color.interaction.disabled.bg');
+ assert.equal(roles.NavigationViewItemForegroundDisabled,'color.text.disabled');
+ assert.equal(roles.NavigationViewItemSeparatorForeground,'color.border.divider');
  assert.ok(!Object.keys(roles).some(key=>key.startsWith('Equation')));
  const settings=await readJson('ports/windows/dist/windows-settings.json');
  const mod=settings.bundledMods.find(x=>x.id==='j3w1-calculator');

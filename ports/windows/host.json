@@ -1094,7 +1094,7 @@
     }
   },
   "calculator": {
-    "version": "1.4.0",
+    "version": "1.4.1",
     "packageFullName": "Microsoft.WindowsCalculator_11.2607.0.0_x64__8wekyb3d8bbwe",
     "resources": {
       "AppChromeAcrylicHostBackdropMediumLowBrush": "color.surface.canvas",
@@ -1155,7 +1155,32 @@
       "ControlElevationBorderBrush": "color.border.control",
       "ToolTipBackground": "color.surface.overlay",
       "ToolTipForeground": "color.text.default",
-      "ToolTipBorderBrush": "color.border.control"
+      "ToolTipBorderBrush": "color.border.control",
+      "NavigationViewItemBackground": "color.surface.canvas",
+      "NavigationViewItemForeground": "color.text.default",
+      "NavigationViewItemBackgroundPointerOver": "color.interaction.hover.bg",
+      "NavigationViewItemForegroundPointerOver": "color.text.default",
+      "NavigationViewItemBackgroundPressed": "color.interaction.pressed.bg",
+      "NavigationViewItemForegroundPressed": "color.text.muted",
+      "NavigationViewItemBackgroundDisabled": "color.interaction.disabled.bg",
+      "NavigationViewItemForegroundDisabled": "color.text.disabled",
+      "NavigationViewItemBackgroundChecked": "color.interaction.selection.bg",
+      "NavigationViewItemForegroundChecked": "color.interaction.selection.text",
+      "NavigationViewItemBackgroundCheckedPointerOver": "color.interaction.selection.bg",
+      "NavigationViewItemForegroundCheckedPointerOver": "color.interaction.selection.text",
+      "NavigationViewItemBackgroundCheckedPressed": "color.interaction.selection.bg",
+      "NavigationViewItemForegroundCheckedPressed": "color.interaction.selection.text",
+      "NavigationViewItemBackgroundCheckedDisabled": "color.interaction.disabled.bg",
+      "NavigationViewItemForegroundCheckedDisabled": "color.text.disabled",
+      "NavigationViewItemBackgroundSelected": "color.interaction.selection.bg",
+      "NavigationViewItemForegroundSelected": "color.interaction.selection.text",
+      "NavigationViewItemBackgroundSelectedPointerOver": "color.interaction.selection.bg",
+      "NavigationViewItemForegroundSelectedPointerOver": "color.interaction.selection.text",
+      "NavigationViewItemBackgroundSelectedPressed": "color.interaction.selection.bg",
+      "NavigationViewItemForegroundSelectedPressed": "color.interaction.selection.text",
+      "NavigationViewItemBackgroundSelectedDisabled": "color.interaction.disabled.bg",
+      "NavigationViewItemForegroundSelectedDisabled": "color.text.disabled",
+      "NavigationViewItemSeparatorForeground": "color.border.divider"
     },
     "buttonStyleTarget": "CalculatorApp.Controls.CalculatorButton, CalculatorApp, Version=11.2607.0.0, Culture=neutral, PublicKeyToken=null"
   },

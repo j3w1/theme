@@ -2,7 +2,7 @@
 // @id j3w1-calculator
 // @name j3w1 Calculator resources
 // @description Version-checked Calculator UI resources; equation colors remain native
-// @version 1.4.0
+// @version 1.4.1
 // @author j3w1
 // @include CalculatorApp.exe
 // @architecture x86-64
@@ -100,6 +100,31 @@ static constexpr Rule rules[] = {
     {L"ToolTipBackground",{255,36,16,16},L"color.surface.overlay"},
     {L"ToolTipForeground",{255,233,148,153},L"color.text.default"},
     {L"ToolTipBorderBrush",{255,163,103,107},L"color.border.control"},
+    {L"NavigationViewItemBackground",{255,0,0,0},L"color.surface.canvas"},
+    {L"NavigationViewItemForeground",{255,233,148,153},L"color.text.default"},
+    {L"NavigationViewItemBackgroundPointerOver",{255,28,10,9},L"color.interaction.hover.bg"},
+    {L"NavigationViewItemForegroundPointerOver",{255,233,148,153},L"color.text.default"},
+    {L"NavigationViewItemBackgroundPressed",{255,66,15,12},L"color.interaction.pressed.bg"},
+    {L"NavigationViewItemForegroundPressed",{255,189,120,125},L"color.text.muted"},
+    {L"NavigationViewItemBackgroundDisabled",{255,22,11,11},L"color.interaction.disabled.bg"},
+    {L"NavigationViewItemForegroundDisabled",{255,138,85,89},L"color.text.disabled"},
+    {L"NavigationViewItemBackgroundChecked",{255,83,19,16},L"color.interaction.selection.bg"},
+    {L"NavigationViewItemForegroundChecked",{255,244,238,238},L"color.interaction.selection.text"},
+    {L"NavigationViewItemBackgroundCheckedPointerOver",{255,83,19,16},L"color.interaction.selection.bg"},
+    {L"NavigationViewItemForegroundCheckedPointerOver",{255,244,238,238},L"color.interaction.selection.text"},
+    {L"NavigationViewItemBackgroundCheckedPressed",{255,83,19,16},L"color.interaction.selection.bg"},
+    {L"NavigationViewItemForegroundCheckedPressed",{255,244,238,238},L"color.interaction.selection.text"},
+    {L"NavigationViewItemBackgroundCheckedDisabled",{255,22,11,11},L"color.interaction.disabled.bg"},
+    {L"NavigationViewItemForegroundCheckedDisabled",{255,138,85,89},L"color.text.disabled"},
+    {L"NavigationViewItemBackgroundSelected",{255,83,19,16},L"color.interaction.selection.bg"},
+    {L"NavigationViewItemForegroundSelected",{255,244,238,238},L"color.interaction.selection.text"},
+    {L"NavigationViewItemBackgroundSelectedPointerOver",{255,83,19,16},L"color.interaction.selection.bg"},
+    {L"NavigationViewItemForegroundSelectedPointerOver",{255,244,238,238},L"color.interaction.selection.text"},
+    {L"NavigationViewItemBackgroundSelectedPressed",{255,83,19,16},L"color.interaction.selection.bg"},
+    {L"NavigationViewItemForegroundSelectedPressed",{255,244,238,238},L"color.interaction.selection.text"},
+    {L"NavigationViewItemBackgroundSelectedDisabled",{255,22,11,11},L"color.interaction.disabled.bg"},
+    {L"NavigationViewItemForegroundSelectedDisabled",{255,138,85,89},L"color.text.disabled"},
+    {L"NavigationViewItemSeparatorForeground",{255,43,14,13},L"color.border.divider"},
 };
 static std::atomic<bool> enabled{false}, admitted{false};
 static std::atomic<HWND> coreWindow{nullptr};
@@ -330,6 +355,9 @@ static bool RestoreControlResources(ControlResources& entry) noexcept {
 
 [[clang::no_destroy]] static std::deque<ControlResources> controlsChanged;
 static bool ChromeControl(DependencyObject const& object) {
+    auto type=get_class_name(object);
+    if(type==L"Microsoft.UI.Xaml.Controls.NavigationViewItem"
+        ||type==L"Microsoft.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter")return true;
     return object.try_as<Windows::UI::Xaml::Controls::Primitives::ButtonBase>()
         ||object.try_as<MenuFlyoutPresenter>()||object.try_as<MenuFlyoutItem>()||object.try_as<MenuFlyoutSubItem>()
         ||object.try_as<ToggleSwitch>()||object.try_as<ComboBox>()||object.try_as<ListViewItem>()
