@@ -38,7 +38,7 @@ and accessibility acceptance remain open.
 | Explorer classic “Show more options” menu | Scoped exact-host Win32 popup palette | Confirmed owner/paint trace and native regressions; live normal, hot, disabled and submenu appearance still need verification |
 | Notepad | Bundled exact-package WinUI chrome resource adapter plus the RichEdit-binary editor adapter | A fresh sample window showed black/rose, native gray/white on disable, and the same unmodified character count. Native regressions cover ordinary glyph paint, color emoji, background restoration, high contrast and worker shutdown. Fresh-window chrome checks showed black tabs/toolbar/status regions, rose labels, a dark-red popup and red/rose keyboard focus. Existing chrome is discovered through the exact-runtime diagnostics bridge; full hover, startup and accessibility acceptance remain open |
 | Calculator | Bundled package-gated Windows.UI.Xaml brush adapter for the recorded 11.2607.0.0 package | Bounded Scientific-mode black/rose and disable/reapply were observed. Native worker shutdown and a deliberate post-apply restoration fault passed. Other modes, final installer startup and live accessibility acceptance remain open; graph-series brushes are excluded |
-| Paint | Native dark-mode/accent treatment only | WinUI 3 toolbars and panels need an adapter; artwork canvas and color swatches must retain their colors |
+| Paint | Exact-package WinUI chrome adapter sharing Notepad ownership and existing-root discovery | Named ribbon, toolbar and layer roots use token-derived resources; drawing controls, artwork and swatches remain excluded. Live behavior and restoration acceptance remain open |
 | Terminal | Native generated scheme, font and opaque chrome | Owner confirmed appearance; command output can intentionally choose other colors |
 | PowerToys utilities | Configurable FancyZones, Always On Top and Command Palette appearance | Command Palette exposes tint, not every text role |
 | Obsidian | Separate j3w1 CSS/manifest port | Installed pair readback is separate from Windows installation; third-party plugin surfaces may override it |
@@ -264,3 +264,17 @@ retains its worker, callback and module until cleanup succeeds or the process
 exits. Reconfiguration asks the same worker to enumerate the existing roots.
 Another tool already owning the diagnostics connection or an unknown bridge
 leaves undiscovered roots native. No connection error grants generic admission.
+
+### Shared WinUI chrome and native backdrop
+
+Notepad and Paint use one generator template and resource mapping, with separate
+exact package gates and named chrome admission lists. Diagnostics below a generic
+island root select only the topmost named chrome ancestor in that XamlRoot.
+Drawing, swatch and document classes do not grant admission.
+
+The native system backdrop has a readable baseline, unlike caption colors.
+The adapter saves that exact value before removing Mica from an admitted existing
+window, restores it only while its own value remains active, and tracks later
+application requests. Failed restoration retains ownership for retry. Existing
+caption color remains native until an app request provides its baseline. No
+AppWindow title controller or window restart is used.

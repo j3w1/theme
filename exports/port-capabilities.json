@@ -37749,7 +37749,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-mWhBvGV6k0QwRy6dC43aYX5wP714AVlCTzwBUJbOwTI=",
+      "subjectDigest": "sha256-IWTflCjwBfWZRexvPH/S5KR7K3Lv8KEvk38iKDYP+CY=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37782,7 +37782,7 @@
           "path": "dist/windows-settings.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-settings.json",
-          "digest": "sha256-IhkXi2ikVl/uzieIr+5vq8QBRBIxQb5d+XJ0kzSK0O4="
+          "digest": "sha256-SG+BREkqYFuUwvc2G1M+i66jN2QMjrfp8KsvlQz4xHo="
         },
         {
           "path": "dist/terminal-fragment.json",
@@ -37956,7 +37956,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-JBHPBHbKH/d8UK6AdwGLYSyxxk55i2QutH8TfZcRUzY="
+          "digest": "sha256-ku3vRGEoSp+Ph2QHOiWQt8s3sWKUgEB7vGrgnUdOVxQ="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
@@ -38040,12 +38040,24 @@
           "path": "dist/j3w1-notepad-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-notepad-chrome.wh.cpp",
-          "digest": "sha256-JugkG4EJCLwzhQIElfyvdt8fq1+KfbBmgioHEflJoww="
+          "digest": "sha256-yB34ImX9LHLtmfd9VsglD5PrAn7bvEyaD7fpvrwmzYo="
         },
         {
           "path": "dist/j3w1-notepad-chrome.json",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-notepad-chrome.json",
+          "digest": "sha256-+lwIdlLbogmrj/YARkIQargB+Gxd4ZfFpIhE2gZtznM="
+        },
+        {
+          "path": "dist/j3w1-paint-chrome.wh.cpp",
+          "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
+          "source": "ports/windows/dist/j3w1-paint-chrome.wh.cpp",
+          "digest": "sha256-cZ/10a3/Ks24X4yOTCf+q8p2lYLTv7mKt/WtDRpBtOI="
+        },
+        {
+          "path": "dist/j3w1-paint-chrome.json",
+          "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
+          "source": "ports/windows/dist/j3w1-paint-chrome.json",
           "digest": "sha256-+lwIdlLbogmrj/YARkIQargB+Gxd4ZfFpIhE2gZtznM="
         }
       ],
@@ -38278,7 +38290,10 @@
             "calculator.resource.AppControlHighlightCalcButtonToggledBrush",
             "notepad-chrome.resource.AccentFillColorDefaultBrush",
             "notepad-chrome.resource.ToggleSwitchFillOn",
-            "notepad-chrome.resource.ToggleSwitchStrokeOn"
+            "notepad-chrome.resource.ToggleSwitchStrokeOn",
+            "paint-chrome.resource.AccentFillColorDefaultBrush",
+            "paint-chrome.resource.ToggleSwitchFillOn",
+            "paint-chrome.resource.ToggleSwitchStrokeOn"
           ],
           "value": "#7d1310",
           "eligibility": {
@@ -38315,7 +38330,10 @@
             "calculator.resource.AppControlHighlightCalcButtonHoverBrush",
             "notepad-chrome.resource.AccentFillColorSecondaryBrush",
             "notepad-chrome.resource.ToggleSwitchFillOnPointerOver",
-            "notepad-chrome.resource.ToggleSwitchStrokeOnPointerOver"
+            "notepad-chrome.resource.ToggleSwitchStrokeOnPointerOver",
+            "paint-chrome.resource.AccentFillColorSecondaryBrush",
+            "paint-chrome.resource.ToggleSwitchFillOnPointerOver",
+            "paint-chrome.resource.ToggleSwitchStrokeOnPointerOver"
           ],
           "value": "#911410",
           "eligibility": {
@@ -38336,7 +38354,10 @@
             "calculator.resource.AccentFillColorTertiaryBrush",
             "notepad-chrome.resource.AccentFillColorTertiaryBrush",
             "notepad-chrome.resource.ToggleSwitchFillOnPressed",
-            "notepad-chrome.resource.ToggleSwitchStrokeOnPressed"
+            "notepad-chrome.resource.ToggleSwitchStrokeOnPressed",
+            "paint-chrome.resource.AccentFillColorTertiaryBrush",
+            "paint-chrome.resource.ToggleSwitchFillOnPressed",
+            "paint-chrome.resource.ToggleSwitchStrokeOnPressed"
           ],
           "value": "#630f0d",
           "eligibility": {
@@ -38355,7 +38376,10 @@
           "nativeKeys": [
             "notepad-chrome.resource.ToggleSwitchKnobFillOn",
             "notepad-chrome.resource.ToggleSwitchKnobFillOnPointerOver",
-            "notepad-chrome.resource.ToggleSwitchKnobFillOnPressed"
+            "notepad-chrome.resource.ToggleSwitchKnobFillOnPressed",
+            "paint-chrome.resource.ToggleSwitchKnobFillOn",
+            "paint-chrome.resource.ToggleSwitchKnobFillOnPointerOver",
+            "paint-chrome.resource.ToggleSwitchKnobFillOnPressed"
           ],
           "value": "#ffa2a7",
           "eligibility": {
@@ -38529,7 +38553,19 @@
             "notepad-chrome.resource.ToggleButtonBorderBrushCheckedPointerOver",
             "notepad-chrome.resource.ToggleButtonBorderBrushCheckedPressed",
             "notepad-chrome.resource.ToggleButtonBorderBrushIndeterminatePointerOver",
-            "notepad-chrome.resource.ToggleButtonBorderBrushIndeterminatePressed"
+            "notepad-chrome.resource.ToggleButtonBorderBrushIndeterminatePressed",
+            "paint-chrome.resource.MenuBarItemBorderBrushPointerOver",
+            "paint-chrome.resource.MenuBarItemBorderBrushPressed",
+            "paint-chrome.resource.MenuBarItemBorderBrushSelected",
+            "paint-chrome.resource.ButtonBorderBrushPointerOver",
+            "paint-chrome.resource.ButtonBorderBrushPressed",
+            "paint-chrome.resource.ToggleButtonBorderBrushPointerOver",
+            "paint-chrome.resource.ToggleButtonBorderBrushPressed",
+            "paint-chrome.resource.ToggleButtonBorderBrushChecked",
+            "paint-chrome.resource.ToggleButtonBorderBrushCheckedPointerOver",
+            "paint-chrome.resource.ToggleButtonBorderBrushCheckedPressed",
+            "paint-chrome.resource.ToggleButtonBorderBrushIndeterminatePointerOver",
+            "paint-chrome.resource.ToggleButtonBorderBrushIndeterminatePressed"
           ],
           "value": "#e53935",
           "eligibility": {
@@ -38567,7 +38603,15 @@
             "notepad-chrome.resource.TextControlBorderBrush",
             "notepad-chrome.resource.ButtonBorderBrush",
             "notepad-chrome.resource.ToggleButtonBorderBrush",
-            "notepad-chrome.resource.ToggleButtonBorderBrushIndeterminate"
+            "notepad-chrome.resource.ToggleButtonBorderBrushIndeterminate",
+            "paint-chrome.resource.OverlayButtonBorderBrush",
+            "paint-chrome.resource.ControlStrokeColorDefaultBrush",
+            "paint-chrome.resource.ControlStrokeColorSecondaryBrush",
+            "paint-chrome.resource.ControlStrongStrokeColorDefaultBrush",
+            "paint-chrome.resource.TextControlBorderBrush",
+            "paint-chrome.resource.ButtonBorderBrush",
+            "paint-chrome.resource.ToggleButtonBorderBrush",
+            "paint-chrome.resource.ToggleButtonBorderBrushIndeterminate"
           ],
           "value": "#a3676b",
           "eligibility": {
@@ -38611,7 +38655,11 @@
             "notepad-chrome.resource.ButtonBorderBrushDisabled",
             "notepad-chrome.resource.ToggleButtonBorderBrushDisabled",
             "notepad-chrome.resource.ToggleButtonBorderBrushCheckedDisabled",
-            "notepad-chrome.resource.ToggleButtonBorderBrushIndeterminateDisabled"
+            "notepad-chrome.resource.ToggleButtonBorderBrushIndeterminateDisabled",
+            "paint-chrome.resource.ButtonBorderBrushDisabled",
+            "paint-chrome.resource.ToggleButtonBorderBrushDisabled",
+            "paint-chrome.resource.ToggleButtonBorderBrushCheckedDisabled",
+            "paint-chrome.resource.ToggleButtonBorderBrushIndeterminateDisabled"
           ],
           "value": "#7d1310",
           "eligibility": {
@@ -38645,7 +38693,15 @@
             "notepad-chrome.resource.ExpanderContentBorderBrush",
             "notepad-chrome.resource.ExpanderHeaderBorderBrush",
             "notepad-chrome.resource.MenuFlyoutSeparatorBackground",
-            "notepad-chrome.resource.MenuBarItemBorderBrush"
+            "notepad-chrome.resource.MenuBarItemBorderBrush",
+            "paint-chrome.resource.PanelHeaderIconButtonBorderBrush",
+            "paint-chrome.resource.DividerStrokeColorDefaultBrush",
+            "paint-chrome.resource.SurfaceStrokeColorDefaultBrush",
+            "paint-chrome.resource.CardStrokeColorDefaultBrush",
+            "paint-chrome.resource.ExpanderContentBorderBrush",
+            "paint-chrome.resource.ExpanderHeaderBorderBrush",
+            "paint-chrome.resource.MenuFlyoutSeparatorBackground",
+            "paint-chrome.resource.MenuBarItemBorderBrush"
           ],
           "value": "#2b0e0d",
           "eligibility": {
@@ -38674,7 +38730,9 @@
             "windows-11-notification-center-styler | Border#ToastBackgroundBorder2 | BorderBrush",
             "nativeExplorer.menuBorder",
             "notepad-chrome.resource.MenuFlyoutPresenterBorderBrush",
-            "notepad-chrome.resource.SurfaceStrokeColorFlyoutBrush"
+            "notepad-chrome.resource.SurfaceStrokeColorFlyoutBrush",
+            "paint-chrome.resource.MenuFlyoutPresenterBorderBrush",
+            "paint-chrome.resource.SurfaceStrokeColorFlyoutBrush"
           ],
           "value": "#e53935",
           "eligibility": {
@@ -39806,7 +39864,13 @@
             "notepad-chrome.resource.AppBarToggleButtonBackgroundDisabled",
             "notepad-chrome.resource.ToggleButtonBackgroundDisabled",
             "notepad-chrome.resource.ToggleButtonBackgroundCheckedDisabled",
-            "notepad-chrome.resource.ToggleButtonBackgroundIndeterminateDisabled"
+            "notepad-chrome.resource.ToggleButtonBackgroundIndeterminateDisabled",
+            "paint-chrome.resource.ControlFillColorDisabledBrush",
+            "paint-chrome.resource.AppBarButtonBackgroundDisabled",
+            "paint-chrome.resource.AppBarToggleButtonBackgroundDisabled",
+            "paint-chrome.resource.ToggleButtonBackgroundDisabled",
+            "paint-chrome.resource.ToggleButtonBackgroundCheckedDisabled",
+            "paint-chrome.resource.ToggleButtonBackgroundIndeterminateDisabled"
           ],
           "value": "#160b0b",
           "eligibility": {
@@ -39846,7 +39910,9 @@
             "calculator.resource.SystemControlFocusVisualPrimaryBrush",
             "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"]:focus-visible | outline-color",
             "notepad-chrome.resource.SystemControlFocusVisualPrimaryBrush",
-            "notepad-chrome.resource.FocusStrokeColorOuterBrush"
+            "notepad-chrome.resource.FocusStrokeColorOuterBrush",
+            "paint-chrome.resource.SystemControlFocusVisualPrimaryBrush",
+            "paint-chrome.resource.FocusStrokeColorOuterBrush"
           ],
           "value": "#e53935",
           "eligibility": {
@@ -39865,7 +39931,9 @@
           "nativeKeys": [
             "windows-11-start-menu-styler | web .previewContainer:focus-visible | outline-color",
             "notepad-chrome.resource.SystemControlFocusVisualSecondaryBrush",
-            "notepad-chrome.resource.FocusStrokeColorInnerBrush"
+            "notepad-chrome.resource.FocusStrokeColorInnerBrush",
+            "paint-chrome.resource.SystemControlFocusVisualSecondaryBrush",
+            "paint-chrome.resource.FocusStrokeColorInnerBrush"
           ],
           "value": "#ffa2a7",
           "eligibility": {
@@ -39902,7 +39970,15 @@
             "notepad-chrome.resource.AppBarButtonBackgroundPointerOver",
             "notepad-chrome.resource.AppBarToggleButtonBackgroundPointerOver",
             "notepad-chrome.resource.ToggleButtonBackgroundPointerOver",
-            "notepad-chrome.resource.ToggleButtonBackgroundIndeterminatePointerOver"
+            "notepad-chrome.resource.ToggleButtonBackgroundIndeterminatePointerOver",
+            "paint-chrome.resource.PaintButtonHoverBackground",
+            "paint-chrome.resource.ControlFillColorSecondaryBrush",
+            "paint-chrome.resource.ButtonBackgroundPointerOver",
+            "paint-chrome.resource.MenuBarItemBackgroundPointerOver",
+            "paint-chrome.resource.AppBarButtonBackgroundPointerOver",
+            "paint-chrome.resource.AppBarToggleButtonBackgroundPointerOver",
+            "paint-chrome.resource.ToggleButtonBackgroundPointerOver",
+            "paint-chrome.resource.ToggleButtonBackgroundIndeterminatePointerOver"
           ],
           "value": "#1c0a09",
           "eligibility": {
@@ -39923,7 +39999,11 @@
             "notepad-chrome.resource.HoverMenuItemSelectedBackgroundBrush",
             "notepad-chrome.resource.MenuFlyoutItemBackgroundPointerOver",
             "notepad-chrome.resource.MenuFlyoutSubItemBackgroundPointerOver",
-            "notepad-chrome.resource.MenuFlyoutSubItemBackgroundSubMenuOpened"
+            "notepad-chrome.resource.MenuFlyoutSubItemBackgroundSubMenuOpened",
+            "paint-chrome.resource.HoverMenuItemSelectedBackgroundBrush",
+            "paint-chrome.resource.MenuFlyoutItemBackgroundPointerOver",
+            "paint-chrome.resource.MenuFlyoutSubItemBackgroundPointerOver",
+            "paint-chrome.resource.MenuFlyoutSubItemBackgroundSubMenuOpened"
           ],
           "value": "#630f0d",
           "eligibility": {
@@ -39980,7 +40060,20 @@
             "notepad-chrome.resource.AppBarToggleButtonBackgroundCheckedPressed",
             "notepad-chrome.resource.ToggleButtonBackgroundPressed",
             "notepad-chrome.resource.ToggleButtonBackgroundCheckedPressed",
-            "notepad-chrome.resource.ToggleButtonBackgroundIndeterminatePressed"
+            "notepad-chrome.resource.ToggleButtonBackgroundIndeterminatePressed",
+            "paint-chrome.resource.PaintButtonPressedBackground",
+            "paint-chrome.resource.PressedMenuItemSelectedBackgroundBrush",
+            "paint-chrome.resource.ControlFillColorTertiaryBrush",
+            "paint-chrome.resource.ButtonBackgroundPressed",
+            "paint-chrome.resource.MenuFlyoutItemBackgroundPressed",
+            "paint-chrome.resource.MenuFlyoutSubItemBackgroundPressed",
+            "paint-chrome.resource.MenuBarItemBackgroundPressed",
+            "paint-chrome.resource.AppBarButtonBackgroundPressed",
+            "paint-chrome.resource.AppBarToggleButtonBackgroundPressed",
+            "paint-chrome.resource.AppBarToggleButtonBackgroundCheckedPressed",
+            "paint-chrome.resource.ToggleButtonBackgroundPressed",
+            "paint-chrome.resource.ToggleButtonBackgroundCheckedPressed",
+            "paint-chrome.resource.ToggleButtonBackgroundIndeterminatePressed"
           ],
           "value": "#420f0c",
           "eligibility": {
@@ -40001,7 +40094,8 @@
             "powertoys.markdown.SCROLLBAR",
             "windows-11-start-menu-styler | web * | scrollbar-color",
             "windows-11-start-menu-styler | web ::-webkit-scrollbar-thumb | background-color",
-            "notepad-chrome.resource.J3w1ScrollBarThumb"
+            "notepad-chrome.resource.J3w1ScrollBarThumb",
+            "paint-chrome.resource.J3w1ScrollBarThumb"
           ],
           "value": "#420f0c",
           "eligibility": {
@@ -40070,7 +40164,16 @@
             "notepad-chrome.resource.AppBarToggleButtonBackgroundChecked",
             "notepad-chrome.resource.AppBarToggleButtonBackgroundCheckedPointerOver",
             "notepad-chrome.resource.ToggleButtonBackgroundChecked",
-            "notepad-chrome.resource.ToggleButtonBackgroundCheckedPointerOver"
+            "notepad-chrome.resource.ToggleButtonBackgroundCheckedPointerOver",
+            "paint-chrome.resource.PaintButtonSelectedBackground",
+            "paint-chrome.resource.PaintToggleButtonSelectedBackground",
+            "paint-chrome.resource.MenuItemSelectedBackgroundBrush",
+            "paint-chrome.resource.TabViewItemHeaderBackgroundSelected",
+            "paint-chrome.resource.MenuBarItemBackgroundSelected",
+            "paint-chrome.resource.AppBarToggleButtonBackgroundChecked",
+            "paint-chrome.resource.AppBarToggleButtonBackgroundCheckedPointerOver",
+            "paint-chrome.resource.ToggleButtonBackgroundChecked",
+            "paint-chrome.resource.ToggleButtonBackgroundCheckedPointerOver"
           ],
           "value": "#531310",
           "eligibility": {
@@ -40145,7 +40248,8 @@
           "nativeKeys": [
             "powertoys.markdown.SELECTION",
             "notepad-native.SELECTION",
-            "notepad-chrome.resource.TextSelectionHighlightColorThemeBrush"
+            "notepad-chrome.resource.TextSelectionHighlightColorThemeBrush",
+            "paint-chrome.resource.TextSelectionHighlightColorThemeBrush"
           ],
           "value": "#911410",
           "eligibility": {
@@ -41839,7 +41943,31 @@
             "notepad-chrome.resource.CommandBarBackground",
             "notepad-chrome.resource.CommandBarBackgroundOpen",
             "notepad-chrome.resource.ToggleButtonBackground",
-            "notepad-chrome.resource.ToggleButtonBackgroundIndeterminate"
+            "notepad-chrome.resource.ToggleButtonBackgroundIndeterminate",
+            "paint-chrome.resource.MenuBarBackgroundBrush",
+            "paint-chrome.resource.RibbonBackground",
+            "paint-chrome.resource.SolidBackgroundFillColorBaseBrush",
+            "paint-chrome.resource.SolidBackgroundFillColorSecondaryBrush",
+            "paint-chrome.resource.SolidBackgroundFillColorTertiaryBrush",
+            "paint-chrome.resource.LayerFillColorDefaultBrush",
+            "paint-chrome.resource.LayerFillColorAltBrush",
+            "paint-chrome.resource.LayerOnMicaBaseAltFillColorDefaultBrush",
+            "paint-chrome.resource.NavigationViewDefaultPaneBackground",
+            "paint-chrome.resource.NavigationViewExpandedPaneBackground",
+            "paint-chrome.resource.NavigationViewTopPaneBackground",
+            "paint-chrome.resource.ApplicationPageBackgroundThemeBrush",
+            "paint-chrome.resource.PageBackground",
+            "paint-chrome.resource.WindowBackground",
+            "paint-chrome.resource.SystemControlBackgroundChromeMediumLowBrush",
+            "paint-chrome.resource.SystemControlBackgroundChromeLowBrush",
+            "paint-chrome.resource.MenuBarBackground",
+            "paint-chrome.resource.MenuBarItemBackground",
+            "paint-chrome.resource.AppBarButtonBackground",
+            "paint-chrome.resource.AppBarToggleButtonBackground",
+            "paint-chrome.resource.CommandBarBackground",
+            "paint-chrome.resource.CommandBarBackgroundOpen",
+            "paint-chrome.resource.ToggleButtonBackground",
+            "paint-chrome.resource.ToggleButtonBackgroundIndeterminate"
           ],
           "value": "#000000",
           "eligibility": {
@@ -41865,7 +41993,8 @@
             "windows-11-notification-center-styler | Border#CalendarHeaderMinimizedOverlay | Background",
             "windows-11-notification-center-styler | ActionCenter.FocusSessionControl#FocusSessionControl > Grid#FocusGrid | Background",
             "windows-11-notification-center-styler | Grid#NotificationCenterTopBanner | Background",
-            "notepad-chrome.resource.TabViewItemHeaderBackground"
+            "notepad-chrome.resource.TabViewItemHeaderBackground",
+            "paint-chrome.resource.TabViewItemHeaderBackground"
           ],
           "value": "#090707",
           "eligibility": {
@@ -41969,7 +42098,14 @@
             "notepad-chrome.resource.CardBackgroundFillColorSecondaryBrush",
             "notepad-chrome.resource.ControlFillColorDefaultBrush",
             "notepad-chrome.resource.TextControlBackground",
-            "notepad-chrome.resource.ButtonBackground"
+            "notepad-chrome.resource.ButtonBackground",
+            "paint-chrome.resource.PaintButtonRestBackground",
+            "paint-chrome.resource.PanelHeaderIconButtonBackground",
+            "paint-chrome.resource.CardBackgroundFillColorDefaultBrush",
+            "paint-chrome.resource.CardBackgroundFillColorSecondaryBrush",
+            "paint-chrome.resource.ControlFillColorDefaultBrush",
+            "paint-chrome.resource.TextControlBackground",
+            "paint-chrome.resource.ButtonBackground"
           ],
           "value": "#000000",
           "eligibility": {
@@ -42017,7 +42153,14 @@
             "notepad-chrome.resource.MenuFlyoutItemBackground",
             "notepad-chrome.resource.MenuFlyoutItemBackgroundDisabled",
             "notepad-chrome.resource.MenuFlyoutSubItemBackground",
-            "notepad-chrome.resource.MenuFlyoutSubItemBackgroundDisabled"
+            "notepad-chrome.resource.MenuFlyoutSubItemBackgroundDisabled",
+            "paint-chrome.resource.OverlayButtonBackgroundBrush",
+            "paint-chrome.resource.MenuFlyoutItemBackgroundBrush",
+            "paint-chrome.resource.MenuFlyoutPresenterBackground",
+            "paint-chrome.resource.MenuFlyoutItemBackground",
+            "paint-chrome.resource.MenuFlyoutItemBackgroundDisabled",
+            "paint-chrome.resource.MenuFlyoutSubItemBackground",
+            "paint-chrome.resource.MenuFlyoutSubItemBackgroundDisabled"
           ],
           "value": "#160b0b",
           "eligibility": {
@@ -42484,7 +42627,9 @@
             "calculator.resource.TextOnAccentFillColorPrimaryBrush",
             "calculator.resource.TextOnAccentFillColorSecondaryBrush",
             "notepad-chrome.resource.AccentTextFillColorPrimaryBrush",
-            "notepad-chrome.resource.TextOnAccentFillColorPrimaryBrush"
+            "notepad-chrome.resource.TextOnAccentFillColorPrimaryBrush",
+            "paint-chrome.resource.AccentTextFillColorPrimaryBrush",
+            "paint-chrome.resource.TextOnAccentFillColorPrimaryBrush"
           ],
           "value": "#ffa2a7",
           "eligibility": {
@@ -42566,7 +42711,46 @@
             "notepad-chrome.resource.ToggleButtonForegroundCheckedPressed",
             "notepad-chrome.resource.ToggleButtonForegroundIndeterminate",
             "notepad-chrome.resource.ToggleButtonForegroundIndeterminatePointerOver",
-            "notepad-chrome.resource.ToggleButtonForegroundIndeterminatePressed"
+            "notepad-chrome.resource.ToggleButtonForegroundIndeterminatePressed",
+            "paint-chrome.resource.TextFillColorPrimaryBrush",
+            "paint-chrome.resource.TextControlForeground",
+            "paint-chrome.resource.ButtonForeground",
+            "paint-chrome.resource.DefaultTextForegroundThemeBrush",
+            "paint-chrome.resource.SystemControlForegroundBaseHighBrush",
+            "paint-chrome.resource.ToggleSwitchForeground",
+            "paint-chrome.resource.ToggleSwitchForegroundPointerOver",
+            "paint-chrome.resource.ToggleSwitchForegroundPressed",
+            "paint-chrome.resource.ComboBoxForeground",
+            "paint-chrome.resource.ToggleSwitchHeaderForegroundOn",
+            "paint-chrome.resource.MenuFlyoutItemForeground",
+            "paint-chrome.resource.MenuFlyoutItemForegroundPointerOver",
+            "paint-chrome.resource.MenuFlyoutItemForegroundPressed",
+            "paint-chrome.resource.MenuFlyoutSubItemForeground",
+            "paint-chrome.resource.MenuFlyoutSubItemForegroundSubMenuOpened",
+            "paint-chrome.resource.MenuBarItemForeground",
+            "paint-chrome.resource.ButtonForegroundPointerOver",
+            "paint-chrome.resource.ButtonForegroundPressed",
+            "paint-chrome.resource.MenuFlyoutSubItemForegroundPointerOver",
+            "paint-chrome.resource.MenuFlyoutSubItemForegroundPressed",
+            "paint-chrome.resource.AppBarButtonForeground",
+            "paint-chrome.resource.AppBarButtonForegroundPointerOver",
+            "paint-chrome.resource.AppBarButtonForegroundPressed",
+            "paint-chrome.resource.AppBarToggleButtonForeground",
+            "paint-chrome.resource.AppBarToggleButtonForegroundPointerOver",
+            "paint-chrome.resource.AppBarToggleButtonForegroundPressed",
+            "paint-chrome.resource.AppBarToggleButtonForegroundChecked",
+            "paint-chrome.resource.AppBarToggleButtonForegroundCheckedPointerOver",
+            "paint-chrome.resource.AppBarToggleButtonForegroundCheckedPressed",
+            "paint-chrome.resource.CommandBarForeground",
+            "paint-chrome.resource.ToggleButtonForeground",
+            "paint-chrome.resource.ToggleButtonForegroundPointerOver",
+            "paint-chrome.resource.ToggleButtonForegroundPressed",
+            "paint-chrome.resource.ToggleButtonForegroundChecked",
+            "paint-chrome.resource.ToggleButtonForegroundCheckedPointerOver",
+            "paint-chrome.resource.ToggleButtonForegroundCheckedPressed",
+            "paint-chrome.resource.ToggleButtonForegroundIndeterminate",
+            "paint-chrome.resource.ToggleButtonForegroundIndeterminatePointerOver",
+            "paint-chrome.resource.ToggleButtonForegroundIndeterminatePressed"
           ],
           "value": "#e99499",
           "eligibility": {
@@ -42603,7 +42787,17 @@
             "notepad-chrome.resource.MenuFlyoutItemKeyboardAcceleratorTextForegroundDisabled",
             "notepad-chrome.resource.ToggleButtonForegroundDisabled",
             "notepad-chrome.resource.ToggleButtonForegroundCheckedDisabled",
-            "notepad-chrome.resource.ToggleButtonForegroundIndeterminateDisabled"
+            "notepad-chrome.resource.ToggleButtonForegroundIndeterminateDisabled",
+            "paint-chrome.resource.TextFillColorDisabledBrush",
+            "paint-chrome.resource.MenuFlyoutItemForegroundDisabled",
+            "paint-chrome.resource.MenuFlyoutSubItemForegroundDisabled",
+            "paint-chrome.resource.ButtonForegroundDisabled",
+            "paint-chrome.resource.AppBarButtonForegroundDisabled",
+            "paint-chrome.resource.AppBarToggleButtonForegroundDisabled",
+            "paint-chrome.resource.MenuFlyoutItemKeyboardAcceleratorTextForegroundDisabled",
+            "paint-chrome.resource.ToggleButtonForegroundDisabled",
+            "paint-chrome.resource.ToggleButtonForegroundCheckedDisabled",
+            "paint-chrome.resource.ToggleButtonForegroundIndeterminateDisabled"
           ],
           "value": "#8a5559",
           "eligibility": {
@@ -42739,7 +42933,13 @@
             "notepad-chrome.resource.MenuFlyoutItemKeyboardAcceleratorTextForeground",
             "notepad-chrome.resource.MenuFlyoutSubItemChevron",
             "notepad-chrome.resource.MenuFlyoutItemKeyboardAcceleratorTextForegroundPointerOver",
-            "notepad-chrome.resource.MenuFlyoutItemKeyboardAcceleratorTextForegroundPressed"
+            "notepad-chrome.resource.MenuFlyoutItemKeyboardAcceleratorTextForegroundPressed",
+            "paint-chrome.resource.TextFillColorSecondaryBrush",
+            "paint-chrome.resource.TextFillColorTertiaryBrush",
+            "paint-chrome.resource.MenuFlyoutItemKeyboardAcceleratorTextForeground",
+            "paint-chrome.resource.MenuFlyoutSubItemChevron",
+            "paint-chrome.resource.MenuFlyoutItemKeyboardAcceleratorTextForegroundPointerOver",
+            "paint-chrome.resource.MenuFlyoutItemKeyboardAcceleratorTextForegroundPressed"
           ],
           "value": "#bd787d",
           "eligibility": {

@@ -36,10 +36,18 @@
     },
     {
       "path": "dist/j3w1-notepad-chrome.wh.cpp",
-      "sha256": "26e8241b810908bc3385020495fcaf76df1fab5f8a7db066822a0711f949a30c"
+      "sha256": "c81df82265fd2c72ed99f77d56c8250f93eb027edbbc4c9a0fb7e9bebc26cd8a"
     },
     {
       "path": "dist/j3w1-notepad-chrome.json",
+      "sha256": "fa5c087652dba209ab8ff6004642106ab801f86c5de197c5a48844da066dce73"
+    },
+    {
+      "path": "dist/j3w1-paint-chrome.wh.cpp",
+      "sha256": "719ff5d1adff2acdb85f8c8e4c27feabca769582d3bfb98ab7f5ad0d1a41b4e2"
+    },
+    {
+      "path": "dist/j3w1-paint-chrome.json",
       "sha256": "fa5c087652dba209ab8ff6004642106ab801f86c5de197c5a48844da066dce73"
     },
     {
@@ -56,7 +64,7 @@
     },
     {
       "path": "dist/windows-settings.json",
-      "sha256": "2219178b68a4565feece2788afee6fabc40144123141be5df9727493348ad0ee"
+      "sha256": "486f8144492a605b94c2f7361b533e8baea337640c8eb7e9f0ab2f950cf8c47a"
     },
     {
       "path": "dist/terminal-fragment.json",
@@ -196,7 +204,7 @@
     },
     {
       "path": "host.json",
-      "sha256": "e09cd6391875a07927e526f292d98a51d68fcf387ae583d431dfa71fcf29dea5"
+      "sha256": "2dd90afd0dc8a9322430c7229cedf02eb07202b5f9f935a3ee05e47e285d8a03"
     }
   ]
 }

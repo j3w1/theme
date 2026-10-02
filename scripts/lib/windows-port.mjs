@@ -193,20 +193,25 @@ export function windowsArtifacts({manifest,host,resolved}){
  artifacts.push({path:'dist/'+notepadId+'.wh.cpp',text:notepadSource});json(notepadId+'.json',{enabled:1});
  bundledMods.push({id:notepadId,version:notepad.version,path:'dist/'+notepadId+'.wh.cpp',sha256:createHash('sha256').update(notepadSource).digest('hex')});
 
- const chrome=host.notepadChrome,chromeId='j3w1-notepad-chrome';
- if(chrome.packageFullName!==notepad.packageFullName||!/^Microsoft\.WindowsAppRuntime\.2_\d+\.\d+\.\d+\.\d+_x64__8wekyb3d8bbwe$/.test(chrome.runtimePackage)||! /^[a-f0-9]{64}$/.test(chrome.runtimeSha256))throw Error('Notepad chrome requires the exact editor package and WinUI runtime identities');
- const chromeRules=Object.entries(chrome.resources).map(([key,role])=>{
-  if(!/^[A-Za-z][A-Za-z0-9]*$/.test(key))throw Error('Unsafe Notepad chrome resource key');
-  const token=resolved.get(role);val(role);
-  return ' {L"'+key+'",{'+Math.round((token.resolved.alpha??1)*255)+','+rgb(val(role)).join(',')+'},L"'+role+'"},';
- }).join('\n');
- if(!/^[a-f0-9]{64}$/.test(chrome.diagnosticsBridgeSha256))throw Error('Notepad root discovery requires an exact diagnostics bridge identity');
- const discoverySubs={DIAGNOSTICS_BRIDGE_SHA256:chrome.diagnosticsBridgeSha256,DIAGNOSTICS_CLSID:'0x9f12b9c4,0x7b9d,0x489f,{0x8e,0x31,0x4a,0x81,0x10,0x32,0x6b,0xc4}'};
- const rootDiscovery=readFileSync(path.join(repoRoot,'ports/windows/src/winui-root-discovery.cpp.in'),'utf8').replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in discoverySubs))throw Error('Unknown WinUI discovery placeholder '+key);return discoverySubs[key];});
- const chromeSubs={ROOT_DISCOVERY:rootDiscovery,VERSION:chrome.version,PACKAGE_FULL_NAME:chrome.packageFullName,RUNTIME_PACKAGE:chrome.runtimePackage,RUNTIME_SHA256:chrome.runtimeSha256,RESOURCE_RULES:chromeRules};
- const chromeSource=readFileSync(path.join(repoRoot,'ports/windows/src/'+chromeId+'.wh.cpp.in'),'utf8').replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in chromeSubs))throw Error('Unknown Notepad chrome source placeholder '+key);return chromeSubs[key];});
- artifacts.push({path:'dist/'+chromeId+'.wh.cpp',text:chromeSource});json(chromeId+'.json',{enabled:1});
- bundledMods.push({id:chromeId,version:chrome.version,path:'dist/'+chromeId+'.wh.cpp',sha256:createHash('sha256').update(chromeSource).digest('hex')});
+ for(const [chrome,chromeId,label,exe,packagePattern,nativeClass,rootClasses,clsid] of [
+  [host.notepadChrome,'j3w1-notepad-chrome','Notepad','Notepad.exe',/^Microsoft\.WindowsNotepad_\d+\.\d+\.\d+\.\d+_x64__8wekyb3d8bbwe$/,'Notepad',['NotepadXamlUI.MainMenuBar','NotepadXamlUI.StatusBar','NotepadXamlUI.TabsBar','NotepadXamlUI.NotepadSettingsPage'],'0x9f12b9c4,0x7b9d,0x489f,{0x8e,0x31,0x4a,0x81,0x10,0x32,0x6b,0xc4}'],
+  [host.paintChrome,'j3w1-paint-chrome','Paint','mspaint.exe',/^Microsoft\.Paint_\d+\.\d+\.\d+\.\d+_x64__8wekyb3d8bbwe$/,'MSPaintApp',['PaintUI.AppChrome','PaintUI.Ribbon','PaintUI.RibbonControl','PaintUI.LayersPanel'],'0x7cbd47c2,0x78b3,0x439d,{0x82,0xe8,0x7c,0x19,0xac,0x25,0x13,0xd4}'],
+ ]) {
+  if(!packagePattern.test(chrome.packageFullName)||!/^Microsoft\.WindowsAppRuntime\.2_\d+\.\d+\.\d+\.\d+_x64__8wekyb3d8bbwe$/.test(chrome.runtimePackage)||! /^[a-f0-9]{64}$/.test(chrome.runtimeSha256))throw Error(label+' chrome requires exact package/runtime identities');
+  if(chromeId==='j3w1-notepad-chrome'&&chrome.packageFullName!==notepad.packageFullName)throw Error('Notepad chrome/editor package mismatch');
+  const chromeRules=Object.entries(host.winuiChromeResources).map(([key,role])=>{
+   if(!/^[A-Za-z][A-Za-z0-9]*$/.test(key))throw Error('Unsafe WinUI chrome resource key');
+   const token=resolved.get(role);val(role);
+   return ' {L"'+key+'",{'+Math.round((token.resolved.alpha??1)*255)+','+rgb(val(role)).join(',')+'},L"'+role+'"},';
+  }).join('\n');
+  if(!/^[a-f0-9]{64}$/.test(chrome.diagnosticsBridgeSha256))throw Error(label+' root discovery requires an exact diagnostics bridge identity');
+  const discoverySubs={DIAGNOSTICS_BRIDGE_SHA256:chrome.diagnosticsBridgeSha256,DIAGNOSTICS_CLSID:clsid};
+  const rootDiscovery=readFileSync(path.join(repoRoot,'ports/windows/src/winui-root-discovery.cpp.in'),'utf8').replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in discoverySubs))throw Error('Unknown WinUI discovery placeholder '+key);return discoverySubs[key];});
+  const chromeSubs={ADAPTER_ID:chromeId,APP_LABEL:label,APP_EXE:exe,NATIVE_CLASS:nativeClass,ROOT_CLASSES:rootClasses.map(c=>'L"'+c+'"').join(','),ROOT_DISCOVERY:rootDiscovery,VERSION:chrome.version,PACKAGE_FULL_NAME:chrome.packageFullName,RUNTIME_PACKAGE:chrome.runtimePackage,RUNTIME_SHA256:chrome.runtimeSha256,RESOURCE_RULES:chromeRules};
+  const chromeSource=readFileSync(path.join(repoRoot,'ports/windows/src/winui-chrome.cpp.in'),'utf8').replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in chromeSubs))throw Error('Unknown WinUI chrome source placeholder '+key);return chromeSubs[key];});
+  artifacts.push({path:'dist/'+chromeId+'.wh.cpp',text:chromeSource});json(chromeId+'.json',{enabled:1});
+  bundledMods.push({id:chromeId,version:chrome.version,path:'dist/'+chromeId+'.wh.cpp',sha256:createHash('sha256').update(chromeSource).digest('hex')});
+ }
  const markdown=windowsMarkdownArtifacts(host,resolved);
  artifacts.push({path:`dist/${markdown.id}.wh.cpp`,text:markdown.source},{path:'dist/markdown-theme.css',text:markdown.css});
  json(`${markdown.id}.json`,{enabled:1});

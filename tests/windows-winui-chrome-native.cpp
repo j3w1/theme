@@ -15,7 +15,11 @@ static DWORD WINAPI TestWait(HANDLE handle,DWORD timeout){if(failWaitHandle&&han
 #define CreateEventW TestCreateEvent
 #define CreateThread TestCreateThread
 #define WaitForSingleObject TestWait
+#if J3W1_TEST_PAINT
+#include "../ports/windows/dist/j3w1-paint-chrome.wh.cpp"
+#else
 #include "../ports/windows/dist/j3w1-notepad-chrome.wh.cpp"
+#endif
 static DWORD Handles() {
     DWORD result = 0;
     assert(GetProcessHandleCount(GetCurrentProcess(), &result));
@@ -41,11 +45,36 @@ static void Stop() {
 }
 int main(int argc, char** argv) {
     assert(argc == 2);
+    if(strcmp(argv[1],"backdrop-ownership") == 0) {
+        DWORD current=DWMSBT_TABBEDWINDOW;NativeBackdrop entry;
+        auto read=[&](DWORD& value){value=current;return S_OK;};
+        auto write=[&](DWORD value){current=value;return S_OK;};
+        assert(UpdateBackdrop(entry,true,read,write)&&current==DWMSBT_NONE&&entry.before==DWMSBT_TABBEDWINDOW);
+        assert(UpdateBackdrop(entry,false,read,write)&&current==DWMSBT_TABBEDWINDOW&&!entry.owned);
+        assert(UpdateBackdrop(entry,true,read,write));current=DWMSBT_MAINWINDOW;
+        assert(UpdateBackdrop(entry,false,read,write)&&current==DWMSBT_MAINWINDOW);
+        auto deniedRead=[](DWORD&){return E_ACCESSDENIED;};
+        assert(!UpdateBackdrop(entry,true,deniedRead,write)&&current==DWMSBT_MAINWINDOW);
+        unsigned calls=0;auto partial=[&](DWORD value){current=value;return calls++?S_OK:E_FAIL;};
+        assert(!UpdateBackdrop(entry,true,read,partial)&&entry.owned&&current==DWMSBT_NONE);
+        assert(UpdateBackdrop(entry,false,read,write)&&current==DWMSBT_MAINWINDOW);
+        assert(UpdateBackdrop(entry,true,read,write));auto denied=[](DWORD){return E_ACCESSDENIED;};
+        assert(!UpdateBackdrop(entry,false,read,denied)&&entry.owned);
+        assert(UpdateBackdrop(entry,false,read,write)&&current==DWMSBT_MAINWINDOW);
+        puts("PASS: exact readable backdrop baseline, later app edit, read denial, partial write and restoration retry");return 0;
+    }
     if(strcmp(argv[1], "discovery-admission") == 0) {
+#if J3W1_TEST_PAINT
+        assert(DiscoveryAdmission(L"PaintUI.AppChrome",true,true));
+        assert(!DiscoveryAdmission(L"PaintUI.AppChrome",false,true));
+        assert(!DiscoveryAdmission(L"PaintUI.AppChrome",true,false));
+        for(auto rejected:{L"PaintUI.D2DSwapChainPanel",L"PaintUI.ColorRadioButton",L"PaintUI.ItemHoverGridView",L"Microsoft.UI.Xaml.Controls.Grid",L"NotepadXamlUI.MainMenuBar",L"PaintUI.AppChromeExtra"})assert(!DiscoveryAdmission(rejected,true,true));
+#else
         assert(DiscoveryAdmission(L"NotepadXamlUI.MainMenuBar",true,true));
         assert(!DiscoveryAdmission(L"NotepadXamlUI.MainMenuBar",false,true));
         assert(!DiscoveryAdmission(L"NotepadXamlUI.MainMenuBar",true,false));
         for(auto rejected:{L"NotepadXamlUI.Document",L"Microsoft.UI.Xaml.Controls.Grid",L"PaintUI.AppChrome",L"NotepadXamlUI.MainMenuBarExtra"})assert(!DiscoveryAdmission(rejected,true,true));
+#endif
         winrt::init_apartment(winrt::apartment_type::multi_threaded);
         auto state=std::make_shared<RootDiscoverySession>();
         auto factory=make<RootDiscoveryFactory>(state).as<IClassFactory>();void* output=reinterpret_cast<void*>(1);

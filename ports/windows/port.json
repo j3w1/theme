@@ -208,6 +208,14 @@
     {
       "path": "dist/j3w1-notepad-chrome.json",
       "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback."
+    },
+    {
+      "path": "dist/j3w1-paint-chrome.wh.cpp",
+      "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback."
+    },
+    {
+      "path": "dist/j3w1-paint-chrome.json",
+      "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback."
     }
   ],
   "mappingPath": "mapping.json",

@@ -149,9 +149,15 @@
     },
     {
       "id": "j3w1-notepad-chrome",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "path": "dist/j3w1-notepad-chrome.wh.cpp",
-      "sha256": "26e8241b810908bc3385020495fcaf76df1fab5f8a7db066822a0711f949a30c"
+      "sha256": "c81df82265fd2c72ed99f77d56c8250f93eb027edbbc4c9a0fb7e9bebc26cd8a"
+    },
+    {
+      "id": "j3w1-paint-chrome",
+      "version": "1.0.0",
+      "path": "dist/j3w1-paint-chrome.wh.cpp",
+      "sha256": "719ff5d1adff2acdb85f8c8e4c27feabca769582d3bfb98ab7f5ad0d1a41b4e2"
     },
     {
       "id": "j3w1-powertoys-markdown",

@@ -734,3 +734,18 @@ then unregistered its callback successfully. The production adapter uses an
 original shared discovery source and the WinUI bridge's exact binary digest;
 it does not redistribute or copy a third-party shell styler. Live acceptance
 of that production discovery path remains a separate gate.
+
+### Shared Notepad and Paint chrome candidate
+
+The shared WinUI chrome template generates separate adapters for the recorded
+Notepad 11.2607.14.0 and Paint 11.2605.81.0 packages. Each admits its own named
+chrome classes and the exact loaded runtime and diagnostics bridge digests.
+Paint drawing controls, palettes and artwork are excluded. Both adapters are
+included in the single public install.ps1 lifecycle and its restore journal.
+
+A read-only development trace identified native TabbedWindow backdrop value 4
+on the open Notepad windows and MainWindow value 2 on Paint. The backdrop API
+returns their actual baseline; caption-color reads were rejected. The shared
+adapter therefore restores the readable backdrop separately and never invents
+an original caption color for existing windows. Live appearance, state exit
+and lifecycle verification of this shared candidate remain required.

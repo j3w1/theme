@@ -1,10 +1,10 @@
 // ==WindhawkMod==
-// @id j3w1-notepad-chrome
-// @name j3w1 Notepad chrome
-// @description Exact-package Notepad chrome resources; editor contents remain native
-// @version @VERSION@
+// @id j3w1-paint-chrome
+// @name j3w1 Paint chrome
+// @description Exact-package Paint chrome resources; document and artwork colors remain native
+// @version 1.0.0
 // @author j3w1
-// @include Notepad.exe
+// @include mspaint.exe
 // @architecture x86-64
 // @compilerOptions -lole32 -loleaut32 -lruntimeobject -lbcrypt -ldwmapi
 // ==/WindhawkMod==
@@ -49,7 +49,194 @@ using ProjectedObject=winrt::Windows::Foundation::IInspectable;
 using Windows::UI::Color;
 struct Rule { const wchar_t* key; Color color; const wchar_t* role; };
 static constexpr Rule rules[]={
-@RESOURCE_RULES@
+ {L"PaintButtonRestBackground",{255,0,0,0},L"color.surface.input"},
+ {L"PaintButtonHoverBackground",{255,28,10,9},L"color.interaction.hover.bg"},
+ {L"PaintButtonPressedBackground",{255,66,15,12},L"color.interaction.pressed.bg"},
+ {L"PaintButtonSelectedBackground",{255,83,19,16},L"color.interaction.selection.bg"},
+ {L"PaintToggleButtonSelectedBackground",{255,83,19,16},L"color.interaction.selection.bg"},
+ {L"OverlayButtonBackgroundBrush",{255,22,11,11},L"color.surface.raised"},
+ {L"OverlayButtonBorderBrush",{255,163,103,107},L"color.border.control"},
+ {L"PanelHeaderIconButtonBackground",{255,0,0,0},L"color.surface.input"},
+ {L"PanelHeaderIconButtonBorderBrush",{255,43,14,13},L"color.border.divider"},
+ {L"MenuBarBackgroundBrush",{255,0,0,0},L"color.surface.canvas"},
+ {L"MenuFlyoutItemBackgroundBrush",{255,22,11,11},L"color.surface.raised"},
+ {L"HoverMenuItemSelectedBackgroundBrush",{255,99,15,13},L"color.interaction.hover.bg-strong"},
+ {L"PressedMenuItemSelectedBackgroundBrush",{255,66,15,12},L"color.interaction.pressed.bg"},
+ {L"MenuItemSelectedBackgroundBrush",{255,83,19,16},L"color.interaction.selection.bg"},
+ {L"RibbonBackground",{255,0,0,0},L"color.surface.canvas"},
+ {L"J3w1ScrollBarThumb",{255,66,15,12},L"color.interaction.scrollbar.thumb"},
+ {L"SolidBackgroundFillColorBaseBrush",{255,0,0,0},L"color.surface.canvas"},
+ {L"SolidBackgroundFillColorSecondaryBrush",{255,0,0,0},L"color.surface.canvas"},
+ {L"SolidBackgroundFillColorTertiaryBrush",{255,0,0,0},L"color.surface.canvas"},
+ {L"LayerFillColorDefaultBrush",{255,0,0,0},L"color.surface.canvas"},
+ {L"LayerFillColorAltBrush",{255,0,0,0},L"color.surface.canvas"},
+ {L"LayerOnMicaBaseAltFillColorDefaultBrush",{255,0,0,0},L"color.surface.canvas"},
+ {L"NavigationViewDefaultPaneBackground",{255,0,0,0},L"color.surface.canvas"},
+ {L"NavigationViewExpandedPaneBackground",{255,0,0,0},L"color.surface.canvas"},
+ {L"NavigationViewTopPaneBackground",{255,0,0,0},L"color.surface.canvas"},
+ {L"CardBackgroundFillColorDefaultBrush",{255,0,0,0},L"color.surface.input"},
+ {L"CardBackgroundFillColorSecondaryBrush",{255,0,0,0},L"color.surface.input"},
+ {L"ControlFillColorDefaultBrush",{255,0,0,0},L"color.surface.input"},
+ {L"TextControlBackground",{255,0,0,0},L"color.surface.input"},
+ {L"ButtonBackground",{255,0,0,0},L"color.surface.input"},
+ {L"ControlFillColorSecondaryBrush",{255,28,10,9},L"color.interaction.hover.bg"},
+ {L"ButtonBackgroundPointerOver",{255,28,10,9},L"color.interaction.hover.bg"},
+ {L"ControlFillColorTertiaryBrush",{255,66,15,12},L"color.interaction.pressed.bg"},
+ {L"ButtonBackgroundPressed",{255,66,15,12},L"color.interaction.pressed.bg"},
+ {L"ControlFillColorDisabledBrush",{255,22,11,11},L"color.interaction.disabled.bg"},
+ {L"ControlStrokeColorDefaultBrush",{255,163,103,107},L"color.border.control"},
+ {L"ControlStrokeColorSecondaryBrush",{255,163,103,107},L"color.border.control"},
+ {L"ControlStrongStrokeColorDefaultBrush",{255,163,103,107},L"color.border.control"},
+ {L"TextControlBorderBrush",{255,163,103,107},L"color.border.control"},
+ {L"DividerStrokeColorDefaultBrush",{255,43,14,13},L"color.border.divider"},
+ {L"SurfaceStrokeColorDefaultBrush",{255,43,14,13},L"color.border.divider"},
+ {L"TextFillColorPrimaryBrush",{255,233,148,153},L"color.text.default"},
+ {L"TextControlForeground",{255,233,148,153},L"color.text.default"},
+ {L"ButtonForeground",{255,233,148,153},L"color.text.default"},
+ {L"TextFillColorSecondaryBrush",{255,189,120,125},L"color.text.muted"},
+ {L"TextFillColorTertiaryBrush",{255,189,120,125},L"color.text.muted"},
+ {L"TextFillColorDisabledBrush",{255,138,85,89},L"color.text.disabled"},
+ {L"AccentFillColorDefaultBrush",{255,125,19,16},L"color.action.primary.bg"},
+ {L"AccentFillColorSecondaryBrush",{255,145,20,16},L"color.action.primary.hover-bg"},
+ {L"AccentFillColorTertiaryBrush",{255,99,15,13},L"color.action.primary.pressed-bg"},
+ {L"AccentTextFillColorPrimaryBrush",{255,255,162,167},L"color.text.bright"},
+ {L"TextOnAccentFillColorPrimaryBrush",{255,255,162,167},L"color.text.bright"},
+ {L"TextSelectionHighlightColorThemeBrush",{255,145,20,16},L"color.interaction.text-selection.bg"},
+ {L"TabViewItemHeaderBackgroundSelected",{255,83,19,16},L"color.interaction.selection.bg"},
+ {L"TabViewItemHeaderBackground",{255,9,7,7},L"color.surface.chrome"},
+ {L"SystemControlFocusVisualPrimaryBrush",{255,229,57,53},L"color.interaction.focus.ring"},
+ {L"SystemControlFocusVisualSecondaryBrush",{255,255,162,167},L"color.interaction.focus.ring-container"},
+ {L"ApplicationPageBackgroundThemeBrush",{255,0,0,0},L"color.surface.canvas"},
+ {L"PageBackground",{255,0,0,0},L"color.surface.canvas"},
+ {L"WindowBackground",{255,0,0,0},L"color.surface.canvas"},
+ {L"SystemControlBackgroundChromeMediumLowBrush",{255,0,0,0},L"color.surface.canvas"},
+ {L"SystemControlBackgroundChromeLowBrush",{255,0,0,0},L"color.surface.canvas"},
+ {L"DefaultTextForegroundThemeBrush",{255,233,148,153},L"color.text.default"},
+ {L"SystemControlForegroundBaseHighBrush",{255,233,148,153},L"color.text.default"},
+ {L"ToggleSwitchForeground",{255,233,148,153},L"color.text.default"},
+ {L"ToggleSwitchForegroundPointerOver",{255,233,148,153},L"color.text.default"},
+ {L"ToggleSwitchForegroundPressed",{255,233,148,153},L"color.text.default"},
+ {L"ComboBoxForeground",{255,233,148,153},L"color.text.default"},
+ {L"ToggleSwitchHeaderForegroundOn",{255,233,148,153},L"color.text.default"},
+ {L"FocusStrokeColorOuterBrush",{255,229,57,53},L"color.interaction.focus.ring"},
+ {L"FocusStrokeColorInnerBrush",{255,255,162,167},L"color.interaction.focus.ring-container"},
+ {L"ToggleSwitchFillOn",{255,125,19,16},L"color.action.primary.bg"},
+ {L"ToggleSwitchStrokeOn",{255,125,19,16},L"color.action.primary.bg"},
+ {L"ToggleSwitchFillOnPointerOver",{255,145,20,16},L"color.action.primary.hover-bg"},
+ {L"ToggleSwitchStrokeOnPointerOver",{255,145,20,16},L"color.action.primary.hover-bg"},
+ {L"ToggleSwitchFillOnPressed",{255,99,15,13},L"color.action.primary.pressed-bg"},
+ {L"ToggleSwitchStrokeOnPressed",{255,99,15,13},L"color.action.primary.pressed-bg"},
+ {L"ToggleSwitchKnobFillOn",{255,255,162,167},L"color.action.primary.text"},
+ {L"ToggleSwitchKnobFillOnPointerOver",{255,255,162,167},L"color.action.primary.text"},
+ {L"ToggleSwitchKnobFillOnPressed",{255,255,162,167},L"color.action.primary.text"},
+ {L"CardStrokeColorDefaultBrush",{255,43,14,13},L"color.border.divider"},
+ {L"ExpanderContentBorderBrush",{255,43,14,13},L"color.border.divider"},
+ {L"ExpanderHeaderBorderBrush",{255,43,14,13},L"color.border.divider"},
+ {L"MenuFlyoutPresenterBackground",{255,22,11,11},L"color.surface.raised"},
+ {L"MenuFlyoutPresenterBorderBrush",{255,229,57,53},L"color.border.overlay"},
+ {L"SurfaceStrokeColorFlyoutBrush",{255,229,57,53},L"color.border.overlay"},
+ {L"MenuFlyoutSeparatorBackground",{255,43,14,13},L"color.border.divider"},
+ {L"MenuFlyoutItemForeground",{255,233,148,153},L"color.text.default"},
+ {L"MenuFlyoutItemForegroundPointerOver",{255,233,148,153},L"color.text.default"},
+ {L"MenuFlyoutItemForegroundPressed",{255,233,148,153},L"color.text.default"},
+ {L"MenuFlyoutSubItemForeground",{255,233,148,153},L"color.text.default"},
+ {L"MenuFlyoutSubItemForegroundSubMenuOpened",{255,233,148,153},L"color.text.default"},
+ {L"MenuFlyoutItemKeyboardAcceleratorTextForeground",{255,189,120,125},L"color.text.muted"},
+ {L"MenuFlyoutSubItemChevron",{255,189,120,125},L"color.text.muted"},
+ {L"MenuFlyoutItemForegroundDisabled",{255,138,85,89},L"color.text.disabled"},
+ {L"MenuFlyoutSubItemForegroundDisabled",{255,138,85,89},L"color.text.disabled"},
+ {L"MenuFlyoutItemBackgroundPointerOver",{255,99,15,13},L"color.interaction.hover.bg-strong"},
+ {L"MenuFlyoutSubItemBackgroundPointerOver",{255,99,15,13},L"color.interaction.hover.bg-strong"},
+ {L"MenuFlyoutSubItemBackgroundSubMenuOpened",{255,99,15,13},L"color.interaction.hover.bg-strong"},
+ {L"MenuFlyoutItemBackgroundPressed",{255,66,15,12},L"color.interaction.pressed.bg"},
+ {L"MenuFlyoutSubItemBackgroundPressed",{255,66,15,12},L"color.interaction.pressed.bg"},
+ {L"MenuBarBackground",{255,0,0,0},L"color.surface.canvas"},
+ {L"MenuBarItemForeground",{255,233,148,153},L"color.text.default"},
+ {L"MenuBarItemBackground",{255,0,0,0},L"color.surface.canvas"},
+ {L"MenuBarItemBackgroundPointerOver",{255,28,10,9},L"color.interaction.hover.bg"},
+ {L"MenuBarItemBackgroundPressed",{255,66,15,12},L"color.interaction.pressed.bg"},
+ {L"MenuBarItemBackgroundSelected",{255,83,19,16},L"color.interaction.selection.bg"},
+ {L"MenuBarItemBorderBrush",{255,43,14,13},L"color.border.divider"},
+ {L"MenuBarItemBorderBrushPointerOver",{255,229,57,53},L"color.border.active"},
+ {L"MenuBarItemBorderBrushPressed",{255,229,57,53},L"color.border.active"},
+ {L"MenuBarItemBorderBrushSelected",{255,229,57,53},L"color.border.active"},
+ {L"ButtonForegroundPointerOver",{255,233,148,153},L"color.text.default"},
+ {L"ButtonForegroundPressed",{255,233,148,153},L"color.text.default"},
+ {L"ButtonForegroundDisabled",{255,138,85,89},L"color.text.disabled"},
+ {L"ButtonBorderBrush",{255,163,103,107},L"color.border.control"},
+ {L"ButtonBorderBrushPointerOver",{255,229,57,53},L"color.border.active"},
+ {L"ButtonBorderBrushPressed",{255,229,57,53},L"color.border.active"},
+ {L"ButtonBorderBrushDisabled",{255,125,19,16},L"color.border.disabled"},
+ {L"MenuFlyoutItemBackground",{255,22,11,11},L"color.surface.raised"},
+ {L"MenuFlyoutItemBackgroundDisabled",{255,22,11,11},L"color.surface.raised"},
+ {L"MenuFlyoutSubItemBackground",{255,22,11,11},L"color.surface.raised"},
+ {L"MenuFlyoutSubItemBackgroundDisabled",{255,22,11,11},L"color.surface.raised"},
+ {L"MenuFlyoutSubItemForegroundPointerOver",{255,233,148,153},L"color.text.default"},
+ {L"MenuFlyoutSubItemForegroundPressed",{255,233,148,153},L"color.text.default"},
+ {L"AppBarButtonForeground",{255,233,148,153},L"color.text.default"},
+ {L"AppBarButtonForegroundPointerOver",{255,233,148,153},L"color.text.default"},
+ {L"AppBarButtonForegroundPressed",{255,233,148,153},L"color.text.default"},
+ {L"AppBarButtonForegroundDisabled",{255,138,85,89},L"color.text.disabled"},
+ {L"AppBarToggleButtonForeground",{255,233,148,153},L"color.text.default"},
+ {L"AppBarToggleButtonForegroundPointerOver",{255,233,148,153},L"color.text.default"},
+ {L"AppBarToggleButtonForegroundPressed",{255,233,148,153},L"color.text.default"},
+ {L"AppBarToggleButtonForegroundDisabled",{255,138,85,89},L"color.text.disabled"},
+ {L"AppBarToggleButtonForegroundChecked",{255,233,148,153},L"color.text.default"},
+ {L"AppBarToggleButtonForegroundCheckedPointerOver",{255,233,148,153},L"color.text.default"},
+ {L"AppBarToggleButtonForegroundCheckedPressed",{255,233,148,153},L"color.text.default"},
+ {L"AppBarButtonBackground",{255,0,0,0},L"color.surface.canvas"},
+ {L"AppBarButtonBackgroundPointerOver",{255,28,10,9},L"color.interaction.hover.bg"},
+ {L"AppBarButtonBackgroundPressed",{255,66,15,12},L"color.interaction.pressed.bg"},
+ {L"AppBarButtonBackgroundDisabled",{255,22,11,11},L"color.interaction.disabled.bg"},
+ {L"AppBarToggleButtonBackground",{255,0,0,0},L"color.surface.canvas"},
+ {L"AppBarToggleButtonBackgroundPointerOver",{255,28,10,9},L"color.interaction.hover.bg"},
+ {L"AppBarToggleButtonBackgroundPressed",{255,66,15,12},L"color.interaction.pressed.bg"},
+ {L"AppBarToggleButtonBackgroundDisabled",{255,22,11,11},L"color.interaction.disabled.bg"},
+ {L"AppBarToggleButtonBackgroundChecked",{255,83,19,16},L"color.interaction.selection.bg"},
+ {L"AppBarToggleButtonBackgroundCheckedPointerOver",{255,83,19,16},L"color.interaction.selection.bg"},
+ {L"AppBarToggleButtonBackgroundCheckedPressed",{255,66,15,12},L"color.interaction.pressed.bg"},
+ {L"MenuFlyoutItemKeyboardAcceleratorTextForegroundDisabled",{255,138,85,89},L"color.text.disabled"},
+ {L"MenuFlyoutItemKeyboardAcceleratorTextForegroundPointerOver",{255,189,120,125},L"color.text.muted"},
+ {L"MenuFlyoutItemKeyboardAcceleratorTextForegroundPressed",{255,189,120,125},L"color.text.muted"},
+ {L"CommandBarForeground",{255,233,148,153},L"color.text.default"},
+ {L"CommandBarBackground",{255,0,0,0},L"color.surface.canvas"},
+ {L"CommandBarBackgroundOpen",{255,0,0,0},L"color.surface.canvas"},
+ {L"ToggleButtonForeground",{255,233,148,153},L"color.text.default"},
+ {L"ToggleButtonBackground",{255,0,0,0},L"color.surface.canvas"},
+ {L"ToggleButtonBorderBrush",{255,163,103,107},L"color.border.control"},
+ {L"ToggleButtonForegroundPointerOver",{255,233,148,153},L"color.text.default"},
+ {L"ToggleButtonBackgroundPointerOver",{255,28,10,9},L"color.interaction.hover.bg"},
+ {L"ToggleButtonBorderBrushPointerOver",{255,229,57,53},L"color.border.active"},
+ {L"ToggleButtonForegroundPressed",{255,233,148,153},L"color.text.default"},
+ {L"ToggleButtonBackgroundPressed",{255,66,15,12},L"color.interaction.pressed.bg"},
+ {L"ToggleButtonBorderBrushPressed",{255,229,57,53},L"color.border.active"},
+ {L"ToggleButtonForegroundDisabled",{255,138,85,89},L"color.text.disabled"},
+ {L"ToggleButtonBackgroundDisabled",{255,22,11,11},L"color.interaction.disabled.bg"},
+ {L"ToggleButtonBorderBrushDisabled",{255,125,19,16},L"color.border.disabled"},
+ {L"ToggleButtonForegroundChecked",{255,233,148,153},L"color.text.default"},
+ {L"ToggleButtonBackgroundChecked",{255,83,19,16},L"color.interaction.selection.bg"},
+ {L"ToggleButtonBorderBrushChecked",{255,229,57,53},L"color.border.active"},
+ {L"ToggleButtonForegroundCheckedPointerOver",{255,233,148,153},L"color.text.default"},
+ {L"ToggleButtonBackgroundCheckedPointerOver",{255,83,19,16},L"color.interaction.selection.bg"},
+ {L"ToggleButtonBorderBrushCheckedPointerOver",{255,229,57,53},L"color.border.active"},
+ {L"ToggleButtonForegroundCheckedPressed",{255,233,148,153},L"color.text.default"},
+ {L"ToggleButtonBackgroundCheckedPressed",{255,66,15,12},L"color.interaction.pressed.bg"},
+ {L"ToggleButtonBorderBrushCheckedPressed",{255,229,57,53},L"color.border.active"},
+ {L"ToggleButtonForegroundCheckedDisabled",{255,138,85,89},L"color.text.disabled"},
+ {L"ToggleButtonBackgroundCheckedDisabled",{255,22,11,11},L"color.interaction.disabled.bg"},
+ {L"ToggleButtonBorderBrushCheckedDisabled",{255,125,19,16},L"color.border.disabled"},
+ {L"ToggleButtonForegroundIndeterminate",{255,233,148,153},L"color.text.default"},
+ {L"ToggleButtonBackgroundIndeterminate",{255,0,0,0},L"color.surface.canvas"},
+ {L"ToggleButtonBorderBrushIndeterminate",{255,163,103,107},L"color.border.control"},
+ {L"ToggleButtonForegroundIndeterminatePointerOver",{255,233,148,153},L"color.text.default"},
+ {L"ToggleButtonBackgroundIndeterminatePointerOver",{255,28,10,9},L"color.interaction.hover.bg"},
+ {L"ToggleButtonBorderBrushIndeterminatePointerOver",{255,229,57,53},L"color.border.active"},
+ {L"ToggleButtonForegroundIndeterminatePressed",{255,233,148,153},L"color.text.default"},
+ {L"ToggleButtonBackgroundIndeterminatePressed",{255,66,15,12},L"color.interaction.pressed.bg"},
+ {L"ToggleButtonBorderBrushIndeterminatePressed",{255,229,57,53},L"color.border.active"},
+ {L"ToggleButtonForegroundIndeterminateDisabled",{255,138,85,89},L"color.text.disabled"},
+ {L"ToggleButtonBackgroundIndeterminateDisabled",{255,22,11,11},L"color.interaction.disabled.bg"},
+ {L"ToggleButtonBorderBrushIndeterminateDisabled",{255,125,19,16},L"color.border.disabled"},
 };
 static bool Same(Color a,Color b){return a.A==b.A&&a.R==b.R&&a.G==b.G&&a.B==b.B;}
 static bool Identity(ProjectedObject const& a,ProjectedObject const& b){
@@ -63,7 +250,7 @@ static bool ReviewedPackage(){
     if(GetCurrentPackageFullName(&length,nullptr)!=ERROR_INSUFFICIENT_BUFFER||length>512)return false;
     std::vector<wchar_t> name(length);
     if(GetCurrentPackageFullName(&length,name.data())!=ERROR_SUCCESS)return false;
-    for(auto allowed:{L"@PACKAGE_FULL_NAME@"})if(wcscmp(name.data(),allowed)==0)return true;
+    for(auto allowed:{L"Microsoft.Paint_11.2605.81.0_x64__8wekyb3d8bbwe"})if(wcscmp(name.data(),allowed)==0)return true;
     return false;
 }
 static bool ReviewedRuntime(){
@@ -72,7 +259,7 @@ static bool ReviewedRuntime(){
     wchar_t path[32768]{};DWORD length=GetModuleFileNameW(module,path,std::size(path));
     if(!length||length>=std::size(path))return false;
     std::wstring name=path;
-    if(name.find(L"\\@RUNTIME_PACKAGE@\\")==std::wstring::npos){runtimeStatus=-1;return false;}
+    if(name.find(L"\\Microsoft.WindowsAppRuntime.2_2.5.1.0_x64__8wekyb3d8bbwe\\")==std::wstring::npos){runtimeStatus=-1;return false;}
     HANDLE file=CreateFileW(path,GENERIC_READ,FILE_SHARE_READ,nullptr,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,nullptr);
     if(file==INVALID_HANDLE_VALUE)return false;
     BCRYPT_ALG_HANDLE algorithm=nullptr;BCRYPT_HASH_HANDLE hash=nullptr;
@@ -87,7 +274,7 @@ static bool ReviewedRuntime(){
             if(complete&&BCryptFinishHash(hash,digest,sizeof(digest),0)>=0){
                 constexpr char hex[]="0123456789abcdef";std::string actual;
                 for(BYTE byte:digest){actual+=hex[byte>>4];actual+=hex[byte&15];}
-                valid=actual=="@RUNTIME_SHA256@";
+                valid=actual=="aad12524765e6fb63f0ae26a45a9ba3104f24fde66413d8a3036fbed74a1e990";
             }
         }
     }
@@ -665,8 +852,11 @@ static void Bridge(Root& root) {
 static bool RootCandidateClass(std::wstring_view name);
 static void Track(UIElement const& content,DesktopWindowXamlSource const& source,Window const& window=nullptr);
 
+static void RefreshBackdrops();
+static std::atomic<bool> nativeBackdropActive{false};
 static void Refresh(ThreadState& state) noexcept {
  if(state.busy)return;state.busy=true;state.queued=false;
+ bool active=enabled.load()&&!HighContrast();if(nativeBackdropActive.exchange(active)!=active)RefreshBackdrops();
  if(!enabled.load()||HighContrast())RestoreNativeBrushes(state.nativeBrushes);
  for(auto it=state.pending.begin();it!=state.pending.end();) {
   bool finished=!enabled.load()||HighContrast();
@@ -750,7 +940,18 @@ static bool EnsureChannel() {
 }
 static void ObserveRoot(FrameworkElement const& element) {
  if(!element||!enabled.load()||HighContrast()||!EnsureChannel())return;
- if(auto xaml=element.XamlRoot();xaml&&xaml.Content()){Track(xaml.Content(),nullptr);return;}
+ if(auto xaml=element.XamlRoot();xaml&&xaml.Content()) {
+  // Diagnostics can report an admitted app control below a generic island
+  // root. Choose only its topmost named chrome ancestor in this same XamlRoot.
+  auto admitted=element;auto ancestor=VisualTreeHelper::GetParent(element);
+  for(unsigned depth=0;ancestor&&depth<32;++depth,ancestor=VisualTreeHelper::GetParent(ancestor)) {
+   auto parent=ancestor.try_as<FrameworkElement>();
+   if(!parent||!Identity(parent.XamlRoot(),xaml))break;
+   if(RootCandidateClass(std::wstring_view{get_class_name(parent)}))admitted=parent;
+  }
+  auto content=xaml.Content().try_as<FrameworkElement>();
+  Track(content&&RootCandidateClass(std::wstring_view{get_class_name(content)})?content:admitted,nullptr);return;
+ }
  for(auto const& pending:uiState->pending)if(Identity(pending.element.get(),element))return;
  if(uiState->pending.size()<1024)uiState->pending.push_back({make_weak(element),0});
 }
@@ -763,7 +964,195 @@ static void Track(UIElement const& content,DesktopWindowXamlSource const& source
  Root root;root.element=make_weak(element);if(source)root.source=make_weak(source);if(window)root.window=make_weak(window);root.layout=element.LayoutUpdated([](auto const&,auto const&){Schedule();});
  uiState->roots.push_back(std::move(root));Log(10,static_cast<unsigned>(uiState->roots.size()));Schedule();
 }
-@ROOT_DISCOVERY@
+// Original adapter discovery through the WinUI diagnostics COM contracts.
+// The packaged WinUI bridge is verified before it is loaded. The connection
+// targets this admitted process and passes our already-loaded adapter DLL.
+// Existing roots and later mutations arrive on each object's UI dispatcher.
+static bool ReviewedDiagnosticsBridge(std::wstring const& path) {
+ HANDLE file=CreateFileW(path.c_str(),GENERIC_READ,FILE_SHARE_READ,nullptr,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,nullptr);
+ if(file==INVALID_HANDLE_VALUE)return false;
+ BCRYPT_ALG_HANDLE algorithm=nullptr;BCRYPT_HASH_HANDLE hash=nullptr;
+ DWORD size=0,written=0;std::vector<BYTE> object;BYTE digest[32]{};bool valid=false;
+ if(BCryptOpenAlgorithmProvider(&algorithm,BCRYPT_SHA256_ALGORITHM,nullptr,0)>=0
+  &&BCryptGetProperty(algorithm,BCRYPT_OBJECT_LENGTH,reinterpret_cast<PUCHAR>(&size),sizeof(size),&written,0)>=0) {
+  object.resize(size);
+  if(BCryptCreateHash(algorithm,&hash,object.data(),size,nullptr,0,0)>=0) {
+   BYTE buffer[65536];DWORD count=0;bool complete=false;
+   for(;;){if(!ReadFile(file,buffer,sizeof(buffer),&count,nullptr))break;
+    if(!count){complete=true;break;}if(BCryptHashData(hash,buffer,count,0)<0)break;}
+   if(complete&&BCryptFinishHash(hash,digest,sizeof(digest),0)>=0) {
+    constexpr char hex[]="0123456789abcdef";std::string actual;
+    for(BYTE byte:digest){actual+=hex[byte>>4];actual+=hex[byte&15];}
+    valid=actual=="76fa4a93d1ae9c77f8c89222fbe7870e9b7c6eccf8d35d91ec43404df180e29c";
+   }
+  }
+ }
+ if(hash)BCryptDestroyHash(hash);if(algorithm)BCryptCloseAlgorithmProvider(algorithm,0);CloseHandle(file);return valid;
+}
+struct RootDiscoverySession {
+ std::mutex mutex;
+ com_ptr<IXamlDiagnostics> diagnostics;
+ com_ptr<IVisualTreeService> service;
+ com_ptr<IVisualTreeServiceCallback> callback;
+ std::atomic<bool> stopping{false};std::atomic<unsigned> callbacks{0};
+ HANDLE stop=nullptr,refresh=nullptr,worker=nullptr;bool advised=false;
+};
+// The pinned compiler does not implement atomic<shared_ptr>. Keep both reader
+// copies and lifecycle replacement under one short lock, never a COM call.
+struct RootDiscoverySlot {
+ std::mutex mutex;std::shared_ptr<RootDiscoverySession> value;
+ std::shared_ptr<RootDiscoverySession> load(){std::lock_guard guard(mutex);return value;}
+ void store(std::shared_ptr<RootDiscoverySession> next){std::lock_guard guard(mutex);value=std::move(next);}
+};
+[[clang::no_destroy]] static RootDiscoverySlot rootDiscovery;
+static constexpr CLSID rootDiscoveryClsid={0x7cbd47c2,0x78b3,0x439d,{0x82,0xe8,0x7c,0x19,0xac,0x25,0x13,0xd4}};
+static bool DiscoveryAdmission(std::wstring_view type,bool uiThread,bool active) noexcept {
+ return active&&uiThread&&RootCandidateClass(type);
+}
+struct RootDiscoveryTap : implements<RootDiscoveryTap,IObjectWithSite,IVisualTreeServiceCallback> {
+ std::shared_ptr<RootDiscoverySession> state;
+ explicit RootDiscoveryTap(std::shared_ptr<RootDiscoverySession> value):state(std::move(value)){}
+ HRESULT STDMETHODCALLTYPE SetSite(::IUnknown* site) noexcept final {
+  if(!site)return S_OK;
+  if(state->stopping.load()||!ReviewedPackage()||!ReviewedRuntime())return E_ACCESSDENIED;
+  try {
+   com_ptr<IXamlDiagnostics> diagnostics;com_ptr<IVisualTreeService> service;
+   check_hresult(site->QueryInterface(__uuidof(IXamlDiagnostics),diagnostics.put_void()));
+   check_hresult(site->QueryInterface(__uuidof(IVisualTreeService),service.put_void()));
+   com_ptr<IVisualTreeServiceCallback> callback;callback.copy_from(static_cast<IVisualTreeServiceCallback*>(this));
+   std::lock_guard guard(state->mutex);
+   if(state->stopping.load()||state->diagnostics)return E_UNEXPECTED;
+   state->diagnostics=diagnostics;state->service=service;state->callback=callback;
+   // SetSite is called on the UI thread. Subscription runs on our worker,
+   // because WinUI's initial enumeration waits for all UI dispatchers.
+   return S_OK;
+  }catch(hresult_error const& error){return error.code();}catch(...){return E_FAIL;}
+ }
+ HRESULT STDMETHODCALLTYPE GetSite(REFIID iid,void** output) noexcept final {
+  if(!output)return E_POINTER;*output=nullptr;
+  com_ptr<IXamlDiagnostics> diagnostics;{std::lock_guard guard(state->mutex);diagnostics=state->diagnostics;}
+  return diagnostics?diagnostics->QueryInterface(iid,output):E_FAIL;
+ }
+ HRESULT STDMETHODCALLTYPE OnVisualTreeChange(ParentChildRelation,VisualElement element,VisualMutationType mutation) noexcept final {
+  struct Activity {std::atomic<unsigned>& count;Activity(std::atomic<unsigned>& value):count(value){++count;}~Activity(){--count;}} activity(state->callbacks);
+  if(state->stopping.load()||!enabled.load()||mutation!=VisualMutationType::Add||!element.Type)return S_OK;
+  // Type is metadata. Do not query names, document contents or data controls.
+  std::wstring_view type(element.Type,SysStringLen(element.Type));if(!RootCandidateClass(type))return S_OK;
+  try {
+   com_ptr<IXamlDiagnostics> diagnostics;{std::lock_guard guard(state->mutex);diagnostics=state->diagnostics;}
+   if(!diagnostics)return S_OK;
+   com_ptr<::IInspectable> instance;check_hresult(diagnostics->GetIInspectableFromHandle(element.Handle,instance.put()));
+   Windows::Foundation::IInspectable value{nullptr};copy_from_abi(value,instance.get());
+   auto framework=value.try_as<FrameworkElement>();
+   if(framework&&DiscoveryAdmission(type,framework.DispatcherQueue().HasThreadAccess(),!state->stopping.load()&&enabled.load()))
+    ObserveRoot(framework);
+  }catch(...){/* An expired diagnostics handle never grants fallback admission. */}
+  return S_OK;
+ }
+};
+struct RootDiscoveryFactory : implements<RootDiscoveryFactory,IClassFactory> {
+ std::shared_ptr<RootDiscoverySession> state;
+ explicit RootDiscoveryFactory(std::shared_ptr<RootDiscoverySession> value):state(std::move(value)){}
+ HRESULT STDMETHODCALLTYPE CreateInstance(::IUnknown* outer,REFIID iid,void** output) noexcept final {
+  if(!output)return E_POINTER;*output=nullptr;if(outer)return CLASS_E_NOAGGREGATION;
+  if(state->stopping.load())return E_ACCESSDENIED;
+  try{return make<RootDiscoveryTap>(state).as<::IUnknown>()->QueryInterface(iid,output);}catch(...){return E_FAIL;}
+ }
+ HRESULT STDMETHODCALLTYPE LockServer(BOOL) noexcept final {return E_NOTIMPL;}
+};
+extern "C" __declspec(dllexport) HRESULT WINAPI DllGetClassObject(REFCLSID clsid,REFIID iid,void** output) {
+ if(!output)return E_POINTER;*output=nullptr;
+ auto state=rootDiscovery.load();if(clsid!=rootDiscoveryClsid||!state||state->stopping.load())return CLASS_E_CLASSNOTAVAILABLE;
+ try{return make<RootDiscoveryFactory>(state).as<::IUnknown>()->QueryInterface(iid,output);}catch(...){return E_FAIL;}
+}
+static bool DiscoveryDetach(RootDiscoverySession& state) noexcept {
+ com_ptr<IVisualTreeService> service;com_ptr<IVisualTreeServiceCallback> callback;bool advised=false;
+ {std::lock_guard guard(state.mutex);service=state.service;callback=state.callback;advised=state.advised;}
+ if(advised&&service&&callback&&FAILED(service->UnadviseVisualTreeChange(callback.get())))return false;
+ {std::lock_guard guard(state.mutex);state.advised=false;}
+ for(unsigned attempt=0;state.callbacks.load()&&attempt<500;++attempt)Sleep(10);
+ if(state.callbacks.load())return false;
+ return true;
+}
+static bool DiscoverySubscribe(RootDiscoverySession& state) noexcept {
+ if(!DiscoveryDetach(state)||state.stopping.load())return false;
+ com_ptr<IVisualTreeService> service;com_ptr<IVisualTreeServiceCallback> callback;
+ {std::lock_guard guard(state.mutex);service=state.service;callback=state.callback;}
+ if(!service||!callback)return false;
+ const HRESULT result=service->AdviseVisualTreeChange(callback.get());
+ {std::lock_guard guard(state.mutex);state.advised=SUCCEEDED(result);}
+ // A failed Advise can retain its callback in the inspected runtime. Try the
+ // same exact callback when detaching even if enumeration returned a failure.
+ if(FAILED(result)){std::lock_guard guard(state.mutex);state.advised=true;return false;}
+ return true;
+}
+static DWORD WINAPI RootDiscoveryWorker(void* parameter) {
+ auto state=*static_cast<std::shared_ptr<RootDiscoverySession>*>(parameter);
+ delete static_cast<std::shared_ptr<RootDiscoverySession>*>(parameter);
+ bool apartment=false;
+ try {
+  init_apartment(apartment_type::multi_threaded);apartment=true;
+  for(unsigned attempt=0;attempt<50&&!state->stopping.load();++attempt) {
+   if(ReviewedRuntime()) {
+    auto runtime=GetModuleHandleW(L"Microsoft.UI.Xaml.dll");HMODULE self=nullptr;
+    wchar_t path[32768]{},runtimePath[32768]{};
+    DWORD runtimeLength=GetModuleFileNameW(runtime,runtimePath,std::size(runtimePath));
+    if(!runtimeLength||runtimeLength>=std::size(runtimePath)
+     ||!GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS|GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,reinterpret_cast<LPCWSTR>(RootDiscoveryWorker),&self))break;
+    DWORD selfLength=GetModuleFileNameW(self,path,std::size(path));if(!selfLength||selfLength>=std::size(path))break;
+    std::wstring bridgePath=runtimePath;auto slash=bridgePath.find_last_of(L"\\");if(slash==std::wstring::npos)break;
+    bridgePath.resize(slash+1);bridgePath+=L"Microsoft.Internal.FrameworkUdk.dll";
+    if(!ReviewedDiagnosticsBridge(bridgePath))break;
+    auto bridge=LoadLibraryExW(bridgePath.c_str(),nullptr,LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR|LOAD_LIBRARY_SEARCH_SYSTEM32);
+    if(!bridge)break;
+    auto initialize=reinterpret_cast<HRESULT(WINAPI*)(LPCWSTR,DWORD,LPCWSTR,LPCWSTR,CLSID,LPCWSTR)>(GetProcAddress(bridge,"InitializeXamlDiagnosticsEx"));
+    HRESULT result=initialize?initialize(L"WinUIVisualDiagConnection1",GetCurrentProcessId(),runtimePath,path,rootDiscoveryClsid,nullptr):E_NOINTERFACE;
+    FreeLibrary(bridge);
+    if(FAILED(result))break;
+    for(unsigned wait=0;wait<50&&!state->stopping.load();++wait) {
+     bool ready=false;{std::lock_guard guard(state->mutex);ready=state->service&&state->callback;}
+     if(ready)break;if(WaitForSingleObject(state->stop,100)!=WAIT_TIMEOUT)break;
+    }
+    if(!state->stopping.load()&&DiscoverySubscribe(*state)) {
+     HANDLE events[]={state->stop,state->refresh};
+     while(!state->stopping.load()) {
+      DWORD wait=WaitForMultipleObjects(2,events,FALSE,INFINITE);
+      if(wait!=WAIT_OBJECT_0+1||!DiscoverySubscribe(*state))break;
+     }
+    }
+    break;
+   }
+   if(WaitForSingleObject(state->stop,100)!=WAIT_TIMEOUT)break;
+  }
+ }catch(...){/* Missing or inaccessible diagnostics leave native roots intact. */}
+ if(!DiscoveryDetach(*state))PinForCleanup();
+ else {std::lock_guard guard(state->mutex);state->callback=nullptr;state->service=nullptr;state->diagnostics=nullptr;}
+ if(apartment)uninit_apartment();return 0;
+}
+static bool StartRootDiscovery() noexcept {
+ if(rootDiscovery.load())return false;
+ try {
+  auto state=std::make_shared<RootDiscoverySession>();
+  state->stop=CreateEventW(nullptr,TRUE,FALSE,nullptr);state->refresh=CreateEventW(nullptr,FALSE,FALSE,nullptr);
+  if(!state->stop||!state->refresh){if(state->stop)CloseHandle(state->stop);if(state->refresh)CloseHandle(state->refresh);return false;}
+  auto argument=new(std::nothrow) std::shared_ptr<RootDiscoverySession>(state);
+  if(!argument){CloseHandle(state->stop);CloseHandle(state->refresh);return false;}
+  rootDiscovery.store(state);state->worker=CreateThread(nullptr,0,RootDiscoveryWorker,argument,0,nullptr);
+  if(!state->worker){delete argument;rootDiscovery.store(nullptr);CloseHandle(state->stop);CloseHandle(state->refresh);return false;}
+  return true;
+ }catch(...){return false;}
+}
+static bool StopRootDiscovery() noexcept {
+ auto state=rootDiscovery.load();if(!state)return true;
+ state->stopping=true;SetEvent(state->stop);
+ if(WaitForSingleObject(state->worker,5000)!=WAIT_OBJECT_0){PinForCleanup();return false;}
+ if(!DiscoveryDetach(*state)){PinForCleanup();return false;}
+ bool retained=false;{std::lock_guard guard(state->mutex);state->callback=nullptr;state->service=nullptr;state->diagnostics=nullptr;retained=state->advised;}
+ if(retained){PinForCleanup();return false;}
+ CloseHandle(state->worker);CloseHandle(state->stop);CloseHandle(state->refresh);rootDiscovery.store(nullptr);return true;
+}
+static void RefreshRootDiscovery() noexcept {auto state=rootDiscovery.load();if(state&&!state->stopping.load())SetEvent(state->refresh);}
+
 
 using Create=HRESULT(STDMETHODCALLTYPE*)(void*,void*,void**,void**);
 static constexpr unsigned factoryCount=7;
@@ -817,7 +1206,7 @@ static void AdmitSource(ProjectedObject const& object) {
 // Mutation still requires a loaded root in this exact package/runtime. Known
 // drawing, swatch and editor classes are deliberately absent from this list.
 static bool RootCandidateClass(std::wstring_view name) {
- for(auto known:{L"NotepadXamlUI.MainMenuBar",L"NotepadXamlUI.StatusBar",L"NotepadXamlUI.TabsBar",L"NotepadXamlUI.NotepadSettingsPage"})if(name==known)return true;
+ for(auto known:{L"PaintUI.AppChrome",L"PaintUI.Ribbon",L"PaintUI.RibbonControl",L"PaintUI.LayersPanel"})if(name==known)return true;
  return false;
 }
 static void ObserveConstructedContainer(ProjectedObject const& value) {
@@ -891,7 +1280,7 @@ template<unsigned N> static HRESULT STDMETHODCALLTYPE ActivationHook(void* self,
 // after hook installation have a known default baseline; creation-time requests
 // are captured by the same hook before CreateWindowEx returns.
 struct Caption { HWND window; COLORREF before=DWMWA_COLOR_DEFAULT; bool applied=false; };
-static constexpr PCWSTR captionProperty=L"j3w1-notepad-chrome-caption-owner";
+static constexpr PCWSTR captionProperty=L"j3w1-paint-chrome-caption-owner";
 [[clang::no_destroy]] static std::vector<Caption*> captions;
 [[clang::no_destroy]] static std::mutex captionsMutex;
 static decltype(&CreateWindowExW) originalCreateWindow=nullptr;
@@ -900,7 +1289,7 @@ static decltype(&DwmSetWindowAttribute) originalDwmSet=nullptr;
 static bool CaptionWindow(HWND window) {
  DWORD process=0;GetWindowThreadProcessId(window,&process);wchar_t type[64]{};
  return process==GetCurrentProcessId()&&GetAncestor(window,GA_ROOT)==window&&GetClassNameW(window,type,std::size(type))
-  &&(wcscmp(type,L"Notepad")==0||wcscmp(type,L"MSPaintApp")==0);
+  &&wcscmp(type,L"MSPaintApp")==0;
 }
 static Caption* OwnedCaption(HWND window) {
  auto state=static_cast<Caption*>(GetPropW(window,captionProperty));
@@ -930,7 +1319,62 @@ static void RefreshCaptions() {
   ++it;
  }
 }
+struct NativeBackdrop {HWND window=nullptr;DWORD before=0;bool owned=false;};
+static constexpr PCWSTR backdropProperty=L"j3w1-paint-chrome-backdrop-owner";
+[[clang::no_destroy]] static std::vector<NativeBackdrop*> nativeBackdrops;
+[[clang::no_destroy]] static std::mutex backdropMutex;
+template<class Read,class Write> static bool UpdateBackdrop(NativeBackdrop& entry,bool active,Read read,Write write) noexcept {
+ try {
+  DWORD current=0;if(FAILED(read(current)))return false;
+  if(entry.owned&&current!=DWMSBT_NONE){entry.owned=false;entry.before=current;}
+  if(active) {
+   if(entry.owned)return true;
+   entry.before=current;entry.owned=true;
+   if(FAILED(write(DWMSBT_NONE)))return false;
+  }else if(entry.owned) {
+   if(FAILED(write(entry.before)))return false;entry.owned=false;
+  }
+  return true;
+ }catch(...){return false;}
+}
+static NativeBackdrop* FindBackdrop(HWND window) {
+ auto value=static_cast<NativeBackdrop*>(GetPropW(window,backdropProperty));
+ return std::find(nativeBackdrops.begin(),nativeBackdrops.end(),value)!=nativeBackdrops.end()?value:nullptr;
+}
+static bool ForgetBackdrop(NativeBackdrop* entry,bool restore) {
+ if(GetPropW(entry->window,backdropProperty)==entry) {
+  if(restore&&IsWindow(entry->window)&&!UpdateBackdrop(*entry,false,
+   [&](DWORD& value){return DwmGetWindowAttribute(entry->window,DWMWA_SYSTEMBACKDROP_TYPE,&value,sizeof(value));},
+   [&](DWORD value){return originalDwmSet(entry->window,DWMWA_SYSTEMBACKDROP_TYPE,&value,sizeof(value));}))return false;
+  RemovePropW(entry->window,backdropProperty);
+ }
+ nativeBackdrops.erase(std::remove(nativeBackdrops.begin(),nativeBackdrops.end(),entry),nativeBackdrops.end());delete entry;return true;
+}
+static void RefreshBackdrop(HWND window) {
+ if(!CaptionWindow(window)||!originalDwmSet)return;
+ std::lock_guard guard(backdropMutex);auto entry=FindBackdrop(window);
+ if(!enabled.load()||HighContrast()){if(entry&&!ForgetBackdrop(entry,true))PinForCleanup();return;}
+ if(!entry) {
+  if(GetPropW(window,backdropProperty))return;
+  DWORD baseline=0;if(FAILED(DwmGetWindowAttribute(window,DWMWA_SYSTEMBACKDROP_TYPE,&baseline,sizeof(baseline))))return;
+  entry=new(std::nothrow) NativeBackdrop{window,baseline,false};if(!entry)return;
+  if(!SetPropW(window,backdropProperty,entry)){delete entry;return;}nativeBackdrops.push_back(entry);
+ }
+ if(!UpdateBackdrop(*entry,true,
+  [&](DWORD& value){return DwmGetWindowAttribute(window,DWMWA_SYSTEMBACKDROP_TYPE,&value,sizeof(value));},
+  [&](DWORD value){return originalDwmSet(window,DWMWA_SYSTEMBACKDROP_TYPE,&value,sizeof(value));}))PinForCleanup();
+}
+static void RefreshBackdrops(){EnumWindows([](HWND window,LPARAM)->BOOL{RefreshBackdrop(window);return TRUE;},0);}
+static void RestoreBackdrops(){std::lock_guard guard(backdropMutex);auto copy=nativeBackdrops;for(auto entry:copy)if(!ForgetBackdrop(entry,true))PinForCleanup();}
 static HRESULT WINAPI DwmCaptionHook(HWND window,DWORD attribute,LPCVOID value,DWORD size) {
+ if(attribute==DWMWA_SYSTEMBACKDROP_TYPE&&value&&size==sizeof(DWORD)&&CaptionWindow(window)) {
+  RefreshBackdrop(window);std::lock_guard guard(backdropMutex);auto entry=FindBackdrop(window);
+  DWORD requested;memcpy(&requested,value,sizeof(requested));
+  DWORD applied=entry&&enabled.load()&&!HighContrast()?DWMSBT_NONE:requested;
+  HRESULT result=originalDwmSet(window,attribute,&applied,sizeof(applied));
+  if(SUCCEEDED(result)&&entry){entry->before=requested;entry->owned=applied==DWMSBT_NONE;}
+  return result;
+ }
  if(attribute!=DWMWA_CAPTION_COLOR||!value||size!=sizeof(COLORREF)||!CaptionWindow(window))return originalDwmSet(window,attribute,value,size);
  std::lock_guard guard(captionsMutex);COLORREF requested;memcpy(&requested,value,sizeof(requested));
  auto state=OwnedCaption(window);bool captured=!state;bool active=enabled.load()&&!HighContrast();
@@ -947,9 +1391,10 @@ static HWND WINAPI CreateCaptionHook(DWORD exStyle,LPCWSTR type,LPCWSTR title,DW
   {std::lock_guard guard(captionsMutex);CaptureCaption(window,DWMWA_COLOR_DEFAULT);}
   if(ReviewedRuntime()&&EnsureChannel())Schedule();
  }
- RefreshCaptions();return window;
+ RefreshBackdrop(window);RefreshCaptions();return window;
 }
 static BOOL WINAPI DestroyCaptionHook(HWND window) {
+ {std::lock_guard guard(backdropMutex);if(auto state=FindBackdrop(window))ForgetBackdrop(state,false);}
  {std::lock_guard guard(captionsMutex);if(auto state=OwnedCaption(window))ForgetCaption(state,false);}
  return originalDestroyWindow(window);
 }
@@ -1034,7 +1479,7 @@ static bool StartHooks() {
  for(unsigned at=0;at<factoryCount;++at){hooked[at]=false;activationHooked[at]=false;factoryFunction[at]=nullptr;activationFunction[at]=nullptr;factoryTable[at]=nullptr;activationTable[at]=nullptr;factoryIdentity[at]=nullptr;activationIdentity[at]=nullptr;originalCreate[at]=nullptr;originalActivate[at]=nullptr;}
  originalIslandContent=nullptr;originalWindowContent=nullptr;
  enabled=Wh_GetIntSetting(L"enabled")!=0;
- dispatchMessage=RegisterWindowMessageW(L"j3w1-notepad-chrome");
+ dispatchMessage=RegisterWindowMessageW(L"j3w1-paint-chrome");
  stopDiscovery=CreateEventW(nullptr,TRUE,FALSE,nullptr);
  auto module=GetModuleHandleW(L"combase.dll");
  auto roFactory=module?GetProcAddress(module,"RoGetActivationFactory"):nullptr;
@@ -1048,9 +1493,9 @@ static bool StartHooks() {
  return admitted;
 }
 BOOL Wh_ModInit(){bool ready=ReviewedPackage()&&StartHooks();Log(253,ready,enabled.load());return ready;}
-void Wh_ModAfterInit(){StartRootDiscovery();Admit();discovery=CreateThread(nullptr,0,[](LPVOID)->DWORD{
+void Wh_ModAfterInit(){RefreshBackdrops();StartRootDiscovery();Admit();discovery=CreateThread(nullptr,0,[](LPVOID)->DWORD{
  try{init_apartment(apartment_type::multi_threaded);try{for(unsigned i=0;i<50&&!factoryReady.load()&&WaitForSingleObject(stopDiscovery,100)==WAIT_TIMEOUT;i++)Admit();}catch(...){}uninit_apartment();}
  catch(hresult_error const& error){Log(7,static_cast<unsigned>(error.code().value));}catch(...){}return 0;
  },nullptr,0,nullptr);}
-void Wh_ModUninit(){enabled=false;StopRootDiscovery();RestoreCaptions();SetEvent(stopDiscovery);if(discovery){WaitForSingleObject(discovery,INFINITE);CloseHandle(discovery);discovery=nullptr;}std::vector<HWND> copy;{std::lock_guard guard(channelMutex);copy=channels;}for(HWND window:copy)if(IsWindow(window))SendMessageW(window,dispatchMessage,1,0);CloseHandle(stopDiscovery);stopDiscovery=nullptr;for(auto& value:factoryIdentity)value=nullptr;for(auto& value:activationIdentity)value=nullptr;}
-void Wh_ModSettingsChanged(){enabled=Wh_GetIntSetting(L"enabled")!=0;if(enabled.load())RefreshRootDiscovery();RefreshCaptions();std::vector<HWND> copy;{std::lock_guard guard(channelMutex);copy=channels;}for(HWND window:copy)if(IsWindow(window))SendMessageW(window,dispatchMessage,0,0);}
+void Wh_ModUninit(){enabled=false;StopRootDiscovery();RestoreBackdrops();RestoreCaptions();SetEvent(stopDiscovery);if(discovery){WaitForSingleObject(discovery,INFINITE);CloseHandle(discovery);discovery=nullptr;}std::vector<HWND> copy;{std::lock_guard guard(channelMutex);copy=channels;}for(HWND window:copy)if(IsWindow(window))SendMessageW(window,dispatchMessage,1,0);CloseHandle(stopDiscovery);stopDiscovery=nullptr;for(auto& value:factoryIdentity)value=nullptr;for(auto& value:activationIdentity)value=nullptr;}
+void Wh_ModSettingsChanged(){enabled=Wh_GetIntSetting(L"enabled")!=0;if(enabled.load())RefreshRootDiscovery();RefreshBackdrops();RefreshCaptions();std::vector<HWND> copy;{std::lock_guard guard(channelMutex);copy=channels;}for(HWND window:copy)if(IsWindow(window))SendMessageW(window,dispatchMessage,0,0);}
