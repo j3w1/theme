@@ -85,10 +85,11 @@ placeholder directory. `templates/port/` is a starting aid when work begins.
   regenerate.
 - `npm run generate` writes `dist/` for every port whose `format` has an
   emitter in `scripts/lib/port-artifacts.mjs` (`warp-yaml`, `ghostty-config`,
-  `claude-theme-json`, `codex-tmtheme`, `chatgpt-appearance` and
-  `obsidian-theme` today). Each emitter returns the complete declared array of
-  text artifacts. Unsafe or duplicate paths and missing/extra outputs fail
-  before any port artifact is written; Obsidian emits a manifest and CSS together.
+  `claude-theme-json`, `codex-tmtheme`, `chatgpt-appearance`,
+  `obsidian-theme` and `telegram-theme` today). Each emitter returns the complete
+  declared array of text or byte artifacts. Unsafe or duplicate paths and
+  missing/extra outputs fail before any port artifact is written; Obsidian emits
+  a manifest and CSS together, and Telegram emits Android text and a Desktop zip.
 - The README downloads table links each file at the release tag, and the site
   serves a copy at `ports/<slug>/<file>`.
 

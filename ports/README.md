@@ -14,6 +14,7 @@ file, its installer if it has one, and one guide.
 | Ghostty theme | [ghostty](ghostty/README.md) | `j3w1` |
 | Obsidian theme | [obsidian](obsidian/README.md) | `manifest.json`, `theme.css` |
 | Orca (Ghostty config import) | [orca](orca/README.md) | `config.ghostty` |
+| Telegram Android and Desktop | [telegram](telegram/README.md) | `j3w1.attheme`, `j3w1.tdesktop-theme` |
 | Warp theme YAML (also Orca's Import from YAML) | [warp](warp/README.md) | `j3w1.yaml` |
 <!-- guides:end -->
 
@@ -68,7 +69,7 @@ port's `format` has an emitter in `scripts/lib/port-artifacts.mjs`). Add `src/`
 only for real generator inputs and `evidence/` only for actual records with
 application version, OS and date; neither needs a placeholder. Generation
 rebuilds absent emitted files, while validation and drift checks require them.
-Every emitter returns its complete declared text-artifact set; unsafe, duplicate,
+Every emitter returns its complete declared text or byte artifact set; unsafe, duplicate,
 missing or extra paths fail before any port artifact is written.
 A port with an installer also carries `host.json` (which native key takes
 which role, the host versions it was observed on, and its deviations) and the

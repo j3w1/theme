@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "id": "telegram",
+  "displayName": "Telegram Android and Desktop",
+  "status": "experimental",
+  "themeVersion": "3.1.0",
+  "tokenDigest": "sha256-7nj2Uyib940st4KVhRJ+YfzEjWwTN/p8rzJNmAUwj0A=",
+  "profile": "default",
+  "format": "telegram-theme",
+  "targetVersions": [
+    "Telegram Android 12.10.6",
+    "Telegram Desktop 7.2.9"
+  ],
+  "testedVersions": [],
+  "os": [
+    "android",
+    "windows",
+    "linux",
+    "macos"
+  ],
+  "surfaces": {
+    "supported": [
+      "interface",
+      "messages",
+      "controls",
+      "wallpaper"
+    ],
+    "inherited": [
+      "typography",
+      "motion",
+      "content-data"
+    ],
+    "unsupported": [
+      "geometry"
+    ]
+  },
+  "files": [
+    {
+      "path": "dist/j3w1.attheme",
+      "install": "Download and open in Telegram Android (or send to Saved Messages and tap), then Apply; no cloud theme is published yet."
+    },
+    {
+      "path": "dist/j3w1.tdesktop-theme",
+      "install": "Download and open with Telegram Desktop, then Apply this theme and Keep changes; no cloud theme is published yet."
+    }
+  ],
+  "mappingPath": "mapping.json",
+  "capabilitiesPath": "capabilities.json",
+  "evidence": []
+}
