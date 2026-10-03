@@ -1342,7 +1342,7 @@
     }
   },
   "notepadChrome": {
-    "version": "1.2.3",
+    "version": "1.2.4",
     "packageFullName": "Microsoft.WindowsNotepad_11.2607.14.0_x64__8wekyb3d8bbwe",
     "runtimePackage": "Microsoft.WindowsAppRuntime.2_2.5.1.0_x64__8wekyb3d8bbwe",
     "runtimeSha256": "aad12524765e6fb63f0ae26a45a9ba3104f24fde66413d8a3036fbed74a1e990",
@@ -1432,6 +1432,20 @@
     "CardStrokeColorDefaultBrush": "color.border.divider",
     "ExpanderContentBorderBrush": "color.border.divider",
     "ExpanderHeaderBorderBrush": "color.border.divider",
+    "ExpanderHeaderBackground": "color.surface.input",
+    "ExpanderContentBackground": "color.surface.input",
+    "ExpanderHeaderForeground": "color.text.default",
+    "ExpanderHeaderForegroundPointerOver": "color.text.default",
+    "ExpanderHeaderForegroundPressed": "color.text.default",
+    "ExpanderHeaderDisabledForeground": "color.text.disabled",
+    "ExpanderHeaderBorderPointerOverBrush": "color.border.divider",
+    "ExpanderHeaderBorderPressedBrush": "color.border.divider",
+    "ExpanderHeaderDisabledBorderBrush": "color.border.disabled",
+    "ExpanderChevronForeground": "color.text.default",
+    "ExpanderChevronPointerOverForeground": "color.text.default",
+    "ExpanderChevronPressedForeground": "color.text.default",
+    "ExpanderChevronPointerOverBackground": "color.interaction.hover.bg",
+    "ExpanderChevronPressedBackground": "color.interaction.pressed.bg",
     "MenuFlyoutPresenterBackground": "color.surface.raised",
     "MenuFlyoutPresenterBorderBrush": "color.border.overlay",
     "SurfaceStrokeColorFlyoutBrush": "color.border.overlay",
@@ -1542,7 +1556,7 @@
     "KeyTipForeground": "color.text.default"
   },
   "paintChrome": {
-    "version": "1.0.4",
+    "version": "1.0.5",
     "packageFullName": "Microsoft.Paint_11.2605.81.0_x64__8wekyb3d8bbwe",
     "runtimePackage": "Microsoft.WindowsAppRuntime.2_2.5.1.0_x64__8wekyb3d8bbwe",
     "runtimeSha256": "aad12524765e6fb63f0ae26a45a9ba3104f24fde66413d8a3036fbed74a1e990",

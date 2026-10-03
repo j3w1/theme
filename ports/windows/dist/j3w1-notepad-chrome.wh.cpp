@@ -2,7 +2,7 @@
 // @id j3w1-notepad-chrome
 // @name j3w1 Notepad chrome
 // @description Exact-package Notepad chrome resources; document and artwork colors remain native
-// @version 1.2.3
+// @version 1.2.4
 // @author j3w1
 // @include Notepad.exe
 // @architecture x86-64
@@ -132,6 +132,20 @@ static constexpr Rule rules[]={
  {L"CardStrokeColorDefaultBrush",{255,43,14,13},L"color.border.divider"},
  {L"ExpanderContentBorderBrush",{255,43,14,13},L"color.border.divider"},
  {L"ExpanderHeaderBorderBrush",{255,43,14,13},L"color.border.divider"},
+ {L"ExpanderHeaderBackground",{255,0,0,0},L"color.surface.input"},
+ {L"ExpanderContentBackground",{255,0,0,0},L"color.surface.input"},
+ {L"ExpanderHeaderForeground",{255,233,148,153},L"color.text.default"},
+ {L"ExpanderHeaderForegroundPointerOver",{255,233,148,153},L"color.text.default"},
+ {L"ExpanderHeaderForegroundPressed",{255,233,148,153},L"color.text.default"},
+ {L"ExpanderHeaderDisabledForeground",{255,138,85,89},L"color.text.disabled"},
+ {L"ExpanderHeaderBorderPointerOverBrush",{255,43,14,13},L"color.border.divider"},
+ {L"ExpanderHeaderBorderPressedBrush",{255,43,14,13},L"color.border.divider"},
+ {L"ExpanderHeaderDisabledBorderBrush",{255,125,19,16},L"color.border.disabled"},
+ {L"ExpanderChevronForeground",{255,233,148,153},L"color.text.default"},
+ {L"ExpanderChevronPointerOverForeground",{255,233,148,153},L"color.text.default"},
+ {L"ExpanderChevronPressedForeground",{255,233,148,153},L"color.text.default"},
+ {L"ExpanderChevronPointerOverBackground",{255,28,10,9},L"color.interaction.hover.bg"},
+ {L"ExpanderChevronPressedBackground",{255,66,15,12},L"color.interaction.pressed.bg"},
  {L"MenuFlyoutPresenterBackground",{255,22,11,11},L"color.surface.raised"},
  {L"MenuFlyoutPresenterBorderBrush",{255,229,57,53},L"color.border.overlay"},
  {L"SurfaceStrokeColorFlyoutBrush",{255,229,57,53},L"color.border.overlay"},
@@ -589,6 +603,10 @@ static FrameworkElement ChromeBackgroundBoundary(FrameworkElement const& content
 static bool PaintBackingAdmission(std::wstring_view owner,std::wstring_view child,unsigned count,bool sameRoot) noexcept {
  return owner==L"PaintUI.AppChrome"&&child==L"Microsoft.UI.Xaml.Controls.Grid"&&count==1&&sameRoot;
 }
+static bool NotepadSettingsBackingAdmission(std::wstring_view owner,std::wstring_view child,std::wstring_view name,unsigned count,bool sameRoot) noexcept {
+ return owner==L"NotepadXamlUI.NotepadSettingsPage"&&child==L"Microsoft.UI.Xaml.Controls.ScrollViewer"
+  &&name==L"RootScrollViewer"&&count==1&&sameRoot;
+}
 static void ApplyRootBackground(Root& root) {
  auto element=root.element.get();if(!element)return;
  // Select the app's rendered backing before walking outward into scroll
@@ -598,17 +616,18 @@ static void ApplyRootBackground(Root& root) {
   auto child=VisualTreeHelper::GetChild(element,0).try_as<Grid>();
   if(child&&PaintBackingAdmission(std::wstring_view{get_class_name(element)},std::wstring_view{get_class_name(child)},1,Identity(element.XamlRoot(),child.XamlRoot()))){element=child;paintBacking=true;}
  }
- if(!paintBacking) {
+ // Select Notepad's real Settings viewport before the outer scrolling island
+ // wrapper, whose Background is not consumed by the app's inner template.
+ bool settingsBacking=false;
+ if(get_class_name(element)==L"NotepadXamlUI.NotepadSettingsPage"&&VisualTreeHelper::GetChildrenCount(element)==1) {
+  auto child=VisualTreeHelper::GetChild(element,0).try_as<ScrollViewer>();
+  if(child&&NotepadSettingsBackingAdmission(std::wstring_view{get_class_name(element)},std::wstring_view{get_class_name(child)},std::wstring_view{child.Name()},1,Identity(element.XamlRoot(),child.XamlRoot()))) {element=child;settingsBacking=true;}
+ }
+ if(!paintBacking&&!settingsBacking) {
   auto boundary=ChromeBackgroundBoundary(element);
   if(!Identity(boundary,element))element=boundary;
   // Only the immediate content panel of an admitted root, never all panels.
   if(auto control=element.try_as<UserControl>())if(auto panel=control.Content().try_as<Panel>())element=panel;
- }
- // This exact package's Settings Page forwards rendering to a ScrollViewer;
- // its own Control.Background is not consumed by that child template.
- if(get_class_name(element)==L"NotepadXamlUI.NotepadSettingsPage"&&VisualTreeHelper::GetChildrenCount(element)==1) {
-  auto child=VisualTreeHelper::GetChild(element,0).try_as<ScrollViewer>();
-  if(child&&child.Name()==L"RootScrollViewer")element=child;
  }
  if(root.backgroundProperty)element=root.backgroundElement.get();
  if(!element)return;
@@ -710,6 +729,14 @@ static const wchar_t* NotepadToolbarSurfaceKey(std::wstring_view root,std::wstri
   &&type==L"Microsoft.UI.Xaml.Controls.Grid"&&parent==L"NotepadXamlUI.MainMenuBar"
   &&Same(color,{115,58,58,58})?L"SolidBackgroundFillColorBaseBrush":nullptr;
 }
+// Only the observed noninteractive Settings-card backing is local paint.
+// Expander headers and their state-controlled children use resource overrides.
+static const wchar_t* NotepadSettingsSurfaceKey(std::wstring_view root,std::wstring_view type,std::wstring_view parent,std::wstring_view grandparent,Kind kind,Color color) {
+ if(root!=L"NotepadXamlUI.NotepadSettingsPage"||kind!=Kind::Background||!Same(color,{13,255,255,255}))return nullptr;
+ bool panel=type==L"NotepadXamlUI.ExpanderExQuadratePanel"&&parent==L"Microsoft.UI.Xaml.Controls.Grid"&&grandparent==L"NotepadXamlUI.ExpanderEx";
+ bool backing=type==L"Microsoft.UI.Xaml.Controls.Grid"&&parent==L"NotepadXamlUI.ExpanderExQuadratePanel"&&grandparent==L"Microsoft.UI.Xaml.Controls.Grid";
+ return panel||backing?L"CardBackgroundFillColorDefaultBrush":nullptr;
+}
 static const wchar_t* NativeFocusBrushKey(Kind kind,bool control) {
  if(!control)return nullptr;
  return kind==Kind::FocusPrimary?L"SystemControlFocusVisualPrimaryBrush":kind==Kind::FocusSecondary?L"SystemControlFocusVisualSecondaryBrush":nullptr;
@@ -729,6 +756,7 @@ const wchar_t* key=PaintChromeKey(std::wstring_view{type},std::wstring_view{owne
  // paints the whole toolbar independently of MainMenuBar.Background.
  if(auto mapped=NotepadToolbarSurfaceKey(std::wstring_view{get_class_name(root.element.get())},std::wstring_view{type},std::wstring_view{owner},kind,c))key=mapped;
 
+ if(auto ancestor=VisualTreeHelper::GetParent(parent))if(auto mapped=NotepadSettingsSurfaceKey(std::wstring_view{get_class_name(root.element.get())},std::wstring_view{type},std::wstring_view{owner},std::wstring_view{get_class_name(ancestor)},kind,c))key=mapped;
  if(kind==Kind::Border) {
   if(key)for(auto const& item:root.palette)if(wcscmp(item.rule->key,key)==0)return &item;
   return nullptr;
@@ -794,7 +822,7 @@ static bool StandardChrome(DependencyObject const& object) {
  return object.try_as<Microsoft::UI::Xaml::Controls::Primitives::ButtonBase>()
   ||object.try_as<MenuBarItem>()||object.try_as<MenuFlyoutItem>()||object.try_as<MenuFlyoutSubItem>()
   ||object.try_as<MenuFlyoutPresenter>()||object.try_as<ToggleSwitch>()||object.try_as<ComboBox>()
-  ||object.try_as<ListViewItem>()||object.try_as<Slider>()||object.try_as<TextBlock>()||object.try_as<IconElement>();
+  ||object.try_as<ListViewItem>()||object.try_as<Expander>()||object.try_as<Slider>()||object.try_as<TextBlock>()||object.try_as<IconElement>();
 }
 static void RefreshChromeControl(Root& root,DependencyObject const& object) {
  if(!StandardChrome(object))return;

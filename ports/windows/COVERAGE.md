@@ -71,6 +71,24 @@ change, and reverse it through the same installer. Rendered data colors, images,
 status meanings, Paint artwork and color choices are not palette candidates.
 These are implementation requirements, not implemented capabilities.
 
+### Notepad Settings backing
+
+On the recorded Notepad package, Settings paints through its named direct
+RootScrollViewer child. The adapter selects that same-root viewport before
+the outer scrolling island wrapper and retains its exact local brush for
+restoration. The observed noninteractive ExpanderExQuadratePanel backing and
+its direct template Grid receive the input-surface role only under the exact
+Settings ancestry and original neutral ARGB. Document controls and other roots
+are excluded.
+
+Native Expander controls receive the documented header, content, foreground
+and chevron resource keys through the existing owned-resource layer. Native
+templates retain expanded/collapsed, hover, pressed, disabled and focus behavior;
+state-controlled header paint properties are not replaced. Resource keys were
+checked against the [upstream WinUI Expander template](https://github.com/microsoft/microsoft-ui-xaml/blob/8027ff4af619eb470fab63bf4609c6404ee73e17/dev/Expander/Expander_themeresources.xaml).
+The implementation does not change Notepad's selected appearance preference.
+Live appearance and restoration acceptance remain separate checks.
+
 ### Calculator resources
 
 The exact recorded assembly-qualified CalculatorButton style keeps the native

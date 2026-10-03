@@ -328,6 +328,21 @@ int main(int argc, char** argv) {
         puts("PASS: only observed scrolling wrappers admitted; layout, drawing and document classes refused");return 0;
     }
     if(strcmp(argv[1],"notepad-chrome-admission") == 0) {
+        auto settings=L"NotepadXamlUI.NotepadSettingsPage",scroll=L"Microsoft.UI.Xaml.Controls.ScrollViewer";
+        assert(NotepadSettingsBackingAdmission(settings,scroll,L"RootScrollViewer",1,true));
+        assert(!NotepadSettingsBackingAdmission(settings,scroll,L"RootScrollViewer",1,false));
+        assert(!NotepadSettingsBackingAdmission(settings,scroll,L"RootScrollViewer",2,true));
+        assert(!NotepadSettingsBackingAdmission(settings,scroll,L"DocumentScrollViewer",1,true));
+        assert(!NotepadSettingsBackingAdmission(L"NotepadXamlUI.Document",scroll,L"RootScrollViewer",1,true));
+        assert(!NotepadSettingsBackingAdmission(settings,L"Microsoft.UI.Xaml.Controls.Grid",L"RootScrollViewer",1,true));
+        auto panel=L"NotepadXamlUI.ExpanderExQuadratePanel",grid=L"Microsoft.UI.Xaml.Controls.Grid",expander=L"NotepadXamlUI.ExpanderEx";
+        assert(NotepadSettingsSurfaceKey(settings,panel,grid,expander,Kind::Background,{13,255,255,255}));
+        assert(NotepadSettingsSurfaceKey(settings,grid,panel,grid,Kind::Background,{13,255,255,255}));
+        assert(!NotepadSettingsSurfaceKey(L"NotepadXamlUI.Document",panel,grid,expander,Kind::Background,{13,255,255,255}));
+        assert(!NotepadSettingsSurfaceKey(settings,panel,grid,expander,Kind::Foreground,{13,255,255,255}));
+        assert(!NotepadSettingsSurfaceKey(settings,panel,grid,expander,Kind::Background,{14,255,255,255}));
+        assert(!NotepadSettingsSurfaceKey(settings,L"Microsoft.UI.Xaml.Controls.Button",grid,expander,Kind::Background,{13,255,255,255}));
+        assert(!NotepadSettingsSurfaceKey(settings,panel,grid,L"Unrelated",Kind::Background,{13,255,255,255}));
         auto type=L"Microsoft.UI.Xaml.Controls.Grid";auto root=L"NotepadXamlUI.MainMenuBar";
         assert(NotepadToolbarSurfaceKey(root,type,root,Kind::Background,{115,58,58,58}));
         assert(!NotepadToolbarSurfaceKey(L"PaintUI.Canvas",type,root,Kind::Background,{115,58,58,58}));
