@@ -32242,7 +32242,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-xK0XNXahrwgVGK9vM5UOR/HtlT4w62uv7wPvk3ae588=",
+      "subjectDigest": "sha256-7HbuMvrCr45OCHBpqMU30UdN0F5mk0dxBOVips3t+wU=",
       "evidencePath": null,
       "surfaces": {
         "interface": {
@@ -32297,7 +32297,7 @@
           "path": "dist/j3w1.tdesktop-theme",
           "install": "File install: open with Telegram Desktop, then Apply this theme and Keep changes. The cloud link in the guide, when published, installs the same theme with automatic updates.",
           "source": "ports/telegram/dist/j3w1.tdesktop-theme",
-          "digest": "sha256-Vv2KrTbylsUm49iPauwvOkXwsHM4fHbEiLS43SmXeys="
+          "digest": "sha256-66szaX8nkwUNiDGaNbmrbyAVNnr8pp3RzeDHLFuP74c="
         }
       ],
       "rollback": "Choose the previous Telegram theme in Settings → Chat Settings/Appearance; restore the previous chat background if it was customised.",
@@ -32559,7 +32559,15 @@
             "android:chat_attachLocationBackground",
             "desktop:msgFileOutBg",
             "android:avatar_backgroundInProfileBlue",
-            "android:avatar_backgroundActionBarBlue"
+            "android:avatar_backgroundActionBarBlue",
+            "desktop:msgFile1BgDark",
+            "desktop:msgFile2BgDark",
+            "desktop:msgFile3BgDark",
+            "desktop:msgFile4BgDark",
+            "desktop:msgFile1Bg",
+            "desktop:msgFile2Bg",
+            "desktop:msgFile3Bg",
+            "desktop:msgFile4Bg"
           ],
           "value": "#7d1310",
           "eligibility": {
@@ -32594,7 +32602,11 @@
             "desktop:activeButtonBgOver",
             "desktop:historyComposeButtonBgOver",
             "desktop:msgFileInBgOver",
-            "desktop:sideBarBadgeBgActive"
+            "desktop:sideBarBadgeBgActive",
+            "desktop:msgFile1BgOver",
+            "desktop:msgFile2BgOver",
+            "desktop:msgFile3BgOver",
+            "desktop:msgFile4BgOver"
           ],
           "value": "#911410",
           "eligibility": {
@@ -34101,10 +34113,6 @@
             "desktop:attentionButtonBgOver",
             "desktop:titleButtonBgOver",
             "desktop:dialogsVerifiedIconBgOver",
-            "desktop:msgFile1BgOver",
-            "desktop:msgFile2BgOver",
-            "desktop:msgFile3BgOver",
-            "desktop:msgFile4BgOver",
             "desktop:groupCallMembersBgOver",
             "desktop:walletTitleButtonBgOver",
             "desktop:walletTitleButtonCloseBgOver"
@@ -36170,7 +36178,8 @@
             "desktop:callBg",
             "desktop:callBgButton",
             "android:chat_mediaLoaderPhotoSelected",
-            "android:chat_mediaLoaderPhoto"
+            "android:chat_mediaLoaderPhoto",
+            "desktop:songCoverOverlayFg"
           ],
           "value": "rgb(0 0 0 / 65%)",
           "eligibility": {
@@ -36361,14 +36370,6 @@
             "desktop:dialogsVerifiedIconBg",
             "desktop:searchedBarBg",
             "desktop:historyUnreadBarBg",
-            "desktop:msgFile1Bg",
-            "desktop:msgFile1BgDark",
-            "desktop:msgFile2Bg",
-            "desktop:msgFile2BgDark",
-            "desktop:msgFile3Bg",
-            "desktop:msgFile3BgDark",
-            "desktop:msgFile4Bg",
-            "desktop:msgFile4BgDark",
             "desktop:historyPinnedBg",
             "desktop:historyReplyBg",
             "desktop:profileVerifiedCheckBg",

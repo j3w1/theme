@@ -279,7 +279,6 @@
       "groupCallForceMuted3": "groupCallForceMuted3 is a host gradient/illustration stop with no canonical role; no new blends are derived.",
       "groupCallVideoTextFg": "groupCallVideoTextFg modulates glyph, text, illustration or chart alpha; no equivalent approved translucent foreground role is available.",
       "groupCallVideoSubTextFg": "groupCallVideoSubTextFg modulates glyph, text, illustration or chart alpha; no equivalent approved translucent foreground role is available.",
-      "songCoverOverlayFg": "songCoverOverlayFg modulates glyph, text, illustration or chart alpha; no equivalent approved translucent foreground role is available.",
       "premiumButtonBg1": "premiumButtonBg1 is a host gradient/illustration stop with no canonical role; no new blends are derived.",
       "premiumButtonBg2": "premiumButtonBg2 is a host gradient/illustration stop with no canonical role; no new blends are derived.",
       "premiumButtonBg3": "premiumButtonBg3 is a host gradient/illustration stop with no canonical role; no new blends are derived.",
@@ -502,16 +501,44 @@
         "msgOutBgSelected"
       ],
       "historyFileThumbIconFg": [
-        "msgDateImgBg"
+        "msgDateImgBg",
+        "msgDateImgBgOver",
+        "songCoverOverlayFg",
+        "msgFile1BgDark",
+        "msgFile2BgDark",
+        "msgFile3BgDark",
+        "msgFile4BgDark",
+        "msgFile1BgOver",
+        "msgFile2BgOver",
+        "msgFile3BgOver",
+        "msgFile4BgOver"
       ],
       "historyFileThumbIconFgSelected": [
-        "msgDateImgBgSelected"
+        "msgDateImgBgSelected",
+        "msgFile1BgSelected",
+        "msgFile2BgSelected",
+        "msgFile3BgSelected",
+        "msgFile4BgSelected"
       ],
       "historyFileThumbRadialFg": [
-        "msgDateImgBg"
+        "msgDateImgBg",
+        "msgDateImgBgOver",
+        "songCoverOverlayFg",
+        "msgFile1BgDark",
+        "msgFile2BgDark",
+        "msgFile3BgDark",
+        "msgFile4BgDark",
+        "msgFile1BgOver",
+        "msgFile2BgOver",
+        "msgFile3BgOver",
+        "msgFile4BgOver"
       ],
       "historyFileThumbRadialFgSelected": [
-        "msgDateImgBgSelected"
+        "msgDateImgBgSelected",
+        "msgFile1BgSelected",
+        "msgFile2BgSelected",
+        "msgFile3BgSelected",
+        "msgFile4BgSelected"
       ],
       "msgWaveformInActiveSelected": [
         "msgInBgSelected"

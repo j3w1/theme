@@ -44,7 +44,7 @@ Every upstream colour key is in exactly one of three states, and `tests/telegram
 | Target | Keys | Mapped | Inherited | Unset |
 | --- | ---: | ---: | ---: | ---: |
 | Android | 819 | 667 | 85 | 67 |
-| Desktop | 586 | 451 | 89 | 46 |
+| Desktop | 586 | 452 | 89 | 45 |
 <!-- coverage:end -->
 
 Non-colour keys (`wallpaperFileOffset`, `chat_wallpaper_gradient_rotation`, `chat_outBubbleGradientAnimated`) and animated-wallpaper keys are never written.
@@ -105,6 +105,7 @@ The same `https://t.me/addtheme/<slug>` link opens the matching document on each
 - **Wallpaper.** Android draws a native two-colour gradient. Desktop scales a 1×2 image of the same two colours. Neither uses a pattern or animation.
 - **Host-controlled colours.** Translucent text and icons without an approved translucent role, chart data, Premium and story artwork, user colours and media keep Telegram's own colours.
 - **Newer keys.** Keys Telegram adds after the pinned revisions use Telegram's light defaults until `keys.json` is refreshed.
+- **Desktop style-file colours.** Telegram Desktop's own `.style` files name a few more colours, such as `overviewFileExtFg`, that are not palette keys. They follow the palette key they point to, so the theme reaches them only through those keys, and the audit lists palette keys only.
 - **A theme with settings only.** The publisher treats a cloud theme that holds neither an Android nor a Desktop document as absent. The owner has no such theme; it would make the publisher fall back to the next slug.
 
 ## Installing from a file

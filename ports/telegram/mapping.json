@@ -117,14 +117,6 @@
       "desktop:dialogsVerifiedIconBg",
       "desktop:searchedBarBg",
       "desktop:historyUnreadBarBg",
-      "desktop:msgFile1Bg",
-      "desktop:msgFile1BgDark",
-      "desktop:msgFile2Bg",
-      "desktop:msgFile2BgDark",
-      "desktop:msgFile3Bg",
-      "desktop:msgFile3BgDark",
-      "desktop:msgFile4Bg",
-      "desktop:msgFile4BgDark",
       "desktop:historyPinnedBg",
       "desktop:historyReplyBg",
       "desktop:profileVerifiedCheckBg",
@@ -210,7 +202,8 @@
       "desktop:callBg",
       "desktop:callBgButton",
       "android:chat_mediaLoaderPhotoSelected",
-      "android:chat_mediaLoaderPhoto"
+      "android:chat_mediaLoaderPhoto",
+      "desktop:songCoverOverlayFg"
     ],
     "color.text.default": [
       "android:dialogTextBlack",
@@ -936,10 +929,6 @@
       "desktop:attentionButtonBgOver",
       "desktop:titleButtonBgOver",
       "desktop:dialogsVerifiedIconBgOver",
-      "desktop:msgFile1BgOver",
-      "desktop:msgFile2BgOver",
-      "desktop:msgFile3BgOver",
-      "desktop:msgFile4BgOver",
       "desktop:groupCallMembersBgOver",
       "desktop:walletTitleButtonBgOver",
       "desktop:walletTitleButtonCloseBgOver"
@@ -1124,13 +1113,25 @@
       "android:chat_attachLocationBackground",
       "desktop:msgFileOutBg",
       "android:avatar_backgroundInProfileBlue",
-      "android:avatar_backgroundActionBarBlue"
+      "android:avatar_backgroundActionBarBlue",
+      "desktop:msgFile1BgDark",
+      "desktop:msgFile2BgDark",
+      "desktop:msgFile3BgDark",
+      "desktop:msgFile4BgDark",
+      "desktop:msgFile1Bg",
+      "desktop:msgFile2Bg",
+      "desktop:msgFile3Bg",
+      "desktop:msgFile4Bg"
     ],
     "color.action.primary.hover-bg": [
       "desktop:activeButtonBgOver",
       "desktop:historyComposeButtonBgOver",
       "desktop:msgFileInBgOver",
-      "desktop:sideBarBadgeBgActive"
+      "desktop:sideBarBadgeBgActive",
+      "desktop:msgFile1BgOver",
+      "desktop:msgFile2BgOver",
+      "desktop:msgFile3BgOver",
+      "desktop:msgFile4BgOver"
     ],
     "color.action.primary.pressed-bg": [
       "android:chats_actionPressedBackground",
