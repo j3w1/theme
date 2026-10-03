@@ -71,15 +71,17 @@ struct RootDiscoveryTap : implements<RootDiscoveryTap,IObjectWithSite,IVisualTre
   struct Activity {std::atomic<unsigned>& count;Activity(std::atomic<unsigned>& value):count(value){++count;}~Activity(){--count;}} activity(state->callbacks);
   if(state->stopping.load()||!enabled.load()||mutation!=VisualMutationType::Add||!element.Type)return S_OK;
   // Type is metadata. Do not query names, document contents or data controls.
-  std::wstring_view type(element.Type,SysStringLen(element.Type));if(!RootCandidateClass(type))return S_OK;
+  std::wstring_view type(element.Type,SysStringLen(element.Type));if(!RootCandidateClass(type)&&!PopupChromeClass(type))return S_OK;
   try {
    com_ptr<IXamlDiagnostics> diagnostics;{std::lock_guard guard(state->mutex);diagnostics=state->diagnostics;}
    if(!diagnostics)return S_OK;
    com_ptr<::IInspectable> instance;check_hresult(diagnostics->GetIInspectableFromHandle(element.Handle,instance.put()));
    Windows::Foundation::IInspectable value{nullptr};copy_from_abi(value,instance.get());
    auto framework=value.try_as<FrameworkElement>();
-   if(framework&&DiscoveryAdmission(type,framework.DispatcherQueue().HasThreadAccess(),!state->stopping.load()&&enabled.load()))
-    ObserveRoot(framework);
+   if(framework&&!state->stopping.load()) {
+    if(DiscoveryAdmission(type,framework.DispatcherQueue().HasThreadAccess(),enabled.load()))ObserveRoot(framework);
+    else if(PopupChromeClass(type))ObservePopupChrome(framework);
+   }
   }catch(...){/* An expired diagnostics handle never grants fallback admission. */}
   return S_OK;
  }

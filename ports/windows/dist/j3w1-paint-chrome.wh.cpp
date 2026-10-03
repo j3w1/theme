@@ -2,7 +2,7 @@
 // @id j3w1-paint-chrome
 // @name j3w1 Paint chrome
 // @description Exact-package Paint chrome resources; document and artwork colors remain native
-// @version 1.0.6
+// @version 1.0.7
 // @author j3w1
 // @include mspaint.exe
 // @architecture x86-64
@@ -965,7 +965,10 @@ static bool StandardChrome(DependencyObject const& object) {
 static void RefreshChromeControl(Root& root,DependencyObject const& object) {
  if(!StandardChrome(object))return;
  auto element=object.try_as<FrameworkElement>();if(!element||!element.IsLoaded())return;
- for(auto& entry:root.controls)if(Identity(entry.element.get(),element)){if(!entry.refresh.complete)RefreshThemeSource(entry.refresh);return;}
+ // Popup controls share an island with several admitted chrome roots. Their
+ // resources need one owner so restoration cannot retain another root's overlay.
+ if(uiState)for(auto& owner:uiState->roots)for(auto& entry:owner.controls)
+  if(Identity(entry.element.get(),element)){if(!entry.refresh.complete)RefreshThemeSource(entry.refresh);return;}
  if(root.controls.size()>=1024)return;
  root.controls.push_back({make_weak(element),element.Resources(),{}, {make_weak(element)}});
  auto& entry=root.controls.back();
@@ -1247,6 +1250,31 @@ static void Track(UIElement const& content,DesktopWindowXamlSource const& source
  Root root;root.element=make_weak(element);if(source)root.source=make_weak(source);if(window)root.window=make_weak(window);root.layout=element.LayoutUpdated([](auto const&,auto const&){Schedule();});
  uiState->roots.push_back(std::move(root));Log(10,static_cast<unsigned>(uiState->roots.size()));Schedule();
 }
+
+static bool PopupChromeClass(std::wstring_view type) noexcept {
+ return type==L"Microsoft.UI.Xaml.Controls.MenuFlyoutPresenter"
+  ||type==L"Microsoft.UI.Xaml.Controls.MenuFlyoutItem"
+  ||type==L"Microsoft.UI.Xaml.Controls.MenuFlyoutSubItem";
+}
+static bool PopupDiscoveryAdmission(std::wstring_view type,bool uiThread,bool active,bool loaded,bool sameRoot) noexcept {
+ return active&&uiThread&&loaded&&sameRoot&&PopupChromeClass(type);
+}
+static void ObservePopupChrome(FrameworkElement const& element) {
+ if(!element||!uiState||uiState->busy||uiState->cleaning||!enabled.load()||HighContrast())return;
+ auto xaml=element.XamlRoot();if(!xaml)return;
+ auto type=get_class_name(element);
+ for(auto& root:uiState->roots) {
+  auto owner=root.element.get();if(!owner||root.palette.empty())continue;
+  if(!PopupDiscoveryAdmission(std::wstring_view{type},element.DispatcherQueue().HasThreadAccess(),enabled.load(),element.IsLoaded(),Identity(owner.XamlRoot(),xaml)))continue;
+  // Resource changes can synchronously report more visual-tree mutations.
+  // Reentrant callbacks wait for the existing bounded refresh path.
+  struct Guard {ThreadState& state;explicit Guard(ThreadState& value):state(value){state.busy=true;}~Guard(){state.busy=false;}};
+  try {Guard guard(*uiState);RefreshChromeControl(root,element);}
+  catch(...){Schedule();return;}
+  Schedule();return;
+ }
+}
+
 // Original adapter discovery through the WinUI diagnostics COM contracts.
 // The packaged WinUI bridge is verified before it is loaded. The connection
 // targets this admitted process and passes our already-loaded adapter DLL.
@@ -1320,15 +1348,17 @@ struct RootDiscoveryTap : implements<RootDiscoveryTap,IObjectWithSite,IVisualTre
   struct Activity {std::atomic<unsigned>& count;Activity(std::atomic<unsigned>& value):count(value){++count;}~Activity(){--count;}} activity(state->callbacks);
   if(state->stopping.load()||!enabled.load()||mutation!=VisualMutationType::Add||!element.Type)return S_OK;
   // Type is metadata. Do not query names, document contents or data controls.
-  std::wstring_view type(element.Type,SysStringLen(element.Type));if(!RootCandidateClass(type))return S_OK;
+  std::wstring_view type(element.Type,SysStringLen(element.Type));if(!RootCandidateClass(type)&&!PopupChromeClass(type))return S_OK;
   try {
    com_ptr<IXamlDiagnostics> diagnostics;{std::lock_guard guard(state->mutex);diagnostics=state->diagnostics;}
    if(!diagnostics)return S_OK;
    com_ptr<::IInspectable> instance;check_hresult(diagnostics->GetIInspectableFromHandle(element.Handle,instance.put()));
    Windows::Foundation::IInspectable value{nullptr};copy_from_abi(value,instance.get());
    auto framework=value.try_as<FrameworkElement>();
-   if(framework&&DiscoveryAdmission(type,framework.DispatcherQueue().HasThreadAccess(),!state->stopping.load()&&enabled.load()))
-    ObserveRoot(framework);
+   if(framework&&!state->stopping.load()) {
+    if(DiscoveryAdmission(type,framework.DispatcherQueue().HasThreadAccess(),enabled.load()))ObserveRoot(framework);
+    else if(PopupChromeClass(type))ObservePopupChrome(framework);
+   }
   }catch(...){/* An expired diagnostics handle never grants fallback admission. */}
   return S_OK;
  }

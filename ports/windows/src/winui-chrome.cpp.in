@@ -623,7 +623,10 @@ static bool StandardChrome(DependencyObject const& object) {
 static void RefreshChromeControl(Root& root,DependencyObject const& object) {
  if(!StandardChrome(object))return;
  auto element=object.try_as<FrameworkElement>();if(!element||!element.IsLoaded())return;
- for(auto& entry:root.controls)if(Identity(entry.element.get(),element)){if(!entry.refresh.complete)RefreshThemeSource(entry.refresh);return;}
+ // Popup controls share an island with several admitted chrome roots. Their
+ // resources need one owner so restoration cannot retain another root's overlay.
+ if(uiState)for(auto& owner:uiState->roots)for(auto& entry:owner.controls)
+  if(Identity(entry.element.get(),element)){if(!entry.refresh.complete)RefreshThemeSource(entry.refresh);return;}
  if(root.controls.size()>=1024)return;
  root.controls.push_back({make_weak(element),element.Resources(),{}, {make_weak(element)}});
  auto& entry=root.controls.back();
@@ -837,6 +840,31 @@ static void Track(UIElement const& content,DesktopWindowXamlSource const& source
  Root root;root.element=make_weak(element);if(source)root.source=make_weak(source);if(window)root.window=make_weak(window);root.layout=element.LayoutUpdated([](auto const&,auto const&){Schedule();});
  uiState->roots.push_back(std::move(root));Log(10,static_cast<unsigned>(uiState->roots.size()));Schedule();
 }
+
+static bool PopupChromeClass(std::wstring_view type) noexcept {
+ return type==L"Microsoft.UI.Xaml.Controls.MenuFlyoutPresenter"
+  ||type==L"Microsoft.UI.Xaml.Controls.MenuFlyoutItem"
+  ||type==L"Microsoft.UI.Xaml.Controls.MenuFlyoutSubItem";
+}
+static bool PopupDiscoveryAdmission(std::wstring_view type,bool uiThread,bool active,bool loaded,bool sameRoot) noexcept {
+ return active&&uiThread&&loaded&&sameRoot&&PopupChromeClass(type);
+}
+static void ObservePopupChrome(FrameworkElement const& element) {
+ if(!element||!uiState||uiState->busy||uiState->cleaning||!enabled.load()||HighContrast())return;
+ auto xaml=element.XamlRoot();if(!xaml)return;
+ auto type=get_class_name(element);
+ for(auto& root:uiState->roots) {
+  auto owner=root.element.get();if(!owner||root.palette.empty())continue;
+  if(!PopupDiscoveryAdmission(std::wstring_view{type},element.DispatcherQueue().HasThreadAccess(),enabled.load(),element.IsLoaded(),Identity(owner.XamlRoot(),xaml)))continue;
+  // Resource changes can synchronously report more visual-tree mutations.
+  // Reentrant callbacks wait for the existing bounded refresh path.
+  struct Guard {ThreadState& state;explicit Guard(ThreadState& value):state(value){state.busy=true;}~Guard(){state.busy=false;}};
+  try {Guard guard(*uiState);RefreshChromeControl(root,element);}
+  catch(...){Schedule();return;}
+  Schedule();return;
+ }
+}
+
 @ROOT_DISCOVERY@
 
 using Create=HRESULT(STDMETHODCALLTYPE*)(void*,void*,void**,void**);

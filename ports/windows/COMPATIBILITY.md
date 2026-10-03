@@ -902,3 +902,17 @@ retains its separate captured native path. Paint's opaque gray drawing workspace
 is still unresolved; artwork, swatches and drawing controls remain native.
 Active/inactive, button-state and lifecycle checks of the integrated candidate
 remain required. The earlier caption observations above are historical.
+
+### App-menu discovery timing
+
+An installed Paint File-menu comparison showed native gray on its first
+capture and the token palette after the periodic refresh. The shared chrome
+adapter now consumes the exact MenuFlyoutPresenter, MenuFlyoutItem and
+MenuFlyoutSubItem additions on their owning dispatcher. It applies existing
+resource overrides only when a loaded popup shares an already admitted,
+prepared chrome XamlRoot. Unknown classes, other islands, unloaded controls,
+high contrast and cleanup pass through. The periodic path remains the retry.
+One control has one resource owner across the island's chrome roots, retaining
+the native resource/state restoration path. No new local hover-paint override
+or document/canvas access is introduced. Native admission and cleanup checks
+are separate from live first-frame appearance acceptance, which remains open.
