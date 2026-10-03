@@ -101,6 +101,8 @@ test('native Explorer stock folder rendering and cache lifetime',options,t=>{
  t.after(()=>fs.rmSync(folder,{recursive:true,force:true}));
  const output=path.join(folder,'folder.exe');
  compile(tools.compiler,['-static',path.join(repoRoot,'tests/windows-folder-glyph-native.cpp'),...libraries(path.join(source,'dist/j3w1-explorer-native.wh.cpp')),'-o',output]);
+ // Real initialization must see the same supported Windows version as Explorer.
+ fs.copyFileSync(path.join(repoRoot,'tests/windows-explorer-native.manifest'),output+'.manifest');
  const result=spawnSync(output,[],{encoding:'utf8',windowsHide:true,timeout:30000});
  assert.equal(result.status,0,result.stdout+'\n'+result.stderr);
 });
