@@ -40,10 +40,12 @@ Every upstream colour key is in exactly one of three states, and `tests/telegram
 - **inherited**: its direct fallback or alias is mapped;
 - **unset**: listed in `src/coverage.json` with a reason.
 
+<!-- coverage:start -->
 | Target | Keys | Mapped | Inherited | Unset |
 | --- | ---: | ---: | ---: | ---: |
-| Android | 819 | 672 | 76 | 71 |
-| Desktop | 586 | 457 | 83 | 46 |
+| Android | 819 | 667 | 85 | 67 |
+| Desktop | 586 | 455 | 85 | 46 |
+<!-- coverage:end -->
 
 Non-colour keys (`wallpaperFileOffset`, `chat_wallpaper_gradient_rotation`, `chat_outBubbleGradientAnimated`) and animated-wallpaper keys are never written.
 
@@ -65,7 +67,7 @@ Non-colour keys (`wallpaperFileOffset`, `chat_wallpaper_gradient_rotation`, `cha
 **Contrast and colour rules, enforced by tests:**
 - The wallpaper is darker than incoming bubbles, and incoming bubbles are darker than outgoing ones.
 - Message text, timestamps, replies and links pass 4.5:1 on both bubbles and on the main panels.
-- Near-white, by luminance, appears only on the reviewed list of keys drawn on a selection, action or danger fill (`nearWhite` in `src/coverage.json`). Bold never selects white.
+- Near-white, by luminance, appears only on keys listed in `nearWhite` in `src/coverage.json`, inherited keys included. Each entry names the backgrounds the glyph is drawn on; the test checks every one is a selection, action or danger fill (or the media scrim behind loader icons) at 4.5:1 or more. Bold never selects white.
 - Interface keys stay in the red/rose hue range: no blue, cyan, orange or purple.
 
 ## Cloud theme

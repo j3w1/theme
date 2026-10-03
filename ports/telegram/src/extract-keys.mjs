@@ -51,10 +51,10 @@ export const parseAndroid = (colorsJava, themeJava) => {
   const keys = [...names.values()];
   if (new Set(keys).size !== keys.length) throw new Error("android: duplicate string key");
   const fallbacks = {};
-  // Upstream writes some fallbacks with a qualified target (Theme.key_…); a
-  // commented-out line is not a fallback.
-  const live = themeJava.split("\n").filter(line => !/^\s*\/\//.test(line)).join("\n");
-  for (const [, from, to] of live.matchAll(/fallbackKeys\.put\((?:Theme\.)?(key_\w+),\s*(?:Theme\.)?(key_\w+)\);/g)) {
+  // Upstream writes some fallbacks with a qualified target (Theme.key_…) and
+  // varies the spacing; commented-out code is not a fallback.
+  const live = themeJava.replace(/\/\*[\s\S]*?\*\//g, "").replace(/\/\/[^\n]*/g, "");
+  for (const [, from, to] of live.matchAll(/fallbackKeys\.put\(\s*(?:Theme\.)?(key_\w+)\s*,\s*(?:Theme\.)?(key_\w+)\s*\)\s*;/g)) {
     const a = names.get(from), b = names.get(to);
     // An id with no string name cannot be set by a theme file; it still
     // follows the theme's value for its fallback at runtime, so skip it here.

@@ -454,14 +454,16 @@ export async function run(argv, deps = {}) {
       if (await confirm(`Type ${word} to revoke publisher access: `) !== word) throw new Error("Disconnection confirmation did not match");
       if (options.ci) {
         // Disable publishing first, so a partial failure never leaves it
-        // enabled with incomplete secrets; a secret that is already gone is fine.
-        await exec("gh", ["variable", "delete", "TELEGRAM_PUBLISH"], { cwd: repo, env });
-        const kept = [];
+        // enabled with incomplete secrets. Read what exists so a rerun after an
+        // interruption continues, while real permission or network failures
+        // still stop the command.
+        const names = async args => (await exec("gh", [...args, "--json", "name", "--jq", ".[].name"], { cwd: repo, env })).toString().split("\n").map(s => s.trim()).filter(Boolean);
+        if ((await names(["variable", "list"])).includes("TELEGRAM_PUBLISH")) await exec("gh", ["variable", "delete", "TELEGRAM_PUBLISH"], { cwd: repo, env });
+        else log("Automatic publishing was already disabled (no TELEGRAM_PUBLISH variable).");
+        const present = await names(["secret", "list", "--env", "telegram"]);
         for (const name of ["TELEGRAM_API_ID", "TELEGRAM_API_HASH", "TELEGRAM_SESSION"]) {
-          try { await exec("gh", ["secret", "delete", name, "--env", "telegram"], { cwd: repo, env }); }
-          catch { kept.push(name); }
+          if (present.includes(name)) await exec("gh", ["secret", "delete", name, "--env", "telegram"], { cwd: repo, env });
         }
-        if (kept.length) log(`Not deleted (absent or not permitted): ${kept.join(", ")}; check the telegram environment's secrets on GitHub.`);
         log("Terminate the \"j3w1 theme CI\" session in Telegram → Settings → Devices.");
       } else {
         let logoutError;
@@ -508,10 +510,10 @@ export async function run(argv, deps = {}) {
     if (enabling) auth = { ...auth, session: "" };
     transport = deps.transport ?? await factory(auth, { deviceModel: enabling ? "j3w1 theme CI" : "j3w1 theme publisher" });
     await transport.connect?.();
-    if (!await transport.checkAuthorization()) {
+    if (!await floodCall(() => transport.checkAuthorization(), { ci: options.ci, clock, log })) {
       if (options.ci || options.dryRun || auth.session) throw new Error("Telegram authorization missing or revoked; disconnect and reconnect locally");
       await transport.login(prompt);
-      if (!await transport.checkAuthorization()) throw new Error("Telegram login failed authorization readback");
+      if (!await floodCall(() => transport.checkAuthorization(), { ci: options.ci, clock, log })) throw new Error("Telegram login failed authorization readback");
       auth.session = redact.add(transport.session());
       if (!enabling) {
         await secureDirectory(path.dirname(directory), io);

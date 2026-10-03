@@ -72,6 +72,20 @@ export const telegramArtifacts = ({ manifest, port, mapping, exported, resolved 
   return [{ path: ARTIFACTS.android.path, text: android }, { path: ARTIFACTS.desktop.path, bytes }];
 };
 
+// Coverage table for IMPLEMENTATION.md, counted from the same data the tests
+// check, so a mapping change can never leave the prose stale.
+export const telegramCoverageBlock = mapping => {
+  const mapped = new Set(Object.values(mapping.mappings).flat());
+  const rows = ["| Target | Keys | Mapped | Inherited | Unset |", "| --- | ---: | ---: | ---: | ---: |"];
+  for (const [target, label] of [["android", "Android"], ["desktop", "Desktop"]]) {
+    const keys = registry[target].keys;
+    const own = keys.filter(key => mapped.has(`${target}:${key}`)).length;
+    const unset = keys.filter(key => !mapped.has(`${target}:${key}`) && coverage[target].unset[key]).length;
+    rows.push(`| ${label} | ${keys.length} | ${own} | ${keys.length - own - unset} | ${unset} |`);
+  }
+  return rows.join("\n");
+};
+
 export const telegramReadmeBlock = (manifest, cloud) => {
   assertCloudConfig(cloud);
   // A published, readback-verified cloud theme is the primary route on both

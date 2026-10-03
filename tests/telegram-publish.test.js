@@ -505,18 +505,49 @@ test("disconnect --ci only invokes confirmed scoped secret and repository variab
   const f = await fixture(t);
   const calls = [];
   f.deps.prompt = async () => "DISCONNECT TELEGRAM CI";
-  f.deps.command = async (binary, args) => { assert.equal(binary, "gh"); calls.push(args); return Buffer.from(""); };
+  const remote = { variables: ["TELEGRAM_PUBLISH", "OTHER"], secrets: ["TELEGRAM_API_ID", "TELEGRAM_API_HASH", "TELEGRAM_SESSION"] };
+  const gh = async (binary, args) => {
+    assert.equal(binary, "gh");
+    calls.push(args);
+    if (args[1] === "list") return Buffer.from(`${remote[args[0] === "variable" ? "variables" : "secrets"].join("\n")}\n`);
+    if (args[1] === "delete") remote[args[0] === "variable" ? "variables" : "secrets"] = remote[args[0] === "variable" ? "variables" : "secrets"].filter(n => n !== args[2]);
+    return Buffer.from("");
+  };
+  f.deps.command = gh;
   assert.equal((await run(["disconnect", "--ci"], f.deps)).code, 0);
-  // Publishing is disabled before the secrets go.
-  assert.deepEqual(calls[0], ["variable", "delete", "TELEGRAM_PUBLISH"]);
-  assert.deepEqual(calls.slice(1, 4).map(c => c.slice(-2)), Array(3).fill(["--env", "telegram"]));
+  // Publishing is disabled before any secret goes, and nothing unrelated is touched.
+  const deletes = calls.filter(c => c[1] === "delete");
+  assert.deepEqual(deletes[0], ["variable", "delete", "TELEGRAM_PUBLISH"]);
+  assert.deepEqual(deletes.slice(1).map(c => [c[2], ...c.slice(-2)]), ["TELEGRAM_API_ID", "TELEGRAM_API_HASH", "TELEGRAM_SESSION"].map(n => [n, "--env", "telegram"]));
+  assert.deepEqual(remote, { variables: ["OTHER"], secrets: [] });
   assert.equal(f.transport.events.length, 0);
-  // An already-missing secret does not abort the remaining deletions.
+  // Review delta D3: a rerun after an interruption (variable already gone,
+  // two secrets left) continues instead of aborting on the absent variable.
   calls.length = 0;
-  f.deps.command = async (binary, args) => { calls.push(args); if (args[2] === "TELEGRAM_API_HASH") throw new Error("gh failed (exit 1)"); return Buffer.from(""); };
+  Object.assign(remote, { variables: [], secrets: ["TELEGRAM_API_HASH", "TELEGRAM_SESSION"] });
   assert.equal((await run(["disconnect", "--ci"], f.deps)).code, 0);
-  assert.equal(calls.length, 4);
-  assert.match(f.output.join("\n"), /Not deleted \(absent or not permitted\): TELEGRAM_API_HASH/);
+  assert.deepEqual(remote, { variables: [], secrets: [] });
+  assert.ok(!calls.some(c => c[0] === "variable" && c[1] === "delete"));
+  assert.match(f.output.join("\n"), /already disabled/);
+  // A real failure (permission, network) still stops the command.
+  f.deps.command = async (binary, args) => { if (args[1] === "delete") throw new Error("gh failed (exit 1)"); return gh(binary, args); };
+  Object.assign(remote, { variables: ["TELEGRAM_PUBLISH"], secrets: ["TELEGRAM_SESSION"] });
+  assert.equal((await run(["disconnect", "--ci"], f.deps)).code, 1);
+});
+
+test("startup and post-login authorization use the bounded flood wait (review delta D2)", async t => {
+  const f = await fixture(t);
+  let once = true;
+  f.transport.checkAuthorization = async () => { f.transport.events.push(["auth"]); if (once) { once = false; throw rpc("FLOOD_WAIT_7"); } return true; };
+  const sleeps = [];
+  f.deps.clock = { now: () => new Date("2026-10-03T12:00:00.000Z"), sleep: async ms => sleeps.push(ms) };
+  const result = await run([], f.deps);
+  assert.equal(result.code, 0, result.error);
+  assert.deepEqual(sleeps, [7000]);
+  const limited = await fixture(t);
+  limited.transport.checkAuthorization = async () => { throw rpc("FLOOD_WAIT_900"); };
+  limited.deps.clock = { now: () => new Date(), sleep: async () => assert.fail("must not sleep beyond the cap") };
+  assert.match((await run([], limited.deps)).error, /retry after 900 s/);
 });
 
 test("publisher import allowlist and live transport single-code, cleanup and settings invariants", async () => {

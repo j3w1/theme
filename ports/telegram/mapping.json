@@ -39,14 +39,9 @@
       "desktop:callBarBgMuted",
       "desktop:walletTopBg",
       "desktop:sideBarBg",
-      "desktop:sideBarBadgeBgMuted",
       "android:chat_wallpaper_gradient_to"
     ],
     "color.surface.chrome-alt": [
-      "android:avatar_backgroundArchived",
-      "android:avatar_backgroundArchivedHidden",
-      "android:avatar_backgroundInProfileBlue",
-      "android:avatar_backgroundActionBarBlue",
       "android:chat_outTableBackground",
       "android:voipgroup_muteButton",
       "android:voipgroup_muteButton2",
@@ -115,13 +110,11 @@
       "android:chat_inCodeBackground",
       "desktop:lightButtonBg",
       "desktop:sliderBgInactive",
-      "desktop:trayCounterBgMute",
       "desktop:contactsBg",
       "desktop:photoCropFadeBg",
       "desktop:introCoverTopBg",
       "desktop:introCoverBottomBg",
       "desktop:dialogsVerifiedIconBg",
-      "desktop:dialogsUnreadBgMuted",
       "desktop:searchedBarBg",
       "desktop:historyUnreadBarBg",
       "desktop:msgFile1Bg",
@@ -134,7 +127,6 @@
       "desktop:msgFile4BgDark",
       "desktop:historyPinnedBg",
       "desktop:historyReplyBg",
-      "desktop:overviewCheckBgActive",
       "desktop:profileVerifiedCheckBg",
       "desktop:notificationsBoxScreenBg",
       "desktop:mediaviewFileBg",
@@ -216,7 +208,9 @@
       "desktop:mediaviewControlBg",
       "desktop:mediaviewCaptionBg",
       "desktop:callBg",
-      "desktop:callBgButton"
+      "desktop:callBgButton",
+      "android:chat_mediaLoaderPhotoSelected",
+      "android:chat_mediaLoaderPhoto"
     ],
     "color.text.default": [
       "android:dialogTextBlack",
@@ -525,8 +519,7 @@
       "desktop:groupCallMemberInactiveIcon",
       "desktop:groupCallMemberInactiveStatus",
       "desktop:groupCallMemberMutedIcon",
-      "desktop:walletSubBalanceFg",
-      "desktop:sideBarBadgeBgMutedActive"
+      "desktop:walletSubBalanceFg"
     ],
     "color.text.subtle": [
       "android:chats_date",
@@ -700,7 +693,10 @@
       "desktop:dialogsReactionIconFg",
       "desktop:dialogsPollIconFg",
       "android:chats_verifiedCheck",
-      "android:profile_verifiedCheck"
+      "android:profile_verifiedCheck",
+      "android:chat_emojiPanelIconSelected",
+      "android:profile_tabSelectedText",
+      "android:chats_menuItemCheck"
     ],
     "color.text.link": [
       "android:dialogTextLink",
@@ -727,7 +723,6 @@
       "android:fastScrollText",
       "android:avatar_text",
       "android:chats_unreadCounterText",
-      "android:chats_menuItemCheck",
       "android:chats_actionIcon",
       "android:chat_attachCheckBoxCheck",
       "android:chat_attachIcon",
@@ -775,7 +770,6 @@
     ],
     "color.border.default": [
       "android:switchTrack",
-      "android:switchTrackBlueChecked",
       "android:switchTrackBlueThumb",
       "android:switch2Track",
       "android:contextProgressInner1",
@@ -861,8 +855,7 @@
       "desktop:msgFile2BgSelected",
       "desktop:msgFile3BgSelected",
       "desktop:msgFile4BgSelected",
-      "desktop:sideBarBgActive",
-      "desktop:sideBarBadgeBgActive"
+      "desktop:sideBarBgActive"
     ],
     "color.interaction.selection.text": [
       "android:chat_outSentClockSelected",
@@ -892,12 +885,9 @@
       "android:chat_inVenueInfoSelectedText",
       "android:chat_outVenueInfoSelectedText",
       "android:chat_mediaLoaderPhotoIconSelected",
-      "android:chat_emojiPanelIconSelected",
-      "android:profile_tabSelectedText",
       "android:chat_inReactionButtonTextSelected",
       "android:chat_outReactionButtonTextSelected",
       "android:chat_reactionServiceButtonTextSelected",
-      "android:glass_tabSelectedText",
       "desktop:dialogsNameFgActive",
       "desktop:dialogsDateFgActive",
       "desktop:dialogsTextFgActive",
@@ -961,7 +951,8 @@
     "color.interaction.hover.bg-strong": [
       "desktop:menuBgOver",
       "desktop:mediaviewMenuBgOver",
-      "desktop:groupCallMenuBgOver"
+      "desktop:groupCallMenuBgOver",
+      "desktop:sideBarBadgeBgMutedActive"
     ],
     "color.interaction.pressed.bg": [
       "android:chat_messagePanelVoicePressed",
@@ -1005,8 +996,6 @@
       "android:chat_outAudioCacheSeekbar",
       "android:chat_linkSelectBackground",
       "android:chat_textSelectBackground",
-      "android:chat_mediaLoaderPhoto",
-      "android:chat_mediaLoaderPhotoSelected",
       "android:chat_botKeyboardButtonBackground",
       "android:chat_botKeyboardButtonBackgroundPressed",
       "android:voipgroup_listSelector",
@@ -1137,17 +1126,22 @@
       "android:chat_attachAudioBackground",
       "android:chat_attachContactBackground",
       "android:chat_attachLocationBackground",
-      "desktop:msgFileOutBg"
+      "desktop:msgFileOutBg",
+      "android:avatar_backgroundInProfileBlue",
+      "android:avatar_backgroundActionBarBlue"
     ],
     "color.action.primary.hover-bg": [
       "desktop:activeButtonBgOver",
       "desktop:historyComposeButtonBgOver",
-      "desktop:msgFileInBgOver"
+      "desktop:msgFileInBgOver",
+      "desktop:sideBarBadgeBgActive"
     ],
     "color.action.primary.pressed-bg": [
       "android:chats_actionPressedBackground",
       "android:featuredStickers_addButtonPressed",
-      "desktop:botKbDownBg"
+      "desktop:botKbDownBg",
+      "android:avatar_backgroundArchived",
+      "android:avatar_backgroundArchivedHidden"
     ],
     "color.status.danger.text": [
       "android:text_RedRegular",
@@ -1219,6 +1213,11 @@
     ],
     "color.code.syntax.comment": [
       "android:code_comment"
+    ],
+    "color.interaction.selection.inactive-bg": [
+      "desktop:dialogsUnreadBgMuted",
+      "desktop:sideBarBadgeBgMuted",
+      "desktop:trayCounterBgMute"
     ]
   },
   "unmapped": {
@@ -1319,7 +1318,6 @@
     "color.border.selected-indicator": "color.border.selected-indicator has no separate native hook in this projection; related controls share the declared canonical role instead.",
     "color.border.selected-indicator-inactive": "color.border.selected-indicator-inactive has no separate native hook in this projection; related controls share the declared canonical role instead.",
     "color.interaction.focus.ring-container": "color.interaction.focus.ring-container has no separate native hook in this projection; related controls share the declared canonical role instead.",
-    "color.interaction.selection.inactive-bg": "color.interaction.selection.inactive-bg has no separate native hook in this projection; related controls share the declared canonical role instead.",
     "color.interaction.selection.inactive-text": "color.interaction.selection.inactive-text has no separate native hook in this projection; related controls share the declared canonical role instead.",
     "color.interaction.text-selection.bg": "color.interaction.text-selection.bg has no separate native hook in this projection; related controls share the declared canonical role instead.",
     "color.interaction.text-selection.text": "color.interaction.text-selection.text has no separate native hook in this projection; related controls share the declared canonical role instead.",

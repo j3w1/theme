@@ -211,7 +211,7 @@ test("wallpaper, solid bubbles, rose messages, chrome emphasis and avatars keep 
   for (const [target, keys] of [["android", ["chat_messageTextIn", "chat_messageTextOut", "chat_messagePanelText", "chat_inReplyMessageText", "chat_outReplyMessageText"]], ["desktop", ["historyTextInFg", "historyTextOutFg", "historyComposeAreaFg", "msgInMonoFg", "msgOutMonoFg"]]]) for (const key of keys) assert.equal(roleOf(target, key), "color.text.default", key);
   for (const key of registry.android.keys.filter(key => key.startsWith("chat_outBubbleGradient"))) { assert.ok(coverage.android.unset[key]); assert.ok(!android.has(key)); }
   for (const key of [...registry.android.nonColor, ...registry.android.animated]) assert.ok(!android.has(key), key);
-  for (const key of registry.android.keys.filter(key => /^avatar_background/.test(key))) assert.match(roleOf("android", key), /^color\.(surface\.chrome-alt|action\.primary\.bg)$/);
+  for (const key of registry.android.keys.filter(key => /^avatar_background/.test(key))) assert.match(roleOf("android", key), /^color\.action\.primary\.(bg|hover-bg|pressed-bg)$/);
   for (const key of ["windowBoldFg", "windowBoldFgOver", "dialogsNameFg", "boxTitleFg"]) assert.equal(roleOf("desktop", key), "color.text.bright", key);
   assert.equal(roleOf("android", "actionBarDefaultTitle"), "color.text.bright");
   for (const key of registry.android.keys.filter(key => /^windowBackgroundWhiteGray(?:Text\d*|Icon)$/.test(key))) assert.equal(roleOf("android", key), "color.text.muted", key);
@@ -225,11 +225,35 @@ test("near-white is restricted to approved on-fill or link-hover roles, and inte
   // Near-white by relative luminance, not by literal value, so a token change
   // cannot silently widen it. Bright rose (text.bright) stays well below.
   const luminance = ([r, g, b]) => [r, g, b].map(v => { v /= 255; return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; }).reduce((sum, v, i) => sum + v * [0.2126, 0.7152, 0.0722][i], 0);
+  // Runtime value of any registry key: its own value, else its inheritance
+  // (Android: one fallback level; Desktop: aliases and fallbacks resolve on).
+  const effective = (target, key) => {
+    for (let next = key, depth = 0; next && depth < 12; depth++) {
+      if (values[target].has(next)) return { key: next, color: values[target].get(next), role: owner[`${target}:${next}`] };
+      if (target === "android" && depth > 0) return null;
+      next = parent(target, next);
+    }
+    return null;
+  };
+  // Fills a near-white glyph may sit on, plus the dark media scrim behind
+  // loader icons over photos.
+  const fills = new Set(["color.action.primary.bg", "color.action.primary.hover-bg", "color.action.primary.pressed-bg", "color.interaction.selection.bg", "color.interaction.selection.inactive-bg", "color.interaction.hover.bg-strong", "color.status.danger.fill", "color.interaction.text-selection.bg", "color.surface.backdrop"]);
   for (const target of ["android", "desktop"]) {
-    // Every near-white key is on the reviewed list of keys drawn on a fill
-    // (selection, action, danger) and nothing else turns near-white.
-    const near = [...values[target]].filter(([, color]) => luminance(color) > 0.6).map(([key]) => key).sort();
-    assert.deepEqual(near, [...coverage[target].nearWhite].sort(), `${target} near-white keys`);
+    // Every near-white key, emitted or inherited, is on the reviewed table
+    // naming the backgrounds it is drawn on, and nothing else is near-white.
+    const near = registry[target].keys.filter(key => { const e = effective(target, key); return e && luminance(e.color) > 0.6; }).sort();
+    assert.deepEqual(near, Object.keys(coverage[target].nearWhite).sort(), `${target} near-white keys`);
+    for (const [key, backgrounds] of Object.entries(coverage[target].nearWhite)) {
+      assert.ok(backgrounds.length, `${target}:${key} names its backgrounds`);
+      assert.ok(whiteRoles.includes(effective(target, key).role), `${target}:${key}: ${effective(target, key).role}`);
+      for (const bg of backgrounds) {
+        assert.ok(registry[target].keys.includes(bg), `${target}:${bg} is a registry key`);
+        const fill = effective(target, bg), fg = effective(target, key).color;
+        assert.ok(fill && fills.has(fill.role), `${target}:${key} sits on ${bg} (${fill?.role ?? "host default"}), not a fill`);
+        const result = evaluatePair({ fg: hexToColor(rgbHex(fg)), bg: hexToColor(rgbHex(fill.color), fill.color[3] / 255), min: 4.5 });
+        assert.ok(result.pass, `${target}:${key} on ${bg}: ${result.ratio}`);
+      }
+    }
   }
   for (const [native, role] of Object.entries(owner)) {
     const [target, key] = native.split(":"), color = rgba(target, key), hex = rgbHex(color);

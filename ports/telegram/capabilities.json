@@ -656,9 +656,9 @@
       "reason": "Canonical color.interaction.selection.text; native keys are listed in mapping.json and use no derived colours."
     },
     "color.interaction.selection.inactive-bg": {
-      "state": "unsupported",
+      "state": "mapped",
       "surface": "controls",
-      "reason": "color.interaction.selection.inactive-bg has no separate native hook in this projection; related controls share the declared canonical role instead."
+      "reason": "Canonical color.interaction.selection.inactive-bg as the quiet dark-red fill for muted badges and counters, so their near-white glyphs stay on a fill. Native keys are listed in mapping.json and use no derived colours."
     },
     "color.interaction.selection.inactive-text": {
       "state": "unsupported",

@@ -13,7 +13,7 @@ const generatedFiles = new Set([
   "README.md", "agents/consume.md", "packages/ui/README.md",
   "ports/README.md", "ports/chatgpt/README.md", "ports/claude-code/README.md",
   "ports/codex/README.md", "ports/orca/README.md", "ports/orca/install/specimen.json",
-  "ports/telegram/README.md",
+  "ports/telegram/README.md", "ports/telegram/IMPLEMENTATION.md",
   "site/src/styles/tokens.generated.css",
 ]);
 

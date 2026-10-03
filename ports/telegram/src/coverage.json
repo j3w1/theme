@@ -79,59 +79,180 @@
       "chat_botKeyboardButtonText": "Bot keyboard label text: upstream default is a translucent dark grey (0xF0444444) that is unreadable on dark panels; opaque rose text never hides content.",
       "code_comment": "Code comment text: upstream default is 50% black, invisible on dark code blocks; the canonical comment role is opaque text."
     },
-    "nearWhite": [
-      "avatar_text",
-      "chat_attachCheckBoxCheck",
-      "chat_attachIcon",
-      "chat_emojiPanelIconSelected",
-      "chat_goDownButtonCounter",
-      "chat_inAudioDurationSelectedText",
-      "chat_inAudioPerfomerSelectedText",
-      "chat_inContactPhoneSelectedText",
-      "chat_inFileInfoSelectedText",
-      "chat_inFileProgressSelected",
-      "chat_inInstantSelected",
-      "chat_inMediaIconSelected",
-      "chat_inMenuSelected",
-      "chat_inReactionButtonTextSelected",
-      "chat_inReplyMediaMessageSelectedText",
-      "chat_inSentClockSelected",
-      "chat_inTimeSelectedText",
-      "chat_inVenueInfoSelectedText",
-      "chat_inViewsSelected",
-      "chat_mediaLoaderPhotoIconSelected",
-      "chat_outAudioDurationSelectedText",
-      "chat_outAudioPerfomerSelectedText",
-      "chat_outContactPhoneSelectedText",
-      "chat_outFileInfoSelectedText",
-      "chat_outFileProgressSelected",
-      "chat_outInstantSelected",
-      "chat_outMediaIconSelected",
-      "chat_outMenuSelected",
-      "chat_outReactionButtonTextSelected",
-      "chat_outReplyMediaMessageSelectedText",
-      "chat_outSentClockSelected",
-      "chat_outTimeSelectedText",
-      "chat_outVenueInfoSelectedText",
-      "chat_outViewsSelected",
-      "chat_reactionServiceButtonTextSelected",
-      "chat_sentErrorIcon",
-      "chats_actionIcon",
-      "chats_menuItemCheck",
-      "chats_sentErrorIcon",
-      "chats_unreadCounterText",
-      "checkboxCheck",
-      "checkboxSquareCheck",
-      "dialogCheckboxSquareCheck",
-      "dialogRoundCheckBoxCheck",
-      "fastScrollText",
-      "featuredStickers_buttonText",
-      "glass_tabSelectedText",
-      "location_sendLocationIcon",
-      "picker_badgeText",
-      "profile_tabSelectedText",
-      "switchTrackBlueThumbChecked"
-    ]
+    "nearWhite": {
+      "dialogCheckboxSquareCheck": [
+        "dialogCheckboxSquareBackground"
+      ],
+      "dialogRoundCheckBoxCheck": [
+        "dialogRoundCheckBox"
+      ],
+      "switchTrackBlueThumbChecked": [
+        "switchTrackBlueChecked"
+      ],
+      "checkboxSquareCheck": [
+        "checkboxSquareBackground"
+      ],
+      "checkboxCheck": [
+        "checkbox"
+      ],
+      "fastScrollText": [
+        "fastScrollActive"
+      ],
+      "avatar_text": [
+        "avatar_backgroundSaved",
+        "avatar_backgroundArchived",
+        "avatar_backgroundArchivedHidden",
+        "avatar_backgroundRed",
+        "avatar_backgroundOrange",
+        "avatar_backgroundViolet",
+        "avatar_backgroundGreen",
+        "avatar_backgroundCyan",
+        "avatar_backgroundBlue",
+        "avatar_backgroundPink",
+        "avatar_backgroundInProfileBlue",
+        "avatar_backgroundActionBarBlue"
+      ],
+      "chats_unreadCounterText": [
+        "chats_unreadCounter",
+        "chats_unreadCounterMuted"
+      ],
+      "chats_sentErrorIcon": [
+        "chats_sentError"
+      ],
+      "chats_actionIcon": [
+        "chats_actionBackground"
+      ],
+      "chat_attachCheckBoxCheck": [
+        "chat_attachCheckBoxBackground"
+      ],
+      "chat_attachIcon": [
+        "chat_attachGalleryBackground",
+        "chat_attachAudioBackground",
+        "chat_attachContactBackground",
+        "chat_attachLocationBackground",
+        "chat_attachPollBackground"
+      ],
+      "chat_outSentClockSelected": [
+        "chat_outBubbleSelected"
+      ],
+      "chat_inSentClockSelected": [
+        "chat_inBubbleSelected"
+      ],
+      "chat_inMediaIconSelected": [
+        "chat_inBubbleSelected"
+      ],
+      "chat_outMediaIconSelected": [
+        "chat_outBubbleSelected"
+      ],
+      "chat_outViewsSelected": [
+        "chat_outBubbleSelected"
+      ],
+      "chat_inViewsSelected": [
+        "chat_inBubbleSelected"
+      ],
+      "chat_outMenuSelected": [
+        "chat_outBubbleSelected"
+      ],
+      "chat_inMenuSelected": [
+        "chat_inBubbleSelected"
+      ],
+      "chat_outInstantSelected": [
+        "chat_outBubbleSelected"
+      ],
+      "chat_inInstantSelected": [
+        "chat_inBubbleSelected"
+      ],
+      "chat_sentErrorIcon": [
+        "chat_sentError"
+      ],
+      "chat_inReplyMediaMessageSelectedText": [
+        "chat_inBubbleSelected"
+      ],
+      "chat_outReplyMediaMessageSelectedText": [
+        "chat_outBubbleSelected"
+      ],
+      "chat_inContactPhoneSelectedText": [
+        "chat_inBubbleSelected"
+      ],
+      "chat_outContactPhoneSelectedText": [
+        "chat_outBubbleSelected"
+      ],
+      "chat_adminSelectedText": [
+        "chat_inBubbleSelected"
+      ],
+      "chat_outAdminSelectedText": [
+        "chat_outBubbleSelected"
+      ],
+      "chat_inTimeSelectedText": [
+        "chat_inBubbleSelected"
+      ],
+      "chat_outTimeSelectedText": [
+        "chat_outBubbleSelected"
+      ],
+      "chat_inAudioPerfomerSelectedText": [
+        "chat_inBubbleSelected"
+      ],
+      "chat_outAudioPerfomerSelectedText": [
+        "chat_outBubbleSelected"
+      ],
+      "chat_inAudioDurationSelectedText": [
+        "chat_inBubbleSelected"
+      ],
+      "chat_outAudioDurationSelectedText": [
+        "chat_outBubbleSelected"
+      ],
+      "chat_inFileProgressSelected": [
+        "chat_inBubbleSelected"
+      ],
+      "chat_outFileProgressSelected": [
+        "chat_outBubbleSelected"
+      ],
+      "chat_inFileInfoSelectedText": [
+        "chat_inBubbleSelected"
+      ],
+      "chat_outFileInfoSelectedText": [
+        "chat_outBubbleSelected"
+      ],
+      "chat_inVenueInfoSelectedText": [
+        "chat_inBubbleSelected"
+      ],
+      "chat_outVenueInfoSelectedText": [
+        "chat_outBubbleSelected"
+      ],
+      "chat_mediaLoaderPhotoIconSelected": [
+        "chat_mediaLoaderPhotoSelected"
+      ],
+      "chat_goDownButtonCounter": [
+        "chat_goDownButtonCounterBackground"
+      ],
+      "chat_msgIvButtonPrimaryInText": [
+        "chat_msgIvButtonPrimaryIn"
+      ],
+      "chat_msgIvButtonPrimaryOutText": [
+        "chat_msgIvButtonPrimaryOut"
+      ],
+      "featuredStickers_buttonText": [
+        "featuredStickers_addButton"
+      ],
+      "picker_badgeText": [
+        "picker_badge"
+      ],
+      "location_sendLocationIcon": [
+        "location_sendLocationBackground"
+      ],
+      "location_sendLiveLocationIcon": [
+        "location_sendLiveLocationBackground"
+      ],
+      "chat_inReactionButtonTextSelected": [
+        "chat_inReactionButtonBackground"
+      ],
+      "chat_outReactionButtonTextSelected": [
+        "chat_outReactionButtonBackground"
+      ],
+      "chat_reactionServiceButtonTextSelected": [
+        "chat_reactionServiceButtonBackgroundSelected"
+      ]
+    }
   },
   "desktop": {
     "unset": {
@@ -201,60 +322,230 @@
       "callBarMuteRipple",
       "sideBarBgRipple"
     ],
-    "nearWhite": [
-      "activeButtonFgOver",
-      "activeButtonSecondaryFg",
-      "dialogsDateFgActive",
-      "dialogsDraftFgActive",
-      "dialogsNameFgActive",
-      "dialogsOnlineBadgeFgActive",
-      "dialogsTextFgActive",
-      "dialogsUnreadFgActive",
-      "dialogsVerifiedIconFgActive",
-      "historyCallArrowInFgSelected",
-      "historyCallArrowMissedInFgSelected",
-      "historyFileInIconFg",
-      "historyFileInIconFgSelected",
-      "historyFileNameInFgSelected",
-      "historyFileNameOutFgSelected",
-      "historyFileOutIconFg",
-      "historyFileOutIconFgSelected",
-      "historyFileThumbIconFgSelected",
-      "historyLinkInFgSelected",
-      "historyLinkOutFgSelected",
-      "historyOutIconFgSelected",
-      "historyPeer1NameFgSelected",
-      "historyPeer2NameFgSelected",
-      "historyPeer3NameFgSelected",
-      "historyPeer4NameFgSelected",
-      "historyPeer5NameFgSelected",
-      "historyPeer6NameFgSelected",
-      "historyPeer7NameFgSelected",
-      "historyPeer8NameFgSelected",
-      "historyTextInFgSelected",
-      "historyTextOutFgSelected",
-      "msgFileThumbLinkInFgSelected",
-      "msgFileThumbLinkOutFgSelected",
-      "msgInDateFgSelected",
-      "msgInMonoFgSelected",
-      "msgInServiceFgSelected",
-      "msgOutDateFgSelected",
-      "msgOutMonoFgSelected",
-      "msgOutServiceFgSelected",
-      "msgWaveformInActiveSelected",
-      "msgWaveformInInactiveSelected",
-      "msgWaveformOutActiveSelected",
-      "msgWaveformOutInactiveSelected",
-      "overviewCheckFgActive",
-      "searchedTextCurrentMatchFg",
-      "searchedTextMatchFg",
-      "settingsIconFg",
-      "sideBarBadgeFg",
-      "sideBarIconFgActive",
-      "sideBarTextFgActive",
-      "titleButtonCloseFgOver",
-      "trayCounterFg",
-      "windowFgActive"
-    ]
+    "nearWhite": {
+      "windowFgActive": [
+        "windowBgActive"
+      ],
+      "activeButtonFg": [
+        "activeButtonBg"
+      ],
+      "activeButtonFgOver": [
+        "activeButtonBgOver"
+      ],
+      "activeButtonSecondaryFg": [
+        "activeButtonBg"
+      ],
+      "activeButtonSecondaryFgOver": [
+        "activeButtonBgOver"
+      ],
+      "titleButtonCloseFgOver": [
+        "titleButtonCloseBgOver"
+      ],
+      "titleButtonCloseFgActiveOver": [
+        "titleButtonCloseBgActiveOver"
+      ],
+      "trayCounterFg": [
+        "trayCounterBg",
+        "trayCounterBgMute"
+      ],
+      "dialogsUnreadFg": [
+        "dialogsUnreadBg",
+        "dialogsUnreadBgMuted"
+      ],
+      "dialogsNameFgActive": [
+        "dialogsBgActive"
+      ],
+      "dialogsChatIconFgActive": [
+        "dialogsBgActive"
+      ],
+      "dialogsDateFgActive": [
+        "dialogsBgActive"
+      ],
+      "dialogsTextFgActive": [
+        "dialogsBgActive"
+      ],
+      "dialogsDraftFgActive": [
+        "dialogsBgActive"
+      ],
+      "dialogsVerifiedIconFgActive": [
+        "dialogsBgActive"
+      ],
+      "dialogsSentIconFgActive": [
+        "dialogsBgActive"
+      ],
+      "dialogsUnreadFgActive": [
+        "dialogsBgActive"
+      ],
+      "dialogsOnlineBadgeFgActive": [
+        "dialogsBgActive"
+      ],
+      "dialogsScamFgActive": [
+        "dialogsBgActive"
+      ],
+      "searchedTextMatchFg": [
+        "searchedTextMatchBg"
+      ],
+      "searchedTextCurrentMatchFg": [
+        "searchedTextCurrentMatchBg"
+      ],
+      "historyTextInFgSelected": [
+        "msgInBgSelected"
+      ],
+      "historyTextOutFgSelected": [
+        "msgOutBgSelected"
+      ],
+      "historyLinkInFgSelected": [
+        "msgInBgSelected"
+      ],
+      "historyLinkOutFgSelected": [
+        "msgOutBgSelected"
+      ],
+      "historyFileNameInFgSelected": [
+        "msgInBgSelected"
+      ],
+      "historyFileNameOutFgSelected": [
+        "msgOutBgSelected"
+      ],
+      "historyOutIconFgSelected": [
+        "msgOutBgSelected"
+      ],
+      "historyCallArrowInFgSelected": [
+        "msgInBgSelected"
+      ],
+      "historyCallArrowMissedInFgSelected": [
+        "msgInBgSelected"
+      ],
+      "historyCallArrowOutFgSelected": [
+        "msgOutBgSelected"
+      ],
+      "historyPeer1NameFgSelected": [
+        "msgInBgSelected"
+      ],
+      "historyPeer2NameFgSelected": [
+        "msgInBgSelected"
+      ],
+      "historyPeer3NameFgSelected": [
+        "msgInBgSelected"
+      ],
+      "historyPeer4NameFgSelected": [
+        "msgInBgSelected"
+      ],
+      "historyPeer5NameFgSelected": [
+        "msgInBgSelected"
+      ],
+      "historyPeer6NameFgSelected": [
+        "msgInBgSelected"
+      ],
+      "historyPeer7NameFgSelected": [
+        "msgInBgSelected"
+      ],
+      "historyPeer8NameFgSelected": [
+        "msgInBgSelected"
+      ],
+      "historyPeerUserpicFg": [
+        "historyPeer1UserpicBg",
+        "historyPeer2UserpicBg",
+        "historyPeer3UserpicBg",
+        "historyPeer4UserpicBg",
+        "historyPeer5UserpicBg",
+        "historyPeer6UserpicBg",
+        "historyPeer7UserpicBg",
+        "historyPeer8UserpicBg",
+        "historyPeerArchiveUserpicBg"
+      ],
+      "settingsIconFg": [
+        "settingsIconBg1",
+        "settingsIconBg2",
+        "settingsIconBg3",
+        "settingsIconBg4",
+        "settingsIconBg5",
+        "settingsIconBg6",
+        "settingsIconBg8",
+        "settingsIconBgArchive"
+      ],
+      "msgInServiceFgSelected": [
+        "msgInBgSelected"
+      ],
+      "msgOutServiceFgSelected": [
+        "msgOutBgSelected"
+      ],
+      "msgInDateFgSelected": [
+        "msgInBgSelected"
+      ],
+      "msgOutDateFgSelected": [
+        "msgOutBgSelected"
+      ],
+      "msgInMonoFgSelected": [
+        "msgInBgSelected"
+      ],
+      "msgOutMonoFgSelected": [
+        "msgOutBgSelected"
+      ],
+      "msgFileThumbLinkInFgSelected": [
+        "msgInBgSelected"
+      ],
+      "msgFileThumbLinkOutFgSelected": [
+        "msgOutBgSelected"
+      ],
+      "historyFileInIconFg": [
+        "msgFileInBg"
+      ],
+      "historyFileInIconFgSelected": [
+        "msgFileInBgSelected"
+      ],
+      "historyFileInRadialFgSelected": [
+        "msgInBgSelected"
+      ],
+      "historyFileOutIconFg": [
+        "msgFileOutBg"
+      ],
+      "historyFileOutIconFgSelected": [
+        "msgFileOutBgSelected"
+      ],
+      "historyFileOutRadialFgSelected": [
+        "msgOutBgSelected"
+      ],
+      "historyFileThumbIconFgSelected": [
+        "msgInBgSelected",
+        "msgOutBgSelected"
+      ],
+      "historyFileThumbRadialFgSelected": [
+        "msgInBgSelected",
+        "msgOutBgSelected"
+      ],
+      "msgWaveformInActiveSelected": [
+        "msgInBgSelected"
+      ],
+      "msgWaveformInInactiveSelected": [
+        "msgInBgSelected"
+      ],
+      "msgWaveformOutActiveSelected": [
+        "msgOutBgSelected"
+      ],
+      "msgWaveformOutInactiveSelected": [
+        "msgOutBgSelected"
+      ],
+      "mediaInFgSelected": [
+        "msgInBgSelected"
+      ],
+      "mediaOutFgSelected": [
+        "msgOutBgSelected"
+      ],
+      "overviewCheckFgActive": [
+        "overviewCheckBgActive"
+      ],
+      "sideBarTextFgActive": [
+        "sideBarBgActive"
+      ],
+      "sideBarIconFgActive": [
+        "sideBarBgActive"
+      ],
+      "sideBarBadgeFg": [
+        "sideBarBadgeBg",
+        "sideBarBadgeBgActive",
+        "sideBarBadgeBgMuted",
+        "sideBarBadgeBgMutedActive"
+      ]
+    }
   }
 }
