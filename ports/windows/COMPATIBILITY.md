@@ -852,3 +852,18 @@ host. Identical native open/closed glyphs use the first complete stock identity;
 no tolerance or shared image-list mutation is introduced. Hash-reader and factory
 resources use exception-safe cleanup, and replacement failures retain native
 conversion. These are native regression checks, not desktop appearance evidence.
+
+
+### WebView2 154.0.4258.53 compatibility refresh
+
+A later appearance check found both ordinary and large Markdown documents using
+native gray rendering. The live preview had loaded WebView2 154.0.4258.53, whose
+complete binary digest was absent from the adapter. The existing fail-closed
+admission correctly retained its native behavior. An isolated empty controller
+created through the public WebView2 APIs measured NavigateToString at RVA
+0x8a290 and Navigate at RVA 0x8a1f0 in that exact module; these differ from the
+two previously reviewed builds. Adapter 1.2.1 adds this complete identity with
+independent original-call storage. The PowerToys host and template identities,
+document handling, older reviewed runtimes and unknown-runtime refusal remain
+unchanged. This refresh alone does not establish startup-surface appearance,
+accessibility or DPI acceptance.

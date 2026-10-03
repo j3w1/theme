@@ -2,7 +2,7 @@
 // @id j3w1-powertoys-markdown
 // @name j3w1 PowerToys Markdown preview
 // @description Exact-version black and rose Markdown rendering adapter
-// @version 1.2.0
+// @version 1.2.1
 // @author j3w1
 // @include PowerToys.MarkdownPreviewHandler.exe
 // @architecture x86-64
@@ -46,6 +46,7 @@ struct BrowserPin {const char* sha256;size_t stringRva,navigateRva;};
 static constexpr BrowserPin browserPins[]={
  {"b08c60a6d316ad3e50c2a1d00f146d90fca3a8da08f22aef71722ac0ccebd6b7",0x896f0,0x89650}, // 154.0.4258.37
  {"89df7d69b27dd6c17228c7319e84e22a97076cb3d68271617490f38ab204ea3f",0x896f0,0x89650}, // 154.0.4258.48
+ {"07b9416907225b99556c2a5242ecc6d16afd83d374b151285cfe41f164843c1c",0x8a290,0x8a1f0}, // 154.0.4258.53
 };
 struct Boundary {HMODULE module=nullptr;bool attempted=false;std::atomic<bool> ready{false};NavigateFn originalString=nullptr,originalNavigate=nullptr;};
 static Boundary boundaries[std::size(browserPins)];
@@ -272,6 +273,7 @@ static bool InstallBoundary(HMODULE module){
  for(size_t index=0;index<std::size(browserPins);index++)if(DigestFile(path,browserPins[index].sha256))switch(index){
   case 0:return HookBoundary<0>(module);
   case 1:return HookBoundary<1>(module);
+  case 2:return HookBoundary<2>(module);
  }
  return false;
 }
