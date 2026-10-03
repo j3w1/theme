@@ -348,10 +348,6 @@
         "trayCounterBg",
         "trayCounterBgMute"
       ],
-      "dialogsUnreadFg": [
-        "dialogsUnreadBg",
-        "dialogsUnreadBgMuted"
-      ],
       "dialogsNameFgActive": [
         "dialogsBgActive"
       ],
@@ -373,7 +369,7 @@
       "dialogsSentIconFgActive": [
         "dialogsBgActive"
       ],
-      "dialogsUnreadFgActive": [
+      "dialogsUnreadBgActive": [
         "dialogsBgActive"
       ],
       "dialogsOnlineBadgeFgActive": [
@@ -506,12 +502,10 @@
         "msgOutBgSelected"
       ],
       "historyFileThumbIconFgSelected": [
-        "msgInBgSelected",
-        "msgOutBgSelected"
+        "msgDateImgBgSelected"
       ],
       "historyFileThumbRadialFgSelected": [
-        "msgInBgSelected",
-        "msgOutBgSelected"
+        "msgDateImgBgSelected"
       ],
       "msgWaveformInActiveSelected": [
         "msgInBgSelected"

@@ -32242,7 +32242,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-WISPKX2As8ASOmuJet647QGv+dVGA4AsE7TtGz58N+o=",
+      "subjectDigest": "sha256-MV2G78NSiCF+odXbIc9LaqPZvu5s6JQhloGVMbqVUrs=",
       "evidencePath": null,
       "surfaces": {
         "interface": {
@@ -32297,7 +32297,7 @@
           "path": "dist/j3w1.tdesktop-theme",
           "install": "File install: open with Telegram Desktop, then Apply this theme and Keep changes. The cloud link in the guide, when published, installs the same theme with automatic updates.",
           "source": "ports/telegram/dist/j3w1.tdesktop-theme",
-          "digest": "sha256-9wttNK8zIwt49iIDniYbXCeIjgv9d6GxhDzGEtWcg+Q="
+          "digest": "sha256-Vlm0O/lB7ZYoTOUgcxXB2lZEhF/BckUYf41HsQLpftI="
         }
       ],
       "rollback": "Choose the previous Telegram theme in Settings → Chat Settings/Appearance; restore the previous chat background if it was customised.",
@@ -34101,7 +34101,6 @@
             "desktop:attentionButtonBgOver",
             "desktop:titleButtonBgOver",
             "desktop:dialogsVerifiedIconBgOver",
-            "desktop:dialogsUnreadBgOver",
             "desktop:msgFile1BgOver",
             "desktop:msgFile2BgOver",
             "desktop:msgFile3BgOver",
@@ -34346,7 +34345,6 @@
             "android:chat_reactionServiceButtonBackgroundSelected",
             "desktop:dialogsBgActive",
             "desktop:dialogsVerifiedIconBgActive",
-            "desktop:dialogsUnreadBgActive",
             "desktop:searchedTextMatchBg",
             "desktop:searchedTextCurrentMatchBg",
             "desktop:msgInBgSelected",
@@ -34374,7 +34372,6 @@
         {
           "role": "color.interaction.selection.inactive-bg",
           "nativeKeys": [
-            "desktop:dialogsUnreadBgMuted",
             "desktop:sideBarBadgeBgMuted",
             "desktop:trayCounterBgMute"
           ],
@@ -34443,7 +34440,6 @@
             "desktop:dialogsTextFgActive",
             "desktop:dialogsDraftFgActive",
             "desktop:dialogsVerifiedIconFgActive",
-            "desktop:dialogsUnreadFgActive",
             "desktop:dialogsOnlineBadgeFgActive",
             "desktop:searchedTextMatchFg",
             "desktop:searchedTextCurrentMatchFg",
@@ -36971,7 +36967,6 @@
             "desktop:dialogsVerifiedIconFg",
             "desktop:dialogsSendingIconFg",
             "desktop:dialogsSentIconFg",
-            "desktop:dialogsOnlineBadgeFg",
             "desktop:dialogsChatIconFgOver",
             "desktop:dialogsSentIconFgOver",
             "desktop:dialogsTextFgServiceActive",
@@ -37007,12 +37002,12 @@
             "desktop:sideBarIconFg",
             "desktop:dialogsMentionIconFg",
             "desktop:dialogsReactionIconFg",
-            "desktop:dialogsPollIconFg",
             "android:chats_verifiedCheck",
             "android:profile_verifiedCheck",
             "android:chat_emojiPanelIconSelected",
             "android:profile_tabSelectedText",
-            "android:chats_menuItemCheck"
+            "android:chats_menuItemCheck",
+            "desktop:dialogsUnreadBg"
           ],
           "value": "#f73f35",
           "eligibility": {
@@ -37235,7 +37230,6 @@
             "desktop:dialogsDraftFg",
             "desktop:dialogsArchiveFg",
             "desktop:dialogsTextFgOver",
-            "desktop:dialogsUnreadFgOver",
             "desktop:dialogsArchiveFgOver",
             "desktop:dialogsScamFgOver",
             "desktop:searchedBarFg",
@@ -37287,7 +37281,9 @@
             "desktop:rankAdminFg",
             "desktop:rankOwnerFg",
             "desktop:rankUserFg",
-            "android:chat_botKeyboardButtonText"
+            "android:chat_botKeyboardButtonText",
+            "desktop:dialogsUnreadBgMutedActive",
+            "desktop:dialogsPollIconFg"
           ],
           "value": "#e99499",
           "eligibility": {
@@ -37327,16 +37323,18 @@
         },
         {
           "role": "color.text.inverse",
-          "nativeKeys": [],
+          "nativeKeys": [
+            "desktop:dialogsUnreadFg"
+          ],
           "value": "#0c0909",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
-          "state": "unsupported",
+          "state": "mapped",
           "surface": "interface",
-          "reason": "color.text.inverse has no separate native hook in this projection; related controls share the declared canonical role instead.",
+          "reason": "Canonical color.text.inverse for the dark count on light Telegram Desktop badge pills; Desktop reuses the draft and poll text colours as badge fills, so badge text must be dark to read on both. Native keys are listed in mapping.json and use no derived colours.",
           "source": "ports/telegram/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -37447,8 +37445,6 @@
             "desktop:boxTitleAdditionalFg",
             "desktop:contactsStatusFgOnline",
             "desktop:dialogsTextFgService",
-            "desktop:dialogsUnreadBgMutedOver",
-            "desktop:dialogsUnreadBgMutedActive",
             "desktop:emojiPanCategories",
             "desktop:msgWaveformInInactive",
             "desktop:msgWaveformOutInactive",
@@ -37462,7 +37458,8 @@
             "desktop:groupCallMemberInactiveIcon",
             "desktop:groupCallMemberInactiveStatus",
             "desktop:groupCallMemberMutedIcon",
-            "desktop:walletSubBalanceFg"
+            "desktop:walletSubBalanceFg",
+            "desktop:dialogsUnreadBgMuted"
           ],
           "value": "#bd787d",
           "eligibility": {

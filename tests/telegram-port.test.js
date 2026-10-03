@@ -36,6 +36,20 @@ const desktop = new Map(palette.split("\n").filter(line => line && !line.startsW
 }));
 const values = { android, desktop };
 const parent = (target, key) => registry[target].aliases?.[key] ?? registry[target].fallbacks[key];
+// Runtime value of any registry key: its own value, else its inheritance
+// (Android: one fallback level; Desktop: aliases and fallbacks resolve on).
+const effective = (target, key) => {
+  for (let next = key, depth = 0; next && depth < 12; depth++) {
+    if (values[target].has(next)) return { key: next, color: values[target].get(next), role: owner[`${target}:${next}`] };
+    if (target === "android" && depth > 0) return null;
+    next = parent(target, next);
+  }
+  return null;
+};
+const pairRatio = (fgKey, bgKey, target = "desktop") => {
+  const fg = effective(target, fgKey).color, bg = effective(target, bgKey).color;
+  return evaluatePair({ fg: hexToColor(rgbHex(fg), fg[3] / 255), bg: hexToColor(rgbHex(bg), bg[3] / 255), min: 4.5 });
+};
 const rgba = (target, key) => values[target].get(key) ?? values[target].get(parent(target, key));
 const roleOf = (target, key) => owner[`${target}:${key}`] ?? owner[`${target}:${parent(target, key)}`];
 const rgbHex = bytes => "#" + bytes.slice(0, 3).map(n => n.toString(16).padStart(2, "0")).join("");
@@ -225,16 +239,6 @@ test("near-white is restricted to approved on-fill or link-hover roles, and inte
   // Near-white by relative luminance, not by literal value, so a token change
   // cannot silently widen it. Bright rose (text.bright) stays well below.
   const luminance = ([r, g, b]) => [r, g, b].map(v => { v /= 255; return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; }).reduce((sum, v, i) => sum + v * [0.2126, 0.7152, 0.0722][i], 0);
-  // Runtime value of any registry key: its own value, else its inheritance
-  // (Android: one fallback level; Desktop: aliases and fallbacks resolve on).
-  const effective = (target, key) => {
-    for (let next = key, depth = 0; next && depth < 12; depth++) {
-      if (values[target].has(next)) return { key: next, color: values[target].get(next), role: owner[`${target}:${next}`] };
-      if (target === "android" && depth > 0) return null;
-      next = parent(target, next);
-    }
-    return null;
-  };
   // Fills a near-white glyph may sit on, plus the dark media scrim behind
   // loader icons over photos.
   const fills = new Set(["color.action.primary.bg", "color.action.primary.hover-bg", "color.action.primary.pressed-bg", "color.interaction.selection.bg", "color.interaction.selection.inactive-bg", "color.interaction.hover.bg-strong", "color.status.danger.fill", "color.interaction.text-selection.bg", "color.surface.backdrop"]);
@@ -250,8 +254,12 @@ test("near-white is restricted to approved on-fill or link-hover roles, and inte
         assert.ok(registry[target].keys.includes(bg), `${target}:${bg} is a registry key`);
         const fill = effective(target, bg), fg = effective(target, key).color;
         assert.ok(fill && fills.has(fill.role), `${target}:${key} sits on ${bg} (${fill?.role ?? "host default"}), not a fill`);
-        const result = evaluatePair({ fg: hexToColor(rgbHex(fg)), bg: hexToColor(rgbHex(fill.color), fill.color[3] / 255), min: 4.5 });
-        assert.ok(result.pass, `${target}:${key} on ${bg}: ${result.ratio}`);
+        // A translucent background is measured over the worst underlays (white
+        // media and black), never as its uncomposited colour.
+        for (const surface of fill.color[3] < 255 ? ["#ffffff", "#000000"] : [null]) {
+          const result = evaluatePair({ fg: hexToColor(rgbHex(fg), fg[3] / 255), bg: hexToColor(rgbHex(fill.color), fill.color[3] / 255), surface: surface && hexToColor(surface), min: 4.5 });
+          assert.ok(result.pass, `${target}:${key} on ${bg}${surface ? ` over ${surface}` : ""}: ${result.ratio}`);
+        }
       }
     }
   }
@@ -267,6 +275,36 @@ test("near-white is restricted to approved on-fill or link-hover roles, and inte
     const hue = ((max === r ? (g - b) / delta : max === g ? (b - r) / delta + 2 : (r - g) / delta + 4) * 60 + 360) % 360;
     assert.ok(hue <= 15 || hue >= 330, `${native}: ${hex}, hue ${hue}`);
   }
+});
+
+test("compositing matters: a translucent scrim is never measured as its raw colour", () => {
+  // Counterexample from review delta 2: near-white over a 55% black scrim on
+  // white media passes uncomposited but fails once composited.
+  const fg = hexToColor("#f4eeee"), scrim = hexToColor("#000000", 0.55);
+  assert.equal(evaluatePair({ fg, bg: scrim, min: 4.5 }).pass, true);
+  assert.equal(evaluatePair({ fg, bg: scrim, surface: hexToColor("#ffffff"), min: 4.5 }).pass, false);
+});
+
+test("Desktop chat-list badges keep 4.5:1 in every family and row state", () => {
+  // tdesktop d8594c01 ui/unread_badge_paint.cpp: the count or icon uses one
+  // foreground per row state, while each badge family picks one of six
+  // backgrounds by (muted, row state). Draft text and poll icons reuse two of
+  // those backgrounds on the plain rows (dialogs_layout.cpp/.style).
+  const foreground = ["dialogsUnreadFg", "dialogsUnreadFgOver", "dialogsUnreadFgActive"];
+  const families = {
+    unread: ["dialogsUnreadBg", "dialogsUnreadBgOver", "dialogsUnreadBgActive", "dialogsUnreadBgMuted", "dialogsUnreadBgMutedOver", "dialogsUnreadBgMutedActive"],
+    reaction: ["dialogsDraftFg", "dialogsDraftFgOver", "dialogsDraftFgActive", "dialogsUnreadBgMuted", "dialogsUnreadBgMutedOver", "dialogsUnreadBgMutedActive"],
+    poll: ["dialogsPollIconFg", "dialogsPollIconFg", "dialogsPollIconFg", "dialogsUnreadBgMuted", "dialogsUnreadBgMutedOver", "dialogsUnreadBgMutedActive"],
+  };
+  for (const [family, backgrounds] of Object.entries(families)) backgrounds.forEach((bg, index) => {
+    const fg = foreground[index % 3], result = pairRatio(fg, bg);
+    assert.ok(result.pass, `${family} badge: ${fg} on ${bg}: ${result.ratio}`);
+  });
+  const rows = ["dialogsBg", "dialogsBgOver", "dialogsBgActive"];
+  ["dialogsDraftFg", "dialogsDraftFgOver", "dialogsDraftFgActive"].forEach((fg, index) => assert.ok(pairRatio(fg, rows[index]).pass, `${fg} on ${rows[index]}`));
+  for (const row of rows) assert.ok(pairRatio("dialogsPollIconFg", row).ratio >= 3, `poll icon on ${row}`);
+  // Badge pills stay visible on their rows.
+  ["dialogsUnreadBg", "dialogsUnreadBgOver", "dialogsUnreadBgActive"].forEach((pill, index) => assert.notDeepEqual(effective("desktop", pill).color, effective("desktop", rows[index]).color, pill));
 });
 
 test("main native text/background pairs pass 4.5:1 without rounding", () => {

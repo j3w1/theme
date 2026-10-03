@@ -44,7 +44,7 @@ Every upstream colour key is in exactly one of three states, and `tests/telegram
 | Target | Keys | Mapped | Inherited | Unset |
 | --- | ---: | ---: | ---: | ---: |
 | Android | 819 | 667 | 85 | 67 |
-| Desktop | 586 | 455 | 85 | 46 |
+| Desktop | 586 | 451 | 89 | 46 |
 <!-- coverage:end -->
 
 Non-colour keys (`wallpaperFileOffset`, `chat_wallpaper_gradient_rotation`, `chat_outBubbleGradientAnimated`) and animated-wallpaper keys are never written.
@@ -67,7 +67,7 @@ Non-colour keys (`wallpaperFileOffset`, `chat_wallpaper_gradient_rotation`, `cha
 **Contrast and colour rules, enforced by tests:**
 - The wallpaper is darker than incoming bubbles, and incoming bubbles are darker than outgoing ones.
 - Message text, timestamps, replies and links pass 4.5:1 on both bubbles and on the main panels.
-- Near-white, by luminance, appears only on keys listed in `nearWhite` in `src/coverage.json`, inherited keys included. Each entry names the backgrounds the glyph is drawn on; the test checks every one is a selection, action or danger fill (or the media scrim behind loader icons) at 4.5:1 or more. Bold never selects white.
+- Near-white, by luminance, appears only on keys listed in `nearWhite` in `src/coverage.json`, inherited keys included. Each entry names the backgrounds the glyph is drawn on; the test checks every one is a selection, action or danger fill (or the media scrim behind loader and thumbnail icons) at 4.5:1 or more. Translucent scrims are measured composited over both white and black. Bold never selects white.
 - Interface keys stay in the red/rose hue range: no blue, cyan, orange or purple.
 
 ## Cloud theme
@@ -94,6 +94,7 @@ The same `https://t.me/addtheme/<slug>` link opens the matching document on each
 - **No heading levels.** Messages have no H1–H6, and names and titles share bright rose. Once canonical D-033 lands, they move to `text.heading`.
 - **Android selected bubbles.** Android uses the same message text colour for normal and selected bubbles; Desktop has separate selected foregrounds.
 - **Platform keys differ.** Desktop exposes hover states that Android lacks. Android's outgoing-bubble gradient keys stay unset.
+- **Chat-list badges.** Desktop reuses the draft-label and poll-icon colours as the reaction and poll badge fills, and uses one badge text colour per row state for every badge family. No dark fill can then also be readable label text on the black row. So Desktop badges are light pills (accent, or muted rose when muted) with dark `text.inverse` counts; on the selected row the pill turns near-white or rose with the count in the row colour. Android keeps dark-red badges with near-white counts. A test checks every family and row state (pinned `unread_badge_paint.cpp`) at 4.5:1.
 - **Window title bar.** On Windows, Telegram Desktop's title bar follows Telegram's palette only when Telegram draws its own frame. The system frame is drawn by Windows.
 - **Wallpaper.** Android draws a native two-colour gradient. Desktop scales a 1×2 image of the same two colours. Neither uses a pattern or animation.
 - **Host-controlled colours.** Translucent text and icons without an approved translucent role, chart data, Premium and story artwork, user colours and media keep Telegram's own colours.

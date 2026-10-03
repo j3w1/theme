@@ -586,9 +586,9 @@
       "reason": "color.text.on-light has no separate native hook in this projection; related controls share the declared canonical role instead."
     },
     "color.text.inverse": {
-      "state": "unsupported",
+      "state": "mapped",
       "surface": "interface",
-      "reason": "color.text.inverse has no separate native hook in this projection; related controls share the declared canonical role instead."
+      "reason": "Canonical color.text.inverse for the dark count on light Telegram Desktop badge pills; Desktop reuses the draft and poll text colours as badge fills, so badge text must be dark to read on both. Native keys are listed in mapping.json and use no derived colours."
     },
     "color.border.divider": {
       "state": "mapped",

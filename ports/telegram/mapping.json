@@ -339,7 +339,6 @@
       "desktop:dialogsDraftFg",
       "desktop:dialogsArchiveFg",
       "desktop:dialogsTextFgOver",
-      "desktop:dialogsUnreadFgOver",
       "desktop:dialogsArchiveFgOver",
       "desktop:dialogsScamFgOver",
       "desktop:searchedBarFg",
@@ -391,7 +390,9 @@
       "desktop:rankAdminFg",
       "desktop:rankOwnerFg",
       "desktop:rankUserFg",
-      "android:chat_botKeyboardButtonText"
+      "android:chat_botKeyboardButtonText",
+      "desktop:dialogsUnreadBgMutedActive",
+      "desktop:dialogsPollIconFg"
     ],
     "color.text.bright": [
       "android:inappPlayerTitle",
@@ -504,8 +505,6 @@
       "desktop:boxTitleAdditionalFg",
       "desktop:contactsStatusFgOnline",
       "desktop:dialogsTextFgService",
-      "desktop:dialogsUnreadBgMutedOver",
-      "desktop:dialogsUnreadBgMutedActive",
       "desktop:emojiPanCategories",
       "desktop:msgWaveformInInactive",
       "desktop:msgWaveformOutInactive",
@@ -519,7 +518,8 @@
       "desktop:groupCallMemberInactiveIcon",
       "desktop:groupCallMemberInactiveStatus",
       "desktop:groupCallMemberMutedIcon",
-      "desktop:walletSubBalanceFg"
+      "desktop:walletSubBalanceFg",
+      "desktop:dialogsUnreadBgMuted"
     ],
     "color.text.subtle": [
       "android:chats_date",
@@ -655,7 +655,6 @@
       "desktop:dialogsVerifiedIconFg",
       "desktop:dialogsSendingIconFg",
       "desktop:dialogsSentIconFg",
-      "desktop:dialogsOnlineBadgeFg",
       "desktop:dialogsChatIconFgOver",
       "desktop:dialogsSentIconFgOver",
       "desktop:dialogsTextFgServiceActive",
@@ -691,12 +690,12 @@
       "desktop:sideBarIconFg",
       "desktop:dialogsMentionIconFg",
       "desktop:dialogsReactionIconFg",
-      "desktop:dialogsPollIconFg",
       "android:chats_verifiedCheck",
       "android:profile_verifiedCheck",
       "android:chat_emojiPanelIconSelected",
       "android:profile_tabSelectedText",
-      "android:chats_menuItemCheck"
+      "android:chats_menuItemCheck",
+      "desktop:dialogsUnreadBg"
     ],
     "color.text.link": [
       "android:dialogTextLink",
@@ -844,7 +843,6 @@
       "android:chat_reactionServiceButtonBackgroundSelected",
       "desktop:dialogsBgActive",
       "desktop:dialogsVerifiedIconBgActive",
-      "desktop:dialogsUnreadBgActive",
       "desktop:searchedTextMatchBg",
       "desktop:searchedTextCurrentMatchBg",
       "desktop:msgInBgSelected",
@@ -893,7 +891,6 @@
       "desktop:dialogsTextFgActive",
       "desktop:dialogsDraftFgActive",
       "desktop:dialogsVerifiedIconFgActive",
-      "desktop:dialogsUnreadFgActive",
       "desktop:dialogsOnlineBadgeFgActive",
       "desktop:searchedTextMatchFg",
       "desktop:searchedTextCurrentMatchFg",
@@ -939,7 +936,6 @@
       "desktop:attentionButtonBgOver",
       "desktop:titleButtonBgOver",
       "desktop:dialogsVerifiedIconBgOver",
-      "desktop:dialogsUnreadBgOver",
       "desktop:msgFile1BgOver",
       "desktop:msgFile2BgOver",
       "desktop:msgFile3BgOver",
@@ -1215,9 +1211,11 @@
       "android:code_comment"
     ],
     "color.interaction.selection.inactive-bg": [
-      "desktop:dialogsUnreadBgMuted",
       "desktop:sideBarBadgeBgMuted",
       "desktop:trayCounterBgMute"
+    ],
+    "color.text.inverse": [
+      "desktop:dialogsUnreadFg"
     ]
   },
   "unmapped": {
@@ -1311,7 +1309,6 @@
     "color.text.link-hover": "color.text.link-hover has no separate native hook in this projection; related controls share the declared canonical role instead.",
     "color.text.on-selection": "color.text.on-selection has no separate native hook in this projection; related controls share the declared canonical role instead.",
     "color.text.on-light": "color.text.on-light has no separate native hook in this projection; related controls share the declared canonical role instead.",
-    "color.text.inverse": "color.text.inverse has no separate native hook in this projection; related controls share the declared canonical role instead.",
     "color.border.strong": "color.border.strong has no separate native hook in this projection; related controls share the declared canonical role instead.",
     "color.border.overlay": "color.border.overlay has no separate native hook in this projection; related controls share the declared canonical role instead.",
     "color.border.disabled": "color.border.disabled has no separate native hook in this projection; related controls share the declared canonical role instead.",

@@ -548,6 +548,42 @@ test("startup and post-login authorization use the bounded flood wait (review de
   limited.transport.checkAuthorization = async () => { throw rpc("FLOOD_WAIT_900"); };
   limited.deps.clock = { now: () => new Date(), sleep: async () => assert.fail("must not sleep beyond the cap") };
   assert.match((await run([], limited.deps)).error, /retry after 900 s/);
+  // Post-login: a fresh session logs in once, then the readback is flood-limited.
+  const fresh = await fixture(t, { configured: false });
+  const answers = [String(auth().apiId), auth().apiHash];
+  fresh.deps.prompt = async () => answers.shift();
+  let loggedIn = false, readbackWaited = false;
+  fresh.transport.login = async () => { loggedIn = true; };
+  fresh.transport.session = () => auth().session;
+  fresh.transport.checkAuthorization = async () => {
+    if (!loggedIn) return false;
+    if (!readbackWaited) { readbackWaited = true; throw rpc("FLOOD_WAIT_9"); }
+    return true;
+  };
+  const freshSleeps = [];
+  fresh.deps.clock = { now: () => new Date("2026-10-03T12:00:00.000Z"), sleep: async ms => freshSleeps.push(ms) };
+  assert.equal((await run([], fresh.deps)).code, 0);
+  assert.deepEqual(freshSleeps, [9000]);
+  // CI uses the 120 s cap, per wait and cumulatively, at the controller too.
+  const published = { ...cloud, slug: "j3w1", published: true };
+  const ciRun = async (waits, t2) => {
+    const f2 = await fixture(t2, { configured: false, transport: mock([["j3w1"]]), localCloud: published });
+    Object.assign(f2.deps.env, { TELEGRAM_API_ID: String(auth().apiId), TELEGRAM_API_HASH: auth().apiHash, TELEGRAM_SESSION: auth().session, GITHUB_SHA: rev });
+    const queue = [...waits];
+    f2.transport.checkAuthorization = async () => { if (queue.length) throw rpc(`FLOOD_WAIT_${queue.shift()}`); return true; };
+    const slept = [];
+    f2.deps.clock = { now: () => new Date("2026-10-03T12:00:00.000Z"), sleep: async ms => slept.push(ms) };
+    return { result: await run(["--ci"], f2.deps), slept };
+  };
+  const at = await ciRun([120], t);
+  assert.equal(at.result.code, 0);
+  assert.equal(at.slept.reduce((a, b) => a + b, 0), 120000);
+  const over = await ciRun([121], t);
+  assert.match(over.result.error, /retry after 121 s/);
+  assert.deepEqual(over.slept, []);
+  const cumulative = await ciRun([60, 61], t);
+  assert.match(cumulative.result.error, /retry after 61 s/);
+  assert.equal(cumulative.slept.reduce((a, b) => a + b, 0), 60000);
 });
 
 test("publisher import allowlist and live transport single-code, cleanup and settings invariants", async () => {
