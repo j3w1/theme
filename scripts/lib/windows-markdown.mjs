@@ -8,9 +8,15 @@ import {toCss} from './tokens.mjs';
 export function windowsMarkdownArtifacts(host,resolved){
  const md=host.markdownPreview,id='j3w1-powertoys-markdown';
  if(!md||!/^\d+\.\d+\.\d+$/.test(md.version))throw Error('Markdown requires a version');
- for(const key of ['hostVersion','webviewVersion'])if(!/^\d+\.\d+\.\d+\.\d+$/.test(md[key]))throw Error(`Invalid Markdown ${key}`);
- for(const key of ['hostSha256','controlSha256','helperSha256','webviewSha256'])if(!/^[a-f0-9]{64}$/.test(md[key]))throw Error(`Invalid Markdown ${key}`);
- for(const key of ['navigateToStringRva','navigateRva'])if(!Number.isSafeInteger(md[key])||md[key]<=0||md[key]>0x7fffffff)throw Error(`Invalid Markdown ${key}`);
+ if(!/^\d+\.\d+\.\d+\.\d+$/.test(md.hostVersion))throw Error('Invalid Markdown hostVersion');
+ for(const key of ['hostSha256','controlSha256','helperSha256'])if(!/^[a-f0-9]{64}$/.test(md[key]))throw Error('Invalid Markdown '+key);
+ if(!Array.isArray(md.webviewBoundaries)||!md.webviewBoundaries.length||md.webviewBoundaries.length>8)throw Error('Markdown requires bounded reviewed WebView identities');
+ const versions=new Set(),digests=new Set();
+ for(const pin of md.webviewBoundaries) {
+  if(!/^\d+\.\d+\.\d+\.\d+$/.test(pin.version)||versions.has(pin.version)||!/^[a-f0-9]{64}$/.test(pin.sha256)||digests.has(pin.sha256))throw Error('Invalid or duplicate Markdown WebView identity');
+  versions.add(pin.version);digests.add(pin.sha256);
+  for(const key of ['navigateToStringRva','navigateRva'])if(!Number.isSafeInteger(pin[key])||pin[key]<=0||pin[key]>0x7fffffff)throw Error('Invalid Markdown WebView '+key);
+ }
  if(!Array.isArray(md.headers)||md.headers.length!==4)throw Error('Markdown requires the four reviewed headers');
  const variants=new Set();
  for(const pin of md.headers){
@@ -32,8 +38,9 @@ export function windowsMarkdownArtifacts(host,resolved){
  if(/[^\x20-\x7e]/.test(css))throw Error('Markdown CSS must be ASCII for the same-length boundary');
  if(md.headers.some(pin=>css.length>pin.styleLength))throw Error('Markdown CSS exceeds admitted extent');
  const subs={VERSION:md.version,HEADER_PINS:md.headers.map(p=>` {${p.length},${p.styleOffset},${p.styleLength},"${p.sha256}"},`).join('\n'),
-  PALETTE_CSS:css,WEBVIEW_SHA256:md.webviewSha256,HOST_SHA256:md.hostSha256,CONTROL_SHA256:md.controlSha256,HELPER_SHA256:md.helperSha256,
-  STRING_RVA:'0x'+md.navigateToStringRva.toString(16),NAVIGATE_RVA:'0x'+md.navigateRva.toString(16)};
+  PALETTE_CSS:css,HOST_SHA256:md.hostSha256,CONTROL_SHA256:md.controlSha256,HELPER_SHA256:md.helperSha256,
+  BROWSER_PINS:md.webviewBoundaries.map(p=>' {"'+p.sha256+'",0x'+p.navigateToStringRva.toString(16)+',0x'+p.navigateRva.toString(16)+'}, // '+p.version).join('\n'),
+  BROWSER_DISPATCH:md.webviewBoundaries.map((_,i)=>'  case '+i+':return HookBoundary<'+i+'>(module);').join('\n')};
  if(css.includes(')MD"'))throw Error('Invalid Markdown CSS literal delimiter');
  const source=render(readFileSync(path.join(repoRoot,`ports/windows/src/${id}.wh.cpp.in`),'utf8'),subs);
  return {id,version:md.version,source,css};

@@ -657,7 +657,8 @@ color against the native grammar. See Microsoft's
 ## PowerToys Markdown adapter
 
 `host.json` records PowerToys 0.101.2362.0 executable/control/helper digests,
-WebView native build 154.0.4258.37 and digest, observed NavigateToString/Navigate
+reviewed WebView native builds 154.0.4258.37 and 154.0.4258.48, each with its
+own complete-module digest and independently observed NavigateToString/Navigate
 method offsets, and four generated-header identities (dark/light, with/without
 local images). A different identity passes through. The public SDK vtable was
 observed with an isolated synthetic controller, then the normal route was
@@ -773,3 +774,20 @@ the generic wrapper walk selected an outer ScrollViewer before the Paint Grid.
 The backing selector now resolves Paint's direct Grid first; the earlier wrapper
 logic remains available to the other admitted chrome roots. Live verification
 of this selection correction remains required.
+
+
+### Concurrent Markdown browser runtimes
+
+A WebView2 update left both reviewed native versions loaded in the same live
+PowerToys preview process. The old single-version adapter correctly refused the
+new module, leaving the preview native gray. The adapter now admits only the
+bounded identities recorded in `host.json`; each has independent hooks and
+original-call storage. Initialization enumerates already loaded matching modules,
+and later loads use the same complete-digest admission. Unknown versions remain
+native. This does not freeze or weaken WebView2 updates.
+
+The new runtime entry points were measured through an isolated empty public
+WebView2 controller. Focused source checks and complete native DLL linking passed,
+including independent runtime storage, unknown-module refusal and the existing
+Unicode, header, file ownership, partial-write and unload regressions. Live
+normal/large-route revalidation after installation remains required.

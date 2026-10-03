@@ -37749,7 +37749,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-ToYgPzQruMDXRxZQG1EOZuKLrgUlC3tGuW5koqMHngI=",
+      "subjectDigest": "sha256-I24bMbScKTT5iuLajZYCz/fECIzAKOFq3ZrrL+kWm4E=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37782,7 +37782,7 @@
           "path": "dist/windows-settings.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-settings.json",
-          "digest": "sha256-UOFRH6mQcsqFlleLyzfRPBEn3Bg1dKYXhEGiZ4j6xMw="
+          "digest": "sha256-nupNKsoiTnuxYZwOCshv9usHoRCwjn+wYJBM3Y3AszE="
         },
         {
           "path": "dist/terminal-fragment.json",
@@ -37956,7 +37956,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-rg9/uYwZaEztWP6OkdWVJXPSeKIbXhEknzi4RLZgaRE="
+          "digest": "sha256-0aDpToJlmxKsNBSi8Dhaj1BG0eEtf83gDwWvoxM6Ivw="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
@@ -37998,7 +37998,7 @@
           "path": "dist/j3w1-powertoys-markdown.wh.cpp",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/j3w1-powertoys-markdown.wh.cpp",
-          "digest": "sha256-vdYHXiCe4NoVXPJKR+sUJas9cpY+WSk969TmJeU9lwU="
+          "digest": "sha256-bKiFqmICwKWKNUWh3b7paLt6Ib76Kh8ThD42fk88jcY="
         },
         {
           "path": "dist/j3w1-powertoys-markdown.json",

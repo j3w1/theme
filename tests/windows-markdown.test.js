@@ -19,7 +19,8 @@ test('Markdown renders digits in token and digest placeholders and stays in ever
  assert.match(css,/font:15px\/24px/);assert.match(css,/h1\{font-size:20px;line-height:28px\}/);
  assert.match(css,/padding:16px/);assert.match(css,/padding:12px/);assert.match(css,/max-width:min\(72ch,680px\)/);
  assert.match(css,/h3,h4,h5,h6\{font-size:13px;line-height:18px\}/);
- for(const key of ['hostSha256','controlSha256','helperSha256','webviewSha256'])assert.ok(source.includes(host.markdownPreview[key]));
+ for(const key of ['hostSha256','controlSha256','helperSha256'])assert.ok(source.includes(host.markdownPreview[key]));
+ for(const pin of host.markdownPreview.webviewBoundaries)assert.ok(source.includes(pin.sha256));
  assert.match(css,/@media\(forced-colors:none\)/);assert.doesNotMatch(css,/forced-color-adjust:none|url\(/);
 });
 
@@ -37,7 +38,9 @@ test('Markdown source and palette are manifest-pinned and participate in managed
 
 test('Markdown generation refuses missing digest, duplicate header, out-of-bounds extent and unknown semantic role',()=>{
  for(const change of [h=>h.markdownPreview.hostSha256='unknown',h=>h.markdownPreview.headers[1]=h.markdownPreview.headers[0],
-  h=>h.markdownPreview.headers[0].styleOffset=32768,h=>h.markdownPreview.roles.H1_SIZE='color.primitive.ink.0']){
+  h=>h.markdownPreview.headers[0].styleOffset=32768,h=>h.markdownPreview.roles.H1_SIZE='color.primitive.ink.0',
+  h=>h.markdownPreview.webviewBoundaries=[],h=>h.markdownPreview.webviewBoundaries[1]=h.markdownPreview.webviewBoundaries[0],
+  h=>h.markdownPreview.webviewBoundaries[0].sha256='unknown',h=>h.markdownPreview.webviewBoundaries[0].navigateRva=0]){
   const candidate=structuredClone(host);change(candidate);assert.throws(()=>windowsMarkdownArtifacts(candidate,resolved));
  }
 });

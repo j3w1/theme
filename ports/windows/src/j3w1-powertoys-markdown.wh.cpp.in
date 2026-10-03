@@ -14,6 +14,7 @@
 */
 // ==/WindhawkModSettings==
 #include <windows.h>
+#include <tlhelp32.h>
 #include <bcrypt.h>
 #include <shlobj.h>
 #include <shlwapi.h>
@@ -33,12 +34,17 @@ static constexpr HeaderPin headers[]={
 };
 static constexpr char palette[]=R"MD(@PALETTE_CSS@)MD";
 static constexpr IID coreViewIID={0x76eceacb,0x0462,0x4d94,{0xac,0x83,0x42,0x3a,0x67,0x93,0x77,0x5e}};
-static std::atomic<bool> enabled{false},hooked{false},boundaryAttempted{false};
+static std::atomic<bool> enabled{false};
 static std::mutex hookMutex,filesMutex;
 static std::wstring tempFolder;
 static std::vector<FILE_ID_INFO> createdFiles;
 using NavigateFn=HRESULT(STDMETHODCALLTYPE*)(IUnknown*,LPCWSTR);
-static NavigateFn originalString=nullptr,originalNavigate=nullptr;
+struct BrowserPin {const char* sha256;size_t stringRva,navigateRva;};
+static constexpr BrowserPin browserPins[]={
+@BROWSER_PINS@
+};
+struct Boundary {HMODULE module=nullptr;bool attempted=false;std::atomic<bool> ready{false};NavigateFn originalString=nullptr,originalNavigate=nullptr;};
+static Boundary boundaries[std::size(browserPins)];
 static decltype(&LoadLibraryExW) originalLoadLibraryEx;
 static decltype(&CreateFileW) originalCreateFile;
 
@@ -102,11 +108,12 @@ static bool PaletteString(LPCWSTR html,std::wstring& themed,const HeaderPin* pin
     themed=html;std::string style=Style(*pin);
  themed.replace(pin->styleOffset,pin->styleLength,std::wstring(style.begin(),style.end()));return true;
 }
-static HRESULT STDMETHODCALLTYPE StringHook(IUnknown* view,LPCWSTR html){
- if(enabled&&hooked&&!HighContrast()&&IsCoreView(view)){
-  try{std::wstring themed;if(PaletteString(html,themed))return originalString(view,themed.c_str());}catch(...){}
+template<size_t Index> static HRESULT STDMETHODCALLTYPE StringHook(IUnknown* view,LPCWSTR html){
+ auto& boundary=boundaries[Index];
+ if(enabled&&boundary.ready&&!HighContrast()&&IsCoreView(view)){
+  try{std::wstring themed;if(PaletteString(html,themed))return boundary.originalString(view,themed.c_str());}catch(...){}
  }
- return originalString(view,html);
+ return boundary.originalString(view,html);
 }
 static bool GuidHtml(const wchar_t* leaf){
  if(!leaf||wcslen(leaf)!=41||_wcsicmp(leaf+36,L".html"))return false;
@@ -168,28 +175,45 @@ static FilePaletteResult PaletteFile(const std::wstring& path,const HeaderPin* p
   }
  }catch(...){}CloseHandle(file);return result;
 }
-static HRESULT STDMETHODCALLTYPE NavigateHook(IUnknown* view,LPCWSTR uri){
- if(enabled&&hooked&&!HighContrast()&&IsCoreView(view)&&uri&&_wcsnicmp(uri,L"file:///",8)==0){
+template<size_t Index> static HRESULT STDMETHODCALLTYPE NavigateHook(IUnknown* view,LPCWSTR uri){
+ auto& boundary=boundaries[Index];
+ if(enabled&&boundary.ready&&!HighContrast()&&IsCoreView(view)&&uri&&_wcsnicmp(uri,L"file:///",8)==0){
   try{wchar_t path[32768]{};DWORD length=32768;if(SUCCEEDED(PathCreateFromUrlW(uri,path,&length,0))
    &&PaletteFile(path)==FilePaletteResult::restorationFailed)return E_FAIL;}catch(...){}
  }
  // The original URI, Navigate call, resource filters and navigation handlers
  // remain unchanged. Only admitted CSS bytes in the host's own new temp file
  // can be written; CSP, document bytes and file length are never changed.
- return originalNavigate(view,uri);
+ return boundary.originalNavigate(view,uri);
+}
+template<size_t Index> static bool HookBoundary(HMODULE module){
+ auto& boundary=boundaries[Index];const auto& pin=browserPins[Index];
+ if(boundary.attempted)return boundary.module==module&&boundary.ready;
+ boundary.module=module;boundary.attempted=true;
+ auto base=reinterpret_cast<BYTE*>(module);
+ // Each complete native-module digest has independently observed public COM
+ // entry points and its own original calls. A second loaded runtime cannot
+ // overwrite another runtime's trampoline or authorize an unknown module.
+ bool ready=Wh_SetFunctionHook(base+pin.stringRva,reinterpret_cast<void*>(StringHook<Index>),reinterpret_cast<void**>(&boundary.originalString))
+  &&Wh_SetFunctionHook(base+pin.navigateRva,reinterpret_cast<void*>(NavigateHook<Index>),reinterpret_cast<void**>(&boundary.originalNavigate));
+ boundary.ready=ready;return ready;
 }
 static bool InstallBoundary(HMODULE module){
- if(!module||boundaryAttempted)return false;std::lock_guard lock(hookMutex);if(boundaryAttempted)return false;
+ if(!module)return false;std::lock_guard lock(hookMutex);
  wchar_t path[32768]{};DWORD length=GetModuleFileNameW(module,path,32768);
- if(!length||length>=32768||!DigestFile(path,"@WEBVIEW_SHA256@"))return false;
- boundaryAttempted=true;
- auto base=reinterpret_cast<BYTE*>(module);
- // RVAs were obtained from ICoreWebView2's public COM vtable with an isolated
- // synthetic controller, then pinned to this complete native-module digest.
- // No .NET COM thunk or asynchronous callback is replaced or retained.
- if(!Wh_SetFunctionHook(base+@STRING_RVA@,reinterpret_cast<void*>(StringHook),reinterpret_cast<void**>(&originalString))
-  ||!Wh_SetFunctionHook(base+@NAVIGATE_RVA@,reinterpret_cast<void*>(NavigateHook),reinterpret_cast<void**>(&originalNavigate)))return false;
- hooked=true;return true;
+ if(!length||length>=32768)return false;
+ for(size_t index=0;index<std::size(browserPins);index++)if(DigestFile(path,browserPins[index].sha256))switch(index){
+@BROWSER_DISPATCH@
+ }
+ return false;
+}
+static void ExistingBoundaries(){
+ HANDLE snapshot=CreateToolhelp32Snapshot(TH32CS_SNAPMODULE,GetCurrentProcessId());if(snapshot==INVALID_HANDLE_VALUE)return;
+ MODULEENTRY32W entry{sizeof(entry)};
+ if(Module32FirstW(snapshot,&entry))do {
+  if(_wcsicmp(entry.szModule,L"EmbeddedBrowserWebView.dll")==0)InstallBoundary(entry.hModule);
+ }while(Module32NextW(snapshot,&entry));
+ CloseHandle(snapshot);
 }
 static HMODULE WINAPI LoadHook(LPCWSTR path,HANDLE file,DWORD flags){
  HMODULE module=originalLoadLibraryEx(path,file,flags);DWORD error=GetLastError();
@@ -210,7 +234,7 @@ BOOL Wh_ModInit(){
  PWSTR low=nullptr;if(FAILED(SHGetKnownFolderPath(FOLDERID_LocalAppDataLow,0,nullptr,&low)))return FALSE;
  tempFolder=low;CoTaskMemFree(low);tempFolder+=L"\\Microsoft\\PowerToys\\MarkdownPreview-Temp\\";
  enabled=Wh_GetIntSetting(L"enabled")!=0;
- InstallBoundary(GetModuleHandleW(L"EmbeddedBrowserWebView.dll"));
+ ExistingBoundaries();
  return Wh_SetFunctionHook(reinterpret_cast<void*>(LoadLibraryExW),reinterpret_cast<void*>(LoadHook),reinterpret_cast<void**>(&originalLoadLibraryEx))
   &&Wh_SetFunctionHook(reinterpret_cast<void*>(CreateFileW),reinterpret_cast<void*>(CreateHook),reinterpret_cast<void**>(&originalCreateFile));
 }

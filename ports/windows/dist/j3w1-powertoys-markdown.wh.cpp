@@ -2,7 +2,7 @@
 // @id j3w1-powertoys-markdown
 // @name j3w1 PowerToys Markdown preview
 // @description Exact-version black and rose Markdown rendering adapter
-// @version 1.0.0
+// @version 1.1.0
 // @author j3w1
 // @include PowerToys.MarkdownPreviewHandler.exe
 // @architecture x86-64
@@ -14,6 +14,7 @@
 */
 // ==/WindhawkModSettings==
 #include <windows.h>
+#include <tlhelp32.h>
 #include <bcrypt.h>
 #include <shlobj.h>
 #include <shlwapi.h>
@@ -36,12 +37,18 @@ static constexpr HeaderPin headers[]={
 };
 static constexpr char palette[]=R"MD(*{box-sizing:border-box}body{margin:0;font:15px/24px "SauceCodePro NFM", "Source Code Pro", "Cascadia Mono", "Consolas", "Liberation Mono", "DejaVu Sans Mono", monospace;text-align:left}.container{width:100%;max-width:min(72ch,680px);margin:auto;padding:16px;overflow-wrap:anywhere}.container>:first-child{margin-top:0}p,ul,ol,pre,blockquote,table{margin:0 0 16px}li{margin-block:4px}ul,ol{padding-left:24px}li>p{margin:0}img{max-width:100%;height:auto}h1,h2,h3,h4,h5,h6{margin:24px 0 12px;font-weight:700;text-wrap:balance}h1{font-size:20px;line-height:28px}h2{font-size:16px;line-height:24px}h3,h4,h5,h6{font-size:13px;line-height:18px}pre{padding:12px;border:1px solid;overflow-x:auto}code,tt{font-size:13px;line-height:19px;padding:2px 4px}pre code{display:block;padding:0;font:inherit;white-space:pre;overflow-wrap:normal}strong,th{font-weight:700}em{font-style:italic}hr{border:0;border-top:1px solid;margin:24px 0}table{width:100%;border-spacing:0;border-collapse:collapse}td,th{padding:8px 12px;border:1px solid;text-align:left;vertical-align:top}blockquote{margin-inline:0;padding:8px 12px;border-left:4px solid}blockquote>:last-child{margin-bottom:0}input[type=checkbox]{accent-color:#e53935}@media(forced-colors:none){html,body{background:#000000;color:#e99499}h1,h2,h3,h4,h5,h6{color:#f4eeee}hr,td,th{border-color:#2b0e0d}th{background:#160b0b}pre,code,tt{font-family:"SauceCodePro NFM", "Source Code Pro", "Cascadia Mono", "Consolas", "Liberation Mono", "DejaVu Sans Mono", monospace;color:#e99499;background:#000000;border-radius:0}pre{font-size:13px;line-height:19px;border-color:#a3676b}blockquote{background:#160b0b;color:#e99499;border-color:#e53935}a{color:#f73f35;text-decoration:underline;text-decoration-color:#dc282e}a:hover{color:#f4eeee}a:focus-visible{outline:1px dashed #e53935;outline-offset:-2px}::selection{background:#911410;color:#f4eeee}html{scrollbar-color:#420f0c #000000}})MD";
 static constexpr IID coreViewIID={0x76eceacb,0x0462,0x4d94,{0xac,0x83,0x42,0x3a,0x67,0x93,0x77,0x5e}};
-static std::atomic<bool> enabled{false},hooked{false},boundaryAttempted{false};
+static std::atomic<bool> enabled{false};
 static std::mutex hookMutex,filesMutex;
 static std::wstring tempFolder;
 static std::vector<FILE_ID_INFO> createdFiles;
 using NavigateFn=HRESULT(STDMETHODCALLTYPE*)(IUnknown*,LPCWSTR);
-static NavigateFn originalString=nullptr,originalNavigate=nullptr;
+struct BrowserPin {const char* sha256;size_t stringRva,navigateRva;};
+static constexpr BrowserPin browserPins[]={
+ {"b08c60a6d316ad3e50c2a1d00f146d90fca3a8da08f22aef71722ac0ccebd6b7",0x896f0,0x89650}, // 154.0.4258.37
+ {"89df7d69b27dd6c17228c7319e84e22a97076cb3d68271617490f38ab204ea3f",0x896f0,0x89650}, // 154.0.4258.48
+};
+struct Boundary {HMODULE module=nullptr;bool attempted=false;std::atomic<bool> ready{false};NavigateFn originalString=nullptr,originalNavigate=nullptr;};
+static Boundary boundaries[std::size(browserPins)];
 static decltype(&LoadLibraryExW) originalLoadLibraryEx;
 static decltype(&CreateFileW) originalCreateFile;
 
@@ -105,11 +112,12 @@ static bool PaletteString(LPCWSTR html,std::wstring& themed,const HeaderPin* pin
     themed=html;std::string style=Style(*pin);
  themed.replace(pin->styleOffset,pin->styleLength,std::wstring(style.begin(),style.end()));return true;
 }
-static HRESULT STDMETHODCALLTYPE StringHook(IUnknown* view,LPCWSTR html){
- if(enabled&&hooked&&!HighContrast()&&IsCoreView(view)){
-  try{std::wstring themed;if(PaletteString(html,themed))return originalString(view,themed.c_str());}catch(...){}
+template<size_t Index> static HRESULT STDMETHODCALLTYPE StringHook(IUnknown* view,LPCWSTR html){
+ auto& boundary=boundaries[Index];
+ if(enabled&&boundary.ready&&!HighContrast()&&IsCoreView(view)){
+  try{std::wstring themed;if(PaletteString(html,themed))return boundary.originalString(view,themed.c_str());}catch(...){}
  }
- return originalString(view,html);
+ return boundary.originalString(view,html);
 }
 static bool GuidHtml(const wchar_t* leaf){
  if(!leaf||wcslen(leaf)!=41||_wcsicmp(leaf+36,L".html"))return false;
@@ -171,28 +179,46 @@ static FilePaletteResult PaletteFile(const std::wstring& path,const HeaderPin* p
   }
  }catch(...){}CloseHandle(file);return result;
 }
-static HRESULT STDMETHODCALLTYPE NavigateHook(IUnknown* view,LPCWSTR uri){
- if(enabled&&hooked&&!HighContrast()&&IsCoreView(view)&&uri&&_wcsnicmp(uri,L"file:///",8)==0){
+template<size_t Index> static HRESULT STDMETHODCALLTYPE NavigateHook(IUnknown* view,LPCWSTR uri){
+ auto& boundary=boundaries[Index];
+ if(enabled&&boundary.ready&&!HighContrast()&&IsCoreView(view)&&uri&&_wcsnicmp(uri,L"file:///",8)==0){
   try{wchar_t path[32768]{};DWORD length=32768;if(SUCCEEDED(PathCreateFromUrlW(uri,path,&length,0))
    &&PaletteFile(path)==FilePaletteResult::restorationFailed)return E_FAIL;}catch(...){}
  }
  // The original URI, Navigate call, resource filters and navigation handlers
  // remain unchanged. Only admitted CSS bytes in the host's own new temp file
  // can be written; CSP, document bytes and file length are never changed.
- return originalNavigate(view,uri);
+ return boundary.originalNavigate(view,uri);
+}
+template<size_t Index> static bool HookBoundary(HMODULE module){
+ auto& boundary=boundaries[Index];const auto& pin=browserPins[Index];
+ if(boundary.attempted)return boundary.module==module&&boundary.ready;
+ boundary.module=module;boundary.attempted=true;
+ auto base=reinterpret_cast<BYTE*>(module);
+ // Each complete native-module digest has independently observed public COM
+ // entry points and its own original calls. A second loaded runtime cannot
+ // overwrite another runtime's trampoline or authorize an unknown module.
+ bool ready=Wh_SetFunctionHook(base+pin.stringRva,reinterpret_cast<void*>(StringHook<Index>),reinterpret_cast<void**>(&boundary.originalString))
+  &&Wh_SetFunctionHook(base+pin.navigateRva,reinterpret_cast<void*>(NavigateHook<Index>),reinterpret_cast<void**>(&boundary.originalNavigate));
+ boundary.ready=ready;return ready;
 }
 static bool InstallBoundary(HMODULE module){
- if(!module||boundaryAttempted)return false;std::lock_guard lock(hookMutex);if(boundaryAttempted)return false;
+ if(!module)return false;std::lock_guard lock(hookMutex);
  wchar_t path[32768]{};DWORD length=GetModuleFileNameW(module,path,32768);
- if(!length||length>=32768||!DigestFile(path,"b08c60a6d316ad3e50c2a1d00f146d90fca3a8da08f22aef71722ac0ccebd6b7"))return false;
- boundaryAttempted=true;
- auto base=reinterpret_cast<BYTE*>(module);
- // RVAs were obtained from ICoreWebView2's public COM vtable with an isolated
- // synthetic controller, then pinned to this complete native-module digest.
- // No .NET COM thunk or asynchronous callback is replaced or retained.
- if(!Wh_SetFunctionHook(base+0x896f0,reinterpret_cast<void*>(StringHook),reinterpret_cast<void**>(&originalString))
-  ||!Wh_SetFunctionHook(base+0x89650,reinterpret_cast<void*>(NavigateHook),reinterpret_cast<void**>(&originalNavigate)))return false;
- hooked=true;return true;
+ if(!length||length>=32768)return false;
+ for(size_t index=0;index<std::size(browserPins);index++)if(DigestFile(path,browserPins[index].sha256))switch(index){
+  case 0:return HookBoundary<0>(module);
+  case 1:return HookBoundary<1>(module);
+ }
+ return false;
+}
+static void ExistingBoundaries(){
+ HANDLE snapshot=CreateToolhelp32Snapshot(TH32CS_SNAPMODULE,GetCurrentProcessId());if(snapshot==INVALID_HANDLE_VALUE)return;
+ MODULEENTRY32W entry{sizeof(entry)};
+ if(Module32FirstW(snapshot,&entry))do {
+  if(_wcsicmp(entry.szModule,L"EmbeddedBrowserWebView.dll")==0)InstallBoundary(entry.hModule);
+ }while(Module32NextW(snapshot,&entry));
+ CloseHandle(snapshot);
 }
 static HMODULE WINAPI LoadHook(LPCWSTR path,HANDLE file,DWORD flags){
  HMODULE module=originalLoadLibraryEx(path,file,flags);DWORD error=GetLastError();
@@ -213,7 +239,7 @@ BOOL Wh_ModInit(){
  PWSTR low=nullptr;if(FAILED(SHGetKnownFolderPath(FOLDERID_LocalAppDataLow,0,nullptr,&low)))return FALSE;
  tempFolder=low;CoTaskMemFree(low);tempFolder+=L"\\Microsoft\\PowerToys\\MarkdownPreview-Temp\\";
  enabled=Wh_GetIntSetting(L"enabled")!=0;
- InstallBoundary(GetModuleHandleW(L"EmbeddedBrowserWebView.dll"));
+ ExistingBoundaries();
  return Wh_SetFunctionHook(reinterpret_cast<void*>(LoadLibraryExW),reinterpret_cast<void*>(LoadHook),reinterpret_cast<void**>(&originalLoadLibraryEx))
   &&Wh_SetFunctionHook(reinterpret_cast<void*>(CreateFileW),reinterpret_cast<void*>(CreateHook),reinterpret_cast<void**>(&originalCreateFile));
 }

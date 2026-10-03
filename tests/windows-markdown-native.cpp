@@ -4,7 +4,8 @@
 #include <cstdio>
 #include <string>
 #include <vector>
-static BOOL Wh_SetFunctionHook(void*,void*,void**){return TRUE;}
+static unsigned installedHooks=0;
+static BOOL Wh_SetFunctionHook(void* function,void*,void** original){++installedHooks;*original=function;return TRUE;}
 static BOOL Wh_ApplyHookOperations(){return TRUE;}
 static int Wh_GetIntSetting(const wchar_t*){return 1;}
 template<class... Args> static void Wh_Log(const wchar_t*,Args...){}
@@ -33,6 +34,15 @@ static void Save(const std::wstring& path,const std::string& bytes,bool track){
 int main(){
  assert(Digest(reinterpret_cast<const BYTE*>("abc"),3,"ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"));
  assert(!Wh_ModInit()); // The regression process is not the admitted PowerToys host.
+ static_assert(std::size(browserPins)>=2);
+ std::vector<BYTE> runtime0(0x100000),runtime1(0x100000),unreviewedRuntime(0x100000);
+ auto module0=reinterpret_cast<HMODULE>(runtime0.data()),module1=reinterpret_cast<HMODULE>(runtime1.data());
+ assert(HookBoundary<0>(module0));auto firstString=boundaries[0].originalString;
+ assert(HookBoundary<1>(module1));assert(installedHooks==4);
+ assert(boundaries[0].originalString==firstString&&boundaries[0].originalString!=boundaries[1].originalString);
+ assert(HookBoundary<0>(module0)&&installedHooks==4);
+ assert(!HookBoundary<0>(reinterpret_cast<HMODULE>(unreviewedRuntime.data()))&&installedHooks==4);
+ assert(!InstallBoundary(nullptr)&&!InstallBoundary(GetModuleHandleW(nullptr))&&installedHooks==4);
  std::string head="<html><head><style>"+std::string(2400,' ')+"</style></head><body>";
  const HeaderPin pin{head.size(),18,2400,"5759a956b737c1ba4755b47ec52b11a3766c413aba9719eca00af75f7fea9bd5"};
  std::wstring prefix(head.begin(),head.end()),suffix=L"Unicode specimen: \u73ab\u7470 \u00e9 \u0627\u0644\u0646\u0635 \U0001f339 </body></html>",themed;
