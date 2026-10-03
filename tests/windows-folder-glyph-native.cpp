@@ -62,8 +62,33 @@ int main(int argc,char** argv){
  IMAGELISTDRAWPARAMS draw{sizeof(draw)};draw.himl=images;draw.i=0;draw.hdcDst=dc;draw.cx=draw.cy=width;draw.rgbBk=CLR_NONE;draw.rgbFg=CLR_DEFAULT;draw.fStyle=ILD_TRANSPARENT|ILD_SCALE;
  memset(pixels,0,width*height*4);assert(SUCCEEDED(NavigationPinHook(nullptr,&draw)));GdiFlush();std::vector<DWORD> actual(pixels,pixels+width*height);
  memset(pixels,0,width*height*4);assert(SUCCEEDED(originalImageListDraw(nullptr,&draw)));GdiFlush();assert(actual==std::vector<DWORD>(pixels,pixels+width*height));
+ // Acquisition has a separate raster identity and retains caller ownership.
+ originalImageListGetIcon=&ImageList_GetIcon;
+ auto iconPixels=[](HICON icon){int size=FolderGlyph::IconSize(icon);assert(size>0);DWORD* pixels=nullptr;auto bitmap=FolderGlyph::Bitmap(size,&pixels);HDC buffer=CreateCompatibleDC(nullptr);assert(bitmap&&buffer);auto before=SelectObject(buffer,bitmap);memset(pixels,0,size*size*4);assert(DrawIconEx(buffer,0,0,icon,size,size,0,nullptr,DI_NORMAL));GdiFlush();std::vector<DWORD> copy(pixels,pixels+size*size);SecureZeroMemory(pixels,size*size*4);SelectObject(buffer,before);DeleteDC(buffer);DeleteObject(bitmap);return copy;};
+ for(unsigned open=0;open<2;open++) {
+  SHSTOCKICONINFO identity{sizeof(identity)};assert(SUCCEEDED(SHGetStockIconInfo(open?SIID_FOLDEROPEN:SIID_FOLDER,SHGSI_SYSICONINDEX,&identity)));
+  HICON native=nullptr;assert(SUCCEEDED(stock->GetIcon(identity.iSysImageIndex,ILD_NORMAL,&native))&&native);auto baselinePixels=iconPixels(native);int size=FolderGlyph::IconSize(native);
+  stockQueries=0;HICON themed=FolderGlyph::Acquire(native,ILD_NORMAL,true);assert(themed&&iconPixels(themed)!=baselinePixels&&FolderGlyph::IconSize(themed)==size);assert(stockQueries==0);DestroyIcon(themed);
+  // Acquiring the themed icon did not alter the original shell list.
+  assert(SUCCEEDED(stock->GetIcon(identity.iSysImageIndex,ILD_NORMAL,&native))&&native);assert(iconPixels(native)==baselinePixels);
+  assert(FolderGlyph::Acquire(native,ILD_NORMAL,false)==native);
+  fixtureContrast=true;assert(FolderGlyph::Acquire(native,ILD_NORMAL,true)==native);fixtureContrast=false;
+  fixtureOwner=unrelated;assert(FolderGlyph::Acquire(native,ILD_NORMAL,true)==native);fixtureOwner=explorer;
+  enabled=false;assert(FolderGlyph::Acquire(native,ILD_NORMAL,true)==native);enabled=true;
+  assert(FolderGlyph::Acquire(native,INDEXTOOVERLAYMASK(1),true)==native);
+  auto originalGetIcon=originalImageListGetIcon;originalImageListGetIcon=[](HIMAGELIST,int,UINT)->HICON{return nullptr;};assert(FolderGlyph::Acquire(native,ILD_NORMAL,true)==native);originalImageListGetIcon=originalGetIcon;
+  // The same list slot stops matching after a customized glyph replaces it.
+  IImageList* mutableList=nullptr;assert(SUCCEEDED(stock->Clone(__uuidof(IImageList),reinterpret_cast<void**>(&mutableList)))&&mutableList);DestroyIcon(native);
+  HICON acquired=nullptr;assert(SUCCEEDED(mutableList->GetIcon(identity.iSysImageIndex,ILD_NORMAL,&acquired))&&acquired);auto genericPixels=iconPixels(acquired);assert(genericPixels==baselinePixels);HICON changed=FolderGlyph::Acquire(acquired,ILD_NORMAL,true);assert(iconPixels(changed)!=genericPixels);DestroyIcon(changed);
+  DWORD* customPixels=nullptr;HBITMAP custom=FolderGlyph::Bitmap(size,&customPixels);assert(custom);std::fill_n(customPixels,size*size,0xff14dc32u);assert(SUCCEEDED(mutableList->Replace(identity.iSysImageIndex,custom,nullptr)));DeleteObject(custom);
+  assert(SUCCEEDED(mutableList->GetIcon(identity.iSysImageIndex,ILD_NORMAL,&acquired))&&acquired);assert(FolderGlyph::Acquire(acquired,ILD_NORMAL,true)==acquired);DestroyIcon(acquired);mutableList->Release();
+  DWORD objects=GetGuiResources(GetCurrentProcess(),GR_USEROBJECTS),gdi=GetGuiResources(GetCurrentProcess(),GR_GDIOBJECTS);
+  for(unsigned n=0;n<24;n++){assert(SUCCEEDED(stock->GetIcon(identity.iSysImageIndex,ILD_NORMAL,&native))&&native);themed=FolderGlyph::Acquire(native,ILD_NORMAL,true);assert(themed);DestroyIcon(themed);}
+  assert(GetGuiResources(GetCurrentProcess(),GR_USEROBJECTS)==objects&&GetGuiResources(GetCurrentProcess(),GR_GDIOBJECTS)==gdi);
+ }
+
  ImageList_Destroy(images);SelectObject(dc,prior);DeleteObject(bitmap);DeleteDC(dc);stock->Release();enabled=false;FolderGlyph::Uninit();assert(FolderGlyph::frames.empty());
  DWORD baseline=GetGuiResources(GetCurrentProcess(),GR_GDIOBJECTS);
  for(unsigned cycle=0;cycle<3;cycle++){assert(FolderGlyph::Build(fill,edge));FolderGlyph::Uninit();assert(GetGuiResources(GetCurrentProcess(),GR_GDIOBJECTS)==baseline);}
- DestroyWindow(explorer);DestroyWindow(unrelated);CoUninitialize();puts("PASS: exact stock replacement at six sizes, extended-request preservation, unknown/overlay/crop/contrast/window fallback, custom glyph preservation, no paint shell queries and stable cache cleanup");
+ DestroyWindow(explorer);DestroyWindow(unrelated);CoUninitialize();puts("PASS: exact stock replacement at six sizes, extended-request preservation, unknown/overlay/crop/contrast/window fallback, custom glyph preservation, no paint shell queries, caller-owned generic acquisition, current-slot custom preservation and stable cache cleanup");
 }

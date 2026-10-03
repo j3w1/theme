@@ -2,7 +2,7 @@
 // @id j3w1-explorer-native
 // @name j3w1 Explorer native colors
 // @description Generated native Explorer canvas and text adapter; exact host only
-// @version 1.4
+// @version 1.5
 // @author j3w1
 // @include explorer.exe
 // @architecture x86-64
@@ -284,6 +284,7 @@ using ImageListDrawFn=HRESULT(__cdecl*)(void*,IMAGELISTDRAWPARAMS*);
 static ImageListDrawFn originalImageListDraw;
 static decltype(&ImageList_GetImageCount) imageListCount;
 static decltype(&ImageList_GetIconSize) imageListSize;
+static decltype(&ImageList_GetIcon) originalImageListGetIcon;
 static HWND PaintOwner(HDC dc) {
     HWND window=WindowFromDC(dc);
     return window?window:paintWindows.empty()?nullptr:paintWindows.back();
@@ -294,7 +295,7 @@ static HWND PaintOwner(HDC dc) {
 namespace FolderGlyph {
 struct Stock { bool open; std::vector<DWORD> pixels; };
 struct Frame { int size; HBITMAP bitmap=nullptr; DWORD* pixels=nullptr;
-    HIMAGELIST images[2]{}; std::vector<Stock> stock; };
+    HIMAGELIST images[2]{}; std::vector<Stock> stock,iconStock; };
 [[clang::no_destroy]] static std::mutex lock;
 [[clang::no_destroy]] static std::vector<Frame> frames;
 static thread_local bool painting=false;
@@ -348,6 +349,15 @@ static HBITMAP Bitmap(int size,DWORD** pixels) {
     info.bmiHeader.biPlanes=1;info.bmiHeader.biBitCount=32;
     return CreateDIBSection(nullptr,&info,DIB_RGB_COLORS,reinterpret_cast<void**>(pixels),nullptr,0);
 }
+// Read only the current HICON's dimensions; monochrome and unknown icons stay native.
+static int IconSize(HICON icon) {
+    ICONINFO info{};if(!icon||!GetIconInfo(icon,&info))return 0;
+    BITMAP bitmap{};bool known=info.hbmColor&&GetObjectW(info.hbmColor,sizeof(bitmap),&bitmap)==sizeof(bitmap);
+    if(info.hbmColor)DeleteObject(info.hbmColor);
+    if(info.hbmMask)DeleteObject(info.hbmMask);
+    return known&&bitmap.bmWidth==bitmap.bmHeight&&bitmap.bmWidth>0&&bitmap.bmWidth<=256?bitmap.bmWidth:0;
+}
+
 static bool Build(COLORREF fill,COLORREF edge) {
     SHSTOCKICONINFO info[2]{{sizeof(SHSTOCKICONINFO)},{sizeof(SHSTOCKICONINFO)}};
     if(FAILED(SHGetStockIconInfo(SIID_FOLDER,SHGSI_SYSICONINDEX,&info[0]))
@@ -366,10 +376,27 @@ static bool Build(COLORREF fill,COLORREF edge) {
         DC dc(CreateCompatibleDC(nullptr));if(!dc.value)return false;
         dc.prior=SelectObject(dc.value,frame.bitmap);
         if(!dc.prior||dc.prior==HGDI_ERROR)return false;
+        auto captureIcon=[&](HICON icon,bool open) {
+            if(IconSize(icon)!=size)return;
+            memset(frame.pixels,0,size*size*4);
+            if(DrawIconEx(dc.value,0,0,icon,size,size,0,nullptr,DI_NORMAL)) {
+                GdiFlush();std::vector<DWORD> pixels(frame.pixels,frame.pixels+size*size);
+                if(std::any_of(pixels.begin(),pixels.end(),[](DWORD p){return p!=0;})
+                   &&std::none_of(frame.iconStock.begin(),frame.iconStock.end(),[&](auto const& stock){return stock.open==open&&stock.pixels==pixels;}))
+                    frame.iconStock.push_back({open,std::move(pixels)});
+            }
+            SecureZeroMemory(frame.pixels,size*size*4);
+        };
+        for(unsigned open=0;open<2;open++)for(UINT flags:{UINT(SHGSI_ICON|SHGSI_SMALLICON),UINT(SHGSI_ICON|SHGSI_LARGEICON)}) {
+            SHSTOCKICONINFO icon{sizeof(icon)};
+            if(SUCCEEDED(SHGetStockIconInfo(open?SIID_FOLDEROPEN:SIID_FOLDER,flags,&icon))&&icon.hIcon){captureIcon(icon.hIcon,open!=0);DestroyIcon(icon.hIcon);}
+        }
         for(int kind=0;kind<=4;kind++) {
             List images;
             if(FAILED(SHGetImageList(kind,__uuidof(IImageList),reinterpret_cast<void**>(&images.value))))continue;
             for(unsigned open=0;open<2;open++) {
+                HICON icon=nullptr;
+                if(SUCCEEDED(images.value->GetIcon(info[open].iSysImageIndex,ILD_NORMAL,&icon))&&icon){captureIcon(icon,open!=0);DestroyIcon(icon);}
                 memset(frame.pixels,0,size*size*4);
                 IMAGELISTDRAWPARAMS draw{sizeof(draw)};draw.himl=reinterpret_cast<HIMAGELIST>(images.value);
                 draw.i=info[open].iSysImageIndex;draw.hdcDst=dc.value;draw.cx=draw.cy=size;
@@ -392,6 +419,34 @@ static HWND Owner(HDC dc) {
     GUITHREADINFO state{sizeof(state)};
     return GetGUIThreadInfo(GetCurrentThreadId(),&state)?state.hwndActive:nullptr;
 }
+// ExplorerFrame acquires tab glyphs through ImageList_GetIcon, bypassing Draw.
+// Match complete, unscaled current pixels against stock references prewarmed at
+// initialization. The returned replacement is caller-owned, just like the native
+// API result; the source image list and every custom/overlay icon are untouched.
+static HICON Acquire(HICON icon,UINT flags,bool reviewedCaller) {
+    if(!reviewedCaller||!enabled.load()||painting||drawingTheme||HighContrast()
+       ||flags!=ILD_NORMAL||!originalImageListGetIcon)return icon;
+    HWND window=Owner(nullptr);DWORD process=0;
+    if(!window||!GetWindowThreadProcessId(window,&process)||process!=GetCurrentProcessId()||!ExplorerWindow(window))return icon;
+    int size=IconSize(icon);if(!size)return icon;
+    std::unique_lock guard(lock);if(!enabled.load())return icon;
+    auto found=std::find_if(frames.begin(),frames.end(),[&](auto const& frame){return frame.size==size;});
+    if(found==frames.end())return icon;
+    auto& frame=*found;DC dc(CreateCompatibleDC(nullptr));if(!dc.value)return icon;
+    dc.prior=SelectObject(dc.value,frame.bitmap);if(!dc.prior||dc.prior==HGDI_ERROR)return icon;
+    memset(frame.pixels,0,size*size*4);int matched=-1;
+    if(DrawIconEx(dc.value,0,0,icon,size,size,0,nullptr,DI_NORMAL)) {
+        GdiFlush();for(auto const& stock:frame.iconStock)
+            if(memcmp(frame.pixels,stock.pixels.data(),size*size*4)==0){matched=stock.open?1:0;break;}
+    }
+    SecureZeroMemory(frame.pixels,size*size*4);
+    if(matched<0)return icon;
+    painting=true;HICON replacement=originalImageListGetIcon(frame.images[matched],0,ILD_NORMAL);painting=false;
+    if(!replacement)return icon;
+    if(!DestroyIcon(icon)){DestroyIcon(replacement);return icon;}
+    return replacement;
+}
+
 static bool Draw(void* self,IMAGELISTDRAWPARAMS* request,HRESULT* result) {
     if(!enabled.load()||painting||drawingTheme||HighContrast()||!request
        ||(request->cbSize!=sizeof(*request)&&request->cbSize!=96)
@@ -493,6 +548,14 @@ static HRESULT __cdecl NavigationPinHook(void* self,IMAGELISTDRAWPARAMS* request
     SelectObject(buffer,previous);DeleteObject(bitmap);DeleteDC(buffer);
     return FAILED(result)?original():result;
 }
+static HICON WINAPI FolderIconHook(HIMAGELIST images,int index,UINT flags) {
+    HICON icon=originalImageListGetIcon(images,index,flags);
+    HMODULE caller=nullptr;
+    bool reviewed=GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS|GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+        reinterpret_cast<LPCWSTR>(__builtin_return_address(0)),&caller)
+        &&caller==GetModuleHandleW(L"ExplorerFrame.dll");
+    return FolderGlyph::Acquire(icon,flags,reviewed);
+}
 static bool InitNavigationPin() {
     HANDLE snapshot=CreateToolhelp32Snapshot(TH32CS_SNAPMODULE,GetCurrentProcessId());
     if(snapshot==INVALID_HANDLE_VALUE)return false;
@@ -507,7 +570,10 @@ static bool InitNavigationPin() {
     imageListCount=(decltype(imageListCount))GetProcAddress(module,"ImageList_GetImageCount");
     imageListSize=(decltype(imageListSize))GetProcAddress(module,"ImageList_GetIconSize");
     void* draw=FindExactSymbol(module,L"public: virtual long __cdecl CImageList::Draw(struct _IMAGELISTDRAWPARAMS *)");
-    return imageListCount && imageListSize && draw && Wh_SetFunctionHook(draw,(void*)NavigationPinHook,(void**)&originalImageListDraw);
+    void* getIcon=reinterpret_cast<void*>(GetProcAddress(module,"ImageList_GetIcon"));
+    return imageListCount && imageListSize && draw && getIcon
+        && Wh_SetFunctionHook(draw,(void*)NavigationPinHook,(void**)&originalImageListDraw)
+        && Wh_SetFunctionHook(getIcon,(void*)FolderIconHook,(void**)&originalImageListGetIcon);
 }
 static bool InitMarquee() {
     HMODULE frame=GetModuleHandleW(L"ExplorerFrame.dll"),dui=GetModuleHandleW(L"dui70.dll");

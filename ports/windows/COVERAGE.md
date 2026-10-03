@@ -329,6 +329,17 @@ queries no shell content, reads no files and constructs no image lists. Temporar
 source pixels are cleared before returning. Controlled unload releases the owned
 cache and repaints Explorer through the existing adapter lifecycle.
 
+ExplorerFrame's recorded tab-icon acquisition uses ImageList_GetIcon rather than
+the draw path. The same adapter hooks only the exact reviewed comctl32 export,
+requires an ExplorerFrame caller and an active owned Explorer window, and
+compares unscaled current HICON pixels against independently prewarmed closed/open
+stock references. Only normal, exact generic glyphs receive a caller-owned red
+icon; the shared shell image list is unchanged. Unknown callers, sizes, flags,
+custom glyphs and high contrast keep the original result. No image index grants
+admission. Native tests cover retained source pixels, same-slot customization,
+failed replacement, fallback and stable GDI/user-object cleanup. Live tab-icon
+and rollback acceptance remain separate checks.
+
 The prototype rendered red generic folders in the sample Details view and in
 repainted navigation rows. Existing special-folder glyphs and a populated folder's
 large thumbnail stayed native. Final generated-candidate visual and lifecycle
@@ -345,4 +356,10 @@ A single admitted UI thread captures the existing entries and restores only
 its own values. Font, padding, placement, access keys and hit testing stay native.
 High contrast and adapter removal restore the entries; later app replacements
 are preserved. Existing core-cached badges may require reopening the app. Live
-badge appearance and rollback acceptance remain separate checks.
+badge appearance and rollback acceptance remain separate checks. The installed
+1.2.3 Notepad and 1.0.3 Paint candidate showed dark badges, red borders and rose
+letters. Public Restore -Latest returned the previous adapter versions; a fresh
+empty Notepad then showed native gray badges. The already-open core cache is
+not a claim of immediate visual restoration. Public Update and automatic Test
+passed, and a newly launched empty Notepad process showed the dark/red/rose badges
+again. Final complete-host lifecycle acceptance remains open.

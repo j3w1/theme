@@ -790,4 +790,35 @@ The new runtime entry points were measured through an isolated empty public
 WebView2 controller. Focused source checks and complete native DLL linking passed,
 including independent runtime storage, unknown-module refusal and the existing
 Unicode, header, file ownership, partial-write and unload regressions. Live
-normal/large-route revalidation after installation remains required.
+normal and large-file sample routes rendered black backgrounds, rose prose
+and the accepted reading layout after installation. The large-file route
+initially exposed an empty gray surface before its themed document loaded;
+that startup surface is still unresolved. These observations do not establish
+runtime accessibility or DPI coverage.
+
+
+### Latest native appearance observations
+
+The installed shared chrome candidate retains black Notepad editor, toolbar and
+status regions and black Paint ribbon regions. The inspected fresh empty Notepad
+caption remained native gray; a second window created after hook initialization
+in that same process displayed a black caption. The creation trace captured an
+actual caption request, confirming class admission while leaving first-window
+startup timing unresolved. The existing Paint caption was red while active
+and gray while inactive. Paint still draws a gray opaque workspace around its
+unchanged white sample canvas. An earlier public metadata probe found no exposed
+DesktopBackground, BackgroundColor, CanvasBorderColor or WorkspaceBackground
+member on the exact Canvas and D2DSwapChainPanel classes. This excludes no future
+documented customization path, but the current root background does not recolor
+that opaque drawing surface. No artwork or palette color is substituted.
+
+Explorer generic folders in the file list and navigation use the red glyphs.
+Its generic tab icon remains yellow, and a native folder tooltip remains gray.
+The previous DrawIconEx trace identified menu and preview-control icons rather
+than the tab glyph; that rejected candidate is not integrated. The new bounded
+acquisition and tooltip observers retain native API results and record only
+numeric identity, caller, owner and paint metadata. Acquisition now proved a
+24px generic closed-folder HICON from ExplorerFrame on two harmless folder
+navigations. The source adapter covers that route through complete stock-glyph
+identity and caller-owned replacement; installed visual acceptance is pending. Remaining appearance gates
+are open; this candidate is not ready for merge.

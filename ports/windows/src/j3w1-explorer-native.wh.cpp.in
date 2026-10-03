@@ -284,6 +284,7 @@ using ImageListDrawFn=HRESULT(__cdecl*)(void*,IMAGELISTDRAWPARAMS*);
 static ImageListDrawFn originalImageListDraw;
 static decltype(&ImageList_GetImageCount) imageListCount;
 static decltype(&ImageList_GetIconSize) imageListSize;
+static decltype(&ImageList_GetIcon) originalImageListGetIcon;
 static HWND PaintOwner(HDC dc) {
     HWND window=WindowFromDC(dc);
     return window?window:paintWindows.empty()?nullptr:paintWindows.back();
@@ -335,6 +336,14 @@ static HRESULT __cdecl NavigationPinHook(void* self,IMAGELISTDRAWPARAMS* request
     SelectObject(buffer,previous);DeleteObject(bitmap);DeleteDC(buffer);
     return FAILED(result)?original():result;
 }
+static HICON WINAPI FolderIconHook(HIMAGELIST images,int index,UINT flags) {
+    HICON icon=originalImageListGetIcon(images,index,flags);
+    HMODULE caller=nullptr;
+    bool reviewed=GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS|GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+        reinterpret_cast<LPCWSTR>(__builtin_return_address(0)),&caller)
+        &&caller==GetModuleHandleW(L"ExplorerFrame.dll");
+    return FolderGlyph::Acquire(icon,flags,reviewed);
+}
 static bool InitNavigationPin() {
     HANDLE snapshot=CreateToolhelp32Snapshot(TH32CS_SNAPMODULE,GetCurrentProcessId());
     if(snapshot==INVALID_HANDLE_VALUE)return false;
@@ -349,7 +358,10 @@ static bool InitNavigationPin() {
     imageListCount=(decltype(imageListCount))GetProcAddress(module,"ImageList_GetImageCount");
     imageListSize=(decltype(imageListSize))GetProcAddress(module,"ImageList_GetIconSize");
     void* draw=FindExactSymbol(module,L"public: virtual long __cdecl CImageList::Draw(struct _IMAGELISTDRAWPARAMS *)");
-    return imageListCount && imageListSize && draw && Wh_SetFunctionHook(draw,(void*)NavigationPinHook,(void**)&originalImageListDraw);
+    void* getIcon=reinterpret_cast<void*>(GetProcAddress(module,"ImageList_GetIcon"));
+    return imageListCount && imageListSize && draw && getIcon
+        && Wh_SetFunctionHook(draw,(void*)NavigationPinHook,(void**)&originalImageListDraw)
+        && Wh_SetFunctionHook(getIcon,(void*)FolderIconHook,(void**)&originalImageListGetIcon);
 }
 static bool InitMarquee() {
     HMODULE frame=GetModuleHandleW(L"ExplorerFrame.dll"),dui=GetModuleHandleW(L"dui70.dll");
