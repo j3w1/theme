@@ -2,7 +2,7 @@
 // @id j3w1-paint-chrome
 // @name j3w1 Paint chrome
 // @description Exact-package Paint chrome resources; document and artwork colors remain native
-// @version 1.0.2
+// @version 1.0.3
 // @author j3w1
 // @include mspaint.exe
 // @architecture x86-64
@@ -237,6 +237,9 @@ static constexpr Rule rules[]={
  {L"ToggleButtonForegroundIndeterminateDisabled",{255,138,85,89},L"color.text.disabled"},
  {L"ToggleButtonBackgroundIndeterminateDisabled",{255,22,11,11},L"color.interaction.disabled.bg"},
  {L"ToggleButtonBorderBrushIndeterminateDisabled",{255,125,19,16},L"color.border.disabled"},
+ {L"KeyTipBackground",{255,22,11,11},L"color.surface.raised"},
+ {L"KeyTipBorderBrush",{255,229,57,53},L"color.border.overlay"},
+ {L"KeyTipForeground",{255,233,148,153},L"color.text.default"},
 };
 static bool Same(Color a,Color b){return a.A==b.A&&a.R==b.R&&a.G==b.G&&a.B==b.B;}
 static bool Identity(ProjectedObject const& a,ProjectedObject const& b){
@@ -430,8 +433,43 @@ static bool ApplyNativeBrush(std::vector<OwnedNativeBrush>& entries,SolidColorBr
  return UpdateNativeBrush(entries.back(),target,true,[&]{return brush.Color();},[&](Color c){brush.Color(c);},failure);
 }
 
-struct ThreadState { HWND channel=nullptr; WNDPROC original=nullptr; std::deque<Root> roots; std::vector<OwnedNativeBrush> nativeBrushes; std::vector<PendingRoot> pending; bool busy=false,queued=false,cleaning=false; unsigned ticks=0; };
+struct ThreadState { ControlResources keyTips; HWND channel=nullptr; WNDPROC original=nullptr; std::deque<Root> roots; std::vector<OwnedNativeBrush> nativeBrushes; std::vector<PendingRoot> pending; bool busy=false,queued=false,cleaning=false; unsigned ticks=0; };
 static thread_local ThreadState* uiState=nullptr;
+// Core-created keyboard badges resolve Application.Resources directly, outside
+// the admitted chrome element tree. Only the three documented color keys are
+// application scoped. Exactly one UI thread owns these restorable entries.
+static std::atomic<DWORD> keyTipOwnerThread{0};
+static bool KeyTipResource(std::wstring_view key) {
+ return key==L"KeyTipBackground"||key==L"KeyTipBorderBrush"||key==L"KeyTipForeground";
+}
+static bool ClaimKeyTipOwner(DWORD thread) {
+ if(!thread)return false;DWORD expected=0;
+ return keyTipOwnerThread.compare_exchange_strong(expected,thread)||expected==thread;
+}
+static void ReleaseKeyTipOwner(DWORD thread) {
+ keyTipOwnerThread.compare_exchange_strong(thread,0);
+}
+static bool RestoreKeyTips(ThreadState& state) noexcept {
+ if(keyTipOwnerThread.load()!=GetCurrentThreadId())return true;
+ if(!RestoreControlResources(state.keyTips))return false;
+ ReleaseKeyTipOwner(GetCurrentThreadId());return true;
+}
+static bool ApplyKeyTips(ThreadState& state) noexcept {
+ if(!ClaimKeyTipOwner(GetCurrentThreadId()))return true;
+ if(state.keyTips.owner)return true;
+ try {
+  auto app=Factory(L"Microsoft.UI.Xaml.Application").as<IApplicationStatics>().Current();
+  if(!app){ReleaseKeyTipOwner(GetCurrentThreadId());return false;}
+  state.keyTips.owner=app.Resources();
+  for(auto const& rule:rules)if(KeyTipResource(rule.key)) {
+   hstring key(rule.key);auto applied=SolidColorBrush(rule.color);
+   state.keyTips.keys.push_back({key,nullptr,applied});auto& owned=state.keyTips.keys.back();
+   if(!ApplyControlKey(owned,[&]{return LocalResource(state.keyTips.owner,key);},
+      [&](auto const& value){state.keyTips.owner.Insert(box_value(key),value);}))throw hresult_error(E_FAIL);
+  }
+  return true;
+ }catch(...) {RestoreKeyTips(state);return false;}
+}
 static std::atomic<bool> enabled{false},factoryReady{false},contentReady{false},windowFactoryReady{false},windowContentReady{false};
 static UINT dispatchMessage=0;
 static constexpr UINT_PTR timerId=0x4a334953;
@@ -865,7 +903,9 @@ static void Track(UIElement const& content,DesktopWindowXamlSource const& source
 
 static void Refresh(ThreadState& state) noexcept {
  if(state.busy)return;state.busy=true;state.queued=false;
- if(!enabled.load()||HighContrast())RestoreNativeBrushes(state.nativeBrushes);
+ const bool active=enabled.load()&&!HighContrast();
+ if(!active){RestoreKeyTips(state);RestoreNativeBrushes(state.nativeBrushes);}
+ else if(!state.roots.empty())ApplyKeyTips(state);
  for(auto it=state.pending.begin();it!=state.pending.end();) {
   bool finished=!enabled.load()||HighContrast();
   try {
@@ -895,7 +935,8 @@ static void Schedule() {
 
 [[clang::no_destroy]] static std::vector<ThreadState*> retiredCleanup;
 static bool RestoreThreadState(ThreadState& state) noexcept {
- bool restored=RestoreNativeBrushes(state.nativeBrushes);
+ bool restored=RestoreKeyTips(state);
+ restored=RestoreNativeBrushes(state.nativeBrushes)&&restored;
  for(auto& root:state.roots) {
   if(root.layout.value)try {
    if(auto element=root.element.get())element.LayoutUpdated(root.layout);

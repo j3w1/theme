@@ -45,6 +45,14 @@ static void Stop() {
 }
 int main(int argc, char** argv) {
     assert(argc == 2);
+    if(strcmp(argv[1],"keytip-ownership") == 0) {
+        for(auto key:{L"KeyTipBackground",L"KeyTipBorderBrush",L"KeyTipForeground"})assert(KeyTipResource(key));
+        for(auto key:{L"KeyTipFontFamily",L"KeyTipThemePadding",L"Background",L"KeyTipForegroundExtra",L"DocumentForeground"})assert(!KeyTipResource(key));
+        assert(!ClaimKeyTipOwner(0));assert(ClaimKeyTipOwner(11));assert(ClaimKeyTipOwner(11));assert(!ClaimKeyTipOwner(12));
+        ReleaseKeyTipOwner(12);assert(keyTipOwnerThread==11);ReleaseKeyTipOwner(11);assert(keyTipOwnerThread==0);
+        assert(ClaimKeyTipOwner(12));ReleaseKeyTipOwner(12);
+        puts("PASS: only documented keytip color resources admitted; one UI-thread owner and exact release");return 0;
+    }
     if(strcmp(argv[1],"backing-admission") == 0) {
         assert(PaintBackingAdmission(L"PaintUI.AppChrome",L"Microsoft.UI.Xaml.Controls.Grid",1,true));
         assert(!PaintBackingAdmission(L"PaintUI.Canvas",L"Microsoft.UI.Xaml.Controls.Grid",1,true));

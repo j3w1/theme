@@ -333,3 +333,16 @@ The prototype rendered red generic folders in the sample Details view and in
 repainted navigation rows. Existing special-folder glyphs and a populated folder's
 large thumbnail stayed native. Final generated-candidate visual and lifecycle
 acceptance remain open.
+
+
+### Keyboard access-key badges
+
+The exact-package Notepad and Paint adapters own only KeyTipBackground,
+KeyTipBorderBrush and KeyTipForeground in Application.Resources. Microsoft
+[documents this application-level customization](https://learn.microsoft.com/en-us/windows/apps/develop/input/access-keys#keytip-style);
+the core KeyTip manager reads those keys directly, outside control resources.
+A single admitted UI thread captures the existing entries and restores only
+its own values. Font, padding, placement, access keys and hit testing stay native.
+High contrast and adapter removal restore the entries; later app replacements
+are preserved. Existing core-cached badges may require reopening the app. Live
+badge appearance and rollback acceptance remain separate checks.
