@@ -37749,7 +37749,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-+O5RBgAREImHcH1o3bIIuRkMEeqrUOwYsTTFN5q5AcU=",
+      "subjectDigest": "sha256-UF4kn1VLTDtCTvseREUb0lHR7BaG0QYNEyzaf/OLSgY=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37782,7 +37782,7 @@
           "path": "dist/windows-settings.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-settings.json",
-          "digest": "sha256-gVhuLqfxb+uRjl74CpKMdpu34j1eTgS0mqJAVu7vLFo="
+          "digest": "sha256-gYJfnTzPXWpytKgSwoQv7Z6D1ntrKqlNmUSCR/4pZtA="
         },
         {
           "path": "dist/terminal-fragment.json",
@@ -37956,7 +37956,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-NOviUt20K5GffsvuLlK3JGYahuKESadGPlOwKz5bJus="
+          "digest": "sha256-1KY+hngP0d6XNW+S9212JFihBrmQqmD7XrFTBoojvuQ="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
@@ -37986,7 +37986,7 @@
           "path": "dist/j3w1-calculator.wh.cpp",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/j3w1-calculator.wh.cpp",
-          "digest": "sha256-z2fKulIcR6rAekmJ/eC/WgrLzPSp/9/XjFmXioEWPPc="
+          "digest": "sha256-YZRduHa5H7sX83zAVz1cWmqj3scmQSev39OZJZolpWM="
         },
         {
           "path": "dist/j3w1-calculator.json",
@@ -38565,7 +38565,14 @@
             "paint-chrome.resource.ToggleButtonBorderBrushCheckedPointerOver",
             "paint-chrome.resource.ToggleButtonBorderBrushCheckedPressed",
             "paint-chrome.resource.ToggleButtonBorderBrushIndeterminatePointerOver",
-            "paint-chrome.resource.ToggleButtonBorderBrushIndeterminatePressed"
+            "paint-chrome.resource.ToggleButtonBorderBrushIndeterminatePressed",
+            "calculator.resource.ToggleButtonBorderBrushPointerOver",
+            "calculator.resource.ToggleButtonBorderBrushPressed",
+            "calculator.resource.ToggleButtonBorderBrushChecked",
+            "calculator.resource.ToggleButtonBorderBrushCheckedPointerOver",
+            "calculator.resource.ToggleButtonBorderBrushCheckedPressed",
+            "calculator.resource.ToggleButtonBorderBrushIndeterminatePointerOver",
+            "calculator.resource.ToggleButtonBorderBrushIndeterminatePressed"
           ],
           "value": "#e53935",
           "eligibility": {
@@ -38611,7 +38618,9 @@
             "paint-chrome.resource.TextControlBorderBrush",
             "paint-chrome.resource.ButtonBorderBrush",
             "paint-chrome.resource.ToggleButtonBorderBrush",
-            "paint-chrome.resource.ToggleButtonBorderBrushIndeterminate"
+            "paint-chrome.resource.ToggleButtonBorderBrushIndeterminate",
+            "calculator.resource.ToggleButtonBorderBrush",
+            "calculator.resource.ToggleButtonBorderBrushIndeterminate"
           ],
           "value": "#a3676b",
           "eligibility": {
@@ -38659,7 +38668,10 @@
             "paint-chrome.resource.ButtonBorderBrushDisabled",
             "paint-chrome.resource.ToggleButtonBorderBrushDisabled",
             "paint-chrome.resource.ToggleButtonBorderBrushCheckedDisabled",
-            "paint-chrome.resource.ToggleButtonBorderBrushIndeterminateDisabled"
+            "paint-chrome.resource.ToggleButtonBorderBrushIndeterminateDisabled",
+            "calculator.resource.ToggleButtonBorderBrushDisabled",
+            "calculator.resource.ToggleButtonBorderBrushCheckedDisabled",
+            "calculator.resource.ToggleButtonBorderBrushIndeterminateDisabled"
           ],
           "value": "#7d1310",
           "eligibility": {
@@ -39871,7 +39883,10 @@
             "paint-chrome.resource.AppBarToggleButtonBackgroundDisabled",
             "paint-chrome.resource.ToggleButtonBackgroundDisabled",
             "paint-chrome.resource.ToggleButtonBackgroundCheckedDisabled",
-            "paint-chrome.resource.ToggleButtonBackgroundIndeterminateDisabled"
+            "paint-chrome.resource.ToggleButtonBackgroundIndeterminateDisabled",
+            "calculator.resource.ToggleButtonBackgroundDisabled",
+            "calculator.resource.ToggleButtonBackgroundCheckedDisabled",
+            "calculator.resource.ToggleButtonBackgroundIndeterminateDisabled"
           ],
           "value": "#160b0b",
           "eligibility": {
@@ -39979,7 +39994,9 @@
             "paint-chrome.resource.AppBarButtonBackgroundPointerOver",
             "paint-chrome.resource.AppBarToggleButtonBackgroundPointerOver",
             "paint-chrome.resource.ToggleButtonBackgroundPointerOver",
-            "paint-chrome.resource.ToggleButtonBackgroundIndeterminatePointerOver"
+            "paint-chrome.resource.ToggleButtonBackgroundIndeterminatePointerOver",
+            "calculator.resource.ToggleButtonBackgroundPointerOver",
+            "calculator.resource.ToggleButtonBackgroundIndeterminatePointerOver"
           ],
           "value": "#1c0a09",
           "eligibility": {
@@ -40074,7 +40091,10 @@
             "paint-chrome.resource.AppBarToggleButtonBackgroundCheckedPressed",
             "paint-chrome.resource.ToggleButtonBackgroundPressed",
             "paint-chrome.resource.ToggleButtonBackgroundCheckedPressed",
-            "paint-chrome.resource.ToggleButtonBackgroundIndeterminatePressed"
+            "paint-chrome.resource.ToggleButtonBackgroundIndeterminatePressed",
+            "calculator.resource.ToggleButtonBackgroundPressed",
+            "calculator.resource.ToggleButtonBackgroundCheckedPressed",
+            "calculator.resource.ToggleButtonBackgroundIndeterminatePressed"
           ],
           "value": "#420f0c",
           "eligibility": {
@@ -40174,7 +40194,9 @@
             "paint-chrome.resource.AppBarToggleButtonBackgroundChecked",
             "paint-chrome.resource.AppBarToggleButtonBackgroundCheckedPointerOver",
             "paint-chrome.resource.ToggleButtonBackgroundChecked",
-            "paint-chrome.resource.ToggleButtonBackgroundCheckedPointerOver"
+            "paint-chrome.resource.ToggleButtonBackgroundCheckedPointerOver",
+            "calculator.resource.ToggleButtonBackgroundChecked",
+            "calculator.resource.ToggleButtonBackgroundCheckedPointerOver"
           ],
           "value": "#531310",
           "eligibility": {
@@ -41968,7 +41990,9 @@
             "paint-chrome.resource.CommandBarBackground",
             "paint-chrome.resource.CommandBarBackgroundOpen",
             "paint-chrome.resource.ToggleButtonBackground",
-            "paint-chrome.resource.ToggleButtonBackgroundIndeterminate"
+            "paint-chrome.resource.ToggleButtonBackgroundIndeterminate",
+            "calculator.resource.ToggleButtonBackground",
+            "calculator.resource.ToggleButtonBackgroundIndeterminate"
           ],
           "value": "#000000",
           "eligibility": {
@@ -42752,7 +42776,16 @@
             "paint-chrome.resource.ToggleButtonForegroundCheckedPressed",
             "paint-chrome.resource.ToggleButtonForegroundIndeterminate",
             "paint-chrome.resource.ToggleButtonForegroundIndeterminatePointerOver",
-            "paint-chrome.resource.ToggleButtonForegroundIndeterminatePressed"
+            "paint-chrome.resource.ToggleButtonForegroundIndeterminatePressed",
+            "calculator.resource.ToggleButtonForeground",
+            "calculator.resource.ToggleButtonForegroundPointerOver",
+            "calculator.resource.ToggleButtonForegroundPressed",
+            "calculator.resource.ToggleButtonForegroundChecked",
+            "calculator.resource.ToggleButtonForegroundCheckedPointerOver",
+            "calculator.resource.ToggleButtonForegroundCheckedPressed",
+            "calculator.resource.ToggleButtonForegroundIndeterminate",
+            "calculator.resource.ToggleButtonForegroundIndeterminatePointerOver",
+            "calculator.resource.ToggleButtonForegroundIndeterminatePressed"
           ],
           "value": "#e99499",
           "eligibility": {
@@ -42799,7 +42832,10 @@
             "paint-chrome.resource.MenuFlyoutItemKeyboardAcceleratorTextForegroundDisabled",
             "paint-chrome.resource.ToggleButtonForegroundDisabled",
             "paint-chrome.resource.ToggleButtonForegroundCheckedDisabled",
-            "paint-chrome.resource.ToggleButtonForegroundIndeterminateDisabled"
+            "paint-chrome.resource.ToggleButtonForegroundIndeterminateDisabled",
+            "calculator.resource.ToggleButtonForegroundDisabled",
+            "calculator.resource.ToggleButtonForegroundCheckedDisabled",
+            "calculator.resource.ToggleButtonForegroundIndeterminateDisabled"
           ],
           "value": "#8a5559",
           "eligibility": {

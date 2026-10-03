@@ -283,7 +283,7 @@ static bool ChromeControl(DependencyObject const& object) {
         ||object.try_as<ToggleSwitch>()||object.try_as<ComboBox>()||object.try_as<ListViewItem>()
         ||object.try_as<TextBlock>()||object.try_as<IconElement>()
         // WinUI popup resources resolve at the host, above its buttons/text.
-        ||object.try_as<ToolTip>()||object.try_as<CommandBar>();
+        ||object.try_as<ToolTip>()||object.try_as<CommandBar>()||object.try_as<FlyoutPresenter>();
 }
 static void RefreshControlResources(DependencyObject const& object) {
     if(!ChromeControl(object))return;
@@ -510,7 +510,7 @@ static void ApplyOwnedBrush(DependencyObject const& object,DependencyProperty co
 // Preserve the exact local baseline and later app changes with the same owned
 // dependency-property path used by focus brushes. Never change item templates.
 static void ApplyPopupFrame(DependencyObject const& object) {
- if(!object.try_as<MenuFlyoutPresenter>()&&!object.try_as<ToolTip>())return;
+ if(!object.try_as<MenuFlyoutPresenter>()&&!object.try_as<ToolTip>()&&!object.try_as<FlyoutPresenter>())return;
  ApplyOwnedBrush(object,Control::BackgroundProperty(),object.try_as<ToolTip>()?L"ToolTipBackgroundBrush":L"SolidBackgroundFillColorBaseBrush");
  ApplyOwnedBrush(object,Control::ForegroundProperty(),L"TextFillColorPrimaryBrush");
  ApplyOwnedBrush(object,Control::BorderBrushProperty(),L"SystemControlTransientBorderBrush");

@@ -48,7 +48,14 @@
       "paint-chrome.resource.ToggleButtonBorderBrushCheckedPointerOver",
       "paint-chrome.resource.ToggleButtonBorderBrushCheckedPressed",
       "paint-chrome.resource.ToggleButtonBorderBrushIndeterminatePointerOver",
-      "paint-chrome.resource.ToggleButtonBorderBrushIndeterminatePressed"
+      "paint-chrome.resource.ToggleButtonBorderBrushIndeterminatePressed",
+      "calculator.resource.ToggleButtonBorderBrushPointerOver",
+      "calculator.resource.ToggleButtonBorderBrushPressed",
+      "calculator.resource.ToggleButtonBorderBrushChecked",
+      "calculator.resource.ToggleButtonBorderBrushCheckedPointerOver",
+      "calculator.resource.ToggleButtonBorderBrushCheckedPressed",
+      "calculator.resource.ToggleButtonBorderBrushIndeterminatePointerOver",
+      "calculator.resource.ToggleButtonBorderBrushIndeterminatePressed"
     ],
     "color.surface.desktop": [
       "native.desktop"
@@ -148,7 +155,9 @@
       "paint-chrome.resource.CommandBarBackground",
       "paint-chrome.resource.CommandBarBackgroundOpen",
       "paint-chrome.resource.ToggleButtonBackground",
-      "paint-chrome.resource.ToggleButtonBackgroundIndeterminate"
+      "paint-chrome.resource.ToggleButtonBackgroundIndeterminate",
+      "calculator.resource.ToggleButtonBackground",
+      "calculator.resource.ToggleButtonBackgroundIndeterminate"
     ],
     "color.terminal.cursor": [
       "terminal.cursor"
@@ -274,7 +283,16 @@
       "paint-chrome.resource.ToggleButtonForegroundCheckedPressed",
       "paint-chrome.resource.ToggleButtonForegroundIndeterminate",
       "paint-chrome.resource.ToggleButtonForegroundIndeterminatePointerOver",
-      "paint-chrome.resource.ToggleButtonForegroundIndeterminatePressed"
+      "paint-chrome.resource.ToggleButtonForegroundIndeterminatePressed",
+      "calculator.resource.ToggleButtonForeground",
+      "calculator.resource.ToggleButtonForegroundPointerOver",
+      "calculator.resource.ToggleButtonForegroundPressed",
+      "calculator.resource.ToggleButtonForegroundChecked",
+      "calculator.resource.ToggleButtonForegroundCheckedPointerOver",
+      "calculator.resource.ToggleButtonForegroundCheckedPressed",
+      "calculator.resource.ToggleButtonForegroundIndeterminate",
+      "calculator.resource.ToggleButtonForegroundIndeterminatePointerOver",
+      "calculator.resource.ToggleButtonForegroundIndeterminatePressed"
     ],
     "color.text.bright": [
       "native.bright",
@@ -354,7 +372,10 @@
       "paint-chrome.resource.MenuFlyoutItemKeyboardAcceleratorTextForegroundDisabled",
       "paint-chrome.resource.ToggleButtonForegroundDisabled",
       "paint-chrome.resource.ToggleButtonForegroundCheckedDisabled",
-      "paint-chrome.resource.ToggleButtonForegroundIndeterminateDisabled"
+      "paint-chrome.resource.ToggleButtonForegroundIndeterminateDisabled",
+      "calculator.resource.ToggleButtonForegroundDisabled",
+      "calculator.resource.ToggleButtonForegroundCheckedDisabled",
+      "calculator.resource.ToggleButtonForegroundIndeterminateDisabled"
     ],
     "color.interaction.selection.bg": [
       "native.selection",
@@ -386,7 +407,9 @@
       "paint-chrome.resource.AppBarToggleButtonBackgroundChecked",
       "paint-chrome.resource.AppBarToggleButtonBackgroundCheckedPointerOver",
       "paint-chrome.resource.ToggleButtonBackgroundChecked",
-      "paint-chrome.resource.ToggleButtonBackgroundCheckedPointerOver"
+      "paint-chrome.resource.ToggleButtonBackgroundCheckedPointerOver",
+      "calculator.resource.ToggleButtonBackgroundChecked",
+      "calculator.resource.ToggleButtonBackgroundCheckedPointerOver"
     ],
     "color.surface.raised": [
       "powertoys.inactive",
@@ -443,7 +466,9 @@
       "paint-chrome.resource.TextControlBorderBrush",
       "paint-chrome.resource.ButtonBorderBrush",
       "paint-chrome.resource.ToggleButtonBorderBrush",
-      "paint-chrome.resource.ToggleButtonBorderBrushIndeterminate"
+      "paint-chrome.resource.ToggleButtonBorderBrushIndeterminate",
+      "calculator.resource.ToggleButtonBorderBrush",
+      "calculator.resource.ToggleButtonBorderBrushIndeterminate"
     ],
     "font.family.mono": [
       "font.family",
@@ -573,7 +598,9 @@
       "paint-chrome.resource.AppBarButtonBackgroundPointerOver",
       "paint-chrome.resource.AppBarToggleButtonBackgroundPointerOver",
       "paint-chrome.resource.ToggleButtonBackgroundPointerOver",
-      "paint-chrome.resource.ToggleButtonBackgroundIndeterminatePointerOver"
+      "paint-chrome.resource.ToggleButtonBackgroundIndeterminatePointerOver",
+      "calculator.resource.ToggleButtonBackgroundPointerOver",
+      "calculator.resource.ToggleButtonBackgroundIndeterminatePointerOver"
     ],
     "color.interaction.pressed.bg": [
       "windhawk.resource.ControlFillColorTertiary",
@@ -612,7 +639,10 @@
       "paint-chrome.resource.AppBarToggleButtonBackgroundCheckedPressed",
       "paint-chrome.resource.ToggleButtonBackgroundPressed",
       "paint-chrome.resource.ToggleButtonBackgroundCheckedPressed",
-      "paint-chrome.resource.ToggleButtonBackgroundIndeterminatePressed"
+      "paint-chrome.resource.ToggleButtonBackgroundIndeterminatePressed",
+      "calculator.resource.ToggleButtonBackgroundPressed",
+      "calculator.resource.ToggleButtonBackgroundCheckedPressed",
+      "calculator.resource.ToggleButtonBackgroundIndeterminatePressed"
     ],
     "color.action.primary.bg": [
       "windhawk.resource.AccentFillColorDefault",
@@ -734,7 +764,10 @@
       "paint-chrome.resource.AppBarToggleButtonBackgroundDisabled",
       "paint-chrome.resource.ToggleButtonBackgroundDisabled",
       "paint-chrome.resource.ToggleButtonBackgroundCheckedDisabled",
-      "paint-chrome.resource.ToggleButtonBackgroundIndeterminateDisabled"
+      "paint-chrome.resource.ToggleButtonBackgroundIndeterminateDisabled",
+      "calculator.resource.ToggleButtonBackgroundDisabled",
+      "calculator.resource.ToggleButtonBackgroundCheckedDisabled",
+      "calculator.resource.ToggleButtonBackgroundIndeterminateDisabled"
     ],
     "color.border.disabled": [
       "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | BorderBrush@Disabled",
@@ -749,7 +782,10 @@
       "paint-chrome.resource.ButtonBorderBrushDisabled",
       "paint-chrome.resource.ToggleButtonBorderBrushDisabled",
       "paint-chrome.resource.ToggleButtonBorderBrushCheckedDisabled",
-      "paint-chrome.resource.ToggleButtonBorderBrushIndeterminateDisabled"
+      "paint-chrome.resource.ToggleButtonBorderBrushIndeterminateDisabled",
+      "calculator.resource.ToggleButtonBorderBrushDisabled",
+      "calculator.resource.ToggleButtonBorderBrushCheckedDisabled",
+      "calculator.resource.ToggleButtonBorderBrushIndeterminateDisabled"
     ],
     "color.border.default": [
       "windows-11-start-menu-styler | StartMenu.CategoryControl > Grid > Border | BorderBrush"

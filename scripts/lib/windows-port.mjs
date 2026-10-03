@@ -178,7 +178,8 @@ export function windowsArtifacts({manifest,host,resolved}){
  const calculatorRules=Object.entries(calculator.resources).map(([key,role])=>{
   const navigation=/^NavigationViewItem(?:Background|Foreground)(?:PointerOver|Pressed|Disabled|Checked(?:PointerOver|Pressed|Disabled)?|Selected(?:PointerOver|Pressed|Disabled)?)?$/.test(key)
    ||key==='NavigationViewItemSeparatorForeground';
-  if((!navigation&&!/^[A-Za-z][A-Za-z0-9]+(?:Brush(?:PointerOver|Pressed|Disabled)?|Background|Foreground)$/.test(key))||key.startsWith('Equation'))throw Error('Invalid Calculator UI brush');
+  const toggle=/^ToggleButton(?:Background|Foreground|BorderBrush)(?:PointerOver|Pressed|Disabled|(?:Checked|Indeterminate)(?:PointerOver|Pressed|Disabled)?)?$/.test(key);
+  if((!navigation&&!toggle&&!/^[A-Za-z][A-Za-z0-9]+(?:Brush(?:PointerOver|Pressed|Disabled)?|Background|Foreground)$/.test(key))||key.startsWith('Equation'))throw Error('Invalid Calculator UI brush');
   const [r,g,b]=rgb(val(role));
   return `    {L"${key}",{255,${r},${g},${b}},L"${role}"},`;
  }).join('\n');

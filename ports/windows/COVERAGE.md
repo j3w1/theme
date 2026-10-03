@@ -381,3 +381,24 @@ unchanged. Markdown keeps its executable/control/helper digest gates; text
 preview keeps its host/template gates. WebView pixels, document content and
 unrecognized controls or colors remain native. Installed startup and Restore
 acceptance remain separate checks.
+
+### Calculator Scientific flyout and toggles
+
+The installed Scientific Trigonometry flyout used a native FlyoutPresenter
+with a neutral acrylic background, separately from the result MenuFlyoutPresenter.
+Its 2nd/hyp controls use the native ToggleButton resource ladder. The adapter
+now admits FlyoutPresenter through the same owned frame/resource path and maps
+normal, hover, pressed, checked, indeterminate and disabled toggle brushes to
+the existing canonical roles. Native states, templates, geometry and calculation
+commands remain intact. These public style contracts are shown in the pinned
+[Calculator application styles](https://github.com/microsoft/calculator/blob/d125246a4e19842ce1332e6c7839cf0e110027d8/src/Calculator/App.xaml)
+and [Scientific operators](https://github.com/microsoft/calculator/blob/d125246a4e19842ce1332e6c7839cf0e110027d8/src/Calculator/Views/CalculatorScientificOperators.xaml).
+Installed appearance and restore checks remain separate from native ownership
+and lifecycle regressions.
+
+The installed 1.4.5 candidate showed black Trigonometry and Function flyout
+frames, red frame edges and rose labels. Both 2nd and hyp toggles showed themed
+active states and returned to their black resting fill after pointer exit.
+No calculation command was invoked; mode and result were preserved. Disabling
+the candidate restored native gray controls. This bounded check does not accept
+all Calculator modes, startup, DPI changes or accessibility switching.

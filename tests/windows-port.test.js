@@ -138,6 +138,13 @@ test('Calculator uses an exact package and separate primary, disabled and intera
  assert.equal(roles.NavigationViewItemBackgroundDisabled,'color.interaction.disabled.bg');
  assert.equal(roles.NavigationViewItemForegroundDisabled,'color.text.disabled');
  assert.equal(roles.NavigationViewItemSeparatorForeground,'color.border.divider');
+ // Scientific CaptionToggleButtonStyle inherits the framework state resources.
+ // Keep its full native ladder aligned with the shared app-chrome contract.
+ const toggleRoles=Object.entries(host.winuiChromeResources).filter(([key])=>key.startsWith('ToggleButton'));
+ assert.ok(toggleRoles.length>=30);
+ for(const [key,role]of toggleRoles)assert.equal(roles[key],role,key);
+ for(const state of ['PointerOver','Pressed','Disabled','Checked','CheckedPointerOver','CheckedPressed','Indeterminate'])
+  assert.ok(Object.hasOwn(roles,'ToggleButtonBackground'+state),state);
  assert.ok(!Object.keys(roles).some(key=>key.startsWith('Equation')));
  const settings=await readJson('ports/windows/dist/windows-settings.json');
  const mod=settings.bundledMods.find(x=>x.id==='j3w1-calculator');

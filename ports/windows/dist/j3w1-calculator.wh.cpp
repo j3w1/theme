@@ -2,7 +2,7 @@
 // @id j3w1-calculator
 // @name j3w1 Calculator resources
 // @description Version-checked Calculator UI resources; equation colors remain native
-// @version 1.4.4
+// @version 1.4.5
 // @author j3w1
 // @include CalculatorApp.exe
 // @architecture x86-64
@@ -131,6 +131,42 @@ static constexpr Rule rules[] = {
     {L"ToolTipForegroundBrush",{255,233,148,153},L"color.text.default"},
     {L"AcrylicInAppFillColorDefaultBrush",{255,22,11,11},L"color.surface.raised"},
     {L"SystemControlTransientBorderBrush",{255,229,57,53},L"color.border.overlay"},
+    {L"ToggleButtonForeground",{255,233,148,153},L"color.text.default"},
+    {L"ToggleButtonBackground",{255,0,0,0},L"color.surface.canvas"},
+    {L"ToggleButtonBorderBrush",{255,163,103,107},L"color.border.control"},
+    {L"ToggleButtonForegroundPointerOver",{255,233,148,153},L"color.text.default"},
+    {L"ToggleButtonBackgroundPointerOver",{255,28,10,9},L"color.interaction.hover.bg"},
+    {L"ToggleButtonBorderBrushPointerOver",{255,229,57,53},L"color.border.active"},
+    {L"ToggleButtonForegroundPressed",{255,233,148,153},L"color.text.default"},
+    {L"ToggleButtonBackgroundPressed",{255,66,15,12},L"color.interaction.pressed.bg"},
+    {L"ToggleButtonBorderBrushPressed",{255,229,57,53},L"color.border.active"},
+    {L"ToggleButtonForegroundDisabled",{255,138,85,89},L"color.text.disabled"},
+    {L"ToggleButtonBackgroundDisabled",{255,22,11,11},L"color.interaction.disabled.bg"},
+    {L"ToggleButtonBorderBrushDisabled",{255,125,19,16},L"color.border.disabled"},
+    {L"ToggleButtonForegroundChecked",{255,233,148,153},L"color.text.default"},
+    {L"ToggleButtonBackgroundChecked",{255,83,19,16},L"color.interaction.selection.bg"},
+    {L"ToggleButtonBorderBrushChecked",{255,229,57,53},L"color.border.active"},
+    {L"ToggleButtonForegroundCheckedPointerOver",{255,233,148,153},L"color.text.default"},
+    {L"ToggleButtonBackgroundCheckedPointerOver",{255,83,19,16},L"color.interaction.selection.bg"},
+    {L"ToggleButtonBorderBrushCheckedPointerOver",{255,229,57,53},L"color.border.active"},
+    {L"ToggleButtonForegroundCheckedPressed",{255,233,148,153},L"color.text.default"},
+    {L"ToggleButtonBackgroundCheckedPressed",{255,66,15,12},L"color.interaction.pressed.bg"},
+    {L"ToggleButtonBorderBrushCheckedPressed",{255,229,57,53},L"color.border.active"},
+    {L"ToggleButtonForegroundCheckedDisabled",{255,138,85,89},L"color.text.disabled"},
+    {L"ToggleButtonBackgroundCheckedDisabled",{255,22,11,11},L"color.interaction.disabled.bg"},
+    {L"ToggleButtonBorderBrushCheckedDisabled",{255,125,19,16},L"color.border.disabled"},
+    {L"ToggleButtonForegroundIndeterminate",{255,233,148,153},L"color.text.default"},
+    {L"ToggleButtonBackgroundIndeterminate",{255,0,0,0},L"color.surface.canvas"},
+    {L"ToggleButtonBorderBrushIndeterminate",{255,163,103,107},L"color.border.control"},
+    {L"ToggleButtonForegroundIndeterminatePointerOver",{255,233,148,153},L"color.text.default"},
+    {L"ToggleButtonBackgroundIndeterminatePointerOver",{255,28,10,9},L"color.interaction.hover.bg"},
+    {L"ToggleButtonBorderBrushIndeterminatePointerOver",{255,229,57,53},L"color.border.active"},
+    {L"ToggleButtonForegroundIndeterminatePressed",{255,233,148,153},L"color.text.default"},
+    {L"ToggleButtonBackgroundIndeterminatePressed",{255,66,15,12},L"color.interaction.pressed.bg"},
+    {L"ToggleButtonBorderBrushIndeterminatePressed",{255,229,57,53},L"color.border.active"},
+    {L"ToggleButtonForegroundIndeterminateDisabled",{255,138,85,89},L"color.text.disabled"},
+    {L"ToggleButtonBackgroundIndeterminateDisabled",{255,22,11,11},L"color.interaction.disabled.bg"},
+    {L"ToggleButtonBorderBrushIndeterminateDisabled",{255,125,19,16},L"color.border.disabled"},
 };
 static std::atomic<bool> enabled{false}, admitted{false};
 static std::atomic<HWND> coreWindow{nullptr};
@@ -372,7 +408,7 @@ static bool ChromeControl(DependencyObject const& object) {
         ||object.try_as<ToggleSwitch>()||object.try_as<ComboBox>()||object.try_as<ListViewItem>()
         ||object.try_as<TextBlock>()||object.try_as<IconElement>()
         // WinUI popup resources resolve at the host, above its buttons/text.
-        ||object.try_as<ToolTip>()||object.try_as<CommandBar>();
+        ||object.try_as<ToolTip>()||object.try_as<CommandBar>()||object.try_as<FlyoutPresenter>();
 }
 static void RefreshControlResources(DependencyObject const& object) {
     if(!ChromeControl(object))return;
@@ -599,7 +635,7 @@ static void ApplyOwnedBrush(DependencyObject const& object,DependencyProperty co
 // Preserve the exact local baseline and later app changes with the same owned
 // dependency-property path used by focus brushes. Never change item templates.
 static void ApplyPopupFrame(DependencyObject const& object) {
- if(!object.try_as<MenuFlyoutPresenter>()&&!object.try_as<ToolTip>())return;
+ if(!object.try_as<MenuFlyoutPresenter>()&&!object.try_as<ToolTip>()&&!object.try_as<FlyoutPresenter>())return;
  ApplyOwnedBrush(object,Control::BackgroundProperty(),object.try_as<ToolTip>()?L"ToolTipBackgroundBrush":L"SolidBackgroundFillColorBaseBrush");
  ApplyOwnedBrush(object,Control::ForegroundProperty(),L"TextFillColorPrimaryBrush");
  ApplyOwnedBrush(object,Control::BorderBrushProperty(),L"SystemControlTransientBorderBrush");
