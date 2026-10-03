@@ -37749,7 +37749,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-dwJL+IakM/G1RCcbpmTlVzbuP7JcFFnqH+lWCUufU64=",
+      "subjectDigest": "sha256-HKA6c5BMm+3xAz+SEehm3Ya8Aun5mEWtqMdBnbfyHg0=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37818,7 +37818,7 @@
           "path": "dist/windows-11-file-explorer-styler.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-11-file-explorer-styler.json",
-          "digest": "sha256-UIYVi6yh1EH+OwmRItZELHVEDdXTFXM4OHr4FJ/g3QE="
+          "digest": "sha256-MwDJIvWbQp5nWMpOaK5nZIWiR/+qMALKr8iGoaJ0VQo="
         },
         {
           "path": "dist/windows-11-notification-center-styler.json",
@@ -37956,7 +37956,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-9ADiOBuqWTvbTNFktztKIbgO1MXkb3RI11TVLDO15Oo="
+          "digest": "sha256-QFpa+pYublnnIGXDYc7VN7MBbOmg47pocZZa9ZY52IY="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
@@ -39973,6 +39973,7 @@
             "nativeExplorer.hover",
             "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@PointerOver",
             "windows-11-file-explorer-styler | MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates | Background@SubMenuOpened",
+            "windows-11-file-explorer-styler | AppBarButton > Grid#Root@CommonStates > Border#AppBarButtonInnerBorder | Background@OverflowSubMenuOpened",
             "windows-11-start-menu-styler | web .suggestion:hover, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover | background-color",
             "calculator.resource.CalcButtonFillColorHoverBrush",
             "calculator.resource.CalcButtonAltFillColorHoverBrush",

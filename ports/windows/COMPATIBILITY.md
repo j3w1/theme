@@ -630,6 +630,16 @@ and Disabled keep their separate mappings. This matches the already styled
 hover surface without replacing the flyout or changing its commands. Generated
 palette regression is distinct from live verification on the recorded host.
 
+Explorer command-bar flyouts also use AppBarButton overflow parents. The Microsoft
+[CommandBarFlyout template](https://github.com/microsoft/microsoft-ui-xaml/blob/main/src/controls/dev/CommandBarFlyout/CommandBarFlyout_themeresources.xaml)
+sets `AppBarButtonInnerBorder.Background` in `OverflowSubMenuOpened`. That state
+now maps to the same hover role; OverflowNormal, OverflowPressed and
+OverflowDisabled retain their existing roles. A bounded live comparison on the
+recorded host showed Open with and Compress to parents staying dark red while
+their child menus were open, and Open with returning to black when Compress to
+was opened. No command was executed. This verifies those two parent transitions,
+not every extension menu or keyboard/DPI/accessibility variant.
+
 ### Notification action buttons
 
 Toast action buttons (`Button#VerbButton`) use the canonical secondary-button

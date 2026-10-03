@@ -667,6 +667,7 @@
             "Background@OverflowPointerOver": "color.interaction.hover.bg",
             "Background@OverflowPressed": "color.interaction.pressed.bg",
             "Background@OverflowDisabled": "color.surface.canvas",
+            "Background@OverflowSubMenuOpened": "color.interaction.hover.bg",
             "BorderBrush": "color.border.divider",
             "CornerRadius": "radius.none"
           }

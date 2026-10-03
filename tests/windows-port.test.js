@@ -173,12 +173,20 @@ test('Explorer marquee settings encode canonical alpha and module compatibility'
 
 test('Explorer submenu stays on the hover palette while its child flyout is open',async()=>{
  const config=await readJson('ports/windows/dist/windows-11-file-explorer-styler.json');
- const submenu=config.controlStyles.find(x=>x.target==='MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates');
- const value=name=>submenu.styles.find(s=>s.startsWith(`${name}=`))?.split('=').slice(1).join('=');
- assert.equal(value('Background@SubMenuOpened'),value('Background@PointerOver'));
- assert.ok(value('Background@SubMenuOpened'));
- assert.notEqual(value('Background@SubMenuOpened'),value('Background@Normal'));
- assert.notEqual(value('Background@SubMenuOpened'),value('Background@Disabled'));
+ const tokens=(await readJson('exports/tokens.resolved.json')).profiles.default.tokens;
+ for(const [target,opened,hover,normal,disabled] of [
+  ['MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates','SubMenuOpened','PointerOver','Normal','Disabled'],
+  ['AppBarButton > Grid#Root@CommonStates > Border#AppBarButtonInnerBorder','OverflowSubMenuOpened','OverflowPointerOver','OverflowNormal','OverflowDisabled'],
+ ]){
+  const submenu=config.controlStyles.find(x=>x.target===target);
+  assert.ok(submenu,target);
+  const value=name=>submenu.styles.find(s=>s.startsWith(`${name}=`))?.split('=').slice(1).join('=');
+  const role=tokens['color.interaction.hover.bg'];
+  assert.equal(value(`Background@${opened}`),windowsStyleValue(`Background@${opened}`,{type:role.type,resolved:role.value}),target);
+  assert.equal(value(`Background@${opened}`),value(`Background@${hover}`),target);
+  assert.notEqual(value(`Background@${opened}`),value(`Background@${normal}`),target);
+  assert.notEqual(value(`Background@${opened}`),value(`Background@${disabled}`),target);
+ }
 });
 
 test('toast actions use the secondary palette across native states without changing content or geometry',async()=>{

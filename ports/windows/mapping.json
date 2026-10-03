@@ -587,6 +587,7 @@
       "nativeExplorer.hover",
       "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@PointerOver",
       "windows-11-file-explorer-styler | MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates | Background@SubMenuOpened",
+      "windows-11-file-explorer-styler | AppBarButton > Grid#Root@CommonStates > Border#AppBarButtonInnerBorder | Background@OverflowSubMenuOpened",
       "windows-11-start-menu-styler | web .suggestion:hover, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover | background-color",
       "calculator.resource.CalcButtonFillColorHoverBrush",
       "calculator.resource.CalcButtonAltFillColorHoverBrush",
