@@ -32242,7 +32242,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-MV2G78NSiCF+odXbIc9LaqPZvu5s6JQhloGVMbqVUrs=",
+      "subjectDigest": "sha256-xK0XNXahrwgVGK9vM5UOR/HtlT4w62uv7wPvk3ae588=",
       "evidencePath": null,
       "surfaces": {
         "interface": {
@@ -32297,7 +32297,7 @@
           "path": "dist/j3w1.tdesktop-theme",
           "install": "File install: open with Telegram Desktop, then Apply this theme and Keep changes. The cloud link in the guide, when published, installs the same theme with automatic updates.",
           "source": "ports/telegram/dist/j3w1.tdesktop-theme",
-          "digest": "sha256-Vlm0O/lB7ZYoTOUgcxXB2lZEhF/BckUYf41HsQLpftI="
+          "digest": "sha256-Vv2KrTbylsUm49iPauwvOkXwsHM4fHbEiLS43SmXeys="
         }
       ],
       "rollback": "Choose the previous Telegram theme in Settings → Chat Settings/Appearance; restore the previous chat background if it was customised.",
@@ -36980,7 +36980,6 @@
             "desktop:msgInReplyBarSelColor",
             "desktop:msgOutReplyBarSelColor",
             "desktop:msgImgReplyBarColor",
-            "desktop:historyFileThumbIconFg",
             "desktop:msgWaveformInActive",
             "desktop:msgWaveformOutActive",
             "desktop:msgBotKbIconFg",
@@ -37007,7 +37006,8 @@
             "android:chat_emojiPanelIconSelected",
             "android:profile_tabSelectedText",
             "android:chats_menuItemCheck",
-            "desktop:dialogsUnreadBg"
+            "desktop:dialogsUnreadBg",
+            "desktop:historyVideoMessageProgressFg"
           ],
           "value": "#f73f35",
           "eligibility": {
@@ -37246,7 +37246,6 @@
             "desktop:msgOutMonoFg",
             "desktop:historyFileInRadialFg",
             "desktop:historyFileOutRadialFg",
-            "desktop:historyFileThumbRadialFg",
             "desktop:mediaInFg",
             "desktop:mediaOutFg",
             "desktop:toastFg",
@@ -37323,18 +37322,16 @@
         },
         {
           "role": "color.text.inverse",
-          "nativeKeys": [
-            "desktop:dialogsUnreadFg"
-          ],
+          "nativeKeys": [],
           "value": "#0c0909",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
-          "state": "mapped",
+          "state": "unsupported",
           "surface": "interface",
-          "reason": "Canonical color.text.inverse for the dark count on light Telegram Desktop badge pills; Desktop reuses the draft and poll text colours as badge fills, so badge text must be dark to read on both. Native keys are listed in mapping.json and use no derived colours.",
+          "reason": "color.text.inverse has no separate native hook in this projection; related controls share the declared canonical role instead.",
           "source": "ports/telegram/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -37498,7 +37495,8 @@
             "desktop:settingsIconFg",
             "desktop:historyFileInIconFg",
             "desktop:historyFileOutIconFg",
-            "desktop:sideBarBadgeFg"
+            "desktop:sideBarBadgeFg",
+            "desktop:historyFileThumbIconFg"
           ],
           "value": "#f4eeee",
           "eligibility": {
@@ -37533,16 +37531,18 @@
         },
         {
           "role": "color.text.on-light",
-          "nativeKeys": [],
+          "nativeKeys": [
+            "desktop:dialogsUnreadFg"
+          ],
           "value": "#0c0909",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
-          "state": "unsupported",
+          "state": "mapped",
           "surface": "interface",
-          "reason": "color.text.on-light has no separate native hook in this projection; related controls share the declared canonical role instead.",
+          "reason": "Canonical color.text.on-light for the dark count on light Telegram Desktop badge pills; Desktop reuses the draft and poll text colours as badge fills, so badge text must be dark to read on both. Native keys are listed in mapping.json and use no derived colours.",
           "source": "ports/telegram/mapping.json",
           "spec": "spec/portability.md"
         },

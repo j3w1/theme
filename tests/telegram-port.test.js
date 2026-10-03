@@ -46,9 +46,16 @@ const effective = (target, key) => {
   }
   return null;
 };
+// Contrast of a glyph on a background, one result per underlay: a translucent
+// background is composited over white media and over black, never measured raw.
+const contrastResults = (fg, bg, min = 4.5) => (bg[3] < 255 ? ["#ffffff", "#000000"] : [null]).map(surface =>
+  ({ surface, ...evaluatePair({ fg: hexToColor(rgbHex(fg), fg[3] / 255), bg: hexToColor(rgbHex(bg), bg[3] / 255), surface: surface && hexToColor(surface), min }) }));
+// Badge pairs are opaque today; a translucent badge would need its row as the
+// underlay, so refuse rather than measure it uncomposited.
 const pairRatio = (fgKey, bgKey, target = "desktop") => {
   const fg = effective(target, fgKey).color, bg = effective(target, bgKey).color;
-  return evaluatePair({ fg: hexToColor(rgbHex(fg), fg[3] / 255), bg: hexToColor(rgbHex(bg), bg[3] / 255), min: 4.5 });
+  assert.equal(bg[3], 255, `${target}:${bgKey} must be opaque to be measured against its glyph`);
+  return evaluatePair({ fg: hexToColor(rgbHex(fg), fg[3] / 255), bg: hexToColor(rgbHex(bg)), min: 4.5 });
 };
 const rgba = (target, key) => values[target].get(key) ?? values[target].get(parent(target, key));
 const roleOf = (target, key) => owner[`${target}:${key}`] ?? owner[`${target}:${parent(target, key)}`];
@@ -254,12 +261,7 @@ test("near-white is restricted to approved on-fill or link-hover roles, and inte
         assert.ok(registry[target].keys.includes(bg), `${target}:${bg} is a registry key`);
         const fill = effective(target, bg), fg = effective(target, key).color;
         assert.ok(fill && fills.has(fill.role), `${target}:${key} sits on ${bg} (${fill?.role ?? "host default"}), not a fill`);
-        // A translucent background is measured over the worst underlays (white
-        // media and black), never as its uncomposited colour.
-        for (const surface of fill.color[3] < 255 ? ["#ffffff", "#000000"] : [null]) {
-          const result = evaluatePair({ fg: hexToColor(rgbHex(fg), fg[3] / 255), bg: hexToColor(rgbHex(fill.color), fill.color[3] / 255), surface: surface && hexToColor(surface), min: 4.5 });
-          assert.ok(result.pass, `${target}:${key} on ${bg}${surface ? ` over ${surface}` : ""}: ${result.ratio}`);
-        }
+        for (const result of contrastResults(fg, fill.color)) assert.ok(result.pass, `${target}:${key} on ${bg}${result.surface ? ` over ${result.surface}` : ""}: ${result.ratio}`);
       }
     }
   }
@@ -283,6 +285,10 @@ test("compositing matters: a translucent scrim is never measured as its raw colo
   const fg = hexToColor("#f4eeee"), scrim = hexToColor("#000000", 0.55);
   assert.equal(evaluatePair({ fg, bg: scrim, min: 4.5 }).pass, true);
   assert.equal(evaluatePair({ fg, bg: scrim, surface: hexToColor("#ffffff"), min: 4.5 }).pass, false);
+  // The helper the near-white check uses must reject it (review delta 3, D3).
+  const results = contrastResults([244, 238, 238, 255], [0, 0, 0, Math.round(0.55 * 255)]);
+  assert.deepEqual(results.map(r => r.surface), ["#ffffff", "#000000"]);
+  assert.equal(results.every(r => r.pass), false);
 });
 
 test("Desktop chat-list badges keep 4.5:1 in every family and row state", () => {
@@ -300,11 +306,21 @@ test("Desktop chat-list badges keep 4.5:1 in every family and row state", () => 
     const fg = foreground[index % 3], result = pairRatio(fg, bg);
     assert.ok(result.pass, `${family} badge: ${fg} on ${bg}: ${result.ratio}`);
   });
+  // The mention badge in the narrow list draws on the unread pill (above).
   const rows = ["dialogsBg", "dialogsBgOver", "dialogsBgActive"];
   ["dialogsDraftFg", "dialogsDraftFgOver", "dialogsDraftFgActive"].forEach((fg, index) => assert.ok(pairRatio(fg, rows[index]).pass, `${fg} on ${rows[index]}`));
-  for (const row of rows) assert.ok(pairRatio("dialogsPollIconFg", row).ratio >= 3, `poll icon on ${row}`);
-  // Badge pills stay visible on their rows.
-  ["dialogsUnreadBg", "dialogsUnreadBgOver", "dialogsUnreadBgActive"].forEach((pill, index) => assert.notDeepEqual(effective("desktop", pill).color, effective("desktop", rows[index]).color, pill));
+  // Every pill, and the count-less unread dot, stands out from its row at 3:1.
+  for (const backgrounds of Object.values(families)) backgrounds.forEach((pill, index) => {
+    const result = pairRatio(pill, rows[index % 3]);
+    assert.ok(result.ratio >= 3, `${pill} pill on ${rows[index % 3]}: ${result.ratio}`);
+  });
+  // Wide icons drawn straight on the rows (dialogs.style, dialogs_layout.style):
+  // unmuted mention/reaction/poll icons on normal and hover rows, the active
+  // glyph (dialogsNameFgActive) on the active row, and the muted glyph set
+  // (the muted pill colours, also used by the mute/pin/lock icons) on all rows.
+  for (const icon of ["dialogsMentionIconFg", "dialogsReactionIconFg", "dialogsPollIconFg"]) for (const row of rows.slice(0, 2)) assert.ok(pairRatio(icon, row).ratio >= 3, `${icon} on ${row}`);
+  assert.ok(pairRatio("dialogsNameFgActive", "dialogsBgActive").ratio >= 3, "active wide glyph");
+  ["dialogsUnreadBgMuted", "dialogsUnreadBgMutedOver", "dialogsUnreadBgMutedActive"].forEach((icon, index) => assert.ok(pairRatio(icon, rows[index]).ratio >= 3, `${icon} glyph on ${rows[index]}`));
 });
 
 test("main native text/background pairs pass 4.5:1 without rounding", () => {

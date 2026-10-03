@@ -355,7 +355,6 @@
       "desktop:msgOutMonoFg",
       "desktop:historyFileInRadialFg",
       "desktop:historyFileOutRadialFg",
-      "desktop:historyFileThumbRadialFg",
       "desktop:mediaInFg",
       "desktop:mediaOutFg",
       "desktop:toastFg",
@@ -668,7 +667,6 @@
       "desktop:msgInReplyBarSelColor",
       "desktop:msgOutReplyBarSelColor",
       "desktop:msgImgReplyBarColor",
-      "desktop:historyFileThumbIconFg",
       "desktop:msgWaveformInActive",
       "desktop:msgWaveformOutActive",
       "desktop:msgBotKbIconFg",
@@ -695,7 +693,8 @@
       "android:chat_emojiPanelIconSelected",
       "android:profile_tabSelectedText",
       "android:chats_menuItemCheck",
-      "desktop:dialogsUnreadBg"
+      "desktop:dialogsUnreadBg",
+      "desktop:historyVideoMessageProgressFg"
     ],
     "color.text.link": [
       "android:dialogTextLink",
@@ -736,7 +735,8 @@
       "desktop:settingsIconFg",
       "desktop:historyFileInIconFg",
       "desktop:historyFileOutIconFg",
-      "desktop:sideBarBadgeFg"
+      "desktop:sideBarBadgeFg",
+      "desktop:historyFileThumbIconFg"
     ],
     "color.text.on-danger": [
       "android:chats_sentErrorIcon",
@@ -1214,7 +1214,7 @@
       "desktop:sideBarBadgeBgMuted",
       "desktop:trayCounterBgMute"
     ],
-    "color.text.inverse": [
+    "color.text.on-light": [
       "desktop:dialogsUnreadFg"
     ]
   },
@@ -1308,7 +1308,6 @@
     "color.text.link-underline": "color.text.link-underline has no separate native hook in this projection; related controls share the declared canonical role instead.",
     "color.text.link-hover": "color.text.link-hover has no separate native hook in this projection; related controls share the declared canonical role instead.",
     "color.text.on-selection": "color.text.on-selection has no separate native hook in this projection; related controls share the declared canonical role instead.",
-    "color.text.on-light": "color.text.on-light has no separate native hook in this projection; related controls share the declared canonical role instead.",
     "color.border.strong": "color.border.strong has no separate native hook in this projection; related controls share the declared canonical role instead.",
     "color.border.overlay": "color.border.overlay has no separate native hook in this projection; related controls share the declared canonical role instead.",
     "color.border.disabled": "color.border.disabled has no separate native hook in this projection; related controls share the declared canonical role instead.",
@@ -1515,6 +1514,7 @@
     "z.drawer": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these.",
     "z.dialog": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these.",
     "z.toast": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these.",
-    "z.skip-link": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    "z.skip-link": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these.",
+    "color.text.inverse": "color.text.inverse has no separate native hook in this projection; related controls share the declared canonical role instead."
   }
 }

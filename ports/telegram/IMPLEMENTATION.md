@@ -49,7 +49,7 @@ Every upstream colour key is in exactly one of three states, and `tests/telegram
 
 Non-colour keys (`wallpaperFileOffset`, `chat_wallpaper_gradient_rotation`, `chat_outBubbleGradientAnimated`) and animated-wallpaper keys are never written.
 
-**Main role assignments** (Android and Desktop project the same role wherever both expose it):
+**Main role assignments.** Android and Desktop project the same role wherever both expose it. The exception is the Desktop chat-list badges; see [Limitations](#limitations).
 
 | Purpose | Role |
 | --- | --- |
@@ -60,8 +60,9 @@ Non-colour keys (`wallpaperFileOffset`, `chat_wallpaper_gradient_rotation`, `cha
 | Names and chrome titles | `text.bright` |
 | Secondary text / timestamps / code comments | `text.muted` / `text.subtle` / `code.syntax.comment` |
 | Links, accents, read and verified ticks | `text.link`, `text.accent`, `text.accent-strong` |
-| Filled buttons (send, FAB, attach, file download, badges, checkboxes) | `action.primary.*` |
-| Glyphs on selection or filled actions | `interaction.selection.text`, `text.on-action` |
+| Filled buttons (send, FAB, attach, file download, checkboxes), Android badges, Desktop sidebar and tray badges | `action.primary.*` |
+| Desktop chat-list badges | light pills: `text.accent-strong`, `text.default`, `text.muted`, with `text.on-light` counts |
+| Glyphs on selection, filled actions and media scrims | `interaction.selection.text`, `text.on-action` |
 | Overlays, ripples, selectors | `interaction.marquee`, `surface.backdrop` |
 
 **Contrast and colour rules, enforced by tests:**
@@ -94,7 +95,12 @@ The same `https://t.me/addtheme/<slug>` link opens the matching document on each
 - **No heading levels.** Messages have no H1–H6, and names and titles share bright rose. Once canonical D-033 lands, they move to `text.heading`.
 - **Android selected bubbles.** Android uses the same message text colour for normal and selected bubbles; Desktop has separate selected foregrounds.
 - **Platform keys differ.** Desktop exposes hover states that Android lacks. Android's outgoing-bubble gradient keys stay unset.
-- **Chat-list badges.** Desktop reuses the draft-label and poll-icon colours as the reaction and poll badge fills, and uses one badge text colour per row state for every badge family. No dark fill can then also be readable label text on the black row. So Desktop badges are light pills (accent, or muted rose when muted) with dark `text.inverse` counts; on the selected row the pill turns near-white or rose with the count in the row colour. Android keeps dark-red badges with near-white counts. A test checks every family and row state (pinned `unread_badge_paint.cpp`) at 4.5:1.
+- **Desktop chat-list badges.** This is a deliberate, host-forced departure from the canonical Badge count variant (`action.primary.bg` with `action.primary.text`).
+  - **Why:** Telegram Desktop reuses the draft-label and poll-icon colours as the reaction and poll badge fills, and uses one count colour per row state for every badge family. No dark fill can also be readable label text on the black row.
+  - **The fills:** Desktop chat-list badges are light pills with dark `text.on-light` counts. Unread pills are `text.accent-strong`, reaction and poll pills are `text.default`, and muted pills are `text.muted`.
+  - **On the selected row:** unread and reaction pills turn near-white and poll and muted pills rose, with the count in the row colour.
+  - **Android and the Desktop sidebar** keep dark-red badges with near-white counts.
+  - **Tested:** a test checks every family and row state, the pills against their rows, and the wide icons drawn on the rows (pinned `unread_badge_paint.cpp`, `dialogs_layout`).
 - **Window title bar.** On Windows, Telegram Desktop's title bar follows Telegram's palette only when Telegram draws its own frame. The system frame is drawn by Windows.
 - **Wallpaper.** Android draws a native two-colour gradient. Desktop scales a 1×2 image of the same two colours. Neither uses a pattern or animation.
 - **Host-controlled colours.** Translucent text and icons without an approved translucent role, chart data, Premium and story artwork, user colours and media keep Telegram's own colours.
