@@ -3,6 +3,7 @@
 #include <shellapi.h>
 #include <shlobj.h>
 #include <commoncontrols.h>
+#include <bcrypt.h>
 #include <cassert>
 #include <cstdio>
 #include <new>
@@ -22,7 +23,34 @@ static BOOL WINAPI FixtureDraw(IMAGELISTDRAWPARAMS* request){Extended(request);a
 #define SystemParametersInfoW FixtureParameters
 #define SHGetStockIconInfo FixtureStock
 #define ImageList_DrawIndirect FixtureDraw
-static BOOL Wh_SetFunctionHook(void*,void*,void**){return TRUE;}
+// The CI host is not the reviewed desktop. Substitute only the metadata
+// returned by native APIs inside this synthetic executable; production DLLs
+// retain their exact version and complete file-hash admission.
+static bool fixtureWicPins=false,fixtureWicVersion=false,fixtureWicHash=false,fixtureHookFailure=false;
+static unsigned fixtureVersionCalls=0,fixtureHashCalls=0,fixtureHookCalls=0;
+static constexpr char fixtureWicDigest[]="ad3f960fc9d612c0289035f1b5c334dd44e423ce6c23059ab5129746cd0646f2";
+static BOOL WINAPI FixtureQueryVersion(LPCVOID block,LPCWSTR key,LPVOID* output,PUINT size) {
+ BOOL result=::VerQueryValueW(block,key,output,size);
+ if(fixtureWicPins&&result&&key&&wcscmp(key,L"\\")==0&&output&&*output&&size&&*size>=sizeof(VS_FIXEDFILEINFO)) {
+  ++fixtureVersionCalls;auto version=static_cast<VS_FIXEDFILEINFO*>(*output);
+  version->dwFileVersionMS=fixtureWicVersion?MAKELONG(0,10):0;
+  version->dwFileVersionLS=fixtureWicVersion?MAKELONG(9549,26100):0;
+ }
+ return result;
+}
+static NTSTATUS WINAPI FixtureFinishHash(BCRYPT_HASH_HANDLE hash,PUCHAR output,ULONG size,ULONG flags) {
+ NTSTATUS result=::BCryptFinishHash(hash,output,size,flags);
+ if(fixtureWicPins&&result>=0&&output&&size==32) {
+  ++fixtureHashCalls;
+  auto nibble=[](char c)->BYTE{return c>='a'?c-'a'+10:c-'0';};
+  for(unsigned n=0;n<32;n++)output[n]=static_cast<BYTE>((nibble(fixtureWicDigest[n*2])<<4)|nibble(fixtureWicDigest[n*2+1]));
+  if(!fixtureWicHash)output[0]^=1;
+ }
+ return result;
+}
+static BOOL Wh_SetFunctionHook(void*,void*,void**) {++fixtureHookCalls;return !fixtureHookFailure;}
+#define VerQueryValueW FixtureQueryVersion
+#define BCryptFinishHash FixtureFinishHash
 static PCWSTR Wh_GetStringSetting(PCWSTR){return L"#000000";}
 static void Wh_FreeStringSetting(PCWSTR){}
 #include "windows-windhawk-symbol-stubs.h"
@@ -34,8 +62,26 @@ static BOOL WINAPI FixtureIcon(HDC dc,int x,int y,HICON icon,int width,int heigh
 }
 static HWND Window(PCWSTR name){WNDCLASSW type{};type.lpfnWndProc=DefWindowProcW;type.hInstance=GetModuleHandleW(nullptr);type.lpszClassName=name;assert(RegisterClassW(&type)||GetLastError()==ERROR_CLASS_ALREADY_EXISTS);auto window=CreateWindowExW(0,name,L"",0,0,0,32,32,nullptr,nullptr,type.hInstance,nullptr);assert(window);return window;}
 int main(int argc,char** argv){
- // Exercise initialization in the opposite apartment too: the adapter must
- // retain the host's existing COM mode, without balancing someone else's init.
+ // Real module admission remains fail closed on a different CI Windows build.
+ // Test native hashing/version inspection independently of COM initialization,
+ // then exercise all admission combinations with controlled API results.
+ auto wicModule=LoadLibraryW(L"windowscodecs.dll");assert(wicModule);
+ bool actualReviewed=FixedModuleVersion(wicModule,MAKELONG(0,10),MAKELONG(9549,26100))
+  &&FolderBitmap::Digest(wicModule,fixtureWicDigest);
+ assert(!FolderBitmap::Digest(wicModule,"0000000000000000000000000000000000000000000000000000000000000000"));
+ assert(FolderBitmap::Init()==actualReviewed);FolderBitmap::Uninit();
+ printf("Native WIC identity: %s; unsupported identities remain refused.\n",actualReviewed?"reviewed":"unreviewed");
+ fixtureWicPins=true;
+ for(bool version:{false,true})for(bool hash:{false,true}) {
+  fixtureWicVersion=version;fixtureWicHash=hash;fixtureVersionCalls=fixtureHashCalls=fixtureHookCalls=0;
+  assert(FolderBitmap::Init()==(version&&hash));
+  assert(fixtureVersionCalls==1&&fixtureHashCalls==(version?1u:0u)&&fixtureHookCalls==(version&&hash?1u:0u));
+  assert((FolderBitmap::retainedFactory!=nullptr)==(version&&hash));FolderBitmap::Uninit();
+ }
+ fixtureWicVersion=fixtureWicHash=true;fixtureHookFailure=true;
+ assert(!FolderBitmap::Init()&&!FolderBitmap::retainedFactory);fixtureHookFailure=false;
+ // Exercise both preexisting COM apartments. Initialization must not unbalance
+ // an MTA when CoInitializeEx reports RPC_E_CHANGED_MODE.
  assert(SUCCEEDED(CoInitializeEx(nullptr,COINIT_MULTITHREADED)));
  assert(FolderBitmap::Init());FolderBitmap::Uninit();CoUninitialize();
  assert(SUCCEEDED(CoInitializeEx(nullptr,COINIT_APARTMENTTHREADED)));
@@ -44,6 +90,7 @@ int main(int argc,char** argv){
  DWORD handlesBefore=0,handlesAfter=0;assert(GetProcessHandleCount(GetCurrentProcess(),&handlesBefore));
  for(unsigned n=0;n<4;n++){assert(FolderBitmap::Init());FolderBitmap::Uninit();}
  assert(GetProcessHandleCount(GetCurrentProcess(),&handlesAfter)&&handlesAfter==handlesBefore);
+ fixtureWicPins=false;FreeLibrary(wicModule);
  const COLORREF fill=RGB(125,19,16),edge=RGB(229,57,53);
  assert(FolderGlyph::Build(fill,edge));assert(FolderGlyph::frames.size()==13);
  HWND explorer=Window(L"CabinetWClass"),unrelated=Window(L"OtherApplication");fixtureOwner=explorer;
