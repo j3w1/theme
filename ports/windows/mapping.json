@@ -157,7 +157,11 @@
       "paint-chrome.resource.ToggleButtonBackground",
       "paint-chrome.resource.ToggleButtonBackgroundIndeterminate",
       "calculator.resource.ToggleButtonBackground",
-      "calculator.resource.ToggleButtonBackgroundIndeterminate"
+      "calculator.resource.ToggleButtonBackgroundIndeterminate",
+      "paint-chrome.caption.BackgroundColor",
+      "paint-chrome.caption.ButtonBackgroundColor",
+      "paint-chrome.caption.InactiveBackgroundColor",
+      "paint-chrome.caption.ButtonInactiveBackgroundColor"
     ],
     "color.terminal.cursor": [
       "terminal.cursor"
@@ -292,7 +296,11 @@
       "calculator.resource.ToggleButtonForegroundCheckedPressed",
       "calculator.resource.ToggleButtonForegroundIndeterminate",
       "calculator.resource.ToggleButtonForegroundIndeterminatePointerOver",
-      "calculator.resource.ToggleButtonForegroundIndeterminatePressed"
+      "calculator.resource.ToggleButtonForegroundIndeterminatePressed",
+      "paint-chrome.caption.ForegroundColor",
+      "paint-chrome.caption.ButtonForegroundColor",
+      "paint-chrome.caption.ButtonHoverForegroundColor",
+      "paint-chrome.caption.ButtonPressedForegroundColor"
     ],
     "color.text.bright": [
       "native.bright",
@@ -339,7 +347,9 @@
       "paint-chrome.resource.MenuFlyoutItemKeyboardAcceleratorTextForeground",
       "paint-chrome.resource.MenuFlyoutSubItemChevron",
       "paint-chrome.resource.MenuFlyoutItemKeyboardAcceleratorTextForegroundPointerOver",
-      "paint-chrome.resource.MenuFlyoutItemKeyboardAcceleratorTextForegroundPressed"
+      "paint-chrome.resource.MenuFlyoutItemKeyboardAcceleratorTextForegroundPressed",
+      "paint-chrome.caption.InactiveForegroundColor",
+      "paint-chrome.caption.ButtonInactiveForegroundColor"
     ],
     "color.text.disabled": [
       "native.disabled",
@@ -600,7 +610,8 @@
       "paint-chrome.resource.ToggleButtonBackgroundPointerOver",
       "paint-chrome.resource.ToggleButtonBackgroundIndeterminatePointerOver",
       "calculator.resource.ToggleButtonBackgroundPointerOver",
-      "calculator.resource.ToggleButtonBackgroundIndeterminatePointerOver"
+      "calculator.resource.ToggleButtonBackgroundIndeterminatePointerOver",
+      "paint-chrome.caption.ButtonHoverBackgroundColor"
     ],
     "color.interaction.pressed.bg": [
       "windhawk.resource.ControlFillColorTertiary",
@@ -642,7 +653,8 @@
       "paint-chrome.resource.ToggleButtonBackgroundIndeterminatePressed",
       "calculator.resource.ToggleButtonBackgroundPressed",
       "calculator.resource.ToggleButtonBackgroundCheckedPressed",
-      "calculator.resource.ToggleButtonBackgroundIndeterminatePressed"
+      "calculator.resource.ToggleButtonBackgroundIndeterminatePressed",
+      "paint-chrome.caption.ButtonPressedBackgroundColor"
     ],
     "color.action.primary.bg": [
       "windhawk.resource.AccentFillColorDefault",

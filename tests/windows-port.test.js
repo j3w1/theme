@@ -599,3 +599,22 @@ test('tampered saved adapter export refuses offline import and keeps recoverable
  assert.equal(f.journal().transactions.at(-1).status,'restore-conflict');
  fs.writeFileSync(mod.backup,backup);f.ok('Restore',{...f.args,latest:true});f.ok('Test',f.args);
 });
+
+test('Paint public caption colors are token-mapped and excluded from Notepad composition',async()=>{
+ const host=await readJson('ports/windows/host.json');
+ const mapping=await readJson('ports/windows/mapping.json');
+ const paint=fs.readFileSync(path.join(source,'dist/j3w1-paint-chrome.wh.cpp'),'utf8');
+ const notepad=fs.readFileSync(path.join(source,'dist/j3w1-notepad-chrome.wh.cpp'),'utf8');
+ assert.equal(Object.keys(host.paintChrome.captionColors).length,12);
+ for(const [key,role] of Object.entries(host.paintChrome.captionColors)) {
+  assert.ok(mapping.mappings[role].includes('paint-chrome.caption.'+key));
+  assert.ok(paint.includes('// '+key+' : '+role));
+ }
+ assert.ok(paint.includes('PublicTitleBar::IsCustomizationSupported()'));
+ assert.ok(paint.includes('bar.ExtendsContentIntoTitleBar()'));
+ assert.ok(paint.includes('WriteOwnedCaption'));
+ assert.ok(!notepad.includes('Microsoft.UI.Windowing.h'));
+ assert.ok(!notepad.includes('PublicTitleBar'));
+ assert.ok(!paint.includes('ResetToDefault('));
+ assert.ok(!paint.includes('SetDragRectangles('));
+});

@@ -22,7 +22,7 @@
 #undef GetCurrentTime
 #include <winrt/Windows.Foundation.h>
 #include <winrt/Windows.Foundation.Collections.h>
-#include <winrt/Microsoft.UI.Xaml.h>
+#include <winrt/Microsoft.UI.Xaml.h>@PUBLIC_CAPTION_INCLUDE@
 #include <winrt/Microsoft.UI.Dispatching.h>
 #include <winrt/Microsoft.UI.Xaml.Hosting.h>
 #include <winrt/Microsoft.UI.Xaml.Controls.h>
@@ -243,7 +243,7 @@ static bool ApplyNativeBrush(std::vector<OwnedNativeBrush>& entries,SolidColorBr
  return UpdateNativeBrush(entries.back(),target,true,[&]{return brush.Color();},[&](Color c){brush.Color(c);},failure);
 }
 
-struct ThreadState { ControlResources keyTips; HWND channel=nullptr; WNDPROC original=nullptr; std::deque<Root> roots; std::vector<OwnedNativeBrush> nativeBrushes; std::vector<PendingRoot> pending; bool busy=false,queued=false,cleaning=false; unsigned ticks=0; };
+@PUBLIC_CAPTION_DECLARATIONS@struct ThreadState { @PUBLIC_CAPTION_STATE@ ControlResources keyTips; HWND channel=nullptr; WNDPROC original=nullptr; std::deque<Root> roots; std::vector<OwnedNativeBrush> nativeBrushes; std::vector<PendingRoot> pending; bool busy=false,queued=false,cleaning=false; unsigned ticks=0; };
 static thread_local ThreadState* uiState=nullptr;
 // Core-created keyboard badges resolve Application.Resources directly, outside
 // the admitted chrome element tree. Only the three documented color keys are
@@ -711,9 +711,9 @@ static void Bridge(Root& root) {
 static bool RootCandidateClass(std::wstring_view name);
 static void Track(UIElement const& content,DesktopWindowXamlSource const& source,Window const& window=nullptr);
 
-static void Refresh(ThreadState& state) noexcept {
+@PUBLIC_CAPTION_IMPLEMENTATION@static void Refresh(ThreadState& state) noexcept {
  if(state.busy)return;state.busy=true;state.queued=false;
- const bool active=enabled.load()&&!HighContrast();
+@PUBLIC_CAPTION_REFRESH@ const bool active=enabled.load()&&!HighContrast();
  if(!active){RestoreKeyTips(state);RestoreNativeBrushes(state.nativeBrushes);}
  else if(!state.roots.empty())ApplyKeyTips(state);
  for(auto it=state.pending.begin();it!=state.pending.end();) {
@@ -745,7 +745,7 @@ static void Schedule() {
 
 [[clang::no_destroy]] static std::vector<ThreadState*> retiredCleanup;
 static bool RestoreThreadState(ThreadState& state) noexcept {
- bool restored=RestoreKeyTips(state);
+@PUBLIC_CAPTION_RESTORE@ bool restored=RestoreKeyTips(state)@PUBLIC_CAPTION_RESTORE_RESULT@;
  restored=RestoreNativeBrushes(state.nativeBrushes)&&restored;
  for(auto& root:state.roots) {
   if(root.layout.value)try {
@@ -960,7 +960,7 @@ static decltype(&DwmSetWindowAttribute) originalDwmSet=nullptr;
 static bool CaptionWindow(HWND window) {
  DWORD process=0;GetWindowThreadProcessId(window,&process);wchar_t type[64]{};
  return process==GetCurrentProcessId()&&GetAncestor(window,GA_ROOT)==window&&GetClassNameW(window,type,std::size(type))
-  &&wcscmp(type,L"@NATIVE_CLASS@")==0;
+  &&wcscmp(type,L"@NATIVE_CLASS@")==0@PUBLIC_CAPTION_NATIVE_EXCLUSION@;
 }
 static Caption* OwnedCaption(HWND window) {
  auto state=static_cast<Caption*>(GetPropW(window,captionProperty));
@@ -993,7 +993,7 @@ static void RefreshCaptions() {
 // Preserve native backdrop requests. Opaque XAML backing and a captured
 // caption-color baseline provide black surfaces without exposing other windows.
 static HRESULT WINAPI DwmCaptionHook(HWND window,DWORD attribute,LPCVOID value,DWORD size) {
- if(attribute!=DWMWA_CAPTION_COLOR||!value||size!=sizeof(COLORREF)||!CaptionWindow(window))return originalDwmSet(window,attribute,value,size);
+ if(@PUBLIC_CAPTION_DWM_BYPASS@attribute!=DWMWA_CAPTION_COLOR||!value||size!=sizeof(COLORREF)||!CaptionWindow(window))return originalDwmSet(window,attribute,value,size);
  std::lock_guard guard(captionsMutex);COLORREF requested;memcpy(&requested,value,sizeof(requested));
  auto state=OwnedCaption(window);bool captured=!state;bool active=enabled.load()&&!HighContrast();
  if(!state&&active)state=CaptureCaption(window,requested);

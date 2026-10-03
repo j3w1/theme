@@ -37749,7 +37749,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-a8F5BqFJGW5znecbLe6KrKYz57m1V4yg/ivGTjP4AXo=",
+      "subjectDigest": "sha256-dwJL+IakM/G1RCcbpmTlVzbuP7JcFFnqH+lWCUufU64=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37782,7 +37782,7 @@
           "path": "dist/windows-settings.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-settings.json",
-          "digest": "sha256-+Ukr+Gion5DumN1kOOLi5uyJ5gQ4aLFHZbjowYWHDMY="
+          "digest": "sha256-JbmXdcByYqTTUp0RaApzW2+2iVFIyiD3PfzrjhRKPeA="
         },
         {
           "path": "dist/terminal-fragment.json",
@@ -37956,7 +37956,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-GmqcGu3y9dqo4x/IyugB4qXCxkAgHePLunaG2J900V0="
+          "digest": "sha256-9ADiOBuqWTvbTNFktztKIbgO1MXkb3RI11TVLDO15Oo="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
@@ -38040,7 +38040,7 @@
           "path": "dist/j3w1-notepad-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-notepad-chrome.wh.cpp",
-          "digest": "sha256-Q90WIpa87xU0cRBeoRA/nj9weTSb3YJnVcXxCoo7T14="
+          "digest": "sha256-7IDt3in33GIyCTmOUhszZ71Yclgxvga01RClpM/n6pA="
         },
         {
           "path": "dist/j3w1-notepad-chrome.json",
@@ -38052,7 +38052,7 @@
           "path": "dist/j3w1-paint-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-paint-chrome.wh.cpp",
-          "digest": "sha256-CHPfgePWUPtZOkvs3QmRj/Mo+5hPzdgZA3Kq/KGH8is="
+          "digest": "sha256-cQ7d0cXHdKuNAzsDV/LO92/0Zp4GrEWYMOS70yxvWus="
         },
         {
           "path": "dist/j3w1-paint-chrome.json",
@@ -39996,7 +39996,8 @@
             "paint-chrome.resource.ToggleButtonBackgroundPointerOver",
             "paint-chrome.resource.ToggleButtonBackgroundIndeterminatePointerOver",
             "calculator.resource.ToggleButtonBackgroundPointerOver",
-            "calculator.resource.ToggleButtonBackgroundIndeterminatePointerOver"
+            "calculator.resource.ToggleButtonBackgroundIndeterminatePointerOver",
+            "paint-chrome.caption.ButtonHoverBackgroundColor"
           ],
           "value": "#1c0a09",
           "eligibility": {
@@ -40094,7 +40095,8 @@
             "paint-chrome.resource.ToggleButtonBackgroundIndeterminatePressed",
             "calculator.resource.ToggleButtonBackgroundPressed",
             "calculator.resource.ToggleButtonBackgroundCheckedPressed",
-            "calculator.resource.ToggleButtonBackgroundIndeterminatePressed"
+            "calculator.resource.ToggleButtonBackgroundIndeterminatePressed",
+            "paint-chrome.caption.ButtonPressedBackgroundColor"
           ],
           "value": "#420f0c",
           "eligibility": {
@@ -41992,7 +41994,11 @@
             "paint-chrome.resource.ToggleButtonBackground",
             "paint-chrome.resource.ToggleButtonBackgroundIndeterminate",
             "calculator.resource.ToggleButtonBackground",
-            "calculator.resource.ToggleButtonBackgroundIndeterminate"
+            "calculator.resource.ToggleButtonBackgroundIndeterminate",
+            "paint-chrome.caption.BackgroundColor",
+            "paint-chrome.caption.ButtonBackgroundColor",
+            "paint-chrome.caption.InactiveBackgroundColor",
+            "paint-chrome.caption.ButtonInactiveBackgroundColor"
           ],
           "value": "#000000",
           "eligibility": {
@@ -42785,7 +42791,11 @@
             "calculator.resource.ToggleButtonForegroundCheckedPressed",
             "calculator.resource.ToggleButtonForegroundIndeterminate",
             "calculator.resource.ToggleButtonForegroundIndeterminatePointerOver",
-            "calculator.resource.ToggleButtonForegroundIndeterminatePressed"
+            "calculator.resource.ToggleButtonForegroundIndeterminatePressed",
+            "paint-chrome.caption.ForegroundColor",
+            "paint-chrome.caption.ButtonForegroundColor",
+            "paint-chrome.caption.ButtonHoverForegroundColor",
+            "paint-chrome.caption.ButtonPressedForegroundColor"
           ],
           "value": "#e99499",
           "eligibility": {
@@ -42977,7 +42987,9 @@
             "paint-chrome.resource.MenuFlyoutItemKeyboardAcceleratorTextForeground",
             "paint-chrome.resource.MenuFlyoutSubItemChevron",
             "paint-chrome.resource.MenuFlyoutItemKeyboardAcceleratorTextForegroundPointerOver",
-            "paint-chrome.resource.MenuFlyoutItemKeyboardAcceleratorTextForegroundPressed"
+            "paint-chrome.resource.MenuFlyoutItemKeyboardAcceleratorTextForegroundPressed",
+            "paint-chrome.caption.InactiveForegroundColor",
+            "paint-chrome.caption.ButtonInactiveForegroundColor"
           ],
           "value": "#bd787d",
           "eligibility": {

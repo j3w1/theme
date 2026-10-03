@@ -867,3 +867,28 @@ independent original-call storage. The PowerToys host and template identities,
 document handling, older reviewed runtimes and unknown-runtime refusal remain
 unchanged. This refresh alone does not establish startup-surface appearance,
 accessibility or DPI acceptance.
+
+
+### Paint public caption colors
+
+The recorded Paint package exposes readable nullable overrides through
+[AppWindowTitleBar](https://learn.microsoft.com/en-us/windows/windows-app-sdk/api/winrt/microsoft.ui.windowing.appwindowtitlebar?view=windows-app-sdk-1.8).
+A bounded live comparison changed its red active caption to black with rose
+symbols; disabling it restored the native caption. The generated Paint adapter
+uses those twelve public colors only when customization is supported and the
+native MSPaintApp composition does not extend content into its title bar.
+Its mapped active/inactive backgrounds are black; hover and pressed buttons use
+the corresponding interaction roles. Native caption geometry remains intact.
+
+Each UI thread captures the actual nullable values before writing. A stable
+window-property token prevents restoration through a destroyed or reused HWND.
+Later application replacements are preserved. Partial writes retain restoration
+ownership; failures decline that caption and retry cleanup without discarding
+the captured values. High contrast and unload use the same restoration path.
+The single install.ps1 lifecycle installs and restores this production adapter.
+
+This public mechanism is generated only for Paint. Notepad's custom tab caption
+retains its separate captured native path. Paint's opaque gray drawing workspace
+is still unresolved; artwork, swatches and drawing controls remain native.
+Active/inactive, button-state and lifecycle checks of the integrated candidate
+remain required. The earlier caption observations above are historical.

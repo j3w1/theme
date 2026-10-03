@@ -15,8 +15,10 @@ restores and uninstalls the port. There is no separate setup script.
 2. Paste the command below. Setup obtains required runtimes, checks compatibility,
    installs the theme, runs Test, and prints the exact recovery commands.
 3. Reopen affected apps and check their appearance. Save documents first; setup
-   does not close them. Already-open Notepad/Paint caption backgrounds can remain
+   does not close them. Already-open Notepad caption backgrounds can remain
    native until the app is reopened, so their original state stays recoverable.
+   Paint uses its readable public caption colors on the recorded native layout;
+   its gray drawing workspace remains an experimental limitation.
 
 <!-- install:start -->
 Install commands appear here once v4.0.0 is released.
