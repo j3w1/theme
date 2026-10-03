@@ -1,5 +1,24 @@
 # Changelog
 
+## [Unreleased]
+
+- **Telegram port** (experimental). `ports/telegram/` generates the official
+  Telegram for Android `.attheme` and Telegram Desktop `.tdesktop-theme`
+  (palette plus a 1×2 background in a stored, fixed-date zip) from one
+  mapping of default roles. Every upstream key at the pinned DrKLO/Telegram and
+  lib_ui revisions is mapped, inherits from a mapped key or is listed with a
+  reason, so unmapped keys cannot fall back to Telegram's light defaults
+  unnoticed. Rose body text, bright-rose names, dark bubbles above a black to
+  red-black wallpaper; no new colours, blends or alpha.
+- `npm run telegram:publish` creates or updates one Telegram Cloud Theme with
+  both documents, verifies them by download, and prints the
+  `t.me/addtheme/<slug>` link; until the owner publishes, the README leads with
+  file import. An opt-in `telegram` job publishes changed files after
+  `release-gate` on `main` only; it is not configured. The pinned `teleproto`
+  MTProto client is used only by the publisher.
+- Port emitters may return byte artifacts (`{path, bytes}`), written and
+  drift-checked byte for byte.
+
 ## [3.1.0] - 2026-09-27
 
 Additive minor preparation, following the first downloadable application-port

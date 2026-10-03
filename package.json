@@ -44,7 +44,8 @@
     "ui:consumers": "node scripts/verify-ui-consumers.mjs",
     "test:ui": "playwright test --config playwright.ui.config.mjs",
     "ui:report": "node scripts/ui-verification-report.mjs",
-    "ui:publish-evidence": "node scripts/ui-verification-report.mjs --publish"
+    "ui:publish-evidence": "node scripts/ui-verification-report.mjs --publish",
+    "telegram:publish": "node ports/telegram/publish.mjs"
   },
   "devDependencies": {
     "@astrojs/markdown-remark": "7.3.1",
@@ -60,6 +61,7 @@
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "smol-toml": "1.9.0",
+    "teleproto": "1.229.1",
     "typescript": "7.0.2",
     "vite": "8.3.0",
     "vue": "3.5.43",

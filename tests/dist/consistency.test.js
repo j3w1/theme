@@ -42,11 +42,11 @@ test("every token reference on the page resolves, and every export is served byt
     assert.ok([...tokenPaths].some((p) => p.replaceAll(".", "-") === dashed) || [...tokenPaths].some((p) => p.replaceAll(".", "-").startsWith(dashed)), `anchor t-${dashed}`);
   }
   for (const file of await listFiles("exports")) {
-    assert.equal(await readText(`dist/${file}`), await readText(file), file);
+    assert.deepEqual(await readFile(`dist/${file}`), await readFile(file), file);
   }
-  assert.equal(await readText("dist/agents/consume.md"), await readText("agents/consume.md"));
-  assert.equal(await readText("dist/theme.json"), await readText("theme.json"));
-  assert.equal(await readText("dist/llms.txt"), await readText("exports/llms.txt"));
+  assert.deepEqual(await readFile("dist/agents/consume.md"), await readFile("agents/consume.md"));
+  assert.deepEqual(await readFile("dist/theme.json"), await readFile("theme.json"));
+  assert.deepEqual(await readFile("dist/llms.txt"), await readFile("exports/llms.txt"));
 });
 
 test("every port file is served byte-identical under /theme/ports/ and linked from the Ports page", async () => {
@@ -55,7 +55,7 @@ test("every port file is served byte-identical under /theme/ports/ and linked fr
   const served = ports.flatMap((port) => port.files.map((file) => [portDownloadPath(port.id, file.path), file.source]));
   assert.ok(served.length > 0, "the catalogue publishes at least one port file");
   for (const [target, source] of served) {
-    assert.equal(await readText(`dist/${target}`), await readText(source), target);
+    assert.deepEqual(await readFile(`dist/${target}`), await readFile(source), target);
     assert.ok(page.includes(`href="/theme/${target}" download`), `Ports page links ${target}`);
   }
 });

@@ -62,12 +62,12 @@ const tmValues = (text) => {
 };
 
 test("the registered generated ports declare their complete artifact sets", () => {
-  assert.deepEqual(ports.map(({ port }) => `${port.id}:${port.format}`), ["chatgpt:chatgpt-appearance", "claude-code:claude-theme-json", "codex:codex-tmtheme", "ghostty:ghostty-config", "obsidian:obsidian-theme", "orca:ghostty-config", "warp:warp-yaml"]);
+  assert.deepEqual(ports.map(({ port }) => `${port.id}:${port.format}`), ["chatgpt:chatgpt-appearance", "claude-code:claude-theme-json", "codex:codex-tmtheme", "ghostty:ghostty-config", "obsidian:obsidian-theme", "orca:ghostty-config", "telegram:telegram-theme", "warp:warp-yaml"]);
   for (const format of Object.keys(PORT_EMITTERS)) assert.ok(PORT_FORMATS.includes(format), `${format} is in the closed list of port formats`);
 });
 
-// Obsidian has two artifacts and its own semantic CSS/manifest contracts.
-for (const entry of ports.filter(({ port }) => port.format !== "obsidian-theme")) {
+// Multi-artifact formats have their own native contracts, including binary outputs.
+for (const entry of ports.filter(({ port }) => !["obsidian-theme", "telegram-theme"].includes(port.format))) {
   const { port, text } = entry;
   test(`${port.id}: every mapped role is written at its native key with the resolved value, and nothing else is`, () => {
     if (port.format === "chatgpt-appearance") {

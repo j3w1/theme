@@ -39,6 +39,8 @@ import { privateParitySchema } from "../../schemas/private-parity.mjs";
 import { guideBlocks, INSTALL_GUIDES } from "./install-guides.mjs";
 import { buildChatgptPresets, chatgptReadmeBlock, CHATGPT_SOURCE } from "./chatgpt-port.mjs";
 import { releaseComparisonSchema, releaseCatalogueSchema, releaseMigrationSchema } from "../../schemas/release-comparison.mjs";
+import { telegramReadmeBlock, telegramCoverageBlock } from "./telegram-port.mjs";
+import { readCloudConfig } from "../../ports/telegram/src/contract.mjs";
 
 const write = async (relative, content, { check, changed, files }) => {
   files.push(relative);
@@ -259,6 +261,16 @@ export const readmeGenerator = {
       for (const [name, body] of Object.entries(guideBlocks(manifest, guide))) text = replaceMarkerBlock(text, name, body);
       files.push(guide);
       if (await writeOrCheck(guide, text, { check })) changed.push(guide);
+    }
+    {
+      const guide = "ports/telegram/README.md";
+      const text = replaceMarkerBlock(await readText(guide), "install", telegramReadmeBlock(manifest, await readCloudConfig()));
+      files.push(guide);
+      if (await writeOrCheck(guide, text, { check })) changed.push(guide);
+      const notes = "ports/telegram/IMPLEMENTATION.md";
+      const table = replaceMarkerBlock(await readText(notes), "coverage", telegramCoverageBlock(await readJson("ports/telegram/mapping.json")));
+      files.push(notes);
+      if (await writeOrCheck(notes, table, { check })) changed.push(notes);
     }
     const consume = replaceMarkerBlock(await readText("agents/consume.md"), "eligibility", POLICY_TEXT);
     files.push("agents/consume.md");

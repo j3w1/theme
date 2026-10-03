@@ -1,0 +1,578 @@
+{
+  "schemaVersion": 1,
+  "android": {
+    "unset": {
+      "wallpaperFileOffset": "wallpaperFileOffset is an integer/file-offset setting, not a colour; no wallpaper attachment or animation flag is emitted.",
+      "chat_outBubbleGradient": "chat_outBubbleGradient enables or decorates animated/gradient bubbles or extra wallpaper stops; retain the two dark solid bubble fills and the static two-stop wallpaper.",
+      "chat_outBubbleGradient2": "chat_outBubbleGradient2 enables or decorates animated/gradient bubbles or extra wallpaper stops; retain the two dark solid bubble fills and the static two-stop wallpaper.",
+      "chat_outBubbleGradient3": "chat_outBubbleGradient3 enables or decorates animated/gradient bubbles or extra wallpaper stops; retain the two dark solid bubble fills and the static two-stop wallpaper.",
+      "chat_outBubbleGradientAnimated": "chat_outBubbleGradientAnimated is an integer/file-offset setting, not a colour; no wallpaper attachment or animation flag is emitted.",
+      "chat_outBubbleGradientSelectedOverlay": "chat_outBubbleGradientSelectedOverlay enables or decorates animated/gradient bubbles or extra wallpaper stops; retain the two dark solid bubble fills and the static two-stop wallpaper.",
+      "key_chat_wallpaper_gradient_to2": "key_chat_wallpaper_gradient_to2 enables or decorates animated/gradient bubbles or extra wallpaper stops; retain the two dark solid bubble fills and the static two-stop wallpaper.",
+      "key_chat_wallpaper_gradient_to3": "key_chat_wallpaper_gradient_to3 enables or decorates animated/gradient bubbles or extra wallpaper stops; retain the two dark solid bubble fills and the static two-stop wallpaper.",
+      "chat_wallpaper_gradient_rotation": "chat_wallpaper_gradient_rotation is an integer/file-offset setting, not a colour; no wallpaper attachment or animation flag is emitted.",
+      "chat_BlurAlpha": "chat_BlurAlpha controls host blur opacity rather than a colour surface; theme files cannot remove glass geometry.",
+      "chat_BlurAlphaSlow": "chat_BlurAlphaSlow controls host blur opacity rather than a colour surface; theme files cannot remove glass geometry.",
+      "statisticChartSignature": "statisticChartSignature identifies chart/data categories; this port does not collapse data distinctions into interface accents.",
+      "statisticChartSignatureAlpha": "statisticChartSignatureAlpha identifies chart/data categories; this port does not collapse data distinctions into interface accents.",
+      "statisticChartHintLine": "statisticChartHintLine identifies chart/data categories; this port does not collapse data distinctions into interface accents.",
+      "statisticChartActiveLine": "statisticChartActiveLine identifies chart/data categories; this port does not collapse data distinctions into interface accents.",
+      "statisticChartInactivePickerChart": "statisticChartInactivePickerChart identifies chart/data categories; this port does not collapse data distinctions into interface accents.",
+      "statisticChartActivePickerChart": "statisticChartActivePickerChart identifies chart/data categories; this port does not collapse data distinctions into interface accents.",
+      "statisticChartRipple": "statisticChartRipple identifies chart/data categories; this port does not collapse data distinctions into interface accents.",
+      "statisticChartBackZoomColor": "statisticChartBackZoomColor identifies chart/data categories; this port does not collapse data distinctions into interface accents.",
+      "statisticChartChevronColor": "statisticChartChevronColor identifies chart/data categories; this port does not collapse data distinctions into interface accents.",
+      "statisticChartLine_blue": "statisticChartLine_blue identifies chart/data categories; this port does not collapse data distinctions into interface accents.",
+      "statisticChartLine_green": "statisticChartLine_green identifies chart/data categories; this port does not collapse data distinctions into interface accents.",
+      "statisticChartLine_red": "statisticChartLine_red identifies chart/data categories; this port does not collapse data distinctions into interface accents.",
+      "statisticChartLine_golden": "statisticChartLine_golden identifies chart/data categories; this port does not collapse data distinctions into interface accents.",
+      "statisticChartLine_lightblue": "statisticChartLine_lightblue identifies chart/data categories; this port does not collapse data distinctions into interface accents.",
+      "statisticChartLine_lightgreen": "statisticChartLine_lightgreen identifies chart/data categories; this port does not collapse data distinctions into interface accents.",
+      "statisticChartLine_orange": "statisticChartLine_orange identifies chart/data categories; this port does not collapse data distinctions into interface accents.",
+      "statisticChartLine_indigo": "statisticChartLine_indigo identifies chart/data categories; this port does not collapse data distinctions into interface accents.",
+      "statisticChartLine_purple": "statisticChartLine_purple identifies chart/data categories; this port does not collapse data distinctions into interface accents.",
+      "statisticChartLine_cyan": "statisticChartLine_cyan identifies chart/data categories; this port does not collapse data distinctions into interface accents.",
+      "statisticChartLineEmpty": "statisticChartLineEmpty identifies chart/data categories; this port does not collapse data distinctions into interface accents.",
+      "color_lightblue": "color_lightblue identifies chart/data categories; this port does not collapse data distinctions into interface accents.",
+      "color_blue": "color_blue identifies chart/data categories; this port does not collapse data distinctions into interface accents.",
+      "color_green": "color_green identifies chart/data categories; this port does not collapse data distinctions into interface accents.",
+      "color_lightgreen": "color_lightgreen identifies chart/data categories; this port does not collapse data distinctions into interface accents.",
+      "color_red": "color_red identifies chart/data categories; this port does not collapse data distinctions into interface accents.",
+      "color_orange": "color_orange identifies chart/data categories; this port does not collapse data distinctions into interface accents.",
+      "color_yellow": "color_yellow identifies chart/data categories; this port does not collapse data distinctions into interface accents.",
+      "color_purple": "color_purple identifies chart/data categories; this port does not collapse data distinctions into interface accents.",
+      "color_cyan": "color_cyan identifies chart/data categories; this port does not collapse data distinctions into interface accents.",
+      "premiumGradient0": "premiumGradient0 decorates Premium or story gradients supplied by Telegram; no canonical gradient or content recolouring is introduced.",
+      "premiumGradient1": "premiumGradient1 decorates Premium or story gradients supplied by Telegram; no canonical gradient or content recolouring is introduced.",
+      "premiumGradient2": "premiumGradient2 decorates Premium or story gradients supplied by Telegram; no canonical gradient or content recolouring is introduced.",
+      "premiumGradient3": "premiumGradient3 decorates Premium or story gradients supplied by Telegram; no canonical gradient or content recolouring is introduced.",
+      "premiumGradient4": "premiumGradient4 decorates Premium or story gradients supplied by Telegram; no canonical gradient or content recolouring is introduced.",
+      "premiumGradientBackground1": "premiumGradientBackground1 decorates Premium or story gradients supplied by Telegram; no canonical gradient or content recolouring is introduced.",
+      "premiumGradientBackground2": "premiumGradientBackground2 decorates Premium or story gradients supplied by Telegram; no canonical gradient or content recolouring is introduced.",
+      "premiumGradientBackground3": "premiumGradientBackground3 decorates Premium or story gradients supplied by Telegram; no canonical gradient or content recolouring is introduced.",
+      "premiumGradientBackground4": "premiumGradientBackground4 decorates Premium or story gradients supplied by Telegram; no canonical gradient or content recolouring is introduced.",
+      "premiumGradientBackgroundOverlay": "premiumGradientBackgroundOverlay decorates Premium or story gradients supplied by Telegram; no canonical gradient or content recolouring is introduced.",
+      "premiumStartSmallStarsColor": "premiumStartSmallStarsColor decorates Premium or story gradients supplied by Telegram; no canonical gradient or content recolouring is introduced.",
+      "premiumStarGradient1": "premiumStarGradient1 decorates Premium or story gradients supplied by Telegram; no canonical gradient or content recolouring is introduced.",
+      "premiumStarGradient2": "premiumStarGradient2 decorates Premium or story gradients supplied by Telegram; no canonical gradient or content recolouring is introduced.",
+      "premiumCoinGradient1": "premiumCoinGradient1 decorates Premium or story gradients supplied by Telegram; no canonical gradient or content recolouring is introduced.",
+      "premiumCoinGradient2": "premiumCoinGradient2 decorates Premium or story gradients supplied by Telegram; no canonical gradient or content recolouring is introduced.",
+      "premiumStartSmallStarsColor2": "premiumStartSmallStarsColor2 decorates Premium or story gradients supplied by Telegram; no canonical gradient or content recolouring is introduced.",
+      "premiumGradientBottomSheet1": "premiumGradientBottomSheet1 decorates Premium or story gradients supplied by Telegram; no canonical gradient or content recolouring is introduced.",
+      "premiumGradientBottomSheet2": "premiumGradientBottomSheet2 decorates Premium or story gradients supplied by Telegram; no canonical gradient or content recolouring is introduced.",
+      "premiumGradientBottomSheet3": "premiumGradientBottomSheet3 decorates Premium or story gradients supplied by Telegram; no canonical gradient or content recolouring is introduced.",
+      "stories_circle1": "stories_circle1 decorates Premium or story gradients supplied by Telegram; no canonical gradient or content recolouring is introduced.",
+      "stories_circle2": "stories_circle2 decorates Premium or story gradients supplied by Telegram; no canonical gradient or content recolouring is introduced.",
+      "stories_circle_dialog1": "stories_circle_dialog1 decorates Premium or story gradients supplied by Telegram; no canonical gradient or content recolouring is introduced.",
+      "stories_circle_dialog2": "stories_circle_dialog2 decorates Premium or story gradients supplied by Telegram; no canonical gradient or content recolouring is introduced.",
+      "stories_circle_closeFriends1": "stories_circle_closeFriends1 decorates Premium or story gradients supplied by Telegram; no canonical gradient or content recolouring is introduced.",
+      "stories_circle_closeFriends2": "stories_circle_closeFriends2 decorates Premium or story gradients supplied by Telegram; no canonical gradient or content recolouring is introduced.",
+      "stories_circle_live1": "stories_circle_live1 decorates Premium or story gradients supplied by Telegram; no canonical gradient or content recolouring is introduced.",
+      "stories_circle_live2": "stories_circle_live2 decorates Premium or story gradients supplied by Telegram; no canonical gradient or content recolouring is introduced."
+    },
+    "translucent": [
+      "chat_inBubbleSelectedOverlay",
+      "chat_outBubbleSelectedOverlay",
+      "actionBarActionModeDefaultSelector"
+    ],
+    "opaqueAllowed": {
+      "chat_botKeyboardButtonText": "Bot keyboard label text: upstream default is a translucent dark grey (0xF0444444) that is unreadable on dark panels; opaque rose text never hides content.",
+      "code_comment": "Code comment text: upstream default is 50% black, invisible on dark code blocks; the canonical comment role is opaque text."
+    },
+    "nearWhite": {
+      "dialogCheckboxSquareCheck": [
+        "dialogCheckboxSquareBackground"
+      ],
+      "dialogRoundCheckBoxCheck": [
+        "dialogRoundCheckBox"
+      ],
+      "switchTrackBlueThumbChecked": [
+        "switchTrackBlueChecked"
+      ],
+      "checkboxSquareCheck": [
+        "checkboxSquareBackground"
+      ],
+      "checkboxCheck": [
+        "checkbox"
+      ],
+      "fastScrollText": [
+        "fastScrollActive"
+      ],
+      "avatar_text": [
+        "avatar_backgroundSaved",
+        "avatar_backgroundArchived",
+        "avatar_backgroundArchivedHidden",
+        "avatar_backgroundRed",
+        "avatar_backgroundOrange",
+        "avatar_backgroundViolet",
+        "avatar_backgroundGreen",
+        "avatar_backgroundCyan",
+        "avatar_backgroundBlue",
+        "avatar_backgroundPink",
+        "avatar_backgroundInProfileBlue",
+        "avatar_backgroundActionBarBlue"
+      ],
+      "chats_unreadCounterText": [
+        "chats_unreadCounter",
+        "chats_unreadCounterMuted"
+      ],
+      "chats_sentErrorIcon": [
+        "chats_sentError"
+      ],
+      "chats_actionIcon": [
+        "chats_actionBackground"
+      ],
+      "chat_attachCheckBoxCheck": [
+        "chat_attachCheckBoxBackground"
+      ],
+      "chat_attachIcon": [
+        "chat_attachGalleryBackground",
+        "chat_attachAudioBackground",
+        "chat_attachContactBackground",
+        "chat_attachLocationBackground",
+        "chat_attachPollBackground"
+      ],
+      "chat_outSentClockSelected": [
+        "chat_outBubbleSelected"
+      ],
+      "chat_inSentClockSelected": [
+        "chat_inBubbleSelected"
+      ],
+      "chat_inMediaIconSelected": [
+        "chat_inBubbleSelected"
+      ],
+      "chat_outMediaIconSelected": [
+        "chat_outBubbleSelected"
+      ],
+      "chat_outViewsSelected": [
+        "chat_outBubbleSelected"
+      ],
+      "chat_inViewsSelected": [
+        "chat_inBubbleSelected"
+      ],
+      "chat_outMenuSelected": [
+        "chat_outBubbleSelected"
+      ],
+      "chat_inMenuSelected": [
+        "chat_inBubbleSelected"
+      ],
+      "chat_outInstantSelected": [
+        "chat_outBubbleSelected"
+      ],
+      "chat_inInstantSelected": [
+        "chat_inBubbleSelected"
+      ],
+      "chat_sentErrorIcon": [
+        "chat_sentError"
+      ],
+      "chat_inReplyMediaMessageSelectedText": [
+        "chat_inBubbleSelected"
+      ],
+      "chat_outReplyMediaMessageSelectedText": [
+        "chat_outBubbleSelected"
+      ],
+      "chat_inContactPhoneSelectedText": [
+        "chat_inBubbleSelected"
+      ],
+      "chat_outContactPhoneSelectedText": [
+        "chat_outBubbleSelected"
+      ],
+      "chat_adminSelectedText": [
+        "chat_inBubbleSelected"
+      ],
+      "chat_outAdminSelectedText": [
+        "chat_outBubbleSelected"
+      ],
+      "chat_inTimeSelectedText": [
+        "chat_inBubbleSelected"
+      ],
+      "chat_outTimeSelectedText": [
+        "chat_outBubbleSelected"
+      ],
+      "chat_inAudioPerfomerSelectedText": [
+        "chat_inBubbleSelected"
+      ],
+      "chat_outAudioPerfomerSelectedText": [
+        "chat_outBubbleSelected"
+      ],
+      "chat_inAudioDurationSelectedText": [
+        "chat_inBubbleSelected"
+      ],
+      "chat_outAudioDurationSelectedText": [
+        "chat_outBubbleSelected"
+      ],
+      "chat_inFileProgressSelected": [
+        "chat_inBubbleSelected"
+      ],
+      "chat_outFileProgressSelected": [
+        "chat_outBubbleSelected"
+      ],
+      "chat_inFileInfoSelectedText": [
+        "chat_inBubbleSelected"
+      ],
+      "chat_outFileInfoSelectedText": [
+        "chat_outBubbleSelected"
+      ],
+      "chat_inVenueInfoSelectedText": [
+        "chat_inBubbleSelected"
+      ],
+      "chat_outVenueInfoSelectedText": [
+        "chat_outBubbleSelected"
+      ],
+      "chat_mediaLoaderPhotoIconSelected": [
+        "chat_mediaLoaderPhotoSelected"
+      ],
+      "chat_goDownButtonCounter": [
+        "chat_goDownButtonCounterBackground"
+      ],
+      "chat_msgIvButtonPrimaryInText": [
+        "chat_msgIvButtonPrimaryIn"
+      ],
+      "chat_msgIvButtonPrimaryOutText": [
+        "chat_msgIvButtonPrimaryOut"
+      ],
+      "featuredStickers_buttonText": [
+        "featuredStickers_addButton"
+      ],
+      "picker_badgeText": [
+        "picker_badge"
+      ],
+      "location_sendLocationIcon": [
+        "location_sendLocationBackground"
+      ],
+      "location_sendLiveLocationIcon": [
+        "location_sendLiveLocationBackground"
+      ],
+      "chat_inReactionButtonTextSelected": [
+        "chat_inReactionButtonBackground"
+      ],
+      "chat_outReactionButtonTextSelected": [
+        "chat_outReactionButtonBackground"
+      ],
+      "chat_reactionServiceButtonTextSelected": [
+        "chat_reactionServiceButtonBackgroundSelected"
+      ]
+    }
+  },
+  "desktop": {
+    "unset": {
+      "shadowFg": "shadowFg modulates glyph, text, illustration or chart alpha; no equivalent approved translucent foreground role is available.",
+      "photoCropPointFg": "photoCropPointFg modulates glyph, text, illustration or chart alpha; no equivalent approved translucent foreground role is available.",
+      "introCoverPlaneTrace": "introCoverPlaneTrace modulates glyph, text, illustration or chart alpha; no equivalent approved translucent foreground role is available.",
+      "dialogsSendingIconFgActive": "dialogsSendingIconFgActive modulates glyph, text, illustration or chart alpha; no equivalent approved translucent foreground role is available.",
+      "stickerPanPremium1": "stickerPanPremium1 is a host gradient/illustration stop with no canonical role; no new blends are derived.",
+      "stickerPanPremium2": "stickerPanPremium2 is a host gradient/illustration stop with no canonical role; no new blends are derived.",
+      "historySendingInvertedIconFg": "historySendingInvertedIconFg modulates glyph, text, illustration or chart alpha; no equivalent approved translucent foreground role is available.",
+      "mediaviewPlaybackProgressFg": "mediaviewPlaybackProgressFg modulates glyph, text, illustration or chart alpha; no equivalent approved translucent foreground role is available.",
+      "mediaviewPipControlsFg": "mediaviewPipControlsFg modulates glyph, text, illustration or chart alpha; no equivalent approved translucent foreground role is available.",
+      "mediaviewPipPlaybackActive": "mediaviewPipPlaybackActive modulates glyph, text, illustration or chart alpha; no equivalent approved translucent foreground role is available.",
+      "mediaviewPipPlaybackInactive": "mediaviewPipPlaybackInactive modulates glyph, text, illustration or chart alpha; no equivalent approved translucent foreground role is available.",
+      "groupCallLive1": "groupCallLive1 is a host gradient/illustration stop with no canonical role; no new blends are derived.",
+      "groupCallLive2": "groupCallLive2 is a host gradient/illustration stop with no canonical role; no new blends are derived.",
+      "groupCallMuted1": "groupCallMuted1 is a host gradient/illustration stop with no canonical role; no new blends are derived.",
+      "groupCallMuted2": "groupCallMuted2 is a host gradient/illustration stop with no canonical role; no new blends are derived.",
+      "groupCallForceMutedBar1": "groupCallForceMutedBar1 is a host gradient/illustration stop with no canonical role; no new blends are derived.",
+      "groupCallForceMutedBar2": "groupCallForceMutedBar2 is a host gradient/illustration stop with no canonical role; no new blends are derived.",
+      "groupCallForceMutedBar3": "groupCallForceMutedBar3 is a host gradient/illustration stop with no canonical role; no new blends are derived.",
+      "groupCallForceMuted1": "groupCallForceMuted1 is a host gradient/illustration stop with no canonical role; no new blends are derived.",
+      "groupCallForceMuted2": "groupCallForceMuted2 is a host gradient/illustration stop with no canonical role; no new blends are derived.",
+      "groupCallForceMuted3": "groupCallForceMuted3 is a host gradient/illustration stop with no canonical role; no new blends are derived.",
+      "groupCallVideoTextFg": "groupCallVideoTextFg modulates glyph, text, illustration or chart alpha; no equivalent approved translucent foreground role is available.",
+      "groupCallVideoSubTextFg": "groupCallVideoSubTextFg modulates glyph, text, illustration or chart alpha; no equivalent approved translucent foreground role is available.",
+      "premiumButtonBg1": "premiumButtonBg1 is a host gradient/illustration stop with no canonical role; no new blends are derived.",
+      "premiumButtonBg2": "premiumButtonBg2 is a host gradient/illustration stop with no canonical role; no new blends are derived.",
+      "premiumButtonBg3": "premiumButtonBg3 is a host gradient/illustration stop with no canonical role; no new blends are derived.",
+      "premiumButtonFg": "premiumButtonFg is a host gradient/illustration stop with no canonical role; no new blends are derived.",
+      "premiumIconBg1": "premiumIconBg1 is a host gradient/illustration stop with no canonical role; no new blends are derived.",
+      "premiumIconBg2": "premiumIconBg2 is a host gradient/illustration stop with no canonical role; no new blends are derived.",
+      "premiumIconBg3": "premiumIconBg3 is a host gradient/illustration stop with no canonical role; no new blends are derived.",
+      "statisticsChartInactive": "statisticsChartInactive modulates glyph, text, illustration or chart alpha; no equivalent approved translucent foreground role is available.",
+      "statisticsChartActive": "statisticsChartActive modulates glyph, text, illustration or chart alpha; no equivalent approved translucent foreground role is available.",
+      "statisticsChartLineBlue": "statisticsChartLineBlue identifies a statistical data series; data hue and content distinctions stay host-controlled.",
+      "statisticsChartLineGreen": "statisticsChartLineGreen identifies a statistical data series; data hue and content distinctions stay host-controlled.",
+      "statisticsChartLineRed": "statisticsChartLineRed identifies a statistical data series; data hue and content distinctions stay host-controlled.",
+      "statisticsChartLineGolden": "statisticsChartLineGolden identifies a statistical data series; data hue and content distinctions stay host-controlled.",
+      "statisticsChartLineLightblue": "statisticsChartLineLightblue identifies a statistical data series; data hue and content distinctions stay host-controlled.",
+      "statisticsChartLineLightgreen": "statisticsChartLineLightgreen identifies a statistical data series; data hue and content distinctions stay host-controlled.",
+      "statisticsChartLineOrange": "statisticsChartLineOrange identifies a statistical data series; data hue and content distinctions stay host-controlled.",
+      "statisticsChartLineIndigo": "statisticsChartLineIndigo identifies a statistical data series; data hue and content distinctions stay host-controlled.",
+      "statisticsChartLinePurple": "statisticsChartLinePurple identifies a statistical data series; data hue and content distinctions stay host-controlled.",
+      "statisticsChartLineCyan": "statisticsChartLineCyan identifies a statistical data series; data hue and content distinctions stay host-controlled.",
+      "creditsBg1": "creditsBg1 is a host gradient/illustration stop with no canonical role; no new blends are derived.",
+      "creditsBg2": "creditsBg2 is a host gradient/illustration stop with no canonical role; no new blends are derived.",
+      "creditsBg3": "creditsBg3 is a host gradient/illustration stop with no canonical role; no new blends are derived."
+    },
+    "translucent": [
+      "windowBgRipple",
+      "activeButtonBgRipple",
+      "lightButtonBgRipple",
+      "attentionButtonBgRipple",
+      "menuBgRipple",
+      "dialogsRippleBg",
+      "dialogsRippleBgActive",
+      "historyToDownBgRipple",
+      "historyComposeButtonBgRipple",
+      "mediaviewMenuBgRipple",
+      "callIconActiveRipple",
+      "callAnswerRipple",
+      "callHangupRipple",
+      "groupCallMembersBgRipple",
+      "groupCallMenuBgRipple",
+      "callBarMuteRipple",
+      "sideBarBgRipple"
+    ],
+    "nearWhite": {
+      "windowFgActive": [
+        "windowBgActive"
+      ],
+      "activeButtonFg": [
+        "activeButtonBg"
+      ],
+      "activeButtonFgOver": [
+        "activeButtonBgOver"
+      ],
+      "activeButtonSecondaryFg": [
+        "activeButtonBg"
+      ],
+      "activeButtonSecondaryFgOver": [
+        "activeButtonBgOver"
+      ],
+      "titleButtonCloseFgOver": [
+        "titleButtonCloseBgOver"
+      ],
+      "titleButtonCloseFgActiveOver": [
+        "titleButtonCloseBgActiveOver"
+      ],
+      "trayCounterFg": [
+        "trayCounterBg",
+        "trayCounterBgMute"
+      ],
+      "dialogsNameFgActive": [
+        "dialogsBgActive"
+      ],
+      "dialogsChatIconFgActive": [
+        "dialogsBgActive"
+      ],
+      "dialogsDateFgActive": [
+        "dialogsBgActive"
+      ],
+      "dialogsTextFgActive": [
+        "dialogsBgActive"
+      ],
+      "dialogsDraftFgActive": [
+        "dialogsBgActive"
+      ],
+      "dialogsVerifiedIconFgActive": [
+        "dialogsBgActive"
+      ],
+      "dialogsSentIconFgActive": [
+        "dialogsBgActive"
+      ],
+      "dialogsUnreadBgActive": [
+        "dialogsBgActive"
+      ],
+      "dialogsOnlineBadgeFgActive": [
+        "dialogsBgActive"
+      ],
+      "dialogsScamFgActive": [
+        "dialogsBgActive"
+      ],
+      "searchedTextMatchFg": [
+        "searchedTextMatchBg"
+      ],
+      "searchedTextCurrentMatchFg": [
+        "searchedTextCurrentMatchBg"
+      ],
+      "historyTextInFgSelected": [
+        "msgInBgSelected"
+      ],
+      "historyTextOutFgSelected": [
+        "msgOutBgSelected"
+      ],
+      "historyLinkInFgSelected": [
+        "msgInBgSelected"
+      ],
+      "historyLinkOutFgSelected": [
+        "msgOutBgSelected"
+      ],
+      "historyFileNameInFgSelected": [
+        "msgInBgSelected"
+      ],
+      "historyFileNameOutFgSelected": [
+        "msgOutBgSelected"
+      ],
+      "historyOutIconFgSelected": [
+        "msgOutBgSelected"
+      ],
+      "historyCallArrowInFgSelected": [
+        "msgInBgSelected"
+      ],
+      "historyCallArrowMissedInFgSelected": [
+        "msgInBgSelected"
+      ],
+      "historyCallArrowOutFgSelected": [
+        "msgOutBgSelected"
+      ],
+      "historyPeer1NameFgSelected": [
+        "msgInBgSelected"
+      ],
+      "historyPeer2NameFgSelected": [
+        "msgInBgSelected"
+      ],
+      "historyPeer3NameFgSelected": [
+        "msgInBgSelected"
+      ],
+      "historyPeer4NameFgSelected": [
+        "msgInBgSelected"
+      ],
+      "historyPeer5NameFgSelected": [
+        "msgInBgSelected"
+      ],
+      "historyPeer6NameFgSelected": [
+        "msgInBgSelected"
+      ],
+      "historyPeer7NameFgSelected": [
+        "msgInBgSelected"
+      ],
+      "historyPeer8NameFgSelected": [
+        "msgInBgSelected"
+      ],
+      "historyPeerUserpicFg": [
+        "historyPeer1UserpicBg",
+        "historyPeer2UserpicBg",
+        "historyPeer3UserpicBg",
+        "historyPeer4UserpicBg",
+        "historyPeer5UserpicBg",
+        "historyPeer6UserpicBg",
+        "historyPeer7UserpicBg",
+        "historyPeer8UserpicBg",
+        "historyPeerArchiveUserpicBg"
+      ],
+      "settingsIconFg": [
+        "settingsIconBg1",
+        "settingsIconBg2",
+        "settingsIconBg3",
+        "settingsIconBg4",
+        "settingsIconBg5",
+        "settingsIconBg6",
+        "settingsIconBg8",
+        "settingsIconBgArchive"
+      ],
+      "msgInServiceFgSelected": [
+        "msgInBgSelected"
+      ],
+      "msgOutServiceFgSelected": [
+        "msgOutBgSelected"
+      ],
+      "msgInDateFgSelected": [
+        "msgInBgSelected"
+      ],
+      "msgOutDateFgSelected": [
+        "msgOutBgSelected"
+      ],
+      "msgInMonoFgSelected": [
+        "msgInBgSelected"
+      ],
+      "msgOutMonoFgSelected": [
+        "msgOutBgSelected"
+      ],
+      "msgFileThumbLinkInFgSelected": [
+        "msgInBgSelected"
+      ],
+      "msgFileThumbLinkOutFgSelected": [
+        "msgOutBgSelected"
+      ],
+      "historyFileInIconFg": [
+        "msgFileInBg"
+      ],
+      "historyFileInIconFgSelected": [
+        "msgFileInBgSelected"
+      ],
+      "historyFileInRadialFgSelected": [
+        "msgInBgSelected"
+      ],
+      "historyFileOutIconFg": [
+        "msgFileOutBg"
+      ],
+      "historyFileOutIconFgSelected": [
+        "msgFileOutBgSelected"
+      ],
+      "historyFileOutRadialFgSelected": [
+        "msgOutBgSelected"
+      ],
+      "historyFileThumbIconFg": [
+        "msgDateImgBg",
+        "msgDateImgBgOver",
+        "songCoverOverlayFg",
+        "msgFile1BgDark",
+        "msgFile2BgDark",
+        "msgFile3BgDark",
+        "msgFile4BgDark",
+        "msgFile1BgOver",
+        "msgFile2BgOver",
+        "msgFile3BgOver",
+        "msgFile4BgOver"
+      ],
+      "historyFileThumbIconFgSelected": [
+        "msgDateImgBgSelected",
+        "msgFile1BgSelected",
+        "msgFile2BgSelected",
+        "msgFile3BgSelected",
+        "msgFile4BgSelected"
+      ],
+      "historyFileThumbRadialFg": [
+        "msgDateImgBg",
+        "msgDateImgBgOver",
+        "songCoverOverlayFg",
+        "msgFile1BgDark",
+        "msgFile2BgDark",
+        "msgFile3BgDark",
+        "msgFile4BgDark",
+        "msgFile1BgOver",
+        "msgFile2BgOver",
+        "msgFile3BgOver",
+        "msgFile4BgOver"
+      ],
+      "historyFileThumbRadialFgSelected": [
+        "msgDateImgBgSelected",
+        "msgFile1BgSelected",
+        "msgFile2BgSelected",
+        "msgFile3BgSelected",
+        "msgFile4BgSelected"
+      ],
+      "msgWaveformInActiveSelected": [
+        "msgInBgSelected"
+      ],
+      "msgWaveformInInactiveSelected": [
+        "msgInBgSelected"
+      ],
+      "msgWaveformOutActiveSelected": [
+        "msgOutBgSelected"
+      ],
+      "msgWaveformOutInactiveSelected": [
+        "msgOutBgSelected"
+      ],
+      "mediaInFgSelected": [
+        "msgInBgSelected"
+      ],
+      "mediaOutFgSelected": [
+        "msgOutBgSelected"
+      ],
+      "overviewCheckFgActive": [
+        "overviewCheckBgActive"
+      ],
+      "sideBarTextFgActive": [
+        "sideBarBgActive"
+      ],
+      "sideBarIconFgActive": [
+        "sideBarBgActive"
+      ],
+      "sideBarBadgeFg": [
+        "sideBarBadgeBg",
+        "sideBarBadgeBgActive",
+        "sideBarBadgeBgMuted",
+        "sideBarBadgeBgMutedActive"
+      ]
+    }
+  }
+}
