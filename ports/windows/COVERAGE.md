@@ -402,3 +402,16 @@ active states and returned to their black resting fill after pointer exit.
 No calculation command was invoked; mode and result were preserved. Disabling
 the candidate restored native gray controls. This bounded check does not accept
 all Calculator modes, startup, DPI changes or accessibility switching.
+
+### Explorer generic tab bitmaps
+
+The XAML tab's SoftwareBitmapSource takes a resource-sized stock folder through
+the public WIC icon-conversion method. The Explorer adapter caches those complete
+stock identities alongside system image-list identities. Only a matching stock
+glyph from the pinned ShellCommon caller receives an independent themed icon.
+The input icon remains borrowed; the bitmap result retains its native ownership,
+dimensions and error behavior. Caller and WIC module versions and full file hashes
+must match. Unknown/custom icons and accessibility overrides retain native
+conversion. This uses the existing adapter and the same installation/rollback
+journal. An isolated installed comparison showed a red generic tab; final
+production-candidate desktop and restore appearance checks remain open.

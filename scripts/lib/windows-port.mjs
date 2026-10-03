@@ -139,13 +139,21 @@ export function windowsArtifacts({manifest,host,resolved}){
   if(!/^\d+\.\d+\.\d+\.\d+$/.test(version)||version.split('.').some(p=>Number(p)>65535))throw Error('Invalid native Explorer module version');
   return [key,version.split('.')];
  }));
- const moduleSubs=Object.fromEntries(['FRAME','DUI','COMCTL'].flatMap(key=>{
+ const moduleSubs=Object.fromEntries(['FRAME','DUI','COMCTL','WIC','SHELLCOMMON'].flatMap(key=>{
   if(!moduleParts[key])throw Error(`Missing native Explorer module ${key}`);
   return ['MAJOR','MINOR','BUILD','REVISION'].map((field,i)=>[`${key}_${field}`,moduleParts[key][i]]);
  }));
  const folderSubs=Object.fromEntries(Object.entries(folderGeometry).map(([name,points])=>['FOLDER_'+name.toUpperCase(),points.map(([x,y])=>'{'+x+','+y+'}').join(',')]));
  const folderSource=readFileSync(path.join(repoRoot,'ports/windows/src/folder-glyph.cpp.in'),'utf8').replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in folderSubs))throw Error('Unknown folder source placeholder '+key);return folderSubs[key];});
- const substitutions={FOLDER_RENDERER:folderSource,...Object.fromEntries(Object.entries(nativeSettings).map(([key,value])=>[key.toUpperCase(),value])),VERSION:native.version,
+ const moduleDigests=Object.fromEntries(['WIC','SHELLCOMMON'].map(key=>{
+  const digest=host.nativeExplorerModuleDigests?.[key];
+  if(typeof digest!=='string'||! /^[a-f0-9]{64}$/.test(digest))throw Error('Missing native Explorer module digest '+key);
+  return [key+'_SHA256',digest];
+ }));
+ const bitmapSource=readFileSync(path.join(repoRoot,'ports/windows/src/folder-bitmap.cpp.in'),'utf8').replace(/@([A-Z0-9_]+)@/g,(_,key)=>{
+  const values={...moduleSubs,...moduleDigests};if(!(key in values))throw Error('Unknown folder bitmap placeholder '+key);return values[key];
+ });
+ const substitutions={FOLDER_BITMAP:bitmapSource,FOLDER_RENDERER:folderSource,...Object.fromEntries(Object.entries(nativeSettings).map(([key,value])=>[key.toUpperCase(),value])),VERSION:native.version,
   VERSION_MAJOR:parts[0],VERSION_MINOR:parts[1],VERSION_BUILD:parts[2],VERSION_REVISION:parts[3],...moduleSubs};
  const nativeSource=readFileSync(path.join(repoRoot,'ports/windows/src/j3w1-explorer-native.wh.cpp.in'),'utf8').replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in substitutions))throw Error(`Unknown native source placeholder ${key}`);return substitutions[key];});
  artifacts.push({path:`dist/${id}.wh.cpp`,text:nativeSource});

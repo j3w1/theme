@@ -1006,7 +1006,7 @@
     "Static cursor shapes preserve roles; host accessibility pointer overrides take priority."
   ],
   "nativeExplorer": {
-    "version": "1.6",
+    "version": "1.7",
     "background": "color.surface.canvas",
     "foreground": "color.text.default",
     "hover": "color.interaction.hover.bg",
@@ -1031,7 +1031,9 @@
   "nativeExplorerModules": {
     "FRAME": "10.0.26100.9549",
     "DUI": "10.0.26100.9549",
-    "COMCTL": "6.10.26100.9549"
+    "COMCTL": "6.10.26100.9549",
+    "WIC": "10.0.26100.9549",
+    "SHELLCOMMON": "10.0.26100.9550"
   },
   "monacoPreview": {
     "version": "1.1",
@@ -1538,5 +1540,9 @@
     "runtimePackage": "Microsoft.WindowsAppRuntime.2_2.5.1.0_x64__8wekyb3d8bbwe",
     "runtimeSha256": "aad12524765e6fb63f0ae26a45a9ba3104f24fde66413d8a3036fbed74a1e990",
     "diagnosticsBridgeSha256": "76fa4a93d1ae9c77f8c89222fbe7870e9b7c6eccf8d35d91ec43404df180e29c"
+  },
+  "nativeExplorerModuleDigests": {
+    "WIC": "ad3f960fc9d612c0289035f1b5c334dd44e423ce6c23059ab5129746cd0646f2",
+    "SHELLCOMMON": "410141eceecfaa5d7cccbfd7c357920988bf18fec3db7f6865eec674677c0204"
   }
 }

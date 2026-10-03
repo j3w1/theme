@@ -826,3 +826,29 @@ and inspection, a fresh numeric trace matched all stock pixels and created a
 replacement. The visible XAML tab still stayed yellow, so its actual rendering
 route remains unresolved. Remaining appearance gates
 are open; this candidate is not ready for merge.
+
+### Explorer tab bitmap conversion
+
+The generic folder tab uses a XAML SoftwareBitmapSource populated through the
+public IWICImagingFactory::CreateBitmapFromHICON method. Its stock image is
+extracted at the tab's physical size and differs from the system image-list
+image. The adapter now caches both complete stock identities and supplies a
+separate themed icon only to the admitted ShellCommon caller. It preserves the
+borrowed icon, native bitmap ownership, DPI dimensions, custom/overlay icons,
+high contrast, error results and last-error state. Windowscodecs and ShellCommon
+have pinned fixed versions and complete file digests. Unknown identities pass
+through; neither system assets nor XAML image sources are rewritten.
+
+An isolated installed comparison showed the generic tab turn red after a
+harmless folder navigation. This does not establish every folder view, DPI,
+accessibility or restored-state appearance.
+
+The native folder harness compares converted bitmap pixels at eight sizes,
+checks borrowed-icon preservation and native failure/last-error results, injects
+replacement allocation failure, and checks stable cleanup in both COM apartment
+modes. Its executable uses `tests/windows-explorer-native.manifest` as a sidecar
+manifest so Windows reports the same module versions as the manifested Explorer
+host. Identical native open/closed glyphs use the first complete stock identity;
+no tolerance or shared image-list mutation is introduced. Hash-reader and factory
+resources use exception-safe cleanup, and replacement failures retain native
+conversion. These are native regression checks, not desktop appearance evidence.

@@ -2,11 +2,11 @@
 // @id j3w1-explorer-native
 // @name j3w1 Explorer native colors
 // @description Generated native Explorer canvas and text adapter; exact host only
-// @version 1.6
+// @version 1.7
 // @author j3w1
 // @include explorer.exe
 // @architecture x86-64
-// @compilerOptions -luxtheme -lgdi32 -luser32 -lversion -lmsimg32 -ldwmapi -lshell32 -lcomctl32 -luuid -lole32
+// @compilerOptions -luxtheme -lgdi32 -luser32 -lversion -lmsimg32 -ldwmapi -lshell32 -lcomctl32 -luuid -lole32 -lwindowscodecs -lbcrypt
 // ==/WindhawkMod==
 // ==WindhawkModSettings==
 /*
@@ -33,6 +33,8 @@
 */
 // ==/WindhawkModSettings==
 #include <windows.h>
+#include <wincodec.h>
+#include <bcrypt.h>
 #include <uxtheme.h>
 #include <vssym32.h>
 #include <vsstyle.h>
@@ -403,6 +405,18 @@ static bool Build(COLORREF fill,COLORREF edge) {
             SHSTOCKICONINFO icon{sizeof(icon)};
             if(SUCCEEDED(SHGetStockIconInfo(open?SIID_FOLDEROPEN:SIID_FOLDER,flags,&icon))&&icon.hIcon){captureIcon(icon.hIcon,open!=0);DestroyIcon(icon.hIcon);}
         }
+        // Tab bitmaps use resource extraction at their exact physical size,
+        // which can differ from the system image-list glyph at that same size.
+        // Cache both complete stock identities; never add a pixel tolerance.
+        for(unsigned open=0;open<2;open++) {
+            SHSTOCKICONINFO resource{sizeof(resource)};
+            if(SUCCEEDED(SHGetStockIconInfo(open?SIID_FOLDEROPEN:SIID_FOLDER,SHGSI_ICONLOCATION,&resource))) {
+                HICON extracted=nullptr;
+                if(SUCCEEDED(SHDefExtractIconW(resource.szPath,resource.iIcon,0,&extracted,nullptr,static_cast<UINT>(size)))&&extracted) {
+                    captureIcon(extracted,open!=0);DestroyIcon(extracted);
+                }
+            }
+        }
         for(int kind=0;kind<=4;kind++) {
             List images;
             if(FAILED(SHGetImageList(kind,__uuidof(IImageList),reinterpret_cast<void**>(&images.value))))continue;
@@ -431,33 +445,40 @@ static HWND Owner(HDC dc) {
     GUITHREADINFO state{sizeof(state)};
     return GetGUIThreadInfo(GetCurrentThreadId(),&state)?state.hwndActive:nullptr;
 }
-// ExplorerFrame acquires tab glyphs through ImageList_GetIcon, bypassing Draw.
 // Match complete, unscaled current pixels against stock references prewarmed at
-// initialization. The returned replacement is caller-owned, just like the native
-// API result; the source image list and every custom/overlay icon are untouched.
-static HICON Acquire(HICON icon,UINT flags,bool reviewedCaller) {
+// initialization. Copy borrows its input and returns a separately owned icon for
+// WIC conversion; Acquire consumes and replaces the caller-owned image-list
+// result. Source lists, input icons and custom/overlay glyphs are untouched.
+static HICON Copy(HICON icon,bool reviewedCaller) {
     if(!reviewedCaller||!enabled.load()||painting||drawingTheme||HighContrast()
-       ||flags!=ILD_NORMAL||!originalImageListGetIcon)return icon;
+       ||!originalImageListGetIcon)return nullptr;
     HWND window=Owner(nullptr);DWORD process=0;
-    if(!window||!GetWindowThreadProcessId(window,&process)||process!=GetCurrentProcessId()||!ExplorerWindow(window))return icon;
-    int size=IconSize(icon);if(!size)return icon;
-    std::unique_lock guard(lock);if(!enabled.load())return icon;
+    if(!window||!GetWindowThreadProcessId(window,&process)||process!=GetCurrentProcessId()||!ExplorerWindow(window))return nullptr;
+    int size=IconSize(icon);if(!size)return nullptr;
+    std::unique_lock guard(lock);if(!enabled.load())return nullptr;
     auto found=std::find_if(frames.begin(),frames.end(),[&](auto const& frame){return frame.size==size;});
-    if(found==frames.end())return icon;
-    auto& frame=*found;DC dc(CreateCompatibleDC(nullptr));if(!dc.value)return icon;
-    dc.prior=SelectObject(dc.value,frame.bitmap);if(!dc.prior||dc.prior==HGDI_ERROR)return icon;
+    if(found==frames.end())return nullptr;
+    auto& frame=*found;DC dc(CreateCompatibleDC(nullptr));if(!dc.value)return nullptr;
+    dc.prior=SelectObject(dc.value,frame.bitmap);if(!dc.prior||dc.prior==HGDI_ERROR)return nullptr;
     memset(frame.pixels,0,size*size*4);int matched=-1;NativeGuard native;
     if(DrawIconEx(dc.value,0,0,icon,size,size,0,nullptr,DI_NORMAL)) {
         GdiFlush();for(auto const& stock:frame.iconStock)
             if(memcmp(frame.pixels,stock.pixels.data(),size*size*4)==0){matched=stock.open?1:0;break;}
     }
     SecureZeroMemory(frame.pixels,size*size*4);
-    if(matched<0)return icon;
+    if(matched<0)return nullptr;
     HICON replacement=NativeIcon(frame.images[matched],0,ILD_NORMAL);
+    if(!replacement)return nullptr;
+    return replacement;
+}
+static HICON Acquire(HICON icon,UINT flags,bool reviewedCaller) {
+    if(flags!=ILD_NORMAL)return icon;
+    HICON replacement=Copy(icon,reviewedCaller);
     if(!replacement)return icon;
     if(!DestroyIcon(icon)){DestroyIcon(replacement);return icon;}
     return replacement;
 }
+
 
 static bool Draw(void* self,IMAGELISTDRAWPARAMS* request,HRESULT* result) {
     if(!enabled.load()||painting||drawingTheme||HighContrast()||!request
@@ -512,6 +533,103 @@ static bool Init(COLORREF fill,COLORREF edge) {
     CoUninitialize();if(!built)Clear();return built;
 }
 static void Uninit(){std::lock_guard guard(lock);Clear();}
+}
+
+// The tab's XAML SoftwareBitmapSource is created through this public WIC
+// method. The borrowed HICON and caller-owned IWICBitmap follow native lifetime
+// rules; only an exact stock folder gets an independent themed input icon.
+namespace FolderBitmap {
+using ConvertFn=HRESULT(STDMETHODCALLTYPE*)(IWICImagingFactory*,HICON,IWICBitmap**);
+static ConvertFn originalConvert=nullptr;
+static IWICImagingFactory* retainedFactory=nullptr;
+static HMODULE retainedShell=nullptr;
+[[clang::no_destroy]] static std::mutex moduleLock;
+static bool Digest(HMODULE module,const char* expected) noexcept {
+    // RAII also covers allocation failure while preparing the hash object.
+    struct Reader {
+        HANDLE file=INVALID_HANDLE_VALUE;
+        BCRYPT_ALG_HANDLE algorithm=nullptr;BCRYPT_HASH_HANDLE hash=nullptr;
+        std::vector<BYTE> object;
+        ~Reader(){if(hash)BCryptDestroyHash(hash);if(algorithm)BCryptCloseAlgorithmProvider(algorithm,0);if(file!=INVALID_HANDLE_VALUE)CloseHandle(file);}
+    } reader;
+    try {
+    wchar_t path[32768]{};DWORD length=GetModuleFileNameW(module,path,std::size(path));
+    if(!length||length>=std::size(path))return false;
+    reader.file=CreateFileW(path,GENERIC_READ,FILE_SHARE_READ,nullptr,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,nullptr);
+    if(reader.file==INVALID_HANDLE_VALUE)return false;
+    DWORD size=0,written=0;BYTE digest[32]{};bool valid=false;
+    if(BCryptOpenAlgorithmProvider(&reader.algorithm,BCRYPT_SHA256_ALGORITHM,nullptr,0)>=0
+       &&BCryptGetProperty(reader.algorithm,BCRYPT_OBJECT_LENGTH,reinterpret_cast<PUCHAR>(&size),sizeof(size),&written,0)>=0) {
+        reader.object.resize(size);
+        if(BCryptCreateHash(reader.algorithm,&reader.hash,reader.object.data(),size,nullptr,0,0)>=0) {
+            BYTE buffer[65536];DWORD count=0;bool complete=false;
+            for(;;){if(!ReadFile(reader.file,buffer,sizeof(buffer),&count,nullptr))break;
+                if(!count){complete=true;break;}if(BCryptHashData(reader.hash,buffer,count,0)<0)break;}
+            if(complete&&BCryptFinishHash(reader.hash,digest,sizeof(digest),0)>=0) {
+                constexpr char hex[]="0123456789abcdef";char actual[65]{};
+                for(unsigned n=0;n<32;n++){actual[n*2]=hex[digest[n]>>4];actual[n*2+1]=hex[digest[n]&15];}
+                valid=strcmp(actual,expected)==0;
+            }
+        }
+    }
+    return valid;
+    }catch(...){return false;}
+}
+static bool Caller(void* address) noexcept {
+    try {
+    HMODULE module=nullptr;
+    if(!GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS|GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+        reinterpret_cast<LPCWSTR>(address),&module)||module!=GetModuleHandleW(L"windowsudk.shellcommon.dll"))return false;
+    std::lock_guard guard(moduleLock);
+    if(retainedShell)return module==retainedShell;
+    if(!FixedModuleVersion(module,MAKELONG(0,10),MAKELONG(9550,26100))
+       ||!Digest(module,"410141eceecfaa5d7cccbfd7c357920988bf18fec3db7f6865eec674677c0204"))return false;
+    // Retain the admitted module until hook cleanup so a recycled handle cannot
+    // inherit an earlier module's admission. Missing/unknown callers pass through.
+    return GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS,reinterpret_cast<LPCWSTR>(address),&retainedShell)!=FALSE;
+    }catch(...){return false;}
+}
+static HRESULT Convert(IWICImagingFactory* factory,HICON icon,IWICBitmap** result,bool reviewed) noexcept {
+    DWORD before=GetLastError();HICON themed=nullptr;
+    // Never let C++ allocation/locking failures cross the public COM boundary.
+    // Fall back before invoking native conversion, which must run exactly once.
+    try {if(result)themed=FolderGlyph::Copy(icon,reviewed);}catch(...) {}
+    SetLastError(before);HRESULT status=originalConvert(factory,themed?themed:icon,result);DWORD after=GetLastError();
+    if(themed)DestroyIcon(themed);SetLastError(after);return status;
+}
+static HRESULT STDMETHODCALLTYPE Hook(IWICImagingFactory* factory,HICON icon,IWICBitmap** result) noexcept {
+    DWORD before=GetLastError();bool reviewed=Caller(__builtin_return_address(0));SetLastError(before);
+    return Convert(factory,icon,result,reviewed);
+}
+static bool Init() noexcept {
+    HRESULT apartment=CoInitializeEx(nullptr,COINIT_APARTMENTTHREADED);
+    if(FAILED(apartment)&&apartment!=RPC_E_CHANGED_MODE)return false;
+    struct Apartment {
+        IWICImagingFactory* factory=nullptr;
+        bool initialized;
+        ~Apartment(){if(factory)factory->Release();if(initialized)CoUninitialize();}
+    } apartmentScope{nullptr,SUCCEEDED(apartment)};
+    auto& factory=apartmentScope.factory;bool ready=false;
+    try {
+    if(SUCCEEDED(CoCreateInstance(CLSID_WICImagingFactory,nullptr,CLSCTX_INPROC_SERVER,IID_PPV_ARGS(&factory)))) {
+        // IWICImagingFactory inherits IUnknown; CreateBitmapFromHICON is the
+        // documented method at slot 22 of the public interface ABI.
+        auto function=(*reinterpret_cast<void***>(factory))[22];HMODULE module=nullptr;
+        ready=GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS|GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+            reinterpret_cast<LPCWSTR>(function),&module)&&module==GetModuleHandleW(L"windowscodecs.dll")
+            &&FixedModuleVersion(module,MAKELONG(0,10),MAKELONG(9549,26100))
+            &&Digest(module,"ad3f960fc9d612c0289035f1b5c334dd44e423ce6c23059ab5129746cd0646f2")
+            &&Wh_SetFunctionHook(function,reinterpret_cast<void*>(Hook),reinterpret_cast<void**>(&originalConvert));
+    }
+    if(ready){retainedFactory=factory;factory=nullptr;}
+    return ready;
+    }catch(...){return false;}
+}
+static void Uninit() {
+    if(retainedFactory){retainedFactory->Release();retainedFactory=nullptr;}
+    std::lock_guard guard(moduleLock);
+    if(retainedShell){FreeLibrary(retainedShell);retainedShell=nullptr;}
+}
 }
 
 // The exact navigation pin is image 1 of the three-entry TreeView state list.
@@ -957,8 +1075,9 @@ BOOL Wh_ModInit() {
     if(!ReadColor(L"pin",&pin) || !ReadMarquee() || !InitMarquee() || !InitNavigationPin())return FALSE;
     COLORREF folderFill,folderEdge;
     if(!ReadColor(L"folderFill",&folderFill)||!ReadColor(L"folderEdge",&folderEdge)||!FolderGlyph::Init(folderFill,folderEdge))return FALSE;
+    if(!FolderBitmap::Init()){FolderGlyph::Uninit();return FALSE;}
     backgroundBrush=CreateSolidBrush(background);
-    if(!backgroundBrush){FolderGlyph::Uninit();return FALSE;}
+    if(!backgroundBrush){FolderBitmap::Uninit();FolderGlyph::Uninit();return FALSE;}
     bool hooked=Wh_SetFunctionHook((void*)DwmSetWindowAttribute,(void*)DwmAttributeHook,(void**)&originalDwmSetWindowAttribute)
         && Wh_SetFunctionHook((void*)CreateWindowExW,(void*)CreateWindowHook,(void**)&originalCreateWindowEx)
         && Wh_SetFunctionHook((void*)DestroyWindow,(void*)DestroyWindowHook,(void**)&originalDestroyWindow)
@@ -979,10 +1098,10 @@ BOOL Wh_ModInit() {
         && Wh_SetFunctionHook((void*)DrawThemeBackground,(void*)BackgroundHook,(void**)&originalDrawThemeBackground)
         && Wh_SetFunctionHook((void*)DrawThemeBackgroundEx,(void*)BackgroundExHook,(void**)&originalDrawThemeBackgroundEx);
 
-    if(!hooked) {DeleteObject(backgroundBrush);backgroundBrush=nullptr;FolderGlyph::Uninit();}
+    if(!hooked) {DeleteObject(backgroundBrush);backgroundBrush=nullptr;FolderBitmap::Uninit();FolderGlyph::Uninit();}
     enabled.store(hooked);
     return hooked;
 }
 void Wh_ModAfterInit() {EnumWindows(RefreshFolderCaption,0);EnumWindows(RepaintFolder,0);}
 void Wh_ModBeforeUninit() { enabled.store(false);RestoreCaptions(); }
-void Wh_ModUninit() { FolderGlyph::Uninit();if(backgroundBrush) {DeleteObject(backgroundBrush);backgroundBrush=nullptr;} EnumWindows(RepaintFolder,0); }
+void Wh_ModUninit() { FolderBitmap::Uninit();FolderGlyph::Uninit();if(backgroundBrush) {DeleteObject(backgroundBrush);backgroundBrush=nullptr;} EnumWindows(RepaintFolder,0); }

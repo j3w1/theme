@@ -112,6 +112,18 @@ static bool Build(COLORREF fill,COLORREF edge) {
             SHSTOCKICONINFO icon{sizeof(icon)};
             if(SUCCEEDED(SHGetStockIconInfo(open?SIID_FOLDEROPEN:SIID_FOLDER,flags,&icon))&&icon.hIcon){captureIcon(icon.hIcon,open!=0);DestroyIcon(icon.hIcon);}
         }
+        // Tab bitmaps use resource extraction at their exact physical size,
+        // which can differ from the system image-list glyph at that same size.
+        // Cache both complete stock identities; never add a pixel tolerance.
+        for(unsigned open=0;open<2;open++) {
+            SHSTOCKICONINFO resource{sizeof(resource)};
+            if(SUCCEEDED(SHGetStockIconInfo(open?SIID_FOLDEROPEN:SIID_FOLDER,SHGSI_ICONLOCATION,&resource))) {
+                HICON extracted=nullptr;
+                if(SUCCEEDED(SHDefExtractIconW(resource.szPath,resource.iIcon,0,&extracted,nullptr,static_cast<UINT>(size)))&&extracted) {
+                    captureIcon(extracted,open!=0);DestroyIcon(extracted);
+                }
+            }
+        }
         for(int kind=0;kind<=4;kind++) {
             List images;
             if(FAILED(SHGetImageList(kind,__uuidof(IImageList),reinterpret_cast<void**>(&images.value))))continue;
@@ -140,33 +152,40 @@ static HWND Owner(HDC dc) {
     GUITHREADINFO state{sizeof(state)};
     return GetGUIThreadInfo(GetCurrentThreadId(),&state)?state.hwndActive:nullptr;
 }
-// ExplorerFrame acquires tab glyphs through ImageList_GetIcon, bypassing Draw.
 // Match complete, unscaled current pixels against stock references prewarmed at
-// initialization. The returned replacement is caller-owned, just like the native
-// API result; the source image list and every custom/overlay icon are untouched.
-static HICON Acquire(HICON icon,UINT flags,bool reviewedCaller) {
+// initialization. Copy borrows its input and returns a separately owned icon for
+// WIC conversion; Acquire consumes and replaces the caller-owned image-list
+// result. Source lists, input icons and custom/overlay glyphs are untouched.
+static HICON Copy(HICON icon,bool reviewedCaller) {
     if(!reviewedCaller||!enabled.load()||painting||drawingTheme||HighContrast()
-       ||flags!=ILD_NORMAL||!originalImageListGetIcon)return icon;
+       ||!originalImageListGetIcon)return nullptr;
     HWND window=Owner(nullptr);DWORD process=0;
-    if(!window||!GetWindowThreadProcessId(window,&process)||process!=GetCurrentProcessId()||!ExplorerWindow(window))return icon;
-    int size=IconSize(icon);if(!size)return icon;
-    std::unique_lock guard(lock);if(!enabled.load())return icon;
+    if(!window||!GetWindowThreadProcessId(window,&process)||process!=GetCurrentProcessId()||!ExplorerWindow(window))return nullptr;
+    int size=IconSize(icon);if(!size)return nullptr;
+    std::unique_lock guard(lock);if(!enabled.load())return nullptr;
     auto found=std::find_if(frames.begin(),frames.end(),[&](auto const& frame){return frame.size==size;});
-    if(found==frames.end())return icon;
-    auto& frame=*found;DC dc(CreateCompatibleDC(nullptr));if(!dc.value)return icon;
-    dc.prior=SelectObject(dc.value,frame.bitmap);if(!dc.prior||dc.prior==HGDI_ERROR)return icon;
+    if(found==frames.end())return nullptr;
+    auto& frame=*found;DC dc(CreateCompatibleDC(nullptr));if(!dc.value)return nullptr;
+    dc.prior=SelectObject(dc.value,frame.bitmap);if(!dc.prior||dc.prior==HGDI_ERROR)return nullptr;
     memset(frame.pixels,0,size*size*4);int matched=-1;NativeGuard native;
     if(DrawIconEx(dc.value,0,0,icon,size,size,0,nullptr,DI_NORMAL)) {
         GdiFlush();for(auto const& stock:frame.iconStock)
             if(memcmp(frame.pixels,stock.pixels.data(),size*size*4)==0){matched=stock.open?1:0;break;}
     }
     SecureZeroMemory(frame.pixels,size*size*4);
-    if(matched<0)return icon;
+    if(matched<0)return nullptr;
     HICON replacement=NativeIcon(frame.images[matched],0,ILD_NORMAL);
+    if(!replacement)return nullptr;
+    return replacement;
+}
+static HICON Acquire(HICON icon,UINT flags,bool reviewedCaller) {
+    if(flags!=ILD_NORMAL)return icon;
+    HICON replacement=Copy(icon,reviewedCaller);
     if(!replacement)return icon;
     if(!DestroyIcon(icon)){DestroyIcon(replacement);return icon;}
     return replacement;
 }
+
 
 static bool Draw(void* self,IMAGELISTDRAWPARAMS* request,HRESULT* result) {
     if(!enabled.load()||painting||drawingTheme||HighContrast()||!request

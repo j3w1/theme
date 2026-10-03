@@ -461,7 +461,10 @@ test('standalone toast variants use black surfaces with one outer frame',async()
 test('bundled native source is generated, pinned and rejected on tampering',t=>{
  const f=windhawkFixture(t),file=path.join(f.args.source,'dist/j3w1-explorer-native.wh.cpp');
  const text=fs.readFileSync(file,'utf8');
- assert.match(text,/@include explorer.exe/);assert.doesNotMatch(text,/@[A-Z_]+@|native-probe|CreateFileW|SetSysColors/);
+ assert.match(text,/@include explorer.exe/);assert.doesNotMatch(text,/@[A-Z_]+@|native-probe|SetSysColors|GENERIC_WRITE|FILE_APPEND_DATA|CREATE_ALWAYS|CREATE_NEW|WriteFile|DeleteFile/);
+ assert.equal((text.match(/CreateFileW\(/g)||[]).length,1,'Only the module digest reader opens files');
+ assert.match(text,/CreateFileW\(path,GENERIC_READ,FILE_SHARE_READ,nullptr,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,nullptr\)/);
+ assert.match(text,/GetModuleFileNameW\(module,path/);
  assert.match(text,/MAKELONG\(9549,26100\)/);
  fs.appendFileSync(file,'\n// changed');
  const result=f.run('Apply',f.args);assert.notEqual(result.status,0);assert.match(result.stderr,/Missing verified mod source/);
