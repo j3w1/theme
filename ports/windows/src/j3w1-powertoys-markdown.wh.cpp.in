@@ -6,7 +6,7 @@
 // @author j3w1
 // @include PowerToys.MarkdownPreviewHandler.exe
 // @architecture x86-64
-// @compilerOptions -lbcrypt -luser32 -lole32 -lshell32 -lshlwapi -luuid
+// @compilerOptions -lbcrypt -luser32 -lole32 -lshell32 -lshlwapi -luuid -lgdi32
 // ==/WindhawkMod==
 // ==WindhawkModSettings==
 /*
@@ -52,6 +52,7 @@ static bool HighContrast(){
  HIGHCONTRASTW value{sizeof(value)};
  return !SystemParametersInfoW(SPI_GETHIGHCONTRAST,sizeof(value),&value,0)||(value.dwFlags&HCF_HIGHCONTRASTON);
 }
+@PREVIEW_LOADING@
 static bool Digest(const BYTE* bytes,size_t size,const char* expected){
  if(size>std::numeric_limits<ULONG>::max())return false;
  BCRYPT_ALG_HANDLE algorithm=nullptr;BCRYPT_HASH_HANDLE hash=nullptr;BYTE result[32]{};bool ok=false;
@@ -235,7 +236,7 @@ BOOL Wh_ModInit(){
  tempFolder=low;CoTaskMemFree(low);tempFolder+=L"\\Microsoft\\PowerToys\\MarkdownPreview-Temp\\";
  enabled=Wh_GetIntSetting(L"enabled")!=0;
  ExistingBoundaries();
- return Wh_SetFunctionHook(reinterpret_cast<void*>(LoadLibraryExW),reinterpret_cast<void*>(LoadHook),reinterpret_cast<void**>(&originalLoadLibraryEx))
+ return InitLoading()&&Wh_SetFunctionHook(reinterpret_cast<void*>(LoadLibraryExW),reinterpret_cast<void*>(LoadHook),reinterpret_cast<void**>(&originalLoadLibraryEx))
   &&Wh_SetFunctionHook(reinterpret_cast<void*>(CreateFileW),reinterpret_cast<void*>(CreateHook),reinterpret_cast<void**>(&originalCreateFile));
 }
 void Wh_ModSettingsChanged(){enabled=Wh_GetIntSetting(L"enabled")!=0;}

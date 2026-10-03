@@ -2,11 +2,11 @@
 // @id j3w1-powertoys-markdown
 // @name j3w1 PowerToys Markdown preview
 // @description Exact-version black and rose Markdown rendering adapter
-// @version 1.1.0
+// @version 1.2.0
 // @author j3w1
 // @include PowerToys.MarkdownPreviewHandler.exe
 // @architecture x86-64
-// @compilerOptions -lbcrypt -luser32 -lole32 -lshell32 -lshlwapi -luuid
+// @compilerOptions -lbcrypt -luser32 -lole32 -lshell32 -lshlwapi -luuid -lgdi32
 // ==/WindhawkMod==
 // ==WindhawkModSettings==
 /*
@@ -56,6 +56,69 @@ static bool HighContrast(){
  HIGHCONTRASTW value{sizeof(value)};
  return !SystemParametersInfoW(SPI_GETHIGHCONTRAST,sizeof(value),&value,0)||(value.dwFlags&HCF_HIGHCONTRASTON);
 }
+static decltype(&FillRect) originalFillRect;
+static decltype(&SetTextColor) originalSetTextColor;
+static decltype(&SetBkColor) originalSetBkColor;
+static decltype(&BeginPaint) originalBeginPaint;
+static decltype(&EndPaint) originalEndPaint;
+static thread_local std::vector<HWND> paintWindows;
+static constexpr COLORREF loadingBackground=RGB(0,0,0);
+static constexpr COLORREF loadingForeground=RGB(233,148,153);
+// The pinned host's loading UI uses WinForms Window/STATIC controls. Its
+// opaque BackColor is painted with GDI FillRect; label text uses TextRenderer.
+// Scope memory DCs to the originating paint HWND. Never recolor WebView content,
+// arbitrary bitmaps, editors, or cached shared brushes.
+static bool LoadingWindow(HWND window) {
+    DWORD process=0;wchar_t name[128]{};
+    if(!window || !GetWindowThreadProcessId(window,&process) || process!=GetCurrentProcessId()
+        || !GetClassNameW(window,name,128)) return false;
+    // GetClassName returns "Static" on the reviewed .NET 10 host. Windows class
+    // names are case-insensitive; do not impose a different matching rule.
+    return _wcsnicmp(name,L"WindowsForms10.Window.",22)==0
+        || _wcsnicmp(name,L"WindowsForms10.Static.",22)==0;
+}
+static bool LoadingDC(HDC dc) {
+    if(!enabled.load() || HighContrast()) return false;
+    HWND owner=WindowFromDC(dc);
+    return LoadingWindow(owner?owner:paintWindows.empty()?nullptr:paintWindows.back());
+}
+static HDC WINAPI BeginPaintHook(HWND window,LPPAINTSTRUCT paint) {
+    HDC dc=originalBeginPaint(window,paint);
+    if(dc)paintWindows.push_back(window);
+    return dc;
+}
+static BOOL WINAPI EndPaintHook(HWND window,const PAINTSTRUCT* paint) {
+    for(auto it=paintWindows.end();it!=paintWindows.begin();) {
+        --it;if(*it==window){paintWindows.erase(it);break;}
+    }
+    return originalEndPaint(window,paint);
+}
+static int WINAPI LoadingFillHook(HDC dc,const RECT* rect,HBRUSH brush) {
+    LOGBRUSH data{};
+    // Exact dark-mode BackColor from the pinned PowerToys Settings class.
+    if(LoadingDC(dc) && GetObjectW(brush,sizeof(data),&data)==sizeof(data)
+        && data.lbStyle==BS_SOLID && data.lbColor==RGB(30,30,30)) {
+        HBRUSH themed=CreateSolidBrush(loadingBackground);
+        if(themed){int result=originalFillRect(dc,rect,themed);DeleteObject(themed);return result;}
+    }
+    return originalFillRect(dc,rect,brush);
+}
+static COLORREF WINAPI LoadingTextHook(HDC dc,COLORREF color) {
+    if(color==RGB(255,255,255) && LoadingDC(dc))color=loadingForeground;
+    return originalSetTextColor(dc,color);
+}
+static COLORREF WINAPI LoadingBkHook(HDC dc,COLORREF color) {
+    if(color==RGB(30,30,30) && LoadingDC(dc))color=loadingBackground;
+    return originalSetBkColor(dc,color);
+}
+static bool InitLoading() {
+    return Wh_SetFunctionHook(reinterpret_cast<void*>(FillRect),reinterpret_cast<void*>(LoadingFillHook),reinterpret_cast<void**>(&originalFillRect))
+        && Wh_SetFunctionHook(reinterpret_cast<void*>(SetTextColor),reinterpret_cast<void*>(LoadingTextHook),reinterpret_cast<void**>(&originalSetTextColor))
+        && Wh_SetFunctionHook(reinterpret_cast<void*>(SetBkColor),reinterpret_cast<void*>(LoadingBkHook),reinterpret_cast<void**>(&originalSetBkColor))
+        && Wh_SetFunctionHook(reinterpret_cast<void*>(BeginPaint),reinterpret_cast<void*>(BeginPaintHook),reinterpret_cast<void**>(&originalBeginPaint))
+        && Wh_SetFunctionHook(reinterpret_cast<void*>(EndPaint),reinterpret_cast<void*>(EndPaintHook),reinterpret_cast<void**>(&originalEndPaint));
+}
+
 static bool Digest(const BYTE* bytes,size_t size,const char* expected){
  if(size>std::numeric_limits<ULONG>::max())return false;
  BCRYPT_ALG_HANDLE algorithm=nullptr;BCRYPT_HASH_HANDLE hash=nullptr;BYTE result[32]{};bool ok=false;
@@ -240,7 +303,7 @@ BOOL Wh_ModInit(){
  tempFolder=low;CoTaskMemFree(low);tempFolder+=L"\\Microsoft\\PowerToys\\MarkdownPreview-Temp\\";
  enabled=Wh_GetIntSetting(L"enabled")!=0;
  ExistingBoundaries();
- return Wh_SetFunctionHook(reinterpret_cast<void*>(LoadLibraryExW),reinterpret_cast<void*>(LoadHook),reinterpret_cast<void**>(&originalLoadLibraryEx))
+ return InitLoading()&&Wh_SetFunctionHook(reinterpret_cast<void*>(LoadLibraryExW),reinterpret_cast<void*>(LoadHook),reinterpret_cast<void**>(&originalLoadLibraryEx))
   &&Wh_SetFunctionHook(reinterpret_cast<void*>(CreateFileW),reinterpret_cast<void*>(CreateHook),reinterpret_cast<void**>(&originalCreateFile));
 }
 void Wh_ModSettingsChanged(){enabled=Wh_GetIntSetting(L"enabled")!=0;}

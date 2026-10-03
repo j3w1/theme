@@ -164,7 +164,7 @@ export function windowsArtifacts({manifest,host,resolved}){
   PROGRESS_BORDER:rgb(val(preview.loading.border)).join(','),
   RULES_JSON:JSON.stringify(Object.entries(preview.syntax).map(([token,role])=>({token,foreground:val(role).slice(1)}))),
   MEDIA_CSS:`@media (forced-colors: none) { html, body, #container { background: ${val('color.surface.canvas')}; color: ${val('color.text.default')}; } }`};
- const previewSource=readFileSync(path.join(repoRoot,'ports/windows/src/j3w1-powertoys-preview.wh.cpp.in'),'utf8').replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in previewSubs))throw Error(`Unknown preview source placeholder ${key}`);return previewSubs[key];});
+ const previewSource=readFileSync(path.join(repoRoot,'ports/windows/src/j3w1-powertoys-preview.wh.cpp.in'),'utf8').replace('@PREVIEW_LOADING@',readFileSync(path.join(repoRoot,'ports/windows/src/preview-loading.cpp.in'),'utf8')).replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in previewSubs))throw Error(`Unknown preview source placeholder ${key}`);return previewSubs[key];});
  artifacts.push({path:`dist/${previewId}.wh.cpp`,text:previewSource});
  // Windhawk stores checkbox settings as integer strings (1/0).
  json(`${previewId}.json`,{enabled:1});

@@ -2,7 +2,7 @@
 // @id j3w1-explorer-native
 // @name j3w1 Explorer native colors
 // @description Generated native Explorer canvas and text adapter; exact host only
-// @version 1.5
+// @version 1.6
 // @author j3w1
 // @include explorer.exe
 // @architecture x86-64
@@ -299,6 +299,18 @@ struct Frame { int size; HBITMAP bitmap=nullptr; DWORD* pixels=nullptr;
 [[clang::no_destroy]] static std::mutex lock;
 [[clang::no_destroy]] static std::vector<Frame> frames;
 static thread_local bool painting=false;
+// Native extraction can reenter CImageList::Draw. Suppress only this adapter's
+// folder substitution while obtaining or inspecting its source identity.
+struct NativeGuard {
+    bool prior=painting;
+    NativeGuard(){painting=true;}
+    ~NativeGuard(){painting=prior;}
+    NativeGuard(const NativeGuard&)=delete;
+    NativeGuard& operator=(const NativeGuard&)=delete;
+};
+static HICON NativeIcon(HIMAGELIST images,int index,UINT flags) {
+    NativeGuard guard;return originalImageListGetIcon(images,index,flags);
+}
 static constexpr POINT back[]={{2,5},{3,4},{11,4},{14,7},{29,7},{30,8},{30,27},{2,27}};
 static constexpr POINT closedFront[]={{2,11},{30,11},{30,27},{29,28},{3,28},{2,27}};
 static constexpr POINT openFront[]={{5,12},{31,12},{27,28},{1,28}};
@@ -434,14 +446,14 @@ static HICON Acquire(HICON icon,UINT flags,bool reviewedCaller) {
     if(found==frames.end())return icon;
     auto& frame=*found;DC dc(CreateCompatibleDC(nullptr));if(!dc.value)return icon;
     dc.prior=SelectObject(dc.value,frame.bitmap);if(!dc.prior||dc.prior==HGDI_ERROR)return icon;
-    memset(frame.pixels,0,size*size*4);int matched=-1;
+    memset(frame.pixels,0,size*size*4);int matched=-1;NativeGuard native;
     if(DrawIconEx(dc.value,0,0,icon,size,size,0,nullptr,DI_NORMAL)) {
         GdiFlush();for(auto const& stock:frame.iconStock)
             if(memcmp(frame.pixels,stock.pixels.data(),size*size*4)==0){matched=stock.open?1:0;break;}
     }
     SecureZeroMemory(frame.pixels,size*size*4);
     if(matched<0)return icon;
-    painting=true;HICON replacement=originalImageListGetIcon(frame.images[matched],0,ILD_NORMAL);painting=false;
+    HICON replacement=NativeIcon(frame.images[matched],0,ILD_NORMAL);
     if(!replacement)return icon;
     if(!DestroyIcon(icon)){DestroyIcon(replacement);return icon;}
     return replacement;
@@ -549,7 +561,7 @@ static HRESULT __cdecl NavigationPinHook(void* self,IMAGELISTDRAWPARAMS* request
     return FAILED(result)?original():result;
 }
 static HICON WINAPI FolderIconHook(HIMAGELIST images,int index,UINT flags) {
-    HICON icon=originalImageListGetIcon(images,index,flags);
+    HICON icon=FolderGlyph::NativeIcon(images,index,flags);
     HMODULE caller=nullptr;
     bool reviewed=GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS|GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
         reinterpret_cast<LPCWSTR>(__builtin_return_address(0)),&caller)

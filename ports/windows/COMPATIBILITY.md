@@ -820,5 +820,9 @@ acquisition and tooltip observers retain native API results and record only
 numeric identity, caller, owner and paint metadata. Acquisition now proved a
 24px generic closed-folder HICON from ExplorerFrame on two harmless folder
 navigations. The source adapter covers that route through complete stock-glyph
-identity and caller-owned replacement; installed visual acceptance is pending. Remaining appearance gates
+identity and caller-owned replacement. The initial installed comparison failed
+because extraction reentered the folder draw hook. With scoped native extraction
+and inspection, a fresh numeric trace matched all stock pixels and created a
+replacement. The visible XAML tab still stayed yellow, so its actual rendering
+route remains unresolved. Remaining appearance gates
 are open; this candidate is not ready for merge.

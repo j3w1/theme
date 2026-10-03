@@ -2,7 +2,7 @@
 // @id j3w1-powertoys-preview
 // @name j3w1 PowerToys text preview
 // @description Token palette for the exact reviewed Monaco preview template
-// @version 1.0
+// @version 1.1
 // @author j3w1
 // @include PowerToys.MonacoPreviewHandler.exe
 // @architecture x86-64
@@ -26,14 +26,6 @@ static decltype(&CreateFileW) originalCreateFile;
 static std::wstring templatePath;
 static std::atomic<bool> enabled{false};
 static thread_local bool redirecting=false;
-static decltype(&FillRect) originalFillRect;
-static decltype(&SetTextColor) originalSetTextColor;
-static decltype(&SetBkColor) originalSetBkColor;
-static decltype(&BeginPaint) originalBeginPaint;
-static decltype(&EndPaint) originalEndPaint;
-static thread_local std::vector<HWND> paintWindows;
-static constexpr COLORREF loadingBackground=RGB(0,0,0);
-static constexpr COLORREF loadingForeground=RGB(233,148,153);
 static constexpr COLORREF progressTrack=RGB(66,15,12);
 static constexpr COLORREF progressFill=RGB(125,19,16);
 static constexpr COLORREF progressBorder=RGB(163,103,107);
@@ -47,6 +39,14 @@ static bool HighContrast() {
     return !SystemParametersInfoW(SPI_GETHIGHCONTRAST,sizeof(value),&value,0)
         || (value.dwFlags&HCF_HIGHCONTRASTON);
 }
+static decltype(&FillRect) originalFillRect;
+static decltype(&SetTextColor) originalSetTextColor;
+static decltype(&SetBkColor) originalSetBkColor;
+static decltype(&BeginPaint) originalBeginPaint;
+static decltype(&EndPaint) originalEndPaint;
+static thread_local std::vector<HWND> paintWindows;
+static constexpr COLORREF loadingBackground=RGB(0,0,0);
+static constexpr COLORREF loadingForeground=RGB(233,148,153);
 // The pinned host's loading UI uses WinForms Window/STATIC controls. Its
 // opaque BackColor is painted with GDI FillRect; label text uses TextRenderer.
 // Scope memory DCs to the originating paint HWND. Never recolor WebView content,
@@ -94,6 +94,14 @@ static COLORREF WINAPI LoadingBkHook(HDC dc,COLORREF color) {
     if(color==RGB(30,30,30) && LoadingDC(dc))color=loadingBackground;
     return originalSetBkColor(dc,color);
 }
+static bool InitLoading() {
+    return Wh_SetFunctionHook(reinterpret_cast<void*>(FillRect),reinterpret_cast<void*>(LoadingFillHook),reinterpret_cast<void**>(&originalFillRect))
+        && Wh_SetFunctionHook(reinterpret_cast<void*>(SetTextColor),reinterpret_cast<void*>(LoadingTextHook),reinterpret_cast<void**>(&originalSetTextColor))
+        && Wh_SetFunctionHook(reinterpret_cast<void*>(SetBkColor),reinterpret_cast<void*>(LoadingBkHook),reinterpret_cast<void**>(&originalSetBkColor))
+        && Wh_SetFunctionHook(reinterpret_cast<void*>(BeginPaint),reinterpret_cast<void*>(BeginPaintHook),reinterpret_cast<void**>(&originalBeginPaint))
+        && Wh_SetFunctionHook(reinterpret_cast<void*>(EndPaint),reinterpret_cast<void*>(EndPaintHook),reinterpret_cast<void**>(&originalEndPaint));
+}
+
 static bool ProgressDC(HDC dc) {
     if(!enabled.load() || paintingProgress || HighContrast())return false;
     HWND owner=WindowFromDC(dc);
@@ -279,11 +287,7 @@ BOOL Wh_ModInit() {
     if(!themeClass)return FALSE;
     if(!Wh_SetFunctionHook(reinterpret_cast<void*>(CreateFileW),reinterpret_cast<void*>(CreateFileHook),reinterpret_cast<void**>(&originalCreateFile))) return FALSE;
     if(!Wh_SetFunctionHook(reinterpret_cast<void*>(DrawThemeBackground),reinterpret_cast<void*>(ProgressBackgroundHook),reinterpret_cast<void**>(&originalProgressBackground))
-        || !Wh_SetFunctionHook(reinterpret_cast<void*>(FillRect),reinterpret_cast<void*>(LoadingFillHook),reinterpret_cast<void**>(&originalFillRect))
-        || !Wh_SetFunctionHook(reinterpret_cast<void*>(SetTextColor),reinterpret_cast<void*>(LoadingTextHook),reinterpret_cast<void**>(&originalSetTextColor))
-        || !Wh_SetFunctionHook(reinterpret_cast<void*>(SetBkColor),reinterpret_cast<void*>(LoadingBkHook),reinterpret_cast<void**>(&originalSetBkColor))
-        || !Wh_SetFunctionHook(reinterpret_cast<void*>(BeginPaint),reinterpret_cast<void*>(BeginPaintHook),reinterpret_cast<void**>(&originalBeginPaint))
-        || !Wh_SetFunctionHook(reinterpret_cast<void*>(EndPaint),reinterpret_cast<void*>(EndPaintHook),reinterpret_cast<void**>(&originalEndPaint))) return FALSE;
+        || !InitLoading()) return FALSE;
     enabled=Wh_GetIntSetting(L"enabled")!=0;return TRUE;
 }
 void Wh_ModSettingsChanged(){enabled=Wh_GetIntSetting(L"enabled")!=0;}

@@ -44,3 +44,13 @@ test('Markdown generation refuses missing digest, duplicate header, out-of-bound
   const candidate=structuredClone(host);change(candidate);assert.throws(()=>windowsMarkdownArtifacts(candidate,resolved));
  }
 });
+
+test('native Markdown startup shares the exact scoped loading implementation with text preview',()=>{
+ const md=fs.readFileSync(path.join(port,'dist/j3w1-powertoys-markdown.wh.cpp'),'utf8');
+ const text=fs.readFileSync(path.join(port,'dist/j3w1-powertoys-preview.wh.cpp'),'utf8');
+ const shared=file=>file.slice(file.indexOf('static decltype(&FillRect)'),file.indexOf('static bool InitLoading()'));
+ assert.ok(shared(md).length>0);
+ // The foreground roles currently resolve alike; the same native code owns both.
+ assert.equal(shared(md),shared(text));
+ assert.ok(md.includes('return InitLoading()&&Wh_SetFunctionHook'));
+});

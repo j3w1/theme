@@ -8,12 +8,15 @@
 static HWND fixtureOwner;
 static bool fixtureContrast=false;
 static unsigned stockQueries=0,extendedCalls=0;
+static bool expectNativeRaster=false;static unsigned nativeRasters=0;
+static BOOL WINAPI FixtureIcon(HDC,int,int,HICON,int,int,UINT,HBRUSH,UINT);
 static constexpr unsigned long long extension=0x57444F5241570001ull;
 static BOOL WINAPI FixtureGui(DWORD,GUITHREADINFO* value){value->hwndActive=fixtureOwner;return TRUE;}
 static BOOL WINAPI FixtureParameters(UINT action,UINT size,PVOID value,UINT flags){if(action==SPI_GETHIGHCONTRAST){static_cast<HIGHCONTRASTW*>(value)->dwFlags=fixtureContrast?HCF_HIGHCONTRASTON:0;return TRUE;}return SystemParametersInfoW(action,size,value,flags);}
 static HRESULT WINAPI FixtureStock(SHSTOCKICONID id,UINT flags,SHSTOCKICONINFO* value){++stockQueries;return SHGetStockIconInfo(id,flags,value);}
 static void Extended(IMAGELISTDRAWPARAMS* value){if(value->cbSize==96){unsigned long long tail=0;memcpy(&tail,reinterpret_cast<BYTE*>(value)+88,8);assert(tail==extension);++extendedCalls;}}
 static BOOL WINAPI FixtureDraw(IMAGELISTDRAWPARAMS* request){Extended(request);auto standard=*request;standard.cbSize=sizeof(standard);return ImageList_DrawIndirect(&standard);}
+#define DrawIconEx FixtureIcon
 #define GetGUIThreadInfo FixtureGui
 #define SystemParametersInfoW FixtureParameters
 #define SHGetStockIconInfo FixtureStock
@@ -23,6 +26,11 @@ static PCWSTR Wh_GetStringSetting(PCWSTR){return L"#000000";}
 static void Wh_FreeStringSetting(PCWSTR){}
 #include "windows-windhawk-symbol-stubs.h"
 #include "../ports/windows/dist/j3w1-explorer-native.wh.cpp"
+#undef DrawIconEx
+static BOOL WINAPI FixtureIcon(HDC dc,int x,int y,HICON icon,int width,int height,UINT step,HBRUSH brush,UINT flags) {
+ if(expectNativeRaster){assert(FolderGlyph::painting);++nativeRasters;}
+ return DrawIconEx(dc,x,y,icon,width,height,step,brush,flags);
+}
 static HWND Window(PCWSTR name){WNDCLASSW type{};type.lpfnWndProc=DefWindowProcW;type.hInstance=GetModuleHandleW(nullptr);type.lpszClassName=name;assert(RegisterClassW(&type)||GetLastError()==ERROR_CLASS_ALREADY_EXISTS);auto window=CreateWindowExW(0,name,L"",0,0,0,32,32,nullptr,nullptr,type.hInstance,nullptr);assert(window);return window;}
 int main(int argc,char** argv){
  assert(SUCCEEDED(CoInitializeEx(nullptr,COINIT_APARTMENTTHREADED)));
@@ -64,11 +72,23 @@ int main(int argc,char** argv){
  memset(pixels,0,width*height*4);assert(SUCCEEDED(originalImageListDraw(nullptr,&draw)));GdiFlush();assert(actual==std::vector<DWORD>(pixels,pixels+width*height));
  // Acquisition has a separate raster identity and retains caller ownership.
  originalImageListGetIcon=&ImageList_GetIcon;
+ // Nested extraction restores the previous guard rather than clearing it.
+ {FolderGlyph::NativeGuard outer;assert(FolderGlyph::painting);
+  {FolderGlyph::NativeGuard inner;assert(FolderGlyph::painting);}assert(FolderGlyph::painting);}
+ assert(!FolderGlyph::painting);
+ auto nativeGetIcon=originalImageListGetIcon;
+ originalImageListGetIcon=[](HIMAGELIST images,int index,UINT flags)->HICON{
+  assert(FolderGlyph::painting);return ImageList_GetIcon(images,index,flags);
+ };
+ HICON guarded=FolderGlyph::NativeIcon(reinterpret_cast<HIMAGELIST>(stock),stockInfo.iSysImageIndex,ILD_NORMAL);
+ assert(guarded&&!FolderGlyph::painting);DestroyIcon(guarded);
+ {FolderGlyph::NativeGuard outer;guarded=FolderGlyph::NativeIcon(reinterpret_cast<HIMAGELIST>(stock),stockInfo.iSysImageIndex,ILD_NORMAL);assert(guarded&&FolderGlyph::painting);DestroyIcon(guarded);}
+ assert(!FolderGlyph::painting);originalImageListGetIcon=nativeGetIcon;
  auto iconPixels=[](HICON icon){int size=FolderGlyph::IconSize(icon);assert(size>0);DWORD* pixels=nullptr;auto bitmap=FolderGlyph::Bitmap(size,&pixels);HDC buffer=CreateCompatibleDC(nullptr);assert(bitmap&&buffer);auto before=SelectObject(buffer,bitmap);memset(pixels,0,size*size*4);assert(DrawIconEx(buffer,0,0,icon,size,size,0,nullptr,DI_NORMAL));GdiFlush();std::vector<DWORD> copy(pixels,pixels+size*size);SecureZeroMemory(pixels,size*size*4);SelectObject(buffer,before);DeleteDC(buffer);DeleteObject(bitmap);return copy;};
  for(unsigned open=0;open<2;open++) {
   SHSTOCKICONINFO identity{sizeof(identity)};assert(SUCCEEDED(SHGetStockIconInfo(open?SIID_FOLDEROPEN:SIID_FOLDER,SHGSI_SYSICONINDEX,&identity)));
   HICON native=nullptr;assert(SUCCEEDED(stock->GetIcon(identity.iSysImageIndex,ILD_NORMAL,&native))&&native);auto baselinePixels=iconPixels(native);int size=FolderGlyph::IconSize(native);
-  stockQueries=0;HICON themed=FolderGlyph::Acquire(native,ILD_NORMAL,true);assert(themed&&iconPixels(themed)!=baselinePixels&&FolderGlyph::IconSize(themed)==size);assert(stockQueries==0);DestroyIcon(themed);
+  stockQueries=0;expectNativeRaster=true;HICON themed=FolderGlyph::Acquire(native,ILD_NORMAL,true);expectNativeRaster=false;assert(nativeRasters>0&&!FolderGlyph::painting);assert(themed&&iconPixels(themed)!=baselinePixels&&FolderGlyph::IconSize(themed)==size);assert(stockQueries==0);DestroyIcon(themed);
   // Acquiring the themed icon did not alter the original shell list.
   assert(SUCCEEDED(stock->GetIcon(identity.iSysImageIndex,ILD_NORMAL,&native))&&native);assert(iconPixels(native)==baselinePixels);
   assert(FolderGlyph::Acquire(native,ILD_NORMAL,false)==native);

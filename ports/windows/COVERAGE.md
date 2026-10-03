@@ -337,8 +337,12 @@ stock references. Only normal, exact generic glyphs receive a caller-owned red
 icon; the shared shell image list is unchanged. Unknown callers, sizes, flags,
 custom glyphs and high contrast keep the original result. No image index grants
 admission. Native tests cover retained source pixels, same-slot customization,
-failed replacement, fallback and stable GDI/user-object cleanup. Live tab-icon
-and rollback acceptance remain separate checks.
+failed replacement, fallback and stable GDI/user-object cleanup. Native extraction and raster inspection use a nested guard so the draw hook
+cannot recolor a source icon before its stock identity is compared. The guard
+restores the previous state on every exit. A live numeric trace then matched
+the entire closed-folder glyph and obtained an owned replacement; the visible
+XAML tab still remained yellow. This acquisition route therefore does not prove
+tab coverage. Live tab-icon and rollback acceptance remain separate checks.
 
 The prototype rendered red generic folders in the sample Details view and in
 repainted navigation rows. Existing special-folder glyphs and a populated folder's
@@ -363,3 +367,17 @@ empty Notepad then showed native gray badges. The already-open core cache is
 not a claim of immediate visual restoration. Public Update and automatic Test
 passed, and a newly launched empty Notepad process showed the dark/red/rose badges
 again. Final complete-host lifecycle acceptance remains open.
+
+
+### Native preview startup surface
+
+A bounded installed Markdown trace measured a WinForms Window control painting
+the exact dark-mode RGB(30,30,30) background with FillRect before WebView content
+loaded. Markdown now reuses the text-preview adapter's single loading-surface
+implementation. Only owned Window/Static paints and that exact native color are
+mapped to canvas; white native labels use the prose role. Memory DCs retain their
+originating paint owner, nested paints are isolated, and shared brushes remain
+unchanged. Markdown keeps its executable/control/helper digest gates; text
+preview keeps its host/template gates. WebView pixels, document content and
+unrecognized controls or colors remain native. Installed startup and Restore
+acceptance remain separate checks.

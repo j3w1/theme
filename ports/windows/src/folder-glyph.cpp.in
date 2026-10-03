@@ -8,6 +8,18 @@ struct Frame { int size; HBITMAP bitmap=nullptr; DWORD* pixels=nullptr;
 [[clang::no_destroy]] static std::mutex lock;
 [[clang::no_destroy]] static std::vector<Frame> frames;
 static thread_local bool painting=false;
+// Native extraction can reenter CImageList::Draw. Suppress only this adapter's
+// folder substitution while obtaining or inspecting its source identity.
+struct NativeGuard {
+    bool prior=painting;
+    NativeGuard(){painting=true;}
+    ~NativeGuard(){painting=prior;}
+    NativeGuard(const NativeGuard&)=delete;
+    NativeGuard& operator=(const NativeGuard&)=delete;
+};
+static HICON NativeIcon(HIMAGELIST images,int index,UINT flags) {
+    NativeGuard guard;return originalImageListGetIcon(images,index,flags);
+}
 static constexpr POINT back[]={@FOLDER_BACK@};
 static constexpr POINT closedFront[]={@FOLDER_CLOSED@};
 static constexpr POINT openFront[]={@FOLDER_OPEN@};
@@ -143,14 +155,14 @@ static HICON Acquire(HICON icon,UINT flags,bool reviewedCaller) {
     if(found==frames.end())return icon;
     auto& frame=*found;DC dc(CreateCompatibleDC(nullptr));if(!dc.value)return icon;
     dc.prior=SelectObject(dc.value,frame.bitmap);if(!dc.prior||dc.prior==HGDI_ERROR)return icon;
-    memset(frame.pixels,0,size*size*4);int matched=-1;
+    memset(frame.pixels,0,size*size*4);int matched=-1;NativeGuard native;
     if(DrawIconEx(dc.value,0,0,icon,size,size,0,nullptr,DI_NORMAL)) {
         GdiFlush();for(auto const& stock:frame.iconStock)
             if(memcmp(frame.pixels,stock.pixels.data(),size*size*4)==0){matched=stock.open?1:0;break;}
     }
     SecureZeroMemory(frame.pixels,size*size*4);
     if(matched<0)return icon;
-    painting=true;HICON replacement=originalImageListGetIcon(frame.images[matched],0,ILD_NORMAL);painting=false;
+    HICON replacement=NativeIcon(frame.images[matched],0,ILD_NORMAL);
     if(!replacement)return icon;
     if(!DestroyIcon(icon)){DestroyIcon(replacement);return icon;}
     return replacement;

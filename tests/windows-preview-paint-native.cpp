@@ -5,7 +5,13 @@
 #include <cstdio>
 static BOOL Wh_SetFunctionHook(void*,void*,void**){return TRUE;}
 static int Wh_GetIntSetting(const wchar_t*){return 1;}
+#if J3W1_TEST_MARKDOWN
+static BOOL Wh_ApplyHookOperations(){return TRUE;}
+template<class... Args> static void Wh_Log(const wchar_t*,Args...){}
+#include "../ports/windows/dist/j3w1-powertoys-markdown.wh.cpp"
+#else
 #include "../ports/windows/dist/j3w1-powertoys-preview.wh.cpp"
+#endif
 static HWND Window(const wchar_t* name){
     WNDCLASSW c{};c.lpfnWndProc=DefWindowProcW;c.hInstance=GetModuleHandleW(nullptr);c.lpszClassName=name;
     assert(RegisterClassW(&c));
@@ -13,7 +19,9 @@ static HWND Window(const wchar_t* name){
 }
 int main(){
     assert(!HighContrast());
+#if !J3W1_TEST_MARKDOWN
     templatePath=L"not-a-preview-template";assert(!ReviewedInstalledTemplate());
+#endif
     assert(!Wh_ModInit()); // This synthetic executable is not the pinned host.
     originalFillRect=FillRect;originalSetTextColor=SetTextColor;originalSetBkColor=SetBkColor;
     HWND label=Window(L"WindowsForms10.Static.app.0.2360855_r3_ad1"),panel=Window(L"WindowsForms10.Window.test"),other=Window(L"WindowsForms10.EDIT.test");
@@ -34,6 +42,7 @@ int main(){
     paintWindows.push_back(other);LoadingFillHook(dc,&r,gray);assert(GetPixel(dc,4,4)==RGB(30,30,30));paintWindows.pop_back();
     enabled=false;LoadingFillHook(dc,&r,gray);assert(GetPixel(dc,4,4)==RGB(30,30,30));
     paintWindows.clear();
+#if !J3W1_TEST_MARKDOWN
     HWND progress=Window(L"WindowsForms10.msctls_progress32.app.0.2360855_r3_ad1");
     enabled=true;paintWindows.push_back(progress);
     themeClass=[](HTHEME,LPWSTR name,int size)->HRESULT{wcscpy_s(name,size,L"Progress");return S_OK;};
@@ -52,7 +61,13 @@ int main(){
     assert(GetPixel(dc,4,4)==RGB(0,160,0)); // Unobserved states remain native.
     enabled=false;ProgressBackgroundHook(nullptr,dc,PP_FILL,PBFS_NORMAL,&r,nullptr);assert(GetPixel(dc,4,4)==RGB(0,160,0));
     enabled=true;paintWindows.push_back(other);ProgressBackgroundHook(nullptr,dc,PP_FILL,PBFS_NORMAL,&r,nullptr);assert(GetPixel(dc,4,4)==RGB(0,160,0));
-    paintWindows.clear();DestroyWindow(progress);DeleteObject(gray);DeleteObject(data);SelectObject(dc,old);DeleteObject(bitmap);DeleteDC(dc);
+    paintWindows.clear();DestroyWindow(progress);
+#endif
+    DeleteObject(gray);DeleteObject(data);SelectObject(dc,old);DeleteObject(bitmap);DeleteDC(dc);
     DestroyWindow(label);DestroyWindow(panel);DestroyWindow(other);
+#if J3W1_TEST_MARKDOWN
+    puts("PASS: Markdown native loading canvas/text pixels; unrelated and disabled passthrough; shared brush unchanged; nested paint isolation");
+#else
     puts("PASS: scoped loading canvas/text pixels; unrelated and disabled passthrough; shared brush unchanged; nested paint isolation; progress palette, native mask, clipping and state passthrough");
+#endif
 }

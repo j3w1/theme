@@ -337,7 +337,7 @@ static HRESULT __cdecl NavigationPinHook(void* self,IMAGELISTDRAWPARAMS* request
     return FAILED(result)?original():result;
 }
 static HICON WINAPI FolderIconHook(HIMAGELIST images,int index,UINT flags) {
-    HICON icon=originalImageListGetIcon(images,index,flags);
+    HICON icon=FolderGlyph::NativeIcon(images,index,flags);
     HMODULE caller=nullptr;
     bool reviewed=GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS|GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
         reinterpret_cast<LPCWSTR>(__builtin_return_address(0)),&caller)

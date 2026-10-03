@@ -37,11 +37,12 @@ export function windowsMarkdownArtifacts(host,resolved){
  const css=render(readFileSync(path.join(repoRoot,'ports/windows/src/markdown-theme.css.in'),'utf8'),roles).replace(/\r?\n/g,'');
  if(/[^\x20-\x7e]/.test(css))throw Error('Markdown CSS must be ASCII for the same-length boundary');
  if(md.headers.some(pin=>css.length>pin.styleLength))throw Error('Markdown CSS exceeds admitted extent');
- const subs={VERSION:md.version,HEADER_PINS:md.headers.map(p=>` {${p.length},${p.styleOffset},${p.styleLength},"${p.sha256}"},`).join('\n'),
+ const rgb=role=>{const color=roles[role];if(!/^#[a-f0-9]{6}$/i.test(color))throw Error('Loading surface requires an opaque semantic color');return [1,3,5].map(i=>parseInt(color.slice(i,i+2),16)).join(',');};
+ const subs={LOADING_BACKGROUND:rgb('CANVAS'),LOADING_FOREGROUND:rgb('PROSE'),VERSION:md.version,HEADER_PINS:md.headers.map(p=>` {${p.length},${p.styleOffset},${p.styleLength},"${p.sha256}"},`).join('\n'),
   PALETTE_CSS:css,HOST_SHA256:md.hostSha256,CONTROL_SHA256:md.controlSha256,HELPER_SHA256:md.helperSha256,
   BROWSER_PINS:md.webviewBoundaries.map(p=>' {"'+p.sha256+'",0x'+p.navigateToStringRva.toString(16)+',0x'+p.navigateRva.toString(16)+'}, // '+p.version).join('\n'),
   BROWSER_DISPATCH:md.webviewBoundaries.map((_,i)=>'  case '+i+':return HookBoundary<'+i+'>(module);').join('\n')};
  if(css.includes(')MD"'))throw Error('Invalid Markdown CSS literal delimiter');
- const source=render(readFileSync(path.join(repoRoot,`ports/windows/src/${id}.wh.cpp.in`),'utf8'),subs);
+ const source=render(readFileSync(path.join(repoRoot,`ports/windows/src/${id}.wh.cpp.in`),'utf8').replace('@PREVIEW_LOADING@',readFileSync(path.join(repoRoot,'ports/windows/src/preview-loading.cpp.in'),'utf8')),subs);
  return {id,version:md.version,source,css};
 }
