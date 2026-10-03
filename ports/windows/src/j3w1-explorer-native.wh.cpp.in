@@ -6,10 +6,12 @@
 // @author j3w1
 // @include explorer.exe
 // @architecture x86-64
-// @compilerOptions -luxtheme -lgdi32 -luser32 -lversion -lmsimg32 -ldwmapi
+// @compilerOptions -luxtheme -lgdi32 -luser32 -lversion -lmsimg32 -ldwmapi -lshell32 -lcomctl32 -luuid -lole32
 // ==/WindhawkMod==
 // ==WindhawkModSettings==
 /*
+- folderFill: "@FOLDERFILL@"
+- folderEdge: "@FOLDEREDGE@"
 - background: "@BACKGROUND@"
 - foreground: "@FOREGROUND@"
 - hover: "@HOVER@"
@@ -43,6 +45,11 @@
 #include <cstring>
 #include <commctrl.h>
 #include <tlhelp32.h>
+#include <shellapi.h>
+#include <shlobj.h>
+#include <commoncontrols.h>
+#include <mutex>
+#include <span>
 
 static COLORREF background, foreground, hover, selected, inactive, border, scrollbar, scrollbarHover, disabled;
 static COLORREF textSelection, textSelectionText, focusRing, menuHover, menuHoverText, menuBorder;
@@ -276,16 +283,19 @@ static bool FixedModuleVersion(HMODULE module,DWORD ms,DWORD ls) {
 using ImageListDrawFn=HRESULT(__cdecl*)(void*,IMAGELISTDRAWPARAMS*);
 static ImageListDrawFn originalImageListDraw;
 static decltype(&ImageList_GetImageCount) imageListCount;
+static decltype(&ImageList_GetIconSize) imageListSize;
 static HWND PaintOwner(HDC dc) {
     HWND window=WindowFromDC(dc);
     return window?window:paintWindows.empty()?nullptr:paintWindows.back();
 }
+@FOLDER_RENDERER@
 // The exact navigation pin is image 1 of the three-entry TreeView state list.
 // Render only that glyph into an owned DIB, retain its coverage alpha and native
 // silhouette, then composite the canonical red. Folder/application image lists,
 // drag images, checkboxes, unknown requests and high contrast are untouched.
 static HRESULT __cdecl NavigationPinHook(void* self,IMAGELISTDRAWPARAMS* request) {
     auto original=[&](){return originalImageListDraw(self,request);};
+    HRESULT folderResult=S_OK;if(FolderGlyph::Draw(self,request,&folderResult))return folderResult;
     if(!enabled.load() || drawingTheme || HighContrast() || !request
        || request->cbSize!=sizeof(*request) || request->i!=1
        || request->fStyle!=ILD_SCALE || request->fState!=ILS_NORMAL
@@ -337,8 +347,9 @@ static bool InitNavigationPin() {
     }while(Module32NextW(snapshot,&entry));
     CloseHandle(snapshot);if(!module)return false;
     imageListCount=(decltype(imageListCount))GetProcAddress(module,"ImageList_GetImageCount");
+    imageListSize=(decltype(imageListSize))GetProcAddress(module,"ImageList_GetIconSize");
     void* draw=FindExactSymbol(module,L"public: virtual long __cdecl CImageList::Draw(struct _IMAGELISTDRAWPARAMS *)");
-    return imageListCount && draw && Wh_SetFunctionHook(draw,(void*)NavigationPinHook,(void**)&originalImageListDraw);
+    return imageListCount && imageListSize && draw && Wh_SetFunctionHook(draw,(void*)NavigationPinHook,(void**)&originalImageListDraw);
 }
 static bool InitMarquee() {
     HMODULE frame=GetModuleHandleW(L"ExplorerFrame.dll"),dui=GetModuleHandleW(L"dui70.dll");
@@ -708,8 +719,10 @@ BOOL Wh_ModInit() {
     themeClass=(ThemeClassFn)GetProcAddress(GetModuleHandleW(L"uxtheme.dll"),MAKEINTRESOURCEA(74));
     if(!themeClass) {return FALSE;}
     if(!ReadColor(L"pin",&pin) || !ReadMarquee() || !InitMarquee() || !InitNavigationPin())return FALSE;
+    COLORREF folderFill,folderEdge;
+    if(!ReadColor(L"folderFill",&folderFill)||!ReadColor(L"folderEdge",&folderEdge)||!FolderGlyph::Init(folderFill,folderEdge))return FALSE;
     backgroundBrush=CreateSolidBrush(background);
-    if(!backgroundBrush) return FALSE;
+    if(!backgroundBrush){FolderGlyph::Uninit();return FALSE;}
     bool hooked=Wh_SetFunctionHook((void*)DwmSetWindowAttribute,(void*)DwmAttributeHook,(void**)&originalDwmSetWindowAttribute)
         && Wh_SetFunctionHook((void*)CreateWindowExW,(void*)CreateWindowHook,(void**)&originalCreateWindowEx)
         && Wh_SetFunctionHook((void*)DestroyWindow,(void*)DestroyWindowHook,(void**)&originalDestroyWindow)
@@ -730,10 +743,10 @@ BOOL Wh_ModInit() {
         && Wh_SetFunctionHook((void*)DrawThemeBackground,(void*)BackgroundHook,(void**)&originalDrawThemeBackground)
         && Wh_SetFunctionHook((void*)DrawThemeBackgroundEx,(void*)BackgroundExHook,(void**)&originalDrawThemeBackgroundEx);
 
-    if(!hooked) {DeleteObject(backgroundBrush);backgroundBrush=nullptr;}
+    if(!hooked) {DeleteObject(backgroundBrush);backgroundBrush=nullptr;FolderGlyph::Uninit();}
     enabled.store(hooked);
     return hooked;
 }
 void Wh_ModAfterInit() {EnumWindows(RefreshFolderCaption,0);EnumWindows(RepaintFolder,0);}
 void Wh_ModBeforeUninit() { enabled.store(false);RestoreCaptions(); }
-void Wh_ModUninit() { if(backgroundBrush) {DeleteObject(backgroundBrush);backgroundBrush=nullptr;} EnumWindows(RepaintFolder,0); }
+void Wh_ModUninit() { FolderGlyph::Uninit();if(backgroundBrush) {DeleteObject(backgroundBrush);backgroundBrush=nullptr;} EnumWindows(RepaintFolder,0); }

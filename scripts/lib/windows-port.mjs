@@ -1,4 +1,4 @@
-import {folderIconFile} from './windows-folder-icon.mjs';
+import {folderIconFile,folderGeometry} from './windows-folder-icon.mjs';
 /* Windows native artifacts. Host definitions own selectors; tokens own colors.
    Raster assets are deterministic original geometry, not downloaded artwork. */
 import { toCss } from './tokens.mjs';
@@ -143,7 +143,9 @@ export function windowsArtifacts({manifest,host,resolved}){
   if(!moduleParts[key])throw Error(`Missing native Explorer module ${key}`);
   return ['MAJOR','MINOR','BUILD','REVISION'].map((field,i)=>[`${key}_${field}`,moduleParts[key][i]]);
  }));
- const substitutions={...Object.fromEntries(Object.entries(nativeSettings).map(([key,value])=>[key.toUpperCase(),value])),VERSION:native.version,
+ const folderSubs=Object.fromEntries(Object.entries(folderGeometry).map(([name,points])=>['FOLDER_'+name.toUpperCase(),points.map(([x,y])=>'{'+x+','+y+'}').join(',')]));
+ const folderSource=readFileSync(path.join(repoRoot,'ports/windows/src/folder-glyph.cpp.in'),'utf8').replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in folderSubs))throw Error('Unknown folder source placeholder '+key);return folderSubs[key];});
+ const substitutions={FOLDER_RENDERER:folderSource,...Object.fromEntries(Object.entries(nativeSettings).map(([key,value])=>[key.toUpperCase(),value])),VERSION:native.version,
   VERSION_MAJOR:parts[0],VERSION_MINOR:parts[1],VERSION_BUILD:parts[2],VERSION_REVISION:parts[3],...moduleSubs};
  const nativeSource=readFileSync(path.join(repoRoot,'ports/windows/src/j3w1-explorer-native.wh.cpp.in'),'utf8').replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in substitutions))throw Error(`Unknown native source placeholder ${key}`);return substitutions[key];});
  artifacts.push({path:`dist/${id}.wh.cpp`,text:nativeSource});

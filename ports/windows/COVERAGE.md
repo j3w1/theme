@@ -308,5 +308,28 @@ only MenuFlyoutPresenter and ToolTip frame Background, Foreground and BorderBrus
 through their public dependency properties. It retains each exact local value,
 restores only its owned brush, and preserves later application replacements.
 Row state backgrounds, templates, commands, selection and text are untouched.
-The live result-popup gate remains open until the corrected installation is
-inspected; the previous installation check was not visual acceptance.
+The corrected installed Scientific result menu was observed with a dark themed
+frame, rose Copy/Paste labels and a red border. Down-arrow focus remained themed;
+no menu command was executed and the existing result and mode were preserved.
+Latest Restore returned the popup to native gray, retained-version Test passed,
+and reapplication plus automatic Test restored the correction. This bounded
+popup lifecycle does not accept tooltips, other modes, startup or runtime
+accessibility switching.
+
+### Generic folder glyphs
+
+The native Explorer adapter prewarms immutable stock-glyph references and owned
+red folder image lists at initialization. Its original artwork shares the ICO
+generator's geometry and semantic fill/edge roles, with no asset-path or shell
+cache deletion dependency. Exact current-glyph comparison preserves custom icons,
+folder thumbnails and overlays. Unsupported sizes, request layouts, unrelated
+windows and high contrast retain native drawing. The recorded 96-byte shell
+request keeps its opaque extension; other unknown layouts are refused. Paint
+queries no shell content, reads no files and constructs no image lists. Temporary
+source pixels are cleared before returning. Controlled unload releases the owned
+cache and repaints Explorer through the existing adapter lifecycle.
+
+The prototype rendered red generic folders in the sample Details view and in
+repainted navigation rows. Existing special-folder glyphs and a populated folder's
+large thumbnail stayed native. Final generated-candidate visual and lifecycle
+acceptance remain open.

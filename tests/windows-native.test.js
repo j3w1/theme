@@ -94,3 +94,12 @@ for(const [id,paint] of [['j3w1-notepad-chrome','0'],['j3w1-paint-chrome','1']])
   assert.equal(result.status,0,state+': '+result.stdout+'\n'+result.stderr);
  }
 });
+
+test('native Explorer stock folder rendering and cache lifetime',options,t=>{
+ const tools=toolchain(),folder=fs.mkdtempSync(path.join(os.tmpdir(),'j3w1-native-folder-'));
+ t.after(()=>fs.rmSync(folder,{recursive:true,force:true}));
+ const output=path.join(folder,'folder.exe');
+ compile(tools.compiler,['-static',path.join(repoRoot,'tests/windows-folder-glyph-native.cpp'),...libraries(path.join(source,'dist/j3w1-explorer-native.wh.cpp')),'-o',output]);
+ const result=spawnSync(output,[],{encoding:'utf8',windowsHide:true,timeout:30000});
+ assert.equal(result.status,0,result.stdout+'\n'+result.stderr);
+});

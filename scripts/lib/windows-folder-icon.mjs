@@ -1,5 +1,10 @@
 // Original folder artwork, generated from semantic colors. No Windows asset is
 // copied or patched. Multi-size ICO frames keep the native tab/front silhouette.
+export const folderGeometry={
+ back:[[2,5],[3,4],[11,4],[14,7],[29,7],[30,8],[30,27],[2,27]],
+ closed:[[2,11],[30,11],[30,27],[29,28],[3,28],[2,27]],
+ open:[[5,12],[31,12],[27,28],[1,28]],
+};
 export function folderIconFile(fill, edge, open=false) {
  const rgb=hex=>hex.slice(1).match(/../g).map(x=>parseInt(x,16));
  const colors=[rgb(edge),rgb(fill)];
@@ -14,8 +19,8 @@ export function folderIconFile(fill, edge, open=false) {
    }
    return result;
   };
-  const back=[[2,5],[3,4],[11,4],[14,7],[29,7],[30,8],[30,27],[2,27]];
-  const front=open?[[5,12],[31,12],[27,28],[1,28]]:[[2,11],[30,11],[30,27],[29,28],[3,28],[2,27]];
+  const back=folderGeometry.back;
+  const front=folderGeometry[open?'open':'closed'];
   for(let y=0;y<size;y++)for(let x=0;x<size;x++){
    const sum=[0,0,0];let covered=0;
    // Small frames need real coverage alpha, not a scaled 32px bitmap.

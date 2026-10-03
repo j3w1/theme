@@ -2,14 +2,16 @@
 // @id j3w1-explorer-native
 // @name j3w1 Explorer native colors
 // @description Generated native Explorer canvas and text adapter; exact host only
-// @version 1.3
+// @version 1.4
 // @author j3w1
 // @include explorer.exe
 // @architecture x86-64
-// @compilerOptions -luxtheme -lgdi32 -luser32 -lversion -lmsimg32 -ldwmapi
+// @compilerOptions -luxtheme -lgdi32 -luser32 -lversion -lmsimg32 -ldwmapi -lshell32 -lcomctl32 -luuid -lole32
 // ==/WindhawkMod==
 // ==WindhawkModSettings==
 /*
+- folderFill: "#7d1310"
+- folderEdge: "#e53935"
 - background: "#000000"
 - foreground: "#e99499"
 - hover: "#1c0a09"
@@ -43,6 +45,11 @@
 #include <cstring>
 #include <commctrl.h>
 #include <tlhelp32.h>
+#include <shellapi.h>
+#include <shlobj.h>
+#include <commoncontrols.h>
+#include <mutex>
+#include <span>
 
 static COLORREF background, foreground, hover, selected, inactive, border, scrollbar, scrollbarHover, disabled;
 static COLORREF textSelection, textSelectionText, focusRing, menuHover, menuHoverText, menuBorder;
@@ -276,16 +283,177 @@ static bool FixedModuleVersion(HMODULE module,DWORD ms,DWORD ls) {
 using ImageListDrawFn=HRESULT(__cdecl*)(void*,IMAGELISTDRAWPARAMS*);
 static ImageListDrawFn originalImageListDraw;
 static decltype(&ImageList_GetImageCount) imageListCount;
+static decltype(&ImageList_GetIconSize) imageListSize;
 static HWND PaintOwner(HDC dc) {
     HWND window=WindowFromDC(dc);
     return window?window:paintWindows.empty()?nullptr:paintWindows.back();
 }
+// Generated original folder artwork shares the ICO generator's geometry.
+// Only initialization queries stock glyphs or allocates image lists. Painting
+// compares the current source glyph exactly; cached slot identity is insufficient.
+namespace FolderGlyph {
+struct Stock { bool open; std::vector<DWORD> pixels; };
+struct Frame { int size; HBITMAP bitmap=nullptr; DWORD* pixels=nullptr;
+    HIMAGELIST images[2]{}; std::vector<Stock> stock; };
+[[clang::no_destroy]] static std::mutex lock;
+[[clang::no_destroy]] static std::vector<Frame> frames;
+static thread_local bool painting=false;
+static constexpr POINT back[]={{2,5},{3,4},{11,4},{14,7},{29,7},{30,8},{30,27},{2,27}};
+static constexpr POINT closedFront[]={{2,11},{30,11},{30,27},{29,28},{3,28},{2,27}};
+static constexpr POINT openFront[]={{5,12},{31,12},{27,28},{1,28}};
+struct DC {
+    HDC value;HGDIOBJ prior=nullptr;
+    explicit DC(HDC input):value(input){}
+    ~DC(){if(value){if(prior&&prior!=HGDI_ERROR)SelectObject(value,prior);DeleteDC(value);}}
+};
+struct List {IImageList* value=nullptr;~List(){if(value)value->Release();}};
+static bool Inside(double x,double y,std::span<const POINT> points) {
+    bool inside=false;
+    for(size_t i=0,j=points.size()-1;i<points.size();j=i++) {
+        auto a=points[i],b=points[j];
+        if((a.y>y)!=(b.y>y) && x<(b.x-a.x)*(y-a.y)/(b.y-a.y)+a.x)inside=!inside;
+    }
+    return inside;
+}
+static void Raster(DWORD* pixels,int size,bool open,COLORREF fill,COLORREF edge) {
+    std::span<const POINT> front=open?std::span<const POINT>(openFront):std::span<const POINT>(closedFront);
+    for(int y=0;y<size;y++)for(int x=0;x<size;x++) {
+        unsigned sum[3]{},coverage=0;
+        for(int sy=0;sy<4;sy++)for(int sx=0;sx<4;sx++) {
+            double u=(x+(sx+.5)/4)*32/size,v=(y+(sy+.5)/4)*32/size;
+            bool panel=Inside(u,v,front);
+            if(!panel&&!Inside(u,v,back))continue;
+            COLORREF color=panel?fill:edge;++coverage;
+            sum[0]+=GetRValue(color);sum[1]+=GetGValue(color);sum[2]+=GetBValue(color);
+        }
+        DWORD pixel=0;
+        if(coverage) {
+            unsigned alpha=(coverage*255+8)/16;
+            auto channel=[&](unsigned value){unsigned straight=(value+coverage/2)/coverage;return (straight*alpha+127)/255;};
+            pixel=(alpha<<24)|(channel(sum[0])<<16)|(channel(sum[1])<<8)|channel(sum[2]);
+        }
+        pixels[y*size+x]=pixel;
+    }
+}
+static void Clear() {
+    for(auto& frame:frames) {
+        if(frame.bitmap)DeleteObject(frame.bitmap);
+        for(auto images:frame.images)if(images)ImageList_Destroy(images);
+    }
+    frames.clear();
+}
+static HBITMAP Bitmap(int size,DWORD** pixels) {
+    BITMAPINFO info{};info.bmiHeader.biSize=sizeof(BITMAPINFOHEADER);
+    info.bmiHeader.biWidth=size;info.bmiHeader.biHeight=-size;
+    info.bmiHeader.biPlanes=1;info.bmiHeader.biBitCount=32;
+    return CreateDIBSection(nullptr,&info,DIB_RGB_COLORS,reinterpret_cast<void**>(pixels),nullptr,0);
+}
+static bool Build(COLORREF fill,COLORREF edge) {
+    SHSTOCKICONINFO info[2]{{sizeof(SHSTOCKICONINFO)},{sizeof(SHSTOCKICONINFO)}};
+    if(FAILED(SHGetStockIconInfo(SIID_FOLDER,SHGSI_SYSICONINDEX,&info[0]))
+       ||FAILED(SHGetStockIconInfo(SIID_FOLDEROPEN,SHGSI_SYSICONINDEX,&info[1])))return false;
+    for(int size:{16,20,24,32,40,48,64,72,96,128,144,192,256}) {
+        frames.push_back({size});auto& frame=frames.back();
+        frame.bitmap=Bitmap(size,&frame.pixels);if(!frame.bitmap)return false;
+        for(unsigned open=0;open<2;open++) {
+            // The image list owns a copy; release the temporary artwork DIB.
+            DWORD* pixels=nullptr;HBITMAP artwork=Bitmap(size,&pixels);if(!artwork)return false;
+            Raster(pixels,size,open!=0,fill,edge);
+            frame.images[open]=ImageList_Create(size,size,ILC_COLOR32|ILC_MASK,1,0);
+            bool added=frame.images[open]&&ImageList_Add(frame.images[open],artwork,nullptr)==0;
+            DeleteObject(artwork);if(!added)return false;
+        }
+        DC dc(CreateCompatibleDC(nullptr));if(!dc.value)return false;
+        dc.prior=SelectObject(dc.value,frame.bitmap);
+        if(!dc.prior||dc.prior==HGDI_ERROR)return false;
+        for(int kind=0;kind<=4;kind++) {
+            List images;
+            if(FAILED(SHGetImageList(kind,__uuidof(IImageList),reinterpret_cast<void**>(&images.value))))continue;
+            for(unsigned open=0;open<2;open++) {
+                memset(frame.pixels,0,size*size*4);
+                IMAGELISTDRAWPARAMS draw{sizeof(draw)};draw.himl=reinterpret_cast<HIMAGELIST>(images.value);
+                draw.i=info[open].iSysImageIndex;draw.hdcDst=dc.value;draw.cx=draw.cy=size;
+                draw.rgbBk=CLR_NONE;draw.rgbFg=CLR_DEFAULT;draw.fStyle=ILD_TRANSPARENT|ILD_SCALE;
+                if(SUCCEEDED(images.value->Draw(&draw))) {
+                    GdiFlush();std::vector<DWORD> pixels(frame.pixels,frame.pixels+size*size);
+                    bool visible=std::any_of(pixels.begin(),pixels.end(),[](DWORD p){return p!=0;});
+                    if(visible&&std::none_of(frame.stock.begin(),frame.stock.end(),[&](auto const& stock){return stock.open==(open!=0)&&stock.pixels==pixels;}))
+                        frame.stock.push_back({open!=0,std::move(pixels)});
+                }
+            }
+        }
+        SecureZeroMemory(frame.pixels,size*size*4);
+        if(frame.stock.empty())return false;
+    }
+    return true;
+}
+static HWND Owner(HDC dc) {
+    HWND window=PaintOwner(dc);if(window)return window;
+    GUITHREADINFO state{sizeof(state)};
+    return GetGUIThreadInfo(GetCurrentThreadId(),&state)?state.hwndActive:nullptr;
+}
+static bool Draw(void* self,IMAGELISTDRAWPARAMS* request,HRESULT* result) {
+    if(!enabled.load()||painting||drawingTheme||HighContrast()||!request
+       ||(request->cbSize!=sizeof(*request)&&request->cbSize!=96)
+       ||request->xBitmap||request->yBitmap||request->fState!=ILS_NORMAL
+       ||(request->fStyle&ILD_OVERLAYMASK)||!originalImageListDraw
+       ||GetMapMode(request->hdcDst)!=MM_TEXT||GetLayout(request->hdcDst)!=0)return false;
+    HWND window=Owner(request->hdcDst);DWORD process=0;
+    if(!window||!GetWindowThreadProcessId(window,&process)||process!=GetCurrentProcessId()||!ExplorerWindow(window))return false;
+    int width=request->cx,height=request->cy;
+    if(!width&&!height) {
+        if(!imageListSize||!imageListSize(request->himl,&width,&height))return false;
+    }
+    if(width!=height||width<=0||width>256)return false;
+    std::unique_lock guard(lock);if(!enabled.load())return false;
+    auto found=std::find_if(frames.begin(),frames.end(),[&](auto const& frame){return frame.size==width;});
+    if(found==frames.end())return false;
+    auto& frame=*found;HDC dc=CreateCompatibleDC(request->hdcDst);if(!dc)return false;
+    auto prior=SelectObject(dc,frame.bitmap);
+    if(!prior||prior==HGDI_ERROR){DeleteDC(dc);return false;}
+    // The recorded shell also sends a 96-byte request. Preserve its opaque
+    // extension; never pass an 88-byte stack copy with cbSize claiming 96.
+    alignas(IMAGELISTDRAWPARAMS) unsigned char copy[96]{};
+    memcpy(copy,request,request->cbSize);
+    auto& probe=*reinterpret_cast<IMAGELISTDRAWPARAMS*>(copy);
+    probe.hdcDst=dc;probe.x=probe.y=probe.xBitmap=probe.yBitmap=0;probe.cx=width;probe.cy=height;
+    probe.rgbBk=CLR_NONE;probe.rgbFg=CLR_DEFAULT;probe.fStyle=ILD_TRANSPARENT|ILD_SCALE;
+    probe.Frame=0;probe.crEffect=0;
+    memset(frame.pixels,0,width*height*4);painting=true;
+    HRESULT read=originalImageListDraw(self,&probe);GdiFlush();int matched=-1;
+    if(SUCCEEDED(read))for(auto const& stock:frame.stock)
+        if(memcmp(frame.pixels,stock.pixels.data(),stock.pixels.size()*4)==0){matched=stock.open?1:0;break;}
+    // Source images may be document thumbnails. Retain no source pixels.
+    SecureZeroMemory(frame.pixels,width*height*4);
+    SelectObject(dc,prior);DeleteDC(dc);
+    bool drawn=false;
+    if(matched>=0) {
+        memcpy(copy,request,request->cbSize);
+        auto& themed=*reinterpret_cast<IMAGELISTDRAWPARAMS*>(copy);
+        themed.himl=frame.images[matched];themed.i=0;
+        drawn=ImageList_DrawIndirect(&themed)!=FALSE;
+    }
+    painting=false;
+    if(drawn)*result=S_OK;
+    return drawn; // Native fallback happens after releasing the cache mutex.
+}
+static bool Init(COLORREF fill,COLORREF edge) {
+    HRESULT apartment=CoInitializeEx(nullptr,COINIT_APARTMENTTHREADED);
+    if(FAILED(apartment))return false;
+    bool built=false;
+    try {built=Build(fill,edge);}catch(...) {}
+    CoUninitialize();if(!built)Clear();return built;
+}
+static void Uninit(){std::lock_guard guard(lock);Clear();}
+}
+
 // The exact navigation pin is image 1 of the three-entry TreeView state list.
 // Render only that glyph into an owned DIB, retain its coverage alpha and native
 // silhouette, then composite the canonical red. Folder/application image lists,
 // drag images, checkboxes, unknown requests and high contrast are untouched.
 static HRESULT __cdecl NavigationPinHook(void* self,IMAGELISTDRAWPARAMS* request) {
     auto original=[&](){return originalImageListDraw(self,request);};
+    HRESULT folderResult=S_OK;if(FolderGlyph::Draw(self,request,&folderResult))return folderResult;
     if(!enabled.load() || drawingTheme || HighContrast() || !request
        || request->cbSize!=sizeof(*request) || request->i!=1
        || request->fStyle!=ILD_SCALE || request->fState!=ILS_NORMAL
@@ -337,8 +505,9 @@ static bool InitNavigationPin() {
     }while(Module32NextW(snapshot,&entry));
     CloseHandle(snapshot);if(!module)return false;
     imageListCount=(decltype(imageListCount))GetProcAddress(module,"ImageList_GetImageCount");
+    imageListSize=(decltype(imageListSize))GetProcAddress(module,"ImageList_GetIconSize");
     void* draw=FindExactSymbol(module,L"public: virtual long __cdecl CImageList::Draw(struct _IMAGELISTDRAWPARAMS *)");
-    return imageListCount && draw && Wh_SetFunctionHook(draw,(void*)NavigationPinHook,(void**)&originalImageListDraw);
+    return imageListCount && imageListSize && draw && Wh_SetFunctionHook(draw,(void*)NavigationPinHook,(void**)&originalImageListDraw);
 }
 static bool InitMarquee() {
     HMODULE frame=GetModuleHandleW(L"ExplorerFrame.dll"),dui=GetModuleHandleW(L"dui70.dll");
@@ -708,8 +877,10 @@ BOOL Wh_ModInit() {
     themeClass=(ThemeClassFn)GetProcAddress(GetModuleHandleW(L"uxtheme.dll"),MAKEINTRESOURCEA(74));
     if(!themeClass) {return FALSE;}
     if(!ReadColor(L"pin",&pin) || !ReadMarquee() || !InitMarquee() || !InitNavigationPin())return FALSE;
+    COLORREF folderFill,folderEdge;
+    if(!ReadColor(L"folderFill",&folderFill)||!ReadColor(L"folderEdge",&folderEdge)||!FolderGlyph::Init(folderFill,folderEdge))return FALSE;
     backgroundBrush=CreateSolidBrush(background);
-    if(!backgroundBrush) return FALSE;
+    if(!backgroundBrush){FolderGlyph::Uninit();return FALSE;}
     bool hooked=Wh_SetFunctionHook((void*)DwmSetWindowAttribute,(void*)DwmAttributeHook,(void**)&originalDwmSetWindowAttribute)
         && Wh_SetFunctionHook((void*)CreateWindowExW,(void*)CreateWindowHook,(void**)&originalCreateWindowEx)
         && Wh_SetFunctionHook((void*)DestroyWindow,(void*)DestroyWindowHook,(void**)&originalDestroyWindow)
@@ -730,10 +901,10 @@ BOOL Wh_ModInit() {
         && Wh_SetFunctionHook((void*)DrawThemeBackground,(void*)BackgroundHook,(void**)&originalDrawThemeBackground)
         && Wh_SetFunctionHook((void*)DrawThemeBackgroundEx,(void*)BackgroundExHook,(void**)&originalDrawThemeBackgroundEx);
 
-    if(!hooked) {DeleteObject(backgroundBrush);backgroundBrush=nullptr;}
+    if(!hooked) {DeleteObject(backgroundBrush);backgroundBrush=nullptr;FolderGlyph::Uninit();}
     enabled.store(hooked);
     return hooked;
 }
 void Wh_ModAfterInit() {EnumWindows(RefreshFolderCaption,0);EnumWindows(RepaintFolder,0);}
 void Wh_ModBeforeUninit() { enabled.store(false);RestoreCaptions(); }
-void Wh_ModUninit() { if(backgroundBrush) {DeleteObject(backgroundBrush);backgroundBrush=nullptr;} EnumWindows(RepaintFolder,0); }
+void Wh_ModUninit() { FolderGlyph::Uninit();if(backgroundBrush) {DeleteObject(backgroundBrush);backgroundBrush=nullptr;} EnumWindows(RepaintFolder,0); }
