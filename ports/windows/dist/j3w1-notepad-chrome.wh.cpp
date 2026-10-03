@@ -2,7 +2,7 @@
 // @id j3w1-notepad-chrome
 // @name j3w1 Notepad chrome
 // @description Exact-package Notepad chrome resources; document and artwork colors remain native
-// @version 1.2.4
+// @version 1.2.5
 // @author j3w1
 // @include Notepad.exe
 // @architecture x86-64
@@ -254,6 +254,53 @@ static constexpr Rule rules[]={
  {L"KeyTipBackground",{255,22,11,11},L"color.surface.raised"},
  {L"KeyTipBorderBrush",{255,229,57,53},L"color.border.overlay"},
  {L"KeyTipForeground",{255,233,148,153},L"color.text.default"},
+ {L"RadioButtonForeground",{255,233,148,153},L"color.text.default"},
+ {L"RadioButtonForegroundPointerOver",{255,233,148,153},L"color.text.default"},
+ {L"RadioButtonForegroundPressed",{255,233,148,153},L"color.text.default"},
+ {L"RadioButtonForegroundDisabled",{255,138,85,89},L"color.text.disabled"},
+ {L"ComboBoxBackground",{255,0,0,0},L"color.surface.input"},
+ {L"ComboBoxBackgroundUnfocused",{255,0,0,0},L"color.surface.input"},
+ {L"ComboBoxBackgroundFocused",{255,0,0,0},L"color.surface.input"},
+ {L"ComboBoxBackgroundPointerOver",{255,28,10,9},L"color.interaction.hover.bg"},
+ {L"ComboBoxBackgroundPressed",{255,66,15,12},L"color.interaction.pressed.bg"},
+ {L"ComboBoxBackgroundDisabled",{255,22,11,11},L"color.interaction.disabled.bg"},
+ {L"ComboBoxForegroundPointerOver",{255,233,148,153},L"color.text.default"},
+ {L"ComboBoxForegroundPressed",{255,233,148,153},L"color.text.default"},
+ {L"ComboBoxForegroundFocused",{255,233,148,153},L"color.text.default"},
+ {L"ComboBoxForegroundFocusedPressed",{255,233,148,153},L"color.text.default"},
+ {L"ComboBoxForegroundDisabled",{255,138,85,89},L"color.text.disabled"},
+ {L"ComboBoxBorderBrush",{255,163,103,107},L"color.border.control"},
+ {L"ComboBoxBorderBrushPointerOver",{255,163,103,107},L"color.border.control"},
+ {L"ComboBoxBorderBrushPressed",{255,163,103,107},L"color.border.control"},
+ {L"ComboBoxBorderBrushDisabled",{255,125,19,16},L"color.border.disabled"},
+ {L"ComboBoxBackgroundBorderBrushFocused",{255,229,57,53},L"color.interaction.focus.ring"},
+ {L"ComboBoxBackgroundBorderBrushUnfocused",{255,163,103,107},L"color.border.control"},
+ {L"ComboBoxDropDownBackground",{255,22,11,11},L"color.surface.raised"},
+ {L"ComboBoxDropDownBorderBrush",{255,229,57,53},L"color.border.overlay"},
+ {L"ComboBoxDropDownForeground",{255,233,148,153},L"color.text.default"},
+ {L"ComboBoxDropDownGlyphForeground",{255,189,120,125},L"color.text.muted"},
+ {L"ComboBoxDropDownGlyphForegroundFocused",{255,189,120,125},L"color.text.muted"},
+ {L"ComboBoxDropDownGlyphForegroundFocusedPressed",{255,189,120,125},L"color.text.muted"},
+ {L"ComboBoxDropDownGlyphForegroundDisabled",{255,138,85,89},L"color.text.disabled"},
+ {L"ComboBoxItemBackground",{255,22,11,11},L"color.surface.raised"},
+ {L"ComboBoxItemForeground",{255,233,148,153},L"color.text.default"},
+ {L"ComboBoxItemBackgroundPointerOver",{255,99,15,13},L"color.interaction.hover.bg-strong"},
+ {L"ComboBoxItemForegroundPointerOver",{255,233,148,153},L"color.text.default"},
+ {L"ComboBoxItemBackgroundPressed",{255,66,15,12},L"color.interaction.pressed.bg"},
+ {L"ComboBoxItemForegroundPressed",{255,233,148,153},L"color.text.default"},
+ {L"ComboBoxItemBackgroundDisabled",{255,22,11,11},L"color.interaction.disabled.bg"},
+ {L"ComboBoxItemForegroundDisabled",{255,138,85,89},L"color.text.disabled"},
+ {L"ComboBoxItemBackgroundSelected",{255,83,19,16},L"color.interaction.selection.bg"},
+ {L"ComboBoxItemForegroundSelected",{255,244,238,238},L"color.interaction.selection.text"},
+ {L"ComboBoxItemBackgroundSelectedUnfocused",{255,66,15,12},L"color.interaction.selection.inactive-bg"},
+ {L"ComboBoxItemForegroundSelectedUnfocused",{255,233,148,153},L"color.interaction.selection.inactive-text"},
+ {L"ComboBoxItemBackgroundSelectedPointerOver",{255,83,19,16},L"color.interaction.selection.bg"},
+ {L"ComboBoxItemForegroundSelectedPointerOver",{255,244,238,238},L"color.interaction.selection.text"},
+ {L"ComboBoxItemBackgroundSelectedPressed",{255,83,19,16},L"color.interaction.selection.bg"},
+ {L"ComboBoxItemForegroundSelectedPressed",{255,244,238,238},L"color.interaction.selection.text"},
+ {L"ComboBoxItemBackgroundSelectedDisabled",{255,22,11,11},L"color.interaction.disabled.bg"},
+ {L"ComboBoxItemForegroundSelectedDisabled",{255,138,85,89},L"color.text.disabled"},
+ {L"ComboBoxItemPillFillBrush",{255,229,57,53},L"color.border.selected-indicator"},
 };
 static bool Same(Color a,Color b){return a.A==b.A&&a.R==b.R&&a.G==b.G&&a.B==b.B;}
 static bool Identity(ProjectedObject const& a,ProjectedObject const& b){

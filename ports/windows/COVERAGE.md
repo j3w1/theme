@@ -86,6 +86,14 @@ and chevron resource keys through the existing owned-resource layer. Native
 templates retain expanded/collapsed, hover, pressed, disabled and focus behavior;
 state-controlled header paint properties are not replaced. Resource keys were
 checked against the [upstream WinUI Expander template](https://github.com/microsoft/microsoft-ui-xaml/blob/8027ff4af619eb470fab63bf4609c6404ee73e17/dev/Expander/Expander_themeresources.xaml).
+ComboBox selectors use explicit normal, hover, pressed, disabled, focus and
+popup resource keys. Selected popup rows keep the selection fill across hover
+and press; inactive selection and disabled rows have their own approved roles.
+RadioButton labels use the ordinary and disabled text roles. The existing
+owned-resource path retains native templates and restores their previous
+entries. The keys come from the same pinned upstream
+[ComboBox](https://github.com/microsoft/microsoft-ui-xaml/blob/8027ff4af619eb470fab63bf4609c6404ee73e17/dev/ComboBox/ComboBox_themeresources.xaml) and
+[RadioButton](https://github.com/microsoft/microsoft-ui-xaml/blob/8027ff4af619eb470fab63bf4609c6404ee73e17/dev/CommonStyles/RadioButton_themeresources.xaml) templates.
 The implementation does not change Notepad's selected appearance preference.
 Live appearance and restoration acceptance remain separate checks.
 
