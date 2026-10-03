@@ -71,10 +71,21 @@ export const telegramArtifacts = ({ manifest, port, mapping, exported, resolved 
 
 export const telegramReadmeBlock = (manifest, cloud) => {
   assertCloudConfig(cloud);
+  // A published, readback-verified cloud theme is the primary route on both
+  // clients; until then the generated files are the honest primary route.
   if (cloud.published) {
-    const link = installLink(cloud.slug);
-    return `1. Open [${cloud.title}](${link}) in Telegram.\n2. Android: tap **Apply**. Desktop: click **Apply**.\n\nUpdates arrive through Telegram; no Premium is needed.\n\n[File import fallback](#file-import-fallback).`;
+    const link = `[Install ${cloud.title}](${installLink(cloud.slug)})`;
+    return [
+      "## Android", "", `1. Open ${link}.`, "2. Tap **Apply** in Telegram.", "",
+      "## Desktop", "", `1. Open ${link} with Telegram Desktop.`, "2. Click **Apply**.", "",
+      "Updates arrive through Telegram while you use the cloud theme.",
+      "No Telegram Premium subscription is required.",
+    ].join("\n");
   }
   const download = target => manifest.site.url + portDownloadPath("telegram", ARTIFACTS[target].path);
-  return `- **Android:** download [j3w1.attheme](${download("android")}), open it in Telegram (or send it to Saved Messages and tap it), then tap **Apply**.\n- **Desktop:** download [j3w1.tdesktop-theme](${download("desktop")}), open it with Telegram Desktop, then choose **Apply this theme** and **Keep changes**.\n\nCloud link: pending publication.`;
+  return [
+    "## Android", "", `1. Download [j3w1.attheme](${download("android")}) and open it in Telegram (or send it to your Saved Messages and tap it there).`, "2. Tap **Apply**.", "",
+    "## Desktop", "", `1. Download [j3w1.tdesktop-theme](${download("desktop")}) and open it with Telegram Desktop.`, "2. Click **Apply this theme**, then **Keep changes**.", "",
+    "The one-tap cloud link, which also brings automatic updates, is pending publication.",
+  ].join("\n");
 };

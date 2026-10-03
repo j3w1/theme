@@ -180,10 +180,21 @@ test("Desktop zip has ordered STORED entries, fixed metadata and a minimal valid
 
 test("wallpaper, solid bubbles, rose messages, chrome emphasis and avatars keep the requested hierarchy", () => {
   assert.equal(roleOf("android", "chat_wallpaper"), "color.surface.canvas");
-  assert.equal(roleOf("android", "chat_wallpaper_gradient_to"), "color.surface.chrome-alt");
-  for (const [target, incoming, outgoing] of [["android", "chat_inBubble", "chat_outBubble"], ["desktop", "msgInBg", "msgOutBg"]]) {
-    assert.equal(roleOf(target, incoming), "color.surface.raised"); assert.equal(roleOf(target, outgoing), "color.surface.chrome-alt");
-    assert.notDeepEqual(rgba(target, incoming), rgba(target, outgoing));
+  assert.equal(roleOf("android", "chat_wallpaper_gradient_to"), "color.surface.chrome");
+  const wallpaper = [android.get("chat_wallpaper"), android.get("chat_wallpaper_gradient_to")];
+  for (const [target, incoming, outgoing, inSelected, outSelected] of [["android", "chat_inBubble", "chat_outBubble", "chat_inBubbleSelected", "chat_outBubbleSelected"], ["desktop", "msgInBg", "msgOutBg", "msgInBgSelected", "msgOutBgSelected"]]) {
+    assert.equal(roleOf(target, incoming), "color.surface.raised"); assert.equal(roleOf(target, outgoing), "color.surface.overlay");
+    // Bubbles must stand out from each other, from their selected state and
+    // from both wallpaper colours, or they vanish into the chat background.
+    const fills = [incoming, outgoing, inSelected, outSelected].map(key => JSON.stringify(rgba(target, key)));
+    assert.equal(new Set(fills.slice(0, 3)).size, 3, `${target}: incoming, outgoing and selected fills differ`);
+    assert.notEqual(fills[1], fills[3], `${target}: outgoing differs from its selected state`);
+    for (const key of [incoming, outgoing]) for (const end of wallpaper) assert.notDeepEqual(rgba(target, key), end, `${target}:${key} differs from the wallpaper`);
+    // Lightness ladder: wallpaper < incoming < outgoing, so both bubbles read
+    // as raised shapes over the whole wallpaper gradient.
+    const luminance = ([r, g, b]) => [r, g, b].map(v => { v /= 255; return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; }).reduce((sum, v, i) => sum + v * [0.2126, 0.7152, 0.0722][i], 0);
+    assert.ok(Math.max(...wallpaper.map(luminance)) < luminance(rgba(target, incoming)), `${target}: incoming is lighter than the wallpaper`);
+    assert.ok(luminance(rgba(target, incoming)) < luminance(rgba(target, outgoing)), `${target}: outgoing is lighter than incoming`);
   }
   for (const [target, keys] of [["android", ["chat_messageTextIn", "chat_messageTextOut", "chat_messagePanelText", "chat_inReplyMessageText", "chat_outReplyMessageText"]], ["desktop", ["historyTextInFg", "historyTextOutFg", "historyComposeAreaFg", "msgInMonoFg", "msgOutMonoFg"]]]) for (const key of keys) assert.equal(roleOf(target, key), "color.text.default", key);
   for (const key of registry.android.keys.filter(key => key.startsWith("chat_outBubbleGradient"))) { assert.ok(coverage.android.unset[key]); assert.ok(!android.has(key)); }
@@ -215,8 +226,8 @@ test("near-white is restricted to approved on-fill or link-hover roles, and inte
 
 test("main native text/background pairs pass 4.5:1 without rounding", () => {
   const pairs = {
-    android: [["chat_messageTextIn", "chat_inBubble"], ["chat_messageTextOut", "chat_outBubble"], ["chats_name", "windowBackgroundWhite"], ["chats_message", "windowBackgroundWhite"], ["chat_messagePanelText", "chat_messagePanelBackground"], ["dialogTextBlack", "dialogBackground"], ["windowBackgroundWhiteBlackText", "windowBackgroundWhite"]],
-    desktop: [["historyTextInFg", "msgInBg"], ["historyTextOutFg", "msgOutBg"], ["dialogsNameFg", "dialogsBg"], ["dialogsTextFg", "dialogsBg"], ["historyComposeAreaFg", "historyComposeAreaBg"], ["boxTextFg", "boxBg"], ["windowFg", "windowBg"], ["historyTextInFgSelected", "msgInBgSelected"], ["historyTextOutFgSelected", "msgOutBgSelected"]],
+    android: [["chat_messageTextIn", "chat_inBubble"], ["chat_messageTextOut", "chat_outBubble"], ["chat_inTimeText", "chat_inBubble"], ["chat_outTimeText", "chat_outBubble"], ["chat_inReplyMessageText", "chat_inBubble"], ["chat_outReplyMessageText", "chat_outBubble"], ["chat_messageLinkIn", "chat_inBubble"], ["chat_messageLinkOut", "chat_outBubble"], ["chats_name", "windowBackgroundWhite"], ["chats_message", "windowBackgroundWhite"], ["chat_messagePanelText", "chat_messagePanelBackground"], ["dialogTextBlack", "dialogBackground"], ["windowBackgroundWhiteBlackText", "windowBackgroundWhite"]],
+    desktop: [["historyTextInFg", "msgInBg"], ["historyTextOutFg", "msgOutBg"], ["msgInDateFg", "msgInBg"], ["msgOutDateFg", "msgOutBg"], ["historyLinkInFg", "msgInBg"], ["historyLinkOutFg", "msgOutBg"], ["dialogsNameFg", "dialogsBg"], ["dialogsTextFg", "dialogsBg"], ["historyComposeAreaFg", "historyComposeAreaBg"], ["boxTextFg", "boxBg"], ["windowFg", "windowBg"], ["historyTextInFgSelected", "msgInBgSelected"], ["historyTextOutFgSelected", "msgOutBgSelected"]],
   };
   for (const [target, entries] of Object.entries(pairs)) for (const [fgKey, bgKey] of entries) {
     const fg = rgba(target, fgKey), bg = rgba(target, bgKey);
@@ -246,16 +257,17 @@ test("README installation is generated honestly for unpublished and published cl
   const block = readme.split("<!-- install:start -->\n")[1].split("\n<!-- install:end -->")[0];
   assert.equal(block, telegramReadmeBlock(manifest, cloud));
   const unpublished = telegramReadmeBlock(manifest, { ...cloud, published: false, slug: null });
-  for (const instruction of ["Saved Messages", "**Apply**", "**Apply this theme**", "**Keep changes**", "Cloud link: pending publication"]) assert.ok(unpublished.includes(instruction));
+  for (const instruction of ["## Android", "## Desktop", "Saved Messages", "**Apply**", "**Apply this theme**", "**Keep changes**", "pending publication"]) assert.ok(unpublished.includes(instruction), instruction);
   for (const file of Object.values(ARTIFACTS)) assert.ok(unpublished.includes(manifest.site.url + "ports/telegram/" + file.path.split("/").at(-1)));
   assert.doesNotMatch(unpublished, /t\.me\/addtheme/);
   for (const slug of ["j3w1", "j3w1_theme"]) {
     const published = telegramReadmeBlock(manifest, { ...cloud, published: true, slug });
     const urls = [...published.matchAll(/https:\/\/t\.me\/addtheme\/[A-Za-z0-9_]+/g)].map(m => m[0]);
-    assert.deepEqual(urls, [installLink(slug)]);
-    assert.match(published, /^1\. Open/); assert.match(published, /\n2\. Android: tap \*\*Apply\*\*\. Desktop: click \*\*Apply\*\*\./);
-    assert.ok(published.includes("Updates arrive through Telegram; no Premium is needed."));
-    assert.ok(published.includes("[File import fallback](#file-import-fallback)")); assert.doesNotMatch(published, /\.attheme|\.tdesktop-theme|pending publication/);
+    assert.deepEqual(urls, [installLink(slug), installLink(slug)], "the same verified link for Android and Desktop");
+    assert.match(published, /^## Android\n\n1\. Open \[Install j3w1\]\(https:\/\/t\.me\/addtheme\/[A-Za-z0-9_]+\)\.\n2\. Tap \*\*Apply\*\* in Telegram\.\n\n## Desktop\n\n1\. Open \[Install j3w1\]/);
+    assert.ok(published.includes("2. Click **Apply**."));
+    assert.ok(published.includes("Updates arrive through Telegram while you use the cloud theme.") && published.includes("No Telegram Premium subscription is required."));
+    assert.doesNotMatch(published, /\.attheme|\.tdesktop-theme|pending publication/);
   }
   assert.throws(() => telegramReadmeBlock(manifest, { ...cloud, published: true, slug: null }), /published needs a slug/);
 });

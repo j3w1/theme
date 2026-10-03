@@ -39,7 +39,8 @@
       "desktop:callBarBgMuted",
       "desktop:walletTopBg",
       "desktop:sideBarBg",
-      "desktop:sideBarBadgeBgMuted"
+      "desktop:sideBarBadgeBgMuted",
+      "android:chat_wallpaper_gradient_to"
     ],
     "color.surface.chrome-alt": [
       "android:avatar_backgroundArchived",
@@ -47,8 +48,6 @@
       "android:avatar_backgroundInProfileBlue",
       "android:avatar_backgroundActionBarBlue",
       "android:chat_outTableBackground",
-      "android:chat_outBubble",
-      "android:chat_wallpaper_gradient_to",
       "android:voipgroup_muteButton",
       "android:voipgroup_muteButton2",
       "android:voipgroup_muteButton3",
@@ -72,8 +71,7 @@
       "android:voipgroup_overlayAlertMutedByAdmin2",
       "android:voipgroup_mutedByAdminGradient",
       "android:voipgroup_mutedByAdminGradient2",
-      "android:voipgroup_mutedByAdminGradient3",
-      "desktop:msgOutBg"
+      "android:voipgroup_mutedByAdminGradient3"
     ],
     "color.surface.default": [
       "android:dialogLineProgressBackground",
@@ -185,7 +183,9 @@
       "desktop:boxBg",
       "desktop:boxDividerBg",
       "desktop:mainMenuBg",
-      "desktop:notificationBg"
+      "desktop:notificationBg",
+      "android:chat_outBubble",
+      "desktop:msgOutBg"
     ],
     "color.surface.input": [
       "android:dialogSearchBackground",

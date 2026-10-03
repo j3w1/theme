@@ -1,30 +1,24 @@
 # j3w1 for Telegram
 
-Experimental: generated from the approved default profile; no real import is recorded.
-Targets Telegram Android 12.10.6 and Telegram Desktop 7.2.9.
-
-## Install
-
 <!-- install:start -->
-- **Android:** download [j3w1.attheme](https://j3w1.github.io/theme/ports/telegram/j3w1.attheme), open it in Telegram (or send it to Saved Messages and tap it), then tap **Apply**.
-- **Desktop:** download [j3w1.tdesktop-theme](https://j3w1.github.io/theme/ports/telegram/j3w1.tdesktop-theme), open it with Telegram Desktop, then choose **Apply this theme** and **Keep changes**.
+## Android
 
-Cloud link: pending publication.
+1. Download [j3w1.attheme](https://j3w1.github.io/theme/ports/telegram/j3w1.attheme) and open it in Telegram (or send it to your Saved Messages and tap it there).
+2. Tap **Apply**.
+
+## Desktop
+
+1. Download [j3w1.tdesktop-theme](https://j3w1.github.io/theme/ports/telegram/j3w1.tdesktop-theme) and open it with Telegram Desktop.
+2. Click **Apply this theme**, then **Keep changes**.
+
+The one-tap cloud link, which also brings automatic updates, is pending publication.
 <!-- install:end -->
 
-## File import fallback
+To stop using it, choose another theme in Telegram's chat or appearance settings.
 
-Use the [Android file](https://j3w1.github.io/theme/ports/telegram/j3w1.attheme)
-or [Desktop file](https://j3w1.github.io/theme/ports/telegram/j3w1.tdesktop-theme).
-Open it with the matching client and apply; Desktop also asks to keep changes.
+For the official Telegram for Android and Telegram Desktop (Windows, Linux and
+macOS). Experimental: no real import has been recorded yet.
 
-## Scope and limits
-
-Rose text, dark bubbles, app chrome, controls and a static dark wallpaper.
-Telegram owns fonts, rounded geometry, motion, glass effects and content accents.
-Some alpha text, statistical data and Premium/story decoration stay host-controlled.
-See `mapping.json`, `src/coverage.json` and `capabilities.json` for exact scope.
-
-## Roll back
-
-Choose your previous theme in Chat Settings/Appearance and restore its wallpaper.
+[File installation](IMPLEMENTATION.md#installing-from-a-file) ·
+[Troubleshooting](IMPLEMENTATION.md#troubleshooting) ·
+[Publishing](PUBLISHING.md)

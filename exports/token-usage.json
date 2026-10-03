@@ -68919,6 +68919,21 @@
               "state": null,
               "variant": null,
               "surface": null,
+              "nativeKey": "android:chat_wallpaper_gradient_to",
+              "port": "telegram",
+              "source": {
+                "file": "ports/telegram/mapping.json",
+                "pointer": "/mappings/color.surface.chrome/31",
+                "line": 43
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
               "nativeKey": "android:glass_targetMainTabs",
               "port": "telegram",
               "source": {
@@ -69772,7 +69787,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.chrome-alt/3",
-                "line": 48
+                "line": 49
               }
             },
             {
@@ -69787,7 +69802,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.chrome-alt/0",
-                "line": 45
+                "line": 46
               }
             },
             {
@@ -69802,7 +69817,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.chrome-alt/1",
-                "line": 46
+                "line": 47
               }
             },
             {
@@ -69817,22 +69832,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.chrome-alt/2",
-                "line": 47
-              }
-            },
-            {
-              "kind": "port",
-              "component": null,
-              "part": null,
-              "state": null,
-              "variant": null,
-              "surface": null,
-              "nativeKey": "android:chat_outBubble",
-              "port": "telegram",
-              "source": {
-                "file": "ports/telegram/mapping.json",
-                "pointer": "/mappings/color.surface.chrome-alt/5",
-                "line": 50
+                "line": 48
               }
             },
             {
@@ -69847,22 +69847,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.chrome-alt/4",
-                "line": 49
-              }
-            },
-            {
-              "kind": "port",
-              "component": null,
-              "part": null,
-              "state": null,
-              "variant": null,
-              "surface": null,
-              "nativeKey": "android:chat_wallpaper_gradient_to",
-              "port": "telegram",
-              "source": {
-                "file": "ports/telegram/mapping.json",
-                "pointer": "/mappings/color.surface.chrome-alt/6",
-                "line": 51
+                "line": 50
               }
             },
             {
@@ -69876,8 +69861,8 @@
               "port": "telegram",
               "source": {
                 "file": "ports/telegram/mapping.json",
-                "pointer": "/mappings/color.surface.chrome-alt/7",
-                "line": 52
+                "pointer": "/mappings/color.surface.chrome-alt/5",
+                "line": 51
               }
             },
             {
@@ -69891,8 +69876,8 @@
               "port": "telegram",
               "source": {
                 "file": "ports/telegram/mapping.json",
-                "pointer": "/mappings/color.surface.chrome-alt/8",
-                "line": 53
+                "pointer": "/mappings/color.surface.chrome-alt/6",
+                "line": 52
               }
             },
             {
@@ -69906,8 +69891,8 @@
               "port": "telegram",
               "source": {
                 "file": "ports/telegram/mapping.json",
-                "pointer": "/mappings/color.surface.chrome-alt/9",
-                "line": 54
+                "pointer": "/mappings/color.surface.chrome-alt/7",
+                "line": 53
               }
             },
             {
@@ -69921,8 +69906,8 @@
               "port": "telegram",
               "source": {
                 "file": "ports/telegram/mapping.json",
-                "pointer": "/mappings/color.surface.chrome-alt/28",
-                "line": 73
+                "pointer": "/mappings/color.surface.chrome-alt/26",
+                "line": 72
               }
             },
             {
@@ -69936,8 +69921,8 @@
               "port": "telegram",
               "source": {
                 "file": "ports/telegram/mapping.json",
-                "pointer": "/mappings/color.surface.chrome-alt/29",
-                "line": 74
+                "pointer": "/mappings/color.surface.chrome-alt/27",
+                "line": 73
               }
             },
             {
@@ -69951,8 +69936,8 @@
               "port": "telegram",
               "source": {
                 "file": "ports/telegram/mapping.json",
-                "pointer": "/mappings/color.surface.chrome-alt/30",
-                "line": 75
+                "pointer": "/mappings/color.surface.chrome-alt/28",
+                "line": 74
               }
             },
             {
@@ -69966,8 +69951,8 @@
               "port": "telegram",
               "source": {
                 "file": "ports/telegram/mapping.json",
-                "pointer": "/mappings/color.surface.chrome-alt/22",
-                "line": 67
+                "pointer": "/mappings/color.surface.chrome-alt/20",
+                "line": 66
               }
             },
             {
@@ -69981,8 +69966,8 @@
               "port": "telegram",
               "source": {
                 "file": "ports/telegram/mapping.json",
-                "pointer": "/mappings/color.surface.chrome-alt/23",
-                "line": 68
+                "pointer": "/mappings/color.surface.chrome-alt/21",
+                "line": 67
               }
             },
             {
@@ -69996,8 +69981,8 @@
               "port": "telegram",
               "source": {
                 "file": "ports/telegram/mapping.json",
-                "pointer": "/mappings/color.surface.chrome-alt/24",
-                "line": 69
+                "pointer": "/mappings/color.surface.chrome-alt/22",
+                "line": 68
               }
             },
             {
@@ -70011,8 +69996,8 @@
               "port": "telegram",
               "source": {
                 "file": "ports/telegram/mapping.json",
-                "pointer": "/mappings/color.surface.chrome-alt/25",
-                "line": 70
+                "pointer": "/mappings/color.surface.chrome-alt/23",
+                "line": 69
               }
             },
             {
@@ -70026,8 +70011,8 @@
               "port": "telegram",
               "source": {
                 "file": "ports/telegram/mapping.json",
-                "pointer": "/mappings/color.surface.chrome-alt/26",
-                "line": 71
+                "pointer": "/mappings/color.surface.chrome-alt/24",
+                "line": 70
               }
             },
             {
@@ -70041,8 +70026,8 @@
               "port": "telegram",
               "source": {
                 "file": "ports/telegram/mapping.json",
-                "pointer": "/mappings/color.surface.chrome-alt/27",
-                "line": 72
+                "pointer": "/mappings/color.surface.chrome-alt/25",
+                "line": 71
               }
             },
             {
@@ -70056,8 +70041,8 @@
               "port": "telegram",
               "source": {
                 "file": "ports/telegram/mapping.json",
-                "pointer": "/mappings/color.surface.chrome-alt/15",
-                "line": 60
+                "pointer": "/mappings/color.surface.chrome-alt/13",
+                "line": 59
               }
             },
             {
@@ -70071,8 +70056,8 @@
               "port": "telegram",
               "source": {
                 "file": "ports/telegram/mapping.json",
-                "pointer": "/mappings/color.surface.chrome-alt/16",
-                "line": 61
+                "pointer": "/mappings/color.surface.chrome-alt/14",
+                "line": 60
               }
             },
             {
@@ -70086,8 +70071,8 @@
               "port": "telegram",
               "source": {
                 "file": "ports/telegram/mapping.json",
-                "pointer": "/mappings/color.surface.chrome-alt/13",
-                "line": 58
+                "pointer": "/mappings/color.surface.chrome-alt/11",
+                "line": 57
               }
             },
             {
@@ -70101,8 +70086,8 @@
               "port": "telegram",
               "source": {
                 "file": "ports/telegram/mapping.json",
-                "pointer": "/mappings/color.surface.chrome-alt/14",
-                "line": 59
+                "pointer": "/mappings/color.surface.chrome-alt/12",
+                "line": 58
               }
             },
             {
@@ -70116,8 +70101,8 @@
               "port": "telegram",
               "source": {
                 "file": "ports/telegram/mapping.json",
-                "pointer": "/mappings/color.surface.chrome-alt/12",
-                "line": 57
+                "pointer": "/mappings/color.surface.chrome-alt/10",
+                "line": 56
               }
             },
             {
@@ -70131,8 +70116,8 @@
               "port": "telegram",
               "source": {
                 "file": "ports/telegram/mapping.json",
-                "pointer": "/mappings/color.surface.chrome-alt/19",
-                "line": 64
+                "pointer": "/mappings/color.surface.chrome-alt/17",
+                "line": 63
               }
             },
             {
@@ -70146,8 +70131,8 @@
               "port": "telegram",
               "source": {
                 "file": "ports/telegram/mapping.json",
-                "pointer": "/mappings/color.surface.chrome-alt/20",
-                "line": 65
+                "pointer": "/mappings/color.surface.chrome-alt/18",
+                "line": 64
               }
             },
             {
@@ -70161,8 +70146,8 @@
               "port": "telegram",
               "source": {
                 "file": "ports/telegram/mapping.json",
-                "pointer": "/mappings/color.surface.chrome-alt/21",
-                "line": 66
+                "pointer": "/mappings/color.surface.chrome-alt/19",
+                "line": 65
               }
             },
             {
@@ -70176,8 +70161,8 @@
               "port": "telegram",
               "source": {
                 "file": "ports/telegram/mapping.json",
-                "pointer": "/mappings/color.surface.chrome-alt/17",
-                "line": 62
+                "pointer": "/mappings/color.surface.chrome-alt/15",
+                "line": 61
               }
             },
             {
@@ -70191,8 +70176,8 @@
               "port": "telegram",
               "source": {
                 "file": "ports/telegram/mapping.json",
-                "pointer": "/mappings/color.surface.chrome-alt/18",
-                "line": 63
+                "pointer": "/mappings/color.surface.chrome-alt/16",
+                "line": 62
               }
             },
             {
@@ -70206,8 +70191,8 @@
               "port": "telegram",
               "source": {
                 "file": "ports/telegram/mapping.json",
-                "pointer": "/mappings/color.surface.chrome-alt/10",
-                "line": 55
+                "pointer": "/mappings/color.surface.chrome-alt/8",
+                "line": 54
               }
             },
             {
@@ -70221,23 +70206,8 @@
               "port": "telegram",
               "source": {
                 "file": "ports/telegram/mapping.json",
-                "pointer": "/mappings/color.surface.chrome-alt/11",
-                "line": 56
-              }
-            },
-            {
-              "kind": "port",
-              "component": null,
-              "part": null,
-              "state": null,
-              "variant": null,
-              "surface": null,
-              "nativeKey": "desktop:msgOutBg",
-              "port": "telegram",
-              "source": {
-                "file": "ports/telegram/mapping.json",
-                "pointer": "/mappings/color.surface.chrome-alt/31",
-                "line": 76
+                "pointer": "/mappings/color.surface.chrome-alt/9",
+                "line": 55
               }
             },
             {
@@ -73921,7 +73891,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/9",
-                "line": 88
+                "line": 86
               }
             },
             {
@@ -73936,7 +73906,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/11",
-                "line": 90
+                "line": 88
               }
             },
             {
@@ -73951,7 +73921,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/38",
-                "line": 117
+                "line": 115
               }
             },
             {
@@ -73966,7 +73936,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/22",
-                "line": 101
+                "line": 99
               }
             },
             {
@@ -73981,7 +73951,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/26",
-                "line": 105
+                "line": 103
               }
             },
             {
@@ -73996,7 +73966,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/27",
-                "line": 106
+                "line": 104
               }
             },
             {
@@ -74011,7 +73981,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/29",
-                "line": 108
+                "line": 106
               }
             },
             {
@@ -74026,7 +73996,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/28",
-                "line": 107
+                "line": 105
               }
             },
             {
@@ -74041,7 +74011,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/10",
-                "line": 89
+                "line": 87
               }
             },
             {
@@ -74056,7 +74026,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/12",
-                "line": 91
+                "line": 89
               }
             },
             {
@@ -74071,7 +74041,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/24",
-                "line": 103
+                "line": 101
               }
             },
             {
@@ -74086,7 +74056,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/25",
-                "line": 104
+                "line": 102
               }
             },
             {
@@ -74101,7 +74071,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/21",
-                "line": 100
+                "line": 98
               }
             },
             {
@@ -74116,7 +74086,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/23",
-                "line": 102
+                "line": 100
               }
             },
             {
@@ -74131,7 +74101,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/13",
-                "line": 92
+                "line": 90
               }
             },
             {
@@ -74146,7 +74116,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/14",
-                "line": 93
+                "line": 91
               }
             },
             {
@@ -74161,7 +74131,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/18",
-                "line": 97
+                "line": 95
               }
             },
             {
@@ -74176,7 +74146,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/19",
-                "line": 98
+                "line": 96
               }
             },
             {
@@ -74191,7 +74161,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/17",
-                "line": 96
+                "line": 94
               }
             },
             {
@@ -74206,7 +74176,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/16",
-                "line": 95
+                "line": 93
               }
             },
             {
@@ -74221,7 +74191,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/20",
-                "line": 99
+                "line": 97
               }
             },
             {
@@ -74236,7 +74206,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/15",
-                "line": 94
+                "line": 92
               }
             },
             {
@@ -74251,7 +74221,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/34",
-                "line": 113
+                "line": 111
               }
             },
             {
@@ -74266,7 +74236,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/0",
-                "line": 79
+                "line": 77
               }
             },
             {
@@ -74281,7 +74251,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/2",
-                "line": 81
+                "line": 79
               }
             },
             {
@@ -74296,7 +74266,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/1",
-                "line": 80
+                "line": 78
               }
             },
             {
@@ -74311,7 +74281,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/37",
-                "line": 116
+                "line": 114
               }
             },
             {
@@ -74326,7 +74296,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/6",
-                "line": 85
+                "line": 83
               }
             },
             {
@@ -74341,7 +74311,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/33",
-                "line": 112
+                "line": 110
               }
             },
             {
@@ -74356,7 +74326,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/36",
-                "line": 115
+                "line": 113
               }
             },
             {
@@ -74371,7 +74341,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/35",
-                "line": 114
+                "line": 112
               }
             },
             {
@@ -74386,7 +74356,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/30",
-                "line": 109
+                "line": 107
               }
             },
             {
@@ -74401,7 +74371,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/31",
-                "line": 110
+                "line": 108
               }
             },
             {
@@ -74416,7 +74386,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/32",
-                "line": 111
+                "line": 109
               }
             },
             {
@@ -74431,7 +74401,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/7",
-                "line": 86
+                "line": 84
               }
             },
             {
@@ -74446,7 +74416,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/8",
-                "line": 87
+                "line": 85
               }
             },
             {
@@ -74461,7 +74431,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/5",
-                "line": 84
+                "line": 82
               }
             },
             {
@@ -74476,7 +74446,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/3",
-                "line": 82
+                "line": 80
               }
             },
             {
@@ -74491,7 +74461,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/4",
-                "line": 83
+                "line": 81
               }
             },
             {
@@ -74521,7 +74491,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/68",
-                "line": 147
+                "line": 145
               }
             },
             {
@@ -74536,7 +74506,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/42",
-                "line": 121
+                "line": 119
               }
             },
             {
@@ -74551,7 +74521,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/47",
-                "line": 126
+                "line": 124
               }
             },
             {
@@ -74566,7 +74536,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/46",
-                "line": 125
+                "line": 123
               }
             },
             {
@@ -74581,7 +74551,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/69",
-                "line": 148
+                "line": 146
               }
             },
             {
@@ -74596,7 +74566,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/70",
-                "line": 149
+                "line": 147
               }
             },
             {
@@ -74611,7 +74581,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/60",
-                "line": 139
+                "line": 137
               }
             },
             {
@@ -74626,7 +74596,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/61",
-                "line": 140
+                "line": 138
               }
             },
             {
@@ -74641,7 +74611,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/49",
-                "line": 128
+                "line": 126
               }
             },
             {
@@ -74656,7 +74626,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/71",
-                "line": 150
+                "line": 148
               }
             },
             {
@@ -74671,7 +74641,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/45",
-                "line": 124
+                "line": 122
               }
             },
             {
@@ -74686,7 +74656,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/44",
-                "line": 123
+                "line": 121
               }
             },
             {
@@ -74701,7 +74671,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/39",
-                "line": 118
+                "line": 116
               }
             },
             {
@@ -74716,7 +74686,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/65",
-                "line": 144
+                "line": 142
               }
             },
             {
@@ -74731,7 +74701,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/66",
-                "line": 145
+                "line": 143
               }
             },
             {
@@ -74746,7 +74716,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/67",
-                "line": 146
+                "line": 144
               }
             },
             {
@@ -74761,7 +74731,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/52",
-                "line": 131
+                "line": 129
               }
             },
             {
@@ -74776,7 +74746,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/53",
-                "line": 132
+                "line": 130
               }
             },
             {
@@ -74791,7 +74761,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/54",
-                "line": 133
+                "line": 131
               }
             },
             {
@@ -74806,7 +74776,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/55",
-                "line": 134
+                "line": 132
               }
             },
             {
@@ -74821,7 +74791,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/56",
-                "line": 135
+                "line": 133
               }
             },
             {
@@ -74836,7 +74806,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/57",
-                "line": 136
+                "line": 134
               }
             },
             {
@@ -74851,7 +74821,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/58",
-                "line": 137
+                "line": 135
               }
             },
             {
@@ -74866,7 +74836,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/59",
-                "line": 138
+                "line": 136
               }
             },
             {
@@ -74881,7 +74851,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/50",
-                "line": 129
+                "line": 127
               }
             },
             {
@@ -74896,7 +74866,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/51",
-                "line": 130
+                "line": 128
               }
             },
             {
@@ -74911,7 +74881,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/64",
-                "line": 143
+                "line": 141
               }
             },
             {
@@ -74926,7 +74896,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/73",
-                "line": 152
+                "line": 150
               }
             },
             {
@@ -74941,7 +74911,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/72",
-                "line": 151
+                "line": 149
               }
             },
             {
@@ -74956,7 +74926,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/62",
-                "line": 141
+                "line": 139
               }
             },
             {
@@ -74971,7 +74941,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/43",
-                "line": 122
+                "line": 120
               }
             },
             {
@@ -74986,7 +74956,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/63",
-                "line": 142
+                "line": 140
               }
             },
             {
@@ -75001,7 +74971,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/48",
-                "line": 127
+                "line": 125
               }
             },
             {
@@ -75016,7 +74986,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/40",
-                "line": 119
+                "line": 117
               }
             },
             {
@@ -75031,7 +75001,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/41",
-                "line": 120
+                "line": 118
               }
             },
             {
@@ -75046,7 +75016,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/74",
-                "line": 153
+                "line": 151
               }
             },
             {
@@ -75061,7 +75031,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/75",
-                "line": 154
+                "line": 152
               }
             },
             {
@@ -75076,7 +75046,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.default/76",
-                "line": 155
+                "line": 153
               }
             },
             {
@@ -83096,7 +83066,22 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.overlay/2",
-                "line": 182
+                "line": 180
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "android:chat_outBubble",
+              "port": "telegram",
+              "source": {
+                "file": "ports/telegram/mapping.json",
+                "pointer": "/mappings/color.surface.overlay/9",
+                "line": 187
               }
             },
             {
@@ -83111,7 +83096,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.overlay/3",
-                "line": 183
+                "line": 181
               }
             },
             {
@@ -83126,7 +83111,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.overlay/0",
-                "line": 180
+                "line": 178
               }
             },
             {
@@ -83141,7 +83126,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.overlay/1",
-                "line": 181
+                "line": 179
               }
             },
             {
@@ -83156,7 +83141,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.overlay/5",
-                "line": 185
+                "line": 183
               }
             },
             {
@@ -83171,7 +83156,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.overlay/6",
-                "line": 186
+                "line": 184
               }
             },
             {
@@ -83186,7 +83171,22 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.overlay/7",
-                "line": 187
+                "line": 185
+              }
+            },
+            {
+              "kind": "port",
+              "component": null,
+              "part": null,
+              "state": null,
+              "variant": null,
+              "surface": null,
+              "nativeKey": "desktop:msgOutBg",
+              "port": "telegram",
+              "source": {
+                "file": "ports/telegram/mapping.json",
+                "pointer": "/mappings/color.surface.overlay/10",
+                "line": 188
               }
             },
             {
@@ -83201,7 +83201,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.overlay/8",
-                "line": 188
+                "line": 186
               }
             },
             {
@@ -83216,7 +83216,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.overlay/4",
-                "line": 184
+                "line": 182
               }
             },
             {
@@ -84306,7 +84306,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.raised/2",
-                "line": 160
+                "line": 158
               }
             },
             {
@@ -84321,7 +84321,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.raised/3",
-                "line": 161
+                "line": 159
               }
             },
             {
@@ -84336,7 +84336,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.raised/1",
-                "line": 159
+                "line": 157
               }
             },
             {
@@ -84351,7 +84351,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.raised/4",
-                "line": 162
+                "line": 160
               }
             },
             {
@@ -84366,7 +84366,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.raised/10",
-                "line": 168
+                "line": 166
               }
             },
             {
@@ -84381,7 +84381,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.raised/11",
-                "line": 169
+                "line": 167
               }
             },
             {
@@ -84396,7 +84396,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.raised/12",
-                "line": 170
+                "line": 168
               }
             },
             {
@@ -84411,7 +84411,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.raised/5",
-                "line": 163
+                "line": 161
               }
             },
             {
@@ -84426,7 +84426,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.raised/8",
-                "line": 166
+                "line": 164
               }
             },
             {
@@ -84441,7 +84441,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.raised/6",
-                "line": 164
+                "line": 162
               }
             },
             {
@@ -84456,7 +84456,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.raised/0",
-                "line": 158
+                "line": 156
               }
             },
             {
@@ -84471,7 +84471,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.raised/9",
-                "line": 167
+                "line": 165
               }
             },
             {
@@ -84486,7 +84486,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.raised/7",
-                "line": 165
+                "line": 163
               }
             },
             {
@@ -84501,7 +84501,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.raised/14",
-                "line": 172
+                "line": 170
               }
             },
             {
@@ -84516,7 +84516,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.raised/19",
-                "line": 177
+                "line": 175
               }
             },
             {
@@ -84531,7 +84531,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.raised/17",
-                "line": 175
+                "line": 173
               }
             },
             {
@@ -84546,7 +84546,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.raised/18",
-                "line": 176
+                "line": 174
               }
             },
             {
@@ -84561,7 +84561,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.raised/13",
-                "line": 171
+                "line": 169
               }
             },
             {
@@ -84576,7 +84576,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.raised/16",
-                "line": 174
+                "line": 172
               }
             },
             {
@@ -84591,7 +84591,7 @@
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/mappings/color.surface.raised/15",
-                "line": 173
+                "line": 171
               }
             },
             {

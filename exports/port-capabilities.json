@@ -32242,7 +32242,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-jcKc1CBlczzlxrVtWnC7ZK1KWqUZnJZwMOsymZfZWEw=",
+      "subjectDigest": "sha256-+1+PGZJsXkB8gDtMD+amESsVtOUWe+oXdCXUkJadrd4=",
       "evidencePath": null,
       "surfaces": {
         "interface": {
@@ -32291,13 +32291,13 @@
           "path": "dist/j3w1.attheme",
           "install": "Download and open in Telegram Android (or send to Saved Messages and tap), then Apply; no cloud theme is published yet.",
           "source": "ports/telegram/dist/j3w1.attheme",
-          "digest": "sha256-pmDXCQ8iin9G1etQgoX1pgLh9mEgAs3CXVJ5WxfY42c="
+          "digest": "sha256-TRn3KjMGTuhSL/4lkGm24fMeqkJWScT9/gmFQ+3kWCw="
         },
         {
           "path": "dist/j3w1.tdesktop-theme",
           "install": "Download and open with Telegram Desktop, then Apply this theme and Keep changes; no cloud theme is published yet.",
           "source": "ports/telegram/dist/j3w1.tdesktop-theme",
-          "digest": "sha256-0+hGQmWZFWyr15CeFk0ionALWm23WHegXSF7IcV6uao="
+          "digest": "sha256-ap3ucF+wFOEr62kp9+3vdWpX9BJcHo6yQc+u2vmk8qs="
         }
       ],
       "rollback": "Choose the previous Telegram theme in Settings → Chat Settings/Appearance; restore the previous chat background if it was customised.",
@@ -36232,7 +36232,8 @@
             "desktop:callBarBgMuted",
             "desktop:walletTopBg",
             "desktop:sideBarBg",
-            "desktop:sideBarBadgeBgMuted"
+            "desktop:sideBarBadgeBgMuted",
+            "android:chat_wallpaper_gradient_to"
           ],
           "value": "#090707",
           "eligibility": {
@@ -36254,8 +36255,6 @@
             "android:avatar_backgroundInProfileBlue",
             "android:avatar_backgroundActionBarBlue",
             "android:chat_outTableBackground",
-            "android:chat_outBubble",
-            "android:chat_wallpaper_gradient_to",
             "android:voipgroup_muteButton",
             "android:voipgroup_muteButton2",
             "android:voipgroup_muteButton3",
@@ -36279,8 +36278,7 @@
             "android:voipgroup_overlayAlertMutedByAdmin2",
             "android:voipgroup_mutedByAdminGradient",
             "android:voipgroup_mutedByAdminGradient2",
-            "android:voipgroup_mutedByAdminGradient3",
-            "desktop:msgOutBg"
+            "android:voipgroup_mutedByAdminGradient3"
           ],
           "value": "#1c0a09",
           "eligibility": {
@@ -36451,7 +36449,9 @@
             "desktop:boxBg",
             "desktop:boxDividerBg",
             "desktop:mainMenuBg",
-            "desktop:notificationBg"
+            "desktop:notificationBg",
+            "android:chat_outBubble",
+            "desktop:msgOutBg"
           ],
           "value": "#241010",
           "eligibility": {
