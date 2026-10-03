@@ -96,6 +96,18 @@ test("an agent note changes nothing on the site", () => {
   assert.equal(p.deploy, false);
 });
 
+test("Telegram publisher sources require source and unit proofs; published artifacts still require the site", () => {
+  for (const file of ["ports/telegram/publish.mjs", "ports/telegram/src/contract.mjs", "ports/telegram/PUBLISHING.md", "ports/telegram/IMPLEMENTATION.md", "ports/telegram/cloud.json", "tests/telegram-publish.test.js", "tests/telegram-port.test.js"]) {
+    const p = run("push", [file]);
+    assert.deepEqual(p.proofs, ["sources", "unit"], file);
+    assert.equal(p.site, false, file);
+    assert.equal(p.deploy, false, file);
+  }
+  for (const file of ["ports/telegram/README.md", "ports/telegram/dist/j3w1.attheme", "ports/telegram/dist/j3w1.tdesktop-theme"]) {
+    assert.equal(run("push", [file]).site, true, file);
+  }
+});
+
 test("the plan hash is stable and covers the decision", () => {
   const a = run("pull_request", ["docs/design-mode.md"]);
   const b = run("pull_request", ["docs/design-mode.md"]);

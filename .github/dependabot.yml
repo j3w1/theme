@@ -7,7 +7,11 @@ updates:
     groups:
       dev-tooling:
         patterns: ["*"]
+        exclude-patterns: [teleproto]
         update-types: [minor, patch]
+    # Manual bumps only after re-vetting: legacy 203.x–214.x sorts above 1.229.1.
+    ignore:
+      - dependency-name: teleproto
   - package-ecosystem: github-actions
     directory: /
     schedule:
