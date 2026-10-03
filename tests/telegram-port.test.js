@@ -134,7 +134,19 @@ test("ARGB and Desktop RGBA preserve canonical values and alpha without derivati
   assert.ok(palette.includes("layerBg: #000000a6;"));
   for (const target of ["android", "desktop"]) {
     assert.deepEqual([...values[target].keys()], registry[target].keys.filter(key => Object.hasOwn(owner, `${target}:${key}`)));
-    for (const key of [...registry[target].translucentDefault, ...coverage[target].translucent]) if (!coverage[target].unset[key]) assert.ok(rgba(target, key)[3] < 255, `${target}:${key}`);
+    for (const key of [...registry[target].translucentDefault, ...coverage[target].translucent]) {
+      if (coverage[target].unset[key] || coverage[target].opaqueAllowed?.[key]) continue;
+      // Emitted overlays stay translucent. A key that inherits through an
+      // upstream fallback takes that key's value at runtime, which is only
+      // acceptable for text and icon glyphs (upstream's own fallback design).
+      if (values[target].has(key) || !/Text|Icon/.test(key)) assert.ok(rgba(target, key)[3] < 255, `${target}:${key}`);
+    }
+    // The only opaque exceptions are reviewed text keys, set from text roles.
+    for (const [key, reason] of Object.entries(coverage[target].opaqueAllowed ?? {})) {
+      assert.match(key, /Text|comment/, `${target}:${key} is a text key`);
+      assert.match(roleOf(target, key), /^color\.(text|code\.syntax)\./, `${target}:${key}`);
+      assert.ok(reason.length > 20);
+    }
   }
   const opaque = structuredClone(mapping), key = "desktop:msgSelectOverlay";
   opaque.mappings["color.interaction.marquee"] = opaque.mappings["color.interaction.marquee"].filter(native => native !== key);
@@ -210,9 +222,18 @@ test("wallpaper, solid bubbles, rose messages, chrome emphasis and avatars keep 
 
 test("near-white is restricted to approved on-fill or link-hover roles, and interface hues stay red/rose", () => {
   const whiteRoles = ["color.text.on-selection", "color.interaction.selection.text", "color.text.on-action", "color.text.on-danger", "color.status.danger.on-fill", "color.text.link-hover"];
+  // Near-white by relative luminance, not by literal value, so a token change
+  // cannot silently widen it. Bright rose (text.bright) stays well below.
+  const luminance = ([r, g, b]) => [r, g, b].map(v => { v /= 255; return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; }).reduce((sum, v, i) => sum + v * [0.2126, 0.7152, 0.0722][i], 0);
+  for (const target of ["android", "desktop"]) {
+    // Every near-white key is on the reviewed list of keys drawn on a fill
+    // (selection, action, danger) and nothing else turns near-white.
+    const near = [...values[target]].filter(([, color]) => luminance(color) > 0.6).map(([key]) => key).sort();
+    assert.deepEqual(near, [...coverage[target].nearWhite].sort(), `${target} near-white keys`);
+  }
   for (const [native, role] of Object.entries(owner)) {
     const [target, key] = native.split(":"), color = rgba(target, key), hex = rgbHex(color);
-    if (["#f4eeee", "#f9faf9"].includes(hex)) {
+    if (luminance(color) > 0.6) {
       assert.ok(whiteRoles.includes(role), `${native}: ${role}`);
       continue; // Explicitly allowed near-white roles have no interface hue assignment.
     }
@@ -270,4 +291,8 @@ test("README installation is generated honestly for unpublished and published cl
     assert.doesNotMatch(published, /\.attheme|\.tdesktop-theme|pending publication/);
   }
   assert.throws(() => telegramReadmeBlock(manifest, { ...cloud, published: true, slug: null }), /published needs a slug/);
+  // Only the generated guide block follows the cloud state; the install text
+  // copied into the downloads table, the Ports page and the exports must stay
+  // true in both states.
+  for (const file of port.files) assert.doesNotMatch(file.install, /not published|pending|published yet|no cloud theme/i, file.path);
 });

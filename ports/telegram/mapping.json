@@ -124,8 +124,6 @@
       "desktop:dialogsUnreadBgMuted",
       "desktop:searchedBarBg",
       "desktop:historyUnreadBarBg",
-      "desktop:msgFileInBg",
-      "desktop:msgFileOutBg",
       "desktop:msgFile1Bg",
       "desktop:msgFile1BgDark",
       "desktop:msgFile2Bg",
@@ -154,10 +152,6 @@
     ],
     "color.surface.raised": [
       "android:chat_inTableBackground",
-      "android:chat_attachGalleryBackground",
-      "android:chat_attachAudioBackground",
-      "android:chat_attachContactBackground",
-      "android:chat_attachLocationBackground",
       "android:chat_inBubble",
       "android:chat_inFileBackground",
       "android:chat_outFileBackground",
@@ -334,7 +328,6 @@
       "android:key_sheet_scrollUp",
       "android:key_sheet_other",
       "android:dialogGiftsTabText",
-      "android:glass_tabUnselected",
       "desktop:windowFg",
       "desktop:lightButtonFg",
       "desktop:radialFg",
@@ -403,7 +396,8 @@
       "desktop:currencyFg",
       "desktop:rankAdminFg",
       "desktop:rankOwnerFg",
-      "desktop:rankUserFg"
+      "desktop:rankUserFg",
+      "android:chat_botKeyboardButtonText"
     ],
     "color.text.bright": [
       "android:inappPlayerTitle",
@@ -652,10 +646,7 @@
       "android:player_button",
       "android:player_buttonActive",
       "android:iv_ab_progress",
-      "android:glass_tabSelected",
       "android:botKeyboard_button_primary",
-      "android:telegram_color",
-      "android:telegram_color_text",
       "desktop:windowActiveTextFg",
       "desktop:menuIconFg",
       "desktop:menuIconFgOver",
@@ -707,7 +698,9 @@
       "desktop:sideBarIconFg",
       "desktop:dialogsMentionIconFg",
       "desktop:dialogsReactionIconFg",
-      "desktop:dialogsPollIconFg"
+      "desktop:dialogsPollIconFg",
+      "android:chats_verifiedCheck",
+      "android:profile_verifiedCheck"
     ],
     "color.text.link": [
       "android:dialogTextLink",
@@ -734,14 +727,11 @@
       "android:fastScrollText",
       "android:avatar_text",
       "android:chats_unreadCounterText",
-      "android:chats_sentReadCheck",
-      "android:chats_verifiedCheck",
       "android:chats_menuItemCheck",
       "android:chats_actionIcon",
       "android:chat_attachCheckBoxCheck",
       "android:chat_attachIcon",
       "android:chat_goDownButtonCounter",
-      "android:profile_verifiedCheck",
       "android:featuredStickers_buttonText",
       "android:picker_badgeText",
       "android:location_sendLocationIcon",
@@ -830,7 +820,8 @@
       "desktop:sliderBgActive",
       "desktop:msgInReplyBarColor",
       "desktop:msgOutReplyBarColor",
-      "desktop:overviewCheckBorder"
+      "desktop:overviewCheckBorder",
+      "android:chat_emojiPanelStickerPackSelectorLine"
     ],
     "color.interaction.focus.ring": [
       "android:dialogInputFieldActivated",
@@ -959,7 +950,6 @@
       "desktop:titleButtonBgOver",
       "desktop:dialogsVerifiedIconBgOver",
       "desktop:dialogsUnreadBgOver",
-      "desktop:msgFileInBgOver",
       "desktop:msgFile1BgOver",
       "desktop:msgFile2BgOver",
       "desktop:msgFile3BgOver",
@@ -1017,7 +1007,6 @@
       "android:chat_textSelectBackground",
       "android:chat_mediaLoaderPhoto",
       "android:chat_mediaLoaderPhotoSelected",
-      "android:chat_emojiPanelStickerPackSelectorLine",
       "android:chat_botKeyboardButtonBackground",
       "android:chat_botKeyboardButtonBackgroundPressed",
       "android:voipgroup_listSelector",
@@ -1143,11 +1132,17 @@
       "desktop:settingsIconBgArchive",
       "desktop:historyToDownBg",
       "desktop:historyComposeButtonBg",
-      "desktop:sideBarBadgeBg"
+      "desktop:sideBarBadgeBg",
+      "android:chat_attachGalleryBackground",
+      "android:chat_attachAudioBackground",
+      "android:chat_attachContactBackground",
+      "android:chat_attachLocationBackground",
+      "desktop:msgFileOutBg"
     ],
     "color.action.primary.hover-bg": [
       "desktop:activeButtonBgOver",
-      "desktop:historyComposeButtonBgOver"
+      "desktop:historyComposeButtonBgOver",
+      "desktop:msgFileInBgOver"
     ],
     "color.action.primary.pressed-bg": [
       "android:chats_actionPressedBackground",
@@ -1221,6 +1216,9 @@
     ],
     "color.code.syntax.operator": [
       "android:code_operator"
+    ],
+    "color.code.syntax.comment": [
+      "android:code_comment"
     ]
   },
   "unmapped": {
@@ -1377,7 +1375,6 @@
     "color.code.bracket-match": "color.code.bracket-match has no separate native hook in this projection; related controls share the declared canonical role instead.",
     "color.code.indent-guide": "color.code.indent-guide has no separate native hook in this projection; related controls share the declared canonical role instead.",
     "color.code.whitespace": "color.code.whitespace has no separate native hook in this projection; related controls share the declared canonical role instead.",
-    "color.code.syntax.comment": "color.code.syntax.comment has no separate native hook in this projection; related controls share the declared canonical role instead.",
     "color.code.syntax.variable": "color.code.syntax.variable has no separate native hook in this projection; related controls share the declared canonical role instead.",
     "color.code.syntax.type": "color.code.syntax.type has no separate native hook in this projection; related controls share the declared canonical role instead.",
     "color.code.syntax.punctuation": "color.code.syntax.punctuation has no separate native hook in this projection; related controls share the declared canonical role instead.",

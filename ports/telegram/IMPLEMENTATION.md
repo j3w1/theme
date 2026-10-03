@@ -16,7 +16,7 @@ Unchanged tokens always produce identical bytes:
 - **Android:** signed 32-bit ARGB values, upstream key order, LF line endings, no timestamps.
 - **Desktop:** `#rrggbb` / `#rrggbbaa` values, a stored (uncompressed) zip with a fixed date, and a hand-encoded 1×2 PNG.
 
-Every value comes from a canonical role. Translucent native keys use the existing translucent roles. No colour is blended, lightened or given a new alpha.
+Every value comes from a canonical role. Keys whose upstream default is translucent (overlays, ripples, selectors) take the existing translucent roles. The only opaque exceptions are two text keys listed in `src/coverage.json` (`opaqueAllowed`), bot-keyboard labels and code comments, because their translucent dark defaults are unreadable on dark panels. No colour is blended, lightened or given a new alpha.
 
 ## Upstream audit (pinned)
 
@@ -49,22 +49,23 @@ Non-colour keys (`wallpaperFileOffset`, `chat_wallpaper_gradient_rotation`, `cha
 
 **Main role assignments** (Android and Desktop project the same role wherever both expose it):
 
-| Purpose | Role | Value |
-| --- | --- | --- |
-| Chat wallpaper | `surface.canvas` → `surface.chrome` | `#000000` → `#090707` |
-| Incoming / outgoing bubble | `surface.raised` / `surface.overlay` | `#160b0b` / `#241010` |
-| Selected bubble | `interaction.selection.bg` | `#531310` |
-| Message, body and composer text | `text.default` | `#e99499` |
-| Names and chrome titles | `text.bright` | `#ffa2a7` |
-| Secondary text / timestamps | `text.muted` / `text.subtle` | `#bd787d` / `#ad7175` |
-| Links and accents | `text.link`, `text.accent(-strong)`, `action.primary.*` | `#f73f35`, `#e53935`, `#7d1310` |
-| Text on selection or filled actions | `text.on-selection`, `text.on-action` | `#f4eeee` |
-| Overlays, ripples, selectors | `interaction.marquee`, `surface.backdrop` | `#9114101f`, `#000000a6` |
+| Purpose | Role |
+| --- | --- |
+| Chat wallpaper | `surface.canvas` → `surface.chrome` |
+| Incoming / outgoing bubble | `surface.raised` / `surface.overlay` |
+| Selected bubble | `interaction.selection.bg` |
+| Message, body, composer and bot-keyboard text | `text.default` |
+| Names and chrome titles | `text.bright` |
+| Secondary text / timestamps / code comments | `text.muted` / `text.subtle` / `code.syntax.comment` |
+| Links, accents, read and verified ticks | `text.link`, `text.accent`, `text.accent-strong` |
+| Filled buttons (send, FAB, attach, file download, badges, checkboxes) | `action.primary.*` |
+| Glyphs on selection or filled actions | `interaction.selection.text`, `text.on-action` |
+| Overlays, ripples, selectors | `interaction.marquee`, `surface.backdrop` |
 
 **Contrast and colour rules, enforced by tests:**
 - The wallpaper is darker than incoming bubbles, and incoming bubbles are darker than outgoing ones.
 - Message text, timestamps, replies and links pass 4.5:1 on both bubbles and on the main panels.
-- Near-white appears only for selection, on-fill and link-hover text. Bold never selects white.
+- Near-white, by luminance, appears only on the reviewed list of keys drawn on a selection, action or danger fill (`nearWhite` in `src/coverage.json`). Bold never selects white.
 - Interface keys stay in the red/rose hue range: no blue, cyan, orange or purple.
 
 ## Cloud theme
@@ -95,6 +96,7 @@ The same `https://t.me/addtheme/<slug>` link opens the matching document on each
 - **Wallpaper.** Android draws a native two-colour gradient. Desktop scales a 1×2 image of the same two colours. Neither uses a pattern or animation.
 - **Host-controlled colours.** Translucent text and icons without an approved translucent role, chart data, Premium and story artwork, user colours and media keep Telegram's own colours.
 - **Newer keys.** Keys Telegram adds after the pinned revisions use Telegram's light defaults until `keys.json` is refreshed.
+- **A theme with settings only.** The publisher treats a cloud theme that holds neither an Android nor a Desktop document as absent. The owner has no such theme; it would make the publisher fall back to the next slug.
 
 ## Installing from a file
 
@@ -123,7 +125,7 @@ The same `https://t.me/addtheme/<slug>` link opens the matching document on each
 - The session and API credentials live only in private state: `~/.local/state/j3w1-theme/telegram/`, directories 0700, files 0600, never inside the repository.
 - Hidden prompts collect the credentials. The publisher removes them from the environment after reading and redacts them from all output and receipts.
 
-**CI.** The CI job runs only on `main`, after `release-gate`, one run at a time, with read-only permissions and no persisted Git credentials. Secrets appear only in the publish step. It skips unchanged files and refuses to republish an older revision.
+**CI.** A gate job without an environment decides first. It runs only on a push to `main` after `release-gate`, and passes only when the commit is the current tip of `main` and the dist files changed since the last successful Telegram publication. So a refused or rerun workflow records no deployment, and an older revision is never republished. The environment-bound publish job then runs one at a time with read-only permissions and no persisted credentials. Secrets appear only in its publish step, and the publisher checks the tip of `main` again. CI only updates the theme a verified local first publication recorded in `cloud.json`; it never creates one.
 
 The API calls were checked against teleproto 1.229.1's TL definitions and client source (`tl/generated/api.d.ts`, `client/*.js`).
 

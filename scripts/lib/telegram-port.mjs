@@ -55,7 +55,10 @@ export const telegramArtifacts = ({ manifest, port, mapping, exported, resolved 
       if (extra !== undefined || !["android", "desktop"].includes(target) || !registry[target].keys.includes(key)) throw new Error(`Unknown Telegram native key: ${native}`);
       if (values.has(native)) throw new Error(`Duplicate Telegram native key: ${native}`);
       if (target === "android" && [...registry.android.nonColor, ...registry.android.animated].includes(key)) throw new Error(`Telegram nonColor/animated key cannot be emitted: ${native}`);
-      if ([...registry[target].translucentDefault, ...coverage[target].translucent].includes(key) && rgba[3] === 255) throw new Error(`Telegram translucent overlay cannot be opaque: ${native}`);
+      // Overlays, selectors and ripples stay translucent so they never hide
+      // content; only text keys reviewed in coverage.opaqueAllowed may take
+      // an opaque text role (their translucent dark defaults are unreadable).
+      if ([...registry[target].translucentDefault, ...coverage[target].translucent].includes(key) && rgba[3] === 255 && !coverage[target].opaqueAllowed?.[key]) throw new Error(`Telegram translucent overlay cannot be opaque: ${native}`);
       values.set(native, rgba);
     }
   }

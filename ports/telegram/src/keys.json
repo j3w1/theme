@@ -1032,6 +1032,15 @@
       "share_icon": "windowBackgroundWhiteBlackText",
       "share_linkText": "windowBackgroundWhiteBlackText",
       "share_linkBackground": "windowBackgroundGray",
+      "glass_defaultIcon": "chat_messagePanelIcons",
+      "glass_defaultText": "chat_messagePanelText",
+      "glass_tabSelected": "chat_messagePanelSend",
+      "glass_targetMainTabs": "dialogBackground",
+      "glass_targetMainTopPanel": "dialogBackground",
+      "glass_tabSelectedText": "chat_messagePanelSend",
+      "glass_tabUnselected": "windowBackgroundWhiteBlackText",
+      "telegram_color": "chat_messagePanelSend",
+      "telegram_color_text": "windowBackgroundWhiteBlueText4",
       "telegram_color_dialogsLogo": "windowBackgroundWhiteBlackText"
     },
     "nonColor": [

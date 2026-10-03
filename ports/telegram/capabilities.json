@@ -1021,9 +1021,9 @@
       "reason": "Canonical color.code.syntax.string; native keys are listed in mapping.json and use no derived colours."
     },
     "color.code.syntax.comment": {
-      "state": "unsupported",
-      "surface": "interface",
-      "reason": "color.code.syntax.comment has no separate native hook in this projection; related controls share the declared canonical role instead."
+      "state": "mapped",
+      "surface": "messages",
+      "reason": "Canonical color.code.syntax.comment for code-block comments; native keys are listed in mapping.json and use no derived colours."
     },
     "color.code.syntax.number": {
       "state": "mapped",

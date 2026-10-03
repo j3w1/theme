@@ -6,7 +6,7 @@ This page is for the theme owner. People installing the theme never need it.
 npm run telegram:publish
 ```
 
-This one command creates the cloud theme the first time and updates it every time after. Run it in an interactive terminal, from a clean checkout of the revision you want to publish (`HEAD`, or `-- --ref <rev>`).
+This one command creates the cloud theme the first time and updates it every time after. Run it in an interactive terminal from a clean checkout (after `npm ci`), at the commit you want to publish: it always publishes `HEAD`. Earlier revisions go through [rollback](#rolling-back).
 
 ## What the command does
 
@@ -17,11 +17,11 @@ This one command creates the cloud theme the first time and updates it every tim
 2. **Sets up, only what is missing.**
    - Links <https://my.telegram.org/apps> and asks, with hidden input, for your `api_id` and `api_hash`, phone number, the login code Telegram sends, and your two-step verification password if you use one.
    - Telegram sends at most one login code per run.
-   - Saves the session under `~/.local/state/j3w1-theme/telegram/` (owner-only permissions; `$J3W1_THEME_STATE_DIR` overrides the location), then carries on in the same run.
+   - Saves the session under `~/.local/state/j3w1-theme/telegram/` (owner-only permissions; `$J3W1_THEME_STATE_DIR`, or `$XDG_STATE_HOME`, overrides the location), then carries on in the same run.
 3. **Finds the theme.**
    - Uses the slug in `cloud.json`. Before the first publication it tries `j3w1`, then `j3w1_theme`.
    - Adopts a theme only if Telegram says you created it. It never touches anyone else's.
-   - If no candidate is available it stops and asks you for one more slug.
+   - If no candidate is available it stops and asks you for one more slug. Add it to `slugCandidates` in `cloud.json`, commit, and run the command again.
 4. **Compares and uploads.**
    - Compares the Android and Desktop documents in the cloud with the committed files.
    - Uploads only those that differ, and creates the theme only if it does not exist yet.
@@ -34,7 +34,7 @@ This one command creates the cloud theme the first time and updates it every tim
 **Edge cases:**
 - A run with nothing to change reports `unchanged`.
 - After an interrupted or uncertain write, the next attempt reads the cloud state before writing anything, so just run the command again.
-- Flood waits are honoured up to 10 minutes.
+- Flood waits are honoured up to 10 minutes (2 in CI).
 - `-- --dry-run` stops after the comparison and writes nothing.
 
 ## Rolling back
@@ -51,12 +51,12 @@ This republishes an earlier reviewed revision to the same theme and the same lin
 npm run telegram:publish -- ci-enable
 ```
 
-This needs `gh` signed in with admin access to `j3w1/theme`, and asks you to type `ENABLE TELEGRAM CI`. It then:
+Publish once locally first: CI only updates the theme recorded in `cloud.json`, and both this command and the CI job refuse until it is there. It needs `gh` signed in with admin access to `j3w1/theme`, and asks you to type `ENABLE TELEGRAM CI`. It then:
 - creates the GitHub environment `telegram`, restricted to `main`;
 - logs in a **separate** Telegram session named "j3w1 theme CI" and stores it only as that environment's secret (never on disk or in logs);
 - finally sets the repository variable `TELEGRAM_PUBLISH=enabled`.
 
-From then on, a push to `main` that passes `release-gate` and changes `ports/telegram/dist/` publishes once, in order, with the same verification. Pull requests, forks and previews never receive the session. An older run that is rerun never republishes older files.
+From then on, a push to `main` that passes `release-gate` and changes `ports/telegram/dist/` publishes once, in order, with the same verification. Only the current tip of `main` is ever published, so rerunning an older workflow never republishes older files. Pull requests, forks and previews never receive the session.
 
 ## Disconnecting
 
@@ -65,7 +65,7 @@ npm run telegram:publish -- disconnect        # this computer
 npm run telegram:publish -- disconnect --ci   # the GitHub environment
 ```
 
-Each asks you to type a confirmation, then deletes the stored credentials. The local command also logs its session out.
+Each asks you to type a confirmation, then deletes the stored credentials. The local command also logs its session out and deletes the local receipts. The CI command turns automatic publishing off before deleting the secrets.
 
 End the session in Telegram under **Settings → Devices** as well. This is required for the CI session, and for any session less than 24 hours old.
 

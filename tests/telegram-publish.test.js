@@ -83,6 +83,7 @@ async function fixture(t, { configured = true, transport = mock(), localCloud = 
     checks: async () => { calls.push(["checks"]); },
     isTag: async () => false,
     isAncestor: async () => true,
+    remoteTip: async () => rev,
   };
   const output = [];
   const deps = { repo, env, git, transport, log: line => output.push(line), prompt: async () => { throw new Error("must not prompt"); }, clock: { now: () => new Date("2026-10-03T12:00:00.000Z"), sleep: async () => {} } };
@@ -222,16 +223,16 @@ test("FLOOD_WAIT retries within the cap and stops above it without a real wait",
   let once = true;
   transport.uploadTheme = async (...args) => { if (once) { once = false; throw rpc("FLOOD_WAIT_5"); } return upload(...args); };
   const sleeps = [];
-  assert.equal((await core(transport, { ci: true, clock: { sleep: async ms => sleeps.push(ms) } })).result, "created");
+  assert.equal((await core(transport, { ci: true, allowCreate: true, clock: { sleep: async ms => sleeps.push(ms) } })).result, "created");
   assert.deepEqual(sleeps, [5000]);
   for (const [ci, seconds] of [[true, 121], [false, 601]]) {
     const limited = mock();
     limited.uploadTheme = async () => { throw rpc(`FLOOD_WAIT_${seconds}`); };
-    await assert.rejects(core(limited, { ci, clock: { sleep: async () => assert.fail("must not sleep beyond cap") } }), new RegExp(`retry after ${seconds} s`));
+    await assert.rejects(core(limited, { ci, allowCreate: true, clock: { sleep: async () => assert.fail("must not sleep beyond cap") } }), new RegExp(`retry after ${seconds} s`));
   }
   const repeating = mock();
   repeating.uploadTheme = async () => { throw rpc("FLOOD_WAIT_60"); };
-  await assert.rejects(core(repeating, { ci: true, clock: { sleep: async () => {} } }), /retry after 60 s/);
+  await assert.rejects(core(repeating, { ci: true, allowCreate: true, clock: { sleep: async () => {} } }), /retry after 60 s/);
 });
 
 test("interrupted upload reads the slug before retrying", async () => {
@@ -258,12 +259,41 @@ test("interrupted create and update read back before retrying and never duplicat
       if (once) { once = false; transport.events.push(["interrupted", operation]); throw new Error("connection lost after write"); }
       return result;
     };
-    assert.equal((await core(transport)).readbackVerified, true);
+    const result = await core(transport);
+    assert.equal(result.readbackVerified, true);
+    // The label follows verified state, not whether a response arrived.
+    assert.equal(result.result, "created");
+    assert.deepEqual(result.formats, { android: "updated", tdesktop: "updated" });
     const index = transport.events.findIndex(e => e[0] === "interrupted");
     assert.equal(transport.events[index + 1][0], "get");
     assert.equal(transport.events.filter(e => e[0] === "create").length, 1);
     assert.equal(transport.themes.size, 1);
   }
+});
+
+test("an update applied but whose response was lost is reported as updated, not unchanged", async () => {
+  const transport = mock([["j3w1", { ...artifacts, tdesktop: Buffer.from("old") }]]);
+  const update = transport.updateTheme;
+  transport.updateTheme = async payload => { await update(payload); throw new Error("RPC timed out after 30000ms"); };
+  const result = await core(transport);
+  assert.equal(result.result, "updated");
+  assert.deepEqual(result.formats, { android: "unchanged", tdesktop: "updated" });
+  assert.equal(transport.events.filter(e => e[0] === "update").length, 1);
+});
+
+test("an owned theme at a later candidate is adopted instead of creating one at a free earlier slug", async () => {
+  const transport = mock([["j3w1_theme"]]);
+  const result = await core(transport);
+  assert.equal(result.slug, "j3w1_theme");
+  assert.equal(result.result, "unchanged");
+  assert.equal(transport.events.filter(e => e[0] === "create").length, 0);
+  assert.equal(transport.themes.size, 1);
+});
+
+test("CI never creates a theme: converge refuses a missing identity without writing", async () => {
+  const transport = mock();
+  await assert.rejects(core(transport, { ci: true, cloud: { ...cloud, slug: "j3w1", published: true } }), /CI only updates/);
+  assert.equal(writes(transport).length, 0);
 });
 
 test("an update rejected by a network interruption reads both formats before retrying the changed one", async () => {
@@ -361,12 +391,39 @@ test("only first verified local publication writes cloud.json; CI uses env and s
   assert.equal(JSON.parse(first).slug, "j3w1");
   assert.equal((await run([], f.deps)).result, "unchanged");
   assert.equal(await fs.readFile(file, "utf8"), first);
-  const ci = await fixture(t, { configured: false });
+  const published = { ...cloud, slug: "j3w1", published: true };
+  const ci = await fixture(t, { configured: false, transport: mock([["j3w1", { ...artifacts, tdesktop: Buffer.from("old") }]]), localCloud: published });
   Object.assign(ci.deps.env, { TELEGRAM_API_ID: String(auth().apiId), TELEGRAM_API_HASH: auth().apiHash, TELEGRAM_SESSION: auth().session, GITHUB_SHA: rev });
-  assert.equal((await run(["--ci"], ci.deps)).code, 0);
-  assert.equal(JSON.parse(await fs.readFile(path.join(ci.repo, "ports/telegram/cloud.json"))).published, false);
+  const result = await run(["--ci"], ci.deps);
+  assert.equal(result.code, 0);
+  assert.equal(result.result, "updated");
+  assert.deepEqual(JSON.parse(await fs.readFile(path.join(ci.repo, "ports/telegram/cloud.json"))), published);
   assert.equal(ci.calls.some(call => call[0] === "checks"), false);
   assert.deepEqual(ci.calls[0], ["resolve", rev]);
+  assert.equal((await fs.readdir(path.join(ci.state, "receipts"))).every(name => !name.includes(":")), true, "receipt names are valid on Windows");
+});
+
+test("CI and ci-enable refuse before any network call until a verified local publication is recorded", async t => {
+  const f = await fixture(t, { configured: false });
+  Object.assign(f.deps.env, { TELEGRAM_API_ID: String(auth().apiId), TELEGRAM_API_HASH: auth().apiHash, TELEGRAM_SESSION: auth().session, GITHUB_SHA: rev });
+  assert.match((await run(["--ci"], f.deps)).error, /Publish once locally first/);
+  assert.equal(f.transport.events.length, 0);
+  assert.equal(f.calls.length, 0);
+  const enable = await fixture(t);
+  enable.deps.command = async () => assert.fail("no gh call before the refusal");
+  assert.match((await run(["ci-enable"], enable.deps)).error, /Publish once locally first/);
+});
+
+test("only HEAD is published locally and only the tip of main in CI; older revisions need rollback", async t => {
+  const f = await fixture(t);
+  f.git.resolve = async ref => ref === "HEAD" ? rev : "b".repeat(40);
+  assert.match((await run(["--ref", "some-branch"], f.deps)).error, /checked-out commit \(HEAD\)/);
+  assert.equal(f.transport.events.length, 0);
+  const ci = await fixture(t, { configured: false, transport: mock([["j3w1"]]), localCloud: { ...cloud, slug: "j3w1", published: true } });
+  Object.assign(ci.deps.env, { TELEGRAM_API_ID: String(auth().apiId), TELEGRAM_API_HASH: auth().apiHash, TELEGRAM_SESSION: auth().session, GITHUB_SHA: rev });
+  ci.git.remoteTip = async () => "c".repeat(40);
+  assert.match((await run(["--ci"], ci.deps)).error, /only the current tip of main/);
+  assert.equal(ci.transport.events.length, 0);
 });
 
 test("dry run performs identity and compare only, and missing setup neither prompts nor creates state", async t => {
@@ -410,7 +467,7 @@ test("disconnect is confirmed, logs out, deletes local state and destroys the cl
 });
 
 test("ci-enable uses a fresh dedicated login, stdin secrets, main-only policy, and no disk session", async t => {
-  const f = await fixture(t);
+  const f = await fixture(t, { localCloud: { ...cloud, slug: "j3w1", published: true } });
   const commands = [];
   let authorized = false;
   const prompts = ["ENABLE TELEGRAM CI", "+51999000000", "123456"];
@@ -450,9 +507,16 @@ test("disconnect --ci only invokes confirmed scoped secret and repository variab
   f.deps.prompt = async () => "DISCONNECT TELEGRAM CI";
   f.deps.command = async (binary, args) => { assert.equal(binary, "gh"); calls.push(args); return Buffer.from(""); };
   assert.equal((await run(["disconnect", "--ci"], f.deps)).code, 0);
-  assert.deepEqual(calls.slice(0, 3).map(c => c.slice(-2)), Array(3).fill(["--env", "telegram"]));
-  assert.deepEqual(calls[3], ["variable", "delete", "TELEGRAM_PUBLISH"]);
+  // Publishing is disabled before the secrets go.
+  assert.deepEqual(calls[0], ["variable", "delete", "TELEGRAM_PUBLISH"]);
+  assert.deepEqual(calls.slice(1, 4).map(c => c.slice(-2)), Array(3).fill(["--env", "telegram"]));
   assert.equal(f.transport.events.length, 0);
+  // An already-missing secret does not abort the remaining deletions.
+  calls.length = 0;
+  f.deps.command = async (binary, args) => { calls.push(args); if (args[2] === "TELEGRAM_API_HASH") throw new Error("gh failed (exit 1)"); return Buffer.from(""); };
+  assert.equal((await run(["disconnect", "--ci"], f.deps)).code, 0);
+  assert.equal(calls.length, 4);
+  assert.match(f.output.join("\n"), /Not deleted \(absent or not permitted\): TELEGRAM_API_HASH/);
 });
 
 test("publisher import allowlist and live transport single-code, cleanup and settings invariants", async () => {
@@ -575,17 +639,44 @@ test("live login follows only definitive DC redirects with a two-redirect cap an
   }
 });
 
-test("Telegram CI is opt-in main-only and confines credentials to one publish step", async () => {
+test("live authorization check reports only definite auth loss as unauthorized and rethrows transient errors", async t => {
+  const { TelegramClient, Api } = await import("teleproto");
+  const before = { invoke: TelegramClient.prototype.invoke, getMe: TelegramClient.prototype.getMe, checkAuthorization: TelegramClient.prototype.checkAuthorization };
+  t.after(() => Object.assign(TelegramClient.prototype, before));
+  // teleproto's own checkAuthorization swallows every error; it must not be used.
+  TelegramClient.prototype.checkAuthorization = async () => assert.fail("teleproto checkAuthorization must not be used");
+  TelegramClient.prototype.getMe = async () => ({ bot: false });
+  for (const [failure, expected] of [[null, true], [rpc("AUTH_KEY_UNREGISTERED"), false], [rpc("SESSION_REVOKED"), false], [Object.assign(new Error("unauthorized"), { code: 401 }), false]]) {
+    TelegramClient.prototype.invoke = async request => { assert.ok(request instanceof Api.updates.GetState); if (failure) throw failure; return {}; };
+    const transport = await liveTransport({ ...auth(), session: "" });
+    try { assert.equal(await transport.checkAuthorization(), expected); } finally { await transport.destroy(); }
+  }
+  for (const failure of [new Error("network unreachable"), rpc("FLOOD_WAIT_7"), new Error("RPC timed out after 30000ms")]) {
+    TelegramClient.prototype.invoke = async () => { throw failure; };
+    const transport = await liveTransport({ ...auth(), session: "" });
+    try { await assert.rejects(transport.checkAuthorization(), error => error === failure); } finally { await transport.destroy(); }
+  }
+});
+
+test("Telegram CI is opt-in main-only, decides in a job without an environment, and confines credentials to one publish step", async () => {
   const source = await fs.readFile(".github/workflows/ci.yml", "utf8");
   const workflow = parse(source);
+  const gateJob = workflow.jobs["telegram-gate"];
   const job = workflow.jobs.telegram;
-  assert.deepEqual(job.needs, ["select", "release-gate", "deploy"]);
+  // A refused or no-op run must never record a successful deployment, so the
+  // decision lives in a job that has no environment at all.
+  assert.deepEqual(gateJob.needs, ["select", "release-gate", "deploy"]);
+  assert.equal(gateJob.environment, undefined);
+  assert.equal(gateJob.if, "${{ !cancelled() && github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.TELEGRAM_PUBLISH == 'enabled' && needs.release-gate.result == 'success' }}");
+  assert.ok(!gateJob.if.includes("needs.deploy.result") && !gateJob.if.includes("pull_request"));
+  assert.deepEqual(gateJob.permissions, { contents: "read", deployments: "read" });
+  assert.equal(gateJob.outputs.publish, "${{ steps.changes.outputs.publish }}");
+  assert.ok(!JSON.stringify(gateJob).includes("secrets."));
+  assert.deepEqual(job.needs, ["telegram-gate"]);
+  assert.equal(job.if, "${{ needs.telegram-gate.outputs.publish == 'true' }}");
   assert.equal(job.environment, "telegram");
   assert.deepEqual(job.concurrency, { group: "telegram-publish", "cancel-in-progress": false });
-  assert.deepEqual(job.permissions, { contents: "read", deployments: "read" });
-  assert.equal(job.if, "${{ !cancelled() && github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.TELEGRAM_PUBLISH == 'enabled' && needs.release-gate.result == 'success' }}");
-  assert.ok(!job.if.includes("needs.deploy.result"));
-  assert.ok(!job.if.includes("pull_request"));
+  assert.deepEqual(job.permissions, { contents: "read" });
   const checkout = job.steps.find(s => s.uses?.startsWith("actions/checkout"));
   assert.deepEqual(checkout.with, { ref: "${{ github.sha }}", "fetch-depth": 0, "persist-credentials": false });
   assert.ok(job.steps.some(s => s.run === "npm ci --ignore-scripts"));
@@ -595,7 +686,8 @@ test("Telegram CI is opt-in main-only and confines credentials to one publish st
   for (const [name, value] of Object.entries(publish.env)) assert.equal(value, `\${{ secrets.${name} }}`);
   assert.ok(!JSON.stringify({ ...job, steps: job.steps.filter(s => s !== publish) }).includes("secrets.TELEGRAM_"));
   for (const [name, other] of Object.entries(workflow.jobs)) if (name !== "telegram") assert.ok(!JSON.stringify(other).includes("secrets.TELEGRAM_"), name);
-  const gate = job.steps.find(s => s.id === "changes").run;
+  const gate = gateJob.steps.find(s => s.id === "changes").run;
+  assert.ok(gate.includes("git ls-remote --exit-code origin refs/heads/main"));
   assert.ok(gate.includes('scripts/ci/deployed.mjs "$GITHUB_REPOSITORY" telegram'));
   assert.ok(gate.includes('git merge-base --is-ancestor "$previous" HEAD'));
   assert.ok(gate.includes('git diff --quiet "$previous" HEAD -- ports/telegram/dist'));
@@ -618,25 +710,31 @@ test("deployed lookup preserves Pages default and supports Telegram, empty histo
   assert.equal(lookup(["telegram"], { LOOKUP_FAIL: "1" }).status, 2);
 });
 
-test("release change gate publishes first or changed artifacts and skips no-op and old reruns", async t => {
+test("release change gate publishes only the tip of main with new bytes, and reruns never republish older files", async t => {
   const f = await fixture(t);
   const bin = path.join(f.root, "bin");
   await fs.mkdir(bin);
   await fs.writeFile(path.join(bin, "node"), `#!${process.execPath}\nprocess.stdout.write(process.env.PREVIOUS_SHA || ''); process.exit(Number(process.env.LOOKUP_STATUS || 0));\n`, { mode: 0o700 });
-  await fs.writeFile(path.join(bin, "git"), `#!${process.execPath}\nconst cmd = process.argv[2]; process.exit(cmd === 'merge-base' ? Number(process.env.ANCESTOR_STATUS || 0) : Number(process.env.DIFF_STATUS || 0));\n`, { mode: 0o700 });
+  await fs.writeFile(path.join(bin, "git"), `#!${process.execPath}\nconst cmd = process.argv[2];\nif (cmd === 'ls-remote') { process.stdout.write((process.env.TIP_SHA ?? process.env.GITHUB_SHA) + '\\trefs/heads/main\\n'); process.exit(0); }\nprocess.exit(cmd === 'merge-base' ? Number(process.env.ANCESTOR_STATUS || 0) : Number(process.env.DIFF_STATUS || 0));\n`, { mode: 0o700 });
   const workflow = parse(await fs.readFile(".github/workflows/ci.yml", "utf8"));
-  const gate = workflow.jobs.telegram.steps.find(step => step.id === "changes").run;
+  const gate = workflow.jobs["telegram-gate"].steps.find(step => step.id === "changes").run;
+  const [A, X, B] = ["1", "2", "3"].map(n => n.repeat(40));
   for (const [extra, want, notice] of [
     [{ LOOKUP_STATUS: "1" }, "true", false],
     [{ PREVIOUS_SHA: rev, DIFF_STATUS: "1" }, "true", false],
     [{ PREVIOUS_SHA: rev }, "false", false],
     [{ PREVIOUS_SHA: rev, ANCESTOR_STATUS: "1" }, "false", true],
-    [{ LOOKUP_STATUS: "2" }, null, false],
+    [{ LOOKUP_STATUS: "2" }, 2, false],
+    [{ PREVIOUS_SHA: rev, ANCESTOR_STATUS: "128" }, 128, false],
+    // Review R1: main is A → X → B and B is published. Rerunning A, then X,
+    // never reaches a publication, because neither is the tip of main.
+    [{ GITHUB_SHA: A, TIP_SHA: B, PREVIOUS_SHA: B, ANCESTOR_STATUS: "1" }, "false", true],
+    [{ GITHUB_SHA: X, TIP_SHA: B, PREVIOUS_SHA: A, DIFF_STATUS: "1" }, "false", true],
   ]) {
     const outputFile = path.join(f.root, `output-${Math.random()}`);
-    const result = spawnSync("bash", ["-e", "-o", "pipefail", "-c", gate], { encoding: "utf8", env: { ...process.env, PATH: `${bin}:${process.env.PATH}`, GITHUB_REPOSITORY: "fixture/theme", GITHUB_OUTPUT: outputFile, PREVIOUS_SHA: "", LOOKUP_STATUS: "0", ANCESTOR_STATUS: "0", DIFF_STATUS: "0", ...extra } });
-    if (want === null) {
-      assert.equal(result.status, 2);
+    const result = spawnSync("bash", ["-e", "-o", "pipefail", "-c", gate], { encoding: "utf8", env: { ...process.env, PATH: `${bin}:${process.env.PATH}`, GITHUB_REPOSITORY: "fixture/theme", GITHUB_SHA: rev, GITHUB_OUTPUT: outputFile, PREVIOUS_SHA: "", LOOKUP_STATUS: "0", ANCESTOR_STATUS: "0", DIFF_STATUS: "0", ...extra } });
+    if (typeof want === "number") {
+      assert.equal(result.status, want);
       await assert.rejects(fs.stat(outputFile), /ENOENT/);
     } else {
       assert.equal(result.status, 0, result.stderr);

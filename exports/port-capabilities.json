@@ -32242,7 +32242,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-+1+PGZJsXkB8gDtMD+amESsVtOUWe+oXdCXUkJadrd4=",
+      "subjectDigest": "sha256-Tw/tIgetuLezzBVFZX7AJB4RZTV7ojl+TNvfElAa4qU=",
       "evidencePath": null,
       "surfaces": {
         "interface": {
@@ -32289,15 +32289,15 @@
       "files": [
         {
           "path": "dist/j3w1.attheme",
-          "install": "Download and open in Telegram Android (or send to Saved Messages and tap), then Apply; no cloud theme is published yet.",
+          "install": "File install: open in Telegram for Android (or send to Saved Messages and tap), then Apply. The cloud link in the guide, when published, installs the same theme with automatic updates.",
           "source": "ports/telegram/dist/j3w1.attheme",
-          "digest": "sha256-TRn3KjMGTuhSL/4lkGm24fMeqkJWScT9/gmFQ+3kWCw="
+          "digest": "sha256-KRivJWE2+HdlN1GQ2xub74ipjFdXpDOKVVWqKRRNPJg="
         },
         {
           "path": "dist/j3w1.tdesktop-theme",
-          "install": "Download and open with Telegram Desktop, then Apply this theme and Keep changes; no cloud theme is published yet.",
+          "install": "File install: open with Telegram Desktop, then Apply this theme and Keep changes. The cloud link in the guide, when published, installs the same theme with automatic updates.",
           "source": "ports/telegram/dist/j3w1.tdesktop-theme",
-          "digest": "sha256-ap3ucF+wFOEr62kp9+3vdWpX9BJcHo6yQc+u2vmk8qs="
+          "digest": "sha256-0rwjPIkyoeBlvdALJhnttGPR2OnWAbcq51n/jsn1kA8="
         }
       ],
       "rollback": "Choose the previous Telegram theme in Settings → Chat Settings/Appearance; restore the previous chat background if it was customised.",
@@ -32552,7 +32552,12 @@
             "desktop:settingsIconBgArchive",
             "desktop:historyToDownBg",
             "desktop:historyComposeButtonBg",
-            "desktop:sideBarBadgeBg"
+            "desktop:sideBarBadgeBg",
+            "android:chat_attachGalleryBackground",
+            "android:chat_attachAudioBackground",
+            "android:chat_attachContactBackground",
+            "android:chat_attachLocationBackground",
+            "desktop:msgFileOutBg"
           ],
           "value": "#7d1310",
           "eligibility": {
@@ -32585,7 +32590,8 @@
           "role": "color.action.primary.hover-bg",
           "nativeKeys": [
             "desktop:activeButtonBgOver",
-            "desktop:historyComposeButtonBgOver"
+            "desktop:historyComposeButtonBgOver",
+            "desktop:msgFileInBgOver"
           ],
           "value": "#911410",
           "eligibility": {
@@ -32761,7 +32767,8 @@
             "desktop:sliderBgActive",
             "desktop:msgInReplyBarColor",
             "desktop:msgOutReplyBarColor",
-            "desktop:overviewCheckBorder"
+            "desktop:overviewCheckBorder",
+            "android:chat_emojiPanelStickerPackSelectorLine"
           ],
           "value": "#e53935",
           "eligibility": {
@@ -33400,16 +33407,18 @@
         },
         {
           "role": "color.code.syntax.comment",
-          "nativeKeys": [],
+          "nativeKeys": [
+            "android:code_comment"
+          ],
           "value": "#ad7175",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
-          "state": "unsupported",
-          "surface": "interface",
-          "reason": "color.code.syntax.comment has no separate native hook in this projection; related controls share the declared canonical role instead.",
+          "state": "mapped",
+          "surface": "messages",
+          "reason": "Canonical color.code.syntax.comment for code-block comments; native keys are listed in mapping.json and use no derived colours.",
           "source": "ports/telegram/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -34089,7 +34098,6 @@
             "desktop:titleButtonBgOver",
             "desktop:dialogsVerifiedIconBgOver",
             "desktop:dialogsUnreadBgOver",
-            "desktop:msgFileInBgOver",
             "desktop:msgFile1BgOver",
             "desktop:msgFile2BgOver",
             "desktop:msgFile3BgOver",
@@ -34157,7 +34165,6 @@
             "android:chat_textSelectBackground",
             "android:chat_mediaLoaderPhoto",
             "android:chat_mediaLoaderPhotoSelected",
-            "android:chat_emojiPanelStickerPackSelectorLine",
             "android:chat_botKeyboardButtonBackground",
             "android:chat_botKeyboardButtonBackgroundPressed",
             "android:voipgroup_listSelector",
@@ -36360,8 +36367,6 @@
             "desktop:dialogsUnreadBgMuted",
             "desktop:searchedBarBg",
             "desktop:historyUnreadBarBg",
-            "desktop:msgFileInBg",
-            "desktop:msgFileOutBg",
             "desktop:msgFile1Bg",
             "desktop:msgFile1BgDark",
             "desktop:msgFile2Bg",
@@ -36469,10 +36474,6 @@
           "role": "color.surface.raised",
           "nativeKeys": [
             "android:chat_inTableBackground",
-            "android:chat_attachGalleryBackground",
-            "android:chat_attachAudioBackground",
-            "android:chat_attachContactBackground",
-            "android:chat_attachLocationBackground",
             "android:chat_inBubble",
             "android:chat_inFileBackground",
             "android:chat_outFileBackground",
@@ -36957,10 +36958,7 @@
             "android:player_button",
             "android:player_buttonActive",
             "android:iv_ab_progress",
-            "android:glass_tabSelected",
             "android:botKeyboard_button_primary",
-            "android:telegram_color",
-            "android:telegram_color_text",
             "desktop:windowActiveTextFg",
             "desktop:menuIconFg",
             "desktop:menuIconFgOver",
@@ -37012,7 +37010,9 @@
             "desktop:sideBarIconFg",
             "desktop:dialogsMentionIconFg",
             "desktop:dialogsReactionIconFg",
-            "desktop:dialogsPollIconFg"
+            "desktop:dialogsPollIconFg",
+            "android:chats_verifiedCheck",
+            "android:profile_verifiedCheck"
           ],
           "value": "#f73f35",
           "eligibility": {
@@ -37218,7 +37218,6 @@
             "android:key_sheet_scrollUp",
             "android:key_sheet_other",
             "android:dialogGiftsTabText",
-            "android:glass_tabUnselected",
             "desktop:windowFg",
             "desktop:lightButtonFg",
             "desktop:radialFg",
@@ -37287,7 +37286,8 @@
             "desktop:currencyFg",
             "desktop:rankAdminFg",
             "desktop:rankOwnerFg",
-            "desktop:rankUserFg"
+            "desktop:rankUserFg",
+            "android:chat_botKeyboardButtonText"
           ],
           "value": "#e99499",
           "eligibility": {
@@ -37488,14 +37488,11 @@
             "android:fastScrollText",
             "android:avatar_text",
             "android:chats_unreadCounterText",
-            "android:chats_sentReadCheck",
-            "android:chats_verifiedCheck",
             "android:chats_menuItemCheck",
             "android:chats_actionIcon",
             "android:chat_attachCheckBoxCheck",
             "android:chat_attachIcon",
             "android:chat_goDownButtonCounter",
-            "android:profile_verifiedCheck",
             "android:featuredStickers_buttonText",
             "android:picker_badgeText",
             "android:location_sendLocationIcon",

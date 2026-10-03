@@ -391,9 +391,59 @@ jobs:
         uses: actions/deploy-pages@v5
 
   # Owner opt-in only. Telegram artifacts can change without a Pages deployment.
-  telegram:
+  # The decision runs in a job without an environment, so a refusal or a no-op
+  # never records a deployment; only an actual publication does.
+  telegram-gate:
     needs: [select, release-gate, deploy]
     if: ${{ !cancelled() && github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.TELEGRAM_PUBLISH == 'enabled' && needs.release-gate.result == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      deployments: read
+    outputs:
+      publish: ${{ steps.changes.outputs.publish }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - id: changes
+        name: Publish only the tip of main, and only new Telegram artifact bytes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tip=$(git ls-remote --exit-code origin refs/heads/main | cut -f1)
+          if [ "$tip" != "$GITHUB_SHA" ]; then
+            echo '::notice::Not the current tip of main; Telegram publishes only the newest main revision.'
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          status=0
+          previous=$(node scripts/ci/deployed.mjs "$GITHUB_REPOSITORY" telegram) || status=$?
+          if [ "$status" -ne 0 ] && [ "$status" -ne 1 ]; then exit "$status"; fi
+          publish=true
+          if [ -n "$previous" ]; then
+            ancestor=0
+            git merge-base --is-ancestor "$previous" HEAD || ancestor=$?
+            if [ "$ancestor" -eq 1 ]; then
+              echo '::notice::Previous Telegram deployment is newer or divergent; refusing to republish an old run.'
+              publish=false
+            elif [ "$ancestor" -ne 0 ]; then
+              exit "$ancestor"
+            elif git diff --quiet "$previous" HEAD -- ports/telegram/dist; then
+              publish=false
+            fi
+          fi
+          echo "publish=$publish" >> "$GITHUB_OUTPUT"
+
+  telegram:
+    needs: [telegram-gate]
+    if: ${{ needs.telegram-gate.outputs.publish == 'true' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     environment: telegram
@@ -402,7 +452,6 @@ jobs:
       cancel-in-progress: false
     permissions:
       contents: read
-      deployments: read
     steps:
       - uses: actions/checkout@v7
         with:
@@ -414,27 +463,8 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci --ignore-scripts
-      - id: changes
-        name: Publish only new Telegram artifact bytes
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          status=0
-          previous=$(node scripts/ci/deployed.mjs "$GITHUB_REPOSITORY" telegram) || status=$?
-          if [ "$status" -ne 0 ] && [ "$status" -ne 1 ]; then exit "$status"; fi
-          publish=true
-          if [ -n "$previous" ]; then
-            if ! git merge-base --is-ancestor "$previous" HEAD; then
-              echo '::notice::Previous Telegram deployment is newer or divergent; refusing to republish an old run.'
-              publish=false
-            elif git diff --quiet "$previous" HEAD -- ports/telegram/dist; then
-              publish=false
-            fi
-          fi
-          echo "publish=$publish" >> "$GITHUB_OUTPUT"
       - id: publish
         name: Publish and verify Telegram Cloud Theme
-        if: steps.changes.outputs.publish == 'true'
         run: node ports/telegram/publish.mjs --ci --ref "$GITHUB_SHA"
         env:
           TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}
