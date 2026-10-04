@@ -134,3 +134,48 @@ for(const direction of ['ltr','rtl'])test('Search result frame stays inside a cl
  await row.evaluate(element=>element.setAttribute('aria-selected','false'));await outside.hover();await assertVisible();
  expect(await outside.evaluate(element=>getComputedStyle(element).boxSizing)).toBe('content-box');
 });
+
+// Reconstructed host geometry: the pinned Search package places a 100%-wide
+// inner layer one pixel toward the trailing edge. Its inherited opaque fill
+// can cover the row frame even when the outer border box fits its column.
+for(const direction of ['ltr','rtl'])test('Search nested host layer leaves the trailing frame painted in '+direction,verification({component:'list',category:'appearance',states:['default','hover','selected','selected+focus-visible'],variants:[],note:'Reconstructed pinned Search geometry, not vendor CSS: a nested full-width layer with a one-pixel directional margin and visible overflow. Checks trailing border paint ownership, stable row bounds, fill, hover exit, deselection and forced colors. Native Search readback remains separate.'}),async({page})=>{
+ await page.setContent('<html><head><style>#column{width:280px;max-width:100%;overflow:hidden}.suggestion{position:relative;height:56px;box-sizing:border-box;overflow:visible}.suggContainer{width:100%;height:100%}.suggDetailsContainer{position:relative;width:100%;height:100%;display:flex;align-items:center;box-sizing:border-box}.details{flex:1;min-width:0}.iconContainer{padding:8px}body[dir="ltr"] .suggContainer{margin-left:1px}body[dir="rtl"] .suggContainer{margin-right:1px}.nativeControl{margin-inline-start:1px}</style><style>'+css+'</style></head><body dir="'+direction+'"><div id="column"><div class="suggestion leftPill" role="option" aria-selected="false" tabindex="0"><div class="suggContainer"><div class="suggDetailsContainer"><div class="iconContainer">Icon</div><div class="details"><div class="title">Sample application</div><div class="secondaryText">Application</div></div></div></div></div></div><button class="nativeControl">Outside</button></body></html>');
+ const row=page.getByRole('option'),outside=page.getByRole('button',{name:'Outside'});
+ await outside.hover();const before=await row.boundingBox();
+ const assertPainted=async()=>{
+  expect(await row.boundingBox()).toEqual(before);
+  const edge=await row.evaluate((element,dir)=>{
+   const r=element.getBoundingClientRect(),s=getComputedStyle(element);
+   const width=Number.parseFloat(dir==='ltr'?s.borderRightWidth:s.borderLeftWidth);
+   // Hit testing rounds a half-pixel on the left toward the child.
+   // Sample the first physical pixel of that border; raster checks below
+   // separately verify its rendered color.
+   const x=dir==='ltr'?r.right-width/2:r.left;
+   const y=r.top+r.height/2;
+   return {owner:document.elementFromPoint(x,y)===element,margin:getComputedStyle(element.querySelector('.suggContainer')).marginInlineStart};
+  },direction);
+  expect(edge.owner).toBe(true);expect(edge.margin).toBe(dimension('space.0'));
+ };
+ const fills=()=>page.locator('.suggestion,.suggContainer,.suggDetailsContainer,.details,.title,.secondaryText,.iconContainer').evaluateAll(elements=>elements.map(element=>getComputedStyle(element).backgroundColor));
+ await assertPainted();expect(await fills()).toEqual(Array(7).fill(color('color.surface.canvas')));
+ await row.hover();await assertPainted();expect(await fills()).toEqual(Array(7).fill(color('color.interaction.hover.bg')));
+ await outside.hover();await assertPainted();expect(await fills()).toEqual(Array(7).fill(color('color.surface.canvas')));
+ await row.evaluate(element=>element.setAttribute('aria-selected','true'));await assertPainted();expect(await fills()).toEqual(Array(7).fill(color('color.interaction.selection.bg')));
+ const bounds=await row.boundingBox();
+ const edgePng=await page.screenshot({scale:'css',clip:{x:direction==='ltr'?bounds.x+bounds.width-1:bounds.x,y:bounds.y+bounds.height/2,width:1,height:1}});
+ const pixel=await page.evaluate(async data=>{
+  const image=new Image();image.src=data;await image.decode();
+  const canvas=document.createElement('canvas');canvas.width=canvas.height=1;
+  const context=canvas.getContext('2d');context.drawImage(image,0,0);
+  return [...context.getImageData(0,0,1,1).data];
+ },'data:image/png;base64,'+edgePng.toString('base64'));
+ expect(pixel).toEqual([...tokens['color.border.control'].value.components.map(x=>Math.round(x*255)),255]);
+ await row.hover();await assertPainted();await outside.hover();await assertPainted();
+ await page.keyboard.press('Tab');await expect(row).toBeFocused();await assertPainted();
+ expect(await row.evaluate(element=>getComputedStyle(element).outlineStyle)).toBe('dashed');
+ await row.evaluate(element=>element.setAttribute('aria-selected','false'));await outside.hover();await assertPainted();
+ expect(await fills()).toEqual(Array(7).fill(color('color.surface.canvas')));
+ expect(await outside.evaluate(element=>getComputedStyle(element).marginInlineStart)).toBe('1px');
+ await page.emulateMedia({forcedColors:'active'});await assertPainted();
+ expect(await row.evaluate(element=>getComputedStyle(element).forcedColorAdjust)).toBe('auto');
+});

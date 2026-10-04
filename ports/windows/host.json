@@ -471,6 +471,12 @@
           }
         },
         {
+          "target": ".suggestion > .suggContainer",
+          "styles": {
+            "margin-inline-start": "space.0"
+          }
+        },
+        {
           "target": ".suggestion *, .suggContainer *",
           "styles": {},
           "presentation": {

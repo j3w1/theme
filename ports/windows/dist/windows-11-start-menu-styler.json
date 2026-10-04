@@ -306,6 +306,12 @@
       ]
     },
     {
+      "target": ".suggestion > .suggContainer",
+      "styles": [
+        "margin-inline-start: 0px !important"
+      ]
+    },
+    {
       "target": ".suggestion *, .suggContainer *",
       "styles": [
         "background-color: inherit !important"

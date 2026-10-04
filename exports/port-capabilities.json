@@ -37749,7 +37749,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-UxC6WLtNDmGc9Ypk70B1nwcBhHwDwLTtqKaBBAsNctY=",
+      "subjectDigest": "sha256-ZYfayjfTRhuRA+28B61H2dDaDaj8Hj6BxnGmnsaWfUY=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37812,7 +37812,7 @@
           "path": "dist/windows-11-start-menu-styler.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-11-start-menu-styler.json",
-          "digest": "sha256-wseevJJN+Zmn2VVBnKZeMH19Q+j/gYimKWsdToxxJjY="
+          "digest": "sha256-YUlcwlYBbZKu79ps0vKHgbjUzrwjgE6d4GJW+DGhR0U="
         },
         {
           "path": "dist/windows-11-file-explorer-styler.json",
@@ -37956,7 +37956,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-7VR8u/YHrL7RYOBtRG44GF/w6wSTNEKq1aNf8BPp78w="
+          "digest": "sha256-JAQsKwdl19owlfk7sPHzQF8/z8mWKnBP7ctt1M1M18A="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",

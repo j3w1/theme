@@ -21,6 +21,15 @@ transitions, focus geometry and forced-color behavior in
 single dark-red selected row and clean hover exit. Other native Search states
 and accessibility acceptance remain open.
 
+The selected frame reserves its border inside the host width. The direct
+`.suggContainer` child uses the approved zero spacing role for its logical
+leading margin: the recorded host otherwise shifts this full-width opaque
+layer by one pixel over the trailing frame. The regression checks paint
+ownership at that edge as well as row bounds, in both text directions.
+The earlier box-sizing-only candidate passed synthetic bounds checks but
+failed the owner's live trailing-edge readback; it remains historical evidence.
+This correction still requires native Search readback.
+
 | Surface | Current treatment | Remaining evidence or implementation |
 | --- | --- | --- |
 | Desktop, accent, supported borders, wallpaper and standard cursors | Native personalization and generated assets | Accessibility overrides take priority; arbitrary app title bars are not covered |
