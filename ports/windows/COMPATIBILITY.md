@@ -929,3 +929,16 @@ Other background colors, image lists, states, transforms, unrelated owners
 and high contrast still pass through. The native regression checks both flags,
 transparent backdrop, argument preservation and refusal of unknown requests.
 Live hover/exit acceptance remains separate from the executable regression.
+
+### Retired app-control resources
+
+The shared Notepad/Paint chrome adapter restores and removes resource receipts
+for controls whose weak reference has expired, both during ordinary refresh and
+before a full popup receipt list admits another control. The 1024-live-control
+limit stays unchanged. A failed restoration retains its ownership receipt for
+the existing cleanup retry; later application replacements and deletions remain
+untouched. This prevents closed popups from permanently exhausting the bounded
+list. Native synthetic regressions exercise repeated full-capacity retirement,
+failed restoration and retry with a later application resource replacement.
+These checks do not establish the cause of any particular desktop gray surface
+or accept first-frame, startup, DPI or accessibility appearance.

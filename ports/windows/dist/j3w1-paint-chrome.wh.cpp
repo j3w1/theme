@@ -2,7 +2,7 @@
 // @id j3w1-paint-chrome
 // @name j3w1 Paint chrome
 // @description Exact-package Paint chrome resources; document and artwork colors remain native
-// @version 1.0.7
+// @version 1.0.8
 // @author j3w1
 // @include mspaint.exe
 // @architecture x86-64
@@ -956,6 +956,21 @@ static bool ProtectedBrushes(Root const& root,std::vector<Brush>& brushes) {
  return true;
 }
 
+// Retired popup controls no longer need overrides, but their resource dictionary
+// can outlive the element. Return its exact owned resources before releasing a
+// receipt; a failed restore keeps the receipt for the existing cleanup retry.
+template<class RestoreEntry> static bool PruneRetiredControls(Root& root,RestoreEntry restore) {
+ for(auto it=root.controls.begin();it!=root.controls.end();) {
+  if(it->element.get()){++it;continue;}
+  if(!restore(*it))return false;
+  it=root.controls.erase(it);
+ }
+ return true;
+}
+static bool PruneRetiredControls(Root& root) {
+ return PruneRetiredControls(root,[](ControlResources& entry){return RestoreControlResources(entry);});
+}
+
 static bool StandardChrome(DependencyObject const& object) {
  return object.try_as<Microsoft::UI::Xaml::Controls::Primitives::ButtonBase>()
   ||object.try_as<MenuBarItem>()||object.try_as<MenuFlyoutItem>()||object.try_as<MenuFlyoutSubItem>()
@@ -969,6 +984,7 @@ static void RefreshChromeControl(Root& root,DependencyObject const& object) {
  // resources need one owner so restoration cannot retain another root's overlay.
  if(uiState)for(auto& owner:uiState->roots)for(auto& entry:owner.controls)
   if(Identity(entry.element.get(),element)){if(!entry.refresh.complete)RefreshThemeSource(entry.refresh);return;}
+ if(root.controls.size()>=1024&&!PruneRetiredControls(root))throw hresult_error(E_FAIL);
  if(root.controls.size()>=1024)return;
  root.controls.push_back({make_weak(element),element.Resources(),{}, {make_weak(element)}});
  auto& entry=root.controls.back();
@@ -986,6 +1002,7 @@ static void RefreshChromeControl(Root& root,DependencyObject const& object) {
 }
 
 static void Bridge(Root& root) {
+ if(!PruneRetiredControls(root))throw hresult_error(E_FAIL);
  std::vector<Brush> protectedBrushes;if(!ProtectedBrushes(root,protectedBrushes))return;
  auto apply=[&](DependencyObject const& object,DependencyProperty const& property,Kind kind) {
   kind=TemplateKind(object,kind);

@@ -45,6 +45,44 @@ static void Stop() {
 }
 int main(int argc, char** argv) {
     assert(argc == 2);
+    if(strcmp(argv[1], "retired-control-capacity") == 0) {
+        init_apartment(apartment_type::multi_threaded);
+        Root root;
+        for(unsigned cycle=0;cycle<4;cycle++) {
+            // Default weak references represent controls whose final strong
+            // reference has already expired. Exercise the real refresh path.
+            root.controls.resize(1024);
+            Bridge(root);
+            assert(root.controls.empty());
+        }
+        uninit_apartment();puts("PASS: expired popup receipts release the bounded control capacity");return 0;
+    }
+    if(strcmp(argv[1], "retired-control-retry") == 0) {
+        init_apartment(apartment_type::multi_threaded);
+        {
+        auto baseline=box_value(L"native"),applied=box_value(L"theme"),later=box_value(L"app");
+        Root root;root.controls.resize(2);
+        auto& first=root.controls.front();first.keys.push_back({L"ButtonForeground",nullptr,applied});
+        LocalResourceValue actual{true,baseline};
+        auto read=[&]{return actual;};auto write=[&](auto const& value){actual={true,value};};auto remove=[&]{actual={};};
+        assert(ApplyControlKey(first.keys.front(),read,write));
+        first.refresh.pending=true;
+        auto receipt=&first;
+        assert(!PruneRetiredControls(root,[](ControlResources&){return false;}));
+        assert(root.controls.size()==2 && &root.controls.front()==receipt);
+        assert(first.refresh.pending&&first.keys.front().owned&&Identity(first.keys.front().before,baseline));
+        // The app may keep and change a retired control's dictionary. Cleanup
+        // preserves that replacement instead of writing the captured baseline.
+        actual={true,later};unsigned restored=0;
+        assert(PruneRetiredControls(root,[&](ControlResources& entry){
+            ++restored;if(!entry.keys.empty())assert(RestoreControlKey(entry.keys.front(),read,write,remove));
+            entry.refresh.pending=false;return true;
+        }));
+        assert(restored==2&&root.controls.empty()&&Identity(actual.value,later));
+        } // Release boxed WinRT objects while their apartment is alive.
+        uninit_apartment();puts("PASS: failed retirement retains ownership and later retry preserves application resource changes");return 0;
+    }
+
 #if J3W1_TEST_PAINT
     if(strcmp(argv[1],"public-caption-ownership")==0) {
         init_apartment(apartment_type::multi_threaded);
