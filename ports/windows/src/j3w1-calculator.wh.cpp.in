@@ -271,6 +271,9 @@ static bool RestoreControlResources(ControlResources& entry) noexcept {
 
 
 [[clang::no_destroy]] static std::deque<ControlResources> controlsChanged;
+static bool CompositeButtonChrome(std::wstring_view type) {
+ return type==L"Microsoft.UI.Xaml.Controls.SplitButton";
+}
 static bool ChromeControl(DependencyObject const& object) {
     auto type=get_class_name(object);
     // Pane ThemeResources resolve at NavigationView, above its row controls.
@@ -278,7 +281,8 @@ static bool ChromeControl(DependencyObject const& object) {
         ||type==L"Microsoft.UI.Xaml.Controls.NavigationViewItemHeader"
         ||type==L"Microsoft.UI.Xaml.Controls.NavigationViewItem"
         ||type==L"Microsoft.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter")return true;
-    return object.try_as<Windows::UI::Xaml::Controls::Primitives::ButtonBase>()
+    return CompositeButtonChrome(std::wstring_view{type})
+        ||object.try_as<Windows::UI::Xaml::Controls::Primitives::ButtonBase>()
         ||object.try_as<MenuFlyoutPresenter>()||object.try_as<MenuFlyoutItem>()||object.try_as<MenuFlyoutSubItem>()
         ||object.try_as<ToggleSwitch>()||object.try_as<ComboBox>()||object.try_as<ListViewItem>()
         ||object.try_as<TextBlock>()||object.try_as<IconElement>()

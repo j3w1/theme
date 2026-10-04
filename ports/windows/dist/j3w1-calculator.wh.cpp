@@ -2,7 +2,7 @@
 // @id j3w1-calculator
 // @name j3w1 Calculator resources
 // @description Version-checked Calculator UI resources; equation colors remain native
-// @version 1.4.5
+// @version 1.4.6
 // @author j3w1
 // @include CalculatorApp.exe
 // @architecture x86-64
@@ -167,6 +167,51 @@ static constexpr Rule rules[] = {
     {L"ToggleButtonForegroundIndeterminateDisabled",{255,138,85,89},L"color.text.disabled"},
     {L"ToggleButtonBackgroundIndeterminateDisabled",{255,22,11,11},L"color.interaction.disabled.bg"},
     {L"ToggleButtonBorderBrushIndeterminateDisabled",{255,125,19,16},L"color.border.disabled"},
+    {L"ButtonBackgroundDisabled",{255,22,11,11},L"color.interaction.disabled.bg"},
+    {L"SubtleButtonBackground",{255,0,0,0},L"color.surface.canvas"},
+    {L"SubtleButtonForeground",{255,233,148,153},L"color.text.default"},
+    {L"SubtleButtonBorderBrush",{255,163,103,107},L"color.border.control"},
+    {L"SubtleButtonBackgroundPointerOver",{255,28,10,9},L"color.interaction.hover.bg"},
+    {L"SubtleButtonForegroundPointerOver",{255,233,148,153},L"color.text.default"},
+    {L"SubtleButtonBorderBrushPointerOver",{255,229,57,53},L"color.border.active"},
+    {L"SubtleButtonBackgroundPressed",{255,66,15,12},L"color.interaction.pressed.bg"},
+    {L"SubtleButtonForegroundPressed",{255,233,148,153},L"color.text.default"},
+    {L"SubtleButtonBorderBrushPressed",{255,229,57,53},L"color.border.active"},
+    {L"SubtleButtonBackgroundDisabled",{255,22,11,11},L"color.interaction.disabled.bg"},
+    {L"SubtleButtonForegroundDisabled",{255,138,85,89},L"color.text.disabled"},
+    {L"SubtleButtonBorderBrushDisabled",{255,125,19,16},L"color.border.disabled"},
+    {L"SplitButtonBackground",{255,0,0,0},L"color.surface.canvas"},
+    {L"SplitButtonForeground",{255,233,148,153},L"color.text.default"},
+    {L"SplitButtonBorderBrush",{255,163,103,107},L"color.border.control"},
+    {L"SplitButtonBackgroundPointerOver",{255,28,10,9},L"color.interaction.hover.bg"},
+    {L"SplitButtonForegroundPointerOver",{255,233,148,153},L"color.text.default"},
+    {L"SplitButtonBorderBrushPointerOver",{255,229,57,53},L"color.border.active"},
+    {L"SplitButtonBackgroundPressed",{255,66,15,12},L"color.interaction.pressed.bg"},
+    {L"SplitButtonForegroundPressed",{255,233,148,153},L"color.text.default"},
+    {L"SplitButtonBorderBrushPressed",{255,229,57,53},L"color.border.active"},
+    {L"SplitButtonBackgroundDisabled",{255,22,11,11},L"color.interaction.disabled.bg"},
+    {L"SplitButtonForegroundDisabled",{255,138,85,89},L"color.text.disabled"},
+    {L"SplitButtonBorderBrushDisabled",{255,125,19,16},L"color.border.disabled"},
+    {L"SplitButtonBackgroundChecked",{255,83,19,16},L"color.interaction.selection.bg"},
+    {L"SplitButtonForegroundChecked",{255,244,238,238},L"color.interaction.selection.text"},
+    {L"SplitButtonBorderBrushChecked",{255,229,57,53},L"color.border.active"},
+    {L"SplitButtonBackgroundCheckedPointerOver",{255,83,19,16},L"color.interaction.selection.bg"},
+    {L"SplitButtonForegroundCheckedPointerOver",{255,244,238,238},L"color.interaction.selection.text"},
+    {L"SplitButtonBorderBrushCheckedPointerOver",{255,229,57,53},L"color.border.active"},
+    {L"SplitButtonBackgroundCheckedPressed",{255,66,15,12},L"color.interaction.pressed.bg"},
+    {L"SplitButtonForegroundCheckedPressed",{255,233,148,153},L"color.text.default"},
+    {L"SplitButtonBorderBrushCheckedPressed",{255,229,57,53},L"color.border.active"},
+    {L"SplitButtonBackgroundCheckedDisabled",{255,22,11,11},L"color.interaction.disabled.bg"},
+    {L"SplitButtonForegroundCheckedDisabled",{255,138,85,89},L"color.text.disabled"},
+    {L"SplitButtonBorderBrushCheckedDisabled",{255,125,19,16},L"color.border.disabled"},
+    {L"SplitButtonForegroundSecondary",{255,189,120,125},L"color.text.muted"},
+    {L"SplitButtonForegroundSecondaryPressed",{255,189,120,125},L"color.text.muted"},
+    {L"SplitButtonBorderBrushDivider",{255,43,14,13},L"color.border.divider"},
+    {L"SplitButtonBorderBrushCheckedDivider",{255,43,14,13},L"color.border.divider"},
+    {L"SplitButtonInAppBarUnfocusedPointerOver",{255,66,15,12},L"color.interaction.pressed.bg"},
+    {L"DropDownButtonForegroundSecondary",{255,189,120,125},L"color.text.muted"},
+    {L"DropDownButtonForegroundSecondaryPointerOver",{255,189,120,125},L"color.text.muted"},
+    {L"DropDownButtonForegroundSecondaryPressed",{255,189,120,125},L"color.text.muted"},
 };
 static std::atomic<bool> enabled{false}, admitted{false};
 static std::atomic<HWND> coreWindow{nullptr};
@@ -396,6 +441,9 @@ static bool RestoreControlResources(ControlResources& entry) noexcept {
 
 
 [[clang::no_destroy]] static std::deque<ControlResources> controlsChanged;
+static bool CompositeButtonChrome(std::wstring_view type) {
+ return type==L"Microsoft.UI.Xaml.Controls.SplitButton";
+}
 static bool ChromeControl(DependencyObject const& object) {
     auto type=get_class_name(object);
     // Pane ThemeResources resolve at NavigationView, above its row controls.
@@ -403,7 +451,8 @@ static bool ChromeControl(DependencyObject const& object) {
         ||type==L"Microsoft.UI.Xaml.Controls.NavigationViewItemHeader"
         ||type==L"Microsoft.UI.Xaml.Controls.NavigationViewItem"
         ||type==L"Microsoft.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter")return true;
-    return object.try_as<Windows::UI::Xaml::Controls::Primitives::ButtonBase>()
+    return CompositeButtonChrome(std::wstring_view{type})
+        ||object.try_as<Windows::UI::Xaml::Controls::Primitives::ButtonBase>()
         ||object.try_as<MenuFlyoutPresenter>()||object.try_as<MenuFlyoutItem>()||object.try_as<MenuFlyoutSubItem>()
         ||object.try_as<ToggleSwitch>()||object.try_as<ComboBox>()||object.try_as<ListViewItem>()
         ||object.try_as<TextBlock>()||object.try_as<IconElement>()

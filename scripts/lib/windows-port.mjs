@@ -191,7 +191,10 @@ export function windowsArtifacts({manifest,host,resolved}){
   const navigation=/^NavigationViewItem(?:Background|Foreground)(?:PointerOver|Pressed|Disabled|Checked(?:PointerOver|Pressed|Disabled)?|Selected(?:PointerOver|Pressed|Disabled)?)?$/.test(key)
    ||key==='NavigationViewItemSeparatorForeground';
   const toggle=/^ToggleButton(?:Background|Foreground|BorderBrush)(?:PointerOver|Pressed|Disabled|(?:Checked|Indeterminate)(?:PointerOver|Pressed|Disabled)?)?$/.test(key);
-  if((!navigation&&!toggle&&!/^[A-Za-z][A-Za-z0-9]+(?:Brush(?:PointerOver|Pressed|Disabled)?|Background|Foreground)$/.test(key))||key.startsWith('Equation'))throw Error('Invalid Calculator UI brush');
+  const button=/^(?:Button|SubtleButton)(?:Background|Foreground|BorderBrush)(?:PointerOver|Pressed|Disabled)?$/.test(key)
+   ||/^SplitButton(?:Background|Foreground|BorderBrush)(?:PointerOver|Pressed|Disabled|Checked(?:PointerOver|Pressed|Disabled)?)?$/.test(key)
+   ||['SplitButtonForegroundSecondary','SplitButtonForegroundSecondaryPressed','SplitButtonBorderBrushDivider','SplitButtonBorderBrushCheckedDivider','SplitButtonInAppBarUnfocusedPointerOver','DropDownButtonForegroundSecondary','DropDownButtonForegroundSecondaryPointerOver','DropDownButtonForegroundSecondaryPressed'].includes(key);
+  if((!navigation&&!toggle&&!button&&!/^[A-Za-z][A-Za-z0-9]+(?:Brush(?:PointerOver|Pressed|Disabled)?|Background|Foreground)$/.test(key))||key.startsWith('Equation'))throw Error('Invalid Calculator UI brush');
   const [r,g,b]=rgb(val(role));
   return `    {L"${key}",{255,${r},${g},${b}},L"${role}"},`;
  }).join('\n');
@@ -223,9 +226,15 @@ export function windowsArtifacts({manifest,host,resolved}){
   const discoverySubs={DIAGNOSTICS_BRIDGE_SHA256:chrome.diagnosticsBridgeSha256,DIAGNOSTICS_CLSID:clsid};
   const rootDiscovery=readFileSync(path.join(repoRoot,'ports/windows/src/winui-root-discovery.cpp.in'),'utf8').replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in discoverySubs))throw Error('Unknown WinUI discovery placeholder '+key);return discoverySubs[key];});
   const publicCaptionNames=['BackgroundColor','ForegroundColor','ButtonBackgroundColor','ButtonForegroundColor','ButtonHoverBackgroundColor','ButtonHoverForegroundColor','ButtonPressedBackgroundColor','ButtonPressedForegroundColor','InactiveBackgroundColor','InactiveForegroundColor','ButtonInactiveBackgroundColor','ButtonInactiveForegroundColor'];
-  if(JSON.stringify(Object.keys(chrome.captionColors??{}))!==JSON.stringify(publicCaptionNames))throw Error(label+' requires the complete ordered public caption-color contract');
-  const captionRules=publicCaptionNames.map(key=>{const role=chrome.captionColors[key];const token=resolved.get(role);val(role);return '  {'+Math.round((token.resolved.alpha??1)*255)+','+rgb(val(role)).join(',')+'}, // '+key+' : '+role;}).join('\n');
-  const publicSource=readFileSync(path.join(repoRoot,'ports/windows/src/winui-caption.cpp.in'),'utf8').replaceAll('@ADAPTER_ID@',chromeId).replaceAll('@NATIVE_CLASS@',nativeClass).replace('@CAPTION_RULES@',captionRules);
+  // Notepad owns a custom tab caption even when AppWindow reports no extension.
+  // Whole-title colors can restore a system caption over that content. Admit
+  // only button colors there; Paint retains its recorded native-title contract.
+  const customCaption=chromeId==='j3w1-notepad-chrome';
+  const admittedCaptionNames=customCaption?publicCaptionNames.filter(key=>key.startsWith('Button')):publicCaptionNames;
+  if(JSON.stringify(Object.keys(chrome.captionColors??{}))!==JSON.stringify(admittedCaptionNames))throw Error(label+' requires its exact ordered public caption-color contract');
+  const captionSlots=admittedCaptionNames.map(key=>publicCaptionNames.indexOf(key));
+  const captionRules=publicCaptionNames.map(key=>{const role=chrome.captionColors[key];if(!role)return '  {}, // '+key+' : host-owned';const token=resolved.get(role);val(role);return '  {'+Math.round((token.resolved.alpha??1)*255)+','+rgb(val(role)).join(',')+'}, // '+key+' : '+role;}).join('\n');
+  const publicSource=readFileSync(path.join(repoRoot,'ports/windows/src/winui-caption.cpp.in'),'utf8').replaceAll('@ADAPTER_ID@',chromeId).replaceAll('@NATIVE_CLASS@',nativeClass).replace('@CAPTION_RULES@',captionRules).replaceAll('@CAPTION_SLOT_COUNT@',String(captionSlots.length)).replace('@CAPTION_SLOTS@',captionSlots.join(',')).replace('@CAPTION_CUSTOM_CONTENT@',String(customCaption));
   const [publicDeclarations,publicImplementation]=publicSource.split('// IMPLEMENTATION');
   if(!publicDeclarations||!publicImplementation||/@[A-Z0-9_]+@/.test(publicSource))throw Error('Invalid '+label+' public caption template');
   const publicSubs={PUBLIC_CAPTION_INCLUDE:'\n#include <winrt/Microsoft.UI.Windowing.h>',PUBLIC_CAPTION_DECLARATIONS:publicDeclarations,PUBLIC_CAPTION_IMPLEMENTATION:publicImplementation,PUBLIC_CAPTION_STATE:'std::vector<std::unique_ptr<PublicCaption>> publicCaptions; ',PUBLIC_CAPTION_REFRESH:' ApplyPublicCaptions(state);\n',PUBLIC_CAPTION_RESTORE:' bool publicRestored=RestorePublicCaptions(state);\n',PUBLIC_CAPTION_RESTORE_RESULT:'&&publicRestored',PUBLIC_CAPTION_NATIVE_EXCLUSION:'&&false',PUBLIC_CAPTION_DWM_BYPASS:'publicCaptionWrite||'};

@@ -11,6 +11,12 @@ static void Wh_Log(PCWSTR,...){ }
 #include "../ports/windows/dist/j3w1-calculator.wh.cpp"
 int main(int argc,char** argv){
  assert(argc==2);
+ if(strcmp(argv[1],"composite-button-scope")==0) {
+  assert(CompositeButtonChrome(L"Microsoft.UI.Xaml.Controls.SplitButton"));
+  for(auto type:{L"PaintUI.ColorRadioButton",L"PaintUI.Canvas",L"Microsoft.UI.Xaml.Controls.ColorPicker",L"NotepadXamlUI.TabsBar",L"Other.SplitButton",L"Microsoft.UI.Xaml.Controls.SplitButtonExtra"})assert(!CompositeButtonChrome(type));
+  puts("PASS: split-button owner admitted; application data controls and lookalikes excluded");return 0;
+ }
+
  winrt::init_apartment(winrt::apartment_type::multi_threaded);
  if(strcmp(argv[1],"animation-frame")==0) {
   auto original=box_value(1),applied=box_value(2),foreign=box_value(3);

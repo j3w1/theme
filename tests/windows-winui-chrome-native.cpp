@@ -45,6 +45,12 @@ static void Stop() {
 }
 int main(int argc, char** argv) {
     assert(argc == 2);
+ if(strcmp(argv[1],"composite-button-scope")==0) {
+  assert(CompositeButtonChrome(L"Microsoft.UI.Xaml.Controls.SplitButton"));
+  for(auto type:{L"PaintUI.ColorRadioButton",L"PaintUI.Canvas",L"Microsoft.UI.Xaml.Controls.ColorPicker",L"NotepadXamlUI.TabsBar",L"Other.SplitButton",L"Microsoft.UI.Xaml.Controls.SplitButtonExtra"})assert(!CompositeButtonChrome(type));
+  puts("PASS: split-button owner admitted; application data controls and lookalikes excluded");return 0;
+ }
+
     if(strcmp(argv[1], "closed-source-backdrop") == 0) {
         struct Source {
             bool attached=false;
@@ -103,10 +109,29 @@ int main(int argc, char** argv) {
         uninit_apartment();puts("PASS: failed retirement retains ownership and later retry preserves application resource changes");return 0;
     }
 
+    if(strcmp(argv[1],"public-caption-scope")==0) {
+        assert(CaptionCompositionAdmitted(false));
+        assert(CaptionCompositionAdmitted(true)==!J3W1_TEST_PAINT);
+        for(unsigned slot=0;slot<12;slot++) {
+            bool button=(slot>=2&&slot<=7)||slot>=10;
+            assert(CaptionSlotAdmitted(slot)==(J3W1_TEST_PAINT||button));
+            if(!J3W1_TEST_PAINT&&!button) {
+                // Reject before touching a COM object: an unadmitted title
+                // setter must never revive the system caption over the tabs.
+                unsigned rejected=0;
+                try{ReadCaption(nullptr,slot);}catch(hresult_invalid_argument const&){++rejected;}
+                try{WriteCaption(nullptr,slot,nullptr);}catch(hresult_invalid_argument const&){++rejected;}
+                try{CaptionRoleColor(slot);}catch(hresult_invalid_argument const&){++rejected;}
+                assert(rejected==3);
+            }
+        }
+        assert(!CaptionSlotAdmitted(12));
+        puts("PASS: Notepad excludes all whole-title properties and preserves custom content; Paint retains native-title admission");return 0;
+    }
     if(strcmp(argv[1],"public-caption-ownership")==0) {
         init_apartment(apartment_type::multi_threaded);
         auto baseline=box_value(Color{255,21,23,25}).as<CaptionColor>();
-        auto applied=box_value(CaptionRoleColor(0)).as<CaptionColor>();
+        auto applied=box_value(CaptionRoleColor(2)).as<CaptionColor>();
         auto later=box_value(Color{255,31,33,35}).as<CaptionColor>();
         CaptionColor actual{nullptr};CaptionSlot slot;
         auto read=[&]{return actual;};auto write=[&](CaptionColor const& c){actual=c;};

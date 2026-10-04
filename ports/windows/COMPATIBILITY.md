@@ -982,7 +982,7 @@ and transition acceptance remain separate from generated-resource checks.
 
 Resource contract: [Microsoft ScrollBar template](https://github.com/microsoft/microsoft-ui-xaml/blob/main/controls/dev/CommonStyles/ScrollBar_themeresources.xaml).
 
-### Readable Notepad caption ownership
+### Readable Notepad caption ownership (superseded whole-title scope)
 
 A fresh first Notepad window remained gray because it was created before the
 native caption hook could capture a baseline. The saved exact-package public
@@ -995,6 +995,26 @@ reused windows and later app replacements retain their existing refusal and
 ownership checks. No drag geometry, tabs or document content is changed. Native
 regressions cover nullable/explicit baselines, failures, retry and window reuse
 for both adapters. Fresh-window appearance remains a separate live check.
+
+### Notepad custom tab-caption preservation
+
+The previous twelve-color caption contract could display a system title over
+Notepad's tab strip. Its exact-package public getter reported no extended title
+content, so that getter alone did not establish a native-title layout. Notepad
+now admits only the eight `Button*Color` properties. Whole-title background,
+foreground and inactive colors are host-owned and rejected before any COM
+read or write. The existing XAML adapter continues to theme the tab strip.
+The button contract applies to custom content without changing title mode,
+drag regions, window styles, tabs or documents. Paint retains its twelve-color
+native-title contract and declines extended title content.
+
+Capture, application-replacement detection and restore iterate the same admitted
+property list. Unload and high contrast retain the captured nullable baselines.
+An affected window may retain the old system caption until it is reopened;
+save documents before reopening. The installer never closes applications.
+Native regressions verify the excluded setters cannot reach a COM object and
+that Paint's composition refusal remains intact. Live appearance and lifecycle
+checks remain separate from these synthetic checks.
 
 ### Explorer scrollbar template ownership
 
@@ -1050,3 +1070,31 @@ ordering, rejected paths/versions and reference ownership. This does not certify
 a real Explorer restart or new Windows sign-in.
 
 Lifecycle contract: [Windhawk callbacks](https://github.com/ramensoftware/windhawk/wiki/Creating-a-new-mod#callback-functions).
+
+
+### Subtle and split-button resource states
+
+The chrome palette now covers the public SubtleButton and SplitButton rest,
+pointer-over, pressed and disabled brush families, SplitButton checked states,
+its divider and secondary foreground, and the opposite-half app-bar hover
+brush. DropDownButton secondary foreground uses its three public keys; its
+background remains part of the inherited button template. This closes a
+resource-coverage gap without replacing native state groups or permanently
+assigning a control's hovered background.
+
+A SplitButton owns state-controlled backgrounds above its two ButtonBase
+children, so its exact framework class receives the same local resource
+overrides as other admitted chrome controls. Application data controls and
+lookalike classes are excluded. Existing ownership receipts restore missing,
+null and populated local entries and preserve later application replacements.
+High contrast and the package/runtime compatibility checks remain unchanged.
+
+These resource names come from the upstream public templates, not a dump of
+every installed application template. Contract/native checks prove palette,
+scope and restoration behavior; they do not establish live hover/focus
+acceptance in Notepad, Calculator or Paint. Retained application-specific
+animations may need separate observed evidence.
+
+Template references: [WinUI Button](https://github.com/microsoft/microsoft-ui-xaml/blob/main/controls/dev/CommonStyles/Button_themeresources.xaml),
+[SplitButton](https://github.com/microsoft/microsoft-ui-xaml/blob/main/controls/dev/SplitButton/SplitButton_themeresources.xaml),
+[DropDownButton](https://github.com/microsoft/microsoft-ui-xaml/blob/main/controls/dev/DropDownButton/DropDownButton_themeresources.xaml).

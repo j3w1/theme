@@ -80,7 +80,7 @@ test('native Calculator clock and ownership restoration',options,t=>{
  t.after(()=>fs.rmSync(folder,{recursive:true,force:true}));
  const output=path.join(folder,'calculator-ownership.exe');
  compile(tools.compiler,['-static',path.join(repoRoot,'tests/windows-calculator-ownership-native.cpp'),...libraries(path.join(source,'dist/j3w1-calculator.wh.cpp')),'-o',output]);
- for(const state of ['clock-lifecycle','animation-frame','resource-ownership']){
+ for(const state of ['composite-button-scope','clock-lifecycle','animation-frame','resource-ownership']){
   const result=spawnSync(output,[state],{encoding:'utf8',windowsHide:true,timeout:15000});
   assert.equal(result.status,0,state+': '+result.stdout+'\n'+result.stderr);
  }
@@ -92,7 +92,7 @@ for(const [id,paint] of [['j3w1-notepad-chrome','0'],['j3w1-paint-chrome','1']])
  t.after(()=>fs.rmSync(folder,{recursive:true,force:true}));
  const output=path.join(folder,'notepad-chrome.exe');
  compile(tools.compiler,['-static','-DJ3W1_TEST_PAINT='+paint,path.join(repoRoot,'tests/windows-winui-chrome-native.cpp'),...libraries(path.join(source,'dist/'+id+'.wh.cpp')),'-o',output]);
- for(const state of ['partial-init','state-ownership','resource-ownership','closed-source-backdrop','retired-control-capacity','retired-control-retry','keytip-ownership','cleanup-retry','public-caption-ownership','public-caption-window-ownership',...(paint==='1'?['paint-chrome-admission']:['notepad-chrome-admission']),'backing-admission','backdrop-passthrough','discovery-admission','discovery-lifecycle','exit-active','exit-completed','unload','reconfigure']){
+ for(const state of ['composite-button-scope','partial-init','state-ownership','resource-ownership','closed-source-backdrop','retired-control-capacity','retired-control-retry','keytip-ownership','cleanup-retry','public-caption-scope','public-caption-ownership','public-caption-window-ownership',...(paint==='1'?['paint-chrome-admission']:['notepad-chrome-admission']),'backing-admission','backdrop-passthrough','discovery-admission','discovery-lifecycle','exit-active','exit-completed','unload','reconfigure']){
   const result=spawnSync(output,[state],{encoding:'utf8',windowsHide:true,timeout:15000});
   assert.equal(result.status,0,state+': '+result.stdout+'\n'+result.stderr);
  }

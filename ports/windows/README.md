@@ -15,8 +15,9 @@ restores and uninstalls the port. There is no separate setup script.
 2. Paste the command below. Setup obtains required runtimes, checks compatibility,
    installs the theme, runs Test, and prints the exact recovery commands.
 3. Reopen affected apps and check their appearance. Save documents first; setup
-   does not close them. Notepad and Paint use readable public caption colors on
-   their recorded native layouts, with their original nullable overrides retained.
+   does not close them. Notepad keeps its custom tab header and themes only the
+   native window buttons. Paint uses public colors on its recorded native title.
+   Both retain their original nullable overrides for restoration.
    Paint's gray drawing workspace remains an experimental limitation.
 
 <!-- install:start -->
@@ -283,3 +284,10 @@ disabled template states directly; named resource settings alone can leave
 existing templates gray. Search result backgrounds inherit through intermediate
 host wrappers so the selected frame does not enclose an unthemed interior.
 Both corrections are part of the same install.ps1 setup/update and saved rollback.
+
+
+The app-chrome adapters also map native subtle and split-button states, including
+both split-button halves and checked/disabled states. These updates use the same
+setup/update and saved rollback commands above. Real application hover, focus
+and open/close checks remain required; palette coverage alone does not certify
+every installed template or retained animation.

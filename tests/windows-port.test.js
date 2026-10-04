@@ -611,11 +611,20 @@ test('tampered saved adapter export refuses offline import and keeps recoverable
  fs.writeFileSync(mod.backup,backup);f.ok('Restore',{...f.args,latest:true});f.ok('Test',f.args);
 });
 
-test('readable app captions share token roles while retaining custom-title and ownership refusal',async()=>{
+test('app caption contracts preserve Notepad tabs and Paint native-title ownership',async()=>{
  const host=await readJson('ports/windows/host.json'),mapping=await readJson('ports/windows/mapping.json');
  for(const [name,key]of [['paint','paintChrome'],['notepad','notepadChrome']]){
   const emitted=fs.readFileSync(path.join(source,'dist/j3w1-'+name+'-chrome.wh.cpp'),'utf8');
-  assert.equal(Object.keys(host[key].captionColors).length,12);
+  const custom=name==='notepad';
+  assert.equal(Object.keys(host[key].captionColors).length,custom?8:12);
+  if(custom){
+   assert.ok(Object.keys(host[key].captionColors).every(property=>property.startsWith('Button')));
+   for(const refs of Object.values(mapping.mappings))for(const property of ['BackgroundColor','ForegroundColor','InactiveBackgroundColor','InactiveForegroundColor'])assert.ok(!refs.includes('notepad-chrome.caption.'+property));
+   assert.ok(emitted.includes('publicCaptionSlots={2,3,4,5,6,7,10,11}'));
+  }
+  assert.ok(emitted.includes('if(!CaptionSlotAdmitted(slot))throw hresult_invalid_argument();'));
+  assert.ok(emitted.includes('for(unsigned slot:publicCaptionSlots)'));
+  assert.ok(emitted.includes('CaptionCompositionAdmitted(bar.ExtendsContentIntoTitleBar())'));
   for(const [property,role]of Object.entries(host[key].captionColors)){
    assert.ok(mapping.mappings[role].includes(name+'-chrome.caption.'+property));
    assert.ok(emitted.includes('// '+property+' : '+role));
@@ -625,5 +634,38 @@ test('readable app captions share token roles while retaining custom-title and o
   assert.ok(emitted.includes('WriteOwnedCaption'));
   assert.ok(emitted.includes('Microsoft.UI.Windowing.h'));
   assert.ok(!emitted.includes('ResetToDefault('));assert.ok(!emitted.includes('SetDragRectangles('));
+ }
+});
+
+
+test('composite button resource ladders cover hover exit, split halves and checked/disabled states',async()=>{
+ const host=await readJson('ports/windows/host.json');
+ const mapping=await readJson('ports/windows/mapping.json');
+ const shared=host.winuiChromeResources,calculator=host.calculator.resources;
+ const ladders={
+  '':['color.surface.canvas','color.text.default','color.border.control'],
+  PointerOver:['color.interaction.hover.bg','color.text.default','color.border.active'],
+  Pressed:['color.interaction.pressed.bg','color.text.default','color.border.active'],
+  Disabled:['color.interaction.disabled.bg','color.text.disabled','color.border.disabled'],
+  Checked:['color.interaction.selection.bg','color.interaction.selection.text','color.border.active'],
+  CheckedPointerOver:['color.interaction.selection.bg','color.interaction.selection.text','color.border.active'],
+  CheckedPressed:['color.interaction.pressed.bg','color.text.default','color.border.active'],
+  CheckedDisabled:['color.interaction.disabled.bg','color.text.disabled','color.border.disabled'],
+ };
+ for(const family of ['SubtleButton','SplitButton'])for(const [state,roles]of Object.entries(ladders)){
+  if(family==='SubtleButton'&&state.startsWith('Checked'))continue;
+  for(const [index,property]of ['Background','Foreground','BorderBrush'].entries()){
+   const key=family+property+state;
+   assert.equal(shared[key],roles[index],key);assert.equal(calculator[key],roles[index],key);
+   for(const prefix of ['notepad-chrome','paint-chrome','calculator'])assert.ok(mapping.mappings[roles[index]].includes(prefix+'.resource.'+key));
+  }
+ }
+ for(const palette of [shared,calculator]){
+  assert.equal(palette.SplitButtonInAppBarUnfocusedPointerOver,'color.interaction.pressed.bg');
+  assert.equal(palette.SplitButtonBorderBrushDivider,'color.border.divider');
+  assert.equal(palette.SplitButtonBorderBrushCheckedDivider,'color.border.divider');
+  assert.equal(palette.ButtonBackgroundDisabled,'color.interaction.disabled.bg');
+  for(const state of ['','PointerOver','Pressed'])assert.equal(palette['DropDownButtonForegroundSecondary'+state],'color.text.muted');
+  assert.ok(!Object.keys(palette).some(key=>key.startsWith('DropDownButtonBackground')),'dropdown background belongs to the inherited button template');
  }
 });

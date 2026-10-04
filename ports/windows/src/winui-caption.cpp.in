@@ -1,5 +1,13 @@
-// Readable caption colors are shared by admitted Paint and Notepad layouts.
-// A custom title composition still declines public styling without changing it.
+// Paint owns a native title; Notepad owns a custom tab caption. The generated
+// property contract admits only Notepad's button colors, never whole-title
+// colors which can make the system caption cover its tabs. No geometry changes.
+static constexpr std::array<unsigned,@CAPTION_SLOT_COUNT@> publicCaptionSlots={@CAPTION_SLOTS@};
+static bool CaptionSlotAdmitted(unsigned slot) noexcept {
+ return std::find(publicCaptionSlots.begin(),publicCaptionSlots.end(),slot)!=publicCaptionSlots.end();
+}
+static bool CaptionCompositionAdmitted(bool extended) noexcept {
+ return @CAPTION_CUSTOM_CONTENT@||!extended;
+}
 using CaptionColor = Windows::Foundation::IReference<Color>;
 using PublicTitleBar = Microsoft::UI::Windowing::AppWindowTitleBar;
 struct CaptionSlot { CaptionColor before{nullptr}, applied{nullptr}; bool owned=false, changed=false; };
@@ -22,6 +30,7 @@ static bool OwnsPublicCaptionWindow(PublicCaption const& caption) noexcept {
  return PublicCaptionWindow(caption.window)&&GetPropW(caption.window,publicCaptionProperty)==&caption;
 }
 static CaptionColor ReadCaption(PublicTitleBar const& bar,unsigned slot) {
+ if(!CaptionSlotAdmitted(slot))throw hresult_invalid_argument();
  switch(slot) {
  case 0:return bar.BackgroundColor();case 1:return bar.ForegroundColor();
  case 2:return bar.ButtonBackgroundColor();case 3:return bar.ButtonForegroundColor();
@@ -33,6 +42,7 @@ static CaptionColor ReadCaption(PublicTitleBar const& bar,unsigned slot) {
  }
 }
 static void WriteCaption(PublicTitleBar const& bar,unsigned slot,CaptionColor const& color) {
+ if(!CaptionSlotAdmitted(slot))throw hresult_invalid_argument();
  switch(slot) {
  case 0:bar.BackgroundColor(color);break;case 1:bar.ForegroundColor(color);break;
  case 2:bar.ButtonBackgroundColor(color);break;case 3:bar.ButtonForegroundColor(color);break;
@@ -47,7 +57,7 @@ static Color CaptionRoleColor(unsigned slot) {
  static constexpr Color colors[]={
 @CAPTION_RULES@
  };
- if(slot>=std::size(colors))throw hresult_invalid_argument();
+ if(slot>=std::size(colors)||!CaptionSlotAdmitted(slot))throw hresult_invalid_argument();
  return colors[slot];
 }
 template<class Read,class Write> static bool UpdateCaptionSlot(CaptionSlot& slot,CaptionColor const& value,bool active,Read read,Write write) noexcept {
@@ -85,7 +95,7 @@ static void WriteOwnedCaption(PublicCaption const& caption,unsigned slot,Caption
 static bool RestorePublicCaption(PublicCaption& caption,bool release=true) noexcept {
  if(!OwnsPublicCaptionWindow(caption))return true;
  CaptionWriteGuard guard;bool restored=true;
- for(unsigned slot=0;slot<caption.slots.size();slot++)
+ for(unsigned slot:publicCaptionSlots)
   restored=UpdateCaptionSlot(caption.slots[slot],nullptr,false,
    [&]{return ReadCaption(caption.bar,slot);},[&](auto const& color){WriteOwnedCaption(caption,slot,color);})&&restored;
  if(restored&&release&&OwnsPublicCaptionWindow(caption))RemovePropW(caption.window,publicCaptionProperty);
@@ -116,10 +126,10 @@ static void ApplyPublicCaptions(ThreadState& state) noexcept {
     Microsoft::UI::WindowId id{};if(!convert||FAILED(convert(window,&id))||!id.Value)return TRUE;
     auto app=Microsoft::UI::Windowing::AppWindow::GetFromWindowId(id);if(!app)return TRUE;
     auto bar=app.TitleBar();
-    // Decline custom title bars. Never alter geometry, drag regions or artwork.
-    if(!bar||bar.ExtendsContentIntoTitleBar())return TRUE;
+    // Preserve custom content. Only the recorded Notepad button contract admits it.
+    if(!bar||!CaptionCompositionAdmitted(bar.ExtendsContentIntoTitleBar()))return TRUE;
     auto caption=std::make_unique<PublicCaption>();caption->window=window;caption->bar=bar;
-    for(unsigned slot=0;slot<caption->slots.size();slot++)caption->slots[slot].before=ReadCaption(bar,slot);
+    for(unsigned slot:publicCaptionSlots)caption->slots[slot].before=ReadCaption(bar,slot);
     // Allocate vector storage before attaching its stable ownership token.
     state.publicCaptions.push_back(std::move(caption));
     if(!SetPropW(window,publicCaptionProperty,state.publicCaptions.back().get()))state.publicCaptions.pop_back();
@@ -129,11 +139,11 @@ static void ApplyPublicCaptions(ThreadState& state) noexcept {
   CaptionWriteGuard guard;
   for(auto& caption:state.publicCaptions) {
    if(!OwnsPublicCaptionWindow(*caption))continue;
-   if(caption->declined||caption->bar.ExtendsContentIntoTitleBar()) {
+   if(caption->declined||!CaptionCompositionAdmitted(caption->bar.ExtendsContentIntoTitleBar())) {
     caption->declined=true;RestorePublicCaption(*caption,false);continue;
    }
    bool complete=true;
-   for(unsigned slot=0;slot<caption->slots.size();slot++) {
+   for(unsigned slot:publicCaptionSlots) {
     auto color=box_value(CaptionRoleColor(slot)).as<CaptionColor>();
     complete=UpdateCaptionSlot(caption->slots[slot],color,true,
      [&]{return ReadCaption(caption->bar,slot);},[&](auto const& value){WriteOwnedCaption(*caption,slot,value);})&&complete;

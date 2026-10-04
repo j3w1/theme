@@ -2,7 +2,7 @@
 // @id j3w1-notepad-chrome
 // @name j3w1 Notepad chrome
 // @description Exact-package Notepad chrome resources; document and artwork colors remain native
-// @version 1.2.9
+// @version 1.2.11
 // @author j3w1
 // @include Notepad.exe
 // @architecture x86-64
@@ -302,6 +302,51 @@ static constexpr Rule rules[]={
  {L"ComboBoxItemBackgroundSelectedDisabled",{255,22,11,11},L"color.interaction.disabled.bg"},
  {L"ComboBoxItemForegroundSelectedDisabled",{255,138,85,89},L"color.text.disabled"},
  {L"ComboBoxItemPillFillBrush",{255,229,57,53},L"color.border.selected-indicator"},
+ {L"ButtonBackgroundDisabled",{255,22,11,11},L"color.interaction.disabled.bg"},
+ {L"SubtleButtonBackground",{255,0,0,0},L"color.surface.canvas"},
+ {L"SubtleButtonForeground",{255,233,148,153},L"color.text.default"},
+ {L"SubtleButtonBorderBrush",{255,163,103,107},L"color.border.control"},
+ {L"SubtleButtonBackgroundPointerOver",{255,28,10,9},L"color.interaction.hover.bg"},
+ {L"SubtleButtonForegroundPointerOver",{255,233,148,153},L"color.text.default"},
+ {L"SubtleButtonBorderBrushPointerOver",{255,229,57,53},L"color.border.active"},
+ {L"SubtleButtonBackgroundPressed",{255,66,15,12},L"color.interaction.pressed.bg"},
+ {L"SubtleButtonForegroundPressed",{255,233,148,153},L"color.text.default"},
+ {L"SubtleButtonBorderBrushPressed",{255,229,57,53},L"color.border.active"},
+ {L"SubtleButtonBackgroundDisabled",{255,22,11,11},L"color.interaction.disabled.bg"},
+ {L"SubtleButtonForegroundDisabled",{255,138,85,89},L"color.text.disabled"},
+ {L"SubtleButtonBorderBrushDisabled",{255,125,19,16},L"color.border.disabled"},
+ {L"SplitButtonBackground",{255,0,0,0},L"color.surface.canvas"},
+ {L"SplitButtonForeground",{255,233,148,153},L"color.text.default"},
+ {L"SplitButtonBorderBrush",{255,163,103,107},L"color.border.control"},
+ {L"SplitButtonBackgroundPointerOver",{255,28,10,9},L"color.interaction.hover.bg"},
+ {L"SplitButtonForegroundPointerOver",{255,233,148,153},L"color.text.default"},
+ {L"SplitButtonBorderBrushPointerOver",{255,229,57,53},L"color.border.active"},
+ {L"SplitButtonBackgroundPressed",{255,66,15,12},L"color.interaction.pressed.bg"},
+ {L"SplitButtonForegroundPressed",{255,233,148,153},L"color.text.default"},
+ {L"SplitButtonBorderBrushPressed",{255,229,57,53},L"color.border.active"},
+ {L"SplitButtonBackgroundDisabled",{255,22,11,11},L"color.interaction.disabled.bg"},
+ {L"SplitButtonForegroundDisabled",{255,138,85,89},L"color.text.disabled"},
+ {L"SplitButtonBorderBrushDisabled",{255,125,19,16},L"color.border.disabled"},
+ {L"SplitButtonBackgroundChecked",{255,83,19,16},L"color.interaction.selection.bg"},
+ {L"SplitButtonForegroundChecked",{255,244,238,238},L"color.interaction.selection.text"},
+ {L"SplitButtonBorderBrushChecked",{255,229,57,53},L"color.border.active"},
+ {L"SplitButtonBackgroundCheckedPointerOver",{255,83,19,16},L"color.interaction.selection.bg"},
+ {L"SplitButtonForegroundCheckedPointerOver",{255,244,238,238},L"color.interaction.selection.text"},
+ {L"SplitButtonBorderBrushCheckedPointerOver",{255,229,57,53},L"color.border.active"},
+ {L"SplitButtonBackgroundCheckedPressed",{255,66,15,12},L"color.interaction.pressed.bg"},
+ {L"SplitButtonForegroundCheckedPressed",{255,233,148,153},L"color.text.default"},
+ {L"SplitButtonBorderBrushCheckedPressed",{255,229,57,53},L"color.border.active"},
+ {L"SplitButtonBackgroundCheckedDisabled",{255,22,11,11},L"color.interaction.disabled.bg"},
+ {L"SplitButtonForegroundCheckedDisabled",{255,138,85,89},L"color.text.disabled"},
+ {L"SplitButtonBorderBrushCheckedDisabled",{255,125,19,16},L"color.border.disabled"},
+ {L"SplitButtonForegroundSecondary",{255,189,120,125},L"color.text.muted"},
+ {L"SplitButtonForegroundSecondaryPressed",{255,189,120,125},L"color.text.muted"},
+ {L"SplitButtonBorderBrushDivider",{255,43,14,13},L"color.border.divider"},
+ {L"SplitButtonBorderBrushCheckedDivider",{255,43,14,13},L"color.border.divider"},
+ {L"SplitButtonInAppBarUnfocusedPointerOver",{255,66,15,12},L"color.interaction.pressed.bg"},
+ {L"DropDownButtonForegroundSecondary",{255,189,120,125},L"color.text.muted"},
+ {L"DropDownButtonForegroundSecondaryPointerOver",{255,189,120,125},L"color.text.muted"},
+ {L"DropDownButtonForegroundSecondaryPressed",{255,189,120,125},L"color.text.muted"},
 };
 static bool Same(Color a,Color b){return a.A==b.A&&a.R==b.R&&a.G==b.G&&a.B==b.B;}
 static bool Identity(ProjectedObject const& a,ProjectedObject const& b){
@@ -495,8 +540,16 @@ static bool ApplyNativeBrush(std::vector<OwnedNativeBrush>& entries,SolidColorBr
  return UpdateNativeBrush(entries.back(),target,true,[&]{return brush.Color();},[&](Color c){brush.Color(c);},failure);
 }
 
-// Readable caption colors are shared by admitted Paint and Notepad layouts.
-// A custom title composition still declines public styling without changing it.
+// Paint owns a native title; Notepad owns a custom tab caption. The generated
+// property contract admits only Notepad's button colors, never whole-title
+// colors which can make the system caption cover its tabs. No geometry changes.
+static constexpr std::array<unsigned,8> publicCaptionSlots={2,3,4,5,6,7,10,11};
+static bool CaptionSlotAdmitted(unsigned slot) noexcept {
+ return std::find(publicCaptionSlots.begin(),publicCaptionSlots.end(),slot)!=publicCaptionSlots.end();
+}
+static bool CaptionCompositionAdmitted(bool extended) noexcept {
+ return true||!extended;
+}
 using CaptionColor = Windows::Foundation::IReference<Color>;
 using PublicTitleBar = Microsoft::UI::Windowing::AppWindowTitleBar;
 struct CaptionSlot { CaptionColor before{nullptr}, applied{nullptr}; bool owned=false, changed=false; };
@@ -519,6 +572,7 @@ static bool OwnsPublicCaptionWindow(PublicCaption const& caption) noexcept {
  return PublicCaptionWindow(caption.window)&&GetPropW(caption.window,publicCaptionProperty)==&caption;
 }
 static CaptionColor ReadCaption(PublicTitleBar const& bar,unsigned slot) {
+ if(!CaptionSlotAdmitted(slot))throw hresult_invalid_argument();
  switch(slot) {
  case 0:return bar.BackgroundColor();case 1:return bar.ForegroundColor();
  case 2:return bar.ButtonBackgroundColor();case 3:return bar.ButtonForegroundColor();
@@ -530,6 +584,7 @@ static CaptionColor ReadCaption(PublicTitleBar const& bar,unsigned slot) {
  }
 }
 static void WriteCaption(PublicTitleBar const& bar,unsigned slot,CaptionColor const& color) {
+ if(!CaptionSlotAdmitted(slot))throw hresult_invalid_argument();
  switch(slot) {
  case 0:bar.BackgroundColor(color);break;case 1:bar.ForegroundColor(color);break;
  case 2:bar.ButtonBackgroundColor(color);break;case 3:bar.ButtonForegroundColor(color);break;
@@ -542,20 +597,20 @@ static void WriteCaption(PublicTitleBar const& bar,unsigned slot,CaptionColor co
 }
 static Color CaptionRoleColor(unsigned slot) {
  static constexpr Color colors[]={
-  {255,0,0,0}, // BackgroundColor : color.surface.canvas
-  {255,233,148,153}, // ForegroundColor : color.text.default
+  {}, // BackgroundColor : host-owned
+  {}, // ForegroundColor : host-owned
   {255,0,0,0}, // ButtonBackgroundColor : color.surface.canvas
   {255,233,148,153}, // ButtonForegroundColor : color.text.default
   {255,28,10,9}, // ButtonHoverBackgroundColor : color.interaction.hover.bg
   {255,233,148,153}, // ButtonHoverForegroundColor : color.text.default
   {255,66,15,12}, // ButtonPressedBackgroundColor : color.interaction.pressed.bg
   {255,233,148,153}, // ButtonPressedForegroundColor : color.text.default
-  {255,0,0,0}, // InactiveBackgroundColor : color.surface.canvas
-  {255,189,120,125}, // InactiveForegroundColor : color.text.muted
+  {}, // InactiveBackgroundColor : host-owned
+  {}, // InactiveForegroundColor : host-owned
   {255,0,0,0}, // ButtonInactiveBackgroundColor : color.surface.canvas
   {255,189,120,125}, // ButtonInactiveForegroundColor : color.text.muted
  };
- if(slot>=std::size(colors))throw hresult_invalid_argument();
+ if(slot>=std::size(colors)||!CaptionSlotAdmitted(slot))throw hresult_invalid_argument();
  return colors[slot];
 }
 template<class Read,class Write> static bool UpdateCaptionSlot(CaptionSlot& slot,CaptionColor const& value,bool active,Read read,Write write) noexcept {
@@ -984,8 +1039,14 @@ static bool PruneRetiredControls(Root& root) {
  return PruneRetiredControls(root,[](ControlResources& entry){return RestoreControlResources(entry);});
 }
 
+// SplitButton owns the state backgrounds above its two ButtonBase children.
+// Override its own resource scope while keeping the native state setters.
+static bool CompositeButtonChrome(std::wstring_view type) {
+ return type==L"Microsoft.UI.Xaml.Controls.SplitButton";
+}
 static bool StandardChrome(DependencyObject const& object) {
- return object.try_as<Microsoft::UI::Xaml::Controls::Primitives::ButtonBase>()
+ return CompositeButtonChrome(std::wstring_view{get_class_name(object)})
+  ||object.try_as<Microsoft::UI::Xaml::Controls::Primitives::ButtonBase>()
   ||object.try_as<MenuBarItem>()||object.try_as<MenuFlyoutItem>()||object.try_as<MenuFlyoutSubItem>()
   ||object.try_as<MenuFlyoutPresenter>()||object.try_as<ToggleSwitch>()||object.try_as<ComboBox>()
   ||object.try_as<ListViewItem>()||object.try_as<Expander>()||object.try_as<Slider>()||object.try_as<TextBlock>()||object.try_as<IconElement>();
@@ -1108,7 +1169,7 @@ static void WriteOwnedCaption(PublicCaption const& caption,unsigned slot,Caption
 static bool RestorePublicCaption(PublicCaption& caption,bool release=true) noexcept {
  if(!OwnsPublicCaptionWindow(caption))return true;
  CaptionWriteGuard guard;bool restored=true;
- for(unsigned slot=0;slot<caption.slots.size();slot++)
+ for(unsigned slot:publicCaptionSlots)
   restored=UpdateCaptionSlot(caption.slots[slot],nullptr,false,
    [&]{return ReadCaption(caption.bar,slot);},[&](auto const& color){WriteOwnedCaption(caption,slot,color);})&&restored;
  if(restored&&release&&OwnsPublicCaptionWindow(caption))RemovePropW(caption.window,publicCaptionProperty);
@@ -1139,10 +1200,10 @@ static void ApplyPublicCaptions(ThreadState& state) noexcept {
     Microsoft::UI::WindowId id{};if(!convert||FAILED(convert(window,&id))||!id.Value)return TRUE;
     auto app=Microsoft::UI::Windowing::AppWindow::GetFromWindowId(id);if(!app)return TRUE;
     auto bar=app.TitleBar();
-    // Decline custom title bars. Never alter geometry, drag regions or artwork.
-    if(!bar||bar.ExtendsContentIntoTitleBar())return TRUE;
+    // Preserve custom content. Only the recorded Notepad button contract admits it.
+    if(!bar||!CaptionCompositionAdmitted(bar.ExtendsContentIntoTitleBar()))return TRUE;
     auto caption=std::make_unique<PublicCaption>();caption->window=window;caption->bar=bar;
-    for(unsigned slot=0;slot<caption->slots.size();slot++)caption->slots[slot].before=ReadCaption(bar,slot);
+    for(unsigned slot:publicCaptionSlots)caption->slots[slot].before=ReadCaption(bar,slot);
     // Allocate vector storage before attaching its stable ownership token.
     state.publicCaptions.push_back(std::move(caption));
     if(!SetPropW(window,publicCaptionProperty,state.publicCaptions.back().get()))state.publicCaptions.pop_back();
@@ -1152,11 +1213,11 @@ static void ApplyPublicCaptions(ThreadState& state) noexcept {
   CaptionWriteGuard guard;
   for(auto& caption:state.publicCaptions) {
    if(!OwnsPublicCaptionWindow(*caption))continue;
-   if(caption->declined||caption->bar.ExtendsContentIntoTitleBar()) {
+   if(caption->declined||!CaptionCompositionAdmitted(caption->bar.ExtendsContentIntoTitleBar())) {
     caption->declined=true;RestorePublicCaption(*caption,false);continue;
    }
    bool complete=true;
-   for(unsigned slot=0;slot<caption->slots.size();slot++) {
+   for(unsigned slot:publicCaptionSlots) {
     auto color=box_value(CaptionRoleColor(slot)).as<CaptionColor>();
     complete=UpdateCaptionSlot(caption->slots[slot],color,true,
      [&]{return ReadCaption(caption->bar,slot);},[&](auto const& value){WriteOwnedCaption(*caption,slot,value);})&&complete;

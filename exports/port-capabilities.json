@@ -37749,7 +37749,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-pr9bzqxXpYin22BKf1jkCDnIdSTXsMYYZ4yetpXuMuE=",
+      "subjectDigest": "sha256-YMFe0sRBuL3bcVSb1ta7UzAQIsBEZXd+VZxCKAPbgiY=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37782,7 +37782,7 @@
           "path": "dist/windows-settings.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-settings.json",
-          "digest": "sha256-ivMpXJRz9AjEhFws+H5ghtDE0FSTFRHm9zissZ2DYOI="
+          "digest": "sha256-IEbpK6h376F8gS9hg3nzwtTz3cFRCnochuOClZFVuOk="
         },
         {
           "path": "dist/terminal-fragment.json",
@@ -37956,7 +37956,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-Z9VkLrjGxHOXrkz0BvL7wIxrIZAU26EJXhxYwBN8E5Y="
+          "digest": "sha256-3JqkEdY0XPjopmamIHA5Ds7JmuN5lh5sxS9QvBe12og="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
@@ -37986,7 +37986,7 @@
           "path": "dist/j3w1-calculator.wh.cpp",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/j3w1-calculator.wh.cpp",
-          "digest": "sha256-YZRduHa5H7sX83zAVz1cWmqj3scmQSev39OZJZolpWM="
+          "digest": "sha256-g/t8U3c8UCeozph50tSfCstdIWD5mbp99tCCsxxMvmk="
         },
         {
           "path": "dist/j3w1-calculator.json",
@@ -38040,7 +38040,7 @@
           "path": "dist/j3w1-notepad-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-notepad-chrome.wh.cpp",
-          "digest": "sha256-jPCyTdZC/GN1NqzHrM/l9fydwSgwaPV3p/GAjpPfc2M="
+          "digest": "sha256-ffYwFHBTT9pMFCEjCRqzi9K8lyje3yHaDkrZo9Yvfc0="
         },
         {
           "path": "dist/j3w1-notepad-chrome.json",
@@ -38052,7 +38052,7 @@
           "path": "dist/j3w1-paint-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-paint-chrome.wh.cpp",
-          "digest": "sha256-S3td6zgenSyIBlhBJd8X0qNE7SnMEVAAAhQFCKfoMX8="
+          "digest": "sha256-Hr2+7VZeh6bIVWrBP0XAGspz5+PyF+2E5ms6qvfmWm8="
         },
         {
           "path": "dist/j3w1-paint-chrome.json",
@@ -38573,7 +38573,28 @@
             "calculator.resource.ToggleButtonBorderBrushCheckedPointerOver",
             "calculator.resource.ToggleButtonBorderBrushCheckedPressed",
             "calculator.resource.ToggleButtonBorderBrushIndeterminatePointerOver",
-            "calculator.resource.ToggleButtonBorderBrushIndeterminatePressed"
+            "calculator.resource.ToggleButtonBorderBrushIndeterminatePressed",
+            "notepad-chrome.resource.SubtleButtonBorderBrushPointerOver",
+            "paint-chrome.resource.SubtleButtonBorderBrushPointerOver",
+            "calculator.resource.SubtleButtonBorderBrushPointerOver",
+            "notepad-chrome.resource.SubtleButtonBorderBrushPressed",
+            "paint-chrome.resource.SubtleButtonBorderBrushPressed",
+            "calculator.resource.SubtleButtonBorderBrushPressed",
+            "notepad-chrome.resource.SplitButtonBorderBrushPointerOver",
+            "paint-chrome.resource.SplitButtonBorderBrushPointerOver",
+            "calculator.resource.SplitButtonBorderBrushPointerOver",
+            "notepad-chrome.resource.SplitButtonBorderBrushPressed",
+            "paint-chrome.resource.SplitButtonBorderBrushPressed",
+            "calculator.resource.SplitButtonBorderBrushPressed",
+            "notepad-chrome.resource.SplitButtonBorderBrushChecked",
+            "paint-chrome.resource.SplitButtonBorderBrushChecked",
+            "calculator.resource.SplitButtonBorderBrushChecked",
+            "notepad-chrome.resource.SplitButtonBorderBrushCheckedPointerOver",
+            "paint-chrome.resource.SplitButtonBorderBrushCheckedPointerOver",
+            "calculator.resource.SplitButtonBorderBrushCheckedPointerOver",
+            "notepad-chrome.resource.SplitButtonBorderBrushCheckedPressed",
+            "paint-chrome.resource.SplitButtonBorderBrushCheckedPressed",
+            "calculator.resource.SplitButtonBorderBrushCheckedPressed"
           ],
           "value": "#e53935",
           "eligibility": {
@@ -38622,7 +38643,13 @@
             "paint-chrome.resource.ToggleButtonBorderBrushIndeterminate",
             "calculator.resource.ToggleButtonBorderBrush",
             "calculator.resource.ToggleButtonBorderBrushIndeterminate",
-            "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"], .suggestion.leftPill:not([aria-selected=\"false\"]), .suggContainer[aria-selected=\"true\"], .suggContainer.leftPill:not([aria-selected=\"false\"]), .suggContainer:has(.suggestion[aria-selected=\"true\"]), .suggContainer:has(.suggestion.leftPill:not([aria-selected=\"false\"])) | border-color"
+            "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"], .suggestion.leftPill:not([aria-selected=\"false\"]), .suggContainer[aria-selected=\"true\"], .suggContainer.leftPill:not([aria-selected=\"false\"]), .suggContainer:has(.suggestion[aria-selected=\"true\"]), .suggContainer:has(.suggestion.leftPill:not([aria-selected=\"false\"])) | border-color",
+            "notepad-chrome.resource.SubtleButtonBorderBrush",
+            "paint-chrome.resource.SubtleButtonBorderBrush",
+            "calculator.resource.SubtleButtonBorderBrush",
+            "notepad-chrome.resource.SplitButtonBorderBrush",
+            "paint-chrome.resource.SplitButtonBorderBrush",
+            "calculator.resource.SplitButtonBorderBrush"
           ],
           "value": "#a3676b",
           "eligibility": {
@@ -38673,7 +38700,16 @@
             "paint-chrome.resource.ToggleButtonBorderBrushIndeterminateDisabled",
             "calculator.resource.ToggleButtonBorderBrushDisabled",
             "calculator.resource.ToggleButtonBorderBrushCheckedDisabled",
-            "calculator.resource.ToggleButtonBorderBrushIndeterminateDisabled"
+            "calculator.resource.ToggleButtonBorderBrushIndeterminateDisabled",
+            "notepad-chrome.resource.SubtleButtonBorderBrushDisabled",
+            "paint-chrome.resource.SubtleButtonBorderBrushDisabled",
+            "calculator.resource.SubtleButtonBorderBrushDisabled",
+            "notepad-chrome.resource.SplitButtonBorderBrushDisabled",
+            "paint-chrome.resource.SplitButtonBorderBrushDisabled",
+            "calculator.resource.SplitButtonBorderBrushDisabled",
+            "notepad-chrome.resource.SplitButtonBorderBrushCheckedDisabled",
+            "paint-chrome.resource.SplitButtonBorderBrushCheckedDisabled",
+            "calculator.resource.SplitButtonBorderBrushCheckedDisabled"
           ],
           "value": "#7d1310",
           "eligibility": {
@@ -38715,7 +38751,13 @@
             "paint-chrome.resource.ExpanderHeaderBorderBrush",
             "paint-chrome.resource.MenuFlyoutSeparatorBackground",
             "paint-chrome.resource.MenuBarItemBorderBrush",
-            "windows-11-start-menu-styler | web body, #root, #root.darkTheme, .scope-with-background, .suggsList, .suggsListContainer, .suggContainer, .previewContainer, .suggDetailsContainer, .contextMenu, #menuContainer | border-color"
+            "windows-11-start-menu-styler | web body, #root, #root.darkTheme, .scope-with-background, .suggsList, .suggsListContainer, .suggContainer, .previewContainer, .suggDetailsContainer, .contextMenu, #menuContainer | border-color",
+            "notepad-chrome.resource.SplitButtonBorderBrushDivider",
+            "paint-chrome.resource.SplitButtonBorderBrushDivider",
+            "calculator.resource.SplitButtonBorderBrushDivider",
+            "notepad-chrome.resource.SplitButtonBorderBrushCheckedDivider",
+            "paint-chrome.resource.SplitButtonBorderBrushCheckedDivider",
+            "calculator.resource.SplitButtonBorderBrushCheckedDivider"
           ],
           "value": "#2b0e0d",
           "eligibility": {
@@ -39895,7 +39937,19 @@
             "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@CommonStates > Grid > Border#VerticalPanningThumb | Background@Disabled",
             "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@CommonStates > Grid > Border#HorizontalPanningThumb | Background@Disabled",
             "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#VerticalThumb > Rectangle@CommonStates | Fill@Disabled",
-            "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Rectangle@CommonStates | Fill@Disabled"
+            "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Rectangle@CommonStates | Fill@Disabled",
+            "notepad-chrome.resource.ButtonBackgroundDisabled",
+            "paint-chrome.resource.ButtonBackgroundDisabled",
+            "calculator.resource.ButtonBackgroundDisabled",
+            "notepad-chrome.resource.SubtleButtonBackgroundDisabled",
+            "paint-chrome.resource.SubtleButtonBackgroundDisabled",
+            "calculator.resource.SubtleButtonBackgroundDisabled",
+            "notepad-chrome.resource.SplitButtonBackgroundDisabled",
+            "paint-chrome.resource.SplitButtonBackgroundDisabled",
+            "calculator.resource.SplitButtonBackgroundDisabled",
+            "notepad-chrome.resource.SplitButtonBackgroundCheckedDisabled",
+            "paint-chrome.resource.SplitButtonBackgroundCheckedDisabled",
+            "calculator.resource.SplitButtonBackgroundCheckedDisabled"
           ],
           "value": "#160b0b",
           "eligibility": {
@@ -40008,7 +40062,13 @@
             "calculator.resource.ToggleButtonBackgroundIndeterminatePointerOver",
             "paint-chrome.caption.ButtonHoverBackgroundColor",
             "windows-11-start-menu-styler | web .suggestion:hover, .suggContainer:hover, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover | background-color",
-            "notepad-chrome.caption.ButtonHoverBackgroundColor"
+            "notepad-chrome.caption.ButtonHoverBackgroundColor",
+            "notepad-chrome.resource.SubtleButtonBackgroundPointerOver",
+            "paint-chrome.resource.SubtleButtonBackgroundPointerOver",
+            "calculator.resource.SubtleButtonBackgroundPointerOver",
+            "notepad-chrome.resource.SplitButtonBackgroundPointerOver",
+            "paint-chrome.resource.SplitButtonBackgroundPointerOver",
+            "calculator.resource.SplitButtonBackgroundPointerOver"
           ],
           "value": "#1c0a09",
           "eligibility": {
@@ -40108,7 +40168,19 @@
             "calculator.resource.ToggleButtonBackgroundIndeterminatePressed",
             "paint-chrome.caption.ButtonPressedBackgroundColor",
             "windows-11-start-menu-styler | web button:active, .button:active, .actionButton:active | background-color",
-            "notepad-chrome.caption.ButtonPressedBackgroundColor"
+            "notepad-chrome.caption.ButtonPressedBackgroundColor",
+            "notepad-chrome.resource.SubtleButtonBackgroundPressed",
+            "paint-chrome.resource.SubtleButtonBackgroundPressed",
+            "calculator.resource.SubtleButtonBackgroundPressed",
+            "notepad-chrome.resource.SplitButtonBackgroundPressed",
+            "paint-chrome.resource.SplitButtonBackgroundPressed",
+            "calculator.resource.SplitButtonBackgroundPressed",
+            "notepad-chrome.resource.SplitButtonBackgroundCheckedPressed",
+            "paint-chrome.resource.SplitButtonBackgroundCheckedPressed",
+            "calculator.resource.SplitButtonBackgroundCheckedPressed",
+            "notepad-chrome.resource.SplitButtonInAppBarUnfocusedPointerOver",
+            "paint-chrome.resource.SplitButtonInAppBarUnfocusedPointerOver",
+            "calculator.resource.SplitButtonInAppBarUnfocusedPointerOver"
           ],
           "value": "#420f0c",
           "eligibility": {
@@ -40227,7 +40299,13 @@
             "paint-chrome.resource.ToggleButtonBackgroundCheckedPointerOver",
             "calculator.resource.ToggleButtonBackgroundChecked",
             "calculator.resource.ToggleButtonBackgroundCheckedPointerOver",
-            "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"], .suggestion.leftPill:not([aria-selected=\"false\"]), .suggContainer[aria-selected=\"true\"], .suggContainer.leftPill:not([aria-selected=\"false\"]), .suggContainer:has(.suggestion[aria-selected=\"true\"]), .suggContainer:has(.suggestion.leftPill:not([aria-selected=\"false\"])) | background-color"
+            "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"], .suggestion.leftPill:not([aria-selected=\"false\"]), .suggContainer[aria-selected=\"true\"], .suggContainer.leftPill:not([aria-selected=\"false\"]), .suggContainer:has(.suggestion[aria-selected=\"true\"]), .suggContainer:has(.suggestion.leftPill:not([aria-selected=\"false\"])) | background-color",
+            "notepad-chrome.resource.SplitButtonBackgroundChecked",
+            "paint-chrome.resource.SplitButtonBackgroundChecked",
+            "calculator.resource.SplitButtonBackgroundChecked",
+            "notepad-chrome.resource.SplitButtonBackgroundCheckedPointerOver",
+            "paint-chrome.resource.SplitButtonBackgroundCheckedPointerOver",
+            "calculator.resource.SplitButtonBackgroundCheckedPointerOver"
           ],
           "value": "#531310",
           "eligibility": {
@@ -40283,7 +40361,13 @@
             "calculator.resource.NavigationViewItemForegroundSelectedPointerOver",
             "calculator.resource.NavigationViewItemForegroundSelectedPressed",
             "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"], .suggestion.leftPill:not([aria-selected=\"false\"]), .suggContainer[aria-selected=\"true\"], .suggContainer.leftPill:not([aria-selected=\"false\"]), .suggContainer:has(.suggestion[aria-selected=\"true\"]), .suggContainer:has(.suggestion.leftPill:not([aria-selected=\"false\"])) | color",
-            "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"] .title, .suggestion[aria-selected=\"true\"] .secondaryText, .suggestion.leftPill:not([aria-selected=\"false\"]) .title, .suggestion.leftPill:not([aria-selected=\"false\"]) .secondaryText, .suggContainer[aria-selected=\"true\"] .title, .suggContainer[aria-selected=\"true\"] .secondaryText, .suggContainer.leftPill:not([aria-selected=\"false\"]) .title, .suggContainer.leftPill:not([aria-selected=\"false\"]) .secondaryText, .suggContainer:has(.suggestion[aria-selected=\"true\"]) .title, .suggContainer:has(.suggestion[aria-selected=\"true\"]) .secondaryText, .suggContainer:has(.suggestion.leftPill:not([aria-selected=\"false\"])) .title, .suggContainer:has(.suggestion.leftPill:not([aria-selected=\"false\"])) .secondaryText | color"
+            "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"] .title, .suggestion[aria-selected=\"true\"] .secondaryText, .suggestion.leftPill:not([aria-selected=\"false\"]) .title, .suggestion.leftPill:not([aria-selected=\"false\"]) .secondaryText, .suggContainer[aria-selected=\"true\"] .title, .suggContainer[aria-selected=\"true\"] .secondaryText, .suggContainer.leftPill:not([aria-selected=\"false\"]) .title, .suggContainer.leftPill:not([aria-selected=\"false\"]) .secondaryText, .suggContainer:has(.suggestion[aria-selected=\"true\"]) .title, .suggContainer:has(.suggestion[aria-selected=\"true\"]) .secondaryText, .suggContainer:has(.suggestion.leftPill:not([aria-selected=\"false\"])) .title, .suggContainer:has(.suggestion.leftPill:not([aria-selected=\"false\"])) .secondaryText | color",
+            "notepad-chrome.resource.SplitButtonForegroundChecked",
+            "paint-chrome.resource.SplitButtonForegroundChecked",
+            "calculator.resource.SplitButtonForegroundChecked",
+            "notepad-chrome.resource.SplitButtonForegroundCheckedPointerOver",
+            "paint-chrome.resource.SplitButtonForegroundCheckedPointerOver",
+            "calculator.resource.SplitButtonForegroundCheckedPointerOver"
           ],
           "value": "#f4eeee",
           "eligibility": {
@@ -42037,10 +42121,14 @@
             "windhawk.resource.ScrollBarTrackStroke",
             "windhawk.resource.ScrollBarTrackStrokePointerOver",
             "windhawk.resource.ScrollBarTrackStrokeDisabled",
-            "notepad-chrome.caption.BackgroundColor",
             "notepad-chrome.caption.ButtonBackgroundColor",
-            "notepad-chrome.caption.InactiveBackgroundColor",
-            "notepad-chrome.caption.ButtonInactiveBackgroundColor"
+            "notepad-chrome.caption.ButtonInactiveBackgroundColor",
+            "notepad-chrome.resource.SubtleButtonBackground",
+            "paint-chrome.resource.SubtleButtonBackground",
+            "calculator.resource.SubtleButtonBackground",
+            "notepad-chrome.resource.SplitButtonBackground",
+            "paint-chrome.resource.SplitButtonBackground",
+            "calculator.resource.SplitButtonBackground"
           ],
           "value": "#000000",
           "eligibility": {
@@ -42841,10 +42929,30 @@
             "windows-11-start-menu-styler | web h1, h2, h3, h4, p, .title, .details, .secondaryText, .groupTitle, .suggestion, .scope-tile > div, .menu-item_details, .previewContainer, button | color",
             "windows-11-start-menu-styler | web .suggestion:hover, .suggContainer:hover, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover | color",
             "windhawk.resource.ScrollBarButtonArrowForeground",
-            "notepad-chrome.caption.ForegroundColor",
             "notepad-chrome.caption.ButtonForegroundColor",
             "notepad-chrome.caption.ButtonHoverForegroundColor",
-            "notepad-chrome.caption.ButtonPressedForegroundColor"
+            "notepad-chrome.caption.ButtonPressedForegroundColor",
+            "notepad-chrome.resource.SubtleButtonForeground",
+            "paint-chrome.resource.SubtleButtonForeground",
+            "calculator.resource.SubtleButtonForeground",
+            "notepad-chrome.resource.SubtleButtonForegroundPointerOver",
+            "paint-chrome.resource.SubtleButtonForegroundPointerOver",
+            "calculator.resource.SubtleButtonForegroundPointerOver",
+            "notepad-chrome.resource.SubtleButtonForegroundPressed",
+            "paint-chrome.resource.SubtleButtonForegroundPressed",
+            "calculator.resource.SubtleButtonForegroundPressed",
+            "notepad-chrome.resource.SplitButtonForeground",
+            "paint-chrome.resource.SplitButtonForeground",
+            "calculator.resource.SplitButtonForeground",
+            "notepad-chrome.resource.SplitButtonForegroundPointerOver",
+            "paint-chrome.resource.SplitButtonForegroundPointerOver",
+            "calculator.resource.SplitButtonForegroundPointerOver",
+            "notepad-chrome.resource.SplitButtonForegroundPressed",
+            "paint-chrome.resource.SplitButtonForegroundPressed",
+            "calculator.resource.SplitButtonForegroundPressed",
+            "notepad-chrome.resource.SplitButtonForegroundCheckedPressed",
+            "paint-chrome.resource.SplitButtonForegroundCheckedPressed",
+            "calculator.resource.SplitButtonForegroundCheckedPressed"
           ],
           "value": "#e99499",
           "eligibility": {
@@ -42895,7 +43003,16 @@
             "calculator.resource.ToggleButtonForegroundDisabled",
             "calculator.resource.ToggleButtonForegroundCheckedDisabled",
             "calculator.resource.ToggleButtonForegroundIndeterminateDisabled",
-            "windhawk.resource.ScrollBarButtonArrowForegroundDisabled"
+            "windhawk.resource.ScrollBarButtonArrowForegroundDisabled",
+            "notepad-chrome.resource.SubtleButtonForegroundDisabled",
+            "paint-chrome.resource.SubtleButtonForegroundDisabled",
+            "calculator.resource.SubtleButtonForegroundDisabled",
+            "notepad-chrome.resource.SplitButtonForegroundDisabled",
+            "paint-chrome.resource.SplitButtonForegroundDisabled",
+            "calculator.resource.SplitButtonForegroundDisabled",
+            "notepad-chrome.resource.SplitButtonForegroundCheckedDisabled",
+            "paint-chrome.resource.SplitButtonForegroundCheckedDisabled",
+            "calculator.resource.SplitButtonForegroundCheckedDisabled"
           ],
           "value": "#8a5559",
           "eligibility": {
@@ -43040,8 +43157,22 @@
             "paint-chrome.caption.InactiveForegroundColor",
             "paint-chrome.caption.ButtonInactiveForegroundColor",
             "windows-11-start-menu-styler | web .secondaryText, .details .secondaryText | color",
-            "notepad-chrome.caption.InactiveForegroundColor",
-            "notepad-chrome.caption.ButtonInactiveForegroundColor"
+            "notepad-chrome.caption.ButtonInactiveForegroundColor",
+            "notepad-chrome.resource.SplitButtonForegroundSecondary",
+            "paint-chrome.resource.SplitButtonForegroundSecondary",
+            "calculator.resource.SplitButtonForegroundSecondary",
+            "notepad-chrome.resource.SplitButtonForegroundSecondaryPressed",
+            "paint-chrome.resource.SplitButtonForegroundSecondaryPressed",
+            "calculator.resource.SplitButtonForegroundSecondaryPressed",
+            "notepad-chrome.resource.DropDownButtonForegroundSecondary",
+            "paint-chrome.resource.DropDownButtonForegroundSecondary",
+            "calculator.resource.DropDownButtonForegroundSecondary",
+            "notepad-chrome.resource.DropDownButtonForegroundSecondaryPointerOver",
+            "paint-chrome.resource.DropDownButtonForegroundSecondaryPointerOver",
+            "calculator.resource.DropDownButtonForegroundSecondaryPointerOver",
+            "notepad-chrome.resource.DropDownButtonForegroundSecondaryPressed",
+            "paint-chrome.resource.DropDownButtonForegroundSecondaryPressed",
+            "calculator.resource.DropDownButtonForegroundSecondaryPressed"
           ],
           "value": "#bd787d",
           "eligibility": {
