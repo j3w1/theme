@@ -48,7 +48,7 @@ int main(){
     root.window=other;assert(!MarqueeElement(&target));root.window=cabinet;
     root.table=&unknownTable;assert(!MarqueeElement(&target));root.table=itemsViewVtable;
     target.root=nullptr;assert(!MarqueeElement(&target));target.root=&root;
-    assert(!FixedModuleVersion(nullptr,0,0));assert(!InitMarquee());
+    assert(!FixedModuleVersion(nullptr,0,0));assert(!InitMarquee(nullptr,nullptr));
     assert(FindExactSymbol(GetModuleHandleW(nullptr),L"missing")==nullptr);
     BLENDFUNCTION native{AC_SRC_OVER,0,85,0};expectedDest=(HDC)1;expectedSource=(HDC)2;
     auto blend=[&](BLENDFUNCTION value){assert(AlphaBlendHook(expectedDest,3,4,8,9,expectedSource,1,2,6,7,value)==37);};

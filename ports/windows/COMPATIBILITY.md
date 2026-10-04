@@ -1034,3 +1034,19 @@ a retained host after its bridge is gone. Stable first-process and close/reopen
 behavior still require real application checks.
 
 Public lifetime implementation: [Microsoft DesktopWindowXamlSource](https://github.com/microsoft/microsoft-ui-xaml/blob/main/dxaml/xcp/dxaml/lib/DesktopWindowXamlSource_Partial.cpp).
+
+### Explorer renderer admission at startup
+
+Windhawk can initialize before Explorer executes. The native adapter previously
+required ExplorerFrame and DirectUI to have been loaded already, so an otherwise
+compatible process could lose native styling at startup. It now acquires those
+System32 rendering modules before symbol admission, checks their actual loaded
+paths and retains its references until after hooks are removed. Exact fixed
+versions, symbols, common-controls admission and high-contrast refusal remain
+unchanged. Incomplete loads and failed admission balance their references.
+The isolated startup diagnostic reproduced missing-module refusal and successful
+admission after loading the modules; the native regression covers dependency
+ordering, rejected paths/versions and reference ownership. This does not certify
+a real Explorer restart or new Windows sign-in.
+
+Lifecycle contract: [Windhawk callbacks](https://github.com/ramensoftware/windhawk/wiki/Creating-a-new-mod#callback-functions).

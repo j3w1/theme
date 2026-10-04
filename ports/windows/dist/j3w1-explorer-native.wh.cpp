@@ -2,7 +2,7 @@
 // @id j3w1-explorer-native
 // @name j3w1 Explorer native colors
 // @description Generated native Explorer canvas and text adapter; exact host only
-// @version 1.8
+// @version 1.8.1
 // @author j3w1
 // @include explorer.exe
 // @architecture x86-64
@@ -709,8 +709,40 @@ static bool InitNavigationPin() {
         && Wh_SetFunctionHook(draw,(void*)NavigationPinHook,(void**)&originalImageListDraw)
         && Wh_SetFunctionHook(getIcon,(void*)FolderIconHook,(void**)&originalImageListGetIcon);
 }
-static bool InitMarquee() {
-    HMODULE frame=GetModuleHandleW(L"ExplorerFrame.dll"),dui=GetModuleHandleW(L"dui70.dll");
+// Windhawk can initialize before Explorer executes and loads its renderers.
+// Acquire only the System32 dependencies and keep them alive through hook removal.
+// The local owner also balances an incomplete load or rejected initialization.
+struct ExplorerRenderingModules {
+    HMODULE frame=nullptr,dui=nullptr;
+    ExplorerRenderingModules()=default;
+    ExplorerRenderingModules(const ExplorerRenderingModules&)=delete;
+    ExplorerRenderingModules& operator=(const ExplorerRenderingModules&)=delete;
+    ~ExplorerRenderingModules(){Reset();}
+    void Reset() noexcept {if(dui)FreeLibrary(dui);if(frame)FreeLibrary(frame);dui=nullptr;frame=nullptr;}
+    static HMODULE LoadSystem(PCWSTR name) {
+        wchar_t directory[MAX_PATH]{};UINT count=GetSystemDirectoryW(directory,MAX_PATH);
+        if(!count||count>=MAX_PATH)return nullptr;
+        std::wstring path(directory,count);path+=L"\\";path+=name;
+        HMODULE module=LoadLibraryExW(path.c_str(),nullptr,LOAD_LIBRARY_SEARCH_SYSTEM32);
+        if(!module)return nullptr;
+        wchar_t actual[MAX_PATH]{};DWORD length=GetModuleFileNameW(module,actual,MAX_PATH);
+        if(!length||length>=MAX_PATH||_wcsicmp(actual,path.c_str())!=0){FreeLibrary(module);return nullptr;}
+        return module;
+    }
+    bool Load() {
+        if(frame||dui)return false;
+        frame=LoadSystem(L"ExplorerFrame.dll");if(!frame)return false;
+        dui=LoadSystem(L"dui70.dll");if(!dui){Reset();return false;}
+        return true;
+    }
+};
+static HMODULE ownedExplorerFrame=nullptr,ownedExplorerDui=nullptr;
+static void ReleaseExplorerRenderingModules() noexcept {
+    if(ownedExplorerDui)FreeLibrary(ownedExplorerDui);
+    if(ownedExplorerFrame)FreeLibrary(ownedExplorerFrame);
+    ownedExplorerDui=nullptr;ownedExplorerFrame=nullptr;
+}
+static bool InitMarquee(HMODULE frame,HMODULE dui) {
     if(!FixedModuleVersion(frame,MAKELONG(0,10),MAKELONG(9549,26100))
        || !FixedModuleVersion(dui,MAKELONG(0,10),MAKELONG(9549,26100)))return false;
     marqueeVtable=FindExactSymbol(frame,L"const UIMarqueeSelector::`vftable'{for `DirectUI::Element'}");
@@ -1076,7 +1108,9 @@ BOOL Wh_ModInit() {
         || length<sizeof(*version) || version->dwFileVersionMS!=MAKELONG(0,10) || version->dwFileVersionLS!=MAKELONG(9549,26100)) {return FALSE;}
     themeClass=(ThemeClassFn)GetProcAddress(GetModuleHandleW(L"uxtheme.dll"),MAKEINTRESOURCEA(74));
     if(!themeClass) {return FALSE;}
-    if(!ReadColor(L"pin",&pin) || !ReadMarquee() || !InitMarquee() || !InitNavigationPin())return FALSE;
+    ExplorerRenderingModules renderers;
+    if(!ReadColor(L"pin",&pin) || !ReadMarquee() || !renderers.Load()
+       || !InitMarquee(renderers.frame,renderers.dui) || !InitNavigationPin())return FALSE;
     COLORREF folderFill,folderEdge;
     if(!ReadColor(L"folderFill",&folderFill)||!ReadColor(L"folderEdge",&folderEdge)||!FolderGlyph::Init(folderFill,folderEdge))return FALSE;
     if(!FolderBitmap::Init()){FolderGlyph::Uninit();return FALSE;}
@@ -1103,9 +1137,10 @@ BOOL Wh_ModInit() {
         && Wh_SetFunctionHook((void*)DrawThemeBackgroundEx,(void*)BackgroundExHook,(void**)&originalDrawThemeBackgroundEx);
 
     if(!hooked) {DeleteObject(backgroundBrush);backgroundBrush=nullptr;FolderBitmap::Uninit();FolderGlyph::Uninit();}
+    if(hooked){ownedExplorerFrame=renderers.frame;ownedExplorerDui=renderers.dui;renderers.frame=nullptr;renderers.dui=nullptr;}
     enabled.store(hooked);
     return hooked;
 }
 void Wh_ModAfterInit() {EnumWindows(RefreshFolderCaption,0);EnumWindows(RepaintFolder,0);}
 void Wh_ModBeforeUninit() { enabled.store(false);RestoreCaptions(); }
-void Wh_ModUninit() { FolderBitmap::Uninit();FolderGlyph::Uninit();if(backgroundBrush) {DeleteObject(backgroundBrush);backgroundBrush=nullptr;} EnumWindows(RepaintFolder,0); }
+void Wh_ModUninit() { FolderBitmap::Uninit();FolderGlyph::Uninit();if(backgroundBrush) {DeleteObject(backgroundBrush);backgroundBrush=nullptr;} EnumWindows(RepaintFolder,0);ReleaseExplorerRenderingModules(); }
