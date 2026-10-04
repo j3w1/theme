@@ -286,17 +286,29 @@ test('Command Palette uses the installed structured color contract and preserves
  write(file,original);f.ok('Apply');const got=read(file);assert.equal(got.Theme,'Dark');assert.equal(got.ColorizationMode,'CustomColor');assert.equal(got.CustomThemeColor.A,255);assert.equal(typeof got.CustomThemeColor.R,'number');assert.equal(got.SingleClickActivates,false);f.ok('Restore');assert.deepEqual(read(file),original);
 });
 
-function windhawkFixture(t){
+function windhawkFixture(t,scope='all'){
  const f=fixture(t),copy=path.join(f.state,'source');fs.cpSync(source,copy,{recursive:true});
  const id='fixture-styler',bytes=Buffer.from('// pinned mod source');write(path.join(f.state,'downloads',id+'.wh.cpp'),bytes.toString());
  write(path.join(copy,'dependencies.json'),{mods:[{id,version:'1.0',sha256:sha(bytes)}]});
  write(path.join(copy,'dist',id+'.json'),{theme:'',controlStyles:[{target:'TextBlock',styles:['Foreground=#e99499']}]});
+ // Journal protocol cases need two independently owned adapters, not every
+ // product adapter. Keep the complete stack for admission/integration cases.
+ // Windows process startup across eight adapters can exhaust the unchanged
+ // 30-second child deadline before a journal-only assertion is reached.
+ assert.ok(['all','protocol'].includes(scope));
+ if(scope==='protocol'){
+  const settingsFile=path.join(copy,'dist/windows-settings.json'),settings=read(settingsFile);
+  settings.bundledMods=settings.bundledMods.filter(mod=>mod.id==='j3w1-explorer-native');
+  assert.equal(settings.bundledMods.length,1);
+  write(settingsFile,settings);
+ }
  const args={source:copy,mode:'Full',fixtureWindhawk:path.join(repoRoot,'tests/fixtures/windows-windhawk.cjs')};
  return {...f,args,db:()=>read(path.join(f.state,'fixture-windhawk.json'))};
 }
 test('Windhawk uses local installed IDs, verifies staged version and nested enabled state, and removes owned mods',t=>{
  const f=windhawkFixture(t);f.ok('Apply',f.args);f.ok('Test',f.args);
  assert.equal(f.journal().transactions[0].mods[0].id,'local@fixture-styler');
+ assert.deepEqual(f.journal().transactions[0].mods.slice(1).map(mod=>mod.id),read(path.join(source,'dist/windows-settings.json')).bundledMods.map(mod=>'local@'+mod.id));
  assert.equal(f.journal().transactions[0].mods[1].id,'local@j3w1-explorer-native');
  assert.equal(f.db()['local@j3w1-explorer-native'].settings.background,'#000000');
  assert.equal(f.db()['local@j3w1-explorer-native'].settings.foreground,'#e99499');
@@ -306,7 +318,7 @@ test('Windhawk uses local installed IDs, verifies staged version and nested enab
  f.ok('Guard',f.args);f.ok('Test',f.args);f.ok('Uninstall',f.args);assert.deepEqual(f.db(),{appSettings:{disableUpdateCheck:false}});
 });
 test('lifecycle progress preserves JSON results and reports every restored update',t=>{
- const f=windhawkFixture(t);
+ const f=windhawkFixture(t,'protocol');
  const first=f.ok('Apply',f.args);
  assert.equal(JSON.parse(first.stdout).result,'applied');
  assert.match(first.stderr,/Preparing theme adapter 1 of \d+/);
@@ -323,7 +335,7 @@ test('lifecycle progress preserves JSON results and reports every restored updat
 });
 
 test('Full Test reports a stopped engine and idempotent Apply restarts without recompilation',t=>{
- const f=windhawkFixture(t);f.ok('Apply',f.args);
+ const f=windhawkFixture(t,'protocol');f.ok('Apply',f.args);
  const stopped=f.run('Test',{...f.args,fixtureEngineStopped:true});assert.equal(stopped.status,1);assert.match(stopped.stdout,/theme engine is not running/);
  const before=JSON.stringify(f.db()),count=f.journal().transactions.length;
  assert.equal(JSON.parse(f.ok('Apply',{...f.args,fixtureEngineStopped:true}).stdout).result,'unchanged');
@@ -512,7 +524,7 @@ test('Markdown adapter settings and source follow setup update, Test and rollbac
 });
 
 test('verified adapters survive a revision-only update and Latest rollback without compilation',t=>{
- const f=windhawkFixture(t),activity=()=>read(path.join(f.state,'fixture-windhawk-activity.json'));
+ const f=windhawkFixture(t,'protocol'),activity=()=>read(path.join(f.state,'fixture-windhawk-activity.json'));
  f.ok('Apply',f.args);const baseline=f.db(),compiled=activity().compiles;
  assert.ok(f.journal().transactions[0].mods.every(m=>m.artifact&&m.sourceSha256));
  f.ok('Update',{...f.args,revision:'2'.repeat(40)});
@@ -526,7 +538,7 @@ test('verified adapters survive a revision-only update and Latest rollback witho
 });
 
 test('binary drift refuses Test and Guard and triggers a fresh pinned compile on Update',t=>{
- const f=windhawkFixture(t),activity=()=>read(path.join(f.state,'fixture-windhawk-activity.json'));
+ const f=windhawkFixture(t,'protocol'),activity=()=>read(path.join(f.state,'fixture-windhawk-activity.json'));
  f.ok('Apply',f.args);const mod=f.journal().transactions[0].mods[0],compiled=activity().compiles;
  const library=path.join(f.state,'tools/windhawk/2.0.0-alpha.6/AppData/Engine/Mods/64',mod.artifact.config.libraryFileName);
  fs.appendFileSync(library,' altered binary');
@@ -538,7 +550,7 @@ test('binary drift refuses Test and Guard and triggers a fresh pinned compile on
 });
 
 test('changed settings-key sets use exact offline import on Latest restore',t=>{
- const f=windhawkFixture(t),activity=()=>read(path.join(f.state,'fixture-windhawk-activity.json'));
+ const f=windhawkFixture(t,'protocol'),activity=()=>read(path.join(f.state,'fixture-windhawk-activity.json'));
  f.ok('Apply',f.args);const baseline=f.db();
  const config=path.join(f.args.source,'dist/fixture-styler.json');
  const next=read(config);next.controlStyles.push({target:'Border',styles:['Background=#000000']});write(config,next);
@@ -550,7 +562,7 @@ test('changed settings-key sets use exact offline import on Latest restore',t=>{
 
 
 test('interrupted settings-only restore resumes only with the same artifact proof',t=>{
- const f=windhawkFixture(t),activity=()=>read(path.join(f.state,'fixture-windhawk-activity.json'));
+ const f=windhawkFixture(t,'protocol'),activity=()=>read(path.join(f.state,'fixture-windhawk-activity.json'));
  f.ok('Apply',f.args);const baseline=f.db();
  const config=path.join(f.args.source,'dist/fixture-styler.json'),next=read(config);
  next.controlStyles[0].styles[0]='Foreground=#ffa2a7';write(config,next);
@@ -564,7 +576,7 @@ test('interrupted settings-only restore resumes only with the same artifact proo
 });
 
 test('legacy receipts and changed adapter configurations require a managed recompile',t=>{
- const f=windhawkFixture(t),activity=()=>read(path.join(f.state,'fixture-windhawk-activity.json'));
+ const f=windhawkFixture(t,'protocol'),activity=()=>read(path.join(f.state,'fixture-windhawk-activity.json'));
  f.ok('Apply',f.args);const compiled=activity().compiles;
  const journal=f.journal();delete journal.transactions[0].mods[0].artifact;
  write(path.join(f.state,'journal.json'),journal);
@@ -579,7 +591,7 @@ test('legacy receipts and changed adapter configurations require a managed recom
 
 
 test('offline rollback credits a verified recompile without rewriting its original receipt',t=>{
- const f=windhawkFixture(t);f.ok('Apply',f.args);
+ const f=windhawkFixture(t,'protocol');f.ok('Apply',f.args);
  const initial=f.journal().transactions[0].mods[0].artifact;
  write(path.join(f.state,'fixture-recompile-import'),'enabled');
  const modPath=path.join(f.state,'downloads/fixture-styler.wh.cpp'),depsPath=path.join(f.args.source,'dependencies.json');
@@ -601,7 +613,7 @@ test('offline rollback credits a verified recompile without rewriting its origin
 });
 
 test('tampered saved adapter export refuses offline import and keeps recoverable history',t=>{
- const f=windhawkFixture(t);f.ok('Apply',f.args);
+ const f=windhawkFixture(t,'protocol');f.ok('Apply',f.args);
  const config=path.join(f.args.source,'dist/fixture-styler.json'),next=read(config);
  next.controlStyles.push({target:'Border',styles:['Background=#000000']});write(config,next);
  f.ok('Update',{...f.args,revision:'2'.repeat(40)});
