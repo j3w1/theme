@@ -211,6 +211,52 @@
       "styles": [
         "BorderBrush=#2b0e0d"
       ]
+    },
+    {
+      "target": "Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#VerticalThumb",
+      "styles": [
+        "Background=#420f0c",
+        "Background@Collapsed=#420f0c",
+        "Background@Expanded=#911410",
+        "Background@CollapsedWithoutAnimation=#420f0c",
+        "Background@ExpandedWithoutAnimation=#911410"
+      ]
+    },
+    {
+      "target": "Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@CommonStates > Grid > Border#VerticalPanningThumb",
+      "styles": [
+        "Background=#420f0c",
+        "Background@Disabled=#160b0b"
+      ]
+    },
+    {
+      "target": "Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb",
+      "styles": [
+        "Background=#420f0c",
+        "Background@Collapsed=#420f0c",
+        "Background@Expanded=#911410",
+        "Background@CollapsedWithoutAnimation=#420f0c",
+        "Background@ExpandedWithoutAnimation=#911410"
+      ]
+    },
+    {
+      "target": "Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@CommonStates > Grid > Border#HorizontalPanningThumb",
+      "styles": [
+        "Background=#420f0c",
+        "Background@Disabled=#160b0b"
+      ]
+    },
+    {
+      "target": "Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#VerticalThumb > Rectangle@CommonStates",
+      "styles": [
+        "Fill@Disabled=#160b0b"
+      ]
+    },
+    {
+      "target": "Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Rectangle@CommonStates",
+      "styles": [
+        "Fill@Disabled=#160b0b"
+      ]
     }
   ],
   "themeResourceVariables": [

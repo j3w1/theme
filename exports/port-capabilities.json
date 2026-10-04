@@ -37749,7 +37749,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-KNZlOZU7MfNPqo5y1VTkGEaBEY/X2MxG9hAkGg5N0/g=",
+      "subjectDigest": "sha256-xWprJtA5N7erfbFb+rdvLCL7Xx4rFlDjufmfnZ9j/4M=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37782,7 +37782,7 @@
           "path": "dist/windows-settings.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-settings.json",
-          "digest": "sha256-5nw35u6pTOroco94RZjH0mLp8JzU5jj43b6/RSmk6sk="
+          "digest": "sha256-I2p6x/Myv/hlAXayTnIn2ScJOgk1Vd32HB6+CDWG2vM="
         },
         {
           "path": "dist/terminal-fragment.json",
@@ -37812,13 +37812,13 @@
           "path": "dist/windows-11-start-menu-styler.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-11-start-menu-styler.json",
-          "digest": "sha256-nhKpvef4o9KMXPhDnNgtMBz6ITFG7RLa+z+o4CqvmBY="
+          "digest": "sha256-Lvp0Wmuo4aN9IlBpxC7fEafRd8Y5c3+zWMRE3hFxRG0="
         },
         {
           "path": "dist/windows-11-file-explorer-styler.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-11-file-explorer-styler.json",
-          "digest": "sha256-TyYlIRcR0d5QMCBfwz5B7AGYOc7xXQj7hXdeqPCBxJw="
+          "digest": "sha256-0lh+W/1Vk7j/j9tNKem+6swrf10GISiRJVBk4vXBQx8="
         },
         {
           "path": "dist/windows-11-notification-center-styler.json",
@@ -37956,7 +37956,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-jRzVX/SLYXbd12Virz+FIIOPUENVSfPR2hTAVBBQSTE="
+          "digest": "sha256-lJC0PjRzzJQy+JEj3ylQ+OH4Idhv85eWdNwic333KYA="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
@@ -38040,7 +38040,7 @@
           "path": "dist/j3w1-notepad-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-notepad-chrome.wh.cpp",
-          "digest": "sha256-/t/QfBh3R/1Ryv4a+DshdPsD2YDO6dwBATlJ1aRHM6E="
+          "digest": "sha256-jPCyTdZC/GN1NqzHrM/l9fydwSgwaPV3p/GAjpPfc2M="
         },
         {
           "path": "dist/j3w1-notepad-chrome.json",
@@ -38052,7 +38052,7 @@
           "path": "dist/j3w1-paint-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-paint-chrome.wh.cpp",
-          "digest": "sha256-D6SIroRscKgDglpQsmynb1DWeBGMnINAfkZC3ZWRmZ0="
+          "digest": "sha256-S3td6zgenSyIBlhBJd8X0qNE7SnMEVAAAhQFCKfoMX8="
         },
         {
           "path": "dist/j3w1-paint-chrome.json",
@@ -39891,7 +39891,11 @@
             "calculator.resource.ToggleButtonBackgroundCheckedDisabled",
             "calculator.resource.ToggleButtonBackgroundIndeterminateDisabled",
             "windhawk.resource.ScrollBarThumbFillDisabled",
-            "windhawk.resource.ScrollBarPanningThumbBackgroundDisabled"
+            "windhawk.resource.ScrollBarPanningThumbBackgroundDisabled",
+            "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@CommonStates > Grid > Border#VerticalPanningThumb | Background@Disabled",
+            "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@CommonStates > Grid > Border#HorizontalPanningThumb | Background@Disabled",
+            "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#VerticalThumb > Rectangle@CommonStates | Fill@Disabled",
+            "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Rectangle@CommonStates | Fill@Disabled"
           ],
           "value": "#160b0b",
           "eligibility": {
@@ -40129,7 +40133,15 @@
             "windows-11-start-menu-styler | web ::-webkit-scrollbar-thumb | background-color",
             "windhawk.resource.ScrollBarThumbBackground",
             "windhawk.resource.ScrollBarPanningThumbBackground",
-            "windhawk.resource.ScrollBarThumbFill"
+            "windhawk.resource.ScrollBarThumbFill",
+            "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#VerticalThumb | Background",
+            "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#VerticalThumb | Background@Collapsed",
+            "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#VerticalThumb | Background@CollapsedWithoutAnimation",
+            "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@CommonStates > Grid > Border#VerticalPanningThumb | Background",
+            "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb | Background",
+            "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb | Background@Collapsed",
+            "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb | Background@CollapsedWithoutAnimation",
+            "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@CommonStates > Grid > Border#HorizontalPanningThumb | Background"
           ],
           "value": "#420f0c",
           "eligibility": {
@@ -40148,7 +40160,11 @@
           "nativeKeys": [
             "nativeExplorer.scrollbarHover",
             "windhawk.resource.ScrollBarThumbFillPointerOver",
-            "windhawk.resource.ScrollBarThumbFillPressed"
+            "windhawk.resource.ScrollBarThumbFillPressed",
+            "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#VerticalThumb | Background@Expanded",
+            "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#VerticalThumb | Background@ExpandedWithoutAnimation",
+            "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb | Background@Expanded",
+            "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb | Background@ExpandedWithoutAnimation"
           ],
           "value": "#911410",
           "eligibility": {

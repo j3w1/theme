@@ -2,7 +2,7 @@
 // @id j3w1-paint-chrome
 // @name j3w1 Paint chrome
 // @description Exact-package Paint chrome resources; document and artwork colors remain native
-// @version 1.0.8
+// @version 1.0.9
 // @author j3w1
 // @include mspaint.exe
 // @architecture x86-64
@@ -672,6 +672,14 @@ static void RefreshThemeResources(Root& root) {
  try {element.RequestedTheme(element.ActualTheme()==ElementTheme::Dark?ElementTheme::Light:ElementTheme::Dark);restore();}
  catch(...) {try{restore();}catch(...){}throw;}
 }
+// A weak host reference can still resolve after IClosable::Close. On the
+// reviewed runtime, Close clears the public SiteBridge and the internal island;
+// SystemBackdrop then dereferences that disposed island. Probe only the safe
+// public bridge getter before any backdrop access, on the existing UI thread.
+template<class Source,class Visit> static bool WithAttachedSource(Source const& source,Visit visit) {
+ if(!source||!source.SiteBridge())return false;
+ visit(source);return true;
+}
 static bool Restore(Root& root) {
  bool restored=true;
  for(auto& entry:root.controls)restored=RestoreControlResources(entry)&&restored;
@@ -681,7 +689,9 @@ static bool Restore(Root& root) {
  bool backgroundOwned=false;
  try{backgroundOwned=element&&root.backgroundApplied&&Identity(element.GetValue(root.backgroundProperty),root.backgroundApplied);}catch(...){restored=false;}
  if(root.backdropTracked)try {
-  if(auto source=root.source.get();source&&!source.SystemBackdrop())source.SystemBackdrop(root.backdropBefore);
+  WithAttachedSource(root.source.get(),[&](auto const& source){
+   if(!source.SystemBackdrop())source.SystemBackdrop(root.backdropBefore);
+  });
   if(auto window=root.window.get();window&&!window.SystemBackdrop())window.SystemBackdrop(root.backdropBefore);
   root.backdropTracked=false;root.backdropBefore=nullptr;
  }catch(...){restored=false;}
@@ -711,8 +721,11 @@ static bool Restore(Root& root) {
 // Public backdrop access is read/write. Retain the exact object, and restore
 // only while our null remains installed; a later app-owned backdrop wins.
 static void ApplyBackdrop(Root& root) {
+ if(root.backdropTracked)return;
  if(auto source=root.source.get()) {
-  if(auto value=source.SystemBackdrop()) {root.backdropBefore=value;source.SystemBackdrop(nullptr);root.backdropTracked=true;}
+  WithAttachedSource(source,[&](auto const& attached){
+   if(auto value=attached.SystemBackdrop()) {root.backdropBefore=value;attached.SystemBackdrop(nullptr);root.backdropTracked=true;}
+  });
  } else if(auto window=root.window.get()) {
   if(auto value=window.SystemBackdrop()) {root.backdropBefore=value;window.SystemBackdrop(nullptr);root.backdropTracked=true;}
  }
@@ -1172,7 +1185,10 @@ static void Refresh(ThreadState& state) noexcept {
   for(size_t at=0;at<rootCount;at++)try {
   auto& root=state.roots[at];
   if(!enabled.load()||HighContrast()||!root.element.get())Restore(root);
-  else if(Prepare(root)){ApplyBackdrop(root);ApplyRootBackground(root);Bridge(root);}
+  else if(auto element=root.element.get();element&&element.IsLoaded()&&element.XamlRoot()
+    &&element.DispatcherQueue().HasThreadAccess()&&Prepare(root)) {
+   ApplyBackdrop(root);ApplyRootBackground(root);Bridge(root);
+  }
  }catch(hresult_error const& error){Log(98,static_cast<unsigned>(error.code().value));Restore(state.roots[at]);}
  catch(...){Log(97);Restore(state.roots[at]);}
  for(auto it=state.roots.begin();it!=state.roots.end();) {

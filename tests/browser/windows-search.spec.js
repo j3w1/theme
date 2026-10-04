@@ -91,3 +91,22 @@ for(const layout of ['outer-container','inner-container','class-selection']) {
   expect(await row.boundingBox()).toEqual(before);
  });
 }
+
+
+test('Search nested paint layers follow their result state',verification({component:'list',category:'appearance',states:['default','hover','selected','selected+focus-visible'],variants:[],note:'Synthetic intermediate paint layers reproduce a selected frame whose interior keeps the host background. Checks emitted CSS through hover exit, selection and ARIA deselection; native Search remains separately verified.'}),async({page})=>{
+ await page.setContent(
+  '<html><head><style>.suggestion{width:300px;padding:8px;box-sizing:border-box}.hostPaintLayer{display:flex;background:GrayText}.details{flex:1}.iconContainer{padding:8px}</style><style>'+css+'</style></head><body><div class="suggestion leftPill" role="option" aria-selected="false" tabindex="0"><div class="hostPaintLayer"><div class="iconContainer">Icon</div><div class="hostPaintLayer details"><div class="title">Sample application</div><div class="secondaryText">Application</div></div></div></div><button>Outside</button></body></html>'
+ );
+ const row=page.getByRole('option'),outside=page.getByRole('button',{name:'Outside'});
+ const fills=()=>page.locator('.suggestion,.hostPaintLayer,.iconContainer,.title,.secondaryText').evaluateAll(elements=>elements.map(element=>getComputedStyle(element).backgroundColor));
+ await outside.hover();expect(await fills()).toEqual(Array(6).fill(color('color.surface.canvas')));
+ await row.hover();expect(await fills()).toEqual(Array(6).fill(color('color.interaction.hover.bg')));
+ await outside.hover();expect(await fills()).toEqual(Array(6).fill(color('color.surface.canvas')));
+ await row.evaluate(element=>element.setAttribute('aria-selected','true'));
+ expect(await fills()).toEqual(Array(6).fill(color('color.interaction.selection.bg')));
+ await row.hover();expect(await fills()).toEqual(Array(6).fill(color('color.interaction.selection.bg')));
+ await row.evaluate(element=>element.setAttribute('aria-selected','false'));
+ await outside.hover();expect(await fills()).toEqual(Array(6).fill(color('color.surface.canvas')));
+ await page.emulateMedia({forcedColors:'active'});
+ expect(await row.evaluate(element=>getComputedStyle(element).forcedColorAdjust)).toBe('auto');
+});

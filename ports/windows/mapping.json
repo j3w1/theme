@@ -809,7 +809,11 @@
       "calculator.resource.ToggleButtonBackgroundCheckedDisabled",
       "calculator.resource.ToggleButtonBackgroundIndeterminateDisabled",
       "windhawk.resource.ScrollBarThumbFillDisabled",
-      "windhawk.resource.ScrollBarPanningThumbBackgroundDisabled"
+      "windhawk.resource.ScrollBarPanningThumbBackgroundDisabled",
+      "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@CommonStates > Grid > Border#VerticalPanningThumb | Background@Disabled",
+      "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@CommonStates > Grid > Border#HorizontalPanningThumb | Background@Disabled",
+      "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#VerticalThumb > Rectangle@CommonStates | Fill@Disabled",
+      "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Rectangle@CommonStates | Fill@Disabled"
     ],
     "color.border.disabled": [
       "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | BorderBrush@Disabled",
@@ -893,12 +897,24 @@
       "windows-11-start-menu-styler | web ::-webkit-scrollbar-thumb | background-color",
       "windhawk.resource.ScrollBarThumbBackground",
       "windhawk.resource.ScrollBarPanningThumbBackground",
-      "windhawk.resource.ScrollBarThumbFill"
+      "windhawk.resource.ScrollBarThumbFill",
+      "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#VerticalThumb | Background",
+      "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#VerticalThumb | Background@Collapsed",
+      "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#VerticalThumb | Background@CollapsedWithoutAnimation",
+      "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@CommonStates > Grid > Border#VerticalPanningThumb | Background",
+      "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb | Background",
+      "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb | Background@Collapsed",
+      "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb | Background@CollapsedWithoutAnimation",
+      "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@CommonStates > Grid > Border#HorizontalPanningThumb | Background"
     ],
     "color.interaction.scrollbar.thumb-hover": [
       "nativeExplorer.scrollbarHover",
       "windhawk.resource.ScrollBarThumbFillPointerOver",
-      "windhawk.resource.ScrollBarThumbFillPressed"
+      "windhawk.resource.ScrollBarThumbFillPressed",
+      "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#VerticalThumb | Background@Expanded",
+      "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#VerticalThumb | Background@ExpandedWithoutAnimation",
+      "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb | Background@Expanded",
+      "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb | Background@ExpandedWithoutAnimation"
     ],
     "color.interaction.focus.ring": [
       "nativeExplorer.focusRing",

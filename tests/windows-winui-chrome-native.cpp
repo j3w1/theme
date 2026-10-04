@@ -45,6 +45,26 @@ static void Stop() {
 }
 int main(int argc, char** argv) {
     assert(argc == 2);
+    if(strcmp(argv[1], "closed-source-backdrop") == 0) {
+        struct Source {
+            bool attached=false;
+            explicit operator bool() const{return true;}
+            bool SiteBridge() const{return attached;}
+        } source;
+        unsigned reads=0,writes=0;bool owned=false;int current=7,baseline=0;
+        auto apply=[&](auto const&){++reads;baseline=current;owned=true;current=0;++writes;};
+        auto restore=[&](auto const&){++reads;if(owned&&current==0){current=baseline;++writes;}owned=false;};
+        // A closed-but-retained host must never enter the unsafe getter/setter.
+        assert(!WithAttachedSource(source,apply));assert(reads==0&&writes==0);
+        source.attached=true;assert(WithAttachedSource(source,apply));assert(current==0&&owned);
+        assert(WithAttachedSource(source,restore));assert(current==7&&!owned);
+        assert(WithAttachedSource(source,apply));current=9;
+        assert(WithAttachedSource(source,restore));assert(current==9&&!owned);
+        assert(WithAttachedSource(source,apply));source.attached=false;
+        const unsigned beforeReads=reads,beforeWrites=writes;
+        assert(!WithAttachedSource(source,restore));assert(reads==beforeReads&&writes==beforeWrites);
+        puts("PASS: attached baseline restore, later app color preservation, and no backdrop access after host close");return 0;
+    }
     if(strcmp(argv[1], "retired-control-capacity") == 0) {
         init_apartment(apartment_type::multi_threaded);
         Root root;

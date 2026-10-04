@@ -292,15 +292,6 @@
       ]
     },
     {
-      "target": ".suggestion[aria-selected=\"true\"], .suggestion.leftPill:not([aria-selected=\"false\"]), .suggContainer[aria-selected=\"true\"], .suggContainer.leftPill:not([aria-selected=\"false\"]), .suggContainer:has(.suggestion[aria-selected=\"true\"]), .suggContainer:has(.suggestion.leftPill:not([aria-selected=\"false\"]))",
-      "styles": [
-        "background-color: #531310 !important",
-        "color: #f4eeee !important",
-        "border-color: #a3676b !important",
-        "border-inline-start-color: #e53935 !important"
-      ]
-    },
-    {
       "target": ".suggestion .suggContainer, .suggContainer .suggestion, .suggestion .details, .suggestion .iconContainer, .suggestion .title, .suggestion .secondaryText, .suggContainer .details, .suggContainer .iconContainer, .suggContainer .title, .suggContainer .secondaryText",
       "styles": [
         "background-color: inherit !important"
@@ -311,6 +302,21 @@
       "styles": [
         "border-style: none !important",
         "background-color: inherit !important"
+      ]
+    },
+    {
+      "target": ".suggestion *, .suggContainer *",
+      "styles": [
+        "background-color: inherit !important"
+      ]
+    },
+    {
+      "target": ".suggestion[aria-selected=\"true\"], .suggestion.leftPill:not([aria-selected=\"false\"]), .suggContainer[aria-selected=\"true\"], .suggContainer.leftPill:not([aria-selected=\"false\"]), .suggContainer:has(.suggestion[aria-selected=\"true\"]), .suggContainer:has(.suggestion.leftPill:not([aria-selected=\"false\"]))",
+      "styles": [
+        "background-color: #531310 !important",
+        "color: #f4eeee !important",
+        "border-color: #a3676b !important",
+        "border-inline-start-color: #e53935 !important"
       ]
     },
     {

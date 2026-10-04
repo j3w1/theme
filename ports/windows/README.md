@@ -277,3 +277,9 @@ header identities are required; a PowerToys/WebView update can refuse styling.
 High contrast takes priority. Reselect a file after updating, disabling or
 restoring the adapter. The normal setup/Test/Restore/Uninstall commands manage
 this adapter too; no manual mod installation is needed.
+
+Explorer Home scrollbar parts also map the recorded collapsed, expanded and
+disabled template states directly; named resource settings alone can leave
+existing templates gray. Search result backgrounds inherit through intermediate
+host wrappers so the selected frame does not enclose an unthemed interior.
+Both corrections are part of the same install.ps1 setup/update and saved rollback.

@@ -455,15 +455,6 @@
           }
         },
         {
-          "target": ".suggestion[aria-selected=\"true\"], .suggestion.leftPill:not([aria-selected=\"false\"]), .suggContainer[aria-selected=\"true\"], .suggContainer.leftPill:not([aria-selected=\"false\"]), .suggContainer:has(.suggestion[aria-selected=\"true\"]), .suggContainer:has(.suggestion.leftPill:not([aria-selected=\"false\"]))",
-          "styles": {
-            "background-color": "color.interaction.selection.bg",
-            "color": "color.interaction.selection.text",
-            "border-color": "color.border.control",
-            "border-inline-start-color": "color.border.selected-indicator"
-          }
-        },
-        {
           "target": ".suggestion .suggContainer, .suggContainer .suggestion, .suggestion .details, .suggestion .iconContainer, .suggestion .title, .suggestion .secondaryText, .suggContainer .details, .suggContainer .iconContainer, .suggContainer .title, .suggContainer .secondaryText",
           "styles": {},
           "presentation": {
@@ -476,6 +467,22 @@
           "presentation": {
             "border-style": "none",
             "background-color": "inherit"
+          }
+        },
+        {
+          "target": ".suggestion *, .suggContainer *",
+          "styles": {},
+          "presentation": {
+            "background-color": "inherit"
+          }
+        },
+        {
+          "target": ".suggestion[aria-selected=\"true\"], .suggestion.leftPill:not([aria-selected=\"false\"]), .suggContainer[aria-selected=\"true\"], .suggContainer.leftPill:not([aria-selected=\"false\"]), .suggContainer:has(.suggestion[aria-selected=\"true\"]), .suggContainer:has(.suggestion.leftPill:not([aria-selected=\"false\"]))",
+          "styles": {
+            "background-color": "color.interaction.selection.bg",
+            "color": "color.interaction.selection.text",
+            "border-color": "color.border.control",
+            "border-inline-start-color": "color.border.selected-indicator"
           }
         },
         {
@@ -769,6 +776,52 @@
           "target": "CommandBar#FileExplorerCommandBar, CommandBar#FileExplorerSecondaryCommandBar",
           "styles": {
             "BorderBrush": "color.border.divider"
+          }
+        },
+        {
+          "target": "Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#VerticalThumb",
+          "styles": {
+            "Background": "color.interaction.scrollbar.thumb",
+            "Background@Collapsed": "color.interaction.scrollbar.thumb",
+            "Background@Expanded": "color.interaction.scrollbar.thumb-hover",
+            "Background@CollapsedWithoutAnimation": "color.interaction.scrollbar.thumb",
+            "Background@ExpandedWithoutAnimation": "color.interaction.scrollbar.thumb-hover"
+          }
+        },
+        {
+          "target": "Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@CommonStates > Grid > Border#VerticalPanningThumb",
+          "styles": {
+            "Background": "color.interaction.scrollbar.thumb",
+            "Background@Disabled": "color.interaction.disabled.bg"
+          }
+        },
+        {
+          "target": "Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb",
+          "styles": {
+            "Background": "color.interaction.scrollbar.thumb",
+            "Background@Collapsed": "color.interaction.scrollbar.thumb",
+            "Background@Expanded": "color.interaction.scrollbar.thumb-hover",
+            "Background@CollapsedWithoutAnimation": "color.interaction.scrollbar.thumb",
+            "Background@ExpandedWithoutAnimation": "color.interaction.scrollbar.thumb-hover"
+          }
+        },
+        {
+          "target": "Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@CommonStates > Grid > Border#HorizontalPanningThumb",
+          "styles": {
+            "Background": "color.interaction.scrollbar.thumb",
+            "Background@Disabled": "color.interaction.disabled.bg"
+          }
+        },
+        {
+          "target": "Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#VerticalThumb > Rectangle@CommonStates",
+          "styles": {
+            "Fill@Disabled": "color.interaction.disabled.bg"
+          }
+        },
+        {
+          "target": "Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Rectangle@CommonStates",
+          "styles": {
+            "Fill@Disabled": "color.interaction.disabled.bg"
           }
         }
       ]
@@ -1388,7 +1441,7 @@
     }
   },
   "notepadChrome": {
-    "version": "1.2.8",
+    "version": "1.2.9",
     "packageFullName": "Microsoft.WindowsNotepad_11.2607.14.0_x64__8wekyb3d8bbwe",
     "runtimePackage": "Microsoft.WindowsAppRuntime.2_2.5.1.0_x64__8wekyb3d8bbwe",
     "runtimeSha256": "aad12524765e6fb63f0ae26a45a9ba3104f24fde66413d8a3036fbed74a1e990",
@@ -1663,7 +1716,7 @@
     "ComboBoxItemPillFillBrush": "color.border.selected-indicator"
   },
   "paintChrome": {
-    "version": "1.0.8",
+    "version": "1.0.9",
     "packageFullName": "Microsoft.Paint_11.2605.81.0_x64__8wekyb3d8bbwe",
     "runtimePackage": "Microsoft.WindowsAppRuntime.2_2.5.1.0_x64__8wekyb3d8bbwe",
     "runtimeSha256": "aad12524765e6fb63f0ae26a45a9ba3104f24fde66413d8a3036fbed74a1e990",

@@ -995,3 +995,42 @@ reused windows and later app replacements retain their existing refusal and
 ownership checks. No drag geometry, tabs or document content is changed. Native
 regressions cover nullable/explicit baselines, failures, retry and window reuse
 for both adapters. Fresh-window appearance remains a separate live check.
+
+### Explorer scrollbar template ownership
+
+A bounded live trace on the recorded Explorer runtime found the application
+scrollbar resources already red while the instantiated Home thumb still held
+the original translucent white brush. Resource settings alone therefore do not
+prove that the template uses them. Exact observed WinUI primitive types and
+vertical/horizontal thumb and panning parts now receive scoped property rules
+through the existing pinned Explorer styler. ConsciousStates covers collapsed,
+expanded and the native no-animation variants; CommonStates covers disabled
+parts. Rectangle Fill is overridden only while disabled, preserving its normal
+template binding. No new observer is distributed. Indicator geometry, opacity,
+scrolling, native timing and existing compatibility/rollback admission remain
+unchanged. Live transition acceptance is separate from settings verification.
+
+### Search intermediate paint layers
+
+Selected Search results can retain black intermediate wrappers even when their
+outer frame and text are themed. Descendant background colors now inherit their
+result state, and selected fills follow nested inheritance rules in the cascade.
+This applies to result subtrees only; image contents, background images, focus,
+ARIA deselection, layout and forced-color handling are preserved. Synthetic
+regressions include an additional host paint layer. Native Search appearance
+remains a separate acceptance check.
+
+### Closed XAML host lifetime
+
+The recorded Notepad runtime can retain a closed DesktopWindowXamlSource whose
+weak reference still resolves. Its public SystemBackdrop getter accesses the
+island released by Close. Both shared app-chrome adapters now require an attached
+public SiteBridge before reading or restoring an island backdrop; refresh also
+requires a loaded root with a XamlRoot on its owning thread. A closed host receives
+no backdrop access, and an already owned backdrop is not polled each timer tick.
+Attached hosts retain their exact baseline and later application replacements.
+The native regression exercises attached restore, later application colors and
+a retained host after its bridge is gone. Stable first-process and close/reopen
+behavior still require real application checks.
+
+Public lifetime implementation: [Microsoft DesktopWindowXamlSource](https://github.com/microsoft/microsoft-ui-xaml/blob/main/dxaml/xcp/dxaml/lib/DesktopWindowXamlSource_Partial.cpp).
