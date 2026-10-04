@@ -158,7 +158,11 @@ WebView recent/results/category/preview panels now use the same token palette.
 The existing pinned styler applies CSS through its supported `webContentStyles`
 field; there is no custom JavaScript, behavior replacement or remote-debugging
 configuration. Search icons retain their fonts and images, and forced colors
-retain native priority. Live interaction acceptance remains open.
+retain native priority. Selected results use one continuous dark-red surface,
+a 1px rose frame and a 2px red leading edge. Nested icon and label layers inherit
+that surface; the detached native pill is replaced by the leading edge. The
+frame stays reserved in unselected rows so selection does not move their labels.
+Live interaction acceptance remains open.
 
 ### PowerToys text-preview palette
 

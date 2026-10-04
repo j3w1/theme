@@ -20,7 +20,6 @@
       "windows-11-start-menu-styler | Border#TaskbarSearchBackground | BorderBrush",
       "windows-11-start-menu-styler | Cortana.UI.Views.RichSearchBoxControl#SearchBoxControl > Grid#RootGrid | BorderBrush",
       "folder.edge",
-      "windows-11-start-menu-styler | web .leftPill::before | background-color",
       "calculator.resource.SystemControlHighlightAccentBrush",
       "calculator.resource.ButtonBorderBrushPointerOver",
       "calculator.resource.ButtonBorderBrushPressed",
@@ -90,11 +89,6 @@
       "windows-11-start-menu-styler | Border#AppBorder | Background",
       "windows-11-start-menu-styler | Border#TaskbarSearchBackground | Background",
       "windows-11-start-menu-styler | Cortana.UI.Views.RichSearchBoxControl#SearchBoxControl > Grid#RootGrid | Background",
-      "windows-11-start-menu-styler | web body, #root, #root.darkTheme, .scope-with-background, .suggsList, .suggsListContainer, .suggContainer, .previewContainer, .suggDetailsContainer, .contextMenu, #menuContainer | background-color",
-      "windows-11-start-menu-styler | web .iconContainer, .previewContainer .imageContainer, .scope-tile > div, button, .button, .actionButton | background-color",
-      "windows-11-start-menu-styler | web .suggestion, .contextMenu li | background-color",
-      "windows-11-start-menu-styler | web .scope-tile--selected > div | background-color",
-      "windows-11-start-menu-styler | web ::-webkit-scrollbar-track | background-color",
       "calculator.resource.AppChromeAcrylicHostBackdropMediumLowBrush",
       "calculator.resource.AppBackgroundAltMediumLowBrush",
       "calculator.resource.AppOperatorPanelBackground",
@@ -161,7 +155,14 @@
       "paint-chrome.caption.BackgroundColor",
       "paint-chrome.caption.ButtonBackgroundColor",
       "paint-chrome.caption.InactiveBackgroundColor",
-      "paint-chrome.caption.ButtonInactiveBackgroundColor"
+      "paint-chrome.caption.ButtonInactiveBackgroundColor",
+      "windows-11-start-menu-styler | web body, #root, #root.darkTheme, .scope-with-background, .suggsList, .suggsListContainer, .suggContainer, .previewContainer, .suggDetailsContainer, .contextMenu, #menuContainer | background-color",
+      "windows-11-start-menu-styler | web .iconContainer, .previewContainer .imageContainer, .scope-tile > div, button, .button, .actionButton | background-color",
+      "windows-11-start-menu-styler | web .suggestion, .suggContainer | background-color",
+      "windows-11-start-menu-styler | web .suggestion, .suggContainer | border-color",
+      "windows-11-start-menu-styler | web .contextMenu li | background-color",
+      "windows-11-start-menu-styler | web .scope-tile--selected > div | background-color",
+      "windows-11-start-menu-styler | web ::-webkit-scrollbar-track | background-color"
     ],
     "color.terminal.cursor": [
       "terminal.cursor"
@@ -198,9 +199,6 @@
       "windows-11-settings-styler | TextBlock | Foreground",
       "windows-11-settings-styler | Control | Foreground",
       "nativeExplorer.foreground",
-      "windows-11-start-menu-styler | web body, #root, #root.darkTheme, .scope-with-background, .suggsList, .suggsListContainer, .suggContainer, .previewContainer, .suggDetailsContainer, .contextMenu, #menuContainer | color",
-      "windows-11-start-menu-styler | web h1, h2, h3, h4, p, .title, .details, .secondaryText, .groupTitle, .suggestion, .scope-tile > div, .menu-item_details, .previewContainer, button | color",
-      "windows-11-start-menu-styler | web .suggestion:hover, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover | color",
       "calculator.resource.CalcButtonTextFillColorDefaultBrush",
       "calculator.resource.CalcButtonTextFillColorHoverBrush",
       "calculator.resource.AppControlPageTextBaseHighColorBrush",
@@ -300,13 +298,15 @@
       "paint-chrome.caption.ForegroundColor",
       "paint-chrome.caption.ButtonForegroundColor",
       "paint-chrome.caption.ButtonHoverForegroundColor",
-      "paint-chrome.caption.ButtonPressedForegroundColor"
+      "paint-chrome.caption.ButtonPressedForegroundColor",
+      "windows-11-start-menu-styler | web body, #root, #root.darkTheme, .scope-with-background, .suggsList, .suggsListContainer, .suggContainer, .previewContainer, .suggDetailsContainer, .contextMenu, #menuContainer | color",
+      "windows-11-start-menu-styler | web h1, h2, h3, h4, p, .title, .details, .secondaryText, .groupTitle, .suggestion, .scope-tile > div, .menu-item_details, .previewContainer, button | color",
+      "windows-11-start-menu-styler | web .suggestion:hover, .suggContainer:hover, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover | color"
     ],
     "color.text.bright": [
       "native.bright",
       "powertoys.number",
       "windhawk.resource.AccentTextFillColorPrimary",
-      "windows-11-start-menu-styler | web .scope-tile--selected > div | color",
       "calculator.resource.AppControlForegroundAccentBrush",
       "calculator.resource.AccentTextFillColorPrimaryBrush",
       "calculator.resource.TextOnAccentFillColorPrimaryBrush",
@@ -314,7 +314,8 @@
       "notepad-chrome.resource.AccentTextFillColorPrimaryBrush",
       "notepad-chrome.resource.TextOnAccentFillColorPrimaryBrush",
       "paint-chrome.resource.AccentTextFillColorPrimaryBrush",
-      "paint-chrome.resource.TextOnAccentFillColorPrimaryBrush"
+      "paint-chrome.resource.TextOnAccentFillColorPrimaryBrush",
+      "windows-11-start-menu-styler | web .scope-tile--selected > div | color"
     ],
     "color.text.heading": [
       "native.heading",
@@ -328,7 +329,6 @@
       "windhawk.resource.TextFillColorSecondary",
       "windhawk.resource.SystemControlForegroundBaseMediumBrush",
       "windows-11-notification-center-styler | CalendarView | OutOfScopeForeground",
-      "windows-11-start-menu-styler | web .secondaryText, .details .secondaryText | color",
       "calculator.resource.CalcButtonTextFillColorPressedBrush",
       "calculator.resource.AppControlPageTextBaseMediumHighBrush",
       "calculator.resource.AppControlForegroundSecondaryBrush",
@@ -349,7 +349,8 @@
       "paint-chrome.resource.MenuFlyoutItemKeyboardAcceleratorTextForegroundPointerOver",
       "paint-chrome.resource.MenuFlyoutItemKeyboardAcceleratorTextForegroundPressed",
       "paint-chrome.caption.InactiveForegroundColor",
-      "paint-chrome.caption.ButtonInactiveForegroundColor"
+      "paint-chrome.caption.ButtonInactiveForegroundColor",
+      "windows-11-start-menu-styler | web .secondaryText, .details .secondaryText | color"
     ],
     "color.text.disabled": [
       "native.disabled",
@@ -393,7 +394,6 @@
       "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@Selected",
       "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@PointerOverSelected",
       "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@PressedSelected",
-      "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"] | background-color",
       "calculator.resource.NavigationViewItemBackgroundChecked",
       "calculator.resource.NavigationViewItemBackgroundCheckedPointerOver",
       "calculator.resource.NavigationViewItemBackgroundCheckedPressed",
@@ -419,7 +419,8 @@
       "paint-chrome.resource.ToggleButtonBackgroundChecked",
       "paint-chrome.resource.ToggleButtonBackgroundCheckedPointerOver",
       "calculator.resource.ToggleButtonBackgroundChecked",
-      "calculator.resource.ToggleButtonBackgroundCheckedPointerOver"
+      "calculator.resource.ToggleButtonBackgroundCheckedPointerOver",
+      "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"], .suggestion.leftPill:not([aria-selected=\"false\"]), .suggContainer[aria-selected=\"true\"], .suggContainer.leftPill:not([aria-selected=\"false\"]), .suggContainer:has(.suggestion[aria-selected=\"true\"]), .suggContainer:has(.suggestion.leftPill:not([aria-selected=\"false\"])) | background-color"
     ],
     "color.surface.raised": [
       "powertoys.inactive",
@@ -478,7 +479,8 @@
       "paint-chrome.resource.ToggleButtonBorderBrush",
       "paint-chrome.resource.ToggleButtonBorderBrushIndeterminate",
       "calculator.resource.ToggleButtonBorderBrush",
-      "calculator.resource.ToggleButtonBorderBrushIndeterminate"
+      "calculator.resource.ToggleButtonBorderBrushIndeterminate",
+      "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"], .suggestion.leftPill:not([aria-selected=\"false\"]), .suggContainer[aria-selected=\"true\"], .suggContainer.leftPill:not([aria-selected=\"false\"]), .suggContainer:has(.suggestion[aria-selected=\"true\"]), .suggContainer:has(.suggestion.leftPill:not([aria-selected=\"false\"])) | border-color"
     ],
     "font.family.mono": [
       "font.family",
@@ -588,7 +590,6 @@
       "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@PointerOver",
       "windows-11-file-explorer-styler | MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates | Background@SubMenuOpened",
       "windows-11-file-explorer-styler | AppBarButton > Grid#Root@CommonStates > Border#AppBarButtonInnerBorder | Background@OverflowSubMenuOpened",
-      "windows-11-start-menu-styler | web .suggestion:hover, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover | background-color",
       "calculator.resource.CalcButtonFillColorHoverBrush",
       "calculator.resource.CalcButtonAltFillColorHoverBrush",
       "calculator.resource.SubtleFillColorSecondaryBrush",
@@ -612,7 +613,8 @@
       "paint-chrome.resource.ToggleButtonBackgroundIndeterminatePointerOver",
       "calculator.resource.ToggleButtonBackgroundPointerOver",
       "calculator.resource.ToggleButtonBackgroundIndeterminatePointerOver",
-      "paint-chrome.caption.ButtonHoverBackgroundColor"
+      "paint-chrome.caption.ButtonHoverBackgroundColor",
+      "windows-11-start-menu-styler | web .suggestion:hover, .suggContainer:hover, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover | background-color"
     ],
     "color.interaction.pressed.bg": [
       "windhawk.resource.ControlFillColorTertiary",
@@ -620,7 +622,6 @@
       "windows-11-start-menu-styler | Button#ShowMoreSuggestionsButton > Grid@CommonStates > Border | Background@Pressed",
       "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | Background@Pressed",
       "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@Pressed",
-      "windows-11-start-menu-styler | web button:active, .button:active, .actionButton:active | background-color",
       "calculator.resource.CalcButtonFillColorPressedBrush",
       "calculator.resource.CalcButtonAltFillColorPressedBrush",
       "calculator.resource.AppControlBackgroundTertiaryBrush",
@@ -655,7 +656,8 @@
       "calculator.resource.ToggleButtonBackgroundPressed",
       "calculator.resource.ToggleButtonBackgroundCheckedPressed",
       "calculator.resource.ToggleButtonBackgroundIndeterminatePressed",
-      "paint-chrome.caption.ButtonPressedBackgroundColor"
+      "paint-chrome.caption.ButtonPressedBackgroundColor",
+      "windows-11-start-menu-styler | web button:active, .button:active, .actionButton:active | background-color"
     ],
     "color.action.primary.bg": [
       "windhawk.resource.AccentFillColorDefault",
@@ -707,6 +709,7 @@
       "windows-11-notification-center-styler | Border#ToastBackgroundBorder | BorderThickness",
       "windows-11-notification-center-styler | Border#ToastBackgroundBorder2 | BorderThickness",
       "powertoys.markdown.BORDER_WIDTH",
+      "windows-11-start-menu-styler | web .suggestion, .suggContainer | border-width",
       "windows-11-start-menu-styler | web :focus-visible | outline-width"
     ],
     "radius.none": [
@@ -754,7 +757,8 @@
       "windows-11-start-menu-styler | Border#TaskbarSearchBackground | CornerRadius",
       "windows-11-start-menu-styler | Cortana.UI.Views.RichSearchBoxControl#SearchBoxControl > Grid#RootGrid | CornerRadius",
       "windows-11-start-menu-styler | web .iconContainer, .previewContainer .imageContainer, .scope-tile > div, button, .button, .actionButton | border-radius",
-      "windows-11-start-menu-styler | web .suggestion, .contextMenu li | border-radius"
+      "windows-11-start-menu-styler | web .suggestion, .suggContainer | border-radius",
+      "windows-11-start-menu-styler | web .contextMenu li | border-radius"
     ],
     "color.interaction.disabled.bg": [
       "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | Background@Disabled",
@@ -834,7 +838,6 @@
       "windows-11-file-explorer-styler | Border#BottomBorderLine, Border#LeftBottomBorderLine, Border#RightBottomBorderLine | BorderBrush",
       "windows-11-file-explorer-styler | FileExplorerExtensions.CommandBarControl_Wave1 > Grid, Grid#CommandBarControlRootGrid | BorderBrush",
       "windows-11-file-explorer-styler | CommandBar#FileExplorerCommandBar, CommandBar#FileExplorerSecondaryCommandBar | BorderBrush",
-      "windows-11-start-menu-styler | web body, #root, #root.darkTheme, .scope-with-background, .suggsList, .suggsListContainer, .suggContainer, .previewContainer, .suggDetailsContainer, .contextMenu, #menuContainer | border-color",
       "calculator.resource.DividerStrokeColorDefaultBrush",
       "calculator.resource.NavigationViewItemSeparatorForeground",
       "calculator.resource.NavigationViewContentGridBorderBrush",
@@ -853,15 +856,16 @@
       "paint-chrome.resource.ExpanderContentBorderBrush",
       "paint-chrome.resource.ExpanderHeaderBorderBrush",
       "paint-chrome.resource.MenuFlyoutSeparatorBackground",
-      "paint-chrome.resource.MenuBarItemBorderBrush"
+      "paint-chrome.resource.MenuBarItemBorderBrush",
+      "windows-11-start-menu-styler | web body, #root, #root.darkTheme, .scope-with-background, .suggsList, .suggsListContainer, .suggContainer, .previewContainer, .suggDetailsContainer, .contextMenu, #menuContainer | border-color"
     ],
     "color.interaction.scrollbar.thumb": [
       "nativeExplorer.scrollbar",
       "powertoys.markdown.SCROLLBAR",
-      "windows-11-start-menu-styler | web * | scrollbar-color",
-      "windows-11-start-menu-styler | web ::-webkit-scrollbar-thumb | background-color",
       "notepad-chrome.resource.J3w1ScrollBarThumb",
-      "paint-chrome.resource.J3w1ScrollBarThumb"
+      "paint-chrome.resource.J3w1ScrollBarThumb",
+      "windows-11-start-menu-styler | web * | scrollbar-color",
+      "windows-11-start-menu-styler | web ::-webkit-scrollbar-thumb | background-color"
     ],
     "color.interaction.scrollbar.thumb-hover": [
       "nativeExplorer.scrollbarHover"
@@ -869,13 +873,13 @@
     "color.interaction.focus.ring": [
       "nativeExplorer.focusRing",
       "powertoys.markdown.FOCUS",
-      "windows-11-start-menu-styler | web :focus-visible | outline-color",
       "calculator.resource.SystemControlFocusVisualPrimaryBrush",
-      "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"]:focus-visible | outline-color",
       "notepad-chrome.resource.SystemControlFocusVisualPrimaryBrush",
       "notepad-chrome.resource.FocusStrokeColorOuterBrush",
       "paint-chrome.resource.SystemControlFocusVisualPrimaryBrush",
-      "paint-chrome.resource.FocusStrokeColorOuterBrush"
+      "paint-chrome.resource.FocusStrokeColorOuterBrush",
+      "windows-11-start-menu-styler | web :focus-visible | outline-color",
+      "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"]:focus-visible, .suggestion.leftPill:not([aria-selected=\"false\"]):focus-visible, .suggContainer[aria-selected=\"true\"]:focus-visible, .suggContainer.leftPill:not([aria-selected=\"false\"]):focus-visible, .suggContainer:has(.suggestion[aria-selected=\"true\"]):focus-visible, .suggContainer:has(.suggestion.leftPill:not([aria-selected=\"false\"])):focus-visible | outline-color"
     ],
     "color.interaction.marquee": [
       "nativeExplorer.marquee"
@@ -1003,29 +1007,31 @@
       "windows-11-start-menu-styler | web .iconContainer, .previewContainer .imageContainer, .scope-tile > div, button, .button, .actionButton | color"
     ],
     "color.interaction.selection.text": [
-      "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"] | color",
-      "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"] .title, .suggestion[aria-selected=\"true\"] .secondaryText | color",
       "calculator.resource.NavigationViewItemForegroundChecked",
       "calculator.resource.NavigationViewItemForegroundCheckedPointerOver",
       "calculator.resource.NavigationViewItemForegroundCheckedPressed",
       "calculator.resource.NavigationViewItemForegroundSelected",
       "calculator.resource.NavigationViewItemForegroundSelectedPointerOver",
-      "calculator.resource.NavigationViewItemForegroundSelectedPressed"
+      "calculator.resource.NavigationViewItemForegroundSelectedPressed",
+      "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"], .suggestion.leftPill:not([aria-selected=\"false\"]), .suggContainer[aria-selected=\"true\"], .suggContainer.leftPill:not([aria-selected=\"false\"]), .suggContainer:has(.suggestion[aria-selected=\"true\"]), .suggContainer:has(.suggestion.leftPill:not([aria-selected=\"false\"])) | color",
+      "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"] .title, .suggestion[aria-selected=\"true\"] .secondaryText, .suggestion.leftPill:not([aria-selected=\"false\"]) .title, .suggestion.leftPill:not([aria-selected=\"false\"]) .secondaryText, .suggContainer[aria-selected=\"true\"] .title, .suggContainer[aria-selected=\"true\"] .secondaryText, .suggContainer.leftPill:not([aria-selected=\"false\"]) .title, .suggContainer.leftPill:not([aria-selected=\"false\"]) .secondaryText, .suggContainer:has(.suggestion[aria-selected=\"true\"]) .title, .suggContainer:has(.suggestion[aria-selected=\"true\"]) .secondaryText, .suggContainer:has(.suggestion.leftPill:not([aria-selected=\"false\"])) .title, .suggContainer:has(.suggestion.leftPill:not([aria-selected=\"false\"])) .secondaryText | color"
     ],
     "focus.offset": [
       "windows-11-start-menu-styler | web :focus-visible | outline-offset"
     ],
     "color.interaction.focus.ring-container": [
-      "windows-11-start-menu-styler | web .previewContainer:focus-visible | outline-color",
       "notepad-chrome.resource.SystemControlFocusVisualSecondaryBrush",
       "notepad-chrome.resource.FocusStrokeColorInnerBrush",
       "paint-chrome.resource.SystemControlFocusVisualSecondaryBrush",
-      "paint-chrome.resource.FocusStrokeColorInnerBrush"
+      "paint-chrome.resource.FocusStrokeColorInnerBrush",
+      "windows-11-start-menu-styler | web .previewContainer:focus-visible | outline-color"
     ],
     "color.border.selected-indicator": [
+      "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"], .suggestion.leftPill:not([aria-selected=\"false\"]), .suggContainer[aria-selected=\"true\"], .suggContainer.leftPill:not([aria-selected=\"false\"]), .suggContainer:has(.suggestion[aria-selected=\"true\"]), .suggContainer:has(.suggestion.leftPill:not([aria-selected=\"false\"])) | border-inline-start-color",
       "windows-11-start-menu-styler | web .scope-tile--selected > div | border-bottom-color"
     ],
     "border.width.emphasis": [
+      "windows-11-start-menu-styler | web .suggestion, .suggContainer | border-inline-start-width",
       "windows-11-start-menu-styler | web .scope-tile--selected > div | border-bottom-width",
       "windows-11-start-menu-styler | web .previewContainer:focus-visible | outline-width"
     ],

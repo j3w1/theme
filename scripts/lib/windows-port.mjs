@@ -13,12 +13,13 @@ export const CURSOR_NAMES = ['Arrow','Help','AppStarting','Wait','Crosshair','IB
 // Search permits only these non-token presentation choices. Colors and
 // geometry still resolve from approved roles; arbitrary CSS/JS is not accepted.
 const webPresentation = new Map([
- ['border-style',new Set(['none'])],
+ ['border-style',new Set(['none','solid'])],
  ['box-shadow',new Set(['none'])],
  ['background-image',new Set(['none'])],
  ['background-color',new Set(['inherit'])],
  ['outline-style',new Set(['dashed','solid'])],
  ['border-bottom-style',new Set(['solid'])],
+ ['content',new Set(['none'])],
 ]);
 export function windowsWebContentStyles(items,val) {
  return items.map(t=>{
@@ -30,6 +31,9 @@ export function windowsWebContentStyles(items,val) {
   });
   for(const [key,value] of Object.entries(t.presentation??{})){
    if(!webPresentation.get(key)?.has(value))throw Error(`Unsupported Search presentation: ${key}`);
+   // Replace only the host's decorative selection pill with the result frame.
+   // Never admit content removal on controls, labels or arbitrary pseudo-elements.
+   if(key==='content'&&t.target!=='.leftPill::before')throw Error('Unsupported Search decoration target');
    styles.push(`${key}: ${value} !important`);
   }
   return {target:t.target,styles};

@@ -405,7 +405,21 @@
           }
         },
         {
-          "target": ".suggestion, .contextMenu li",
+          "target": ".suggestion, .suggContainer",
+          "styles": {
+            "background-color": "color.surface.canvas",
+            "border-radius": "radius.none",
+            "border-color": "color.surface.canvas",
+            "border-width": "border.width.default",
+            "border-inline-start-width": "border.width.emphasis"
+          },
+          "presentation": {
+            "border-style": "solid",
+            "box-shadow": "none"
+          }
+        },
+        {
+          "target": ".contextMenu li",
           "styles": {
             "background-color": "color.surface.canvas",
             "border-radius": "radius.none"
@@ -416,23 +430,33 @@
           }
         },
         {
-          "target": ".suggestion:hover, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover",
+          "target": ".suggestion:hover, .suggContainer:hover, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover",
           "styles": {
             "background-color": "color.interaction.hover.bg",
             "color": "color.text.default"
           }
         },
         {
-          "target": ".suggestion[aria-selected=\"true\"]",
+          "target": ".suggestion[aria-selected=\"true\"], .suggestion.leftPill:not([aria-selected=\"false\"]), .suggContainer[aria-selected=\"true\"], .suggContainer.leftPill:not([aria-selected=\"false\"]), .suggContainer:has(.suggestion[aria-selected=\"true\"]), .suggContainer:has(.suggestion.leftPill:not([aria-selected=\"false\"]))",
           "styles": {
             "background-color": "color.interaction.selection.bg",
-            "color": "color.interaction.selection.text"
+            "color": "color.interaction.selection.text",
+            "border-color": "color.border.control",
+            "border-inline-start-color": "color.border.selected-indicator"
           }
         },
         {
-          "target": ".suggestion .details, .suggestion .iconContainer, .suggestion .title, .suggestion .secondaryText",
+          "target": ".suggestion .suggContainer, .suggContainer .suggestion, .suggestion .details, .suggestion .iconContainer, .suggestion .title, .suggestion .secondaryText, .suggContainer .details, .suggContainer .iconContainer, .suggContainer .title, .suggContainer .secondaryText",
           "styles": {},
           "presentation": {
+            "background-color": "inherit"
+          }
+        },
+        {
+          "target": ".suggContainer .suggestion, .suggestion .suggContainer",
+          "styles": {},
+          "presentation": {
+            "border-style": "none",
             "background-color": "inherit"
           }
         },
@@ -454,7 +478,7 @@
           }
         },
         {
-          "target": ".suggestion[aria-selected=\"true\"]:focus-visible",
+          "target": ".suggestion[aria-selected=\"true\"]:focus-visible, .suggestion.leftPill:not([aria-selected=\"false\"]):focus-visible, .suggContainer[aria-selected=\"true\"]:focus-visible, .suggContainer.leftPill:not([aria-selected=\"false\"]):focus-visible, .suggContainer:has(.suggestion[aria-selected=\"true\"]):focus-visible, .suggContainer:has(.suggestion.leftPill:not([aria-selected=\"false\"])):focus-visible",
           "styles": {
             "outline-color": "color.interaction.focus.ring"
           }
@@ -491,12 +515,13 @@
         },
         {
           "target": ".leftPill::before",
-          "styles": {
-            "background-color": "color.border.active"
+          "styles": {},
+          "presentation": {
+            "content": "none"
           }
         },
         {
-          "target": ".suggestion[aria-selected=\"true\"] .title, .suggestion[aria-selected=\"true\"] .secondaryText",
+          "target": ".suggestion[aria-selected=\"true\"] .title, .suggestion[aria-selected=\"true\"] .secondaryText, .suggestion.leftPill:not([aria-selected=\"false\"]) .title, .suggestion.leftPill:not([aria-selected=\"false\"]) .secondaryText, .suggContainer[aria-selected=\"true\"] .title, .suggContainer[aria-selected=\"true\"] .secondaryText, .suggContainer.leftPill:not([aria-selected=\"false\"]) .title, .suggContainer.leftPill:not([aria-selected=\"false\"]) .secondaryText, .suggContainer:has(.suggestion[aria-selected=\"true\"]) .title, .suggContainer:has(.suggestion[aria-selected=\"true\"]) .secondaryText, .suggContainer:has(.suggestion.leftPill:not([aria-selected=\"false\"])) .title, .suggContainer:has(.suggestion.leftPill:not([aria-selected=\"false\"])) .secondaryText",
           "styles": {
             "color": "color.interaction.selection.text"
           }

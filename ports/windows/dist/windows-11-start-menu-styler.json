@@ -246,7 +246,19 @@
       ]
     },
     {
-      "target": ".suggestion, .contextMenu li",
+      "target": ".suggestion, .suggContainer",
+      "styles": [
+        "background-color: #000000 !important",
+        "border-radius: 0px !important",
+        "border-color: #000000 !important",
+        "border-width: 1px !important",
+        "border-inline-start-width: 2px !important",
+        "border-style: solid !important",
+        "box-shadow: none !important"
+      ]
+    },
+    {
+      "target": ".contextMenu li",
       "styles": [
         "background-color: #000000 !important",
         "border-radius: 0px !important",
@@ -255,22 +267,31 @@
       ]
     },
     {
-      "target": ".suggestion:hover, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover",
+      "target": ".suggestion:hover, .suggContainer:hover, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover",
       "styles": [
         "background-color: #1c0a09 !important",
         "color: #e99499 !important"
       ]
     },
     {
-      "target": ".suggestion[aria-selected=\"true\"]",
+      "target": ".suggestion[aria-selected=\"true\"], .suggestion.leftPill:not([aria-selected=\"false\"]), .suggContainer[aria-selected=\"true\"], .suggContainer.leftPill:not([aria-selected=\"false\"]), .suggContainer:has(.suggestion[aria-selected=\"true\"]), .suggContainer:has(.suggestion.leftPill:not([aria-selected=\"false\"]))",
       "styles": [
         "background-color: #531310 !important",
-        "color: #f4eeee !important"
+        "color: #f4eeee !important",
+        "border-color: #a3676b !important",
+        "border-inline-start-color: #e53935 !important"
       ]
     },
     {
-      "target": ".suggestion .details, .suggestion .iconContainer, .suggestion .title, .suggestion .secondaryText",
+      "target": ".suggestion .suggContainer, .suggContainer .suggestion, .suggestion .details, .suggestion .iconContainer, .suggestion .title, .suggestion .secondaryText, .suggContainer .details, .suggContainer .iconContainer, .suggContainer .title, .suggContainer .secondaryText",
       "styles": [
+        "background-color: inherit !important"
+      ]
+    },
+    {
+      "target": ".suggContainer .suggestion, .suggestion .suggContainer",
+      "styles": [
+        "border-style: none !important",
         "background-color: inherit !important"
       ]
     },
@@ -290,7 +311,7 @@
       ]
     },
     {
-      "target": ".suggestion[aria-selected=\"true\"]:focus-visible",
+      "target": ".suggestion[aria-selected=\"true\"]:focus-visible, .suggestion.leftPill:not([aria-selected=\"false\"]):focus-visible, .suggContainer[aria-selected=\"true\"]:focus-visible, .suggContainer.leftPill:not([aria-selected=\"false\"]):focus-visible, .suggContainer:has(.suggestion[aria-selected=\"true\"]):focus-visible, .suggContainer:has(.suggestion.leftPill:not([aria-selected=\"false\"])):focus-visible",
       "styles": [
         "outline-color: #e53935 !important"
       ]
@@ -326,11 +347,11 @@
     {
       "target": ".leftPill::before",
       "styles": [
-        "background-color: #e53935 !important"
+        "content: none !important"
       ]
     },
     {
-      "target": ".suggestion[aria-selected=\"true\"] .title, .suggestion[aria-selected=\"true\"] .secondaryText",
+      "target": ".suggestion[aria-selected=\"true\"] .title, .suggestion[aria-selected=\"true\"] .secondaryText, .suggestion.leftPill:not([aria-selected=\"false\"]) .title, .suggestion.leftPill:not([aria-selected=\"false\"]) .secondaryText, .suggContainer[aria-selected=\"true\"] .title, .suggContainer[aria-selected=\"true\"] .secondaryText, .suggContainer.leftPill:not([aria-selected=\"false\"]) .title, .suggContainer.leftPill:not([aria-selected=\"false\"]) .secondaryText, .suggContainer:has(.suggestion[aria-selected=\"true\"]) .title, .suggContainer:has(.suggestion[aria-selected=\"true\"]) .secondaryText, .suggContainer:has(.suggestion.leftPill:not([aria-selected=\"false\"])) .title, .suggContainer:has(.suggestion.leftPill:not([aria-selected=\"false\"])) .secondaryText",
       "styles": [
         "color: #f4eeee !important"
       ]

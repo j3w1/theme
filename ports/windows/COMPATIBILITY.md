@@ -17,7 +17,11 @@ host through Computer Use. This is not a generic XAML-tree inspection claim.
 Classic and redesigned Start selectors are separate. Only the detected list is
 combined with common semantic resources. The styler is explicitly kept on
 Windows' default layout. Classic selectors have no verified host entry yet.
-No visibility, navigation, sizing or feature-removal rules are applied.
+Native navigation, top-level sizing and feature visibility are retained. Search
+results reserve a square 1px frame and 2px leading edge; only their decorative
+left-side pill is removed in favor of that continuous selection frame. No
+control or label is hidden. ARIA selection takes priority over a stale pill
+class, and nested result layers inherit the outer surface.
 
 Apply and Update check before mutation and again before enabling mods. Test
 rechecks the fingerprint. The current-user sign-in guard disables managed mods
