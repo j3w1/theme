@@ -54,6 +54,24 @@
     "AccentTextFillColorPrimary=#ffa2a7",
     "TextOnAccentFillColorPrimary=#ffa2a7",
     "SystemAccentColor=#e53935",
-    "SystemControlHighlightAccentBrush=#e53935"
+    "SystemControlHighlightAccentBrush=#e53935",
+    "ScrollBarThumbBackground=#420f0c",
+    "ScrollBarPanningThumbBackground=#420f0c",
+    "ScrollBarThumbFill=#420f0c",
+    "ScrollBarThumbFillPointerOver=#911410",
+    "ScrollBarThumbFillPressed=#911410",
+    "ScrollBarThumbFillDisabled=#160b0b",
+    "ScrollBarPanningThumbBackgroundDisabled=#160b0b",
+    "ScrollBarThumbBorderBrush=#000000",
+    "ScrollBarTrackFill=#000000",
+    "ScrollBarTrackFillPointerOver=#000000",
+    "ScrollBarTrackFillDisabled=#000000",
+    "ScrollBarTrackStroke=#000000",
+    "ScrollBarTrackStrokePointerOver=#000000",
+    "ScrollBarTrackStrokeDisabled=#000000",
+    "ScrollBarButtonArrowForeground=#e99499",
+    "ScrollBarButtonArrowForegroundPointerOver=#ffa2a7",
+    "ScrollBarButtonArrowForegroundPressed=#ffa2a7",
+    "ScrollBarButtonArrowForegroundDisabled=#8a5559"
   ]
 }

@@ -37749,7 +37749,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-H0gO/1GF0dBSWsx6lcpX2Iytwg4spd/djhhG3iCL4QE=",
+      "subjectDigest": "sha256-KNZlOZU7MfNPqo5y1VTkGEaBEY/X2MxG9hAkGg5N0/g=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37782,7 +37782,7 @@
           "path": "dist/windows-settings.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-settings.json",
-          "digest": "sha256-EZqFUtSRWbCR95eAIHZMTR4U06L/IK1DehqgzxtuVA8="
+          "digest": "sha256-5nw35u6pTOroco94RZjH0mLp8JzU5jj43b6/RSmk6sk="
         },
         {
           "path": "dist/terminal-fragment.json",
@@ -37806,31 +37806,31 @@
           "path": "dist/windows-11-taskbar-styler.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-11-taskbar-styler.json",
-          "digest": "sha256-t/SacZMEqkLKYprVRtJXIhjOP+Mfn2EaFa8ec5TWJxA="
+          "digest": "sha256-L0TiCElvLcLESUqSMMlsElP0fMsZBxNUQN6lRsJS8pw="
         },
         {
           "path": "dist/windows-11-start-menu-styler.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-11-start-menu-styler.json",
-          "digest": "sha256-CmPm+FLWvWhd8lNBnNEFkHl4Eq5NTurbG0V+N67jHZs="
+          "digest": "sha256-nhKpvef4o9KMXPhDnNgtMBz6ITFG7RLa+z+o4CqvmBY="
         },
         {
           "path": "dist/windows-11-file-explorer-styler.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-11-file-explorer-styler.json",
-          "digest": "sha256-5AzIZtqQ7vcqmesX975ZeszVWI5AD0wU79kkvguAldE="
+          "digest": "sha256-TyYlIRcR0d5QMCBfwz5B7AGYOc7xXQj7hXdeqPCBxJw="
         },
         {
           "path": "dist/windows-11-notification-center-styler.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-11-notification-center-styler.json",
-          "digest": "sha256-kbOe6Z6fiejG1Hp3KINZpJQhrPjBLLGohEJP2T5Rfd4="
+          "digest": "sha256-Mc/dRKX0hBd7Emx5/1pxjIbBTZPxwVygQBFUQ+RmB2A="
         },
         {
           "path": "dist/windows-11-settings-styler.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-11-settings-styler.json",
-          "digest": "sha256-gThyGJtFmq4+7BE5Dnuh4WCAZP4iSp6PFtxV0VTdS2U="
+          "digest": "sha256-07r1Em29v683TuCUGr8Dn0NH6ZkWAgiEmyVz+2Ij2A8="
         },
         {
           "path": "dist/j3w1-wallpaper.bmp",
@@ -37956,7 +37956,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-AxHHvP1W6C/DyYrctAJMAShTsfEsWJzpdcxfDoQJ+HY="
+          "digest": "sha256-jRzVX/SLYXbd12Virz+FIIOPUENVSfPR2hTAVBBQSTE="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
@@ -38040,7 +38040,7 @@
           "path": "dist/j3w1-notepad-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-notepad-chrome.wh.cpp",
-          "digest": "sha256-az9z5yhmPkGp97iDlh3tQqKz1A/k7DdwphXZMGN4xwE="
+          "digest": "sha256-/t/QfBh3R/1Ryv4a+DshdPsD2YDO6dwBATlJ1aRHM6E="
         },
         {
           "path": "dist/j3w1-notepad-chrome.json",
@@ -38052,7 +38052,7 @@
           "path": "dist/j3w1-paint-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-paint-chrome.wh.cpp",
-          "digest": "sha256-wyBordqfHktdFiaaDr1LCEcdJy2maV7hLmM/ydbqfyU="
+          "digest": "sha256-D6SIroRscKgDglpQsmynb1DWeBGMnINAfkZC3ZWRmZ0="
         },
         {
           "path": "dist/j3w1-paint-chrome.json",
@@ -39889,7 +39889,9 @@
             "paint-chrome.resource.ToggleButtonBackgroundIndeterminateDisabled",
             "calculator.resource.ToggleButtonBackgroundDisabled",
             "calculator.resource.ToggleButtonBackgroundCheckedDisabled",
-            "calculator.resource.ToggleButtonBackgroundIndeterminateDisabled"
+            "calculator.resource.ToggleButtonBackgroundIndeterminateDisabled",
+            "windhawk.resource.ScrollBarThumbFillDisabled",
+            "windhawk.resource.ScrollBarPanningThumbBackgroundDisabled"
           ],
           "value": "#160b0b",
           "eligibility": {
@@ -40001,7 +40003,8 @@
             "calculator.resource.ToggleButtonBackgroundPointerOver",
             "calculator.resource.ToggleButtonBackgroundIndeterminatePointerOver",
             "paint-chrome.caption.ButtonHoverBackgroundColor",
-            "windows-11-start-menu-styler | web .suggestion:hover, .suggContainer:hover, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover | background-color"
+            "windows-11-start-menu-styler | web .suggestion:hover, .suggContainer:hover, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover | background-color",
+            "notepad-chrome.caption.ButtonHoverBackgroundColor"
           ],
           "value": "#1c0a09",
           "eligibility": {
@@ -40100,7 +40103,8 @@
             "calculator.resource.ToggleButtonBackgroundCheckedPressed",
             "calculator.resource.ToggleButtonBackgroundIndeterminatePressed",
             "paint-chrome.caption.ButtonPressedBackgroundColor",
-            "windows-11-start-menu-styler | web button:active, .button:active, .actionButton:active | background-color"
+            "windows-11-start-menu-styler | web button:active, .button:active, .actionButton:active | background-color",
+            "notepad-chrome.caption.ButtonPressedBackgroundColor"
           ],
           "value": "#420f0c",
           "eligibility": {
@@ -40122,7 +40126,10 @@
             "notepad-chrome.resource.J3w1ScrollBarThumb",
             "paint-chrome.resource.J3w1ScrollBarThumb",
             "windows-11-start-menu-styler | web * | scrollbar-color",
-            "windows-11-start-menu-styler | web ::-webkit-scrollbar-thumb | background-color"
+            "windows-11-start-menu-styler | web ::-webkit-scrollbar-thumb | background-color",
+            "windhawk.resource.ScrollBarThumbBackground",
+            "windhawk.resource.ScrollBarPanningThumbBackground",
+            "windhawk.resource.ScrollBarThumbFill"
           ],
           "value": "#420f0c",
           "eligibility": {
@@ -40139,7 +40146,9 @@
         {
           "role": "color.interaction.scrollbar.thumb-hover",
           "nativeKeys": [
-            "nativeExplorer.scrollbarHover"
+            "nativeExplorer.scrollbarHover",
+            "windhawk.resource.ScrollBarThumbFillPointerOver",
+            "windhawk.resource.ScrollBarThumbFillPressed"
           ],
           "value": "#911410",
           "eligibility": {
@@ -42004,7 +42013,18 @@
             "windows-11-start-menu-styler | web .suggestion, .suggContainer | border-color",
             "windows-11-start-menu-styler | web .contextMenu li | background-color",
             "windows-11-start-menu-styler | web .scope-tile--selected > div | background-color",
-            "windows-11-start-menu-styler | web ::-webkit-scrollbar-track | background-color"
+            "windows-11-start-menu-styler | web ::-webkit-scrollbar-track | background-color",
+            "windhawk.resource.ScrollBarThumbBorderBrush",
+            "windhawk.resource.ScrollBarTrackFill",
+            "windhawk.resource.ScrollBarTrackFillPointerOver",
+            "windhawk.resource.ScrollBarTrackFillDisabled",
+            "windhawk.resource.ScrollBarTrackStroke",
+            "windhawk.resource.ScrollBarTrackStrokePointerOver",
+            "windhawk.resource.ScrollBarTrackStrokeDisabled",
+            "notepad-chrome.caption.BackgroundColor",
+            "notepad-chrome.caption.ButtonBackgroundColor",
+            "notepad-chrome.caption.InactiveBackgroundColor",
+            "notepad-chrome.caption.ButtonInactiveBackgroundColor"
           ],
           "value": "#000000",
           "eligibility": {
@@ -42667,7 +42687,9 @@
             "notepad-chrome.resource.TextOnAccentFillColorPrimaryBrush",
             "paint-chrome.resource.AccentTextFillColorPrimaryBrush",
             "paint-chrome.resource.TextOnAccentFillColorPrimaryBrush",
-            "windows-11-start-menu-styler | web .scope-tile--selected > div | color"
+            "windows-11-start-menu-styler | web .scope-tile--selected > div | color",
+            "windhawk.resource.ScrollBarButtonArrowForegroundPointerOver",
+            "windhawk.resource.ScrollBarButtonArrowForegroundPressed"
           ],
           "value": "#ffa2a7",
           "eligibility": {
@@ -42801,7 +42823,12 @@
             "paint-chrome.caption.ButtonPressedForegroundColor",
             "windows-11-start-menu-styler | web body, #root, #root.darkTheme, .scope-with-background, .suggsList, .suggsListContainer, .suggContainer, .previewContainer, .suggDetailsContainer, .contextMenu, #menuContainer | color",
             "windows-11-start-menu-styler | web h1, h2, h3, h4, p, .title, .details, .secondaryText, .groupTitle, .suggestion, .scope-tile > div, .menu-item_details, .previewContainer, button | color",
-            "windows-11-start-menu-styler | web .suggestion:hover, .suggContainer:hover, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover | color"
+            "windows-11-start-menu-styler | web .suggestion:hover, .suggContainer:hover, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover | color",
+            "windhawk.resource.ScrollBarButtonArrowForeground",
+            "notepad-chrome.caption.ForegroundColor",
+            "notepad-chrome.caption.ButtonForegroundColor",
+            "notepad-chrome.caption.ButtonHoverForegroundColor",
+            "notepad-chrome.caption.ButtonPressedForegroundColor"
           ],
           "value": "#e99499",
           "eligibility": {
@@ -42851,7 +42878,8 @@
             "paint-chrome.resource.ToggleButtonForegroundIndeterminateDisabled",
             "calculator.resource.ToggleButtonForegroundDisabled",
             "calculator.resource.ToggleButtonForegroundCheckedDisabled",
-            "calculator.resource.ToggleButtonForegroundIndeterminateDisabled"
+            "calculator.resource.ToggleButtonForegroundIndeterminateDisabled",
+            "windhawk.resource.ScrollBarButtonArrowForegroundDisabled"
           ],
           "value": "#8a5559",
           "eligibility": {
@@ -42995,7 +43023,9 @@
             "paint-chrome.resource.MenuFlyoutItemKeyboardAcceleratorTextForegroundPressed",
             "paint-chrome.caption.InactiveForegroundColor",
             "paint-chrome.caption.ButtonInactiveForegroundColor",
-            "windows-11-start-menu-styler | web .secondaryText, .details .secondaryText | color"
+            "windows-11-start-menu-styler | web .secondaryText, .details .secondaryText | color",
+            "notepad-chrome.caption.InactiveForegroundColor",
+            "notepad-chrome.caption.ButtonInactiveForegroundColor"
           ],
           "value": "#bd787d",
           "eligibility": {

@@ -223,16 +223,12 @@ export function windowsArtifacts({manifest,host,resolved}){
   const discoverySubs={DIAGNOSTICS_BRIDGE_SHA256:chrome.diagnosticsBridgeSha256,DIAGNOSTICS_CLSID:clsid};
   const rootDiscovery=readFileSync(path.join(repoRoot,'ports/windows/src/winui-root-discovery.cpp.in'),'utf8').replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in discoverySubs))throw Error('Unknown WinUI discovery placeholder '+key);return discoverySubs[key];});
   const publicCaptionNames=['BackgroundColor','ForegroundColor','ButtonBackgroundColor','ButtonForegroundColor','ButtonHoverBackgroundColor','ButtonHoverForegroundColor','ButtonPressedBackgroundColor','ButtonPressedForegroundColor','InactiveBackgroundColor','InactiveForegroundColor','ButtonInactiveBackgroundColor','ButtonInactiveForegroundColor'];
-  const isPaint=chromeId==='j3w1-paint-chrome';
-  let publicDeclarations='',publicImplementation='';
-  if(isPaint) {
-   if(JSON.stringify(Object.keys(chrome.captionColors??{}))!==JSON.stringify(publicCaptionNames))throw Error('Paint requires the complete ordered public caption-color contract');
-   const captionRules=publicCaptionNames.map(key=>{const role=chrome.captionColors[key];const token=resolved.get(role);val(role);return '  {'+Math.round((token.resolved.alpha??1)*255)+','+rgb(val(role)).join(',')+'}, // '+key+' : '+role;}).join('\n');
-   const publicSource=readFileSync(path.join(repoRoot,'ports/windows/src/paint-caption.cpp.in'),'utf8').replaceAll('@ADAPTER_ID@',chromeId).replace('@CAPTION_RULES@',captionRules);
-   [publicDeclarations,publicImplementation]=publicSource.split('// IMPLEMENTATION');
-   if(!publicDeclarations||!publicImplementation||/@[A-Z0-9_]+@/.test(publicSource))throw Error('Invalid Paint public caption template');
-  }
-  const publicSubs={PUBLIC_CAPTION_INCLUDE:isPaint?'\n#include <winrt/Microsoft.UI.Windowing.h>':'',PUBLIC_CAPTION_DECLARATIONS:publicDeclarations,PUBLIC_CAPTION_IMPLEMENTATION:publicImplementation,PUBLIC_CAPTION_STATE:isPaint?'std::vector<std::unique_ptr<PublicCaption>> publicCaptions; ':'',PUBLIC_CAPTION_REFRESH:isPaint?' ApplyPublicCaptions(state);\n':'',PUBLIC_CAPTION_RESTORE:isPaint?' bool publicRestored=RestorePublicCaptions(state);\n':'',PUBLIC_CAPTION_RESTORE_RESULT:isPaint?'&&publicRestored':'',PUBLIC_CAPTION_NATIVE_EXCLUSION:isPaint?'&&false':'',PUBLIC_CAPTION_DWM_BYPASS:isPaint?'publicCaptionWrite||':''};
+  if(JSON.stringify(Object.keys(chrome.captionColors??{}))!==JSON.stringify(publicCaptionNames))throw Error(label+' requires the complete ordered public caption-color contract');
+  const captionRules=publicCaptionNames.map(key=>{const role=chrome.captionColors[key];const token=resolved.get(role);val(role);return '  {'+Math.round((token.resolved.alpha??1)*255)+','+rgb(val(role)).join(',')+'}, // '+key+' : '+role;}).join('\n');
+  const publicSource=readFileSync(path.join(repoRoot,'ports/windows/src/winui-caption.cpp.in'),'utf8').replaceAll('@ADAPTER_ID@',chromeId).replaceAll('@NATIVE_CLASS@',nativeClass).replace('@CAPTION_RULES@',captionRules);
+  const [publicDeclarations,publicImplementation]=publicSource.split('// IMPLEMENTATION');
+  if(!publicDeclarations||!publicImplementation||/@[A-Z0-9_]+@/.test(publicSource))throw Error('Invalid '+label+' public caption template');
+  const publicSubs={PUBLIC_CAPTION_INCLUDE:'\n#include <winrt/Microsoft.UI.Windowing.h>',PUBLIC_CAPTION_DECLARATIONS:publicDeclarations,PUBLIC_CAPTION_IMPLEMENTATION:publicImplementation,PUBLIC_CAPTION_STATE:'std::vector<std::unique_ptr<PublicCaption>> publicCaptions; ',PUBLIC_CAPTION_REFRESH:' ApplyPublicCaptions(state);\n',PUBLIC_CAPTION_RESTORE:' bool publicRestored=RestorePublicCaptions(state);\n',PUBLIC_CAPTION_RESTORE_RESULT:'&&publicRestored',PUBLIC_CAPTION_NATIVE_EXCLUSION:'&&false',PUBLIC_CAPTION_DWM_BYPASS:'publicCaptionWrite||'};
   const chromeSubs={...publicSubs,ADAPTER_ID:chromeId,APP_LABEL:label,APP_EXE:exe,NATIVE_CLASS:nativeClass,ROOT_CLASSES:rootClasses.map(c=>'L"'+c+'"').join(','),ROOT_DISCOVERY:rootDiscovery,VERSION:chrome.version,PACKAGE_FULL_NAME:chrome.packageFullName,RUNTIME_PACKAGE:chrome.runtimePackage,RUNTIME_SHA256:chrome.runtimeSha256,RESOURCE_RULES:chromeRules};
   const chromeSource=readFileSync(path.join(repoRoot,'ports/windows/src/winui-chrome.cpp.in'),'utf8').replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in chromeSubs))throw Error('Unknown WinUI chrome source placeholder '+key);return chromeSubs[key];});
   artifacts.push({path:'dist/'+chromeId+'.wh.cpp',text:chromeSource});json(chromeId+'.json',{enabled:1});

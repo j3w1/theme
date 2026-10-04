@@ -450,9 +450,9 @@ static bool RestoreControlResources(ControlResources& entry) noexcept {
 
 struct Root { weak_ref<FrameworkElement> element; weak_ref<FrameworkElement> backgroundElement; weak_ref<DesktopWindowXamlSource> source; weak_ref<Window> window; event_token layout{}; ResourceDictionary owner{nullptr},overlay{nullptr}; ProjectedObject themeBefore{nullptr}; bool themeTouched=false; SystemBackdrop backdropBefore{nullptr}; bool backdropTracked=false; DependencyProperty backgroundProperty{nullptr}; ProjectedObject backgroundBefore{nullptr}; SolidColorBrush backgroundApplied{nullptr}; std::vector<Palette> palette; std::vector<Visual> changes; std::deque<OwnedThemeRefresh> refreshes; std::deque<ControlResources> controls; };
 struct PendingRoot { weak_ref<FrameworkElement> element; unsigned attempts=0; };
-// The app owns its custom title composition. Do not acquire AppWindow.TitleBar
-// or write its public color properties: the inspected Notepad runtime replaces
-// the tab strip with its generic custom title bar when that path is used.
+// Readable caption customization is admitted separately from the XAML roots.
+// Extended title content is refused so native tabs and drag geometry remain
+// owned by the application.
 
 // Recolor a named native brush while retaining property bindings and state
 // transitions. A transient hover value never becomes a permanent local value.
@@ -495,8 +495,8 @@ static bool ApplyNativeBrush(std::vector<OwnedNativeBrush>& entries,SolidColorBr
  return UpdateNativeBrush(entries.back(),target,true,[&]{return brush.Color();},[&](Color c){brush.Color(c);},failure);
 }
 
-// Readable public caption colors are supported only by this admitted Paint
-// composition. Notepad's custom tab caption uses the captured native path.
+// Readable caption colors are shared by admitted Paint and Notepad layouts.
+// A custom title composition still declines public styling without changing it.
 using CaptionColor = Windows::Foundation::IReference<Color>;
 using PublicTitleBar = Microsoft::UI::Windowing::AppWindowTitleBar;
 struct CaptionSlot { CaptionColor before{nullptr}, applied{nullptr}; bool owned=false, changed=false; };

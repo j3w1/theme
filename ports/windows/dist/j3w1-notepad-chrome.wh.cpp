@@ -2,7 +2,7 @@
 // @id j3w1-notepad-chrome
 // @name j3w1 Notepad chrome
 // @description Exact-package Notepad chrome resources; document and artwork colors remain native
-// @version 1.2.7
+// @version 1.2.8
 // @author j3w1
 // @include Notepad.exe
 // @architecture x86-64
@@ -23,6 +23,7 @@
 #include <winrt/Windows.Foundation.h>
 #include <winrt/Windows.Foundation.Collections.h>
 #include <winrt/Microsoft.UI.Xaml.h>
+#include <winrt/Microsoft.UI.Windowing.h>
 #include <winrt/Microsoft.UI.Dispatching.h>
 #include <winrt/Microsoft.UI.Xaml.Hosting.h>
 #include <winrt/Microsoft.UI.Xaml.Controls.h>
@@ -449,9 +450,9 @@ static bool RestoreControlResources(ControlResources& entry) noexcept {
 
 struct Root { weak_ref<FrameworkElement> element; weak_ref<FrameworkElement> backgroundElement; weak_ref<DesktopWindowXamlSource> source; weak_ref<Window> window; event_token layout{}; ResourceDictionary owner{nullptr},overlay{nullptr}; ProjectedObject themeBefore{nullptr}; bool themeTouched=false; SystemBackdrop backdropBefore{nullptr}; bool backdropTracked=false; DependencyProperty backgroundProperty{nullptr}; ProjectedObject backgroundBefore{nullptr}; SolidColorBrush backgroundApplied{nullptr}; std::vector<Palette> palette; std::vector<Visual> changes; std::deque<OwnedThemeRefresh> refreshes; std::deque<ControlResources> controls; };
 struct PendingRoot { weak_ref<FrameworkElement> element; unsigned attempts=0; };
-// The app owns its custom title composition. Do not acquire AppWindow.TitleBar
-// or write its public color properties: the inspected Notepad runtime replaces
-// the tab strip with its generic custom title bar when that path is used.
+// Readable caption customization is admitted separately from the XAML roots.
+// Extended title content is refused so native tabs and drag geometry remain
+// owned by the application.
 
 // Recolor a named native brush while retaining property bindings and state
 // transitions. A transient hover value never becomes a permanent local value.
@@ -494,7 +495,97 @@ static bool ApplyNativeBrush(std::vector<OwnedNativeBrush>& entries,SolidColorBr
  return UpdateNativeBrush(entries.back(),target,true,[&]{return brush.Color();},[&](Color c){brush.Color(c);},failure);
 }
 
-struct ThreadState {  ControlResources keyTips; HWND channel=nullptr; WNDPROC original=nullptr; std::deque<Root> roots; std::vector<OwnedNativeBrush> nativeBrushes; std::vector<PendingRoot> pending; bool busy=false,queued=false,cleaning=false; unsigned ticks=0; };
+// Readable caption colors are shared by admitted Paint and Notepad layouts.
+// A custom title composition still declines public styling without changing it.
+using CaptionColor = Windows::Foundation::IReference<Color>;
+using PublicTitleBar = Microsoft::UI::Windowing::AppWindowTitleBar;
+struct CaptionSlot { CaptionColor before{nullptr}, applied{nullptr}; bool owned=false, changed=false; };
+struct PublicCaption {
+ HWND window=nullptr; PublicTitleBar bar{nullptr}; std::array<CaptionSlot,12> slots; bool declined=false;
+};
+static constexpr PCWSTR publicCaptionProperty=L"j3w1-notepad-chrome-public-caption-owner";
+static thread_local bool publicCaptionWrite=false;
+static bool SameCaptionColor(CaptionColor const& a,CaptionColor const& b) {
+ return (!a&&!b)||(a&&b&&Same(a.Value(),b.Value()));
+}
+static bool PublicCaptionWindow(HWND window) noexcept {
+ DWORD process=0;auto thread=GetWindowThreadProcessId(window,&process);wchar_t type[64]{};
+ return thread==GetCurrentThreadId()&&process==GetCurrentProcessId()&&GetAncestor(window,GA_ROOT)==window
+  &&GetClassNameW(window,type,std::size(type))&&wcscmp(type,L"Notepad")==0;
+}
+static bool OwnsPublicCaptionWindow(PublicCaption const& caption) noexcept {
+ // Window properties disappear on destruction. Stable heap identity prevents
+ // a reused HWND (including reuse on this UI thread) from inheriting ownership.
+ return PublicCaptionWindow(caption.window)&&GetPropW(caption.window,publicCaptionProperty)==&caption;
+}
+static CaptionColor ReadCaption(PublicTitleBar const& bar,unsigned slot) {
+ switch(slot) {
+ case 0:return bar.BackgroundColor();case 1:return bar.ForegroundColor();
+ case 2:return bar.ButtonBackgroundColor();case 3:return bar.ButtonForegroundColor();
+ case 4:return bar.ButtonHoverBackgroundColor();case 5:return bar.ButtonHoverForegroundColor();
+ case 6:return bar.ButtonPressedBackgroundColor();case 7:return bar.ButtonPressedForegroundColor();
+ case 8:return bar.InactiveBackgroundColor();case 9:return bar.InactiveForegroundColor();
+ case 10:return bar.ButtonInactiveBackgroundColor();case 11:return bar.ButtonInactiveForegroundColor();
+ default:throw hresult_invalid_argument();
+ }
+}
+static void WriteCaption(PublicTitleBar const& bar,unsigned slot,CaptionColor const& color) {
+ switch(slot) {
+ case 0:bar.BackgroundColor(color);break;case 1:bar.ForegroundColor(color);break;
+ case 2:bar.ButtonBackgroundColor(color);break;case 3:bar.ButtonForegroundColor(color);break;
+ case 4:bar.ButtonHoverBackgroundColor(color);break;case 5:bar.ButtonHoverForegroundColor(color);break;
+ case 6:bar.ButtonPressedBackgroundColor(color);break;case 7:bar.ButtonPressedForegroundColor(color);break;
+ case 8:bar.InactiveBackgroundColor(color);break;case 9:bar.InactiveForegroundColor(color);break;
+ case 10:bar.ButtonInactiveBackgroundColor(color);break;case 11:bar.ButtonInactiveForegroundColor(color);break;
+ default:throw hresult_invalid_argument();
+ }
+}
+static Color CaptionRoleColor(unsigned slot) {
+ static constexpr Color colors[]={
+  {255,0,0,0}, // BackgroundColor : color.surface.canvas
+  {255,233,148,153}, // ForegroundColor : color.text.default
+  {255,0,0,0}, // ButtonBackgroundColor : color.surface.canvas
+  {255,233,148,153}, // ButtonForegroundColor : color.text.default
+  {255,28,10,9}, // ButtonHoverBackgroundColor : color.interaction.hover.bg
+  {255,233,148,153}, // ButtonHoverForegroundColor : color.text.default
+  {255,66,15,12}, // ButtonPressedBackgroundColor : color.interaction.pressed.bg
+  {255,233,148,153}, // ButtonPressedForegroundColor : color.text.default
+  {255,0,0,0}, // InactiveBackgroundColor : color.surface.canvas
+  {255,189,120,125}, // InactiveForegroundColor : color.text.muted
+  {255,0,0,0}, // ButtonInactiveBackgroundColor : color.surface.canvas
+  {255,189,120,125}, // ButtonInactiveForegroundColor : color.text.muted
+ };
+ if(slot>=std::size(colors))throw hresult_invalid_argument();
+ return colors[slot];
+}
+template<class Read,class Write> static bool UpdateCaptionSlot(CaptionSlot& slot,CaptionColor const& value,bool active,Read read,Write write) noexcept {
+ auto failed=[&] {
+  if(slot.owned)try {
+   auto current=read();
+   if(SameCaptionColor(current,slot.before))slot.owned=false;
+   else if(!SameCaptionColor(current,slot.applied)){slot.owned=false;slot.changed=true;}
+  }catch(...){}
+  return false;
+ };
+ try {
+  auto current=read();
+  if(slot.owned&&!SameCaptionColor(current,slot.applied)){slot.owned=false;slot.changed=true;}
+  if(!active) {
+   if(slot.owned){write(slot.before);slot.owned=false;}
+   return true;
+  }
+  if(slot.changed||slot.owned)return true;
+  slot.before=current;slot.applied=value;slot.owned=true;
+  write(value);return true;
+ }catch(...){return failed();}
+}
+struct CaptionWriteGuard {
+ bool prior=publicCaptionWrite;
+ CaptionWriteGuard(){publicCaptionWrite=true;}
+ ~CaptionWriteGuard(){publicCaptionWrite=prior;}
+};
+
+struct ThreadState { std::vector<std::unique_ptr<PublicCaption>> publicCaptions;  ControlResources keyTips; HWND channel=nullptr; WNDPROC original=nullptr; std::deque<Root> roots; std::vector<OwnedNativeBrush> nativeBrushes; std::vector<PendingRoot> pending; bool busy=false,queued=false,cleaning=false; unsigned ticks=0; };
 static thread_local ThreadState* uiState=nullptr;
 // Core-created keyboard badges resolve Application.Resources directly, outside
 // the admitted chrome element tree. Only the three documented color keys are
@@ -996,8 +1087,75 @@ static void Bridge(Root& root) {
 static bool RootCandidateClass(std::wstring_view name);
 static void Track(UIElement const& content,DesktopWindowXamlSource const& source,Window const& window=nullptr);
 
+
+static void WriteOwnedCaption(PublicCaption const& caption,unsigned slot,CaptionColor const& color) {
+ if(!OwnsPublicCaptionWindow(caption))throw hresult_error(E_HANDLE);
+ WriteCaption(caption.bar,slot,color);
+}
+static bool RestorePublicCaption(PublicCaption& caption,bool release=true) noexcept {
+ if(!OwnsPublicCaptionWindow(caption))return true;
+ CaptionWriteGuard guard;bool restored=true;
+ for(unsigned slot=0;slot<caption.slots.size();slot++)
+  restored=UpdateCaptionSlot(caption.slots[slot],nullptr,false,
+   [&]{return ReadCaption(caption.bar,slot);},[&](auto const& color){WriteOwnedCaption(caption,slot,color);})&&restored;
+ if(restored&&release&&OwnsPublicCaptionWindow(caption))RemovePropW(caption.window,publicCaptionProperty);
+ return restored;
+}
+static bool RestorePublicCaptions(ThreadState& state) noexcept {
+ bool restored=true;
+ for(auto it=state.publicCaptions.begin();it!=state.publicCaptions.end();) {
+  if(RestorePublicCaption(**it))it=state.publicCaptions.erase(it);
+  else {restored=false;++it;}
+ }
+ return restored;
+}
+static void ApplyPublicCaptions(ThreadState& state) noexcept {
+ if(!enabled.load()||HighContrast()){RestorePublicCaptions(state);return;}
+ try {
+  for(auto it=state.publicCaptions.begin();it!=state.publicCaptions.end();) {
+   if(!OwnsPublicCaptionWindow(**it))it=state.publicCaptions.erase(it);else ++it;
+  }
+  EnumThreadWindows(GetCurrentThreadId(),[](HWND window,LPARAM parameter)->BOOL {
+   auto& state=*reinterpret_cast<ThreadState*>(parameter);
+   if(!PublicCaptionWindow(window)||GetPropW(window,publicCaptionProperty))return TRUE;
+   try {
+    if(!PublicTitleBar::IsCustomizationSupported())return TRUE;
+    using Convert=HRESULT(WINAPI*)(HWND,Microsoft::UI::WindowId*);
+    auto interop=GetModuleHandleW(L"Microsoft.Internal.FrameworkUdk.dll");
+    auto convert=interop?reinterpret_cast<Convert>(GetProcAddress(interop,"Windowing_GetWindowIdFromWindow")):nullptr;
+    Microsoft::UI::WindowId id{};if(!convert||FAILED(convert(window,&id))||!id.Value)return TRUE;
+    auto app=Microsoft::UI::Windowing::AppWindow::GetFromWindowId(id);if(!app)return TRUE;
+    auto bar=app.TitleBar();
+    // Decline custom title bars. Never alter geometry, drag regions or artwork.
+    if(!bar||bar.ExtendsContentIntoTitleBar())return TRUE;
+    auto caption=std::make_unique<PublicCaption>();caption->window=window;caption->bar=bar;
+    for(unsigned slot=0;slot<caption->slots.size();slot++)caption->slots[slot].before=ReadCaption(bar,slot);
+    // Allocate vector storage before attaching its stable ownership token.
+    state.publicCaptions.push_back(std::move(caption));
+    if(!SetPropW(window,publicCaptionProperty,state.publicCaptions.back().get()))state.publicCaptions.pop_back();
+   }catch(...){Log(230);}
+   return TRUE;
+  },reinterpret_cast<LPARAM>(&state));
+  CaptionWriteGuard guard;
+  for(auto& caption:state.publicCaptions) {
+   if(!OwnsPublicCaptionWindow(*caption))continue;
+   if(caption->declined||caption->bar.ExtendsContentIntoTitleBar()) {
+    caption->declined=true;RestorePublicCaption(*caption,false);continue;
+   }
+   bool complete=true;
+   for(unsigned slot=0;slot<caption->slots.size();slot++) {
+    auto color=box_value(CaptionRoleColor(slot)).as<CaptionColor>();
+    complete=UpdateCaptionSlot(caption->slots[slot],color,true,
+     [&]{return ReadCaption(caption->bar,slot);},[&](auto const& value){WriteOwnedCaption(*caption,slot,value);})&&complete;
+   }
+   // Retain failed restoration data for the existing UI-thread retry path.
+   if(!complete){caption->declined=true;RestorePublicCaption(*caption,false);Log(231);}
+  }
+ }catch(...){Log(232);RestorePublicCaptions(state);}
+}
 static void Refresh(ThreadState& state) noexcept {
  if(state.busy)return;state.busy=true;state.queued=false;
+ ApplyPublicCaptions(state);
  const bool active=enabled.load()&&!HighContrast();
  if(!active){RestoreKeyTips(state);RestoreNativeBrushes(state.nativeBrushes);}
  else if(!state.roots.empty())ApplyKeyTips(state);
@@ -1030,7 +1188,8 @@ static void Schedule() {
 
 [[clang::no_destroy]] static std::vector<ThreadState*> retiredCleanup;
 static bool RestoreThreadState(ThreadState& state) noexcept {
- bool restored=RestoreKeyTips(state);
+ bool publicRestored=RestorePublicCaptions(state);
+ bool restored=RestoreKeyTips(state)&&publicRestored;
  restored=RestoreNativeBrushes(state.nativeBrushes)&&restored;
  for(auto& root:state.roots) {
   if(root.layout.value)try {
@@ -1460,7 +1619,7 @@ static decltype(&DwmSetWindowAttribute) originalDwmSet=nullptr;
 static bool CaptionWindow(HWND window) {
  DWORD process=0;GetWindowThreadProcessId(window,&process);wchar_t type[64]{};
  return process==GetCurrentProcessId()&&GetAncestor(window,GA_ROOT)==window&&GetClassNameW(window,type,std::size(type))
-  &&wcscmp(type,L"Notepad")==0;
+  &&wcscmp(type,L"Notepad")==0&&false;
 }
 static Caption* OwnedCaption(HWND window) {
  auto state=static_cast<Caption*>(GetPropW(window,captionProperty));
@@ -1493,7 +1652,7 @@ static void RefreshCaptions() {
 // Preserve native backdrop requests. Opaque XAML backing and a captured
 // caption-color baseline provide black surfaces without exposing other windows.
 static HRESULT WINAPI DwmCaptionHook(HWND window,DWORD attribute,LPCVOID value,DWORD size) {
- if(attribute!=DWMWA_CAPTION_COLOR||!value||size!=sizeof(COLORREF)||!CaptionWindow(window))return originalDwmSet(window,attribute,value,size);
+ if(publicCaptionWrite||attribute!=DWMWA_CAPTION_COLOR||!value||size!=sizeof(COLORREF)||!CaptionWindow(window))return originalDwmSet(window,attribute,value,size);
  std::lock_guard guard(captionsMutex);COLORREF requested;memcpy(&requested,value,sizeof(requested));
  auto state=OwnedCaption(window);bool captured=!state;bool active=enabled.load()&&!HighContrast();
  if(!state&&active)state=CaptureCaption(window,requested);

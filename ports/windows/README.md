@@ -15,10 +15,9 @@ restores and uninstalls the port. There is no separate setup script.
 2. Paste the command below. Setup obtains required runtimes, checks compatibility,
    installs the theme, runs Test, and prints the exact recovery commands.
 3. Reopen affected apps and check their appearance. Save documents first; setup
-   does not close them. Already-open Notepad caption backgrounds can remain
-   native until the app is reopened, so their original state stays recoverable.
-   Paint uses its readable public caption colors on the recorded native layout;
-   its gray drawing workspace remains an experimental limitation.
+   does not close them. Notepad and Paint use readable public caption colors on
+   their recorded native layouts, with their original nullable overrides retained.
+   Paint's gray drawing workspace remains an experimental limitation.
 
 <!-- install:start -->
 Install commands appear here once v4.0.0 is released.
@@ -152,6 +151,9 @@ colors. Input behavior and third-party preview content remain host-controlled. O
 No binary theme patching or shell replacement is used. Reopen affected apps
 gracefully when required; the installer never force-kills terminals or reboots.
 All distribution files are generated. Edit semantic mappings and regenerate.
+
+Modern shell scrollbars use red thumbs and black tracks, including Explorer Home;
+scrolling and native indicator animation are preserved.
 
 Search is a separate interface from the pinned-app Start page. Its XAML frame and
 WebView recent/results/category/preview panels now use the same token palette.

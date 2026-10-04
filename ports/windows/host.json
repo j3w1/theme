@@ -63,7 +63,25 @@
     "AccentTextFillColorPrimary": "color.text.bright",
     "TextOnAccentFillColorPrimary": "color.text.on-action",
     "SystemAccentColor": "color.border.active",
-    "SystemControlHighlightAccentBrush": "color.border.active"
+    "SystemControlHighlightAccentBrush": "color.border.active",
+    "ScrollBarThumbBackground": "color.interaction.scrollbar.thumb",
+    "ScrollBarPanningThumbBackground": "color.interaction.scrollbar.thumb",
+    "ScrollBarThumbFill": "color.interaction.scrollbar.thumb",
+    "ScrollBarThumbFillPointerOver": "color.interaction.scrollbar.thumb-hover",
+    "ScrollBarThumbFillPressed": "color.interaction.scrollbar.thumb-hover",
+    "ScrollBarThumbFillDisabled": "color.interaction.disabled.bg",
+    "ScrollBarPanningThumbBackgroundDisabled": "color.interaction.disabled.bg",
+    "ScrollBarThumbBorderBrush": "color.surface.canvas",
+    "ScrollBarTrackFill": "color.surface.canvas",
+    "ScrollBarTrackFillPointerOver": "color.surface.canvas",
+    "ScrollBarTrackFillDisabled": "color.surface.canvas",
+    "ScrollBarTrackStroke": "color.surface.canvas",
+    "ScrollBarTrackStrokePointerOver": "color.surface.canvas",
+    "ScrollBarTrackStrokeDisabled": "color.surface.canvas",
+    "ScrollBarButtonArrowForeground": "color.text.default",
+    "ScrollBarButtonArrowForegroundPointerOver": "color.text.bright",
+    "ScrollBarButtonArrowForegroundPressed": "color.text.bright",
+    "ScrollBarButtonArrowForegroundDisabled": "color.text.disabled"
   },
   "stylers": [
     {
@@ -1370,11 +1388,25 @@
     }
   },
   "notepadChrome": {
-    "version": "1.2.7",
+    "version": "1.2.8",
     "packageFullName": "Microsoft.WindowsNotepad_11.2607.14.0_x64__8wekyb3d8bbwe",
     "runtimePackage": "Microsoft.WindowsAppRuntime.2_2.5.1.0_x64__8wekyb3d8bbwe",
     "runtimeSha256": "aad12524765e6fb63f0ae26a45a9ba3104f24fde66413d8a3036fbed74a1e990",
-    "diagnosticsBridgeSha256": "76fa4a93d1ae9c77f8c89222fbe7870e9b7c6eccf8d35d91ec43404df180e29c"
+    "diagnosticsBridgeSha256": "76fa4a93d1ae9c77f8c89222fbe7870e9b7c6eccf8d35d91ec43404df180e29c",
+    "captionColors": {
+      "BackgroundColor": "color.surface.canvas",
+      "ForegroundColor": "color.text.default",
+      "ButtonBackgroundColor": "color.surface.canvas",
+      "ButtonForegroundColor": "color.text.default",
+      "ButtonHoverBackgroundColor": "color.interaction.hover.bg",
+      "ButtonHoverForegroundColor": "color.text.default",
+      "ButtonPressedBackgroundColor": "color.interaction.pressed.bg",
+      "ButtonPressedForegroundColor": "color.text.default",
+      "InactiveBackgroundColor": "color.surface.canvas",
+      "InactiveForegroundColor": "color.text.muted",
+      "ButtonInactiveBackgroundColor": "color.surface.canvas",
+      "ButtonInactiveForegroundColor": "color.text.muted"
+    }
   },
   "winuiChromeResources": {
     "PaintButtonRestBackground": "color.surface.input",

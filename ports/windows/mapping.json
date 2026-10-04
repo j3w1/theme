@@ -162,7 +162,18 @@
       "windows-11-start-menu-styler | web .suggestion, .suggContainer | border-color",
       "windows-11-start-menu-styler | web .contextMenu li | background-color",
       "windows-11-start-menu-styler | web .scope-tile--selected > div | background-color",
-      "windows-11-start-menu-styler | web ::-webkit-scrollbar-track | background-color"
+      "windows-11-start-menu-styler | web ::-webkit-scrollbar-track | background-color",
+      "windhawk.resource.ScrollBarThumbBorderBrush",
+      "windhawk.resource.ScrollBarTrackFill",
+      "windhawk.resource.ScrollBarTrackFillPointerOver",
+      "windhawk.resource.ScrollBarTrackFillDisabled",
+      "windhawk.resource.ScrollBarTrackStroke",
+      "windhawk.resource.ScrollBarTrackStrokePointerOver",
+      "windhawk.resource.ScrollBarTrackStrokeDisabled",
+      "notepad-chrome.caption.BackgroundColor",
+      "notepad-chrome.caption.ButtonBackgroundColor",
+      "notepad-chrome.caption.InactiveBackgroundColor",
+      "notepad-chrome.caption.ButtonInactiveBackgroundColor"
     ],
     "color.terminal.cursor": [
       "terminal.cursor"
@@ -301,7 +312,12 @@
       "paint-chrome.caption.ButtonPressedForegroundColor",
       "windows-11-start-menu-styler | web body, #root, #root.darkTheme, .scope-with-background, .suggsList, .suggsListContainer, .suggContainer, .previewContainer, .suggDetailsContainer, .contextMenu, #menuContainer | color",
       "windows-11-start-menu-styler | web h1, h2, h3, h4, p, .title, .details, .secondaryText, .groupTitle, .suggestion, .scope-tile > div, .menu-item_details, .previewContainer, button | color",
-      "windows-11-start-menu-styler | web .suggestion:hover, .suggContainer:hover, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover | color"
+      "windows-11-start-menu-styler | web .suggestion:hover, .suggContainer:hover, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover | color",
+      "windhawk.resource.ScrollBarButtonArrowForeground",
+      "notepad-chrome.caption.ForegroundColor",
+      "notepad-chrome.caption.ButtonForegroundColor",
+      "notepad-chrome.caption.ButtonHoverForegroundColor",
+      "notepad-chrome.caption.ButtonPressedForegroundColor"
     ],
     "color.text.bright": [
       "native.bright",
@@ -315,7 +331,9 @@
       "notepad-chrome.resource.TextOnAccentFillColorPrimaryBrush",
       "paint-chrome.resource.AccentTextFillColorPrimaryBrush",
       "paint-chrome.resource.TextOnAccentFillColorPrimaryBrush",
-      "windows-11-start-menu-styler | web .scope-tile--selected > div | color"
+      "windows-11-start-menu-styler | web .scope-tile--selected > div | color",
+      "windhawk.resource.ScrollBarButtonArrowForegroundPointerOver",
+      "windhawk.resource.ScrollBarButtonArrowForegroundPressed"
     ],
     "color.text.heading": [
       "native.heading",
@@ -350,7 +368,9 @@
       "paint-chrome.resource.MenuFlyoutItemKeyboardAcceleratorTextForegroundPressed",
       "paint-chrome.caption.InactiveForegroundColor",
       "paint-chrome.caption.ButtonInactiveForegroundColor",
-      "windows-11-start-menu-styler | web .secondaryText, .details .secondaryText | color"
+      "windows-11-start-menu-styler | web .secondaryText, .details .secondaryText | color",
+      "notepad-chrome.caption.InactiveForegroundColor",
+      "notepad-chrome.caption.ButtonInactiveForegroundColor"
     ],
     "color.text.disabled": [
       "native.disabled",
@@ -386,7 +406,8 @@
       "paint-chrome.resource.ToggleButtonForegroundIndeterminateDisabled",
       "calculator.resource.ToggleButtonForegroundDisabled",
       "calculator.resource.ToggleButtonForegroundCheckedDisabled",
-      "calculator.resource.ToggleButtonForegroundIndeterminateDisabled"
+      "calculator.resource.ToggleButtonForegroundIndeterminateDisabled",
+      "windhawk.resource.ScrollBarButtonArrowForegroundDisabled"
     ],
     "color.interaction.selection.bg": [
       "native.selection",
@@ -614,7 +635,8 @@
       "calculator.resource.ToggleButtonBackgroundPointerOver",
       "calculator.resource.ToggleButtonBackgroundIndeterminatePointerOver",
       "paint-chrome.caption.ButtonHoverBackgroundColor",
-      "windows-11-start-menu-styler | web .suggestion:hover, .suggContainer:hover, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover | background-color"
+      "windows-11-start-menu-styler | web .suggestion:hover, .suggContainer:hover, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover | background-color",
+      "notepad-chrome.caption.ButtonHoverBackgroundColor"
     ],
     "color.interaction.pressed.bg": [
       "windhawk.resource.ControlFillColorTertiary",
@@ -657,7 +679,8 @@
       "calculator.resource.ToggleButtonBackgroundCheckedPressed",
       "calculator.resource.ToggleButtonBackgroundIndeterminatePressed",
       "paint-chrome.caption.ButtonPressedBackgroundColor",
-      "windows-11-start-menu-styler | web button:active, .button:active, .actionButton:active | background-color"
+      "windows-11-start-menu-styler | web button:active, .button:active, .actionButton:active | background-color",
+      "notepad-chrome.caption.ButtonPressedBackgroundColor"
     ],
     "color.action.primary.bg": [
       "windhawk.resource.AccentFillColorDefault",
@@ -784,7 +807,9 @@
       "paint-chrome.resource.ToggleButtonBackgroundIndeterminateDisabled",
       "calculator.resource.ToggleButtonBackgroundDisabled",
       "calculator.resource.ToggleButtonBackgroundCheckedDisabled",
-      "calculator.resource.ToggleButtonBackgroundIndeterminateDisabled"
+      "calculator.resource.ToggleButtonBackgroundIndeterminateDisabled",
+      "windhawk.resource.ScrollBarThumbFillDisabled",
+      "windhawk.resource.ScrollBarPanningThumbBackgroundDisabled"
     ],
     "color.border.disabled": [
       "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | BorderBrush@Disabled",
@@ -865,10 +890,15 @@
       "notepad-chrome.resource.J3w1ScrollBarThumb",
       "paint-chrome.resource.J3w1ScrollBarThumb",
       "windows-11-start-menu-styler | web * | scrollbar-color",
-      "windows-11-start-menu-styler | web ::-webkit-scrollbar-thumb | background-color"
+      "windows-11-start-menu-styler | web ::-webkit-scrollbar-thumb | background-color",
+      "windhawk.resource.ScrollBarThumbBackground",
+      "windhawk.resource.ScrollBarPanningThumbBackground",
+      "windhawk.resource.ScrollBarThumbFill"
     ],
     "color.interaction.scrollbar.thumb-hover": [
-      "nativeExplorer.scrollbarHover"
+      "nativeExplorer.scrollbarHover",
+      "windhawk.resource.ScrollBarThumbFillPointerOver",
+      "windhawk.resource.ScrollBarThumbFillPressed"
     ],
     "color.interaction.focus.ring": [
       "nativeExplorer.focusRing",

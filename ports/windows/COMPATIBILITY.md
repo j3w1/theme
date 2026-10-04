@@ -967,3 +967,31 @@ The native regression exercises restoration failure/retry and later host changes
 Real startup-transition acceptance remains separate from those checks.
 
 Public contract: [Microsoft Controller2 background documentation](https://learn.microsoft.com/en-us/microsoft-edge/webview2/reference/win32/icorewebview2controller2?view=webview2-1.0.2849.39).
+
+### Modern shell scrollbar resources
+
+The recorded Explorer Home view uses the modern XAML scrollbar rather than the
+native file-list scrollbar. A live comparison found its panning indicator gray
+while the native file list remained red. The shell resource mapping now includes
+the named panning/expanded thumb, hover/pressed/disabled fills, track/stroke and
+arrow resources. Thumb states use the existing scrollbar roles, tracks use the
+canvas and arrows use the text ladder. Geometry, scrolling, indicator animations
+and focus remain native. These settings are installed and restored by the same
+public lifecycle; unknown fingerprints still refuse Full mode. Native appearance
+and transition acceptance remain separate from generated-resource checks.
+
+Resource contract: [Microsoft ScrollBar template](https://github.com/microsoft/microsoft-ui-xaml/blob/main/controls/dev/CommonStyles/ScrollBar_themeresources.xaml).
+
+### Readable Notepad caption ownership
+
+A fresh first Notepad window remained gray because it was created before the
+native caption hook could capture a baseline. The saved exact-package public
+probe reports customization support, no extended title content and nullable
+background overrides. Notepad now shares Paint's public caption-color adapter,
+using the same twelve token roles and owning-thread restoration receipts. The
+legacy write-only caption hook forwards both applications' requests unchanged.
+Custom title composition, unknown packages/runtime, high contrast, destroyed or
+reused windows and later app replacements retain their existing refusal and
+ownership checks. No drag geometry, tabs or document content is changed. Native
+regressions cover nullable/explicit baselines, failures, retry and window reuse
+for both adapters. Fresh-window appearance remains a separate live check.

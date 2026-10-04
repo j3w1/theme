@@ -83,7 +83,6 @@ int main(int argc, char** argv) {
         uninit_apartment();puts("PASS: failed retirement retains ownership and later retry preserves application resource changes");return 0;
     }
 
-#if J3W1_TEST_PAINT
     if(strcmp(argv[1],"public-caption-ownership")==0) {
         init_apartment(apartment_type::multi_threaded);
         auto baseline=box_value(Color{255,21,23,25}).as<CaptionColor>();
@@ -116,7 +115,7 @@ int main(int argc, char** argv) {
         uninit_apartment();puts("PASS: nullable/explicit baselines, later application edits, partial write, denied setter, read failure and cleanup retry");return 0;
     }
     if(strcmp(argv[1],"public-caption-window-ownership")==0) {
-        WNDCLASSW type{};type.lpfnWndProc=DefWindowProcW;type.hInstance=GetModuleHandleW(nullptr);type.lpszClassName=L"MSPaintApp";
+        WNDCLASSW type{};type.lpfnWndProc=DefWindowProcW;type.hInstance=GetModuleHandleW(nullptr);type.lpszClassName=J3W1_TEST_PAINT?L"MSPaintApp":L"Notepad";
         assert(RegisterClassW(&type));
         HWND window=CreateWindowExW(0,type.lpszClassName,L"",WS_POPUP,0,0,1,1,nullptr,nullptr,type.hInstance,nullptr);
         assert(window&&PublicCaptionWindow(window));
@@ -133,7 +132,6 @@ int main(int argc, char** argv) {
         assert(!PublicCaptionWindow(nullptr));
         puts("PASS: stable window-property ownership, later replacement, destroyed windows and handle reuse admission");return 0;
     }
-#endif
 
     if(strcmp(argv[1],"keytip-ownership") == 0) {
         for(auto key:{L"KeyTipBackground",L"KeyTipBorderBrush",L"KeyTipForeground"})assert(KeyTipResource(key));
@@ -162,11 +160,7 @@ int main(int argc, char** argv) {
         assert(RegisterClassW(&type));
         HWND window=CreateWindowExW(0,type.lpszClassName,L"",0,0,0,20,20,nullptr,nullptr,type.hInstance,nullptr);
         assert(window);
-#if J3W1_TEST_PAINT
         assert(PublicCaptionWindow(window)&&!CaptionWindow(window));
-#else
-        assert(CaptionWindow(window));
-#endif
         static DWORD attributeSeen=0,valueSeen=0;static unsigned calls=0;
         originalDwmSet=+[](HWND,DWORD attribute,LPCVOID value,DWORD size)->HRESULT {
             assert(value&&size==sizeof(DWORD));attributeSeen=attribute;memcpy(&valueSeen,value,size);++calls;return S_OK;
@@ -178,8 +172,7 @@ int main(int argc, char** argv) {
             assert(attributeSeen==DWMWA_SYSTEMBACKDROP_TYPE&&valueSeen==backdrop);
         }
         assert(calls==6);
-#if J3W1_TEST_PAINT
-        // The public owner is the only Paint caption writer. The legacy DWM
+        // The readable public owner is the only caption writer. The legacy DWM
         // hook must forward active/inactive native caption requests unchanged.
         for(bool active:{false,true}) {
             DWORD nativeColor=RGB(31,33,35);enabled=active;
@@ -187,7 +180,6 @@ int main(int argc, char** argv) {
             assert(attributeSeen==DWMWA_CAPTION_COLOR&&valueSeen==nativeColor);
         }
         assert(calls==8&&captions.empty());
-#endif
         assert(DestroyWindow(window));assert(UnregisterClassW(type.lpszClassName,type.hInstance));
         puts("PASS: native backdrop requests preserved in active and inactive adapter states");return 0;
     }

@@ -1,5 +1,5 @@
-// Readable public caption colors are supported only by this admitted Paint
-// composition. Notepad's custom tab caption uses the captured native path.
+// Readable caption colors are shared by admitted Paint and Notepad layouts.
+// A custom title composition still declines public styling without changing it.
 using CaptionColor = Windows::Foundation::IReference<Color>;
 using PublicTitleBar = Microsoft::UI::Windowing::AppWindowTitleBar;
 struct CaptionSlot { CaptionColor before{nullptr}, applied{nullptr}; bool owned=false, changed=false; };
@@ -14,7 +14,7 @@ static bool SameCaptionColor(CaptionColor const& a,CaptionColor const& b) {
 static bool PublicCaptionWindow(HWND window) noexcept {
  DWORD process=0;auto thread=GetWindowThreadProcessId(window,&process);wchar_t type[64]{};
  return thread==GetCurrentThreadId()&&process==GetCurrentProcessId()&&GetAncestor(window,GA_ROOT)==window
-  &&GetClassNameW(window,type,std::size(type))&&wcscmp(type,L"MSPaintApp")==0;
+  &&GetClassNameW(window,type,std::size(type))&&wcscmp(type,L"@NATIVE_CLASS@")==0;
 }
 static bool OwnsPublicCaptionWindow(PublicCaption const& caption) noexcept {
  // Window properties disappear on destruction. Stable heap identity prevents
