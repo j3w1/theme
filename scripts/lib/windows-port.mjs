@@ -14,6 +14,7 @@ export const CURSOR_NAMES = ['Arrow','Help','AppStarting','Wait','Crosshair','IB
 // geometry still resolve from approved roles; arbitrary CSS/JS is not accepted.
 const webPresentation = new Map([
  ['border-style',new Set(['none','solid'])],
+ ['box-sizing',new Set(['border-box'])],
  ['box-shadow',new Set(['none'])],
  ['background-image',new Set(['none'])],
  ['background-color',new Set(['inherit'])],
@@ -34,6 +35,9 @@ export function windowsWebContentStyles(items,val) {
    // Replace only the host's decorative selection pill with the result frame.
    // Never admit content removal on controls, labels or arbitrary pseudo-elements.
    if(key==='content'&&t.target!=='.leftPill::before')throw Error('Unsupported Search decoration target');
+   // Fit the reserved result frame inside the host width without assigning a
+   // width, padding, position, overflow mode or sizing for unrelated controls.
+   if(key==='box-sizing'&&t.target!=='.suggestion, .suggContainer')throw Error('Unsupported Search box-sizing target');
    styles.push(`${key}: ${value} !important`);
   }
   return {target:t.target,styles};

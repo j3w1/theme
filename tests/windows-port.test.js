@@ -64,6 +64,9 @@ test('Search presentation cannot hide controls, accept scripts or substitute lit
  assert.deepEqual(windowsWebContentStyles([{target:'.leftPill::before',styles:{},presentation:{content:'none'}}],value),[{target:'.leftPill::before',styles:['content: none !important']}]);
  for(const target of ['button','button::before','.title','.suggestion::before'])
   assert.throws(()=>windowsWebContentStyles([{target,styles:{},presentation:{content:'none'}}],value),/Unsupported Search decoration target/);
+ assert.deepEqual(windowsWebContentStyles([{target:'.suggestion, .suggContainer',styles:{},presentation:{'box-sizing':'border-box'}}],value),[{target:'.suggestion, .suggContainer',styles:['box-sizing: border-box !important']}]);
+ for(const target of ['*','body','button','.title','.suggestion *'])assert.throws(()=>windowsWebContentStyles([{target,styles:{},presentation:{'box-sizing':'border-box'}}],value),/Unsupported Search box-sizing target/);
+ assert.throws(()=>windowsWebContentStyles([{target:'.suggestion, .suggContainer',styles:{},presentation:{'box-sizing':'content-box'}}],value),/Unsupported Search presentation/);
  for(const fill of ['white','transparent','var(--unreviewed-color)'])
   assert.throws(()=>windowsWebContentStyles([{target:'.suggestion .details',styles:{},presentation:{'background-color':fill}}],value),/Unsupported Search presentation/);
 });

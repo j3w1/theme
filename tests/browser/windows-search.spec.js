@@ -110,3 +110,27 @@ test('Search nested paint layers follow their result state',verification({compon
  await page.emulateMedia({forcedColors:'active'});
  expect(await row.evaluate(element=>getComputedStyle(element).forcedColorAdjust)).toBe('auto');
 });
+
+
+for(const direction of ['ltr','rtl'])test('Search result frame stays inside a clipped host column in '+direction,verification({component:'list',category:'appearance',states:['default','hover','selected','selected+focus-visible'],variants:[],note:'Synthetic native content-box sizing with a clipped, width-constrained result column. Verifies physical frame edges remain visible, row width and height stay stable across state changes, and unrelated controls retain host sizing. Does not certify native Search layout.'}),async({page})=>{
+ await page.setContent('<html dir="'+direction+'"><head><style>#column{width:280px;max-width:100%;overflow:hidden}.suggestion{width:100%;display:flex;padding:12px;box-sizing:content-box}.details{flex:1;min-width:0}.title{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.iconContainer{padding:8px}.nativeControl{box-sizing:content-box}</style><style>'+css+'</style></head><body><div id="column"><div class="suggestion leftPill" role="option" aria-selected="false" tabindex="0"><div class="iconContainer">Icon</div><div class="details"><div class="title">A long result title that must stay inside the host column</div><div class="secondaryText">Application</div></div></div></div><button class="nativeControl">Outside</button></body></html>');
+ const row=page.getByRole('option'),outside=page.getByRole('button',{name:'Outside'});
+ await outside.hover();const before=await row.boundingBox();
+ const assertVisible=async()=>{
+  const column=await page.locator('#column').boundingBox(),frame=await row.boundingBox();
+  expect(frame.x).toBeGreaterThanOrEqual(column.x);
+  expect(frame.x+frame.width).toBeLessThanOrEqual(column.x+column.width);
+  expect(frame.width).toBe(column.width);
+  expect(await row.boundingBox()).toEqual(before);
+ };
+ await assertVisible();await row.hover();await assertVisible();
+ await row.evaluate(element=>element.setAttribute('aria-selected','true'));await assertVisible();
+ const frame=await row.evaluate(element=>{const s=getComputedStyle(element);return {left:s.borderLeftStyle,right:s.borderRightStyle,leftColor:s.borderLeftColor,rightColor:s.borderRightColor,leftWidth:s.borderLeftWidth,rightWidth:s.borderRightWidth};});
+ expect(frame.left).toBe('solid');expect(frame.right).toBe('solid');
+ expect(frame[direction==='ltr'?'rightColor':'leftColor']).toBe(color('color.border.control'));
+ expect(frame[direction==='ltr'?'rightWidth':'leftWidth']).toBe(dimension('border.width.default'));
+ await row.hover();await assertVisible();await outside.hover();await assertVisible();
+ await row.focus();await assertVisible();await expect(row).toHaveAttribute('tabindex','0');
+ await row.evaluate(element=>element.setAttribute('aria-selected','false'));await outside.hover();await assertVisible();
+ expect(await outside.evaluate(element=>getComputedStyle(element).boxSizing)).toBe('content-box');
+});

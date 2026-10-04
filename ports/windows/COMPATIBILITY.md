@@ -1098,3 +1098,21 @@ animations may need separate observed evidence.
 Template references: [WinUI Button](https://github.com/microsoft/microsoft-ui-xaml/blob/main/controls/dev/CommonStyles/Button_themeresources.xaml),
 [SplitButton](https://github.com/microsoft/microsoft-ui-xaml/blob/main/controls/dev/SplitButton/SplitButton_themeresources.xaml),
 [DropDownButton](https://github.com/microsoft/microsoft-ui-xaml/blob/main/controls/dev/DropDownButton/DropDownButton_themeresources.xaml).
+
+
+### Search result frame sizing
+
+The reserved result frame now uses border-box sizing on suggestion/container
+rows only. Under a content-box host width, padding and the frame previously
+extended beyond an overflow-clipped result column. The synthetic reproduction
+placed the trailing edge 27 pixels outside that column; right-to-left layout
+reproduced the corresponding leading-edge overflow. Existing fixtures supplied
+border-box themselves and did not expose that failure.
+
+The correction fits padding and frame into the existing host width. It does not
+assign a width, padding, position, overflow mode or global sizing rule. The
+presentation allowlist admits this value only for the exact two row selectors.
+Browser regressions cover both directions, narrow/zoom layouts, hover exit,
+selection/deselection and focus, and verify unrelated controls keep host sizing.
+This is a reproduced layout defect and a synthetic correction; the actual
+Search compositor still needs an appearance check after installation.

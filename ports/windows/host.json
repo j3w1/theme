@@ -433,7 +433,8 @@
           },
           "presentation": {
             "border-style": "solid",
-            "box-shadow": "none"
+            "box-shadow": "none",
+            "box-sizing": "border-box"
           }
         },
         {
