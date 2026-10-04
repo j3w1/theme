@@ -916,3 +916,16 @@ One control has one resource owner across the island's chrome roots, retaining
 the native resource/state restoration path. No new local hover-paint override
 or document/canvas access is introduced. Native admission and cleanup checks
 are separate from live first-frame appearance acceptance, which remains open.
+
+### Explorer navigation-pin hover draw
+
+A bounded live trace on the recorded comctl32 runtime identified image 1 in
+the three-entry navigation state list. Rest and hover use the same ILD_SCALE
+and ILS_NORMAL draw; hover changes only the background request from CLR_NONE
+to CLR_DEFAULT. The native adapter now admits these two background flags and
+renders the glyph on a transparent owned DIB before compositing its original
+coverage with the mapped red. The existing navigation-row fill is preserved.
+Other background colors, image lists, states, transforms, unrelated owners
+and high contrast still pass through. The native regression checks both flags,
+transparent backdrop, argument preservation and refusal of unknown requests.
+Live hover/exit acceptance remains separate from the executable regression.

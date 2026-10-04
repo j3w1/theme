@@ -244,6 +244,7 @@ int main(){
         assert(self==(void*)fixtureStateImages && p->i==1 && p->cx==8 && p->cy==8);
         pinPassThrough=p->hdcDst==pinDestination;
         if(pinPassThrough)return 37;
+        assert(p->rgbBk==CLR_NONE); // Offscreen hover must not draw a row backdrop.
         DIBSECTION dib{};assert(GetObjectW(GetCurrentObject(p->hdcDst,OBJ_BITMAP),sizeof(dib),&dib)==sizeof(dib));
         auto pixels=(DWORD*)dib.dsBm.bmBits;
         pixels[2*8+2]=0xff95a0a6;pixels[2*8+3]=0x804a5053;
@@ -258,6 +259,15 @@ int main(){
     COLORREF edgePixel=GetPixel(target,5,4);
     assert(GetRValue(edgePixel)>0 && GetRValue(edgePixel)<GetRValue(pin));
     assert(memcmp(&request,&beforeRequest,sizeof(request))==0);
+    request.rgbBk=CLR_DEFAULT;beforeRequest=request;FillRect(target,&rect,black);
+    assert(NavigationPinHook((void*)fixtureStateImages,&request)==S_OK);GdiFlush();
+    assert(!pinPassThrough && GetPixel(target,4,4)==pin && GetPixel(target,2,2)==RGB(0,0,0));
+    assert(memcmp(&request,&beforeRequest,sizeof(request))==0);
+    request.rgbBk=RGB(17,23,31);
+    assert(NavigationPinHook((void*)fixtureStateImages,&request)==37 && pinPassThrough);
+    request.rgbBk=CLR_NONE;request.fState=ILS_SATURATE;
+    assert(NavigationPinHook((void*)fixtureStateImages,&request)==37 && pinPassThrough);
+    request.fState=ILS_NORMAL;
     fixtureHighContrast=true;
     assert(NavigationPinHook((void*)fixtureStateImages,&request)==37 && pinPassThrough);
     fixtureHighContrast=false;paintWindows.back()=sink;

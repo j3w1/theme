@@ -2,7 +2,7 @@
 // @id j3w1-explorer-native
 // @name j3w1 Explorer native colors
 // @description Generated native Explorer canvas and text adapter; exact host only
-// @version 1.7
+// @version 1.8
 // @author j3w1
 // @include explorer.exe
 // @architecture x86-64
@@ -642,7 +642,8 @@ static HRESULT __cdecl NavigationPinHook(void* self,IMAGELISTDRAWPARAMS* request
     if(!enabled.load() || drawingTheme || HighContrast() || !request
        || request->cbSize!=sizeof(*request) || request->i!=1
        || request->fStyle!=ILD_SCALE || request->fState!=ILS_NORMAL
-       || request->rgbBk!=CLR_NONE || request->cx<=0 || request->cy<=0
+       || (request->rgbBk!=CLR_NONE && request->rgbBk!=CLR_DEFAULT)
+       || request->cx<=0 || request->cy<=0
        || request->cx>128 || request->cy>128 || GetMapMode(request->hdcDst)!=MM_TEXT
        || GetLayout(request->hdcDst)!=0)return original();
     HWND window=PaintOwner(request->hdcDst);wchar_t name[64]{};
@@ -661,6 +662,9 @@ static HRESULT __cdecl NavigationPinHook(void* self,IMAGELISTDRAWPARAMS* request
     if(!previous || previous==HGDI_ERROR){DeleteObject(bitmap);DeleteDC(buffer);return original();}
     memset(pixels,0,request->cx*request->cy*4);
     auto local=*request;local.hdcDst=buffer;local.x=local.y=0;
+    // Hover uses CLR_DEFAULT for the destination's background. Keep that row
+    // background intact by drawing only the pin's coverage in the owned DIB.
+    local.rgbBk=CLR_NONE;
     drawingTheme=true;HRESULT result=originalImageListDraw(self,&local);drawingTheme=false;
     GdiFlush();bool opaque=false;
     if(SUCCEEDED(result))for(int i=0;i<request->cx*request->cy;i++) {
