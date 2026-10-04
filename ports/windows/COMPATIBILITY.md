@@ -946,3 +946,24 @@ list. Native synthetic regressions exercise repeated full-capacity retirement,
 failed restoration and retry with a later application resource replacement.
 These checks do not establish the cause of any particular desktop gray surface
 or accept first-frame, startup, DPI or accessibility appearance.
+
+### Markdown controller backing ownership
+
+The recorded WebView2 154.0.4258.53 public Controller2 setter receives transparent
+white from the pinned PowerToys Markdown host. Microsoft documents that this
+exposes the hosting app behind content and during navigation. The generated
+adapter maps only this observed request to the canonical opaque canvas, with
+per-controller receipts restored on their owning UI thread. Full-module digest
+and public getter/setter identities are checked independently; the other
+reviewed WebView builds retain their existing HTML styling without this new
+background mapping. Unknown modules remain native.
+
+A process-local default is set before renderer creation only when the host has
+no existing override. It is removed on disable/unload only while the same value
+is still owned. No user or machine environment setting changes. Later host
+colors, high contrast and close calls retain their behavior. Failed restoration
+keeps its receipt and resident cleanup code rather than unloading live callbacks.
+The native regression exercises restoration failure/retry and later host changes.
+Real startup-transition acceptance remains separate from those checks.
+
+Public contract: [Microsoft Controller2 background documentation](https://learn.microsoft.com/en-us/microsoft-edge/webview2/reference/win32/icorewebview2controller2?view=webview2-1.0.2849.39).

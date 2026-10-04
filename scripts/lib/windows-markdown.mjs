@@ -1,5 +1,5 @@
 /* PowerToys owns Markdown parsing, document bytes and WebView restrictions.
-   This renderer only supplies token-derived CSS at the pinned HTML boundary. */
+   This renderer supplies token-derived CSS and reversible backing at pinned public boundaries. */
 import {readFileSync} from 'node:fs';
 import path from 'node:path';
 import {repoRoot} from './fs.mjs';
@@ -15,6 +15,10 @@ export function windowsMarkdownArtifacts(host,resolved){
  for(const pin of md.webviewBoundaries) {
   if(!/^\d+\.\d+\.\d+\.\d+$/.test(pin.version)||versions.has(pin.version)||!/^[a-f0-9]{64}$/.test(pin.sha256)||digests.has(pin.sha256))throw Error('Invalid or duplicate Markdown WebView identity');
   versions.add(pin.version);digests.add(pin.sha256);
+  const backgroundKeys=['backgroundGetterRva','backgroundSetterRva','controllerCloseRva'];
+  if(backgroundKeys.some(key=>key in pin)&&!backgroundKeys.every(key=>Number.isSafeInteger(pin[key])&&pin[key]>0&&pin[key]<=0x7fffffff))throw Error('Incomplete Markdown controller boundary');
+  const offsets=['navigateToStringRva','navigateRva',...backgroundKeys].map(key=>pin[key]).filter(value=>value!==undefined);
+  if(new Set(offsets).size!==offsets.length)throw Error('Overlapping Markdown controller boundary');
   for(const key of ['navigateToStringRva','navigateRva'])if(!Number.isSafeInteger(pin[key])||pin[key]<=0||pin[key]>0x7fffffff)throw Error('Invalid Markdown WebView '+key);
  }
  if(!Array.isArray(md.headers)||md.headers.length!==4)throw Error('Markdown requires the four reviewed headers');
@@ -40,9 +44,10 @@ export function windowsMarkdownArtifacts(host,resolved){
  const rgb=role=>{const color=roles[role];if(!/^#[a-f0-9]{6}$/i.test(color))throw Error('Loading surface requires an opaque semantic color');return [1,3,5].map(i=>parseInt(color.slice(i,i+2),16)).join(',');};
  const subs={LOADING_BACKGROUND:rgb('CANVAS'),LOADING_FOREGROUND:rgb('PROSE'),VERSION:md.version,HEADER_PINS:md.headers.map(p=>` {${p.length},${p.styleOffset},${p.styleLength},"${p.sha256}"},`).join('\n'),
   PALETTE_CSS:css,HOST_SHA256:md.hostSha256,CONTROL_SHA256:md.controlSha256,HELPER_SHA256:md.helperSha256,
-  BROWSER_PINS:md.webviewBoundaries.map(p=>' {"'+p.sha256+'",0x'+p.navigateToStringRva.toString(16)+',0x'+p.navigateRva.toString(16)+'}, // '+p.version).join('\n'),
+  BROWSER_ENV:'FF'+roles.CANVAS.slice(1).toUpperCase(),
+  BROWSER_PINS:md.webviewBoundaries.map(p=>' {"'+p.sha256+'",'+['navigateToStringRva','navigateRva','backgroundGetterRva','backgroundSetterRva','controllerCloseRva'].map(key=>'0x'+(p[key]??0).toString(16)).join(',')+'}, // '+p.version).join('\n'),
   BROWSER_DISPATCH:md.webviewBoundaries.map((_,i)=>'  case '+i+':return HookBoundary<'+i+'>(module);').join('\n')};
  if(css.includes(')MD"'))throw Error('Invalid Markdown CSS literal delimiter');
- const source=render(readFileSync(path.join(repoRoot,`ports/windows/src/${id}.wh.cpp.in`),'utf8').replace('@PREVIEW_LOADING@',readFileSync(path.join(repoRoot,'ports/windows/src/preview-loading.cpp.in'),'utf8')),subs);
+ const source=render(readFileSync(path.join(repoRoot,`ports/windows/src/${id}.wh.cpp.in`),'utf8').replace('@PREVIEW_LOADING@',readFileSync(path.join(repoRoot,'ports/windows/src/preview-loading.cpp.in'),'utf8')).replace('@MARKDOWN_BACKGROUND@',readFileSync(path.join(repoRoot,'ports/windows/src/markdown-background.cpp.in'),'utf8')),subs);
  return {id,version:md.version,source,css};
 }

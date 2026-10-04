@@ -25,6 +25,8 @@
 #include <algorithm>
 #include <limits>
 #include <stdexcept>
+#include <new>
+#include <memory>
 
 // Only identities and offsets of the reviewed generated headers are retained.
 // No upstream template, previewed document, URI or filename is embedded/logged.
@@ -39,11 +41,15 @@ static std::mutex hookMutex,filesMutex;
 static std::wstring tempFolder;
 static std::vector<FILE_ID_INFO> createdFiles;
 using NavigateFn=HRESULT(STDMETHODCALLTYPE*)(IUnknown*,LPCWSTR);
-struct BrowserPin {const char* sha256;size_t stringRva,navigateRva;};
+struct BackgroundColor {BYTE A,R,G,B;};
+using SetBackgroundFn=HRESULT(STDMETHODCALLTYPE*)(IUnknown*,BackgroundColor);
+using GetBackgroundFn=HRESULT(STDMETHODCALLTYPE*)(IUnknown*,BackgroundColor*);
+using CloseControllerFn=HRESULT(STDMETHODCALLTYPE*)(IUnknown*);
+struct BrowserPin {const char* sha256;size_t stringRva,navigateRva,backgroundGetterRva,backgroundSetterRva,closeRva;};
 static constexpr BrowserPin browserPins[]={
 @BROWSER_PINS@
 };
-struct Boundary {HMODULE module=nullptr;bool attempted=false;std::atomic<bool> ready{false};NavigateFn originalString=nullptr,originalNavigate=nullptr;};
+struct Boundary {HMODULE module=nullptr;bool attempted=false;std::atomic<bool> ready{false};NavigateFn originalString=nullptr,originalNavigate=nullptr;GetBackgroundFn getBackground=nullptr;SetBackgroundFn originalBackground=nullptr,publicBackground=nullptr;CloseControllerFn originalClose=nullptr;};
 static Boundary boundaries[std::size(browserPins)];
 static decltype(&LoadLibraryExW) originalLoadLibraryEx;
 static decltype(&CreateFileW) originalCreateFile;
@@ -81,6 +87,7 @@ static bool DigestFile(const std::wstring& path,const char* expected){
  }
  if(hash)BCryptDestroyHash(hash);if(algorithm)BCryptCloseAlgorithmProvider(algorithm,0);CloseHandle(file);return ok;
 }
+@MARKDOWN_BACKGROUND@
 static size_t MaximumHeader(const HeaderPin* pins=headers,size_t count=std::size(headers)){
  size_t length=0;for(size_t i=0;i<count;i++)length=std::max(length,pins[i].length);return length;
 }
@@ -197,7 +204,13 @@ template<size_t Index> static bool HookBoundary(HMODULE module){
  // overwrite another runtime's trampoline or authorize an unknown module.
  bool ready=Wh_SetFunctionHook(base+pin.stringRva,reinterpret_cast<void*>(StringHook<Index>),reinterpret_cast<void**>(&boundary.originalString))
   &&Wh_SetFunctionHook(base+pin.navigateRva,reinterpret_cast<void*>(NavigateHook<Index>),reinterpret_cast<void**>(&boundary.originalNavigate));
- boundary.ready=ready;return ready;
+ if(ready&&pin.backgroundGetterRva&&pin.backgroundSetterRva&&pin.closeRva){
+  boundary.getBackground=reinterpret_cast<GetBackgroundFn>(base+pin.backgroundGetterRva);
+  boundary.publicBackground=reinterpret_cast<SetBackgroundFn>(base+pin.backgroundSetterRva);
+  ready=Wh_SetFunctionHook(base+pin.backgroundSetterRva,reinterpret_cast<void*>(BackgroundHook<Index>),reinterpret_cast<void**>(&boundary.originalBackground))
+   &&Wh_SetFunctionHook(base+pin.closeRva,reinterpret_cast<void*>(BackgroundCloseHook<Index>),reinterpret_cast<void**>(&boundary.originalClose));
+ }
+ boundary.ready=ready;if(ready&&pin.backgroundSetterRva)UpdateBackgroundEnvironment(enabled.load()&&!HighContrast());return ready;
 }
 static bool InstallBoundary(HMODULE module){
  if(!module)return false;std::lock_guard lock(hookMutex);
@@ -235,9 +248,14 @@ BOOL Wh_ModInit(){
  PWSTR low=nullptr;if(FAILED(SHGetKnownFolderPath(FOLDERID_LocalAppDataLow,0,nullptr,&low)))return FALSE;
  tempFolder=low;CoTaskMemFree(low);tempFolder+=L"\\Microsoft\\PowerToys\\MarkdownPreview-Temp\\";
  enabled=Wh_GetIntSetting(L"enabled")!=0;
+ backgroundMessage=RegisterWindowMessageW(L"j3w1-powertoys-markdown-background");
+ if(!backgroundMessage)return FALSE;
  ExistingBoundaries();
- return InitLoading()&&Wh_SetFunctionHook(reinterpret_cast<void*>(LoadLibraryExW),reinterpret_cast<void*>(LoadHook),reinterpret_cast<void**>(&originalLoadLibraryEx))
+ bool ready=InitLoading()&&Wh_SetFunctionHook(reinterpret_cast<void*>(LoadLibraryExW),reinterpret_cast<void*>(LoadHook),reinterpret_cast<void**>(&originalLoadLibraryEx))
   &&Wh_SetFunctionHook(reinterpret_cast<void*>(CreateFileW),reinterpret_cast<void*>(CreateHook),reinterpret_cast<void**>(&originalCreateFile));
+ if(!ready){enabled=false;RestoreBackgroundThreads();UpdateBackgroundEnvironment(false);}return ready;
 }
-void Wh_ModSettingsChanged(){enabled=Wh_GetIntSetting(L"enabled")!=0;}
-void Wh_ModUninit(){enabled=false;std::lock_guard lock(filesMutex);createdFiles.clear();}
+void Wh_ModSettingsChanged(){enabled=Wh_GetIntSetting(L"enabled")!=0;
+ bool admitted=false;for(size_t i=0;i<std::size(browserPins);i++)admitted=admitted||(boundaries[i].ready&&browserPins[i].backgroundSetterRva);
+ UpdateBackgroundEnvironment(enabled.load()&&admitted&&!HighContrast());if(!enabled.load())RestoreBackgroundThreads();}
+void Wh_ModUninit(){enabled=false;RestoreBackgroundThreads();UpdateBackgroundEnvironment(false);std::lock_guard lock(filesMutex);createdFiles.clear();}

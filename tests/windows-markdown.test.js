@@ -52,5 +52,26 @@ test('native Markdown startup shares the exact scoped loading implementation wit
  assert.ok(shared(md).length>0);
  // The foreground roles currently resolve alike; the same native code owns both.
  assert.equal(shared(md),shared(text));
- assert.ok(md.includes('return InitLoading()&&Wh_SetFunctionHook'));
+ assert.match(md,/InitLoading\(\)&&Wh_SetFunctionHook/);
+});
+
+
+test('Markdown controller boundary refuses incomplete, overlapping and unsafe public offsets',()=>{
+ const backgroundIndex=host.markdownPreview.webviewBoundaries.findIndex(p=>p.backgroundGetterRva);
+ assert.ok(backgroundIndex>=0);
+ for(const change of [
+  p=>delete p.backgroundGetterRva,p=>p.backgroundSetterRva=0,p=>p.controllerCloseRva=1.5,
+  p=>p.backgroundGetterRva=0x80000000,p=>p.backgroundSetterRva=p.navigateRva,
+  p=>p.controllerCloseRva=p.backgroundGetterRva
+ ]){const candidate=structuredClone(host);change(candidate.markdownPreview.webviewBoundaries[backgroundIndex]);
+  assert.throws(()=>windowsMarkdownArtifacts(candidate,resolved),/controller boundary/);}
+ const original=windowsMarkdownArtifacts(host,resolved);assert.ok(original.source.includes('backgroundEnvironmentValue[]=L"FF000000"'));
+ assert.ok(original.source.includes('table[26]')&&original.source.includes('table[27]'));
+});
+
+test('older reviewed Markdown runtimes retain HTML mapping without assuming controller offsets',()=>{
+ const candidate=structuredClone(host);
+ for(const p of candidate.markdownPreview.webviewBoundaries){delete p.backgroundGetterRva;delete p.backgroundSetterRva;delete p.controllerCloseRva;}
+ const result=windowsMarkdownArtifacts(candidate,resolved);assert.ok(result.source.includes(',0x0,0x0,0x0}, // 154.0.4258.53'));
+ assert.ok(result.source.includes('if(ready&&pin.backgroundGetterRva&&pin.backgroundSetterRva&&pin.closeRva)'));
 });

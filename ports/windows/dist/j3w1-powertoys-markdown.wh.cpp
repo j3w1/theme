@@ -2,7 +2,7 @@
 // @id j3w1-powertoys-markdown
 // @name j3w1 PowerToys Markdown preview
 // @description Exact-version black and rose Markdown rendering adapter
-// @version 1.2.1
+// @version 1.3.0
 // @author j3w1
 // @include PowerToys.MarkdownPreviewHandler.exe
 // @architecture x86-64
@@ -25,6 +25,8 @@
 #include <algorithm>
 #include <limits>
 #include <stdexcept>
+#include <new>
+#include <memory>
 
 // Only identities and offsets of the reviewed generated headers are retained.
 // No upstream template, previewed document, URI or filename is embedded/logged.
@@ -42,13 +44,17 @@ static std::mutex hookMutex,filesMutex;
 static std::wstring tempFolder;
 static std::vector<FILE_ID_INFO> createdFiles;
 using NavigateFn=HRESULT(STDMETHODCALLTYPE*)(IUnknown*,LPCWSTR);
-struct BrowserPin {const char* sha256;size_t stringRva,navigateRva;};
+struct BackgroundColor {BYTE A,R,G,B;};
+using SetBackgroundFn=HRESULT(STDMETHODCALLTYPE*)(IUnknown*,BackgroundColor);
+using GetBackgroundFn=HRESULT(STDMETHODCALLTYPE*)(IUnknown*,BackgroundColor*);
+using CloseControllerFn=HRESULT(STDMETHODCALLTYPE*)(IUnknown*);
+struct BrowserPin {const char* sha256;size_t stringRva,navigateRva,backgroundGetterRva,backgroundSetterRva,closeRva;};
 static constexpr BrowserPin browserPins[]={
- {"b08c60a6d316ad3e50c2a1d00f146d90fca3a8da08f22aef71722ac0ccebd6b7",0x896f0,0x89650}, // 154.0.4258.37
- {"89df7d69b27dd6c17228c7319e84e22a97076cb3d68271617490f38ab204ea3f",0x896f0,0x89650}, // 154.0.4258.48
- {"07b9416907225b99556c2a5242ecc6d16afd83d374b151285cfe41f164843c1c",0x8a290,0x8a1f0}, // 154.0.4258.53
+ {"b08c60a6d316ad3e50c2a1d00f146d90fca3a8da08f22aef71722ac0ccebd6b7",0x896f0,0x89650,0x0,0x0,0x0}, // 154.0.4258.37
+ {"89df7d69b27dd6c17228c7319e84e22a97076cb3d68271617490f38ab204ea3f",0x896f0,0x89650,0x0,0x0,0x0}, // 154.0.4258.48
+ {"07b9416907225b99556c2a5242ecc6d16afd83d374b151285cfe41f164843c1c",0x8a290,0x8a1f0,0x58e50,0x58f10,0x57380}, // 154.0.4258.53
 };
-struct Boundary {HMODULE module=nullptr;bool attempted=false;std::atomic<bool> ready{false};NavigateFn originalString=nullptr,originalNavigate=nullptr;};
+struct Boundary {HMODULE module=nullptr;bool attempted=false;std::atomic<bool> ready{false};NavigateFn originalString=nullptr,originalNavigate=nullptr;GetBackgroundFn getBackground=nullptr;SetBackgroundFn originalBackground=nullptr,publicBackground=nullptr;CloseControllerFn originalClose=nullptr;};
 static Boundary boundaries[std::size(browserPins)];
 static decltype(&LoadLibraryExW) originalLoadLibraryEx;
 static decltype(&CreateFileW) originalCreateFile;
@@ -148,6 +154,155 @@ static bool DigestFile(const std::wstring& path,const char* expected){
  }
  if(hash)BCryptDestroyHash(hash);if(algorithm)BCryptCloseAlgorithmProvider(algorithm,0);CloseHandle(file);return ok;
 }
+// The pinned PowerToys host requests transparent white on the reviewed public
+// Controller2 setter. Keep the browser backing opaque before HTML is painted.
+// Every controller receipt belongs to its UI thread; no COM pointer is used
+// from the Windhawk management thread. Later host colors remain host-owned.
+struct BackgroundReceipt {
+ BackgroundColor before{},applied{};bool owned=false,changed=false;
+};
+static bool SameBackground(BackgroundColor a,BackgroundColor b){return a.A==b.A&&a.R==b.R&&a.G==b.G&&a.B==b.B;}
+static constexpr BackgroundColor browserCanvas={255,0,0,0};
+static bool TransparentHostBackground(BackgroundColor c){return SameBackground(c,{0,255,255,255});}
+template<class Read,class Write> static bool RestoreBackground(BackgroundReceipt& receipt,Read read,Write write){
+ if(!receipt.owned)return true;BackgroundColor current{};HRESULT got=read(&current);
+ if(FAILED(got))return false;
+ if(!SameBackground(current,receipt.applied)){receipt.owned=false;receipt.changed=true;return true;}
+ if(FAILED(write(receipt.before)))return false;
+ receipt.owned=false;return true;
+}
+struct OwnedController {IUnknown* object=nullptr;GetBackgroundFn read=nullptr;SetBackgroundFn write=nullptr;BackgroundReceipt receipt;};
+struct BackgroundThread {HWND channel=nullptr;WNDPROC original=nullptr;std::vector<OwnedController> controllers;bool cleaning=false;};
+static thread_local BackgroundThread* backgroundThread=nullptr;
+static std::mutex backgroundMutex;
+static std::vector<HWND> backgroundChannels;
+static UINT backgroundMessage=0;
+static constexpr UINT_PTR backgroundTimer=0x4a334d44;
+static constexpr IID controller2IID={0xc979903e,0xd4ca,0x4228,{0x92,0xeb,0x47,0xee,0x3f,0xa9,0x6e,0xab}};
+static void UpdateBackgroundEnvironment(bool active);
+static bool BackgroundOverrideExists();
+static void PinBackgroundCleanup(){HMODULE self=nullptr;GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS|GET_MODULE_HANDLE_EX_FLAG_PIN,reinterpret_cast<LPCWSTR>(PinBackgroundCleanup),&self);}
+static bool RestoreControllers(BackgroundThread& state){
+ bool complete=true;
+ for(auto it=state.controllers.begin();it!=state.controllers.end();){
+  bool restored=RestoreBackground(it->receipt,[&](BackgroundColor* c){return it->read(it->object,c);},[&](BackgroundColor c){return it->write(it->object,c);});
+  if(restored){it->object->Release();it=state.controllers.erase(it);}else{complete=false;++it;}
+ }
+ return complete;
+}
+static LRESULT CALLBACK BackgroundChannel(HWND window,UINT message,WPARAM wParam,LPARAM lParam){
+ auto state=reinterpret_cast<BackgroundThread*>(GetWindowLongPtrW(window,GWLP_USERDATA));if(!state)return DefWindowProcW(window,message,wParam,lParam);
+ if(message==WM_NCDESTROY||(message==backgroundMessage&&wParam==1))state->cleaning=true;
+ if(message==backgroundMessage||(message==WM_TIMER&&wParam==backgroundTimer)||message==WM_NCDESTROY){
+  bool highContrast=HighContrast();if(highContrast)UpdateBackgroundEnvironment(false);
+  bool restore=state->cleaning||!enabled.load()||highContrast;
+  if(restore){bool complete=RestoreControllers(*state);
+   if(state->cleaning&&complete){auto original=state->original;
+    KillTimer(window,backgroundTimer);SetWindowLongPtrW(window,GWLP_WNDPROC,reinterpret_cast<LONG_PTR>(original));SetWindowLongPtrW(window,GWLP_USERDATA,0);
+    {std::lock_guard guard(backgroundMutex);backgroundChannels.erase(std::remove(backgroundChannels.begin(),backgroundChannels.end(),window),backgroundChannels.end());}
+    if(backgroundThread==state)backgroundThread=nullptr;delete state;
+    if(message==WM_NCDESTROY)return CallWindowProcW(original,window,message,wParam,lParam);
+    DestroyWindow(window);return 0;
+   }
+   if(state->cleaning&&!complete){PinBackgroundCleanup();if(message==WM_NCDESTROY){KillTimer(window,backgroundTimer);SetWindowLongPtrW(window,GWLP_USERDATA,0);return CallWindowProcW(state->original,window,message,wParam,lParam);}}
+  }
+  if(message!=WM_NCDESTROY)return 0;
+ }
+ return CallWindowProcW(state->original,window,message,wParam,lParam);
+}
+static BackgroundThread* EnsureBackgroundThread(){
+ if(backgroundThread)return backgroundThread->cleaning?nullptr:backgroundThread;
+ if(!backgroundMessage)return nullptr;
+ HWND channel=CreateWindowExW(0,L"STATIC",nullptr,0,0,0,0,0,HWND_MESSAGE,nullptr,nullptr,nullptr);if(!channel)return nullptr;
+ auto state=new(std::nothrow) BackgroundThread;if(!state){DestroyWindow(channel);return nullptr;}state->channel=channel;
+ state->original=reinterpret_cast<WNDPROC>(SetWindowLongPtrW(channel,GWLP_WNDPROC,reinterpret_cast<LONG_PTR>(BackgroundChannel)));
+ if(!state->original){delete state;DestroyWindow(channel);return nullptr;}
+ SetWindowLongPtrW(channel,GWLP_USERDATA,reinterpret_cast<LONG_PTR>(state));
+ if(!SetTimer(channel,backgroundTimer,250,nullptr)){SetWindowLongPtrW(channel,GWLP_WNDPROC,reinterpret_cast<LONG_PTR>(state->original));SetWindowLongPtrW(channel,GWLP_USERDATA,0);delete state;DestroyWindow(channel);return nullptr;}
+ try {std::lock_guard guard(backgroundMutex);backgroundChannels.push_back(channel);}
+ catch(...){KillTimer(channel,backgroundTimer);SetWindowLongPtrW(channel,GWLP_WNDPROC,reinterpret_cast<LONG_PTR>(state->original));SetWindowLongPtrW(channel,GWLP_USERDATA,0);delete state;DestroyWindow(channel);return nullptr;}
+ backgroundThread=state;return state;
+}
+template<size_t Index> static HRESULT STDMETHODCALLTYPE BackgroundHook(IUnknown* owner,BackgroundColor requested){
+ auto& boundary=boundaries[Index];
+ if(!enabled.load()||!boundary.ready||HighContrast()||BackgroundOverrideExists()||!owner)return boundary.originalBackground(owner,requested);
+ try {
+ IUnknown* controller=nullptr;
+ if(FAILED(owner->QueryInterface(controller2IID,reinterpret_cast<void**>(&controller)))||!controller)return boundary.originalBackground(owner,requested);
+ auto release=[](IUnknown* value){if(value)value->Release();};std::unique_ptr<IUnknown,decltype(release)> acquired(controller,release);
+ // The returned Controller2 interface must use the independently observed
+ // public setter/getter for this admitted module. QI identity alone is insufficient.
+ void** table=*reinterpret_cast<void***>(controller);
+ bool exact=table[26]==reinterpret_cast<void*>(boundary.getBackground)&&table[27]==reinterpret_cast<void*>(boundary.publicBackground);
+ if(!exact)return boundary.originalBackground(owner,requested);
+ auto state=EnsureBackgroundThread();if(!state)return boundary.originalBackground(owner,requested);
+ auto found=std::find_if(state->controllers.begin(),state->controllers.end(),[&](auto const& item){return item.object==controller;});
+ if(!TransparentHostBackground(requested)){
+  HRESULT result=boundary.originalBackground(owner,requested);
+  if(SUCCEEDED(result)&&found!=state->controllers.end()){found->object->Release();state->controllers.erase(found);}
+  return result;
+ }
+ if(found==state->controllers.end()){
+  if(state->controllers.size()>=32)return boundary.originalBackground(owner,requested);
+  BackgroundColor current{};if(FAILED(boundary.getBackground(controller,&current)))return boundary.originalBackground(owner,requested);
+  state->controllers.push_back({controller,boundary.getBackground,boundary.publicBackground,{}});found=state->controllers.end()-1;
+  acquired.release();
+ }
+ HRESULT result=boundary.originalBackground(owner,browserCanvas);
+ if(SUCCEEDED(result)){found->receipt={requested,browserCanvas,true,false};}
+ else if(!found->receipt.owned){found->object->Release();state->controllers.erase(found);}
+ return result;
+ }catch(...){return boundary.originalBackground(owner,requested);}
+}
+template<size_t Index> static HRESULT STDMETHODCALLTYPE BackgroundCloseHook(IUnknown* owner){
+ auto& boundary=boundaries[Index];IUnknown* identity=nullptr;
+ if(owner)owner->QueryInterface(controller2IID,reinterpret_cast<void**>(&identity));
+ HRESULT result=boundary.originalClose(owner);
+ // Close is forwarded unchanged. A successfully closed view has no visible
+ // backing to restore, so release its receipt on the same UI thread.
+ if(SUCCEEDED(result)&&backgroundThread){auto& entries=backgroundThread->controllers;
+  auto found=std::find_if(entries.begin(),entries.end(),[&](auto const& item){return item.object==identity;});
+  if(found!=entries.end()){found->object->Release();entries.erase(found);}
+ }if(identity)identity->Release();return result;
+}
+static void RestoreBackgroundThreads(){
+ std::vector<HWND> copy;{std::lock_guard guard(backgroundMutex);copy=backgroundChannels;}
+ for(HWND window:copy)if(IsWindow(window)&&GetWindowLongPtrW(window,GWLP_WNDPROC)==reinterpret_cast<LONG_PTR>(BackgroundChannel)){
+  DWORD_PTR result=0;if(!SendMessageTimeoutW(window,backgroundMessage,1,0,SMTO_ABORTIFHUNG|SMTO_BLOCK,1000,&result))PinBackgroundCleanup();
+ }
+}
+// Microsoft documents that setting the default before renderer creation also
+// prevents its initial white frame. This environment value is process-local,
+// never a user or machine setting. Preserve preexisting and later host values.
+static bool backgroundEnvironmentOwned=false;
+static constexpr wchar_t backgroundEnvironmentKey[]=L"WEBVIEW2_DEFAULT_BACKGROUND_COLOR";
+static constexpr wchar_t backgroundEnvironmentValue[]=L"FF000000";
+static bool BackgroundOverrideExists(){
+ std::lock_guard guard(backgroundMutex);
+ // A later process override ends our ownership before admitting any setter.
+ // Do not let a stale receipt defeat the host's new renderer default.
+ if(backgroundEnvironmentOwned){
+  wchar_t current[32]{};DWORD read=GetEnvironmentVariableW(backgroundEnvironmentKey,current,std::size(current));
+  if(read&&read<std::size(current)&&wcscmp(current,backgroundEnvironmentValue)==0)return false;
+  backgroundEnvironmentOwned=false;
+ }
+ SetLastError(ERROR_SUCCESS);DWORD size=GetEnvironmentVariableW(backgroundEnvironmentKey,nullptr,0);
+ return size!=0||GetLastError()!=ERROR_ENVVAR_NOT_FOUND;
+}
+static void UpdateBackgroundEnvironment(bool active){
+ std::lock_guard guard(backgroundMutex);
+ SetLastError(ERROR_SUCCESS);DWORD size=GetEnvironmentVariableW(backgroundEnvironmentKey,nullptr,0);DWORD error=GetLastError();
+ if(active){
+  if(!backgroundEnvironmentOwned&&size==0&&error==ERROR_ENVVAR_NOT_FOUND)
+   backgroundEnvironmentOwned=SetEnvironmentVariableW(backgroundEnvironmentKey,backgroundEnvironmentValue)!=FALSE;
+ }else if(backgroundEnvironmentOwned){
+  std::vector<wchar_t> value(size?size:1);DWORD read=GetEnvironmentVariableW(backgroundEnvironmentKey,value.data(),static_cast<DWORD>(value.size()));
+  if(read&&read<value.size()&&wcscmp(value.data(),backgroundEnvironmentValue)==0){
+   if(SetEnvironmentVariableW(backgroundEnvironmentKey,nullptr))backgroundEnvironmentOwned=false;
+  }else backgroundEnvironmentOwned=false;
+ }
+}
+
 static size_t MaximumHeader(const HeaderPin* pins=headers,size_t count=std::size(headers)){
  size_t length=0;for(size_t i=0;i<count;i++)length=std::max(length,pins[i].length);return length;
 }
@@ -264,7 +419,13 @@ template<size_t Index> static bool HookBoundary(HMODULE module){
  // overwrite another runtime's trampoline or authorize an unknown module.
  bool ready=Wh_SetFunctionHook(base+pin.stringRva,reinterpret_cast<void*>(StringHook<Index>),reinterpret_cast<void**>(&boundary.originalString))
   &&Wh_SetFunctionHook(base+pin.navigateRva,reinterpret_cast<void*>(NavigateHook<Index>),reinterpret_cast<void**>(&boundary.originalNavigate));
- boundary.ready=ready;return ready;
+ if(ready&&pin.backgroundGetterRva&&pin.backgroundSetterRva&&pin.closeRva){
+  boundary.getBackground=reinterpret_cast<GetBackgroundFn>(base+pin.backgroundGetterRva);
+  boundary.publicBackground=reinterpret_cast<SetBackgroundFn>(base+pin.backgroundSetterRva);
+  ready=Wh_SetFunctionHook(base+pin.backgroundSetterRva,reinterpret_cast<void*>(BackgroundHook<Index>),reinterpret_cast<void**>(&boundary.originalBackground))
+   &&Wh_SetFunctionHook(base+pin.closeRva,reinterpret_cast<void*>(BackgroundCloseHook<Index>),reinterpret_cast<void**>(&boundary.originalClose));
+ }
+ boundary.ready=ready;if(ready&&pin.backgroundSetterRva)UpdateBackgroundEnvironment(enabled.load()&&!HighContrast());return ready;
 }
 static bool InstallBoundary(HMODULE module){
  if(!module)return false;std::lock_guard lock(hookMutex);
@@ -304,9 +465,14 @@ BOOL Wh_ModInit(){
  PWSTR low=nullptr;if(FAILED(SHGetKnownFolderPath(FOLDERID_LocalAppDataLow,0,nullptr,&low)))return FALSE;
  tempFolder=low;CoTaskMemFree(low);tempFolder+=L"\\Microsoft\\PowerToys\\MarkdownPreview-Temp\\";
  enabled=Wh_GetIntSetting(L"enabled")!=0;
+ backgroundMessage=RegisterWindowMessageW(L"j3w1-powertoys-markdown-background");
+ if(!backgroundMessage)return FALSE;
  ExistingBoundaries();
- return InitLoading()&&Wh_SetFunctionHook(reinterpret_cast<void*>(LoadLibraryExW),reinterpret_cast<void*>(LoadHook),reinterpret_cast<void**>(&originalLoadLibraryEx))
+ bool ready=InitLoading()&&Wh_SetFunctionHook(reinterpret_cast<void*>(LoadLibraryExW),reinterpret_cast<void*>(LoadHook),reinterpret_cast<void**>(&originalLoadLibraryEx))
   &&Wh_SetFunctionHook(reinterpret_cast<void*>(CreateFileW),reinterpret_cast<void*>(CreateHook),reinterpret_cast<void**>(&originalCreateFile));
+ if(!ready){enabled=false;RestoreBackgroundThreads();UpdateBackgroundEnvironment(false);}return ready;
 }
-void Wh_ModSettingsChanged(){enabled=Wh_GetIntSetting(L"enabled")!=0;}
-void Wh_ModUninit(){enabled=false;std::lock_guard lock(filesMutex);createdFiles.clear();}
+void Wh_ModSettingsChanged(){enabled=Wh_GetIntSetting(L"enabled")!=0;
+ bool admitted=false;for(size_t i=0;i<std::size(browserPins);i++)admitted=admitted||(boundaries[i].ready&&browserPins[i].backgroundSetterRva);
+ UpdateBackgroundEnvironment(enabled.load()&&admitted&&!HighContrast());if(!enabled.load())RestoreBackgroundThreads();}
+void Wh_ModUninit(){enabled=false;RestoreBackgroundThreads();UpdateBackgroundEnvironment(false);std::lock_guard lock(filesMutex);createdFiles.clear();}

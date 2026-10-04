@@ -1257,7 +1257,7 @@
     "buttonStyleTarget": "CalculatorApp.Controls.CalculatorButton, CalculatorApp, Version=11.2607.0.0, Culture=neutral, PublicKeyToken=null"
   },
   "markdownPreview": {
-    "version": "1.2.1",
+    "version": "1.3.0",
     "hostVersion": "0.101.2362.0",
     "hostSha256": "d48704360aa8c8d5a3f572a055b176d50d58206f386cda49b2760beb3fd00cd9",
     "controlSha256": "e47fcc38944ab5920aa49a31a2d0fef212865d1f5a62a65a08012a1767bed9cc",
@@ -1351,7 +1351,10 @@
         "version": "154.0.4258.53",
         "sha256": "07b9416907225b99556c2a5242ecc6d16afd83d374b151285cfe41f164843c1c",
         "navigateToStringRva": 565904,
-        "navigateRva": 565744
+        "navigateRva": 565744,
+        "backgroundGetterRva": 364112,
+        "backgroundSetterRva": 364304,
+        "controllerCloseRva": 357248
       }
     ]
   },

@@ -268,7 +268,9 @@ DPI scaling remains native. Bold inherits its surrounding color.
 This preserves PowerToys as the renderer. It does not add Obsidian plugins,
 wiki-link resolution, callouts, math or syntax highlighting that PowerToys does
 not provide. Both normal and large generated-HTML routes keep document content
-and WebView restrictions. Exact host, assembly, native-runtime and generated
+and WebView restrictions. The recorded Markdown renderer also receives a reversible opaque black backing
+before content loads. This is process-local and preserves existing overrides.
+Exact host, assembly, native-runtime and generated
 header identities are required; a PowerToys/WebView update can refuse styling.
 High contrast takes priority. Reselect a file after updating, disabling or
 restoring the adapter. The normal setup/Test/Restore/Uninstall commands manage
