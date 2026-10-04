@@ -141,6 +141,10 @@ sidebar separator retains its DPI width and uses the canonical divider color;
 the XAML command-bar divider lines use that same role. These adapters change
 paint output without replacing image lists, altering folder contents or hiding
 controls. Their exact-version and high-contrast boundaries remain in force.
+The navigation strip around Explorer's address bar uses the same black canvas
+as the address field and command bar, including the padding above and below it.
+The transparent caption composition and native window buttons retain their
+separate ownership.
 Explorer native file-list, navigation, resting column
 headers and preview-placeholder surfaces use black/rose on the exact supported
 host. Native selection, hover and scrollbar paint geometry is retained with token
