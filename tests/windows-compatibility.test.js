@@ -6,6 +6,7 @@ import {FINGERPRINT_KEYS,shellCompatibility,stylerSettings} from '../ports/windo
 const host=JSON.parse(readFileSync(new URL('../ports/windows/host.json',import.meta.url)));
 const known=host.compatibility[0];
 test('every shell and package input must match; missing or changed fields fail closed',()=>{
+ for(const known of host.compatibility){
  assert.equal(shellCompatibility(known,host.compatibility).compatible,true);
  for(const field of FINGERPRINT_KEYS){
   const absent={...known};delete absent[field];
@@ -14,6 +15,8 @@ test('every shell and package input must match; missing or changed fields fail c
   assert.equal(shellCompatibility({...known,[field]:'different'},host.compatibility).compatible,false,`${field}: changed`);
  }
  assert.equal(shellCompatibility({...known,startLayout:'classic'},host.compatibility).compatible,false);
+ }
+ assert.equal(shellCompatibility({...known,build:known.build+1},host.compatibility).compatible,false);
 });
 test('Start styles select one known layout without changing Windows layout behavior',()=>{
  const base={theme:'',controlStyles:[{target:'TextBlock',styles:['Foreground=rose']}]};

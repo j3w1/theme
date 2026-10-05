@@ -2,8 +2,8 @@
 
 ## Compatibility boundary
 
-The current candidate is Windows 11 x64 build 26200.9550 with the redesigned
-Start layout. `host.json` records exact Explorer, StartDocked, SystemSettings,
+The recorded candidates are Windows 11 x64 builds 26200.9550 and
+26300.9550 with the redesigned Start layout. `host.json` records exact Explorer, StartDocked, SystemSettings,
 ShellExperienceHost and SearchHost versions, plus Start, shell and Client.CBS
 package versions. A changed, absent or unreadable input refuses Full mode.
 
@@ -1351,3 +1351,23 @@ does not claim native flyout, keyboard, hover or high-contrast acceptance;
 the live popup comparison and rollback remain separate checks.
 
 Reference: [Microsoft CalendarView styling](https://learn.microsoft.com/en-us/windows/apps/develop/ui/controls/calendar-view).
+
+
+### Exact post-restart host candidate
+
+A subsequent host readback reported build 26300.9550. The remaining twelve
+recorded shell/package/layout inputs matched the earlier 26200.9550 candidate.
+Seven exact pinned binary digests and the four targeted application package
+identities also matched. This adds only that complete fingerprint as a candidate;
+it does not accept a build range, bypass a missing input or promote native
+appearance coverage. Unknown hosts still refuse Full setup and activation.
+
+The public Update refused this new host before theme mutation while it was
+unrecorded. New test windows then showed native gray UI with no theme engine
+running. Those captures are not evidence about the enabled adapter rendering.
+Fresh-process, sign-in and live appearance checks remain separate from this
+structural comparison. Older saved revisions retain their original host lists;
+Test against an older restored revision can therefore report this new host as
+unsupported. Original Restore remains the route to native appearance after
+an incompatible Windows change. Reapply uses the explicitly pinned new
+candidate and repeats its own exact preflight.
