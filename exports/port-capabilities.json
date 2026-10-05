@@ -37750,7 +37750,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-/QGyZ1S8lhlQJxtLqOeCBo/AbhOu6pVAvPCSVMTk05E=",
+      "subjectDigest": "sha256-8CQqsLCNYI//PDLdQ/aLVLidPY3uWck9Cnd+tpuLvG0=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37783,7 +37783,7 @@
           "path": "dist/windows-settings.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-settings.json",
-          "digest": "sha256-60PfKyOVjw8MdNUXfuJPK9B4I2Lcg5icphfC4w1JlTI="
+          "digest": "sha256-ncGbDkVWSgD93tvS+s9yOO1Gk5xcOj7JHc0de7HNhLM="
         },
         {
           "path": "dist/terminal-fragment.json",
@@ -37957,7 +37957,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-QwePNiT8qx8z9kgoj79G+ygMVBw0lM2hRFjIbJq6gts="
+          "digest": "sha256-sBj7wLe54/IQ3Y6LjLbF8+1BQVeA8mIEqz+6R/hvixI="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
@@ -38041,7 +38041,7 @@
           "path": "dist/j3w1-notepad-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-notepad-chrome.wh.cpp",
-          "digest": "sha256-p/FCCfuXE2mSCp5CGftCKVBIXQgOmv8BHrE1Fx3DQcs="
+          "digest": "sha256-6qVVBXx8G3mLrWSdSm1kaNnfrQYVAGJdP98c3vNbqAM="
         },
         {
           "path": "dist/j3w1-notepad-chrome.json",
@@ -38053,7 +38053,7 @@
           "path": "dist/j3w1-paint-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-paint-chrome.wh.cpp",
-          "digest": "sha256-SarAQDrN2NmIvRDS37fMzILV1K7+1nsX/GZ5VhMwoXU="
+          "digest": "sha256-xkSWyPorHZQ7jiNo8Z39lB8pDqOdn4mVW7UEOdWQLGM="
         },
         {
           "path": "dist/j3w1-paint-chrome.json",
@@ -38065,7 +38065,7 @@
           "path": "dist/j3w1-terminal-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-terminal-chrome.wh.cpp",
-          "digest": "sha256-ph6CutU3OBxXmXvnfNNdFcm+NZLK4ibW2tsM7VoDVIs="
+          "digest": "sha256-y1czBn5PnIQi4VEtR95SH9UBc6SKEfb6/9eXZl5sF8E="
         },
         {
           "path": "dist/j3w1-terminal-chrome.json",
@@ -38945,7 +38945,10 @@
             "windows-11-settings-styler | CalendarView | BorderBrush",
             "notepad-chrome.resource.FlyoutBorderThemeBrush",
             "paint-chrome.resource.FlyoutBorderThemeBrush",
-            "terminal-chrome.resource.FlyoutBorderThemeBrush"
+            "terminal-chrome.resource.FlyoutBorderThemeBrush",
+            "notepad-chrome.resource.ToolTipBorderBrush",
+            "paint-chrome.resource.ToolTipBorderBrush",
+            "terminal-chrome.resource.ToolTipBorderBrush"
           ],
           "value": "#e53935",
           "eligibility": {
@@ -42590,7 +42593,10 @@
         {
           "role": "color.surface.overlay",
           "nativeKeys": [
-            "calculator.resource.ToolTipBackgroundBrush"
+            "calculator.resource.ToolTipBackgroundBrush",
+            "notepad-chrome.resource.ToolTipBackgroundBrush",
+            "paint-chrome.resource.ToolTipBackgroundBrush",
+            "terminal-chrome.resource.ToolTipBackgroundBrush"
           ],
           "value": "#241010",
           "eligibility": {
@@ -43355,7 +43361,10 @@
             "terminal-chrome.resource.SplitButtonForegroundCheckedPressed",
             "terminal-chrome.resource.SliderHeaderForeground",
             "windows-11-settings-styler | Microsoft.UI.Xaml.Controls.SplitButton | Foreground",
-            "windows-11-settings-styler | CalendarView | Foreground"
+            "windows-11-settings-styler | CalendarView | Foreground",
+            "notepad-chrome.resource.ToolTipForegroundBrush",
+            "paint-chrome.resource.ToolTipForegroundBrush",
+            "terminal-chrome.resource.ToolTipForegroundBrush"
           ],
           "value": "#e99499",
           "eligibility": {

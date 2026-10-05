@@ -764,3 +764,18 @@ test('standard flyout frames wire canonical resources into generated chrome adap
   }
  }
 });
+
+test('standard tooltip palettes use shared resources and loaded same-root popup admission',async()=>{
+ const host=await readJson('ports/windows/host.json'),mapping=await readJson('ports/windows/mapping.json');
+ const roles={ToolTipBackgroundBrush:'color.surface.overlay',ToolTipForegroundBrush:'color.text.default',ToolTipBorderBrush:'color.border.overlay'};
+ for(const [key,role] of Object.entries(roles)){
+  assert.equal(host.winuiChromeResources[key],role);
+  for(const app of ['notepad','paint','terminal']){
+   assert.ok(mapping.mappings[role].includes(app+'-chrome.resource.'+key));
+   const text=fs.readFileSync(path.join(source,'dist/j3w1-'+app+'-chrome.wh.cpp'),'utf8');
+   assert.match(text,new RegExp('L"'+key+'"'));
+   assert.match(text,/object.try_as<ToolTip>\(\)/);
+   assert.match(text,/PopupDiscoveryAdmission[\s\S]*active&&uiThread&&loaded&&sameRoot&&PopupChromeClass/);
+  }
+ }
+});

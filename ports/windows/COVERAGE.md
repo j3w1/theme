@@ -600,3 +600,22 @@ The same single installer updates and rolls back the generated adapters.
 Installed appearance and recovery remain separate from compiled admission and
 ownership tests. The gray first-window Notepad strip and Paint drawing
 workspace remain unresolved.
+
+
+### Standard tooltip surfaces
+
+A live Notepad button check showed a neutral tooltip after the formatting
+flyout correction. The shared chrome palette omitted ToolTip's three native
+brushes, and its popup admission omitted ToolTip. The adapter now maps
+ToolTipBackgroundBrush to the overlay surface, ToolTipForegroundBrush to
+ordinary interface text and ToolTipBorderBrush to the overlay border. These
+are the public keys in Microsoft's pinned
+[ToolTip template](https://github.com/microsoft/microsoft-ui-xaml/blob/8027ff4af619eb470fab63bf4609c6404ee73e17/dev/CommonStyles/ToolTip_rs5_themeresources.xaml).
+
+Notepad, Paint and Terminal share the same loaded, owning-thread, same-XamlRoot
+admission and per-control resource receipts. Native content, opening/dismissal,
+placement, wrapping, dimensions and animation remain intact. Unknown classes,
+foreign roots and high contrast retain native styling. Updates and recovery use
+the existing single installer. Native admission/ownership tests and installed
+appearance remain separate checks; this does not resolve native composition
+strips or drawing-workspace colors.

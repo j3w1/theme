@@ -497,7 +497,10 @@
       "terminal-chrome.resource.SplitButtonForegroundCheckedPressed",
       "terminal-chrome.resource.SliderHeaderForeground",
       "windows-11-settings-styler | Microsoft.UI.Xaml.Controls.SplitButton | Foreground",
-      "windows-11-settings-styler | CalendarView | Foreground"
+      "windows-11-settings-styler | CalendarView | Foreground",
+      "notepad-chrome.resource.ToolTipForegroundBrush",
+      "paint-chrome.resource.ToolTipForegroundBrush",
+      "terminal-chrome.resource.ToolTipForegroundBrush"
     ],
     "color.text.bright": [
       "native.bright",
@@ -1135,7 +1138,10 @@
       "windows-11-settings-styler | CalendarView | BorderBrush",
       "notepad-chrome.resource.FlyoutBorderThemeBrush",
       "paint-chrome.resource.FlyoutBorderThemeBrush",
-      "terminal-chrome.resource.FlyoutBorderThemeBrush"
+      "terminal-chrome.resource.FlyoutBorderThemeBrush",
+      "notepad-chrome.resource.ToolTipBorderBrush",
+      "paint-chrome.resource.ToolTipBorderBrush",
+      "terminal-chrome.resource.ToolTipBorderBrush"
     ],
     "border.width.default": [
       "windows-11-start-menu-styler | Border#AcrylicBorder | BorderThickness",
@@ -1637,7 +1643,10 @@
       "windows-11-start-menu-styler | web .previewContainer:focus-visible | outline-width"
     ],
     "color.surface.overlay": [
-      "calculator.resource.ToolTipBackgroundBrush"
+      "calculator.resource.ToolTipBackgroundBrush",
+      "notepad-chrome.resource.ToolTipBackgroundBrush",
+      "paint-chrome.resource.ToolTipBackgroundBrush",
+      "terminal-chrome.resource.ToolTipBackgroundBrush"
     ],
     "focus.offset-container": [
       "windows-11-start-menu-styler | web .previewContainer:focus-visible | outline-offset"

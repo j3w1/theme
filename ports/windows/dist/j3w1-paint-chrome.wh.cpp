@@ -2,7 +2,7 @@
 // @id j3w1-paint-chrome
 // @name j3w1 Paint chrome
 // @description Exact-package Paint chrome resources; document and artwork colors remain native
-// @version 1.0.16
+// @version 1.0.17
 // @author j3w1
 // @include mspaint.exe
 // @architecture x86-64
@@ -383,6 +383,9 @@ static constexpr Rule rules[]={
  {L"SliderInlineTickBarFill",{255,0,0,0},L"color.surface.input"},
  {L"FlyoutPresenterBackground",{255,22,11,11},L"color.surface.raised"},
  {L"FlyoutBorderThemeBrush",{255,229,57,53},L"color.border.overlay"},
+ {L"ToolTipBackgroundBrush",{255,36,16,16},L"color.surface.overlay"},
+ {L"ToolTipForegroundBrush",{255,233,148,153},L"color.text.default"},
+ {L"ToolTipBorderBrush",{255,229,57,53},L"color.border.overlay"},
 };
 static bool Same(Color a,Color b){return a.A==b.A&&a.R==b.R&&a.G==b.G&&a.B==b.B;}
 static bool Identity(ProjectedObject const& a,ProjectedObject const& b){
@@ -1425,7 +1428,7 @@ static bool StandardChrome(DependencyObject const& object) {
  return CompositeButtonChrome(std::wstring_view{get_class_name(object)})
   ||object.try_as<Microsoft::UI::Xaml::Controls::Primitives::ButtonBase>()
   ||object.try_as<MenuBarItem>()||object.try_as<MenuFlyoutItem>()||object.try_as<MenuFlyoutSubItem>()
-  ||object.try_as<MenuFlyoutPresenter>()||object.try_as<FlyoutPresenter>()||object.try_as<ToggleSwitch>()||object.try_as<ComboBox>()
+  ||object.try_as<MenuFlyoutPresenter>()||object.try_as<FlyoutPresenter>()||object.try_as<ToolTip>()||object.try_as<ToggleSwitch>()||object.try_as<ComboBox>()
   ||object.try_as<ListViewItem>()
 #if !J3W1_LEGACY_XAML
   ||object.try_as<Expander>()
@@ -1776,6 +1779,7 @@ static void Track(UIElement const& content,DesktopWindowXamlSource const& source
 static bool PopupChromeClass(std::wstring_view type) noexcept {
  return type==L"Microsoft.UI.Xaml.Controls.MenuFlyoutPresenter"
   ||type==L"Microsoft.UI.Xaml.Controls.FlyoutPresenter"
+  ||type==L"Microsoft.UI.Xaml.Controls.ToolTip"
   ||type==L"Microsoft.UI.Xaml.Controls.MenuFlyoutItem"
   ||type==L"Microsoft.UI.Xaml.Controls.MenuFlyoutSubItem";
 }

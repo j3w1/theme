@@ -736,7 +736,7 @@ static bool StandardChrome(DependencyObject const& object) {
  return CompositeButtonChrome(std::wstring_view{get_class_name(object)})
   ||object.try_as<Microsoft::UI::Xaml::Controls::Primitives::ButtonBase>()
   ||object.try_as<MenuBarItem>()||object.try_as<MenuFlyoutItem>()||object.try_as<MenuFlyoutSubItem>()
-  ||object.try_as<MenuFlyoutPresenter>()||object.try_as<FlyoutPresenter>()||object.try_as<ToggleSwitch>()||object.try_as<ComboBox>()
+  ||object.try_as<MenuFlyoutPresenter>()||object.try_as<FlyoutPresenter>()||object.try_as<ToolTip>()||object.try_as<ToggleSwitch>()||object.try_as<ComboBox>()
   ||object.try_as<ListViewItem>()
 #if !J3W1_LEGACY_XAML
   ||object.try_as<Expander>()
@@ -979,6 +979,7 @@ static void Track(UIElement const& content,DesktopWindowXamlSource const& source
 static bool PopupChromeClass(std::wstring_view type) noexcept {
  return type==L"Microsoft.UI.Xaml.Controls.MenuFlyoutPresenter"
   ||type==L"Microsoft.UI.Xaml.Controls.FlyoutPresenter"
+  ||type==L"Microsoft.UI.Xaml.Controls.ToolTip"
   ||type==L"Microsoft.UI.Xaml.Controls.MenuFlyoutItem"
   ||type==L"Microsoft.UI.Xaml.Controls.MenuFlyoutSubItem";
 }

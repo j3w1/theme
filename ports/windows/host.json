@@ -1617,7 +1617,7 @@
     }
   },
   "notepadChrome": {
-    "version": "1.2.18",
+    "version": "1.2.19",
     "packageFullName": "Microsoft.WindowsNotepad_11.2607.14.0_x64__8wekyb3d8bbwe",
     "runtimePackage": "Microsoft.WindowsAppRuntime.2_2.5.1.0_x64__8wekyb3d8bbwe",
     "runtimeSha256": "aad12524765e6fb63f0ae26a45a9ba3104f24fde66413d8a3036fbed74a1e990",
@@ -1940,10 +1940,13 @@
     "SliderTickBarFill": "color.border.control",
     "SliderInlineTickBarFill": "color.surface.input",
     "FlyoutPresenterBackground": "color.surface.raised",
-    "FlyoutBorderThemeBrush": "color.border.overlay"
+    "FlyoutBorderThemeBrush": "color.border.overlay",
+    "ToolTipBackgroundBrush": "color.surface.overlay",
+    "ToolTipForegroundBrush": "color.text.default",
+    "ToolTipBorderBrush": "color.border.overlay"
   },
   "paintChrome": {
-    "version": "1.0.16",
+    "version": "1.0.17",
     "packageFullName": "Microsoft.Paint_11.2605.81.0_x64__8wekyb3d8bbwe",
     "runtimePackage": "Microsoft.WindowsAppRuntime.2_2.5.1.0_x64__8wekyb3d8bbwe",
     "runtimeSha256": "aad12524765e6fb63f0ae26a45a9ba3104f24fde66413d8a3036fbed74a1e990",
@@ -1968,7 +1971,7 @@
     "SHELLCOMMON": "410141eceecfaa5d7cccbfd7c357920988bf18fec3db7f6865eec674677c0204"
   },
   "terminalChrome": {
-    "version": "1.0.2",
+    "version": "1.0.3",
     "packageFullName": "Microsoft.WindowsTerminal_1.24.11911.0_x64__8wekyb3d8bbwe",
     "runtimeSha256": "5b653bc535d87e7301c7ab9b4785fb7f0f6de5481ece03e7e7a89ca3e53e6905",
     "diagnosticsBridgeSha256": "5b653bc535d87e7301c7ab9b4785fb7f0f6de5481ece03e7e7a89ca3e53e6905",
