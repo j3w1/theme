@@ -83,6 +83,19 @@ int main(int argc, char** argv) {
   assert(!ChromeSetterAdmission(L"Content",true,false));
   assert(!ChromeSetterAdmission(L"Background",false,false));
   winrt::init_apartment(winrt::apartment_type::multi_threaded);
+  // Keep one apartment alive for this entire case: cached WinRT factories
+  // cannot be reused after tearing down and reinitializing their apartment.
+  // An unreadable state must leave the already owned root and baseline intact.
+  {
+   auto original=box_value(1),applied=box_value(2);
+   OwnedChromeFrame rootOwner{original,applied,true};ProjectedObject rootValue=applied;
+   unsigned transitions=0,writes=0;
+   if(InspectChromeState([]()->bool{throw hresult_error(E_FAIL);})){++transitions;++writes;rootValue=original;}
+   assert(transitions==0&&writes==0&&rootOwner.owned&&Identity(rootValue,applied)&&Identity(rootOwner.original,original));
+   assert(!InspectChromeState([]()->bool{throw hresult_error(E_ACCESSDENIED);}));
+   assert(!InspectChromeState([]{return false;}));
+   assert(InspectChromeState([]{return true;}));
+  }
   auto native=box_value(1),theme=box_value(2),app=box_value(3);ChromeFrameValue current{true,native};
   auto read=[&]{return current;};auto write=[&](auto const& value){current={true,value};};
   auto clock=ClockState::Stopped;auto getClock=[&]{return clock;};OwnedChromeFrame entry{native,theme};

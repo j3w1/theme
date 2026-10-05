@@ -1264,3 +1264,17 @@ The existing single install.ps1 lifecycle journals installation and recovery.
 The synthetic legacy boundary, ownership and worker-shutdown checks passed;
 real menu and tab rendering remains unverified. An application/runtime update
 outside these identities refuses the adapter rather than extending its scope.
+
+### Deferred native state inspection
+
+A live numeric trace on the recorded Notepad package found repeated E_FAIL
+results while inspecting native CommonStates setters. The adapter then restored
+the entire toolbar resource root, bringing back native gray menus and buttons.
+The shared cached-state adapter now declines a setter or storyboard whose public
+inspection cannot complete, before stopping a clock or acquiring write ownership.
+It retains the native unresolved state and the otherwise owned theme root.
+Target paths are captured once before admission rather than reread during a write.
+Mutation and restoration failures still retain their existing recovery paths;
+no denied write is converted into success. The same source is generated for
+Calculator, Notepad, Paint and Terminal. Rendered hover and native header checks
+remain distinct from this correction's ownership regressions.

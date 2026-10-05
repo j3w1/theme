@@ -12,6 +12,10 @@ static void Wh_Log(PCWSTR,...){ }
 int main(int argc,char** argv){
  assert(argc==2);
  if(strcmp(argv[1],"cached-color-frame")==0) {
+  unsigned inspectionWrites=0;
+  if(InspectChromeState([]()->bool{throw hresult_error(E_FAIL);})){++inspectionWrites;}
+  assert(inspectionWrites==0);
+  assert(!InspectChromeState([]()->bool{throw hresult_error(E_ACCESSDENIED);}));
   assert(ChromeColorFrameAdmission(L"ContentPresenter",L"Background",1,true,0));
   assert(ChromeColorFrameAdmission(L"RootGrid",L"BorderBrush",1,true,0));
   assert(ChromeColorFrameAdmission(L"ChevronIcon",L"Foreground",1,true,0));

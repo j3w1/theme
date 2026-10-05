@@ -2,7 +2,7 @@
 // @id j3w1-terminal-chrome
 // @name j3w1 Terminal chrome
 // @description Exact-package Terminal chrome resources; document and artwork colors remain native
-// @version 1.0.0
+// @version 1.0.1
 // @author j3w1
 // @include WindowsTerminal.exe
 // @architecture x86-64
@@ -639,7 +639,15 @@ static unsigned ChromeColorState(std::wstring_view state) noexcept {
  if(state==L"Normal")return 1;if(state==L"PointerOver")return 2;
  if(state==L"Pressed")return 3;if(state==L"Disabled")return 4;return 0;
 }
+// Native deferred setters/keyframes can reject their public getter until the
+// state resolves. A failed inspection admits nothing and must not unwind an
+// otherwise owned resource root. Only inspection belongs in this boundary;
+// writes, state transitions and recovery keep their existing failure paths.
+template<class Inspect> static bool InspectChromeState(Inspect inspect) noexcept {
+ try{return inspect();}catch(...){return false;}
+}
 static bool ChromeColorStoryboard(Storyboard const& storyboard) {
+ return InspectChromeState([&] {
  if(!storyboard||!storyboard.Children().Size()||storyboard.Children().Size()>4)return false;
  unsigned seen=0;
  for(auto const& child:storyboard.Children()) {
@@ -651,6 +659,7 @@ static bool ChromeColorStoryboard(Storyboard const& storyboard) {
   if(seen&bit)return false;seen|=bit;
  }
  return true;
+ });
 }
 struct ChromeStateRefresh {weak_ref<Control> control;VisualStateGroup group{nullptr};hstring state,expected;};
 struct ChromeAnimationChange {weak_ref<Control> control;ObjectAnimationUsingKeyFrames animation{nullptr};Storyboard storyboard{nullptr};VisualStateGroup group{nullptr};OwnedChromeFrame frame;};
@@ -770,12 +779,16 @@ static void ApplyChromeSetters(Control const& control,VisualStateGroup const& gr
    if(auto storyboard=state.Storyboard();storyboard&&storyboard.Children().Size())continue;
    auto setters=state.Setters();if(setters.IsSealed())continue;
    for(unsigned index=0;index<setters.Size();++index) {
-    auto original=setters.GetAt(index).try_as<Setter>();if(!original||!original.Target()||!SetterTargetInControl(original,control))continue;
-    auto path=original.Target().Path().Path();
-    if(!ChromeSetterAdmission(std::wstring_view{path},bool(original.Value().try_as<Brush>()),setters.IsSealed()))continue;
+    Setter original{nullptr};TargetPropertyPath target{nullptr};hstring path;
+    if(!InspectChromeState([&] {
+     original=setters.GetAt(index).try_as<Setter>();if(!original)return false;
+     target=original.Target();if(!target||!SetterTargetInControl(original,control))return false;
+     path=target.Path().Path();
+     return ChromeSetterAdmission(std::wstring_view{path},bool(original.Value().try_as<Brush>()),setters.IsSealed());
+    }))continue;
     bool tracked=false;for(auto const& prior:changes)if(Identity(prior.state,state)&&prior.index==index){tracked=true;break;}if(tracked)continue;
     if(!SuspendChromeSetters(control,group,refresh))continue;
-    Setter applied;applied.Target(original.Target());applied.Value(SolidColorBrush(ChromeSetterColor(std::wstring_view{path},std::wstring_view{state.Name()})));
+    Setter applied;applied.Target(target);applied.Value(SolidColorBrush(ChromeSetterColor(std::wstring_view{path},std::wstring_view{state.Name()})));
     if(changes.size()>=4096)throw hresult_error(E_BOUNDS);
     changes.push_back({make_weak(control),state,group,index,{original,applied}});auto& entry=changes.back();
     if(!UpdateChromeFrame(entry.value,true,[&]{return ChromeFrameValue{setters.Size()>index,setters.Size()>index?setters.GetAt(index):nullptr};},

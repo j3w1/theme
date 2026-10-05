@@ -552,3 +552,11 @@ Synthetic boundary, ownership and worker-shutdown checks passed; real menus,
 startup and focus acceptance remain unverified. All three additions share the
 existing single-script installation and recovery journal. The candidate stays
 draft while the owner requirements remain unresolved.
+
+### Deferred native state boundary
+
+Unreadable public visual-state targets or cached color-frame values are refused
+before mutation. Their native state remains intact while supported chrome
+resources keep their ownership. A live Notepad trace identified the prior
+whole-toolbar restoration as a source of native gray paint. This correction
+does not establish full hover-state or first-window native-header acceptance.
