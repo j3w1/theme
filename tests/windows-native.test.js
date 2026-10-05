@@ -119,3 +119,12 @@ test('native Explorer stock folder rendering and cache lifetime',options,t=>{
  const result=spawnSync(output,[],{encoding:'utf8',windowsHide:true,timeout:30000});
  assert.equal(result.status,0,result.stdout+'\n'+result.stderr);
 });
+
+test('native Settings CoreWindow discovery and ownership',options,t=>{
+ const tools=toolchain(),folder=fs.mkdtempSync(path.join(os.tmpdir(),'j3w1-native-settings-'));
+ t.after(()=>fs.rmSync(folder,{recursive:true,force:true}));
+ const output=path.join(folder,'settings-startup.exe');
+ compile(tools.compiler,['-static','-municode',path.join(repoRoot,'tests/windows-settings-startup-native.cpp'),'-lbcrypt','-luser32','-o',output]);
+ const result=spawnSync(output,[],{encoding:'utf8',windowsHide:true,timeout:30000});
+ assert.equal(result.status,0,result.stdout+'\n'+result.stderr);
+});

@@ -1,4 +1,5 @@
 import {shellCompatibility,stylerSettings,flattenStylerSettings} from './compatibility.mjs';
+import {settingsStylerSource} from './settings-styler-source.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
@@ -231,7 +232,17 @@ function stageMods(tx){
  const deps=json(path.join(source,'dependencies.json'));
  const bundled=settings.bundledMods??[];
  for(const mod of bundled)if(!/^[a-z0-9-]+$/.test(mod.id) || mod.path!==`dist/${mod.id}.wh.cpp` || !/^[a-f0-9]{64}$/.test(mod.sha256))throw Error('Invalid bundled Windhawk source');
- const mods=[...deps.mods.map(m=>({...m,sourcePath:path.join(state,'downloads',m.id+'.wh.cpp')})),...bundled.map(m=>({...m,sourcePath:path.join(source,m.path)}))];
+ const upstream=deps.mods.map(mod=>{
+  const sourcePath=safe(path.join(state,'downloads',mod.id+'.wh.cpp'));
+  if(mod.id!=='windows-11-settings-styler')return {...mod,sourcePath};
+  if(settings.settingsStartup?.sourceSha256!==mod.sha256)throw Error('Settings startup dependency pin differs');
+  const adapted=settingsStylerSource(fs.readFileSync(sourcePath),settings.settingsStartup),sha256=hash(adapted);
+  const derived=safe(path.join(state,'downloads','derived',mod.id+'-'+sha256+'.wh.cpp'));
+  if(fs.existsSync(derived)){if(hash(fs.readFileSync(derived))!==sha256)throw Error('Settings derived source cache differs');}
+  else atomic(derived,adapted);
+  return {...mod,sourcePath:derived,upstreamSourceSha256:mod.sha256,sha256};
+ });
+ const mods=[...upstream,...bundled.map(m=>({...m,sourcePath:path.join(source,m.path)}))];
  if(new Set(mods.map(m=>m.id)).size!==mods.length)throw Error('Duplicate Windhawk adapter identity');
  for(const [index,mod] of mods.entries()){
   console.error(`Preparing theme adapter ${index+1} of ${mods.length}: ${mod.id}. Compilation can take a minute.`);
@@ -250,6 +261,7 @@ function stageMods(tx){
   const unchanged=reuse&&before.config.disabled===false
    &&Object.entries(values).every(([key,value])=>String((beforeSettings.settings??beforeSettings)[key])===String(value));
   tx.mods.push({id:installedId,sourceId:mod.id,version:mod.version,sourceSha256:mod.sha256,
+   ...(mod.upstreamSourceSha256?{upstreamSourceSha256:mod.upstreamSourceSha256}:{}),
    before:before?{id:before.id,version:before.metadata?.version,config:before.config}:null,beforeSettings,backup:before?backup:null,
    backupSha256:before?hash(fs.readFileSync(safe(backup))):null,
    beforeSourceSha256:before&&prior?.sourceSha256===exportedSourceDigest(backup,installedId)?prior.sourceSha256:null,reused:reuse,unchanged,

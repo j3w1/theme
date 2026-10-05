@@ -1371,3 +1371,32 @@ Test against an older restored revision can therefore report this new host as
 unsupported. Original Restore remains the route to native appearance after
 an incompatible Windows change. Reapply uses the explicitly pinned new
 candidate and repeats its own exact preflight.
+
+
+### Settings CoreWindow startup and recovery
+
+A read-only startup trace found a Settings-owned top-level CoreWindow and no
+XAML attachment attempt. The pinned upstream late-start lookup admitted only a
+CoreWindow inside ApplicationFrameWindow, so it missed this host's window. A
+controlled comparison correcting that lookup opened fresh Settings with black
+surfaces and rose text; its Update calendar also used the mapped palette.
+
+Setup verifies the original pinned upstream source, then substitutes the owned
+window-discovery fragment before compilation. The original source, attribution
+and license stay intact in the retained dependency; vendor source and binaries
+are not committed. The derived source digest is journaled separately from its
+upstream digest. Missing or ambiguous source anchors refuse preparation.
+
+The fragment admits only the exact Settings executable and loaded XAML binary.
+It accepts a unique own-process CoreWindow either directly or inside the native
+frame. Initialization, settings changes and restoration use this same lookup;
+when already attached it also requires the recorded UI thread. Other processes,
+unknown classes, ambiguous roots and high-contrast initialization are declined.
+No retry worker, input action, window-text selector or new executable include is
+introduced. The same install.ps1 owns staging, Test and offline rollback.
+
+This corrects the observed startup mismatch. It does not establish safe live
+Settings reload, all hover/focus/disabled states, runtime accessibility switching
+or sign-in acceptance. Close Settings before Update or Restore. The retained
+Notepad gray composition strip and Paint workspace/scrollbar failures remain
+unresolved and are separate native ownership boundaries.

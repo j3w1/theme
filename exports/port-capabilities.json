@@ -37739,7 +37739,8 @@
       "themeRevision": "edf3c50d768f1f8663a2e8e470c4f21a69718b0f",
       "profile": "default",
       "targetVersions": [
-        "26200.9550"
+        "26200.9550",
+        "26300.9550"
       ],
       "testedVersions": [],
       "os": [
@@ -37749,7 +37750,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-dCCFsdkpStYPFBOUErQPuFtsyf55SR63AtjRNP3caUY=",
+      "subjectDigest": "sha256-f6UBogck2VvDQvG9tE+LHy9pabFJe2975OkNNjAlqnY=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37782,7 +37783,7 @@
           "path": "dist/windows-settings.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-settings.json",
-          "digest": "sha256-G8JlmjBwlze4L1uhGCa9c+/2x7RXrF9JAAymoEn0D6Q="
+          "digest": "sha256-nztZGylZNAAjbIIgPQz2PzCDGH68fU9gYDiSiEKaBtw="
         },
         {
           "path": "dist/terminal-fragment.json",
@@ -37950,13 +37951,13 @@
           "path": "dist/runtime.cjs",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/runtime.cjs",
-          "digest": "sha256-1Z/uhOjrtxKdmol5QblOdQo8DSd659KyekC6H2VdQdI="
+          "digest": "sha256-wOXWBwUxZCFQZ37hCMipbVJzA2S9zO0Yod52db949HI="
         },
         {
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-d/k5sng1SUjvideLfWWEK77RIQP5qXMSuv3iAWHGv5I="
+          "digest": "sha256-Wi/x31BEvuF1CM0/CFvwNWBJ2C7nm46XXLFX/locIG8="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",

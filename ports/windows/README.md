@@ -82,7 +82,10 @@ without a compilation receipt compile once before becoming reusable. Changed
 cache files are refused. Every setup ends with Test. To check again, run the printed Test command from
 `%LOCALAPPDATA%\j3w1-theme\windows\recovery-commands.txt`.
 Test verifies artifacts, managed settings and compatibility; it is not a visual
-inspection. Close app settings windows before updating to avoid concurrent edits.
+inspection. Close Settings before updating or restoring; reopen it afterward.
+The pinned Settings adapter includes verified startup discovery for this host,
+and its offline rollback restores the earlier adapter source automatically.
+Close other app settings windows to avoid concurrent edits.
 
 ## Undo
 

@@ -262,7 +262,14 @@ export function windowsArtifacts({manifest,host,resolved}){
  artifacts.push({path:`dist/${markdown.id}.wh.cpp`,text:markdown.source},{path:'dist/markdown-theme.css',text:markdown.css});
  json(`${markdown.id}.json`,{enabled:1});
  bundledMods.push({id:markdown.id,version:markdown.version,path:`dist/${markdown.id}.wh.cpp`,sha256:createHash('sha256').update(markdown.source).digest('hex')});
- json('windows-settings.json',{schemaVersion:1,version:manifest.version,values:settings,stylerVariants,bundledMods,compatibility:host.compatibility,limitations:host.limitations});
+ const startup=host.settingsStartup;
+ const dependencies=JSON.parse(readFileSync(path.join(repoRoot,'ports/windows/dependencies.json'),'utf8'));
+ if(startup.sourceSha256!==dependencies.mods.find(m=>m.id==='windows-11-settings-styler')?.sha256
+  ||!['executableSha256','xamlSha256'].every(key=>/^[a-f0-9]{64}$/.test(startup[key])))throw Error('Settings startup requires exact source and binary identities');
+ const replacement=readFileSync(path.join(repoRoot,'ports/windows/src/settings-core-window.cpp.in'),'utf8')
+  .replace('@EXECUTABLE_SHA256@',startup.executableSha256).replace('@XAML_SHA256@',startup.xamlSha256);
+ const settingsStartup={sourceSha256:startup.sourceSha256,replacement};
+ json('windows-settings.json',{schemaVersion:1,version:manifest.version,values:settings,stylerVariants,bundledMods,settingsStartup,compatibility:host.compatibility,limitations:host.limitations});
  const ansi=['black','red','green','yellow','blue','purple','cyan','white','brightBlack','brightRed','brightGreen','brightYellow','brightBlue','brightPurple','brightCyan','brightWhite'];
  const scheme={name:'j3w1',foreground:val('color.terminal.fg'),background:val('color.surface.canvas'),cursorColor:val('color.terminal.cursor'),selectionBackground:val('color.code.selection-bg')};ansi.forEach((k,i)=>scheme[k]=val(`color.terminal.ansi.${i}`));
  json('terminal-fragment.json',{schemes:[scheme]});

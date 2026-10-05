@@ -66,10 +66,34 @@ function flattenStylerSettings(value, prefix = "", out = {}) {
   return out;
 }
 
+// ports/windows/src/settings-styler-source.mjs
+var import_node_crypto = require("node:crypto");
+var digest = (bytes) => (0, import_node_crypto.createHash)("sha256").update(bytes).digest("hex");
+function replaceOnce(source2, anchor, replacement) {
+  const index = source2.indexOf(anchor);
+  if (index < 0 || source2.indexOf(anchor, index + anchor.length) >= 0) throw Error("Settings adapter source structure differs");
+  return source2.slice(0, index) + replacement + source2.slice(index + anchor.length);
+}
+function settingsStylerSource(bytes, patch) {
+  if (!patch || !/^[a-f0-9]{64}$/.test(patch.sourceSha256) || digest(bytes) !== patch.sourceSha256)
+    throw Error("Settings upstream source digest differs");
+  if (typeof patch.replacement !== "string" || !patch.replacement.includes("HWND GetCoreWnd() {") || !patch.replacement.includes("namespace j3w1Settings") || /@[A-Z0-9_]+@/.test(patch.replacement))
+    throw Error("Invalid Settings discovery fragment");
+  let source2 = bytes.toString("utf8").replace(/\r\n/g, "\n");
+  const begin = "HWND GetCoreWnd() {", end = "PTP_TIMER g_statsTimer;";
+  const start = source2.indexOf(begin), finish = source2.indexOf(end);
+  if (start < 0 || finish < start || source2.indexOf(begin, start + begin.length) >= 0 || source2.indexOf(end, finish + end.length) >= 0)
+    throw Error("Settings adapter discovery structure differs");
+  source2 = source2.slice(0, start) + patch.replacement + "\n\n" + source2.slice(finish);
+  source2 = replaceOnce(source2, "// @compilerOptions -lcomctl32", "// @compilerOptions -lbcrypt -lcomctl32");
+  source2 = replaceOnce(source2, "BOOL Wh_ModInit() {\n", "BOOL Wh_ModInit() {\n    if (!j3w1Settings::Admit()) return FALSE;\n");
+  return Buffer.from(source2);
+}
+
 // ports/windows/src/runtime.mjs
 var import_node_fs2 = __toESM(require("node:fs"), 1);
 var import_node_path2 = __toESM(require("node:path"), 1);
-var import_node_crypto2 = __toESM(require("node:crypto"), 1);
+var import_node_crypto3 = __toESM(require("node:crypto"), 1);
 var import_node_child_process = require("node:child_process");
 var import_node_util = require("node:util");
 
@@ -1448,10 +1472,10 @@ function applyEdits(text, edits) {
 // scripts/lib/host-install/files.mjs
 var import_node_fs = __toESM(require("node:fs"), 1);
 var import_node_path = __toESM(require("node:path"), 1);
-var import_node_crypto = require("node:crypto");
-var sha256Hex = (bytes) => (0, import_node_crypto.createHash)("sha256").update(bytes).digest("hex");
+var import_node_crypto2 = require("node:crypto");
+var sha256Hex = (bytes) => (0, import_node_crypto2.createHash)("sha256").update(bytes).digest("hex");
 function writeDurableTemp(target, bytes, { mode = 384 } = {}) {
-  const temp = import_node_path.default.join(import_node_path.default.dirname(target), `.${import_node_path.default.basename(target)}.j3w1-${(0, import_node_crypto.randomUUID)()}.tmp`);
+  const temp = import_node_path.default.join(import_node_path.default.dirname(target), `.${import_node_path.default.basename(target)}.j3w1-${(0, import_node_crypto2.randomUUID)()}.tmp`);
   let fd;
   try {
     fd = import_node_fs.default.openSync(temp, "wx", mode);
@@ -1827,7 +1851,18 @@ function stageMods(tx) {
   const deps = json(import_node_path2.default.join(source, "dependencies.json"));
   const bundled = settings.bundledMods ?? [];
   for (const mod of bundled) if (!/^[a-z0-9-]+$/.test(mod.id) || mod.path !== `dist/${mod.id}.wh.cpp` || !/^[a-f0-9]{64}$/.test(mod.sha256)) throw Error("Invalid bundled Windhawk source");
-  const mods = [...deps.mods.map((m) => ({ ...m, sourcePath: import_node_path2.default.join(state, "downloads", m.id + ".wh.cpp") })), ...bundled.map((m) => ({ ...m, sourcePath: import_node_path2.default.join(source, m.path) }))];
+  const upstream = deps.mods.map((mod) => {
+    const sourcePath = safe(import_node_path2.default.join(state, "downloads", mod.id + ".wh.cpp"));
+    if (mod.id !== "windows-11-settings-styler") return { ...mod, sourcePath };
+    if (settings.settingsStartup?.sourceSha256 !== mod.sha256) throw Error("Settings startup dependency pin differs");
+    const adapted = settingsStylerSource(import_node_fs2.default.readFileSync(sourcePath), settings.settingsStartup), sha256 = sha256Hex(adapted);
+    const derived = safe(import_node_path2.default.join(state, "downloads", "derived", mod.id + "-" + sha256 + ".wh.cpp"));
+    if (import_node_fs2.default.existsSync(derived)) {
+      if (sha256Hex(import_node_fs2.default.readFileSync(derived)) !== sha256) throw Error("Settings derived source cache differs");
+    } else atomic(derived, adapted);
+    return { ...mod, sourcePath: derived, upstreamSourceSha256: mod.sha256, sha256 };
+  });
+  const mods = [...upstream, ...bundled.map((m) => ({ ...m, sourcePath: import_node_path2.default.join(source, m.path) }))];
   if (new Set(mods.map((m) => m.id)).size !== mods.length) throw Error("Duplicate Windhawk adapter identity");
   for (const [index, mod] of mods.entries()) {
     console.error(`Preparing theme adapter ${index + 1} of ${mods.length}: ${mod.id}. Compilation can take a minute.`);
@@ -1850,6 +1885,7 @@ function stageMods(tx) {
       sourceId: mod.id,
       version: mod.version,
       sourceSha256: mod.sha256,
+      ...mod.upstreamSourceSha256 ? { upstreamSourceSha256: mod.upstreamSourceSha256 } : {},
       before: before ? { id: before.id, version: before.metadata?.version, config: before.config } : null,
       beforeSettings,
       backup: before ? backup : null,
@@ -2079,7 +2115,7 @@ if (action === "Plan") {
     console.log(JSON.stringify({ result: "unchanged", revision: args.revision }));
   } else {
     const documents = [...new Set(planned.filter((op) => op.kind === "json").map((op) => op.path))].map((p) => ({ path: p, before: get({ kind: "file", path: p }) }));
-    const tx = { id: import_node_crypto2.default.randomUUID(), revision: args.revision, mode: args.mode, status: "applying", operations: planned, documents, mods: [] };
+    const tx = { id: import_node_crypto3.default.randomUUID(), revision: args.revision, mode: args.mode, status: "applying", operations: planned, documents, mods: [] };
     history.transactions.push(tx);
     persist();
     try {

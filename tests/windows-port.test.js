@@ -744,3 +744,9 @@ test('native slider templates retain accent semantics and brush-only resource ty
   assert.ok(!/\bSlider::(?:Minimum|Maximum|Value|StepFrequency|Orientation)Property\s*\(/.test(sourceText),'slider geometry and value properties belong to the host');
  }
 });
+
+test('Windows target versions describe every exact compatibility candidate without claiming import acceptance',async()=>{
+ const host=await readJson('ports/windows/host.json'),port=await readJson('ports/windows/port.json');
+ assert.deepEqual(port.targetVersions,host.compatibility.map(entry=>entry.build+'.'+entry.ubr));
+ assert.equal(port.status,'experimental');assert.deepEqual(port.testedVersions,[]);
+});
