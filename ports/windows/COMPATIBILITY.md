@@ -1285,3 +1285,23 @@ Explorer process outside the adapter's captured owner set retains native backing
 until the adapter is reloaded. It does not alter preview registration or install
 another application. The existing Markdown adapter owns this loading surface;
 setup, Test and recovery still use the same install.ps1 entry point.
+
+
+### Settings split-button parent brushes
+
+A read-only live trace found the canonical Settings resource colors already
+present while a native SplitButton and both inner Button backgrounds retained
+their previous accent brush. Replacing resource entries alone did not update
+that control's resting template bindings. The shared Settings SplitButton rule
+now applies the mapped canvas, foreground and control-border roles to the parent
+control alongside its existing square-corner rule. Its template owns the inner
+parts and native interaction transitions; no action label, page, filename,
+screen position or literal old color selects the correction.
+
+A temporary parent-background comparison replaced both native resting fills
+with black, then restored the original setting values exactly. The production
+foreground, border, hover exit and recovery checks remain required. This does
+not establish all Settings states, disabled controls, high-contrast switching
+or fresh-process attachment. A separate adapter reload restored a previously
+unstyled Settings window; that is a recovery observation, not a diagnosis of
+the original attachment failure.

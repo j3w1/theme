@@ -37749,7 +37749,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-54eYjQC+cyaHizpJydOAFUdD+MA9hAOFNCrj2scsBqA=",
+      "subjectDigest": "sha256-VP6C8I8N8DcNlhsIGbdABQbO4fSaYgevrbTbQ8UZIAY=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37830,7 +37830,7 @@
           "path": "dist/windows-11-settings-styler.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-11-settings-styler.json",
-          "digest": "sha256-1PbzOdAMr3sqgC5mat6nZRsausQVBvA+zVE74ncqivk="
+          "digest": "sha256-OckkJtOBJvyTzAEXDNYmyEyeQLK0Ku5INx3BGyvHdI8="
         },
         {
           "path": "dist/j3w1-wallpaper.bmp",
@@ -37956,7 +37956,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-aIkiBis0sS03MtqwwbJQFFFLlLG8bBaNrcBO1s2Y4qA="
+          "digest": "sha256-awkW/1/XW8whCYV4V1fOs61xfnZ3LagCJjq3VSEDyMQ="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
@@ -38764,7 +38764,8 @@
             "terminal-chrome.resource.SliderTrackFillPointerOver",
             "terminal-chrome.resource.SliderTrackFillPressed",
             "terminal-chrome.resource.SliderThumbBorderBrush",
-            "terminal-chrome.resource.SliderTickBarFill"
+            "terminal-chrome.resource.SliderTickBarFill",
+            "windows-11-settings-styler | Microsoft.UI.Xaml.Controls.SplitButton | BorderBrush"
           ],
           "value": "#a3676b",
           "eligibility": {
@@ -42407,7 +42408,8 @@
             "terminal-chrome.resource.ToggleButtonBackground",
             "terminal-chrome.resource.ToggleButtonBackgroundIndeterminate",
             "terminal-chrome.resource.SubtleButtonBackground",
-            "terminal-chrome.resource.SplitButtonBackground"
+            "terminal-chrome.resource.SplitButtonBackground",
+            "windows-11-settings-styler | Microsoft.UI.Xaml.Controls.SplitButton | Background"
           ],
           "value": "#000000",
           "eligibility": {
@@ -43342,7 +43344,8 @@
             "terminal-chrome.resource.SplitButtonForegroundPointerOver",
             "terminal-chrome.resource.SplitButtonForegroundPressed",
             "terminal-chrome.resource.SplitButtonForegroundCheckedPressed",
-            "terminal-chrome.resource.SliderHeaderForeground"
+            "terminal-chrome.resource.SliderHeaderForeground",
+            "windows-11-settings-styler | Microsoft.UI.Xaml.Controls.SplitButton | Foreground"
           ],
           "value": "#e99499",
           "eligibility": {

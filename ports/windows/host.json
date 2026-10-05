@@ -1162,7 +1162,10 @@
         {
           "target": "Microsoft.UI.Xaml.Controls.SplitButton",
           "styles": {
-            "CornerRadius": "radius.none"
+            "CornerRadius": "radius.none",
+            "Background": "color.surface.canvas",
+            "Foreground": "color.text.default",
+            "BorderBrush": "color.border.control"
           }
         }
       ]

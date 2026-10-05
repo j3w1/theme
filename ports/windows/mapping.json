@@ -252,7 +252,8 @@
       "terminal-chrome.resource.ToggleButtonBackground",
       "terminal-chrome.resource.ToggleButtonBackgroundIndeterminate",
       "terminal-chrome.resource.SubtleButtonBackground",
-      "terminal-chrome.resource.SplitButtonBackground"
+      "terminal-chrome.resource.SplitButtonBackground",
+      "windows-11-settings-styler | Microsoft.UI.Xaml.Controls.SplitButton | Background"
     ],
     "color.terminal.cursor": [
       "terminal.cursor"
@@ -494,7 +495,8 @@
       "terminal-chrome.resource.SplitButtonForegroundPointerOver",
       "terminal-chrome.resource.SplitButtonForegroundPressed",
       "terminal-chrome.resource.SplitButtonForegroundCheckedPressed",
-      "terminal-chrome.resource.SliderHeaderForeground"
+      "terminal-chrome.resource.SliderHeaderForeground",
+      "windows-11-settings-styler | Microsoft.UI.Xaml.Controls.SplitButton | Foreground"
     ],
     "color.text.bright": [
       "native.bright",
@@ -817,7 +819,8 @@
       "terminal-chrome.resource.SliderTrackFillPointerOver",
       "terminal-chrome.resource.SliderTrackFillPressed",
       "terminal-chrome.resource.SliderThumbBorderBrush",
-      "terminal-chrome.resource.SliderTickBarFill"
+      "terminal-chrome.resource.SliderTickBarFill",
+      "windows-11-settings-styler | Microsoft.UI.Xaml.Controls.SplitButton | BorderBrush"
     ],
     "font.family.mono": [
       "font.family",

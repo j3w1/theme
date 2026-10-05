@@ -34,7 +34,10 @@
     {
       "target": "Microsoft.UI.Xaml.Controls.SplitButton",
       "styles": [
-        "CornerRadius=0"
+        "CornerRadius=0",
+        "Background=#000000",
+        "Foreground=#e99499",
+        "BorderBrush=#a3676b"
       ]
     }
   ],
