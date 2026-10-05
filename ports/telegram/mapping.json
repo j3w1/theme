@@ -39,7 +39,9 @@
       "desktop:callBarBgMuted",
       "desktop:walletTopBg",
       "desktop:sideBarBg",
-      "android:chat_wallpaper_gradient_to"
+      "android:chat_wallpaper_gradient_to",
+      "android:sharedMedia_actionMode",
+      "android:player_actionBar"
     ],
     "color.surface.chrome-alt": [
       "android:chat_outTableBackground",
@@ -132,7 +134,9 @@
       "desktop:outdatedBg",
       "desktop:walletTitleBg",
       "desktop:walletTitleButtonBgActive",
-      "desktop:walletTitleButtonCloseBg"
+      "desktop:walletTitleButtonCloseBg",
+      "android:avatar_backgroundGroupCreateSpanBlue",
+      "android:chat_outLocationBackground"
     ],
     "color.surface.raised": [
       "android:chat_inTableBackground",
@@ -150,7 +154,9 @@
       "desktop:msgInBg",
       "desktop:mainMenuCloudBg",
       "desktop:mediaviewMenuBg",
-      "desktop:groupCallMenuBg"
+      "desktop:groupCallMenuBg",
+      "android:chat_attachMediaBanBackground",
+      "android:player_placeholderBackground"
     ],
     "color.surface.overlay": [
       "android:dialogBackground",
@@ -203,7 +209,11 @@
       "desktop:callBgButton",
       "android:chat_mediaLoaderPhotoSelected",
       "android:chat_mediaLoaderPhoto",
-      "desktop:songCoverOverlayFg"
+      "desktop:songCoverOverlayFg",
+      "android:chat_secretTimerBackground",
+      "android:chat_shareBackground",
+      "android:chat_shareBackgroundSelected",
+      "android:player_actionBarTop"
     ],
     "color.text.default": [
       "android:dialogTextBlack",
@@ -250,8 +260,6 @@
       "android:chat_outQuote",
       "android:chat_muteIcon",
       "android:chat_lockIcon",
-      "android:chat_inMediaIcon",
-      "android:chat_outMediaIcon",
       "android:chat_outViews",
       "android:chat_inViews",
       "android:chat_outMenu",
@@ -273,9 +281,6 @@
       "android:chat_messagePanelText",
       "android:chat_messagePanelIcons",
       "android:chat_topPanelMessage",
-      "android:chat_inLoader",
-      "android:chat_outLoader",
-      "android:chat_inLoaderPhoto",
       "android:chat_mediaLoaderPhotoIcon",
       "android:chat_inLocationIcon",
       "android:chat_outLocationIcon",
@@ -384,7 +389,17 @@
       "desktop:rankUserFg",
       "android:chat_botKeyboardButtonText",
       "desktop:dialogsUnreadBgMutedActive",
-      "desktop:dialogsPollIconFg"
+      "desktop:dialogsPollIconFg",
+      "android:chat_attachMediaBanText",
+      "android:chat_botProgress",
+      "android:chat_goDownButtonIcon",
+      "android:chats_nameIcon",
+      "android:chat_inFileIcon",
+      "android:chat_outFileIcon",
+      "android:chat_mediaBroadcast",
+      "android:chat_replyPanelMessage",
+      "android:chat_emojiPanelMasksIcon",
+      "android:chat_secretTimerText"
     ],
     "color.text.bright": [
       "android:inappPlayerTitle",
@@ -511,7 +526,9 @@
       "desktop:groupCallMemberInactiveStatus",
       "desktop:groupCallMemberMutedIcon",
       "desktop:walletSubBalanceFg",
-      "desktop:dialogsUnreadBgMuted"
+      "desktop:dialogsUnreadBgMuted",
+      "android:changephoneinfo_image",
+      "android:player_placeholder"
     ],
     "color.text.subtle": [
       "android:chats_date",
@@ -687,7 +704,11 @@
       "android:profile_tabSelectedText",
       "android:chats_menuItemCheck",
       "desktop:dialogsUnreadBg",
-      "desktop:historyVideoMessageProgressFg"
+      "desktop:historyVideoMessageProgressFg",
+      "android:chat_outBroadcast",
+      "android:dialogProgressCircle",
+      "android:chat_messagePanelPressedSend",
+      "android:chat_emojiPanelMasksIconSelected"
     ],
     "color.text.link": [
       "android:dialogTextLink",
@@ -703,7 +724,8 @@
       "desktop:historyLinkOutFg",
       "desktop:msgFileThumbLinkInFg",
       "desktop:msgFileThumbLinkOutFg",
-      "desktop:mediaviewTextLinkFg"
+      "desktop:mediaviewTextLinkFg",
+      "android:dialogTextBlue3"
     ],
     "color.text.on-action": [
       "android:dialogCheckboxSquareCheck",
@@ -729,7 +751,24 @@
       "desktop:historyFileInIconFg",
       "desktop:historyFileOutIconFg",
       "desktop:sideBarBadgeFg",
-      "desktop:historyFileThumbIconFg"
+      "desktop:historyFileThumbIconFg",
+      "android:chat_inMediaIcon",
+      "android:chat_outMediaIcon",
+      "android:musicPicker_checkboxCheck",
+      "android:musicPicker_buttonIcon",
+      "android:chat_attachAudioIcon",
+      "android:chat_attachGalleryIcon",
+      "android:chat_attachContactIcon",
+      "android:chat_attachPollIcon",
+      "android:chat_attachLocationIcon",
+      "android:chat_attachFileIcon",
+      "android:dialogBadgeText",
+      "android:chat_emojiPanelBadgeText",
+      "android:chats_menuCloud",
+      "android:chats_actionUnreadIcon",
+      "android:chat_outLoaderPhotoIcon",
+      "android:chat_inLoaderPhotoIcon",
+      "android:dialogCameraIcon"
     ],
     "color.text.on-danger": [
       "android:chats_sentErrorIcon",
@@ -758,7 +797,10 @@
       "desktop:menuSeparatorFg",
       "desktop:tooltipBorderFg",
       "desktop:historyUnreadBarBorder",
-      "desktop:creditsStroke"
+      "desktop:creditsStroke",
+      "android:chat_goDownButtonShadow",
+      "android:windowBackgroundWhiteGrayLine",
+      "android:chat_messagePanelVoiceShadow"
     ],
     "color.border.default": [
       "android:switchTrack",
@@ -807,7 +849,8 @@
       "desktop:msgInReplyBarColor",
       "desktop:msgOutReplyBarColor",
       "desktop:overviewCheckBorder",
-      "android:chat_emojiPanelStickerPackSelectorLine"
+      "android:chat_emojiPanelStickerPackSelectorLine",
+      "android:chat_messagePanelVideoFrame"
     ],
     "color.interaction.focus.ring": [
       "android:dialogInputFieldActivated",
@@ -846,7 +889,9 @@
       "desktop:msgFile2BgSelected",
       "desktop:msgFile3BgSelected",
       "desktop:msgFile4BgSelected",
-      "desktop:sideBarBgActive"
+      "desktop:sideBarBgActive",
+      "android:chat_outLoaderPhotoSelected",
+      "android:chat_inLoaderPhotoSelected"
     ],
     "color.interaction.selection.text": [
       "android:chat_outSentClockSelected",
@@ -921,7 +966,13 @@
       "desktop:msgWaveformOutInactiveSelected",
       "desktop:overviewCheckFgActive",
       "desktop:sideBarTextFgActive",
-      "desktop:sideBarIconFgActive"
+      "desktop:sideBarIconFgActive",
+      "android:chat_inPreviewInstantSelectedText",
+      "android:chat_outPreviewInstantSelectedText",
+      "android:chat_outFileSelectedIcon",
+      "android:chat_inFileSelectedIcon",
+      "android:chat_inLoaderPhotoIconSelected",
+      "android:chat_outLoaderPhotoIconSelected"
     ],
     "color.interaction.hover.bg": [
       "desktop:windowBgOver",
@@ -951,7 +1002,9 @@
       "android:chat_msgIvButtonDangerOutPressed",
       "android:chat_msgIvButtonSuccessOutPressed",
       "android:chat_msgIvButtonDefaultInlineOutPressed",
-      "android:location_actionPressedBackground"
+      "android:location_actionPressedBackground",
+      "android:chat_recordedVoicePlayPausePressed",
+      "android:featuredStickers_delButtonPressed"
     ],
     "color.interaction.disabled.bg": [
       "android:chats_tabUnreadUnactiveBackground",
@@ -1121,7 +1174,18 @@
       "desktop:msgFile1Bg",
       "desktop:msgFile2Bg",
       "desktop:msgFile3Bg",
-      "desktop:msgFile4Bg"
+      "desktop:msgFile4Bg",
+      "android:chat_inLoader",
+      "android:chat_outLoader",
+      "android:chat_attachFileBackground",
+      "android:musicPicker_checkbox",
+      "android:musicPicker_buttonBackground",
+      "android:dialogBadgeBackground",
+      "android:chat_emojiPanelBadgeBackground",
+      "android:chats_menuCloudBackgroundCats",
+      "android:chats_actionUnreadBackground",
+      "android:chat_outLoaderPhoto",
+      "android:chat_inLoaderPhoto"
     ],
     "color.action.primary.hover-bg": [
       "desktop:activeButtonBgOver",
@@ -1138,7 +1202,8 @@
       "android:featuredStickers_addButtonPressed",
       "desktop:botKbDownBg",
       "android:avatar_backgroundArchived",
-      "android:avatar_backgroundArchivedHidden"
+      "android:avatar_backgroundArchivedHidden",
+      "android:chats_actionUnreadPressedBackground"
     ],
     "color.status.danger.text": [
       "android:text_RedRegular",
@@ -1157,7 +1222,18 @@
       "desktop:attentionButtonFgOver",
       "desktop:boxTextFgError",
       "desktop:historyCallArrowMissedInFg",
-      "desktop:outdatedFg"
+      "desktop:outdatedFg",
+      "android:dialogTextRed",
+      "android:dialogTextRed2",
+      "android:windowBackgroundWhiteRedText",
+      "android:windowBackgroundWhiteRedText2",
+      "android:windowBackgroundWhiteRedText3",
+      "android:windowBackgroundWhiteRedText4",
+      "android:windowBackgroundWhiteRedText5",
+      "android:windowBackgroundWhiteRedText6",
+      "android:dialogRedIcon",
+      "android:chat_reportSpam",
+      "android:chat_inUpCall"
     ],
     "color.status.danger.fill": [
       "android:dialogSwipeRemove",
@@ -1166,7 +1242,8 @@
       "android:chat_sentError",
       "android:botKeyboard_button_danger",
       "desktop:titleButtonCloseBgOver",
-      "desktop:callHangupBg"
+      "desktop:callHangupBg",
+      "android:featuredStickers_delButton"
     ],
     "color.status.danger.tint": [
       "android:chat_msgIvButtonDangerIn",

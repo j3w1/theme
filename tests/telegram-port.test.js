@@ -17,6 +17,7 @@ import { ARTIFACTS, DESKTOP_ENTRIES, assertCloudConfig, editorUrl, installLink, 
 const manifest = await readJson("theme.json"), port = await readJson("ports/telegram/port.json");
 const mapping = await readJson("ports/telegram/mapping.json"), capabilities = await readJson("ports/telegram/capabilities.json");
 const registry = await readJson("ports/telegram/src/keys.json"), coverage = await readJson("ports/telegram/src/coverage.json");
+const editorKeys = await readJson("ports/telegram/src/editor-keys.json");
 const profile = manifest.profiles.find(p => p.id === port.profile);
 const resolved = await loadResolvedProfile(profile.tokens), exported = toResolvedExport(resolved, profile);
 const args = { manifest, port, mapping, resolved, exported }, artifacts = telegramArtifacts(args);
@@ -36,11 +37,14 @@ const desktop = new Map(palette.split("\n").filter(line => line && !line.startsW
 }));
 const values = { android, desktop };
 const parent = (target, key) => registry[target].aliases?.[key] ?? registry[target].fallbacks[key];
-// Runtime value of any registry key: its own value, else its inheritance
-// (Android: one fallback level; Desktop: aliases and fallbacks resolve on).
+const mappedKey = (target, key) => Object.hasOwn(owner, `${target}:${key}`);
+// Runtime value of any registry key, from the mapping: its own role, else the
+// role it inherits (Android: one fallback level; Desktop: aliases and
+// fallbacks resolve on). The files also write inherited values explicitly; a
+// test below proves those equal what this resolution gives.
 const effective = (target, key) => {
   for (let next = key, depth = 0; next && depth < 12; depth++) {
-    if (values[target].has(next)) return { key: next, color: values[target].get(next), role: owner[`${target}:${next}`] };
+    if (mappedKey(target, next)) return { key: next, color: values[target].get(next), role: owner[`${target}:${next}`] };
     if (target === "android" && depth > 0) return null;
     next = parent(target, next);
   }
@@ -57,7 +61,7 @@ const pairRatio = (fgKey, bgKey, target = "desktop") => {
   assert.equal(bg[3], 255, `${target}:${bgKey} must be opaque to be measured against its glyph`);
   return evaluatePair({ fg: hexToColor(rgbHex(fg), fg[3] / 255), bg: hexToColor(rgbHex(bg)), min: 4.5 });
 };
-const rgba = (target, key) => values[target].get(key) ?? values[target].get(parent(target, key));
+const rgba = (target, key) => effective(target, key)?.color;
 const roleOf = (target, key) => owner[`${target}:${key}`] ?? owner[`${target}:${parent(target, key)}`];
 const rgbHex = bytes => "#" + bytes.slice(0, 3).map(n => n.toString(16).padStart(2, "0")).join("");
 
@@ -98,7 +102,7 @@ test("every token and upstream key has one classification with direct, non-redun
     assert.ok(!role.startsWith("color.primitive."), role);
     assert.ok(["use", "use-and-report"].includes(exported[role].eligibility.action), role);
     for (const name of native) {
-      const [target, key] = name.split(":"); assert.ok(registry[target].keys.includes(key), name);
+      const [target, key] = name.split(":"); assert.ok(registry[target].keys.includes(key) || editorKeys[target].includes(key), name);
       const inheritedRole = owner[`${target}:${parent(target, key)}`];
       if (inheritedRole) assert.notEqual(role, inheritedRole, `redundant direct mapping ${name}`);
     }
@@ -117,6 +121,42 @@ test("every token and upstream key has one classification with direct, non-redun
   }
   for (const role of resolved.keys()) if (role.startsWith("color.primitive.")) assert.equal(capabilities.roles[role].state, "out-of-scope", role);
   for (const [state, names] of Object.entries(port.surfaces)) assert.deepEqual(names.toSorted(), Object.entries(capabilities.surfaces).filter(([, s]) => s.state === state).map(([key]) => key).toSorted());
+});
+
+test("inherited keys carry the value they inherit, so Telegram's Theme Editor cannot fill them with stock defaults", () => {
+  for (const target of ["android", "desktop"]) {
+    const expected = [];
+    for (const key of [...registry[target].keys, ...editorKeys[target]]) {
+      if (mappedKey(target, key)) { expected.push(key); continue; }
+      assert.ok(registry[target].keys.includes(key), `${target}:${key}: every legacy editor key is mapped`);
+      const inherited = effective(target, key);
+      if (inherited) {
+        expected.push(key);
+        assert.deepEqual(values[target].get(key), inherited.color, `${target}:${key} is written with the value of ${inherited.key}`);
+      } else assert.ok(!values[target].has(key), `${target}:${key} is unset and stays out of the file`);
+    }
+    assert.deepEqual([...values[target].keys()], expected, `${target}: mapped and inherited keys in upstream order, then legacy editor keys`);
+  }
+  assert.equal(values.android.size, 667 + 85 + 77);
+  assert.equal(values.desktop.size, 452 + 89);
+  // On 2026-10-05 the editor filled 119 keys the file left out: 42 inherited
+  // registry keys (now written) and these 77 keys the pinned client no longer
+  // reads (now mapped). None may come from Telegram's defaults again.
+  assert.equal(editorKeys.android.length, 77);
+  for (const key of editorKeys.android) { assert.ok(!registry.android.keys.includes(key), key); assert.ok(mappedKey("android", key), key); }
+  assert.deepEqual(editorKeys.desktop, []);
+  for (const [key, inherits] of [["windowBackgroundWhiteBlueIcon", "windowBackgroundWhiteValueText"], ["dialogSearchText", "windowBackgroundWhiteBlackText"], ["chat_outSentCheckRead", "chat_outSentCheck"], ["chats_sentReadCheck", "chats_sentCheck"], ["switchTrackBlueChecked", "switchTrackChecked"], ["chat_attachPollBackground", "chat_attachAudioBackground"]]) assert.deepEqual(android.get(key), android.get(inherits), key);
+});
+
+test("file and voice buttons draw their icon on a dark-red circle on both clients", () => {
+  // Android: ChatMessageCell setColorKeys(loader, loaderSelected, mediaIcon,
+  // mediaIconSelected); Desktop: historyFile*IconFg on msgFile*Bg.
+  const pairs = [["android", "chat_inMediaIcon", "chat_inLoader"], ["android", "chat_outMediaIcon", "chat_outLoader"], ["android", "chat_inMediaIconSelected", "chat_inLoaderSelected"], ["android", "chat_outMediaIconSelected", "chat_outLoaderSelected"], ["desktop", "historyFileInIconFg", "msgFileInBg"], ["desktop", "historyFileOutIconFg", "msgFileOutBg"], ["desktop", "historyFileInIconFgSelected", "msgFileInBgSelected"], ["desktop", "historyFileOutIconFgSelected", "msgFileOutBgSelected"]];
+  for (const [target, icon, circle] of pairs) {
+    assert.ok(pairRatio(icon, circle, target).ratio >= 4.5, `${target}:${icon} on ${circle}`);
+    assert.match(effective(target, circle).role, /^color\.(action\.primary\.bg|interaction\.selection\.bg)$/, `${target}:${circle}`);
+  }
+  for (const side of ["in", "out"]) assert.deepEqual(android.get(`chat_${side}Loader`), desktop.get("msgFileOutBg"), `${side} circles match Desktop's file circles`);
 });
 
 test("unknown, duplicate, nonColor, animated and ineligible keys fail before emission", () => {
@@ -154,13 +194,12 @@ test("ARGB and Desktop RGBA preserve canonical values and alpha without derivati
   assert.ok(palette.includes("msgSelectOverlay: #9114101f;"));
   assert.ok(palette.includes("layerBg: #000000a6;"));
   for (const target of ["android", "desktop"]) {
-    assert.deepEqual([...values[target].keys()], registry[target].keys.filter(key => Object.hasOwn(owner, `${target}:${key}`)));
     for (const key of [...registry[target].translucentDefault, ...coverage[target].translucent]) {
       if (coverage[target].unset[key] || coverage[target].opaqueAllowed?.[key]) continue;
-      // Emitted overlays stay translucent. A key that inherits through an
+      // Mapped overlays stay translucent. A key that inherits through an
       // upstream fallback takes that key's value at runtime, which is only
       // acceptable for text and icon glyphs (upstream's own fallback design).
-      if (values[target].has(key) || !/Text|Icon/.test(key)) assert.ok(rgba(target, key)[3] < 255, `${target}:${key}`);
+      if (mappedKey(target, key) || !/Text|Icon/.test(key)) assert.ok(rgba(target, key)[3] < 255, `${target}:${key}`);
     }
     // The only opaque exceptions are reviewed text keys, set from text roles.
     for (const [key, reason] of Object.entries(coverage[target].opaqueAllowed ?? {})) {

@@ -12,6 +12,21 @@ import { colorValueSchema } from "../../schemas/tokens.mjs";
 
 const registry = await readJson("ports/telegram/src/keys.json");
 const coverage = await readJson("ports/telegram/src/coverage.json");
+// Keys Telegram's Theme Editor still writes but the pinned clients no longer
+// read; mapping.json gives each a role (src/editor-keys.json has the source).
+const editorKeys = await readJson("ports/telegram/src/editor-keys.json");
+export const telegramKnownKey = (target, key) => registry[target].keys.includes(key) || editorKeys[target].includes(key);
+
+// The value a client gives an unmapped key from the theme: Android reads one
+// direct fallback; Desktop follows its alias or fallback chain.
+export const telegramInherited = (values, target, key) => {
+  for (let next = registry[target].aliases?.[key] ?? registry[target].fallbacks[key], depth = 0; next && depth < 12; depth++) {
+    if (values.has(`${target}:${next}`)) return values.get(`${target}:${next}`);
+    if (target === "android") return null;
+    next = registry[target].aliases?.[next] ?? registry[target].fallbacks[next];
+  }
+  return null;
+};
 
 // Parse the resolver's CSS, including its existing percentage-alpha roles.
 export const telegramColor = css => {
@@ -52,7 +67,7 @@ export const telegramArtifacts = ({ manifest, port, mapping, exported, resolved 
     if (exported[role].css !== css) throw new Error(`Telegram resolved/exported colour disagreement: ${role}`);
     for (const native of keys) {
       const [target, key, extra] = native.split(":");
-      if (extra !== undefined || !["android", "desktop"].includes(target) || !registry[target].keys.includes(key)) throw new Error(`Unknown Telegram native key: ${native}`);
+      if (extra !== undefined || !["android", "desktop"].includes(target) || !telegramKnownKey(target, key)) throw new Error(`Unknown Telegram native key: ${native}`);
       if (values.has(native)) throw new Error(`Duplicate Telegram native key: ${native}`);
       if (target === "android" && [...registry.android.nonColor, ...registry.android.animated].includes(key)) throw new Error(`Telegram nonColor/animated key cannot be emitted: ${native}`);
       // Overlays, selectors and ripples stay translucent so they never hide
@@ -66,8 +81,19 @@ export const telegramArtifacts = ({ manifest, port, mapping, exported, resolved 
   const top = values.get("android:chat_wallpaper"), bottom = values.get("android:chat_wallpaper_gradient_to");
   if (!top || !bottom || top[3] !== 255 || bottom[3] !== 255) throw new Error("Telegram wallpaper requires two opaque mapped roles");
   const header = (mark, target) => `${mark} j3w1 theme ${manifest.version}, default profile, for Telegram ${target}.\n${mark} Generated from ports/telegram/mapping.json by npm run generate; do not edit.\n`;
-  const android = header("#", "Android") + registry.android.keys.filter(key => values.has(`android:${key}`)).map(key => `${key}=${androidArgb(values.get(`android:${key}`))}`).join("\n") + "\n";
-  const palette = header("//", "Desktop") + registry.desktop.keys.filter(key => values.has(`desktop:${key}`)).map(key => `${key}: ${desktopHex(values.get(`desktop:${key}`))};`).join("\n") + "\n";
+  // Telegram's Theme Editor fills every key a file leaves out with Telegram's
+  // stock default, which would break the clients' inheritance on the cloud
+  // route. So an inherited key is written with the value it inherits, which is
+  // exactly what a file import showed anyway; legacy editor keys follow last.
+  const entries = target => [...registry[target].keys, ...editorKeys[target]].flatMap(key => {
+    const own = values.get(`${target}:${key}`);
+    if (own) return [[key, own]];
+    if (target === "android" && [...registry.android.nonColor, ...registry.android.animated].includes(key)) return [];
+    const inherited = registry[target].keys.includes(key) ? telegramInherited(values, target, key) : null;
+    return inherited ? [[key, inherited]] : [];
+  });
+  const android = header("#", "Android") + entries("android").map(([key, rgba]) => `${key}=${androidArgb(rgba)}`).join("\n") + "\n";
+  const palette = header("//", "Desktop") + entries("desktop").map(([key, rgba]) => `${key}: ${desktopHex(rgba)};`).join("\n") + "\n";
   const bytes = zipSync({ [DESKTOP_ENTRIES.palette]: strToU8(palette), [DESKTOP_ENTRIES.background]: wallpaperPng(top, bottom) }, { level: 0, mtime: new Date(1980, 0, 1), os: 3, attrs: 0o644 << 16 });
   return [{ path: ARTIFACTS.android.path, text: android }, { path: ARTIFACTS.desktop.path, bytes }];
 };
@@ -76,12 +102,12 @@ export const telegramArtifacts = ({ manifest, port, mapping, exported, resolved 
 // check, so a mapping change can never leave the prose stale.
 export const telegramCoverageBlock = mapping => {
   const mapped = new Set(Object.values(mapping.mappings).flat());
-  const rows = ["| Target | Keys | Mapped | Inherited | Unset |", "| --- | ---: | ---: | ---: | ---: |"];
+  const rows = ["| Target | Keys | Mapped | Inherited | Unset | Legacy editor keys |", "| --- | ---: | ---: | ---: | ---: | ---: |"];
   for (const [target, label] of [["android", "Android"], ["desktop", "Desktop"]]) {
     const keys = registry[target].keys;
     const own = keys.filter(key => mapped.has(`${target}:${key}`)).length;
     const unset = keys.filter(key => !mapped.has(`${target}:${key}`) && coverage[target].unset[key]).length;
-    rows.push(`| ${label} | ${keys.length} | ${own} | ${keys.length - own - unset} | ${unset} |`);
+    rows.push(`| ${label} | ${keys.length} | ${own} | ${keys.length - own - unset} | ${unset} | ${editorKeys[target].filter(key => mapped.has(`${target}:${key}`)).length} |`);
   }
   return rows.join("\n");
 };

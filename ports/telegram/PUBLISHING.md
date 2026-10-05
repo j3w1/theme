@@ -38,6 +38,8 @@ This route needs no API application, api_id or api_hash.
 
 Telegram converts an imported file into its own text form and rebuilds the document when you save; the Desktop zip is repacked. The cloud copy carries the same colours but not the same bytes, so on this route you check the result on the clients, not by digest.
 
+The editor gives every key a file leaves out Telegram's default colour. The generated files therefore set every key the editor knows, inherited values included. After an import, the editor text should hold only j3w1 colours; a stray Telegram blue or green means a key is missing from the mapping.
+
 ### Check the install link
 
 1. **Android:** open the install link on the phone, check the preview, and tap **Apply**.

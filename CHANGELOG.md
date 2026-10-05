@@ -16,7 +16,12 @@
   The publisher needs `api_id`/`api_hash`, adopts the same recorded theme and
   verifies both documents by download. `cloud.json` records the theme the owner
   created in the editor; the README leads with file import until the owner has
-  verified the link on both clients. An opt-in `telegram` job publishes changed
+  verified the link on both clients. Because the editor fills every key a file
+  leaves out with Telegram's stock colours, the files now write inherited keys
+  with the value they inherit. They also set the 77 legacy Android keys the
+  editor still writes, so no Telegram blue or green enters the cloud theme. The
+  Android file and voice buttons now draw a near-white icon on a dark-red
+  circle, as Desktop does, instead of rose on rose. An opt-in `telegram` job publishes changed
   files after `release-gate` on `main` only; it is not configured. The pinned
   `teleproto` MTProto client is used only by the publisher.
 - Port emitters may return byte artifacts (`{path, bytes}`), written and
