@@ -684,3 +684,26 @@ test('composite button resource ladders cover hover exit, split halves and check
   assert.ok(!Object.keys(palette).some(key=>key.startsWith('DropDownButtonBackground')),'dropdown background belongs to the inherited button template');
  }
 });
+
+
+test('native slider templates retain accent semantics and brush-only resource types',async()=>{
+ const host=await readJson('ports/windows/host.json'),mapping=await readJson('ports/windows/mapping.json');
+ const shared=host.winuiChromeResources;
+ // Thumb and filled track are native range accents, including their state exits.
+ const states={'':'color.action.primary.bg',PointerOver:'color.action.primary.hover-bg',Pressed:'color.action.primary.pressed-bg',Disabled:'color.interaction.disabled.bg'};
+ for(const [state,role]of Object.entries(states))for(const part of ['SliderThumbBackground','SliderTrackValueFill']){
+  const key=part+state;assert.equal(shared[key],role,key);
+  for(const prefix of ['notepad-chrome','paint-chrome'])assert.ok(mapping.mappings[role].includes(prefix+'.resource.'+key));
+ }
+ for(const state of ['','PointerOver','Pressed'])assert.equal(shared['SliderTrackFill'+state],'color.border.control');
+ assert.equal(shared.SliderTrackFillDisabled,'color.border.disabled');
+ assert.equal(shared.SliderOuterThumbBackground,'color.surface.input');
+ assert.equal(shared.SliderHeaderForeground,'color.text.default');
+ // WinUI uses Color-valued animation keys here. A SolidColorBrush substitute
+ // would break those animations; this palette admits brush resources only.
+ for(const key of ['SliderContainerBackgroundPointerOver','SliderContainerBackgroundPressed','SliderContainerBackgroundDisabled','SliderHeaderForegroundDisabled','SliderTickBarFillDisabled'])assert.ok(!(key in shared),key);
+ for(const name of ['notepad','paint']){
+  const sourceText=fs.readFileSync(path.join(source,'dist/j3w1-'+name+'-chrome.wh.cpp'),'utf8');
+  assert.ok(!/\bSlider::(?:Minimum|Maximum|Value|StepFrequency|Orientation)Property\s*\(/.test(sourceText),'slider geometry and value properties belong to the host');
+ }
+});

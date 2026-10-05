@@ -357,7 +357,9 @@
       "calculator.resource.SplitButtonForegroundPressed",
       "notepad-chrome.resource.SplitButtonForegroundCheckedPressed",
       "paint-chrome.resource.SplitButtonForegroundCheckedPressed",
-      "calculator.resource.SplitButtonForegroundCheckedPressed"
+      "calculator.resource.SplitButtonForegroundCheckedPressed",
+      "notepad-chrome.resource.SliderHeaderForeground",
+      "paint-chrome.resource.SliderHeaderForeground"
     ],
     "color.text.bright": [
       "native.bright",
@@ -575,7 +577,17 @@
       "calculator.resource.SubtleButtonBorderBrush",
       "notepad-chrome.resource.SplitButtonBorderBrush",
       "paint-chrome.resource.SplitButtonBorderBrush",
-      "calculator.resource.SplitButtonBorderBrush"
+      "calculator.resource.SplitButtonBorderBrush",
+      "notepad-chrome.resource.SliderTrackFill",
+      "paint-chrome.resource.SliderTrackFill",
+      "notepad-chrome.resource.SliderTrackFillPointerOver",
+      "paint-chrome.resource.SliderTrackFillPointerOver",
+      "notepad-chrome.resource.SliderTrackFillPressed",
+      "paint-chrome.resource.SliderTrackFillPressed",
+      "notepad-chrome.resource.SliderThumbBorderBrush",
+      "paint-chrome.resource.SliderThumbBorderBrush",
+      "notepad-chrome.resource.SliderTickBarFill",
+      "paint-chrome.resource.SliderTickBarFill"
     ],
     "font.family.mono": [
       "font.family",
@@ -674,7 +686,11 @@
       "paint-chrome.resource.CardBackgroundFillColorSecondaryBrush",
       "paint-chrome.resource.ControlFillColorDefaultBrush",
       "paint-chrome.resource.TextControlBackground",
-      "paint-chrome.resource.ButtonBackground"
+      "paint-chrome.resource.ButtonBackground",
+      "notepad-chrome.resource.SliderOuterThumbBackground",
+      "paint-chrome.resource.SliderOuterThumbBackground",
+      "notepad-chrome.resource.SliderInlineTickBarFill",
+      "paint-chrome.resource.SliderInlineTickBarFill"
     ],
     "color.interaction.hover.bg": [
       "windhawk.resource.ControlFillColorSecondary",
@@ -784,7 +800,11 @@
       "notepad-chrome.resource.ToggleSwitchStrokeOn",
       "paint-chrome.resource.AccentFillColorDefaultBrush",
       "paint-chrome.resource.ToggleSwitchFillOn",
-      "paint-chrome.resource.ToggleSwitchStrokeOn"
+      "paint-chrome.resource.ToggleSwitchStrokeOn",
+      "notepad-chrome.resource.SliderTrackValueFill",
+      "paint-chrome.resource.SliderTrackValueFill",
+      "notepad-chrome.resource.SliderThumbBackground",
+      "paint-chrome.resource.SliderThumbBackground"
     ],
     "color.text.on-action": [
       "windhawk.resource.TextOnAccentFillColorPrimary",
@@ -915,7 +935,11 @@
       "calculator.resource.SplitButtonBackgroundDisabled",
       "notepad-chrome.resource.SplitButtonBackgroundCheckedDisabled",
       "paint-chrome.resource.SplitButtonBackgroundCheckedDisabled",
-      "calculator.resource.SplitButtonBackgroundCheckedDisabled"
+      "calculator.resource.SplitButtonBackgroundCheckedDisabled",
+      "notepad-chrome.resource.SliderTrackValueFillDisabled",
+      "paint-chrome.resource.SliderTrackValueFillDisabled",
+      "notepad-chrome.resource.SliderThumbBackgroundDisabled",
+      "paint-chrome.resource.SliderThumbBackgroundDisabled"
     ],
     "color.border.disabled": [
       "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | BorderBrush@Disabled",
@@ -942,7 +966,9 @@
       "calculator.resource.SplitButtonBorderBrushDisabled",
       "notepad-chrome.resource.SplitButtonBorderBrushCheckedDisabled",
       "paint-chrome.resource.SplitButtonBorderBrushCheckedDisabled",
-      "calculator.resource.SplitButtonBorderBrushCheckedDisabled"
+      "calculator.resource.SplitButtonBorderBrushCheckedDisabled",
+      "notepad-chrome.resource.SliderTrackFillDisabled",
+      "paint-chrome.resource.SliderTrackFillDisabled"
     ],
     "color.border.default": [
       "windows-11-start-menu-styler | StartMenu.CategoryControl > Grid > Border | BorderBrush"
@@ -956,7 +982,11 @@
       "notepad-chrome.resource.ToggleSwitchStrokeOnPointerOver",
       "paint-chrome.resource.AccentFillColorSecondaryBrush",
       "paint-chrome.resource.ToggleSwitchFillOnPointerOver",
-      "paint-chrome.resource.ToggleSwitchStrokeOnPointerOver"
+      "paint-chrome.resource.ToggleSwitchStrokeOnPointerOver",
+      "notepad-chrome.resource.SliderTrackValueFillPointerOver",
+      "paint-chrome.resource.SliderTrackValueFillPointerOver",
+      "notepad-chrome.resource.SliderThumbBackgroundPointerOver",
+      "paint-chrome.resource.SliderThumbBackgroundPointerOver"
     ],
     "color.action.primary.pressed-bg": [
       "windows-11-notification-center-styler | CalendarView | TodayPressedBackground",
@@ -966,7 +996,11 @@
       "notepad-chrome.resource.ToggleSwitchStrokeOnPressed",
       "paint-chrome.resource.AccentFillColorTertiaryBrush",
       "paint-chrome.resource.ToggleSwitchFillOnPressed",
-      "paint-chrome.resource.ToggleSwitchStrokeOnPressed"
+      "paint-chrome.resource.ToggleSwitchStrokeOnPressed",
+      "notepad-chrome.resource.SliderTrackValueFillPressed",
+      "paint-chrome.resource.SliderTrackValueFillPressed",
+      "notepad-chrome.resource.SliderThumbBackgroundPressed",
+      "paint-chrome.resource.SliderThumbBackgroundPressed"
     ],
     "color.interaction.selection.inactive-bg": [
       "nativeExplorer.inactive"

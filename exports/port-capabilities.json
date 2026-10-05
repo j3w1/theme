@@ -37749,7 +37749,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-Nq5Clj56KcuFsdWcTrl/AiT5rWMuDlIcHGI0OTbaxWA=",
+      "subjectDigest": "sha256-+/WCi90wFcezHaBkW0zt8dcWSAdK+vAC24WPz3OrOJU=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37782,7 +37782,7 @@
           "path": "dist/windows-settings.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-settings.json",
-          "digest": "sha256-tUdSIUPxeGmpP6Iiomj4yl3URnGYpjmLDlo4ZMOKM2U="
+          "digest": "sha256-mvQANja7aRy+tA+DYXXV0PpRb3DLdrqrcEXqVigme/8="
         },
         {
           "path": "dist/terminal-fragment.json",
@@ -37956,7 +37956,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-UMYSdV68GnmYG8TRTzYh9Kh2yxgwcM1BKj+ShixbuaY="
+          "digest": "sha256-p+HNhfl46eIrVPY5Xnp/oIZZV+t+HUrQeAAGLlmaIpI="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
@@ -38040,7 +38040,7 @@
           "path": "dist/j3w1-notepad-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-notepad-chrome.wh.cpp",
-          "digest": "sha256-/Frhzc1DiKJq0Cdag8a6wlWuyL/vEJYMDysHN1BZanI="
+          "digest": "sha256-/tND761x2DvS1hj+4Kvy0zIEZkd3kwpBIgz8OlSyIpE="
         },
         {
           "path": "dist/j3w1-notepad-chrome.json",
@@ -38052,7 +38052,7 @@
           "path": "dist/j3w1-paint-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-paint-chrome.wh.cpp",
-          "digest": "sha256-hcO7hl0OZuiHeXDgoxueFgwon0zgmA1YfDZRbclL/n8="
+          "digest": "sha256-mvmmOQEedSP0TR0ImBa5PZ6+rB7XKoqNu+hGEPBbZLw="
         },
         {
           "path": "dist/j3w1-paint-chrome.json",
@@ -38295,7 +38295,11 @@
             "notepad-chrome.resource.ToggleSwitchStrokeOn",
             "paint-chrome.resource.AccentFillColorDefaultBrush",
             "paint-chrome.resource.ToggleSwitchFillOn",
-            "paint-chrome.resource.ToggleSwitchStrokeOn"
+            "paint-chrome.resource.ToggleSwitchStrokeOn",
+            "notepad-chrome.resource.SliderTrackValueFill",
+            "paint-chrome.resource.SliderTrackValueFill",
+            "notepad-chrome.resource.SliderThumbBackground",
+            "paint-chrome.resource.SliderThumbBackground"
           ],
           "value": "#7d1310",
           "eligibility": {
@@ -38335,7 +38339,11 @@
             "notepad-chrome.resource.ToggleSwitchStrokeOnPointerOver",
             "paint-chrome.resource.AccentFillColorSecondaryBrush",
             "paint-chrome.resource.ToggleSwitchFillOnPointerOver",
-            "paint-chrome.resource.ToggleSwitchStrokeOnPointerOver"
+            "paint-chrome.resource.ToggleSwitchStrokeOnPointerOver",
+            "notepad-chrome.resource.SliderTrackValueFillPointerOver",
+            "paint-chrome.resource.SliderTrackValueFillPointerOver",
+            "notepad-chrome.resource.SliderThumbBackgroundPointerOver",
+            "paint-chrome.resource.SliderThumbBackgroundPointerOver"
           ],
           "value": "#911410",
           "eligibility": {
@@ -38359,7 +38367,11 @@
             "notepad-chrome.resource.ToggleSwitchStrokeOnPressed",
             "paint-chrome.resource.AccentFillColorTertiaryBrush",
             "paint-chrome.resource.ToggleSwitchFillOnPressed",
-            "paint-chrome.resource.ToggleSwitchStrokeOnPressed"
+            "paint-chrome.resource.ToggleSwitchStrokeOnPressed",
+            "notepad-chrome.resource.SliderTrackValueFillPressed",
+            "paint-chrome.resource.SliderTrackValueFillPressed",
+            "notepad-chrome.resource.SliderThumbBackgroundPressed",
+            "paint-chrome.resource.SliderThumbBackgroundPressed"
           ],
           "value": "#630f0d",
           "eligibility": {
@@ -38649,7 +38661,17 @@
             "calculator.resource.SubtleButtonBorderBrush",
             "notepad-chrome.resource.SplitButtonBorderBrush",
             "paint-chrome.resource.SplitButtonBorderBrush",
-            "calculator.resource.SplitButtonBorderBrush"
+            "calculator.resource.SplitButtonBorderBrush",
+            "notepad-chrome.resource.SliderTrackFill",
+            "paint-chrome.resource.SliderTrackFill",
+            "notepad-chrome.resource.SliderTrackFillPointerOver",
+            "paint-chrome.resource.SliderTrackFillPointerOver",
+            "notepad-chrome.resource.SliderTrackFillPressed",
+            "paint-chrome.resource.SliderTrackFillPressed",
+            "notepad-chrome.resource.SliderThumbBorderBrush",
+            "paint-chrome.resource.SliderThumbBorderBrush",
+            "notepad-chrome.resource.SliderTickBarFill",
+            "paint-chrome.resource.SliderTickBarFill"
           ],
           "value": "#a3676b",
           "eligibility": {
@@ -38709,7 +38731,9 @@
             "calculator.resource.SplitButtonBorderBrushDisabled",
             "notepad-chrome.resource.SplitButtonBorderBrushCheckedDisabled",
             "paint-chrome.resource.SplitButtonBorderBrushCheckedDisabled",
-            "calculator.resource.SplitButtonBorderBrushCheckedDisabled"
+            "calculator.resource.SplitButtonBorderBrushCheckedDisabled",
+            "notepad-chrome.resource.SliderTrackFillDisabled",
+            "paint-chrome.resource.SliderTrackFillDisabled"
           ],
           "value": "#7d1310",
           "eligibility": {
@@ -39949,7 +39973,11 @@
             "calculator.resource.SplitButtonBackgroundDisabled",
             "notepad-chrome.resource.SplitButtonBackgroundCheckedDisabled",
             "paint-chrome.resource.SplitButtonBackgroundCheckedDisabled",
-            "calculator.resource.SplitButtonBackgroundCheckedDisabled"
+            "calculator.resource.SplitButtonBackgroundCheckedDisabled",
+            "notepad-chrome.resource.SliderTrackValueFillDisabled",
+            "paint-chrome.resource.SliderTrackValueFillDisabled",
+            "notepad-chrome.resource.SliderThumbBackgroundDisabled",
+            "paint-chrome.resource.SliderThumbBackgroundDisabled"
           ],
           "value": "#160b0b",
           "eligibility": {
@@ -42262,7 +42290,11 @@
             "paint-chrome.resource.CardBackgroundFillColorSecondaryBrush",
             "paint-chrome.resource.ControlFillColorDefaultBrush",
             "paint-chrome.resource.TextControlBackground",
-            "paint-chrome.resource.ButtonBackground"
+            "paint-chrome.resource.ButtonBackground",
+            "notepad-chrome.resource.SliderOuterThumbBackground",
+            "paint-chrome.resource.SliderOuterThumbBackground",
+            "notepad-chrome.resource.SliderInlineTickBarFill",
+            "paint-chrome.resource.SliderInlineTickBarFill"
           ],
           "value": "#000000",
           "eligibility": {
@@ -42945,7 +42977,9 @@
             "calculator.resource.SplitButtonForegroundPressed",
             "notepad-chrome.resource.SplitButtonForegroundCheckedPressed",
             "paint-chrome.resource.SplitButtonForegroundCheckedPressed",
-            "calculator.resource.SplitButtonForegroundCheckedPressed"
+            "calculator.resource.SplitButtonForegroundCheckedPressed",
+            "notepad-chrome.resource.SliderHeaderForeground",
+            "paint-chrome.resource.SliderHeaderForeground"
           ],
           "value": "#e99499",
           "eligibility": {

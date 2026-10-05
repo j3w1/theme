@@ -451,3 +451,25 @@ must match. Unknown/custom icons and accessibility overrides retain native
 conversion. This uses the existing adapter and the same installation/rollback
 journal. An isolated installed comparison showed a red generic tab; final
 production-candidate desktop and restore appearance checks remain open.
+
+### Native slider resource coverage
+
+The exact Paint package's AccessibleSlider controls use native WinUI Slider
+templates for size, opacity and zoom. A numeric brush trace identified the
+unfilled rail and thumb resources missing from the shared chrome palette. The
+palette now maps the thumb and filled rail to the approved primary-action
+accent, with distinct hover, pressed and disabled roles; the unfilled rail
+uses the control-boundary role. This follows the range component's native
+accent semantics. Labels remain rose and outer thumb backing uses the input
+surface. No value, range, orientation, dimensions, artwork or palette swatch
+property is changed.
+
+The resource names and brush types follow the pinned
+[WinUI Slider template](https://github.com/microsoft/microsoft-ui-xaml/blob/8027ff4af619eb470fab63bf4609c6404ee73e17/dev/CommonStyles/Slider_themeresources.xaml).
+Color-valued animation resources are excluded from this brush-only palette.
+The existing per-control ownership path retains exact prior local entries,
+restores only entries still owned by the adapter and preserves later app
+changes. Native high contrast still declines the theme. A resource-only live
+comparison showed themed rails while retaining size, opacity, zoom and blank
+artwork; production installation and state-transition acceptance are separate
+checks. Paint's gray slider containers and drawing workspace remain unresolved.

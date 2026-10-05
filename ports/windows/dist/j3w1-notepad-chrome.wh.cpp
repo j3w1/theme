@@ -2,7 +2,7 @@
 // @id j3w1-notepad-chrome
 // @name j3w1 Notepad chrome
 // @description Exact-package Notepad chrome resources; document and artwork colors remain native
-// @version 1.2.12
+// @version 1.2.13
 // @author j3w1
 // @include Notepad.exe
 // @architecture x86-64
@@ -347,6 +347,23 @@ static constexpr Rule rules[]={
  {L"DropDownButtonForegroundSecondary",{255,189,120,125},L"color.text.muted"},
  {L"DropDownButtonForegroundSecondaryPointerOver",{255,189,120,125},L"color.text.muted"},
  {L"DropDownButtonForegroundSecondaryPressed",{255,189,120,125},L"color.text.muted"},
+ {L"SliderTrackFill",{255,163,103,107},L"color.border.control"},
+ {L"SliderTrackFillPointerOver",{255,163,103,107},L"color.border.control"},
+ {L"SliderTrackFillPressed",{255,163,103,107},L"color.border.control"},
+ {L"SliderTrackFillDisabled",{255,125,19,16},L"color.border.disabled"},
+ {L"SliderTrackValueFill",{255,125,19,16},L"color.action.primary.bg"},
+ {L"SliderTrackValueFillPointerOver",{255,145,20,16},L"color.action.primary.hover-bg"},
+ {L"SliderTrackValueFillPressed",{255,99,15,13},L"color.action.primary.pressed-bg"},
+ {L"SliderTrackValueFillDisabled",{255,22,11,11},L"color.interaction.disabled.bg"},
+ {L"SliderThumbBackground",{255,125,19,16},L"color.action.primary.bg"},
+ {L"SliderThumbBackgroundPointerOver",{255,145,20,16},L"color.action.primary.hover-bg"},
+ {L"SliderThumbBackgroundPressed",{255,99,15,13},L"color.action.primary.pressed-bg"},
+ {L"SliderThumbBackgroundDisabled",{255,22,11,11},L"color.interaction.disabled.bg"},
+ {L"SliderThumbBorderBrush",{255,163,103,107},L"color.border.control"},
+ {L"SliderOuterThumbBackground",{255,0,0,0},L"color.surface.input"},
+ {L"SliderHeaderForeground",{255,233,148,153},L"color.text.default"},
+ {L"SliderTickBarFill",{255,163,103,107},L"color.border.control"},
+ {L"SliderInlineTickBarFill",{255,0,0,0},L"color.surface.input"},
 };
 static bool Same(Color a,Color b){return a.A==b.A&&a.R==b.R&&a.G==b.G&&a.B==b.B;}
 static bool Identity(ProjectedObject const& a,ProjectedObject const& b){

@@ -1493,7 +1493,7 @@
     }
   },
   "notepadChrome": {
-    "version": "1.2.12",
+    "version": "1.2.13",
     "packageFullName": "Microsoft.WindowsNotepad_11.2607.14.0_x64__8wekyb3d8bbwe",
     "runtimePackage": "Microsoft.WindowsAppRuntime.2_2.5.1.0_x64__8wekyb3d8bbwe",
     "runtimeSha256": "aad12524765e6fb63f0ae26a45a9ba3104f24fde66413d8a3036fbed74a1e990",
@@ -1797,10 +1797,27 @@
     "SplitButtonInAppBarUnfocusedPointerOver": "color.interaction.pressed.bg",
     "DropDownButtonForegroundSecondary": "color.text.muted",
     "DropDownButtonForegroundSecondaryPointerOver": "color.text.muted",
-    "DropDownButtonForegroundSecondaryPressed": "color.text.muted"
+    "DropDownButtonForegroundSecondaryPressed": "color.text.muted",
+    "SliderTrackFill": "color.border.control",
+    "SliderTrackFillPointerOver": "color.border.control",
+    "SliderTrackFillPressed": "color.border.control",
+    "SliderTrackFillDisabled": "color.border.disabled",
+    "SliderTrackValueFill": "color.action.primary.bg",
+    "SliderTrackValueFillPointerOver": "color.action.primary.hover-bg",
+    "SliderTrackValueFillPressed": "color.action.primary.pressed-bg",
+    "SliderTrackValueFillDisabled": "color.interaction.disabled.bg",
+    "SliderThumbBackground": "color.action.primary.bg",
+    "SliderThumbBackgroundPointerOver": "color.action.primary.hover-bg",
+    "SliderThumbBackgroundPressed": "color.action.primary.pressed-bg",
+    "SliderThumbBackgroundDisabled": "color.interaction.disabled.bg",
+    "SliderThumbBorderBrush": "color.border.control",
+    "SliderOuterThumbBackground": "color.surface.input",
+    "SliderHeaderForeground": "color.text.default",
+    "SliderTickBarFill": "color.border.control",
+    "SliderInlineTickBarFill": "color.surface.input"
   },
   "paintChrome": {
-    "version": "1.0.10",
+    "version": "1.0.11",
     "packageFullName": "Microsoft.Paint_11.2605.81.0_x64__8wekyb3d8bbwe",
     "runtimePackage": "Microsoft.WindowsAppRuntime.2_2.5.1.0_x64__8wekyb3d8bbwe",
     "runtimeSha256": "aad12524765e6fb63f0ae26a45a9ba3104f24fde66413d8a3036fbed74a1e990",
