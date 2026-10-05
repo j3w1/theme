@@ -52,7 +52,7 @@ Every upstream colour key is in exactly one of three states, and `tests/telegram
 | Target | Keys | Mapped | Inherited | Unset | Legacy editor keys |
 | --- | ---: | ---: | ---: | ---: | ---: |
 | Android | 819 | 666 | 86 | 67 | 77 |
-| Desktop | 586 | 452 | 89 | 45 | 0 |
+| Desktop | 586 | 450 | 91 | 45 | 0 |
 <!-- coverage:end -->
 
 Non-colour keys (`wallpaperFileOffset`, `chat_wallpaper_gradient_rotation`, `chat_outBubbleGradientAnimated`) and animated-wallpaper keys are never written.
@@ -134,6 +134,7 @@ The same `https://t.me/addtheme/<slug>` link opens the matching document on each
 - **Android white glyphs Telegram fixes in code.** The theme sets only the fills behind them:
   - **Composer send and mic buttons:** the icon is always white (`ChatActivityEnterView`, new design), drawn on `chat_messagePanelSend`, the accent red. That is about 3.4:1, above the 3:1 needed for an icon but below the 4.5:1 used for near-white text here.
   - **Profile action buttons (Message, Mute, …):** labels are white, or black on a light button, chosen by brightness (`ProfileActionsView`).
+- **Desktop trending stickers' "installed" button.** Its style (`stickersTrendingInstalled`) uses the primary-button fill, `activeButtonBg`, as text on `lightButtonBgOver`. That fill must be dark for its near-white button text, so this one label stays dim (about 1.8:1). No palette can satisfy both uses.
 - **Android Settings icons.** Telegram Android 12.x paints the coloured squares behind the Settings icons from fixed gradients in its code (`IconBackgroundColors`, `SettingsActivity`), not from theme keys. They stay blue, orange, green and purple under every theme. On Desktop they are theme keys and use the action fill.
 - **Newer keys.** Keys Telegram adds after the pinned revisions use Telegram's light defaults until `keys.json` is refreshed.
 - **Desktop style-file colours.** Telegram Desktop's own `.style` files name a few more colours, such as `overviewFileExtFg`, that are not palette keys. They follow the palette key they point to, so the theme reaches them only through those keys, and the audit lists palette keys only.

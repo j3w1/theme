@@ -32242,7 +32242,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-z2aJLOxablqlRDYjhUEAKAKzA3If/nGcNxV25QPxSqI=",
+      "subjectDigest": "sha256-prET1YqGuvLm+9Ai4jfbhpDHNujSPp/1G9SFoJ5WuAg=",
       "evidencePath": null,
       "surfaces": {
         "interface": {
@@ -32297,7 +32297,7 @@
           "path": "dist/j3w1.tdesktop-theme",
           "install": "File install: open with Telegram Desktop, then Apply this theme and Keep changes. The cloud link in the guide, when published, installs the same theme with automatic updates.",
           "source": "ports/telegram/dist/j3w1.tdesktop-theme",
-          "digest": "sha256-HbKQsPpVXO40fWvGtxpJRLppVwUVAMGFDqEAtNoG2Gc="
+          "digest": "sha256-jBTNKiYYWpBlVfBAyyZuq7F1GJ6EHorZ+UVPsYkW+Rs="
         }
       ],
       "rollback": "Choose the previous Telegram theme in Settings → Chat Settings/Appearance; restore the previous chat background if it was customised.",
@@ -32551,7 +32551,6 @@
             "desktop:settingsIconBg8",
             "desktop:settingsIconBgArchive",
             "desktop:historyToDownBg",
-            "desktop:historyComposeButtonBg",
             "desktop:sideBarBadgeBg",
             "android:chat_attachGalleryBackground",
             "android:chat_attachAudioBackground",
@@ -32611,7 +32610,6 @@
           "role": "color.action.primary.hover-bg",
           "nativeKeys": [
             "desktop:activeButtonBgOver",
-            "desktop:historyComposeButtonBgOver",
             "desktop:msgFileInBgOver",
             "desktop:sideBarBadgeBgActive",
             "desktop:msgFile1BgOver",
@@ -37362,8 +37360,7 @@
             "android:actionBarTabUnactiveText",
             "android:chat_attachUnactiveTab",
             "desktop:menuFgDisabled",
-            "desktop:mediaPlayerDisabledFg",
-            "desktop:groupCallMemberNotJoinedStatus"
+            "desktop:mediaPlayerDisabledFg"
           ],
           "value": "#8a5559",
           "eligibility": {
@@ -37516,7 +37513,8 @@
             "desktop:walletSubBalanceFg",
             "desktop:dialogsUnreadBgMuted",
             "android:changephoneinfo_image",
-            "android:player_placeholder"
+            "android:player_placeholder",
+            "desktop:groupCallMemberNotJoinedStatus"
           ],
           "value": "#bd787d",
           "eligibility": {

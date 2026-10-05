@@ -169,6 +169,21 @@ test("Android list section headers are readable accent text, not a background co
   for (const bg of ["windowBackgroundWhite", "windowBackgroundGray"]) assert.ok(pairRatio("windowBackgroundWhiteBlueHeader", bg, "android").ratio >= 4.5, bg);
 });
 
+test("Desktop text buttons stay readable on the backgrounds their pinned styles give them", () => {
+  // Pairs from tdesktop d8594c01 styles: historyComposeButton and historyUnblock
+  // (chat_helpers.style; join, mute, unmute, unblock) and groupCallAddMember
+  // (calls.style). The owner's Windows check showed UNMUTE in accent red on a
+  // dark-red fill; upstream gives that button the compose-area background.
+  const pairs = [
+    ["windowActiveTextFg", "historyComposeButtonBg"], ["windowActiveTextFg", "historyComposeButtonBgOver"],
+    ["attentionButtonFg", "historyComposeButtonBg"], ["attentionButtonFgOver", "historyComposeButtonBgOver"],
+    ["groupCallMemberNotJoinedStatus", "groupCallMembersBg"], ["groupCallMemberNotJoinedStatus", "groupCallMembersBgOver"],
+  ];
+  for (const [fg, bg] of pairs) assert.ok(pairRatio(fg, bg).ratio >= 4.5, `${fg} on ${bg}`);
+  assert.deepEqual(desktop.get("historyComposeButtonBg"), desktop.get("historyComposeAreaBg"));
+  assert.deepEqual(desktop.get("historyComposeButtonBgOver"), desktop.get("windowBgOver"));
+});
+
 test("unknown, duplicate, nonColor, animated and ineligible keys fail before emission", () => {
   const add = (role, key) => { const clone = structuredClone(mapping); (clone.mappings[role] ??= []).push(key); return clone; };
   for (const key of ["android:not_a_key", "desktop:notAKey", "ios:windowBg", "android:chat_wallpaper:extra"]) assert.throws(() => telegramArtifacts({ ...args, mapping: add("color.text.default", key) }), /Unknown Telegram/);

@@ -527,7 +527,8 @@
       "desktop:walletSubBalanceFg",
       "desktop:dialogsUnreadBgMuted",
       "android:changephoneinfo_image",
-      "android:player_placeholder"
+      "android:player_placeholder",
+      "desktop:groupCallMemberNotJoinedStatus"
     ],
     "color.text.subtle": [
       "android:chats_date",
@@ -565,8 +566,7 @@
       "android:actionBarTabUnactiveText",
       "android:chat_attachUnactiveTab",
       "desktop:menuFgDisabled",
-      "desktop:mediaPlayerDisabledFg",
-      "desktop:groupCallMemberNotJoinedStatus"
+      "desktop:mediaPlayerDisabledFg"
     ],
     "color.text.placeholder": [
       "android:dialogTextHint",
@@ -1157,7 +1157,6 @@
       "desktop:settingsIconBg8",
       "desktop:settingsIconBgArchive",
       "desktop:historyToDownBg",
-      "desktop:historyComposeButtonBg",
       "desktop:sideBarBadgeBg",
       "android:chat_attachGalleryBackground",
       "android:chat_attachAudioBackground",
@@ -1188,7 +1187,6 @@
     ],
     "color.action.primary.hover-bg": [
       "desktop:activeButtonBgOver",
-      "desktop:historyComposeButtonBgOver",
       "desktop:msgFileInBgOver",
       "desktop:sideBarBadgeBgActive",
       "desktop:msgFile1BgOver",
