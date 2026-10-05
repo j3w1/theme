@@ -39,6 +39,15 @@
         "Foreground=#e99499",
         "BorderBrush=#a3676b"
       ]
+    },
+    {
+      "target": "CalendarView",
+      "styles": [
+        "Background=#160b0b",
+        "Foreground=#e99499",
+        "BorderBrush=#e53935",
+        "CornerRadius=0"
+      ]
     }
   ],
   "themeResourceVariables": [

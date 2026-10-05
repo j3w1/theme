@@ -1333,3 +1333,21 @@ not prove why root discovery failed or solve the gray composition strip.
 Paint retained themed toolbar/menu chrome with gray workspace and scrollbar.
 The no-mutation lifecycle correction prevents unnecessary cycling, but does
 not claim to repair any already lost attachment or resolve those boundaries.
+
+
+### Settings calendar parent surface
+
+An installed Settings date flyout retained its native gray calendar surface
+after the surrounding page was themed. The standard CalendarView control now
+uses the approved raised surface, default foreground, overlay border and zero
+corner radius through the pinned Settings styler. The rule selects the control
+class, not the Update page, an action label, a date or a screen position.
+
+Background, Foreground and BorderBrush are public Control properties consumed
+by CalendarView's template. Date values, blackout/selection rules, item states,
+navigation and date formatting retain application ownership. The existing
+styler and public installer own exact restoration. This structural correction
+does not claim native flyout, keyboard, hover or high-contrast acceptance;
+the live popup comparison and rollback remain separate checks.
+
+Reference: [Microsoft CalendarView styling](https://learn.microsoft.com/en-us/windows/apps/develop/ui/controls/calendar-view).

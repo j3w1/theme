@@ -1167,6 +1167,15 @@
             "Foreground": "color.text.default",
             "BorderBrush": "color.border.control"
           }
+        },
+        {
+          "target": "CalendarView",
+          "styles": {
+            "Background": "color.surface.raised",
+            "Foreground": "color.text.default",
+            "BorderBrush": "color.border.overlay",
+            "CornerRadius": "radius.none"
+          }
         }
       ]
     }
