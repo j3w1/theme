@@ -44,6 +44,9 @@ static void Stop() {
     assert(!discovery && !stopDiscovery && !uiState && channels.empty());
 }
 int main(int argc, char** argv) {
+ assert(NativeScrollbarChrome(L"Microsoft.UI.Xaml.Controls.Primitives.ScrollBar"));
+ assert(NativeScrollbarChrome(L"Windows.UI.Xaml.Controls.Primitives.ScrollBar"));
+ for(auto type:{L"PaintUI.Canvas",L"PaintUI.D2DSwapChainPanel",L"Microsoft.UI.Xaml.Controls.ScrollViewer",L"Microsoft.UI.Xaml.Controls.Slider",L"NotepadXamlUI.ScrollBar",L"Microsoft.UI.Xaml.Controls.Primitives.ScrollBarExtra"})assert(!NativeScrollbarChrome(type));
  if(argc>1&&strcmp(argv[1],"window-backing-ownership")==0) {
   init_apartment(apartment_type::multi_threaded);
   {

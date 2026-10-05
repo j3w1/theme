@@ -37750,7 +37750,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-2mPoI1eSjOCExNTbyzdRrv7V30unLnLFp4YNmR2xTxA=",
+      "subjectDigest": "sha256-/cFWOVhISYR5Va0KZpyVCuewl+1w1HdGnwijBxmvnds=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37783,7 +37783,7 @@
           "path": "dist/windows-settings.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-settings.json",
-          "digest": "sha256-nyPxsOwvKs2+177euFofT05LqHwEV2ky8G6LlXJA0P8="
+          "digest": "sha256-iKPBjznizhfeUNVubnAvRYrypCU/G/8yg+AxhQlUTMo="
         },
         {
           "path": "dist/terminal-fragment.json",
@@ -37957,7 +37957,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-93fHYv2bSWzAPQXnWfojP+eZPSTZGdzOEjXm+fdUsdk="
+          "digest": "sha256-qjpCfgw2L+pJ/JlyIFFAbiiWBDRLxuMSjF2R+XCcmr0="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
@@ -38041,7 +38041,7 @@
           "path": "dist/j3w1-notepad-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-notepad-chrome.wh.cpp",
-          "digest": "sha256-mfnZq48YoCOvVTOrv+t6Uc4QfwYXEkbVpcrZgqZFGe4="
+          "digest": "sha256-IgAce8kXPNF/Np7CqVpm4m9xe8/RVG5VLJZ9vEmpjoE="
         },
         {
           "path": "dist/j3w1-notepad-chrome.json",
@@ -38053,7 +38053,7 @@
           "path": "dist/j3w1-paint-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-paint-chrome.wh.cpp",
-          "digest": "sha256-c3FpPaP+0FkIwD29EQnksnfTR0loJI/eWuMP5JwfVTU="
+          "digest": "sha256-ypQdyH9lCuraFAxRWTLhApVTZecIy0j2X4BN/19NK5Q="
         },
         {
           "path": "dist/j3w1-paint-chrome.json",
@@ -38065,7 +38065,7 @@
           "path": "dist/j3w1-terminal-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-terminal-chrome.wh.cpp",
-          "digest": "sha256-FWDNe6EGIB9L+d/RuSaCf/mLhUrzK9OahvW6Nh5RyUw="
+          "digest": "sha256-tlzaJHtOZVj452Ekydxu/jHLOpNIiBZv17eVU6T7cR8="
         },
         {
           "path": "dist/j3w1-terminal-chrome.json",
@@ -38905,7 +38905,31 @@
             "terminal-chrome.resource.MenuFlyoutSeparatorBackground",
             "terminal-chrome.resource.MenuBarItemBorderBrush",
             "terminal-chrome.resource.SplitButtonBorderBrushDivider",
-            "terminal-chrome.resource.SplitButtonBorderBrushCheckedDivider"
+            "terminal-chrome.resource.SplitButtonBorderBrushCheckedDivider",
+            "notepad-chrome.resource.ScrollBarBorderBrush",
+            "paint-chrome.resource.ScrollBarBorderBrush",
+            "terminal-chrome.resource.ScrollBarBorderBrush",
+            "notepad-chrome.resource.ScrollBarBorderBrushPointerOver",
+            "paint-chrome.resource.ScrollBarBorderBrushPointerOver",
+            "terminal-chrome.resource.ScrollBarBorderBrushPointerOver",
+            "notepad-chrome.resource.ScrollBarBorderBrushDisabled",
+            "paint-chrome.resource.ScrollBarBorderBrushDisabled",
+            "terminal-chrome.resource.ScrollBarBorderBrushDisabled",
+            "notepad-chrome.resource.ScrollBarButtonBorderBrush",
+            "paint-chrome.resource.ScrollBarButtonBorderBrush",
+            "terminal-chrome.resource.ScrollBarButtonBorderBrush",
+            "notepad-chrome.resource.ScrollBarButtonBorderBrushPointerOver",
+            "paint-chrome.resource.ScrollBarButtonBorderBrushPointerOver",
+            "terminal-chrome.resource.ScrollBarButtonBorderBrushPointerOver",
+            "notepad-chrome.resource.ScrollBarButtonBorderBrushPressed",
+            "paint-chrome.resource.ScrollBarButtonBorderBrushPressed",
+            "terminal-chrome.resource.ScrollBarButtonBorderBrushPressed",
+            "notepad-chrome.resource.ScrollBarButtonBorderBrushDisabled",
+            "paint-chrome.resource.ScrollBarButtonBorderBrushDisabled",
+            "terminal-chrome.resource.ScrollBarButtonBorderBrushDisabled",
+            "notepad-chrome.resource.ScrollBarThumbBorderBrush",
+            "paint-chrome.resource.ScrollBarThumbBorderBrush",
+            "terminal-chrome.resource.ScrollBarThumbBorderBrush"
           ],
           "value": "#2b0e0d",
           "eligibility": {
@@ -40133,7 +40157,13 @@
             "terminal-chrome.resource.SplitButtonBackgroundDisabled",
             "terminal-chrome.resource.SplitButtonBackgroundCheckedDisabled",
             "terminal-chrome.resource.SliderTrackValueFillDisabled",
-            "terminal-chrome.resource.SliderThumbBackgroundDisabled"
+            "terminal-chrome.resource.SliderThumbBackgroundDisabled",
+            "notepad-chrome.resource.ScrollBarThumbFillDisabled",
+            "paint-chrome.resource.ScrollBarThumbFillDisabled",
+            "terminal-chrome.resource.ScrollBarThumbFillDisabled",
+            "notepad-chrome.resource.ScrollBarPanningThumbBackgroundDisabled",
+            "paint-chrome.resource.ScrollBarPanningThumbBackgroundDisabled",
+            "terminal-chrome.resource.ScrollBarPanningThumbBackgroundDisabled"
           ],
           "value": "#160b0b",
           "eligibility": {
@@ -40272,7 +40302,10 @@
             "terminal-chrome.resource.ToggleButtonBackgroundIndeterminatePointerOver",
             "terminal-chrome.resource.ComboBoxBackgroundPointerOver",
             "terminal-chrome.resource.SubtleButtonBackgroundPointerOver",
-            "terminal-chrome.resource.SplitButtonBackgroundPointerOver"
+            "terminal-chrome.resource.SplitButtonBackgroundPointerOver",
+            "notepad-chrome.resource.ScrollBarButtonBackgroundPointerOver",
+            "paint-chrome.resource.ScrollBarButtonBackgroundPointerOver",
+            "terminal-chrome.resource.ScrollBarButtonBackgroundPointerOver"
           ],
           "value": "#1c0a09",
           "eligibility": {
@@ -40414,7 +40447,10 @@
             "terminal-chrome.resource.SubtleButtonBackgroundPressed",
             "terminal-chrome.resource.SplitButtonBackgroundPressed",
             "terminal-chrome.resource.SplitButtonBackgroundCheckedPressed",
-            "terminal-chrome.resource.SplitButtonInAppBarUnfocusedPointerOver"
+            "terminal-chrome.resource.SplitButtonInAppBarUnfocusedPointerOver",
+            "notepad-chrome.resource.ScrollBarButtonBackgroundPressed",
+            "paint-chrome.resource.ScrollBarButtonBackgroundPressed",
+            "terminal-chrome.resource.ScrollBarButtonBackgroundPressed"
           ],
           "value": "#420f0c",
           "eligibility": {
@@ -40448,7 +40484,16 @@
             "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb | Background@Collapsed",
             "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb | Background@CollapsedWithoutAnimation",
             "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@CommonStates > Grid > Border#HorizontalPanningThumb | Background",
-            "terminal-chrome.resource.J3w1ScrollBarThumb"
+            "terminal-chrome.resource.J3w1ScrollBarThumb",
+            "notepad-chrome.resource.ScrollBarThumbFill",
+            "paint-chrome.resource.ScrollBarThumbFill",
+            "terminal-chrome.resource.ScrollBarThumbFill",
+            "notepad-chrome.resource.ScrollBarThumbBackground",
+            "paint-chrome.resource.ScrollBarThumbBackground",
+            "terminal-chrome.resource.ScrollBarThumbBackground",
+            "notepad-chrome.resource.ScrollBarPanningThumbBackground",
+            "paint-chrome.resource.ScrollBarPanningThumbBackground",
+            "terminal-chrome.resource.ScrollBarPanningThumbBackground"
           ],
           "value": "#420f0c",
           "eligibility": {
@@ -40471,7 +40516,13 @@
             "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#VerticalThumb | Background@Expanded",
             "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#VerticalThumb | Background@ExpandedWithoutAnimation",
             "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb | Background@Expanded",
-            "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb | Background@ExpandedWithoutAnimation"
+            "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb | Background@ExpandedWithoutAnimation",
+            "notepad-chrome.resource.ScrollBarThumbFillPointerOver",
+            "paint-chrome.resource.ScrollBarThumbFillPointerOver",
+            "terminal-chrome.resource.ScrollBarThumbFillPointerOver",
+            "notepad-chrome.resource.ScrollBarThumbFillPressed",
+            "paint-chrome.resource.ScrollBarThumbFillPressed",
+            "terminal-chrome.resource.ScrollBarThumbFillPressed"
           ],
           "value": "#911410",
           "eligibility": {
@@ -40487,16 +40538,50 @@
         },
         {
           "role": "color.interaction.scrollbar.track",
-          "nativeKeys": [],
+          "nativeKeys": [
+            "notepad-chrome.resource.ScrollBarBackground",
+            "paint-chrome.resource.ScrollBarBackground",
+            "terminal-chrome.resource.ScrollBarBackground",
+            "notepad-chrome.resource.ScrollBarBackgroundPointerOver",
+            "paint-chrome.resource.ScrollBarBackgroundPointerOver",
+            "terminal-chrome.resource.ScrollBarBackgroundPointerOver",
+            "notepad-chrome.resource.ScrollBarBackgroundDisabled",
+            "paint-chrome.resource.ScrollBarBackgroundDisabled",
+            "terminal-chrome.resource.ScrollBarBackgroundDisabled",
+            "notepad-chrome.resource.ScrollBarButtonBackground",
+            "paint-chrome.resource.ScrollBarButtonBackground",
+            "terminal-chrome.resource.ScrollBarButtonBackground",
+            "notepad-chrome.resource.ScrollBarButtonBackgroundDisabled",
+            "paint-chrome.resource.ScrollBarButtonBackgroundDisabled",
+            "terminal-chrome.resource.ScrollBarButtonBackgroundDisabled",
+            "notepad-chrome.resource.ScrollBarTrackFill",
+            "paint-chrome.resource.ScrollBarTrackFill",
+            "terminal-chrome.resource.ScrollBarTrackFill",
+            "notepad-chrome.resource.ScrollBarTrackFillPointerOver",
+            "paint-chrome.resource.ScrollBarTrackFillPointerOver",
+            "terminal-chrome.resource.ScrollBarTrackFillPointerOver",
+            "notepad-chrome.resource.ScrollBarTrackFillDisabled",
+            "paint-chrome.resource.ScrollBarTrackFillDisabled",
+            "terminal-chrome.resource.ScrollBarTrackFillDisabled",
+            "notepad-chrome.resource.ScrollBarTrackStroke",
+            "paint-chrome.resource.ScrollBarTrackStroke",
+            "terminal-chrome.resource.ScrollBarTrackStroke",
+            "notepad-chrome.resource.ScrollBarTrackStrokePointerOver",
+            "paint-chrome.resource.ScrollBarTrackStrokePointerOver",
+            "terminal-chrome.resource.ScrollBarTrackStrokePointerOver",
+            "notepad-chrome.resource.ScrollBarTrackStrokeDisabled",
+            "paint-chrome.resource.ScrollBarTrackStrokeDisabled",
+            "terminal-chrome.resource.ScrollBarTrackStrokeDisabled"
+          ],
           "value": "#0c0909",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
-          "state": "unsupported",
-          "surface": "unsupported",
-          "reason": "Outside Windows visual adapter scope; preserve host semantics.",
+          "state": "mapped",
+          "surface": "shell",
+          "reason": "Native WinUI chrome scrollbar brush resources; live state acceptance remains separate.",
           "source": "ports/windows/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -43123,7 +43208,13 @@
             "windhawk.resource.ScrollBarButtonArrowForegroundPressed",
             "windhawk.resource.TextOnAccentFillColorPrimaryBrush",
             "terminal-chrome.resource.AccentTextFillColorPrimaryBrush",
-            "terminal-chrome.resource.TextOnAccentFillColorPrimaryBrush"
+            "terminal-chrome.resource.TextOnAccentFillColorPrimaryBrush",
+            "notepad-chrome.resource.ScrollBarButtonArrowForegroundPointerOver",
+            "paint-chrome.resource.ScrollBarButtonArrowForegroundPointerOver",
+            "terminal-chrome.resource.ScrollBarButtonArrowForegroundPointerOver",
+            "notepad-chrome.resource.ScrollBarButtonArrowForegroundPressed",
+            "paint-chrome.resource.ScrollBarButtonArrowForegroundPressed",
+            "terminal-chrome.resource.ScrollBarButtonArrowForegroundPressed"
           ],
           "value": "#ffa2a7",
           "eligibility": {
@@ -43364,7 +43455,10 @@
             "windows-11-settings-styler | CalendarView | Foreground",
             "notepad-chrome.resource.ToolTipForegroundBrush",
             "paint-chrome.resource.ToolTipForegroundBrush",
-            "terminal-chrome.resource.ToolTipForegroundBrush"
+            "terminal-chrome.resource.ToolTipForegroundBrush",
+            "notepad-chrome.resource.ScrollBarButtonArrowForeground",
+            "paint-chrome.resource.ScrollBarButtonArrowForeground",
+            "terminal-chrome.resource.ScrollBarButtonArrowForeground"
           ],
           "value": "#e99499",
           "eligibility": {
@@ -43449,7 +43543,10 @@
             "terminal-chrome.resource.ComboBoxItemForegroundSelectedDisabled",
             "terminal-chrome.resource.SubtleButtonForegroundDisabled",
             "terminal-chrome.resource.SplitButtonForegroundDisabled",
-            "terminal-chrome.resource.SplitButtonForegroundCheckedDisabled"
+            "terminal-chrome.resource.SplitButtonForegroundCheckedDisabled",
+            "notepad-chrome.resource.ScrollBarButtonArrowForegroundDisabled",
+            "paint-chrome.resource.ScrollBarButtonArrowForegroundDisabled",
+            "terminal-chrome.resource.ScrollBarButtonArrowForegroundDisabled"
           ],
           "value": "#8a5559",
           "eligibility": {

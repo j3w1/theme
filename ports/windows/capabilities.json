@@ -700,9 +700,9 @@
       "reason": "Exact-version Explorer marquee border color; solid native border geometry remains a documented deviation."
     },
     "color.interaction.scrollbar.track": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Native WinUI chrome scrollbar brush resources; live state acceptance remains separate."
     },
     "color.interaction.scrollbar.thumb": {
       "state": "mapped",

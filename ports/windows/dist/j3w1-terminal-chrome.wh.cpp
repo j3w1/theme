@@ -2,7 +2,7 @@
 // @id j3w1-terminal-chrome
 // @name j3w1 Terminal chrome
 // @description Exact-package Terminal chrome resources; document and artwork colors remain native
-// @version 1.0.4
+// @version 1.0.5
 // @author j3w1
 // @include WindowsTerminal.exe
 // @architecture x86-64
@@ -385,6 +385,38 @@ static constexpr Rule rules[]={
  {L"ToolTipBackgroundBrush",{255,36,16,16},L"color.surface.overlay"},
  {L"ToolTipForegroundBrush",{255,233,148,153},L"color.text.default"},
  {L"ToolTipBorderBrush",{255,229,57,53},L"color.border.overlay"},
+ {L"ScrollBarBackground",{255,12,9,9},L"color.interaction.scrollbar.track"},
+ {L"ScrollBarBackgroundPointerOver",{255,12,9,9},L"color.interaction.scrollbar.track"},
+ {L"ScrollBarBackgroundDisabled",{255,12,9,9},L"color.interaction.scrollbar.track"},
+ {L"ScrollBarButtonBackground",{255,12,9,9},L"color.interaction.scrollbar.track"},
+ {L"ScrollBarButtonBackgroundDisabled",{255,12,9,9},L"color.interaction.scrollbar.track"},
+ {L"ScrollBarTrackFill",{255,12,9,9},L"color.interaction.scrollbar.track"},
+ {L"ScrollBarTrackFillPointerOver",{255,12,9,9},L"color.interaction.scrollbar.track"},
+ {L"ScrollBarTrackFillDisabled",{255,12,9,9},L"color.interaction.scrollbar.track"},
+ {L"ScrollBarTrackStroke",{255,12,9,9},L"color.interaction.scrollbar.track"},
+ {L"ScrollBarTrackStrokePointerOver",{255,12,9,9},L"color.interaction.scrollbar.track"},
+ {L"ScrollBarTrackStrokeDisabled",{255,12,9,9},L"color.interaction.scrollbar.track"},
+ {L"ScrollBarThumbFill",{255,66,15,12},L"color.interaction.scrollbar.thumb"},
+ {L"ScrollBarThumbBackground",{255,66,15,12},L"color.interaction.scrollbar.thumb"},
+ {L"ScrollBarPanningThumbBackground",{255,66,15,12},L"color.interaction.scrollbar.thumb"},
+ {L"ScrollBarThumbFillPointerOver",{255,145,20,16},L"color.interaction.scrollbar.thumb-hover"},
+ {L"ScrollBarThumbFillPressed",{255,145,20,16},L"color.interaction.scrollbar.thumb-hover"},
+ {L"ScrollBarThumbFillDisabled",{255,22,11,11},L"color.interaction.disabled.bg"},
+ {L"ScrollBarPanningThumbBackgroundDisabled",{255,22,11,11},L"color.interaction.disabled.bg"},
+ {L"ScrollBarBorderBrush",{255,43,14,13},L"color.border.divider"},
+ {L"ScrollBarBorderBrushPointerOver",{255,43,14,13},L"color.border.divider"},
+ {L"ScrollBarBorderBrushDisabled",{255,43,14,13},L"color.border.divider"},
+ {L"ScrollBarButtonBorderBrush",{255,43,14,13},L"color.border.divider"},
+ {L"ScrollBarButtonBorderBrushPointerOver",{255,43,14,13},L"color.border.divider"},
+ {L"ScrollBarButtonBorderBrushPressed",{255,43,14,13},L"color.border.divider"},
+ {L"ScrollBarButtonBorderBrushDisabled",{255,43,14,13},L"color.border.divider"},
+ {L"ScrollBarThumbBorderBrush",{255,43,14,13},L"color.border.divider"},
+ {L"ScrollBarButtonBackgroundPointerOver",{255,28,10,9},L"color.interaction.hover.bg"},
+ {L"ScrollBarButtonBackgroundPressed",{255,66,15,12},L"color.interaction.pressed.bg"},
+ {L"ScrollBarButtonArrowForeground",{255,233,148,153},L"color.text.default"},
+ {L"ScrollBarButtonArrowForegroundPointerOver",{255,255,162,167},L"color.text.bright"},
+ {L"ScrollBarButtonArrowForegroundPressed",{255,255,162,167},L"color.text.bright"},
+ {L"ScrollBarButtonArrowForegroundDisabled",{255,138,85,89},L"color.text.disabled"},
 };
 static bool Same(Color a,Color b){return a.A==b.A&&a.R==b.R&&a.G==b.G&&a.B==b.B;}
 static bool Identity(ProjectedObject const& a,ProjectedObject const& b){
@@ -1324,8 +1356,15 @@ static bool PruneRetiredControls(Root& root) {
 static bool CompositeButtonChrome(std::wstring_view type) {
  return type==L"Microsoft.UI.Xaml.Controls.SplitButton"||type==L"Windows.UI.Xaml.Controls.SplitButton";
 }
+// The viewport scrollbar is chrome, separate from the excluded drawing surface.
+// Use its native resource/state contract; never replace its template or value.
+static bool NativeScrollbarChrome(std::wstring_view type) noexcept {
+ return type==L"Windows.UI.Xaml.Controls.Primitives.ScrollBar"
+  ||type==L"Windows.UI.Xaml.Controls.Primitives.ScrollBar";
+}
 static bool StandardChrome(DependencyObject const& object) {
- return CompositeButtonChrome(std::wstring_view{get_class_name(object)})
+ return NativeScrollbarChrome(std::wstring_view{get_class_name(object)})
+  ||CompositeButtonChrome(std::wstring_view{get_class_name(object)})
   ||object.try_as<Windows::UI::Xaml::Controls::Primitives::ButtonBase>()
   ||object.try_as<MenuBarItem>()||object.try_as<MenuFlyoutItem>()||object.try_as<MenuFlyoutSubItem>()
   ||object.try_as<MenuFlyoutPresenter>()||object.try_as<FlyoutPresenter>()||object.try_as<ToolTip>()||object.try_as<ToggleSwitch>()||object.try_as<ComboBox>()

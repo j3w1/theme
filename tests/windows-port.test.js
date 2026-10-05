@@ -787,3 +787,22 @@ test('chrome factory workers initialize COM only after exact runtime admission',
   assert.match(text,/if\(apartment\)uninit_apartment\(\);return 0;/);
  }
 });
+
+test('native chrome scrollbars map state brushes without color-valued animation keys',async()=>{
+ const host=await readJson('ports/windows/host.json'),mapping=await readJson('ports/windows/mapping.json');
+ const stateKeys=['ScrollBarThumbFill','ScrollBarThumbFillPointerOver','ScrollBarThumbFillPressed','ScrollBarThumbFillDisabled'];
+ assert.deepEqual(stateKeys.map(key=>host.winuiChromeResources[key]),['color.interaction.scrollbar.thumb','color.interaction.scrollbar.thumb-hover','color.interaction.scrollbar.thumb-hover','color.interaction.disabled.bg']);
+ const keys=Object.keys(host.winuiChromeResources).filter(key=>key.startsWith('ScrollBar'));
+ assert.ok(keys.length>=30);
+ for(const key of keys){
+  assert.ok(!key.endsWith('Color'),'Color-valued animations must remain native');
+  const role=host.winuiChromeResources[key];
+  for(const app of ['notepad','paint','terminal']){
+   assert.ok(mapping.mappings[role].includes(app+'-chrome.resource.'+key));
+   const emitted=fs.readFileSync(path.join(source,'dist/j3w1-'+app+'-chrome.wh.cpp'),'utf8');
+   assert.match(emitted,new RegExp('L"'+key+'"'));
+   assert.match(emitted,/NativeScrollbarChrome\(std::wstring_view\{get_class_name\(object\)\}\)/);
+   assert.match(emitted,/if\(DataSubtree\(object\)\)continue;/);
+  }
+ }
+});

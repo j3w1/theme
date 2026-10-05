@@ -500,7 +500,10 @@
       "windows-11-settings-styler | CalendarView | Foreground",
       "notepad-chrome.resource.ToolTipForegroundBrush",
       "paint-chrome.resource.ToolTipForegroundBrush",
-      "terminal-chrome.resource.ToolTipForegroundBrush"
+      "terminal-chrome.resource.ToolTipForegroundBrush",
+      "notepad-chrome.resource.ScrollBarButtonArrowForeground",
+      "paint-chrome.resource.ScrollBarButtonArrowForeground",
+      "terminal-chrome.resource.ScrollBarButtonArrowForeground"
     ],
     "color.text.bright": [
       "native.bright",
@@ -519,7 +522,13 @@
       "windhawk.resource.ScrollBarButtonArrowForegroundPressed",
       "windhawk.resource.TextOnAccentFillColorPrimaryBrush",
       "terminal-chrome.resource.AccentTextFillColorPrimaryBrush",
-      "terminal-chrome.resource.TextOnAccentFillColorPrimaryBrush"
+      "terminal-chrome.resource.TextOnAccentFillColorPrimaryBrush",
+      "notepad-chrome.resource.ScrollBarButtonArrowForegroundPointerOver",
+      "paint-chrome.resource.ScrollBarButtonArrowForegroundPointerOver",
+      "terminal-chrome.resource.ScrollBarButtonArrowForegroundPointerOver",
+      "notepad-chrome.resource.ScrollBarButtonArrowForegroundPressed",
+      "paint-chrome.resource.ScrollBarButtonArrowForegroundPressed",
+      "terminal-chrome.resource.ScrollBarButtonArrowForegroundPressed"
     ],
     "color.text.heading": [
       "native.heading",
@@ -659,7 +668,10 @@
       "terminal-chrome.resource.ComboBoxItemForegroundSelectedDisabled",
       "terminal-chrome.resource.SubtleButtonForegroundDisabled",
       "terminal-chrome.resource.SplitButtonForegroundDisabled",
-      "terminal-chrome.resource.SplitButtonForegroundCheckedDisabled"
+      "terminal-chrome.resource.SplitButtonForegroundCheckedDisabled",
+      "notepad-chrome.resource.ScrollBarButtonArrowForegroundDisabled",
+      "paint-chrome.resource.ScrollBarButtonArrowForegroundDisabled",
+      "terminal-chrome.resource.ScrollBarButtonArrowForegroundDisabled"
     ],
     "color.interaction.selection.bg": [
       "native.selection",
@@ -1004,7 +1016,10 @@
       "terminal-chrome.resource.ToggleButtonBackgroundIndeterminatePointerOver",
       "terminal-chrome.resource.ComboBoxBackgroundPointerOver",
       "terminal-chrome.resource.SubtleButtonBackgroundPointerOver",
-      "terminal-chrome.resource.SplitButtonBackgroundPointerOver"
+      "terminal-chrome.resource.SplitButtonBackgroundPointerOver",
+      "notepad-chrome.resource.ScrollBarButtonBackgroundPointerOver",
+      "paint-chrome.resource.ScrollBarButtonBackgroundPointerOver",
+      "terminal-chrome.resource.ScrollBarButtonBackgroundPointerOver"
     ],
     "color.interaction.pressed.bg": [
       "windhawk.resource.ControlFillColorTertiary",
@@ -1085,7 +1100,10 @@
       "terminal-chrome.resource.SubtleButtonBackgroundPressed",
       "terminal-chrome.resource.SplitButtonBackgroundPressed",
       "terminal-chrome.resource.SplitButtonBackgroundCheckedPressed",
-      "terminal-chrome.resource.SplitButtonInAppBarUnfocusedPointerOver"
+      "terminal-chrome.resource.SplitButtonInAppBarUnfocusedPointerOver",
+      "notepad-chrome.resource.ScrollBarButtonBackgroundPressed",
+      "paint-chrome.resource.ScrollBarButtonBackgroundPressed",
+      "terminal-chrome.resource.ScrollBarButtonBackgroundPressed"
     ],
     "color.action.primary.bg": [
       "windhawk.resource.AccentFillColorDefault",
@@ -1279,7 +1297,13 @@
       "terminal-chrome.resource.SplitButtonBackgroundDisabled",
       "terminal-chrome.resource.SplitButtonBackgroundCheckedDisabled",
       "terminal-chrome.resource.SliderTrackValueFillDisabled",
-      "terminal-chrome.resource.SliderThumbBackgroundDisabled"
+      "terminal-chrome.resource.SliderThumbBackgroundDisabled",
+      "notepad-chrome.resource.ScrollBarThumbFillDisabled",
+      "paint-chrome.resource.ScrollBarThumbFillDisabled",
+      "terminal-chrome.resource.ScrollBarThumbFillDisabled",
+      "notepad-chrome.resource.ScrollBarPanningThumbBackgroundDisabled",
+      "paint-chrome.resource.ScrollBarPanningThumbBackgroundDisabled",
+      "terminal-chrome.resource.ScrollBarPanningThumbBackgroundDisabled"
     ],
     "color.border.disabled": [
       "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | BorderBrush@Disabled",
@@ -1421,7 +1445,31 @@
       "terminal-chrome.resource.MenuFlyoutSeparatorBackground",
       "terminal-chrome.resource.MenuBarItemBorderBrush",
       "terminal-chrome.resource.SplitButtonBorderBrushDivider",
-      "terminal-chrome.resource.SplitButtonBorderBrushCheckedDivider"
+      "terminal-chrome.resource.SplitButtonBorderBrushCheckedDivider",
+      "notepad-chrome.resource.ScrollBarBorderBrush",
+      "paint-chrome.resource.ScrollBarBorderBrush",
+      "terminal-chrome.resource.ScrollBarBorderBrush",
+      "notepad-chrome.resource.ScrollBarBorderBrushPointerOver",
+      "paint-chrome.resource.ScrollBarBorderBrushPointerOver",
+      "terminal-chrome.resource.ScrollBarBorderBrushPointerOver",
+      "notepad-chrome.resource.ScrollBarBorderBrushDisabled",
+      "paint-chrome.resource.ScrollBarBorderBrushDisabled",
+      "terminal-chrome.resource.ScrollBarBorderBrushDisabled",
+      "notepad-chrome.resource.ScrollBarButtonBorderBrush",
+      "paint-chrome.resource.ScrollBarButtonBorderBrush",
+      "terminal-chrome.resource.ScrollBarButtonBorderBrush",
+      "notepad-chrome.resource.ScrollBarButtonBorderBrushPointerOver",
+      "paint-chrome.resource.ScrollBarButtonBorderBrushPointerOver",
+      "terminal-chrome.resource.ScrollBarButtonBorderBrushPointerOver",
+      "notepad-chrome.resource.ScrollBarButtonBorderBrushPressed",
+      "paint-chrome.resource.ScrollBarButtonBorderBrushPressed",
+      "terminal-chrome.resource.ScrollBarButtonBorderBrushPressed",
+      "notepad-chrome.resource.ScrollBarButtonBorderBrushDisabled",
+      "paint-chrome.resource.ScrollBarButtonBorderBrushDisabled",
+      "terminal-chrome.resource.ScrollBarButtonBorderBrushDisabled",
+      "notepad-chrome.resource.ScrollBarThumbBorderBrush",
+      "paint-chrome.resource.ScrollBarThumbBorderBrush",
+      "terminal-chrome.resource.ScrollBarThumbBorderBrush"
     ],
     "color.interaction.scrollbar.thumb": [
       "nativeExplorer.scrollbar",
@@ -1441,7 +1489,16 @@
       "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb | Background@Collapsed",
       "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb | Background@CollapsedWithoutAnimation",
       "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@CommonStates > Grid > Border#HorizontalPanningThumb | Background",
-      "terminal-chrome.resource.J3w1ScrollBarThumb"
+      "terminal-chrome.resource.J3w1ScrollBarThumb",
+      "notepad-chrome.resource.ScrollBarThumbFill",
+      "paint-chrome.resource.ScrollBarThumbFill",
+      "terminal-chrome.resource.ScrollBarThumbFill",
+      "notepad-chrome.resource.ScrollBarThumbBackground",
+      "paint-chrome.resource.ScrollBarThumbBackground",
+      "terminal-chrome.resource.ScrollBarThumbBackground",
+      "notepad-chrome.resource.ScrollBarPanningThumbBackground",
+      "paint-chrome.resource.ScrollBarPanningThumbBackground",
+      "terminal-chrome.resource.ScrollBarPanningThumbBackground"
     ],
     "color.interaction.scrollbar.thumb-hover": [
       "nativeExplorer.scrollbarHover",
@@ -1450,7 +1507,13 @@
       "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#VerticalThumb | Background@Expanded",
       "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#VerticalThumb | Background@ExpandedWithoutAnimation",
       "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb | Background@Expanded",
-      "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb | Background@ExpandedWithoutAnimation"
+      "windows-11-file-explorer-styler | Microsoft.UI.Xaml.Controls.Primitives.ScrollBar > Grid#Root@ConsciousStates > Grid > Microsoft.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb | Background@ExpandedWithoutAnimation",
+      "notepad-chrome.resource.ScrollBarThumbFillPointerOver",
+      "paint-chrome.resource.ScrollBarThumbFillPointerOver",
+      "terminal-chrome.resource.ScrollBarThumbFillPointerOver",
+      "notepad-chrome.resource.ScrollBarThumbFillPressed",
+      "paint-chrome.resource.ScrollBarThumbFillPressed",
+      "terminal-chrome.resource.ScrollBarThumbFillPressed"
     ],
     "color.interaction.focus.ring": [
       "nativeExplorer.focusRing",
@@ -1672,6 +1735,41 @@
     ],
     "color.interaction.selection.inactive-text": [
       "terminal-chrome.resource.ComboBoxItemForegroundSelectedUnfocused"
+    ],
+    "color.interaction.scrollbar.track": [
+      "notepad-chrome.resource.ScrollBarBackground",
+      "paint-chrome.resource.ScrollBarBackground",
+      "terminal-chrome.resource.ScrollBarBackground",
+      "notepad-chrome.resource.ScrollBarBackgroundPointerOver",
+      "paint-chrome.resource.ScrollBarBackgroundPointerOver",
+      "terminal-chrome.resource.ScrollBarBackgroundPointerOver",
+      "notepad-chrome.resource.ScrollBarBackgroundDisabled",
+      "paint-chrome.resource.ScrollBarBackgroundDisabled",
+      "terminal-chrome.resource.ScrollBarBackgroundDisabled",
+      "notepad-chrome.resource.ScrollBarButtonBackground",
+      "paint-chrome.resource.ScrollBarButtonBackground",
+      "terminal-chrome.resource.ScrollBarButtonBackground",
+      "notepad-chrome.resource.ScrollBarButtonBackgroundDisabled",
+      "paint-chrome.resource.ScrollBarButtonBackgroundDisabled",
+      "terminal-chrome.resource.ScrollBarButtonBackgroundDisabled",
+      "notepad-chrome.resource.ScrollBarTrackFill",
+      "paint-chrome.resource.ScrollBarTrackFill",
+      "terminal-chrome.resource.ScrollBarTrackFill",
+      "notepad-chrome.resource.ScrollBarTrackFillPointerOver",
+      "paint-chrome.resource.ScrollBarTrackFillPointerOver",
+      "terminal-chrome.resource.ScrollBarTrackFillPointerOver",
+      "notepad-chrome.resource.ScrollBarTrackFillDisabled",
+      "paint-chrome.resource.ScrollBarTrackFillDisabled",
+      "terminal-chrome.resource.ScrollBarTrackFillDisabled",
+      "notepad-chrome.resource.ScrollBarTrackStroke",
+      "paint-chrome.resource.ScrollBarTrackStroke",
+      "terminal-chrome.resource.ScrollBarTrackStroke",
+      "notepad-chrome.resource.ScrollBarTrackStrokePointerOver",
+      "paint-chrome.resource.ScrollBarTrackStrokePointerOver",
+      "terminal-chrome.resource.ScrollBarTrackStrokePointerOver",
+      "notepad-chrome.resource.ScrollBarTrackStrokeDisabled",
+      "paint-chrome.resource.ScrollBarTrackStrokeDisabled",
+      "terminal-chrome.resource.ScrollBarTrackStrokeDisabled"
     ]
   },
   "unmapped": {
@@ -1768,7 +1866,6 @@
     "color.text.inverse": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.border.strong": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.border.selected-indicator-inactive": "Outside Windows visual adapter scope; preserve host semantics.",
-    "color.interaction.scrollbar.track": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.action.tertiary.hover-bg": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.action.destructive.text": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.action.destructive.border": "Outside Windows visual adapter scope; preserve host semantics.",

@@ -1400,3 +1400,17 @@ Settings reload, all hover/focus/disabled states, runtime accessibility switchin
 or sign-in acceptance. Close Settings before Update or Restore. The retained
 Notepad gray composition strip and Paint workspace/scrollbar failures remain
 unresolved and are separate native ownership boundaries.
+
+### Native WinUI scrollbar resources
+
+The live Paint viewport exposes a WinUI ScrollBar beside its excluded drawing
+surface. The shared chrome adapter previously had only a locally constructed
+thumb-brush fallback; it omitted ScrollBar from its owned control-resource path
+and omitted the native thumb, track, arrow and state resource family. The new
+mapping supplies canonical rest, pointer-over, pressed and disabled brushes and
+admits only the exact modern or legacy ScrollBar class within an already admitted
+chrome root. Templates, scroll values, dimensions and artwork remain native.
+Color-valued animation resources are not replaced with brushes. The resource keys
+come from the pinned [WinUI ScrollBar template](https://github.com/microsoft/microsoft-ui-xaml/blob/8027ff4af619eb470fab63bf4609c6404ee73e17/dev/CommonStyles/ScrollBar_themeresources.xaml).
+Live appearance and full transition acceptance remain separate from the source
+and native ownership regressions.
