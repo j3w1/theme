@@ -631,11 +631,11 @@ test('app caption contracts preserve Notepad tabs and Paint native-title ownersh
  for(const [name,key]of [['paint','paintChrome'],['notepad','notepadChrome']]){
   const emitted=fs.readFileSync(path.join(source,'dist/j3w1-'+name+'-chrome.wh.cpp'),'utf8');
   const custom=name==='notepad';
-  assert.equal(Object.keys(host[key].captionColors).length,custom?8:12);
+  assert.equal(Object.keys(host[key].captionColors).length,custom?0:12);
   if(custom){
-   assert.ok(Object.keys(host[key].captionColors).every(property=>property.startsWith('Button')));
-   for(const refs of Object.values(mapping.mappings))for(const property of ['BackgroundColor','ForegroundColor','InactiveBackgroundColor','InactiveForegroundColor'])assert.ok(!refs.includes('notepad-chrome.caption.'+property));
-   assert.ok(emitted.includes('publicCaptionSlots={2,3,4,5,6,7,10,11}'));
+   for(const refs of Object.values(mapping.mappings))assert.ok(refs.every(value=>!value.startsWith('notepad-chrome.caption.')));
+   assert.ok(emitted.includes('publicCaptionSlots={}'));
+   assert.ok(emitted.includes('if constexpr(publicCaptionSlots.empty())return;'));
   }
   assert.ok(emitted.includes('if(!CaptionSlotAdmitted(slot))throw hresult_invalid_argument();'));
   assert.ok(emitted.includes('for(unsigned slot:publicCaptionSlots)'));

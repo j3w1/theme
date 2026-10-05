@@ -15,9 +15,11 @@ restores and uninstalls the port. There is no separate setup script.
 2. Paste the command below. Setup obtains required runtimes, checks compatibility,
    installs the theme, runs Test, and prints the exact recovery commands.
 3. Reopen affected apps and check their appearance. Save documents first; setup
-   does not close them. Notepad keeps its custom tab header and themes only the
-   native window buttons. Paint uses public colors on its recorded native title.
-   Both retain their original nullable overrides for restoration.
+   does not close them. Notepad keeps its custom tab header and native window
+   buttons; its caption API is excluded because it covers the tabs on this host.
+   The remaining gray Notepad header is an experimental limitation. Paint uses
+   public colors on its recorded native title and retains the original nullable
+   overrides for restoration.
    Paint's gray drawing workspace remains an experimental limitation.
 
 <!-- install:start -->

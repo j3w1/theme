@@ -2,7 +2,7 @@
 // @id j3w1-notepad-chrome
 // @name j3w1 Notepad chrome
 // @description Exact-package Notepad chrome resources; document and artwork colors remain native
-// @version 1.2.11
+// @version 1.2.12
 // @author j3w1
 // @include Notepad.exe
 // @architecture x86-64
@@ -540,15 +540,15 @@ static bool ApplyNativeBrush(std::vector<OwnedNativeBrush>& entries,SolidColorBr
  return UpdateNativeBrush(entries.back(),target,true,[&]{return brush.Color();},[&](Color c){brush.Color(c);},failure);
 }
 
-// Paint owns a native title; Notepad owns a custom tab caption. The generated
-// property contract admits only Notepad's button colors, never whole-title
-// colors which can make the system caption cover its tabs. No geometry changes.
-static constexpr std::array<unsigned,8> publicCaptionSlots={2,3,4,5,6,7,10,11};
+// Paint owns an admitted native title. Notepad owns custom tabs and declines
+// all public caption access: even the button-only path revived a native title
+// over its tabs in a fresh recorded process. No title mode or geometry changes.
+static constexpr std::array<unsigned,0> publicCaptionSlots={};
 static bool CaptionSlotAdmitted(unsigned slot) noexcept {
  return std::find(publicCaptionSlots.begin(),publicCaptionSlots.end(),slot)!=publicCaptionSlots.end();
 }
 static bool CaptionCompositionAdmitted(bool extended) noexcept {
- return true||!extended;
+ return !publicCaptionSlots.empty()&&(true||!extended);
 }
 using CaptionColor = Windows::Foundation::IReference<Color>;
 using PublicTitleBar = Microsoft::UI::Windowing::AppWindowTitleBar;
@@ -599,16 +599,16 @@ static Color CaptionRoleColor(unsigned slot) {
  static constexpr Color colors[]={
   {}, // BackgroundColor : host-owned
   {}, // ForegroundColor : host-owned
-  {255,0,0,0}, // ButtonBackgroundColor : color.surface.canvas
-  {255,233,148,153}, // ButtonForegroundColor : color.text.default
-  {255,28,10,9}, // ButtonHoverBackgroundColor : color.interaction.hover.bg
-  {255,233,148,153}, // ButtonHoverForegroundColor : color.text.default
-  {255,66,15,12}, // ButtonPressedBackgroundColor : color.interaction.pressed.bg
-  {255,233,148,153}, // ButtonPressedForegroundColor : color.text.default
+  {}, // ButtonBackgroundColor : host-owned
+  {}, // ButtonForegroundColor : host-owned
+  {}, // ButtonHoverBackgroundColor : host-owned
+  {}, // ButtonHoverForegroundColor : host-owned
+  {}, // ButtonPressedBackgroundColor : host-owned
+  {}, // ButtonPressedForegroundColor : host-owned
   {}, // InactiveBackgroundColor : host-owned
   {}, // InactiveForegroundColor : host-owned
-  {255,0,0,0}, // ButtonInactiveBackgroundColor : color.surface.canvas
-  {255,189,120,125}, // ButtonInactiveForegroundColor : color.text.muted
+  {}, // ButtonInactiveBackgroundColor : host-owned
+  {}, // ButtonInactiveForegroundColor : host-owned
  };
  if(slot>=std::size(colors)||!CaptionSlotAdmitted(slot))throw hresult_invalid_argument();
  return colors[slot];
@@ -1184,6 +1184,8 @@ static bool RestorePublicCaptions(ThreadState& state) noexcept {
  return restored;
 }
 static void ApplyPublicCaptions(ThreadState& state) noexcept {
+ // Refuse before any enumeration, public getter, AppWindow lookup or setter.
+ if constexpr(publicCaptionSlots.empty())return;
  if(!enabled.load()||HighContrast()){RestorePublicCaptions(state);return;}
  try {
   for(auto it=state.publicCaptions.begin();it!=state.publicCaptions.end();) {

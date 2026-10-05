@@ -996,7 +996,7 @@ ownership checks. No drag geometry, tabs or document content is changed. Native
 regressions cover nullable/explicit baselines, failures, retry and window reuse
 for both adapters. Fresh-window appearance remains a separate live check.
 
-### Notepad custom tab-caption preservation
+### Notepad custom tab-caption preservation (superseded button-only scope)
 
 The previous twelve-color caption contract could display a system title over
 Notepad's tab strip. Its exact-package public getter reported no extended title
@@ -1015,6 +1015,29 @@ save documents before reopening. The installer never closes applications.
 Native regressions verify the excluded setters cannot reach a COM object and
 that Paint's composition refusal remains intact. Live appearance and lifecycle
 checks remain separate from these synthetic checks.
+
+### Notepad public caption refusal
+
+A fresh-process comparison on the recorded Notepad package reproduced the
+native title covering its custom tabs with the eight button-only caption
+properties. Omitting the complete public caption path exposed the tabs again
+and permitted normal close/reopen. The former whole-title and button-only
+contracts remain historical observations above; neither preserves this layout.
+
+Notepad now admits zero public caption slots and returns before enumeration,
+AppWindow lookup, getters or setters. Its existing XAML resources continue to
+theme the tabs, toolbar and editor; native caption symbols remain native. The
+write-only legacy caption path remains excluded because an existing window's
+previous override cannot be read safely. No title-mode, window-style or geometry
+change compensates for that refusal. Paint retains its recorded public caption
+contract and ownership/restoration checks.
+
+The uncovered Notepad header remains gray. A separate native-backdrop
+comparison exposed the system accent color and did not solve that requirement;
+it is not distributed. Save documents before reopening an affected retained
+process. The installer never closes applications. Native regression calls the
+real generated refusal entry without a WinRT apartment and rejects every
+unadmitted property before COM. Real app states remain separate acceptance.
 
 ### Explorer scrollbar template ownership
 

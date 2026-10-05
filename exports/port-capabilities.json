@@ -37749,7 +37749,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-ZYfayjfTRhuRA+28B61H2dDaDaj8Hj6BxnGmnsaWfUY=",
+      "subjectDigest": "sha256-Nq5Clj56KcuFsdWcTrl/AiT5rWMuDlIcHGI0OTbaxWA=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37782,7 +37782,7 @@
           "path": "dist/windows-settings.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-settings.json",
-          "digest": "sha256-IEbpK6h376F8gS9hg3nzwtTz3cFRCnochuOClZFVuOk="
+          "digest": "sha256-tUdSIUPxeGmpP6Iiomj4yl3URnGYpjmLDlo4ZMOKM2U="
         },
         {
           "path": "dist/terminal-fragment.json",
@@ -37956,7 +37956,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-JAQsKwdl19owlfk7sPHzQF8/z8mWKnBP7ctt1M1M18A="
+          "digest": "sha256-UMYSdV68GnmYG8TRTzYh9Kh2yxgwcM1BKj+ShixbuaY="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
@@ -38040,7 +38040,7 @@
           "path": "dist/j3w1-notepad-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-notepad-chrome.wh.cpp",
-          "digest": "sha256-ffYwFHBTT9pMFCEjCRqzi9K8lyje3yHaDkrZo9Yvfc0="
+          "digest": "sha256-/Frhzc1DiKJq0Cdag8a6wlWuyL/vEJYMDysHN1BZanI="
         },
         {
           "path": "dist/j3w1-notepad-chrome.json",
@@ -38052,7 +38052,7 @@
           "path": "dist/j3w1-paint-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-paint-chrome.wh.cpp",
-          "digest": "sha256-Hr2+7VZeh6bIVWrBP0XAGspz5+PyF+2E5ms6qvfmWm8="
+          "digest": "sha256-hcO7hl0OZuiHeXDgoxueFgwon0zgmA1YfDZRbclL/n8="
         },
         {
           "path": "dist/j3w1-paint-chrome.json",
@@ -40062,7 +40062,6 @@
             "calculator.resource.ToggleButtonBackgroundIndeterminatePointerOver",
             "paint-chrome.caption.ButtonHoverBackgroundColor",
             "windows-11-start-menu-styler | web .suggestion:hover, .suggContainer:hover, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover | background-color",
-            "notepad-chrome.caption.ButtonHoverBackgroundColor",
             "notepad-chrome.resource.SubtleButtonBackgroundPointerOver",
             "paint-chrome.resource.SubtleButtonBackgroundPointerOver",
             "calculator.resource.SubtleButtonBackgroundPointerOver",
@@ -40168,7 +40167,6 @@
             "calculator.resource.ToggleButtonBackgroundIndeterminatePressed",
             "paint-chrome.caption.ButtonPressedBackgroundColor",
             "windows-11-start-menu-styler | web button:active, .button:active, .actionButton:active | background-color",
-            "notepad-chrome.caption.ButtonPressedBackgroundColor",
             "notepad-chrome.resource.SubtleButtonBackgroundPressed",
             "paint-chrome.resource.SubtleButtonBackgroundPressed",
             "calculator.resource.SubtleButtonBackgroundPressed",
@@ -42121,8 +42119,6 @@
             "windhawk.resource.ScrollBarTrackStroke",
             "windhawk.resource.ScrollBarTrackStrokePointerOver",
             "windhawk.resource.ScrollBarTrackStrokeDisabled",
-            "notepad-chrome.caption.ButtonBackgroundColor",
-            "notepad-chrome.caption.ButtonInactiveBackgroundColor",
             "notepad-chrome.resource.SubtleButtonBackground",
             "paint-chrome.resource.SubtleButtonBackground",
             "calculator.resource.SubtleButtonBackground",
@@ -42929,9 +42925,6 @@
             "windows-11-start-menu-styler | web h1, h2, h3, h4, p, .title, .details, .secondaryText, .groupTitle, .suggestion, .scope-tile > div, .menu-item_details, .previewContainer, button | color",
             "windows-11-start-menu-styler | web .suggestion:hover, .suggContainer:hover, .scope-tile > div:hover, button:hover, .button:hover, .actionButton:hover, .contextMenu li:hover | color",
             "windhawk.resource.ScrollBarButtonArrowForeground",
-            "notepad-chrome.caption.ButtonForegroundColor",
-            "notepad-chrome.caption.ButtonHoverForegroundColor",
-            "notepad-chrome.caption.ButtonPressedForegroundColor",
             "notepad-chrome.resource.SubtleButtonForeground",
             "paint-chrome.resource.SubtleButtonForeground",
             "calculator.resource.SubtleButtonForeground",
@@ -43157,7 +43150,6 @@
             "paint-chrome.caption.InactiveForegroundColor",
             "paint-chrome.caption.ButtonInactiveForegroundColor",
             "windows-11-start-menu-styler | web .secondaryText, .details .secondaryText | color",
-            "notepad-chrome.caption.ButtonInactiveForegroundColor",
             "notepad-chrome.resource.SplitButtonForegroundSecondary",
             "paint-chrome.resource.SplitButtonForegroundSecondary",
             "calculator.resource.SplitButtonForegroundSecondary",

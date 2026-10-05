@@ -28,7 +28,8 @@ layer by one pixel over the trailing frame. The regression checks paint
 ownership at that edge as well as row bounds, in both text directions.
 The earlier box-sizing-only candidate passed synthetic bounds checks but
 failed the owner's live trailing-edge readback; it remains historical evidence.
-This correction still requires native Search readback.
+The owner confirmed that the installed correction displays the entire right
+rose border. Other Search states and accessibility acceptance remain open.
 
 | Surface | Current treatment | Remaining evidence or implementation |
 | --- | --- | --- |

@@ -230,11 +230,11 @@ export function windowsArtifacts({manifest,host,resolved}){
   const discoverySubs={DIAGNOSTICS_BRIDGE_SHA256:chrome.diagnosticsBridgeSha256,DIAGNOSTICS_CLSID:clsid};
   const rootDiscovery=readFileSync(path.join(repoRoot,'ports/windows/src/winui-root-discovery.cpp.in'),'utf8').replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in discoverySubs))throw Error('Unknown WinUI discovery placeholder '+key);return discoverySubs[key];});
   const publicCaptionNames=['BackgroundColor','ForegroundColor','ButtonBackgroundColor','ButtonForegroundColor','ButtonHoverBackgroundColor','ButtonHoverForegroundColor','ButtonPressedBackgroundColor','ButtonPressedForegroundColor','InactiveBackgroundColor','InactiveForegroundColor','ButtonInactiveBackgroundColor','ButtonInactiveForegroundColor'];
-  // Notepad owns a custom tab caption even when AppWindow reports no extension.
-  // Whole-title colors can restore a system caption over that content. Admit
-  // only button colors there; Paint retains its recorded native-title contract.
+  // Calling the public caption path, even with only button colors, revives
+  // a native title over Notepad's custom tabs on the recorded package.
+  // Notepad therefore declines this entire path; Paint retains its contract.
   const customCaption=chromeId==='j3w1-notepad-chrome';
-  const admittedCaptionNames=customCaption?publicCaptionNames.filter(key=>key.startsWith('Button')):publicCaptionNames;
+  const admittedCaptionNames=customCaption?[]:publicCaptionNames;
   if(JSON.stringify(Object.keys(chrome.captionColors??{}))!==JSON.stringify(admittedCaptionNames))throw Error(label+' requires its exact ordered public caption-color contract');
   const captionSlots=admittedCaptionNames.map(key=>publicCaptionNames.indexOf(key));
   const captionRules=publicCaptionNames.map(key=>{const role=chrome.captionColors[key];if(!role)return '  {}, // '+key+' : host-owned';const token=resolved.get(role);val(role);return '  {'+Math.round((token.resolved.alpha??1)*255)+','+rgb(val(role)).join(',')+'}, // '+key+' : '+role;}).join('\n');

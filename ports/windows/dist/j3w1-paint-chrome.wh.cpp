@@ -540,15 +540,15 @@ static bool ApplyNativeBrush(std::vector<OwnedNativeBrush>& entries,SolidColorBr
  return UpdateNativeBrush(entries.back(),target,true,[&]{return brush.Color();},[&](Color c){brush.Color(c);},failure);
 }
 
-// Paint owns a native title; Notepad owns a custom tab caption. The generated
-// property contract admits only Notepad's button colors, never whole-title
-// colors which can make the system caption cover its tabs. No geometry changes.
+// Paint owns an admitted native title. Notepad owns custom tabs and declines
+// all public caption access: even the button-only path revived a native title
+// over its tabs in a fresh recorded process. No title mode or geometry changes.
 static constexpr std::array<unsigned,12> publicCaptionSlots={0,1,2,3,4,5,6,7,8,9,10,11};
 static bool CaptionSlotAdmitted(unsigned slot) noexcept {
  return std::find(publicCaptionSlots.begin(),publicCaptionSlots.end(),slot)!=publicCaptionSlots.end();
 }
 static bool CaptionCompositionAdmitted(bool extended) noexcept {
- return false||!extended;
+ return !publicCaptionSlots.empty()&&(false||!extended);
 }
 using CaptionColor = Windows::Foundation::IReference<Color>;
 using PublicTitleBar = Microsoft::UI::Windowing::AppWindowTitleBar;
@@ -1184,6 +1184,8 @@ static bool RestorePublicCaptions(ThreadState& state) noexcept {
  return restored;
 }
 static void ApplyPublicCaptions(ThreadState& state) noexcept {
+ // Refuse before any enumeration, public getter, AppWindow lookup or setter.
+ if constexpr(publicCaptionSlots.empty())return;
  if(!enabled.load()||HighContrast()){RestorePublicCaptions(state);return;}
  try {
   for(auto it=state.publicCaptions.begin();it!=state.publicCaptions.end();) {
