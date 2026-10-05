@@ -25,8 +25,8 @@ For the theme owner. No Telegram API application is needed.
 
 1. Download both files above.
 2. Open the [j3w1 Theme Editor](https://themes.contest.com/theme/TRhfHcbvZHlOucyc?format=android) and log in with your Telegram account.
-3. **Android** tab: **Import file**, choose `j3w1.attheme`, then save the theme.
-4. **TDesktop** tab: **Import file**, choose `j3w1.tdesktop-theme`, then save the theme.
+3. **Android** tab: **IMPORT FILE**, choose `j3w1.attheme`, then **SAVE AND APPLY THEME**.
+4. **TDesktop** tab: **IMPORT FILE**, choose `j3w1.tdesktop-theme`, then **SAVE AND APPLY THEME**.
 5. Check the install link on Android and on Telegram Desktop, as [Publishing](PUBLISHING.md#check-the-install-link) describes.
 <!-- install:end -->
 

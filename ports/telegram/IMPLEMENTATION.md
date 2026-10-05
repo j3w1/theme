@@ -10,7 +10,7 @@ dist/j3w1.attheme    dist/j3w1.tdesktop-theme
   (Android)            (Desktop: zip of colors.tdesktop-theme + background.png)
        └─────────┬──────────┘
      one Telegram Cloud Theme, slug in cloud.json
-                 ├── Telegram's Theme Editor: Import file, save (no API application)
+                 ├── Telegram's Theme Editor: IMPORT FILE, SAVE AND APPLY THEME (no API application)
                  └── npm run telegram:publish (optional; api_id/api_hash)
                  │
      https://t.me/addtheme/<slug>  →  Apply on Android and on Telegram Desktop
@@ -98,7 +98,7 @@ The same `https://t.me/addtheme/<slug>` link opens the matching document on each
 **Updates.** When the owner updates the theme, Telegram pushes the change to everyone using it, and both clients also re-check about hourly. A theme installed from a file never updates.
 
 **One identity, two ways to publish.** `cloud.json` records the theme's slug: `TRhfHcbvZHlOucyc`, which Telegram generated when the owner created the theme in the Theme Editor. Both routes write to that theme. They differ in what reaches the cloud:
-- **Theme Editor.** *Import file* converts the file into the editor's text form, and *save* rebuilds the document from that text (the Desktop zip is repacked).
+- **Theme Editor.** **IMPORT FILE** converts the file into the editor's text form, and **SAVE AND APPLY THEME** rebuilds the document from that text (the Desktop zip is repacked).
   - The colours the file sets carry over, but not the bytes.
   - Every key the file leaves out gets Telegram's default, which is why the files write inherited keys out (see [Coverage](#coverage)).
   - The editor keeps the theme's `name` and `shortname` lines and saves to the same theme id, so the Android and TDesktop tabs fill one theme.

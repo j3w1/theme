@@ -432,7 +432,7 @@ test("the guide and the publishing card are generated from cloud.json for every 
   for (const guide of [none, awaiting]) assert.deepEqual(links(guide, T_ME), []);
   assert.deepEqual(links(none, EDITOR), []);
   assert.deepEqual(links(awaiting, EDITOR), [editorUrl(slug, "android")]);
-  for (const step of ["**Android** tab: **Import file**, choose `j3w1.attheme`", "**TDesktop** tab: **Import file**, choose `j3w1.tdesktop-theme`", "No Telegram API application is needed."]) assert.ok(awaiting.includes(step), step);
+  for (const step of ["**Android** tab: **IMPORT FILE**, choose `j3w1.attheme`, then **SAVE AND APPLY THEME**", "**TDesktop** tab: **IMPORT FILE**, choose `j3w1.tdesktop-theme`, then **SAVE AND APPLY THEME**", "No Telegram API application is needed."]) assert.ok(awaiting.includes(step), step);
   // Verified: the cloud link leads, once per client, and the same link.
   assert.match(verified, /^## Recommended: cloud theme\n/);
   assert.ok(verified.indexOf("## Recommended: cloud theme") < verified.indexOf("## Install from files"));

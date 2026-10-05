@@ -28,12 +28,12 @@ This route needs no API application, api_id or api_hash.
 2. **Android.**
    - Open the Android Theme Editor link above.
    - Log in: Telegram sends a confirmation message to your account.
-   - Click **Import file** and choose `j3w1.attheme`. The editor shows the imported colours as text, but nothing is saved yet.
-   - Save the theme.
+   - Click **IMPORT FILE** and choose `j3w1.attheme`. The editor shows the imported colours as text, but nothing is saved yet.
+   - Click **SAVE AND APPLY THEME**. No message appears; the text stays as imported.
 3. **Desktop.**
    - Switch to the **TDesktop** tab, or open its link above.
    - If the theme has no Desktop version yet, the tab first offers to create one.
-   - Click **Import file**, choose `j3w1.tdesktop-theme`, and save the theme.
+   - Click **IMPORT FILE**, choose `j3w1.tdesktop-theme`, then **SAVE AND APPLY THEME**.
 4. **Same theme.** Keep the `name` and `shortname` lines at the top of the editor text. The page address must stay `/theme/<slug>` with the slug above. If saving moves it to another address, the shortname was edited: restore it before going on.
 
 Telegram converts an imported file into its own text form and rebuilds the document when you save; the Desktop zip is repacked. The cloud copy carries the same colours but not the same bytes, so on this route you check the result on the clients, not by digest.

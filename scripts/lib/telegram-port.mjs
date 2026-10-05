@@ -150,8 +150,8 @@ export const telegramReadmeBlock = (manifest, cloud) => {
     "For the theme owner. No Telegram API application is needed.", "",
     "1. Download both files above.",
     `2. Open the [${cloud.title} Theme Editor](${editorUrl(cloud.slug, "android")}) and log in with your Telegram account.`,
-    `3. **Android** tab: **Import file**, choose \`${fileName("android")}\`, then save the theme.`,
-    `4. **TDesktop** tab: **Import file**, choose \`${fileName("desktop")}\`, then save the theme.`,
+    `3. **Android** tab: **IMPORT FILE**, choose \`${fileName("android")}\`, then **SAVE AND APPLY THEME**.`,
+    `4. **TDesktop** tab: **IMPORT FILE**, choose \`${fileName("desktop")}\`, then **SAVE AND APPLY THEME**.`,
     cloud.verified
       ? "5. Open the install link on each device and apply it."
       : "5. Check the install link on Android and on Telegram Desktop, as [Publishing](PUBLISHING.md#check-the-install-link) describes.",
