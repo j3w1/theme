@@ -47,7 +47,10 @@ test("port explorer navigation is keyboard accessible with no axe violations", {
     const link = page.getByRole("link", { name }).first();
     await link.focus(); await expect(link).toBeFocused();
   }
-  expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
+  // Keep every rule and every violation/incomplete node. Limiting redundant
+  // passing-node detail avoids expensive selectors and result transfers on
+  // this full role catalogue, without changing scan scope or its budget.
+  expect((await new AxeBuilder({ page }).options({ resultTypes: ["violations", "incomplete", "inapplicable"] }).analyze()).violations).toEqual([]);
 });
 
 test("synthetic mapping states use the real renderer and keyboard search without publishing a port", verification({ component: "page", category: "enhancements", states: [], variants: [], note: "Request-intercepted, explicitly synthetic port data exercises the real static renderer, mapping classifications, search/reset and no-JS. Never a real port or import result." }), async ({ page }, info) => {
