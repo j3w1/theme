@@ -8,6 +8,10 @@ const db=fs.existsSync(file)?JSON.parse(fs.readFileSync(file,'utf8')):{};
 const done=data=>{fs.writeFileSync(file,JSON.stringify(db));console.log(JSON.stringify({schemaVersion:1,success:true,data}));};
 const activityFile=path.join(state,'fixture-windhawk-activity.json');
 const activity=fs.existsSync(activityFile)?JSON.parse(fs.readFileSync(activityFile,'utf8')):{compiles:0,imports:0};
+// Record fixture mutations so lifecycle tests detect unnecessary live reloads.
+if(args[0]==='mod'&&(['install','enable','disable','remove'].includes(args[1])||args[1]==='settings'&&args[2]==='set')){
+ activity.mutations??=[];activity.mutations.push(args);fs.writeFileSync(activityFile,JSON.stringify(activity));
+}
 function record(kind){activity[kind]++;fs.writeFileSync(activityFile,JSON.stringify(activity));}
 
 const missing=()=>{console.log(JSON.stringify({schemaVersion:1,success:false,error:{code:'MOD_NOT_INSTALLED',message:'Missing'}}));process.exit(1);};

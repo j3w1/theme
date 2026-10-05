@@ -1843,6 +1843,8 @@ function stageMods(tx) {
     const beforeSettings = before ? wh(["mod", "settings", "get", installedId]) : null;
     const prior = history.transactions.filter((t) => t.status === "applied").at(-1)?.mods?.find((m) => m.id === installedId);
     const reuse = before?.metadata?.version === mod.version && prior?.sourceSha256 === mod.sha256 && eq(beforeSettings, prior.settings) && sameModArtifact(before, compiledReceipt(prior));
+    const values = flattenStylerSettings(stylerSettings(json(import_node_path2.default.join(source, "dist", mod.id + ".json")), settings.stylerVariants?.[mod.id], compatibility().startLayout));
+    const unchanged = reuse && before.config.disabled === false && Object.entries(values).every(([key, value]) => String((beforeSettings.settings ?? beforeSettings)[key]) === String(value));
     tx.mods.push({
       id: installedId,
       sourceId: mod.id,
@@ -1853,9 +1855,15 @@ function stageMods(tx) {
       backup: before ? backup : null,
       backupSha256: before ? sha256Hex(import_node_fs2.default.readFileSync(safe(backup))) : null,
       beforeSourceSha256: before && prior?.sourceSha256 === exportedSourceDigest(backup, installedId) ? prior.sourceSha256 : null,
-      reused: reuse
+      reused: reuse,
+      unchanged,
+      ...unchanged ? { settings: beforeSettings, artifact: modArtifact(before) } : {}
     });
     persist();
+    if (unchanged) {
+      console.error("Keeping the verified active adapter unchanged: " + mod.id + ".");
+      continue;
+    }
     if (reuse) {
       console.error("Reusing the verified compiled adapter: " + mod.id + ".");
       wh(["mod", "disable", installedId]);
@@ -1865,7 +1873,6 @@ function stageMods(tx) {
     }
     const staged = wh(["mod", "show", installedId]);
     if (staged?.config?.disabled !== true || staged?.metadata?.version !== mod.version) throw Error("Windhawk disabled staging or version readback failed");
-    const values = flattenStylerSettings(stylerSettings(json(import_node_path2.default.join(source, "dist", mod.id + ".json")), settings.stylerVariants?.[mod.id], compatibility().startLayout));
     wh(["mod", "settings", "set", installedId, ...Object.entries(values).map(([k, v2]) => `${k}=${v2}`)]);
     const got = wh(["mod", "settings", "get", installedId]);
     const actual = got.settings ?? got;
@@ -1888,6 +1895,11 @@ function restore(tx) {
   const conflicts = [];
   for (const mod of [...tx.mods ?? []].reverse()) {
     if (mod.restored) continue;
+    if (mod.unchanged) {
+      mod.restored = true;
+      persist();
+      continue;
+    }
     console.error(`Restoring theme adapter ${mod.sourceId ?? mod.id}. Saved source may need compilation.`);
     try {
       if (!wh(["mod", "show", mod.id], true) && !mod.before) {
@@ -2090,7 +2102,7 @@ if (action === "Plan") {
       console.error("Refreshing the theme and verifying activation.");
       ps({ operation: "refresh" });
       if (args.mode === "Full" && !compat()) throw Error("Compatibility changed during apply");
-      for (const mod of tx.mods) wh(["mod", "enable", mod.id]);
+      for (const mod of tx.mods) if (!mod.unchanged) wh(["mod", "enable", mod.id]);
       if (args.mode === "Full") startWindhawk();
       tx.status = "applied";
       persist();
@@ -2098,7 +2110,7 @@ if (action === "Plan") {
       console.log(JSON.stringify({ result: "applied", revision: args.revision, changes: planned.length, limitations: settings.limitations }));
     } catch (error) {
       console.error("Installation failed; reversing this transaction before returning the error.");
-      for (const mod of tx.mods) try {
+      for (const mod of tx.mods) if (!mod.unchanged) try {
         wh(["mod", "disable", mod.id]);
       } catch {
       }

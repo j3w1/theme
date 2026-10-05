@@ -523,18 +523,55 @@ test('Markdown adapter settings and source follow setup update, Test and rollbac
  assert.equal(f.db()['local@j3w1-powertoys-markdown'],undefined);
 });
 
-test('verified adapters survive a revision-only update and Latest rollback without compilation',t=>{
+test('verified adapters survive a revision-only update and Latest rollback without live mutations',t=>{
  const f=windhawkFixture(t,'protocol'),activity=()=>read(path.join(f.state,'fixture-windhawk-activity.json'));
- f.ok('Apply',f.args);const baseline=f.db(),compiled=activity().compiles;
+ f.ok('Apply',f.args);const baseline=f.db(),compiled=activity().compiles,mutations=activity().mutations;
  assert.ok(f.journal().transactions[0].mods.every(m=>m.artifact&&m.sourceSha256));
  f.ok('Update',{...f.args,revision:'2'.repeat(40)});
  assert.equal(activity().compiles,compiled);
- assert.ok(f.journal().transactions[1].mods.every(m=>m.reused));
- const restored=f.ok('Restore',{...f.args,latest:true});
- assert.match(restored.stderr,/Restoring saved settings using the verified compiled adapter/);
+ assert.ok(f.journal().transactions[1].mods.every(m=>m.reused&&m.unchanged));
+ assert.deepEqual(activity().mutations,mutations);
+ f.ok('Restore',{...f.args,latest:true});
+ assert.deepEqual(activity().mutations,mutations);
  assert.equal(activity().compiles,compiled);assert.equal(activity().imports,0);
  assert.deepEqual(f.db(),baseline);f.ok('Test',f.args);
  f.ok('Restore',f.args);assert.deepEqual(f.db(),{appSettings:{disableUpdateCheck:false}});
+});
+
+test('a settings update and Latest rollback leave unrelated verified adapters active',t=>{
+ const f=windhawkFixture(t,'protocol'),activity=()=>read(path.join(f.state,'fixture-windhawk-activity.json'));
+ f.ok('Apply',f.args);const baseline=f.db(),count=activity().mutations.length;
+ const config=path.join(f.args.source,'dist/fixture-styler.json'),next=read(config);
+ next.controlStyles[0].styles[0]='Foreground=#ffa2a7';write(config,next);
+ f.ok('Update',{...f.args,revision:'2'.repeat(40)});f.ok('Test',f.args);
+ assert.equal(f.journal().transactions[1].mods[0].unchanged,false);
+ assert.equal(f.journal().transactions[1].mods[1].unchanged,true);
+ f.ok('Restore',{...f.args,latest:true});
+ assert.ok(activity().mutations.slice(count).every(a=>!a.includes('local@j3w1-explorer-native')));
+ assert.deepEqual(f.db(),baseline);f.ok('Test',f.args);
+});
+
+test('failure rollback does not cycle adapters whose code and settings were unchanged',t=>{
+ const f=windhawkFixture(t,'protocol'),activity=()=>read(path.join(f.state,'fixture-windhawk-activity.json'));
+ f.ok('Apply',f.args);const baseline=f.db(),mutations=activity().mutations;
+ const config=path.join(f.args.source,'dist/windows-settings.json'),next=read(config);
+ next.values['native.accent']='#f73f35';write(config,next);
+ const failed=f.run('Update',{...f.args,revision:'2'.repeat(40),failAfter:1});
+ assert.notEqual(failed.status,0);assert.match(failed.stderr,/Injected partial failure; rollback completed/);
+ assert.equal(f.journal().transactions[1].status,'restored');
+ assert.deepEqual(activity().mutations,mutations);assert.deepEqual(f.db(),baseline);
+});
+
+test('Latest rollback preserves later user edits to an adapter it did not mutate',t=>{
+ const f=windhawkFixture(t,'protocol'),activity=()=>read(path.join(f.state,'fixture-windhawk-activity.json'));
+ f.ok('Apply',f.args);f.ok('Update',{...f.args,revision:'2'.repeat(40)});
+ const changed=f.db();changed['local@fixture-styler'].settings.theme='owner edit';
+ write(path.join(f.state,'fixture-windhawk.json'),changed);const mutations=activity().mutations;
+ f.ok('Restore',{...f.args,latest:true});
+ assert.deepEqual(f.db(),changed);assert.deepEqual(activity().mutations,mutations);
+ assert.match(f.run('Test',f.args).stdout,/settings drift/);
+ const original=f.run('Restore',f.args);assert.equal(original.status,2);
+ assert.equal(f.db()['local@fixture-styler'].settings.theme,'owner edit');
 });
 
 test('binary drift refuses Test and Guard and triggers a fresh pinned compile on Update',t=>{

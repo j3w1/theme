@@ -72,6 +72,10 @@ Install commands appear here once v4.0.0 is released.
 Prepared immutable releases are reused from the verified local cache, avoiding
 repeat bootstrap downloads. A managed compiled adapter is reused only when
 its pinned source, version, full configuration and saved DLL digest match.
+If it is already enabled with the requested settings, Update leaves that live
+adapter attached; undoing that update also leaves it untouched. Only changed
+adapters are staged and activated. This reduces unnecessary app restarts during
+updates without treating a settings readback as visual acceptance.
 Settings-only rollback reuses that same verified DLL when the saved key set
 also matches; other restores use the retained offline source. Older installs
 without a compilation receipt compile once before becoming reusable. Changed

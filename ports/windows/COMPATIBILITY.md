@@ -1305,3 +1305,31 @@ not establish all Settings states, disabled controls, high-contrast switching
 or fresh-process attachment. A separate adapter reload restored a previously
 unstyled Settings window; that is a recovery observation, not a diagnosis of
 the original attachment failure.
+
+An update while Settings was open crashed in Windows.UI.Xaml.dll. Original
+application-error records reported a different module version from the fresh
+disk read. That discrepancy and the crash cause remain unresolved. Restore
+Latest succeeded, and the restored baseline opened with readable rose text on
+a dark-red resting split button. Reapply with Settings closed and standalone
+Test passed; those readbacks do not establish safe live reload or visual
+acceptance of the new rule.
+
+### Unchanged adapter lifecycle
+
+Update retains an already enabled adapter without disable, settings writes or
+reenable only when its prior managed source digest, version, settings and
+compiled-binary/configuration receipt match, and the requested values already
+match its settings. The new journal entry records that no adapter mutation was
+acquired. Its rollback and failure cleanup leave that adapter and later user
+edits untouched. A later original-state restore still checks changes owned by
+the older transaction. Missing receipts, changed binaries, configurations or
+settings continue through the existing verified staging/recovery path.
+
+On the preceding candidate, the existing and a new empty Notepad window in
+the same process both showed native gray tab/menu chrome after the update.
+Package, XAML runtime and diagnostics-bridge disk identities matched the
+recorded contract. This is a failed attachment/appearance observation; it does
+not prove why root discovery failed or solve the gray composition strip.
+Paint retained themed toolbar/menu chrome with gray workspace and scrollbar.
+The no-mutation lifecycle correction prevents unnecessary cycling, but does
+not claim to repair any already lost attachment or resolve those boundaries.
