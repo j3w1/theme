@@ -293,3 +293,9 @@ both split-button halves and checked/disabled states. These updates use the same
 setup/update and saved rollback commands above. Real application hover, focus
 and open/close checks remain required; palette coverage alone does not certify
 every installed template or retained animation.
+
+
+Notepad's tabs remain in their native layout. The header correction requires a
+new window or a caption-color request from Notepad itself; an older window with
+an unknown previous color remains native. Save any desired text before reopening
+it. Setup and rollback never close your applications.

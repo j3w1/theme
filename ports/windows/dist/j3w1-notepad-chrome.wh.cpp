@@ -2,7 +2,7 @@
 // @id j3w1-notepad-chrome
 // @name j3w1 Notepad chrome
 // @description Exact-package Notepad chrome resources; document and artwork colors remain native
-// @version 1.2.14
+// @version 1.2.15
 // @author j3w1
 // @include Notepad.exe
 // @architecture x86-64
@@ -1655,7 +1655,7 @@ static void ObserveConstructedContainer(ProjectedObject const& value) {
 }
 template<unsigned N> static HRESULT STDMETHODCALLTYPE CreateHook(void* self,void* outer,void** inner,void** object){
  auto result=originalCreate[N](self,outer,inner,object);
- 
+
  bool admitted=false;
  if(self)for(unsigned at=0;at<factoryCount;at++)if(hooked[at].load()&&factoryFunction[at].load()==factoryFunction[N].load()&&SameFactory(self,factoryIdentity[at])){admitted=true;break;}
  Log(240,N,admitted);
@@ -1718,17 +1718,37 @@ template<unsigned N> static HRESULT STDMETHODCALLTYPE ActivationHook(void* self,
 // recolored until an application request supplies a baseline. Windows created
 // after hook installation have a known default baseline; creation-time requests
 // are captured by the same hook before CreateWindowEx returns.
-struct Caption { HWND window; COLORREF before=DWMWA_COLOR_DEFAULT; bool applied=false; };
+
+// Only captured caption owners may request an opaque native backing. Public
+// Notepad title APIs remain refused; preexisting unknown caption colors are
+// never inferred. Paint keeps its native backdrop and public caption contract.
+struct NativeBackdrop { DWORD before=DWMSBT_AUTO; bool owned=false,changed=false; };
+template<class Read,class Write> static bool UpdateNativeBackdrop(NativeBackdrop& slot,bool active,Read read,Write write) noexcept {
+ try {
+  if(slot.changed||(!active&&!slot.owned))return true;
+  DWORD current=0;if(FAILED(read(current)))return false;
+  if(slot.owned&&current!=DWMSBT_NONE){slot.owned=false;slot.changed=true;return true;}
+  if(!active) {
+   if(slot.owned){if(FAILED(write(slot.before)))return false;slot.owned=false;}
+   return true;
+  }
+  if(current>DWMSBT_TABBEDWINDOW)return false;
+  if(!slot.owned){slot.before=current;if(FAILED(write(DWORD(DWMSBT_NONE))))return false;slot.owned=true;}
+  return true;
+ }catch(...){return false;}
+}
+struct Caption { HWND window; COLORREF before=DWMWA_COLOR_DEFAULT; bool applied=false; NativeBackdrop backdrop; };
 static constexpr PCWSTR captionProperty=L"j3w1-notepad-chrome-caption-owner";
 [[clang::no_destroy]] static std::vector<Caption*> captions;
 [[clang::no_destroy]] static std::mutex captionsMutex;
 static decltype(&CreateWindowExW) originalCreateWindow=nullptr;
 static decltype(&DestroyWindow) originalDestroyWindow=nullptr;
 static decltype(&DwmSetWindowAttribute) originalDwmSet=nullptr;
+static decltype(&DwmGetWindowAttribute) nativeDwmGet=DwmGetWindowAttribute;
 static bool CaptionWindow(HWND window) {
  DWORD process=0;GetWindowThreadProcessId(window,&process);wchar_t type[64]{};
  return process==GetCurrentProcessId()&&GetAncestor(window,GA_ROOT)==window&&GetClassNameW(window,type,std::size(type))
-  &&wcscmp(type,L"Notepad")==0&&false;
+  &&wcscmp(type,L"Notepad")==0;
 }
 static Caption* OwnedCaption(HWND window) {
  auto state=static_cast<Caption*>(GetPropW(window,captionProperty));
@@ -1741,9 +1761,20 @@ static Caption* CaptureCaption(HWND window,COLORREF before) {
  if(!SetPropW(window,captionProperty,state)){delete state;return nullptr;}
  captions.push_back(state);return state;
 }
+
+static bool RefreshCapturedBackdrop(Caption& state,bool active) {
+ if(!true)return true;
+ return UpdateNativeBackdrop(state.backdrop,active,
+  [&](DWORD& value){return nativeDwmGet(state.window,DWMWA_SYSTEMBACKDROP_TYPE,&value,sizeof(value));},
+  [&](DWORD value){return originalDwmSet(state.window,DWMWA_SYSTEMBACKDROP_TYPE,&value,sizeof(value));});
+}
 static bool ForgetCaption(Caption* state,bool restore) {
  if(GetPropW(state->window,captionProperty)==state) {
-  if(restore&&state->applied&&IsWindow(state->window)&&FAILED(originalDwmSet(state->window,DWMWA_CAPTION_COLOR,&state->before,sizeof(state->before))))return false;
+
+  if(restore&&IsWindow(state->window)) {
+   if(state->applied){if(FAILED(originalDwmSet(state->window,DWMWA_CAPTION_COLOR,&state->before,sizeof(state->before))))return false;state->applied=false;}
+   if(!RefreshCapturedBackdrop(*state,false))return false;
+  }
   RemovePropW(state->window,captionProperty);
  }
  captions.erase(std::remove(captions.begin(),captions.end(),state),captions.end());delete state;return true;
@@ -1754,26 +1785,44 @@ static void RefreshCaptions() {
   auto state=*it;
   if(!IsWindow(state->window)||GetPropW(state->window,captionProperty)!=state){ForgetCaption(state,false);it=captions.begin();continue;}
   COLORREF color=active?([]{auto c=CanvasColor();return RGB(c.R,c.G,c.B);}()):state->before;
-  if(SUCCEEDED(originalDwmSet(state->window,DWMWA_CAPTION_COLOR,&color,sizeof(color))))state->applied=active;
+
+  if(SUCCEEDED(originalDwmSet(state->window,DWMWA_CAPTION_COLOR,&color,sizeof(color)))) {
+   state->applied=active;if(!RefreshCapturedBackdrop(*state,active))Log(236);
+  }
   ++it;
  }
 }
-// Preserve native backdrop requests. Opaque XAML backing and a captured
-// caption-color baseline provide black surfaces without exposing other windows.
+
+// Paint and unowned Notepad windows preserve native backdrop requests. A known
+// Notepad caption owner keeps the application's latest readable backdrop as
+// its restore baseline. No AppWindow access, title mode or geometry changes.
+
 static HRESULT WINAPI DwmCaptionHook(HWND window,DWORD attribute,LPCVOID value,DWORD size) {
+ if(true&&attribute==DWMWA_SYSTEMBACKDROP_TYPE&&value&&size==sizeof(DWORD)&&CaptionWindow(window)) {
+  std::lock_guard guard(captionsMutex);auto state=OwnedCaption(window);
+  if(state&&!state->backdrop.changed) {
+   DWORD requested=0;memcpy(&requested,value,sizeof(requested));
+   bool active=enabled.load()&&!HighContrast();
+   if(requested<=DWMSBT_TABBEDWINDOW&&RefreshCapturedBackdrop(*state,active)&&!state->backdrop.changed) {
+    DWORD none=DWMSBT_NONE;auto result=originalDwmSet(window,attribute,active?&none:value,size);
+    if(SUCCEEDED(result)){state->backdrop.before=requested;state->backdrop.owned=active;}
+    return result;
+   }
+  }
+ }
  if(publicCaptionWrite||attribute!=DWMWA_CAPTION_COLOR||!value||size!=sizeof(COLORREF)||!CaptionWindow(window))return originalDwmSet(window,attribute,value,size);
  std::lock_guard guard(captionsMutex);COLORREF requested;memcpy(&requested,value,sizeof(requested));
  auto state=OwnedCaption(window);bool captured=!state;bool active=enabled.load()&&!HighContrast();
  if(!state&&active)state=CaptureCaption(window,requested);
  COLORREF color=state&&active?([]{auto c=CanvasColor();return RGB(c.R,c.G,c.B);}()):requested;
  HRESULT result=originalDwmSet(window,attribute,&color,size);
- if(SUCCEEDED(result)&&state){state->before=requested;state->applied=active;}
+ if(SUCCEEDED(result)&&state){state->before=requested;state->applied=active;if(!RefreshCapturedBackdrop(*state,active))Log(236);}
  else if(FAILED(result)&&state&&captured)ForgetCaption(state,false);
  return result;
 }
 static HWND WINAPI CreateCaptionHook(DWORD exStyle,LPCWSTR type,LPCWSTR title,DWORD style,int x,int y,int width,int height,HWND parent,HMENU menu,HINSTANCE instance,LPVOID parameter) {
  HWND window=originalCreateWindow(exStyle,type,title,style,x,y,width,height,parent,menu,instance,parameter);
- if(window&&CaptionWindow(window)) {
+ if(window&&CaptionWindow(window)&&enabled.load()&&!HighContrast()) {
   {std::lock_guard guard(captionsMutex);CaptureCaption(window,DWMWA_COLOR_DEFAULT);}
   if(ReviewedRuntime()&&EnsureChannel())Schedule();
  }

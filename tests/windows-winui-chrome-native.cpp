@@ -198,6 +198,72 @@ int main(int argc, char** argv) {
         assert(!PaintBackingAdmission(L"PaintUI.AppChrome",L"Microsoft.UI.Xaml.Controls.Grid",1,false));
         puts("PASS: exact opaque Paint backing and document/cross-root rejection");return 0;
     }
+
+    if(strcmp(argv[1],"captured-native-backdrop") == 0) {
+        NativeBackdrop slot;DWORD actual=DWMSBT_TABBEDWINDOW;unsigned reads=0,writes=0;
+        auto read=[&](DWORD& out){++reads;out=actual;return S_OK;};
+        auto write=[&](DWORD value){++writes;actual=value;return S_OK;};
+        assert(UpdateNativeBackdrop(slot,true,read,write)&&slot.owned&&slot.before==DWMSBT_TABBEDWINDOW&&actual==DWMSBT_NONE);
+        assert(UpdateNativeBackdrop(slot,true,read,write)&&writes==1);
+        assert(UpdateNativeBackdrop(slot,false,read,write)&&!slot.owned&&actual==DWMSBT_TABBEDWINDOW);
+        assert(UpdateNativeBackdrop(slot,true,read,write));actual=DWMSBT_MAINWINDOW;
+        assert(UpdateNativeBackdrop(slot,false,read,write)&&slot.changed&&!slot.owned&&actual==DWMSBT_MAINWINDOW);
+        auto beforeReads=reads,beforeWrites=writes;
+        assert(UpdateNativeBackdrop(slot,true,read,write)&&reads==beforeReads&&writes==beforeWrites);
+        slot={};assert(UpdateNativeBackdrop(slot,false,read,write)&&reads==beforeReads&&writes==beforeWrites);
+        actual=99;assert(!UpdateNativeBackdrop(slot,true,read,write)&&!slot.owned&&actual==99);
+        actual=DWMSBT_MAINWINDOW;auto deniedRead=[](DWORD&){return E_FAIL;};
+        assert(!UpdateNativeBackdrop(slot,true,deniedRead,write)&&!slot.owned);
+        auto deniedWrite=[](DWORD){return E_FAIL;};
+        assert(!UpdateNativeBackdrop(slot,true,read,deniedWrite)&&!slot.owned&&actual==DWMSBT_MAINWINDOW);
+        assert(UpdateNativeBackdrop(slot,true,read,write)&&slot.owned);
+        assert(!UpdateNativeBackdrop(slot,false,read,deniedWrite)&&slot.owned&&actual==DWMSBT_NONE);
+        assert(UpdateNativeBackdrop(slot,false,read,write)&&!slot.owned&&actual==DWMSBT_MAINWINDOW);
+        puts("PASS: exact native backdrop baseline, high-contrast restoration, later edits, unknown values, failures and cleanup retry");return 0;
+    }
+
+    if(strcmp(argv[1],"native-caption-capture") == 0) {
+        WNDCLASSW type{};type.lpfnWndProc=DefWindowProcW;type.hInstance=GetModuleHandleW(nullptr);
+        type.lpszClassName=J3W1_TEST_PAINT?L"MSPaintApp":L"Notepad";assert(RegisterClassW(&type));
+        HWND window=CreateWindowExW(0,type.lpszClassName,L"",WS_POPUP,0,0,20,20,nullptr,nullptr,type.hInstance,nullptr);assert(window);
+        static DWORD backdrop=DWMSBT_TABBEDWINDOW,caption=DWMWA_COLOR_DEFAULT;static bool fail=false;static unsigned reads=0;
+        nativeDwmGet=+[](HWND,DWORD attribute,PVOID value,DWORD size)->HRESULT {
+            assert(attribute==DWMWA_SYSTEMBACKDROP_TYPE&&size==sizeof(DWORD));++reads;memcpy(value,&backdrop,size);return S_OK;
+        };
+        originalDwmSet=+[](HWND,DWORD attribute,LPCVOID value,DWORD size)->HRESULT {
+            assert(size==sizeof(DWORD));if(fail)return E_FAIL;
+            if(attribute==DWMWA_CAPTION_COLOR)memcpy(&caption,value,size);
+            else {assert(attribute==DWMWA_SYSTEMBACKDROP_TYPE);memcpy(&backdrop,value,size);}return S_OK;
+        };
+        enabled=true;DWORD requested=DWMSBT_MAINWINDOW;
+        assert(SUCCEEDED(DwmCaptionHook(window,DWMWA_SYSTEMBACKDROP_TYPE,&requested,sizeof(requested))));
+        assert(backdrop==requested&&reads==0&&!OwnedCaption(window)); // Unknown caption cannot grant ownership.
+        COLORREF color=RGB(1,2,3);fail=true;
+        assert(FAILED(DwmCaptionHook(window,DWMWA_CAPTION_COLOR,&color,sizeof(color)))&&!OwnedCaption(window));
+        fail=false;assert(SUCCEEDED(DwmCaptionHook(window,DWMWA_CAPTION_COLOR,&color,sizeof(color))));
+        if(J3W1_TEST_PAINT){assert(!OwnedCaption(window)&&caption==color&&reads==0);}
+        else {
+            auto state=OwnedCaption(window);assert(state&&state->before==color&&state->applied);
+            assert(caption==RGB(0,0,0)&&backdrop==DWMSBT_NONE&&state->backdrop.before==DWMSBT_MAINWINDOW);
+            requested=DWMSBT_TABBEDWINDOW;
+            assert(SUCCEEDED(DwmCaptionHook(window,DWMWA_SYSTEMBACKDROP_TYPE,&requested,sizeof(requested))));
+            assert(backdrop==DWMSBT_NONE&&state->backdrop.before==requested);
+            enabled=false;RefreshCaptions();assert(caption==color&&backdrop==requested&&!state->applied&&!state->backdrop.owned);
+            enabled=true;RefreshCaptions();assert(caption==RGB(0,0,0)&&backdrop==DWMSBT_NONE);
+            backdrop=DWMSBT_MAINWINDOW;assert(ForgetCaption(state,true));
+            assert(caption==color&&backdrop==DWMSBT_MAINWINDOW&&!GetPropW(window,captionProperty));
+        }
+        assert(DestroyWindow(window));originalCreateWindow=CreateWindowExW;
+        enabled=false;
+        window=CreateCaptionHook(0,type.lpszClassName,L"",WS_POPUP,0,0,20,20,nullptr,nullptr,type.hInstance,nullptr);
+        assert(window&&!OwnedCaption(window));assert(DestroyWindow(window));
+        enabled=true;
+        window=CreateCaptionHook(0,type.lpszClassName,L"",WS_POPUP,0,0,20,20,nullptr,nullptr,type.hInstance,nullptr);assert(window);
+        if(J3W1_TEST_PAINT)assert(!OwnedCaption(window));
+        else {auto state=OwnedCaption(window);assert(state&&state->before==DWMWA_COLOR_DEFAULT);assert(ForgetCaption(state,true));}
+        assert(DestroyWindow(window)&&UnregisterClassW(type.lpszClassName,type.hInstance));
+        puts("PASS: unknown/disabled windows pass through, exact creation baseline, failed capture, later app requests and Paint refusal");return 0;
+    }
     if(strcmp(argv[1],"backdrop-passthrough") == 0) {
         WNDCLASSW type{};type.lpfnWndProc=DefWindowProcW;type.hInstance=GetModuleHandleW(nullptr);
 #if J3W1_TEST_PAINT
@@ -208,7 +274,8 @@ int main(int argc, char** argv) {
         assert(RegisterClassW(&type));
         HWND window=CreateWindowExW(0,type.lpszClassName,L"",0,0,0,20,20,nullptr,nullptr,type.hInstance,nullptr);
         assert(window);
-        assert(PublicCaptionWindow(window)&&!CaptionWindow(window));
+        assert(PublicCaptionWindow(window));
+        assert(CaptionWindow(window)==!bool(J3W1_TEST_PAINT));
         static DWORD attributeSeen=0,valueSeen=0;static unsigned calls=0;
         originalDwmSet=+[](HWND,DWORD attribute,LPCVOID value,DWORD size)->HRESULT {
             assert(value&&size==sizeof(DWORD));attributeSeen=attribute;memcpy(&valueSeen,value,size);++calls;return S_OK;
@@ -220,8 +287,9 @@ int main(int argc, char** argv) {
             assert(attributeSeen==DWMWA_SYSTEMBACKDROP_TYPE&&valueSeen==backdrop);
         }
         assert(calls==6);
-        // The readable public owner is the only caption writer. The legacy DWM
-        // hook must forward active/inactive native caption requests unchanged.
+        // Public-caption writes must bypass native capture in either adapter.
+        // Native application requests are exercised in native-caption-capture.
+        CaptionWriteGuard publicWriter;
         for(bool active:{false,true}) {
             DWORD nativeColor=RGB(31,33,35);enabled=active;
             assert(SUCCEEDED(DwmCaptionHook(window,DWMWA_CAPTION_COLOR,&nativeColor,sizeof(nativeColor))));

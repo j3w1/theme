@@ -1032,9 +1032,10 @@ previous override cannot be read safely. No title-mode, window-style or geometry
 change compensates for that refusal. Paint retains its recorded public caption
 contract and ownership/restoration checks.
 
-The uncovered Notepad header remains gray. A separate native-backdrop
-comparison exposed the system accent color and did not solve that requirement;
-it is not distributed. Save documents before reopening an affected retained
+At that candidate, the uncovered Notepad header remained gray. A separate
+native-backdrop comparison exposed the system accent color and did not solve
+that requirement; it was not distributed. The later captured native-header
+correction below retains this complete public-caption refusal. Save documents before reopening an affected retained
 process. The installer never closes applications. Native regression calls the
 real generated refusal entry without a WinRT apartment and rejects every
 unadmitted property before COM. Real app states remain separate acceptance.
@@ -1177,3 +1178,24 @@ This is separate from Slider's state resources and does not alter native size,
 opacity or zoom values, artwork, swatches or drawing-renderer behavior. The gray
 drawing workspace remains an unresolved boundary. Production appearance and
 rollback are checked separately from the admission and ownership regressions.
+
+
+### Notepad captured native header backing
+
+After the public-caption refusal, a fresh empty production window retained a
+gray strip outside its narrow tab island. A bounded comparison combined the
+known native caption color with the readable DWM backdrop; the new empty window
+showed black across that strip, visible custom tabs and all three native buttons.
+Disabling the comparison restored the gray strip. This comparison is separate
+from final production acceptance.
+
+The Notepad adapter now colors only native windows created after its hooks are
+installed, or windows whose own caption-color request supplies a restore value.
+Existing unknown caption colors remain untouched. It reads and retains the exact
+system-backdrop value only for these captured owners. Later application requests
+update the restore baseline; an unexpected external backdrop change is preserved.
+Failed reads or writes retain recovery ownership for retry. High contrast and
+disable restore the captured values. Public AppWindow/title-bar APIs remain
+entirely refused, and no window mode, style, geometry or document is changed.
+Paint retains its existing native-backdrop passthrough. Save desired documents
+before reopening an older Notepad window; setup does not close applications.

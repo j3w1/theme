@@ -308,13 +308,13 @@ exact package gates and named chrome admission lists. Diagnostics below a generi
 island root select only the topmost named chrome ancestor in that XamlRoot.
 Drawing, swatch and document classes do not grant admission.
 
-Native DWM backdrop values and later app requests remain untouched. Removing
-Paint's native backdrop exposed other windows through its transparent chrome,
-so the adapter themes the actual opaque backing instead. A new empty Notepad
-window demonstrated a black caption while its native backdrop remained active.
-Existing caption color remains native until an app request provides a baseline;
-reopening an app provides a creation baseline without guessing its old value.
-No AppWindow title controller or forced window restart is used.
+Paint's native DWM backdrop values and later app requests remain untouched.
+Removing its native backdrop exposed other windows through its transparent
+chrome, so the adapter themes the actual opaque backing instead. Notepad's
+captured native header path is described below; its public title controller
+remains refused. Existing unknown caption color remains native until an app
+request provides a baseline or a new window provides a creation baseline.
+No forced window restart is used.
 
 Paint's admitted AppChrome renders through a single direct child Grid. Its
 background is made opaque using the canvas role, with the exact prior local
@@ -489,3 +489,14 @@ This is separate from Slider's state resources and does not alter native size,
 opacity or zoom values, artwork, swatches or drawing-renderer behavior. The gray
 drawing workspace remains an unresolved boundary. Production appearance and
 rollback are checked separately from the admission and ownership regressions.
+
+
+### Notepad native header capture
+
+The public title API remains refused to preserve custom tabs. Only a new native
+window or the application's observed caption-color request grants native header
+ownership. Its readable DWM system-backdrop value is captured separately and
+restored with ownership checks. An older unknown caption remains native until
+reopened or an application request supplies a baseline. A separate empty-window
+comparison showed black with visible tabs/buttons and restored gray on disable;
+production startup, inactive, maximized and accessibility checks remain separate.
