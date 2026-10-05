@@ -499,4 +499,8 @@ ownership. Its readable DWM system-backdrop value is captured separately and
 restored with ownership checks. An older unknown caption remains native until
 reopened or an application request supplies a baseline. A separate empty-window
 comparison showed black with visible tabs/buttons and restored gray on disable;
-production startup, inactive, maximized and accessibility checks remain separate.
+production later-window checks showed black in active, inactive, maximized and
+restored states. The fresh-process first window still showed gray outside its
+tab island, so first startup remains unresolved. A readable-backdrop-only
+comparison made that strip accent red and was rejected; it supplies no caption
+restore value for an unknown window. Accessibility acceptance remains separate.

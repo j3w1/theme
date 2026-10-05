@@ -17,7 +17,9 @@ restores and uninstalls the port. There is no separate setup script.
 3. Reopen affected apps and check their appearance. Save documents first; setup
    does not close them. Notepad keeps its custom tab header and native window
    buttons; its caption API is excluded because it covers the tabs on this host.
-   The remaining gray Notepad header is an experimental limitation. Paint uses
+   A captured later window can have a black native header; the first window in
+   a fresh process can still have a gray strip outside its tabs. This startup
+   boundary remains an experimental limitation. Paint uses
    public colors on its recorded native title and retains the original nullable
    overrides for restoration.
    Paint's gray drawing workspace remains an experimental limitation.
@@ -298,4 +300,6 @@ every installed template or retained animation.
 Notepad's tabs remain in their native layout. The header correction requires a
 new window or a caption-color request from Notepad itself; an older window with
 an unknown previous color remains native. Save any desired text before reopening
-it. Setup and rollback never close your applications.
+it. A fresh-process check still showed a gray strip in its first window;
+reopening is not a guaranteed correction for that startup case. Setup and
+rollback never close your applications.

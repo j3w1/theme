@@ -1199,3 +1199,13 @@ disable restore the captured values. Public AppWindow/title-bar APIs remain
 entirely refused, and no window mode, style, geometry or document is changed.
 Paint retains its existing native-backdrop passthrough. Save desired documents
 before reopening an older Notepad window; setup does not close applications.
+
+The production later-window check showed black in active, inactive, maximized
+and restored states with visible custom tabs and native buttons. After closing
+all verified-empty agent test windows and confirming the process exited, the
+first window of a fresh production process still showed a gray native strip
+outside its tab island. This is a failed first-startup appearance check, not a
+complete startup correction. A separate readable-backdrop-only comparison
+turned that strip accent red, not black, and was rejected. Unknown write-only
+caption colors remain untouched; changing only the readable backdrop does not
+meet the black-header requirement. The production adapters were restored.
