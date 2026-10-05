@@ -38,7 +38,11 @@ test.describe("text-field", () => {
       await input.focus();
       await expect(input).toBeFocused();
     } catch(error) {
-      await testInfo.attach('text-field-focus-metadata',{contentType:'application/json',body:JSON.stringify(await input.evaluate(el=>({connected:el.isConnected,disabled:el.disabled,readOnly:el.readOnly,active:document.activeElement instanceof Element?{tag:document.activeElement.tagName,id:document.activeElement.id}:null,documentFocused:document.hasFocus(),ready:document.readyState,visibility:getComputedStyle(el).visibility,display:getComputedStyle(el).display,events:window.__j3w1TextFieldFocusTrace??[]})),null,2)});
+      try {
+        await testInfo.attach('text-field-focus-metadata',{contentType:'application/json',body:JSON.stringify(await input.evaluate(el=>({connected:el.isConnected,disabled:el.disabled,readOnly:el.readOnly,active:document.activeElement instanceof Element?{tag:document.activeElement.tagName,id:document.activeElement.id}:null,documentFocused:document.hasFocus(),ready:document.readyState,visibility:getComputedStyle(el).visibility,display:getComputedStyle(el).display,events:window.__j3w1TextFieldFocusTrace??[]})),null,2)});
+      } catch {
+        testInfo.annotations.push({type:'focus-diagnostic-unavailable',description:'Focus metadata could not be read or attached; the original assertion failure is retained.'});
+      }
       throw error;
     }
     // Read the palette only after the browser has rendered the real focus state.
