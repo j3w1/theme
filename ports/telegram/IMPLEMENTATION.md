@@ -51,7 +51,7 @@ Every upstream colour key is in exactly one of three states, and `tests/telegram
 <!-- coverage:start -->
 | Target | Keys | Mapped | Inherited | Unset | Legacy editor keys |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| Android | 819 | 667 | 85 | 67 | 77 |
+| Android | 819 | 666 | 86 | 67 | 77 |
 | Desktop | 586 | 452 | 89 | 45 | 0 |
 <!-- coverage:end -->
 
@@ -71,7 +71,7 @@ Non-colour keys (`wallpaperFileOffset`, `chat_wallpaper_gradient_rotation`, `cha
 | Message, body, composer and bot-keyboard text | `text.default` |
 | Names and chrome titles | `text.bright` |
 | Secondary text / timestamps / code comments | `text.muted` / `text.subtle` / `code.syntax.comment` |
-| Links, accents, read and verified ticks | `text.link`, `text.accent`, `text.accent-strong` |
+| Links, accents, read and verified ticks, list section headers | `text.link`, `text.accent`, `text.accent-strong` |
 | Filled buttons (send, FAB, attach, checkboxes), file and voice button circles, Android badges, Desktop sidebar and tray badges | `action.primary.*` |
 | Desktop chat-list badges | light pills: `text.accent-strong`, `text.default`, `text.muted`, with `text.on-light` counts |
 | Glyphs on selection, filled actions (file and voice buttons included) and media scrims | `interaction.selection.text`, `text.on-action` |
@@ -131,6 +131,7 @@ The same `https://t.me/addtheme/<slug>` link opens the matching document on each
 - **Window title bar.** On Windows, Telegram Desktop's title bar follows Telegram's palette only when Telegram draws its own frame. The system frame is drawn by Windows.
 - **Wallpaper.** Android draws a native two-colour gradient. Desktop scales a 1×2 image of the same two colours. Neither uses a pattern or animation.
 - **Host-controlled colours.** Translucent text and icons without an approved translucent role, chart data, Premium and story artwork, user colours and media keep Telegram's own colours.
+- **Android Settings icons.** Telegram Android 12.x paints the coloured squares behind the Settings icons from fixed gradients in its code (`IconBackgroundColors`, `SettingsActivity`), not from theme keys. They stay blue, orange, green and purple under every theme. On Desktop they are theme keys and use the action fill.
 - **Newer keys.** Keys Telegram adds after the pinned revisions use Telegram's light defaults until `keys.json` is refreshed.
 - **Desktop style-file colours.** Telegram Desktop's own `.style` files name a few more colours, such as `overviewFileExtFg`, that are not palette keys. They follow the palette key they point to, so the theme reaches them only through those keys, and the audit lists palette keys only.
 - **Accent settings.** A cloud theme that carries accent `settings` shows those settings on Android instead of its document. The publisher refuses such a theme at readback. On the Theme Editor route, the Android check on the device is what would reveal it.

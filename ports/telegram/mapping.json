@@ -75,7 +75,6 @@
       "android:dialogTopBackground",
       "android:dialogReactionMentionBackground",
       "android:windowBackgroundUnchecked",
-      "android:windowBackgroundWhiteBlueHeader",
       "android:windowBackgroundGray",
       "android:graySection",
       "android:returnToCallBackground",
@@ -701,14 +700,14 @@
       "android:chats_verifiedCheck",
       "android:profile_verifiedCheck",
       "android:chat_emojiPanelIconSelected",
-      "android:profile_tabSelectedText",
       "android:chats_menuItemCheck",
       "desktop:dialogsUnreadBg",
       "desktop:historyVideoMessageProgressFg",
       "android:chat_outBroadcast",
       "android:dialogProgressCircle",
       "android:chat_messagePanelPressedSend",
-      "android:chat_emojiPanelMasksIconSelected"
+      "android:chat_emojiPanelMasksIconSelected",
+      "android:windowBackgroundWhiteBlueHeader"
     ],
     "color.text.link": [
       "android:dialogTextLink",

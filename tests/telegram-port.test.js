@@ -159,6 +159,16 @@ test("file and voice buttons draw their icon on a dark-red circle on both client
   for (const side of ["in", "out"]) assert.deepEqual(android.get(`chat_${side}Loader`), desktop.get("msgFileOutBg"), `${side} circles match Desktop's file circles`);
 });
 
+test("Android list section headers are readable accent text, not a background colour", () => {
+  // HeaderCell draws every settings and list section title in
+  // windowBackgroundWhiteBlueHeader (pinned Cells/HeaderCell.java); despite its
+  // name it is a text colour. The owner saw "Help" vanish when it held a surface.
+  // Desktop's settings section titles use windowActiveTextFg; both match.
+  assert.equal(roleOf("android", "windowBackgroundWhiteBlueHeader"), "color.text.accent-strong");
+  assert.equal(roleOf("desktop", "windowActiveTextFg"), "color.text.accent-strong");
+  for (const bg of ["windowBackgroundWhite", "windowBackgroundGray"]) assert.ok(pairRatio("windowBackgroundWhiteBlueHeader", bg, "android").ratio >= 4.5, bg);
+});
+
 test("unknown, duplicate, nonColor, animated and ineligible keys fail before emission", () => {
   const add = (role, key) => { const clone = structuredClone(mapping); (clone.mappings[role] ??= []).push(key); return clone; };
   for (const key of ["android:not_a_key", "desktop:notAKey", "ios:windowBg", "android:chat_wallpaper:extra"]) assert.throws(() => telegramArtifacts({ ...args, mapping: add("color.text.default", key) }), /Unknown Telegram/);

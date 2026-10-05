@@ -32242,7 +32242,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-/Sw/461qyWoMEKzVpFmrW20ayIVv80OUy47rMumQjZU=",
+      "subjectDigest": "sha256-z2aJLOxablqlRDYjhUEAKAKzA3If/nGcNxV25QPxSqI=",
       "evidencePath": null,
       "surfaces": {
         "interface": {
@@ -32291,7 +32291,7 @@
           "path": "dist/j3w1.attheme",
           "install": "File install: open in Telegram for Android (or send to Saved Messages and tap), then Apply. The cloud link in the guide, when published, installs the same theme with automatic updates.",
           "source": "ports/telegram/dist/j3w1.attheme",
-          "digest": "sha256-YsREtL1lD2PZbKI0H42McWaJ+Gl77zzc8SdUAgoN9Qo="
+          "digest": "sha256-hPUGxe3MsVnc/B0ipgfndTpRERipoBWQ0HXsnwTG6pg="
         },
         {
           "path": "dist/j3w1.tdesktop-theme",
@@ -36370,7 +36370,6 @@
             "android:dialogTopBackground",
             "android:dialogReactionMentionBackground",
             "android:windowBackgroundUnchecked",
-            "android:windowBackgroundWhiteBlueHeader",
             "android:windowBackgroundGray",
             "android:graySection",
             "android:returnToCallBackground",
@@ -37053,14 +37052,14 @@
             "android:chats_verifiedCheck",
             "android:profile_verifiedCheck",
             "android:chat_emojiPanelIconSelected",
-            "android:profile_tabSelectedText",
             "android:chats_menuItemCheck",
             "desktop:dialogsUnreadBg",
             "desktop:historyVideoMessageProgressFg",
             "android:chat_outBroadcast",
             "android:dialogProgressCircle",
             "android:chat_messagePanelPressedSend",
-            "android:chat_emojiPanelMasksIconSelected"
+            "android:chat_emojiPanelMasksIconSelected",
+            "android:windowBackgroundWhiteBlueHeader"
           ],
           "value": "#f73f35",
           "eligibility": {
