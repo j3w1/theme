@@ -619,3 +619,13 @@ foreign roots and high contrast retain native styling. Updates and recovery use
 the existing single installer. Native admission/ownership tests and installed
 appearance remain separate checks; this does not resolve native composition
 strips or drawing-workspace colors.
+
+
+### Factory discovery admission and worker cleanup
+
+The shared Notepad, Paint and Terminal factory worker waits for the exact
+reviewed XAML runtime before initializing COM. An unsupported process needs
+neither activation factories nor COM's process-wide handle cache. Worker
+shutdown still joins the threads, closes their events and restores owned
+resources. Native lifecycle tests retain their exact handle-count assertion;
+no handle tolerance or shutdown sleep is added.

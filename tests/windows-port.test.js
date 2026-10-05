@@ -779,3 +779,11 @@ test('standard tooltip palettes use shared resources and loaded same-root popup 
   }
  }
 });
+
+test('chrome factory workers initialize COM only after exact runtime admission',()=>{
+ for(const app of ['notepad','paint','terminal']){
+  const text=fs.readFileSync(path.join(source,'dist/j3w1-'+app+'-chrome.wh.cpp'),'utf8');
+  assert.match(text,/void Wh_ModAfterInit[\s\S]*bool apartment=false;[\s\S]*if\(!ReviewedRuntime\(\)\)continue;[\s\S]*if\(!apartment\)\{init_apartment/);
+  assert.match(text,/if\(apartment\)uninit_apartment\(\);return 0;/);
+ }
+});

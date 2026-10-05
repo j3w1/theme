@@ -2,7 +2,7 @@
 // @id j3w1-paint-chrome
 // @name j3w1 Paint chrome
 // @description Exact-package Paint chrome resources; document and artwork colors remain native
-// @version 1.0.17
+// @version 1.0.18
 // @author j3w1
 // @include mspaint.exe
 // @architecture x86-64
@@ -2352,8 +2352,15 @@ static bool StartHooks() {
 }
 BOOL Wh_ModInit(){bool ready=ReviewedPackage()&&StartHooks();Log(253,ready,enabled.load());return ready;}
 void Wh_ModAfterInit(){StartRootDiscovery();Admit();discovery=CreateThread(nullptr,0,[](LPVOID)->DWORD{
- try{init_apartment(apartment_type::multi_threaded);try{for(unsigned i=0;i<50&&!factoryReady.load()&&WaitForSingleObject(stopDiscovery,100)==WAIT_TIMEOUT;i++)Admit();}catch(...){}uninit_apartment();}
- catch(hresult_error const& error){Log(7,static_cast<unsigned>(error.code().value));}catch(...){}return 0;
+ // An unsupported process has no factories to admit. Avoid initializing
+ // COM and its process-wide handle cache until the exact runtime is present.
+ bool apartment=false;
+ try{for(unsigned i=0;i<50&&!factoryReady.load()&&WaitForSingleObject(stopDiscovery,100)==WAIT_TIMEOUT;i++){
+  if(!ReviewedRuntime())continue;
+  if(!apartment){init_apartment(apartment_type::multi_threaded);apartment=true;}
+  Admit();
+ }}catch(hresult_error const& error){Log(7,static_cast<unsigned>(error.code().value));}catch(...){}
+ if(apartment)uninit_apartment();return 0;
  },nullptr,0,nullptr);}
 void Wh_ModUninit(){enabled=false;StopRootDiscovery();RestoreCaptions();SetEvent(stopDiscovery);if(discovery){WaitForSingleObject(discovery,INFINITE);CloseHandle(discovery);discovery=nullptr;}std::vector<HWND> copy;{std::lock_guard guard(channelMutex);copy=channels;}for(HWND window:copy)if(IsWindow(window))SendMessageW(window,dispatchMessage,1,0);CloseHandle(stopDiscovery);stopDiscovery=nullptr;for(auto& value:factoryIdentity)value=nullptr;for(auto& value:activationIdentity)value=nullptr;}
 void Wh_ModSettingsChanged(){enabled=Wh_GetIntSetting(L"enabled")!=0;if(enabled.load())RefreshRootDiscovery();RefreshCaptions();std::vector<HWND> copy;{std::lock_guard guard(channelMutex);copy=channels;}for(HWND window:copy)if(IsWindow(window))SendMessageW(window,dispatchMessage,0,0);}
