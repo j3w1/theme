@@ -2,7 +2,7 @@
 // @id j3w1-terminal-chrome
 // @name j3w1 Terminal chrome
 // @description Exact-package Terminal chrome resources; document and artwork colors remain native
-// @version 1.0.1
+// @version 1.0.2
 // @author j3w1
 // @include WindowsTerminal.exe
 // @architecture x86-64
@@ -380,6 +380,8 @@ static constexpr Rule rules[]={
  {L"SliderHeaderForeground",{255,233,148,153},L"color.text.default"},
  {L"SliderTickBarFill",{255,163,103,107},L"color.border.control"},
  {L"SliderInlineTickBarFill",{255,0,0,0},L"color.surface.input"},
+ {L"FlyoutPresenterBackground",{255,22,11,11},L"color.surface.raised"},
+ {L"FlyoutBorderThemeBrush",{255,229,57,53},L"color.border.overlay"},
 };
 static bool Same(Color a,Color b){return a.A==b.A&&a.R==b.R&&a.G==b.G&&a.B==b.B;}
 static bool Identity(ProjectedObject const& a,ProjectedObject const& b){
@@ -1323,7 +1325,7 @@ static bool StandardChrome(DependencyObject const& object) {
  return CompositeButtonChrome(std::wstring_view{get_class_name(object)})
   ||object.try_as<Windows::UI::Xaml::Controls::Primitives::ButtonBase>()
   ||object.try_as<MenuBarItem>()||object.try_as<MenuFlyoutItem>()||object.try_as<MenuFlyoutSubItem>()
-  ||object.try_as<MenuFlyoutPresenter>()||object.try_as<ToggleSwitch>()||object.try_as<ComboBox>()
+  ||object.try_as<MenuFlyoutPresenter>()||object.try_as<FlyoutPresenter>()||object.try_as<ToggleSwitch>()||object.try_as<ComboBox>()
   ||object.try_as<ListViewItem>()
 #if !J3W1_LEGACY_XAML
   ||object.try_as<Expander>()
@@ -1603,6 +1605,7 @@ static void Track(UIElement const& content,DesktopWindowXamlSource const& source
 
 static bool PopupChromeClass(std::wstring_view type) noexcept {
  return type==L"Windows.UI.Xaml.Controls.MenuFlyoutPresenter"
+  ||type==L"Windows.UI.Xaml.Controls.FlyoutPresenter"
   ||type==L"Windows.UI.Xaml.Controls.MenuFlyoutItem"
   ||type==L"Windows.UI.Xaml.Controls.MenuFlyoutSubItem";
 }

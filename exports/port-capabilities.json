@@ -37750,7 +37750,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-f6UBogck2VvDQvG9tE+LHy9pabFJe2975OkNNjAlqnY=",
+      "subjectDigest": "sha256-/QGyZ1S8lhlQJxtLqOeCBo/AbhOu6pVAvPCSVMTk05E=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37783,7 +37783,7 @@
           "path": "dist/windows-settings.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-settings.json",
-          "digest": "sha256-nztZGylZNAAjbIIgPQz2PzCDGH68fU9gYDiSiEKaBtw="
+          "digest": "sha256-60PfKyOVjw8MdNUXfuJPK9B4I2Lcg5icphfC4w1JlTI="
         },
         {
           "path": "dist/terminal-fragment.json",
@@ -37957,7 +37957,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-Wi/x31BEvuF1CM0/CFvwNWBJ2C7nm46XXLFX/locIG8="
+          "digest": "sha256-QwePNiT8qx8z9kgoj79G+ygMVBw0lM2hRFjIbJq6gts="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
@@ -38041,7 +38041,7 @@
           "path": "dist/j3w1-notepad-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-notepad-chrome.wh.cpp",
-          "digest": "sha256-Cppw/2APgElK9+YgFQvLmgC/lbwzU8HJkCUhM8ZuBGw="
+          "digest": "sha256-p/FCCfuXE2mSCp5CGftCKVBIXQgOmv8BHrE1Fx3DQcs="
         },
         {
           "path": "dist/j3w1-notepad-chrome.json",
@@ -38053,7 +38053,7 @@
           "path": "dist/j3w1-paint-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-paint-chrome.wh.cpp",
-          "digest": "sha256-+27X1CNmPZSnah/TXEf2GquwwZVz3AUh6IzIwOWtMZk="
+          "digest": "sha256-SarAQDrN2NmIvRDS37fMzILV1K7+1nsX/GZ5VhMwoXU="
         },
         {
           "path": "dist/j3w1-paint-chrome.json",
@@ -38065,7 +38065,7 @@
           "path": "dist/j3w1-terminal-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-terminal-chrome.wh.cpp",
-          "digest": "sha256-ke8geFr9lo0shEwO5rH+rW6eoDT3W2nv7sAZMe9TlSA="
+          "digest": "sha256-ph6CutU3OBxXmXvnfNNdFcm+NZLK4ibW2tsM7VoDVIs="
         },
         {
           "path": "dist/j3w1-terminal-chrome.json",
@@ -38942,7 +38942,10 @@
             "terminal-chrome.resource.SurfaceStrokeColorFlyoutBrush",
             "terminal-chrome.resource.KeyTipBorderBrush",
             "terminal-chrome.resource.ComboBoxDropDownBorderBrush",
-            "windows-11-settings-styler | CalendarView | BorderBrush"
+            "windows-11-settings-styler | CalendarView | BorderBrush",
+            "notepad-chrome.resource.FlyoutBorderThemeBrush",
+            "paint-chrome.resource.FlyoutBorderThemeBrush",
+            "terminal-chrome.resource.FlyoutBorderThemeBrush"
           ],
           "value": "#e53935",
           "eligibility": {
@@ -42637,7 +42640,10 @@
             "terminal-chrome.resource.KeyTipBackground",
             "terminal-chrome.resource.ComboBoxDropDownBackground",
             "terminal-chrome.resource.ComboBoxItemBackground",
-            "windows-11-settings-styler | CalendarView | Background"
+            "windows-11-settings-styler | CalendarView | Background",
+            "notepad-chrome.resource.FlyoutPresenterBackground",
+            "paint-chrome.resource.FlyoutPresenterBackground",
+            "terminal-chrome.resource.FlyoutPresenterBackground"
           ],
           "value": "#160b0b",
           "eligibility": {

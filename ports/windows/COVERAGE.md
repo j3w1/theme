@@ -580,3 +580,23 @@ Disable/unload repaints the original backing without inventing a restore value.
 The same bundled adapter participates in the existing single-script lifecycle.
 A private comparison showed a black initial large Markdown frame; final
 generated-candidate installation and recovery acceptance remain separate checks.
+
+
+### Standard flyout frames
+
+A read-only installed Notepad trace identified its formatting overflow as a
+standard FlyoutPresenter with the native acrylic FlyoutPresenterBackground.
+The shared chrome adapter now admits that class through the existing loaded,
+same-XamlRoot popup path. Its local resource receipt maps
+FlyoutPresenterBackground to the raised surface and FlyoutBorderThemeBrush to
+the overlay border. Microsoft defines both keys in the pinned
+[FlyoutPresenter template](https://github.com/microsoft/microsoft-ui-xaml/blob/8027ff4af619eb470fab63bf4609c6404ee73e17/dev/CommonStyles/FlyoutPresenter_themeresources.xaml).
+
+This uses the existing per-control resource refresh and restoration path in
+Notepad, Paint and Terminal. Commands, content, native visual states, geometry,
+caption layout and document/artwork surfaces are preserved. Unsupported roots
+and runtime identities are refused; high contrast restores native ownership.
+The same single installer updates and rolls back the generated adapters.
+Installed appearance and recovery remain separate from compiled admission and
+ownership tests. The gray first-window Notepad strip and Paint drawing
+workspace remain unresolved.

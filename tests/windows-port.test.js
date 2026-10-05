@@ -750,3 +750,17 @@ test('Windows target versions describe every exact compatibility candidate witho
  assert.deepEqual(port.targetVersions,host.compatibility.map(entry=>entry.build+'.'+entry.ubr));
  assert.equal(port.status,'experimental');assert.deepEqual(port.testedVersions,[]);
 });
+
+test('standard flyout frames wire canonical resources into generated chrome adapters',async()=>{
+ const host=await readJson('ports/windows/host.json'),mapping=await readJson('ports/windows/mapping.json');
+ const roles={FlyoutPresenterBackground:'color.surface.raised',FlyoutBorderThemeBrush:'color.border.overlay'};
+ for(const [key,role] of Object.entries(roles)){
+  assert.equal(host.winuiChromeResources[key],role);
+  for(const app of ['notepad','paint','terminal']){
+   assert.ok(mapping.mappings[role].includes(app+'-chrome.resource.'+key));
+   const text=fs.readFileSync(path.join(source,'dist/j3w1-'+app+'-chrome.wh.cpp'),'utf8');
+   assert.match(text,new RegExp('L"'+key+'"'));
+   assert.match(text,/object.try_as<FlyoutPresenter>\(\)/);
+  }
+ }
+});

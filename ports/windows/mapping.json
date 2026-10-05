@@ -748,7 +748,10 @@
       "terminal-chrome.resource.KeyTipBackground",
       "terminal-chrome.resource.ComboBoxDropDownBackground",
       "terminal-chrome.resource.ComboBoxItemBackground",
-      "windows-11-settings-styler | CalendarView | Background"
+      "windows-11-settings-styler | CalendarView | Background",
+      "notepad-chrome.resource.FlyoutPresenterBackground",
+      "paint-chrome.resource.FlyoutPresenterBackground",
+      "terminal-chrome.resource.FlyoutPresenterBackground"
     ],
     "color.border.control": [
       "powertoys.border",
@@ -1129,7 +1132,10 @@
       "terminal-chrome.resource.SurfaceStrokeColorFlyoutBrush",
       "terminal-chrome.resource.KeyTipBorderBrush",
       "terminal-chrome.resource.ComboBoxDropDownBorderBrush",
-      "windows-11-settings-styler | CalendarView | BorderBrush"
+      "windows-11-settings-styler | CalendarView | BorderBrush",
+      "notepad-chrome.resource.FlyoutBorderThemeBrush",
+      "paint-chrome.resource.FlyoutBorderThemeBrush",
+      "terminal-chrome.resource.FlyoutBorderThemeBrush"
     ],
     "border.width.default": [
       "windows-11-start-menu-styler | Border#AcrylicBorder | BorderThickness",

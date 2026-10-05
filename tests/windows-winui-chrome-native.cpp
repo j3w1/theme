@@ -367,14 +367,14 @@ int main(int argc, char** argv) {
         puts("PASS: native backdrop requests preserved in active and inactive adapter states");return 0;
     }
     if(strcmp(argv[1], "discovery-admission") == 0) {
-        for(auto popup:{L"Microsoft.UI.Xaml.Controls.MenuFlyoutPresenter",L"Microsoft.UI.Xaml.Controls.MenuFlyoutItem",L"Microsoft.UI.Xaml.Controls.MenuFlyoutSubItem"}) {
+        for(auto popup:{L"Microsoft.UI.Xaml.Controls.MenuFlyoutPresenter",L"Microsoft.UI.Xaml.Controls.MenuFlyoutItem",L"Microsoft.UI.Xaml.Controls.MenuFlyoutSubItem",L"Microsoft.UI.Xaml.Controls.FlyoutPresenter"}) {
             assert(PopupDiscoveryAdmission(popup,true,true,true,true));
             assert(!PopupDiscoveryAdmission(popup,false,true,true,true));
             assert(!PopupDiscoveryAdmission(popup,true,false,true,true));
             assert(!PopupDiscoveryAdmission(popup,true,true,false,true));
             assert(!PopupDiscoveryAdmission(popup,true,true,true,false));
         }
-        for(auto rejected:{L"PaintUI.D2DSwapChainPanel",L"PaintUI.ColorRadioButton",L"NotepadXamlUI.Document",L"Microsoft.UI.Xaml.Controls.Grid",L"Microsoft.UI.Xaml.Controls.MenuFlyoutPresenterExtra"})
+        for(auto rejected:{L"PaintUI.D2DSwapChainPanel",L"PaintUI.ColorRadioButton",L"NotepadXamlUI.Document",L"Microsoft.UI.Xaml.Controls.Grid",L"Microsoft.UI.Xaml.Controls.MenuFlyoutPresenterExtra",L"Microsoft.UI.Xaml.Controls.FlyoutPresenterExtra"})
             assert(!PopupDiscoveryAdmission(rejected,true,true,true,true));
 #if J3W1_TEST_PAINT
         assert(DiscoveryAdmission(L"PaintUI.AppChrome",true,true));
