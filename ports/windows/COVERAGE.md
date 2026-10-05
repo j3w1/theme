@@ -49,7 +49,7 @@ rose border. Other Search states and accessibility acceptance remain open.
 | Notepad | Bundled exact-package WinUI chrome resource adapter plus the RichEdit-binary editor adapter | A fresh sample window showed black/rose, native gray/white on disable, and the same unmodified character count. Native regressions cover ordinary glyph paint, color emoji, background restoration, high contrast and worker shutdown. Fresh-window chrome checks showed black tabs/toolbar/status regions, rose labels, a dark-red popup and red/rose keyboard focus. Existing chrome is discovered through the exact-runtime diagnostics bridge; full hover, startup and accessibility acceptance remain open |
 | Calculator | Bundled package-gated Windows.UI.Xaml brush adapter for the recorded 11.2607.0.0 package | Bounded Scientific-mode black/rose and disable/reapply were observed. Native worker shutdown and a deliberate post-apply restoration fault passed. Other modes, final installer startup and live accessibility acceptance remain open; graph-series brushes are excluded |
 | Paint | Exact-package WinUI chrome adapter sharing Notepad ownership and existing-root discovery | Named ribbon, toolbar and layer roots use token-derived resources; drawing controls, artwork and swatches remain excluded. Live behavior and restoration acceptance remain open |
-| Terminal | Native generated scheme, font and opaque chrome | Owner confirmed appearance; command output can intentionally choose other colors |
+| Terminal | Native generated scheme, font and opaque chrome, plus an exact-package legacy-XAML tab/menu adapter | Owner confirmed the earlier general appearance; the new native-menu path needs rendered acceptance. Command output can intentionally choose other colors |
 | PowerToys utilities | Configurable FancyZones, Always On Top and Command Palette appearance | Command Palette exposes tint, not every text role |
 | Obsidian | Separate j3w1 CSS/manifest port | Installed pair readback is separate from Windows installation; third-party plugin surfaces may override it |
 | Orca, Warp, Ghostty, Codex CLI, Claude Code and ChatGPT Appearance | Separate repository ports | Import only through the corresponding port guide; the Windows installer does not claim these imports |
@@ -504,3 +504,51 @@ restored states. The fresh-process first window still showed gray outside its
 tab island, so first startup remains unresolved. A readable-backdrop-only
 comparison made that strip accent red and was rejected; it supplies no caption
 restore value for an unknown window. Accessibility acceptance remains separate.
+
+### Cached app button states
+
+Recorded Notepad templates retained neutral brushes in zero-time object
+keyframes after local resource overrides. Paint also retained neutral brushes
+in CommonStates setters on menu and toolbar controls. The shared correction
+exchanges only admitted brush keyframes and public, unsealed brush setters with
+a resolved target inside their owning control. Original objects and expressions
+are retained. Color clocks are stopped before exchange and the current native
+state is restored. Unknown timelines, sealed collections, unresolved targets,
+non-color properties and document/artwork subtrees remain native.
+
+Calculator generates the same implementation for standard dropdown, button and
+repeat-button controls. Its calculation buttons keep their specialized adapter.
+Disable, high contrast and cleanup restore still-owned objects, preserve later
+app replacements and retain failed restoration for retry. Compiled ownership
+regressions do not establish live hover, pointer-exit or keyboard-focus acceptance.
+
+### Shared shell button resources
+
+The shell stylers supply normal, hover, pressed, disabled and supported checked
+Button, SubtleButton, SplitButton, DropDownButton and AccentButton brush aliases.
+Settings also uses the square-corner role for its native button classes. These
+mappings cover control families instead of naming the Windows Update command;
+they retain commands, dimensions and disabled state. The existing styler
+lifecycle owns restoration. Cached shell templates and the reported Update
+split button still require a rendered check after installation.
+
+### Composition backing, tooltip and Terminal candidates
+
+Notepad's public composition-backing path retains the exact nullable original
+brush and verifies UI-thread/HWND ownership before writing or restoring. Later
+app changes are preserved and failed recovery stays retryable. It leaves native
+caption layout and Paint's backdrop untouched. Synthetic restoration checks
+passed; the first-window gray-strip requirement still needs a rendered check.
+
+Explorer's standard clipped-name tooltip now has an owner-scoped native paint
+path. Offscreen checks cover ownership refusal, black surface, canonical edge
+and rose text, clipping, high contrast and passthrough. The actual sidebar popup
+remains an open visual acceptance check.
+
+Terminal's new exact-package legacy-XAML adapter uses the shared chrome
+resources and cached-state restoration only for its tab row and associated
+native menus. Terminal output, command palette and suggestions are excluded.
+Synthetic boundary, ownership and worker-shutdown checks passed; real menus,
+startup and focus acceptance remain unverified. All three additions share the
+existing single-script installation and recovery journal. The candidate stays
+draft while the owner requirements remain unresolved.

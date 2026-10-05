@@ -19,9 +19,23 @@
 #include <dwmapi.h>
 #include <ocidl.h>
 #include <xamlom.h>
+#define J3W1_LEGACY_XAML @LEGACY_XAML@
 #undef GetCurrentTime
 #include <winrt/Windows.Foundation.h>
 #include <winrt/Windows.Foundation.Collections.h>
+#include <winrt/Windows.UI.Composition.h>
+#if J3W1_LEGACY_XAML
+#include <winrt/Windows.System.h>
+#include <winrt/Windows.UI.Core.h>
+#include <winrt/Windows.UI.Xaml.h>
+#include <winrt/Windows.UI.Xaml.Hosting.h>
+#include <winrt/Windows.UI.Xaml.Controls.h>
+#include <winrt/Windows.UI.Xaml.Controls.Primitives.h>
+#include <winrt/Windows.UI.Xaml.Shapes.h>
+#include <winrt/Windows.UI.Xaml.Markup.h>
+#include <winrt/Windows.UI.Xaml.Media.h>
+#include <winrt/Windows.UI.Xaml.Media.Animation.h>
+#else
 #include <winrt/Microsoft.UI.Xaml.h>@PUBLIC_CAPTION_INCLUDE@
 #include <winrt/Microsoft.UI.Dispatching.h>
 #include <winrt/Microsoft.UI.Xaml.Hosting.h>
@@ -30,6 +44,9 @@
 #include <winrt/Microsoft.UI.Xaml.Shapes.h>
 #include <winrt/Microsoft.UI.Xaml.Markup.h>
 #include <winrt/Microsoft.UI.Xaml.Media.h>
+#include <winrt/Microsoft.UI.Xaml.Media.Animation.h>
+#include <winrt/Microsoft.UI.Composition.h>
+#endif
 #include <deque>
 #include <array>
 #include <vector>
@@ -57,6 +74,13 @@ static bool Identity(ProjectedObject const& a,ProjectedObject const& b){
 }
 static bool HighContrast(){HIGHCONTRASTW value{sizeof(value)};
  return !SystemParametersInfoW(SPI_GETHIGHCONTRAST,sizeof(value),&value,0)||(value.dwFlags&HCF_HIGHCONTRASTON);}
+static bool ChromeUiThread(FrameworkElement const& element) {
+#if J3W1_LEGACY_XAML
+ return element&&element.Dispatcher().HasThreadAccess();
+#else
+ return element&&element.DispatcherQueue().HasThreadAccess();
+#endif
+}
 static std::atomic<int> runtimeStatus{0};
 static bool ReviewedPackage(){
     UINT32 length=0;
@@ -66,14 +90,8 @@ static bool ReviewedPackage(){
     for(auto allowed:{L"@PACKAGE_FULL_NAME@"})if(wcscmp(name.data(),allowed)==0)return true;
     return false;
 }
-static bool ReviewedRuntime(){
-    if(int status=runtimeStatus.load())return status==1;
-    auto module=GetModuleHandleW(L"Microsoft.UI.Xaml.dll");if(!module)return false;
-    wchar_t path[32768]{};DWORD length=GetModuleFileNameW(module,path,std::size(path));
-    if(!length||length>=std::size(path))return false;
-    std::wstring name=path;
-    if(name.find(L"\\@RUNTIME_PACKAGE@\\")==std::wstring::npos){runtimeStatus=-1;return false;}
-    HANDLE file=CreateFileW(path,GENERIC_READ,FILE_SHARE_READ,nullptr,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,nullptr);
+static bool RuntimeFileDigest(std::wstring const& path,const char* expected) {
+    HANDLE file=CreateFileW(path.c_str(),GENERIC_READ,FILE_SHARE_READ,nullptr,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,nullptr);
     if(file==INVALID_HANDLE_VALUE)return false;
     BCRYPT_ALG_HANDLE algorithm=nullptr;BCRYPT_HASH_HANDLE hash=nullptr;
     DWORD size=0,written=0;std::vector<BYTE> object;BYTE digest[32]{};bool valid=false;
@@ -87,20 +105,50 @@ static bool ReviewedRuntime(){
             if(complete&&BCryptFinishHash(hash,digest,sizeof(digest),0)>=0){
                 constexpr char hex[]="0123456789abcdef";std::string actual;
                 for(BYTE byte:digest){actual+=hex[byte>>4];actual+=hex[byte&15];}
-                valid=actual=="@RUNTIME_SHA256@";
+                valid=actual==expected;
             }
         }
     }
     if(hash)BCryptDestroyHash(hash);if(algorithm)BCryptCloseAlgorithmProvider(algorithm,0);CloseHandle(file);
+    return valid;
+}
+static bool ReviewedRuntime(){
+    if(int status=runtimeStatus.load())return status==1;
+    auto module=GetModuleHandleW(L"@XAML_MODULE@");if(!module)return false;
+    wchar_t path[32768]{};DWORD length=GetModuleFileNameW(module,path,std::size(path));
+    if(!length||length>=std::size(path))return false;
+    std::wstring name=path;
+#if J3W1_LEGACY_XAML
+    wchar_t system[32768]{};auto systemLength=GetSystemDirectoryW(system,std::size(system));
+    if(!systemLength||systemLength>=std::size(system)||_wcsicmp(name.c_str(),(std::wstring(system)+L"\\@XAML_MODULE@").c_str())){runtimeStatus=-1;return false;}
+#else
+    if(name.find(L"\\@RUNTIME_PACKAGE@\\")==std::wstring::npos){runtimeStatus=-1;return false;}
+#endif
+    bool valid=RuntimeFileDigest(path,"@RUNTIME_SHA256@");
+#if J3W1_LEGACY_XAML
+    auto controls=GetModuleHandleW(L"Microsoft.UI." L"Xaml.dll");if(!controls)return false;
+    wchar_t controlsPath[32768]{};auto controlsLength=GetModuleFileNameW(controls,controlsPath,std::size(controlsPath));
+    if(!controlsLength||controlsLength>=std::size(controlsPath))return false;
+    if(std::wstring(controlsPath).find(L"\\@CONTROLS_PACKAGE@\\")==std::wstring::npos)valid=false;
+    else valid=RuntimeFileDigest(controlsPath,"@CONTROLS_SHA256@")&&valid;
+#endif
     runtimeStatus=valid?1:-1;return valid;
 }
 
 static Windows::Foundation::IActivationFactory Factory(wchar_t const* name) {
+#if J3W1_LEGACY_XAML
+ Windows::Foundation::IActivationFactory factory{nullptr};hstring type=name;
+ auto module=GetModuleHandleW(L"combase.dll");
+ auto getFactory=reinterpret_cast<HRESULT(WINAPI*)(void*,REFIID,void**)>(module?GetProcAddress(module,"RoGetActivationFactory"):nullptr);
+ if(!getFactory)throw hresult_error(E_NOINTERFACE);
+ check_hresult(getFactory(get_abi(type),reinterpret_cast<GUID const&>(guid_of<Windows::Foundation::IActivationFactory>()),reinterpret_cast<void**>(put_abi(factory))));return factory;
+#else
  auto module=GetModuleHandleW(L"Microsoft.UI.Xaml.dll");
  auto getFactory=reinterpret_cast<HRESULT(WINAPI*)(void*,void**)>(module?GetProcAddress(module,"DllGetActivationFactory"):nullptr);
  if(!getFactory)throw hresult_error(E_NOINTERFACE);
  Windows::Foundation::IActivationFactory factory{nullptr};hstring type=name;
  check_hresult(getFactory(get_abi(type),put_abi(factory)));return factory;
+#endif
 }
 
 
@@ -196,7 +244,11 @@ static bool RestoreControlResources(ControlResources& entry) noexcept {
  return restored;
 }
 
-struct Root { weak_ref<FrameworkElement> element; weak_ref<FrameworkElement> backgroundElement; weak_ref<DesktopWindowXamlSource> source; weak_ref<Window> window; event_token layout{}; ResourceDictionary owner{nullptr},overlay{nullptr}; ProjectedObject themeBefore{nullptr}; bool themeTouched=false; SystemBackdrop backdropBefore{nullptr}; bool backdropTracked=false; DependencyProperty backgroundProperty{nullptr}; ProjectedObject backgroundBefore{nullptr}; SolidColorBrush backgroundApplied{nullptr}; std::vector<Palette> palette; std::vector<Visual> changes; std::deque<OwnedThemeRefresh> refreshes; std::deque<ControlResources> controls; };
+struct Root { weak_ref<FrameworkElement> element; weak_ref<FrameworkElement> backgroundElement; weak_ref<DesktopWindowXamlSource> source; weak_ref<Window> window; event_token layout{}; ResourceDictionary owner{nullptr},overlay{nullptr}; ProjectedObject themeBefore{nullptr}; bool themeTouched=false;
+#if !J3W1_LEGACY_XAML
+ SystemBackdrop backdropBefore{nullptr}; bool backdropTracked=false;
+#endif
+ DependencyProperty backgroundProperty{nullptr}; ProjectedObject backgroundBefore{nullptr}; SolidColorBrush backgroundApplied{nullptr}; std::vector<Palette> palette; std::vector<Visual> changes; std::deque<OwnedThemeRefresh> refreshes; std::deque<ControlResources> controls; };
 struct PendingRoot { weak_ref<FrameworkElement> element; unsigned attempts=0; };
 // Readable caption customization is admitted separately from the XAML roots.
 // Extended title content is refused so native tabs and drag geometry remain
@@ -243,8 +295,18 @@ static bool ApplyNativeBrush(std::vector<OwnedNativeBrush>& entries,SolidColorBr
  return UpdateNativeBrush(entries.back(),target,true,[&]{return brush.Color();},[&](Color c){brush.Color(c);},failure);
 }
 
-@PUBLIC_CAPTION_DECLARATIONS@struct ThreadState { @PUBLIC_CAPTION_STATE@ ControlResources keyTips; HWND channel=nullptr; WNDPROC original=nullptr; std::deque<Root> roots; std::vector<OwnedNativeBrush> nativeBrushes; std::vector<PendingRoot> pending; bool busy=false,queued=false,cleaning=false; unsigned ticks=0; };
+@CHROME_COLOR_STATE@
+@WINDOW_BACKING_DECLARATIONS@
+
+@PUBLIC_CAPTION_DECLARATIONS@struct ThreadState {
+@PUBLIC_CAPTION_STATE@
+#if !J3W1_LEGACY_XAML
+ std::vector<std::unique_ptr<WindowBacking>> windowBackings;
+#endif
+ ControlResources keyTips; std::deque<ChromeAnimationChange> animations; std::deque<ChromeSetterChange> setters; HWND channel=nullptr; WNDPROC original=nullptr; std::deque<Root> roots; std::vector<OwnedNativeBrush> nativeBrushes; std::vector<PendingRoot> pending; bool busy=false,queued=false,cleaning=false; unsigned ticks=0; };
 static thread_local ThreadState* uiState=nullptr;
+static bool EnsureChannel();
+static void Schedule();
 // Core-created keyboard badges resolve Application.Resources directly, outside
 // the admitted chrome element tree. Only the three documented color keys are
 // application scoped. Exactly one UI thread owns these restorable entries.
@@ -346,6 +408,7 @@ static bool Restore(Root& root) {
  auto element=root.backgroundElement.get();
  bool backgroundOwned=false;
  try{backgroundOwned=element&&root.backgroundApplied&&Identity(element.GetValue(root.backgroundProperty),root.backgroundApplied);}catch(...){restored=false;}
+#if !J3W1_LEGACY_XAML
  if(root.backdropTracked)try {
   WithAttachedSource(root.source.get(),[&](auto const& source){
    if(!source.SystemBackdrop())source.SystemBackdrop(root.backdropBefore);
@@ -353,6 +416,7 @@ static bool Restore(Root& root) {
   if(auto window=root.window.get();window&&!window.SystemBackdrop())window.SystemBackdrop(root.backdropBefore);
   root.backdropTracked=false;root.backdropBefore=nullptr;
  }catch(...){restored=false;}
+#endif
  if(root.owner&&root.overlay)try {
   auto merged=root.owner.MergedDictionaries();unsigned index=0;
   if(merged.IndexOf(root.overlay,index))merged.RemoveAt(index);
@@ -379,6 +443,11 @@ static bool Restore(Root& root) {
 // Public backdrop access is read/write. Retain the exact object, and restore
 // only while our null remains installed; a later app-owned backdrop wins.
 static void ApplyBackdrop(Root& root) {
+#if !J3W1_LEGACY_XAML
+ // The window composition backing has its own readable baseline. Do not
+ // clear its XAML backdrop controller through a second resource-root owner.
+ if(@NATIVE_CAPTION_BACKDROP@&&uiState)if(auto window=root.window.get())
+  for(auto const& entry:uiState->windowBackings)if(OwnsWindowBacking(*entry)&&Identity(window,entry->target))return;
  if(root.backdropTracked)return;
  if(auto source=root.source.get()) {
   WithAttachedSource(source,[&](auto const& attached){
@@ -387,6 +456,7 @@ static void ApplyBackdrop(Root& root) {
  } else if(auto window=root.window.get()) {
   if(auto value=window.SystemBackdrop()) {root.backdropBefore=value;window.SystemBackdrop(nullptr);root.backdropTracked=true;}
  }
+#endif
 }
 
 // The inspected islands wrap their app-owned content in a scrolling viewport.
@@ -481,6 +551,8 @@ static bool Prepare(Root& root) {
 }
 static bool DataSubtree(DependencyObject const& object) {
  auto type=get_class_name(object);
+ if(type==L"Microsoft.Terminal.Control.TermControl"||type==L"TerminalApp.TerminalPage"
+   ||type==L"TerminalApp.CommandPalette"||type==L"TerminalApp.SuggestionsControl")return true;
  std::wstring_view name{type};
  if(name.find(L"ColorPicker")!=std::wstring_view::npos||name.find(L"CanvasControl")!=std::wstring_view::npos||name.find(L"InkCanvas")!=std::wstring_view::npos
    ||name==L"PaintUI.D2DSwapChainPanel"||name==L"PaintUI.ColorRadioButton"||name==L"PaintUI.ItemHoverGridView")return true;
@@ -658,14 +730,18 @@ static bool PruneRetiredControls(Root& root) {
 // SplitButton owns the state backgrounds above its two ButtonBase children.
 // Override its own resource scope while keeping the native state setters.
 static bool CompositeButtonChrome(std::wstring_view type) {
- return type==L"Microsoft.UI.Xaml.Controls.SplitButton";
+ return type==L"Microsoft.UI.Xaml.Controls.SplitButton"||type==L"Windows.UI.Xaml.Controls.SplitButton";
 }
 static bool StandardChrome(DependencyObject const& object) {
  return CompositeButtonChrome(std::wstring_view{get_class_name(object)})
   ||object.try_as<Microsoft::UI::Xaml::Controls::Primitives::ButtonBase>()
   ||object.try_as<MenuBarItem>()||object.try_as<MenuFlyoutItem>()||object.try_as<MenuFlyoutSubItem>()
   ||object.try_as<MenuFlyoutPresenter>()||object.try_as<ToggleSwitch>()||object.try_as<ComboBox>()
-  ||object.try_as<ListViewItem>()||object.try_as<Expander>()||object.try_as<Slider>()||object.try_as<TextBlock>()||object.try_as<IconElement>();
+  ||object.try_as<ListViewItem>()
+#if !J3W1_LEGACY_XAML
+  ||object.try_as<Expander>()
+#endif
+  ||object.try_as<Slider>()||object.try_as<TextBlock>()||object.try_as<IconElement>();
 }
 static void RefreshChromeControl(Root& root,DependencyObject const& object) {
  if(!StandardChrome(object))return;
@@ -753,6 +829,7 @@ static void Bridge(Root& root) {
  while(!stack.empty()&&count++<4096) {
   auto object=stack.back();stack.pop_back();if(DataSubtree(object))continue;
   RefreshChromeControl(root,object);
+  if(uiState)ApplyChromeAnimationPalette(object,uiState->animations,uiState->setters);
   if(object.try_as<Control>()) {
    apply(object,Control::BackgroundProperty(),Kind::Background);apply(object,Control::ForegroundProperty(),Kind::Foreground);apply(object,Control::BorderBrushProperty(),Kind::Border);
   }
@@ -777,10 +854,13 @@ static void Bridge(Root& root) {
 static bool RootCandidateClass(std::wstring_view name);
 static void Track(UIElement const& content,DesktopWindowXamlSource const& source,Window const& window=nullptr);
 
-@PUBLIC_CAPTION_IMPLEMENTATION@static void Refresh(ThreadState& state) noexcept {
+@PUBLIC_CAPTION_IMPLEMENTATION@
+@WINDOW_BACKING_IMPLEMENTATION@
+static void Refresh(ThreadState& state) noexcept {
  if(state.busy)return;state.busy=true;state.queued=false;
 @PUBLIC_CAPTION_REFRESH@ const bool active=enabled.load()&&!HighContrast();
- if(!active){RestoreKeyTips(state);RestoreNativeBrushes(state.nativeBrushes);}
+ if(!RefreshWindowBackings(state,active))Log(237);
+ if(!active){RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);RestoreKeyTips(state);RestoreNativeBrushes(state.nativeBrushes);}
  else if(!state.roots.empty())ApplyKeyTips(state);
  for(auto it=state.pending.begin();it!=state.pending.end();) {
   bool finished=!enabled.load()||HighContrast();
@@ -796,11 +876,11 @@ static void Track(UIElement const& content,DesktopWindowXamlSource const& source
   auto& root=state.roots[at];
   if(!enabled.load()||HighContrast()||!root.element.get())Restore(root);
   else if(auto element=root.element.get();element&&element.IsLoaded()&&element.XamlRoot()
-    &&element.DispatcherQueue().HasThreadAccess()&&Prepare(root)) {
+    &&ChromeUiThread(element)&&Prepare(root)) {
    ApplyBackdrop(root);ApplyRootBackground(root);Bridge(root);
   }
- }catch(hresult_error const& error){Log(98,static_cast<unsigned>(error.code().value));Restore(state.roots[at]);}
- catch(...){Log(97);Restore(state.roots[at]);}
+ }catch(hresult_error const& error){Log(98,static_cast<unsigned>(error.code().value));RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);Restore(state.roots[at]);}
+ catch(...){Log(97);RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);Restore(state.roots[at]);}
  for(auto it=state.roots.begin();it!=state.roots.end();) {
   if(!it->element.get()&&Restore(*it))it=state.roots.erase(it);else ++it;
  }
@@ -815,7 +895,10 @@ static void Schedule() {
 [[clang::no_destroy]] static std::vector<ThreadState*> retiredCleanup;
 static bool RestoreThreadState(ThreadState& state) noexcept {
 @PUBLIC_CAPTION_RESTORE@ bool restored=RestoreKeyTips(state)@PUBLIC_CAPTION_RESTORE_RESULT@;
+ restored=RefreshWindowBackings(state,false)&&restored;
  restored=RestoreNativeBrushes(state.nativeBrushes)&&restored;
+ restored=RestoreChromeAnimations(state.animations)&&restored;
+ restored=RestoreChromeSetters(state.setters)&&restored;
  for(auto& root:state.roots) {
   if(root.layout.value)try {
    if(auto element=root.element.get())element.LayoutUpdated(root.layout);
@@ -907,7 +990,7 @@ static void ObservePopupChrome(FrameworkElement const& element) {
  auto type=get_class_name(element);
  for(auto& root:uiState->roots) {
   auto owner=root.element.get();if(!owner||root.palette.empty())continue;
-  if(!PopupDiscoveryAdmission(std::wstring_view{type},element.DispatcherQueue().HasThreadAccess(),enabled.load(),element.IsLoaded(),Identity(owner.XamlRoot(),xaml)))continue;
+  if(!PopupDiscoveryAdmission(std::wstring_view{type},ChromeUiThread(element),enabled.load(),element.IsLoaded(),Identity(owner.XamlRoot(),xaml)))continue;
   // Resource changes can synchronously report more visual-tree mutations.
   // Reentrant callbacks wait for the existing bounded refresh path.
   struct Guard {ThreadState& state;explicit Guard(ThreadState& value):state(value){state.busy=true;}~Guard(){state.busy=false;}};
@@ -951,6 +1034,7 @@ static HRESULT STDMETHODCALLTYPE WindowContentHook(void* instance,void* content)
  auto result=originalWindowContent(instance,content);
  if(enabled.load()&&SUCCEEDED(result)&&content&&!HighContrast())try {
   UIElement value{nullptr};copy_from_abi(value,content);Window window{nullptr};copy_from_abi(window,instance);Track(value,nullptr,window);
+  ObserveWindowBacking(window);
  }catch(hresult_error const& error){Log(199,static_cast<unsigned>(error.code().value));}
  return result;
 }
@@ -975,9 +1059,10 @@ static bool RootCandidateClass(std::wstring_view name) {
  return false;
 }
 static void ObserveConstructedContainer(ProjectedObject const& value) {
+ if(auto window=value.try_as<Window>())ObserveWindowBacking(window);
  auto element=value.try_as<FrameworkElement>();
  if(element&&RootCandidateClass(std::wstring_view{get_class_name(element)})
-   &&element.DispatcherQueue().HasThreadAccess())ObserveRoot(element);
+   &&ChromeUiThread(element))ObserveRoot(element);
 }
 template<unsigned N> static HRESULT STDMETHODCALLTYPE CreateHook(void* self,void* outer,void** inner,void** object){
  auto result=originalCreate[N](self,outer,inner,object);
@@ -989,7 +1074,7 @@ template<unsigned N> static HRESULT STDMETHODCALLTYPE CreateHook(void* self,void
   ProjectedObject value{nullptr};copy_from_abi(value,*object);
   unsigned mask=0;
   if(auto element=value.try_as<FrameworkElement>()) {
-   mask|=1;if(element.DispatcherQueue().HasThreadAccess())mask|=8;
+   mask|=1;if(ChromeUiThread(element))mask|=8;
    if(element.XamlRoot())mask|=16;
   }
   if(value.try_as<DesktopWindowXamlSource>())mask|=2;
@@ -1021,7 +1106,7 @@ template<unsigned N> static HRESULT STDMETHODCALLTYPE ActivationHook(void* self,
   ProjectedObject value{nullptr};copy_from_abi(value,*object);
   unsigned mask=0;
   if(auto element=value.try_as<FrameworkElement>()) {
-   mask|=1;if(element.DispatcherQueue().HasThreadAccess())mask|=8;
+   mask|=1;if(ChromeUiThread(element))mask|=8;
    if(element.XamlRoot())mask|=16;
   }
   if(value.try_as<DesktopWindowXamlSource>())mask|=2;
@@ -1033,7 +1118,7 @@ template<unsigned N> static HRESULT STDMETHODCALLTYPE ActivationHook(void* self,
  if(enabled.load()&&SUCCEEDED(result)&&object&&*object&&admitted&&!HighContrast())try {
   ProjectedObject value{nullptr};copy_from_abi(value,*object);AdmitSource(value);
   if(auto source=value.try_as<DesktopWindowXamlSource>();source&&source.Content())Track(source.Content(),source);
-  if(auto window=value.try_as<Window>();window&&window.Content())Track(window.Content(),nullptr,window);
+  if(auto window=value.try_as<Window>()){ObserveWindowBacking(window);if(window.Content())Track(window.Content(),nullptr,window);}
   if(auto element=value.try_as<FrameworkElement>())ObserveRoot(element);
  }catch(hresult_error const& error){Log(242,static_cast<unsigned>(error.code().value));}
  catch(...){Log(243);}
@@ -1188,8 +1273,16 @@ static void Admit(){
   install.operator()<2,IUserControlFactory>(L"Microsoft.UI.Xaml.Controls.UserControl");
   install.operator()<3,IPageFactory>(L"Microsoft.UI.Xaml.Controls.Page");
   install.operator()<4,IGridFactory>(L"Microsoft.UI.Xaml.Controls.Grid");
+#if !J3W1_LEGACY_XAML
   install.operator()<5,IDesktopWindowXamlSourceFactory>(L"Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource");
+#else
+  hooked[5]=true; // Legacy islands expose activation, not a composable factory.
+#endif
+#if !J3W1_LEGACY_XAML
   install.operator()<6,IWindowFactory>(L"Microsoft.UI.Xaml.Window");
+#else
+  hooked[6]=true;
+#endif
   auto installActivation=[]<unsigned N>(wchar_t const* type) {
    if(activationHooked[N].load())return;
    auto api=Factory(type);auto table=*reinterpret_cast<void***>(get_abi(api));auto function=table[6];
@@ -1205,7 +1298,11 @@ static void Admit(){
   installActivation.operator()<3>(L"Microsoft.UI.Xaml.Controls.Page");
   installActivation.operator()<4>(L"Microsoft.UI.Xaml.Controls.Grid");
   installActivation.operator()<5>(L"Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource");
+#if !J3W1_LEGACY_XAML
   installActivation.operator()<6>(L"Microsoft.UI.Xaml.Window");
+#else
+  activationHooked[6]=true;
+#endif
   bool activated=true;for(auto& item:activationHooked)if(!item.load())activated=false;activationReady=activated;
   bool all=true;for(auto& item:hooked)if(!item.load())all=false;factoryReady=all;
  }catch(hresult_error const& e){Log(19,e.code().value);}catch(...){Log(18);}admitting=false;

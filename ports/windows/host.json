@@ -81,7 +81,79 @@
     "ScrollBarButtonArrowForeground": "color.text.default",
     "ScrollBarButtonArrowForegroundPointerOver": "color.text.bright",
     "ScrollBarButtonArrowForegroundPressed": "color.text.bright",
-    "ScrollBarButtonArrowForegroundDisabled": "color.text.disabled"
+    "ScrollBarButtonArrowForegroundDisabled": "color.text.disabled",
+    "ButtonBackground": "color.surface.input",
+    "ButtonBackgroundPointerOver": "color.interaction.hover.bg",
+    "ButtonBackgroundPressed": "color.interaction.pressed.bg",
+    "ButtonForeground": "color.text.default",
+    "AccentFillColorDefaultBrush": "color.action.primary.bg",
+    "AccentFillColorSecondaryBrush": "color.action.primary.hover-bg",
+    "AccentFillColorTertiaryBrush": "color.action.primary.pressed-bg",
+    "TextOnAccentFillColorPrimaryBrush": "color.text.bright",
+    "ButtonForegroundPointerOver": "color.text.default",
+    "ButtonForegroundPressed": "color.text.default",
+    "ButtonForegroundDisabled": "color.text.disabled",
+    "ButtonBorderBrush": "color.border.control",
+    "ButtonBorderBrushPointerOver": "color.border.active",
+    "ButtonBorderBrushPressed": "color.border.active",
+    "ButtonBorderBrushDisabled": "color.border.disabled",
+    "ButtonBackgroundDisabled": "color.interaction.disabled.bg",
+    "SubtleButtonBackground": "color.surface.canvas",
+    "SubtleButtonForeground": "color.text.default",
+    "SubtleButtonBorderBrush": "color.border.control",
+    "SubtleButtonBackgroundPointerOver": "color.interaction.hover.bg",
+    "SubtleButtonForegroundPointerOver": "color.text.default",
+    "SubtleButtonBorderBrushPointerOver": "color.border.active",
+    "SubtleButtonBackgroundPressed": "color.interaction.pressed.bg",
+    "SubtleButtonForegroundPressed": "color.text.default",
+    "SubtleButtonBorderBrushPressed": "color.border.active",
+    "SubtleButtonBackgroundDisabled": "color.interaction.disabled.bg",
+    "SubtleButtonForegroundDisabled": "color.text.disabled",
+    "SubtleButtonBorderBrushDisabled": "color.border.disabled",
+    "SplitButtonBackground": "color.surface.canvas",
+    "SplitButtonForeground": "color.text.default",
+    "SplitButtonBorderBrush": "color.border.control",
+    "SplitButtonBackgroundPointerOver": "color.interaction.hover.bg",
+    "SplitButtonForegroundPointerOver": "color.text.default",
+    "SplitButtonBorderBrushPointerOver": "color.border.active",
+    "SplitButtonBackgroundPressed": "color.interaction.pressed.bg",
+    "SplitButtonForegroundPressed": "color.text.default",
+    "SplitButtonBorderBrushPressed": "color.border.active",
+    "SplitButtonBackgroundDisabled": "color.interaction.disabled.bg",
+    "SplitButtonForegroundDisabled": "color.text.disabled",
+    "SplitButtonBorderBrushDisabled": "color.border.disabled",
+    "SplitButtonBackgroundChecked": "color.interaction.selection.bg",
+    "SplitButtonForegroundChecked": "color.interaction.selection.text",
+    "SplitButtonBorderBrushChecked": "color.border.active",
+    "SplitButtonBackgroundCheckedPointerOver": "color.interaction.selection.bg",
+    "SplitButtonForegroundCheckedPointerOver": "color.interaction.selection.text",
+    "SplitButtonBorderBrushCheckedPointerOver": "color.border.active",
+    "SplitButtonBackgroundCheckedPressed": "color.interaction.pressed.bg",
+    "SplitButtonForegroundCheckedPressed": "color.text.default",
+    "SplitButtonBorderBrushCheckedPressed": "color.border.active",
+    "SplitButtonBackgroundCheckedDisabled": "color.interaction.disabled.bg",
+    "SplitButtonForegroundCheckedDisabled": "color.text.disabled",
+    "SplitButtonBorderBrushCheckedDisabled": "color.border.disabled",
+    "SplitButtonForegroundSecondary": "color.text.muted",
+    "SplitButtonForegroundSecondaryPressed": "color.text.muted",
+    "SplitButtonBorderBrushDivider": "color.border.divider",
+    "SplitButtonBorderBrushCheckedDivider": "color.border.divider",
+    "SplitButtonInAppBarUnfocusedPointerOver": "color.interaction.pressed.bg",
+    "DropDownButtonForegroundSecondary": "color.text.muted",
+    "DropDownButtonForegroundSecondaryPointerOver": "color.text.muted",
+    "DropDownButtonForegroundSecondaryPressed": "color.text.muted",
+    "AccentButtonBackground": "color.action.primary.bg",
+    "AccentButtonForeground": "color.action.primary.text",
+    "AccentButtonBorderBrush": "color.action.primary.border",
+    "AccentButtonBackgroundPointerOver": "color.action.primary.hover-bg",
+    "AccentButtonForegroundPointerOver": "color.action.primary.text",
+    "AccentButtonBorderBrushPointerOver": "color.action.primary.border",
+    "AccentButtonBackgroundPressed": "color.action.primary.pressed-bg",
+    "AccentButtonForegroundPressed": "color.action.primary.text",
+    "AccentButtonBorderBrushPressed": "color.action.primary.border",
+    "AccentButtonBackgroundDisabled": "color.interaction.disabled.bg",
+    "AccentButtonForegroundDisabled": "color.text.disabled",
+    "AccentButtonBorderBrushDisabled": "color.border.disabled"
   },
   "stylers": [
     {
@@ -1080,6 +1152,18 @@
           "styles": {
             "Background": "color.surface.canvas"
           }
+        },
+        {
+          "target": "Button",
+          "styles": {
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Microsoft.UI.Xaml.Controls.SplitButton",
+          "styles": {
+            "CornerRadius": "radius.none"
+          }
         }
       ]
     }
@@ -1110,7 +1194,7 @@
     "Static cursor shapes preserve roles; host accessibility pointer overrides take priority."
   ],
   "nativeExplorer": {
-    "version": "1.8.1",
+    "version": "1.8.2",
     "background": "color.surface.canvas",
     "foreground": "color.text.default",
     "hover": "color.interaction.hover.bg",
@@ -1202,7 +1286,7 @@
     }
   },
   "calculator": {
-    "version": "1.4.6",
+    "version": "1.4.7",
     "packageFullName": "Microsoft.WindowsCalculator_11.2607.0.0_x64__8wekyb3d8bbwe",
     "resources": {
       "AppChromeAcrylicHostBackdropMediumLowBrush": "color.surface.canvas",
@@ -1375,7 +1459,14 @@
       "SplitButtonInAppBarUnfocusedPointerOver": "color.interaction.pressed.bg",
       "DropDownButtonForegroundSecondary": "color.text.muted",
       "DropDownButtonForegroundSecondaryPointerOver": "color.text.muted",
-      "DropDownButtonForegroundSecondaryPressed": "color.text.muted"
+      "DropDownButtonForegroundSecondaryPressed": "color.text.muted",
+      "ButtonBackground": "color.surface.input",
+      "ButtonBackgroundPointerOver": "color.interaction.hover.bg",
+      "ButtonBackgroundPressed": "color.interaction.pressed.bg",
+      "ButtonForeground": "color.text.default",
+      "ButtonForegroundPointerOver": "color.text.default",
+      "ButtonForegroundPressed": "color.text.default",
+      "ButtonForegroundDisabled": "color.text.disabled"
     },
     "buttonStyleTarget": "CalculatorApp.Controls.CalculatorButton, CalculatorApp, Version=11.2607.0.0, Culture=neutral, PublicKeyToken=null"
   },
@@ -1493,7 +1584,7 @@
     }
   },
   "notepadChrome": {
-    "version": "1.2.15",
+    "version": "1.2.16",
     "packageFullName": "Microsoft.WindowsNotepad_11.2607.14.0_x64__8wekyb3d8bbwe",
     "runtimePackage": "Microsoft.WindowsAppRuntime.2_2.5.1.0_x64__8wekyb3d8bbwe",
     "runtimeSha256": "aad12524765e6fb63f0ae26a45a9ba3104f24fde66413d8a3036fbed74a1e990",
@@ -1817,7 +1908,7 @@
     "SliderInlineTickBarFill": "color.surface.input"
   },
   "paintChrome": {
-    "version": "1.0.13",
+    "version": "1.0.14",
     "packageFullName": "Microsoft.Paint_11.2605.81.0_x64__8wekyb3d8bbwe",
     "runtimePackage": "Microsoft.WindowsAppRuntime.2_2.5.1.0_x64__8wekyb3d8bbwe",
     "runtimeSha256": "aad12524765e6fb63f0ae26a45a9ba3104f24fde66413d8a3036fbed74a1e990",
@@ -1840,5 +1931,14 @@
   "nativeExplorerModuleDigests": {
     "WIC": "ad3f960fc9d612c0289035f1b5c334dd44e423ce6c23059ab5129746cd0646f2",
     "SHELLCOMMON": "410141eceecfaa5d7cccbfd7c357920988bf18fec3db7f6865eec674677c0204"
+  },
+  "terminalChrome": {
+    "version": "1.0.0",
+    "packageFullName": "Microsoft.WindowsTerminal_1.24.11911.0_x64__8wekyb3d8bbwe",
+    "runtimeSha256": "5b653bc535d87e7301c7ab9b4785fb7f0f6de5481ece03e7e7a89ca3e53e6905",
+    "diagnosticsBridgeSha256": "5b653bc535d87e7301c7ab9b4785fb7f0f6de5481ece03e7e7a89ca3e53e6905",
+    "captionColors": {},
+    "controlsPackage": "Microsoft.UI.Xaml.2.8_8.2511.26001.0_x64__8wekyb3d8bbwe",
+    "controlsSha256": "fe5f8d9d545f778e6778e31c7fb4b01227f12dd6aec4d4bfc54ef76ba920baae"
   }
 }

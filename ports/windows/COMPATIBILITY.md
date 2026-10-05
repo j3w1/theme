@@ -1209,3 +1209,58 @@ complete startup correction. A separate readable-backdrop-only comparison
 turned that strip accent red, not black, and was rejected. Unknown write-only
 caption colors remain untouched; changing only the readable backdrop does not
 meet the black-header requirement. The production adapters were restored.
+
+### Cached native button states
+
+Read-only traces on the recorded Notepad and Paint packages found neutral
+brushes retained in CommonStates animation frames and setters. Resource
+replacement alone did not replace these cached objects. The shared correction
+exchanges only zero-time, one-brush color frames targeting ContentPresenter,
+RootGrid or ChevronIcon, and public unsealed brush setters whose targets resolve
+inside the admitted control. Unknown/mixed timelines, non-color properties,
+unresolved targets and data subtrees remain native. Original objects are kept
+for exact restoration; application replacements win and failures retain recovery
+ownership. Calculator uses the same source against Windows.UI.Xaml for its
+standard dropdown/button controls, preserving its calculation-button contract.
+
+The shell maps also supply native button brush aliases for normal, hover,
+pressed, disabled and supported checked states. Settings uses square Button and
+SplitButton corners without naming the Update action. Existing pinned styler
+restoration owns those resource changes. Compilation and ownership checks are
+separate from rendered hover, focus and disabled acceptance. No input,
+calculation, document or artwork changes are part of this correction.
+
+### Owned Notepad composition backing
+
+The new shared adapter captures the public composition system-backdrop brush
+through the documented window handle interface. It retains the exact original
+object, including a null baseline, and installs a black brush on the same UI
+thread. A window property ties recovery to the original HWND owner; destroyed
+or reused windows are refused. Later application brush replacements win, and
+failed writes retain recovery state for retry. This path does not change
+AppWindow.TitleBar, caption layout or tabs; Paint and Terminal decline it.
+The previous first-window gray-strip failure remains historical evidence.
+Rendered first-window and active/inactive acceptance is still required.
+
+### Explorer clipped-name tooltip
+
+The native adapter admits only a standard tooltips_class32 popup in Explorer's
+own process, with an Explorer owner or current-tool window. It uses window and
+owner metadata, not tooltip text or foreground inference. Standard tooltip
+background, edge and text use canonical roles. Unrelated and unknown popups,
+high contrast, clipping and native passthrough remain preserved. The offscreen
+ownership/paint regression passed; the live clipped-name popup is not yet
+accepted.
+
+### Terminal native chrome
+
+The bundled legacy-XAML adapter requires the recorded Terminal package and
+exact Windows.UI.Xaml.dll and Microsoft.UI.Xaml.2.8 controls-library digests.
+Only TerminalApp.TabRowControl and associated native menu chrome are admitted;
+the terminal renderer, command palette and suggestions are excluded. It reuses
+the shared resource, cached-color-state and owned-restoration paths, with the
+legacy dispatcher and activation APIs. Native caption overrides are declined.
+The existing single install.ps1 lifecycle journals installation and recovery.
+The synthetic legacy boundary, ownership and worker-shutdown checks passed;
+real menu and tab rendering remains unverified. An application/runtime update
+outside these identities refuses the adapter rather than extending its scope.

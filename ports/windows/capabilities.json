@@ -13,7 +13,7 @@
     },
     "terminal": {
       "state": "supported",
-      "reason": "Native Terminal scheme and chrome settings."
+      "reason": "Native Terminal scheme/chrome settings and exact-package menu resources; rendered acceptance pending."
     },
     "powertoys": {
       "state": "supported",
@@ -655,9 +655,9 @@
       "reason": "Native Explorer color adapter."
     },
     "color.interaction.selection.inactive-text": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "terminal",
+      "reason": "Exact-package Terminal tab-resource mapping; rendered acceptance remains separate."
     },
     "color.interaction.text-selection.bg": {
       "state": "mapped",
@@ -735,9 +735,9 @@
       "reason": "Canonical semantic role mapped to generated shell XAML styling; native observation determines matched surfaces."
     },
     "color.action.primary.border": {
-      "state": "unsupported",
-      "surface": "unsupported",
-      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+      "state": "mapped",
+      "surface": "shell",
+      "reason": "Named native button resource family, restored through the pinned styler lifecycle; live state acceptance remains separate."
     },
     "color.action.secondary.bg": {
       "state": "mapped",

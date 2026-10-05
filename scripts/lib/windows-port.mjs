@@ -202,7 +202,7 @@ export function windowsArtifacts({manifest,host,resolved}){
   const [r,g,b]=rgb(val(role));
   return `    {L"${key}",{255,${r},${g},${b}},L"${role}"},`;
  }).join('\n');
- const calculatorSubs={VERSION:calculator.version,PACKAGE_FULL_NAME:calculator.packageFullName,BUTTON_STYLE_TARGET:calculator.buttonStyleTarget,RESOURCE_RULES:calculatorRules};
+ const calculatorSubs={CHROME_COLOR_STATE:readFileSync(path.join(repoRoot,'ports/windows/src/chrome-color-state.cpp.in'),'utf8').replaceAll('Microsoft::UI::Xaml','Windows::UI::Xaml'),VERSION:calculator.version,PACKAGE_FULL_NAME:calculator.packageFullName,BUTTON_STYLE_TARGET:calculator.buttonStyleTarget,RESOURCE_RULES:calculatorRules};
  const calculatorSource=readFileSync(path.join(repoRoot,'ports/windows/src/j3w1-calculator.wh.cpp.in'),'utf8').replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in calculatorSubs))throw Error(`Unknown Calculator source placeholder ${key}`);return calculatorSubs[key];});
  artifacts.push({path:`dist/${calculatorId}.wh.cpp`,text:calculatorSource});
  json(`${calculatorId}.json`,{enabled:1});
@@ -218,8 +218,11 @@ export function windowsArtifacts({manifest,host,resolved}){
  for(const [chrome,chromeId,label,exe,packagePattern,nativeClass,rootClasses,clsid] of [
   [host.notepadChrome,'j3w1-notepad-chrome','Notepad','Notepad.exe',/^Microsoft\.WindowsNotepad_\d+\.\d+\.\d+\.\d+_x64__8wekyb3d8bbwe$/,'Notepad',['NotepadXamlUI.MainMenuBar','NotepadXamlUI.StatusBar','NotepadXamlUI.TabsBar','NotepadXamlUI.NotepadSettingsPage'],'0x9f12b9c4,0x7b9d,0x489f,{0x8e,0x31,0x4a,0x81,0x10,0x32,0x6b,0xc4}'],
   [host.paintChrome,'j3w1-paint-chrome','Paint','mspaint.exe',/^Microsoft\.Paint_\d+\.\d+\.\d+\.\d+_x64__8wekyb3d8bbwe$/,'MSPaintApp',['PaintUI.AppChrome','PaintUI.Ribbon','PaintUI.RibbonControl','PaintUI.LayersPanel'],'0x7cbd47c2,0x78b3,0x439d,{0x82,0xe8,0x7c,0x19,0xac,0x25,0x13,0xd4}'],
+  [host.terminalChrome,'j3w1-terminal-chrome','Terminal','WindowsTerminal.exe',/^Microsoft\.WindowsTerminal_\d+\.\d+\.\d+\.\d+_x64__8wekyb3d8bbwe$/,'CASCADIA_HOSTING_WINDOW_CLASS',['TerminalApp.TabRowControl'],'0xa9309bc1,0x0b98,0x4a64,{0x9a,0x7d,0x1c,0x91,0xf3,0x8d,0x26,0x0e}'],
  ]) {
-  if(!packagePattern.test(chrome.packageFullName)||!/^Microsoft\.WindowsAppRuntime\.2_\d+\.\d+\.\d+\.\d+_x64__8wekyb3d8bbwe$/.test(chrome.runtimePackage)||! /^[a-f0-9]{64}$/.test(chrome.runtimeSha256))throw Error(label+' chrome requires exact package/runtime identities');
+  const legacy=chromeId==='j3w1-terminal-chrome';
+  if(legacy&&(!/^Microsoft\.UI\.Xaml\.2\.8_\d+\.\d+\.\d+\.\d+_x64__8wekyb3d8bbwe$/.test(chrome.controlsPackage)||! /^[a-f0-9]{64}$/.test(chrome.controlsSha256)))throw Error('Terminal chrome requires its exact WinUI controls identity');
+  if(!packagePattern.test(chrome.packageFullName)||(!legacy&&!/^Microsoft\.WindowsAppRuntime\.2_\d+\.\d+\.\d+\.\d+_x64__8wekyb3d8bbwe$/.test(chrome.runtimePackage))||! /^[a-f0-9]{64}$/.test(chrome.runtimeSha256))throw Error(label+' chrome requires exact package/runtime identities');
   if(chromeId==='j3w1-notepad-chrome'&&chrome.packageFullName!==notepad.packageFullName)throw Error('Notepad chrome/editor package mismatch');
   const chromeRules=Object.entries(host.winuiChromeResources).map(([key,role])=>{
    if(!/^[A-Za-z][A-Za-z0-9]*$/.test(key))throw Error('Unsafe WinUI chrome resource key');
@@ -227,23 +230,31 @@ export function windowsArtifacts({manifest,host,resolved}){
    return ' {L"'+key+'",{'+Math.round((token.resolved.alpha??1)*255)+','+rgb(val(role)).join(',')+'},L"'+role+'"},';
   }).join('\n');
   if(!/^[a-f0-9]{64}$/.test(chrome.diagnosticsBridgeSha256))throw Error(label+' root discovery requires an exact diagnostics bridge identity');
-  const discoverySubs={DIAGNOSTICS_BRIDGE_SHA256:chrome.diagnosticsBridgeSha256,DIAGNOSTICS_CLSID:clsid};
+  const discoverySubs={XAML_MODULE:legacy?'Windows.UI.Xaml.dll':'Microsoft.UI.Xaml.dll',DIAGNOSTICS_BRIDGE_SHA256:chrome.diagnosticsBridgeSha256,DIAGNOSTICS_CLSID:clsid};
   const rootDiscovery=readFileSync(path.join(repoRoot,'ports/windows/src/winui-root-discovery.cpp.in'),'utf8').replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in discoverySubs))throw Error('Unknown WinUI discovery placeholder '+key);return discoverySubs[key];});
   const publicCaptionNames=['BackgroundColor','ForegroundColor','ButtonBackgroundColor','ButtonForegroundColor','ButtonHoverBackgroundColor','ButtonHoverForegroundColor','ButtonPressedBackgroundColor','ButtonPressedForegroundColor','InactiveBackgroundColor','InactiveForegroundColor','ButtonInactiveBackgroundColor','ButtonInactiveForegroundColor'];
   // Calling the public caption path, even with only button colors, revives
   // a native title over Notepad's custom tabs on the recorded package.
   // Notepad therefore declines this entire path; Paint retains its contract.
   const customCaption=chromeId==='j3w1-notepad-chrome';
-  const admittedCaptionNames=customCaption?[]:publicCaptionNames;
+  const admittedCaptionNames=customCaption||legacy?[]:publicCaptionNames;
   if(JSON.stringify(Object.keys(chrome.captionColors??{}))!==JSON.stringify(admittedCaptionNames))throw Error(label+' requires its exact ordered public caption-color contract');
   const captionSlots=admittedCaptionNames.map(key=>publicCaptionNames.indexOf(key));
   const captionRules=publicCaptionNames.map(key=>{const role=chrome.captionColors[key];if(!role)return '  {}, // '+key+' : host-owned';const token=resolved.get(role);val(role);return '  {'+Math.round((token.resolved.alpha??1)*255)+','+rgb(val(role)).join(',')+'}, // '+key+' : '+role;}).join('\n');
   const publicSource=readFileSync(path.join(repoRoot,'ports/windows/src/winui-caption.cpp.in'),'utf8').replaceAll('@ADAPTER_ID@',chromeId).replaceAll('@NATIVE_CLASS@',nativeClass).replace('@CAPTION_RULES@',captionRules).replaceAll('@CAPTION_SLOT_COUNT@',String(captionSlots.length)).replace('@CAPTION_SLOTS@',captionSlots.join(',')).replace('@CAPTION_CUSTOM_CONTENT@',String(customCaption));
   const [publicDeclarations,publicImplementation]=publicSource.split('// IMPLEMENTATION');
+  const backingSource=readFileSync(path.join(repoRoot,'ports/windows/src/window-backdrop.cpp.in'),'utf8').replaceAll('@ADAPTER_ID@',chromeId).replaceAll('@NATIVE_CLASS@',nativeClass).replaceAll('@NATIVE_CAPTION_BACKDROP@',String(customCaption));
+  const [backingDeclarations,backingImplementation]=backingSource.split('// IMPLEMENTATION');
+  if(!backingDeclarations||!backingImplementation||/@[A-Z0-9_]+@/.test(backingSource))throw Error('Invalid '+label+' window backing template');
   if(!publicDeclarations||!publicImplementation||/@[A-Z0-9_]+@/.test(publicSource))throw Error('Invalid '+label+' public caption template');
   const publicSubs={PUBLIC_CAPTION_INCLUDE:'\n#include <winrt/Microsoft.UI.Windowing.h>',PUBLIC_CAPTION_DECLARATIONS:publicDeclarations,PUBLIC_CAPTION_IMPLEMENTATION:publicImplementation,PUBLIC_CAPTION_STATE:'std::vector<std::unique_ptr<PublicCaption>> publicCaptions; ',PUBLIC_CAPTION_REFRESH:' ApplyPublicCaptions(state);\n',PUBLIC_CAPTION_RESTORE:' bool publicRestored=RestorePublicCaptions(state);\n',PUBLIC_CAPTION_RESTORE_RESULT:'&&publicRestored',PUBLIC_CAPTION_NATIVE_EXCLUSION:customCaption?'':'&&false',PUBLIC_CAPTION_DWM_BYPASS:'publicCaptionWrite||',NATIVE_CAPTION_BACKDROP:String(customCaption)};
-  const chromeSubs={...publicSubs,ADAPTER_ID:chromeId,APP_LABEL:label,APP_EXE:exe,NATIVE_CLASS:nativeClass,ROOT_CLASSES:rootClasses.map(c=>'L"'+c+'"').join(','),ROOT_DISCOVERY:rootDiscovery,VERSION:chrome.version,PACKAGE_FULL_NAME:chrome.packageFullName,RUNTIME_PACKAGE:chrome.runtimePackage,RUNTIME_SHA256:chrome.runtimeSha256,RESOURCE_RULES:chromeRules};
-  const chromeSource=readFileSync(path.join(repoRoot,'ports/windows/src/winui-chrome.cpp.in'),'utf8').replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in chromeSubs))throw Error('Unknown WinUI chrome source placeholder '+key);return chromeSubs[key];});
+  if(legacy)Object.assign(publicSubs,{PUBLIC_CAPTION_INCLUDE:'',PUBLIC_CAPTION_DECLARATIONS:'static thread_local bool publicCaptionWrite=false;\n',PUBLIC_CAPTION_IMPLEMENTATION:'',PUBLIC_CAPTION_STATE:'',PUBLIC_CAPTION_REFRESH:'',PUBLIC_CAPTION_RESTORE:'',PUBLIC_CAPTION_RESTORE_RESULT:'',PUBLIC_CAPTION_NATIVE_EXCLUSION:'&&false',NATIVE_CAPTION_BACKDROP:'false'});
+  publicSubs.PUBLIC_CAPTION_STATE=publicSubs.PUBLIC_CAPTION_STATE.trimEnd();
+  const chromeSubs={LEGACY_XAML:legacy?'1':'0',XAML_MODULE:legacy?'Windows.UI.Xaml.dll':'Microsoft.UI.Xaml.dll',CHROME_COLOR_STATE:readFileSync(path.join(repoRoot,'ports/windows/src/chrome-color-state.cpp.in'),'utf8'),...publicSubs,ADAPTER_ID:chromeId,APP_LABEL:label,APP_EXE:exe,NATIVE_CLASS:nativeClass,ROOT_CLASSES:rootClasses.map(c=>'L"'+c+'"').join(','),ROOT_DISCOVERY:rootDiscovery,VERSION:chrome.version,PACKAGE_FULL_NAME:chrome.packageFullName,RUNTIME_PACKAGE:chrome.runtimePackage??'',RUNTIME_SHA256:chrome.runtimeSha256,RESOURCE_RULES:chromeRules};
+  Object.assign(chromeSubs,{CONTROLS_PACKAGE:chrome.controlsPackage??'',CONTROLS_SHA256:chrome.controlsSha256??'',WINDOW_BACKING_DECLARATIONS:backingDeclarations,WINDOW_BACKING_IMPLEMENTATION:backingImplementation});
+  let chromeSource=readFileSync(path.join(repoRoot,'ports/windows/src/winui-chrome.cpp.in'),'utf8').replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in chromeSubs))throw Error('Unknown WinUI chrome source placeholder '+key);return chromeSubs[key];});
+  if(legacy)chromeSource=chromeSource.replaceAll('Microsoft::UI::Xaml','Windows::UI::Xaml').replaceAll('L"Microsoft.UI.Xaml.','L"Windows.UI.Xaml.');
+  if(legacy)chromeSource=chromeSource.replace('type==L"Windows.UI.Xaml.Controls.SplitButton"||type==L"Windows.UI.Xaml.Controls.SplitButton"','type==L"Microsoft.UI.Xaml.Controls.SplitButton"||type==L"Windows.UI.Xaml.Controls.SplitButton"');
   artifacts.push({path:'dist/'+chromeId+'.wh.cpp',text:chromeSource});json(chromeId+'.json',{enabled:1});
   bundledMods.push({id:chromeId,version:chrome.version,path:'dist/'+chromeId+'.wh.cpp',sha256:createHash('sha256').update(chromeSource).digest('hex')});
  }

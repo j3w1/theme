@@ -17,12 +17,16 @@ restores and uninstalls the port. There is no separate setup script.
 3. Reopen affected apps and check their appearance. Save documents first; setup
    does not close them. Notepad keeps its custom tab header and native window
    buttons; its caption API is excluded because it covers the tabs on this host.
-   A captured later window can have a black native header; the first window in
-   a fresh process can still have a gray strip outside its tabs. This startup
-   boundary remains an experimental limitation. Paint uses
+   The Notepad adapter also attempts an opaque black composition backing with
+   an exact, readable restore value. Its first-window rendering remains an
+   experimental acceptance check. Paint uses
    public colors on its recorded native title and retains the original nullable
    overrides for restoration.
    Paint's gray drawing workspace remains an experimental limitation.
+   Shared button resources and captured native color states are included in
+   Full mode and the same recovery journal. App hover/focus acceptance,
+   Explorer's clipped-name tooltip and Terminal's native menus have bundled
+   adapters; their rendered appearance remains an open acceptance check.
 
 <!-- install:start -->
 Install commands appear here once v4.0.0 is released.
@@ -43,7 +47,7 @@ desktop registry view.
 Managed-device policy
 can still prevent execution; use your administrator's approved process.
 
-**Full mode** adds five pinned Windhawk shell stylers and the bundled Explorer native-color, PowerToys text/Markdown-preview, Calculator resource, Notepad editor/chrome and Paint chrome adapters. It requires the exact
+**Full mode** adds five pinned Windhawk shell stylers and the bundled Explorer native-color, PowerToys text/Markdown-preview, Calculator resource, Notepad editor/chrome, Paint chrome and Terminal chrome adapters. It requires the exact
 reviewed Windows/shell fingerprint and uses Windhawk 2.0 alpha 6. On other
 builds, setup explains the limit and asks whether to install **Native mode**:
 personalization, wallpaper, cursors and supported existing app settings, without
@@ -130,7 +134,8 @@ same frame/surface rules where its XAML controls expose them. See
   Palette appearance. Four optional layouts are added without assigning them.
 - Full mode: five pinned Windhawk shell stylers, a bundled native Explorer
   canvas/text adapter, PowerToys text and Markdown preview adapters, a package-gated Calculator
-  resource adapter, the Notepad editor adapter and a current-user sign-in
+  resource adapter, Notepad editor/chrome, Paint chrome, Terminal tab/menu chrome
+  and a current-user sign-in
   compatibility guard. The guard never downloads updates.
 
 Desktop icons, shortcuts, utility enabled states, window placement and assigned
@@ -297,9 +302,16 @@ and open/close checks remain required; palette coverage alone does not certify
 every installed template or retained animation.
 
 
-Notepad's tabs remain in their native layout. The header correction requires a
-new window or a caption-color request from Notepad itself; an older window with
-an unknown previous color remains native. Save any desired text before reopening
-it. A fresh-process check still showed a gray strip in its first window;
-reopening is not a guaranteed correction for that startup case. Setup and
-rollback never close your applications.
+Notepad's tabs remain in their native layout. Its composition backing captures
+the original brush, including an absent brush, and restores it only while the
+adapter still owns it. Unknown native caption colors stay untouched. The earlier
+fresh-process check showed a gray strip; the new composition path still needs
+the same startup check. Setup and rollback never close your applications.
+
+Explorer's clipped-name tooltip uses black, rose and canonical border colors
+only when its native tooltip belongs to the same Explorer process and owner.
+Other popups keep their native rendering. Terminal's optional chrome adapter
+targets the recorded package, XAML runtime and controls library, and styles its
+tab row and associated native menus. Terminal content and command behavior stay
+under Terminal's own settings. These adapters use the same setup, Test and
+recovery commands; no separate scripts or manual mod installation are needed.

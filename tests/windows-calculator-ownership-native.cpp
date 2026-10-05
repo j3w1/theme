@@ -11,6 +11,39 @@ static void Wh_Log(PCWSTR,...){ }
 #include "../ports/windows/dist/j3w1-calculator.wh.cpp"
 int main(int argc,char** argv){
  assert(argc==2);
+ if(strcmp(argv[1],"cached-color-frame")==0) {
+  assert(ChromeColorFrameAdmission(L"ContentPresenter",L"Background",1,true,0));
+  assert(ChromeColorFrameAdmission(L"RootGrid",L"BorderBrush",1,true,0));
+  assert(ChromeColorFrameAdmission(L"ChevronIcon",L"Foreground",1,true,0));
+  for(auto property:{L"Text",L"Content",L"Opacity",L"Width",L"RenderTransform"})assert(!ChromeColorFrameAdmission(L"ContentPresenter",property,1,true,0));
+  assert(!ChromeColorFrameAdmission(L"Artwork",L"Background",1,true,0));
+  assert(!ChromeColorFrameAdmission(L"ContentPresenter",L"Background",2,true,0));
+  assert(!ChromeColorFrameAdmission(L"ContentPresenter",L"Background",1,false,0));
+  assert(!ChromeColorFrameAdmission(L"ContentPresenter",L"Background",1,true,1));
+  assert(!ChromeColorState(L"Selected")&&!ChromeColorState(L"Other"));
+  assert(ChromeSetterState(L"Selected")&&ChromeSetterState(L"CheckedPointerOver"));
+  assert(ChromeSetterAdmission(L"Background",true,false));
+  assert(!ChromeSetterAdmission(L"Background",true,true));
+  assert(!ChromeSetterAdmission(L"Content",true,false));
+  assert(!ChromeSetterAdmission(L"Background",false,false));
+  winrt::init_apartment(winrt::apartment_type::multi_threaded);
+  auto native=box_value(1),theme=box_value(2),app=box_value(3);ChromeFrameValue current{true,native};
+  auto read=[&]{return current;};auto write=[&](auto const& value){current={true,value};};
+  auto clock=ClockState::Stopped;auto getClock=[&]{return clock;};OwnedChromeFrame entry{native,theme};
+  clock=ClockState::Active;assert(!UpdateChromeFrame(entry,true,read,write,getClock)&&!entry.owned&&Identity(current.value,native));
+  clock=ClockState::Filling;assert(!UpdateChromeFrame(entry,true,read,write,getClock)&&!entry.owned);
+  clock=ClockState::Stopped;assert(UpdateChromeFrame(entry,true,read,write,getClock)&&entry.owned&&Identity(current.value,theme));
+  assert(UpdateChromeFrame(entry,false,read,write,getClock)&&!entry.owned&&Identity(current.value,native));
+  auto partial=[&](auto const& value){write(value);throw hresult_error(E_FAIL);};
+  assert(!UpdateChromeFrame(entry,true,read,partial,getClock)&&entry.owned&&Identity(current.value,theme));
+  assert(!UpdateChromeFrame(entry,false,read,partial,getClock)&&entry.owned&&Identity(current.value,native));
+  assert(UpdateChromeFrame(entry,false,read,write,getClock)&&!entry.owned);
+  entry={native,theme};assert(UpdateChromeFrame(entry,true,read,write,getClock));current={true,app};
+  assert(UpdateChromeFrame(entry,false,read,write,getClock)&&Identity(current.value,app));
+  current={false,nullptr};entry={native,theme};assert(!UpdateChromeFrame(entry,true,read,write,getClock)&&!entry.owned);
+  puts("PASS: cached color-only frame scope, running-clock refusal, exact object restore, partial writes and application replacement");return 0;
+ }
+
  if(strcmp(argv[1],"composite-button-scope")==0) {
   assert(CompositeButtonChrome(L"Microsoft.UI.Xaml.Controls.SplitButton"));
   for(auto type:{L"PaintUI.ColorRadioButton",L"PaintUI.Canvas",L"Microsoft.UI.Xaml.Controls.ColorPicker",L"NotepadXamlUI.TabsBar",L"Other.SplitButton",L"Microsoft.UI.Xaml.Controls.SplitButtonExtra"})assert(!CompositeButtonChrome(type));

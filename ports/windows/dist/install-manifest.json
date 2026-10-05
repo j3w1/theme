@@ -4,7 +4,7 @@
   "files": [
     {
       "path": "dist/j3w1-explorer-native.wh.cpp",
-      "sha256": "e39c637d9c94132860acc4a7dc49d07531984ae7a5b4eda78d6d44f7f0f537fb"
+      "sha256": "01ef17e81b5bcdf3590c2932e49cac82730452f63e7bd66b67b0b7d48fcf8778"
     },
     {
       "path": "dist/j3w1-explorer-native.json",
@@ -20,7 +20,7 @@
     },
     {
       "path": "dist/j3w1-calculator.wh.cpp",
-      "sha256": "83fb7c53773c5027a8ce9879d2d49f0acb5d2160f999ba7df6d082b31c4cbe69"
+      "sha256": "9fc4d9e0bb6e67dfd81db374c454e6393a0cab35968bf48fdd97d1dbfdb08d15"
     },
     {
       "path": "dist/j3w1-calculator.json",
@@ -36,7 +36,7 @@
     },
     {
       "path": "dist/j3w1-notepad-chrome.wh.cpp",
-      "sha256": "f3bff78796090d759f3ab02ac19a168ed929fc7ffe7a1adea84f5ff268209d19"
+      "sha256": "13b57d1652396deea0a91b5b82e6b276525f72c96c95c2cf0b863bb6fe771eeb"
     },
     {
       "path": "dist/j3w1-notepad-chrome.json",
@@ -44,10 +44,18 @@
     },
     {
       "path": "dist/j3w1-paint-chrome.wh.cpp",
-      "sha256": "711622f4a676fc3e6580b521493816b2b0fc2591008d9d43afd95059d323c71e"
+      "sha256": "83dcfa21049d47ee4c9f97e84f4ac42b8dfdc3c0a791cc029e7cd6042eae3cd4"
     },
     {
       "path": "dist/j3w1-paint-chrome.json",
+      "sha256": "fa5c087652dba209ab8ff6004642106ab801f86c5de197c5a48844da066dce73"
+    },
+    {
+      "path": "dist/j3w1-terminal-chrome.wh.cpp",
+      "sha256": "52f6b0074692591d0197582d12bda6a6ae3bcad8fb86fac4091ac9c21ee139ad"
+    },
+    {
+      "path": "dist/j3w1-terminal-chrome.json",
       "sha256": "fa5c087652dba209ab8ff6004642106ab801f86c5de197c5a48844da066dce73"
     },
     {
@@ -64,7 +72,7 @@
     },
     {
       "path": "dist/windows-settings.json",
-      "sha256": "2c017c00a3fb21b2e7b644ecc8994f3bf0268dcee1ea9c644bdb7cbc884b5a91"
+      "sha256": "3eee5b22f409b43d8952290ab884db465aaa91f0a671b4848ec8ea0aa345ab49"
     },
     {
       "path": "dist/terminal-fragment.json",
@@ -80,23 +88,23 @@
     },
     {
       "path": "dist/windows-11-taskbar-styler.json",
-      "sha256": "2f44e208496f2dc2c4494a9230c96c1253f47ccb1907135440dea546c252f29c"
+      "sha256": "2c618b9c4a588317bbe9b35a1b0ea9d28b808c0c691a952224aaebde1ddcd2dd"
     },
     {
       "path": "dist/windows-11-start-menu-styler.json",
-      "sha256": "61495cc256016d92aeefda6cd2f28781b8d4cebc23804e9de06256f831a14745"
+      "sha256": "7d1d9bc97151f02376328877ad1d55de41a2602ef75e4a2e6d729989fe73cb30"
     },
     {
       "path": "dist/windows-11-file-explorer-styler.json",
-      "sha256": "d2587e5bfd5593b8ff8fdb4d29e9beeacc2b7f5d06212891255064e2f5c1431f"
+      "sha256": "ecb8a3a8b09edc99fcfe1d622beb4e7100fd965379f899c6f6eb414fb834292a"
     },
     {
       "path": "dist/windows-11-notification-center-styler.json",
-      "sha256": "31cfdd44a5f484177b126c79ff5a718c86c14d93f1c15ca040115443e4660760"
+      "sha256": "6b781711a215bd70d75e72f4505e1369d42bcaef70fda840e1cfc9e0a62c4d72"
     },
     {
       "path": "dist/windows-11-settings-styler.json",
-      "sha256": "d3baf5126dbdbfaf374ee0941abf039f4347e999160208849b2573fb6223d80f"
+      "sha256": "d4f6f339d00caf7b2a802e666adea7651b1abac41506f03ecd513be2772a8af9"
     },
     {
       "path": "dist/j3w1-wallpaper.bmp",
@@ -204,7 +212,7 @@
     },
     {
       "path": "host.json",
-      "sha256": "d6ff55dddf9853d783d934d0c64ff05c330e60d9a653d9b48d0b82af038e80ab"
+      "sha256": "3ff308784906064ac58ad116ad2b88b2ed628225c6b949c6811cfadb8da96832"
     }
   ]
 }

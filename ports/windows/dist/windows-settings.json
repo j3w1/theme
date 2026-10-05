@@ -125,9 +125,9 @@
   "bundledMods": [
     {
       "id": "j3w1-explorer-native",
-      "version": "1.8.1",
+      "version": "1.8.2",
       "path": "dist/j3w1-explorer-native.wh.cpp",
-      "sha256": "e39c637d9c94132860acc4a7dc49d07531984ae7a5b4eda78d6d44f7f0f537fb"
+      "sha256": "01ef17e81b5bcdf3590c2932e49cac82730452f63e7bd66b67b0b7d48fcf8778"
     },
     {
       "id": "j3w1-powertoys-preview",
@@ -137,9 +137,9 @@
     },
     {
       "id": "j3w1-calculator",
-      "version": "1.4.6",
+      "version": "1.4.7",
       "path": "dist/j3w1-calculator.wh.cpp",
-      "sha256": "83fb7c53773c5027a8ce9879d2d49f0acb5d2160f999ba7df6d082b31c4cbe69"
+      "sha256": "9fc4d9e0bb6e67dfd81db374c454e6393a0cab35968bf48fdd97d1dbfdb08d15"
     },
     {
       "id": "j3w1-notepad-native",
@@ -149,15 +149,21 @@
     },
     {
       "id": "j3w1-notepad-chrome",
-      "version": "1.2.15",
+      "version": "1.2.16",
       "path": "dist/j3w1-notepad-chrome.wh.cpp",
-      "sha256": "f3bff78796090d759f3ab02ac19a168ed929fc7ffe7a1adea84f5ff268209d19"
+      "sha256": "13b57d1652396deea0a91b5b82e6b276525f72c96c95c2cf0b863bb6fe771eeb"
     },
     {
       "id": "j3w1-paint-chrome",
-      "version": "1.0.13",
+      "version": "1.0.14",
       "path": "dist/j3w1-paint-chrome.wh.cpp",
-      "sha256": "711622f4a676fc3e6580b521493816b2b0fc2591008d9d43afd95059d323c71e"
+      "sha256": "83dcfa21049d47ee4c9f97e84f4ac42b8dfdc3c0a791cc029e7cd6042eae3cd4"
+    },
+    {
+      "id": "j3w1-terminal-chrome",
+      "version": "1.0.0",
+      "path": "dist/j3w1-terminal-chrome.wh.cpp",
+      "sha256": "52f6b0074692591d0197582d12bda6a6ae3bcad8fb86fac4091ac9c21ee139ad"
     },
     {
       "id": "j3w1-powertoys-markdown",

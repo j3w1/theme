@@ -479,6 +479,38 @@ static bool ExplorerDC(HDC dc,bool nonclientScrollbar=false) {
     if(nonclientScrollbar && defaultWindow)return ExplorerWindow(defaultWindow);
     return !paintWindows.empty() && ExplorerWindow(paintWindows.back());
 }
+// Clipped navigation labels use a separate native tooltip HWND. Its root is
+// the popup itself, so it does not satisfy ExplorerWindow. Admit only a tooltip
+// owned by this process and tied to an actual Explorer tool/owner; never use
+// the foreground window or the displayed label to infer ownership.
+static bool ExplorerTooltip(HWND window) {
+    if(!window||!enabled.load()||drawingTheme||HighContrast())return false;
+    DWORD process=0;GetWindowThreadProcessId(window,&process);wchar_t type[64]{};
+    if(process!=GetCurrentProcessId()||!GetClassNameW(window,type,64)||_wcsicmp(type,L"tooltips_class32"))return false;
+    HWND owner=GetWindow(window,GW_OWNER);
+    for(unsigned depth=0;owner&&depth<8;depth++,owner=GetWindow(owner,GW_OWNER)) {
+        GetWindowThreadProcessId(owner,&process);if(process!=GetCurrentProcessId())break;
+        if(ExplorerWindow(owner))return true;
+    }
+    HWND parent=GetParent(window);if(parent&&ExplorerWindow(parent))return true;
+    TOOLINFOW tool{sizeof(tool)};
+    // The structure is used only for its HWND/flags, never its text pointer.
+    if(!SendMessageW(window,TTM_GETCURRENTTOOLW,0,reinterpret_cast<LPARAM>(&tool)))return false;
+    owner=(tool.uFlags&TTF_IDISHWND)?reinterpret_cast<HWND>(tool.uId):tool.hwnd;
+    GetWindowThreadProcessId(owner,&process);
+    return process==GetCurrentProcessId()&&ExplorerWindow(owner);
+}
+static bool TooltipDC(HDC dc) {
+    HWND window=WindowFromDC(dc);
+    if(window)return ExplorerTooltip(window);
+    if(!paintWindows.empty())return ExplorerTooltip(paintWindows.back());
+    return ExplorerTooltip(defaultWindow);
+}
+static bool TooltipPart(HTHEME theme,int part,int state) {
+    wchar_t type[128]{};if(!themeClass||FAILED(themeClass(theme,type,128)))return false;
+    auto name=wcsrchr(type,L':');name=name?name+1:type;
+    return _wcsicmp(name,L"Tooltip")==0&&part==TTP_STANDARD&&(state==TTSS_NORMAL||state==TTSS_LINK);
+}
 // The observed native filename editor is Edit inside CtrlNotifySink. Do not
 // broaden this to arbitrary edit controls or infer a target from focus alone.
 static bool RenameDC(HDC dc) {
@@ -605,6 +637,12 @@ static COLORREF WINAPI BkColorHook(HDC dc,COLORREF color) {
 static HRESULT WINAPI ThemeColorHook(HTHEME theme,int part,int state,int property,COLORREF* color) {
     HRESULT result=originalGetThemeColor(theme,part,state,property,color);
     if(FAILED(result) || !color)return result;
+    if(TooltipPart(theme,part,state)&&TooltipDC(nullptr)&&Gray(*color,0,255)) {
+        if(property==TMT_FILLCOLOR)*color=background;
+        else if(property==TMT_BORDERCOLOR)*color=menuBorder;
+        else if(property==TMT_TEXTCOLOR)*color=foreground;
+        return result;
+    }
     if(MenuClass(theme) && enabled.load() && !drawingTheme && !HighContrast()) {
         // Explorer queries the popup background before TrackPopupMenu. Admit
         // only that background property, on the active window of this thread.
@@ -635,7 +673,8 @@ static HRESULT WINAPI ThemeColorHook(HTHEME theme,int part,int state,int propert
 static HRESULT WINAPI TextExHook(HTHEME theme,HDC dc,int part,int state,LPCWSTR text,
     int count,DWORD flags,LPRECT rect,const DTTOPTS* options) {
     bool menu=MenuClass(theme) && MenuPart(part,state) && MenuDC(dc);
-    if((menu || (NativeClass(theme) && ExplorerDC(dc))) && (!options || options->dwSize==sizeof(DTTOPTS))) {
+    bool tooltip=TooltipPart(theme,part,state)&&TooltipDC(dc);
+    if((menu || tooltip || (NativeClass(theme) && ExplorerDC(dc))) && (!options || options->dwSize==sizeof(DTTOPTS))) {
         DTTOPTS custom{};
         if(options) custom=*options;
         custom.dwSize=sizeof(custom);
@@ -643,7 +682,7 @@ static HRESULT WINAPI TextExHook(HTHEME theme,HDC dc,int part,int state,LPCWSTR 
         HRESULT colorResult=S_OK;
         if(options && (options->dwFlags&DTT_TEXTCOLOR))previous=options->crText;
         else colorResult=originalGetThemeColor(theme,part,state,TMT_TEXTCOLOR,&previous);
-        if(SUCCEEDED(colorResult) && Gray(previous,menu?0:192,255)) {
+        if(SUCCEEDED(colorResult) && Gray(previous,(menu||tooltip)?0:192,255)) {
             custom.dwFlags|=DTT_TEXTCOLOR;
             custom.crText=menu?MenuText(part,state):foreground;
             return originalDrawThemeTextEx(theme,dc,part,state,text,count,flags,rect,&custom);
@@ -662,7 +701,8 @@ static HRESULT PaintTheme(HTHEME theme,HDC dc,int part,int state,const RECT* rec
     const wchar_t* themeKind=wcsrchr(themeName,L':');themeKind=themeKind?themeKind+1:themeName;
     bool nonclientScrollbar=_wcsicmp(themeKind,L"ScrollBar")==0;
     bool menu=MenuClass(theme);
-    bool admitted=menu?(MenuPart(part,state) && MenuDC(dc)):(NativeClass(theme) && ExplorerDC(dc,nonclientScrollbar));
+    bool tooltip=TooltipPart(theme,part,state)&&TooltipDC(dc);
+    bool admitted=tooltip||(menu?(MenuPart(part,state) && MenuDC(dc)):(NativeClass(theme) && ExplorerDC(dc,nonclientScrollbar)));
     if(drawingTheme || !rect || !admitted || GetMapMode(dc)!=MM_TEXT || GetLayout(dc)!=0
        || (options && (options->dwSize!=sizeof(DTBGOPTS) || (options->dwFlags&~DTBG_CLIPRECT))))return original(dc);
     int width=rect->right-rect->left,height=rect->bottom-rect->top;
@@ -708,6 +748,7 @@ static HRESULT PaintTheme(HTHEME theme,HDC dc,int part,int state,const RECT* rec
             }
             if(red!=green || green!=blue)continue;
             COLORREF color=red<=48?background:red<160?fill:foreground;
+            if(tooltip)color=red>48&&(i%width==0||i%width==width-1||i/width==0||i/width==height-1)?menuBorder:background;
             if(menu) {
                 if(part==MENU_POPUPBORDERS)color=red<=48?background:menuBorder;
                 else if(part==MENU_POPUPSEPARATOR)color=red<=48?background:border;

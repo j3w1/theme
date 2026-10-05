@@ -2,7 +2,7 @@
 // @id j3w1-paint-chrome
 // @name j3w1 Paint chrome
 // @description Exact-package Paint chrome resources; document and artwork colors remain native
-// @version 1.0.13
+// @version 1.0.14
 // @author j3w1
 // @include mspaint.exe
 // @architecture x86-64
@@ -19,9 +19,23 @@
 #include <dwmapi.h>
 #include <ocidl.h>
 #include <xamlom.h>
+#define J3W1_LEGACY_XAML 0
 #undef GetCurrentTime
 #include <winrt/Windows.Foundation.h>
 #include <winrt/Windows.Foundation.Collections.h>
+#include <winrt/Windows.UI.Composition.h>
+#if J3W1_LEGACY_XAML
+#include <winrt/Windows.System.h>
+#include <winrt/Windows.UI.Core.h>
+#include <winrt/Windows.UI.Xaml.h>
+#include <winrt/Windows.UI.Xaml.Hosting.h>
+#include <winrt/Windows.UI.Xaml.Controls.h>
+#include <winrt/Windows.UI.Xaml.Controls.Primitives.h>
+#include <winrt/Windows.UI.Xaml.Shapes.h>
+#include <winrt/Windows.UI.Xaml.Markup.h>
+#include <winrt/Windows.UI.Xaml.Media.h>
+#include <winrt/Windows.UI.Xaml.Media.Animation.h>
+#else
 #include <winrt/Microsoft.UI.Xaml.h>
 #include <winrt/Microsoft.UI.Windowing.h>
 #include <winrt/Microsoft.UI.Dispatching.h>
@@ -31,6 +45,9 @@
 #include <winrt/Microsoft.UI.Xaml.Shapes.h>
 #include <winrt/Microsoft.UI.Xaml.Markup.h>
 #include <winrt/Microsoft.UI.Xaml.Media.h>
+#include <winrt/Microsoft.UI.Xaml.Media.Animation.h>
+#include <winrt/Microsoft.UI.Composition.h>
+#endif
 #include <deque>
 #include <array>
 #include <vector>
@@ -371,6 +388,13 @@ static bool Identity(ProjectedObject const& a,ProjectedObject const& b){
 }
 static bool HighContrast(){HIGHCONTRASTW value{sizeof(value)};
  return !SystemParametersInfoW(SPI_GETHIGHCONTRAST,sizeof(value),&value,0)||(value.dwFlags&HCF_HIGHCONTRASTON);}
+static bool ChromeUiThread(FrameworkElement const& element) {
+#if J3W1_LEGACY_XAML
+ return element&&element.Dispatcher().HasThreadAccess();
+#else
+ return element&&element.DispatcherQueue().HasThreadAccess();
+#endif
+}
 static std::atomic<int> runtimeStatus{0};
 static bool ReviewedPackage(){
     UINT32 length=0;
@@ -380,14 +404,8 @@ static bool ReviewedPackage(){
     for(auto allowed:{L"Microsoft.Paint_11.2605.81.0_x64__8wekyb3d8bbwe"})if(wcscmp(name.data(),allowed)==0)return true;
     return false;
 }
-static bool ReviewedRuntime(){
-    if(int status=runtimeStatus.load())return status==1;
-    auto module=GetModuleHandleW(L"Microsoft.UI.Xaml.dll");if(!module)return false;
-    wchar_t path[32768]{};DWORD length=GetModuleFileNameW(module,path,std::size(path));
-    if(!length||length>=std::size(path))return false;
-    std::wstring name=path;
-    if(name.find(L"\\Microsoft.WindowsAppRuntime.2_2.5.1.0_x64__8wekyb3d8bbwe\\")==std::wstring::npos){runtimeStatus=-1;return false;}
-    HANDLE file=CreateFileW(path,GENERIC_READ,FILE_SHARE_READ,nullptr,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,nullptr);
+static bool RuntimeFileDigest(std::wstring const& path,const char* expected) {
+    HANDLE file=CreateFileW(path.c_str(),GENERIC_READ,FILE_SHARE_READ,nullptr,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,nullptr);
     if(file==INVALID_HANDLE_VALUE)return false;
     BCRYPT_ALG_HANDLE algorithm=nullptr;BCRYPT_HASH_HANDLE hash=nullptr;
     DWORD size=0,written=0;std::vector<BYTE> object;BYTE digest[32]{};bool valid=false;
@@ -401,20 +419,50 @@ static bool ReviewedRuntime(){
             if(complete&&BCryptFinishHash(hash,digest,sizeof(digest),0)>=0){
                 constexpr char hex[]="0123456789abcdef";std::string actual;
                 for(BYTE byte:digest){actual+=hex[byte>>4];actual+=hex[byte&15];}
-                valid=actual=="aad12524765e6fb63f0ae26a45a9ba3104f24fde66413d8a3036fbed74a1e990";
+                valid=actual==expected;
             }
         }
     }
     if(hash)BCryptDestroyHash(hash);if(algorithm)BCryptCloseAlgorithmProvider(algorithm,0);CloseHandle(file);
+    return valid;
+}
+static bool ReviewedRuntime(){
+    if(int status=runtimeStatus.load())return status==1;
+    auto module=GetModuleHandleW(L"Microsoft.UI.Xaml.dll");if(!module)return false;
+    wchar_t path[32768]{};DWORD length=GetModuleFileNameW(module,path,std::size(path));
+    if(!length||length>=std::size(path))return false;
+    std::wstring name=path;
+#if J3W1_LEGACY_XAML
+    wchar_t system[32768]{};auto systemLength=GetSystemDirectoryW(system,std::size(system));
+    if(!systemLength||systemLength>=std::size(system)||_wcsicmp(name.c_str(),(std::wstring(system)+L"\\Microsoft.UI.Xaml.dll").c_str())){runtimeStatus=-1;return false;}
+#else
+    if(name.find(L"\\Microsoft.WindowsAppRuntime.2_2.5.1.0_x64__8wekyb3d8bbwe\\")==std::wstring::npos){runtimeStatus=-1;return false;}
+#endif
+    bool valid=RuntimeFileDigest(path,"aad12524765e6fb63f0ae26a45a9ba3104f24fde66413d8a3036fbed74a1e990");
+#if J3W1_LEGACY_XAML
+    auto controls=GetModuleHandleW(L"Microsoft.UI." L"Xaml.dll");if(!controls)return false;
+    wchar_t controlsPath[32768]{};auto controlsLength=GetModuleFileNameW(controls,controlsPath,std::size(controlsPath));
+    if(!controlsLength||controlsLength>=std::size(controlsPath))return false;
+    if(std::wstring(controlsPath).find(L"\\\\")==std::wstring::npos)valid=false;
+    else valid=RuntimeFileDigest(controlsPath,"")&&valid;
+#endif
     runtimeStatus=valid?1:-1;return valid;
 }
 
 static Windows::Foundation::IActivationFactory Factory(wchar_t const* name) {
+#if J3W1_LEGACY_XAML
+ Windows::Foundation::IActivationFactory factory{nullptr};hstring type=name;
+ auto module=GetModuleHandleW(L"combase.dll");
+ auto getFactory=reinterpret_cast<HRESULT(WINAPI*)(void*,REFIID,void**)>(module?GetProcAddress(module,"RoGetActivationFactory"):nullptr);
+ if(!getFactory)throw hresult_error(E_NOINTERFACE);
+ check_hresult(getFactory(get_abi(type),reinterpret_cast<GUID const&>(guid_of<Windows::Foundation::IActivationFactory>()),reinterpret_cast<void**>(put_abi(factory))));return factory;
+#else
  auto module=GetModuleHandleW(L"Microsoft.UI.Xaml.dll");
  auto getFactory=reinterpret_cast<HRESULT(WINAPI*)(void*,void**)>(module?GetProcAddress(module,"DllGetActivationFactory"):nullptr);
  if(!getFactory)throw hresult_error(E_NOINTERFACE);
  Windows::Foundation::IActivationFactory factory{nullptr};hstring type=name;
  check_hresult(getFactory(get_abi(type),put_abi(factory)));return factory;
+#endif
 }
 
 
@@ -510,7 +558,11 @@ static bool RestoreControlResources(ControlResources& entry) noexcept {
  return restored;
 }
 
-struct Root { weak_ref<FrameworkElement> element; weak_ref<FrameworkElement> backgroundElement; weak_ref<DesktopWindowXamlSource> source; weak_ref<Window> window; event_token layout{}; ResourceDictionary owner{nullptr},overlay{nullptr}; ProjectedObject themeBefore{nullptr}; bool themeTouched=false; SystemBackdrop backdropBefore{nullptr}; bool backdropTracked=false; DependencyProperty backgroundProperty{nullptr}; ProjectedObject backgroundBefore{nullptr}; SolidColorBrush backgroundApplied{nullptr}; std::vector<Palette> palette; std::vector<Visual> changes; std::deque<OwnedThemeRefresh> refreshes; std::deque<ControlResources> controls; };
+struct Root { weak_ref<FrameworkElement> element; weak_ref<FrameworkElement> backgroundElement; weak_ref<DesktopWindowXamlSource> source; weak_ref<Window> window; event_token layout{}; ResourceDictionary owner{nullptr},overlay{nullptr}; ProjectedObject themeBefore{nullptr}; bool themeTouched=false;
+#if !J3W1_LEGACY_XAML
+ SystemBackdrop backdropBefore{nullptr}; bool backdropTracked=false;
+#endif
+ DependencyProperty backgroundProperty{nullptr}; ProjectedObject backgroundBefore{nullptr}; SolidColorBrush backgroundApplied{nullptr}; std::vector<Palette> palette; std::vector<Visual> changes; std::deque<OwnedThemeRefresh> refreshes; std::deque<ControlResources> controls; };
 struct PendingRoot { weak_ref<FrameworkElement> element; unsigned attempts=0; };
 // Readable caption customization is admitted separately from the XAML roots.
 // Extended title content is refused so native tabs and drag geometry remain
@@ -556,6 +608,269 @@ static bool ApplyNativeBrush(std::vector<OwnedNativeBrush>& entries,SolidColorBr
  entries.push_back({brush});
  return UpdateNativeBrush(entries.back(),target,true,[&]{return brush.Color();},[&](Color c){brush.Color(c);},failure);
 }
+
+// Native templates can retain a resolved brush inside a zero-time object
+// keyframe. Local ThemeResource overrides do not replace that cached value.
+// Exchange only the observed color-only storyboard shape, with its clock
+// stopped; retain original keyframe objects and their expressions for rollback.
+using namespace Microsoft::UI::Xaml::Media::Animation;
+struct ChromeFrameValue {bool exists=false;ProjectedObject value{nullptr};};
+struct OwnedChromeFrame {ProjectedObject original{nullptr},applied{nullptr};bool owned=false;};
+template<class Read,class Write,class Clock> static bool UpdateChromeFrame(OwnedChromeFrame& entry,bool active,Read read,Write write,Clock clock) noexcept {
+ try {
+  if(clock()!=ClockState::Stopped)return false;
+  auto current=read();
+  if(active) {
+   if(entry.owned)return true;
+   if(!current.exists||!Identity(current.value,entry.original))return false;
+   entry.owned=true;write(entry.applied);
+  } else if(entry.owned) {
+   if(current.exists&&Identity(current.value,entry.applied))write(entry.original);
+   entry.owned=false;
+  }
+  return true;
+ }catch(...){return false;}
+}
+static bool ChromeColorFrameAdmission(std::wstring_view target,std::wstring_view property,unsigned frames,bool brush,long long time) noexcept {
+ if(frames!=1||!brush||time!=0)return false;
+ if(property==L"Background"||property==L"BorderBrush")return target==L"ContentPresenter"||target==L"RootGrid";
+ return property==L"Foreground"&&(target==L"ContentPresenter"||target==L"ChevronIcon");
+}
+static unsigned ChromeColorState(std::wstring_view state) noexcept {
+ if(state==L"Normal")return 1;if(state==L"PointerOver")return 2;
+ if(state==L"Pressed")return 3;if(state==L"Disabled")return 4;return 0;
+}
+static bool ChromeColorStoryboard(Storyboard const& storyboard) {
+ if(!storyboard||!storyboard.Children().Size()||storyboard.Children().Size()>4)return false;
+ unsigned seen=0;
+ for(auto const& child:storyboard.Children()) {
+  auto animation=child.try_as<ObjectAnimationUsingKeyFrames>();if(!animation)return false;
+  auto frames=animation.KeyFrames();auto frame=frames.Size()==1?frames.GetAt(0).try_as<DiscreteObjectKeyFrame>():nullptr;
+  auto target=Storyboard::GetTargetName(animation),property=Storyboard::GetTargetProperty(animation);
+  if(!frame||!ChromeColorFrameAdmission(std::wstring_view{target},std::wstring_view{property},frames.Size(),bool(frame.Value().try_as<Brush>()),frame.KeyTime().TimeSpan.count()))return false;
+  unsigned bit=property==L"Background"?1:property==L"BorderBrush"?2:target==L"ContentPresenter"?4:8;
+  if(seen&bit)return false;seen|=bit;
+ }
+ return true;
+}
+struct ChromeStateRefresh {weak_ref<Control> control;VisualStateGroup group{nullptr};hstring state,expected;};
+struct ChromeAnimationChange {weak_ref<Control> control;ObjectAnimationUsingKeyFrames animation{nullptr};Storyboard storyboard{nullptr};VisualStateGroup group{nullptr};OwnedChromeFrame frame;};
+struct ChromeSetterChange {weak_ref<Control> control;VisualState state{nullptr};VisualStateGroup group{nullptr};unsigned index=0;OwnedChromeFrame value;};
+static bool ChromeSetterState(std::wstring_view state) noexcept {
+ return ChromeColorState(state)||state==L"Selected"||state==L"Checked"||state==L"CheckedPointerOver"
+  ||state==L"CheckedPressed"||state==L"OverflowPointerOver"||state==L"OverflowPressed";
+}
+static bool ChromeSetterAdmission(std::wstring_view property,bool brush,bool sealed) noexcept {
+ return !sealed&&brush&&(property==L"Background"||property==L"Foreground"||property==L"BorderBrush");
+}
+static Color ChromeStateColor(std::wstring_view property,unsigned state,bool secondary);
+static Color ChromeSetterColor(std::wstring_view property,std::wstring_view state) {
+ auto id=ChromeColorState(state);
+ if(id)return ChromeStateColor(property,id,false);
+ if(state==L"OverflowPointerOver")return ChromeStateColor(property,2,false);
+ if(state==L"OverflowPressed"||state==L"CheckedPressed")return ChromeStateColor(property,3,false);
+ auto key=property==L"Background"?L"ToggleButtonBackgroundChecked":property==L"Foreground"?L"ToggleButtonForegroundChecked":L"ToggleButtonBorderBrushChecked";
+ for(auto const& rule:rules)if(wcscmp(rule.key,key)==0)return rule.color;
+ throw hresult_error(E_INVALIDARG);
+}
+static bool StopChromeColorState(Control const& control,VisualStateGroup const& group,Storyboard const& storyboard,std::vector<ChromeStateRefresh>& refresh) noexcept {
+ try {
+  if(!ChromeColorStoryboard(storyboard))return false;
+  auto clock=storyboard.GetCurrentState();if(clock==ClockState::Stopped)return true;
+  if(clock!=ClockState::Active&&clock!=ClockState::Filling)return false;
+  if(control)if(auto state=group.CurrentState();state&&ChromeColorState(std::wstring_view{state.Name()})) {
+   bool found=false;for(auto const& prior:refresh)if(Identity(prior.group,group)){found=true;break;}
+   if(!found)refresh.push_back({make_weak(control),group,state.Name()});
+  }
+  storyboard.Stop();return storyboard.GetCurrentState()==ClockState::Stopped;
+ }catch(...){return false;}
+}
+static bool RefreshChromeColorStates(std::vector<ChromeStateRefresh>& refresh) noexcept {
+ bool complete=true;
+ for(auto const& entry:refresh)try {
+  if(auto control=entry.control.get()) {
+   auto current=entry.group.CurrentState();
+   if(!current||current.Name()!=(entry.expected.empty()?entry.state:entry.expected))continue;
+   complete=VisualStateManager::GoToState(control,L"Normal",false)&&complete;
+   complete=VisualStateManager::GoToState(control,entry.state,false)&&complete;
+  }
+ }catch(...){complete=false;}
+ refresh.clear();return complete;
+}
+static Color ChromeStateColor(std::wstring_view property,unsigned state,bool secondary) {
+ std::wstring key=secondary?L"DropDownButtonForegroundSecondary":property==L"Background"?L"ButtonBackground":property==L"BorderBrush"?L"ButtonBorderBrush":L"ButtonForeground";
+ if(state==2)key+=L"PointerOver";else if(state==3)key+=L"Pressed";else if(state==4)key=property==L"Background"?L"ButtonBackgroundDisabled":property==L"BorderBrush"?L"ButtonBorderBrushDisabled":L"ButtonForegroundDisabled";
+ for(auto const& rule:rules)if(key==rule.key)return rule.color;
+ throw hresult_error(E_INVALIDARG);
+}
+static bool RestoreChromeAnimations(std::deque<ChromeAnimationChange>& changes) noexcept {
+ bool complete=true;std::vector<ChromeStateRefresh> refresh;
+ for(auto& entry:changes)try {
+  auto frames=entry.animation.KeyFrames();
+  // A native replacement/deletion ends our ownership. It does not grant
+  // permission to stop or replay the application's replacement storyboard.
+  if(entry.frame.owned&&(frames.Size()!=1||!Identity(frames.GetAt(0),entry.frame.applied)))entry.frame.owned=false;
+  if(!entry.frame.owned)continue;
+  if(!StopChromeColorState(entry.control.get(),entry.group,entry.storyboard,refresh)){complete=false;continue;}
+  complete=UpdateChromeFrame(entry.frame,false,[&]{return ChromeFrameValue{frames.Size()>0,frames.Size()>0?frames.GetAt(0):nullptr};},
+   [&](auto const& value){frames.SetAt(0,value.template as<ObjectKeyFrame>());},[&]{return entry.storyboard.GetCurrentState();})&&complete;
+ }catch(...){complete=false;}
+ // Restore values before restarting native states. A failed write keeps its
+ // original object for the existing UI-thread cleanup retry.
+ complete=RefreshChromeColorStates(refresh)&&complete;
+ if(complete)changes.clear();return complete;
+}
+static bool SuspendChromeSetters(Control const& control,VisualStateGroup const& group,std::vector<ChromeStateRefresh>& refresh) {
+ auto state=group.CurrentState();if(!state)return true;
+ if(!ChromeSetterState(std::wstring_view{state.Name()}))return false;
+ for(auto const& prior:refresh)if(Identity(prior.group,group))return true;
+ refresh.push_back({make_weak(control),group,state.Name(),L"Normal"});
+ if(!VisualStateManager::GoToState(control,L"Normal",false))return false;
+ auto current=group.CurrentState();return current&&current.Name()==L"Normal";
+}
+static bool SetterTargetInControl(Setter const& setter,Control const& control) {
+ auto path=setter.Target();if(!path)return false;
+ auto target=path.Target().try_as<DependencyObject>();if(!target)return false;
+ // The public target must resolve to this control's visual subtree; unresolved
+ // name-only paths and unrelated targets are refused rather than guessed.
+ auto cursor=target;for(unsigned depth=0;cursor&&depth<32;depth++,cursor=VisualTreeHelper::GetParent(cursor))if(Identity(cursor,control))return true;
+ return false;
+}
+static bool RestoreChromeSetters(std::deque<ChromeSetterChange>& changes) noexcept {
+ bool complete=true;std::vector<ChromeStateRefresh> refresh;
+ for(auto& entry:changes)try {
+  auto setters=entry.state.Setters();
+  if(entry.value.owned&&(setters.Size()<=entry.index||!Identity(setters.GetAt(entry.index),entry.value.applied)))entry.value.owned=false;
+  if(!entry.value.owned)continue;
+  if(auto control=entry.control.get())if(!SuspendChromeSetters(control,entry.group,refresh)){complete=false;continue;}
+  complete=UpdateChromeFrame(entry.value,false,[&]{return ChromeFrameValue{setters.Size()>entry.index,setters.Size()>entry.index?setters.GetAt(entry.index):nullptr};},
+   [&](auto const& value){setters.SetAt(entry.index,value.template as<SetterBase>());},[]{return ClockState::Stopped;})&&complete;
+ }catch(...){complete=false;}
+ complete=RefreshChromeColorStates(refresh)&&complete;
+ if(complete)changes.clear();return complete;
+}
+template<class Entries,class RestoreEntry> static bool PruneChromeColorStates(Entries& entries,RestoreEntry restore) {
+ bool complete=true;
+ for(auto it=entries.begin();it!=entries.end();) {
+  if(it->control.get()){++it;continue;}
+  // The state objects can outlive their control. Restore their exact owned
+  // values before releasing them; keep failed receipts for cleanup retry.
+  Entries retired;retired.push_back(*it);
+  if(!restore(retired)){*it=std::move(retired.front());complete=false;++it;}
+  else it=entries.erase(it);
+ }
+ return complete;
+}
+static void ApplyChromeSetters(Control const& control,VisualStateGroup const& group,std::deque<ChromeSetterChange>& changes) {
+ std::vector<ChromeStateRefresh> refresh;
+ try {
+  for(auto const& state:group.States()) {
+   if(!ChromeSetterState(std::wstring_view{state.Name()}))continue;
+   // Mixed animation states remain under native ownership. Their captured
+   // color-only keyframes are handled separately, with stopped clocks.
+   if(auto storyboard=state.Storyboard();storyboard&&storyboard.Children().Size())continue;
+   auto setters=state.Setters();if(setters.IsSealed())continue;
+   for(unsigned index=0;index<setters.Size();++index) {
+    auto original=setters.GetAt(index).try_as<Setter>();if(!original||!original.Target()||!SetterTargetInControl(original,control))continue;
+    auto path=original.Target().Path().Path();
+    if(!ChromeSetterAdmission(std::wstring_view{path},bool(original.Value().try_as<Brush>()),setters.IsSealed()))continue;
+    bool tracked=false;for(auto const& prior:changes)if(Identity(prior.state,state)&&prior.index==index){tracked=true;break;}if(tracked)continue;
+    if(!SuspendChromeSetters(control,group,refresh))continue;
+    Setter applied;applied.Target(original.Target());applied.Value(SolidColorBrush(ChromeSetterColor(std::wstring_view{path},std::wstring_view{state.Name()})));
+    if(changes.size()>=4096)throw hresult_error(E_BOUNDS);
+    changes.push_back({make_weak(control),state,group,index,{original,applied}});auto& entry=changes.back();
+    if(!UpdateChromeFrame(entry.value,true,[&]{return ChromeFrameValue{setters.Size()>index,setters.Size()>index?setters.GetAt(index):nullptr};},
+     [&](auto const& value){setters.SetAt(index,value.template as<SetterBase>());},[]{return ClockState::Stopped;}))throw hresult_error(E_FAIL);
+   }
+  }
+ }catch(...){RefreshChromeColorStates(refresh);throw;}
+ if(!RefreshChromeColorStates(refresh))throw hresult_error(E_FAIL);
+}
+static void ApplyChromeAnimationPalette(DependencyObject const& object,std::deque<ChromeAnimationChange>& changes,std::deque<ChromeSetterChange>& setters) {
+ if(!PruneChromeColorStates(changes,RestoreChromeAnimations)||!PruneChromeColorStates(setters,RestoreChromeSetters))throw hresult_error(E_FAIL);
+ auto control=object.try_as<Control>();if(!control||!control.IsLoaded())return;
+ if(!object.try_as<Microsoft::UI::Xaml::Controls::Primitives::ButtonBase>()&&!object.try_as<MenuBarItem>())return;
+ std::vector<DependencyObject> todo{object};unsigned visited=0;
+ while(!todo.empty()&&visited++<64) {
+  auto node=todo.back();todo.pop_back();
+  if(auto element=node.try_as<FrameworkElement>())for(auto const& group:VisualStateManager::GetVisualStateGroups(element)) {
+   if(group.Name()!=L"CommonStates")continue;
+   ApplyChromeSetters(control,group,setters);
+   std::vector<ChromeStateRefresh> refresh;
+   try {
+    for(auto const& state:group.States()) {
+     auto stateId=ChromeColorState(std::wstring_view{state.Name()});auto storyboard=state.Storyboard();
+     if(!stateId||!ChromeColorStoryboard(storyboard))continue;
+     bool tracked=false;for(auto const& prior:changes)if(Identity(prior.storyboard,storyboard)){tracked=true;break;}
+     if(tracked)continue;
+     if(!StopChromeColorState(control,group,storyboard,refresh))throw hresult_error(E_FAIL);
+     for(auto const& child:storyboard.Children()) {
+      auto animation=child.as<ObjectAnimationUsingKeyFrames>();auto frames=animation.KeyFrames();
+      auto original=frames.GetAt(0).as<DiscreteObjectKeyFrame>();
+      DiscreteObjectKeyFrame applied;applied.KeyTime(original.KeyTime());
+      auto property=Storyboard::GetTargetProperty(animation);
+      applied.Value(SolidColorBrush(ChromeStateColor(std::wstring_view{property},stateId,Storyboard::GetTargetName(animation)==L"ChevronIcon")));
+      if(changes.size()>=4096)throw hresult_error(E_BOUNDS);
+      changes.push_back({make_weak(control),animation,storyboard,group,{original,applied}});auto& entry=changes.back();
+      if(!UpdateChromeFrame(entry.frame,true,[&]{return ChromeFrameValue{frames.Size()==1,frames.Size()==1?frames.GetAt(0):nullptr};},
+       [&](auto const& value){frames.SetAt(0,value.template as<ObjectKeyFrame>());},[&]{return storyboard.GetCurrentState();}))throw hresult_error(E_FAIL);
+     }
+    }
+   }catch(...){RefreshChromeColorStates(refresh);throw;}
+   if(!RefreshChromeColorStates(refresh))throw hresult_error(E_FAIL);
+  }
+  for(int i=0;i<VisualTreeHelper::GetChildrenCount(node);i++) {
+   auto child=VisualTreeHelper::GetChild(node,i);
+   if(child.try_as<Control>()||child.try_as<TextBlock>()||child.try_as<Image>())continue;
+   todo.push_back(child);
+  }
+ }
+}
+
+// Public composition backing, without AppWindow.TitleBar or title-mode writes.
+// Retain the exact native brush; a nullable original is still a readable value.
+struct OwnedCompositionBrush {ProjectedObject before{nullptr},applied{nullptr};bool owned=false,changed=false;};
+static bool SameCompositionObject(ProjectedObject const& a,ProjectedObject const& b) {return (!a&&!b)||Identity(a,b);}
+template<class Read,class Write> static bool UpdateCompositionBrush(OwnedCompositionBrush& entry,bool active,Read read,Write write) noexcept {
+ if(!active&&!entry.owned)return true;
+ try {
+  auto current=read();
+  if(entry.owned&&!SameCompositionObject(current,entry.applied)){entry.owned=false;entry.changed=true;}
+  if(!active){if(entry.owned){write(entry.before);entry.owned=false;}return true;}
+  if(entry.changed||entry.owned)return true;
+  entry.before=current;entry.owned=true;write(entry.applied);return true;
+ }catch(...) {
+  if(entry.owned)try {auto current=read();if(SameCompositionObject(current,entry.before))entry.owned=false;
+   else if(!SameCompositionObject(current,entry.applied)){entry.owned=false;entry.changed=true;}}catch(...){}
+  return false;
+ }
+}
+#if !J3W1_LEGACY_XAML
+// IWindowNative is the documented one-method IUnknown ABI in
+// microsoft.ui.xaml.window.h. The pinned compiler omits that interop header.
+struct NativeXamlWindow : ::IUnknown {virtual HRESULT STDMETHODCALLTYPE get_WindowHandle(HWND*)=0;};
+static constexpr GUID nativeXamlWindowId={0x45d64a29,0xa63e,0x4cb6,{0xb4,0x98,0x57,0x81,0xd2,0x98,0xcb,0x4f}};
+struct WindowBacking {
+ HWND window=nullptr;Microsoft::UI::Composition::ICompositionSupportsSystemBackdrop target{nullptr};OwnedCompositionBrush brush;
+};
+static constexpr PCWSTR windowBackingProperty=L"j3w1-paint-chrome-composition-backing";
+static bool OwnsWindowBacking(WindowBacking const& entry) {
+ DWORD process=0;auto thread=GetWindowThreadProcessId(entry.window,&process);
+ return thread==GetCurrentThreadId()&&process==GetCurrentProcessId()&&GetPropW(entry.window,windowBackingProperty)==&entry;
+}
+static bool RestoreWindowBackings(std::vector<std::unique_ptr<WindowBacking>>& entries) noexcept {
+ bool complete=true;
+ for(auto it=entries.begin();it!=entries.end();) {
+  auto& entry=**it;
+  if(OwnsWindowBacking(entry)&&!UpdateCompositionBrush(entry.brush,false,[&]{return entry.target.SystemBackdrop();},
+    [&](auto const& brush){entry.target.SystemBackdrop(brush?brush.template as<Windows::UI::Composition::CompositionBrush>():Windows::UI::Composition::CompositionBrush{nullptr});})) {complete=false;++it;continue;}
+  if(OwnsWindowBacking(entry))RemovePropW(entry.window,windowBackingProperty);
+  it=entries.erase(it);
+ }
+ return complete;
+}
+#endif
+
 
 // Paint owns an admitted native title. Notepad owns custom tabs and declines
 // all public caption access: even the button-only path revived a native title
@@ -657,8 +972,15 @@ struct CaptionWriteGuard {
  ~CaptionWriteGuard(){publicCaptionWrite=prior;}
 };
 
-struct ThreadState { std::vector<std::unique_ptr<PublicCaption>> publicCaptions;  ControlResources keyTips; HWND channel=nullptr; WNDPROC original=nullptr; std::deque<Root> roots; std::vector<OwnedNativeBrush> nativeBrushes; std::vector<PendingRoot> pending; bool busy=false,queued=false,cleaning=false; unsigned ticks=0; };
+struct ThreadState {
+std::vector<std::unique_ptr<PublicCaption>> publicCaptions;
+#if !J3W1_LEGACY_XAML
+ std::vector<std::unique_ptr<WindowBacking>> windowBackings;
+#endif
+ ControlResources keyTips; std::deque<ChromeAnimationChange> animations; std::deque<ChromeSetterChange> setters; HWND channel=nullptr; WNDPROC original=nullptr; std::deque<Root> roots; std::vector<OwnedNativeBrush> nativeBrushes; std::vector<PendingRoot> pending; bool busy=false,queued=false,cleaning=false; unsigned ticks=0; };
 static thread_local ThreadState* uiState=nullptr;
+static bool EnsureChannel();
+static void Schedule();
 // Core-created keyboard badges resolve Application.Resources directly, outside
 // the admitted chrome element tree. Only the three documented color keys are
 // application scoped. Exactly one UI thread owns these restorable entries.
@@ -760,6 +1082,7 @@ static bool Restore(Root& root) {
  auto element=root.backgroundElement.get();
  bool backgroundOwned=false;
  try{backgroundOwned=element&&root.backgroundApplied&&Identity(element.GetValue(root.backgroundProperty),root.backgroundApplied);}catch(...){restored=false;}
+#if !J3W1_LEGACY_XAML
  if(root.backdropTracked)try {
   WithAttachedSource(root.source.get(),[&](auto const& source){
    if(!source.SystemBackdrop())source.SystemBackdrop(root.backdropBefore);
@@ -767,6 +1090,7 @@ static bool Restore(Root& root) {
   if(auto window=root.window.get();window&&!window.SystemBackdrop())window.SystemBackdrop(root.backdropBefore);
   root.backdropTracked=false;root.backdropBefore=nullptr;
  }catch(...){restored=false;}
+#endif
  if(root.owner&&root.overlay)try {
   auto merged=root.owner.MergedDictionaries();unsigned index=0;
   if(merged.IndexOf(root.overlay,index))merged.RemoveAt(index);
@@ -793,6 +1117,11 @@ static bool Restore(Root& root) {
 // Public backdrop access is read/write. Retain the exact object, and restore
 // only while our null remains installed; a later app-owned backdrop wins.
 static void ApplyBackdrop(Root& root) {
+#if !J3W1_LEGACY_XAML
+ // The window composition backing has its own readable baseline. Do not
+ // clear its XAML backdrop controller through a second resource-root owner.
+ if(false&&uiState)if(auto window=root.window.get())
+  for(auto const& entry:uiState->windowBackings)if(OwnsWindowBacking(*entry)&&Identity(window,entry->target))return;
  if(root.backdropTracked)return;
  if(auto source=root.source.get()) {
   WithAttachedSource(source,[&](auto const& attached){
@@ -801,6 +1130,7 @@ static void ApplyBackdrop(Root& root) {
  } else if(auto window=root.window.get()) {
   if(auto value=window.SystemBackdrop()) {root.backdropBefore=value;window.SystemBackdrop(nullptr);root.backdropTracked=true;}
  }
+#endif
 }
 
 // The inspected islands wrap their app-owned content in a scrolling viewport.
@@ -895,6 +1225,8 @@ static bool Prepare(Root& root) {
 }
 static bool DataSubtree(DependencyObject const& object) {
  auto type=get_class_name(object);
+ if(type==L"Microsoft.Terminal.Control.TermControl"||type==L"TerminalApp.TerminalPage"
+   ||type==L"TerminalApp.CommandPalette"||type==L"TerminalApp.SuggestionsControl")return true;
  std::wstring_view name{type};
  if(name.find(L"ColorPicker")!=std::wstring_view::npos||name.find(L"CanvasControl")!=std::wstring_view::npos||name.find(L"InkCanvas")!=std::wstring_view::npos
    ||name==L"PaintUI.D2DSwapChainPanel"||name==L"PaintUI.ColorRadioButton"||name==L"PaintUI.ItemHoverGridView")return true;
@@ -1072,14 +1404,18 @@ static bool PruneRetiredControls(Root& root) {
 // SplitButton owns the state backgrounds above its two ButtonBase children.
 // Override its own resource scope while keeping the native state setters.
 static bool CompositeButtonChrome(std::wstring_view type) {
- return type==L"Microsoft.UI.Xaml.Controls.SplitButton";
+ return type==L"Microsoft.UI.Xaml.Controls.SplitButton"||type==L"Windows.UI.Xaml.Controls.SplitButton";
 }
 static bool StandardChrome(DependencyObject const& object) {
  return CompositeButtonChrome(std::wstring_view{get_class_name(object)})
   ||object.try_as<Microsoft::UI::Xaml::Controls::Primitives::ButtonBase>()
   ||object.try_as<MenuBarItem>()||object.try_as<MenuFlyoutItem>()||object.try_as<MenuFlyoutSubItem>()
   ||object.try_as<MenuFlyoutPresenter>()||object.try_as<ToggleSwitch>()||object.try_as<ComboBox>()
-  ||object.try_as<ListViewItem>()||object.try_as<Expander>()||object.try_as<Slider>()||object.try_as<TextBlock>()||object.try_as<IconElement>();
+  ||object.try_as<ListViewItem>()
+#if !J3W1_LEGACY_XAML
+  ||object.try_as<Expander>()
+#endif
+  ||object.try_as<Slider>()||object.try_as<TextBlock>()||object.try_as<IconElement>();
 }
 static void RefreshChromeControl(Root& root,DependencyObject const& object) {
  if(!StandardChrome(object))return;
@@ -1167,6 +1503,7 @@ static void Bridge(Root& root) {
  while(!stack.empty()&&count++<4096) {
   auto object=stack.back();stack.pop_back();if(DataSubtree(object))continue;
   RefreshChromeControl(root,object);
+  if(uiState)ApplyChromeAnimationPalette(object,uiState->animations,uiState->setters);
   if(object.try_as<Control>()) {
    apply(object,Control::BackgroundProperty(),Kind::Background);apply(object,Control::ForegroundProperty(),Kind::Foreground);apply(object,Control::BorderBrushProperty(),Kind::Border);
   }
@@ -1259,11 +1596,52 @@ static void ApplyPublicCaptions(ThreadState& state) noexcept {
   }
  }catch(...){Log(232);RestorePublicCaptions(state);}
 }
+
+
+static void ObserveWindowBacking(Window const& window) noexcept {
+#if !J3W1_LEGACY_XAML
+ if(!false||!window||!window.DispatcherQueue().HasThreadAccess()||!enabled.load()||HighContrast()||!ReviewedRuntime())return;
+ try {
+  com_ptr<NativeXamlWindow> native;if(FAILED(get_unknown(window)->QueryInterface(nativeXamlWindowId,native.put_void())))return;
+  HWND handle=nullptr;if(FAILED(native->get_WindowHandle(&handle))||!handle)return;
+  DWORD process=0;auto thread=GetWindowThreadProcessId(handle,&process);wchar_t type[64]{};
+  if(thread!=GetCurrentThreadId()||process!=GetCurrentProcessId()||!GetClassNameW(handle,type,64)||wcscmp(type,L"MSPaintApp")||!EnsureChannel())return;
+  if(GetPropW(handle,windowBackingProperty))return;
+  if(uiState->windowBackings.size()>=256)return;
+  auto target=window.try_as<Microsoft::UI::Composition::ICompositionSupportsSystemBackdrop>();if(!target)return;
+  auto compositor=window.Compositor();if(!compositor)return;
+  auto entry=std::make_unique<WindowBacking>();entry->window=handle;entry->target=target;
+  entry->brush.applied=compositor.CreateColorBrush(CanvasColor());
+  if(!SetPropW(handle,windowBackingProperty,entry.get()))return;
+  try{uiState->windowBackings.push_back(std::move(entry));}catch(...){RemovePropW(handle,windowBackingProperty);throw;}
+  Schedule();
+ }catch(...){/* Unknown/closed targets retain their native backing. */}
+#endif
+}
+static bool RefreshWindowBackings(ThreadState& state,bool active) noexcept {
+#if !J3W1_LEGACY_XAML
+ if(!active)return RestoreWindowBackings(state.windowBackings);
+ bool complete=true;
+ for(auto it=state.windowBackings.begin();it!=state.windowBackings.end();) {
+  auto& entry=**it;
+  // Destroyed/reused HWNDs must never lead to a disposed compositor getter.
+  if(!OwnsWindowBacking(entry)){it=state.windowBackings.erase(it);continue;}
+  complete=UpdateCompositionBrush(entry.brush,true,[&]{return entry.target.SystemBackdrop();},
+    [&](auto const& brush){entry.target.SystemBackdrop(brush?brush.template as<Windows::UI::Composition::CompositionBrush>():Windows::UI::Composition::CompositionBrush{nullptr});})&&complete;
+  ++it;
+ }
+ return complete;
+#else
+ return true;
+#endif
+}
+
 static void Refresh(ThreadState& state) noexcept {
  if(state.busy)return;state.busy=true;state.queued=false;
  ApplyPublicCaptions(state);
  const bool active=enabled.load()&&!HighContrast();
- if(!active){RestoreKeyTips(state);RestoreNativeBrushes(state.nativeBrushes);}
+ if(!RefreshWindowBackings(state,active))Log(237);
+ if(!active){RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);RestoreKeyTips(state);RestoreNativeBrushes(state.nativeBrushes);}
  else if(!state.roots.empty())ApplyKeyTips(state);
  for(auto it=state.pending.begin();it!=state.pending.end();) {
   bool finished=!enabled.load()||HighContrast();
@@ -1279,11 +1657,11 @@ static void Refresh(ThreadState& state) noexcept {
   auto& root=state.roots[at];
   if(!enabled.load()||HighContrast()||!root.element.get())Restore(root);
   else if(auto element=root.element.get();element&&element.IsLoaded()&&element.XamlRoot()
-    &&element.DispatcherQueue().HasThreadAccess()&&Prepare(root)) {
+    &&ChromeUiThread(element)&&Prepare(root)) {
    ApplyBackdrop(root);ApplyRootBackground(root);Bridge(root);
   }
- }catch(hresult_error const& error){Log(98,static_cast<unsigned>(error.code().value));Restore(state.roots[at]);}
- catch(...){Log(97);Restore(state.roots[at]);}
+ }catch(hresult_error const& error){Log(98,static_cast<unsigned>(error.code().value));RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);Restore(state.roots[at]);}
+ catch(...){Log(97);RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);Restore(state.roots[at]);}
  for(auto it=state.roots.begin();it!=state.roots.end();) {
   if(!it->element.get()&&Restore(*it))it=state.roots.erase(it);else ++it;
  }
@@ -1299,7 +1677,10 @@ static void Schedule() {
 static bool RestoreThreadState(ThreadState& state) noexcept {
  bool publicRestored=RestorePublicCaptions(state);
  bool restored=RestoreKeyTips(state)&&publicRestored;
+ restored=RefreshWindowBackings(state,false)&&restored;
  restored=RestoreNativeBrushes(state.nativeBrushes)&&restored;
+ restored=RestoreChromeAnimations(state.animations)&&restored;
+ restored=RestoreChromeSetters(state.setters)&&restored;
  for(auto& root:state.roots) {
   if(root.layout.value)try {
    if(auto element=root.element.get())element.LayoutUpdated(root.layout);
@@ -1391,7 +1772,7 @@ static void ObservePopupChrome(FrameworkElement const& element) {
  auto type=get_class_name(element);
  for(auto& root:uiState->roots) {
   auto owner=root.element.get();if(!owner||root.palette.empty())continue;
-  if(!PopupDiscoveryAdmission(std::wstring_view{type},element.DispatcherQueue().HasThreadAccess(),enabled.load(),element.IsLoaded(),Identity(owner.XamlRoot(),xaml)))continue;
+  if(!PopupDiscoveryAdmission(std::wstring_view{type},ChromeUiThread(element),enabled.load(),element.IsLoaded(),Identity(owner.XamlRoot(),xaml)))continue;
   // Resource changes can synchronously report more visual-tree mutations.
   // Reentrant callbacks wait for the existing bounded refresh path.
   struct Guard {ThreadState& state;explicit Guard(ThreadState& value):state(value){state.busy=true;}~Guard(){state.busy=false;}};
@@ -1470,19 +1851,23 @@ struct RootDiscoveryTap : implements<RootDiscoveryTap,IObjectWithSite,IVisualTre
   com_ptr<IXamlDiagnostics> diagnostics;{std::lock_guard guard(state->mutex);diagnostics=state->diagnostics;}
   return diagnostics?diagnostics->QueryInterface(iid,output):E_FAIL;
  }
- HRESULT STDMETHODCALLTYPE OnVisualTreeChange(ParentChildRelation,VisualElement element,VisualMutationType mutation) noexcept final {
+ HRESULT STDMETHODCALLTYPE OnVisualTreeChange(ParentChildRelation relation,VisualElement element,VisualMutationType mutation) noexcept final {
   struct Activity {std::atomic<unsigned>& count;Activity(std::atomic<unsigned>& value):count(value){++count;}~Activity(){--count;}} activity(state->callbacks);
   if(state->stopping.load()||!enabled.load()||mutation!=VisualMutationType::Add||!element.Type)return S_OK;
   // Type is metadata. Do not query names, document contents or data controls.
-  std::wstring_view type(element.Type,SysStringLen(element.Type));if(!RootCandidateClass(type)&&!PopupChromeClass(type))return S_OK;
+  std::wstring_view type(element.Type,SysStringLen(element.Type));
+  // A diagnostic root can expose the existing XAML Window. Query only that
+  // public interface; leaf data controls never grant backing ownership.
+  if(relation.Parent&&!RootCandidateClass(type)&&!PopupChromeClass(type))return S_OK;
   try {
    com_ptr<IXamlDiagnostics> diagnostics;{std::lock_guard guard(state->mutex);diagnostics=state->diagnostics;}
    if(!diagnostics)return S_OK;
    com_ptr<::IInspectable> instance;check_hresult(diagnostics->GetIInspectableFromHandle(element.Handle,instance.put()));
    Windows::Foundation::IInspectable value{nullptr};copy_from_abi(value,instance.get());
+   if(!relation.Parent)if(auto window=value.try_as<Window>())ObserveWindowBacking(window);
    auto framework=value.try_as<FrameworkElement>();
    if(framework&&!state->stopping.load()) {
-    if(DiscoveryAdmission(type,framework.DispatcherQueue().HasThreadAccess(),enabled.load()))ObserveRoot(framework);
+    if(DiscoveryAdmission(type,ChromeUiThread(framework),enabled.load()))ObserveRoot(framework);
     else if(PopupChromeClass(type))ObservePopupChrome(framework);
    }
   }catch(...){/* An expired diagnostics handle never grants fallback admission. */}
@@ -1530,22 +1915,27 @@ static DWORD WINAPI RootDiscoveryWorker(void* parameter) {
  delete static_cast<std::shared_ptr<RootDiscoverySession>*>(parameter);
  bool apartment=false;
  try {
-  init_apartment(apartment_type::multi_threaded);apartment=true;
   for(unsigned attempt=0;attempt<50&&!state->stopping.load();++attempt) {
    if(ReviewedRuntime()) {
+    // Do not start COM (and its background handle cache) for an unadmitted
+    // runtime. Diagnostics are the only path here that needs an apartment.
+    init_apartment(apartment_type::multi_threaded);apartment=true;
     auto runtime=GetModuleHandleW(L"Microsoft.UI.Xaml.dll");HMODULE self=nullptr;
     wchar_t path[32768]{},runtimePath[32768]{};
     DWORD runtimeLength=GetModuleFileNameW(runtime,runtimePath,std::size(runtimePath));
     if(!runtimeLength||runtimeLength>=std::size(runtimePath)
      ||!GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS|GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,reinterpret_cast<LPCWSTR>(RootDiscoveryWorker),&self))break;
     DWORD selfLength=GetModuleFileNameW(self,path,std::size(path));if(!selfLength||selfLength>=std::size(path))break;
-    std::wstring bridgePath=runtimePath;auto slash=bridgePath.find_last_of(L"\\");if(slash==std::wstring::npos)break;
+    std::wstring bridgePath=runtimePath;
+#if !J3W1_LEGACY_XAML
+    auto slash=bridgePath.find_last_of(L"\\");if(slash==std::wstring::npos)break;
     bridgePath.resize(slash+1);bridgePath+=L"Microsoft.Internal.FrameworkUdk.dll";
+#endif
     if(!ReviewedDiagnosticsBridge(bridgePath))break;
     auto bridge=LoadLibraryExW(bridgePath.c_str(),nullptr,LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR|LOAD_LIBRARY_SEARCH_SYSTEM32);
     if(!bridge)break;
     auto initialize=reinterpret_cast<HRESULT(WINAPI*)(LPCWSTR,DWORD,LPCWSTR,LPCWSTR,CLSID,LPCWSTR)>(GetProcAddress(bridge,"InitializeXamlDiagnosticsEx"));
-    HRESULT result=initialize?initialize(L"WinUIVisualDiagConnection1",GetCurrentProcessId(),runtimePath,path,rootDiscoveryClsid,nullptr):E_NOINTERFACE;
+    HRESULT result=initialize?initialize(J3W1_LEGACY_XAML?L"VisualDiagConnection1":L"WinUIVisualDiagConnection1",GetCurrentProcessId(),runtimePath,path,rootDiscoveryClsid,nullptr):E_NOINTERFACE;
     FreeLibrary(bridge);
     if(FAILED(result))break;
     for(unsigned wait=0;wait<50&&!state->stopping.load();++wait) {
@@ -1625,6 +2015,7 @@ static HRESULT STDMETHODCALLTYPE WindowContentHook(void* instance,void* content)
  auto result=originalWindowContent(instance,content);
  if(enabled.load()&&SUCCEEDED(result)&&content&&!HighContrast())try {
   UIElement value{nullptr};copy_from_abi(value,content);Window window{nullptr};copy_from_abi(window,instance);Track(value,nullptr,window);
+  ObserveWindowBacking(window);
  }catch(hresult_error const& error){Log(199,static_cast<unsigned>(error.code().value));}
  return result;
 }
@@ -1649,9 +2040,10 @@ static bool RootCandidateClass(std::wstring_view name) {
  return false;
 }
 static void ObserveConstructedContainer(ProjectedObject const& value) {
+ if(auto window=value.try_as<Window>())ObserveWindowBacking(window);
  auto element=value.try_as<FrameworkElement>();
  if(element&&RootCandidateClass(std::wstring_view{get_class_name(element)})
-   &&element.DispatcherQueue().HasThreadAccess())ObserveRoot(element);
+   &&ChromeUiThread(element))ObserveRoot(element);
 }
 template<unsigned N> static HRESULT STDMETHODCALLTYPE CreateHook(void* self,void* outer,void** inner,void** object){
  auto result=originalCreate[N](self,outer,inner,object);
@@ -1663,7 +2055,7 @@ template<unsigned N> static HRESULT STDMETHODCALLTYPE CreateHook(void* self,void
   ProjectedObject value{nullptr};copy_from_abi(value,*object);
   unsigned mask=0;
   if(auto element=value.try_as<FrameworkElement>()) {
-   mask|=1;if(element.DispatcherQueue().HasThreadAccess())mask|=8;
+   mask|=1;if(ChromeUiThread(element))mask|=8;
    if(element.XamlRoot())mask|=16;
   }
   if(value.try_as<DesktopWindowXamlSource>())mask|=2;
@@ -1695,7 +2087,7 @@ template<unsigned N> static HRESULT STDMETHODCALLTYPE ActivationHook(void* self,
   ProjectedObject value{nullptr};copy_from_abi(value,*object);
   unsigned mask=0;
   if(auto element=value.try_as<FrameworkElement>()) {
-   mask|=1;if(element.DispatcherQueue().HasThreadAccess())mask|=8;
+   mask|=1;if(ChromeUiThread(element))mask|=8;
    if(element.XamlRoot())mask|=16;
   }
   if(value.try_as<DesktopWindowXamlSource>())mask|=2;
@@ -1707,7 +2099,7 @@ template<unsigned N> static HRESULT STDMETHODCALLTYPE ActivationHook(void* self,
  if(enabled.load()&&SUCCEEDED(result)&&object&&*object&&admitted&&!HighContrast())try {
   ProjectedObject value{nullptr};copy_from_abi(value,*object);AdmitSource(value);
   if(auto source=value.try_as<DesktopWindowXamlSource>();source&&source.Content())Track(source.Content(),source);
-  if(auto window=value.try_as<Window>();window&&window.Content())Track(window.Content(),nullptr,window);
+  if(auto window=value.try_as<Window>()){ObserveWindowBacking(window);if(window.Content())Track(window.Content(),nullptr,window);}
   if(auto element=value.try_as<FrameworkElement>())ObserveRoot(element);
  }catch(hresult_error const& error){Log(242,static_cast<unsigned>(error.code().value));}
  catch(...){Log(243);}
@@ -1862,8 +2254,16 @@ static void Admit(){
   install.operator()<2,IUserControlFactory>(L"Microsoft.UI.Xaml.Controls.UserControl");
   install.operator()<3,IPageFactory>(L"Microsoft.UI.Xaml.Controls.Page");
   install.operator()<4,IGridFactory>(L"Microsoft.UI.Xaml.Controls.Grid");
+#if !J3W1_LEGACY_XAML
   install.operator()<5,IDesktopWindowXamlSourceFactory>(L"Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource");
+#else
+  hooked[5]=true; // Legacy islands expose activation, not a composable factory.
+#endif
+#if !J3W1_LEGACY_XAML
   install.operator()<6,IWindowFactory>(L"Microsoft.UI.Xaml.Window");
+#else
+  hooked[6]=true;
+#endif
   auto installActivation=[]<unsigned N>(wchar_t const* type) {
    if(activationHooked[N].load())return;
    auto api=Factory(type);auto table=*reinterpret_cast<void***>(get_abi(api));auto function=table[6];
@@ -1879,7 +2279,11 @@ static void Admit(){
   installActivation.operator()<3>(L"Microsoft.UI.Xaml.Controls.Page");
   installActivation.operator()<4>(L"Microsoft.UI.Xaml.Controls.Grid");
   installActivation.operator()<5>(L"Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource");
+#if !J3W1_LEGACY_XAML
   installActivation.operator()<6>(L"Microsoft.UI.Xaml.Window");
+#else
+  activationHooked[6]=true;
+#endif
   bool activated=true;for(auto& item:activationHooked)if(!item.load())activated=false;activationReady=activated;
   bool all=true;for(auto& item:hooked)if(!item.load())all=false;factoryReady=all;
  }catch(hresult_error const& e){Log(19,e.code().value);}catch(...){Log(18);}admitting=false;

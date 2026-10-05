@@ -327,6 +327,10 @@ static LocalResourceValue LocalStyle(FrameworkElement const& element) {
 }
 
 
+using ProjectedObject=IInspectable;
+@CHROME_COLOR_STATE@
+[[clang::no_destroy]] static std::deque<ChromeAnimationChange> genericAnimations;
+[[clang::no_destroy]] static std::deque<ChromeSetterChange> genericSetters;
 static unsigned KnownState(hstring const& name) {
  if(name==L"Normal")return 1;if(name==L"PointerOver")return 2;
  if(name==L"Pressed")return 3;if(name==L"Disabled")return 4;return 0;
@@ -578,6 +582,8 @@ static void BridgeViews() {
         ApplyPopupFrame(object);
         ApplyButtonStyle(object);
         ApplyAnimationPalette(object);
+        auto genericType=get_class_name(object);
+        if(genericType==L"Microsoft.UI.Xaml.Controls.DropDownButton"||genericType==L"Windows.UI.Xaml.Controls.Button"||genericType==L"Windows.UI.Xaml.Controls.Primitives.RepeatButton")ApplyChromeAnimationPalette(object,genericAnimations,genericSetters);
         BridgeStaticText(object);
         for(int i=0;i<VisualTreeHelper::GetChildrenCount(object);i++)stack.push_back(VisualTreeHelper::GetChild(object,i));
     }
@@ -588,7 +594,9 @@ static void BridgeViews() {
 static bool RestorePalette() noexcept {
     admitted=false;
     std::vector<NativeStateRefresh> restartStates;
-    bool restored=RestoreAnimations(restartStates);
+    bool restored=RestoreChromeAnimations(genericAnimations);
+    restored=RestoreChromeSetters(genericSetters)&&restored;
+    restored=RestoreAnimations(restartStates)&&restored;
     // A failed clock stop must not be followed by a template/style mutation.
     // Restart clocks already stopped and retain all ownership for cleanup retry.
     if(!restored){RefreshNativeColorStates(restartStates);return false;}
