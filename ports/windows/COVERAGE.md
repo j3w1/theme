@@ -560,3 +560,18 @@ before mutation. Their native state remains intact while supported chrome
 resources keep their ownership. A live Notepad trace identified the prior
 whole-toolbar restoration as a source of native gray paint. This correction
 does not establish full hover-state or first-window native-header acceptance.
+
+### Shell preview handoff backing
+
+The pinned Windows preview surrogate owns an opaque native gray background
+before PowerToys creates its content window. The existing Markdown adapter now
+also admits that exact surrogate executable and an independently pinned Explorer
+owner. It paints only WM_ERASEBKGND for the observed Shell Preview Extension Host
+Previewer class, with the expected parent/root chain, a matching window DC and
+its original solid RGB(30,30,30) class brush. It uses the canonical canvas role.
+Shared brushes, child windows, documents and browser rendering remain untouched.
+Unknown identities, colors, ownership, DCs and high contrast retain native erasure.
+Disable/unload repaints the original backing without inventing a restore value.
+The same bundled adapter participates in the existing single-script lifecycle.
+A private comparison showed a black initial large Markdown frame; final
+generated-candidate installation and recovery acceptance remain separate checks.

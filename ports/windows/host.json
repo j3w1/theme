@@ -1471,7 +1471,7 @@
     "buttonStyleTarget": "CalculatorApp.Controls.CalculatorButton, CalculatorApp, Version=11.2607.0.0, Culture=neutral, PublicKeyToken=null"
   },
   "markdownPreview": {
-    "version": "1.3.0",
+    "version": "1.4.0",
     "hostVersion": "0.101.2362.0",
     "hostSha256": "d48704360aa8c8d5a3f572a055b176d50d58206f386cda49b2760beb3fd00cd9",
     "controlSha256": "e47fcc38944ab5920aa49a31a2d0fef212865d1f5a62a65a08012a1767bed9cc",
@@ -1570,7 +1570,12 @@
         "backgroundSetterRva": 364304,
         "controllerCloseRva": 357248
       }
-    ]
+    ],
+    "nativeHost": {
+      "version": "10.0.26100.8115",
+      "sha256": "0402afd1e3231da4841a093040f861b1af321f3dd6740c879de9d1e3d600d95e",
+      "explorerSha256": "34ac55b23b6d840cc9fa8304c0149b8bb026d817b39610728092878d634a61eb"
+    }
   },
   "notepadNative": {
     "version": "1.1.1",

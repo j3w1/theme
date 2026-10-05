@@ -10,6 +10,9 @@ export function windowsMarkdownArtifacts(host,resolved){
  if(!md||!/^\d+\.\d+\.\d+$/.test(md.version))throw Error('Markdown requires a version');
  if(!/^\d+\.\d+\.\d+\.\d+$/.test(md.hostVersion))throw Error('Invalid Markdown hostVersion');
  for(const key of ['hostSha256','controlSha256','helperSha256'])if(!/^[a-f0-9]{64}$/.test(md[key]))throw Error('Invalid Markdown '+key);
+ const native=md.nativeHost;
+ if(!native||!/^\d+\.\d+\.\d+\.\d+$/.test(native.version)||native.version.split('.').some(p=>Number(p)>65535)
+  ||! /^[a-f0-9]{64}$/.test(native.sha256)||! /^[a-f0-9]{64}$/.test(native.explorerSha256))throw Error('Invalid native preview host identity');
  if(!Array.isArray(md.webviewBoundaries)||!md.webviewBoundaries.length||md.webviewBoundaries.length>8)throw Error('Markdown requires bounded reviewed WebView identities');
  const versions=new Set(),digests=new Set();
  for(const pin of md.webviewBoundaries) {
@@ -44,10 +47,11 @@ export function windowsMarkdownArtifacts(host,resolved){
  const rgb=role=>{const color=roles[role];if(!/^#[a-f0-9]{6}$/i.test(color))throw Error('Loading surface requires an opaque semantic color');return [1,3,5].map(i=>parseInt(color.slice(i,i+2),16)).join(',');};
  const subs={LOADING_BACKGROUND:rgb('CANVAS'),LOADING_FOREGROUND:rgb('PROSE'),VERSION:md.version,HEADER_PINS:md.headers.map(p=>` {${p.length},${p.styleOffset},${p.styleLength},"${p.sha256}"},`).join('\n'),
   PALETTE_CSS:css,HOST_SHA256:md.hostSha256,CONTROL_SHA256:md.controlSha256,HELPER_SHA256:md.helperSha256,
+  PREVIEW_HOST_SHA256:native.sha256,PREVIEW_EXPLORER_SHA256:native.explorerSha256,
   BROWSER_ENV:'FF'+roles.CANVAS.slice(1).toUpperCase(),
   BROWSER_PINS:md.webviewBoundaries.map(p=>' {"'+p.sha256+'",'+['navigateToStringRva','navigateRva','backgroundGetterRva','backgroundSetterRva','controllerCloseRva'].map(key=>'0x'+(p[key]??0).toString(16)).join(',')+'}, // '+p.version).join('\n'),
   BROWSER_DISPATCH:md.webviewBoundaries.map((_,i)=>'  case '+i+':return HookBoundary<'+i+'>(module);').join('\n')};
  if(css.includes(')MD"'))throw Error('Invalid Markdown CSS literal delimiter');
- const source=render(readFileSync(path.join(repoRoot,`ports/windows/src/${id}.wh.cpp.in`),'utf8').replace('@PREVIEW_LOADING@',readFileSync(path.join(repoRoot,'ports/windows/src/preview-loading.cpp.in'),'utf8')).replace('@MARKDOWN_BACKGROUND@',readFileSync(path.join(repoRoot,'ports/windows/src/markdown-background.cpp.in'),'utf8')),subs);
+ const source=render(readFileSync(path.join(repoRoot,`ports/windows/src/${id}.wh.cpp.in`),'utf8').replace('@PREVIEW_LOADING@',readFileSync(path.join(repoRoot,'ports/windows/src/preview-loading.cpp.in'),'utf8')).replace('@PREVIEW_HOST_BACKGROUND@',readFileSync(path.join(repoRoot,'ports/windows/src/preview-host-background.cpp.in'),'utf8')).replace('@MARKDOWN_BACKGROUND@',readFileSync(path.join(repoRoot,'ports/windows/src/markdown-background.cpp.in'),'utf8')),subs);
  return {id,version:md.version,source,css};
 }

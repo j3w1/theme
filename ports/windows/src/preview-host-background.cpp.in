@@ -1,0 +1,75 @@
+// Native shell preview backing belongs to prevhost, before PowerToys creates
+// its WinForms/WebView children. Never change a shared class brush or pixels.
+static bool nativePreviewMode=false;
+static decltype(&DefWindowProcW) originalPreviewDefault;
+struct PreviewOwner {DWORD process;HANDLE lifetime;};
+static std::vector<PreviewOwner> previewOwners;
+static std::mutex previewOwnerMutex;
+static bool PreviewOwnerAlive(DWORD process) {
+ std::lock_guard guard(previewOwnerMutex);
+ for(const auto& owner:previewOwners)if(owner.process==process) {
+  return WaitForSingleObject(owner.lifetime,0)==WAIT_TIMEOUT;
+ }return false;
+}
+static BOOL CALLBACK DiscoverPreviewOwner(HWND window,LPARAM) {
+ wchar_t name[64]{};DWORD process=0;
+ if(!GetClassNameW(window,name,64)||_wcsicmp(name,L"CabinetWClass")
+  ||!GetWindowThreadProcessId(window,&process)||PreviewOwnerAlive(process)||previewOwners.size()>=16)return TRUE;
+ HANDLE lifetime=OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION|SYNCHRONIZE,FALSE,process);
+ if(!lifetime)return TRUE;
+ wchar_t exe[32768]{};DWORD length=std::size(exe);
+ if(QueryFullProcessImageNameW(lifetime,0,exe,&length)&&length<std::size(exe)
+  &&DigestFile(exe,"@PREVIEW_EXPLORER_SHA256@")) {
+  try{std::lock_guard guard(previewOwnerMutex);previewOwners.push_back({process,lifetime});return TRUE;}catch(...){}
+ }CloseHandle(lifetime);return TRUE;
+}
+static bool PreviewHostWindow(HWND window) {
+ if(!window)return false;
+ DWORD process=0,parentProcess=0,rootProcess=0;
+ GetWindowThreadProcessId(window,&process);
+ HWND parent=GetParent(window),root=GetAncestor(window,GA_ROOT);
+ GetWindowThreadProcessId(parent,&parentProcess);GetWindowThreadProcessId(root,&rootProcess);
+ wchar_t name[128]{},parentName[128]{},rootName[64]{};
+ return process==GetCurrentProcessId()&&parentProcess==rootProcess&&PreviewOwnerAlive(rootProcess)
+  &&GetClassNameW(window,name,128)&&_wcsicmp(name,L"Shell Preview Extension Host Previewer")==0
+  &&GetClassNameW(parent,parentName,128)&&_wcsicmp(parentName,L"Shell Preview Extension Host")==0
+  &&GetClassNameW(root,rootName,64)&&_wcsicmp(rootName,L"CabinetWClass")==0;
+}
+static bool PaintPreviewHost(HWND window,HDC dc) {
+ if(!nativePreviewMode||!enabled.load()||HighContrast()||!PreviewHostWindow(window)
+  ||WindowFromDC(dc)!=window)return false;
+ LOGBRUSH original{};
+ auto brush=reinterpret_cast<HBRUSH>(GetClassLongPtrW(window,GCLP_HBRBACKGROUND));
+ if(GetObjectW(brush,sizeof(original),&original)!=sizeof(original)
+  ||original.lbStyle!=BS_SOLID||original.lbColor!=RGB(30,30,30))return false;
+ // The current host-owned brush is checked on every erase. Unknown or later
+ // colors keep native painting. Filling consumes no document/window contents.
+ RECT rect{};if(!GetClientRect(window,&rect))return false;
+ HBRUSH canvas=CreateSolidBrush(loadingBackground);if(!canvas)return false;
+ int result=FillRect(dc,&rect,canvas);DeleteObject(canvas);return result!=0;
+}
+static LRESULT WINAPI PreviewDefaultHook(HWND window,UINT message,WPARAM wp,LPARAM lp) {
+ if(message==WM_ERASEBKGND&&PaintPreviewHost(window,reinterpret_cast<HDC>(wp)))return 1;
+ return originalPreviewDefault(window,message,wp,lp);
+}
+static BOOL CALLBACK RefreshPreviewChild(HWND window,LPARAM) {
+ if(PreviewHostWindow(window))RedrawWindow(window,nullptr,nullptr,RDW_INVALIDATE|RDW_ERASE|RDW_NOCHILDREN);
+ return TRUE;
+}
+static BOOL CALLBACK RefreshPreviewRoot(HWND window,LPARAM) {
+ DWORD process=0;GetWindowThreadProcessId(window,&process);
+ if(PreviewOwnerAlive(process))EnumChildWindows(window,RefreshPreviewChild,0);
+ return TRUE;
+}
+static void RefreshPreviewHosts(){EnumWindows(RefreshPreviewRoot,0);}
+static void ReleasePreviewOwners(){std::lock_guard guard(previewOwnerMutex);for(auto owner:previewOwners)CloseHandle(owner.lifetime);previewOwners.clear();}
+static bool InitNativePreviewHost(const std::wstring& exe) {
+ if(!DigestFile(exe,"@PREVIEW_HOST_SHA256@"))return false;
+ // Cache exact external owner identities before installing paint hooks. No
+ // executable/file query takes place inside the erase callback.
+ EnumWindows(DiscoverPreviewOwner,0);
+ nativePreviewMode=true;enabled=Wh_GetIntSetting(L"enabled")!=0;
+ if(!Wh_SetFunctionHook(reinterpret_cast<void*>(DefWindowProcW),reinterpret_cast<void*>(PreviewDefaultHook),reinterpret_cast<void**>(&originalPreviewDefault))) {
+  enabled=false;nativePreviewMode=false;ReleasePreviewOwners();return false;
+ }return true;
+}

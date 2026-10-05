@@ -1278,3 +1278,10 @@ Mutation and restoration failures still retain their existing recovery paths;
 no denied write is converted into success. The same source is generated for
 Calculator, Notepad, Paint and Terminal. Rendered hover and native header checks
 remain distinct from this correction's ownership regressions.
+
+The preview-backing boundary additionally requires the recorded native preview
+surrogate and Explorer executable digests in host.json. An unknown or restarted
+Explorer process outside the adapter's captured owner set retains native backing
+until the adapter is reloaded. It does not alter preview registration or install
+another application. The existing Markdown adapter owns this loading surface;
+setup, Test and recovery still use the same install.ps1 entry point.

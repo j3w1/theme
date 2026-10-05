@@ -44,6 +44,7 @@ for(const [name,mod] of [
  ['preview-paint','j3w1-powertoys-preview'],['markdown','j3w1-powertoys-markdown'],
  ['markdown-loading','j3w1-powertoys-markdown'],
  ['markdown-background','j3w1-powertoys-markdown'],
+ ['preview-host','j3w1-powertoys-markdown'],
 ])test(`native offscreen regression: ${name}`,options,t=>{
  const tools=toolchain(),folder=fs.mkdtempSync(path.join(os.tmpdir(),'j3w1-native-regression-'));
  t.after(()=>fs.rmSync(folder,{recursive:true,force:true}));

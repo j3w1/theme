@@ -75,3 +75,13 @@ test('older reviewed Markdown runtimes retain HTML mapping without assuming cont
  const result=windowsMarkdownArtifacts(candidate,resolved);assert.ok(result.source.includes(',0x0,0x0,0x0}, // 154.0.4258.53'));
  assert.ok(result.source.includes('if(ready&&pin.backgroundGetterRva&&pin.backgroundSetterRva&&pin.closeRva)'));
 });
+
+test('native preview backing requires exact shell and surrogate identities',()=>{
+ for(const change of [h=>delete h.markdownPreview.nativeHost,h=>h.markdownPreview.nativeHost.sha256='unknown',
+  h=>h.markdownPreview.nativeHost.explorerSha256='unknown',h=>h.markdownPreview.nativeHost.version='10.0.99999.0']){
+  const candidate=structuredClone(host);change(candidate);assert.throws(()=>windowsMarkdownArtifacts(candidate,resolved),/native preview host/);
+ }
+ const source=windowsMarkdownArtifacts(host,resolved).source;
+ assert.ok(source.includes(host.markdownPreview.nativeHost.sha256)&&source.includes(host.markdownPreview.nativeHost.explorerSha256));
+ assert.ok(source.includes('// @include prevhost.exe'));
+});

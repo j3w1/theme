@@ -1,10 +1,11 @@
 // ==WindhawkMod==
 // @id j3w1-powertoys-markdown
-// @name j3w1 PowerToys Markdown preview
+// @name j3w1 Windows preview backing and PowerToys Markdown
 // @description Exact-version black and rose Markdown rendering adapter
-// @version 1.3.0
+// @version 1.4.0
 // @author j3w1
 // @include PowerToys.MarkdownPreviewHandler.exe
+// @include prevhost.exe
 // @architecture x86-64
 // @compilerOptions -lbcrypt -luser32 -lole32 -lshell32 -lshlwapi -luuid -lgdi32
 // ==/WindhawkMod==
@@ -154,6 +155,82 @@ static bool DigestFile(const std::wstring& path,const char* expected){
  }
  if(hash)BCryptDestroyHash(hash);if(algorithm)BCryptCloseAlgorithmProvider(algorithm,0);CloseHandle(file);return ok;
 }
+// Native shell preview backing belongs to prevhost, before PowerToys creates
+// its WinForms/WebView children. Never change a shared class brush or pixels.
+static bool nativePreviewMode=false;
+static decltype(&DefWindowProcW) originalPreviewDefault;
+struct PreviewOwner {DWORD process;HANDLE lifetime;};
+static std::vector<PreviewOwner> previewOwners;
+static std::mutex previewOwnerMutex;
+static bool PreviewOwnerAlive(DWORD process) {
+ std::lock_guard guard(previewOwnerMutex);
+ for(const auto& owner:previewOwners)if(owner.process==process) {
+  return WaitForSingleObject(owner.lifetime,0)==WAIT_TIMEOUT;
+ }return false;
+}
+static BOOL CALLBACK DiscoverPreviewOwner(HWND window,LPARAM) {
+ wchar_t name[64]{};DWORD process=0;
+ if(!GetClassNameW(window,name,64)||_wcsicmp(name,L"CabinetWClass")
+  ||!GetWindowThreadProcessId(window,&process)||PreviewOwnerAlive(process)||previewOwners.size()>=16)return TRUE;
+ HANDLE lifetime=OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION|SYNCHRONIZE,FALSE,process);
+ if(!lifetime)return TRUE;
+ wchar_t exe[32768]{};DWORD length=std::size(exe);
+ if(QueryFullProcessImageNameW(lifetime,0,exe,&length)&&length<std::size(exe)
+  &&DigestFile(exe,"34ac55b23b6d840cc9fa8304c0149b8bb026d817b39610728092878d634a61eb")) {
+  try{std::lock_guard guard(previewOwnerMutex);previewOwners.push_back({process,lifetime});return TRUE;}catch(...){}
+ }CloseHandle(lifetime);return TRUE;
+}
+static bool PreviewHostWindow(HWND window) {
+ if(!window)return false;
+ DWORD process=0,parentProcess=0,rootProcess=0;
+ GetWindowThreadProcessId(window,&process);
+ HWND parent=GetParent(window),root=GetAncestor(window,GA_ROOT);
+ GetWindowThreadProcessId(parent,&parentProcess);GetWindowThreadProcessId(root,&rootProcess);
+ wchar_t name[128]{},parentName[128]{},rootName[64]{};
+ return process==GetCurrentProcessId()&&parentProcess==rootProcess&&PreviewOwnerAlive(rootProcess)
+  &&GetClassNameW(window,name,128)&&_wcsicmp(name,L"Shell Preview Extension Host Previewer")==0
+  &&GetClassNameW(parent,parentName,128)&&_wcsicmp(parentName,L"Shell Preview Extension Host")==0
+  &&GetClassNameW(root,rootName,64)&&_wcsicmp(rootName,L"CabinetWClass")==0;
+}
+static bool PaintPreviewHost(HWND window,HDC dc) {
+ if(!nativePreviewMode||!enabled.load()||HighContrast()||!PreviewHostWindow(window)
+  ||WindowFromDC(dc)!=window)return false;
+ LOGBRUSH original{};
+ auto brush=reinterpret_cast<HBRUSH>(GetClassLongPtrW(window,GCLP_HBRBACKGROUND));
+ if(GetObjectW(brush,sizeof(original),&original)!=sizeof(original)
+  ||original.lbStyle!=BS_SOLID||original.lbColor!=RGB(30,30,30))return false;
+ // The current host-owned brush is checked on every erase. Unknown or later
+ // colors keep native painting. Filling consumes no document/window contents.
+ RECT rect{};if(!GetClientRect(window,&rect))return false;
+ HBRUSH canvas=CreateSolidBrush(loadingBackground);if(!canvas)return false;
+ int result=FillRect(dc,&rect,canvas);DeleteObject(canvas);return result!=0;
+}
+static LRESULT WINAPI PreviewDefaultHook(HWND window,UINT message,WPARAM wp,LPARAM lp) {
+ if(message==WM_ERASEBKGND&&PaintPreviewHost(window,reinterpret_cast<HDC>(wp)))return 1;
+ return originalPreviewDefault(window,message,wp,lp);
+}
+static BOOL CALLBACK RefreshPreviewChild(HWND window,LPARAM) {
+ if(PreviewHostWindow(window))RedrawWindow(window,nullptr,nullptr,RDW_INVALIDATE|RDW_ERASE|RDW_NOCHILDREN);
+ return TRUE;
+}
+static BOOL CALLBACK RefreshPreviewRoot(HWND window,LPARAM) {
+ DWORD process=0;GetWindowThreadProcessId(window,&process);
+ if(PreviewOwnerAlive(process))EnumChildWindows(window,RefreshPreviewChild,0);
+ return TRUE;
+}
+static void RefreshPreviewHosts(){EnumWindows(RefreshPreviewRoot,0);}
+static void ReleasePreviewOwners(){std::lock_guard guard(previewOwnerMutex);for(auto owner:previewOwners)CloseHandle(owner.lifetime);previewOwners.clear();}
+static bool InitNativePreviewHost(const std::wstring& exe) {
+ if(!DigestFile(exe,"0402afd1e3231da4841a093040f861b1af321f3dd6740c879de9d1e3d600d95e"))return false;
+ // Cache exact external owner identities before installing paint hooks. No
+ // executable/file query takes place inside the erase callback.
+ EnumWindows(DiscoverPreviewOwner,0);
+ nativePreviewMode=true;enabled=Wh_GetIntSetting(L"enabled")!=0;
+ if(!Wh_SetFunctionHook(reinterpret_cast<void*>(DefWindowProcW),reinterpret_cast<void*>(PreviewDefaultHook),reinterpret_cast<void**>(&originalPreviewDefault))) {
+  enabled=false;nativePreviewMode=false;ReleasePreviewOwners();return false;
+ }return true;
+}
+
 // The pinned PowerToys host requests transparent white on the reviewed public
 // Controller2 setter. Keep the browser backing opaque before HTML is painted.
 // Every controller receipt belongs to its UI thread; no COM pointer is used
@@ -458,7 +535,9 @@ static HMODULE WINAPI LoadHook(LPCWSTR path,HANDLE file,DWORD flags){
 BOOL Wh_ModInit(){
  wchar_t exe[32768]{};DWORD length=GetModuleFileNameW(nullptr,exe,32768);if(!length||length>=32768||HighContrast())return FALSE;
  std::wstring folder=exe;auto split=folder.find_last_of(L'\\');
- if(split==std::wstring::npos||_wcsicmp(folder.c_str()+split+1,L"PowerToys.MarkdownPreviewHandler.exe"))return FALSE;
+ if(split==std::wstring::npos)return FALSE;
+ if(_wcsicmp(folder.c_str()+split+1,L"prevhost.exe")==0)return InitNativePreviewHost(folder);
+ if(_wcsicmp(folder.c_str()+split+1,L"PowerToys.MarkdownPreviewHandler.exe"))return FALSE;
  folder.resize(split);
  if(!DigestFile(exe,"d48704360aa8c8d5a3f572a055b176d50d58206f386cda49b2760beb3fd00cd9")||!DigestFile(folder+L"\\PowerToys.MarkdownPreviewHandler.dll","e47fcc38944ab5920aa49a31a2d0fef212865d1f5a62a65a08012a1767bed9cc")
   ||!DigestFile(folder+L"\\PowerToys.FilePreviewCommon.dll","35cb5f5e8e1d201d22db5d6b956195c04ae1a79469d36f25b90b6eeee6240ab7"))return FALSE;
@@ -472,7 +551,10 @@ BOOL Wh_ModInit(){
   &&Wh_SetFunctionHook(reinterpret_cast<void*>(CreateFileW),reinterpret_cast<void*>(CreateHook),reinterpret_cast<void**>(&originalCreateFile));
  if(!ready){enabled=false;RestoreBackgroundThreads();UpdateBackgroundEnvironment(false);}return ready;
 }
+void Wh_ModAfterInit(){if(nativePreviewMode)RefreshPreviewHosts();}
+void Wh_ModBeforeUninit(){if(nativePreviewMode){enabled=false;RefreshPreviewHosts();}}
 void Wh_ModSettingsChanged(){enabled=Wh_GetIntSetting(L"enabled")!=0;
+ if(nativePreviewMode){RefreshPreviewHosts();return;}
  bool admitted=false;for(size_t i=0;i<std::size(browserPins);i++)admitted=admitted||(boundaries[i].ready&&browserPins[i].backgroundSetterRva);
  UpdateBackgroundEnvironment(enabled.load()&&admitted&&!HighContrast());if(!enabled.load())RestoreBackgroundThreads();}
-void Wh_ModUninit(){enabled=false;RestoreBackgroundThreads();UpdateBackgroundEnvironment(false);std::lock_guard lock(filesMutex);createdFiles.clear();}
+void Wh_ModUninit(){enabled=false;if(nativePreviewMode){RefreshPreviewHosts();ReleasePreviewOwners();return;}RestoreBackgroundThreads();UpdateBackgroundEnvironment(false);std::lock_guard lock(filesMutex);createdFiles.clear();}

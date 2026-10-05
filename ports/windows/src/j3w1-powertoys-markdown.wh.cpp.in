@@ -1,10 +1,11 @@
 // ==WindhawkMod==
 // @id j3w1-powertoys-markdown
-// @name j3w1 PowerToys Markdown preview
+// @name j3w1 Windows preview backing and PowerToys Markdown
 // @description Exact-version black and rose Markdown rendering adapter
 // @version @VERSION@
 // @author j3w1
 // @include PowerToys.MarkdownPreviewHandler.exe
+// @include prevhost.exe
 // @architecture x86-64
 // @compilerOptions -lbcrypt -luser32 -lole32 -lshell32 -lshlwapi -luuid -lgdi32
 // ==/WindhawkMod==
@@ -87,6 +88,7 @@ static bool DigestFile(const std::wstring& path,const char* expected){
  }
  if(hash)BCryptDestroyHash(hash);if(algorithm)BCryptCloseAlgorithmProvider(algorithm,0);CloseHandle(file);return ok;
 }
+@PREVIEW_HOST_BACKGROUND@
 @MARKDOWN_BACKGROUND@
 static size_t MaximumHeader(const HeaderPin* pins=headers,size_t count=std::size(headers)){
  size_t length=0;for(size_t i=0;i<count;i++)length=std::max(length,pins[i].length);return length;
@@ -241,7 +243,9 @@ static HMODULE WINAPI LoadHook(LPCWSTR path,HANDLE file,DWORD flags){
 BOOL Wh_ModInit(){
  wchar_t exe[32768]{};DWORD length=GetModuleFileNameW(nullptr,exe,32768);if(!length||length>=32768||HighContrast())return FALSE;
  std::wstring folder=exe;auto split=folder.find_last_of(L'\\');
- if(split==std::wstring::npos||_wcsicmp(folder.c_str()+split+1,L"PowerToys.MarkdownPreviewHandler.exe"))return FALSE;
+ if(split==std::wstring::npos)return FALSE;
+ if(_wcsicmp(folder.c_str()+split+1,L"prevhost.exe")==0)return InitNativePreviewHost(folder);
+ if(_wcsicmp(folder.c_str()+split+1,L"PowerToys.MarkdownPreviewHandler.exe"))return FALSE;
  folder.resize(split);
  if(!DigestFile(exe,"@HOST_SHA256@")||!DigestFile(folder+L"\\PowerToys.MarkdownPreviewHandler.dll","@CONTROL_SHA256@")
   ||!DigestFile(folder+L"\\PowerToys.FilePreviewCommon.dll","@HELPER_SHA256@"))return FALSE;
@@ -255,7 +259,10 @@ BOOL Wh_ModInit(){
   &&Wh_SetFunctionHook(reinterpret_cast<void*>(CreateFileW),reinterpret_cast<void*>(CreateHook),reinterpret_cast<void**>(&originalCreateFile));
  if(!ready){enabled=false;RestoreBackgroundThreads();UpdateBackgroundEnvironment(false);}return ready;
 }
+void Wh_ModAfterInit(){if(nativePreviewMode)RefreshPreviewHosts();}
+void Wh_ModBeforeUninit(){if(nativePreviewMode){enabled=false;RefreshPreviewHosts();}}
 void Wh_ModSettingsChanged(){enabled=Wh_GetIntSetting(L"enabled")!=0;
+ if(nativePreviewMode){RefreshPreviewHosts();return;}
  bool admitted=false;for(size_t i=0;i<std::size(browserPins);i++)admitted=admitted||(boundaries[i].ready&&browserPins[i].backgroundSetterRva);
  UpdateBackgroundEnvironment(enabled.load()&&admitted&&!HighContrast());if(!enabled.load())RestoreBackgroundThreads();}
-void Wh_ModUninit(){enabled=false;RestoreBackgroundThreads();UpdateBackgroundEnvironment(false);std::lock_guard lock(filesMutex);createdFiles.clear();}
+void Wh_ModUninit(){enabled=false;if(nativePreviewMode){RefreshPreviewHosts();ReleasePreviewOwners();return;}RestoreBackgroundThreads();UpdateBackgroundEnvironment(false);std::lock_guard lock(filesMutex);createdFiles.clear();}
