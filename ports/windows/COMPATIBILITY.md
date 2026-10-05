@@ -1398,8 +1398,8 @@ introduced. The same install.ps1 owns staging, Test and offline rollback.
 This corrects the observed startup mismatch. It does not establish safe live
 Settings reload, all hover/focus/disabled states, runtime accessibility switching
 or sign-in acceptance. Close Settings before Update or Restore. The retained
-Notepad gray composition strip and Paint workspace/scrollbar failures remain
-unresolved and are separate native ownership boundaries.
+Notepad gray composition strip and Paint workspace/scrollbar failures remained
+unresolved at that candidate; the later scrollbar observation is recorded below.
 
 ### Native WinUI scrollbar resources
 
@@ -1414,3 +1414,26 @@ Color-valued animation resources are not replaced with brushes. The resource key
 come from the pinned [WinUI ScrollBar template](https://github.com/microsoft/microsoft-ui-xaml/blob/8027ff4af619eb470fab63bf4609c6404ee73e17/dev/CommonStyles/ScrollBar_themeresources.xaml).
 Live appearance and full transition acceptance remain separate from the source
 and native ownership regressions.
+
+
+### Installed scrollbar and first-window comparison
+
+After Update and standalone Test, Paint's native viewport scrollbar used dark,
+red and rose colors at rest, after scrolling down and after returning to the
+original viewport. Restore Latest recovered the prior adapter identities; its
+baseline passed Test. Reapply and a separately recorded final Test recovered
+the current identities. Ten unchanged adapters retained their compiled files
+through that cycle, and no diagnostic stayed enabled. Repeated final scroll
+checks retained the themed scrollbar and the blank artwork, dimensions and
+zoom. These bounded captures do not accept every animation frame, disabled
+state, DPI variation or accessibility switch. The gray drawing surround remains
+unresolved and distinct from the mapped scrollbar.
+
+A clean Notepad executable launch retained the gray first-window strip, while
+a later empty window in that same process had a black header and visible custom
+tabs. A temporary read-only observer found that the first native window already
+existed when the observer initialized. It saw no caption-color request in that
+bounded interval. This supports a startup-timing investigation; it does not
+reconstruct an earlier caption override or prove production-hook ordering. The
+observer was disabled afterward. Unknown caption baselines and the excluded
+public title APIs remain untouched.

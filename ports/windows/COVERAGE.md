@@ -10,7 +10,9 @@ Fresh Settings startup was corrected after a trace proved its main CoreWindow
 was missed by the pinned upstream lookup. A controlled comparison showed black
 page surfaces, rose text and a themed calendar. Whole-app state acceptance is
 still open. Current native failures include Notepad's first-window gray strip
-and Paint's gray drawing workspace and scrollbar.
+and Paint's gray drawing workspace. Paint's viewport scrollbar now has native
+state mappings and a bounded installed scroll/recovery observation; full
+transition and accessibility acceptance remain open.
 Exact shell compatibility and historical observations remain in
 [COMPATIBILITY.md](COMPATIBILITY.md). All ports remain experimental until their
 own import evidence meets the port contract.
