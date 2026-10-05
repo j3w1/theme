@@ -2,7 +2,7 @@
 // @id j3w1-paint-chrome
 // @name j3w1 Paint chrome
 // @description Exact-package Paint chrome resources; document and artwork colors remain native
-// @version 1.0.11
+// @version 1.0.12
 // @author j3w1
 // @include mspaint.exe
 // @architecture x86-64
@@ -942,6 +942,13 @@ static const wchar_t* PaintChromeKey(std::wstring_view type,std::wstring_view ow
  return nullptr;
 }
 
+// These noninteractive slider backings are acrylic, not solid resource
+// aliases. Require the observed exact-package template identity and tint.
+static const wchar_t* PaintSliderBackingKey(std::wstring_view type,std::wstring_view owner,Kind kind,Color tint) {
+ if(kind!=Kind::Background||type!=L"Microsoft.UI.Xaml.Controls.Grid"||!Same(tint,{255,44,44,44}))return nullptr;
+ return owner==L"PaintUI.BrushSizeSlider"||owner==L"PaintUI.PercentageSlider"?L"SolidBackgroundFillColorBaseBrush":nullptr;
+}
+
 static const wchar_t* NotepadTabNeutralKey(bool tabsRoot,std::wstring_view type,std::wstring_view owner,Color c,bool tabItem) {
  if(!tabsRoot||(type!=L"Microsoft.UI.Xaml.Controls.Grid"&&type!=L"Microsoft.UI.Xaml.Shapes.Path")
    ||owner!=L"Microsoft.UI.Xaml.Controls.Grid"||!Same(c,{115,58,58,58}))return nullptr;
@@ -971,9 +978,15 @@ static Palette const* TemplateSurface(Root const& root,DependencyObject const& o
   return nullptr;
  }
  if(kind!=Kind::Background&&kind!=Kind::Border)return nullptr;
- auto solid=brush.try_as<SolidColorBrush>();if(!solid)return nullptr;
  auto parent=VisualTreeHelper::GetParent(object);if(!parent)return nullptr;
- auto type=get_class_name(object),owner=get_class_name(parent);auto c=solid.Color();
+ auto type=get_class_name(object),owner=get_class_name(parent);
+ if(auto acrylic=brush.try_as<AcrylicBrush>()) {
+  auto key=PaintSliderBackingKey(std::wstring_view{type},std::wstring_view{owner},kind,acrylic.TintColor());
+  if(key)for(auto const& item:root.palette)if(wcscmp(item.rule->key,key)==0)return &item;
+  return nullptr;
+ }
+ auto solid=brush.try_as<SolidColorBrush>();if(!solid)return nullptr;
+ auto c=solid.Color();
 const wchar_t* key=PaintChromeKey(std::wstring_view{type},std::wstring_view{owner},kind,c);
  // Observed on a fresh exact-package window: this immediate template Grid
  // paints the whole toolbar independently of MainMenuBar.Background.
@@ -1107,7 +1120,7 @@ static void Bridge(Root& root) {
   for(auto const& data:protectedBrushes)if(Identity(brush,data))return;
 
 
-  auto solid=brush.try_as<SolidColorBrush>();if(!solid||!uiState)return;
+  if(!uiState)return;
   Palette const* match=TemplateSurface(root,object,kind,brush);
   if(!match)for(auto const& item:root.palette) {
    if(!Matches(*item.rule,kind))continue;

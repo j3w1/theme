@@ -473,3 +473,19 @@ changes. Native high contrast still declines the theme. A resource-only live
 comparison showed themed rails while retaining size, opacity, zoom and blank
 artwork; production installation and state-transition acceptance are separate
 checks. Paint's gray slider containers and drawing workspace remain unresolved.
+
+### Paint slider container ownership
+
+A read-only trace including acrylic brush types identified the static direct
+Grid backgrounds under PaintUI.BrushSizeSlider and PaintUI.PercentageSlider,
+with opaque neutral tint 44/44/44. The chrome adapter admits only that observed
+class, immediate parent, background property and tint together. It substitutes
+the approved black canvas brush through the existing local-value receipt path;
+disable restores the exact original acrylic value if it is still adapter-owned.
+Other types, parents, properties and tints are refused. The acrylic object's
+properties are never changed, and later application replacements are preserved.
+
+This is separate from Slider's state resources and does not alter native size,
+opacity or zoom values, artwork, swatches or drawing-renderer behavior. The gray
+drawing workspace remains an unresolved boundary. Production appearance and
+rollback are checked separately from the admission and ownership regressions.

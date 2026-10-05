@@ -37749,7 +37749,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-+/WCi90wFcezHaBkW0zt8dcWSAdK+vAC24WPz3OrOJU=",
+      "subjectDigest": "sha256-+unNpGY8Td4JgrnIz4UC0Kkp/7z9elWUUFkGZi5XHUw=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37782,7 +37782,7 @@
           "path": "dist/windows-settings.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-settings.json",
-          "digest": "sha256-mvQANja7aRy+tA+DYXXV0PpRb3DLdrqrcEXqVigme/8="
+          "digest": "sha256-Wf7J2dbP7sXCWQa+kMEJhe4+7EeqKMvpx+T3cS+r22Q="
         },
         {
           "path": "dist/terminal-fragment.json",
@@ -37956,7 +37956,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-p+HNhfl46eIrVPY5Xnp/oIZZV+t+HUrQeAAGLlmaIpI="
+          "digest": "sha256-j+n/kCB5GTE1z2Cqb3o2pCD9fE4Bv9iYdzOPCcW458M="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
@@ -38040,7 +38040,7 @@
           "path": "dist/j3w1-notepad-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-notepad-chrome.wh.cpp",
-          "digest": "sha256-/tND761x2DvS1hj+4Kvy0zIEZkd3kwpBIgz8OlSyIpE="
+          "digest": "sha256-yvCQ4e/hcDXqS+p0wUnah0dvOkIE7Q/rJx5dkcMmodw="
         },
         {
           "path": "dist/j3w1-notepad-chrome.json",
@@ -38052,7 +38052,7 @@
           "path": "dist/j3w1-paint-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-paint-chrome.wh.cpp",
-          "digest": "sha256-mvmmOQEedSP0TR0ImBa5PZ6+rB7XKoqNu+hGEPBbZLw="
+          "digest": "sha256-kUMiS0V/qC3qA02FZAR3iY9IByoXatk3mbYNlJpZmWE="
         },
         {
           "path": "dist/j3w1-paint-chrome.json",

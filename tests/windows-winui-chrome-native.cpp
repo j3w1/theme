@@ -374,6 +374,14 @@ int main(int argc, char** argv) {
         assert(!PaintChromeKey(L"PaintUI.Ribbon",L"Microsoft.UI.Xaml.Controls.StackPanel",Kind::Foreground,{76,58,58,58}));
         assert(!PaintChromeKey(L"PaintUI.Ribbon",L"Microsoft.UI.Xaml.Controls.Grid",Kind::Background,{76,58,58,58}));
         assert(!PaintChromeKey(L"PaintUI.Ribbon",L"Microsoft.UI.Xaml.Controls.StackPanel",Kind::Background,{255,58,58,58}));
+        for(auto owner:{L"PaintUI.BrushSizeSlider",L"PaintUI.PercentageSlider"}){
+            matches(PaintSliderBackingKey(L"Microsoft.UI.Xaml.Controls.Grid",owner,Kind::Background,{255,44,44,44}),L"SolidBackgroundFillColorBaseBrush");
+            assert(!PaintSliderBackingKey(L"PaintUI.D2DSwapChainPanel",owner,Kind::Background,{255,44,44,44}));
+            assert(!PaintSliderBackingKey(L"Microsoft.UI.Xaml.Controls.Grid",owner,Kind::Border,{255,44,44,44}));
+            assert(!PaintSliderBackingKey(L"Microsoft.UI.Xaml.Controls.Grid",owner,Kind::Background,{254,44,44,44}));
+            assert(!PaintSliderBackingKey(L"Microsoft.UI.Xaml.Controls.Grid",owner,Kind::Background,{255,45,44,44}));
+        }
+        for(auto owner:{L"PaintUI.ColorRadioButton",L"PaintUI.Canvas",L"PaintUI.AppChrome",L"Microsoft.UI.Xaml.Controls.Grid"})assert(!PaintSliderBackingKey(L"Microsoft.UI.Xaml.Controls.Grid",owner,Kind::Background,{255,44,44,44}));
         puts("PASS: observed Paint chrome class, parent, property and neutral color required; swatches and drawing classes excluded");
         return 0;
     }
