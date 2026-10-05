@@ -25,8 +25,22 @@ test.describe("text-field", () => {
     const live = page.locator('#text-field-states [data-state="default"]').first();
     const input = live.locator("input");
     const root = live.locator(".text-field-root");
-    await input.focus();
-    await expect(input).toBeFocused();
+    // Record metadata only if the exact focus assertion fails. Do not refocus,
+    // retry or alter its deadline: a late fragment focus remains a real failure.
+    await page.evaluate(() => {
+      const events=[];
+      Object.defineProperty(window,'__j3w1TextFieldFocusTrace',{value:events,configurable:true});
+      for(const name of ['focusin','focusout','focus','blur'])document.addEventListener(name,event=>{
+        if(events.length<64)events.push({event:name,target:event.target instanceof Element?{tag:event.target.tagName,id:event.target.id}:null,active:document.activeElement instanceof Element?{tag:document.activeElement.tagName,id:document.activeElement.id}:null,ready:document.readyState,documentFocused:document.hasFocus(),time:performance.now()});
+      },true);
+    });
+    try {
+      await input.focus();
+      await expect(input).toBeFocused();
+    } catch(error) {
+      await testInfo.attach('text-field-focus-metadata',{contentType:'application/json',body:JSON.stringify(await input.evaluate(el=>({connected:el.isConnected,disabled:el.disabled,readOnly:el.readOnly,active:document.activeElement instanceof Element?{tag:document.activeElement.tagName,id:document.activeElement.id}:null,documentFocused:document.hasFocus(),ready:document.readyState,visibility:getComputedStyle(el).visibility,display:getComputedStyle(el).display,events:window.__j3w1TextFieldFocusTrace??[]})),null,2)});
+      throw error;
+    }
     // Read the palette only after the browser has rendered the real focus state.
     // Keep the same exact colors, geometry and subsequent interaction checks.
     await expect(root).toHaveCSS("outline-style", "dashed");
