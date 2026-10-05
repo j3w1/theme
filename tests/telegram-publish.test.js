@@ -9,7 +9,11 @@ import { converge, digest, run, redactor, stateDirectory, atomicJson, gitAdapter
 import { ARTIFACTS } from "../ports/telegram/src/contract.mjs";
 
 const artifacts = { android: Buffer.from("fixture android\n"), tdesktop: Buffer.from([0, 255, 17, 33, 10]) };
-const cloud = { schemaVersion: 1, title: "j3w1", slugCandidates: ["j3w1", "j3w1_theme"], slug: null, published: false };
+const cloud = { schemaVersion: 2, title: "j3w1", slugCandidates: ["j3w1_rose", "j3w1_theme"], slug: null, verified: false };
+// The owner's Theme Editor theme: Telegram's own 16-character slug, recorded
+// before any publisher run, holding the editor's rebuilt (not byte-equal) files.
+const EDITOR_SLUG = "TRhfHcbvZHlOucyc";
+const editorCloud = { ...cloud, slugCandidates: ["j3w1_theme"], slug: EDITOR_SLUG };
 const rev = "a".repeat(40);
 const auth = () => ({ apiId: 12345, apiHash: "ab".repeat(16), session: "1" + "FaKe0_".repeat(30) });
 const rpc = code => Object.assign(new Error(code), { errorMessage: code });
@@ -103,7 +107,7 @@ test("first publication creates Android then attaches Desktop on the same identi
 });
 
 test("only a changed format updates; no-op validates both documents without writes", async () => {
-  const transport = mock([["j3w1", { ...artifacts, tdesktop: Buffer.from("old") }]]);
+  const transport = mock([["j3w1_rose", { ...artifacts, tdesktop: Buffer.from("old") }]]);
   const result = await core(transport);
   assert.equal(result.result, "updated");
   assert.deepEqual(result.formats, { android: "unchanged", tdesktop: "updated" });
@@ -116,7 +120,7 @@ test("only a changed format updates; no-op validates both documents without writ
 });
 
 test("readback mismatch fails and writes only a failed receipt", async t => {
-  const transport = mock([["j3w1", { ...artifacts, tdesktop: Buffer.from("old") }]]);
+  const transport = mock([["j3w1_rose", { ...artifacts, tdesktop: Buffer.from("old") }]]);
   transport.updateTheme = async payload => { transport.events.push(["update", payload]); };
   const f = await fixture(t, { transport });
   const result = await run([], f.deps);
@@ -124,9 +128,9 @@ test("readback mismatch fails and writes only a failed receipt", async t => {
   assert.match(result.error, /Readback failed/);
   assert.equal(result.receipt.result, "failed");
   assert.equal(result.receipt.readbackVerified, false);
-  assert.equal(result.receipt.slug, "j3w1");
+  assert.equal(result.receipt.slug, "j3w1_rose");
   assert.equal(result.receipt.themeId, "1");
-  assert.equal(JSON.parse(await fs.readFile(path.join(f.repo, "ports/telegram/cloud.json"))).published, false);
+  assert.equal(JSON.parse(await fs.readFile(path.join(f.repo, "ports/telegram/cloud.json"))).verified, false);
   const files = await fs.readdir(path.join(f.state, "receipts"));
   assert.equal(files.length, 1);
   assert.equal(JSON.parse(await fs.readFile(path.join(f.state, "receipts", files[0]))).result, "failed");
@@ -134,7 +138,7 @@ test("readback mismatch fails and writes only a failed receipt", async t => {
 
 test("readback enforces title, slug, empty settings, creator, identity and MIME", async () => {
   for (const patch of [{ title: "other" }, { slug: "other_slug" }, { settings: [{}] }, { creator: false }, { id: "other" }]) {
-    const transport = mock([["j3w1"]]);
+    const transport = mock([["j3w1_rose"]]);
     const get = transport.getTheme;
     transport.getTheme = async (format, ref) => {
       const theme = await get(format, ref);
@@ -143,7 +147,7 @@ test("readback enforces title, slug, empty settings, creator, identity and MIME"
     await assert.rejects(core(transport), /mismatch|foreign|identity/i);
     assert.equal(writes(transport).length, 0);
   }
-  const transport = mock([["j3w1"]]);
+  const transport = mock([["j3w1_rose"]]);
   const get = transport.getTheme;
   transport.getTheme = async (format, ref) => {
     const theme = await get(format, ref);
@@ -153,14 +157,14 @@ test("readback enforces title, slug, empty settings, creator, identity and MIME"
 });
 
 test("foreign themes fall back and exhausted candidates ask for exactly one replacement slug", async () => {
-  const transport = mock([["j3w1", artifacts, false]]);
+  const transport = mock([["j3w1_rose", artifacts, false]]);
   const result = await core(transport);
   assert.equal(result.slug, "j3w1_theme");
-  assert.equal(transport.themes.get("j3w1").creator, false);
-  const taken = mock([["j3w1", artifacts, false], ["j3w1_theme", artifacts, false]]);
+  assert.equal(transport.themes.get("j3w1_rose").creator, false);
+  const taken = mock([["j3w1_rose", artifacts, false], ["j3w1_theme", artifacts, false]]);
   await assert.rejects(core(taken), /one replacement slug/);
   assert.equal(writes(taken).length, 0);
-  await assert.rejects(core(transport, { cloud: { ...cloud, slug: "j3w1", published: true } }), /replacement slug/);
+  await assert.rejects(core(transport, { cloud: { ...cloud, slug: "j3w1_rose", verified: true } }), /replacement slug/);
 });
 
 test("create slug rejection uses only configured fallback candidates", async () => {
@@ -168,7 +172,7 @@ test("create slug rejection uses only configured fallback candidates", async () 
     const transport = mock();
     const create = transport.createTheme;
     transport.createTheme = async payload => {
-      if (payload.slug === "j3w1") { transport.events.push(["rejected", payload.slug]); throw rpc(code); }
+      if (payload.slug === "j3w1_rose") { transport.events.push(["rejected", payload.slug]); throw rpc(code); }
       return create(payload);
     };
     assert.equal((await core(transport)).slug, "j3w1_theme");
@@ -195,7 +199,7 @@ test("typed not-found and absent-format errors are handled, while revoked author
 });
 
 test("a Desktop-only theme is adopted and gets Android without creating a second identity", async () => {
-  const transport = mock([["j3w1", { tdesktop: artifacts.tdesktop }]]);
+  const transport = mock([["j3w1_rose", { tdesktop: artifacts.tdesktop }]]);
   const result = await core(transport);
   assert.equal(result.themeId, "1");
   assert.equal(result.result, "updated");
@@ -272,7 +276,7 @@ test("interrupted create and update read back before retrying and never duplicat
 });
 
 test("an update applied but whose response was lost is reported as updated, not unchanged", async () => {
-  const transport = mock([["j3w1", { ...artifacts, tdesktop: Buffer.from("old") }]]);
+  const transport = mock([["j3w1_rose", { ...artifacts, tdesktop: Buffer.from("old") }]]);
   const update = transport.updateTheme;
   transport.updateTheme = async payload => { await update(payload); throw new Error("RPC timed out after 30000ms"); };
   const result = await core(transport);
@@ -292,12 +296,12 @@ test("an owned theme at a later candidate is adopted instead of creating one at 
 
 test("CI never creates a theme: converge refuses a missing identity without writing", async () => {
   const transport = mock();
-  await assert.rejects(core(transport, { ci: true, cloud: { ...cloud, slug: "j3w1", published: true } }), /CI only updates/);
+  await assert.rejects(core(transport, { ci: true, cloud: { ...cloud, slug: "j3w1_rose", verified: true } }), /CI only updates/);
   assert.equal(writes(transport).length, 0);
 });
 
 test("an update rejected by a network interruption reads both formats before retrying the changed one", async () => {
-  const transport = mock([["j3w1", { ...artifacts, tdesktop: Buffer.from("old") }]]);
+  const transport = mock([["j3w1_rose", { ...artifacts, tdesktop: Buffer.from("old") }]]);
   const update = transport.updateTheme;
   let once = true;
   transport.updateTheme = async payload => {
@@ -334,7 +338,7 @@ test("Git adapter reads binary blobs and resolves options safely", async () => {
 });
 
 test("rollback requires a tag or main ancestry and exact typed confirmation, retaining cloud identity", async t => {
-  const f = await fixture(t, { transport: mock([["j3w1_theme", { ...artifacts, android: Buffer.from("newer") }]]), localCloud: { ...cloud, slug: "j3w1_theme", published: true } });
+  const f = await fixture(t, { transport: mock([["j3w1_theme", { ...artifacts, android: Buffer.from("newer") }]]), localCloud: { ...cloud, slug: "j3w1_theme", verified: true } });
   f.git.isAncestor = async () => false;
   assert.match((await run(["rollback", "--ref", rev], f.deps)).error, /ancestor/);
   f.git.isTag = async () => true;
@@ -382,17 +386,17 @@ test("state directories are 0700, atomic files 0600, and repository paths includ
   await assert.rejects(stateDirectory({ J3W1_THEME_STATE_DIR: path.join(link, "state") }, f.repo), /outside the git work tree/);
 });
 
-test("only first verified local publication writes cloud.json; CI uses env and skips local checks", async t => {
+test("only a first local publication of a new theme writes cloud.json, never verified; CI uses env and skips local checks", async t => {
   const f = await fixture(t);
   assert.equal((await run([], f.deps)).code, 0);
   const file = path.join(f.repo, "ports/telegram/cloud.json");
   const first = await fs.readFile(file, "utf8");
-  assert.equal(JSON.parse(first).published, true);
-  assert.equal(JSON.parse(first).slug, "j3w1");
+  assert.equal(JSON.parse(first).verified, false, "only the owner's live check verifies the link");
+  assert.equal(JSON.parse(first).slug, "j3w1_rose");
   assert.equal((await run([], f.deps)).result, "unchanged");
   assert.equal(await fs.readFile(file, "utf8"), first);
-  const published = { ...cloud, slug: "j3w1", published: true };
-  const ci = await fixture(t, { configured: false, transport: mock([["j3w1", { ...artifacts, tdesktop: Buffer.from("old") }]]), localCloud: published });
+  const published = { ...cloud, slug: "j3w1_rose", verified: true };
+  const ci = await fixture(t, { configured: false, transport: mock([["j3w1_rose", { ...artifacts, tdesktop: Buffer.from("old") }]]), localCloud: published });
   Object.assign(ci.deps.env, { TELEGRAM_API_ID: String(auth().apiId), TELEGRAM_API_HASH: auth().apiHash, TELEGRAM_SESSION: auth().session, GITHUB_SHA: rev });
   const result = await run(["--ci"], ci.deps);
   assert.equal(result.code, 0);
@@ -403,15 +407,42 @@ test("only first verified local publication writes cloud.json; CI uses env and s
   assert.equal((await fs.readdir(path.join(ci.state, "receipts"))).every(name => !name.includes(":")), true, "receipt names are valid on Windows");
 });
 
-test("CI and ci-enable refuse before any network call until a verified local publication is recorded", async t => {
-  const f = await fixture(t, { configured: false });
-  Object.assign(f.deps.env, { TELEGRAM_API_ID: String(auth().apiId), TELEGRAM_API_HASH: auth().apiHash, TELEGRAM_SESSION: auth().session, GITHUB_SHA: rev });
-  assert.match((await run(["--ci"], f.deps)).error, /Publish once locally first/);
-  assert.equal(f.transport.events.length, 0);
-  assert.equal(f.calls.length, 0);
-  const enable = await fixture(t);
-  enable.deps.command = async () => assert.fail("no gh call before the refusal");
-  assert.match((await run(["ci-enable"], enable.deps)).error, /Publish once locally first/);
+test("CI and ci-enable refuse before any network call until the recorded theme is owner-verified", async t => {
+  for (const localCloud of [cloud, editorCloud]) {
+    const f = await fixture(t, { configured: false, localCloud });
+    Object.assign(f.deps.env, { TELEGRAM_API_ID: String(auth().apiId), TELEGRAM_API_HASH: auth().apiHash, TELEGRAM_SESSION: auth().session, GITHUB_SHA: rev });
+    assert.match((await run(["--ci"], f.deps)).error, /Verify the cloud theme first/);
+    assert.equal(f.transport.events.length, 0);
+    assert.equal(f.calls.length, 0);
+    const enable = await fixture(t, { localCloud });
+    enable.deps.command = async () => assert.fail("no gh call before the refusal");
+    assert.match((await run(["ci-enable"], enable.deps)).error, /Verify the cloud theme first/);
+  }
+});
+
+test("the owner's Theme Editor theme is adopted by its recorded slug: no candidate lookup, no second theme", async t => {
+  // The editor saved its own rebuilt Android file and no Desktop version yet.
+  const transport = mock([[EDITOR_SLUG, { android: Buffer.from("editor rebuilt android\n") }]]);
+  const result = await converge({ transport, artifacts, cloud: editorCloud });
+  assert.equal(result.slug, EDITOR_SLUG);
+  assert.equal(result.result, "updated");
+  assert.deepEqual(result.formats, { android: "updated", tdesktop: "updated" });
+  assert.equal(transport.themes.size, 1);
+  assert.equal(transport.events.some(e => e[0] === "create"), false);
+  const lookups = transport.events.filter(e => e[0] === "get" && e[2].slug);
+  assert.ok(lookups.length && lookups.every(e => e[2].slug === EDITOR_SLUG), "no other slug is ever looked up");
+  assert.deepEqual(writes(transport).filter(e => e[0] === "update").map(e => e[1].format), ["android", "tdesktop"]);
+  assert.deepEqual(transport.themes.get(EDITOR_SLUG).docs, artifacts);
+  // A local run adopts it the same way and leaves cloud.json, unverified, alone.
+  const f = await fixture(t, { transport: mock([[EDITOR_SLUG, { android: Buffer.from("editor rebuilt android\n") }]]), localCloud: editorCloud });
+  const local = await run([], f.deps);
+  assert.equal(local.code, 0);
+  assert.equal(local.slug, EDITOR_SLUG);
+  assert.deepEqual(JSON.parse(await fs.readFile(path.join(f.repo, "ports/telegram/cloud.json"))), editorCloud);
+  // Someone else's theme at the recorded slug is never adopted or replaced.
+  const foreign = mock([[EDITOR_SLUG, artifacts, false]]);
+  await assert.rejects(converge({ transport: foreign, artifacts, cloud: editorCloud }), /replacement slug/);
+  assert.deepEqual(writes(foreign), []);
 });
 
 test("only HEAD is published locally and only the tip of main in CI; older revisions need rollback", async t => {
@@ -419,7 +450,7 @@ test("only HEAD is published locally and only the tip of main in CI; older revis
   f.git.resolve = async ref => ref === "HEAD" ? rev : "b".repeat(40);
   assert.match((await run(["--ref", "some-branch"], f.deps)).error, /checked-out commit \(HEAD\)/);
   assert.equal(f.transport.events.length, 0);
-  const ci = await fixture(t, { configured: false, transport: mock([["j3w1"]]), localCloud: { ...cloud, slug: "j3w1", published: true } });
+  const ci = await fixture(t, { configured: false, transport: mock([["j3w1_rose"]]), localCloud: { ...cloud, slug: "j3w1_rose", verified: true } });
   Object.assign(ci.deps.env, { TELEGRAM_API_ID: String(auth().apiId), TELEGRAM_API_HASH: auth().apiHash, TELEGRAM_SESSION: auth().session, GITHUB_SHA: rev });
   ci.git.remoteTip = async () => "c".repeat(40);
   assert.match((await run(["--ci"], ci.deps)).error, /only the current tip of main/);
@@ -467,7 +498,7 @@ test("disconnect is confirmed, logs out, deletes local state and destroys the cl
 });
 
 test("ci-enable uses a fresh dedicated login, stdin secrets, main-only policy, and no disk session", async t => {
-  const f = await fixture(t, { localCloud: { ...cloud, slug: "j3w1", published: true } });
+  const f = await fixture(t, { localCloud: { ...cloud, slug: "j3w1_rose", verified: true } });
   const commands = [];
   let authorized = false;
   const prompts = ["ENABLE TELEGRAM CI", "+51999000000", "123456"];
@@ -565,9 +596,9 @@ test("startup and post-login authorization use the bounded flood wait (review de
   assert.equal((await run([], fresh.deps)).code, 0);
   assert.deepEqual(freshSleeps, [9000]);
   // CI uses the 120 s cap, per wait and cumulatively, at the controller too.
-  const published = { ...cloud, slug: "j3w1", published: true };
+  const published = { ...cloud, slug: "j3w1_rose", verified: true };
   const ciRun = async (waits, t2) => {
-    const f2 = await fixture(t2, { configured: false, transport: mock([["j3w1"]]), localCloud: published });
+    const f2 = await fixture(t2, { configured: false, transport: mock([["j3w1_rose"]]), localCloud: published });
     Object.assign(f2.deps.env, { TELEGRAM_API_ID: String(auth().apiId), TELEGRAM_API_HASH: auth().apiHash, TELEGRAM_SESSION: auth().session, GITHUB_SHA: rev });
     const queue = [...waits];
     f2.transport.checkAuthorization = async () => { if (queue.length) throw rpc(`FLOOD_WAIT_${queue.shift()}`); return true; };
@@ -607,7 +638,7 @@ test("live adapter uses vetted API objects, third-argument RPC controls, a singl
   const { TelegramClient, Api } = await import("teleproto");
   const calls = [];
   const document = { id: 3n, accessHash: 4n, fileReference: Buffer.alloc(0), mimeType: ARTIFACTS.android.mime, size: 7n };
-  const theme = { creator: true, id: 1n, accessHash: 2n, slug: "j3w1", title: "j3w1", document };
+  const theme = { creator: true, id: 1n, accessHash: 2n, slug: "j3w1_rose", title: "j3w1", document };
   let didDestroy = false;
   let passwordCallback = false;
   const replacements = {
@@ -654,9 +685,9 @@ test("live adapter uses vetted API objects, third-argument RPC controls, a singl
   assert.equal(passwordCallback, true);
   const uploaded = await transport.uploadTheme(artifacts.android, ARTIFACTS.android.mime, ARTIFACTS.android.fileName);
   assert.equal(uploaded, document);
-  await transport.createTheme({ slug: "j3w1", title: "j3w1", document });
+  await transport.createTheme({ slug: "j3w1_rose", title: "j3w1", document });
   await transport.updateTheme({ format: "tdesktop", theme: { id: 1n, accessHash: 2n }, document });
-  const readback = await transport.getTheme("android", { slug: "j3w1" });
+  const readback = await transport.getTheme("android", { slug: "j3w1_rose" });
   assert.deepEqual(await readback.document.bytes(), artifacts.android);
   assert.deepEqual(readback.settings, []);
   for (const request of calls.filter(c => c instanceof Api.account.CreateTheme || c instanceof Api.account.UpdateTheme)) assert.equal(request.settings, undefined);

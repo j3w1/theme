@@ -6,7 +6,7 @@ import { readJson } from "./fs.mjs";
 import { toCss } from "./tokens.mjs";
 import { eligibilityOf } from "./eligibility.mjs";
 import { assertPortMapping } from "../../schemas/usage.mjs";
-import { ARTIFACTS, DESKTOP_ENTRIES, assertCloudConfig, installLink } from "../../ports/telegram/src/contract.mjs";
+import { ARTIFACTS, DESKTOP_ENTRIES, assertCloudConfig, editorUrl, installLink } from "../../ports/telegram/src/contract.mjs";
 import { portDownloadPath } from "./port-presentation.mjs";
 import { colorValueSchema } from "../../schemas/tokens.mjs";
 
@@ -86,23 +86,67 @@ export const telegramCoverageBlock = mapping => {
   return rows.join("\n");
 };
 
+const telegramDownload = (manifest, target) => manifest.site.url + portDownloadPath("telegram", ARTIFACTS[target].path);
+const fileName = target => ARTIFACTS[target].path.split("/").at(-1);
+
+// The guide leads with the cloud link only once the owner has verified it on
+// both clients; until then the generated files are the honest primary route.
+// Button labels are the clients' own strings at the pinned revisions
+// (Android ApplyTheme "Apply"; Desktop lng_theme_preview_apply "Apply this
+// theme", lng_theme_keep_changes "Keep changes"; t.me's "Apply Theme").
 export const telegramReadmeBlock = (manifest, cloud) => {
   assertCloudConfig(cloud);
-  // A published, readback-verified cloud theme is the primary route on both
-  // clients; until then the generated files are the honest primary route.
-  if (cloud.published) {
+  const lines = [];
+  if (cloud.verified) {
     const link = `[Install ${cloud.title}](${installLink(cloud.slug)})`;
-    return [
-      "## Android", "", `1. Open ${link}.`, "2. Tap **Apply** in Telegram.", "",
-      "## Desktop", "", `1. Open ${link} with Telegram Desktop.`, "2. Click **Apply**.", "",
-      "Updates arrive through Telegram while you use the cloud theme.",
-      "No Telegram Premium subscription is required.",
-    ].join("\n");
+    lines.push(
+      "## Recommended: cloud theme", "",
+      "One link for both clients. Telegram delivers theme updates automatically, and no Telegram Premium subscription is required.", "",
+      "### Android", "", `1. Open ${link} on your phone.`, "2. Tap **Apply**.", "",
+      "### Desktop", "", `1. Open ${link} on a computer with Telegram Desktop.`, "2. Click **Apply this theme**, then **Keep changes** if Telegram asks.", "",
+      "If a web page opens instead, press **Apply Theme** on it, or send the link to your Saved Messages and tap it there.", "",
+    );
+  } else {
+    lines.push(cloud.slug ? "**Cloud installation: awaiting owner verification.** Until then, install from the files below." : "**Cloud installation: not published yet.** Install from the files below.", "");
   }
-  const download = target => manifest.site.url + portDownloadPath("telegram", ARTIFACTS[target].path);
+  lines.push(
+    "## Install from files", "",
+    "### Android", "", `1. Download [${fileName("android")}](${telegramDownload(manifest, "android")}) and open it in Telegram (or send it to your Saved Messages and tap it there).`, "2. Tap **Apply**.", "",
+    "### Desktop", "", `1. Download [${fileName("desktop")}](${telegramDownload(manifest, "desktop")}) and open it with Telegram Desktop.`, "2. Click **Apply this theme**, then **Keep changes**.", "",
+    "A theme installed from a file never updates by itself.",
+  );
+  if (!cloud.slug) {
+    lines.push("", "The owner publishes the cloud theme with Telegram's Theme Editor or `npm run telegram:publish`; see [Publishing](PUBLISHING.md).");
+    return lines.join("\n");
+  }
+  lines.push(
+    "", "## Update the cloud theme with Telegram's Theme Editor", "",
+    "For the theme owner. No Telegram API application is needed.", "",
+    "1. Download both files above.",
+    `2. Open the [${cloud.title} Theme Editor](${editorUrl(cloud.slug, "android")}) and log in with your Telegram account.`,
+    `3. **Android** tab: **Import file**, choose \`${fileName("android")}\`, then save the theme.`,
+    `4. **TDesktop** tab: **Import file**, choose \`${fileName("desktop")}\`, then save the theme.`,
+    cloud.verified
+      ? "5. Open the install link on each device and apply it."
+      : "5. Check the install link on Android and on Telegram Desktop, as [Publishing](PUBLISHING.md#check-the-install-link) describes.",
+  );
+  return lines.join("\n");
+};
+
+// The owner's reference card in PUBLISHING.md, generated from the same config.
+export const telegramPublishingBlock = (manifest, cloud) => {
+  assertCloudConfig(cloud);
+  const files = `[${fileName("android")}](${telegramDownload(manifest, "android")}) · [${fileName("desktop")}](${telegramDownload(manifest, "desktop")})`;
+  if (!cloud.slug) return [
+    "| | |", "| --- | --- |",
+    "| Cloud theme | not recorded yet: set `slug` in `cloud.json` after creating it |",
+    `| Files | ${files} |`,
+  ].join("\n");
   return [
-    "## Android", "", `1. Download [j3w1.attheme](${download("android")}) and open it in Telegram (or send it to your Saved Messages and tap it there).`, "2. Tap **Apply**.", "",
-    "## Desktop", "", `1. Download [j3w1.tdesktop-theme](${download("desktop")}) and open it with Telegram Desktop.`, "2. Click **Apply this theme**, then **Keep changes**.", "",
-    "The one-tap cloud link, which also brings automatic updates, is pending publication.",
+    "| | |", "| --- | --- |",
+    `| Cloud theme | ${cloud.title}, slug \`${cloud.slug}\` |`,
+    `| Install link | ${installLink(cloud.slug)} (${cloud.verified ? "verified by the owner on Android and Telegram Desktop" : "awaiting owner verification"}) |`,
+    `| Theme Editor | [Android](${editorUrl(cloud.slug, "android")}) · [TDesktop](${editorUrl(cloud.slug, "desktop")}) |`,
+    `| Files | ${files} |`,
   ].join("\n");
 };

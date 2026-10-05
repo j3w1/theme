@@ -7,12 +7,12 @@ import { crc32, inflateSync } from "node:zlib";
 import { unzipSync, strFromU8 } from "fflate";
 import { readJson, readText, sha256 } from "../scripts/lib/fs.mjs";
 import { loadResolvedProfile, toResolvedExport, hexToColor } from "../scripts/lib/tokens.mjs";
-import { telegramArtifacts, telegramColor, telegramReadmeBlock } from "../scripts/lib/telegram-port.mjs";
+import { telegramArtifacts, telegramColor, telegramReadmeBlock, telegramPublishingBlock } from "../scripts/lib/telegram-port.mjs";
 import { PORT_EMITTERS, assertPortArtifacts } from "../scripts/lib/port-artifacts.mjs";
 import { assertPortMapping } from "../schemas/usage.mjs";
 import { assertCapabilities } from "../schemas/port-capabilities.mjs";
 import { evaluatePair } from "../scripts/lib/contrast.mjs";
-import { ARTIFACTS, DESKTOP_ENTRIES, installLink, readCloudConfig } from "../ports/telegram/src/contract.mjs";
+import { ARTIFACTS, DESKTOP_ENTRIES, assertCloudConfig, editorUrl, installLink, readCloudConfig, validSlug } from "../ports/telegram/src/contract.mjs";
 
 const manifest = await readJson("theme.json"), port = await readJson("ports/telegram/port.json");
 const mapping = await readJson("ports/telegram/mapping.json"), capabilities = await readJson("ports/telegram/capabilities.json");
@@ -351,26 +351,81 @@ test("roles mapped on both targets project the same resolved role bytes", () => 
   assert.ok(shared > 10);
 });
 
-test("README installation is generated honestly for unpublished and published cloud states", async () => {
-  const cloud = await readCloudConfig(), readme = await readText("ports/telegram/README.md");
-  const block = readme.split("<!-- install:start -->\n")[1].split("\n<!-- install:end -->")[0];
-  assert.equal(block, telegramReadmeBlock(manifest, cloud));
-  const unpublished = telegramReadmeBlock(manifest, { ...cloud, published: false, slug: null });
-  for (const instruction of ["## Android", "## Desktop", "Saved Messages", "**Apply**", "**Apply this theme**", "**Keep changes**", "pending publication"]) assert.ok(unpublished.includes(instruction), instruction);
-  for (const file of Object.values(ARTIFACTS)) assert.ok(unpublished.includes(manifest.site.url + "ports/telegram/" + file.path.split("/").at(-1)));
-  assert.doesNotMatch(unpublished, /t\.me\/addtheme/);
-  for (const slug of ["j3w1", "j3w1_theme"]) {
-    const published = telegramReadmeBlock(manifest, { ...cloud, published: true, slug });
-    const urls = [...published.matchAll(/https:\/\/t\.me\/addtheme\/[A-Za-z0-9_]+/g)].map(m => m[0]);
-    assert.deepEqual(urls, [installLink(slug), installLink(slug)], "the same verified link for Android and Desktop");
-    assert.match(published, /^## Android\n\n1\. Open \[Install j3w1\]\(https:\/\/t\.me\/addtheme\/[A-Za-z0-9_]+\)\.\n2\. Tap \*\*Apply\*\* in Telegram\.\n\n## Desktop\n\n1\. Open \[Install j3w1\]/);
-    assert.ok(published.includes("2. Click **Apply**."));
-    assert.ok(published.includes("Updates arrive through Telegram while you use the cloud theme.") && published.includes("No Telegram Premium subscription is required."));
-    assert.doesNotMatch(published, /\.attheme|\.tdesktop-theme|pending publication/);
+const block = (text, name) => text.split(`<!-- ${name}:start -->\n`)[1].split(`\n<!-- ${name}:end -->`)[0];
+const downloads = Object.values(ARTIFACTS).map(file => manifest.site.url + "ports/telegram/" + file.path.split("/").at(-1));
+const links = (text, pattern) => [...text.matchAll(pattern)].map(m => m[0]);
+const T_ME = /https:\/\/t\.me\/addtheme\/[A-Za-z0-9_]+/g, EDITOR = /https:\/\/themes\.contest\.com\/theme\/[A-Za-z0-9_]+\?format=[a-z]+/g;
+
+test("cloud.json records the owner's Theme Editor theme, unverified, with no slug the clients reject", async () => {
+  const cloud = await readCloudConfig();
+  assert.equal(cloud.slug, "TRhfHcbvZHlOucyc", "the theme the owner created in Telegram's Theme Editor");
+  assert.equal(cloud.verified, false, "no live acceptance is recorded yet");
+  assert.deepEqual(cloud.slugCandidates, ["j3w1_theme"], "the 4-character j3w1 is not a candidate");
+  // Pinned client rules: 5–64 of [A-Za-z0-9_], a leading letter, no trailing _.
+  for (const slug of ["j3w1", "abcd", "1abcde", "_abcde", "abcde_", "j3w1-theme", "a".repeat(65)]) assert.equal(validSlug(slug), false, slug);
+  for (const slug of ["j3w1_theme", "TRhfHcbvZHlOucyc", "abcde", "a".repeat(64)]) assert.equal(validSlug(slug), true, slug);
+  assert.throws(() => assertCloudConfig({ ...cloud, slugCandidates: ["j3w1", "j3w1_theme"] }), /slugCandidates/);
+  assert.throws(() => assertCloudConfig({ ...cloud, slug: null, verified: true }), /verified needs a slug/);
+  assert.throws(() => assertCloudConfig({ ...cloud, published: true }), /expected exactly/);
+  assert.throws(() => assertCloudConfig({ ...cloud, schemaVersion: 1 }), /schemaVersion must be 2/);
+  assert.equal(editorUrl(cloud.slug, "android"), "https://themes.contest.com/theme/TRhfHcbvZHlOucyc?format=android");
+  assert.equal(editorUrl(cloud.slug, "desktop"), "https://themes.contest.com/theme/TRhfHcbvZHlOucyc?format=tdesktop");
+  assert.equal(installLink(cloud.slug), "https://t.me/addtheme/TRhfHcbvZHlOucyc");
+  // A verified link is owner-observed on both clients and recorded as evidence.
+  if (cloud.verified) for (const os of [/android/i, /windows/i]) assert.ok(port.evidence.some(entry => os.test(entry.os)), `verified needs ${os} evidence`);
+});
+
+test("the guide and the publishing card are generated from cloud.json for every cloud state", async () => {
+  const cloud = await readCloudConfig();
+  assert.equal(block(await readText("ports/telegram/README.md"), "install"), telegramReadmeBlock(manifest, cloud));
+  assert.equal(block(await readText("ports/telegram/PUBLISHING.md"), "cloud"), telegramPublishingBlock(manifest, cloud));
+  const slug = "TRhfHcbvZHlOucyc";
+  const none = telegramReadmeBlock(manifest, { ...cloud, slug: null, verified: false });
+  const awaiting = telegramReadmeBlock(manifest, { ...cloud, slug, verified: false });
+  const verified = telegramReadmeBlock(manifest, { ...cloud, slug, verified: true });
+  for (const guide of [none, awaiting, verified]) {
+    for (const url of downloads) assert.ok(guide.includes(url), url);
+    for (const instruction of ["## Install from files", "Saved Messages", "Tap **Apply**.", "**Apply this theme**", "**Keep changes**"]) assert.ok(guide.includes(instruction), instruction);
   }
-  assert.throws(() => telegramReadmeBlock(manifest, { ...cloud, published: true, slug: null }), /published needs a slug/);
-  // Only the generated guide block follows the cloud state; the install text
-  // copied into the downloads table, the Ports page and the exports must stay
-  // true in both states.
-  for (const file of port.files) assert.doesNotMatch(file.install, /not published|pending|published yet|no cloud theme/i, file.path);
+  // Files lead until the owner has verified the link; no unverified t.me link.
+  assert.match(none, /^\*\*Cloud installation: not published yet\.\*\*/);
+  assert.match(awaiting, /^\*\*Cloud installation: awaiting owner verification\.\*\*/);
+  for (const guide of [none, awaiting]) assert.deepEqual(links(guide, T_ME), []);
+  assert.deepEqual(links(none, EDITOR), []);
+  assert.deepEqual(links(awaiting, EDITOR), [editorUrl(slug, "android")]);
+  for (const step of ["**Android** tab: **Import file**, choose `j3w1.attheme`", "**TDesktop** tab: **Import file**, choose `j3w1.tdesktop-theme`", "No Telegram API application is needed."]) assert.ok(awaiting.includes(step), step);
+  // Verified: the cloud link leads, once per client, and the same link.
+  assert.match(verified, /^## Recommended: cloud theme\n/);
+  assert.ok(verified.indexOf("## Recommended: cloud theme") < verified.indexOf("## Install from files"));
+  assert.deepEqual(links(verified, T_ME), [installLink(slug), installLink(slug)]);
+  assert.match(verified, /### Android\n\n1\. Open \[Install j3w1\]\(https:\/\/t\.me\/addtheme\/TRhfHcbvZHlOucyc\) on your phone\.\n2\. Tap \*\*Apply\*\*\.\n\n### Desktop\n\n1\. Open \[Install j3w1\]\(https:\/\/t\.me\/addtheme\/TRhfHcbvZHlOucyc\) on a computer with Telegram Desktop\.\n2\. Click \*\*Apply this theme\*\*, then \*\*Keep changes\*\* if Telegram asks\./);
+  assert.ok(verified.includes("**Apply Theme**") && verified.includes("no Telegram Premium subscription is required."));
+  assert.doesNotMatch(verified, /awaiting owner verification|not published yet/);
+  // The publishing card names the same identity, editor tabs and files.
+  const card = telegramPublishingBlock(manifest, { ...cloud, slug, verified: false });
+  assert.deepEqual(links(card, EDITOR), [editorUrl(slug, "android"), editorUrl(slug, "desktop")]);
+  assert.deepEqual(links(card, T_ME), [installLink(slug)]);
+  assert.ok(card.includes("awaiting owner verification") && downloads.every(url => card.includes(url)));
+  assert.ok(telegramPublishingBlock(manifest, { ...cloud, slug, verified: true }).includes("verified by the owner"));
+  assert.deepEqual(links(telegramPublishingBlock(manifest, { ...cloud, slug: null, verified: false }), T_ME), []);
+  // Only the generated blocks follow the cloud state; the install text copied
+  // into the downloads table, the Ports page and the exports stays true in all.
+  for (const file of port.files) assert.doesNotMatch(file.install, /not published|pending|published yet|no cloud theme|verified/i, file.path);
+});
+
+test("generation, validation and the Theme Editor route never need Telegram credentials", async () => {
+  // Only the publisher and the opt-in CI job read credentials or load the client.
+  const credential = /TELEGRAM_(?:API_ID|API_HASH|SESSION)|teleproto|my\.telegram\.org/;
+  const allowed = new Set(["ports/telegram/publish.mjs", ".github/workflows/ci.yml", "ports/telegram/PUBLISHING.md", "ports/telegram/IMPLEMENTATION.md", "package.json", "package-lock.json", ".github/dependabot.yml", "scripts/lib/private-material.mjs", "CHANGELOG.md"]);
+  const tracked = execFileSync("git", ["ls-files", "scripts", "ports/telegram", "schemas", "package.json", "package-lock.json", ".github", "CHANGELOG.md"], { encoding: "utf8" }).split("\n").filter(Boolean);
+  const readers = [];
+  for (const file of tracked) if (!/\.(?:attheme|tdesktop-theme|png)$/.test(file) && credential.test(await readText(file))) readers.push(file);
+  assert.deepEqual(readers.filter(file => !allowed.has(file)), []);
+  assert.ok(readers.includes("ports/telegram/publish.mjs"));
+  // The generated guide needs no environment at all.
+  const saved = { ...process.env };
+  try {
+    for (const key of Object.keys(process.env)) if (key.startsWith("TELEGRAM_")) delete process.env[key];
+    assert.equal(telegramReadmeBlock(manifest, await readCloudConfig()), block(await readText("ports/telegram/README.md"), "install"));
+  } finally { Object.assign(process.env, saved); }
 });

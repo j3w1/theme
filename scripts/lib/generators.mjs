@@ -39,7 +39,7 @@ import { privateParitySchema } from "../../schemas/private-parity.mjs";
 import { guideBlocks, INSTALL_GUIDES } from "./install-guides.mjs";
 import { buildChatgptPresets, chatgptReadmeBlock, CHATGPT_SOURCE } from "./chatgpt-port.mjs";
 import { releaseComparisonSchema, releaseCatalogueSchema, releaseMigrationSchema } from "../../schemas/release-comparison.mjs";
-import { telegramReadmeBlock, telegramCoverageBlock } from "./telegram-port.mjs";
+import { telegramReadmeBlock, telegramCoverageBlock, telegramPublishingBlock } from "./telegram-port.mjs";
 import { readCloudConfig } from "../../ports/telegram/src/contract.mjs";
 
 const write = async (relative, content, { check, changed, files }) => {
@@ -263,10 +263,15 @@ export const readmeGenerator = {
       if (await writeOrCheck(guide, text, { check })) changed.push(guide);
     }
     {
+      const cloud = await readCloudConfig();
       const guide = "ports/telegram/README.md";
-      const text = replaceMarkerBlock(await readText(guide), "install", telegramReadmeBlock(manifest, await readCloudConfig()));
+      const text = replaceMarkerBlock(await readText(guide), "install", telegramReadmeBlock(manifest, cloud));
       files.push(guide);
       if (await writeOrCheck(guide, text, { check })) changed.push(guide);
+      const publishing = "ports/telegram/PUBLISHING.md";
+      const card = replaceMarkerBlock(await readText(publishing), "cloud", telegramPublishingBlock(manifest, cloud));
+      files.push(publishing);
+      if (await writeOrCheck(publishing, card, { check })) changed.push(publishing);
       const notes = "ports/telegram/IMPLEMENTATION.md";
       const table = replaceMarkerBlock(await readText(notes), "coverage", telegramCoverageBlock(await readJson("ports/telegram/mapping.json")));
       files.push(notes);

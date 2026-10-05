@@ -58,8 +58,8 @@ async function floodCall(fn, { ci, clock, log }) {
   }
 }
 
-// allowCreate is false in CI: only a verified local first publication, recorded
-// in cloud.json, may create the theme; CI only ever updates that identity.
+// allowCreate is false in CI: CI only ever updates the identity recorded in
+// cloud.json (created with the Theme Editor or by a local first publication).
 export async function converge({ transport, artifacts, cloud, dryRun = false, ci = false, allowCreate = !ci, clock = systemClock, log = () => {}, onIdentity = () => {} }) {
   assertCloudConfig(cloud);
   if (cloud.title !== "j3w1") throw new Error("cloud.json title must be j3w1");
@@ -109,7 +109,7 @@ export async function converge({ transport, artifacts, cloud, dryRun = false, ci
     let theme = await getIdentity(slug);
     if (absent(theme)) theme = null;
     else if (theme.creator !== true) continue;
-    if (!theme && !allowCreate && !dryRun) throw new Error(`No owned cloud theme at ${slug}; CI only updates the theme a verified local publication recorded in cloud.json`);
+    if (!theme && !allowCreate && !dryRun) throw new Error(`No owned cloud theme at ${slug}; CI only updates the theme recorded in cloud.json`);
     onIdentity({ slug, themeId: theme ? String(theme.id) : null });
     let created = false;
     let attemptedCreate = false;
@@ -483,9 +483,9 @@ export async function run(argv, deps = {}) {
     }
     const enabling = options.command === "ci-enable";
     const cloud = deps.cloud ?? await readCloudConfig(path.join(repo, "ports/telegram"));
-    // CI only ever updates the identity a verified local first publication
-    // recorded; it never discovers or creates one.
-    if ((options.ci || enabling) && !(cloud.published && cloud.slug)) throw new Error("Publish once locally first: CI updates only the cloud theme recorded in cloud.json (published with a slug)");
+    // CI only ever updates the recorded identity once the owner has verified
+    // its install link on both clients; it never discovers or creates one.
+    if ((options.ci || enabling) && !(cloud.verified && cloud.slug)) throw new Error("Verify the cloud theme first: CI updates only the theme recorded in cloud.json with verified set");
     if (enabling && await confirm("Type ENABLE TELEGRAM CI to create dedicated main-only publishing access: ") !== "ENABLE TELEGRAM CI") throw new Error("CI enablement confirmation did not match");
     if (enabling) {
       const repository = (await exec("gh", ["repo", "view", "--json", "nameWithOwner", "--jq", ".nameWithOwner"], { cwd: repo, env })).toString().trim();
@@ -503,7 +503,7 @@ export async function run(argv, deps = {}) {
     if (!enabling) source = await preflight({ ref: options.ref ?? (options.ci ? env.GITHUB_SHA : "HEAD"), ci: options.ci, rollback: options.command === "rollback", git, prompt: confirm, log });
     if (!auth?.apiId || !auth?.apiHash) {
       if (options.ci) throw new Error("Telegram CI not configured");
-      log("Open https://my.telegram.org/apps and sign in with your Telegram account.\nCreate an API application to obtain api_id and api_hash.\nEnter them below; they stay in private local state and are never committed.");
+      log("Open https://my.telegram.org/apps and sign in with your Telegram account.\nCreate an API application to obtain api_id and api_hash.\nEnter them below; they stay in private local state and are never committed.\nWithout an API application, publish with Telegram's Theme Editor instead: ports/telegram/PUBLISHING.md.");
       auth = { apiId: Number(await prompt("Telegram api_id: ")), apiHash: await prompt("Telegram api_hash: "), session: "" };
     }
     validateAuth(auth);
@@ -531,10 +531,12 @@ export async function run(argv, deps = {}) {
     const result = await converge({ transport, artifacts: source.artifacts, cloud, dryRun: options.dryRun, ci: options.ci, clock, log, onIdentity: value => { observedIdentity = value; } });
     if (!options.dryRun) {
       await writeReceipt(result);
-      if (!options.ci && !cloud.published && result.readbackVerified) {
-        const next = assertCloudConfig({ ...cloud, slug: result.slug, published: true });
+      // A new identity is recorded; the install link stays unverified until the
+      // owner applies it on both clients (PUBLISHING.md).
+      if (!options.ci && !cloud.slug && result.readbackVerified) {
+        const next = assertCloudConfig({ ...cloud, slug: result.slug });
         await io.writeFile(path.join(repo, "ports/telegram/cloud.json"), `${JSON.stringify(next, null, 2)}\n`);
-        log("First local publication verified: run npm run generate and commit cloud.json and the generated files");
+        log("New cloud theme recorded in cloud.json: run npm run generate, commit, then check the install link on Android and Telegram Desktop");
       }
     }
     log(`${result.result}: ${Object.entries(result.formats).map(([format, outcome]) => `${format} ${outcome}`).join(", ")}\n${installLink(result.slug)}`);

@@ -2,13 +2,60 @@
 
 This page is for the theme owner. People installing the theme never need it.
 
+<!-- cloud:start -->
+| | |
+| --- | --- |
+| Cloud theme | j3w1, slug `TRhfHcbvZHlOucyc` |
+| Install link | https://t.me/addtheme/TRhfHcbvZHlOucyc (awaiting owner verification) |
+| Theme Editor | [Android](https://themes.contest.com/theme/TRhfHcbvZHlOucyc?format=android) · [TDesktop](https://themes.contest.com/theme/TRhfHcbvZHlOucyc?format=tdesktop) |
+| Files | [j3w1.attheme](https://j3w1.github.io/theme/ports/telegram/j3w1.attheme) · [j3w1.tdesktop-theme](https://j3w1.github.io/theme/ports/telegram/j3w1.tdesktop-theme) |
+<!-- cloud:end -->
+
+There are two ways to put new files into the cloud theme. Both update the **same** theme, slug and install link, and Telegram then updates everyone using it. Never create a second theme for a release.
+
+| | Theme Editor | Automatic publisher (optional) |
+| --- | --- | --- |
+| Needs | a Telegram login in a browser | a Telegram API application from my.telegram.org |
+| Checks the result | by eye, on both clients | by downloading both documents and comparing bytes |
+
+The colours always come from the j3w1 tokens and `mapping.json`. Change them there, run `npm run generate`, and publish the new files. Never recolour the theme in the editor: the next import replaces any hand edit.
+
+## Publish with Telegram's Theme Editor
+
+This route needs no API application, api_id or api_hash.
+
+1. **Get the files.** Use the two files linked above, which are the released ones. To test files that are not released yet, download them from the pull request branch.
+2. **Android.**
+   - Open the Android Theme Editor link above.
+   - Log in: Telegram sends a confirmation message to your account.
+   - Click **Import file** and choose `j3w1.attheme`. The editor shows the imported colours as text, but nothing is saved yet.
+   - Save the theme.
+3. **Desktop.**
+   - Switch to the **TDesktop** tab, or open its link above.
+   - If the theme has no Desktop version yet, the tab first offers to create one.
+   - Click **Import file**, choose `j3w1.tdesktop-theme`, and save the theme.
+4. **Same theme.** Keep the `name` and `shortname` lines at the top of the editor text. The page address must stay `/theme/<slug>` with the slug above. If saving moves it to another address, the shortname was edited: restore it before going on.
+
+Telegram converts an imported file into its own text form and rebuilds the document when you save; the Desktop zip is repacked. The cloud copy carries the same colours but not the same bytes, so on this route you check the result on the clients, not by digest.
+
+### Check the install link
+
+1. **Android:** open the install link on the phone, check the preview, and tap **Apply**.
+2. **Desktop:** open the same link on Windows with Telegram Desktop installed. If a web page opens, press **Apply Theme** on it. Click **Apply this theme**, then **Keep changes** if Telegram asks.
+3. **Look at the main screens** on both clients, as [Verification](IMPLEMENTATION.md#verification) lists. Then restart Telegram Desktop and confirm the theme stays.
+4. **Record the result.** Record each client as a real-import entry in `port.json` `evidence`, with its report under `evidence/`. Then set `"verified": true` in `cloud.json`, run `npm run generate`, and commit. The README then leads with the install link.
+
+## Automatic publishing (optional)
+
+This route needs Telegram user API credentials (`api_id` and `api_hash`) from <https://my.telegram.org/apps>. Nothing else depends on it: installing, testing and updating the theme all work through the Theme Editor.
+
 ```sh
 npm run telegram:publish
 ```
 
-This one command creates the cloud theme the first time and updates it every time after. Run it in an interactive terminal from a clean checkout (after `npm ci`), at the commit you want to publish: it always publishes `HEAD`. Earlier revisions go through [rollback](#rolling-back).
+Run it in an interactive terminal from a clean checkout (after `npm ci`), at the commit you want to publish: it always publishes `HEAD`. Earlier revisions go through [rollback](#rolling-back).
 
-## What the command does
+**What the command does:**
 
 1. **Checks the revision.**
    - Reads `dist/j3w1.attheme` and `dist/j3w1.tdesktop-theme` from the committed revision.
@@ -19,17 +66,17 @@ This one command creates the cloud theme the first time and updates it every tim
    - Telegram sends at most one login code per run.
    - Saves the session under `~/.local/state/j3w1-theme/telegram/` (owner-only permissions; `$J3W1_THEME_STATE_DIR`, or `$XDG_STATE_HOME`, overrides the location), then carries on in the same run.
 3. **Finds the theme.**
-   - Uses the slug in `cloud.json`. Before the first publication it tries `j3w1`, then `j3w1_theme`.
-   - Adopts a theme only if Telegram says you created it. It never touches anyone else's.
-   - If no candidate is available it stops and asks you for one more slug. Add it to `slugCandidates` in `cloud.json`, commit, and run the command again.
+   - Uses the `slug` in `cloud.json`, which is the theme created with the Theme Editor. It adopts that theme because Telegram reports you as its creator, and never creates a duplicate.
+   - It never touches anyone else's theme.
+   - Only while `slug` is empty does it create a new theme, named from `slugCandidates`.
 4. **Compares and uploads.**
    - Compares the Android and Desktop documents in the cloud with the committed files.
-   - Uploads only those that differ, and creates the theme only if it does not exist yet.
+   - Uploads only those that differ. The first run after a Theme Editor save replaces the editor's rebuilt documents with the exact generated bytes, and reports `updated`.
    - Never sends accent `settings`, because Android would show those instead of the file.
 5. **Verifies.**
    - Downloads both documents again and checks bytes, type, title, slug and ownership.
    - Prints the install link and writes a receipt to `…/telegram/receipts/`.
-6. **First publication only.** Records the slug in `ports/telegram/cloud.json`. Then run `npm run generate` and commit: the README switches to the cloud link.
+6. **New theme only.** Records the new slug in `ports/telegram/cloud.json`. Run `npm run generate` and commit, then [check the install link](#check-the-install-link). `verified` stays false until you do.
 
 **Edge cases:**
 - A run with nothing to change reports `unchanged`.
@@ -37,28 +84,32 @@ This one command creates the cloud theme the first time and updates it every tim
 - Flood waits are honoured up to 10 minutes (2 in CI).
 - `-- --dry-run` stops after the comparison and writes nothing.
 
-## Rolling back
+### Rolling back
 
 ```sh
 npm run telegram:publish -- rollback --ref <tag-or-commit>
 ```
 
-This republishes an earlier reviewed revision to the same theme and the same link. The revision must be a tag or an ancestor of `origin/main`, and you confirm it by typing `ROLLBACK` followed by the full commit id it prints. If automatic publishing is enabled, also revert the change on `main`, or the next release publishes it again.
+This republishes an earlier reviewed revision to the same theme and the same link. The revision must be a tag or an ancestor of `origin/main`. You confirm it by typing `ROLLBACK` followed by the full commit id it prints. If automatic publishing is enabled, also revert the change on `main`, or the next release publishes it again.
 
-## Automatic publishing on release (optional)
+On the Theme Editor route, rolling back means importing the files of the earlier release.
+
+### Automatic publishing on release
 
 ```sh
 npm run telegram:publish -- ci-enable
 ```
 
-Publish once locally first: CI only updates the theme recorded in `cloud.json`, and both this command and the CI job refuse until it is there. It needs `gh` signed in with admin access to `j3w1/theme`, and asks you to type `ENABLE TELEGRAM CI`. It then:
+CI only updates the theme recorded in `cloud.json`, and only once `verified` is true. Both this command and the CI job refuse until then.
+
+It needs `gh` signed in with admin access to `j3w1/theme`, and asks you to type `ENABLE TELEGRAM CI`. It then:
 - creates the GitHub environment `telegram`, restricted to `main`;
 - logs in a **separate** Telegram session named "j3w1 theme CI" and stores it only as that environment's secret (never on disk or in logs);
 - finally sets the repository variable `TELEGRAM_PUBLISH=enabled`.
 
 From then on, a push to `main` that passes `release-gate` and changes `ports/telegram/dist/` publishes once, in order, with the same verification. Only the current tip of `main` is ever published, so rerunning an older workflow never republishes older files. Pull requests, forks and previews never receive the session.
 
-## Disconnecting
+### Disconnecting
 
 ```sh
 npm run telegram:publish -- disconnect        # this computer

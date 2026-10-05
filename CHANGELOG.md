@@ -10,12 +10,15 @@
   reason, so unmapped keys cannot fall back to Telegram's light defaults
   unnoticed. Rose body text, bright-rose names, dark bubbles above a black to
   red-black wallpaper; no new colours, blends or alpha.
-- `npm run telegram:publish` creates or updates one Telegram Cloud Theme with
-  both documents, verifies them by download, and prints the
-  `t.me/addtheme/<slug>` link; until the owner publishes, the README leads with
-  file import. An opt-in `telegram` job publishes changed files after
-  `release-gate` on `main` only; it is not configured. The pinned `teleproto`
-  MTProto client is used only by the publisher.
+- One Telegram Cloud Theme serves both clients from one `t.me/addtheme/<slug>`
+  link. The owner fills it with Telegram's own Theme Editor (Import file, then
+  save; no API application), or optionally with `npm run telegram:publish`.
+  The publisher needs `api_id`/`api_hash`, adopts the same recorded theme and
+  verifies both documents by download. `cloud.json` records the theme the owner
+  created in the editor; the README leads with file import until the owner has
+  verified the link on both clients. An opt-in `telegram` job publishes changed
+  files after `release-gate` on `main` only; it is not configured. The pinned
+  `teleproto` MTProto client is used only by the publisher.
 - Port emitters may return byte artifacts (`{path, bytes}`), written and
   drift-checked byte for byte.
 
