@@ -144,6 +144,32 @@ int main(){
             BackgroundHook(nullptr,target,hostPopupItem,MPI_HOT,&rect,nullptr);
             assert(GetPixel(target,2,2)==RGB(62,62,62));}
         assert(MenuOrigin());
+        // Reproduce the real 26/1 keyboard-focus paint: neutral fill, bright
+        // antialiased ring, a black corner and a colored interior asset.
+        auto normalMenuDraw=originalDrawThemeBackground;
+        originalDrawThemeBackground=[](HTHEME,HDC dc,int,int,const RECT* r,const RECT*)->HRESULT{
+            HBRUSH fill=CreateSolidBrush(RGB(44,44,44));FillRect(dc,r,fill);DeleteObject(fill);
+            SetPixel(dc,0,0,RGB(255,255,255));SetPixel(dc,0,1,RGB(57,57,57));
+            SetPixel(dc,1,1,RGB(0,0,0));SetPixel(dc,6,6,RGB(0,120,215));return S_OK;};
+        BackgroundHook(nullptr,target,hostPopupFocus,1,&rect,nullptr);
+        assert(GetPixel(target,2,2)==menuHover && GetPixel(target,0,0)==focusRing);
+        assert(GetPixel(target,0,1)==focusRing && GetPixel(target,1,1)==background);
+        assert(GetPixel(target,6,6)==RGB(0,120,215));
+        FillRect(target,&rect,black);
+        BackgroundHook(nullptr,target,hostPopupFocus,1,&rect,&menuClip);
+        assert(GetPixel(target,2,2)==menuHover && GetPixel(target,20,2)==background);
+        for(int state:{0,2,3,4,99}){
+            BackgroundHook(nullptr,target,hostPopupFocus,state,&rect,nullptr);
+            assert(GetPixel(target,2,2)==RGB(44,44,44) && GetPixel(target,0,0)==RGB(255,255,255));
+        }
+        {MenuPaintScope foreign(unrelated);
+            BackgroundHook(nullptr,target,hostPopupFocus,1,&rect,nullptr);
+            assert(GetPixel(target,2,2)==RGB(44,44,44));}
+        fixtureHighContrast=true;BackgroundHook(nullptr,target,hostPopupFocus,1,&rect,nullptr);
+        assert(GetPixel(target,2,2)==RGB(44,44,44));fixtureHighContrast=false;
+        enabled=false;BackgroundHook(nullptr,target,hostPopupFocus,1,&rect,nullptr);
+        assert(GetPixel(target,2,2)==RGB(44,44,44));enabled=true;
+        originalDrawThemeBackground=normalMenuDraw;
         HDC unrelatedDC=GetDC(unrelated);assert(!MenuDC(unrelatedDC));ReleaseDC(unrelated,unrelatedDC);
         enabled=false;assert(!MenuDC(target));enabled=true;
         fixtureHighContrast=true;assert(!MenuDC(target));fixtureHighContrast=false;
@@ -174,6 +200,10 @@ int main(){
     ThemeColorHook(nullptr,MENU_POPUPBACKGROUND,0,TMT_FILLCOLOR,&readback);assert(readback==queryColor);
     {MenuPaintScope popup(sink);
         ThemeColorHook(nullptr,MENU_POPUPBORDERS,0,TMT_FILLCOLOR,&readback);assert(readback==menuBorder);
+        ThemeColorHook(nullptr,hostPopupFocus,1,TMT_FILLCOLOR,&readback);assert(readback==menuHover);
+        ThemeColorHook(nullptr,hostPopupFocus,1,TMT_BORDERCOLOR,&readback);assert(readback==focusRing);
+        ThemeColorHook(nullptr,hostPopupFocus,1,TMT_TEXTCOLOR,&readback);assert(readback==menuHoverText);
+        ThemeColorHook(nullptr,hostPopupFocus,2,TMT_FILLCOLOR,&readback);assert(readback==queryColor);
         // Reproduce the live frame query: its color hint must be mapped without
         // changing an unknown hint, another part, or the native HRESULT.
         assert(ThemeColorHook(nullptr,MENU_POPUPBORDERS,0,TMT_FILLCOLORHINT,&readback)==S_OK);

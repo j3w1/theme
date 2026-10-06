@@ -1437,3 +1437,22 @@ bounded interval. This supports a startup-timing investigation; it does not
 reconstruct an earlier caption override or prove production-hook ordering. The
 observer was disabled afterward. Unknown caption baselines and the excluded
 public title APIs remain untouched.
+
+
+### Classic menu keyboard focus
+
+A bounded native paint trace on the recorded host identified a separate Menu
+part 26/state 1 when keyboard navigation selects a classic popup row. Ordinary
+item paints still use part 27/states 1 and 3. The adapter previously admitted
+only the ordinary item, leaving the independent focus background gray.
+
+The native adapter now admits only the observed 26/1 combination under its
+existing popup-owner and DC checks. Neutral low-light fill uses the strong menu
+hover role; the bright outline and its antialiasing use the focus-ring role.
+Black corners and nonneutral pixels survive. Other focus states, foreign owners,
+unsupported transforms and high contrast retain native drawing. Clipping and
+DC state remain in the existing offscreen rendering path. Setup and rollback
+use the same bundled adapter and the single install.ps1 lifecycle.
+
+This describes a bounded rendering correction. It does not resolve the Notepad
+first-window strip, Paint workspace, or unavailable Settings appearance check.

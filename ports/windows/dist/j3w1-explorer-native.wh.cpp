@@ -2,7 +2,7 @@
 // @id j3w1-explorer-native
 // @name j3w1 Explorer native colors
 // @description Generated native Explorer canvas and text adapter; exact host only
-// @version 1.8.2
+// @version 1.8.3
 // @author j3w1
 // @include explorer.exe
 // @architecture x86-64
@@ -794,9 +794,14 @@ static bool MenuClass(HTHEME theme) {
 // The exact recorded host uses part 27 for popup items. It is absent from the
 // retained SDK's MENUPARTS enum; never assume it on a different executable.
 static constexpr int hostPopupItem=27;
+// The recorded host draws keyboard focus through 26/1, independently of the
+// ordinary item's 27/1 and disabled 27/3 paints. Other focus states stay native.
+static constexpr int hostPopupFocus=26;
+static bool MenuFocus(int part,int state) {return part==hostPopupFocus && state==1;}
 static bool MenuItem(int part) {return part==MENU_POPUPITEM || part==hostPopupItem;}
 static bool MenuItemState(int state) {return state>=MPI_NORMAL && state<=MPI_DISABLEDHOT;}
 static bool MenuPart(int part,int state) {
+    if(MenuFocus(part,state))return true;
     if(MenuItem(part))return MenuItemState(state);
     if(part==MENU_POPUPBACKGROUND || part==MENU_POPUPBORDERS || part==MENU_POPUPGUTTER)return state==0;
     if(part==MENU_POPUPSEPARATOR)return state>=0 && state<=3;
@@ -809,7 +814,7 @@ static COLORREF MenuText(int part,int state) {
     if((MenuItem(part) && (state==MPI_DISABLED || state==MPI_DISABLEDHOT))
        || (part==MENU_POPUPCHECK && (state==MC_CHECKMARKDISABLED || state==MC_BULLETDISABLED))
        || (part==MENU_POPUPSUBMENU && state==MSM_DISABLED))return disabled;
-    return MenuItem(part) && state==MPI_HOT?menuHoverText:foreground;
+    return MenuFocus(part,state) || (MenuItem(part) && state==MPI_HOT)?menuHoverText:foreground;
 }
 static bool ExplorerDC(HDC dc,bool nonclientScrollbar=false) {
     HWND owner=WindowFromDC(dc);
@@ -990,12 +995,13 @@ static HRESULT WINAPI ThemeColorHook(HTHEME theme,int part,int state,int propert
         bool earlyBackground=!menuDepth && part==MENU_POPUPBACKGROUND && state==0
             && property==TMT_FILLCOLOR && ExplorerWindow(GetActiveWindow());
         if(MenuPart(part,state) && (MenuOrigin() || earlyBackground) && Gray(*color,0,255)) {
-            if(property==TMT_TEXTCOLOR && (MenuItem(part) || part==MENU_POPUPCHECK || part==MENU_POPUPSUBMENU))*color=MenuText(part,state);
+            if(property==TMT_TEXTCOLOR && (MenuItem(part) || MenuFocus(part,state) || part==MENU_POPUPCHECK || part==MENU_POPUPSUBMENU))*color=MenuText(part,state);
             // The recorded host queries its popup frame through FILLCOLORHINT
             // (not FILLCOLOR). Admit that observed hint only for the frame part.
             else if(property==TMT_FILLCOLOR || property==TMT_BORDERCOLOR
                     || (part==MENU_POPUPBORDERS && property==TMT_FILLCOLORHINT)) {
-                if(part==MENU_POPUPBORDERS)*color=menuBorder;
+                if(MenuFocus(part,state))*color=property==TMT_BORDERCOLOR?focusRing:menuHover;
+                else if(part==MENU_POPUPBORDERS)*color=menuBorder;
                 else if(part==MENU_POPUPSEPARATOR)*color=border;
                 else if(part==MENU_POPUPBACKGROUND || part==MENU_POPUPGUTTER || MenuItem(part))
                     *color=MenuItem(part) && state==MPI_HOT?menuHover:background;
@@ -1089,7 +1095,8 @@ static HRESULT PaintTheme(HTHEME theme,HDC dc,int part,int state,const RECT* rec
             COLORREF color=red<=48?background:red<160?fill:foreground;
             if(tooltip)color=red>48&&(i%width==0||i%width==width-1||i/width==0||i/width==height-1)?menuBorder:background;
             if(menu) {
-                if(part==MENU_POPUPBORDERS)color=red<=48?background:menuBorder;
+                if(MenuFocus(part,state))color=red==0?background:red<=48?menuHover:focusRing;
+                else if(part==MENU_POPUPBORDERS)color=red<=48?background:menuBorder;
                 else if(part==MENU_POPUPSEPARATOR)color=red<=48?background:border;
                 else if(part==MENU_POPUPCHECK || part==MENU_POPUPSUBMENU)color=red<=48?background:MenuText(part,state);
                 else color=MenuItem(part) && state==MPI_HOT?menuHover:background;

@@ -6,6 +6,9 @@
   and highlight roles (D-033), with audited selection/on-fill exceptions.
 - Generated Windows native and Windhawk port with pinned installation lifecycle
   (D-034). See the Windows guide and typography migration note.
+- Windows classic-menu keyboard focus uses the strong red menu fill and a red
+  outline on the recorded host. Downstream installations receive this bounded
+  correction through the existing single-script update and rollback actions.
 
 ## [3.1.0] - 2026-09-27
 
