@@ -249,6 +249,32 @@
         "$description": "Near-black surfaces with a faint red cast. Steps rise with luminance."
       },
       "red": {
+        "40": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2392,
+              0.0471,
+              0.0392
+            ],
+            "alpha": 1,
+            "hex": "#3d0c0a"
+          },
+          "$description": "D-034 accent surface for the user's own content: the brightest red that keeps text.link at 4.5:1 (4.55), with text.muted at 4.90 and text.default at 7.30.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "origin": {
+                "kind": "proposed",
+                "ref": "spec/decisions.md#d-034",
+                "note": "A new colour chosen by the owner after comparing four outgoing-bubble options in real colours (D-034)."
+              },
+              "approval": {
+                "decision": "D-034"
+              }
+            }
+          }
+        },
         "50": {
           "$value": {
             "colorSpace": "srgb",

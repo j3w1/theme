@@ -95,6 +95,11 @@
       "surface": "primitives",
       "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
     },
+    "color.primitive.red.40": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
     "color.primitive.red.50": {
       "state": "out-of-scope",
       "surface": "primitives",

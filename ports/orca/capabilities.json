@@ -938,6 +938,11 @@
       "surface": "outside-terminal",
       "reason": "Primitive; ports consume roles, never primitives."
     },
+    "color.primitive.red.40": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
     "color.primitive.red.50": {
       "state": "out-of-scope",
       "surface": "outside-terminal",

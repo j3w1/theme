@@ -25,7 +25,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-xjZDLTykjkl5T7Tm5QjLJfjlh4rYWo0ZWCETZjAfdUY=",
+      "subjectDigest": "sha256-i3zhuMRWktVXh0Pa0iYf9rBW+5NwIURTPc6MXtFln38=",
       "evidencePath": null,
       "surfaces": {
         "appearance-settings": {
@@ -2779,6 +2779,21 @@
           "spec": "spec/portability.md"
         },
         {
+          "role": "color.primitive.red.40",
+          "nativeKeys": [],
+          "value": "#3d0c0a",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-chatgpt",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/chatgpt/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
           "role": "color.primitive.red.400",
           "nativeKeys": [],
           "value": "#9e231f",
@@ -3490,7 +3505,7 @@
         {
           "role": "color.surface.accent",
           "nativeKeys": [],
-          "value": "#2b0e0d",
+          "value": "#3d0c0a",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -5345,7 +5360,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-KkZU5ounHtBbkt60wqNtW9cABp7OmWwAKa7ul3M5aAs=",
+      "subjectDigest": "sha256-5QpfmaH/Pmn5uD4OeptZpcVg9DvxU/9dLv73Er47Z8Q=",
       "evidencePath": null,
       "surfaces": {
         "theme-roles": {
@@ -8098,6 +8113,21 @@
           "spec": "spec/portability.md"
         },
         {
+          "role": "color.primitive.red.40",
+          "nativeKeys": [],
+          "value": "#3d0c0a",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-claude",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/claude-code/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
           "role": "color.primitive.red.400",
           "nativeKeys": [],
           "value": "#9e231f",
@@ -8817,7 +8847,7 @@
         {
           "role": "color.surface.accent",
           "nativeKeys": [],
-          "value": "#2b0e0d",
+          "value": "#3d0c0a",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -10716,7 +10746,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-qnrwVvxHULR/R+B+6KRbuqDLEH+bXcfDzJAXA7D+ESk=",
+      "subjectDigest": "sha256-ItVybO2ag5/RLEOhGWZxGZjvE5q/leaJVbybNugIUNc=",
       "evidencePath": null,
       "surfaces": {
         "theme-scopes": {
@@ -13488,6 +13518,21 @@
           "spec": "spec/portability.md"
         },
         {
+          "role": "color.primitive.red.40",
+          "nativeKeys": [],
+          "value": "#3d0c0a",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-codex",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/codex/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
           "role": "color.primitive.red.400",
           "nativeKeys": [],
           "value": "#9e231f",
@@ -14195,7 +14240,7 @@
         {
           "role": "color.surface.accent",
           "nativeKeys": [],
-          "value": "#2b0e0d",
+          "value": "#3d0c0a",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -16036,7 +16081,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-XPWEeJw7jtkdvctBoTmzIpem58684YRzOA7JTWZ0C58=",
+      "subjectDigest": "sha256-J1RQtiM/4muo9SlzLybF6yBWbJbT+xO+/IKSl1TeZoQ=",
       "evidencePath": null,
       "surfaces": {
         "terminal-colours": {
@@ -18769,6 +18814,21 @@
           "spec": "spec/portability.md"
         },
         {
+          "role": "color.primitive.red.40",
+          "nativeKeys": [],
+          "value": "#3d0c0a",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
           "role": "color.primitive.red.400",
           "nativeKeys": [],
           "value": "#9e231f",
@@ -19476,7 +19536,7 @@
         {
           "role": "color.surface.accent",
           "nativeKeys": [],
-          "value": "#2b0e0d",
+          "value": "#3d0c0a",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -21356,7 +21416,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-e5w9y6pQ/87T1/2cMjYf3MeyYhVJPUx00sf/grqpejU=",
+      "subjectDigest": "sha256-BR42e/J5lSdRkhzlNoMBZ5xLyYHVcIovAWegKE/sTg0=",
       "evidencePath": null,
       "surfaces": {
         "interface": {
@@ -24285,6 +24345,21 @@
           "spec": "spec/portability.md"
         },
         {
+          "role": "color.primitive.red.40",
+          "nativeKeys": [],
+          "value": "#3d0c0a",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "primitives",
+          "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+          "source": "ports/obsidian/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
           "role": "color.primitive.red.400",
           "nativeKeys": [],
           "value": "#9e231f",
@@ -25012,7 +25087,7 @@
         {
           "role": "color.surface.accent",
           "nativeKeys": [],
-          "value": "#2b0e0d",
+          "value": "#3d0c0a",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -27001,7 +27076,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-NScR9Q452HPYm/6IXgcL9EOyGlzbEQU4s/ivhF9KK4U=",
+      "subjectDigest": "sha256-R0nplg9JNc/IC3rKUToKhBCfRxfoCzwYCnmIggS3Tq8=",
       "evidencePath": null,
       "surfaces": {
         "terminal-colours": {
@@ -29738,6 +29813,21 @@
           "spec": "spec/portability.md"
         },
         {
+          "role": "color.primitive.red.40",
+          "nativeKeys": [],
+          "value": "#3d0c0a",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
           "role": "color.primitive.red.400",
           "nativeKeys": [],
           "value": "#9e231f",
@@ -30445,7 +30535,7 @@
         {
           "role": "color.surface.accent",
           "nativeKeys": [],
-          "value": "#2b0e0d",
+          "value": "#3d0c0a",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -32332,7 +32422,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-oHc1Ijjs6CT4LazaArNRjBcGVLRIzWMAjkijj17pqzM=",
+      "subjectDigest": "sha256-JjOxyxPntz+yq8qYKmYc6QhSvQ8JtvPQ58RX+Rapvuw=",
       "evidencePath": null,
       "surfaces": {
         "interface": {
@@ -32381,13 +32471,13 @@
           "path": "dist/j3w1.attheme",
           "install": "File install: open in Telegram for Android (or send to Saved Messages and tap), then Apply. The cloud link in the guide, when published, installs the same theme with automatic updates.",
           "source": "ports/telegram/dist/j3w1.attheme",
-          "digest": "sha256-YnNVB5nDHvFbXhKfWY0st30ednzXgS4UWmHf0AXPtYM="
+          "digest": "sha256-SoKDvOr+3AkgLSDO0oFKIzkNHn6PLhJ3ujZo5Ix39Ys="
         },
         {
           "path": "dist/j3w1.tdesktop-theme",
           "install": "File install: open with Telegram Desktop, then Apply this theme and Keep changes. The cloud link in the guide, when published, installs the same theme with automatic updates.",
           "source": "ports/telegram/dist/j3w1.tdesktop-theme",
-          "digest": "sha256-gw6b8UWr3Vka1wBY0JR8fXV13+ForWbLxXT/fbvqvvg="
+          "digest": "sha256-hJpqFP1ooc8qTc4hnNgcLD96onL8pnwcsGSHRZLDUHo="
         }
       ],
       "rollback": "Choose the previous Telegram theme in Settings → Chat Settings/Appearance; restore the previous chat background if it was customised.",
@@ -35514,6 +35604,21 @@
           "spec": "spec/portability.md"
         },
         {
+          "role": "color.primitive.red.40",
+          "nativeKeys": [],
+          "value": "#3d0c0a",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "primitives",
+          "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only.",
+          "source": "ports/telegram/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
           "role": "color.primitive.red.400",
           "nativeKeys": [],
           "value": "#9e231f",
@@ -36280,7 +36385,7 @@
             "android:chat_outBubble",
             "desktop:msgOutBg"
           ],
-          "value": "#2b0e0d",
+          "value": "#3d0c0a",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -37605,7 +37710,6 @@
             "desktop:dialogsTextFgService",
             "desktop:msgWaveformInInactive",
             "desktop:msgWaveformOutInactive",
-            "desktop:historyComposeAreaFgService",
             "desktop:profileStatusFgOver",
             "desktop:mediaPlayerInactiveFg",
             "desktop:mediaviewPlaybackInactive",
@@ -37619,7 +37723,17 @@
             "desktop:dialogsUnreadBgMuted",
             "android:changephoneinfo_image",
             "android:player_placeholder",
-            "desktop:groupCallMemberNotJoinedStatus"
+            "desktop:groupCallMemberNotJoinedStatus",
+            "android:chat_outSentClock",
+            "android:chat_inSentClock",
+            "android:chat_inTimeText",
+            "android:chat_outTimeText",
+            "android:chat_inAudioDurationText",
+            "android:chat_outAudioDurationText",
+            "android:chat_previewDurationText",
+            "android:chat_secretTimeText",
+            "desktop:msgInDateFg",
+            "desktop:msgOutDateFg"
           ],
           "value": "#bd787d",
           "eligibility": {
@@ -37791,17 +37905,9 @@
             "android:chats_date",
             "android:chats_sentClock",
             "android:chat_status",
-            "android:chat_outSentClock",
-            "android:chat_inSentClock",
             "android:chat_mediaSentClock",
             "android:chat_mediaViews",
-            "android:chat_previewDurationText",
-            "android:chat_secretTimeText",
             "android:chat_mediaTimeText",
-            "android:chat_inTimeText",
-            "android:chat_outTimeText",
-            "android:chat_inAudioDurationText",
-            "android:chat_outAudioDurationText",
             "android:chat_secretChatStatusText",
             "android:chat_messagePanelVoiceDuration",
             "android:chat_recordTime",
@@ -37811,8 +37917,6 @@
             "android:player_time",
             "desktop:dialogsDateFg",
             "desktop:dialogsDateFgOver",
-            "desktop:msgInDateFg",
-            "desktop:msgOutDateFg",
             "desktop:msgDateImgFg",
             "desktop:mediaviewFileSizeFg"
           ],
@@ -38872,7 +38976,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-jtt5cA+c186PTYESthqWjQxV+crfKUFm0zDolyyGLYk=",
+      "subjectDigest": "sha256-wZkJ2JyTg6BMdKzP8ljT+iTlFjHHTeH5xOMFu0BSYVc=",
       "evidencePath": null,
       "surfaces": {
         "terminal-colours": {
@@ -41603,6 +41707,21 @@
           "spec": "spec/portability.md"
         },
         {
+          "role": "color.primitive.red.40",
+          "nativeKeys": [],
+          "value": "#3d0c0a",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
           "role": "color.primitive.red.400",
           "nativeKeys": [],
           "value": "#9e231f",
@@ -42310,7 +42429,7 @@
         {
           "role": "color.surface.accent",
           "nativeKeys": [],
-          "value": "#2b0e0d",
+          "value": "#3d0c0a",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",

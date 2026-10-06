@@ -52,7 +52,7 @@ Every upstream colour key is in exactly one of three states, and `tests/telegram
 | Target | Keys | Mapped | Inherited | Unset | Legacy editor keys |
 | --- | ---: | ---: | ---: | ---: | ---: |
 | Android | 819 | 666 | 86 | 67 | 77 |
-| Desktop | 586 | 449 | 92 | 45 | 0 |
+| Desktop | 586 | 448 | 93 | 45 | 0 |
 <!-- coverage:end -->
 
 Non-colour keys (`wallpaperFileOffset`, `chat_wallpaper_gradient_rotation`, `chat_outBubbleGradientAnimated`) and animated-wallpaper keys are never written.

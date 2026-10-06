@@ -105,7 +105,7 @@ test("emission is byte-identical across repeats and time zones", () => {
 });
 
 test("every token and upstream key has one classification with direct, non-redundant inheritance", () => {
-  assert.equal(resolved.size, 347);
+  assert.equal(resolved.size, 348);
   assertPortMapping({ ...port, mapping }, resolved.keys());
   assertCapabilities({ ...port, mapping }, capabilities);
   const keys = Object.values(mapping.mappings).flat(); assert.equal(new Set(keys).size, keys.length);
@@ -299,8 +299,8 @@ test("wallpaper, solid bubbles, rose messages, chrome emphasis and avatars keep 
   for (const [target, incoming, outgoing, inSelected, outSelected] of [["android", "chat_inBubble", "chat_outBubble", "chat_inBubbleSelected", "chat_outBubbleSelected"], ["desktop", "msgInBg", "msgOutBg", "msgInBgSelected", "msgOutBgSelected"]]) {
     assert.equal(roleOf(target, incoming), "color.surface.raised"); assert.equal(roleOf(target, outgoing), "color.surface.accent");
     // D-034: the owner found own and other people's messages too alike at
-    // ΔE 7.4; the accent surface keeps them clearly apart (CIE76 ΔE ≥ 12).
-    assert.ok(deltaE(values[target].get(incoming), values[target].get(outgoing)) >= 12, `${target} bubbles are visibly apart`);
+    // ΔE 7.4, and still too alike at 12.6; the accent surface keeps them ΔE ≥ 20 apart (CIE76).
+    assert.ok(deltaE(values[target].get(incoming), values[target].get(outgoing)) >= 20, `${target} bubbles are visibly apart`);
     // Bubbles must stand out from each other, from their selected state and
     // from both wallpaper colours, or they vanish into the chat background.
     const fills = [incoming, outgoing, inSelected, outSelected].map(key => JSON.stringify(rgba(target, key)));

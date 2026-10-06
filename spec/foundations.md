@@ -16,7 +16,7 @@ content on the canvas or on these surfaces:
 - `default` (`#100c0c`) for panels and cards;
 - `raised` (`#160b0b`) for sticky headers, menus and popovers;
 - `overlay` for dialogs and drawers;
-- `accent` (`#2b0e0d`) for the user's own content set apart from its neighbours, such as outgoing chat messages (D-034);
+- `accent` (`#3d0c0a`) for the user's own content set apart from its neighbours, such as outgoing chat messages; secondary text on it uses `text.muted`, never `text.subtle` (D-034);
 - `sunken` (`#000000`) for reading and detail panes;
 - `input` for form-control fills;
 - `chrome` and `chrome-alt` for window frames and bars.

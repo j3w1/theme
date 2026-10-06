@@ -954,6 +954,11 @@
       "surface": "outside-chatgpt",
       "reason": "Primitive; ports consume roles, never primitives."
     },
+    "color.primitive.red.40": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
     "color.primitive.red.50": {
       "state": "out-of-scope",
       "surface": "outside-chatgpt",
