@@ -890,7 +890,8 @@
       "desktop:msgFile4BgSelected",
       "desktop:sideBarBgActive",
       "android:chat_outLoaderPhotoSelected",
-      "android:chat_inLoaderPhotoSelected"
+      "android:chat_inLoaderPhotoSelected",
+      "android:chat_textSelectBackground"
     ],
     "color.interaction.selection.text": [
       "android:chat_outSentClockSelected",
@@ -1032,7 +1033,6 @@
       "android:chat_inAudioCacheSeekbar",
       "android:chat_outAudioCacheSeekbar",
       "android:chat_linkSelectBackground",
-      "android:chat_textSelectBackground",
       "android:chat_botKeyboardButtonBackground",
       "android:chat_botKeyboardButtonBackgroundPressed",
       "android:voipgroup_listSelector",

@@ -7,9 +7,10 @@
   (`#3d0c0a`), chosen by the owner from a side-by-side comparison; links keep
   4.55:1 on it, and secondary text on it uses `text.muted`. Every port classifies it. Telegram uses it for
   outgoing bubbles, with bubble timestamps in `text.muted`.
-- **Telegram port**, verified on Telegram for Android 12.10.6 and Telegram
+- **Telegram port**, accepted on Telegram for Android 12.10.6 and Telegram
   Desktop 7.2.9 on Windows (cloud route, 2026-10-06; direct file import and
-  Linux/macOS not exercised). `ports/telegram/` generates the official
+  Linux/macOS not exercised). Android text selection then moved to the
+  selection fill, which awaits the owner's re-check. `ports/telegram/` generates the official
   Telegram for Android `.attheme` and Telegram Desktop `.tdesktop-theme`
   (palette plus a 1×2 background in a stored, fixed-date zip) from one
   mapping of default roles. Every upstream key at the pinned DrKLO/Telegram and

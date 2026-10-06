@@ -249,7 +249,7 @@ test("ARGB and Desktop RGBA preserve canonical values and alpha without derivati
   assert.ok(palette.includes("layerBg: #000000a6;"));
   for (const target of ["android", "desktop"]) {
     for (const key of [...registry[target].translucentDefault, ...coverage[target].translucent]) {
-      if (coverage[target].unset[key] || coverage[target].opaqueAllowed?.[key]) continue;
+      if (coverage[target].unset[key] || coverage[target].opaqueAllowed?.[key] || coverage[target].opaqueUnderText?.[key]) continue;
       // Mapped overlays stay translucent. A key that inherits through an
       // upstream fallback takes that key's value at runtime, which is only
       // acceptable for text and icon glyphs (upstream's own fallback design).
@@ -261,11 +261,23 @@ test("ARGB and Desktop RGBA preserve canonical values and alpha without derivati
       assert.match(roleOf(target, key), /^color\.(text|code\.syntax)\./, `${target}:${key}`);
       assert.ok(reason.length > 20);
     }
+    // Text-selection fills that every pinned draw path paints before the text
+    // may take the opaque canonical selection fill, and nothing else.
+    for (const [key, reason] of Object.entries(coverage[target].opaqueUnderText ?? {})) {
+      assert.ok(registry[target].translucentDefault.includes(key), `${target}:${key} has a translucent upstream default`);
+      assert.match(key, /[tT]extSelect/, `${target}:${key} is a text-selection fill`);
+      assert.equal(effective(target, key)?.role, "color.interaction.selection.bg", `${target}:${key}`);
+      assert.match(reason, /\.java:\d+/, `${target}:${key} cites its pinned draw path`);
+    }
   }
   const opaque = structuredClone(mapping), key = "desktop:msgSelectOverlay";
   opaque.mappings["color.interaction.marquee"] = opaque.mappings["color.interaction.marquee"].filter(native => native !== key);
   opaque.mappings["color.text.default"].push(key);
   assert.throws(() => telegramArtifacts({ ...args, mapping: opaque }), /translucent overlay cannot be opaque/);
+  const wrongFill = structuredClone(mapping), selectKey = "android:chat_textSelectBackground";
+  wrongFill.mappings["color.interaction.selection.bg"] = wrongFill.mappings["color.interaction.selection.bg"].filter(native => native !== selectKey);
+  wrongFill.mappings["color.surface.raised"].push(selectKey);
+  assert.throws(() => telegramArtifacts({ ...args, mapping: wrongFill }), /translucent overlay cannot be opaque/);
   assert.ok(artifacts[0].text.endsWith("\n") && palette.endsWith("\n"));
   assert.doesNotMatch(artifacts[0].text + palette, /\r|\b[0-9a-f]{40}\b|\d{4}-\d{2}-\d{2}/);
   for (const line of artifacts[0].text.split("\n").filter(line => line.startsWith("#"))) assert.doesNotMatch(line, /=|^WPS|^WLS/);
@@ -417,6 +429,28 @@ test("Desktop chat-list badges keep 4.5:1 in every family and row state", () => 
   for (const icon of ["dialogsMentionIconFg", "dialogsReactionIconFg", "dialogsPollIconFg"]) for (const row of rows.slice(0, 2)) assert.ok(pairRatio(icon, row).ratio >= 3, `${icon} on ${row}`);
   assert.ok(pairRatio("dialogsNameFgActive", "dialogsBgActive").ratio >= 3, "active wide glyph");
   ["dialogsUnreadBgMuted", "dialogsUnreadBgMutedOver", "dialogsUnreadBgMutedActive"].forEach((icon, index) => assert.ok(pairRatio(icon, rows[index]).ratio >= 3, `${icon} glyph on ${rows[index]}`));
+});
+
+test("Android text selection is visible and keeps the text readable", () => {
+  // Owner report, 2026-10-06: selected text in the composer barely showed.
+  // The selection fill was the 12% marquee, ΔE 5.2 from the composer. Android
+  // keeps the text colour inside a selection, so the text must read on the
+  // fill, and the fill must stand apart from the surface it is drawn on, at
+  // the same ΔE 20 floor as outgoing vs incoming bubbles. On the outgoing
+  // accent bubble the canonical fill reaches only about ΔE 10; IMPLEMENTATION.md
+  // records that limit.
+  for (const [fill, surface, text, apart] of [
+    ["chat_inTextSelectionHighlight", "chat_messagePanelBackground", "chat_messagePanelText", true],
+    ["chat_inTextSelectionHighlight", "chat_inBubble", "chat_messageTextIn", true],
+    ["chat_outTextSelectionHighlight", "chat_outBubble", "chat_messageTextOut", false],
+    ["chat_textSelectBackground", "chat_inBubble", "chat_messageTextIn", true],
+  ]) {
+    const [f, b, t] = [fill, surface, text].map(key => rgba("android", key));
+    assert.equal(f[3], 255, `${fill} is drawn under the text as an opaque fill`);
+    const readable = evaluatePair({ fg: hexToColor(rgbHex(t)), bg: hexToColor(rgbHex(f)), min: 4.5 });
+    assert.ok(readable.pass, `${text} on ${fill}: ${readable.ratio}`);
+    if (apart) assert.ok(deltaE(f, b) >= 20, `${fill} on ${surface}: ΔE ${deltaE(f, b).toFixed(1)}`);
+  }
 });
 
 test("main native text/background pairs pass 4.5:1 without rounding", () => {

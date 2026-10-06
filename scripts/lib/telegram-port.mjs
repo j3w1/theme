@@ -71,9 +71,13 @@ export const telegramArtifacts = ({ manifest, port, mapping, exported, resolved 
       if (values.has(native)) throw new Error(`Duplicate Telegram native key: ${native}`);
       if (target === "android" && [...registry.android.nonColor, ...registry.android.animated].includes(key)) throw new Error(`Telegram nonColor/animated key cannot be emitted: ${native}`);
       // Overlays, selectors and ripples stay translucent so they never hide
-      // content; only text keys reviewed in coverage.opaqueAllowed may take
-      // an opaque text role (their translucent dark defaults are unreadable).
-      if ([...registry[target].translucentDefault, ...coverage[target].translucent].includes(key) && rgba[3] === 255 && !coverage[target].opaqueAllowed?.[key]) throw new Error(`Telegram translucent overlay cannot be opaque: ${native}`);
+      // content. Two reviewed exceptions: text keys in coverage.opaqueAllowed
+      // take an opaque text role (their translucent dark defaults are
+      // unreadable), and text-selection fills in coverage.opaqueUnderText take
+      // the opaque selection fill, because every pinned draw path paints them
+      // before the text.
+      const reviewedOpaque = coverage[target].opaqueAllowed?.[key] || (coverage[target].opaqueUnderText?.[key] && role === "color.interaction.selection.bg");
+      if ([...registry[target].translucentDefault, ...coverage[target].translucent].includes(key) && rgba[3] === 255 && !reviewedOpaque) throw new Error(`Telegram translucent overlay cannot be opaque: ${native}`);
       values.set(native, rgba);
     }
   }

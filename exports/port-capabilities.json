@@ -32401,7 +32401,7 @@
     {
       "id": "telegram",
       "displayName": "Telegram Android and Desktop",
-      "declaredStatus": "verified",
+      "declaredStatus": "experimental",
       "format": "telegram-theme",
       "integrationKind": "other",
       "themeVersion": "3.1.0",
@@ -32422,10 +32422,10 @@
         "macos"
       ],
       "verification": {
-        "status": "verified",
-        "reason": "The cloud route was exercised; opening the files directly was not. Linux and macOS Telegram Desktop were not observed. Colours Telegram fixes in code, listed in IMPLEMENTATION.md, are outside the theme. This record names Android as its platform; the Windows Desktop check covers the same subject. Re-bound on 2026-10-06 from sha256-aBor4iTYMH4wwPrQCd+h5SwD1LP/JgHzhJ5EHhT9wlE= after a description-only token change (review r7-2): both artifacts are byte-identical and no resolved colour value changed."
+        "status": "stale",
+        "reason": "Target, mapping, capabilities, tokens or artifact bytes changed since the recorded import."
       },
-      "subjectDigest": "sha256-AAZgwC+RrGExq+UHr+LljY8VBIxuupuphHrjtILXndA=",
+      "subjectDigest": "sha256-8Nco4TPrC3ACXjq0awVJFHbbQSSG7UDCVs1Kma9UZCI=",
       "evidencePath": "ports/telegram/evidence/2026-10-06-import.json",
       "surfaces": {
         "interface": {
@@ -32474,7 +32474,7 @@
           "path": "dist/j3w1.attheme",
           "install": "File install: open in Telegram for Android (or send to Saved Messages and tap), then Apply. The cloud link in the guide, when published, installs the same theme with automatic updates.",
           "source": "ports/telegram/dist/j3w1.attheme",
-          "digest": "sha256-SoKDvOr+3AkgLSDO0oFKIzkNHn6PLhJ3ujZo5Ix39Ys="
+          "digest": "sha256-yilg/s5mq2rh8lcPoMojm7Dmjzdj8RYZlOfNcwQ5a6I="
         },
         {
           "path": "dist/j3w1.tdesktop-theme",
@@ -34371,7 +34371,6 @@
             "android:chat_inAudioCacheSeekbar",
             "android:chat_outAudioCacheSeekbar",
             "android:chat_linkSelectBackground",
-            "android:chat_textSelectBackground",
             "android:chat_botKeyboardButtonBackground",
             "android:chat_botKeyboardButtonBackgroundPressed",
             "android:voipgroup_listSelector",
@@ -34564,7 +34563,8 @@
             "desktop:msgFile4BgSelected",
             "desktop:sideBarBgActive",
             "android:chat_outLoaderPhotoSelected",
-            "android:chat_inLoaderPhotoSelected"
+            "android:chat_inLoaderPhotoSelected",
+            "android:chat_textSelectBackground"
           ],
           "value": "#531310",
           "eligibility": {
