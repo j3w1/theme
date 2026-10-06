@@ -325,6 +325,11 @@
       "surface": "primitives",
       "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
     },
+    "color.primitive.alpha.red-50": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
     "color.primitive.ansi.0": {
       "state": "out-of-scope",
       "surface": "primitives",
@@ -673,12 +678,17 @@
     "color.interaction.text-selection.bg": {
       "state": "unsupported",
       "surface": "controls",
-      "reason": "color.interaction.text-selection.bg has no separate native hook in this projection; related controls share the declared canonical role instead."
+      "reason": "Android cannot recolour text inside a selection, so Android text selection takes the translucent text-selection.tint (D-035); Desktop selection takes selection.bg with near-white selected text."
     },
     "color.interaction.text-selection.text": {
       "state": "unsupported",
       "surface": "controls",
-      "reason": "color.interaction.text-selection.text has no separate native hook in this projection; related controls share the declared canonical role instead."
+      "reason": "Android keeps the text colour inside a selection; Desktop's selected text uses text.on-selection. No native key takes this role."
+    },
+    "color.interaction.text-selection.tint": {
+      "state": "mapped",
+      "surface": "controls",
+      "reason": "Android text selection: chat_textSelectBackground, which the incoming and outgoing selection highlights inherit. Android keeps the text colour inside a selection and some paths paint the fill over their content, so the translucent tint (D-035)."
     },
     "color.interaction.hover.bg": {
       "state": "mapped",

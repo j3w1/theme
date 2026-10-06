@@ -890,8 +890,7 @@
       "desktop:msgFile4BgSelected",
       "desktop:sideBarBgActive",
       "android:chat_outLoaderPhotoSelected",
-      "android:chat_inLoaderPhotoSelected",
-      "android:chat_textSelectBackground"
+      "android:chat_inLoaderPhotoSelected"
     ],
     "color.interaction.selection.text": [
       "android:chat_outSentClockSelected",
@@ -1101,6 +1100,9 @@
       "desktop:spellUnderline",
       "desktop:walletTopIconRipple",
       "desktop:sideBarBgRipple"
+    ],
+    "color.interaction.text-selection.tint": [
+      "android:chat_textSelectBackground"
     ],
     "color.interaction.scrollbar.thumb": [
       "android:chat_inArticleCodeScrollbar",
@@ -1350,6 +1352,7 @@
     "color.primitive.alpha.black-65": "Primitives are blocked inspection values; Telegram consumes semantic roles only.",
     "color.primitive.alpha.red-6": "Primitives are blocked inspection values; Telegram consumes semantic roles only.",
     "color.primitive.alpha.red-12": "Primitives are blocked inspection values; Telegram consumes semantic roles only.",
+    "color.primitive.alpha.red-50": "Primitives are blocked inspection values; Telegram consumes semantic roles only.",
     "color.primitive.ansi.0": "Primitives are blocked inspection values; Telegram consumes semantic roles only.",
     "color.primitive.ansi.1": "Primitives are blocked inspection values; Telegram consumes semantic roles only.",
     "color.primitive.ansi.2": "Primitives are blocked inspection values; Telegram consumes semantic roles only.",
@@ -1391,8 +1394,8 @@
     "color.border.selected-indicator-inactive": "color.border.selected-indicator-inactive has no separate native hook in this projection; related controls share the declared canonical role instead.",
     "color.interaction.focus.ring-container": "color.interaction.focus.ring-container has no separate native hook in this projection; related controls share the declared canonical role instead.",
     "color.interaction.selection.inactive-text": "color.interaction.selection.inactive-text has no separate native hook in this projection; related controls share the declared canonical role instead.",
-    "color.interaction.text-selection.bg": "color.interaction.text-selection.bg has no separate native hook in this projection; related controls share the declared canonical role instead.",
-    "color.interaction.text-selection.text": "color.interaction.text-selection.text has no separate native hook in this projection; related controls share the declared canonical role instead.",
+    "color.interaction.text-selection.bg": "Android cannot recolour text inside a selection, so the opaque text-selection.bg would leave rose text at 3.96:1; Android text selection takes the translucent text-selection.tint (D-035). Desktop selection takes selection.bg with near-white selected text.",
+    "color.interaction.text-selection.text": "Android keeps the text colour inside a selection; Desktop's selected text uses text.on-selection. No native key takes this role.",
     "color.interaction.drop-target": "color.interaction.drop-target has no separate native hook in this projection; related controls share the declared canonical role instead.",
     "color.interaction.scrollbar.track": "color.interaction.scrollbar.track has no separate native hook in this projection; related controls share the declared canonical role instead.",
     "color.interaction.scrollbar.thumb-hover": "color.interaction.scrollbar.thumb-hover has no separate native hook in this projection; related controls share the declared canonical role instead.",

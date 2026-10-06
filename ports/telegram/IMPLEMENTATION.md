@@ -24,11 +24,13 @@ Unchanged tokens always produce identical bytes:
 - **Android:** signed 32-bit ARGB values, upstream key order, LF line endings, no timestamps.
 - **Desktop:** `#rrggbb` / `#rrggbbaa` values, a stored (uncompressed) zip with a fixed date, and a hand-encoded 1×2 PNG.
 
-Every value comes from a canonical role. Keys whose upstream default is translucent (overlays, ripples, selectors) take the existing translucent roles. There are two kinds of opaque exception, each listed with its reason in `src/coverage.json`:
-- **Text keys** (`opaqueAllowed`): bot-keyboard labels and code comments, because their translucent dark defaults are unreadable on dark panels.
-- **Text-selection fills** (`opaqueUnderText`): Android's `chat_textSelectBackground` and the incoming and outgoing selection highlights. They take the opaque `interaction.selection.bg`, the fill Desktop already uses for selected text and its input fields. Every pinned draw path paints them before the text, so they never hide it. The generator refuses any other opaque value on these keys.
+Every value comes from a canonical role. Keys whose upstream default is translucent (overlays, ripples, selectors) take the existing translucent roles. The only opaque exceptions are two text keys listed in `src/coverage.json` (`opaqueAllowed`), bot-keyboard labels and code comments, because their translucent dark defaults are unreadable on dark panels. No colour is blended, lightened or given a new alpha.
 
-No colour is blended, lightened or given a new alpha.
+**Text selection.**
+- **Android.** The incoming and outgoing selection highlights inherit `chat_textSelectBackground`, which takes `interaction.text-selection.tint`, the text-selection red at 50% (D-035).
+  - **Why translucent:** some pinned paths paint the selection fill over their content: the rich editor's tables, captions and media blocks, and the rich-message translation preview. A translucent fill keeps that content visible.
+  - **Why not `text-selection.bg`:** Android keeps the text colour inside a selection, so the opaque `text-selection.bg` would leave rose text at 3.96:1.
+- **Desktop.** Selection takes `selection.bg`, and selected text turns near-white.
 
 ## Upstream audit (pinned)
 
@@ -127,11 +129,10 @@ The same `https://t.me/addtheme/<slug>` link opens the matching document on each
 - **Colours only.** Telegram owns fonts, sizes, bubble corners, spacing, glass/blur effects, motion and accessibility settings. The theme changes none of them.
 - **No heading levels.** Messages have no H1–H6, and names and titles share bright rose. Once canonical D-033 lands, they move to `text.heading`.
 - **Android selected bubbles.** Android uses the same message text colour for normal and selected bubbles; Desktop has separate selected foregrounds.
-- **Android text selection.** Android keeps the text colour inside a selection; Desktop turns selected text and links near-white.
-  - **Text:** rose text stays readable on the selection fill (6.24:1).
-  - **Links:** a selected link drops to 3.89:1 while it is selected.
-  - **Outgoing messages:** on the outgoing accent bubble (D-034) the fill stands out less, about ΔE 10, against ΔE 39 on the composer and ΔE 34 on incoming bubbles.
-  - **Why no better fill:** no canonical fill is brighter on that bubble and still keeps rose text at 4.5:1. The red selection handles mark the ends.
+- **Android text selection.** Android keeps the text and code colours inside a selection; Desktop turns selected text and links near-white.
+  - **Visibility:** the tint stands ΔE 36.5 from the message field, 35.1 from incoming bubbles and 21.5 from outgoing bubbles.
+  - **Rose text:** stays at 5.53:1 or above.
+  - **While a selection lasts:** links measure 3.45 to 4.30:1. In code blocks, keyword, string and comment colours measure 3.13 to 4.30:1 (D-035).
 - **Platform keys differ.** Desktop exposes hover states that Android lacks. Android's outgoing-bubble gradient keys stay unset.
 - **Desktop chat-list badges.** This is a deliberate, host-forced departure from the canonical Badge count variant (`action.primary.bg` with `action.primary.text`).
   - **Why:** Telegram Desktop reuses the draft-label and poll-icon colours as the reaction and poll badge fills, and uses one count colour per row state for every badge family. No dark fill can also be readable label text on the black row.
@@ -204,7 +205,7 @@ The API calls were checked against teleproto 1.229.1's TL definitions and client
 
 The port is `verified` while that record matches; it returns to experimental if a later change is not re-checked on both clients.
 
-**Current state:** experimental. The owner found text selection too faint on Android (2026-10-06), and the Android file changed for it. The record above no longer matches until the new file is re-imported and checked.
+**Current state:** experimental. The owner found text selection too faint on Android (2026-10-06), and the Android file changed for it (D-035). The record above no longer matches until the new file is re-imported and checked.
 
 **Visual check, on Android and on Telegram Desktop for Windows:**
 - **Chats:** the chat list and the unread badges; one chat, with incoming and outgoing bubbles, message text, names, timestamps and links; a reply or quote; the composer and the send button.

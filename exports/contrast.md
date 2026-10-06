@@ -11,6 +11,8 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | muted text on accent surface | — | text | `color.text.muted` #bd787d | `color.surface.accent` #3d0c0a | 4.90 | 4.5 | pass |
 | bright text on accent surface | — | text | `color.text.bright` #ffa2a7 | `color.surface.accent` #3d0c0a | 8.74 | 4.5 | pass |
 | link on accent surface | — | text | `color.text.link` #f73f35 | `color.surface.accent` #3d0c0a | 4.55 | 4.5 | pass |
+| default text on text-selection tint | — | text | `color.text.default` #e99499 | `color.interaction.text-selection.tint` #480a08 | 6.91 | 4.5 | pass |
+| bright text on text-selection tint | — | text | `color.text.bright` #ffa2a7 | `color.interaction.text-selection.tint` #480a08 | 8.28 | 4.5 | pass |
 | bright text on canvas | — | text | `color.text.bright` #ffa2a7 | `color.surface.canvas` #000000 | 10.98 | 4.5 | pass |
 | prose on canvas | — | text | `color.text.prose` #f4eeee | `color.surface.canvas` #000000 | 18.31 | 4.5 | pass |
 | prose on sunken | — | text | `color.text.prose` #f4eeee | `color.surface.sunken` #000000 | 18.31 | 4.5 | pass |

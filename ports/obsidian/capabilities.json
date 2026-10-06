@@ -317,6 +317,11 @@
       "surface": "primitives",
       "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
     },
+    "color.primitive.alpha.red-50": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
     "color.primitive.ansi.0": {
       "state": "out-of-scope",
       "surface": "primitives",
@@ -671,6 +676,11 @@
       "state": "inherited",
       "surface": "host-behavior",
       "reason": "Obsidian native text-selection changes its fill and preserves content/syntax foregrounds; no global ::selection foreground override is installed."
+    },
+    "color.interaction.text-selection.tint": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "Obsidian recolours selected text, so --text-selection takes the opaque text-selection.bg with its text colour."
     },
     "color.interaction.hover.bg": {
       "state": "mapped",

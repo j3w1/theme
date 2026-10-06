@@ -634,6 +634,11 @@
       "surface": "outside-codex",
       "reason": "Interface colour role; a Codex tmTheme colours code only."
     },
+    "color.interaction.text-selection.tint": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
     "color.primitive.alpha.black-55": {
       "state": "out-of-scope",
       "surface": "outside-codex",
@@ -645,6 +650,11 @@
       "reason": "Primitive; ports consume roles, never primitives."
     },
     "color.primitive.alpha.red-12": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.alpha.red-50": {
       "state": "out-of-scope",
       "surface": "outside-codex",
       "reason": "Primitive; ports consume roles, never primitives."

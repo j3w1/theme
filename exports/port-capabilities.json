@@ -25,7 +25,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-aUXJVcD6dKNkfL2StJOmpSP2c/Sd0RKllTtgzg4x2tU=",
+      "subjectDigest": "sha256-4iEI4buHQDm9Vl6zaaS3OJtG5ujLWUPK0kZqCVEaGIY=",
       "evidencePath": null,
       "surfaces": {
         "appearance-settings": {
@@ -1909,6 +1909,21 @@
           "spec": "spec/portability.md"
         },
         {
+          "role": "color.interaction.text-selection.tint",
+          "nativeKeys": [],
+          "value": "rgb(145 20 16 / 50%)",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "unsupported",
+          "surface": "interaction",
+          "reason": "Focus, hover, pressed and selection colours are derived by ChatGPT from the accent and contrast; only the accent is set.",
+          "source": "ports/chatgpt/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
           "role": "color.primitive.alpha.black-55",
           "nativeKeys": [],
           "value": "rgb(0 0 0 / 55%)",
@@ -1942,6 +1957,21 @@
           "role": "color.primitive.alpha.red-12",
           "nativeKeys": [],
           "value": "rgb(145 20 16 / 12%)",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-chatgpt",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/chatgpt/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.alpha.red-50",
+          "nativeKeys": [],
+          "value": "rgb(145 20 16 / 50%)",
           "eligibility": {
             "action": "blocked",
             "reason": "Inspection only: consume semantic roles, not primitives.",
@@ -5360,7 +5390,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-W6STBxL8X+5xwVtOn+eEPNaXocPS7jgEteA4qmJDZWE=",
+      "subjectDigest": "sha256-ytBw02bheV/H6BBbMXuTp8KXC8E2ElQFQkrPK6Y0Suk=",
       "evidencePath": null,
       "surfaces": {
         "theme-roles": {
@@ -7243,6 +7273,21 @@
           "spec": "spec/portability.md"
         },
         {
+          "role": "color.interaction.text-selection.tint",
+          "nativeKeys": [],
+          "value": "rgb(145 20 16 / 50%)",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-claude",
+          "reason": "Interface colour role that no Claude Code theme key takes.",
+          "source": "ports/claude-code/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
           "role": "color.primitive.alpha.black-55",
           "nativeKeys": [],
           "value": "rgb(0 0 0 / 55%)",
@@ -7276,6 +7321,21 @@
           "role": "color.primitive.alpha.red-12",
           "nativeKeys": [],
           "value": "rgb(145 20 16 / 12%)",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-claude",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/claude-code/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.alpha.red-50",
+          "nativeKeys": [],
+          "value": "rgb(145 20 16 / 50%)",
           "eligibility": {
             "action": "blocked",
             "reason": "Inspection only: consume semantic roles, not primitives.",
@@ -10746,7 +10806,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-4AOMA99lnyymXxvmm+FqKGRD+myClZbTCxeAVUNPoKU=",
+      "subjectDigest": "sha256-/4zVnUL+DiHdiAIJtj0TuU1BXhR8wQ3Nf15hj2dPrKw=",
       "evidencePath": null,
       "surfaces": {
         "theme-scopes": {
@@ -12648,6 +12708,21 @@
           "spec": "spec/portability.md"
         },
         {
+          "role": "color.interaction.text-selection.tint",
+          "nativeKeys": [],
+          "value": "rgb(145 20 16 / 50%)",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-codex",
+          "reason": "Interface colour role; a Codex tmTheme colours code only.",
+          "source": "ports/codex/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
           "role": "color.primitive.alpha.black-55",
           "nativeKeys": [],
           "value": "rgb(0 0 0 / 55%)",
@@ -12681,6 +12756,21 @@
           "role": "color.primitive.alpha.red-12",
           "nativeKeys": [],
           "value": "rgb(145 20 16 / 12%)",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-codex",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/codex/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.alpha.red-50",
+          "nativeKeys": [],
+          "value": "rgb(145 20 16 / 50%)",
           "eligibility": {
             "action": "blocked",
             "reason": "Inspection only: consume semantic roles, not primitives.",
@@ -16081,7 +16171,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-eQZUIA9JbHf8QnnSGzjV8bxK/yN/4LnebUzpTLyKoGs=",
+      "subjectDigest": "sha256-/Nuo6X6Kq1WsWXqOOimZmcn9xJ2vNbURznCASxrkXns=",
       "evidencePath": null,
       "surfaces": {
         "terminal-colours": {
@@ -17944,6 +18034,21 @@
           "spec": "spec/portability.md"
         },
         {
+          "role": "color.interaction.text-selection.tint",
+          "nativeKeys": [],
+          "value": "rgb(145 20 16 / 50%)",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
           "role": "color.primitive.alpha.black-55",
           "nativeKeys": [],
           "value": "rgb(0 0 0 / 55%)",
@@ -17977,6 +18082,21 @@
           "role": "color.primitive.alpha.red-12",
           "nativeKeys": [],
           "value": "rgb(145 20 16 / 12%)",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.alpha.red-50",
+          "nativeKeys": [],
+          "value": "rgb(145 20 16 / 50%)",
           "eligibility": {
             "action": "blocked",
             "reason": "Inspection only: consume semantic roles, not primitives.",
@@ -21416,7 +21536,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-RgtYSHgfX+xHhHgqCZRF8oW4XzyP3oKz3xoBpYmQUjw=",
+      "subjectDigest": "sha256-pH8Qu8JdAPKinftydNkb9cBfhEGkXBBnm/nSYjhWknw=",
       "evidencePath": null,
       "surfaces": {
         "interface": {
@@ -23475,6 +23595,21 @@
           "spec": "spec/portability.md"
         },
         {
+          "role": "color.interaction.text-selection.tint",
+          "nativeKeys": [],
+          "value": "rgb(145 20 16 / 50%)",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "unsupported",
+          "surface": "interface",
+          "reason": "Obsidian recolours selected text, so --text-selection takes the opaque text-selection.bg with its text colour.",
+          "source": "ports/obsidian/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
           "role": "color.primitive.alpha.black-55",
           "nativeKeys": [],
           "value": "rgb(0 0 0 / 55%)",
@@ -23508,6 +23643,21 @@
           "role": "color.primitive.alpha.red-12",
           "nativeKeys": [],
           "value": "rgb(145 20 16 / 12%)",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "primitives",
+          "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
+          "source": "ports/obsidian/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.alpha.red-50",
+          "nativeKeys": [],
+          "value": "rgb(145 20 16 / 50%)",
           "eligibility": {
             "action": "blocked",
             "reason": "Inspection only: consume semantic roles, not primitives.",
@@ -27076,7 +27226,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-E7163+Qj9Lg2qIfc2PZU9aCwQd0lyJowD3QGaApWMOQ=",
+      "subjectDigest": "sha256-NHRRTM2UkETE990W5QCHjbrQWppGVnuZGHnA2Pxwad4=",
       "evidencePath": null,
       "surfaces": {
         "terminal-colours": {
@@ -28943,6 +29093,21 @@
           "spec": "spec/portability.md"
         },
         {
+          "role": "color.interaction.text-selection.tint",
+          "nativeKeys": [],
+          "value": "rgb(145 20 16 / 50%)",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
           "role": "color.primitive.alpha.black-55",
           "nativeKeys": [],
           "value": "rgb(0 0 0 / 55%)",
@@ -28976,6 +29141,21 @@
           "role": "color.primitive.alpha.red-12",
           "nativeKeys": [],
           "value": "rgb(145 20 16 / 12%)",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.alpha.red-50",
+          "nativeKeys": [],
+          "value": "rgb(145 20 16 / 50%)",
           "eligibility": {
             "action": "blocked",
             "reason": "Inspection only: consume semantic roles, not primitives.",
@@ -32425,7 +32605,7 @@
         "status": "stale",
         "reason": "Target, mapping, capabilities, tokens or artifact bytes changed since the recorded import."
       },
-      "subjectDigest": "sha256-8Nco4TPrC3ACXjq0awVJFHbbQSSG7UDCVs1Kma9UZCI=",
+      "subjectDigest": "sha256-cpIJw8+e+SReuLHQUeAIODtCkJo7gxE9UbMBH2z30Q0=",
       "evidencePath": "ports/telegram/evidence/2026-10-06-import.json",
       "surfaces": {
         "interface": {
@@ -32474,7 +32654,7 @@
           "path": "dist/j3w1.attheme",
           "install": "File install: open in Telegram for Android (or send to Saved Messages and tap), then Apply. The cloud link in the guide, when published, installs the same theme with automatic updates.",
           "source": "ports/telegram/dist/j3w1.attheme",
-          "digest": "sha256-yilg/s5mq2rh8lcPoMojm7Dmjzdj8RYZlOfNcwQ5a6I="
+          "digest": "sha256-Mwz/btpvJeVTCuZhJat4ivpBOHgcIh1q7sJI7391BwU="
         },
         {
           "path": "dist/j3w1.tdesktop-theme",
@@ -34563,8 +34743,7 @@
             "desktop:msgFile4BgSelected",
             "desktop:sideBarBgActive",
             "android:chat_outLoaderPhotoSelected",
-            "android:chat_inLoaderPhotoSelected",
-            "android:chat_textSelectBackground"
+            "android:chat_inLoaderPhotoSelected"
           ],
           "value": "#531310",
           "eligibility": {
@@ -34717,7 +34896,7 @@
           },
           "state": "unsupported",
           "surface": "controls",
-          "reason": "color.interaction.text-selection.bg has no separate native hook in this projection; related controls share the declared canonical role instead.",
+          "reason": "Android cannot recolour text inside a selection, so Android text selection takes the translucent text-selection.tint (D-035); Desktop selection takes selection.bg with near-white selected text.",
           "source": "ports/telegram/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -34732,7 +34911,24 @@
           },
           "state": "unsupported",
           "surface": "controls",
-          "reason": "color.interaction.text-selection.text has no separate native hook in this projection; related controls share the declared canonical role instead.",
+          "reason": "Android keeps the text colour inside a selection; Desktop's selected text uses text.on-selection. No native key takes this role.",
+          "source": "ports/telegram/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.interaction.text-selection.tint",
+          "nativeKeys": [
+            "android:chat_textSelectBackground"
+          ],
+          "value": "rgb(145 20 16 / 50%)",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "mapped",
+          "surface": "controls",
+          "reason": "Android text selection: chat_textSelectBackground, which the incoming and outgoing selection highlights inherit. Android keeps the text colour inside a selection and some paths paint the fill over their content, so the translucent tint (D-035).",
           "source": "ports/telegram/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -34770,6 +34966,21 @@
           "role": "color.primitive.alpha.red-12",
           "nativeKeys": [],
           "value": "rgb(145 20 16 / 12%)",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "primitives",
+          "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only.",
+          "source": "ports/telegram/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.alpha.red-50",
+          "nativeKeys": [],
+          "value": "rgb(145 20 16 / 50%)",
           "eligibility": {
             "action": "blocked",
             "reason": "Inspection only: consume semantic roles, not primitives.",
@@ -38979,7 +39190,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-v3sPFC0CJmKN9OCZR4wVgxut7fouwWOK9SQHiYrX5Qs=",
+      "subjectDigest": "sha256-AZT5tqbhdLi1B0RFKR5pSh7SF9Rsjz6tvtd/H9OOcFA=",
       "evidencePath": null,
       "surfaces": {
         "terminal-colours": {
@@ -40840,6 +41051,21 @@
           "spec": "spec/portability.md"
         },
         {
+          "role": "color.interaction.text-selection.tint",
+          "nativeKeys": [],
+          "value": "rgb(145 20 16 / 50%)",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
           "role": "color.primitive.alpha.black-55",
           "nativeKeys": [],
           "value": "rgb(0 0 0 / 55%)",
@@ -40873,6 +41099,21 @@
           "role": "color.primitive.alpha.red-12",
           "nativeKeys": [],
           "value": "rgb(145 20 16 / 12%)",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Primitive; ports consume roles, never primitives.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.primitive.alpha.red-50",
+          "nativeKeys": [],
+          "value": "rgb(145 20 16 / 50%)",
           "eligibility": {
             "action": "blocked",
             "reason": "Inspection only: consume semantic roles, not primitives.",

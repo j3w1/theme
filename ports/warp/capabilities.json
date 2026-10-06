@@ -634,6 +634,11 @@
       "surface": "outside-terminal",
       "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
+    "color.interaction.text-selection.tint": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+    },
     "color.primitive.alpha.black-55": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
@@ -645,6 +650,11 @@
       "reason": "Primitive; ports consume roles, never primitives."
     },
     "color.primitive.alpha.red-12": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.alpha.red-50": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
       "reason": "Primitive; ports consume roles, never primitives."

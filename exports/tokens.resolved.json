@@ -1359,6 +1359,30 @@
             "decisionIds": []
           }
         },
+        "color.primitive.alpha.red-50": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5686,
+              0.0784,
+              0.0627
+            ],
+            "alpha": 0.5,
+            "hex": "#911410"
+          },
+          "css": "rgb(145 20 16 / 50%)",
+          "aliasOf": null,
+          "description": "D-035 text-selection tint: red.350 at 50%, for hosts that keep the text colour inside a selection.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-035",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          }
+        },
         "color.primitive.ansi.0": {
           "type": "color",
           "value": {
@@ -3089,6 +3113,30 @@
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
+        },
+        "color.interaction.text-selection.tint": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5686,
+              0.0784,
+              0.0627
+            ],
+            "alpha": 0.5,
+            "hex": "#911410"
+          },
+          "css": "rgb(145 20 16 / 50%)",
+          "aliasOf": "color.primitive.alpha.red-50",
+          "description": "Text selection where the host keeps the text colour inside the selection and may paint the fill over its content: a translucent fill. Text stays at 4.5:1 or above on it over the canvas, raised and accent surfaces; links do not (3.45 to 4.30) (D-035).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-035",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -9307,6 +9355,30 @@
             "decisionIds": []
           }
         },
+        "color.primitive.alpha.red-50": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5686,
+              0.0784,
+              0.0627
+            ],
+            "alpha": 0.5,
+            "hex": "#911410"
+          },
+          "css": "rgb(145 20 16 / 50%)",
+          "aliasOf": null,
+          "description": "D-035 text-selection tint: red.350 at 50%, for hosts that keep the text colour inside a selection.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-035",
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
         "color.primitive.ansi.0": {
           "type": "color",
           "value": {
@@ -11035,6 +11107,30 @@
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
+        "color.interaction.text-selection.tint": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5686,
+              0.0784,
+              0.0627
+            ],
+            "alpha": 0.5,
+            "hex": "#911410"
+          },
+          "css": "rgb(145 20 16 / 50%)",
+          "aliasOf": "color.primitive.alpha.red-50",
+          "description": "Text selection where the host keeps the text colour inside the selection and may paint the fill over its content: a translucent fill. Text stays at 4.5:1 or above on it over the canvas, raised and accent surfaces; links do not (3.45 to 4.30) (D-035).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-035",
           "eligibility": {
             "action": "historical-only",
             "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
@@ -17253,6 +17349,30 @@
             "decisionIds": []
           }
         },
+        "color.primitive.alpha.red-50": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5686,
+              0.0784,
+              0.0627
+            ],
+            "alpha": 0.5,
+            "hex": "#911410"
+          },
+          "css": "rgb(145 20 16 / 50%)",
+          "aliasOf": null,
+          "description": "D-035 text-selection tint: red.350 at 50%, for hosts that keep the text colour inside a selection.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-035",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
         "color.primitive.ansi.0": {
           "type": "color",
           "value": {
@@ -18983,6 +19103,30 @@
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "color.interaction.text-selection.tint": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5686,
+              0.0784,
+              0.0627
+            ],
+            "alpha": 0.5,
+            "hex": "#911410"
+          },
+          "css": "rgb(145 20 16 / 50%)",
+          "aliasOf": "color.primitive.alpha.red-50",
+          "description": "Text selection where the host keeps the text colour inside the selection and may paint the fill over its content: a translucent fill. Text stays at 4.5:1 or above on it over the canvas, raised and accent surfaces; links do not (3.45 to 4.30) (D-035).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-035",
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",

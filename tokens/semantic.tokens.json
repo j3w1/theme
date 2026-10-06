@@ -345,6 +345,18 @@
         "text": {
           "$value": "{color.primitive.paper.90}",
           "$description": "::selection text."
+        },
+        "tint": {
+          "$value": "{color.primitive.alpha.red-50}",
+          "$description": "Text selection where the host keeps the text colour inside the selection and may paint the fill over its content: a translucent fill. Text stays at 4.5:1 or above on it over the canvas, raised and accent surfaces; links do not (3.45 to 4.30) (D-035).",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-035"
+              }
+            }
+          }
         }
       },
       "hover": {

@@ -630,6 +630,11 @@
       "surface": "outside-claude",
       "reason": "Interface colour role that no Claude Code theme key takes."
     },
+    "color.interaction.text-selection.tint": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
     "color.primitive.alpha.black-55": {
       "state": "out-of-scope",
       "surface": "outside-claude",
@@ -641,6 +646,11 @@
       "reason": "Primitive; ports consume roles, never primitives."
     },
     "color.primitive.alpha.red-12": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.alpha.red-50": {
       "state": "out-of-scope",
       "surface": "outside-claude",
       "reason": "Primitive; ports consume roles, never primitives."

@@ -12,7 +12,7 @@ export const REQUIRED_COLOR_ROLES = [
   ...under("color.border", ["divider", "default", "strong", "control", "active", "overlay", "disabled", "selected-indicator", "selected-indicator-inactive"]),
   ...under("color.interaction.focus", ["ring", "ring-container"]),
   ...under("color.interaction.selection", ["bg", "text", "inactive-bg", "inactive-text"]),
-  ...under("color.interaction.text-selection", ["bg", "text"]),
+  ...under("color.interaction.text-selection", ["bg", "text", "tint"]),
   ...under("color.interaction.hover", ["bg", "bg-strong"]),
   ...under("color.interaction.pressed", ["bg"]),
   ...under("color.interaction.disabled", ["bg"]),

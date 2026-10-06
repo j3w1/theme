@@ -79,11 +79,6 @@
       "chat_botKeyboardButtonText": "Bot keyboard label text: upstream default is a translucent dark grey (0xF0444444) that is unreadable on dark panels; opaque rose text never hides content.",
       "code_comment": "Code comment text: upstream default is 50% black, invisible on dark code blocks; the canonical comment role is opaque text."
     },
-    "opaqueUnderText": {
-      "chat_textSelectBackground": "Text-selection fill in simple text views (TextSelectionHelper.java:2090, which also colours their handles) and message search matches (Theme.java:8432). Both draw it before the text, so the opaque selection fill sits under the text. The 12% marquee left selections invisible (ΔE 5.2 on the composer).",
-      "chat_inTextSelectionHighlight": "Text-selection fill in the message composer (EditTextCaption.java:412, ChatActivityEnterView.java:5819; Android's editor draws the highlight under the text), in incoming messages (ChatMessageCell.java:17065) and in instant view (ArticleViewer.java:9481). Each draws the selection before the text layout.",
-      "chat_outTextSelectionHighlight": "Text-selection fill in outgoing messages (TextSelectionHelper.java:2344). ChatMessageCell.java:17065 draws the selection before the text layout."
-    },
     "nearWhite": {
       "dialogCheckboxSquareCheck": [
         "dialogCheckboxSquareBackground"

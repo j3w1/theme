@@ -1376,6 +1376,32 @@
               }
             }
           }
+        },
+        "red-50": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5686,
+              0.0784,
+              0.0627
+            ],
+            "alpha": 0.5,
+            "hex": "#911410"
+          },
+          "$description": "D-035 text-selection tint: red.350 at 50%, for hosts that keep the text colour inside a selection.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "origin": {
+                "kind": "proposed",
+                "ref": "spec/decisions.md#d-035",
+                "note": "The text-selection red (red.350) at a strength the owner chose after comparing 40, 50 and 60% and the opaque selection fill, rendered in Telegram's surfaces (D-035)."
+              },
+              "approval": {
+                "decision": "D-035"
+              }
+            }
+          }
         }
       },
       "ansi": {
