@@ -664,3 +664,38 @@ mapping. Unknown template shapes remain native. No command, enabled state,
 label, dimensions or layout is changed. The pinned styler retains/restores
 the original local values through the existing single-script lifecycle.
 A mapping and a numeric trace are not rendered hover/focus acceptance.
+
+
+### Transparent button transition endpoints
+
+A bounded read-only trace on the recorded Notepad and Paint packages found
+ordinary Button templates with a transparent white normal background and an
+83 ms ContentPresenter background transition. Their hover brushes already
+used the mapped dark red, and state exit returned to the native transparent
+white base. Brush property readback reports the destination immediately;
+it does not report the compositor's intermediate color. Microsoft documents
+this distinction, and its public implementation uses RGB color interpolation.
+
+The shared chrome adapter now normalizes only that observed transparent-white
+base to the mapped ButtonBackground RGB, preserving the original zero alpha,
+hit testing and native animation. Admission requires the direct named
+ContentPresenter, the observed transition duration, the four standard
+CommonStates, an empty Normal state, recognized color-only storyboards, and
+background frames in PointerOver/Pressed. The recorded Disabled state can
+omit a background frame. Additional native state setters are left untouched.
+Unknown shapes and unreadable expressions remain native.
+No state is forced, transition removed, command invoked, dimension changed,
+or drawing/document property read by this normalization.
+
+The original local brush or UnsetValue is retained by identity. Rollback
+restores that exact brush or clears the added local override. A later
+application write ends ownership permanently for that control; partial writes
+retain their receipt for cleanup retry. Notepad, Paint, Calculator's generic
+controls and Terminal consume the shared source through the same install.ps1
+lifecycle. This correction does not resolve Notepad's unknown first-window
+caption baseline or Paint's excluded drawing surround. Rendered acceptance
+of each application and state remains separate from template and lifecycle
+checks.
+
+Reference: [Microsoft's background transition contract](https://learn.microsoft.com/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.controls.panel.backgroundtransition)
+and [its RGB brush animation implementation](https://github.com/microsoft/microsoft-ui-xaml/blob/8463f45162149de0ec3ad7df752596893fe3e13e/dxaml/xcp/components/comptree/SharedTransitionAnimations.cpp).

@@ -303,7 +303,7 @@ static bool ApplyNativeBrush(std::vector<OwnedNativeBrush>& entries,SolidColorBr
 #if !J3W1_LEGACY_XAML
  std::vector<std::unique_ptr<WindowBacking>> windowBackings;
 #endif
- ControlResources keyTips; std::deque<ChromeAnimationChange> animations; std::deque<ChromeSetterChange> setters; HWND channel=nullptr; WNDPROC original=nullptr; std::deque<Root> roots; std::vector<OwnedNativeBrush> nativeBrushes; std::vector<PendingRoot> pending; bool busy=false,queued=false,cleaning=false; unsigned ticks=0; };
+ ControlResources keyTips; std::deque<ChromeAnimationChange> animations; std::deque<ChromeSetterChange> setters; std::deque<ChromeBaseChange> bases; HWND channel=nullptr; WNDPROC original=nullptr; std::deque<Root> roots; std::vector<OwnedNativeBrush> nativeBrushes; std::vector<PendingRoot> pending; bool busy=false,queued=false,cleaning=false; unsigned ticks=0; };
 static thread_local ThreadState* uiState=nullptr;
 static bool EnsureChannel();
 static void Schedule();
@@ -836,7 +836,7 @@ static void Bridge(Root& root) {
  while(!stack.empty()&&count++<4096) {
   auto object=stack.back();stack.pop_back();if(DataSubtree(object))continue;
   RefreshChromeControl(root,object);
-  if(uiState)ApplyChromeAnimationPalette(object,uiState->animations,uiState->setters);
+  if(uiState)ApplyChromeAnimationPalette(object,uiState->animations,uiState->setters,uiState->bases);
   if(object.try_as<Control>()) {
    apply(object,Control::BackgroundProperty(),Kind::Background);apply(object,Control::ForegroundProperty(),Kind::Foreground);apply(object,Control::BorderBrushProperty(),Kind::Border);
   }
@@ -867,7 +867,7 @@ static void Refresh(ThreadState& state) noexcept {
  if(state.busy)return;state.busy=true;state.queued=false;
 @PUBLIC_CAPTION_REFRESH@ const bool active=enabled.load()&&!HighContrast();
  if(!RefreshWindowBackings(state,active))Log(237);
- if(!active){RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);RestoreKeyTips(state);RestoreNativeBrushes(state.nativeBrushes);}
+ if(!active){RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);RestoreChromeBases(state.bases);RestoreKeyTips(state);RestoreNativeBrushes(state.nativeBrushes);}
  else if(!state.roots.empty())ApplyKeyTips(state);
  for(auto it=state.pending.begin();it!=state.pending.end();) {
   bool finished=!enabled.load()||HighContrast();
@@ -886,8 +886,8 @@ static void Refresh(ThreadState& state) noexcept {
     &&ChromeUiThread(element)&&Prepare(root)) {
    ApplyBackdrop(root);ApplyRootBackground(root);Bridge(root);
   }
- }catch(hresult_error const& error){Log(98,static_cast<unsigned>(error.code().value));RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);Restore(state.roots[at]);}
- catch(...){Log(97);RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);Restore(state.roots[at]);}
+ }catch(hresult_error const& error){Log(98,static_cast<unsigned>(error.code().value));RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);RestoreChromeBases(state.bases);Restore(state.roots[at]);}
+ catch(...){Log(97);RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);RestoreChromeBases(state.bases);Restore(state.roots[at]);}
  for(auto it=state.roots.begin();it!=state.roots.end();) {
   if(!it->element.get()&&Restore(*it))it=state.roots.erase(it);else ++it;
  }
@@ -906,6 +906,7 @@ static bool RestoreThreadState(ThreadState& state) noexcept {
  restored=RestoreNativeBrushes(state.nativeBrushes)&&restored;
  restored=RestoreChromeAnimations(state.animations)&&restored;
  restored=RestoreChromeSetters(state.setters)&&restored;
+ restored=RestoreChromeBases(state.bases)&&restored;
  for(auto& root:state.roots) {
   if(root.layout.value)try {
    if(auto element=root.element.get())element.LayoutUpdated(root.layout);

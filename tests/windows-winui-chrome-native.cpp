@@ -113,7 +113,37 @@ int main(int argc, char** argv) {
   entry={native,theme};assert(UpdateChromeFrame(entry,true,read,write,getClock));current={true,app};
   assert(UpdateChromeFrame(entry,false,read,write,getClock)&&Identity(current.value,app));
   current={false,nullptr};entry={native,theme};assert(!UpdateChromeFrame(entry,true,read,write,getClock)&&!entry.owned);
-  puts("PASS: cached color-only frame scope, running-clock refusal, exact object restore, partial writes and application replacement");return 0;
+
+  assert(ChromeTransparentBaseStateAdmission(1,true,false,false));
+  assert(!ChromeTransparentBaseStateAdmission(1,false,false,false));
+  for(unsigned state:{2u,3u}) {
+   assert(ChromeTransparentBaseStateAdmission(state,false,true,true));
+   assert(!ChromeTransparentBaseStateAdmission(state,false,true,false));
+   assert(!ChromeTransparentBaseStateAdmission(state,false,false,true));
+  }
+  // The recorded Paint Disabled template only animates foreground/border.
+  assert(ChromeTransparentBaseStateAdmission(4,false,true,false));
+  assert(!ChromeTransparentBaseStateAdmission(4,false,false,false));
+  assert(!ChromeTransparentBaseStateAdmission(5,false,true,true));
+  assert(ChromeTransparentBaseAdmission({0,255,255,255},true,true));
+  for(auto color:{Color{1,255,255,255},Color{0,255,254,255},Color{0,0,0,0},Color{255,255,255,255}})assert(!ChromeTransparentBaseAdmission(color,true,true));
+  assert(!ChromeTransparentBaseAdmission({0,255,255,255},false,true));
+  assert(!ChromeTransparentBaseAdmission({0,255,255,255},true,false));
+  // Restoring a style-sourced baseline writes its exact UnsetValue receipt;
+  // the platform writer clears that property instead of fixing a local brush.
+  current={true,native};OwnedChromeBase base{{native,theme}};
+  assert(UpdateChromeBase(base,true,read,write)&&base.value.owned&&Identity(current.value,theme));
+  assert(UpdateChromeBase(base,false,read,write)&&!base.value.owned&&Identity(current.value,native));
+  base={{native,theme}};assert(!UpdateChromeBase(base,true,read,partial)&&base.value.owned);
+  assert(!UpdateChromeBase(base,false,read,partial)&&base.value.owned&&Identity(current.value,native));
+  assert(UpdateChromeBase(base,false,read,write)&&!base.value.owned);
+  current={true,native};base={{native,theme}};assert(UpdateChromeBase(base,true,read,write));current={true,app};
+  assert(UpdateChromeBase(base,true,read,write)&&base.replaced&&!base.value.owned&&Identity(current.value,app));
+  assert(UpdateChromeBase(base,false,read,write)&&Identity(current.value,app));
+  current={false,nullptr};base={{native,theme}};
+  assert(!UpdateChromeBase(base,true,read,write)&&!base.value.owned);
+
+  puts("PASS: cached color-only frames and transparent-base admission, exact restore, partial writes and application replacement");return 0;
  }
  if(strcmp(argv[1],"composite-button-scope")==0) {
   assert(CompositeButtonChrome(L"Microsoft.UI.Xaml.Controls.SplitButton"));

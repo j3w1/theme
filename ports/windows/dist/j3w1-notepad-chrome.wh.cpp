@@ -2,7 +2,7 @@
 // @id j3w1-notepad-chrome
 // @name j3w1 Notepad chrome
 // @description Exact-package Notepad chrome resources; document and artwork colors remain native
-// @version 1.2.21
+// @version 1.2.22
 // @author j3w1
 // @include Notepad.exe
 // @architecture x86-64
@@ -749,6 +749,94 @@ static Color ChromeStateColor(std::wstring_view property,unsigned state,bool sec
  for(auto const& rule:rules)if(key==rule.key)return rule.color;
  throw hresult_error(E_INVALIDARG);
 }
+
+// Transparent white is visually empty at rest, but RGB brush interpolation
+// carries its white channels into an opaque hover fill. Keep the native alpha,
+// hit testing and transition; use the mapped normal background's RGB instead.
+static bool ChromeTransparentBaseAdmission(Color color,bool readableLocal,bool knownTemplate) noexcept {
+ return readableLocal&&knownTemplate&&color.A==0&&color.R==255&&color.G==255&&color.B==255;
+}
+struct OwnedChromeBase {OwnedChromeFrame value;bool replaced=false;};
+struct ChromeBaseChange {weak_ref<Control> control;OwnedChromeBase base;};
+template<class Read,class Write> static bool UpdateChromeBase(OwnedChromeBase& entry,bool active,Read read,Write write) noexcept {
+ try {
+  auto current=read();
+  if(entry.value.owned&&(!current.exists||!Identity(current.value,entry.value.applied))) {
+   // A later application write ends ownership permanently for this control.
+   entry.value.owned=false;entry.replaced=true;
+  }
+  if(active&&entry.replaced)return true;
+  return UpdateChromeFrame(entry.value,active,read,write,[]{return ClockState::Stopped;});
+ }catch(...){return false;}
+}
+static bool ChromeTransparentBaseStateAdmission(unsigned state,bool empty,bool colorOnly,bool background) noexcept {
+ if(state==1)return empty;
+ if(state==2||state==3)return colorOnly&&background;
+ return state==4&&colorOnly;
+}
+static bool ChromeTransparentBaseTemplate(Control const& control,FrameworkElement const& element,VisualStateGroup const& group) {
+ return InspectChromeState([&] {
+  auto presenter=element.try_as<ContentPresenter>();
+  if(!presenter||!Identity(VisualTreeHelper::GetParent(presenter),control)||presenter.Name()!=L"ContentPresenter"||group.Name()!=L"CommonStates"||group.States().Size()!=4)return false;
+  auto transition=presenter.BackgroundTransition();if(!transition||transition.Duration().count()!=830000)return false;
+  unsigned seen=0;
+  for(auto const& state:group.States()) {
+   unsigned id=ChromeColorState(std::wstring_view{state.Name()});if(!id||seen&(1u<<id))return false;seen|=1u<<id;
+   auto storyboard=state.Storyboard();
+   if(id==1){if(!ChromeTransparentBaseStateAdmission(id,!state.Setters().Size()&&(!storyboard||!storyboard.Children().Size()),false,false))return false;continue;}
+   // Non-background native setters are not altered. Only the known color-only
+   // storyboard shape participates in this base normalization.
+   if(!ChromeColorStoryboard(storyboard))return false;
+   bool background=false;
+   for(auto const& animation:storyboard.Children()) {
+    auto target=Storyboard::GetTargetName(animation),property=Storyboard::GetTargetProperty(animation);
+    if(target!=L"ContentPresenter")return false;
+    if(property==L"Background")background=true;
+   }
+   if(!ChromeTransparentBaseStateAdmission(id,false,true,background))return false;
+  }
+  return seen==30;
+ });
+}
+static bool RestoreChromeBases(std::deque<ChromeBaseChange>& entries) noexcept {
+ bool complete=true;
+ for(auto& entry:entries)try {
+  auto control=entry.control.get();if(!control){entry.base.value.owned=false;continue;}
+  auto property=Control::BackgroundProperty();
+  complete=UpdateChromeBase(entry.base,false,[&]{return ChromeFrameValue{true,control.ReadLocalValue(property)};},
+   [&](auto const& value){if(Identity(value,DependencyProperty::UnsetValue()))control.ClearValue(property);else control.SetValue(property,value);})&&complete;
+ }catch(...){complete=false;}
+ if(complete)try {
+  // Keep replacement markers through high-contrast/deactivation cycles. They
+  // retire with the control or this adapter lifetime, never re-adopting a
+  // later application write during ordinary refresh.
+  for(auto it=entries.begin();it!=entries.end();) {
+   if(it->base.replaced&&it->control.get())++it;else it=entries.erase(it);
+  }
+ }catch(...){complete=false;}
+ return complete;
+}
+static void ApplyChromeBase(Control const& control,FrameworkElement const& element,VisualStateGroup const& group,std::deque<ChromeBaseChange>& entries) {
+ for(auto it=entries.begin();it!=entries.end();)if(!it->control.get())it=entries.erase(it);else ++it;
+ for(auto& entry:entries)if(Identity(entry.control.get(),control)) {
+  if(!UpdateChromeBase(entry.base,true,[&]{return ChromeFrameValue{true,control.ReadLocalValue(Control::BackgroundProperty())};},
+   [&](auto const& value){control.SetValue(Control::BackgroundProperty(),value);}))throw hresult_error(E_FAIL);
+  return;
+ }
+ auto property=Control::BackgroundProperty();ProjectedObject local{nullptr};SolidColorBrush brush{nullptr};
+ bool admitted=InspectChromeState([&]{
+  local=control.ReadLocalValue(property);brush=control.GetValue(property).try_as<SolidColorBrush>();
+  bool readable=local&&(Identity(local,DependencyProperty::UnsetValue())||local.try_as<Brush>());
+  return brush&&ChromeTransparentBaseAdmission(brush.Color(),readable,ChromeTransparentBaseTemplate(control,element,group));
+ });
+ if(!admitted)return;
+ auto color=ChromeStateColor(L"Background",1,false);color.A=brush.Color().A;
+ if(entries.size()>=4096)throw hresult_error(E_BOUNDS);
+ entries.push_back({make_weak(control),{{local,SolidColorBrush(color)}}});auto& entry=entries.back();
+ if(!UpdateChromeBase(entry.base,true,[&]{return ChromeFrameValue{true,control.ReadLocalValue(property)};},
+  [&](auto const& value){control.SetValue(property,value);}))throw hresult_error(E_FAIL);
+}
+
 static bool RestoreChromeAnimations(std::deque<ChromeAnimationChange>& changes) noexcept {
  bool complete=true;std::vector<ChromeStateRefresh> refresh;
  for(auto& entry:changes)try {
@@ -836,7 +924,7 @@ static void ApplyChromeSetters(Control const& control,VisualStateGroup const& gr
  }catch(...){RefreshChromeColorStates(refresh);throw;}
  if(!RefreshChromeColorStates(refresh))throw hresult_error(E_FAIL);
 }
-static void ApplyChromeAnimationPalette(DependencyObject const& object,std::deque<ChromeAnimationChange>& changes,std::deque<ChromeSetterChange>& setters) {
+static void ApplyChromeAnimationPalette(DependencyObject const& object,std::deque<ChromeAnimationChange>& changes,std::deque<ChromeSetterChange>& setters,std::deque<ChromeBaseChange>& bases) {
  if(!PruneChromeColorStates(changes,RestoreChromeAnimations)||!PruneChromeColorStates(setters,RestoreChromeSetters))throw hresult_error(E_FAIL);
  auto control=object.try_as<Control>();if(!control||!control.IsLoaded())return;
  if(!object.try_as<Microsoft::UI::Xaml::Controls::Primitives::ButtonBase>()&&!object.try_as<MenuBarItem>())return;
@@ -845,6 +933,7 @@ static void ApplyChromeAnimationPalette(DependencyObject const& object,std::dequ
   auto node=todo.back();todo.pop_back();
   if(auto element=node.try_as<FrameworkElement>())for(auto const& group:VisualStateManager::GetVisualStateGroups(element)) {
    if(group.Name()!=L"CommonStates")continue;
+   ApplyChromeBase(control,element,group,bases);
    ApplyChromeSetters(control,group,setters);
    std::vector<ChromeStateRefresh> refresh;
    try {
@@ -1027,7 +1116,7 @@ std::vector<std::unique_ptr<PublicCaption>> publicCaptions;
 #if !J3W1_LEGACY_XAML
  std::vector<std::unique_ptr<WindowBacking>> windowBackings;
 #endif
- ControlResources keyTips; std::deque<ChromeAnimationChange> animations; std::deque<ChromeSetterChange> setters; HWND channel=nullptr; WNDPROC original=nullptr; std::deque<Root> roots; std::vector<OwnedNativeBrush> nativeBrushes; std::vector<PendingRoot> pending; bool busy=false,queued=false,cleaning=false; unsigned ticks=0; };
+ ControlResources keyTips; std::deque<ChromeAnimationChange> animations; std::deque<ChromeSetterChange> setters; std::deque<ChromeBaseChange> bases; HWND channel=nullptr; WNDPROC original=nullptr; std::deque<Root> roots; std::vector<OwnedNativeBrush> nativeBrushes; std::vector<PendingRoot> pending; bool busy=false,queued=false,cleaning=false; unsigned ticks=0; };
 static thread_local ThreadState* uiState=nullptr;
 static bool EnsureChannel();
 static void Schedule();
@@ -1560,7 +1649,7 @@ static void Bridge(Root& root) {
  while(!stack.empty()&&count++<4096) {
   auto object=stack.back();stack.pop_back();if(DataSubtree(object))continue;
   RefreshChromeControl(root,object);
-  if(uiState)ApplyChromeAnimationPalette(object,uiState->animations,uiState->setters);
+  if(uiState)ApplyChromeAnimationPalette(object,uiState->animations,uiState->setters,uiState->bases);
   if(object.try_as<Control>()) {
    apply(object,Control::BackgroundProperty(),Kind::Background);apply(object,Control::ForegroundProperty(),Kind::Foreground);apply(object,Control::BorderBrushProperty(),Kind::Border);
   }
@@ -1698,7 +1787,7 @@ static void Refresh(ThreadState& state) noexcept {
  ApplyPublicCaptions(state);
  const bool active=enabled.load()&&!HighContrast();
  if(!RefreshWindowBackings(state,active))Log(237);
- if(!active){RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);RestoreKeyTips(state);RestoreNativeBrushes(state.nativeBrushes);}
+ if(!active){RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);RestoreChromeBases(state.bases);RestoreKeyTips(state);RestoreNativeBrushes(state.nativeBrushes);}
  else if(!state.roots.empty())ApplyKeyTips(state);
  for(auto it=state.pending.begin();it!=state.pending.end();) {
   bool finished=!enabled.load()||HighContrast();
@@ -1717,8 +1806,8 @@ static void Refresh(ThreadState& state) noexcept {
     &&ChromeUiThread(element)&&Prepare(root)) {
    ApplyBackdrop(root);ApplyRootBackground(root);Bridge(root);
   }
- }catch(hresult_error const& error){Log(98,static_cast<unsigned>(error.code().value));RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);Restore(state.roots[at]);}
- catch(...){Log(97);RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);Restore(state.roots[at]);}
+ }catch(hresult_error const& error){Log(98,static_cast<unsigned>(error.code().value));RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);RestoreChromeBases(state.bases);Restore(state.roots[at]);}
+ catch(...){Log(97);RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);RestoreChromeBases(state.bases);Restore(state.roots[at]);}
  for(auto it=state.roots.begin();it!=state.roots.end();) {
   if(!it->element.get()&&Restore(*it))it=state.roots.erase(it);else ++it;
  }
@@ -1738,6 +1827,7 @@ static bool RestoreThreadState(ThreadState& state) noexcept {
  restored=RestoreNativeBrushes(state.nativeBrushes)&&restored;
  restored=RestoreChromeAnimations(state.animations)&&restored;
  restored=RestoreChromeSetters(state.setters)&&restored;
+ restored=RestoreChromeBases(state.bases)&&restored;
  for(auto& root:state.roots) {
   if(root.layout.value)try {
    if(auto element=root.element.get())element.LayoutUpdated(root.layout);

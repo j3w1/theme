@@ -2,6 +2,10 @@
 
 ## [4.0.0] - 2026-09-28
 
+- Windows: preserve transparent button hit testing and native animation while
+  normalizing observed white transition endpoints to the mapped normal
+  background RGB, with exact local-value rollback.
+
 - Rose prose and inherited bold across the canonical theme; dedicated heading
   and highlight roles (D-033), with audited selection/on-fill exceptions.
 - Generated Windows native and Windhawk port with pinned installation lifecycle
