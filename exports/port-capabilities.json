@@ -25,7 +25,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-i3zhuMRWktVXh0Pa0iYf9rBW+5NwIURTPc6MXtFln38=",
+      "subjectDigest": "sha256-aUXJVcD6dKNkfL2StJOmpSP2c/Sd0RKllTtgzg4x2tU=",
       "evidencePath": null,
       "surfaces": {
         "appearance-settings": {
@@ -5360,7 +5360,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-5QpfmaH/Pmn5uD4OeptZpcVg9DvxU/9dLv73Er47Z8Q=",
+      "subjectDigest": "sha256-W6STBxL8X+5xwVtOn+eEPNaXocPS7jgEteA4qmJDZWE=",
       "evidencePath": null,
       "surfaces": {
         "theme-roles": {
@@ -10746,7 +10746,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-ItVybO2ag5/RLEOhGWZxGZjvE5q/leaJVbybNugIUNc=",
+      "subjectDigest": "sha256-4AOMA99lnyymXxvmm+FqKGRD+myClZbTCxeAVUNPoKU=",
       "evidencePath": null,
       "surfaces": {
         "theme-scopes": {
@@ -16081,7 +16081,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-J1RQtiM/4muo9SlzLybF6yBWbJbT+xO+/IKSl1TeZoQ=",
+      "subjectDigest": "sha256-eQZUIA9JbHf8QnnSGzjV8bxK/yN/4LnebUzpTLyKoGs=",
       "evidencePath": null,
       "surfaces": {
         "terminal-colours": {
@@ -21416,7 +21416,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-BR42e/J5lSdRkhzlNoMBZ5xLyYHVcIovAWegKE/sTg0=",
+      "subjectDigest": "sha256-RgtYSHgfX+xHhHgqCZRF8oW4XzyP3oKz3xoBpYmQUjw=",
       "evidencePath": null,
       "surfaces": {
         "interface": {
@@ -27076,7 +27076,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-R0nplg9JNc/IC3rKUToKhBCfRxfoCzwYCnmIggS3Tq8=",
+      "subjectDigest": "sha256-E7163+Qj9Lg2qIfc2PZU9aCwQd0lyJowD3QGaApWMOQ=",
       "evidencePath": null,
       "surfaces": {
         "terminal-colours": {
@@ -32423,9 +32423,9 @@
       ],
       "verification": {
         "status": "verified",
-        "reason": "The cloud route was exercised; opening the files directly was not. Linux and macOS Telegram Desktop were not observed. Colours Telegram fixes in code, listed in IMPLEMENTATION.md, are outside the theme. This record names Android as its platform; the Windows Desktop check covers the same subject."
+        "reason": "The cloud route was exercised; opening the files directly was not. Linux and macOS Telegram Desktop were not observed. Colours Telegram fixes in code, listed in IMPLEMENTATION.md, are outside the theme. This record names Android as its platform; the Windows Desktop check covers the same subject. Re-bound on 2026-10-06 from sha256-aBor4iTYMH4wwPrQCd+h5SwD1LP/JgHzhJ5EHhT9wlE= after a description-only token change (review r7-2): both artifacts are byte-identical and no resolved colour value changed."
       },
-      "subjectDigest": "sha256-aBor4iTYMH4wwPrQCd+h5SwD1LP/JgHzhJ5EHhT9wlE=",
+      "subjectDigest": "sha256-AAZgwC+RrGExq+UHr+LljY8VBIxuupuphHrjtILXndA=",
       "evidencePath": "ports/telegram/evidence/2026-10-06-import.json",
       "surfaces": {
         "interface": {
@@ -38979,7 +38979,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-wZkJ2JyTg6BMdKzP8ljT+iTlFjHHTeH5xOMFu0BSYVc=",
+      "subjectDigest": "sha256-v3sPFC0CJmKN9OCZR4wVgxut7fouwWOK9SQHiYrX5Qs=",
       "evidencePath": null,
       "surfaces": {
         "terminal-colours": {

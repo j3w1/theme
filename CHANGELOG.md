@@ -4,17 +4,20 @@
 
 - **`color.surface.accent`** (D-034). A new surface for the user's own content,
   such as outgoing chat messages, on the new primitive `color.primitive.red.40`
-  (`#3d0c0a`). That is the brightest red that keeps links at 4.5:1; secondary
-  text on it uses `text.muted`. Every port classifies it. Telegram uses it for
+  (`#3d0c0a`), chosen by the owner from a side-by-side comparison; links keep
+  4.55:1 on it, and secondary text on it uses `text.muted`. Every port classifies it. Telegram uses it for
   outgoing bubbles, with bubble timestamps in `text.muted`.
-- **Telegram port** (experimental). `ports/telegram/` generates the official
+- **Telegram port**, verified on Telegram for Android 12.10.6 and Telegram
+  Desktop 7.2.9 on Windows (cloud route, 2026-10-06; direct file import and
+  Linux/macOS not exercised). `ports/telegram/` generates the official
   Telegram for Android `.attheme` and Telegram Desktop `.tdesktop-theme`
   (palette plus a 1×2 background in a stored, fixed-date zip) from one
   mapping of default roles. Every upstream key at the pinned DrKLO/Telegram and
   lib_ui revisions is mapped, inherits from a mapped key or is listed with a
   reason, so unmapped keys cannot fall back to Telegram's light defaults
   unnoticed. Rose body text, bright-rose names, dark bubbles above a black to
-  red-black wallpaper; no new colours, blends or alpha.
+  red-black wallpaper. It consumes canonical roles only, including D-034's
+  accent surface, with no blends or alpha of its own.
 - One Telegram Cloud Theme serves both clients from one `t.me/addtheme/<slug>`
   link. The owner fills it with Telegram's own Theme Editor (Import file, then
   save; no API application), or optionally with `npm run telegram:publish`.

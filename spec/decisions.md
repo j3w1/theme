@@ -776,7 +776,8 @@ chose the values. Supersedes D-029 in part.
 - New role `color.surface.accent`: the user's own content, set apart from
   neighbouring surfaces, such as outgoing chat messages.
 - Its value is a new primitive, `color.primitive.red.40` (`#3d0c0a`): the
-  brightest red at which `text.link` still keeps 4.5:1.
+  deepest of the reds compared side by side, chosen by the owner, with
+  `text.link` at 4.55:1.
 - Text on it: `text.default` 7.30, `text.bright` 8.74, `text.muted` 4.90,
   `text.link` 4.55.
 - `text.subtle` does not reach 4.5:1 on it (4.30). Secondary text on the accent
@@ -794,8 +795,9 @@ messages too hard to tell from other people's. Outgoing bubbles used
 - **Second round.** The owner compared four options rendered in real colours
   (#241010, #2b0e0d, #330b09 and #3d0c0a, with real text, timestamps and links)
   and chose the deepest red.
-- **The ceiling.** Red links cap how bright an outgoing bubble can be: at
-  `#420c0a` they fall to 4.44:1.
+- **The ceiling.** Red links cap how bright an outgoing bubble can be. At this
+  hue they still pass at `#3f0c0a` (4.51:1), and fall to 4.48:1 at `#400c0a`
+  and 4.44:1 at `#420c0a`. `#3d0c0a` keeps a small margin below that limit.
 
 **Alternatives.**
 - **Keep `#2b0e0d`** (ΔE 12.6), with no new colour: too subtle in real use.

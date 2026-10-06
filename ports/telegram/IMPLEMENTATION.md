@@ -70,7 +70,9 @@ Non-colour keys (`wallpaperFileOffset`, `chat_wallpaper_gradient_rotation`, `cha
 | Selected bubble | `interaction.selection.bg` |
 | Message, body, composer and bot-keyboard text | `text.default` |
 | Names and chrome titles | `text.bright` |
-| Secondary text / timestamps / code comments | `text.muted` / `text.subtle` / `code.syntax.comment` |
+| Secondary text, bubble timestamps and durations | `text.muted` (never `text.subtle` on the accent surface, D-034) |
+| Chat-list dates, media-overlay times and other metadata | `text.subtle` |
+| Code comments | `code.syntax.comment` |
 | Links, accents, read and verified ticks, list section headers | `text.link`, `text.accent`, `text.accent-strong` |
 | Filled buttons (send, FAB, attach, checkboxes), file and voice button circles, Android badges, Desktop sidebar and tray badges | `action.primary.*` |
 | Desktop chat-list badges | light pills: `text.accent-strong`, `text.default`, `text.muted`, with `text.on-light` counts |
