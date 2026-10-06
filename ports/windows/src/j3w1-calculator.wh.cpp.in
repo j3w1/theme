@@ -329,6 +329,7 @@ static LocalResourceValue LocalStyle(FrameworkElement const& element) {
 
 using ProjectedObject=IInspectable;
 @CHROME_COLOR_STATE@
+[[clang::no_destroy]] static std::deque<ChromeTransitionChange> genericTransitions;
 [[clang::no_destroy]] static std::deque<ChromeAnimationChange> genericAnimations;
 [[clang::no_destroy]] static std::deque<ChromeSetterChange> genericSetters;
 [[clang::no_destroy]] static std::deque<ChromeBaseChange> genericBases;
@@ -431,6 +432,7 @@ static void ApplyAnimationPalette(DependencyObject const& object) {
  std::vector<DependencyObject> nodes{button};unsigned visited=0;
  while(!nodes.empty()&&visited++<24) {
   auto node=nodes.back();nodes.pop_back();
+  ApplyChromeTransition(button,node.try_as<ContentPresenter>(),genericTransitions);
   if(auto element=node.try_as<FrameworkElement>())for(auto const& group:VisualStateManager::GetVisualStateGroups(element)) {
    if(group.Name()!=L"CommonStates")continue;
    std::vector<NativeStateRefresh> refresh;
@@ -584,7 +586,7 @@ static void BridgeViews() {
         ApplyButtonStyle(object);
         ApplyAnimationPalette(object);
         auto genericType=get_class_name(object);
-        if(genericType==L"Microsoft.UI.Xaml.Controls.DropDownButton"||genericType==L"Windows.UI.Xaml.Controls.Button"||genericType==L"Windows.UI.Xaml.Controls.Primitives.RepeatButton")ApplyChromeAnimationPalette(object,genericAnimations,genericSetters,genericBases);
+        if(genericType==L"Microsoft.UI.Xaml.Controls.DropDownButton"||genericType==L"Windows.UI.Xaml.Controls.Button"||genericType==L"Windows.UI.Xaml.Controls.Primitives.RepeatButton")ApplyChromeAnimationPalette(object,genericAnimations,genericSetters,genericBases,genericTransitions);
         BridgeStaticText(object);
         for(int i=0;i<VisualTreeHelper::GetChildrenCount(object);i++)stack.push_back(VisualTreeHelper::GetChild(object,i));
     }
@@ -595,7 +597,8 @@ static void BridgeViews() {
 static bool RestorePalette() noexcept {
     admitted=false;
     std::vector<NativeStateRefresh> restartStates;
-    bool restored=RestoreChromeAnimations(genericAnimations);
+    bool restored=RestoreChromeTransitions(genericTransitions);
+    restored=RestoreChromeAnimations(genericAnimations)&&restored;
     restored=RestoreChromeSetters(genericSetters)&&restored;
     restored=RestoreChromeBases(genericBases)&&restored;
     restored=RestoreAnimations(restartStates)&&restored;

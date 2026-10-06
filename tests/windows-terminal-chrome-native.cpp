@@ -8,7 +8,9 @@ static BOOL Wh_ApplyHookOperations(){return TRUE;}
 static int Wh_GetIntSetting(PCWSTR){return 1;}
 #include "../ports/windows/dist/j3w1-terminal-chrome.wh.cpp"
 static DWORD Handles(){DWORD count=0;assert(GetProcessHandleCount(GetCurrentProcess(),&count));return count;}
+#include "windows-chrome-transition-assertions.h"
 int main(int argc,char** argv) {
+ if(argc>1&&strcmp(argv[1],"background-transition-ownership")==0){CheckChromeTransitions();return 0;}
  assert(argc==2);init_apartment(apartment_type::multi_threaded);
  if(strcmp(argv[1],"legacy-boundary")==0) {
   assert(J3W1_LEGACY_XAML&&RootCandidateClass(L"TerminalApp.TabRowControl"));

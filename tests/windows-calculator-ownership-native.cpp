@@ -9,7 +9,9 @@ static BOOL Wh_ApplyHookOperations(){return TRUE;}
 static int Wh_GetIntSetting(PCWSTR){return 0;}
 static void Wh_Log(PCWSTR,...){ }
 #include "../ports/windows/dist/j3w1-calculator.wh.cpp"
+#include "windows-chrome-transition-assertions.h"
 int main(int argc,char** argv){
+ if(argc>1&&strcmp(argv[1],"background-transition-ownership")==0){CheckChromeTransitions();return 0;}
  assert(argc==2);
  if(strcmp(argv[1],"cached-color-frame")==0) {
   unsigned inspectionWrites=0;

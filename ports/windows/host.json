@@ -1334,7 +1334,7 @@
     }
   },
   "calculator": {
-    "version": "1.4.9",
+    "version": "1.4.10",
     "packageFullName": "Microsoft.WindowsCalculator_11.2607.0.0_x64__8wekyb3d8bbwe",
     "resources": {
       "AppChromeAcrylicHostBackdropMediumLowBrush": "color.surface.canvas",
@@ -1637,7 +1637,7 @@
     }
   },
   "notepadChrome": {
-    "version": "1.2.22",
+    "version": "1.2.23",
     "packageFullName": "Microsoft.WindowsNotepad_11.2607.14.0_x64__8wekyb3d8bbwe",
     "runtimePackage": "Microsoft.WindowsAppRuntime.2_2.5.1.0_x64__8wekyb3d8bbwe",
     "runtimeSha256": "aad12524765e6fb63f0ae26a45a9ba3104f24fde66413d8a3036fbed74a1e990",
@@ -1998,7 +1998,7 @@
     "ScrollBarButtonArrowForegroundDisabled": "color.text.disabled"
   },
   "paintChrome": {
-    "version": "1.0.20",
+    "version": "1.0.21",
     "packageFullName": "Microsoft.Paint_11.2605.81.0_x64__8wekyb3d8bbwe",
     "runtimePackage": "Microsoft.WindowsAppRuntime.2_2.5.1.0_x64__8wekyb3d8bbwe",
     "runtimeSha256": "aad12524765e6fb63f0ae26a45a9ba3104f24fde66413d8a3036fbed74a1e990",
@@ -2023,7 +2023,7 @@
     "SHELLCOMMON": "410141eceecfaa5d7cccbfd7c357920988bf18fec3db7f6865eec674677c0204"
   },
   "terminalChrome": {
-    "version": "1.0.6",
+    "version": "1.0.7",
     "packageFullName": "Microsoft.WindowsTerminal_1.24.11911.0_x64__8wekyb3d8bbwe",
     "runtimeSha256": "5b653bc535d87e7301c7ab9b4785fb7f0f6de5481ece03e7e7a89ca3e53e6905",
     "diagnosticsBridgeSha256": "5b653bc535d87e7301c7ab9b4785fb7f0f6de5481ece03e7e7a89ca3e53e6905",

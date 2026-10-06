@@ -2,7 +2,7 @@
 // @id j3w1-calculator
 // @name j3w1 Calculator resources
 // @description Version-checked Calculator UI resources; equation colors remain native
-// @version 1.4.9
+// @version 1.4.10
 // @author j3w1
 // @include CalculatorApp.exe
 // @architecture x86-64
@@ -696,6 +696,64 @@ static void ApplyChromeBase(Control const& control,FrameworkElement const& eleme
   [&](auto const& value){control.SetValue(property,value);}))throw hresult_error(E_FAIL);
 }
 
+// Some recorded native button templates interpolate cached neutral RGB even
+// after their destination brushes are themed. Replace only their cosmetic
+// 83ms background interpolation with a private, immediate transition. Retain
+// the exact original property value; never mutate a shared native transition.
+struct OwnedChromeTransition {ProjectedObject before{nullptr},applied{nullptr};bool owned=false,replaced=false;};
+template<class Read,class Write> static bool UpdateChromeTransition(OwnedChromeTransition& entry,bool active,Read read,Write write) noexcept {
+ try {
+  auto current=read();
+  if(entry.owned&&!Identity(current,entry.applied)){entry.owned=false;entry.replaced=true;}
+  if(entry.replaced)return true;
+  if(active) {
+   if(entry.owned)return true;
+   if(!Identity(current,entry.before))return false;
+   entry.owned=true;write(entry.applied);
+  }else if(entry.owned){write(entry.before);entry.owned=false;}
+  return true;
+ }catch(...){return false;}
+}
+static bool ChromeTransitionAdmission(long long duration,bool ownedTemplate,bool readableLocal) noexcept {
+ return ownedTemplate&&readableLocal&&duration==830000;
+}
+struct ChromeTransitionChange {weak_ref<ContentPresenter> presenter;OwnedChromeTransition value;};
+static bool RestoreChromeTransitions(std::deque<ChromeTransitionChange>& entries) noexcept {
+ bool restored=true;
+ for(auto& entry:entries)try {
+  if(auto presenter=entry.presenter.get()) {
+   restored=UpdateChromeTransition(entry.value,false,[&]{return presenter.BackgroundTransition();},
+    [&](auto const& value){presenter.BackgroundTransition(value.template as<BrushTransition>());})&&restored;
+  }else entry.value.owned=false;
+ }catch(...){restored=false;}
+ if(restored)for(auto it=entries.begin();it!=entries.end();) {
+  if(it->value.replaced&&it->presenter.get())++it;else it=entries.erase(it);
+ }
+ return restored;
+}
+static void ApplyChromeTransition(Control const& control,ContentPresenter const& presenter,std::deque<ChromeTransitionChange>& entries) {
+ if(!presenter||!presenter.IsLoaded()||presenter.Name()!=L"ContentPresenter")return;
+ for(auto it=entries.begin();it!=entries.end();)if(!it->presenter.get())it=entries.erase(it);else ++it;
+ for(auto& entry:entries)if(Identity(entry.presenter.get(),presenter)) {
+  if(!UpdateChromeTransition(entry.value,true,[&]{return presenter.BackgroundTransition();},[&](auto const& value){presenter.BackgroundTransition(value.template as<BrushTransition>());}))throw hresult_error(E_FAIL);
+  return;
+ }
+ ProjectedObject local{nullptr};bool admitted=InspectChromeState([&] {
+  auto parent=VisualTreeHelper::GetParent(presenter);bool owned=false;
+  for(unsigned depth=0;parent&&depth<16;depth++,parent=VisualTreeHelper::GetParent(parent)) {
+   if(parent.try_as<Control>()){owned=Identity(parent,control);break;}
+  }
+  auto transition=presenter.BackgroundTransition();if(!transition)return false;
+  local=transition;
+  return ChromeTransitionAdmission(transition.Duration().count(),owned,bool(local));
+ });
+ if(!admitted)return;
+ if(entries.size()>=4096)throw hresult_error(E_BOUNDS);
+ BrushTransition applied;applied.Duration(Windows::Foundation::TimeSpan{0});
+ entries.push_back({make_weak(presenter),{local,applied}});auto& entry=entries.back();
+ if(!UpdateChromeTransition(entry.value,true,[&]{return presenter.BackgroundTransition();},[&](auto const& value){presenter.BackgroundTransition(value.template as<BrushTransition>());}))throw hresult_error(E_FAIL);
+}
+
 static bool RestoreChromeAnimations(std::deque<ChromeAnimationChange>& changes) noexcept {
  bool complete=true;std::vector<ChromeStateRefresh> refresh;
  for(auto& entry:changes)try {
@@ -783,13 +841,14 @@ static void ApplyChromeSetters(Control const& control,VisualStateGroup const& gr
  }catch(...){RefreshChromeColorStates(refresh);throw;}
  if(!RefreshChromeColorStates(refresh))throw hresult_error(E_FAIL);
 }
-static void ApplyChromeAnimationPalette(DependencyObject const& object,std::deque<ChromeAnimationChange>& changes,std::deque<ChromeSetterChange>& setters,std::deque<ChromeBaseChange>& bases) {
+static void ApplyChromeAnimationPalette(DependencyObject const& object,std::deque<ChromeAnimationChange>& changes,std::deque<ChromeSetterChange>& setters,std::deque<ChromeBaseChange>& bases,std::deque<ChromeTransitionChange>& transitions) {
  if(!PruneChromeColorStates(changes,RestoreChromeAnimations)||!PruneChromeColorStates(setters,RestoreChromeSetters))throw hresult_error(E_FAIL);
  auto control=object.try_as<Control>();if(!control||!control.IsLoaded())return;
  if(!object.try_as<Windows::UI::Xaml::Controls::Primitives::ButtonBase>()&&!object.try_as<MenuBarItem>())return;
  std::vector<DependencyObject> todo{object};unsigned visited=0;
  while(!todo.empty()&&visited++<64) {
   auto node=todo.back();todo.pop_back();
+  ApplyChromeTransition(control,node.try_as<ContentPresenter>(),transitions);
   if(auto element=node.try_as<FrameworkElement>())for(auto const& group:VisualStateManager::GetVisualStateGroups(element)) {
    if(group.Name()!=L"CommonStates")continue;
    ApplyChromeBase(control,element,group,bases);
@@ -825,6 +884,7 @@ static void ApplyChromeAnimationPalette(DependencyObject const& object,std::dequ
  }
 }
 
+[[clang::no_destroy]] static std::deque<ChromeTransitionChange> genericTransitions;
 [[clang::no_destroy]] static std::deque<ChromeAnimationChange> genericAnimations;
 [[clang::no_destroy]] static std::deque<ChromeSetterChange> genericSetters;
 [[clang::no_destroy]] static std::deque<ChromeBaseChange> genericBases;
@@ -927,6 +987,7 @@ static void ApplyAnimationPalette(DependencyObject const& object) {
  std::vector<DependencyObject> nodes{button};unsigned visited=0;
  while(!nodes.empty()&&visited++<24) {
   auto node=nodes.back();nodes.pop_back();
+  ApplyChromeTransition(button,node.try_as<ContentPresenter>(),genericTransitions);
   if(auto element=node.try_as<FrameworkElement>())for(auto const& group:VisualStateManager::GetVisualStateGroups(element)) {
    if(group.Name()!=L"CommonStates")continue;
    std::vector<NativeStateRefresh> refresh;
@@ -1080,7 +1141,7 @@ static void BridgeViews() {
         ApplyButtonStyle(object);
         ApplyAnimationPalette(object);
         auto genericType=get_class_name(object);
-        if(genericType==L"Microsoft.UI.Xaml.Controls.DropDownButton"||genericType==L"Windows.UI.Xaml.Controls.Button"||genericType==L"Windows.UI.Xaml.Controls.Primitives.RepeatButton")ApplyChromeAnimationPalette(object,genericAnimations,genericSetters,genericBases);
+        if(genericType==L"Microsoft.UI.Xaml.Controls.DropDownButton"||genericType==L"Windows.UI.Xaml.Controls.Button"||genericType==L"Windows.UI.Xaml.Controls.Primitives.RepeatButton")ApplyChromeAnimationPalette(object,genericAnimations,genericSetters,genericBases,genericTransitions);
         BridgeStaticText(object);
         for(int i=0;i<VisualTreeHelper::GetChildrenCount(object);i++)stack.push_back(VisualTreeHelper::GetChild(object,i));
     }
@@ -1091,7 +1152,8 @@ static void BridgeViews() {
 static bool RestorePalette() noexcept {
     admitted=false;
     std::vector<NativeStateRefresh> restartStates;
-    bool restored=RestoreChromeAnimations(genericAnimations);
+    bool restored=RestoreChromeTransitions(genericTransitions);
+    restored=RestoreChromeAnimations(genericAnimations)&&restored;
     restored=RestoreChromeSetters(genericSetters)&&restored;
     restored=RestoreChromeBases(genericBases)&&restored;
     restored=RestoreAnimations(restartStates)&&restored;

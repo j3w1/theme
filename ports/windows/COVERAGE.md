@@ -703,3 +703,32 @@ checks.
 
 Reference: [Microsoft's background transition contract](https://learn.microsoft.com/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.controls.panel.backgroundtransition)
 and [its RGB brush animation implementation](https://github.com/microsoft/microsoft-ui-xaml/blob/8463f45162149de0ec3ad7df752596893fe3e13e/dxaml/xcp/components/comptree/SharedTransitionAnimations.cpp).
+
+### Immediate owned button background transitions
+
+The recorded Paint and Calculator button templates retain an 83 ms
+ContentPresenter background interpolation, independently of the destination
+brush. Numeric presenter callbacks confirmed state changes that outer-button
+callbacks missed. Settled themed brush values alone cannot establish the
+absence of an intermediate neutral frame.
+
+The shared adapter now replaces that cosmetic interpolation with a separate
+immediate BrushTransition. Admission requires a loaded named ContentPresenter,
+the same nearest owning Control, a readable transition and the exact observed
+83 ms duration, within the existing admitted button/chrome traversal. It does
+not modify the original transition object, native state definitions, geometry,
+commands, document content, drawing surfaces or other animation properties.
+Unknown/unreadable templates remain native.
+
+Each presenter keeps its original transition by identity. Deactivation, high
+contrast, update, Restore and Uninstall restore it only while the applied
+object is still owned. Later application replacement/deletion ends ownership
+permanently; partial writes and failed restoration retain the receipt for
+retry. Calculator, Notepad, Paint and Terminal use the same generated helper
+and existing single install.ps1 lifecycle. Synthetic admission/ownership tests
+remain separate from live frame acceptance. This correction does not resolve
+Paint's drawing surround, Notepad's first-window header or the remaining
+startup, DPI, accessibility and clean-PC checks.
+
+Microsoft documents the public [BackgroundTransition API](https://learn.microsoft.com/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.controls.contentpresenter.backgroundtransition)
+and [BrushTransition duration](https://learn.microsoft.com/uwp/api/windows.ui.xaml.brushtransition.duration).

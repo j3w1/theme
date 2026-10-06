@@ -2,6 +2,10 @@
 
 ## [4.0.0] - 2026-09-28
 
+- Windows: prevent the observed neutral button-background interpolation in
+  admitted templates using a private immediate transition, preserving exact
+  original objects for the existing single-script rollback lifecycle.
+
 - Site: restore the token inspector when a native token link receives focus
   before enhancement startup; retain that focus and the existing keyboard order.
 
