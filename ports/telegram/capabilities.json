@@ -1774,6 +1774,11 @@
       "state": "unsupported",
       "surface": "geometry",
       "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "color.surface.accent": {
+      "state": "mapped",
+      "surface": "messages",
+      "reason": "Canonical color.surface.accent for outgoing message bubbles (D-034); native keys are listed in mapping.json and use no derived colours."
     }
   },
   "rollback": "Choose the previous Telegram theme in Settings → Chat Settings/Appearance; restore the previous chat background if it was customised."

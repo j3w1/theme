@@ -703,6 +703,7 @@
     "z.toast": "z.toast: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
     "z.skip-link": "z.skip-link: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
     "color.action.destructive.filled-bg": "Native desktop warning/confirmation fills and their hover/mobile-tap variants consume background-modifier-error/error-hover, owned by status.danger.fill; mobile warning uses interactive-normal. No independent filled-bg assignment is claimed.",
-    "color.status.warning.tint": "No consumer for background-modifier-warning/warning-hover in audited Obsidian 1.13.4/1.13.7; warning callouts compute their tint from callout-warning, not this exact tint role."
+    "color.status.warning.tint": "No consumer for background-modifier-warning/warning-hover in audited Obsidian 1.13.4/1.13.7; warning callouts compute their tint from callout-warning, not this exact tint role.",
+    "color.surface.accent": "Obsidian has no surface for the user's own messages."
   }
 }

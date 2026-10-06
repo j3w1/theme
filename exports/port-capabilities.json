@@ -25,7 +25,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-Clbt39gMECsOGo4CTW0aqcnpIjXcA/Gg47OZamAp/AM=",
+      "subjectDigest": "sha256-xjZDLTykjkl5T7Tm5QjLJfjlh4rYWo0ZWCETZjAfdUY=",
       "evidencePath": null,
       "surfaces": {
         "appearance-settings": {
@@ -3488,6 +3488,21 @@
           "spec": "spec/portability.md"
         },
         {
+          "role": "color.surface.accent",
+          "nativeKeys": [],
+          "value": "#2b0e0d",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "unsupported",
+          "surface": "surfaces",
+          "reason": "ChatGPT has one background and no separate surface for the user's own messages.",
+          "source": "ports/chatgpt/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
           "role": "color.surface.backdrop",
           "nativeKeys": [],
           "value": "rgb(0 0 0 / 65%)",
@@ -5330,7 +5345,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-Ytfuw8XXoyCjXXpNTjGdYRkAbJjanvIJTncbIMO21k4=",
+      "subjectDigest": "sha256-KkZU5ounHtBbkt60wqNtW9cABp7OmWwAKa7ul3M5aAs=",
       "evidencePath": null,
       "surfaces": {
         "theme-roles": {
@@ -8800,6 +8815,21 @@
           "spec": "spec/portability.md"
         },
         {
+          "role": "color.surface.accent",
+          "nativeKeys": [],
+          "value": "#2b0e0d",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "not-implemented",
+          "surface": "theme-roles",
+          "reason": "Claude Code's userMessageBackground keeps color.interaction.selection.bg; adopting color.surface.accent there is a separate change for this port.",
+          "source": "ports/claude-code/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
           "role": "color.surface.backdrop",
           "nativeKeys": [],
           "value": "rgb(0 0 0 / 65%)",
@@ -10686,7 +10716,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-stDiwOr1Rmeezq9J2EBmEKzvjjRcqwQmhxJ3t3tfDQY=",
+      "subjectDigest": "sha256-qnrwVvxHULR/R+B+6KRbuqDLEH+bXcfDzJAXA7D+ESk=",
       "evidencePath": null,
       "surfaces": {
         "theme-scopes": {
@@ -14163,6 +14193,21 @@
           "spec": "spec/portability.md"
         },
         {
+          "role": "color.surface.accent",
+          "nativeKeys": [],
+          "value": "#2b0e0d",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-codex",
+          "reason": "Interface colour role; a Codex tmTheme colours code only.",
+          "source": "ports/codex/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
           "role": "color.surface.backdrop",
           "nativeKeys": [],
           "value": "rgb(0 0 0 / 65%)",
@@ -15991,7 +16036,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-gHYH+SztG76qCzSmRbiW0vBeX8BmObGAfdgWvb3CCWY=",
+      "subjectDigest": "sha256-XPWEeJw7jtkdvctBoTmzIpem58684YRzOA7JTWZ0C58=",
       "evidencePath": null,
       "surfaces": {
         "terminal-colours": {
@@ -19429,6 +19474,21 @@
           "spec": "spec/portability.md"
         },
         {
+          "role": "color.surface.accent",
+          "nativeKeys": [],
+          "value": "#2b0e0d",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/ghostty/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
           "role": "color.surface.backdrop",
           "nativeKeys": [],
           "value": "rgb(0 0 0 / 65%)",
@@ -21296,7 +21356,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-1Y4/2zONYc+V/5Dst3xT/cs5SZFVAJf28LhfYN4TB3w=",
+      "subjectDigest": "sha256-e5w9y6pQ/87T1/2cMjYf3MeyYhVJPUx00sf/grqpejU=",
       "evidencePath": null,
       "surfaces": {
         "interface": {
@@ -24950,6 +25010,21 @@
           "spec": "spec/portability.md"
         },
         {
+          "role": "color.surface.accent",
+          "nativeKeys": [],
+          "value": "#2b0e0d",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "unsupported",
+          "surface": "interface",
+          "reason": "Obsidian has no surface for the user's own messages.",
+          "source": "ports/obsidian/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
           "role": "color.surface.backdrop",
           "nativeKeys": [
             "--background-modifier-cover"
@@ -26926,7 +27001,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-dZz0yaTsJFakcsU3waXkqC+nZCtn4N/cQs+cuqe7veI=",
+      "subjectDigest": "sha256-NScR9Q452HPYm/6IXgcL9EOyGlzbEQU4s/ivhF9KK4U=",
       "evidencePath": null,
       "surfaces": {
         "terminal-colours": {
@@ -30368,6 +30443,21 @@
           "spec": "spec/portability.md"
         },
         {
+          "role": "color.surface.accent",
+          "nativeKeys": [],
+          "value": "#2b0e0d",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/orca/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
           "role": "color.surface.backdrop",
           "nativeKeys": [],
           "value": "rgb(0 0 0 / 65%)",
@@ -32242,7 +32332,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-prET1YqGuvLm+9Ai4jfbhpDHNujSPp/1G9SFoJ5WuAg=",
+      "subjectDigest": "sha256-euDOrj1jR3KCIIyorMVyOthU61ARGZjXQ57ffAko5mY=",
       "evidencePath": null,
       "surfaces": {
         "interface": {
@@ -32291,13 +32381,13 @@
           "path": "dist/j3w1.attheme",
           "install": "File install: open in Telegram for Android (or send to Saved Messages and tap), then Apply. The cloud link in the guide, when published, installs the same theme with automatic updates.",
           "source": "ports/telegram/dist/j3w1.attheme",
-          "digest": "sha256-hPUGxe3MsVnc/B0ipgfndTpRERipoBWQ0HXsnwTG6pg="
+          "digest": "sha256-YnNVB5nDHvFbXhKfWY0st30ednzXgS4UWmHf0AXPtYM="
         },
         {
           "path": "dist/j3w1.tdesktop-theme",
           "install": "File install: open with Telegram Desktop, then Apply this theme and Keep changes. The cloud link in the guide, when published, installs the same theme with automatic updates.",
           "source": "ports/telegram/dist/j3w1.tdesktop-theme",
-          "digest": "sha256-jBTNKiYYWpBlVfBAyyZuq7F1GJ6EHorZ+UVPsYkW+Rs="
+          "digest": "sha256-DetvSPHltGDwYzZPqvBPLQSk8GjHD9HtOvGDqp1xniw="
         }
       ],
       "rollback": "Choose the previous Telegram theme in Settings → Chat Settings/Appearance; restore the previous chat background if it was customised.",
@@ -36185,6 +36275,24 @@
           "spec": "spec/portability.md"
         },
         {
+          "role": "color.surface.accent",
+          "nativeKeys": [
+            "android:chat_outBubble",
+            "desktop:msgOutBg"
+          ],
+          "value": "#2b0e0d",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "mapped",
+          "surface": "messages",
+          "reason": "Canonical color.surface.accent for outgoing message bubbles (D-034); native keys are listed in mapping.json and use no derived colours.",
+          "source": "ports/telegram/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
           "role": "color.surface.backdrop",
           "nativeKeys": [
             "android:chat_mediaTimeBackground",
@@ -36490,10 +36598,7 @@
             "desktop:tooltipBg",
             "desktop:boxBg",
             "desktop:boxDividerBg",
-            "desktop:mainMenuBg",
-            "desktop:notificationBg",
-            "android:chat_outBubble",
-            "desktop:msgOutBg"
+            "desktop:notificationBg"
           ],
           "value": "#241010",
           "eligibility": {
@@ -38767,7 +38872,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-LhBj8G5tEigYGQjudSbVis1hVhoq0E2npxliIaukjiQ=",
+      "subjectDigest": "sha256-jtt5cA+c186PTYESthqWjQxV+crfKUFm0zDolyyGLYk=",
       "evidencePath": null,
       "surfaces": {
         "terminal-colours": {
@@ -42191,6 +42296,21 @@
           "role": "color.status.warning.tint",
           "nativeKeys": [],
           "value": "#1f1a0c",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "state": "out-of-scope",
+          "surface": "outside-terminal",
+          "reason": "Interface colour role; a terminal theme file carries terminal colours only.",
+          "source": "ports/warp/mapping.json",
+          "spec": "spec/portability.md"
+        },
+        {
+          "role": "color.surface.accent",
+          "nativeKeys": [],
+          "value": "#2b0e0d",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",

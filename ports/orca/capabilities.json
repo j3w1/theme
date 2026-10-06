@@ -1762,6 +1762,11 @@
       "state": "out-of-scope",
       "surface": "outside-terminal",
       "reason": "Not a colour; a terminal theme file carries colours only."
+    },
+    "color.surface.accent": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     }
   },
   "rollback": "In Orca, open Settings → Terminal and choose \"Reset all color overrides\"; set the font family, font size and divider colours back to your previous values. Remove or rename %APPDATA%\\ghostty\\config.ghostty so a later Ghostty import does not re-apply it."

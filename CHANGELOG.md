@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+- **`color.surface.accent`** (D-034). A new surface for the user's own content,
+  such as outgoing chat messages, on the existing `#2b0e0d` (no new palette
+  colour). Text, muted and subtle text and links keep 4.5:1 on it. Every port
+  classifies it; Telegram uses it for outgoing bubbles.
 - **Telegram port** (experimental). `ports/telegram/` generates the official
   Telegram for Android `.attheme` and Telegram Desktop `.tdesktop-theme`
   (palette plus a 1×2 background in a stored, fixed-date zip) from one

@@ -49,6 +49,7 @@ apply.
 | D-030 | Hued syntax roles for opt-in code highlighting | accepted | 2026-09-26 | owner (explicit request for a more colourful Codex, selection of the extended hues) |
 | D-031 | Select the checks a change needs; shard the deployment matrix | accepted | 2026-09-26 | owner (explicit CI renovation request, plan approval) |
 | D-032 | Coral slot 6 and a fixed prompt background | accepted | 2026-09-26 | owner (explicit selection of coral and the PowerShell prompt look) |
+| D-034 | An accent surface for the user's own content | accepted | 2026-10-06 | owner (Telegram acceptance: own and other people's messages too similar; selected the new role on an existing colour) |
 
 ## D-000 Responsibility split
 
@@ -767,3 +768,43 @@ should match across hosts).
 
 **Status.** accepted · 2026-09-26 · owner, who saw both problems in real use and
 chose the values. Supersedes D-029 in part.
+
+## D-034 An accent surface for the user's own content
+
+**Decision.**
+
+- New role `color.surface.accent`: the user's own content, set apart from
+  neighbouring surfaces, such as outgoing chat messages.
+- It reuses the existing hairline primitive `color.primitive.ink.60`
+  (`#2b0e0d`), so no colour is added to the palette.
+- Text on it keeps 4.5:1: `text.default` 7.82, `text.muted` 5.25,
+  `text.subtle` 4.61, `text.link` 4.88.
+- The Telegram port sets outgoing bubbles to it. Incoming bubbles stay
+  `surface.raised`.
+
+**Why.** In live acceptance on Android and Windows, the owner found their own
+messages too hard to tell from other people's. Outgoing bubbles used
+`surface.overlay` (`#241010`), incoming bubbles `surface.raised` (`#160b0b`):
+ΔE 7.4.
+- Keeping timestamps (`text.subtle`) and links at 4.5:1 caps how bright an
+  outgoing bubble can be at about `#2b0e0d`'s luminance.
+- Among the approved surfaces below that cap, only ink.60 adds visible red, and
+  it serves only as a divider, danger tint or diff background, none of which
+  means "your content".
+- The new role on that colour gives ΔE 12.6 and keeps incoming bubbles 4.2 apart
+  from the wallpaper.
+
+**Alternatives.**
+- Incoming on `surface.default` with no new role: ΔE 10.2, but incoming bubbles
+  nearly merge with the wallpaper (ΔE 1.8).
+- A new, more saturated colour `#330b09`: ΔE 18.6, but it adds a palette colour
+  and leaves timestamps at 4.52:1.
+- Reusing `status.danger.tint` directly: rejected, the wrong meaning.
+
+**Consequences.**
+- Every port classifies the role. Only Telegram maps it.
+- Claude Code's `userMessageBackground` keeps `interaction.selection.bg`;
+  adopting the new role there is a separate change.
+
+**Status.** accepted · 2026-10-06 · owner, who saw the problem in real use and
+chose this option among the four offered.

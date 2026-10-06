@@ -165,8 +165,9 @@
       "desktop:tooltipBg",
       "desktop:boxBg",
       "desktop:boxDividerBg",
-      "desktop:mainMenuBg",
-      "desktop:notificationBg",
+      "desktop:notificationBg"
+    ],
+    "color.surface.accent": [
       "android:chat_outBubble",
       "desktop:msgOutBg"
     ],

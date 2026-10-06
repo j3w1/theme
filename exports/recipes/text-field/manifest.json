@@ -20,10 +20,10 @@
       "site/src/styles/components/text-field.css": "sha256-/kKVqES+lIgSlMzei+bu09SI6o6KeVaz7c1qSlKH0A4=",
       "LICENSE.md": "sha256-Ih5+DpqcNXGWJX6BbYgpt6psmJi9lGcXGJzuiU7elE0=",
       "tokens/primitives.tokens.json": "sha256-b1osAFVmgaL/BLjX4YejhWVDzTVHrhKDL1vpf4OnyBo=",
-      "tokens/semantic.tokens.json": "sha256-n3cm7xZJZgXC/U0hMUUvu1R5XbewIklroL7M82/VTBM=",
+      "tokens/semantic.tokens.json": "sha256-CzDDMVW2UazJhL8IWei3Yq/oALWnS6icBKoS3jX5Ppg=",
       "tokens/foundations.tokens.json": "sha256-/gYmJavPwEyem7mpNRhaBa8jjyuPKnSisugGky3PdCY="
     },
-    "digest": "sha256-1HOkNioA7zlEU3T660FAC+hjA4DEQ1mDMShpcn/4w8M=",
+    "digest": "sha256-uMlRbwk8l2xT6yHPATS6wxvRF2VsfyQB+8Yw153+2yg=",
     "revisionPolicy": "Resolve these paths at the same pinned commit as this manifest. The hosted source viewer identifies its supplying commit; generated source files contain content digests, never a floating revision claim."
   },
   "dependencies": {
@@ -359,6 +359,6 @@
     "example.html": "sha256-GmNXAvK8OyeCuslRS3hw0cklRd9LuOEOWWXlmGiUajY=",
     "two-instances.html": "sha256-0Uk1iHys0aEF+6paJ+k44xinGiCqgQ3pF90FTNNcbws=",
     "LICENSE.md": "sha256-q4E9usI46Lr1FX9/A45gLiHYcq2lwVjOd49YJxLDebY=",
-    "README.md": "sha256-iAlJ+35eATneEgW5urDtC3hkMqjmoHmavXwpWqRdPi8="
+    "README.md": "sha256-P7eq8j4vb6jTZ/OSZx95AAmWkPxqrcoMuwG+WXI4wCU="
   }
 }

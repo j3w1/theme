@@ -1758,6 +1758,11 @@
       "state": "out-of-scope",
       "surface": "outside-terminal",
       "reason": "Not a colour; a terminal theme file carries colours only."
+    },
+    "color.surface.accent": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     }
   },
   "rollback": "Remove the `theme = j3w1` line (or point it at your previous theme) and delete ~/.config/ghostty/themes/j3w1."

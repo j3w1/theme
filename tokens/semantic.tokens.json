@@ -75,6 +75,18 @@
         "$value": "{color.primitive.ink.52}",
         "$description": "Dialogs and drawers."
       },
+      "accent": {
+        "$value": "{color.primitive.ink.60}",
+        "$description": "The user's own content set apart from neighbouring surfaces, such as outgoing chat messages. text.default, text.muted, text.subtle and text.link keep 4.5:1 on it (D-034).",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "approved",
+            "approval": {
+              "decision": "D-034"
+            }
+          }
+        }
+      },
       "input": {
         "$value": "{color.primitive.ink.0}",
         "$description": "Form-control fill.",

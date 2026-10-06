@@ -1778,6 +1778,11 @@
       "state": "out-of-scope",
       "surface": "outside-chatgpt",
       "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "color.surface.accent": {
+      "state": "unsupported",
+      "surface": "surfaces",
+      "reason": "ChatGPT has one background and no separate surface for the user's own messages."
     }
   },
   "rollback": "In ChatGPT: Settings > Appearance, import the theme copied before, or choose another theme and set back each row of the preset table that was changed. Nothing is installed on disk."

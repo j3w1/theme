@@ -64,6 +64,17 @@ const pairRatio = (fgKey, bgKey, target = "desktop") => {
 const rgba = (target, key) => effective(target, key)?.color;
 const roleOf = (target, key) => owner[`${target}:${key}`] ?? owner[`${target}:${parent(target, key)}`];
 const rgbHex = bytes => "#" + bytes.slice(0, 3).map(n => n.toString(16).padStart(2, "0")).join("");
+// CIE76 colour difference of two opaque colours, through sRGB → XYZ (D65) → Lab.
+const deltaE = (a, b) => {
+  const lab = ([r, g, b]) => {
+    const [R, G, B] = [r, g, b].map(v => { v /= 255; return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; });
+    const xyz = [(0.4124 * R + 0.3576 * G + 0.1805 * B) / 0.95047, 0.2126 * R + 0.7152 * G + 0.0722 * B, (0.0193 * R + 0.1192 * G + 0.9505 * B) / 1.08883];
+    const [fx, fy, fz] = xyz.map(t => t > 216 / 24389 ? Math.cbrt(t) : (24389 / 27 * t + 16) / 116);
+    return [116 * fy - 16, 500 * (fx - fy), 200 * (fy - fz)];
+  };
+  const [p, q] = [lab(a), lab(b)];
+  return Math.hypot(p[0] - q[0], p[1] - q[1], p[2] - q[2]);
+};
 
 test("Telegram registers an experimental two-artifact default-profile port", async () => {
   assert.equal(PORT_EMITTERS[port.format], telegramArtifacts);
@@ -94,7 +105,7 @@ test("emission is byte-identical across repeats and time zones", () => {
 });
 
 test("every token and upstream key has one classification with direct, non-redundant inheritance", () => {
-  assert.equal(resolved.size, 346);
+  assert.equal(resolved.size, 347);
   assertPortMapping({ ...port, mapping }, resolved.keys());
   assertCapabilities({ ...port, mapping }, capabilities);
   const keys = Object.values(mapping.mappings).flat(); assert.equal(new Set(keys).size, keys.length);
@@ -182,6 +193,9 @@ test("Desktop text buttons stay readable on the backgrounds their pinned styles 
   for (const [fg, bg] of pairs) assert.ok(pairRatio(fg, bg).ratio >= 4.5, `${fg} on ${bg}`);
   assert.deepEqual(desktop.get("historyComposeButtonBg"), desktop.get("historyComposeAreaBg"));
   assert.deepEqual(desktop.get("historyComposeButtonBgOver"), desktop.get("windowBgOver"));
+  // The main menu's rows draw on windowBg; lib_ui aliases mainMenuBg to it. A
+  // separate panel colour left the owner a black row band on a red-brown menu.
+  assert.deepEqual(desktop.get("mainMenuBg"), desktop.get("windowBg"));
 });
 
 test("unknown, duplicate, nonColor, animated and ineligible keys fail before emission", () => {
@@ -280,7 +294,10 @@ test("wallpaper, solid bubbles, rose messages, chrome emphasis and avatars keep 
   assert.equal(roleOf("android", "chat_wallpaper_gradient_to"), "color.surface.chrome");
   const wallpaper = [android.get("chat_wallpaper"), android.get("chat_wallpaper_gradient_to")];
   for (const [target, incoming, outgoing, inSelected, outSelected] of [["android", "chat_inBubble", "chat_outBubble", "chat_inBubbleSelected", "chat_outBubbleSelected"], ["desktop", "msgInBg", "msgOutBg", "msgInBgSelected", "msgOutBgSelected"]]) {
-    assert.equal(roleOf(target, incoming), "color.surface.raised"); assert.equal(roleOf(target, outgoing), "color.surface.overlay");
+    assert.equal(roleOf(target, incoming), "color.surface.raised"); assert.equal(roleOf(target, outgoing), "color.surface.accent");
+    // D-034: the owner found own and other people's messages too alike at
+    // ΔE 7.4; the accent surface keeps them clearly apart (CIE76 ΔE ≥ 12).
+    assert.ok(deltaE(values[target].get(incoming), values[target].get(outgoing)) >= 12, `${target} bubbles are visibly apart`);
     // Bubbles must stand out from each other, from their selected state and
     // from both wallpaper colours, or they vanish into the chat background.
     const fills = [incoming, outgoing, inSelected, outSelected].map(key => JSON.stringify(rgba(target, key)));

@@ -1758,6 +1758,11 @@
       "state": "out-of-scope",
       "surface": "outside-terminal",
       "reason": "Not a colour; a terminal theme file carries colours only."
+    },
+    "color.surface.accent": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     }
   },
   "rollback": "Orca: select your previous Dark Theme in Settings → Terminal Themes and remove the imported \"j3w1 theme\". Warp: select another theme and delete j3w1.yaml from its themes folder."

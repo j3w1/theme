@@ -2127,6 +2127,30 @@
             "decisionIds": []
           }
         },
+        "color.surface.accent": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1686,
+              0.0549,
+              0.051
+            ],
+            "alpha": 1,
+            "hex": "#2b0e0d"
+          },
+          "css": "#2b0e0d",
+          "aliasOf": "color.primitive.ink.60",
+          "description": "The user's own content set apart from neighbouring surfaces, such as outgoing chat messages. text.default, text.muted, text.subtle and text.link keep 4.5:1 on it (D-034).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-034",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
+        },
         "color.surface.input": {
           "type": "color",
           "value": {
@@ -10027,6 +10051,30 @@
             "decisionIds": []
           }
         },
+        "color.surface.accent": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1686,
+              0.0549,
+              0.051
+            ],
+            "alpha": 1,
+            "hex": "#2b0e0d"
+          },
+          "css": "#2b0e0d",
+          "aliasOf": "color.primitive.ink.60",
+          "description": "The user's own content set apart from neighbouring surfaces, such as outgoing chat messages. text.default, text.muted, text.subtle and text.link keep 4.5:1 on it (D-034).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-034",
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
         "color.surface.input": {
           "type": "color",
           "value": {
@@ -17919,6 +17967,30 @@
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "color.surface.accent": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1686,
+              0.0549,
+              0.051
+            ],
+            "alpha": 1,
+            "hex": "#2b0e0d"
+          },
+          "css": "#2b0e0d",
+          "aliasOf": "color.primitive.ink.60",
+          "description": "The user's own content set apart from neighbouring surfaces, such as outgoing chat messages. text.default, text.muted, text.subtle and text.link keep 4.5:1 on it (D-034).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-034",
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",
