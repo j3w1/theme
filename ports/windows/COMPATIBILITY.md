@@ -1247,7 +1247,11 @@ Rendered first-window and active/inactive acceptance is still required.
 The native adapter admits only a standard tooltips_class32 popup in Explorer's
 own process, with an Explorer owner or current-tool window. It uses window and
 owner metadata, not tooltip text or foreground inference. Standard tooltip
-background, edge and text use canonical roles. Unrelated and unknown popups,
+background, edge and text use canonical roles. The folder draw path also uses
+this same owner admission for embedded generic folder glyphs. Complete stock
+pixels must match at the requested size; tooltip ownership alone cannot replace
+an icon. Custom glyphs, overlays and cropped requests remain native. This does
+not broaden tab HICON acquisition or WIC conversion admission. Unrelated and unknown popups,
 high contrast, clipping and native passthrough remain preserved. The offscreen
 ownership/paint regression passed; the live clipped-name popup is not yet
 accepted.

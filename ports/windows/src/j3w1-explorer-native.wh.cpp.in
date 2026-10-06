@@ -291,6 +291,7 @@ static HWND PaintOwner(HDC dc) {
     HWND window=WindowFromDC(dc);
     return window?window:paintWindows.empty()?nullptr:paintWindows.back();
 }
+static bool ExplorerTooltip(HWND window);
 @FOLDER_RENDERER@
 @FOLDER_BITMAP@
 // The exact navigation pin is image 1 of the three-entry TreeView state list.

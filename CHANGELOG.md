@@ -2,6 +2,9 @@
 
 ## [4.0.0] - 2026-09-28
 
+- Windows: render exact generic folder glyphs in Explorer clipped-label popups
+  through the existing owner-checked folder renderer and single-script lifecycle.
+
 - Windows: preserve transparent button hit testing and native animation while
   normalizing observed white transition endpoints to the mapped normal
   background RGB, with exact local-value rollback.

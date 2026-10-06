@@ -2,7 +2,7 @@
 // @id j3w1-explorer-native
 // @name j3w1 Explorer native colors
 // @description Generated native Explorer canvas and text adapter; exact host only
-// @version 1.8.3
+// @version 1.8.4
 // @author j3w1
 // @include explorer.exe
 // @architecture x86-64
@@ -291,6 +291,7 @@ static HWND PaintOwner(HDC dc) {
     HWND window=WindowFromDC(dc);
     return window?window:paintWindows.empty()?nullptr:paintWindows.back();
 }
+static bool ExplorerTooltip(HWND window);
 // Generated original folder artwork shares the ICO generator's geometry.
 // Only initialization queries stock glyphs or allocates image lists. Painting
 // compares the current source glyph exactly; cached slot identity is insufficient.
@@ -487,7 +488,10 @@ static bool Draw(void* self,IMAGELISTDRAWPARAMS* request,HRESULT* result) {
        ||(request->fStyle&ILD_OVERLAYMASK)||!originalImageListDraw
        ||GetMapMode(request->hdcDst)!=MM_TEXT||GetLayout(request->hdcDst)!=0)return false;
     HWND window=Owner(request->hdcDst);DWORD process=0;
-    if(!window||!GetWindowThreadProcessId(window,&process)||process!=GetCurrentProcessId()||!ExplorerWindow(window))return false;
+    // Clipped-label popups have their own root. Reuse the tooltip surface
+    // owner admission; stock pixels still decide whether this glyph is generic.
+    if(!window||!GetWindowThreadProcessId(window,&process)||process!=GetCurrentProcessId()
+       ||(!ExplorerWindow(window)&&!ExplorerTooltip(window)))return false;
     int width=request->cx,height=request->cy;
     if(!width&&!height) {
         if(!imageListSize||!imageListSize(request->himl,&width,&height))return false;

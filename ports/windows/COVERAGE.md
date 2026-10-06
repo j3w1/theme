@@ -369,7 +369,11 @@ folder thumbnails and overlays. Unsupported sizes, request layouts, unrelated
 windows and high contrast retain native drawing. The recorded 96-byte shell
 request keeps its opaque extension; other unknown layouts are refused. Paint
 queries no shell content, reads no files and constructs no image lists. Temporary
-source pixels are cleared before returning. Controlled unload releases the owned
+source pixels are cleared before returning. Clipped-label tooltip draws reuse
+the existing same-process Explorer tool/owner admission. Hidden native tooltip
+fixtures cover popup-local slot-zero stock glyphs, same-slot custom replacement,
+unrelated/detached owners, draw flags, accessibility and native fallback. Live
+tooltip-glyph acceptance remains a separate installed check. Controlled unload releases the owned
 cache and repaints Explorer through the existing adapter lifecycle.
 
 ExplorerFrame's recorded tab-icon acquisition uses ImageList_GetIcon rather than

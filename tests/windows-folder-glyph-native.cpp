@@ -60,7 +60,7 @@ static BOOL WINAPI FixtureIcon(HDC dc,int x,int y,HICON icon,int width,int heigh
  if(expectNativeRaster){assert(FolderGlyph::painting);++nativeRasters;}
  return DrawIconEx(dc,x,y,icon,width,height,step,brush,flags);
 }
-static HWND Window(PCWSTR name){WNDCLASSW type{};type.lpfnWndProc=DefWindowProcW;type.hInstance=GetModuleHandleW(nullptr);type.lpszClassName=name;assert(RegisterClassW(&type)||GetLastError()==ERROR_CLASS_ALREADY_EXISTS);auto window=CreateWindowExW(0,name,L"",0,0,0,32,32,nullptr,nullptr,type.hInstance,nullptr);assert(window);return window;}
+static HWND Window(PCWSTR name,HWND owner=nullptr){WNDCLASSW type{};type.lpfnWndProc=DefWindowProcW;type.hInstance=GetModuleHandleW(nullptr);type.lpszClassName=name;assert(RegisterClassW(&type)||GetLastError()==ERROR_CLASS_ALREADY_EXISTS);auto window=CreateWindowExW(0,name,L"",WS_POPUP,0,0,32,32,owner,nullptr,type.hInstance,nullptr);assert(window);return window;}
 int main(int argc,char** argv){
  // Real module admission remains fail closed on a different CI Windows build.
  // Test native hashing/version inspection independently of COM initialization,
@@ -93,7 +93,11 @@ int main(int argc,char** argv){
  fixtureWicPins=false;FreeLibrary(wicModule);
  const COLORREF fill=RGB(125,19,16),edge=RGB(229,57,53);
  assert(FolderGlyph::Build(fill,edge));assert(FolderGlyph::frames.size()==13);
+ INITCOMMONCONTROLSEX controls{sizeof(controls),ICC_WIN95_CLASSES};assert(InitCommonControlsEx(&controls));
  HWND explorer=Window(L"CabinetWClass"),unrelated=Window(L"OtherApplication");fixtureOwner=explorer;
+ // Real, hidden common-control popup HWNDs distinguish their root from the
+ // Explorer owner. An active Explorer fixture never admits an unrelated popup.
+ HWND tooltip=Window(L"tooltips_class32",explorer),otherTooltip=Window(L"tooltips_class32",unrelated),detachedTooltip=Window(L"tooltips_class32");
  enabled=true;imageListSize=&ImageList_GetIconSize;
  originalImageListDraw=[](void* self,IMAGELISTDRAWPARAMS* request)->HRESULT{Extended(request);auto standard=*request;standard.cbSize=sizeof(standard);return self?static_cast<IImageList*>(self)->Draw(&standard):ImageList_DrawIndirect(&standard)?S_OK:E_FAIL;};
  IImageList* stock=nullptr;assert(SUCCEEDED(SHGetImageList(SHIL_SMALL,__uuidof(IImageList),reinterpret_cast<void**>(&stock))));
@@ -101,7 +105,8 @@ int main(int argc,char** argv){
  for(int size:{16,24,32,48,144,256}) {
   HDC dc=CreateCompatibleDC(nullptr);DWORD* pixels=nullptr;HBITMAP bitmap=FolderGlyph::Bitmap(size,&pixels);assert(dc&&bitmap);auto prior=SelectObject(dc,bitmap);
   alignas(IMAGELISTDRAWPARAMS) BYTE bytes[96]{};auto& request=*reinterpret_cast<IMAGELISTDRAWPARAMS*>(bytes);request.cbSize=sizeof(request);request.himl=reinterpret_cast<HIMAGELIST>(stock);request.i=stockInfo.iSysImageIndex;request.hdcDst=dc;request.cx=request.cy=size;request.rgbBk=CLR_NONE;request.rgbFg=CLR_DEFAULT;request.fStyle=ILD_TRANSPARENT|ILD_SCALE;
-  auto draw=[&](bool hook){std::fill_n(pixels,size*size,0u);assert(SUCCEEDED(hook?NavigationPinHook(stock,&request):originalImageListDraw(stock,&request)));GdiFlush();return std::vector<DWORD>(pixels,pixels+size*size);};
+  void* drawSource=stock;
+  auto draw=[&](bool hook){std::fill_n(pixels,size*size,0u);assert(SUCCEEDED(hook?NavigationPinHook(drawSource,&request):originalImageListDraw(drawSource,&request)));GdiFlush();return std::vector<DWORD>(pixels,pixels+size*size);};
   auto native=draw(false),themed=draw(true);assert(native!=themed);
   stockQueries=0;for(unsigned n=0;n<20;n++)assert(draw(true)==themed);assert(stockQueries==0);
   request.cbSize=96;memcpy(bytes+88,&extension,8);assert(draw(true)==themed);assert(extendedCalls>0);
@@ -115,6 +120,42 @@ int main(int argc,char** argv){
   if(size==24){int width=0,height=0;assert(ImageList_GetIconSize(request.himl,&width,&height));assert(width==height);
    if(width==size){request.cx=request.cy=0;assert(draw(true)==themed);request.cx=request.cy=size;}
   }
+  // Match the recorded tooltip draw flags, then compare actual destination
+  // pixels. Admission is independent of the foreground/active Explorer.
+  request.fStyle=ILD_SCALE;request.rgbFg=0xff000000u;
+  auto tooltipNative=draw(false),tooltipThemed=draw(true);assert(tooltipNative!=tooltipThemed);
+  paintWindows.push_back(tooltip);assert(draw(true)==tooltipThemed);
+  fixtureOwner=unrelated;assert(draw(true)==tooltipThemed);fixtureOwner=explorer;
+  paintWindows.back()=otherTooltip;assert(draw(true)==tooltipNative);
+  paintWindows.back()=detachedTooltip;assert(draw(true)==tooltipNative);
+  paintWindows.back()=tooltip;fixtureContrast=true;assert(draw(true)==tooltipNative);fixtureContrast=false;
+  enabled=false;assert(draw(true)==tooltipNative);enabled=true;
+  drawingTheme=true;assert(draw(true)==tooltipNative);drawingTheme=false;
+  request.fStyle|=INDEXTOOVERLAYMASK(1);assert(draw(true)==draw(false));request.fStyle=ILD_SCALE;
+  request.xBitmap=1;assert(draw(true)==draw(false));request.xBitmap=0;
+  // A popup-local list stores its stock glyph at slot zero. No system image
+  // index or cached slot identity grants permission to replace its pixels.
+  if(size==24){
+   int width=0,height=0;assert(stock->GetIconSize(&width,&height)==S_OK);
+   // Preserve the stock image-list raster without a HICON roundtrip.
+   IImageList* local=nullptr;assert(SUCCEEDED(stock->Clone(__uuidof(IImageList),reinterpret_cast<void**>(&local)))&&local);
+   assert(SUCCEEDED(local->Copy(0,local,stockInfo.iSysImageIndex,ILCF_MOVE)));
+   auto savedList=request.himl;int savedIndex=request.i;request.himl=reinterpret_cast<HIMAGELIST>(local);request.i=0;drawSource=local;
+   auto copiedNative=draw(false),copiedThemed=draw(true);assert(copiedNative!=copiedThemed);
+   DWORD* customPixels=nullptr;HBITMAP custom=FolderGlyph::Bitmap(width,&customPixels);assert(custom);
+   std::fill_n(customPixels,width*height,0xff14dc32u);assert(SUCCEEDED(local->Replace(0,custom,nullptr)));DeleteObject(custom);
+   assert(draw(true)==draw(false));
+   local->Release();
+   // Public HICON-to-list reconstruction is a different raster operation.
+   // Verify native fallback rather than approving an approximate pixel match.
+   HIMAGELIST reconstructed=ImageList_Create(width,height,ILC_COLOR32|ILC_MASK,1,0);assert(reconstructed);
+   HICON icon=nullptr;assert(SUCCEEDED(stock->GetIcon(stockInfo.iSysImageIndex,ILD_NORMAL,&icon))&&icon);
+   assert(ImageList_AddIcon(reconstructed,icon)==0);DestroyIcon(icon);
+   request.himl=reconstructed;drawSource=nullptr;
+   auto reconstructedNative=draw(false);assert(draw(true)==reconstructedNative);ImageList_Destroy(reconstructed);
+   request.himl=savedList;request.i=savedIndex;drawSource=stock;
+  }
+  paintWindows.pop_back();request.fStyle=ILD_TRANSPARENT|ILD_SCALE;request.rgbFg=CLR_DEFAULT;
   // Persist only generated artwork for a byte comparison with original ICO frames.
   if(argc==2&&size==24){std::vector<DWORD> raster(size*size);FolderGlyph::Raster(raster.data(),size,false,fill,edge);FILE* file=fopen(argv[1],"wb");assert(file);assert(fwrite(raster.data(),4,raster.size(),file)==raster.size());fclose(file);}
   SelectObject(dc,prior);DeleteObject(bitmap);DeleteDC(dc);
@@ -223,5 +264,5 @@ int main(int argc,char** argv){
  ImageList_Destroy(images);SelectObject(dc,prior);DeleteObject(bitmap);DeleteDC(dc);stock->Release();enabled=false;FolderGlyph::Uninit();assert(FolderGlyph::frames.empty());
  DWORD baseline=GetGuiResources(GetCurrentProcess(),GR_GDIOBJECTS);
  for(unsigned cycle=0;cycle<3;cycle++){assert(FolderGlyph::Build(fill,edge));FolderGlyph::Uninit();assert(GetGuiResources(GetCurrentProcess(),GR_GDIOBJECTS)==baseline);}
- DestroyWindow(explorer);DestroyWindow(unrelated);CoUninitialize();puts("PASS: exact stock replacement, WIC pixels at eight sizes, borrowed-icon ownership, native HRESULT/last-error passthrough, allocation fallback, both COM apartments, extended-request preservation, unknown/custom/overlay/contrast/window fallback and stable cleanup");
+ for(auto window:{detachedTooltip,otherTooltip,tooltip})DestroyWindow(window);DestroyWindow(explorer);DestroyWindow(unrelated);CoUninitialize();puts("PASS: exact stock replacement, WIC pixels at eight sizes, borrowed-icon ownership, native HRESULT/last-error passthrough, allocation fallback, both COM apartments, extended-request preservation, unknown/custom/overlay/contrast/window fallback and stable cleanup");
 }
