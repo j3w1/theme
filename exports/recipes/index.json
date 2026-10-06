@@ -7,7 +7,7 @@
       "id": "button",
       "variant": "default",
       "manifest": "exports/recipes/button/manifest.json",
-      "sourceDigest": "sha256-RX4a86WHllXd9Sv/vTculD+hngwApspMTJaqODm+whM=",
+      "sourceDigest": "sha256-KtHXZ8Z0Y6vsk76msnVzqqdb+2nAn2lUnG4KVRuM/lw=",
       "limitations": [
         "Native button activation only; application actions are supplied by the host.",
         "aria-busy supplies the loading appearance; the host must suppress repeated activation while busy."
@@ -17,7 +17,7 @@
       "id": "text-field",
       "variant": "default",
       "manifest": "exports/recipes/text-field/manifest.json",
-      "sourceDigest": "sha256-0IXVqc2zS6KJdgNoVntVSHs8jBIwtXZyjOAu2gfhB3o=",
+      "sourceDigest": "sha256-UGWLeiv9XY98PQnJuOFzM+h3yb75H547N9H1qw/dJ2s=",
       "limitations": [
         "Native text editing only; validation messages and aria-invalid are managed by the host.",
         "The default text variant is packaged. Password reveal, search clearing and number steppers are not implemented."
@@ -27,7 +27,7 @@
       "id": "dialog",
       "variant": "default",
       "manifest": "exports/recipes/dialog/manifest.json",
-      "sourceDigest": "sha256-8m+NZdwZxcQmvAo5wRQvj0aJ+d6TNoU3paUr3s/BajQ=",
+      "sourceDigest": "sha256-6YC9GpPdxWmy+V0SqWlrZiwMcDJg6TbrAVDIYs85hW4=",
       "limitations": [
         "Visual-only: the native dialog is open in normal flow with a simulated backdrop.",
         "No showModal, focus trap, Escape handling, close actions or focus return is supplied. The host owns the complete modal lifecycle and positioning.",

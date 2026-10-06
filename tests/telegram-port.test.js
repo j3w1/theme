@@ -316,7 +316,7 @@ test("wallpaper, solid bubbles, rose messages, chrome emphasis and avatars keep 
   const wallpaper = [android.get("chat_wallpaper"), android.get("chat_wallpaper_gradient_to")];
   for (const [target, incoming, outgoing, inSelected, outSelected] of [["android", "chat_inBubble", "chat_outBubble", "chat_inBubbleSelected", "chat_outBubbleSelected"], ["desktop", "msgInBg", "msgOutBg", "msgInBgSelected", "msgOutBgSelected"]]) {
     assert.equal(roleOf(target, incoming), "color.surface.raised"); assert.equal(roleOf(target, outgoing), "color.surface.accent");
-    // D-034: the owner found own and other people's messages too alike at
+    // D-035: the owner found own and other people's messages too alike at
     // ΔE 7.4, and still too alike at 12.6; the accent surface keeps them ΔE ≥ 20 apart (CIE76).
     assert.ok(deltaE(values[target].get(incoming), values[target].get(outgoing)) >= 20, `${target} bubbles are visibly apart`);
     // Bubbles must stand out from each other, from their selected state and
@@ -427,7 +427,7 @@ test("Desktop chat-list badges keep 4.5:1 in every family and row state", () => 
 
 test("Android text selection is visible and keeps the text readable", () => {
   // Owner report, 2026-10-06: selected text in the composer barely showed
-  // (the 12% marquee, ΔE 5.2 from the composer). D-035 gives Android text
+  // (the 12% marquee, ΔE 5.2 from the composer). D-036 gives Android text
   // selection a translucent tint: some pinned paths paint the fill over their
   // content, so it must stay translucent, and Android keeps the text colour
   // inside a selection, so the text must read on the composited fill. The fill
@@ -456,7 +456,7 @@ test("main native text/background pairs pass 4.5:1 without rounding", () => {
     android: [["chat_messageTextIn", "chat_inBubble"], ["chat_messageTextOut", "chat_outBubble"], ["chat_inTimeText", "chat_inBubble"], ["chat_outTimeText", "chat_outBubble"], ["chat_inReplyMessageText", "chat_inBubble"], ["chat_outReplyMessageText", "chat_outBubble"], ["chat_messageLinkIn", "chat_inBubble"], ["chat_messageLinkOut", "chat_outBubble"], ["chats_name", "windowBackgroundWhite"], ["chats_message", "windowBackgroundWhite"], ["chat_messagePanelText", "chat_messagePanelBackground"], ["dialogTextBlack", "dialogBackground"], ["windowBackgroundWhiteBlackText", "windowBackgroundWhite"]],
     desktop: [["historyTextInFg", "msgInBg"], ["historyTextOutFg", "msgOutBg"], ["msgInDateFg", "msgInBg"], ["msgOutDateFg", "msgOutBg"], ["historyLinkInFg", "msgInBg"], ["historyLinkOutFg", "msgOutBg"], ["dialogsNameFg", "dialogsBg"], ["dialogsTextFg", "dialogsBg"], ["historyComposeAreaFg", "historyComposeAreaBg"], ["boxTextFg", "boxBg"], ["windowFg", "windowBg"], ["historyTextInFgSelected", "msgInBgSelected"], ["historyTextOutFgSelected", "msgOutBgSelected"]],
   };
-  // D-034 moved bubble durations to text.muted: audio time (ChatMessageCell
+  // D-035 moved bubble durations to text.muted: audio time (ChatMessageCell
   // chat_audioTimePaint) and link-preview video duration (chat_durationPaint)
   // are drawn on both bubbles. text.subtle would be 4.30:1 on the accent (r7-1).
   pairs.android.push(["chat_inAudioDurationText", "chat_inBubble"], ["chat_outAudioDurationText", "chat_outBubble"], ["chat_previewDurationText", "chat_inBubble"], ["chat_previewDurationText", "chat_outBubble"]);
@@ -468,14 +468,14 @@ test("main native text/background pairs pass 4.5:1 without rounding", () => {
     const result = evaluatePair({ fg: hexToColor(rgbHex(fg), fg[3] / 255), bg: hexToColor(rgbHex(bg), bg[3] / 255), min: 4.5 });
     assert.ok(result.pass, `${target}:${fgKey} on ${bgKey}: ${result.ratio}`);
   }
-  // D-034's rule as a role check: no outgoing-bubble key, and none of the keys
-  // D-034 moved, may resolve to text.subtle. Outgoing keys are the chat_out*
+  // D-035's rule as a role check: no outgoing-bubble key, and none of the keys
+  // D-035 moved, may resolve to text.subtle. Outgoing keys are the chat_out*
   // prefix or "Out" as a camel-case word (msgFileThumbLinkOutFg,
   // chat_messageLinkOut), but not Outer or Desktop's slide-fade animation.
   const isOutgoing = key => /^chat_out/.test(key) || (/Out(?=[A-Z]|$)/.test(key) && !/^slideFadeOut/.test(key));
   const moved = ["chat_inSentClock", "chat_outSentClock", "chat_inTimeText", "chat_outTimeText", "chat_inAudioDurationText", "chat_outAudioDurationText", "chat_previewDurationText", "chat_secretTimeText"];
   for (const target of ["android", "desktop"]) for (const key of registry[target].keys) {
-    if (isOutgoing(key) || (target === "android" && moved.includes(key))) assert.notEqual(effective(target, key)?.role, "color.text.subtle", `${target}:${key} must not use text.subtle (D-034)`);
+    if (isOutgoing(key) || (target === "android" && moved.includes(key))) assert.notEqual(effective(target, key)?.role, "color.text.subtle", `${target}:${key} must not use text.subtle (D-035)`);
   }
   for (const key of registry.android.keys.filter(key => /^windowBackgroundWhite(?:GrayText\d*|BlueText\d*|GreenText\d*|ValueText)$/.test(key))) {
     const fg = rgba("android", key), bg = rgba("android", "windowBackgroundGray");

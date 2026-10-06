@@ -49,8 +49,8 @@ apply.
 | D-030 | Hued syntax roles for opt-in code highlighting | accepted | 2026-09-26 | owner (explicit request for a more colourful Codex, selection of the extended hues) |
 | D-031 | Select the checks a change needs; shard the deployment matrix | accepted | 2026-09-26 | owner (explicit CI renovation request, plan approval) |
 | D-032 | Coral slot 6 and a fixed prompt background | accepted | 2026-09-26 | owner (explicit selection of coral and the PowerShell prompt look) |
-| D-034 | An accent surface for the user's own content | accepted | 2026-10-06 | owner (Telegram acceptance: own and other people's messages too similar; chose #3d0c0a from a side-by-side comparison) |
-| D-035 | A translucent text-selection tint | accepted | 2026-10-06 | owner (Telegram acceptance: Android text selection barely visible; chose 50% from a side-by-side comparison) |
+| D-035 | An accent surface for the user's own content | accepted | 2026-10-06 | owner (Telegram acceptance: own and other people's messages too similar; chose #3d0c0a from a side-by-side comparison) |
+| D-036 | A translucent text-selection tint | accepted | 2026-10-06 | owner (Telegram acceptance: Android text selection barely visible; chose 50% from a side-by-side comparison) |
 
 ## D-000 Responsibility split
 
@@ -770,7 +770,10 @@ should match across hosts).
 **Status.** accepted · 2026-09-26 · owner, who saw both problems in real use and
 chose the values. Supersedes D-029 in part.
 
-## D-034 An accent surface for the user's own content
+## D-035 An accent surface for the user's own content
+
+Numbering: D-033 and D-034 belong to PR #69, which was not merged when this was
+written. This decision was first recorded as D-034 and renumbered before merge.
 
 **Decision.**
 
@@ -819,7 +822,9 @@ messages too hard to tell from other people's. Outgoing bubbles used
 rejected the first value after a second look, and chose `#3d0c0a` from the
 side-by-side comparison.
 
-## D-035 A translucent text-selection tint
+## D-036 A translucent text-selection tint
+
+Numbering: first recorded as D-035 and renumbered before merge (see D-035).
 
 **Decision.**
 
@@ -852,7 +857,7 @@ visible in the message field. Android's text-selection keys had the 12%
   fill *after* their content: the rich editor's tables, captions and media
   blocks, and the rich-message translation preview. An opaque fill hides them.
   It was also ΔE 10.2 on the outgoing bubble, below the 12.6 the owner found too
-  subtle for bubbles (D-034).
+  subtle for bubbles (D-035).
 - **Translucent fills.** A translucent fill keeps that content visible. The
   only translucent roles were the 12% marquee and black scrims.
 - **The comparison.** The owner compared the opaque fill and the tint at 40, 50

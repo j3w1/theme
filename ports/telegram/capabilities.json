@@ -678,7 +678,7 @@
     "color.interaction.text-selection.bg": {
       "state": "unsupported",
       "surface": "controls",
-      "reason": "Android cannot recolour text inside a selection, so Android text selection takes the translucent text-selection.tint (D-035); Desktop selection takes selection.bg with near-white selected text."
+      "reason": "Android cannot recolour text inside a selection, so Android text selection takes the translucent text-selection.tint (D-036); Desktop selection takes selection.bg with near-white selected text."
     },
     "color.interaction.text-selection.text": {
       "state": "unsupported",
@@ -688,7 +688,7 @@
     "color.interaction.text-selection.tint": {
       "state": "mapped",
       "surface": "controls",
-      "reason": "Android text selection: chat_textSelectBackground, which the incoming and outgoing selection highlights inherit. Android keeps the text colour inside a selection and some paths paint the fill over their content, so the translucent tint (D-035)."
+      "reason": "Android text selection: chat_textSelectBackground, which the incoming and outgoing selection highlights inherit. Android keeps the text colour inside a selection and some paths paint the fill over their content, so the translucent tint (D-036)."
     },
     "color.interaction.hover.bg": {
       "state": "mapped",
@@ -1793,7 +1793,7 @@
     "color.surface.accent": {
       "state": "mapped",
       "surface": "messages",
-      "reason": "Canonical color.surface.accent for outgoing message bubbles (D-034); native keys are listed in mapping.json and use no derived colours."
+      "reason": "Canonical color.surface.accent for outgoing message bubbles (D-035); native keys are listed in mapping.json and use no derived colours."
     }
   },
   "rollback": "Choose the previous Telegram theme in Settings → Chat Settings/Appearance; restore the previous chat background if it was customised.",

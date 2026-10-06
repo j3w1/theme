@@ -27,7 +27,7 @@ Unchanged tokens always produce identical bytes:
 Every value comes from a canonical role. Keys whose upstream default is translucent (overlays, ripples, selectors) take the existing translucent roles. The only opaque exceptions are two text keys listed in `src/coverage.json` (`opaqueAllowed`), bot-keyboard labels and code comments, because their translucent dark defaults are unreadable on dark panels. No colour is blended, lightened or given a new alpha.
 
 **Text selection.**
-- **Android.** The incoming and outgoing selection highlights inherit `chat_textSelectBackground`, which takes `interaction.text-selection.tint`, the text-selection red at 50% (D-035).
+- **Android.** The incoming and outgoing selection highlights inherit `chat_textSelectBackground`, which takes `interaction.text-selection.tint`, the text-selection red at 50% (D-036).
   - **Why translucent:** some pinned paths paint the selection fill over their content: the rich editor's tables, captions and media blocks, and the rich-message translation preview. A translucent fill keeps that content visible.
   - **Why not `text-selection.bg`:** Android keeps the text colour inside a selection, so the opaque `text-selection.bg` would leave rose text at 3.96:1.
 - **Desktop.** Selection takes `selection.bg`, and selected text turns near-white.
@@ -72,11 +72,11 @@ Non-colour keys (`wallpaperFileOffset`, `chat_wallpaper_gradient_rotation`, `cha
 | Purpose | Role |
 | --- | --- |
 | Chat wallpaper | `surface.canvas` → `surface.chrome` |
-| Incoming / outgoing bubble | `surface.raised` / `surface.accent` (D-034) |
+| Incoming / outgoing bubble | `surface.raised` / `surface.accent` (D-035) |
 | Selected bubble | `interaction.selection.bg` |
 | Message, body, composer and bot-keyboard text | `text.default` |
 | Names and chrome titles | `text.bright` |
-| Secondary text, bubble timestamps and durations | `text.muted` (never `text.subtle` on the accent surface, D-034) |
+| Secondary text, bubble timestamps and durations | `text.muted` (never `text.subtle` on the accent surface, D-035) |
 | Chat-list dates, media-overlay times and other metadata | `text.subtle` |
 | Code comments | `code.syntax.comment` |
 | Links, accents, read and verified ticks, list section headers | `text.link`, `text.accent`, `text.accent-strong` |
@@ -133,7 +133,7 @@ The same `https://t.me/addtheme/<slug>` link opens the matching document on each
   - **Visibility:** the tint stands ΔE 36.5 from the message field, 35.1 from incoming bubbles and 21.5 from outgoing bubbles.
   - **Rose text:** stays at 5.53:1 or above where the tint is drawn under it (messages, the message field, instant view).
   - **Text the tint covers:** in the rich editor's tables and captions and the rich-message translation preview, Telegram paints the tint over the text. There, selected text measures 2.96 to 3.43:1.
-  - **While a selection lasts:** links measure 3.45 to 4.30:1. In code blocks, keyword, string and comment colours measure 3.13 to 4.24:1, and number and constant colours 4.40:1 in outgoing blocks only; inside an outgoing code block the selection stands ΔE 18.3 from the block (D-035).
+  - **While a selection lasts:** links measure 3.45 to 4.30:1. In code blocks, keyword, string and comment colours measure 3.13 to 4.24:1, and number and constant colours 4.40:1 in outgoing blocks only; inside an outgoing code block the selection stands ΔE 18.3 from the block (D-036).
 - **Platform keys differ.** Desktop exposes hover states that Android lacks. Android's outgoing-bubble gradient keys stay unset.
 - **Desktop chat-list badges.** This is a deliberate, host-forced departure from the canonical Badge count variant (`action.primary.bg` with `action.primary.text`).
   - **Why:** Telegram Desktop reuses the draft-label and poll-icon colours as the reaction and poll badge fills, and uses one count colour per row state for every badge family. No dark fill can also be readable label text on the black row.
@@ -204,9 +204,9 @@ The API calls were checked against teleproto 1.229.1's TL definitions and client
 - the theme being applied;
 - the theme passing a visual check.
 
-The port is `verified` while that record matches; it returns to experimental if a later change is not re-checked on both clients.
+The port is `verified` while that record matches; it returns to experimental if a later change is not re-checked on each client whose file it changes.
 
-**Current state:** verified. The owner found text selection too faint on Android, and the Android file changed for it (D-035). The owner then re-imported it and re-checked selection on Android on 2026-10-06. The Desktop file did not change.
+**Current state:** verified. The owner found text selection too faint on Android, and the Android file changed for it (D-036). The owner then re-imported it and re-checked selection on Android on 2026-10-06. The Desktop file did not change.
 
 **Visual check, on Android and on Telegram Desktop for Windows:**
 - **Chats:** the chat list and the unread badges; one chat, with incoming and outgoing bubbles, message text, names, timestamps and links; a reply or quote; the composer and the send button.

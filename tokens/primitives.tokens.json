@@ -260,17 +260,17 @@
             "alpha": 1,
             "hex": "#3d0c0a"
           },
-          "$description": "D-034 accent surface for the user's own content: the deepest red of the owner's side-by-side comparison, with text.link at 4.55, text.muted at 4.90 and text.default at 7.30.",
+          "$description": "D-035 accent surface for the user's own content: the deepest red of the owner's side-by-side comparison, with text.link at 4.55, text.muted at 4.90 and text.default at 7.30.",
           "$extensions": {
             "io.github.j3w1.theme": {
               "status": "approved",
               "origin": {
                 "kind": "proposed",
-                "ref": "spec/decisions.md#d-034",
-                "note": "A new colour chosen by the owner after comparing four outgoing-bubble options in real colours (D-034)."
+                "ref": "spec/decisions.md#d-035",
+                "note": "A new colour chosen by the owner after comparing four outgoing-bubble options in real colours (D-035)."
               },
               "approval": {
-                "decision": "D-034"
+                "decision": "D-035"
               }
             }
           }
@@ -1388,17 +1388,17 @@
             "alpha": 0.5,
             "hex": "#911410"
           },
-          "$description": "D-035 text-selection tint: red.350 at 50%, for hosts that keep the text colour inside a selection.",
+          "$description": "D-036 text-selection tint: red.350 at 50%, for hosts that keep the text colour inside a selection.",
           "$extensions": {
             "io.github.j3w1.theme": {
               "status": "approved",
               "origin": {
                 "kind": "proposed",
-                "ref": "spec/decisions.md#d-035",
-                "note": "The text-selection red (red.350) at a strength the owner chose after comparing 40, 50 and 60% and the opaque selection fill, rendered in Telegram's surfaces (D-035)."
+                "ref": "spec/decisions.md#d-036",
+                "note": "The text-selection red (red.350) at a strength the owner chose after comparing 40, 50 and 60% and the opaque selection fill, rendered in Telegram's surfaces (D-036)."
               },
               "approval": {
-                "decision": "D-035"
+                "decision": "D-036"
               }
             }
           }

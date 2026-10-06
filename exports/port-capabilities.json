@@ -25,7 +25,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-yeLQvj1Q9wf+G1LhBCHkij6gO0Ovh/07ZlgRZN7EuN4=",
+      "subjectDigest": "sha256-7o/PBWaSqBM2hIuKOIdwn5NPogmCGewbaBHRdz8Higo=",
       "evidencePath": null,
       "surfaces": {
         "appearance-settings": {
@@ -5390,7 +5390,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-S6EuRMntEJVtPBXfcHS4QQNMhgWEFSBURGShJy11sLk=",
+      "subjectDigest": "sha256-LrmbXJUbpf95UkJpMnbrf9ZREW6O6OFJ/C8qepWS46U=",
       "evidencePath": null,
       "surfaces": {
         "theme-roles": {
@@ -10806,7 +10806,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-pE955nmxype6jpJW3Kq+wmCymGqnff7/47p9ovVjN3Q=",
+      "subjectDigest": "sha256-uDb4GzD7AXO94dcePvURsjPoyi7caZqu1HeuJM1ntjI=",
       "evidencePath": null,
       "surfaces": {
         "theme-scopes": {
@@ -16171,7 +16171,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-OccnxEfFsVJ/kgGANaJbOUlE4inigrQ5wlcbwnK0lzk=",
+      "subjectDigest": "sha256-Eh/uI+V7KrHnuB5s0+I/zOpEg+etQ+hhDDXh9k05SSg=",
       "evidencePath": null,
       "surfaces": {
         "terminal-colours": {
@@ -21536,7 +21536,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-9opmakAllpwIu5JssGTmWgf5tjOG5+MxgAFkn+znj7Y=",
+      "subjectDigest": "sha256-ZCy0u8elk4rut2DcckNDP8H2n/Krtpb2UqDiS6Jr/D0=",
       "evidencePath": null,
       "surfaces": {
         "interface": {
@@ -27226,7 +27226,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-XodWe/32dfIjFEoeSHJ4WfNmqTKc7DlCE4bGK7/8xik=",
+      "subjectDigest": "sha256-Cxc/ZWC5oUhDlZmb3ZlDzdrwDzaINzqhC4GsC//H9bA=",
       "evidencePath": null,
       "surfaces": {
         "terminal-colours": {
@@ -32603,9 +32603,9 @@
       ],
       "verification": {
         "status": "verified",
-        "reason": "The cloud route was exercised; opening the files directly was not. Linux and macOS Telegram Desktop were not observed. Colours Telegram fixes in code, listed in IMPLEMENTATION.md, are outside the theme. This record names Android as its platform. The Windows Desktop check was made on the byte-identical Desktop file before D-035, which changes no Desktop key. The D-035 re-check covered the message field and outgoing messages, not rich-editor or code-block selections; D-035 records their limits."
+        "reason": "The cloud route was exercised; opening the files directly was not. Linux and macOS Telegram Desktop were not observed. Colours Telegram fixes in code, listed in IMPLEMENTATION.md, are outside the theme. This record names Android as its platform. The Windows Desktop check was made on the byte-identical Desktop file before D-036, which changes no Desktop key. The D-036 re-check covered the message field and outgoing messages. It did not cover a separately confirmed selection in someone else's message, or rich-editor and code-block selections; D-036 records their limits. Earlier re-bindings, each description-only, with artifacts and values unchanged: aBor4i… to AAZgwC… (review r7-2), and bv0rd5… to a+4Hk2… for the D-034/D-035 renumbering to D-035/D-036 (review r13-3; PR #69 holds D-033 and D-034) and the install-text wording (r13-7)."
       },
-      "subjectDigest": "sha256-bv0rd5srcwNS012ZVWHcVvXtnB+ogMD+4vPkEpr0+vA=",
+      "subjectDigest": "sha256-a+4Hk23J4U5wZrrwfM2NQ6jcFPiBRdz7RzlAN87oYY8=",
       "evidencePath": "ports/telegram/evidence/2026-10-06-import.json",
       "surfaces": {
         "interface": {
@@ -32652,13 +32652,13 @@
       "files": [
         {
           "path": "dist/j3w1.attheme",
-          "install": "File install: open in Telegram for Android (or send to Saved Messages and tap), then Apply. The cloud link in the guide, when published, installs the same theme with automatic updates.",
+          "install": "File install: open in Telegram for Android (or send to Saved Messages and tap), then Apply. The cloud link in the guide installs the same theme with automatic updates.",
           "source": "ports/telegram/dist/j3w1.attheme",
           "digest": "sha256-Mwz/btpvJeVTCuZhJat4ivpBOHgcIh1q7sJI7391BwU="
         },
         {
           "path": "dist/j3w1.tdesktop-theme",
-          "install": "File install: open with Telegram Desktop, then Apply this theme and Keep changes. The cloud link in the guide, when published, installs the same theme with automatic updates.",
+          "install": "File install: open with Telegram Desktop, then Apply this theme and Keep changes. The cloud link in the guide installs the same theme with automatic updates.",
           "source": "ports/telegram/dist/j3w1.tdesktop-theme",
           "digest": "sha256-hJpqFP1ooc8qTc4hnNgcLD96onL8pnwcsGSHRZLDUHo="
         }
@@ -34896,7 +34896,7 @@
           },
           "state": "unsupported",
           "surface": "controls",
-          "reason": "Android cannot recolour text inside a selection, so Android text selection takes the translucent text-selection.tint (D-035); Desktop selection takes selection.bg with near-white selected text.",
+          "reason": "Android cannot recolour text inside a selection, so Android text selection takes the translucent text-selection.tint (D-036); Desktop selection takes selection.bg with near-white selected text.",
           "source": "ports/telegram/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -34928,7 +34928,7 @@
           },
           "state": "mapped",
           "surface": "controls",
-          "reason": "Android text selection: chat_textSelectBackground, which the incoming and outgoing selection highlights inherit. Android keeps the text colour inside a selection and some paths paint the fill over their content, so the translucent tint (D-035).",
+          "reason": "Android text selection: chat_textSelectBackground, which the incoming and outgoing selection highlights inherit. Android keeps the text colour inside a selection and some paths paint the fill over their content, so the translucent tint (D-036).",
           "source": "ports/telegram/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -36607,7 +36607,7 @@
           },
           "state": "mapped",
           "surface": "messages",
-          "reason": "Canonical color.surface.accent for outgoing message bubbles (D-034); native keys are listed in mapping.json and use no derived colours.",
+          "reason": "Canonical color.surface.accent for outgoing message bubbles (D-035); native keys are listed in mapping.json and use no derived colours.",
           "source": "ports/telegram/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -39190,7 +39190,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-iJq4XOdqla4YZpWQIpa8CFGucQmQC3Y4Nh47mlQ2PsM=",
+      "subjectDigest": "sha256-g83JD6bfEOWYntzbDe1L8R8pP5Jxe3KpMv8RMhNB3RM=",
       "evidencePath": null,
       "surfaces": {
         "terminal-colours": {
