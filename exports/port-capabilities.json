@@ -32401,7 +32401,7 @@
     {
       "id": "telegram",
       "displayName": "Telegram Android and Desktop",
-      "declaredStatus": "experimental",
+      "declaredStatus": "verified",
       "format": "telegram-theme",
       "integrationKind": "other",
       "themeVersion": "3.1.0",
@@ -32411,7 +32411,10 @@
         "Telegram Android 12.10.6",
         "Telegram Desktop 7.2.9"
       ],
-      "testedVersions": [],
+      "testedVersions": [
+        "Telegram Android 12.10.6",
+        "Telegram Desktop 7.2.9"
+      ],
       "os": [
         "android",
         "windows",
@@ -32419,11 +32422,11 @@
         "macos"
       ],
       "verification": {
-        "status": "not verified",
-        "reason": "No recorded real-import protocol bound to this subject."
+        "status": "verified",
+        "reason": "The cloud route was exercised; opening the files directly was not. Linux and macOS Telegram Desktop were not observed. Colours Telegram fixes in code, listed in IMPLEMENTATION.md, are outside the theme. This record names Android as its platform; the Windows Desktop check covers the same subject."
       },
-      "subjectDigest": "sha256-JjOxyxPntz+yq8qYKmYc6QhSvQ8JtvPQ58RX+Rapvuw=",
-      "evidencePath": null,
+      "subjectDigest": "sha256-aBor4iTYMH4wwPrQCd+h5SwD1LP/JgHzhJ5EHhT9wlE=",
+      "evidencePath": "ports/telegram/evidence/2026-10-06-import.json",
       "surfaces": {
         "interface": {
           "state": "supported",

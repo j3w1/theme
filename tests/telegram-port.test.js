@@ -76,14 +76,26 @@ const deltaE = (a, b) => {
   return Math.hypot(p[0] - q[0], p[1] - q[1], p[2] - q[2]);
 };
 
-test("Telegram registers an experimental two-artifact default-profile port", async () => {
+test("Telegram registers a two-artifact default-profile port, verified only while its import record matches", async () => {
   assert.equal(PORT_EMITTERS[port.format], telegramArtifacts);
   assert.equal(port.format, "telegram-theme"); assert.equal(port.profile, "default");
-  assert.equal(port.status, "experimental"); assert.equal(port.themeVersion, manifest.version);
-  assert.deepEqual(port.testedVersions, []); assert.deepEqual(port.evidence, []);
+  assert.equal(port.themeVersion, manifest.version);
   assert.deepEqual(port.os, ["android", "windows", "linux", "macos"]);
   assert.deepEqual(port.files.map(file => file.path), Object.values(ARTIFACTS).map(file => file.path));
-  assert.equal(capabilities.integrationKind, "other"); assert.equal(capabilities.verificationPath, undefined);
+  assert.equal(capabilities.integrationKind, "other");
+  if (port.status === "verified") {
+    // The owner's 2026-10-06 acceptance: the catalogue must compute "verified"
+    // for the exact current subject, and each evidence entry must name the
+    // current bytes of its artifact. A change without re-acceptance fails here.
+    const entry = (await readJson("exports/port-capabilities.json")).ports.find(p => p.id === "telegram");
+    assert.equal(entry.verification.status, "verified", entry.verification.reason);
+    assert.deepEqual(port.testedVersions, port.targetVersions);
+    const digests = Object.fromEntries(entry.files.map(file => [file.path, file.digest]));
+    assert.deepEqual(port.evidence.map(e => [e.app, e.artifactDigest]), [["Telegram Android 12.10.6", digests["dist/j3w1.attheme"]], ["Telegram Desktop 7.2.9", digests["dist/j3w1.tdesktop-theme"]]]);
+    assert.ok(port.evidence.some(e => /android/i.test(e.os)) && port.evidence.some(e => /windows/i.test(e.os)));
+  } else {
+    assert.equal(port.status, "experimental");
+  }
   assert.equal(sha256(await readFile("exports/tokens.resolved.json")), port.tokenDigest);
   assertPortArtifacts(port, artifacts);
   for (const file of artifacts) assert.deepEqual(await readFile(`ports/telegram/${file.path}`), Buffer.from(file.bytes ?? file.text));
@@ -440,10 +452,10 @@ const downloads = Object.values(ARTIFACTS).map(file => manifest.site.url + "port
 const links = (text, pattern) => [...text.matchAll(pattern)].map(m => m[0]);
 const T_ME = /https:\/\/t\.me\/addtheme\/[A-Za-z0-9_]+/g, EDITOR = /https:\/\/themes\.contest\.com\/theme\/[A-Za-z0-9_]+\?format=[a-z]+/g;
 
-test("cloud.json records the owner's Theme Editor theme, unverified, with no slug the clients reject", async () => {
+test("cloud.json records the owner's Theme Editor theme, verified with the acceptance, with no slug the clients reject", async () => {
   const cloud = await readCloudConfig();
   assert.equal(cloud.slug, "TRhfHcbvZHlOucyc", "the theme the owner created in Telegram's Theme Editor");
-  assert.equal(cloud.verified, false, "no live acceptance is recorded yet");
+  assert.equal(cloud.verified, port.status === "verified", "the install link is verified exactly when the owner acceptance is recorded");
   assert.deepEqual(cloud.slugCandidates, ["j3w1_theme"], "the 4-character j3w1 is not a candidate");
   // Pinned client rules: 5–64 of [A-Za-z0-9_], a leading letter, no trailing _.
   for (const slug of ["j3w1", "abcd", "1abcde", "_abcde", "abcde_", "j3w1-theme", "a".repeat(65)]) assert.equal(validSlug(slug), false, slug);

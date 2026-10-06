@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "telegram",
   "displayName": "Telegram Android and Desktop",
-  "status": "experimental",
+  "status": "verified",
   "themeVersion": "3.1.0",
   "tokenDigest": "sha256-jPV2QiH9f3mEoyQ6gdskqrk7QBjyUaXZZlspQBzwGa4=",
   "profile": "default",
@@ -11,7 +11,10 @@
     "Telegram Android 12.10.6",
     "Telegram Desktop 7.2.9"
   ],
-  "testedVersions": [],
+  "testedVersions": [
+    "Telegram Android 12.10.6",
+    "Telegram Desktop 7.2.9"
+  ],
   "os": [
     "android",
     "windows",
@@ -46,5 +49,22 @@
   ],
   "mappingPath": "mapping.json",
   "capabilitiesPath": "capabilities.json",
-  "evidence": []
+  "evidence": [
+    {
+      "kind": "report",
+      "path": "evidence/2026-10-06-acceptance.md",
+      "app": "Telegram Android 12.10.6",
+      "os": "Android (owner phone, arm64-v8a)",
+      "date": "2026-10-06",
+      "artifactDigest": "sha256-SoKDvOr+3AkgLSDO0oFKIzkNHn6PLhJ3ujZo5Ix39Ys="
+    },
+    {
+      "kind": "report",
+      "path": "evidence/2026-10-06-acceptance.md",
+      "app": "Telegram Desktop 7.2.9",
+      "os": "Windows (owner ROG Ally)",
+      "date": "2026-10-06",
+      "artifactDigest": "sha256-hJpqFP1ooc8qTc4hnNgcLD96onL8pnwcsGSHRZLDUHo="
+    }
+  ]
 }

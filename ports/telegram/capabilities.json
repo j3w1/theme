@@ -1786,5 +1786,6 @@
       "reason": "Canonical color.surface.accent for outgoing message bubbles (D-034); native keys are listed in mapping.json and use no derived colours."
     }
   },
-  "rollback": "Choose the previous Telegram theme in Settings → Chat Settings/Appearance; restore the previous chat background if it was customised."
+  "rollback": "Choose the previous Telegram theme in Settings → Chat Settings/Appearance; restore the previous chat background if it was customised.",
+  "verificationPath": "evidence/2026-10-06-import.json"
 }

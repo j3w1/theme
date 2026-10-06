@@ -185,13 +185,13 @@ The API calls were checked against teleproto 1.229.1's TL definitions and client
 - every publisher outcome against a mock transport, including first publication, adopting the Theme Editor's theme by its recorded slug, same-identity update, verified no-op, readback mismatch, foreign owner, slug fallback, revoked authorization, flood waits, interrupted writes, rollback and redaction;
 - CI job isolation.
 
-**Observed on a device:** none yet. Each real import is recorded in `evidence/`, and listed in `port.json`, with the app version, OS, artifact digest and results. The record keeps apart:
+**Observed on a device:** Telegram for Android 12.10.6 and Telegram Desktop 7.2.9 on Windows, through the cloud route, on 2026-10-06 ([acceptance record](evidence/2026-10-06-acceptance.md); `evidence/2026-10-06-import.json` binds it to the exact subject). Any later change to the files, tokens, mapping or targets makes that claim stale until it is recorded again. Each record keeps apart:
 - the Theme Editor accepting a file;
 - the link opening a preview;
 - the theme being applied;
 - the theme passing a visual check.
 
-Until both clients are recorded, this port stays experimental.
+The port is `verified` while that record matches; it returns to experimental if a later change is not re-checked on both clients.
 
 **Visual check, on Android and on Telegram Desktop for Windows:**
 - **Chats:** the chat list and the unread badges; one chat, with incoming and outgoing bubbles, message text, names, timestamps and links; a reply or quote; the composer and the send button.
