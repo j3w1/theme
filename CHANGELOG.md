@@ -2,6 +2,9 @@
 
 ## [4.0.0] - 2026-09-28
 
+- Site: restore the token inspector when a native token link receives focus
+  before enhancement startup; retain that focus and the existing keyboard order.
+
 - Windows: render exact generic folder glyphs in Explorer clipped-label popups
   through the existing owner-checked folder renderer and single-script lifecycle.
 
