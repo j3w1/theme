@@ -75,6 +75,18 @@
         "$value": "{color.primitive.ink.52}",
         "$description": "Dialogs and drawers."
       },
+      "accent": {
+        "$value": "{color.primitive.red.40}",
+        "$description": "The user's own content set apart from neighbouring surfaces, such as outgoing chat messages. text.default, text.bright, text.muted and text.link keep 4.5:1 on it; text.subtle does not (4.30), so secondary text on it uses text.muted (D-035).",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "approved",
+            "approval": {
+              "decision": "D-035"
+            }
+          }
+        }
+      },
       "input": {
         "$value": "{color.primitive.ink.0}",
         "$description": "Form-control fill.",
@@ -333,6 +345,18 @@
         "text": {
           "$value": "{color.primitive.paper.90}",
           "$description": "::selection text."
+        },
+        "tint": {
+          "$value": "{color.primitive.alpha.red-50}",
+          "$description": "Text selection on hosts that keep the text colour inside a selection. It is translucent, so it also suits hosts that paint the fill over their content. Text drawn on it keeps 4.5:1 over the canvas, raised and accent surfaces; text it is painted over, and links, do not (D-036).",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-036"
+              }
+            }
+          }
         }
       },
       "hover": {

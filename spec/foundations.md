@@ -16,6 +16,7 @@ content on the canvas or on these surfaces:
 - `default` (`#100c0c`) for panels and cards;
 - `raised` (`#160b0b`) for sticky headers, menus and popovers;
 - `overlay` for dialogs and drawers;
+- `accent` (`#3d0c0a`) for the user's own content set apart from its neighbours, such as outgoing chat messages; secondary text on it uses `text.muted`, never `text.subtle` (D-035);
 - `sunken` (`#000000`) for reading and detail panes;
 - `input` for form-control fills;
 - `chrome` and `chrome-alt` for window frames and bars.
@@ -77,6 +78,7 @@ Every interactive component declares which of these apply and demonstrates every
 | focus-visible | the ring (below) | the ring itself; never a glow or a colour shift alone |
 | selected | fill `interaction.selection.bg` with `interaction.selection.text`; tabs and navigation use a 2px `border.selected-indicator` | `aria-selected` / `aria-current`; a check glyph in lists |
 | selected + focus-visible | the selection fill **and** a ring in the fill's on-fill colour (`interaction.focus.ring-container`, 7.48:1 on the selection) | both visible at once |
+| text selected, host keeps the text colour | translucent `interaction.text-selection.tint` (D-036), which also suits hosts that paint the fill over their content; where the host can recolour selected text, `interaction.text-selection.bg` with `interaction.text-selection.text` | the host's selection handles |
 | selected, container inactive | `interaction.selection.inactive-bg` with `interaction.selection.inactive-text`; no ring | lightness drop between the two fills |
 | disabled | `text.disabled`, `border.disabled`, `interaction.disabled.bg`; no hover or pressed styling; still focusable when `aria-disabled` | `disabled` / `aria-disabled`; `cursor: not-allowed`; never opacity |
 | invalid | border → `status.danger.border` at 2px; message in `status.danger.text` with the `✕` glyph; `aria-invalid`; `aria-describedby` | border width 1 → 2px; glyph; message |

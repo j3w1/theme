@@ -49,6 +49,8 @@ apply.
 | D-030 | Hued syntax roles for opt-in code highlighting | accepted | 2026-09-26 | owner (explicit request for a more colourful Codex, selection of the extended hues) |
 | D-031 | Select the checks a change needs; shard the deployment matrix | accepted | 2026-09-26 | owner (explicit CI renovation request, plan approval) |
 | D-032 | Coral slot 6 and a fixed prompt background | accepted | 2026-09-26 | owner (explicit selection of coral and the PowerShell prompt look) |
+| D-035 | An accent surface for the user's own content | accepted | 2026-10-06 | owner (Telegram acceptance: own and other people's messages too similar; chose #3d0c0a from a side-by-side comparison) |
+| D-036 | A translucent text-selection tint | accepted | 2026-10-06 | owner (Telegram acceptance: Android text selection barely visible; chose 50% from a side-by-side comparison) |
 
 ## D-000 Responsibility split
 
@@ -767,3 +769,133 @@ should match across hosts).
 
 **Status.** accepted · 2026-09-26 · owner, who saw both problems in real use and
 chose the values. Supersedes D-029 in part.
+
+## D-035 An accent surface for the user's own content
+
+Numbering: D-033 and D-034 belong to PR #69, which was not merged when this was
+written. This decision was first recorded as D-034 and renumbered before merge.
+
+**Decision.**
+
+- New role `color.surface.accent`: the user's own content, set apart from
+  neighbouring surfaces, such as outgoing chat messages.
+- Its value is a new primitive, `color.primitive.red.40` (`#3d0c0a`): the
+  deepest of the reds compared side by side, chosen by the owner, with
+  `text.link` at 4.55:1.
+- Text on it: `text.default` 7.30, `text.bright` 8.74, `text.muted` 4.90,
+  `text.link` 4.55.
+- `text.subtle` does not reach 4.5:1 on it (4.30). Secondary text on the accent
+  surface therefore uses `text.muted`.
+- The Telegram port sets outgoing bubbles to it. Incoming bubbles stay
+  `surface.raised`. Bubble timestamps on both sides use `text.muted`, so they
+  match. Outgoing and incoming bubbles are ΔE 24.0 apart (CIE76).
+
+**Why.** In live acceptance on Android and Windows, the owner found their own
+messages too hard to tell from other people's. Outgoing bubbles used
+`surface.overlay` (`#241010`), incoming bubbles `surface.raised` (`#160b0b`):
+ΔE 7.4.
+- **First round.** The role reused the existing `#2b0e0d` (ΔE 12.6). The owner
+  still saw too little difference on both clients.
+- **Second round.** The owner compared four options rendered in real colours
+  (#241010, #2b0e0d, #330b09 and #3d0c0a, with real text, timestamps and links)
+  and chose the deepest red.
+- **The ceiling.** Red links cap how bright an outgoing bubble can be. At this
+  hue they still pass at `#3f0c0a` (4.51:1), and fall to 4.48:1 at `#400c0a`
+  and 4.44:1 at `#420c0a`. `#3d0c0a` keeps a small margin below that limit.
+
+**Alternatives.**
+- **Keep `#2b0e0d`** (ΔE 12.6), with no new colour: too subtle in real use.
+- **`#330b09`** (ΔE 18.6), which keeps `text.subtle` timestamps at 4.52:1: not
+  chosen.
+- **Incoming on `surface.default`** (ΔE 10.2): incoming bubbles nearly merge
+  with the wallpaper (ΔE 1.8).
+- **Reusing `status.danger.tint` directly:** rejected, the wrong meaning.
+
+**Consequences.**
+- **Palette.** It gains one colour.
+- **Ports.** Every port classifies the role. Only Telegram maps it. Claude
+  Code's `userMessageBackground` keeps `interaction.selection.bg`; adopting the
+  new role there is a separate change.
+- **Rule.** `text.subtle` is not used on `surface.accent`.
+
+**Status.** accepted · 2026-10-06 · owner, who saw the problem in real use,
+rejected the first value after a second look, and chose `#3d0c0a` from the
+side-by-side comparison.
+
+## D-036 A translucent text-selection tint
+
+Numbering: first recorded as D-035 and renumbered before merge (see D-035).
+
+**Decision.**
+
+- New role `color.interaction.text-selection.tint`: text selection on hosts
+  that keep the text colour inside a selection. It is translucent, so it also
+  suits hosts that paint the fill over their content.
+- Its value is a new primitive, `color.primitive.alpha.red-50`: the existing
+  text-selection red `red.350` (`#911410`) at 50%.
+- Over the canvas, the raised and the accent surface, it is ΔE 36.5, 35.1 and
+  21.5 from the surface (CIE76). These are Android's 8-bit composites
+  (`#490a08`, `#54100e`, `#67100d`).
+- Text drawn on the tint stays at 4.5:1 or above: `text.default` 6.89, 6.29
+  and 5.53. Links do not: `text.link` measures 4.30, 3.92 and 3.45 while
+  selected.
+- **What the canonical contrast pairs cover.** They composite over the canvas
+  only, with float alpha (`#480a08`): default text 6.91, bright 8.28. The
+  raised and accent figures are enforced by the Telegram port's tests.
+- **Links are not a declared pair.** Waivers are for decorative graphics only,
+  so the link limit (4.31 over the canvas) is recorded in the limits below and
+  in `spec/accessibility.md` instead.
+- Hosts that recolour selected text use `text-selection.bg` with
+  `text-selection.text`. The Telegram port gives Android text selection the
+  tint. Desktop keeps `selection.bg` with near-white selected text.
+
+**Why.** In live acceptance on Android, the owner found selected text barely
+visible in the message field. Android's text-selection keys had the 12%
+`interaction.marquee`: ΔE 5.2 from the field.
+- **First fix.** The opaque `interaction.selection.bg` (`#531310`). The
+  independent review (r10) found pinned Telegram paths that paint the selection
+  fill *after* their content: the rich editor's tables, captions and media
+  blocks, and the rich-message translation preview. An opaque fill hides them.
+  It was also ΔE 10.2 on the outgoing bubble, below the 12.6 the owner found too
+  subtle for bubbles (D-035).
+- **Translucent fills.** A translucent fill keeps that content visible. The
+  only translucent roles were the 12% marquee and black scrims.
+- **The comparison.** The owner compared the opaque fill and the tint at 40, 50
+  and 60%, rendered in the message field, both bubbles and a rich-editor photo,
+  and chose 50%.
+
+**Alternatives.**
+- **Opaque `selection.bg`:** hides content on those paths, and is faint on the
+  accent surface.
+- **40%:** ΔE 17.8 on the accent surface, close to the 18.6 rejected for
+  bubbles.
+- **60%:** links fall to 3.24:1, and media dims more.
+- **Opaque `text-selection.bg`:** rose text falls to 3.96:1, because Android
+  cannot recolour it.
+
+**Consequences.**
+- **Palette.** It gains one translucent value of an existing colour.
+- **Ports.** Every port classifies the role. Only Telegram maps it.
+- **Obsidian.** Obsidian also keeps the text colour inside a selection: rose
+  text measures 3.96:1 on its `text-selection.bg` (its IMPLEMENTATION.md), so
+  the tint fits it. Adopting it changes the Obsidian artifact and needs its own
+  import check, so that is a separate change.
+- **Contrast.** Two global pairs measure default and bright text on the tint
+  over the canvas.
+- **Limits, while a selection lasts on Android:**
+  - links are below 4.5:1 (3.45 to 4.30);
+  - where a host paints the fill over the text (Telegram's rich-editor tables
+    and captions, and the rich-message translation preview), selected text
+    measures 2.96 to 3.43:1. No strength meets both this and the accent-surface
+    floor: 40% gives 4.34 and 3.68. The owner's comparison did not show this
+    case; it was found by review r11 after the choice;
+  - in code blocks, keyword, string and comment colours are 3.13 to 4.24:1,
+    number and constant colours 4.40:1 in outgoing blocks only, and inside an outgoing code block the selection stands
+    ΔE 18.3 from the block.
+
+  A selection is short-lived, as with editor selections in
+  `spec/accessibility.md`.
+
+**Status.** accepted · 2026-10-06 · owner, who saw the problem in real use and
+chose 50% from the side-by-side comparison after the review rejected the opaque
+fill.

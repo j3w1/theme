@@ -90,13 +90,14 @@ export const resolveWithin = (root, relative) => {
    changed. */
 export const writeOrCheck = async (relative, content, { check = false } = {}) => {
   const file = path.join(repoRoot, relative);
+  const binary = content instanceof Uint8Array;
   let current = null;
   try {
-    current = (await fs.readFile(file, "utf8")).replaceAll("\r\n", "\n");
+    current = binary ? await fs.readFile(file) : (await fs.readFile(file, "utf8")).replaceAll("\r\n", "\n");
   } catch {
     current = null;
   }
-  if (current === content) return false;
+  if (binary ? current !== null && Buffer.from(content).equals(current) : current === content) return false;
   if (!check) await writeFileEnsured(file, content);
   return true;
 };

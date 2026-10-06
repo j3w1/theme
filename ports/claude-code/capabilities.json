@@ -630,6 +630,11 @@
       "surface": "outside-claude",
       "reason": "Interface colour role that no Claude Code theme key takes."
     },
+    "color.interaction.text-selection.tint": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
     "color.primitive.alpha.black-55": {
       "state": "out-of-scope",
       "surface": "outside-claude",
@@ -641,6 +646,11 @@
       "reason": "Primitive; ports consume roles, never primitives."
     },
     "color.primitive.alpha.red-12": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.alpha.red-50": {
       "state": "out-of-scope",
       "surface": "outside-claude",
       "reason": "Primitive; ports consume roles, never primitives."
@@ -926,6 +936,11 @@
       "reason": "Primitive; ports consume roles, never primitives."
     },
     "color.primitive.red.450": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.40": {
       "state": "out-of-scope",
       "surface": "outside-claude",
       "reason": "Primitive; ports consume roles, never primitives."
@@ -1754,6 +1769,11 @@
       "state": "out-of-scope",
       "surface": "outside-claude",
       "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "color.surface.accent": {
+      "state": "not-implemented",
+      "surface": "theme-roles",
+      "reason": "Claude Code's userMessageBackground keeps color.interaction.selection.bg; adopting color.surface.accent there is a separate change for this port."
     }
   },
   "rollback": "Run node ports/claude-code/install.mjs restore in the same clone. By hand: set \"theme\" in ~/.claude/settings.json back to your previous theme (or remove the key) and delete ~/.claude/themes/j3w1.json."

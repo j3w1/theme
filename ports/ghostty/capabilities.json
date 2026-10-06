@@ -634,6 +634,11 @@
       "surface": "outside-terminal",
       "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     },
+    "color.interaction.text-selection.tint": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+    },
     "color.primitive.alpha.black-55": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
@@ -645,6 +650,11 @@
       "reason": "Primitive; ports consume roles, never primitives."
     },
     "color.primitive.alpha.red-12": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.alpha.red-50": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
       "reason": "Primitive; ports consume roles, never primitives."
@@ -930,6 +940,11 @@
       "reason": "Primitive; ports consume roles, never primitives."
     },
     "color.primitive.red.450": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.40": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
       "reason": "Primitive; ports consume roles, never primitives."
@@ -1758,6 +1773,11 @@
       "state": "out-of-scope",
       "surface": "outside-terminal",
       "reason": "Not a colour; a terminal theme file carries colours only."
+    },
+    "color.surface.accent": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
     }
   },
   "rollback": "Remove the `theme = j3w1` line (or point it at your previous theme) and delete ~/.config/ghostty/themes/j3w1."

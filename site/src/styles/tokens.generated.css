@@ -13,6 +13,7 @@
   --color-primitive-ink-40: #1c0a09;
   --color-primitive-ink-52: #241010;
   --color-primitive-ink-60: #2b0e0d;
+  --color-primitive-red-40: #3d0c0a;
   --color-primitive-red-50: #420f0c;
   --color-primitive-red-100: #531310;
   --color-primitive-red-150: #630f0d;
@@ -58,6 +59,7 @@
   --color-primitive-alpha-black-65: rgb(0 0 0 / 65%);
   --color-primitive-alpha-red-6: rgb(145 20 16 / 6%);
   --color-primitive-alpha-red-12: rgb(145 20 16 / 12%);
+  --color-primitive-alpha-red-50: rgb(145 20 16 / 50%);
   --color-primitive-ansi-0: #0c0909;
   --color-primitive-ansi-1: #c81a1a;
   --color-primitive-ansi-2: #bd787d;
@@ -91,6 +93,7 @@
   --color-surface-default: #100c0c;
   --color-surface-raised: #160b0b;
   --color-surface-overlay: #241010;
+  --color-surface-accent: #3d0c0a;
   --color-surface-input: #000000;
   --color-surface-backdrop: rgb(0 0 0 / 65%);
   --color-surface-code: #000000;
@@ -129,6 +132,7 @@
   --color-interaction-selection-inactive-text: #e99499;
   --color-interaction-text-selection-bg: #911410;
   --color-interaction-text-selection-text: #f4eeee;
+  --color-interaction-text-selection-tint: rgb(145 20 16 / 50%);
   --color-interaction-hover-bg: #1c0a09;
   --color-interaction-hover-bg-strong: #630f0d;
   --color-interaction-pressed-bg: #420f0c;

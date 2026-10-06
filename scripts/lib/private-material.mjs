@@ -25,6 +25,8 @@ export const CREDENTIAL_PATTERNS = [
   /\bgithub_pat_[A-Za-z0-9_]{20,}\b/,
   /\b(?:eyJ[A-Za-z0-9_-]{10,}\.){2}[A-Za-z0-9_-]{10,}\b/,
   /\bAKIA[0-9A-Z]{16}\b/,
+  /\bTELEGRAM_(?:SESSION|API_HASH)\s*["']?\s*[:=]\s*["']?[A-Za-z0-9+/=_-]{16,}/,
+  /"session"\s*:\s*"1[A-Za-z0-9+/=_-]{100,}"/,
 ];
 
 export const FONT_EXTENSIONS = [".ttf", ".otf", ".woff", ".woff2", ".eot"];

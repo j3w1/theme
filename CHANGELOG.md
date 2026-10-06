@@ -1,5 +1,49 @@
 # Changelog
 
+## [Unreleased]
+
+- **`color.surface.accent`** (D-035). A new surface for the user's own content,
+  such as outgoing chat messages, on the new primitive `color.primitive.red.40`
+  (`#3d0c0a`), chosen by the owner from a side-by-side comparison; links keep
+  4.55:1 on it, and secondary text on it uses `text.muted`. Every port classifies it. Telegram uses it for
+  outgoing bubbles, with bubble timestamps in `text.muted`.
+- **`color.interaction.text-selection.tint`** (D-036). Text selection on
+  hosts that keep the text colour inside a selection; it is translucent, so
+  it also suits hosts that paint the fill over their content. The
+  text-selection red `#911410` at 50%, the new primitive
+  `color.primitive.alpha.red-50`. Text drawn on it stays at 4.5:1 or above.
+  Text it is painted over (about 3:1), links and some code colours do not,
+  while selected. Every port classifies it. Telegram uses it for Android
+  text selection.
+- **Telegram port**, verified on Telegram for Android 12.10.6 and Telegram
+  Desktop 7.2.9 on Windows (cloud route, 2026-10-06; direct file import and
+  Linux/macOS not exercised), including Android text selection with the
+  D-036 tint. `ports/telegram/` generates the official
+  Telegram for Android `.attheme` and Telegram Desktop `.tdesktop-theme`
+  (palette plus a 1×2 background in a stored, fixed-date zip) from one
+  mapping of default roles. Every upstream key at the pinned DrKLO/Telegram and
+  lib_ui revisions is mapped, inherits from a mapped key or is listed with a
+  reason, so unmapped keys cannot fall back to Telegram's light defaults
+  unnoticed. Rose body text, bright-rose names, dark bubbles above a black to
+  red-black wallpaper. It consumes canonical roles only, including D-035's
+  accent surface, with no blends or alpha of its own.
+- One Telegram Cloud Theme serves both clients from one `t.me/addtheme/<slug>`
+  link. The owner fills it with Telegram's own Theme Editor (Import file, then
+  save; no API application), or optionally with `npm run telegram:publish`.
+  The publisher needs `api_id`/`api_hash`, adopts the same recorded theme and
+  verifies both documents by download. `cloud.json` records the theme the owner
+  created in the editor; the README leads with file import until the owner has
+  verified the link on both clients. Because the editor fills every key a file
+  leaves out with Telegram's stock colours, the files now write inherited keys
+  with the value they inherit. They also set the 77 legacy Android keys the
+  editor still writes, so no Telegram blue or green enters the cloud theme. The
+  Android file and voice buttons now draw a near-white icon on a dark-red
+  circle, as Desktop does, instead of rose on rose. An opt-in `telegram` job publishes changed
+  files after `release-gate` on `main` only; it is not configured. The pinned
+  `teleproto` MTProto client is used only by the publisher.
+- Port emitters may return byte artifacts (`{path, bytes}`), written and
+  drift-checked byte for byte.
+
 ## [3.1.0] - 2026-09-27
 
 Additive minor preparation, following the first downloadable application-port

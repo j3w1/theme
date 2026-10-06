@@ -1,0 +1,1801 @@
+{
+  "schemaVersion": 1,
+  "integrationKind": "other",
+  "themeRevision": "93af9ff0cffb1b4ac6cc1e1d66cc1613d40d948f",
+  "surfaces": {
+    "interface": {
+      "state": "supported",
+      "reason": "Chat lists, settings, profiles, search, message text and app chrome use canonical rose text on dark surfaces."
+    },
+    "messages": {
+      "state": "supported",
+      "reason": "Dark incoming/outgoing bubbles, selection, replies, links, metadata and media controls are colour-mapped."
+    },
+    "controls": {
+      "state": "supported",
+      "reason": "Composer, menus, dialogs, attachment and emoji panel chrome, focus-colour hooks and translucent selectors are mapped."
+    },
+    "wallpaper": {
+      "state": "supported",
+      "reason": "Two existing dark surface roles produce a static Android wallpaper and a 1×2 Desktop RGB background."
+    },
+    "typography": {
+      "state": "inherited",
+      "reason": "Telegram owns family, weight, size and line metrics; bold keeps the text role."
+    },
+    "geometry": {
+      "state": "unsupported",
+      "reason": "Native theme formats expose colours, not square radii, border widths, focus-ring shapes or spacing."
+    },
+    "motion": {
+      "state": "inherited",
+      "reason": "Telegram controls motion and reduced-motion preferences; no animated wallpaper is emitted."
+    },
+    "content-data": {
+      "state": "inherited",
+      "reason": "Photos, videos, user accents, chart data and Premium/story artwork remain host content."
+    },
+    "developer-surfaces": {
+      "state": "out-of-scope",
+      "reason": "This interface port has no terminal palette, diagnostic/diff model or hued syntax opt-in."
+    },
+    "primitives": {
+      "state": "out-of-scope",
+      "reason": "Only semantic role mappings are eligible for delivery."
+    }
+  },
+  "roles": {
+    "color.primitive.ink.0": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.ink.14": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.ink.15": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.ink.20": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.ink.25": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.ink.28": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.ink.30": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.ink.40": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.ink.52": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.ink.60": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.red.40": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.red.50": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.red.100": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.red.150": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.red.200": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.red.250": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.red.300": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.red.350": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.red.400": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.red.450": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.red.500": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.red.550": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.red.650": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.red.750": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.red.760": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.red.770": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.red.800": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.red.810": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.red.850": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.red.860": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.rose.300": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.rose.320": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.rose.350": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.rose.450": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.rose.550": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.rose.600": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.rose.650": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.rose.700": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.rose.800": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.coral.700": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.paper.90": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.paper.100": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.amber.500": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.amber.600": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.amber.tint": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.green.500": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.green.600": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.green.tint": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.blue.500": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.blue.600": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.blue.tint": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.alpha.transparent": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.alpha.black-55": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.alpha.black-65": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.alpha.red-6": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.alpha.red-12": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.alpha.red-50": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.ansi.0": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.ansi.1": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.ansi.2": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.ansi.3": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.ansi.4": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.ansi.5": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.ansi.6": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.ansi.7": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.ansi.8": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.ansi.9": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.ansi.10": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.ansi.11": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.ansi.12": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.ansi.13": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.ansi.14": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.ansi.15": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.ansi-readable.1": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.ansi-readable.4": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.ansi-readable.8": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.ansi-readable.9": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.ansi-readable.10": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.ansi-readable.12": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.ansi-readable.13": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.ansi-readable.14": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.ansi-readable.15": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.surface.desktop": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "color.surface.desktop has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.surface.canvas": {
+      "state": "mapped",
+      "surface": "wallpaper",
+      "reason": "Canonical color.surface.canvas; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.surface.chrome": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Canonical color.surface.chrome; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.surface.chrome-alt": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Canonical color.surface.chrome-alt; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.surface.sunken": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "color.surface.sunken has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.surface.default": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Canonical color.surface.default; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.surface.raised": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Canonical color.surface.raised; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.surface.overlay": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Canonical color.surface.overlay; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.surface.input": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Canonical color.surface.input; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.surface.backdrop": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Canonical color.surface.backdrop; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.surface.code": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "color.surface.code has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.surface.terminal": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "color.surface.terminal has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.text.default": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Canonical color.text.default; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.text.bright": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Canonical color.text.bright; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.text.prose": {
+      "state": "inherited",
+      "surface": "typography",
+      "reason": "Messages, reading and Instant View use rose color.text.default; no near-white prose override or bold-to-white mapping."
+    },
+    "color.text.muted": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Canonical color.text.muted; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.text.subtle": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Canonical color.text.subtle; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.text.disabled": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Canonical color.text.disabled; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.text.placeholder": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Canonical color.text.placeholder; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.text.accent": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "color.text.accent has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.text.accent-strong": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Canonical color.text.accent-strong; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.text.link": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Canonical color.text.link; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.text.link-underline": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "color.text.link-underline has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.text.link-hover": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "color.text.link-hover has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.text.on-selection": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "color.text.on-selection has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.text.on-action": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Canonical color.text.on-action; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.text.on-danger": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Canonical color.text.on-danger; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.text.on-light": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Canonical color.text.on-light for the dark count on light Telegram Desktop badge pills; Desktop reuses the draft and poll text colours as badge fills, so badge text must be dark to read on both. Native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.text.inverse": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "color.text.inverse has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.border.divider": {
+      "state": "mapped",
+      "surface": "controls",
+      "reason": "Canonical color.border.divider; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.border.default": {
+      "state": "mapped",
+      "surface": "controls",
+      "reason": "Canonical color.border.default; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.border.strong": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.border.strong has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.border.control": {
+      "state": "mapped",
+      "surface": "controls",
+      "reason": "Canonical color.border.control; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.border.active": {
+      "state": "mapped",
+      "surface": "controls",
+      "reason": "Canonical color.border.active; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.border.overlay": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.border.overlay has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.border.disabled": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.border.disabled has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.border.selected-indicator": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.border.selected-indicator has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.border.selected-indicator-inactive": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.border.selected-indicator-inactive has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.interaction.focus.ring": {
+      "state": "mapped",
+      "surface": "controls",
+      "reason": "Canonical color.interaction.focus.ring; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.interaction.focus.ring-container": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.interaction.focus.ring-container has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.interaction.selection.bg": {
+      "state": "mapped",
+      "surface": "controls",
+      "reason": "Canonical color.interaction.selection.bg; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.interaction.selection.text": {
+      "state": "mapped",
+      "surface": "controls",
+      "reason": "Canonical color.interaction.selection.text; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.interaction.selection.inactive-bg": {
+      "state": "mapped",
+      "surface": "controls",
+      "reason": "Canonical color.interaction.selection.inactive-bg as the quiet dark-red fill for muted badges and counters, so their near-white glyphs stay on a fill. Native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.interaction.selection.inactive-text": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.interaction.selection.inactive-text has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.interaction.text-selection.bg": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "Android cannot recolour text inside a selection, so Android text selection takes the translucent text-selection.tint (D-036); Desktop selection takes selection.bg with near-white selected text."
+    },
+    "color.interaction.text-selection.text": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "Android keeps the text colour inside a selection; Desktop's selected-text keys take interaction.selection.text. No native key takes this role."
+    },
+    "color.interaction.text-selection.tint": {
+      "state": "mapped",
+      "surface": "controls",
+      "reason": "Android text selection: chat_textSelectBackground, which the incoming and outgoing selection highlights inherit. Android keeps the text colour inside a selection and some paths paint the fill over their content, so the translucent tint (D-036)."
+    },
+    "color.interaction.hover.bg": {
+      "state": "mapped",
+      "surface": "controls",
+      "reason": "Canonical color.interaction.hover.bg; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.interaction.hover.bg-strong": {
+      "state": "mapped",
+      "surface": "controls",
+      "reason": "Canonical color.interaction.hover.bg-strong; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.interaction.pressed.bg": {
+      "state": "mapped",
+      "surface": "controls",
+      "reason": "Canonical color.interaction.pressed.bg; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.interaction.disabled.bg": {
+      "state": "mapped",
+      "surface": "controls",
+      "reason": "Canonical color.interaction.disabled.bg; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.interaction.marquee": {
+      "state": "mapped",
+      "surface": "controls",
+      "reason": "Canonical color.interaction.marquee; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.interaction.drop-target": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.interaction.drop-target has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.interaction.scrollbar.track": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.interaction.scrollbar.track has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.interaction.scrollbar.thumb": {
+      "state": "mapped",
+      "surface": "controls",
+      "reason": "Canonical color.interaction.scrollbar.thumb; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.interaction.scrollbar.thumb-hover": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.interaction.scrollbar.thumb-hover has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.action.primary.bg": {
+      "state": "mapped",
+      "surface": "controls",
+      "reason": "Canonical color.action.primary.bg; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.action.primary.text": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.action.primary.text has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.action.primary.hover-bg": {
+      "state": "mapped",
+      "surface": "controls",
+      "reason": "Canonical color.action.primary.hover-bg; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.action.primary.pressed-bg": {
+      "state": "mapped",
+      "surface": "controls",
+      "reason": "Canonical color.action.primary.pressed-bg; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.action.primary.border": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.action.primary.border has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.action.secondary.bg": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.action.secondary.bg has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.action.secondary.text": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.action.secondary.text has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.action.secondary.border": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.action.secondary.border has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.action.secondary.hover-bg": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.action.secondary.hover-bg has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.action.secondary.pressed-bg": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.action.secondary.pressed-bg has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.action.tertiary.text": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.action.tertiary.text has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.action.tertiary.hover-bg": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.action.tertiary.hover-bg has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.action.destructive.text": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.action.destructive.text has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.action.destructive.border": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.action.destructive.border has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.action.destructive.hover-bg": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.action.destructive.hover-bg has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.action.destructive.hover-text": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.action.destructive.hover-text has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.action.destructive.pressed-bg": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.action.destructive.pressed-bg has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.action.destructive.filled-bg": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.action.destructive.filled-bg has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.action.destructive.filled-text": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.action.destructive.filled-text has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.status.danger.text": {
+      "state": "mapped",
+      "surface": "controls",
+      "reason": "Canonical color.status.danger.text; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.status.danger.fill": {
+      "state": "mapped",
+      "surface": "controls",
+      "reason": "Canonical color.status.danger.fill; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.status.danger.on-fill": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.status.danger.on-fill has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.status.danger.tint": {
+      "state": "mapped",
+      "surface": "controls",
+      "reason": "Canonical color.status.danger.tint; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.status.danger.border": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.status.danger.border has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.status.warning.text": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.status.warning.text has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.status.warning.fill": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.status.warning.fill has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.status.warning.on-fill": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.status.warning.on-fill has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.status.warning.tint": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.status.warning.tint has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.status.warning.border": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.status.warning.border has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.status.success.text": {
+      "state": "mapped",
+      "surface": "controls",
+      "reason": "Canonical color.status.success.text; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.status.success.fill": {
+      "state": "mapped",
+      "surface": "controls",
+      "reason": "Canonical color.status.success.fill; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.status.success.on-fill": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.status.success.on-fill has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.status.success.tint": {
+      "state": "mapped",
+      "surface": "controls",
+      "reason": "Canonical color.status.success.tint; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.status.success.border": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.status.success.border has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.status.info.text": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.status.info.text has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.status.info.fill": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.status.info.fill has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.status.info.on-fill": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.status.info.on-fill has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.status.info.tint": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.status.info.tint has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.status.info.border": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.status.info.border has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.status.neutral.text": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.status.neutral.text has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.status.neutral.fill": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.status.neutral.fill has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.status.neutral.on-fill": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.status.neutral.on-fill has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.status.neutral.tint": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.status.neutral.tint has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.status.neutral.border": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.status.neutral.border has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.code.bg": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "color.code.bg has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.code.current-line": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "color.code.current-line has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.code.gutter-bg": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "color.code.gutter-bg has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.code.line-number": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "color.code.line-number has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.code.line-number-active": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "color.code.line-number-active has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.code.gutter-rule": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "color.code.gutter-rule has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.code.caret": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "color.code.caret has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.code.selection-bg": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "color.code.selection-bg has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.code.search-match-bg": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "color.code.search-match-bg has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.code.search-current-bg": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "color.code.search-current-bg has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.code.search-current-text": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "color.code.search-current-text has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.code.bracket-match": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "color.code.bracket-match has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.code.indent-guide": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "color.code.indent-guide has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.code.whitespace": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "color.code.whitespace has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.code.syntax.keyword": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Canonical color.code.syntax.keyword; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.code.syntax.string": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Canonical color.code.syntax.string; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.code.syntax.comment": {
+      "state": "mapped",
+      "surface": "messages",
+      "reason": "Canonical color.code.syntax.comment for code-block comments; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.code.syntax.number": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Canonical color.code.syntax.number; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.code.syntax.constant": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Canonical color.code.syntax.constant; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.code.syntax.function": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Canonical color.code.syntax.function; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.code.syntax.variable": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "color.code.syntax.variable has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.code.syntax.type": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "color.code.syntax.type has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.code.syntax.operator": {
+      "state": "mapped",
+      "surface": "interface",
+      "reason": "Canonical color.code.syntax.operator; native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.code.syntax.punctuation": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "color.code.syntax.punctuation has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.code.syntax.property": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "color.code.syntax.property has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.code.syntax.heading": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "color.code.syntax.heading has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.code.syntax.tag": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "color.code.syntax.tag has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.code.syntax.attribute": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "color.code.syntax.attribute has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.code.syntax.escape": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "color.code.syntax.escape has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.code.syntax.invalid": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "color.code.syntax.invalid has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.code.syntax.deprecated": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "color.code.syntax.deprecated has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.code.hued.string": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.code.hued.number": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.code.hued.constant": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.code.hued.function": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.code.hued.attribute": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.code.hued.escape": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.code.hued.type": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.code.hued.property": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.code.hued.operator": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.diagnostic.error.underline": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.diagnostic.error.text": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.diagnostic.error.stripe": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.diagnostic.error.bg": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.diagnostic.warning.underline": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.diagnostic.warning.text": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.diagnostic.warning.stripe": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.diagnostic.info.underline": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.diagnostic.info.text": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.diagnostic.hint.underline": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.diagnostic.unused.text": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.diff.added.bg": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.diff.added.gutter": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.diff.added.emphasis": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.diff.removed.bg": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.diff.removed.gutter": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.diff.removed.emphasis": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.diff.modified.bg": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.diff.modified.gutter": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.diff.conflict-border": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.diff.header-bg": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.terminal.bg": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.terminal.fg": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.terminal.cursor": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.terminal.selection-bg": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.terminal.selection-text": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.terminal.prompt-bg": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.terminal.prompt-text": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.terminal.ansi.0": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.terminal.ansi.1": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.terminal.ansi.2": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.terminal.ansi.3": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.terminal.ansi.4": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.terminal.ansi.5": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.terminal.ansi.6": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.terminal.ansi.7": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.terminal.ansi.8": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.terminal.ansi.9": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.terminal.ansi.10": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.terminal.ansi.11": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.terminal.ansi.12": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.terminal.ansi.13": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.terminal.ansi.14": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.terminal.ansi.15": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.chart.series-1": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.chart.series-2": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.chart.series-3": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.chart.series-4": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.chart.axis": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.chart.grid": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.chart.label": {
+      "state": "out-of-scope",
+      "surface": "developer-surfaces",
+      "reason": "No terminal, editor diagnostic/diff, hued-code opt-in or statistical data projection is claimed by this interface port."
+    },
+    "color.icon.default": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.icon.default has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "color.icon.decorative": {
+      "state": "unsupported",
+      "surface": "controls",
+      "reason": "color.icon.decorative has no separate native hook in this projection; related controls share the declared canonical role instead."
+    },
+    "space.0": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "space.1": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "space.2": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "space.4": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "space.8": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "space.12": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "space.16": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "space.24": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "space.32": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "space.48": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "border.width.default": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "border.width.emphasis": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "radius.none": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "font.family.mono": {
+      "state": "inherited",
+      "surface": "typography",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "font.weight.regular": {
+      "state": "inherited",
+      "surface": "typography",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "font.weight.bold": {
+      "state": "inherited",
+      "surface": "typography",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "font.size.ui-sm": {
+      "state": "inherited",
+      "surface": "typography",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "font.size.ui-md": {
+      "state": "inherited",
+      "surface": "typography",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "font.size.ui-lg": {
+      "state": "inherited",
+      "surface": "typography",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "font.size.reading": {
+      "state": "inherited",
+      "surface": "typography",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "font.size.code": {
+      "state": "inherited",
+      "surface": "typography",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "font.size.terminal": {
+      "state": "inherited",
+      "surface": "typography",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "font.size.h1": {
+      "state": "inherited",
+      "surface": "typography",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "font.size.h2": {
+      "state": "inherited",
+      "surface": "typography",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "font.size.h3": {
+      "state": "inherited",
+      "surface": "typography",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "font.size.caption": {
+      "state": "inherited",
+      "surface": "typography",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "font.line-height.ui-sm": {
+      "state": "inherited",
+      "surface": "typography",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "font.line-height.ui-md": {
+      "state": "inherited",
+      "surface": "typography",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "font.line-height.ui-lg": {
+      "state": "inherited",
+      "surface": "typography",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "font.line-height.reading": {
+      "state": "inherited",
+      "surface": "typography",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "font.line-height.code": {
+      "state": "inherited",
+      "surface": "typography",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "font.line-height.terminal": {
+      "state": "inherited",
+      "surface": "typography",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "font.line-height.h1": {
+      "state": "inherited",
+      "surface": "typography",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "font.line-height.h2": {
+      "state": "inherited",
+      "surface": "typography",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "font.line-height.h3": {
+      "state": "inherited",
+      "surface": "typography",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "font.line-height.caption": {
+      "state": "inherited",
+      "surface": "typography",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "font.letter-spacing.terminal": {
+      "state": "inherited",
+      "surface": "typography",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "density.compact.control-height": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "density.compact.row-height": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "density.compact.control-padding-x": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "density.compact.icon": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "density.compact.gap": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "density.comfortable.control-height": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "density.comfortable.row-height": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "density.comfortable.control-padding-x": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "density.comfortable.icon": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "density.comfortable.gap": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "focus.ring": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "focus.ring-container": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "focus.offset": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "focus.offset-container": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "focus.offset-invalid": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "motion.duration.fast": {
+      "state": "inherited",
+      "surface": "motion",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "motion.duration.base": {
+      "state": "inherited",
+      "surface": "motion",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "motion.duration.slow": {
+      "state": "inherited",
+      "surface": "motion",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "shadow.floating": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "layout.measure": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "layout.content-max": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "layout.app-max": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "breakpoint.xs": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "breakpoint.sm": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "breakpoint.md": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "breakpoint.lg": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "icon.size.sm": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "icon.size.md": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "icon.size.lg": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "icon.stroke": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "z.canvas": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "z.raised": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "z.popover": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "z.drawer": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "z.dialog": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "z.toast": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "z.skip-link": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "color.surface.accent": {
+      "state": "mapped",
+      "surface": "messages",
+      "reason": "Canonical color.surface.accent for outgoing message bubbles (D-035); native keys are listed in mapping.json and use no derived colours."
+    }
+  },
+  "rollback": "Choose the previous Telegram theme in Settings → Chat Settings/Appearance; restore the previous chat background if it was customised.",
+  "verificationPath": "evidence/2026-10-06-import.json"
+}

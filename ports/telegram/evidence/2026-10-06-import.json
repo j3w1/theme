@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "method": "real-import",
+  "result": "passed",
+  "subjectDigest": "sha256-a+4Hk23J4U5wZrrwfM2NQ6jcFPiBRdz7RzlAN87oYY8=",
+  "applicationVersion": "Telegram Android 12.10.6",
+  "platform": "android",
+  "os": "Android, owner's phone (arm64-v8a); the same subject was also checked on Windows in Telegram Desktop 7.2.9",
+  "protocol": "The owner imported the generated dist/j3w1.attheme and dist/j3w1.tdesktop-theme into the cloud theme TRhfHcbvZHlOucyc with Telegram's Theme Editor (IMPORT FILE, then SAVE AND APPLY THEME in the Android and TDesktop tabs). Each client then applied https://t.me/addtheme/TRhfHcbvZHlOucyc, and the owner inspected the main screens. evidence/2026-10-06-acceptance.md has the details.",
+  "checks": [
+    {
+      "name": "Android Theme Editor import",
+      "result": "passed",
+      "note": "The editor text equalled the generated file key for key (829 keys, no defaults added, none dropped) on the line-by-line compared revisions; the final revision was imported the same way. After D-036 the owner re-imported the Android file from commit c140143a the same way."
+    },
+    {
+      "name": "Desktop Theme Editor import",
+      "result": "passed",
+      "note": "The editor text equalled the generated palette key for key (541 keys); the background image became a cloud wallpaper."
+    },
+    {
+      "name": "Android applies the install link",
+      "result": "passed",
+      "note": "Telegram for Android 12.10.6 applied the theme from the t.me link."
+    },
+    {
+      "name": "Windows Telegram Desktop applies the install link",
+      "result": "passed",
+      "note": "Telegram Desktop 7.2.9 applied the theme from the t.me link, and it persisted across restarts."
+    },
+    {
+      "name": "Automatic cloud updates",
+      "result": "passed",
+      "note": "Cloud saves reached the applied Android client within its hourly re-check, and the Desktop client on its next start, without reapplying the link."
+    },
+    {
+      "name": "Android text selection (D-036)",
+      "result": "passed",
+      "note": "Selected text in the message field and inside the owner's own message shows the translucent tint behind rose text; the owner's verdict was \"looks much better\", then \"everything looks good now\"."
+    },
+    {
+      "name": "Visual check on both clients",
+      "result": "passed",
+      "note": "Chat list, badges, bubbles and their text, names, timestamps, ticks and links, replies, voice and file messages, composer, menus, settings, profiles, dialogs and wallpaper; the owner's verdict was 'everything looks good now'."
+    }
+  ],
+  "limits": "The cloud route was exercised; opening the files directly was not. Linux and macOS Telegram Desktop were not observed. Colours Telegram fixes in code, listed in IMPLEMENTATION.md, are outside the theme. This record names Android as its platform. The Windows Desktop check was made on the byte-identical Desktop file before D-036, which changes no Desktop key. The D-036 re-check covered the message field and outgoing messages. It did not cover a separately confirmed selection in someone else's message, or rich-editor and code-block selections; D-036 records their limits. Earlier re-bindings, each description-only, with artifacts and values unchanged: aBor4i… to AAZgwC… (review r7-2), and bv0rd5… to a+4Hk2… for the D-034/D-035 renumbering to D-035/D-036 (review r13-3; PR #69 holds D-033 and D-034) and the install-text wording (r13-7)."
+}

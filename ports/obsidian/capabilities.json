@@ -87,6 +87,11 @@
       "surface": "primitives",
       "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
     },
+    "color.primitive.red.40": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
     "color.primitive.red.50": {
       "state": "out-of-scope",
       "surface": "primitives",
@@ -308,6 +313,11 @@
       "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
     },
     "color.primitive.alpha.red-12": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.alpha.red-50": {
       "state": "out-of-scope",
       "surface": "primitives",
       "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
@@ -666,6 +676,11 @@
       "state": "inherited",
       "surface": "host-behavior",
       "reason": "Obsidian native text-selection changes its fill and preserves content/syntax foregrounds; no global ::selection foreground override is installed."
+    },
+    "color.interaction.text-selection.tint": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "Obsidian keeps the text colour inside a selection (rose 3.96:1 on --text-selection, IMPLEMENTATION.md), so the tint fits it; adopting it changes the Obsidian artifact and needs its own import check, so --text-selection keeps text-selection.bg for now."
     },
     "color.interaction.hover.bg": {
       "state": "mapped",
@@ -1766,6 +1781,11 @@
       "state": "inherited",
       "surface": "host-behavior",
       "reason": "z.skip-link: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "color.surface.accent": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "Obsidian has no surface for the user's own messages."
     }
   },
   "rollback": "Select the previous theme or Default in Settings → Appearance → Themes; restore both previous files together to roll back a j3w1 update."

@@ -249,6 +249,32 @@
         "$description": "Near-black surfaces with a faint red cast. Steps rise with luminance."
       },
       "red": {
+        "40": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2392,
+              0.0471,
+              0.0392
+            ],
+            "alpha": 1,
+            "hex": "#3d0c0a"
+          },
+          "$description": "D-035 accent surface for the user's own content: the deepest red of the owner's side-by-side comparison, with text.link at 4.55, text.muted at 4.90 and text.default at 7.30.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "origin": {
+                "kind": "proposed",
+                "ref": "spec/decisions.md#d-035",
+                "note": "A new colour chosen by the owner after comparing four outgoing-bubble options in real colours (D-035)."
+              },
+              "approval": {
+                "decision": "D-035"
+              }
+            }
+          }
+        },
         "50": {
           "$value": {
             "colorSpace": "srgb",
@@ -1347,6 +1373,32 @@
                 "kind": "site",
                 "ref": "j3w1/j3w1.github.io@ffa81225149e6b6e26d0b4a850223a1781c3b973 assets/css/desktop.css",
                 "key": ".wm-drag-ghost rgb(145 20 16 / 12%)"
+              }
+            }
+          }
+        },
+        "red-50": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5686,
+              0.0784,
+              0.0627
+            ],
+            "alpha": 0.5,
+            "hex": "#911410"
+          },
+          "$description": "D-036 text-selection tint: red.350 at 50%, for hosts that keep the text colour inside a selection.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "origin": {
+                "kind": "proposed",
+                "ref": "spec/decisions.md#d-036",
+                "note": "The text-selection red (red.350) at a strength the owner chose after comparing 40, 50 and 60% and the opaque selection fill, rendered in Telegram's surfaces (D-036)."
+              },
+              "approval": {
+                "decision": "D-036"
               }
             }
           }

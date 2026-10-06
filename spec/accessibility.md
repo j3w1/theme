@@ -119,6 +119,13 @@ silently.
   `code.selection-bg` (4.24 and 4.13:1). Keyword, tag, property and heading
   stay above it after D-029. A selection is short-lived; the code-editor
   specification records this limit.
+- Text selection with `interaction.text-selection.tint` (D-036) keeps text at
+  4.5:1 or above only where the host draws the tint under the text.
+  - **Over the text:** where a host paints it over the text, as in Telegram's
+    rich editor and rich translation preview, selected text measures 2.96 to
+    3.43:1.
+  - **Links and code:** inside a selection they drop below 4.5:1 (links 3.45
+    to 4.30; code 3.13 to 4.24, and 4.40 for numbers in outgoing blocks).
 
 ## Verification evidence and freshness
 
