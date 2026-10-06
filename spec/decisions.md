@@ -884,8 +884,8 @@ visible in the message field. Android's text-selection keys had the 12%
     measures 2.96 to 3.43:1. No strength meets both this and the accent-surface
     floor: 40% gives 4.34 and 3.68. The owner's comparison did not show this
     case; it was found by review r11 after the choice;
-  - in code blocks, keyword, string, comment, number and constant colours are
-    3.13 to 4.40:1, and inside an outgoing code block the selection stands
+  - in code blocks, keyword, string and comment colours are 3.13 to 4.24:1,
+    number and constant colours 4.40:1 in outgoing blocks only, and inside an outgoing code block the selection stands
     ΔE 18.3 from the block.
 
   A selection is short-lived, as with editor selections in

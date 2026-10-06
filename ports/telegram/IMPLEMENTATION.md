@@ -133,7 +133,7 @@ The same `https://t.me/addtheme/<slug>` link opens the matching document on each
   - **Visibility:** the tint stands ΔE 36.5 from the message field, 35.1 from incoming bubbles and 21.5 from outgoing bubbles.
   - **Rose text:** stays at 5.53:1 or above where the tint is drawn under it (messages, the message field, instant view).
   - **Text the tint covers:** in the rich editor's tables and captions and the rich-message translation preview, Telegram paints the tint over the text. There, selected text measures 2.96 to 3.43:1.
-  - **While a selection lasts:** links measure 3.45 to 4.30:1. In code blocks, keyword, string, comment, number and constant colours measure 3.13 to 4.40:1, and inside an outgoing code block the selection stands ΔE 18.3 from the block (D-035).
+  - **While a selection lasts:** links measure 3.45 to 4.30:1. In code blocks, keyword, string and comment colours measure 3.13 to 4.24:1, and number and constant colours 4.40:1 in outgoing blocks only; inside an outgoing code block the selection stands ΔE 18.3 from the block (D-035).
 - **Platform keys differ.** Desktop exposes hover states that Android lacks. Android's outgoing-bubble gradient keys stay unset.
 - **Desktop chat-list badges.** This is a deliberate, host-forced departure from the canonical Badge count variant (`action.primary.bg` with `action.primary.text`).
   - **Why:** Telegram Desktop reuses the draft-label and poll-icon colours as the reaction and poll badge fills, and uses one count colour per row state for every badge family. No dark fill can also be readable label text on the black row.

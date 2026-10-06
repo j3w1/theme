@@ -125,7 +125,7 @@ silently.
     rich editor and rich translation preview, selected text measures 2.96 to
     3.43:1.
   - **Links and code:** inside a selection they drop below 4.5:1 (links 3.45
-    to 4.30; code 3.13 to 4.40).
+    to 4.30; code 3.13 to 4.24, and 4.40 for numbers in outgoing blocks).
 
 ## Verification evidence and freshness
 
