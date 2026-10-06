@@ -193,6 +193,9 @@ test("Desktop text buttons stay readable on the backgrounds their pinned styles 
   for (const [fg, bg] of pairs) assert.ok(pairRatio(fg, bg).ratio >= 4.5, `${fg} on ${bg}`);
   assert.deepEqual(desktop.get("historyComposeButtonBg"), desktop.get("historyComposeAreaBg"));
   assert.deepEqual(desktop.get("historyComposeButtonBgOver"), desktop.get("windowBgOver"));
+  // lib_ui backgrounds keep surface roles: the emoji category strip and the
+  // media viewer's transparency checkerboard showed rose to the owner.
+  for (const key of ["emojiPanCategories", "mediaviewTransparentBg", "mediaviewTransparentFg"]) assert.match(roleOf("desktop", key), /^color\.surface\./, key);
   // The main menu's rows draw on windowBg; lib_ui aliases mainMenuBg to it. A
   // separate panel colour left the owner a black row band on a red-brown menu.
   assert.deepEqual(desktop.get("mainMenuBg"), desktop.get("windowBg"));

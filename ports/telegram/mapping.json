@@ -68,7 +68,8 @@
       "android:voipgroup_overlayAlertMutedByAdmin2",
       "android:voipgroup_mutedByAdminGradient",
       "android:voipgroup_mutedByAdminGradient2",
-      "android:voipgroup_mutedByAdminGradient3"
+      "android:voipgroup_mutedByAdminGradient3",
+      "desktop:mediaviewTransparentFg"
     ],
     "color.surface.default": [
       "android:dialogLineProgressBackground",
@@ -135,7 +136,8 @@
       "desktop:walletTitleButtonBgActive",
       "desktop:walletTitleButtonCloseBg",
       "android:avatar_backgroundGroupCreateSpanBlue",
-      "android:chat_outLocationBackground"
+      "android:chat_outLocationBackground",
+      "desktop:emojiPanCategories"
     ],
     "color.surface.raised": [
       "android:chat_inTableBackground",
@@ -375,7 +377,6 @@
       "desktop:mediaviewMenuFg",
       "desktop:mediaviewControlFg",
       "desktop:mediaviewPipControlsFgOver",
-      "desktop:mediaviewTransparentFg",
       "desktop:groupCallMembersFg",
       "desktop:callBarFg",
       "desktop:walletBalanceFg",
@@ -512,7 +513,6 @@
       "desktop:boxTitleAdditionalFg",
       "desktop:contactsStatusFgOnline",
       "desktop:dialogsTextFgService",
-      "desktop:emojiPanCategories",
       "desktop:msgWaveformInInactive",
       "desktop:msgWaveformOutInactive",
       "desktop:historyComposeAreaFgService",

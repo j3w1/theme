@@ -32332,7 +32332,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-euDOrj1jR3KCIIyorMVyOthU61ARGZjXQ57ffAko5mY=",
+      "subjectDigest": "sha256-oHc1Ijjs6CT4LazaArNRjBcGVLRIzWMAjkijj17pqzM=",
       "evidencePath": null,
       "surfaces": {
         "interface": {
@@ -32387,7 +32387,7 @@
           "path": "dist/j3w1.tdesktop-theme",
           "install": "File install: open with Telegram Desktop, then Apply this theme and Keep changes. The cloud link in the guide, when published, installs the same theme with automatic updates.",
           "source": "ports/telegram/dist/j3w1.tdesktop-theme",
-          "digest": "sha256-DetvSPHltGDwYzZPqvBPLQSk8GjHD9HtOvGDqp1xniw="
+          "digest": "sha256-gw6b8UWr3Vka1wBY0JR8fXV13+ForWbLxXT/fbvqvvg="
         }
       ],
       "rollback": "Choose the previous Telegram theme in Settings → Chat Settings/Appearance; restore the previous chat background if it was customised.",
@@ -36440,7 +36440,8 @@
             "android:voipgroup_overlayAlertMutedByAdmin2",
             "android:voipgroup_mutedByAdminGradient",
             "android:voipgroup_mutedByAdminGradient2",
-            "android:voipgroup_mutedByAdminGradient3"
+            "android:voipgroup_mutedByAdminGradient3",
+            "desktop:mediaviewTransparentFg"
           ],
           "value": "#1c0a09",
           "eligibility": {
@@ -36536,7 +36537,8 @@
             "desktop:walletTitleButtonBgActive",
             "desktop:walletTitleButtonCloseBg",
             "android:avatar_backgroundGroupCreateSpanBlue",
-            "android:chat_outLocationBackground"
+            "android:chat_outLocationBackground",
+            "desktop:emojiPanCategories"
           ],
           "value": "#100c0c",
           "eligibility": {
@@ -37418,7 +37420,6 @@
             "desktop:mediaviewMenuFg",
             "desktop:mediaviewControlFg",
             "desktop:mediaviewPipControlsFgOver",
-            "desktop:mediaviewTransparentFg",
             "desktop:groupCallMembersFg",
             "desktop:callBarFg",
             "desktop:walletBalanceFg",
@@ -37602,7 +37603,6 @@
             "desktop:boxTitleAdditionalFg",
             "desktop:contactsStatusFgOnline",
             "desktop:dialogsTextFgService",
-            "desktop:emojiPanCategories",
             "desktop:msgWaveformInInactive",
             "desktop:msgWaveformOutInactive",
             "desktop:historyComposeAreaFgService",
