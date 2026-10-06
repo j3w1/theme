@@ -428,17 +428,22 @@ test("main native text/background pairs pass 4.5:1 without rounding", () => {
   // chat_audioTimePaint) and link-preview video duration (chat_durationPaint)
   // are drawn on both bubbles. text.subtle would be 4.30:1 on the accent (r7-1).
   pairs.android.push(["chat_inAudioDurationText", "chat_inBubble"], ["chat_outAudioDurationText", "chat_outBubble"], ["chat_previewDurationText", "chat_inBubble"], ["chat_previewDurationText", "chat_outBubble"]);
+  // Desktop document links beside the file thumbnail are drawn on the bubble
+  // (history_view_document.cpp, the msgFileThumbLink*Fg style fields; r8-1).
+  pairs.desktop.push(["msgFileThumbLinkInFg", "msgInBg"], ["msgFileThumbLinkOutFg", "msgOutBg"], ["msgFileThumbLinkInFgSelected", "msgInBgSelected"], ["msgFileThumbLinkOutFgSelected", "msgOutBgSelected"]);
   for (const [target, entries] of Object.entries(pairs)) for (const [fgKey, bgKey] of entries) {
     const fg = rgba(target, fgKey), bg = rgba(target, bgKey);
     const result = evaluatePair({ fg: hexToColor(rgbHex(fg), fg[3] / 255), bg: hexToColor(rgbHex(bg), bg[3] / 255), min: 4.5 });
     assert.ok(result.pass, `${target}:${fgKey} on ${bgKey}: ${result.ratio}`);
   }
-  // D-034's rule as a role check: nothing drawn in or on an outgoing bubble,
-  // and none of the keys D-034 moved, may fall back to text.subtle.
-  const outgoing = { android: /^chat_out/, desktop: /^msgOut|^history\w*Out|^mediaOut/ };
+  // D-034's rule as a role check: no outgoing-bubble key, and none of the keys
+  // D-034 moved, may resolve to text.subtle. Outgoing keys are the chat_out*
+  // prefix or "Out" as a camel-case word (msgFileThumbLinkOutFg,
+  // chat_messageLinkOut), but not Outer or Desktop's slide-fade animation.
+  const isOutgoing = key => /^chat_out/.test(key) || (/Out(?=[A-Z]|$)/.test(key) && !/^slideFadeOut/.test(key));
   const moved = ["chat_inSentClock", "chat_outSentClock", "chat_inTimeText", "chat_outTimeText", "chat_inAudioDurationText", "chat_outAudioDurationText", "chat_previewDurationText", "chat_secretTimeText"];
   for (const target of ["android", "desktop"]) for (const key of registry[target].keys) {
-    if (outgoing[target].test(key) || (target === "android" && moved.includes(key))) assert.notEqual(effective(target, key)?.role, "color.text.subtle", `${target}:${key} must not use text.subtle (D-034)`);
+    if (isOutgoing(key) || (target === "android" && moved.includes(key))) assert.notEqual(effective(target, key)?.role, "color.text.subtle", `${target}:${key} must not use text.subtle (D-034)`);
   }
   for (const key of registry.android.keys.filter(key => /^windowBackgroundWhite(?:GrayText\d*|BlueText\d*|GreenText\d*|ValueText)$/.test(key))) {
     const fg = rgba("android", key), bg = rgba("android", "windowBackgroundGray");
