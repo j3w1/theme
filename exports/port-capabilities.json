@@ -32581,7 +32581,7 @@
     {
       "id": "telegram",
       "displayName": "Telegram Android and Desktop",
-      "declaredStatus": "experimental",
+      "declaredStatus": "verified",
       "format": "telegram-theme",
       "integrationKind": "other",
       "themeVersion": "3.1.0",
@@ -32602,8 +32602,8 @@
         "macos"
       ],
       "verification": {
-        "status": "stale",
-        "reason": "Target, mapping, capabilities, tokens or artifact bytes changed since the recorded import."
+        "status": "verified",
+        "reason": "The cloud route was exercised; opening the files directly was not. Linux and macOS Telegram Desktop were not observed. Colours Telegram fixes in code, listed in IMPLEMENTATION.md, are outside the theme. This record names Android as its platform. The Windows Desktop check was made on the byte-identical Desktop file before D-035, which changes no Desktop key. The D-035 re-check covered the message field and outgoing messages, not rich-editor or code-block selections; D-035 records their limits."
       },
       "subjectDigest": "sha256-bv0rd5srcwNS012ZVWHcVvXtnB+ogMD+4vPkEpr0+vA=",
       "evidencePath": "ports/telegram/evidence/2026-10-06-import.json",

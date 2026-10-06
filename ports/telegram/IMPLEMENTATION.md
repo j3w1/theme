@@ -206,7 +206,7 @@ The API calls were checked against teleproto 1.229.1's TL definitions and client
 
 The port is `verified` while that record matches; it returns to experimental if a later change is not re-checked on both clients.
 
-**Current state:** experimental. The owner found text selection too faint on Android (2026-10-06), and the Android file changed for it (D-035). The record above no longer matches until the new file is re-imported and checked.
+**Current state:** verified. The owner found text selection too faint on Android, and the Android file changed for it (D-035). The owner then re-imported it and re-checked selection on Android on 2026-10-06. The Desktop file did not change.
 
 **Visual check, on Android and on Telegram Desktop for Windows:**
 - **Chats:** the chat list and the unread badges; one chat, with incoming and outgoing bubbles, message text, names, timestamps and links; a reply or quote; the composer and the send button.

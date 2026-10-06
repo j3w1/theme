@@ -15,10 +15,10 @@
   Text it is painted over (about 3:1), links and some code colours do not,
   while selected. Every port classifies it. Telegram uses it for Android
   text selection.
-- **Telegram port**, accepted on Telegram for Android 12.10.6 and Telegram
+- **Telegram port**, verified on Telegram for Android 12.10.6 and Telegram
   Desktop 7.2.9 on Windows (cloud route, 2026-10-06; direct file import and
-  Linux/macOS not exercised). Android text selection then moved to the
-  D-035 tint, which awaits the owner's re-check. `ports/telegram/` generates the official
+  Linux/macOS not exercised), including Android text selection with the
+  D-035 tint. `ports/telegram/` generates the official
   Telegram for Android `.attheme` and Telegram Desktop `.tdesktop-theme`
   (palette plus a 1×2 background in a stored, fixed-date zip) from one
   mapping of default roles. Every upstream key at the pinned DrKLO/Telegram and

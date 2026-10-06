@@ -6,7 +6,7 @@ This page is for the theme owner. People installing the theme never need it.
 | | |
 | --- | --- |
 | Cloud theme | j3w1, slug `TRhfHcbvZHlOucyc` |
-| Install link | https://t.me/addtheme/TRhfHcbvZHlOucyc (awaiting owner verification) |
+| Install link | https://t.me/addtheme/TRhfHcbvZHlOucyc (verified by the owner on Android and Telegram Desktop) |
 | Theme Editor | [Android](https://themes.contest.com/theme/TRhfHcbvZHlOucyc?format=android) · [TDesktop](https://themes.contest.com/theme/TRhfHcbvZHlOucyc?format=tdesktop) |
 | Files | [j3w1.attheme](https://j3w1.github.io/theme/ports/telegram/j3w1.attheme) · [j3w1.tdesktop-theme](https://j3w1.github.io/theme/ports/telegram/j3w1.tdesktop-theme) |
 <!-- cloud:end -->

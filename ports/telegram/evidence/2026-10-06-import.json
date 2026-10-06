@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "method": "real-import",
   "result": "passed",
-  "subjectDigest": "sha256-AAZgwC+RrGExq+UHr+LljY8VBIxuupuphHrjtILXndA=",
+  "subjectDigest": "sha256-bv0rd5srcwNS012ZVWHcVvXtnB+ogMD+4vPkEpr0+vA=",
   "applicationVersion": "Telegram Android 12.10.6",
   "platform": "android",
   "os": "Android, owner's phone (arm64-v8a); the same subject was also checked on Windows in Telegram Desktop 7.2.9",
@@ -11,7 +11,7 @@
     {
       "name": "Android Theme Editor import",
       "result": "passed",
-      "note": "The editor text equalled the generated file key for key (829 keys, no defaults added, none dropped) on the line-by-line compared revisions; the final revision was imported the same way."
+      "note": "The editor text equalled the generated file key for key (829 keys, no defaults added, none dropped) on the line-by-line compared revisions; the final revision was imported the same way. After D-035 the owner re-imported the Android file from commit c140143a the same way."
     },
     {
       "name": "Desktop Theme Editor import",
@@ -34,10 +34,15 @@
       "note": "Cloud saves reached the applied Android client within its hourly re-check, and the Desktop client on its next start, without reapplying the link."
     },
     {
+      "name": "Android text selection (D-035)",
+      "result": "passed",
+      "note": "Selected text in the message field and inside the owner's own message shows the translucent tint behind rose text; the owner's verdict was \"looks much better\", then \"everything looks good now\"."
+    },
+    {
       "name": "Visual check on both clients",
       "result": "passed",
       "note": "Chat list, badges, bubbles and their text, names, timestamps, ticks and links, replies, voice and file messages, composer, menus, settings, profiles, dialogs and wallpaper; the owner's verdict was 'everything looks good now'."
     }
   ],
-  "limits": "The cloud route was exercised; opening the files directly was not. Linux and macOS Telegram Desktop were not observed. Colours Telegram fixes in code, listed in IMPLEMENTATION.md, are outside the theme. This record names Android as its platform; the Windows Desktop check covers the same subject. Re-bound on 2026-10-06 from sha256-aBor4iTYMH4wwPrQCd+h5SwD1LP/JgHzhJ5EHhT9wlE= after a description-only token change (review r7-2): both artifacts are byte-identical and no resolved colour value changed."
+  "limits": "The cloud route was exercised; opening the files directly was not. Linux and macOS Telegram Desktop were not observed. Colours Telegram fixes in code, listed in IMPLEMENTATION.md, are outside the theme. This record names Android as its platform. The Windows Desktop check was made on the byte-identical Desktop file before D-035, which changes no Desktop key. The D-035 re-check covered the message field and outgoing messages, not rich-editor or code-block selections; D-035 records their limits."
 }
