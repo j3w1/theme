@@ -10,6 +10,10 @@
   outline on the recorded host. Downstream installations receive this bounded
   correction through the existing single-script update and rollback actions.
 
+- Settings standard-button templates use the complete secondary-action state
+  ladder instead of retaining native accent/gray brushes. Commands and layout
+  remain native; setup and offline rollback share the existing installer.
+
 ## [3.1.0] - 2026-09-27
 
 Additive minor preparation, following the first downloadable application-port

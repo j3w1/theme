@@ -650,3 +650,17 @@ use the same bundled adapter and the single install.ps1 lifecycle.
 
 This describes a bounded rendering correction. It does not resolve the Notepad
 first-window strip, Paint workspace, or unavailable Settings appearance check.
+
+### Settings button template states
+
+A read-only exact-host trace found ordinary Settings Buttons whose local
+ContentPresenter brushes retained the native accent independently of the
+application resource aliases. Their direct ContentPresenter owns CommonStates
+with Normal, PointerOver, Pressed and Disabled. The Settings adapter now maps
+that observed Button family and those template states to the secondary-action
+ladder. A native action tone that is not exposed by the selector uses this
+secondary fallback; resource-based AccentButton controls retain their primary
+mapping. Unknown template shapes remain native. No command, enabled state,
+label, dimensions or layout is changed. The pinned styler retains/restores
+the original local values through the existing single-script lifecycle.
+A mapping and a numeric trace are not rendered hover/focus acceptance.

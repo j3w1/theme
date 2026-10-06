@@ -1156,7 +1156,27 @@
         {
           "target": "Button",
           "styles": {
-            "CornerRadius": "radius.none"
+            "CornerRadius": "radius.none",
+            "Background": "color.action.secondary.bg",
+            "Foreground": "color.action.secondary.text",
+            "BorderBrush": "color.action.secondary.border"
+          }
+        },
+        {
+          "target": "Button > ContentPresenter@CommonStates",
+          "styles": {
+            "Background@Normal": "color.action.secondary.bg",
+            "Foreground@Normal": "color.action.secondary.text",
+            "BorderBrush@Normal": "color.action.secondary.border",
+            "Background@PointerOver": "color.action.secondary.hover-bg",
+            "Foreground@PointerOver": "color.action.secondary.text",
+            "BorderBrush@PointerOver": "color.action.secondary.border",
+            "Background@Pressed": "color.action.secondary.pressed-bg",
+            "Foreground@Pressed": "color.action.secondary.text",
+            "BorderBrush@Pressed": "color.border.active",
+            "Background@Disabled": "color.interaction.disabled.bg",
+            "Foreground@Disabled": "color.text.disabled",
+            "BorderBrush@Disabled": "color.border.disabled"
           }
         },
         {

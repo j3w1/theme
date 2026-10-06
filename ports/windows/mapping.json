@@ -103,7 +103,8 @@
       "terminal-chrome.resource.SplitButtonBorderBrushPressed",
       "terminal-chrome.resource.SplitButtonBorderBrushChecked",
       "terminal-chrome.resource.SplitButtonBorderBrushCheckedPointerOver",
-      "terminal-chrome.resource.SplitButtonBorderBrushCheckedPressed"
+      "terminal-chrome.resource.SplitButtonBorderBrushCheckedPressed",
+      "windows-11-settings-styler | Button > ContentPresenter@CommonStates | BorderBrush@Pressed"
     ],
     "color.surface.desktop": [
       "native.desktop"
@@ -671,7 +672,8 @@
       "terminal-chrome.resource.SplitButtonForegroundCheckedDisabled",
       "notepad-chrome.resource.ScrollBarButtonArrowForegroundDisabled",
       "paint-chrome.resource.ScrollBarButtonArrowForegroundDisabled",
-      "terminal-chrome.resource.ScrollBarButtonArrowForegroundDisabled"
+      "terminal-chrome.resource.ScrollBarButtonArrowForegroundDisabled",
+      "windows-11-settings-styler | Button > ContentPresenter@CommonStates | Foreground@Disabled"
     ],
     "color.interaction.selection.bg": [
       "native.selection",
@@ -1303,7 +1305,8 @@
       "terminal-chrome.resource.ScrollBarThumbFillDisabled",
       "notepad-chrome.resource.ScrollBarPanningThumbBackgroundDisabled",
       "paint-chrome.resource.ScrollBarPanningThumbBackgroundDisabled",
-      "terminal-chrome.resource.ScrollBarPanningThumbBackgroundDisabled"
+      "terminal-chrome.resource.ScrollBarPanningThumbBackgroundDisabled",
+      "windows-11-settings-styler | Button > ContentPresenter@CommonStates | Background@Disabled"
     ],
     "color.border.disabled": [
       "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | BorderBrush@Disabled",
@@ -1347,7 +1350,8 @@
       "terminal-chrome.resource.SubtleButtonBorderBrushDisabled",
       "terminal-chrome.resource.SplitButtonBorderBrushDisabled",
       "terminal-chrome.resource.SplitButtonBorderBrushCheckedDisabled",
-      "terminal-chrome.resource.SliderTrackFillDisabled"
+      "terminal-chrome.resource.SliderTrackFillDisabled",
+      "windows-11-settings-styler | Button > ContentPresenter@CommonStates | BorderBrush@Disabled"
     ],
     "color.border.default": [
       "windows-11-start-menu-styler | StartMenu.CategoryControl > Grid > Border | BorderBrush"
@@ -1557,24 +1561,35 @@
     ],
     "color.action.secondary.bg": [
       "windows-11-notification-center-styler | Button#VerbButton | Background",
-      "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Background@Normal"
+      "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Background@Normal",
+      "windows-11-settings-styler | Button | Background",
+      "windows-11-settings-styler | Button > ContentPresenter@CommonStates | Background@Normal"
     ],
     "color.action.secondary.text": [
       "windows-11-notification-center-styler | Button#VerbButton | Foreground",
       "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Foreground@Normal",
       "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Foreground@PointerOver",
-      "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Foreground@Pressed"
+      "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Foreground@Pressed",
+      "windows-11-settings-styler | Button | Foreground",
+      "windows-11-settings-styler | Button > ContentPresenter@CommonStates | Foreground@Normal",
+      "windows-11-settings-styler | Button > ContentPresenter@CommonStates | Foreground@PointerOver",
+      "windows-11-settings-styler | Button > ContentPresenter@CommonStates | Foreground@Pressed"
     ],
     "color.action.secondary.border": [
       "windows-11-notification-center-styler | Button#VerbButton | BorderBrush",
       "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | BorderBrush@Normal",
-      "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | BorderBrush@PointerOver"
+      "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | BorderBrush@PointerOver",
+      "windows-11-settings-styler | Button | BorderBrush",
+      "windows-11-settings-styler | Button > ContentPresenter@CommonStates | BorderBrush@Normal",
+      "windows-11-settings-styler | Button > ContentPresenter@CommonStates | BorderBrush@PointerOver"
     ],
     "color.action.secondary.hover-bg": [
-      "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Background@PointerOver"
+      "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Background@PointerOver",
+      "windows-11-settings-styler | Button > ContentPresenter@CommonStates | Background@PointerOver"
     ],
     "color.action.secondary.pressed-bg": [
-      "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Background@Pressed"
+      "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Background@Pressed",
+      "windows-11-settings-styler | Button > ContentPresenter@CommonStates | Background@Pressed"
     ],
     "color.text.prose": [
       "powertoys.markdown.PROSE",

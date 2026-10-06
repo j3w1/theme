@@ -37750,7 +37750,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-i0BnkgxjTnhBRU2jLbK9tbcenXTlCdlJJBBP89qa4+c=",
+      "subjectDigest": "sha256-/oxSYkTDar+bn8A48+CL68x0bjAqf4SxDVbqrNl8QWQ=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37831,7 +37831,7 @@
           "path": "dist/windows-11-settings-styler.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-11-settings-styler.json",
-          "digest": "sha256-MRn/OWnjfjFRJxz/5c6mGrIflV+19hcIn+4P40EEK34="
+          "digest": "sha256-ZLF5BS6lXsy45PJrkgcwsYbtzFO6J6hMJY6T7Yp50pA="
         },
         {
           "path": "dist/j3w1-wallpaper.bmp",
@@ -37957,7 +37957,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-YjAeIf9Kot6Aabkf8vUfIkV3o145VUmONzOAcgaO7FE="
+          "digest": "sha256-jNZ5QfZMNyRfldDg3gQCW9D1kYMFetTVKpuAZaz3LGw="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
@@ -38455,7 +38455,9 @@
           "role": "color.action.secondary.bg",
           "nativeKeys": [
             "windows-11-notification-center-styler | Button#VerbButton | Background",
-            "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Background@Normal"
+            "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Background@Normal",
+            "windows-11-settings-styler | Button | Background",
+            "windows-11-settings-styler | Button > ContentPresenter@CommonStates | Background@Normal"
           ],
           "value": "rgb(0 0 0 / 0%)",
           "eligibility": {
@@ -38474,7 +38476,10 @@
           "nativeKeys": [
             "windows-11-notification-center-styler | Button#VerbButton | BorderBrush",
             "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | BorderBrush@Normal",
-            "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | BorderBrush@PointerOver"
+            "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | BorderBrush@PointerOver",
+            "windows-11-settings-styler | Button | BorderBrush",
+            "windows-11-settings-styler | Button > ContentPresenter@CommonStates | BorderBrush@Normal",
+            "windows-11-settings-styler | Button > ContentPresenter@CommonStates | BorderBrush@PointerOver"
           ],
           "value": "#a3676b",
           "eligibility": {
@@ -38491,7 +38496,8 @@
         {
           "role": "color.action.secondary.hover-bg",
           "nativeKeys": [
-            "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Background@PointerOver"
+            "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Background@PointerOver",
+            "windows-11-settings-styler | Button > ContentPresenter@CommonStates | Background@PointerOver"
           ],
           "value": "#630f0d",
           "eligibility": {
@@ -38508,7 +38514,8 @@
         {
           "role": "color.action.secondary.pressed-bg",
           "nativeKeys": [
-            "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Background@Pressed"
+            "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Background@Pressed",
+            "windows-11-settings-styler | Button > ContentPresenter@CommonStates | Background@Pressed"
           ],
           "value": "#420f0c",
           "eligibility": {
@@ -38528,7 +38535,11 @@
             "windows-11-notification-center-styler | Button#VerbButton | Foreground",
             "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Foreground@Normal",
             "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Foreground@PointerOver",
-            "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Foreground@Pressed"
+            "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Foreground@Pressed",
+            "windows-11-settings-styler | Button | Foreground",
+            "windows-11-settings-styler | Button > ContentPresenter@CommonStates | Foreground@Normal",
+            "windows-11-settings-styler | Button > ContentPresenter@CommonStates | Foreground@PointerOver",
+            "windows-11-settings-styler | Button > ContentPresenter@CommonStates | Foreground@Pressed"
           ],
           "value": "#ffa2a7",
           "eligibility": {
@@ -38678,7 +38689,8 @@
             "terminal-chrome.resource.SplitButtonBorderBrushPressed",
             "terminal-chrome.resource.SplitButtonBorderBrushChecked",
             "terminal-chrome.resource.SplitButtonBorderBrushCheckedPointerOver",
-            "terminal-chrome.resource.SplitButtonBorderBrushCheckedPressed"
+            "terminal-chrome.resource.SplitButtonBorderBrushCheckedPressed",
+            "windows-11-settings-styler | Button > ContentPresenter@CommonStates | BorderBrush@Pressed"
           ],
           "value": "#e53935",
           "eligibility": {
@@ -38843,7 +38855,8 @@
             "terminal-chrome.resource.SubtleButtonBorderBrushDisabled",
             "terminal-chrome.resource.SplitButtonBorderBrushDisabled",
             "terminal-chrome.resource.SplitButtonBorderBrushCheckedDisabled",
-            "terminal-chrome.resource.SliderTrackFillDisabled"
+            "terminal-chrome.resource.SliderTrackFillDisabled",
+            "windows-11-settings-styler | Button > ContentPresenter@CommonStates | BorderBrush@Disabled"
           ],
           "value": "#7d1310",
           "eligibility": {
@@ -40163,7 +40176,8 @@
             "terminal-chrome.resource.ScrollBarThumbFillDisabled",
             "notepad-chrome.resource.ScrollBarPanningThumbBackgroundDisabled",
             "paint-chrome.resource.ScrollBarPanningThumbBackgroundDisabled",
-            "terminal-chrome.resource.ScrollBarPanningThumbBackgroundDisabled"
+            "terminal-chrome.resource.ScrollBarPanningThumbBackgroundDisabled",
+            "windows-11-settings-styler | Button > ContentPresenter@CommonStates | Background@Disabled"
           ],
           "value": "#160b0b",
           "eligibility": {
@@ -43546,7 +43560,8 @@
             "terminal-chrome.resource.SplitButtonForegroundCheckedDisabled",
             "notepad-chrome.resource.ScrollBarButtonArrowForegroundDisabled",
             "paint-chrome.resource.ScrollBarButtonArrowForegroundDisabled",
-            "terminal-chrome.resource.ScrollBarButtonArrowForegroundDisabled"
+            "terminal-chrome.resource.ScrollBarButtonArrowForegroundDisabled",
+            "windows-11-settings-styler | Button > ContentPresenter@CommonStates | Foreground@Disabled"
           ],
           "value": "#8a5559",
           "eligibility": {
