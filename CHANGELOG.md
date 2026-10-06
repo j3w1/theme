@@ -7,12 +7,14 @@
   (`#3d0c0a`), chosen by the owner from a side-by-side comparison; links keep
   4.55:1 on it, and secondary text on it uses `text.muted`. Every port classifies it. Telegram uses it for
   outgoing bubbles, with bubble timestamps in `text.muted`.
-- **`color.interaction.text-selection.tint`** (D-035). A translucent text
-  selection for hosts that keep the text colour inside a selection: the
+- **`color.interaction.text-selection.tint`** (D-035). Text selection on
+  hosts that keep the text colour inside a selection; it is translucent, so
+  it also suits hosts that paint the fill over their content. The
   text-selection red `#911410` at 50%, the new primitive
-  `color.primitive.alpha.red-50`. Text stays at 4.5:1 or above on it; links
-  do not while selected. Every port classifies it. Telegram uses it for
-  Android text selection.
+  `color.primitive.alpha.red-50`. Text drawn on it stays at 4.5:1 or above.
+  Text it is painted over (about 3:1), links and some code colours do not,
+  while selected. Every port classifies it. Telegram uses it for Android
+  text selection.
 - **Telegram port**, accepted on Telegram for Android 12.10.6 and Telegram
   Desktop 7.2.9 on Windows (cloud route, 2026-10-06; direct file import and
   Linux/macOS not exercised). Android text selection then moved to the

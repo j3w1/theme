@@ -47841,7 +47841,7 @@
             },
             {
               "port": "telegram",
-              "reason": "Android keeps the text colour inside a selection; Desktop's selected text uses text.on-selection. No native key takes this role.",
+              "reason": "Android keeps the text colour inside a selection; Desktop's selected-text keys take interaction.selection.text. No native key takes this role.",
               "source": {
                 "file": "ports/telegram/mapping.json",
                 "pointer": "/unmapped/color.interaction.text-selection.text",
@@ -47897,7 +47897,7 @@
           "group": "interaction",
           "css": "rgb(145 20 16 / 50%)",
           "variable": "--color-interaction-text-selection-tint",
-          "description": "Text selection where the host keeps the text colour inside the selection and may paint the fill over its content: a translucent fill. Text stays at 4.5:1 or above on it over the canvas, raised and accent surfaces; links do not (3.45 to 4.30) (D-035).",
+          "description": "Text selection on hosts that keep the text colour inside a selection. It is translucent, so it also suits hosts that paint the fill over their content. Text drawn on it keeps 4.5:1 over the canvas, raised and accent surfaces; text it is painted over, and links, do not (D-035).",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -47959,7 +47959,7 @@
             },
             {
               "port": "obsidian",
-              "reason": "Obsidian recolours selected text, so --text-selection takes the opaque text-selection.bg with its text colour.",
+              "reason": "Obsidian keeps the text colour inside a selection (rose 3.96:1 on --text-selection, IMPLEMENTATION.md), so the tint fits it; adopting it changes the Obsidian artifact and needs its own import check, so --text-selection keeps text-selection.bg for now.",
               "source": {
                 "file": "ports/obsidian/mapping.json",
                 "pointer": "/unmapped/color.interaction.text-selection.tint",
@@ -157034,7 +157034,7 @@
           "group": "interaction",
           "css": "rgb(145 20 16 / 50%)",
           "variable": "--color-interaction-text-selection-tint",
-          "description": "Text selection where the host keeps the text colour inside the selection and may paint the fill over its content: a translucent fill. Text stays at 4.5:1 or above on it over the canvas, raised and accent surfaces; links do not (3.45 to 4.30) (D-035).",
+          "description": "Text selection on hosts that keep the text colour inside a selection. It is translucent, so it also suits hosts that paint the fill over their content. Text drawn on it keeps 4.5:1 over the canvas, raised and accent surfaces; text it is painted over, and links, do not (D-035).",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -234988,7 +234988,7 @@
           "group": "interaction",
           "css": "rgb(145 20 16 / 50%)",
           "variable": "--color-interaction-text-selection-tint",
-          "description": "Text selection where the host keeps the text colour inside the selection and may paint the fill over its content: a translucent fill. Text stays at 4.5:1 or above on it over the canvas, raised and accent surfaces; links do not (3.45 to 4.30) (D-035).",
+          "description": "Text selection on hosts that keep the text colour inside a selection. It is translucent, so it also suits hosts that paint the fill over their content. Text drawn on it keeps 4.5:1 over the canvas, raised and accent surfaces; text it is painted over, and links, do not (D-035).",
           "status": "approved",
           "deprecated": false,
           "eligibility": {

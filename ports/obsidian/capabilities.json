@@ -680,7 +680,7 @@
     "color.interaction.text-selection.tint": {
       "state": "unsupported",
       "surface": "interface",
-      "reason": "Obsidian recolours selected text, so --text-selection takes the opaque text-selection.bg with its text colour."
+      "reason": "Obsidian keeps the text colour inside a selection (rose 3.96:1 on --text-selection, IMPLEMENTATION.md), so the tint fits it; adopting it changes the Obsidian artifact and needs its own import check, so --text-selection keeps text-selection.bg for now."
     },
     "color.interaction.hover.bg": {
       "state": "mapped",

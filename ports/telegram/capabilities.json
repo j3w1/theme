@@ -683,7 +683,7 @@
     "color.interaction.text-selection.text": {
       "state": "unsupported",
       "surface": "controls",
-      "reason": "Android keeps the text colour inside a selection; Desktop's selected text uses text.on-selection. No native key takes this role."
+      "reason": "Android keeps the text colour inside a selection; Desktop's selected-text keys take interaction.selection.text. No native key takes this role."
     },
     "color.interaction.text-selection.tint": {
       "state": "mapped",

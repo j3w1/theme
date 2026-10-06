@@ -271,7 +271,7 @@ test("ARGB and Desktop RGBA preserve canonical values and alpha without derivati
   const wrongFill = structuredClone(mapping), selectKey = "android:chat_textSelectBackground";
   wrongFill.mappings["color.interaction.text-selection.tint"] = wrongFill.mappings["color.interaction.text-selection.tint"].filter(native => native !== selectKey);
   wrongFill.mappings["color.interaction.selection.bg"].push(selectKey);
-  assert.throws(() => telegramArtifacts({ ...args, mapping: wrongFill }), /translucent overlay cannot be opaque/);
+  assert.throws(() => telegramArtifacts({ ...args, mapping: wrongFill }), /translucent overlay cannot be opaque: android:chat_textSelectBackground/);
   assert.ok(artifacts[0].text.endsWith("\n") && palette.endsWith("\n"));
   assert.doesNotMatch(artifacts[0].text + palette, /\r|\b[0-9a-f]{40}\b|\d{4}-\d{2}-\d{2}/);
   for (const line of artifacts[0].text.split("\n").filter(line => line.startsWith("#"))) assert.doesNotMatch(line, /=|^WPS|^WLS/);
@@ -432,8 +432,8 @@ test("Android text selection is visible and keeps the text readable", () => {
   // content, so it must stay translucent, and Android keeps the text colour
   // inside a selection, so the text must read on the composited fill. The fill
   // must stand apart from every surface it is drawn on, at the same ΔE 20 floor
-  // as outgoing vs incoming bubbles. The composer, the incoming highlight and
-  // the outgoing highlight are the three places it is drawn.
+  // as outgoing vs incoming bubbles. The rows are the three main surfaces:
+  // the composer, incoming bubbles and outgoing bubbles.
   const over = (src, dst) => [0, 1, 2].map(i => Math.round((src[i] * src[3] + dst[i] * (255 - src[3])) / 255));
   for (const [fill, surface, text] of [
     ["chat_inTextSelectionHighlight", "chat_messagePanelBackground", "chat_messagePanelText"],

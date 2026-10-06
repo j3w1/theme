@@ -131,8 +131,9 @@ The same `https://t.me/addtheme/<slug>` link opens the matching document on each
 - **Android selected bubbles.** Android uses the same message text colour for normal and selected bubbles; Desktop has separate selected foregrounds.
 - **Android text selection.** Android keeps the text and code colours inside a selection; Desktop turns selected text and links near-white.
   - **Visibility:** the tint stands ΔE 36.5 from the message field, 35.1 from incoming bubbles and 21.5 from outgoing bubbles.
-  - **Rose text:** stays at 5.53:1 or above.
-  - **While a selection lasts:** links measure 3.45 to 4.30:1. In code blocks, keyword, string and comment colours measure 3.13 to 4.30:1 (D-035).
+  - **Rose text:** stays at 5.53:1 or above where the tint is drawn under it (messages, the message field, instant view).
+  - **Text the tint covers:** in the rich editor's tables and captions and the rich-message translation preview, Telegram paints the tint over the text. There, selected text measures 2.96 to 3.43:1.
+  - **While a selection lasts:** links measure 3.45 to 4.30:1. In code blocks, keyword, string, comment, number and constant colours measure 3.13 to 4.40:1, and inside an outgoing code block the selection stands ΔE 18.3 from the block (D-035).
 - **Platform keys differ.** Desktop exposes hover states that Android lacks. Android's outgoing-bubble gradient keys stay unset.
 - **Desktop chat-list badges.** This is a deliberate, host-forced departure from the canonical Badge count variant (`action.primary.bg` with `action.primary.text`).
   - **Why:** Telegram Desktop reuses the draft-label and poll-icon colours as the reaction and poll badge fills, and uses one count colour per row state for every badge family. No dark fill can also be readable label text on the black row.
@@ -210,7 +211,10 @@ The port is `verified` while that record matches; it returns to experimental if 
 **Visual check, on Android and on Telegram Desktop for Windows:**
 - **Chats:** the chat list and the unread badges; one chat, with incoming and outgoing bubbles, message text, names, timestamps and links; a reply or quote; the composer and the send button.
 - **Other screens:** settings, a profile or dialog, and, on Desktop, hover and selection.
-- **Text selection:** selected text in the composer, in an incoming message and in an outgoing message.
+- **Text selection:**
+  - selected text in the composer, in an incoming message and in an outgoing message;
+  - a selection inside an outgoing code block;
+  - a selection in a rich-editor table or caption, if Telegram offers the rich editor.
 - **Wallpaper:** the chat wallpaper.
 
 **Expected:** black to red-black surfaces, rose text, muted rose metadata, bright rose names and titles, red and rose accents, near-white only on red fills, and no Telegram blue or cyan. A problem is fixed in the tokens, the mapping or the generator, regenerated and imported again, never by editing the cloud theme.

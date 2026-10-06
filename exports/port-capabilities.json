@@ -25,7 +25,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-4iEI4buHQDm9Vl6zaaS3OJtG5ujLWUPK0kZqCVEaGIY=",
+      "subjectDigest": "sha256-yeLQvj1Q9wf+G1LhBCHkij6gO0Ovh/07ZlgRZN7EuN4=",
       "evidencePath": null,
       "surfaces": {
         "appearance-settings": {
@@ -5390,7 +5390,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-ytBw02bheV/H6BBbMXuTp8KXC8E2ElQFQkrPK6Y0Suk=",
+      "subjectDigest": "sha256-S6EuRMntEJVtPBXfcHS4QQNMhgWEFSBURGShJy11sLk=",
       "evidencePath": null,
       "surfaces": {
         "theme-roles": {
@@ -10806,7 +10806,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-/4zVnUL+DiHdiAIJtj0TuU1BXhR8wQ3Nf15hj2dPrKw=",
+      "subjectDigest": "sha256-pE955nmxype6jpJW3Kq+wmCymGqnff7/47p9ovVjN3Q=",
       "evidencePath": null,
       "surfaces": {
         "theme-scopes": {
@@ -16171,7 +16171,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-/Nuo6X6Kq1WsWXqOOimZmcn9xJ2vNbURznCASxrkXns=",
+      "subjectDigest": "sha256-OccnxEfFsVJ/kgGANaJbOUlE4inigrQ5wlcbwnK0lzk=",
       "evidencePath": null,
       "surfaces": {
         "terminal-colours": {
@@ -21536,7 +21536,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-pH8Qu8JdAPKinftydNkb9cBfhEGkXBBnm/nSYjhWknw=",
+      "subjectDigest": "sha256-9opmakAllpwIu5JssGTmWgf5tjOG5+MxgAFkn+znj7Y=",
       "evidencePath": null,
       "surfaces": {
         "interface": {
@@ -23605,7 +23605,7 @@
           },
           "state": "unsupported",
           "surface": "interface",
-          "reason": "Obsidian recolours selected text, so --text-selection takes the opaque text-selection.bg with its text colour.",
+          "reason": "Obsidian keeps the text colour inside a selection (rose 3.96:1 on --text-selection, IMPLEMENTATION.md), so the tint fits it; adopting it changes the Obsidian artifact and needs its own import check, so --text-selection keeps text-selection.bg for now.",
           "source": "ports/obsidian/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -27226,7 +27226,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-NHRRTM2UkETE990W5QCHjbrQWppGVnuZGHnA2Pxwad4=",
+      "subjectDigest": "sha256-XodWe/32dfIjFEoeSHJ4WfNmqTKc7DlCE4bGK7/8xik=",
       "evidencePath": null,
       "surfaces": {
         "terminal-colours": {
@@ -32605,7 +32605,7 @@
         "status": "stale",
         "reason": "Target, mapping, capabilities, tokens or artifact bytes changed since the recorded import."
       },
-      "subjectDigest": "sha256-cpIJw8+e+SReuLHQUeAIODtCkJo7gxE9UbMBH2z30Q0=",
+      "subjectDigest": "sha256-bv0rd5srcwNS012ZVWHcVvXtnB+ogMD+4vPkEpr0+vA=",
       "evidencePath": "ports/telegram/evidence/2026-10-06-import.json",
       "surfaces": {
         "interface": {
@@ -34911,7 +34911,7 @@
           },
           "state": "unsupported",
           "surface": "controls",
-          "reason": "Android keeps the text colour inside a selection; Desktop's selected text uses text.on-selection. No native key takes this role.",
+          "reason": "Android keeps the text colour inside a selection; Desktop's selected-text keys take interaction.selection.text. No native key takes this role.",
           "source": "ports/telegram/mapping.json",
           "spec": "spec/portability.md"
         },
@@ -39190,7 +39190,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-AZT5tqbhdLi1B0RFKR5pSh7SF9Rsjz6tvtd/H9OOcFA=",
+      "subjectDigest": "sha256-iJq4XOdqla4YZpWQIpa8CFGucQmQC3Y4Nh47mlQ2PsM=",
       "evidencePath": null,
       "surfaces": {
         "terminal-colours": {

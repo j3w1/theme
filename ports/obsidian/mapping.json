@@ -542,7 +542,7 @@
     "color.text.inverse": "No inverse-surface widget is installed in this dark-only port.",
     "color.border.strong": "Native sticky-header separators retain their divider/border variables; no independent emphasized sticky-header rule is installed.",
     "color.interaction.text-selection.text": "Obsidian native text-selection changes its fill and preserves content/syntax foregrounds; no global ::selection foreground override is installed.",
-    "color.interaction.text-selection.tint": "Obsidian recolours selected text, so --text-selection takes the opaque text-selection.bg with its text colour.",
+    "color.interaction.text-selection.tint": "Obsidian keeps the text colour inside a selection (rose 3.96:1 on --text-selection, IMPLEMENTATION.md), so the tint fits it; adopting it changes the Obsidian artifact and needs its own import check, so --text-selection keeps text-selection.bg for now.",
     "color.interaction.marquee": "Canvas/Graph marquee and user data selection are outside this Markdown/chrome port.",
     "color.interaction.drop-target": "Host drag/drop affordances and native data colors remain; no dashed drop-target replacement is installed.",
     "color.action.primary.pressed-bg": "Native primary buttons conflate pressed/mobile-tap with interactive-accent-hover; preserve that model without claiming a distinct pressed fill.",

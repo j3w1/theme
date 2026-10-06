@@ -823,16 +823,24 @@ side-by-side comparison.
 
 **Decision.**
 
-- New role `color.interaction.text-selection.tint`: text selection where the
-  host keeps the text colour inside the selection, or may paint the fill over
-  its content.
+- New role `color.interaction.text-selection.tint`: text selection on hosts
+  that keep the text colour inside a selection. It is translucent, so it also
+  suits hosts that paint the fill over their content.
 - Its value is a new primitive, `color.primitive.alpha.red-50`: the existing
   text-selection red `red.350` (`#911410`) at 50%.
-- Over the canvas (`#490a08`), the raised surface (`#54100e`) and the accent
-  surface (`#67100d`), it is ΔE 36.5, 35.1 and 21.5 from the surface (CIE76).
-- Text on it stays at 4.5:1 or above: `text.default` 6.89, 6.29 and 5.53.
-  Links do not: `text.link` measures 4.30, 3.92 and 3.45 while selected.
-- Hosts that recolour selected text keep `text-selection.bg` with
+- Over the canvas, the raised and the accent surface, it is ΔE 36.5, 35.1 and
+  21.5 from the surface (CIE76). These are Android's 8-bit composites
+  (`#490a08`, `#54100e`, `#67100d`).
+- Text drawn on the tint stays at 4.5:1 or above: `text.default` 6.89, 6.29
+  and 5.53. Links do not: `text.link` measures 4.30, 3.92 and 3.45 while
+  selected.
+- **What the canonical contrast pairs cover.** They composite over the canvas
+  only, with float alpha (`#480a08`): default text 6.91, bright 8.28. The
+  raised and accent figures are enforced by the Telegram port's tests.
+- **Links are not a declared pair.** Waivers are for decorative graphics only,
+  so the link limit (4.31 over the canvas) is recorded in the limits below and
+  in `spec/accessibility.md` instead.
+- Hosts that recolour selected text use `text-selection.bg` with
   `text-selection.text`. The Telegram port gives Android text selection the
   tint. Desktop keeps `selection.bg` with near-white selected text.
 
@@ -862,14 +870,23 @@ visible in the message field. Android's text-selection keys had the 12%
 
 **Consequences.**
 - **Palette.** It gains one translucent value of an existing colour.
-- **Ports.** Every port classifies the role. Only Telegram maps it. Obsidian
-  keeps `text-selection.bg`, because it recolours selected text.
+- **Ports.** Every port classifies the role. Only Telegram maps it.
+- **Obsidian.** Obsidian also keeps the text colour inside a selection: rose
+  text measures 3.96:1 on its `text-selection.bg` (its IMPLEMENTATION.md), so
+  the tint fits it. Adopting it changes the Obsidian artifact and needs its own
+  import check, so that is a separate change.
 - **Contrast.** Two global pairs measure default and bright text on the tint
   over the canvas.
 - **Limits, while a selection lasts on Android:**
   - links are below 4.5:1 (3.45 to 4.30);
-  - in code blocks, keyword, string and comment colours are below 4.5:1
-    (3.13 to 4.30).
+  - where a host paints the fill over the text (Telegram's rich-editor tables
+    and captions, and the rich-message translation preview), selected text
+    measures 2.96 to 3.43:1. No strength meets both this and the accent-surface
+    floor: 40% gives 4.34 and 3.68. The owner's comparison did not show this
+    case; it was found by review r11 after the choice;
+  - in code blocks, keyword, string, comment, number and constant colours are
+    3.13 to 4.40:1, and inside an outgoing code block the selection stands
+    ΔE 18.3 from the block.
 
   A selection is short-lived, as with editor selections in
   `spec/accessibility.md`.

@@ -1395,7 +1395,7 @@
     "color.interaction.focus.ring-container": "color.interaction.focus.ring-container has no separate native hook in this projection; related controls share the declared canonical role instead.",
     "color.interaction.selection.inactive-text": "color.interaction.selection.inactive-text has no separate native hook in this projection; related controls share the declared canonical role instead.",
     "color.interaction.text-selection.bg": "Android cannot recolour text inside a selection, so the opaque text-selection.bg would leave rose text at 3.96:1; Android text selection takes the translucent text-selection.tint (D-035). Desktop selection takes selection.bg with near-white selected text.",
-    "color.interaction.text-selection.text": "Android keeps the text colour inside a selection; Desktop's selected text uses text.on-selection. No native key takes this role.",
+    "color.interaction.text-selection.text": "Android keeps the text colour inside a selection; Desktop's selected-text keys take interaction.selection.text. No native key takes this role.",
     "color.interaction.drop-target": "color.interaction.drop-target has no separate native hook in this projection; related controls share the declared canonical role instead.",
     "color.interaction.scrollbar.track": "color.interaction.scrollbar.track has no separate native hook in this projection; related controls share the declared canonical role instead.",
     "color.interaction.scrollbar.thumb-hover": "color.interaction.scrollbar.thumb-hover has no separate native hook in this projection; related controls share the declared canonical role instead.",
