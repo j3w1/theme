@@ -37750,7 +37750,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-G0YPLlWec1bccwulTrUBy4M9fk4+rwSxbAkVUw6mzkY=",
+      "subjectDigest": "sha256-BO2Hhp/+Y0zBlH2Iy2Ye4Ga9CpYrz8yPjgaWE6XEigE=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37831,7 +37831,7 @@
           "path": "dist/windows-11-settings-styler.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-11-settings-styler.json",
-          "digest": "sha256-JR22SOzeyxhpfaag9g7DwE1hRAkQD8Jx1wNXdwZpI8c="
+          "digest": "sha256-uYdTx8XhusgXODmdcpSGYeaMpeHAFsL1KeexKL1YDvc="
         },
         {
           "path": "dist/j3w1-wallpaper.bmp",
@@ -37957,7 +37957,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-Z1HG4zIMYt2H3PY0K9kxX0h8hy8nMT+UQQXDpnqeP3E="
+          "digest": "sha256-EVWYmNte145ESFu2l17Vv2KCy+ohBfQzBikmlefF+cE="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
@@ -38319,7 +38319,9 @@
             "terminal-chrome.resource.ToggleSwitchFillOn",
             "terminal-chrome.resource.ToggleSwitchStrokeOn",
             "terminal-chrome.resource.SliderTrackValueFill",
-            "terminal-chrome.resource.SliderThumbBackground"
+            "terminal-chrome.resource.SliderThumbBackground",
+            "windows-11-settings-styler.resource.ProgressBarForeground",
+            "windows-11-settings-styler.resource.ToggleSwitchFillOn"
           ],
           "value": "#7d1310",
           "eligibility": {
@@ -38374,7 +38376,8 @@
             "terminal-chrome.resource.ToggleSwitchFillOnPointerOver",
             "terminal-chrome.resource.ToggleSwitchStrokeOnPointerOver",
             "terminal-chrome.resource.SliderTrackValueFillPointerOver",
-            "terminal-chrome.resource.SliderThumbBackgroundPointerOver"
+            "terminal-chrome.resource.SliderThumbBackgroundPointerOver",
+            "windows-11-settings-styler.resource.ToggleSwitchFillOnPointerOver"
           ],
           "value": "#911410",
           "eligibility": {
@@ -38409,7 +38412,8 @@
             "terminal-chrome.resource.ToggleSwitchFillOnPressed",
             "terminal-chrome.resource.ToggleSwitchStrokeOnPressed",
             "terminal-chrome.resource.SliderTrackValueFillPressed",
-            "terminal-chrome.resource.SliderThumbBackgroundPressed"
+            "terminal-chrome.resource.SliderThumbBackgroundPressed",
+            "windows-11-settings-styler.resource.ToggleSwitchFillOnPressed"
           ],
           "value": "#630f0d",
           "eligibility": {
@@ -38437,7 +38441,10 @@
             "windhawk.resource.AccentButtonForegroundPressed",
             "terminal-chrome.resource.ToggleSwitchKnobFillOn",
             "terminal-chrome.resource.ToggleSwitchKnobFillOnPointerOver",
-            "terminal-chrome.resource.ToggleSwitchKnobFillOnPressed"
+            "terminal-chrome.resource.ToggleSwitchKnobFillOnPressed",
+            "windows-11-settings-styler.resource.ToggleSwitchKnobFillOn",
+            "windows-11-settings-styler.resource.ToggleSwitchKnobFillOnPointerOver",
+            "windows-11-settings-styler.resource.ToggleSwitchKnobFillOnPressed"
           ],
           "value": "#ffa2a7",
           "eligibility": {
@@ -38778,7 +38785,15 @@
             "terminal-chrome.resource.SliderTrackFillPressed",
             "terminal-chrome.resource.SliderThumbBorderBrush",
             "terminal-chrome.resource.SliderTickBarFill",
-            "windows-11-settings-styler | Microsoft.UI.Xaml.Controls.SplitButton | BorderBrush"
+            "windows-11-settings-styler | Microsoft.UI.Xaml.Controls.SplitButton | BorderBrush",
+            "windows-11-settings-styler.resource.ProgressBarBorderBrush",
+            "windows-11-settings-styler.resource.ToggleSwitchKnobStrokeOn",
+            "windows-11-settings-styler.resource.ToggleSwitchStrokeOff",
+            "windows-11-settings-styler.resource.ToggleSwitchStrokeOn",
+            "windows-11-settings-styler.resource.ToggleSwitchStrokeOffPointerOver",
+            "windows-11-settings-styler.resource.ToggleSwitchStrokeOnPointerOver",
+            "windows-11-settings-styler.resource.ToggleSwitchStrokeOffPressed",
+            "windows-11-settings-styler.resource.ToggleSwitchStrokeOnPressed"
           ],
           "value": "#a3676b",
           "eligibility": {
@@ -38856,7 +38871,9 @@
             "terminal-chrome.resource.SplitButtonBorderBrushDisabled",
             "terminal-chrome.resource.SplitButtonBorderBrushCheckedDisabled",
             "terminal-chrome.resource.SliderTrackFillDisabled",
-            "windows-11-settings-styler | Button > ContentPresenter@CommonStates | BorderBrush@Disabled"
+            "windows-11-settings-styler | Button > ContentPresenter@CommonStates | BorderBrush@Disabled",
+            "windows-11-settings-styler.resource.ToggleSwitchStrokeOffDisabled",
+            "windows-11-settings-styler.resource.ToggleSwitchStrokeOnDisabled"
           ],
           "value": "#7d1310",
           "eligibility": {
@@ -40179,7 +40196,9 @@
             "notepad-chrome.resource.ScrollBarPanningThumbBackgroundDisabled",
             "paint-chrome.resource.ScrollBarPanningThumbBackgroundDisabled",
             "terminal-chrome.resource.ScrollBarPanningThumbBackgroundDisabled",
-            "windows-11-settings-styler | Button > ContentPresenter@CommonStates | Background@Disabled"
+            "windows-11-settings-styler | Button > ContentPresenter@CommonStates | Background@Disabled",
+            "windows-11-settings-styler.resource.ToggleSwitchFillOffDisabled",
+            "windows-11-settings-styler.resource.ToggleSwitchFillOnDisabled"
           ],
           "value": "#160b0b",
           "eligibility": {
@@ -40323,7 +40342,8 @@
             "terminal-chrome.resource.SplitButtonBackgroundPointerOver",
             "notepad-chrome.resource.ScrollBarButtonBackgroundPointerOver",
             "paint-chrome.resource.ScrollBarButtonBackgroundPointerOver",
-            "terminal-chrome.resource.ScrollBarButtonBackgroundPointerOver"
+            "terminal-chrome.resource.ScrollBarButtonBackgroundPointerOver",
+            "windows-11-settings-styler.resource.ToggleSwitchFillOffPointerOver"
           ],
           "value": "#1c0a09",
           "eligibility": {
@@ -40468,7 +40488,9 @@
             "terminal-chrome.resource.SplitButtonInAppBarUnfocusedPointerOver",
             "notepad-chrome.resource.ScrollBarButtonBackgroundPressed",
             "paint-chrome.resource.ScrollBarButtonBackgroundPressed",
-            "terminal-chrome.resource.ScrollBarButtonBackgroundPressed"
+            "terminal-chrome.resource.ScrollBarButtonBackgroundPressed",
+            "windows-11-settings-styler.resource.ProgressBarBackground",
+            "windows-11-settings-styler.resource.ToggleSwitchFillOffPressed"
           ],
           "value": "#420f0c",
           "eligibility": {
@@ -42681,7 +42703,8 @@
             "terminal-chrome.resource.ComboBoxBackgroundUnfocused",
             "terminal-chrome.resource.ComboBoxBackgroundFocused",
             "terminal-chrome.resource.SliderOuterThumbBackground",
-            "terminal-chrome.resource.SliderInlineTickBarFill"
+            "terminal-chrome.resource.SliderInlineTickBarFill",
+            "windows-11-settings-styler.resource.ToggleSwitchFillOff"
           ],
           "value": "#000000",
           "eligibility": {
@@ -43484,7 +43507,12 @@
             "terminal-chrome.resource.ScrollBarButtonArrowForeground",
             "windows-11-settings-styler.resource.ToolTipForeground",
             "windows-11-settings-styler.resource.ToolTipForegroundBrush",
-            "windows-11-settings-styler | ToolTip | Foreground"
+            "windows-11-settings-styler | ToolTip | Foreground",
+            "windows-11-settings-styler.resource.ToggleSwitchContentForeground",
+            "windows-11-settings-styler.resource.ToggleSwitchHeaderForeground",
+            "windows-11-settings-styler.resource.ToggleSwitchKnobFillOff",
+            "windows-11-settings-styler.resource.ToggleSwitchKnobFillOffPointerOver",
+            "windows-11-settings-styler.resource.ToggleSwitchKnobFillOffPressed"
           ],
           "value": "#e99499",
           "eligibility": {
@@ -43573,7 +43601,11 @@
             "notepad-chrome.resource.ScrollBarButtonArrowForegroundDisabled",
             "paint-chrome.resource.ScrollBarButtonArrowForegroundDisabled",
             "terminal-chrome.resource.ScrollBarButtonArrowForegroundDisabled",
-            "windows-11-settings-styler | Button > ContentPresenter@CommonStates | Foreground@Disabled"
+            "windows-11-settings-styler | Button > ContentPresenter@CommonStates | Foreground@Disabled",
+            "windows-11-settings-styler.resource.ToggleSwitchContentForegroundDisabled",
+            "windows-11-settings-styler.resource.ToggleSwitchHeaderForegroundDisabled",
+            "windows-11-settings-styler.resource.ToggleSwitchKnobFillOffDisabled",
+            "windows-11-settings-styler.resource.ToggleSwitchKnobFillOnDisabled"
           ],
           "value": "#8a5559",
           "eligibility": {

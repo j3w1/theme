@@ -113,6 +113,14 @@ test('Settings resource overrides retain shared brushes and stay isolated from o
  const tokens=(await readJson('exports/tokens.resolved.json')).profiles.default.tokens;
  const settings=host.stylers.find(m=>m.id==='windows-11-settings-styler');
  const expected={SystemControlFocusVisualPrimaryBrush:'color.interaction.focus.ring',SystemControlFocusVisualSecondaryBrush:'color.surface.canvas',FocusStrokeColorOuterBrush:'color.interaction.focus.ring',FocusStrokeColorInnerBrush:'color.surface.canvas',ToolTipBackground:'color.surface.raised',ToolTipForeground:'color.text.default',ToolTipBorderBrush:'color.border.overlay',ToolTipBackgroundBrush:'color.surface.raised',ToolTipForegroundBrush:'color.text.default'};
+ Object.assign(expected,{ProgressBarBackground:'color.interaction.pressed.bg',ProgressBarForeground:'color.action.primary.bg',ProgressBarBorderBrush:'color.border.control',ToggleSwitchContentForeground:'color.text.default',ToggleSwitchContentForegroundDisabled:'color.text.disabled',ToggleSwitchHeaderForeground:'color.text.default',ToggleSwitchHeaderForegroundDisabled:'color.text.disabled',ToggleSwitchKnobStrokeOn:'color.border.control'});
+ for(const [suffix,off,on] of [['','color.surface.input','color.action.primary.bg'],['PointerOver','color.interaction.hover.bg','color.action.primary.hover-bg'],['Pressed','color.interaction.pressed.bg','color.action.primary.pressed-bg'],['Disabled','color.interaction.disabled.bg','color.interaction.disabled.bg']]){
+  expected['ToggleSwitchFillOff'+suffix]=off;expected['ToggleSwitchFillOn'+suffix]=on;
+  for(const state of ['Off','On']){
+   expected['ToggleSwitchStroke'+state+suffix]=suffix==='Disabled'?'color.border.disabled':'color.border.control';
+   expected['ToggleSwitchKnobFill'+state+suffix]=suffix==='Disabled'?'color.text.disabled':state==='On'?'color.action.primary.text':'color.text.default';
+  }
+ }
  assert.deepEqual(settings.resources,expected);
  const mapping=await readJson('ports/windows/mapping.json');
  for(const [key,role]of Object.entries(expected))assert.ok(mapping.mappings[role].includes(settings.id+'.resource.'+key));

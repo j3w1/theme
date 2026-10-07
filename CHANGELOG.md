@@ -35,6 +35,9 @@
 - Settings tooltips map the observed template brush aliases and owning control,
   preserving native timing and content while using square raised/rose surfaces.
 
+- Settings maps native switch state brushes and ordinary progress track/fill
+  resources to existing component roles, retaining values and status semantics.
+
 ## [3.1.0] - 2026-09-27
 
 Additive minor preparation, following the first downloadable application-port

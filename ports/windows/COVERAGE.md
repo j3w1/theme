@@ -774,3 +774,29 @@ Rendered tooltip acceptance and other Settings variants remain separate
 from generated mappings and restoration tests.
 
 Reference: [Microsoft ToolTip template and brush aliases](https://github.com/microsoft/microsoft-ui-xaml/blob/v2.8.7/dev/CommonStyles/ToolTip_rs5_themeresources.xaml).
+
+### Settings switch and progress resources
+
+The exact-host numeric trace found native ToggleSwitchFillOn and
+ProgressBarForeground accent brushes, with a translucent-white
+ProgressBarBackground. Live Settings showed that native switch tone and
+a gray unfilled progress remainder. These resource families had not been
+included in the Settings-specific payload.
+
+Settings now maps the public on/off switch fill, edge, knob and label
+resources for rest, pointer-over, pressed and disabled states. Roles come
+from the existing switch specification: the on fill follows the primary
+action ladder; off uses input/hover/pressed surfaces; edges and disabled
+parts retain their separate semantic roles. Progress maps only its ordinary
+track, fill and border. Paused/error resources retain the host status
+meaning. Native values, toggles, commands, track/knob geometry, animation,
+focus and accessibility are unchanged. No opaque ancestor background or
+new renderer is added. The other shell payloads remain byte-identical.
+
+The existing pinned styler retains/restores these resource overrides
+through install.ps1. Resource readback and lifecycle tests remain separate
+from rendered acceptance; local-brush replacements, custom Home progress
+implementations and unobserved variants remain open until checked.
+
+References: [Microsoft switch resource contract](https://github.com/microsoft/microsoft-ui-xaml/blob/v2.8.7/dev/CommonStyles/ToggleSwitch_themeresources.xaml),
+[Microsoft progress resource contract](https://github.com/microsoft/microsoft-ui-xaml/blob/v2.8.7/dev/ProgressBar/ProgressBar_themeresources.xaml).
