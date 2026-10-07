@@ -732,3 +732,22 @@ startup, DPI, accessibility and clean-PC checks.
 
 Microsoft documents the public [BackgroundTransition API](https://learn.microsoft.com/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.controls.contentpresenter.backgroundtransition)
 and [BrushTransition duration](https://learn.microsoft.com/uwp/api/windows.ui.xaml.brushtransition.duration).
+
+### Settings focus and tooltip resource boundary
+
+A read-only exact-host trace found white focus brushes and a gray
+ToolTipBackground in the Settings application dictionary. The Settings
+styler now adds its own resource overrides after the shared resource set.
+Native primary/outer focus uses the control-ring role and the inner
+separator uses the black canvas. Tooltip background, foreground and border
+use the raised surface, ordinary rose text and overlay-border roles.
+The other four shell stylers retain their existing resource payloads.
+
+Native focus visibility, geometry, keyboard behavior and tooltip timing
+are preserved; the pinned styler retains and restores the resource values
+through the same install.ps1 lifecycle. This resource mapping does not
+establish acceptance of local-brush overrides, Settings Home islands,
+toggle/progress details or every application state. Rendered checks and
+rollback readbacks remain separate from generation tests.
+
+Reference: [Microsoft focus brush contract](https://learn.microsoft.com/en-us/uwp/api/windows.ui.xaml.frameworkelement.focusvisualprimarybrush).

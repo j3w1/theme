@@ -28,6 +28,10 @@
   ladder instead of retaining native accent/gray brushes. Commands and layout
   remain native; setup and offline rollback share the existing installer.
 
+- Settings owns its focus and tooltip resource overrides, preserving native
+  focus geometry and leaving the other shell stylers unchanged. The existing
+  single installer applies and restores these mappings.
+
 ## [3.1.0] - 2026-09-27
 
 Additive minor preparation, following the first downloadable application-port

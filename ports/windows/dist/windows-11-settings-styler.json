@@ -182,6 +182,13 @@
     "AccentButtonBorderBrushPressed=#9e231f",
     "AccentButtonBackgroundDisabled=#160b0b",
     "AccentButtonForegroundDisabled=#8a5559",
-    "AccentButtonBorderBrushDisabled=#7d1310"
+    "AccentButtonBorderBrushDisabled=#7d1310",
+    "SystemControlFocusVisualPrimaryBrush=#e53935",
+    "SystemControlFocusVisualSecondaryBrush=#000000",
+    "FocusStrokeColorOuterBrush=#e53935",
+    "FocusStrokeColorInnerBrush=#000000",
+    "ToolTipBackground=#160b0b",
+    "ToolTipForeground=#e99499",
+    "ToolTipBorderBrush=#e53935"
   ]
 }

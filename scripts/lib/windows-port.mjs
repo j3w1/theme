@@ -282,7 +282,7 @@ export function windowsArtifacts({manifest,host,resolved}){
  ]});
  for(const mod of host.stylers){
   const controlStyles=targets(mod.targets);
-  const payload={theme:'',controlStyles,themeResourceVariables:Object.entries(host.resources).map(([key,role])=>{val(role);return `${key}=${windowsStyleValue(key,resolved.get(role))}`;})};
+  const payload={theme:'',controlStyles,themeResourceVariables:Object.entries({...host.resources,...mod.resources}).map(([key,role])=>{val(role);return `${key}=${windowsStyleValue(key,resolved.get(role))}`;})};
   if(mod.webContentStyles)payload.webContentStyles=windowsWebContentStyles(mod.webContentStyles,val);
   if(mod.webContentStyles)payload.webContentCustomJs='';
   json(`${mod.id}.json`,payload);

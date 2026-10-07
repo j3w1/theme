@@ -108,6 +108,29 @@ test('Windows native values, Terminal ANSI and styler selectors resolve from can
  assert.equal(settings.version,(await readJson('theme.json')).version);
 });
 
+test('Settings resource overrides retain shared brushes and stay isolated from other stylers',async()=>{
+ const host=await readJson('ports/windows/host.json');
+ const tokens=(await readJson('exports/tokens.resolved.json')).profiles.default.tokens;
+ const settings=host.stylers.find(m=>m.id==='windows-11-settings-styler');
+ const expected={SystemControlFocusVisualPrimaryBrush:'color.interaction.focus.ring',SystemControlFocusVisualSecondaryBrush:'color.surface.canvas',FocusStrokeColorOuterBrush:'color.interaction.focus.ring',FocusStrokeColorInnerBrush:'color.surface.canvas',ToolTipBackground:'color.surface.raised',ToolTipForeground:'color.text.default',ToolTipBorderBrush:'color.border.overlay'};
+ assert.deepEqual(settings.resources,expected);
+ const mapping=await readJson('ports/windows/mapping.json');
+ for(const [key,role]of Object.entries(expected))assert.ok(mapping.mappings[role].includes(settings.id+'.resource.'+key));
+ for(const mod of host.stylers){
+  const payload=await readJson('ports/windows/dist/'+mod.id+'.json');
+  const actual=Object.fromEntries(payload.themeResourceVariables.map(v=>v.split('=')));
+  assert.equal(Object.keys(actual).length,payload.themeResourceVariables.length,'Duplicate resource aliases');
+  for(const [key,role]of Object.entries({...host.resources,...(mod.id===settings.id?expected:{})}))
+   assert.equal(actual[key],windowsStyleValue(key,{type:tokens[role].type,resolved:tokens[role].value}));
+  if(mod.id!==settings.id){
+   assert.equal(mod.resources,undefined);
+   for(const key of Object.keys(expected))assert.equal(actual[key],undefined,'Settings resource leaked into '+mod.id);
+  }
+ }
+ for(const target of settings.targets)for(const key of Object.keys(target.styles))
+  assert.doesNotMatch(key,/^(?:UseSystemFocusVisuals|FocusVisualPrimaryThickness|FocusVisualSecondaryThickness|FocusVisualMargin|IsTabStop|TabIndex|Width|Height|Padding|Margin|Command|Content|Text)$/);
+});
+
 test('XAML color values preserve RGB and encode transparency in native ARGB order',async()=>{
  const value=alpha=>({type:'color',resolved:{colorSpace:'srgb',hex:'#112233',alpha}});
  for(const [alpha,expected]of [[0,'#00112233'],[.12,'#1f112233'],[.5,'#80112233'],[1,'#112233']])

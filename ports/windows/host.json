@@ -1197,7 +1197,16 @@
             "CornerRadius": "radius.none"
           }
         }
-      ]
+      ],
+      "resources": {
+        "SystemControlFocusVisualPrimaryBrush": "color.interaction.focus.ring",
+        "SystemControlFocusVisualSecondaryBrush": "color.surface.canvas",
+        "FocusStrokeColorOuterBrush": "color.interaction.focus.ring",
+        "FocusStrokeColorInnerBrush": "color.surface.canvas",
+        "ToolTipBackground": "color.surface.raised",
+        "ToolTipForeground": "color.text.default",
+        "ToolTipBorderBrush": "color.border.overlay"
+      }
     }
   ],
   "compatibility": [

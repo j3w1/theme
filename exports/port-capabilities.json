@@ -37750,7 +37750,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-FGDLFnBD3DrHblU368Ija7KTBZWniAKT6gcj51z+234=",
+      "subjectDigest": "sha256-0kfTL4q7l/j6rJZI0Ww6vD/LOSbf5ghbBVErnUK7NEU=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37831,7 +37831,7 @@
           "path": "dist/windows-11-settings-styler.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-11-settings-styler.json",
-          "digest": "sha256-ZLF5BS6lXsy45PJrkgcwsYbtzFO6J6hMJY6T7Yp50pA="
+          "digest": "sha256-eml2Wf9IG+wT3It7QioTOnD8pdxtxJ1kTk+wZn0q0EM="
         },
         {
           "path": "dist/j3w1-wallpaper.bmp",
@@ -37957,7 +37957,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-7ypj1Iijiv8wDv8ti2a3j47gScJtcv4ppfhds93SvsE="
+          "digest": "sha256-IYKCW5toPJMm3QKitiDM8jmNQDkM7L62ojwJxmYrnOg="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
@@ -38985,7 +38985,8 @@
             "terminal-chrome.resource.FlyoutBorderThemeBrush",
             "notepad-chrome.resource.ToolTipBorderBrush",
             "paint-chrome.resource.ToolTipBorderBrush",
-            "terminal-chrome.resource.ToolTipBorderBrush"
+            "terminal-chrome.resource.ToolTipBorderBrush",
+            "windows-11-settings-styler.resource.ToolTipBorderBrush"
           ],
           "value": "#e53935",
           "eligibility": {
@@ -40222,7 +40223,9 @@
             "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"]:focus-visible, .suggestion.leftPill:not([aria-selected=\"false\"]):focus-visible, .suggContainer[aria-selected=\"true\"]:focus-visible, .suggContainer.leftPill:not([aria-selected=\"false\"]):focus-visible, .suggContainer:has(.suggestion[aria-selected=\"true\"]):focus-visible, .suggContainer:has(.suggestion.leftPill:not([aria-selected=\"false\"])):focus-visible | outline-color",
             "terminal-chrome.resource.SystemControlFocusVisualPrimaryBrush",
             "terminal-chrome.resource.FocusStrokeColorOuterBrush",
-            "terminal-chrome.resource.ComboBoxBackgroundBorderBrushFocused"
+            "terminal-chrome.resource.ComboBoxBackgroundBorderBrushFocused",
+            "windows-11-settings-styler.resource.SystemControlFocusVisualPrimaryBrush",
+            "windows-11-settings-styler.resource.FocusStrokeColorOuterBrush"
           ],
           "value": "#e53935",
           "eligibility": {
@@ -42516,7 +42519,9 @@
             "terminal-chrome.resource.ToggleButtonBackgroundIndeterminate",
             "terminal-chrome.resource.SubtleButtonBackground",
             "terminal-chrome.resource.SplitButtonBackground",
-            "windows-11-settings-styler | Microsoft.UI.Xaml.Controls.SplitButton | Background"
+            "windows-11-settings-styler | Microsoft.UI.Xaml.Controls.SplitButton | Background",
+            "windows-11-settings-styler.resource.SystemControlFocusVisualSecondaryBrush",
+            "windows-11-settings-styler.resource.FocusStrokeColorInnerBrush"
           ],
           "value": "#000000",
           "eligibility": {
@@ -42748,7 +42753,8 @@
             "windows-11-settings-styler | CalendarView | Background",
             "notepad-chrome.resource.FlyoutPresenterBackground",
             "paint-chrome.resource.FlyoutPresenterBackground",
-            "terminal-chrome.resource.FlyoutPresenterBackground"
+            "terminal-chrome.resource.FlyoutPresenterBackground",
+            "windows-11-settings-styler.resource.ToolTipBackground"
           ],
           "value": "#160b0b",
           "eligibility": {
@@ -43472,7 +43478,8 @@
             "terminal-chrome.resource.ToolTipForegroundBrush",
             "notepad-chrome.resource.ScrollBarButtonArrowForeground",
             "paint-chrome.resource.ScrollBarButtonArrowForeground",
-            "terminal-chrome.resource.ScrollBarButtonArrowForeground"
+            "terminal-chrome.resource.ScrollBarButtonArrowForeground",
+            "windows-11-settings-styler.resource.ToolTipForeground"
           ],
           "value": "#e99499",
           "eligibility": {

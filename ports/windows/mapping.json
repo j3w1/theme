@@ -254,7 +254,9 @@
       "terminal-chrome.resource.ToggleButtonBackgroundIndeterminate",
       "terminal-chrome.resource.SubtleButtonBackground",
       "terminal-chrome.resource.SplitButtonBackground",
-      "windows-11-settings-styler | Microsoft.UI.Xaml.Controls.SplitButton | Background"
+      "windows-11-settings-styler | Microsoft.UI.Xaml.Controls.SplitButton | Background",
+      "windows-11-settings-styler.resource.SystemControlFocusVisualSecondaryBrush",
+      "windows-11-settings-styler.resource.FocusStrokeColorInnerBrush"
     ],
     "color.terminal.cursor": [
       "terminal.cursor"
@@ -504,7 +506,8 @@
       "terminal-chrome.resource.ToolTipForegroundBrush",
       "notepad-chrome.resource.ScrollBarButtonArrowForeground",
       "paint-chrome.resource.ScrollBarButtonArrowForeground",
-      "terminal-chrome.resource.ScrollBarButtonArrowForeground"
+      "terminal-chrome.resource.ScrollBarButtonArrowForeground",
+      "windows-11-settings-styler.resource.ToolTipForeground"
     ],
     "color.text.bright": [
       "native.bright",
@@ -768,7 +771,8 @@
       "windows-11-settings-styler | CalendarView | Background",
       "notepad-chrome.resource.FlyoutPresenterBackground",
       "paint-chrome.resource.FlyoutPresenterBackground",
-      "terminal-chrome.resource.FlyoutPresenterBackground"
+      "terminal-chrome.resource.FlyoutPresenterBackground",
+      "windows-11-settings-styler.resource.ToolTipBackground"
     ],
     "color.border.control": [
       "powertoys.border",
@@ -1161,7 +1165,8 @@
       "terminal-chrome.resource.FlyoutBorderThemeBrush",
       "notepad-chrome.resource.ToolTipBorderBrush",
       "paint-chrome.resource.ToolTipBorderBrush",
-      "terminal-chrome.resource.ToolTipBorderBrush"
+      "terminal-chrome.resource.ToolTipBorderBrush",
+      "windows-11-settings-styler.resource.ToolTipBorderBrush"
     ],
     "border.width.default": [
       "windows-11-start-menu-styler | Border#AcrylicBorder | BorderThickness",
@@ -1531,7 +1536,9 @@
       "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"]:focus-visible, .suggestion.leftPill:not([aria-selected=\"false\"]):focus-visible, .suggContainer[aria-selected=\"true\"]:focus-visible, .suggContainer.leftPill:not([aria-selected=\"false\"]):focus-visible, .suggContainer:has(.suggestion[aria-selected=\"true\"]):focus-visible, .suggContainer:has(.suggestion.leftPill:not([aria-selected=\"false\"])):focus-visible | outline-color",
       "terminal-chrome.resource.SystemControlFocusVisualPrimaryBrush",
       "terminal-chrome.resource.FocusStrokeColorOuterBrush",
-      "terminal-chrome.resource.ComboBoxBackgroundBorderBrushFocused"
+      "terminal-chrome.resource.ComboBoxBackgroundBorderBrushFocused",
+      "windows-11-settings-styler.resource.SystemControlFocusVisualPrimaryBrush",
+      "windows-11-settings-styler.resource.FocusStrokeColorOuterBrush"
     ],
     "color.interaction.marquee": [
       "nativeExplorer.marquee"
