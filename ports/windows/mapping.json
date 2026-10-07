@@ -507,7 +507,9 @@
       "notepad-chrome.resource.ScrollBarButtonArrowForeground",
       "paint-chrome.resource.ScrollBarButtonArrowForeground",
       "terminal-chrome.resource.ScrollBarButtonArrowForeground",
-      "windows-11-settings-styler.resource.ToolTipForeground"
+      "windows-11-settings-styler.resource.ToolTipForeground",
+      "windows-11-settings-styler.resource.ToolTipForegroundBrush",
+      "windows-11-settings-styler | ToolTip | Foreground"
     ],
     "color.text.bright": [
       "native.bright",
@@ -772,7 +774,9 @@
       "notepad-chrome.resource.FlyoutPresenterBackground",
       "paint-chrome.resource.FlyoutPresenterBackground",
       "terminal-chrome.resource.FlyoutPresenterBackground",
-      "windows-11-settings-styler.resource.ToolTipBackground"
+      "windows-11-settings-styler.resource.ToolTipBackground",
+      "windows-11-settings-styler.resource.ToolTipBackgroundBrush",
+      "windows-11-settings-styler | ToolTip | Background"
     ],
     "color.border.control": [
       "powertoys.border",
@@ -1166,7 +1170,8 @@
       "notepad-chrome.resource.ToolTipBorderBrush",
       "paint-chrome.resource.ToolTipBorderBrush",
       "terminal-chrome.resource.ToolTipBorderBrush",
-      "windows-11-settings-styler.resource.ToolTipBorderBrush"
+      "windows-11-settings-styler.resource.ToolTipBorderBrush",
+      "windows-11-settings-styler | ToolTip | BorderBrush"
     ],
     "border.width.default": [
       "windows-11-start-menu-styler | Border#AcrylicBorder | BorderThickness",
@@ -1236,7 +1241,8 @@
       "windows-11-start-menu-styler | web .contextMenu li | border-radius",
       "windows-11-settings-styler | Button | CornerRadius",
       "windows-11-settings-styler | Microsoft.UI.Xaml.Controls.SplitButton | CornerRadius",
-      "windows-11-settings-styler | CalendarView | CornerRadius"
+      "windows-11-settings-styler | CalendarView | CornerRadius",
+      "windows-11-settings-styler | ToolTip | CornerRadius"
     ],
     "color.interaction.disabled.bg": [
       "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | Background@Disabled",

@@ -68,6 +68,15 @@
         "BorderBrush=#e53935",
         "CornerRadius=0"
       ]
+    },
+    {
+      "target": "ToolTip",
+      "styles": [
+        "Background=#160b0b",
+        "Foreground=#e99499",
+        "BorderBrush=#e53935",
+        "CornerRadius=0"
+      ]
     }
   ],
   "themeResourceVariables": [
@@ -189,6 +198,8 @@
     "FocusStrokeColorInnerBrush=#000000",
     "ToolTipBackground=#160b0b",
     "ToolTipForeground=#e99499",
-    "ToolTipBorderBrush=#e53935"
+    "ToolTipBorderBrush=#e53935",
+    "ToolTipBackgroundBrush=#160b0b",
+    "ToolTipForegroundBrush=#e99499"
   ]
 }

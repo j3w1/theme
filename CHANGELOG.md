@@ -32,6 +32,9 @@
   focus geometry and leaving the other shell stylers unchanged. The existing
   single installer applies and restores these mappings.
 
+- Settings tooltips map the observed template brush aliases and owning control,
+  preserving native timing and content while using square raised/rose surfaces.
+
 ## [3.1.0] - 2026-09-27
 
 Additive minor preparation, following the first downloadable application-port

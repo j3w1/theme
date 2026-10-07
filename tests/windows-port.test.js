@@ -112,7 +112,7 @@ test('Settings resource overrides retain shared brushes and stay isolated from o
  const host=await readJson('ports/windows/host.json');
  const tokens=(await readJson('exports/tokens.resolved.json')).profiles.default.tokens;
  const settings=host.stylers.find(m=>m.id==='windows-11-settings-styler');
- const expected={SystemControlFocusVisualPrimaryBrush:'color.interaction.focus.ring',SystemControlFocusVisualSecondaryBrush:'color.surface.canvas',FocusStrokeColorOuterBrush:'color.interaction.focus.ring',FocusStrokeColorInnerBrush:'color.surface.canvas',ToolTipBackground:'color.surface.raised',ToolTipForeground:'color.text.default',ToolTipBorderBrush:'color.border.overlay'};
+ const expected={SystemControlFocusVisualPrimaryBrush:'color.interaction.focus.ring',SystemControlFocusVisualSecondaryBrush:'color.surface.canvas',FocusStrokeColorOuterBrush:'color.interaction.focus.ring',FocusStrokeColorInnerBrush:'color.surface.canvas',ToolTipBackground:'color.surface.raised',ToolTipForeground:'color.text.default',ToolTipBorderBrush:'color.border.overlay',ToolTipBackgroundBrush:'color.surface.raised',ToolTipForegroundBrush:'color.text.default'};
  assert.deepEqual(settings.resources,expected);
  const mapping=await readJson('ports/windows/mapping.json');
  for(const [key,role]of Object.entries(expected))assert.ok(mapping.mappings[role].includes(settings.id+'.resource.'+key));

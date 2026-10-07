@@ -37750,7 +37750,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-0kfTL4q7l/j6rJZI0Ww6vD/LOSbf5ghbBVErnUK7NEU=",
+      "subjectDigest": "sha256-G0YPLlWec1bccwulTrUBy4M9fk4+rwSxbAkVUw6mzkY=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37831,7 +37831,7 @@
           "path": "dist/windows-11-settings-styler.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-11-settings-styler.json",
-          "digest": "sha256-eml2Wf9IG+wT3It7QioTOnD8pdxtxJ1kTk+wZn0q0EM="
+          "digest": "sha256-JR22SOzeyxhpfaag9g7DwE1hRAkQD8Jx1wNXdwZpI8c="
         },
         {
           "path": "dist/j3w1-wallpaper.bmp",
@@ -37957,7 +37957,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-IYKCW5toPJMm3QKitiDM8jmNQDkM7L62ojwJxmYrnOg="
+          "digest": "sha256-Z1HG4zIMYt2H3PY0K9kxX0h8hy8nMT+UQQXDpnqeP3E="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
@@ -38986,7 +38986,8 @@
             "notepad-chrome.resource.ToolTipBorderBrush",
             "paint-chrome.resource.ToolTipBorderBrush",
             "terminal-chrome.resource.ToolTipBorderBrush",
-            "windows-11-settings-styler.resource.ToolTipBorderBrush"
+            "windows-11-settings-styler.resource.ToolTipBorderBrush",
+            "windows-11-settings-styler | ToolTip | BorderBrush"
           ],
           "value": "#e53935",
           "eligibility": {
@@ -42754,7 +42755,9 @@
             "notepad-chrome.resource.FlyoutPresenterBackground",
             "paint-chrome.resource.FlyoutPresenterBackground",
             "terminal-chrome.resource.FlyoutPresenterBackground",
-            "windows-11-settings-styler.resource.ToolTipBackground"
+            "windows-11-settings-styler.resource.ToolTipBackground",
+            "windows-11-settings-styler.resource.ToolTipBackgroundBrush",
+            "windows-11-settings-styler | ToolTip | Background"
           ],
           "value": "#160b0b",
           "eligibility": {
@@ -43479,7 +43482,9 @@
             "notepad-chrome.resource.ScrollBarButtonArrowForeground",
             "paint-chrome.resource.ScrollBarButtonArrowForeground",
             "terminal-chrome.resource.ScrollBarButtonArrowForeground",
-            "windows-11-settings-styler.resource.ToolTipForeground"
+            "windows-11-settings-styler.resource.ToolTipForeground",
+            "windows-11-settings-styler.resource.ToolTipForegroundBrush",
+            "windows-11-settings-styler | ToolTip | Foreground"
           ],
           "value": "#e99499",
           "eligibility": {
@@ -44702,7 +44707,8 @@
             "windows-11-start-menu-styler | web .contextMenu li | border-radius",
             "windows-11-settings-styler | Button | CornerRadius",
             "windows-11-settings-styler | Microsoft.UI.Xaml.Controls.SplitButton | CornerRadius",
-            "windows-11-settings-styler | CalendarView | CornerRadius"
+            "windows-11-settings-styler | CalendarView | CornerRadius",
+            "windows-11-settings-styler | ToolTip | CornerRadius"
           ],
           "value": "0px",
           "eligibility": {

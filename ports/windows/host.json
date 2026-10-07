@@ -1196,6 +1196,15 @@
             "BorderBrush": "color.border.overlay",
             "CornerRadius": "radius.none"
           }
+        },
+        {
+          "target": "ToolTip",
+          "styles": {
+            "Background": "color.surface.raised",
+            "Foreground": "color.text.default",
+            "BorderBrush": "color.border.overlay",
+            "CornerRadius": "radius.none"
+          }
         }
       ],
       "resources": {
@@ -1205,7 +1214,9 @@
         "FocusStrokeColorInnerBrush": "color.surface.canvas",
         "ToolTipBackground": "color.surface.raised",
         "ToolTipForeground": "color.text.default",
-        "ToolTipBorderBrush": "color.border.overlay"
+        "ToolTipBorderBrush": "color.border.overlay",
+        "ToolTipBackgroundBrush": "color.surface.raised",
+        "ToolTipForegroundBrush": "color.text.default"
       }
     }
   ],

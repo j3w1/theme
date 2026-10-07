@@ -751,3 +751,26 @@ toggle/progress details or every application state. Rendered checks and
 rollback readbacks remain separate from generation tests.
 
 Reference: [Microsoft focus brush contract](https://learn.microsoft.com/en-us/uwp/api/windows.ui.xaml.frameworkelement.focusvisualprimarybrush).
+
+### Settings tooltip template ownership
+
+A post-update native check showed red heading/button focus outlines, but
+the heading ToolTip still rendered gray. Its numeric trace found the
+reviewed ToolTipBackground resource already mapped to the raised surface,
+while the template-specific ToolTipBackgroundBrush and
+ToolTipForegroundBrush retained native values. The actual ToolTip owns
+a direct ContentPresenter named LayoutRoot with native OpenStates.
+
+Settings now maps both brush aliases and the ToolTip control itself to
+the raised surface, rose text and overlay border. Its public CornerRadius
+uses the square role. TemplateBinding carries those control properties
+to LayoutRoot; the adapter does not replace the template, content, focus,
+dimensions, pointer handling or open/close animation. The four other shell
+styler payloads remain unchanged. The pinned styler retains/restores these
+local values through the same single install.ps1 lifecycle.
+
+The gray post-resource-only observation remains a failed rendering check.
+Rendered tooltip acceptance and other Settings variants remain separate
+from generated mappings and restoration tests.
+
+Reference: [Microsoft ToolTip template and brush aliases](https://github.com/microsoft/microsoft-ui-xaml/blob/v2.8.7/dev/CommonStyles/ToolTip_rs5_themeresources.xaml).
