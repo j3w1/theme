@@ -806,3 +806,18 @@ test('native chrome scrollbars map state brushes without color-valued animation 
   }
  }
 });
+
+
+test('popup discovery applies the bounded same-root template bridge immediately and retains failure recovery',()=>{
+ for(const app of ['notepad','paint','terminal']){
+  const text=fs.readFileSync(path.join(source,'dist/j3w1-'+app+'-chrome.wh.cpp'),'utf8');
+  const bridge=text.slice(text.indexOf('static void Bridge(Root& root,'),text.indexOf('static bool RootCandidateClass',text.indexOf('static void Bridge(Root& root,')));
+  assert.match(bridge,/if\(popup\) \{[\s\S]*PopupDiscoveryAdmission[\s\S]*ChromeUiThread\(popup\)[\s\S]*enabled.load\(\)&&!HighContrast\(\)[\s\S]*popup.IsLoaded\(\)[\s\S]*Identity\(owner.XamlRoot\(\),popup.XamlRoot\(\)\)\)\)return;/);
+  assert.match(bridge,/if\(popup\)stack.push_back\(popup\);\s*else if\(auto element=root.element.get\(\)\)/);
+  assert.match(bridge,/count\+\+<4096[\s\S]*DataSubtree\(object\)[\s\S]*RefreshChromeControl\(root,object\)[\s\S]*ApplyChromeAnimationPalette/);
+  const observe=text.slice(text.indexOf('static void ObservePopupChrome(FrameworkElement const& element) {'),text.indexOf('// Original adapter discovery'));
+  assert.match(observe,/Guard guard\(\*uiState\);Bridge\(root,element\)/);
+  for(const name of ['RestoreChromeAnimations','RestoreChromeSetters','RestoreChromeBases','RestoreChromeTransitions'])assert.ok(observe.includes(name+'(uiState->'));
+  assert.match(observe,/Restore\(root\);Schedule\(\);return;/);
+ }
+});

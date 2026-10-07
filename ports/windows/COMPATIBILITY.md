@@ -1524,3 +1524,33 @@ startup, DPI, accessibility and clean-PC checks.
 
 Microsoft documents the public [BackgroundTransition API](https://learn.microsoft.com/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.controls.contentpresenter.backgroundtransition)
 and [BrushTransition duration](https://learn.microsoft.com/uwp/api/windows.ui.xaml.brushtransition.duration).
+
+
+### Immediate admitted popup template refresh
+
+An installed Paint View flyout was captured with a native gray first surface,
+followed by its themed surface. A bounded read-only discovery trace found its
+presenter and menu controls already loaded on their owning UI thread. The prior
+discovery callback refreshed only each control's resources; the later bounded
+bridge handled cached template children and color states.
+
+Notepad, Paint and Terminal now run that same bridge synchronously for the exact
+discovered popup subtree. Loaded state, UI-thread access, known popup class and
+the admitted owner's XamlRoot identity remain required. Its styling traversal visits neither the
+full root nor other popups; the existing protected-brush lookup still checks
+the admitted owner before styling. The existing data exclusions,
+4096-object bound, resource ownership, cached-state admission and restoration
+paths are reused. A partial failure follows the ordinary root restoration and
+cleanup-retry path. This does not broaden native setter inspection or artwork
+access. Calculator retains its separate legacy adapter.
+
+This is a timing correction, not acceptance of every intermediate frame. Fresh
+popup, hover and pointer-exit rendering checks remain distinct from structural
+and ownership checks. The separate Paint drawing surround and Notepad
+first-window header requirements remain unresolved.
+
+A separate read-only Paint probe found no owning XAML background on its exact
+swap-chain panel. The documented SwapChainPanel background setter is unsupported
+and was not called. The subsequent public ClearView probe observed only black
+Direct2D clears, with no identified neutral surround clear. Those results do not
+admit a drawing-resource recolor or establish that the surround is unthemeable.

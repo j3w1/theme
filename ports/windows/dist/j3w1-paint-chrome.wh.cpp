@@ -2,7 +2,7 @@
 // @id j3w1-paint-chrome
 // @name j3w1 Paint chrome
 // @description Exact-package Paint chrome resources; document and artwork colors remain native
-// @version 1.0.21
+// @version 1.0.22
 // @author j3w1
 // @include mspaint.exe
 // @architecture x86-64
@@ -1646,7 +1646,17 @@ static void RefreshChromeControl(Root& root,DependencyObject const& object) {
  Log(236,static_cast<unsigned>(entry.keys.size()));
 }
 
-static void Bridge(Root& root) {
+static bool PopupChromeClass(std::wstring_view type) noexcept;
+static bool PopupDiscoveryAdmission(std::wstring_view type,bool uiThread,bool active,bool loaded,bool sameRoot) noexcept;
+static void Bridge(Root& root,FrameworkElement const& popup=nullptr) {
+ // An immediate popup pass visits only the discovered chrome subtree. Keep
+ // the same loaded, UI-thread and root-identity boundary as discovery; this
+ // entry point cannot grant admission to document or drawing content.
+ if(popup) {
+  auto owner=root.element.get();
+  if(!owner||!PopupDiscoveryAdmission(std::wstring_view{get_class_name(popup)},ChromeUiThread(popup),
+    enabled.load()&&!HighContrast(),popup.IsLoaded(),Identity(owner.XamlRoot(),popup.XamlRoot())))return;
+ }
  if(!PruneRetiredControls(root))throw hresult_error(E_FAIL);
  std::vector<Brush> protectedBrushes;if(!ProtectedBrushes(root,protectedBrushes))return;
  auto apply=[&](DependencyObject const& object,DependencyProperty const& property,Kind kind) {
@@ -1691,7 +1701,8 @@ static void Bridge(Root& root) {
 
  };
  std::vector<DependencyObject> stack;
- if(auto element=root.element.get()) {
+ if(popup)stack.push_back(popup);
+ else if(auto element=root.element.get()) {
   stack.push_back(element);
   // Popup presenters are hosted outside their owner's visual subtree. Visit
   // only popups belonging to this already-admitted XamlRoot, keeping the
@@ -1985,8 +1996,17 @@ static void ObservePopupChrome(FrameworkElement const& element) {
   // Resource changes can synchronously report more visual-tree mutations.
   // Reentrant callbacks wait for the existing bounded refresh path.
   struct Guard {ThreadState& state;explicit Guard(ThreadState& value):state(value){state.busy=true;}~Guard(){state.busy=false;}};
-  try {Guard guard(*uiState);RefreshChromeControl(root,element);}
-  catch(...){Schedule();return;}
+  // Refreshing the presenter resource alone leaves cached template children
+  // and state brushes native until the next message/timer pass. Apply the
+  // existing bounded bridge synchronously to this admitted popup instead.
+  try {Guard guard(*uiState);Bridge(root,element);}
+  catch(...) {
+   // Match the ordinary refresh failure path. Partial ownership survives
+   // failed restores and the existing scheduler retries its cleanup.
+   RestoreChromeAnimations(uiState->animations);RestoreChromeSetters(uiState->setters);
+   RestoreChromeBases(uiState->bases);RestoreChromeTransitions(uiState->transitions);
+   Restore(root);Schedule();return;
+  }
   Schedule();return;
  }
 }
