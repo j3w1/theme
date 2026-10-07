@@ -828,8 +828,11 @@ non-background animation properties remain excluded.
 
 Native regressions exercise state-key resolution and ownership in the generated
 Calculator, Notepad, Paint and Terminal adapters without desktop input. These
-checks establish the corrected dispatch and state mapping; absence of gray in
-live rendered frames is not yet an acceptance result. The owner's recording
+checks establish the corrected dispatch and state mapping. Subsequent owner
+readback confirms Calculator and most Paint controls retain black/red/rose
+through hover and pointer exit. Paint Selection and Brushes still have gray
+regions in the supplied screenshots; complete live hover acceptance remains
+open. The owner's recording
 remains the failed rendering evidence, rather than being superseded by a source
 test or an earlier sampled pass. This change uses the existing install.ps1
 Update, Test and Restore actions; it adds no installer or rollback script.
@@ -839,3 +842,31 @@ declare F-E as a ToggleButton and caption controls with Button-targeted styles;
 the [memory controls](https://github.com/microsoft/calculator/blob/main/src/Calculator/Views/Calculator.xaml)
 use caption styles on custom CalculatorButtons. These public sources support
 the dispatch correction, not a claim about an uninspected installed template.
+
+
+### Split-button resting template bindings
+
+Owner screenshots identify residual gray on Paint's Selection and Brushes
+controls after the shared ordinary-button correction. Source review identifies
+a separate parent-binding gap: the adapter overrides SplitButton resources but
+does not replace the parent's already-resolved Background, Foreground or
+BorderBrush. The native framework template uses those properties for its
+resting main/dropdown parts, independently of their color-state endpoints.
+
+The shared chrome adapter now admits those three stable public brush properties
+only on exact framework SplitButton classes inside an already-admitted chrome
+root. It uses the existing SplitButton role mappings, local-expression refusal,
+protected data-brush check, original local-value receipt and later app-write
+preservation. Disable, high contrast, update, Restore and Uninstall use the
+existing property restoration path. No template, inner content, artwork, native
+state, dimensions, event handling or command changes. Calculator's accepted
+adapter bytes are unaffected by this correction.
+
+Native tests verify the exact control/property boundary and palette availability.
+The screenshots establish the remaining rendering failure; the parent-binding
+mechanism is a source diagnosis, not a rendered acceptance result. Custom
+split-button subclasses and unreadable expressions remain native. Post-update
+Paint hover and pointer-exit acceptance remains required. Notepad's first-window
+header and Paint's drawing surround remain separate unresolved surfaces.
+
+Reference: [Microsoft SplitButton parent TemplateBindings and native states](https://github.com/microsoft/microsoft-ui-xaml/blob/v2.8.7/dev/SplitButton/SplitButton.xaml).

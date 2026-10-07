@@ -1538,7 +1538,20 @@ static const wchar_t* NativeFocusBrushKey(Kind kind,bool control) {
  if(!control)return nullptr;
  return kind==Kind::FocusPrimary?L"SystemControlFocusVisualPrimaryBrush":kind==Kind::FocusSecondary?L"SystemControlFocusVisualSecondaryBrush":nullptr;
 }
+// A SplitButton's parent properties feed the resting TemplateBindings of its
+// main/dropdown halves. Resource overrides alone leave an already-resolved
+// parent brush native. Only this framework control's stable brush properties
+// are admitted; its template, states, nested content and commands remain native.
+static const wchar_t* SplitButtonTemplateBindingKey(std::wstring_view type,Kind kind) noexcept {
+ if(type!=L"Microsoft.UI.Xaml.Controls.SplitButton"&&type!=L"Windows.UI.Xaml.Controls.SplitButton")return nullptr;
+ return kind==Kind::Background?L"SplitButtonBackground":kind==Kind::Foreground?L"SplitButtonForeground":kind==Kind::Border?L"SplitButtonBorderBrush":nullptr;
+}
 static Palette const* TemplateSurface(Root const& root,DependencyObject const& object,Kind kind,Brush const& brush) {
+
+ if(auto key=SplitButtonTemplateBindingKey(std::wstring_view{get_class_name(object)},kind)) {
+  for(auto const& item:root.palette)if(wcscmp(item.rule->key,key)==0)return &item;
+  return nullptr;
+ }
 
  if(auto key=NativeFocusBrushKey(kind,object.try_as<Control>()!=nullptr)) {
   for(auto const& item:root.palette)if(wcscmp(item.rule->key,key)==0)return &item;

@@ -37750,7 +37750,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-RoCgTx0jldBZPHE/srL//pWmMkQ3AxjnRI9CoXEG6aU=",
+      "subjectDigest": "sha256-HKxlx1Wk7MyReujCzKcd/sbOmB9TffYriHxhDYKjnAs=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37783,7 +37783,7 @@
           "path": "dist/windows-settings.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-settings.json",
-          "digest": "sha256-or1KA0kLOhvF7y36iwnCyGBZr0n+rCifn0t2K9rT+38="
+          "digest": "sha256-8kJDKu0oUG79VOzTc5Km99ajOsxDzVHUa0pgU2p+cEo="
         },
         {
           "path": "dist/terminal-fragment.json",
@@ -37957,7 +37957,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-FnPglvltRY5lNINpfvCY4v0eul+MBeuQctbnoadWfT8="
+          "digest": "sha256-1EufwEpa09A2T7Z2ypKaS64kCJbb7mt+C9pCpDollPI="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
@@ -38041,7 +38041,7 @@
           "path": "dist/j3w1-notepad-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-notepad-chrome.wh.cpp",
-          "digest": "sha256-jKC5yZVtIKF34uirwp2zazZ6Dz3egi+DOlPACf/dKQs="
+          "digest": "sha256-DaPO1r8CwvcVHLgfB1kAtWHYZk47QpiFIV/hUmkcNUY="
         },
         {
           "path": "dist/j3w1-notepad-chrome.json",
@@ -38053,7 +38053,7 @@
           "path": "dist/j3w1-paint-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-paint-chrome.wh.cpp",
-          "digest": "sha256-8S1HEQYdO2wODO5XDOROXKz+x6bF+Ma8th/AEfztWlI="
+          "digest": "sha256-pkvqXRAT4+DD2MBzc4Y5iUEUHpP9hc1PIT0lDlgZLqE="
         },
         {
           "path": "dist/j3w1-paint-chrome.json",
@@ -38065,7 +38065,7 @@
           "path": "dist/j3w1-terminal-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-terminal-chrome.wh.cpp",
-          "digest": "sha256-LQeUVpnjGk2miyMM28QAKKeRU4P98o+I6x1y+lGjn2A="
+          "digest": "sha256-qdrQVP8YvL/Fm9uw0o4oNKKaWFv6ebgjR7IZO2fekbU="
         },
         {
           "path": "dist/j3w1-terminal-chrome.json",

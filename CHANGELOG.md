@@ -2,6 +2,10 @@
 
 ## [4.0.0] - 2026-09-28
 
+- Windows: refresh stable SplitButton parent brush bindings through the existing
+  owned chrome-property lifecycle, preserving native hover states and exact
+  local-value recovery rather than painting over each inner button.
+
 - Windows: route Calculator caption and toggle controls through the shared
   button hover correction and theme cached checked-state storyboards with the
   same state palette as setters in Calculator, Notepad, Paint and Terminal;

@@ -47,6 +47,21 @@ static void Stop() {
 int main(int argc, char** argv) {
  if(argc>1&&strcmp(argv[1],"background-transition-ownership")==0){CheckChromeTransitions();return 0;}
  if(argc>1&&strcmp(argv[1],"hover-state-palette")==0){CheckChromeHoverStates();return 0;}
+ if(argc>1&&strcmp(argv[1],"split-parent-bindings")==0) {
+  for(auto type:{L"Microsoft.UI.Xaml.Controls.SplitButton",L"Windows.UI.Xaml.Controls.SplitButton"}) {
+   for(auto kind:{Kind::Background,Kind::Foreground,Kind::Border}) {
+    auto key=SplitButtonTemplateBindingKey(type,kind);assert(key);
+    bool mapped=false;for(auto const& rule:rules)if(wcscmp(rule.key,key)==0)mapped=true;assert(mapped);
+   }
+   assert(wcscmp(SplitButtonTemplateBindingKey(type,Kind::Background),L"SplitButtonBackground")==0);
+   assert(wcscmp(SplitButtonTemplateBindingKey(type,Kind::Foreground),L"SplitButtonForeground")==0);
+   assert(wcscmp(SplitButtonTemplateBindingKey(type,Kind::Border),L"SplitButtonBorderBrush")==0);
+   for(auto kind:{Kind::FocusPrimary,Kind::FocusSecondary,Kind::Separator,Kind::ToggleOnFill,Kind::ToggleOnStroke})assert(!SplitButtonTemplateBindingKey(type,kind));
+  }
+  for(auto type:{L"Microsoft.UI.Xaml.Controls.SplitButtonExtra",L"Microsoft.UI.Xaml.Controls.Button",L"PaintUI.ColorRadioButton",L"PaintUI.D2DSwapChainPanel",L"NotepadXamlUI.Document",L""})
+   for(auto kind:{Kind::Background,Kind::Foreground,Kind::Border})assert(!SplitButtonTemplateBindingKey(type,kind));
+  puts("PASS: exact SplitButton parent binding keys; existing palette, focus/data/custom-control exclusions preserved");return 0;
+ }
  assert(NativeScrollbarChrome(L"Microsoft.UI.Xaml.Controls.Primitives.ScrollBar"));
  assert(NativeScrollbarChrome(L"Windows.UI.Xaml.Controls.Primitives.ScrollBar"));
  for(auto type:{L"PaintUI.Canvas",L"PaintUI.D2DSwapChainPanel",L"Microsoft.UI.Xaml.Controls.ScrollViewer",L"Microsoft.UI.Xaml.Controls.Slider",L"NotepadXamlUI.ScrollBar",L"Microsoft.UI.Xaml.Controls.Primitives.ScrollBarExtra"})assert(!NativeScrollbarChrome(type));
