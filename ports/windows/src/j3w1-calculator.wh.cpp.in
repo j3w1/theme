@@ -424,6 +424,13 @@ static bool RestoreAnimations(std::vector<NativeStateRefresh>& refresh) noexcept
  }
  if(restored)animationsChanged.clear();return restored;
 }
+static bool CalculatorSpecializedStyle(std::wstring_view target,bool button) noexcept {
+ return button&&target==L"@BUTTON_STYLE_TARGET@";
+}
+static bool CalculatorSpecializedButton(DependencyObject const& object) {
+ auto button=object.try_as<Button>();if(!button)return false;
+ auto style=button.Style();return style&&CalculatorSpecializedStyle(std::wstring_view{style.TargetType().Name},true);
+}
 static void ApplyAnimationPalette(DependencyObject const& object) {
  auto button=object.try_as<Button>();if(!button)return;
  auto style=button.Style();
@@ -432,7 +439,7 @@ static void ApplyAnimationPalette(DependencyObject const& object) {
  std::vector<DependencyObject> nodes{button};unsigned visited=0;
  while(!nodes.empty()&&visited++<24) {
   auto node=nodes.back();nodes.pop_back();
-  ApplyChromeTransition(button,node.try_as<ContentPresenter>(),genericTransitions);
+  ApplyChromeTransition(button,node,genericTransitions);
   if(auto element=node.try_as<FrameworkElement>())for(auto const& group:VisualStateManager::GetVisualStateGroups(element)) {
    if(group.Name()!=L"CommonStates")continue;
    std::vector<NativeStateRefresh> refresh;
@@ -583,10 +590,12 @@ static void BridgeViews() {
         auto object=stack.back();stack.pop_back();
         RefreshControlResources(object);
         ApplyPopupFrame(object);
-        ApplyButtonStyle(object);
-        ApplyAnimationPalette(object);
-        auto genericType=get_class_name(object);
-        if(genericType==L"Microsoft.UI.Xaml.Controls.DropDownButton"||genericType==L"Windows.UI.Xaml.Controls.Button"||genericType==L"Windows.UI.Xaml.Controls.Primitives.RepeatButton")ApplyChromeAnimationPalette(object,genericAnimations,genericSetters,genericBases,genericTransitions);
+        // Caption styles on custom CalculatorButtons and native ToggleButtons
+        // use the shared ButtonBase path. The exact custom keypad style keeps
+        // its specialized palette, including the primary equals action.
+        if(CalculatorSpecializedButton(object)) {
+         ApplyButtonStyle(object);ApplyAnimationPalette(object);
+        }else ApplyChromeAnimationPalette(object,genericAnimations,genericSetters,genericBases,genericTransitions);
         BridgeStaticText(object);
         for(int i=0;i<VisualTreeHelper::GetChildrenCount(object);i++)stack.push_back(VisualTreeHelper::GetChild(object,i));
     }

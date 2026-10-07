@@ -46,6 +46,7 @@ static void Stop() {
 #include "windows-chrome-transition-assertions.h"
 int main(int argc, char** argv) {
  if(argc>1&&strcmp(argv[1],"background-transition-ownership")==0){CheckChromeTransitions();return 0;}
+ if(argc>1&&strcmp(argv[1],"hover-state-palette")==0){CheckChromeHoverStates();return 0;}
  assert(NativeScrollbarChrome(L"Microsoft.UI.Xaml.Controls.Primitives.ScrollBar"));
  assert(NativeScrollbarChrome(L"Windows.UI.Xaml.Controls.Primitives.ScrollBar"));
  for(auto type:{L"PaintUI.Canvas",L"PaintUI.D2DSwapChainPanel",L"Microsoft.UI.Xaml.Controls.ScrollViewer",L"Microsoft.UI.Xaml.Controls.Slider",L"NotepadXamlUI.ScrollBar",L"Microsoft.UI.Xaml.Controls.Primitives.ScrollBarExtra"})assert(!NativeScrollbarChrome(type));

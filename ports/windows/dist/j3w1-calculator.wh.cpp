@@ -563,19 +563,37 @@ struct ChromeAnimationChange {weak_ref<Control> control;ObjectAnimationUsingKeyF
 struct ChromeSetterChange {weak_ref<Control> control;VisualState state{nullptr};VisualStateGroup group{nullptr};unsigned index=0;OwnedChromeFrame value;};
 static bool ChromeSetterState(std::wstring_view state) noexcept {
  return ChromeColorState(state)||state==L"Selected"||state==L"Checked"||state==L"CheckedPointerOver"
-  ||state==L"CheckedPressed"||state==L"OverflowPointerOver"||state==L"OverflowPressed";
+  ||state==L"CheckedPressed"||state==L"CheckedDisabled"||state==L"OverflowPointerOver"||state==L"OverflowPressed";
 }
 static bool ChromeSetterAdmission(std::wstring_view property,bool brush,bool sealed) noexcept {
  return !sealed&&brush&&(property==L"Background"||property==L"Foreground"||property==L"BorderBrush");
 }
 static Color ChromeStateColor(std::wstring_view property,unsigned state,bool secondary);
-static Color ChromeSetterColor(std::wstring_view property,std::wstring_view state) {
+// Setters and cached keyframes must use the same state ladder. Checked
+// storyboards cannot fall through to a neutral native endpoint on hover exit.
+static std::wstring ChromeStatePaletteKey(std::wstring_view property,std::wstring_view state,bool secondary=false) {
+ if(!ChromeSetterState(state)||(property!=L"Background"&&property!=L"Foreground"&&property!=L"BorderBrush"))throw hresult_error(E_INVALIDARG);
  auto id=ChromeColorState(state);
- if(id)return ChromeStateColor(property,id,false);
- if(state==L"OverflowPointerOver")return ChromeStateColor(property,2,false);
- if(state==L"OverflowPressed"||state==L"CheckedPressed")return ChromeStateColor(property,3,false);
- auto key=property==L"Background"?L"ToggleButtonBackgroundChecked":property==L"Foreground"?L"ToggleButtonForegroundChecked":L"ToggleButtonBorderBrushChecked";
- for(auto const& rule:rules)if(wcscmp(rule.key,key)==0)return rule.color;
+ if(state==L"OverflowPointerOver")id=2;
+ if(state==L"OverflowPressed")id=3;
+ bool checked=state==L"Selected"||state==L"Checked"||state==L"CheckedPointerOver"||state==L"CheckedPressed"||state==L"CheckedDisabled";
+ std::wstring key=secondary&&property==L"Foreground"?L"DropDownButtonForegroundSecondary":
+  checked?(property==L"Background"?L"ToggleButtonBackground":property==L"BorderBrush"?L"ToggleButtonBorderBrush":L"ToggleButtonForeground"):
+  property==L"Background"?L"ButtonBackground":property==L"BorderBrush"?L"ButtonBorderBrush":L"ButtonForeground";
+ if(checked) {
+  key+=L"Checked";
+  if(state==L"CheckedPointerOver")key+=L"PointerOver";
+  else if(state==L"CheckedPressed")key+=L"Pressed";
+  else if(state==L"CheckedDisabled")key+=L"Disabled";
+ }else if(id==2)key+=L"PointerOver";else if(id==3)key+=L"Pressed";
+ else if(id==4)key=property==L"Background"?L"ButtonBackgroundDisabled":property==L"BorderBrush"?L"ButtonBorderBrushDisabled":L"ButtonForegroundDisabled";
+ // Chevron foreground has no checked family; it keeps its own secondary role.
+ if(secondary&&property==L"Foreground"&&checked)key=state==L"CheckedDisabled"?L"ButtonForegroundDisabled":state==L"CheckedPressed"?L"DropDownButtonForegroundSecondaryPressed":state==L"CheckedPointerOver"?L"DropDownButtonForegroundSecondaryPointerOver":L"DropDownButtonForegroundSecondary";
+ return key;
+}
+static Color ChromeSetterColor(std::wstring_view property,std::wstring_view state,bool secondary=false) {
+ auto key=ChromeStatePaletteKey(property,state,secondary);
+ for(auto const& rule:rules)if(key==rule.key)return rule.color;
  throw hresult_error(E_INVALIDARG);
 }
 static bool StopChromeColorState(Control const& control,VisualStateGroup const& group,Storyboard const& storyboard,std::vector<ChromeStateRefresh>& refresh) noexcept {
@@ -583,7 +601,7 @@ static bool StopChromeColorState(Control const& control,VisualStateGroup const& 
   if(!ChromeColorStoryboard(storyboard))return false;
   auto clock=storyboard.GetCurrentState();if(clock==ClockState::Stopped)return true;
   if(clock!=ClockState::Active&&clock!=ClockState::Filling)return false;
-  if(control)if(auto state=group.CurrentState();state&&ChromeColorState(std::wstring_view{state.Name()})) {
+  if(control)if(auto state=group.CurrentState();state&&ChromeSetterState(std::wstring_view{state.Name()})) {
    bool found=false;for(auto const& prior:refresh)if(Identity(prior.group,group)){found=true;break;}
    if(!found)refresh.push_back({make_weak(control),group,state.Name()});
   }
@@ -717,13 +735,31 @@ template<class Read,class Write> static bool UpdateChromeTransition(OwnedChromeT
 static bool ChromeTransitionAdmission(long long duration,bool ownedTemplate,bool readableLocal) noexcept {
  return ownedTemplate&&readableLocal&&duration==830000;
 }
-struct ChromeTransitionChange {weak_ref<ContentPresenter> presenter;OwnedChromeTransition value;};
+// Cached fill storyboards also paint RootGrid panels/borders. Their native
+// BackgroundTransition is independent of the button's ContentPresenter.
+static bool ChromeTransitionPartAdmission(std::wstring_view name,bool presenter,bool panel,bool border) noexcept {
+ return (presenter&&name==L"ContentPresenter")||((panel||border)&&name==L"RootGrid");
+}
+static BrushTransition ChromeBackgroundTransition(FrameworkElement const& element) {
+ if(auto presenter=element.try_as<ContentPresenter>())return presenter.BackgroundTransition();
+ if(auto panel=element.try_as<Panel>())return panel.BackgroundTransition();
+ if(auto border=element.try_as<Border>())return border.BackgroundTransition();
+ throw hresult_error(E_INVALIDARG);
+}
+static void ChromeBackgroundTransition(FrameworkElement const& element,ProjectedObject const& value) {
+ auto transition=value.as<BrushTransition>();
+ if(auto presenter=element.try_as<ContentPresenter>()){presenter.BackgroundTransition(transition);return;}
+ if(auto panel=element.try_as<Panel>()){panel.BackgroundTransition(transition);return;}
+ if(auto border=element.try_as<Border>()){border.BackgroundTransition(transition);return;}
+ throw hresult_error(E_INVALIDARG);
+}
+struct ChromeTransitionChange {weak_ref<FrameworkElement> presenter;OwnedChromeTransition value;};
 static bool RestoreChromeTransitions(std::deque<ChromeTransitionChange>& entries) noexcept {
  bool restored=true;
  for(auto& entry:entries)try {
   if(auto presenter=entry.presenter.get()) {
-   restored=UpdateChromeTransition(entry.value,false,[&]{return presenter.BackgroundTransition();},
-    [&](auto const& value){presenter.BackgroundTransition(value.template as<BrushTransition>());})&&restored;
+   restored=UpdateChromeTransition(entry.value,false,[&]{return ChromeBackgroundTransition(presenter);},
+    [&](auto const& value){ChromeBackgroundTransition(presenter,value);})&&restored;
   }else entry.value.owned=false;
  }catch(...){restored=false;}
  if(restored)for(auto it=entries.begin();it!=entries.end();) {
@@ -731,11 +767,12 @@ static bool RestoreChromeTransitions(std::deque<ChromeTransitionChange>& entries
  }
  return restored;
 }
-static void ApplyChromeTransition(Control const& control,ContentPresenter const& presenter,std::deque<ChromeTransitionChange>& entries) {
- if(!presenter||!presenter.IsLoaded()||presenter.Name()!=L"ContentPresenter")return;
+static void ApplyChromeTransition(Control const& control,DependencyObject const& object,std::deque<ChromeTransitionChange>& entries) {
+ auto presenter=object.try_as<FrameworkElement>();
+ if(!presenter||!presenter.IsLoaded()||!ChromeTransitionPartAdmission(std::wstring_view{presenter.Name()},bool(object.try_as<ContentPresenter>()),bool(object.try_as<Panel>()),bool(object.try_as<Border>())))return;
  for(auto it=entries.begin();it!=entries.end();)if(!it->presenter.get())it=entries.erase(it);else ++it;
  for(auto& entry:entries)if(Identity(entry.presenter.get(),presenter)) {
-  if(!UpdateChromeTransition(entry.value,true,[&]{return presenter.BackgroundTransition();},[&](auto const& value){presenter.BackgroundTransition(value.template as<BrushTransition>());}))throw hresult_error(E_FAIL);
+  if(!UpdateChromeTransition(entry.value,true,[&]{return ChromeBackgroundTransition(presenter);},[&](auto const& value){ChromeBackgroundTransition(presenter,value);}))throw hresult_error(E_FAIL);
   return;
  }
  ProjectedObject local{nullptr};bool admitted=InspectChromeState([&] {
@@ -743,7 +780,7 @@ static void ApplyChromeTransition(Control const& control,ContentPresenter const&
   for(unsigned depth=0;parent&&depth<16;depth++,parent=VisualTreeHelper::GetParent(parent)) {
    if(parent.try_as<Control>()){owned=Identity(parent,control);break;}
   }
-  auto transition=presenter.BackgroundTransition();if(!transition)return false;
+  auto transition=ChromeBackgroundTransition(presenter);if(!transition)return false;
   local=transition;
   return ChromeTransitionAdmission(transition.Duration().count(),owned,bool(local));
  });
@@ -751,7 +788,7 @@ static void ApplyChromeTransition(Control const& control,ContentPresenter const&
  if(entries.size()>=4096)throw hresult_error(E_BOUNDS);
  BrushTransition applied;applied.Duration(Windows::Foundation::TimeSpan{0});
  entries.push_back({make_weak(presenter),{local,applied}});auto& entry=entries.back();
- if(!UpdateChromeTransition(entry.value,true,[&]{return presenter.BackgroundTransition();},[&](auto const& value){presenter.BackgroundTransition(value.template as<BrushTransition>());}))throw hresult_error(E_FAIL);
+ if(!UpdateChromeTransition(entry.value,true,[&]{return ChromeBackgroundTransition(presenter);},[&](auto const& value){ChromeBackgroundTransition(presenter,value);}))throw hresult_error(E_FAIL);
 }
 
 static bool RestoreChromeAnimations(std::deque<ChromeAnimationChange>& changes) noexcept {
@@ -848,7 +885,7 @@ static void ApplyChromeAnimationPalette(DependencyObject const& object,std::dequ
  std::vector<DependencyObject> todo{object};unsigned visited=0;
  while(!todo.empty()&&visited++<64) {
   auto node=todo.back();todo.pop_back();
-  ApplyChromeTransition(control,node.try_as<ContentPresenter>(),transitions);
+  ApplyChromeTransition(control,node,transitions);
   if(auto element=node.try_as<FrameworkElement>())for(auto const& group:VisualStateManager::GetVisualStateGroups(element)) {
    if(group.Name()!=L"CommonStates")continue;
    ApplyChromeBase(control,element,group,bases);
@@ -856,8 +893,8 @@ static void ApplyChromeAnimationPalette(DependencyObject const& object,std::dequ
    std::vector<ChromeStateRefresh> refresh;
    try {
     for(auto const& state:group.States()) {
-     auto stateId=ChromeColorState(std::wstring_view{state.Name()});auto storyboard=state.Storyboard();
-     if(!stateId||!ChromeColorStoryboard(storyboard))continue;
+     auto stateName=state.Name();auto storyboard=state.Storyboard();
+     if(!ChromeSetterState(std::wstring_view{stateName})||!ChromeColorStoryboard(storyboard))continue;
      bool tracked=false;for(auto const& prior:changes)if(Identity(prior.storyboard,storyboard)){tracked=true;break;}
      if(tracked)continue;
      if(!StopChromeColorState(control,group,storyboard,refresh))throw hresult_error(E_FAIL);
@@ -866,7 +903,7 @@ static void ApplyChromeAnimationPalette(DependencyObject const& object,std::dequ
       auto original=frames.GetAt(0).as<DiscreteObjectKeyFrame>();
       DiscreteObjectKeyFrame applied;applied.KeyTime(original.KeyTime());
       auto property=Storyboard::GetTargetProperty(animation);
-      applied.Value(SolidColorBrush(ChromeStateColor(std::wstring_view{property},stateId,Storyboard::GetTargetName(animation)==L"ChevronIcon")));
+      applied.Value(SolidColorBrush(ChromeSetterColor(std::wstring_view{property},std::wstring_view{stateName},Storyboard::GetTargetName(animation)==L"ChevronIcon")));
       if(changes.size()>=4096)throw hresult_error(E_BOUNDS);
       changes.push_back({make_weak(control),animation,storyboard,group,{original,applied}});auto& entry=changes.back();
       if(!UpdateChromeFrame(entry.frame,true,[&]{return ChromeFrameValue{frames.Size()==1,frames.Size()==1?frames.GetAt(0):nullptr};},
@@ -979,6 +1016,13 @@ static bool RestoreAnimations(std::vector<NativeStateRefresh>& refresh) noexcept
  }
  if(restored)animationsChanged.clear();return restored;
 }
+static bool CalculatorSpecializedStyle(std::wstring_view target,bool button) noexcept {
+ return button&&target==L"CalculatorApp.Controls.CalculatorButton, CalculatorApp, Version=11.2607.0.0, Culture=neutral, PublicKeyToken=null";
+}
+static bool CalculatorSpecializedButton(DependencyObject const& object) {
+ auto button=object.try_as<Button>();if(!button)return false;
+ auto style=button.Style();return style&&CalculatorSpecializedStyle(std::wstring_view{style.TargetType().Name},true);
+}
 static void ApplyAnimationPalette(DependencyObject const& object) {
  auto button=object.try_as<Button>();if(!button)return;
  auto style=button.Style();
@@ -987,7 +1031,7 @@ static void ApplyAnimationPalette(DependencyObject const& object) {
  std::vector<DependencyObject> nodes{button};unsigned visited=0;
  while(!nodes.empty()&&visited++<24) {
   auto node=nodes.back();nodes.pop_back();
-  ApplyChromeTransition(button,node.try_as<ContentPresenter>(),genericTransitions);
+  ApplyChromeTransition(button,node,genericTransitions);
   if(auto element=node.try_as<FrameworkElement>())for(auto const& group:VisualStateManager::GetVisualStateGroups(element)) {
    if(group.Name()!=L"CommonStates")continue;
    std::vector<NativeStateRefresh> refresh;
@@ -1138,10 +1182,12 @@ static void BridgeViews() {
         auto object=stack.back();stack.pop_back();
         RefreshControlResources(object);
         ApplyPopupFrame(object);
-        ApplyButtonStyle(object);
-        ApplyAnimationPalette(object);
-        auto genericType=get_class_name(object);
-        if(genericType==L"Microsoft.UI.Xaml.Controls.DropDownButton"||genericType==L"Windows.UI.Xaml.Controls.Button"||genericType==L"Windows.UI.Xaml.Controls.Primitives.RepeatButton")ApplyChromeAnimationPalette(object,genericAnimations,genericSetters,genericBases,genericTransitions);
+        // Caption styles on custom CalculatorButtons and native ToggleButtons
+        // use the shared ButtonBase path. The exact custom keypad style keeps
+        // its specialized palette, including the primary equals action.
+        if(CalculatorSpecializedButton(object)) {
+         ApplyButtonStyle(object);ApplyAnimationPalette(object);
+        }else ApplyChromeAnimationPalette(object,genericAnimations,genericSetters,genericBases,genericTransitions);
         BridgeStaticText(object);
         for(int i=0;i<VisualTreeHelper::GetChildrenCount(object);i++)stack.push_back(VisualTreeHelper::GetChild(object,i));
     }

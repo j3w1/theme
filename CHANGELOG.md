@@ -2,6 +2,11 @@
 
 ## [4.0.0] - 2026-09-28
 
+- Windows: route Calculator caption and toggle controls through the shared
+  button hover correction and theme cached checked-state storyboards with the
+  same state palette as setters in Calculator, Notepad, Paint and Terminal;
+  include independently animated RootGrid fills in the owned transition scope.
+
 - Windows: prevent the observed neutral button-background interpolation in
   admitted templates using a private immediate transition, preserving exact
   original objects for the existing single-script rollback lifecycle.

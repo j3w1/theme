@@ -12,6 +12,13 @@ static void Wh_Log(PCWSTR,...){ }
 #include "windows-chrome-transition-assertions.h"
 int main(int argc,char** argv){
  if(argc>1&&strcmp(argv[1],"background-transition-ownership")==0){CheckChromeTransitions();return 0;}
+ if(argc>1&&strcmp(argv[1],"hover-state-palette")==0){CheckChromeHoverStates();return 0;}
+ if(argc>1&&strcmp(argv[1],"button-style-dispatch")==0) {
+  assert(CalculatorSpecializedStyle(L"CalculatorApp.Controls.CalculatorButton, CalculatorApp, Version=11.2607.0.0, Culture=neutral, PublicKeyToken=null",true));
+  for(auto style:{L"Windows.UI.Xaml.Controls.Button",L"Windows.UI.Xaml.Controls.Primitives.ToggleButton",L"Other.CalculatorButton",L""})assert(!CalculatorSpecializedStyle(style,true));
+  assert(!CalculatorSpecializedStyle(L"CalculatorApp.Controls.CalculatorButton, CalculatorApp, Version=11.2607.0.0, Culture=neutral, PublicKeyToken=null",false));
+  puts("PASS: exact keypad style retains primary palette; caption and toggle styles route to shared ButtonBase handling");return 0;
+ }
  assert(argc==2);
  if(strcmp(argv[1],"cached-color-frame")==0) {
   unsigned inspectionWrites=0;

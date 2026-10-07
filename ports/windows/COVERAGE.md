@@ -800,3 +800,42 @@ implementations and unobserved variants remain open until checked.
 
 References: [Microsoft switch resource contract](https://github.com/microsoft/microsoft-ui-xaml/blob/v2.8.7/dev/CommonStyles/ToggleSwitch_themeresources.xaml),
 [Microsoft progress resource contract](https://github.com/microsoft/microsoft-ui-xaml/blob/v2.8.7/dev/ProgressBar/ProgressBar_themeresources.xaml).
+
+
+### Button subclass dispatch and cached checked colors
+
+The owner-supplied Calculator recording establishes lingering neutral gray on
+M+ and F-E after pointer movement. Earlier sampled endpoint checks did not
+cover that behavior. The correction uses this failure evidence directly.
+
+Calculator's exact keypad style retains its separate custom-property palette,
+including the primary equals action. All other controls enter the shared
+ButtonBase/MenuBarItem admission path instead of a list of exact runtime class
+names. This includes caption styles on custom button subclasses and native
+toggle controls. The shared adapter applies the same approved normal, hover,
+pressed, disabled and checked palette to setters and cached color-only
+storyboards, including checked hover, pressed and disabled endpoints. Unknown
+states, mixed/non-color storyboards, data subtrees and unresolved setter targets
+remain under native ownership. The existing nearest-control transition checks,
+stopped-clock writes, exact original-object restore and replacement safeguards
+are retained. No commands, values, templates or document/artwork surfaces change.
+
+The immediate-transition correction also covers named RootGrid panels and
+borders inside the same nearest owning button, with the same exact 83 ms
+admission and original-object restoration. A presenter-only traversal left
+those independently animated template fill surfaces native. Unknown names and
+non-background animation properties remain excluded.
+
+Native regressions exercise state-key resolution and ownership in the generated
+Calculator, Notepad, Paint and Terminal adapters without desktop input. These
+checks establish the corrected dispatch and state mapping; absence of gray in
+live rendered frames is not yet an acceptance result. The owner's recording
+remains the failed rendering evidence, rather than being superseded by a source
+test or an earlier sampled pass. This change uses the existing install.ps1
+Update, Test and Restore actions; it adds no installer or rollback script.
+
+Microsoft's [Scientific angle controls](https://github.com/microsoft/calculator/blob/main/src/Calculator/Views/CalculatorScientificAngleButtons.xaml)
+declare F-E as a ToggleButton and caption controls with Button-targeted styles;
+the [memory controls](https://github.com/microsoft/calculator/blob/main/src/Calculator/Views/Calculator.xaml)
+use caption styles on custom CalculatorButtons. These public sources support
+the dispatch correction, not a claim about an uninspected installed template.
