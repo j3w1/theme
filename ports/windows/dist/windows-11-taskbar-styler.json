@@ -84,7 +84,7 @@
       ]
     },
     {
-      "target": "ListViewItemPresenter",
+      "target": "Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter",
       "styles": [
         "Background=#000000",
         "PointerOverBackground=#1c0a09",

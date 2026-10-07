@@ -45561,7 +45561,7 @@
               "state": null,
               "variant": null,
               "surface": null,
-              "nativeKey": "windows-11-taskbar-styler | ListViewItemPresenter | PointerOverBackground",
+              "nativeKey": "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | PointerOverBackground",
               "port": "windows",
               "source": {
                 "file": "ports/windows/mapping.json",
@@ -48771,7 +48771,7 @@
               "state": null,
               "variant": null,
               "surface": null,
-              "nativeKey": "windows-11-taskbar-styler | ListViewItemPresenter | PressedBackground",
+              "nativeKey": "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | PressedBackground",
               "port": "windows",
               "source": {
                 "file": "ports/windows/mapping.json",
@@ -48786,7 +48786,7 @@
               "state": null,
               "variant": null,
               "surface": null,
-              "nativeKey": "windows-11-taskbar-styler | ListViewItemPresenter | SelectedPressedBackground",
+              "nativeKey": "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | SelectedPressedBackground",
               "port": "windows",
               "source": {
                 "file": "ports/windows/mapping.json",
@@ -51812,7 +51812,7 @@
               "state": null,
               "variant": null,
               "surface": null,
-              "nativeKey": "windows-11-taskbar-styler | ListViewItemPresenter | SelectedBackground",
+              "nativeKey": "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | SelectedBackground",
               "port": "windows",
               "source": {
                 "file": "ports/windows/mapping.json",
@@ -51827,7 +51827,7 @@
               "state": null,
               "variant": null,
               "surface": null,
-              "nativeKey": "windows-11-taskbar-styler | ListViewItemPresenter | SelectedPointerOverBackground",
+              "nativeKey": "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | SelectedPointerOverBackground",
               "port": "windows",
               "source": {
                 "file": "ports/windows/mapping.json",
@@ -54075,7 +54075,7 @@
               "state": null,
               "variant": null,
               "surface": null,
-              "nativeKey": "windows-11-taskbar-styler | ListViewItemPresenter | SelectedForeground",
+              "nativeKey": "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | SelectedForeground",
               "port": "windows",
               "source": {
                 "file": "ports/windows/mapping.json",
@@ -75788,7 +75788,7 @@
               "state": null,
               "variant": null,
               "surface": null,
-              "nativeKey": "windows-11-taskbar-styler | ListViewItemPresenter | Background",
+              "nativeKey": "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | Background",
               "port": "windows",
               "source": {
                 "file": "ports/windows/mapping.json",
@@ -107373,12 +107373,12 @@
               "state": null,
               "variant": null,
               "surface": null,
-              "nativeKey": "windows-11-taskbar-styler | ListViewItemPresenter | PointerOverForeground",
+              "nativeKey": "windows-11-taskbar-styler | TextBlock | Foreground",
               "port": "windows",
               "source": {
                 "file": "ports/windows/mapping.json",
-                "pointer": "/mappings/color.text.default/237",
-                "line": 526
+                "pointer": "/mappings/color.text.default/3",
+                "line": 292
               }
             },
             {
@@ -107388,12 +107388,12 @@
               "state": null,
               "variant": null,
               "surface": null,
-              "nativeKey": "windows-11-taskbar-styler | TextBlock | Foreground",
+              "nativeKey": "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | PointerOverForeground",
               "port": "windows",
               "source": {
                 "file": "ports/windows/mapping.json",
-                "pointer": "/mappings/color.text.default/3",
-                "line": 292
+                "pointer": "/mappings/color.text.default/237",
+                "line": 526
               }
             },
             {

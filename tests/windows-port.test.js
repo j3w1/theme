@@ -8,7 +8,7 @@ import {spawnSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {repoRoot,readJson} from '../scripts/lib/fs.mjs';
 import {assertPortArtifacts} from '../scripts/lib/port-artifacts.mjs';
-import {CURSOR_NAMES,windowsStyleValue,windowsWebContentStyles} from '../scripts/lib/windows-port.mjs';
+import {CURSOR_NAMES,windowsStyleValue,windowsWebContentStyles,validateWindowsStylerTarget} from '../scripts/lib/windows-port.mjs';
 import {folderIconFile} from '../scripts/lib/windows-folder-icon.mjs';
 import {flattenStylerSettings,stylerSettings} from '../ports/windows/src/compatibility.mjs';
 
@@ -850,5 +850,28 @@ test('popup discovery applies the bounded same-root template bridge immediately 
   assert.match(observe,/Guard guard\(\*uiState\);Bridge\(root,element\)/);
   for(const name of ['RestoreChromeAnimations','RestoreChromeSetters','RestoreChromeBases','RestoreChromeTransitions'])assert.ok(observe.includes(name+'(uiState->'));
   assert.match(observe,/catch\(\.\.\.\) \{[\s\S]*Guard guard\(\*uiState\);[\s\S]*Restore\(root\);\s*\}\s*Schedule\(\);return;/);
+ }
+});
+
+test('native item presenters require the correct primitive namespace before generation',async()=>{
+ for(const invalid of ['ListViewItemPresenter','GridViewItemPresenter@CommonStates','Grid > ListViewItemPresenter#Item',
+  'Grid#Root, ListViewItemPresenter','Windows.UI.Xaml.Controls.ListViewItemPresenter','Microsoft.UI.Xaml.Controls.GridViewItemPresenter','muxc:ListViewItemPresenter'])
+  assert.throws(()=>validateWindowsStylerTarget(invalid),/Controls\.Primitives/);
+ for(const framework of ['Windows','Microsoft'])for(const type of ['ListViewItemPresenter','GridViewItemPresenter']){
+  const target=`${framework}.UI.Xaml.Controls.Primitives.${type}`;
+  assert.equal(validateWindowsStylerTarget(target),target);
+  assert.equal(validateWindowsStylerTarget(`Grid > ${target}#Item@CommonStates`),`Grid > ${target}#Item@CommonStates`);
+ }
+ for(const [id,framework,types] of [
+  ['windows-11-taskbar-styler','Windows',['ListViewItemPresenter']],
+  ['windows-11-file-explorer-styler','Microsoft',['ListViewItemPresenter','GridViewItemPresenter']]
+ ]){
+  const payload=await readJson(`ports/windows/dist/${id}.json`);
+  for(const type of types){
+   const rule=payload.controlStyles.find(t=>t.target===`${framework}.UI.Xaml.Controls.Primitives.${type}`);
+   assert.ok(rule,`${id} must target the native ${type} instead of an unused alias`);
+   for(const state of ['PointerOverBackground','PressedBackground','SelectedBackground','SelectedPointerOverBackground','SelectedPressedBackground'])
+    assert.ok(rule.styles.some(value=>value.startsWith(state+'=')),`${type} retains ${state}`);
+  }
  }
 });

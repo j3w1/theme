@@ -125,11 +125,18 @@ export function windowsStyleValue(property, token) {
  }
  return toCss(token.type,token.resolved);
 }
+// The pinned stylers expand bare classes into Controls, never Controls.Primitives.
+// These native presenters must use their actual framework-qualified class names.
+export function validateWindowsStylerTarget(target) {
+ if(/(?:^|[>,]\s*)(?:(?:Windows|Microsoft)\.UI\.Xaml\.Controls\.|muxc:)?(?:ListViewItemPresenter|GridViewItemPresenter)(?=[#@\[\s,>]|$)/.test(target))
+  throw Error('Windows item presenter requires its framework-qualified Controls.Primitives class');
+ return target;
+}
 export function windowsArtifacts({manifest,host,resolved}){
  const val=role=>{const t=resolved.get(role);if(!t||role.startsWith('color.primitive.'))throw Error(`Invalid Windows semantic role ${role}`);return toCss(t.type,t.resolved);};
  const artifacts=[],json=(name,x)=>artifacts.push({path:`dist/${name}`,text:stableJson(x)});
  const settings=Object.fromEntries(Object.entries(host.roles).map(([key,role])=>[key,val(role)]));
- const targets=items=>items.map(t=>({target:t.target,styles:Object.entries(t.styles).map(([key,role])=>{
+ const targets=items=>items.map(t=>({target:validateWindowsStylerTarget(t.target),styles:Object.entries(t.styles).map(([key,role])=>{
   val(role); // Retain semantic-role validation for every native property.
   return `${key}=${windowsStyleValue(key,resolved.get(role))}`;
  })}));

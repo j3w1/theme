@@ -61,7 +61,7 @@
       ]
     },
     {
-      "target": "ListViewItemPresenter",
+      "target": "Microsoft.UI.Xaml.Controls.Primitives.ListViewItemPresenter",
       "styles": [
         "PointerOverBackground=#1c0a09",
         "PressedBackground=#420f0c",
@@ -73,7 +73,7 @@
       ]
     },
     {
-      "target": "GridViewItemPresenter",
+      "target": "Microsoft.UI.Xaml.Controls.Primitives.GridViewItemPresenter",
       "styles": [
         "PointerOverBackground=#1c0a09",
         "PressedBackground=#420f0c",

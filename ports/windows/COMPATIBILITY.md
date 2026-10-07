@@ -1614,3 +1614,24 @@ The upstream selector provenance and generated-role validation establish the
 configuration, not the installed native hierarchy or visual acceptance. Volume,
 brightness and language-picker rendering remain pending after installation.
 Reference: [pinned taskbar styler source](https://github.com/ramensoftware/windhawk-mods/blob/651e01908512da9fa4935a9ef2859741c7e69240/mods/windows-11-taskbar-styler.wh.cpp).
+
+
+### Shell item-presenter namespaces
+
+Source inspection found that the pinned taskbar and Explorer stylers expand a
+bare class name into their respective Controls namespaces. ListViewItemPresenter
+and GridViewItemPresenter instead live in Controls.Primitives. Earlier bare
+selectors therefore did not match those framework controls, even though the
+settings and token-role validation succeeded.
+
+The language-picker/taskbar presenter now uses its fully qualified
+Windows.UI.Xaml.Controls.Primitives name; Explorer list/grid presenters use
+Microsoft.UI.Xaml.Controls.Primitives. The generator refuses the known bare or
+incorrectly qualified presenter aliases, including nested and comma-separated
+targets, before emitting any settings. State colors, geometry, native selection
+behavior and the single install.ps1 journal remain unchanged. This fixes target
+resolution; installed state rendering remains a separate acceptance check.
+
+Public contracts: [Windows list presenter](https://learn.microsoft.com/en-us/uwp/api/windows.ui.xaml.controls.primitives.listviewitempresenter),
+[WinUI list presenter](https://learn.microsoft.com/en-us/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.controls.primitives.listviewitempresenter),
+[WinUI grid presenter](https://learn.microsoft.com/en-us/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.controls.primitives.gridviewitempresenter).
