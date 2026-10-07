@@ -212,16 +212,21 @@ static void ApplyChromeBase(Control const& control,FrameworkElement const& eleme
 
 // Some recorded native button templates interpolate cached neutral RGB even
 // after their destination brushes are themed. Replace only their cosmetic
-// 83ms background interpolation with a private, immediate transition. Retain
-// the exact original property value; never mutate a shared native transition.
+// 83ms background transition with null. A zero-duration transition still
+// creates a compositor animation and can hand off a cached neutral color.
+// A null transition makes the next Background change clear that cached state.
+// Retain the exact original object; never mutate a shared native transition.
+static bool ChromeTransitionIdentity(ProjectedObject const& a,ProjectedObject const& b) {
+ return (!a&&!b)||Identity(a,b);
+}
 template<class Read,class Write> static bool UpdateChromeTransition(OwnedChromeTransition& entry,bool active,Read read,Write write) noexcept {
  try {
   auto current=read();
-  if(entry.owned&&!Identity(current,entry.applied)){entry.owned=false;entry.replaced=true;}
+  if(entry.owned&&!ChromeTransitionIdentity(current,entry.applied)){entry.owned=false;entry.replaced=true;}
   if(entry.replaced)return true;
   if(active) {
    if(entry.owned)return true;
-   if(!Identity(current,entry.before))return false;
+   if(!ChromeTransitionIdentity(current,entry.before))return false;
    entry.owned=true;write(entry.applied);
   }else if(entry.owned){write(entry.before);entry.owned=false;}
   return true;
@@ -242,30 +247,29 @@ static BrushTransition ChromeBackgroundTransition(FrameworkElement const& elemen
  throw hresult_error(E_INVALIDARG);
 }
 static void ChromeBackgroundTransition(FrameworkElement const& element,ProjectedObject const& value) {
- auto transition=value.as<BrushTransition>();
+ BrushTransition transition=value?value.as<BrushTransition>():nullptr;
  if(auto presenter=element.try_as<ContentPresenter>()){presenter.BackgroundTransition(transition);return;}
  if(auto panel=element.try_as<Panel>()){panel.BackgroundTransition(transition);return;}
  if(auto border=element.try_as<Border>()){border.BackgroundTransition(transition);return;}
  throw hresult_error(E_INVALIDARG);
 }
 // Transition removal runs before template-base normalization. The retained
-// original establishes the same 83ms contract after our private zero-duration
-// replacement; an unrelated zero-duration transition grants no admission.
-static bool ChromeBaseCapturedTransitionAdmission(long long current,long long before,bool sameTarget,bool sameApplied,bool owned,bool replaced) noexcept {
- return current==0&&before==830000&&sameTarget&&sameApplied&&owned&&!replaced;
+// original establishes the same 83ms contract after our owned removal.
+// A null transition without an active exact-presenter receipt grants no admission.
+static bool ChromeBaseCapturedTransitionAdmission(bool absent,long long before,bool sameTarget,bool sameApplied,bool owned,bool replaced) noexcept {
+ return absent&&before==830000&&sameTarget&&sameApplied&&owned&&!replaced;
 }
 static bool ChromeBaseTransitionProof(ContentPresenter const& presenter,std::deque<ChromeTransitionChange> const& transitions) {
- auto current=presenter.BackgroundTransition();if(!current)return false;
- auto duration=current.Duration().count();
+ auto current=presenter.BackgroundTransition();
  for(auto const& entry:transitions) {
   if(!Identity(entry.presenter.get(),presenter))continue;
   // Check ownership/identity before reading the saved native object. Once a
   // presenter has a receipt, a later native-looking duration cannot bypass it.
-  if(!entry.value.owned||entry.value.replaced||!Identity(current,entry.value.applied))return false;
+  if(!entry.value.owned||entry.value.replaced||!ChromeTransitionIdentity(current,entry.value.applied))return false;
   auto before=entry.value.before.try_as<BrushTransition>();if(!before)return false;
-  return ChromeBaseCapturedTransitionAdmission(duration,before.Duration().count(),true,true,entry.value.owned,entry.value.replaced);
+  return ChromeBaseCapturedTransitionAdmission(!current,before.Duration().count(),true,true,entry.value.owned,entry.value.replaced);
  }
- return duration==830000;
+ return current&&current.Duration().count()==830000;
 }
 static bool RestoreChromeTransitions(std::deque<ChromeTransitionChange>& entries) noexcept {
  bool restored=true;
@@ -299,8 +303,7 @@ static void ApplyChromeTransition(Control const& control,DependencyObject const&
  });
  if(!admitted)return;
  if(entries.size()>=4096)throw hresult_error(E_BOUNDS);
- BrushTransition applied;applied.Duration(Windows::Foundation::TimeSpan{0});
- entries.push_back({make_weak(presenter),{local,applied}});auto& entry=entries.back();
+ entries.push_back({make_weak(presenter),{local,nullptr}});auto& entry=entries.back();
  if(!UpdateChromeTransition(entry.value,true,[&]{return ChromeBackgroundTransition(presenter);},[&](auto const& value){ChromeBackgroundTransition(presenter,value);}))throw hresult_error(E_FAIL);
 }
 

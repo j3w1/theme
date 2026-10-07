@@ -2,6 +2,10 @@
 
 ## [4.0.0] - 2026-09-28
 
+- Windows: remove owned cosmetic button background transitions instead of
+  assigning zero duration, which still permits compositor interpolation.
+  Retain native transition objects for recovery and refuse later app replacements.
+
 - Windows: retain the original transition contract when normalizing transparent
   button backgrounds after the owned hover-transition replacement, avoiding
   interference between the two corrections while preserving native recovery.

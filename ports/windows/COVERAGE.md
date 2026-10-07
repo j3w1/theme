@@ -896,3 +896,34 @@ created. Synthetic regressions exercise admission after replacement and refusal
 for missing/stale receipts, target/object mismatches and changed durations in
 all four generated app adapters. The trace establishes the helper interaction;
 post-update Paint rendering remains an acceptance requirement.
+
+### Null background-transition correction
+
+Owner readback failed on the retained-transition candidate: Paint Selection
+and Brushes still turn gray on hover. The subsequent read-only toolbar trace
+shows canonical normal RGB and canonical hover/pressed brush keyframes on both
+actual DropDownButton controls. The failed result remains failure evidence.
+
+Microsoft's [ContentPresenter Background setter](https://github.com/microsoft/microsoft-ui-xaml/blob/7464454690d73d96ead7e1b075772fca632e5a52/dxaml/xcp/core/core/elements/ContentPresenter.cpp)
+clears the element's stored compositor fill transition when Background changes
+with a null BackgroundTransition. A zero-duration transition instead enters
+the animation path: [SharedTransitionAnimations](https://github.com/microsoft/microsoft-ui-xaml/blob/7464454690d73d96ead7e1b075772fca632e5a52/dxaml/xcp/components/comptree/SharedTransitionAnimations.cpp)
+clamps it to the compositor minimum, and
+[WUCBrushManager](https://github.com/microsoft/microsoft-ui-xaml/blob/7464454690d73d96ead7e1b075772fca632e5a52/dxaml/xcp/components/brushes/WUCBrushManager.cpp)
+can hand off the currently animated color. These upstream sources explain why
+the earlier zero-duration replacement did not actually remove interpolation;
+they do not establish the installed app's rendered result.
+
+The shared helper now writes null only for the existing admitted native 83ms
+transition on its exact control-owned template part. Normalization and native
+state background changes then take the cleanup path. Nullable comparison is
+limited to this transition receipt; other property ownership remains unchanged.
+The captured native object is restored exactly. A later different transition,
+failed getter, stale receipt or unrelated null transition grants no ownership.
+The original state, brush, template, data and high-contrast boundaries remain.
+
+Native regressions cover repeated application of owned null, exact restoration,
+restore failure and retry, mutation-then-failure, later replacement and permanent
+replacement refusal in all four generated app adapters. This corrects the
+transition mechanism; Paint hover acceptance remains a separate runtime gate.
+The existing single install.ps1 lifecycle distributes and restores the change.

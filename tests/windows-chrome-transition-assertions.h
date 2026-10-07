@@ -17,14 +17,14 @@ static void CheckChromeTransitions() {
  auto read=[&]{return current;};auto write=[&](auto const& value){current=value;};
  OwnedChromeTransition entry{native,theme};
  assert(UpdateChromeTransition(entry,true,read,write)&&entry.owned&&Identity(current,theme));
- // The immediate replacement must not erase proof of the native template.
- assert(ChromeBaseCapturedTransitionAdmission(0,830000,true,Identity(current,entry.applied),entry.owned,entry.replaced));
- assert(!ChromeBaseCapturedTransitionAdmission(0,830000,false,true,true,false));
- assert(!ChromeBaseCapturedTransitionAdmission(0,830000,true,false,true,false));
- assert(!ChromeBaseCapturedTransitionAdmission(0,830000,true,true,false,false));
- assert(!ChromeBaseCapturedTransitionAdmission(0,830000,true,true,true,true));
- for(auto before:{0ll,829999ll,830001ll,1000000ll})assert(!ChromeBaseCapturedTransitionAdmission(0,before,true,true,true,false));
- for(auto duration:{1ll,829999ll,830000ll,1000000ll})assert(!ChromeBaseCapturedTransitionAdmission(duration,830000,true,true,true,false));
+ // An owned removal must not erase proof of the native template.
+ assert(ChromeBaseCapturedTransitionAdmission(true,830000,true,Identity(current,entry.applied),entry.owned,entry.replaced));
+ assert(!ChromeBaseCapturedTransitionAdmission(true,830000,false,true,true,false));
+ assert(!ChromeBaseCapturedTransitionAdmission(true,830000,true,false,true,false));
+ assert(!ChromeBaseCapturedTransitionAdmission(true,830000,true,true,false,false));
+ assert(!ChromeBaseCapturedTransitionAdmission(true,830000,true,true,true,true));
+ for(auto before:{0ll,829999ll,830001ll,1000000ll})assert(!ChromeBaseCapturedTransitionAdmission(true,before,true,true,true,false));
+ assert(!ChromeBaseCapturedTransitionAdmission(false,830000,true,true,true,false));
  assert(UpdateChromeTransition(entry,false,read,write)&&!entry.owned&&Identity(current,native));
  assert(UpdateChromeTransition(entry,true,read,write)&&entry.owned);
  current=app;
@@ -48,7 +48,24 @@ static void CheckChromeTransitions() {
  entry={native,theme};assert(UpdateChromeTransition(entry,true,read,write));current=nullptr;
  assert(UpdateChromeTransition(entry,false,read,write)&&entry.replaced&&!current);
  assert(UpdateChromeTransition(entry,true,read,write)&&!current);
- puts("PASS: exact transition identity restoration, later replacements/deletion, admission refusal and partial-write retry");
+ // Exercise the production null replacement, including retry and app takeover.
+ current=native;entry={native,nullptr};writes=0;
+ assert(ChromeTransitionIdentity(nullptr,nullptr));
+ assert(!ChromeTransitionIdentity(native,nullptr)&&!ChromeTransitionIdentity(nullptr,native));
+ assert(UpdateChromeTransition(entry,true,read,counted)&&entry.owned&&!current&&writes==1);
+ assert(UpdateChromeTransition(entry,true,read,counted)&&entry.owned&&!current&&writes==1);
+ assert(ChromeBaseCapturedTransitionAdmission(!current,830000,true,ChromeTransitionIdentity(current,entry.applied),entry.owned,entry.replaced));
+ assert(!UpdateChromeTransition(entry,false,read,denied)&&entry.owned&&!current);
+ assert(UpdateChromeTransition(entry,false,read,counted)&&!entry.owned&&Identity(current,native)&&writes==2);
+ assert(UpdateChromeTransition(entry,true,read,write)&&entry.owned&&!current);
+ current=app;
+ assert(UpdateChromeTransition(entry,false,read,counted)&&entry.replaced&&!entry.owned&&Identity(current,app)&&writes==2);
+ current=nullptr;
+ assert(UpdateChromeTransition(entry,true,read,counted)&&entry.replaced&&!current&&writes==2);
+ current=native;entry={native,nullptr};
+ assert(!UpdateChromeTransition(entry,true,read,partial)&&entry.owned&&!current);
+ assert(UpdateChromeTransition(entry,false,read,write)&&!entry.owned&&Identity(current,native));
+ puts("PASS: exact transition identity restoration, owned null removal, later replacements/deletion, admission refusal and partial-write retry");
  }
  winrt::uninit_apartment();
 }
