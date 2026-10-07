@@ -1023,9 +1023,13 @@ static void ObservePopupChrome(FrameworkElement const& element) {
   catch(...) {
    // Match the ordinary refresh failure path. Partial ownership survives
    // failed restores and the existing scheduler retries its cleanup.
-   RestoreChromeAnimations(uiState->animations);RestoreChromeSetters(uiState->setters);
-   RestoreChromeBases(uiState->bases);RestoreChromeTransitions(uiState->transitions);
-   Restore(root);Schedule();return;
+   {
+    Guard guard(*uiState);
+    RestoreChromeAnimations(uiState->animations);RestoreChromeSetters(uiState->setters);
+    RestoreChromeBases(uiState->bases);RestoreChromeTransitions(uiState->transitions);
+    Restore(root);
+   }
+   Schedule();return;
   }
   Schedule();return;
  }

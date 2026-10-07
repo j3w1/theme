@@ -818,6 +818,6 @@ test('popup discovery applies the bounded same-root template bridge immediately 
   const observe=text.slice(text.indexOf('static void ObservePopupChrome(FrameworkElement const& element) {'),text.indexOf('// Original adapter discovery'));
   assert.match(observe,/Guard guard\(\*uiState\);Bridge\(root,element\)/);
   for(const name of ['RestoreChromeAnimations','RestoreChromeSetters','RestoreChromeBases','RestoreChromeTransitions'])assert.ok(observe.includes(name+'(uiState->'));
-  assert.match(observe,/Restore\(root\);Schedule\(\);return;/);
+  assert.match(observe,/catch\(\.\.\.\) \{[\s\S]*Guard guard\(\*uiState\);[\s\S]*Restore\(root\);\s*\}\s*Schedule\(\);return;/);
  }
 });
