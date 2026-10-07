@@ -104,7 +104,8 @@
       "terminal-chrome.resource.SplitButtonBorderBrushChecked",
       "terminal-chrome.resource.SplitButtonBorderBrushCheckedPointerOver",
       "terminal-chrome.resource.SplitButtonBorderBrushCheckedPressed",
-      "windows-11-settings-styler | Button > ContentPresenter@CommonStates | BorderBrush@Pressed"
+      "windows-11-settings-styler | Button > ContentPresenter@CommonStates | BorderBrush@Pressed",
+      "windows-11-taskbar-styler | Rectangle#HorizontalDecreaseRect, Rectangle#DeterminateProgressBarIndicator | Fill"
     ],
     "color.surface.desktop": [
       "native.desktop"
@@ -256,7 +257,13 @@
       "terminal-chrome.resource.SplitButtonBackground",
       "windows-11-settings-styler | Microsoft.UI.Xaml.Controls.SplitButton | Background",
       "windows-11-settings-styler.resource.SystemControlFocusVisualSecondaryBrush",
-      "windows-11-settings-styler.resource.FocusStrokeColorInnerBrush"
+      "windows-11-settings-styler.resource.FocusStrokeColorInnerBrush",
+      "windows-11-taskbar-styler | Grid#ConfirmatorMainGrid | Background",
+      "windows-11-taskbar-styler | Grid#VolumeConfirmator, Grid#BrightnessConfirmator | Background",
+      "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid | Background",
+      "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid > Grid | Background",
+      "windows-11-taskbar-styler | ListViewItem | Background",
+      "windows-11-taskbar-styler | ListViewItemPresenter | Background"
     ],
     "color.terminal.cursor": [
       "terminal.cursor"
@@ -514,7 +521,9 @@
       "windows-11-settings-styler.resource.ToggleSwitchHeaderForeground",
       "windows-11-settings-styler.resource.ToggleSwitchKnobFillOff",
       "windows-11-settings-styler.resource.ToggleSwitchKnobFillOffPointerOver",
-      "windows-11-settings-styler.resource.ToggleSwitchKnobFillOffPressed"
+      "windows-11-settings-styler.resource.ToggleSwitchKnobFillOffPressed",
+      "windows-11-taskbar-styler | ListViewItem | Foreground",
+      "windows-11-taskbar-styler | ListViewItemPresenter | PointerOverForeground"
     ],
     "color.text.bright": [
       "native.bright",
@@ -743,7 +752,9 @@
       "terminal-chrome.resource.ComboBoxItemBackgroundSelectedPointerOver",
       "terminal-chrome.resource.ComboBoxItemBackgroundSelectedPressed",
       "terminal-chrome.resource.SplitButtonBackgroundChecked",
-      "terminal-chrome.resource.SplitButtonBackgroundCheckedPointerOver"
+      "terminal-chrome.resource.SplitButtonBackgroundCheckedPointerOver",
+      "windows-11-taskbar-styler | ListViewItemPresenter | SelectedBackground",
+      "windows-11-taskbar-styler | ListViewItemPresenter | SelectedPointerOverBackground"
     ],
     "color.surface.raised": [
       "powertoys.inactive",
@@ -867,7 +878,8 @@
       "windows-11-settings-styler.resource.ToggleSwitchStrokeOffPointerOver",
       "windows-11-settings-styler.resource.ToggleSwitchStrokeOnPointerOver",
       "windows-11-settings-styler.resource.ToggleSwitchStrokeOffPressed",
-      "windows-11-settings-styler.resource.ToggleSwitchStrokeOnPressed"
+      "windows-11-settings-styler.resource.ToggleSwitchStrokeOnPressed",
+      "windows-11-taskbar-styler | Rectangle#HorizontalTrackRect, Rectangle#ProgressBarTrack | Fill"
     ],
     "font.family.mono": [
       "font.family",
@@ -1048,7 +1060,8 @@
       "notepad-chrome.resource.ScrollBarButtonBackgroundPointerOver",
       "paint-chrome.resource.ScrollBarButtonBackgroundPointerOver",
       "terminal-chrome.resource.ScrollBarButtonBackgroundPointerOver",
-      "windows-11-settings-styler.resource.ToggleSwitchFillOffPointerOver"
+      "windows-11-settings-styler.resource.ToggleSwitchFillOffPointerOver",
+      "windows-11-taskbar-styler | ListViewItemPresenter | PointerOverBackground"
     ],
     "color.interaction.pressed.bg": [
       "windhawk.resource.ControlFillColorTertiary",
@@ -1134,7 +1147,9 @@
       "paint-chrome.resource.ScrollBarButtonBackgroundPressed",
       "terminal-chrome.resource.ScrollBarButtonBackgroundPressed",
       "windows-11-settings-styler.resource.ProgressBarBackground",
-      "windows-11-settings-styler.resource.ToggleSwitchFillOffPressed"
+      "windows-11-settings-styler.resource.ToggleSwitchFillOffPressed",
+      "windows-11-taskbar-styler | ListViewItemPresenter | PressedBackground",
+      "windows-11-taskbar-styler | ListViewItemPresenter | SelectedPressedBackground"
     ],
     "color.action.primary.bg": [
       "windhawk.resource.AccentFillColorDefault",
@@ -1194,7 +1209,9 @@
       "paint-chrome.resource.ToolTipBorderBrush",
       "terminal-chrome.resource.ToolTipBorderBrush",
       "windows-11-settings-styler.resource.ToolTipBorderBrush",
-      "windows-11-settings-styler | ToolTip | BorderBrush"
+      "windows-11-settings-styler | ToolTip | BorderBrush",
+      "windows-11-taskbar-styler | Grid#ConfirmatorMainGrid | BorderBrush",
+      "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid | BorderBrush"
     ],
     "border.width.default": [
       "windows-11-start-menu-styler | Border#AcrylicBorder | BorderThickness",
@@ -1213,7 +1230,9 @@
       "windows-11-notification-center-styler | Border#ToastBackgroundBorder2 | BorderThickness",
       "powertoys.markdown.BORDER_WIDTH",
       "windows-11-start-menu-styler | web .suggestion, .suggContainer | border-width",
-      "windows-11-start-menu-styler | web :focus-visible | outline-width"
+      "windows-11-start-menu-styler | web :focus-visible | outline-width",
+      "windows-11-taskbar-styler | Grid#ConfirmatorMainGrid | BorderThickness",
+      "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid | BorderThickness"
     ],
     "radius.none": [
       "windows-11-start-menu-styler | Border#AcrylicBorder | CornerRadius",
@@ -1265,7 +1284,12 @@
       "windows-11-settings-styler | Button | CornerRadius",
       "windows-11-settings-styler | Microsoft.UI.Xaml.Controls.SplitButton | CornerRadius",
       "windows-11-settings-styler | CalendarView | CornerRadius",
-      "windows-11-settings-styler | ToolTip | CornerRadius"
+      "windows-11-settings-styler | ToolTip | CornerRadius",
+      "windows-11-taskbar-styler | Grid#ConfirmatorMainGrid | CornerRadius",
+      "windows-11-taskbar-styler | Grid#VolumeConfirmator, Grid#BrightnessConfirmator | CornerRadius",
+      "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid | CornerRadius",
+      "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid > Grid | CornerRadius",
+      "windows-11-taskbar-styler | ListViewItem | CornerRadius"
     ],
     "color.interaction.disabled.bg": [
       "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | Background@Disabled",
@@ -1738,7 +1762,8 @@
       "terminal-chrome.resource.ComboBoxItemForegroundSelectedPointerOver",
       "terminal-chrome.resource.ComboBoxItemForegroundSelectedPressed",
       "terminal-chrome.resource.SplitButtonForegroundChecked",
-      "terminal-chrome.resource.SplitButtonForegroundCheckedPointerOver"
+      "terminal-chrome.resource.SplitButtonForegroundCheckedPointerOver",
+      "windows-11-taskbar-styler | ListViewItemPresenter | SelectedForeground"
     ],
     "focus.offset": [
       "windows-11-start-menu-styler | web :focus-visible | outline-offset"

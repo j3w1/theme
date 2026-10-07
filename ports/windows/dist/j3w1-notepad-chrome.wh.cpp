@@ -2,7 +2,7 @@
 // @id j3w1-notepad-chrome
 // @name j3w1 Notepad chrome
 // @description Exact-package Notepad chrome resources; document and artwork colors remain native
-// @version 1.2.24
+// @version 1.2.25
 // @author j3w1
 // @include Notepad.exe
 // @architecture x86-64
@@ -888,6 +888,23 @@ static bool ChromeTransitionAdmission(long long duration,bool ownedTemplate,bool
 static bool ChromeTransitionPartAdmission(std::wstring_view name,bool presenter,bool panel,bool border) noexcept {
  return (presenter&&name==L"ContentPresenter")||((panel||border)&&name==L"RootGrid");
 }
+// Paint's two custom toolbar split buttons have an independently animated
+// outer Border. Admit its recorded direct ownership chain, never a border
+// solely by its name or color. Geometry, commands and child states stay native.
+static bool PaintSplitOuterAdmission(std::wstring_view name,bool border,bool directOwner,
+ std::wstring_view button,std::wstring_view grid,std::wstring_view owner) noexcept {
+ return border&&directOwner&&name==L"SelectionBorderOuter"
+  &&button==L"Microsoft.UI.Xaml.Controls.Button"
+  &&grid==L"Microsoft.UI.Xaml.Controls.Grid"&&owner==L"PaintUI.SelectableSplitButton";
+}
+static bool PaintSplitOuterPart(Control const& control,DependencyObject const& object) {
+ auto border=object.try_as<Border>();if(!border||!control)return false;
+ auto direct=VisualTreeHelper::GetParent(object),grid=VisualTreeHelper::GetParent(control);
+ auto owner=grid?VisualTreeHelper::GetParent(grid):nullptr;
+ return PaintSplitOuterAdmission(std::wstring_view{border.Name()},true,Identity(direct,control),
+  std::wstring_view{get_class_name(control)},grid?std::wstring_view{get_class_name(grid)}:L"",
+  owner?std::wstring_view{get_class_name(owner)}:L"");
+}
 static BrushTransition ChromeBackgroundTransition(FrameworkElement const& element) {
  if(auto presenter=element.try_as<ContentPresenter>())return presenter.BackgroundTransition();
  if(auto panel=element.try_as<Panel>())return panel.BackgroundTransition();
@@ -934,7 +951,9 @@ static bool RestoreChromeTransitions(std::deque<ChromeTransitionChange>& entries
 }
 static void ApplyChromeTransition(Control const& control,DependencyObject const& object,std::deque<ChromeTransitionChange>& entries) {
  auto presenter=object.try_as<FrameworkElement>();
- if(!presenter||!presenter.IsLoaded()||!ChromeTransitionPartAdmission(std::wstring_view{presenter.Name()},bool(object.try_as<ContentPresenter>()),bool(object.try_as<Panel>()),bool(object.try_as<Border>())))return;
+ if(!presenter||!presenter.IsLoaded())return;
+ if(!PaintSplitOuterPart(control,object)&&!ChromeTransitionPartAdmission(std::wstring_view{presenter.Name()},
+  bool(object.try_as<ContentPresenter>()),bool(object.try_as<Panel>()),bool(object.try_as<Border>())))return;
  for(auto it=entries.begin();it!=entries.end();)if(!it->presenter.get())it=entries.erase(it);else ++it;
  for(auto& entry:entries)if(Identity(entry.presenter.get(),presenter)) {
   if(!UpdateChromeTransition(entry.value,true,[&]{return ChromeBackgroundTransition(presenter);},[&](auto const& value){ChromeBackgroundTransition(presenter,value);}))throw hresult_error(E_FAIL);
@@ -1085,6 +1104,83 @@ static void ApplyChromeAnimationPalette(DependencyObject const& object,std::dequ
  }
 }
 
+// The recorded split-button edge uses two writable native white gradient
+// stops. Give both the existing hover-border role, producing one flat edge.
+// Never replace the brush, offsets, collection or template. Protected data
+// brushes and their shared stops grant no admission.
+static bool PaintSplitEdgeShape(unsigned count,double first,double last) noexcept {
+ return count==2&&first==double(0.33f)&&last==1.0;
+}
+static bool PaintSplitEdgeAdmission(bool part,bool protectedIdentity,unsigned count,double first,double last,Color top,Color bottom) noexcept {
+ return part&&!protectedIdentity&&PaintSplitEdgeShape(count,first,last)
+  &&Same(top,{24,255,255,255})&&Same(bottom,{18,255,255,255});
+}
+template<class Read,class Write> static bool UpdatePaintSplitEdge(std::array<OwnedNativeBrush,2>& values,Color target,bool active,Read read,Write write) noexcept {
+ bool complete=true;
+ for(unsigned index=0;index<2;++index)
+  complete=UpdateNativeBrush(values[index],target,active,[&]{return read(index);},[&](Color color){write(index,color);})&&complete;
+ return complete;
+}
+struct PaintSplitEdgeReceipt {
+ weak_ref<Border> owner;LinearGradientBrush brush{nullptr};
+ std::array<GradientStop,2> stops;std::array<OwnedNativeBrush,2> values;
+};
+static bool RestorePaintSplitEdge(PaintSplitEdgeReceipt& entry) noexcept {
+ return UpdatePaintSplitEdge(entry.values,{},false,[&](unsigned i){return entry.stops[i].Color();},
+  [&](unsigned i,Color color){entry.stops[i].Color(color);});
+}
+static bool RestorePaintSplitEdges(std::deque<PaintSplitEdgeReceipt>& entries,bool retiredOnly=false) noexcept {
+ bool complete=true;
+ for(auto it=entries.begin();it!=entries.end();)try {
+  auto owner=it->owner.get();
+  if(retiredOnly&&owner){++it;continue;}
+  if(!RestorePaintSplitEdge(*it)){complete=false;++it;continue;}
+  // Preserve later app writes through deactivation/high-contrast cycles.
+  // These refusal markers retire only with their exact outer-border owner.
+  if(owner&&(it->values[0].changed||it->values[1].changed)){++it;continue;}
+  it=entries.erase(it);
+ }catch(...){complete=false;++it;}
+ return complete;
+}
+static bool ProtectedPaintSplitEdge(LinearGradientBrush const& gradient,std::array<GradientStop,2> const& stops,std::vector<Brush> const& protectedBrushes) {
+ for(auto const& data:protectedBrushes) {
+  if(Identity(data,gradient))return true;
+  if(auto other=data.try_as<LinearGradientBrush>())for(auto stop:other.GradientStops())
+   for(auto const& target:stops)if(Identity(stop,target))return true;
+ }
+ return false;
+}
+static bool ApplyPaintSplitEdge(std::deque<PaintSplitEdgeReceipt>& entries,DependencyObject const& object,
+ DependencyProperty const& property,Brush const& brush,std::vector<Brush> const& protectedBrushes) {
+ if(!RestorePaintSplitEdges(entries,true))throw hresult_error(E_FAIL);
+ auto border=object.try_as<Border>();
+ if(!border||!Identity(property,Border::BorderBrushProperty()))return false;
+ auto control=VisualTreeHelper::GetParent(object).try_as<Control>();
+ if(!PaintSplitOuterPart(control,object))return false;
+ auto gradient=brush.try_as<LinearGradientBrush>();if(!gradient)return false;
+ auto collection=gradient.GradientStops();if(collection.Size()!=2)return false;
+ std::array<GradientStop,2> stops{collection.GetAt(0),collection.GetAt(1)};
+ if(!PaintSplitEdgeShape(collection.Size(),stops[0].Offset(),stops[1].Offset())
+  ||ProtectedPaintSplitEdge(gradient,stops,protectedBrushes))return false;
+ Color color{};bool found=false;
+ for(auto const& rule:rules)if(wcscmp(rule.key,L"ButtonBorderBrushPointerOver")==0){color=rule.color;found=true;break;}
+ if(!found)return false;
+ for(auto& entry:entries)if(Identity(entry.brush,gradient)) {
+  if(!Identity(entry.owner.get(),border)||!Identity(entry.stops[0],stops[0])||!Identity(entry.stops[1],stops[1]))return false;
+  // Re-read tracked Colors: an app write ends ownership of that stop.
+  if(!UpdatePaintSplitEdge(entry.values,color,true,[&](unsigned i){return stops[i].Color();},
+   [&](unsigned i,Color value){stops[i].Color(value);}))throw hresult_error(E_FAIL);
+  return true;
+ }
+ if(!PaintSplitEdgeAdmission(true,false,collection.Size(),stops[0].Offset(),stops[1].Offset(),stops[0].Color(),stops[1].Color()))return false;
+ // Also refuse a stop already owned through a different chrome brush.
+ for(auto const& entry:entries)for(auto const& prior:entry.stops)for(auto const& stop:stops)if(Identity(prior,stop))return false;
+ if(entries.size()>=2048)throw hresult_error(E_BOUNDS); // at most 4096 stops
+ entries.push_back({make_weak(border),gradient,stops,{}});auto& entry=entries.back();
+ if(!UpdatePaintSplitEdge(entry.values,color,true,[&](unsigned i){return stops[i].Color();},
+  [&](unsigned i,Color value){stops[i].Color(value);}))throw hresult_error(E_FAIL);
+ return true;
+}
 // Public composition backing, without AppWindow.TitleBar or title-mode writes.
 // Retain the exact native brush; a nullable original is still a readable value.
 struct OwnedCompositionBrush {ProjectedObject before{nullptr},applied{nullptr};bool owned=false,changed=false;};
@@ -1235,7 +1331,7 @@ std::vector<std::unique_ptr<PublicCaption>> publicCaptions;
 #if !J3W1_LEGACY_XAML
  std::vector<std::unique_ptr<WindowBacking>> windowBackings;
 #endif
- ControlResources keyTips; std::deque<ChromeAnimationChange> animations; std::deque<ChromeSetterChange> setters; std::deque<ChromeBaseChange> bases; std::deque<ChromeTransitionChange> transitions; HWND channel=nullptr; WNDPROC original=nullptr; std::deque<Root> roots; std::vector<OwnedNativeBrush> nativeBrushes; std::vector<PendingRoot> pending; bool busy=false,queued=false,cleaning=false; unsigned ticks=0; };
+ ControlResources keyTips; std::deque<ChromeAnimationChange> animations; std::deque<ChromeSetterChange> setters; std::deque<ChromeBaseChange> bases; std::deque<ChromeTransitionChange> transitions; HWND channel=nullptr; WNDPROC original=nullptr; std::deque<Root> roots; std::vector<OwnedNativeBrush> nativeBrushes; std::deque<PaintSplitEdgeReceipt> paintSplitEdges; std::vector<PendingRoot> pending; bool busy=false,queued=false,cleaning=false; unsigned ticks=0; };
 static thread_local ThreadState* uiState=nullptr;
 static bool EnsureChannel();
 static void Schedule();
@@ -1745,6 +1841,7 @@ static void Bridge(Root& root,FrameworkElement const& popup=nullptr) {
 
 
   if(!uiState)return;
+  if(ApplyPaintSplitEdge(uiState->paintSplitEdges,object,property,brush,protectedBrushes))return;
   Palette const* match=TemplateSurface(root,object,kind,brush);
   if(!match)for(auto const& item:root.palette) {
    if(!Matches(*item.rule,kind))continue;
@@ -1930,7 +2027,7 @@ static void Refresh(ThreadState& state) noexcept {
  ApplyPublicCaptions(state);
  const bool active=enabled.load()&&!HighContrast();
  if(!RefreshWindowBackings(state,active))Log(237);
- if(!active){RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);RestoreChromeBases(state.bases);RestoreChromeTransitions(state.transitions);RestoreKeyTips(state);RestoreNativeBrushes(state.nativeBrushes);}
+ if(!active){RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);RestoreChromeBases(state.bases);RestoreChromeTransitions(state.transitions);RestoreKeyTips(state);RestoreNativeBrushes(state.nativeBrushes);if(!RestorePaintSplitEdges(state.paintSplitEdges))Log(238);}
  else if(!state.roots.empty())ApplyKeyTips(state);
  for(auto it=state.pending.begin();it!=state.pending.end();) {
   bool finished=!enabled.load()||HighContrast();
@@ -1949,8 +2046,8 @@ static void Refresh(ThreadState& state) noexcept {
     &&ChromeUiThread(element)&&Prepare(root)) {
    ApplyBackdrop(root);ApplyRootBackground(root);Bridge(root);
   }
- }catch(hresult_error const& error){Log(98,static_cast<unsigned>(error.code().value));RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);RestoreChromeBases(state.bases);RestoreChromeTransitions(state.transitions);Restore(state.roots[at]);}
- catch(...){Log(97);RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);RestoreChromeBases(state.bases);RestoreChromeTransitions(state.transitions);Restore(state.roots[at]);}
+ }catch(hresult_error const& error){Log(98,static_cast<unsigned>(error.code().value));RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);RestoreChromeBases(state.bases);RestoreChromeTransitions(state.transitions);if(!RestorePaintSplitEdges(state.paintSplitEdges))Log(238);Restore(state.roots[at]);}
+ catch(...){Log(97);RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);RestoreChromeBases(state.bases);RestoreChromeTransitions(state.transitions);if(!RestorePaintSplitEdges(state.paintSplitEdges))Log(238);Restore(state.roots[at]);}
  for(auto it=state.roots.begin();it!=state.roots.end();) {
   if(!it->element.get()&&Restore(*it))it=state.roots.erase(it);else ++it;
  }
@@ -1968,6 +2065,7 @@ static bool RestoreThreadState(ThreadState& state) noexcept {
  bool restored=RestoreKeyTips(state)&&publicRestored;
  restored=RefreshWindowBackings(state,false)&&restored;
  restored=RestoreNativeBrushes(state.nativeBrushes)&&restored;
+ restored=RestorePaintSplitEdges(state.paintSplitEdges)&&restored;
  restored=RestoreChromeAnimations(state.animations)&&restored;
  restored=RestoreChromeSetters(state.setters)&&restored;
  restored=RestoreChromeBases(state.bases)&&restored;
@@ -2080,6 +2178,7 @@ static void ObservePopupChrome(FrameworkElement const& element) {
     Guard guard(*uiState);
     RestoreChromeAnimations(uiState->animations);RestoreChromeSetters(uiState->setters);
     RestoreChromeBases(uiState->bases);RestoreChromeTransitions(uiState->transitions);
+    if(!RestorePaintSplitEdges(uiState->paintSplitEdges))Log(238);
     Restore(root);
    }
    Schedule();return;

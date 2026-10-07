@@ -30,6 +30,71 @@
       "styles": [
         "Fill=#2b0e0d"
       ]
+    },
+    {
+      "target": "Grid#ConfirmatorMainGrid",
+      "styles": [
+        "Background=#000000",
+        "BorderBrush=#e53935",
+        "BorderThickness=1",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Grid#VolumeConfirmator, Grid#BrightnessConfirmator",
+      "styles": [
+        "Background=#000000",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Rectangle#HorizontalTrackRect, Rectangle#ProgressBarTrack",
+      "styles": [
+        "Fill=#a3676b"
+      ]
+    },
+    {
+      "target": "Rectangle#HorizontalDecreaseRect, Rectangle#DeterminateProgressBarIndicator",
+      "styles": [
+        "Fill=#e53935"
+      ]
+    },
+    {
+      "target": "WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid",
+      "styles": [
+        "Background=#000000",
+        "BorderBrush=#e53935",
+        "BorderThickness=1",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid > Grid",
+      "styles": [
+        "Background=#000000",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "ListViewItem",
+      "styles": [
+        "Background=#000000",
+        "Foreground=#e99499",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "ListViewItemPresenter",
+      "styles": [
+        "Background=#000000",
+        "PointerOverBackground=#1c0a09",
+        "PressedBackground=#420f0c",
+        "SelectedBackground=#531310",
+        "SelectedPointerOverBackground=#531310",
+        "SelectedPressedBackground=#420f0c",
+        "PointerOverForeground=#e99499",
+        "SelectedForeground=#f4eeee"
+      ]
     }
   ],
   "themeResourceVariables": [

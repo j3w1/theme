@@ -37750,7 +37750,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-N626sR30u9MfoJH5/F2fFtbLgm4j1ngruZV6EWDVSXc=",
+      "subjectDigest": "sha256-y+jhNMFJXvx7uNJD6q7F8LI6Gturij7s5Wu2Hpcqn6s=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37783,7 +37783,7 @@
           "path": "dist/windows-settings.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-settings.json",
-          "digest": "sha256-C2WNVz9r2U7askKB1VA4A0fxH1Wdk0NZnNyRfZS3Na8="
+          "digest": "sha256-xwGCn7RdlNuHfanIT1x11LOKuP4WkXdAGZIDWj0LZWo="
         },
         {
           "path": "dist/terminal-fragment.json",
@@ -37807,7 +37807,7 @@
           "path": "dist/windows-11-taskbar-styler.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-11-taskbar-styler.json",
-          "digest": "sha256-LGGLnEpYgxe76bNaGw6p0ouAjAxpGpUiJKrr3h3c0t0="
+          "digest": "sha256-orrp/nqW1Ze3ROCXBn94r42R6KHLqQTvviPV1+IX1qo="
         },
         {
           "path": "dist/windows-11-start-menu-styler.json",
@@ -37957,7 +37957,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-JHiENEY5CEJIGiGMgup8XlJfiF2Sd1sZsE3edg/SLzw="
+          "digest": "sha256-z/g3AWZmCMG88Uo3Hg+/pXWo39wtco7MrKA1HdfsB7Y="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
@@ -37987,7 +37987,7 @@
           "path": "dist/j3w1-calculator.wh.cpp",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/j3w1-calculator.wh.cpp",
-          "digest": "sha256-J8BuE6li46RkQ9v00OXlvFeYjqfUp2icWBmhxyJ2wx8="
+          "digest": "sha256-sWCYTc+n9cNIhb4MsXPJDce0HGKqxbluBYNrNHFpYak="
         },
         {
           "path": "dist/j3w1-calculator.json",
@@ -38041,7 +38041,7 @@
           "path": "dist/j3w1-notepad-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-notepad-chrome.wh.cpp",
-          "digest": "sha256-JSEtxzoxRe4zlUhf5dGqrh9XnctxoSlsI/ILNrOP9uo="
+          "digest": "sha256-XZPEFx5EVKf14uJ5z/Lsl6VFwxsPol2c5QEegPfzNok="
         },
         {
           "path": "dist/j3w1-notepad-chrome.json",
@@ -38053,7 +38053,7 @@
           "path": "dist/j3w1-paint-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-paint-chrome.wh.cpp",
-          "digest": "sha256-hb0Z/eHxq9Y5F1BSZjbeq6Pfk8LmgeKeTuhxylz17dY="
+          "digest": "sha256-AKmKRnFr/CFLceNkeltpikeze7AXAZZHnkp7LX99p28="
         },
         {
           "path": "dist/j3w1-paint-chrome.json",
@@ -38065,7 +38065,7 @@
           "path": "dist/j3w1-terminal-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-terminal-chrome.wh.cpp",
-          "digest": "sha256-XDVCRkpOpX44UNnKSAijlcdb/dxenD93YZEdA68C7QQ="
+          "digest": "sha256-CSYdITwkoNFAD0qDRMlAkYCBorTz+/FkWEWQj5mFo4g="
         },
         {
           "path": "dist/j3w1-terminal-chrome.json",
@@ -38096,7 +38096,9 @@
             "windows-11-notification-center-styler | Border#ToastBackgroundBorder2 | BorderThickness",
             "powertoys.markdown.BORDER_WIDTH",
             "windows-11-start-menu-styler | web .suggestion, .suggContainer | border-width",
-            "windows-11-start-menu-styler | web :focus-visible | outline-width"
+            "windows-11-start-menu-styler | web :focus-visible | outline-width",
+            "windows-11-taskbar-styler | Grid#ConfirmatorMainGrid | BorderThickness",
+            "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid | BorderThickness"
           ],
           "value": "1px",
           "eligibility": {
@@ -38697,7 +38699,8 @@
             "terminal-chrome.resource.SplitButtonBorderBrushChecked",
             "terminal-chrome.resource.SplitButtonBorderBrushCheckedPointerOver",
             "terminal-chrome.resource.SplitButtonBorderBrushCheckedPressed",
-            "windows-11-settings-styler | Button > ContentPresenter@CommonStates | BorderBrush@Pressed"
+            "windows-11-settings-styler | Button > ContentPresenter@CommonStates | BorderBrush@Pressed",
+            "windows-11-taskbar-styler | Rectangle#HorizontalDecreaseRect, Rectangle#DeterminateProgressBarIndicator | Fill"
           ],
           "value": "#e53935",
           "eligibility": {
@@ -38793,7 +38796,8 @@
             "windows-11-settings-styler.resource.ToggleSwitchStrokeOffPointerOver",
             "windows-11-settings-styler.resource.ToggleSwitchStrokeOnPointerOver",
             "windows-11-settings-styler.resource.ToggleSwitchStrokeOffPressed",
-            "windows-11-settings-styler.resource.ToggleSwitchStrokeOnPressed"
+            "windows-11-settings-styler.resource.ToggleSwitchStrokeOnPressed",
+            "windows-11-taskbar-styler | Rectangle#HorizontalTrackRect, Rectangle#ProgressBarTrack | Fill"
           ],
           "value": "#a3676b",
           "eligibility": {
@@ -39004,7 +39008,9 @@
             "paint-chrome.resource.ToolTipBorderBrush",
             "terminal-chrome.resource.ToolTipBorderBrush",
             "windows-11-settings-styler.resource.ToolTipBorderBrush",
-            "windows-11-settings-styler | ToolTip | BorderBrush"
+            "windows-11-settings-styler | ToolTip | BorderBrush",
+            "windows-11-taskbar-styler | Grid#ConfirmatorMainGrid | BorderBrush",
+            "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid | BorderBrush"
           ],
           "value": "#e53935",
           "eligibility": {
@@ -40343,7 +40349,8 @@
             "notepad-chrome.resource.ScrollBarButtonBackgroundPointerOver",
             "paint-chrome.resource.ScrollBarButtonBackgroundPointerOver",
             "terminal-chrome.resource.ScrollBarButtonBackgroundPointerOver",
-            "windows-11-settings-styler.resource.ToggleSwitchFillOffPointerOver"
+            "windows-11-settings-styler.resource.ToggleSwitchFillOffPointerOver",
+            "windows-11-taskbar-styler | ListViewItemPresenter | PointerOverBackground"
           ],
           "value": "#1c0a09",
           "eligibility": {
@@ -40490,7 +40497,9 @@
             "paint-chrome.resource.ScrollBarButtonBackgroundPressed",
             "terminal-chrome.resource.ScrollBarButtonBackgroundPressed",
             "windows-11-settings-styler.resource.ProgressBarBackground",
-            "windows-11-settings-styler.resource.ToggleSwitchFillOffPressed"
+            "windows-11-settings-styler.resource.ToggleSwitchFillOffPressed",
+            "windows-11-taskbar-styler | ListViewItemPresenter | PressedBackground",
+            "windows-11-taskbar-styler | ListViewItemPresenter | SelectedPressedBackground"
           ],
           "value": "#420f0c",
           "eligibility": {
@@ -40681,7 +40690,9 @@
             "terminal-chrome.resource.ComboBoxItemBackgroundSelectedPointerOver",
             "terminal-chrome.resource.ComboBoxItemBackgroundSelectedPressed",
             "terminal-chrome.resource.SplitButtonBackgroundChecked",
-            "terminal-chrome.resource.SplitButtonBackgroundCheckedPointerOver"
+            "terminal-chrome.resource.SplitButtonBackgroundCheckedPointerOver",
+            "windows-11-taskbar-styler | ListViewItemPresenter | SelectedBackground",
+            "windows-11-taskbar-styler | ListViewItemPresenter | SelectedPointerOverBackground"
           ],
           "value": "#531310",
           "eligibility": {
@@ -40753,7 +40764,8 @@
             "terminal-chrome.resource.ComboBoxItemForegroundSelectedPointerOver",
             "terminal-chrome.resource.ComboBoxItemForegroundSelectedPressed",
             "terminal-chrome.resource.SplitButtonForegroundChecked",
-            "terminal-chrome.resource.SplitButtonForegroundCheckedPointerOver"
+            "terminal-chrome.resource.SplitButtonForegroundCheckedPointerOver",
+            "windows-11-taskbar-styler | ListViewItemPresenter | SelectedForeground"
           ],
           "value": "#f4eeee",
           "eligibility": {
@@ -42544,7 +42556,13 @@
             "terminal-chrome.resource.SplitButtonBackground",
             "windows-11-settings-styler | Microsoft.UI.Xaml.Controls.SplitButton | Background",
             "windows-11-settings-styler.resource.SystemControlFocusVisualSecondaryBrush",
-            "windows-11-settings-styler.resource.FocusStrokeColorInnerBrush"
+            "windows-11-settings-styler.resource.FocusStrokeColorInnerBrush",
+            "windows-11-taskbar-styler | Grid#ConfirmatorMainGrid | Background",
+            "windows-11-taskbar-styler | Grid#VolumeConfirmator, Grid#BrightnessConfirmator | Background",
+            "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid | Background",
+            "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid > Grid | Background",
+            "windows-11-taskbar-styler | ListViewItem | Background",
+            "windows-11-taskbar-styler | ListViewItemPresenter | Background"
           ],
           "value": "#000000",
           "eligibility": {
@@ -43512,7 +43530,9 @@
             "windows-11-settings-styler.resource.ToggleSwitchHeaderForeground",
             "windows-11-settings-styler.resource.ToggleSwitchKnobFillOff",
             "windows-11-settings-styler.resource.ToggleSwitchKnobFillOffPointerOver",
-            "windows-11-settings-styler.resource.ToggleSwitchKnobFillOffPressed"
+            "windows-11-settings-styler.resource.ToggleSwitchKnobFillOffPressed",
+            "windows-11-taskbar-styler | ListViewItem | Foreground",
+            "windows-11-taskbar-styler | ListViewItemPresenter | PointerOverForeground"
           ],
           "value": "#e99499",
           "eligibility": {
@@ -44740,7 +44760,12 @@
             "windows-11-settings-styler | Button | CornerRadius",
             "windows-11-settings-styler | Microsoft.UI.Xaml.Controls.SplitButton | CornerRadius",
             "windows-11-settings-styler | CalendarView | CornerRadius",
-            "windows-11-settings-styler | ToolTip | CornerRadius"
+            "windows-11-settings-styler | ToolTip | CornerRadius",
+            "windows-11-taskbar-styler | Grid#ConfirmatorMainGrid | CornerRadius",
+            "windows-11-taskbar-styler | Grid#VolumeConfirmator, Grid#BrightnessConfirmator | CornerRadius",
+            "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid | CornerRadius",
+            "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid > Grid | CornerRadius",
+            "windows-11-taskbar-styler | ListViewItem | CornerRadius"
           ],
           "value": "0px",
           "eligibility": {

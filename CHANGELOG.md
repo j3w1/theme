@@ -2,6 +2,14 @@
 
 ## [4.0.0] - 2026-09-28
 
+- Windows: map hardware volume/brightness flyout backgrounds and tracks and
+  input-language picker backgrounds and native list states through the existing
+  pinned taskbar adapter and single installer journal.
+
+- Windows: correct Paint Selection and Brushes' custom split-button outer
+  transitions and cached neutral edge stops, preserving exact native recovery,
+  protected artwork resources and later application color writes.
+
 - Windows: remove owned cosmetic button background transitions instead of
   assigning zero duration, which still permits compositor interpolation.
   Retain native transition objects for recovery and refuse later app replacements.

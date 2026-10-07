@@ -240,6 +240,23 @@ static bool ChromeTransitionAdmission(long long duration,bool ownedTemplate,bool
 static bool ChromeTransitionPartAdmission(std::wstring_view name,bool presenter,bool panel,bool border) noexcept {
  return (presenter&&name==L"ContentPresenter")||((panel||border)&&name==L"RootGrid");
 }
+// Paint's two custom toolbar split buttons have an independently animated
+// outer Border. Admit its recorded direct ownership chain, never a border
+// solely by its name or color. Geometry, commands and child states stay native.
+static bool PaintSplitOuterAdmission(std::wstring_view name,bool border,bool directOwner,
+ std::wstring_view button,std::wstring_view grid,std::wstring_view owner) noexcept {
+ return border&&directOwner&&name==L"SelectionBorderOuter"
+  &&button==L"Microsoft.UI.Xaml.Controls.Button"
+  &&grid==L"Microsoft.UI.Xaml.Controls.Grid"&&owner==L"PaintUI.SelectableSplitButton";
+}
+static bool PaintSplitOuterPart(Control const& control,DependencyObject const& object) {
+ auto border=object.try_as<Border>();if(!border||!control)return false;
+ auto direct=VisualTreeHelper::GetParent(object),grid=VisualTreeHelper::GetParent(control);
+ auto owner=grid?VisualTreeHelper::GetParent(grid):nullptr;
+ return PaintSplitOuterAdmission(std::wstring_view{border.Name()},true,Identity(direct,control),
+  std::wstring_view{get_class_name(control)},grid?std::wstring_view{get_class_name(grid)}:L"",
+  owner?std::wstring_view{get_class_name(owner)}:L"");
+}
 static BrushTransition ChromeBackgroundTransition(FrameworkElement const& element) {
  if(auto presenter=element.try_as<ContentPresenter>())return presenter.BackgroundTransition();
  if(auto panel=element.try_as<Panel>())return panel.BackgroundTransition();
@@ -286,7 +303,9 @@ static bool RestoreChromeTransitions(std::deque<ChromeTransitionChange>& entries
 }
 static void ApplyChromeTransition(Control const& control,DependencyObject const& object,std::deque<ChromeTransitionChange>& entries) {
  auto presenter=object.try_as<FrameworkElement>();
- if(!presenter||!presenter.IsLoaded()||!ChromeTransitionPartAdmission(std::wstring_view{presenter.Name()},bool(object.try_as<ContentPresenter>()),bool(object.try_as<Panel>()),bool(object.try_as<Border>())))return;
+ if(!presenter||!presenter.IsLoaded())return;
+ if(!PaintSplitOuterPart(control,object)&&!ChromeTransitionPartAdmission(std::wstring_view{presenter.Name()},
+  bool(object.try_as<ContentPresenter>()),bool(object.try_as<Panel>()),bool(object.try_as<Border>())))return;
  for(auto it=entries.begin();it!=entries.end();)if(!it->presenter.get())it=entries.erase(it);else ++it;
  for(auto& entry:entries)if(Identity(entry.presenter.get(),presenter)) {
   if(!UpdateChromeTransition(entry.value,true,[&]{return ChromeBackgroundTransition(presenter);},[&](auto const& value){ChromeBackgroundTransition(presenter,value);}))throw hresult_error(E_FAIL);

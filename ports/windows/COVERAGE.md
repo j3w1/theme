@@ -927,3 +927,63 @@ restore failure and retry, mutation-then-failure, later replacement and permanen
 replacement refusal in all four generated app adapters. This corrects the
 transition mechanism; Paint hover acceptance remains a separate runtime gate.
 The existing single install.ps1 lifecycle distributes and restores the change.
+
+### Paint Selection and Brushes custom split-button correction
+
+The owner continued to observe gray after the prior native candidates. A fresh
+exact-package trace identified Selection and Brushes as PaintUI.SelectableSplitButton
+controls, with separate Button/Grid children for their main and arrow halves.
+The earlier DropDownButton observations were other toolbar controls and did not
+establish the rendering path of these two custom split buttons.
+
+Each child has a direct SelectionBorderOuter Border with an 83ms background
+transition and a two-stop native white edge gradient. Recoloring the gradient
+alone failed owner acceptance. The combined temporary comparison removed these
+four exact outer-border transitions and recolored both stops using the existing
+ButtonBorderBrushPointerOver role. The owner confirmed black/red/rose hover and
+pointer-exit colors for the main buttons and arrows. This comparison acceptance
+does not certify a different installed production binary.
+
+The permanent correction admits only that exact name and Button/Grid/custom-owner
+chain, the existing exact 83ms transition contract, and the observed two-stop
+gradient with offsets double(0.33f) and 1.0 and initial ARGB values 0x18FFFFFF
+and 0x12FFFFFF. Both stops become the same mapped color; no geometry, state,
+command, offset or collection changes. Data brushes and shared data stop
+identities are excluded. At most 4096 stops are retained. Tracked colors are
+read again on refresh, so later application writes end ownership and remain
+preserved across theme deactivation. Failed mutations and restores retain their
+receipts for the existing UI-thread cleanup retry. Exact original transition
+objects and stop colors are restored through the single install.ps1 lifecycle.
+
+Native regressions cover exact scope/offset/color admission, protected-data
+refusal, paired writes, repeated refresh, later app writes, partial failures,
+restore refusal and exact retry recovery. Post-install rendering acceptance
+remains distinct from these structural and ownership checks. Notepad's first
+window header, Paint's drawing surround and other unresolved shell surfaces
+remain open. Owner screenshots also show gray volume-popup panels/tracks and
+language-picker rows/borders; those are separate pending shell corrections.
+
+### Hardware volume/brightness popup and input-language picker mappings
+
+Owner screenshots establish native gray volume-popup panels/tracks and the
+input-language picker's panel, selection fill and borders. The pinned taskbar
+styler source already targets Grid#ConfirmatorMainGrid, VolumeConfirmator,
+BrightnessConfirmator, their track/indicator rectangles and the exact
+WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher
+content wrapper. The previous j3w1 taskbar configuration supplied text colors
+and the main taskbar background only; it omitted those separate flyout surfaces.
+
+The taskbar mapping now assigns those known panels black, their outer frames
+the overlay border role, the tracks the control-boundary role and the active
+segments the active-border role. The existing native ListViewItemPresenter
+state properties map neutral, hovered, pressed and selected rows to the same
+canonical state ladder used by the other shell mappings. Inner picker backing
+is black without another frame. Native slider values, input-language selection,
+item layout, sizing and focus behavior are preserved. These settings use the
+already-pinned taskbar adapter and the existing install.ps1 settings journal;
+they add no dependency or separate installation action.
+
+The upstream selector provenance and generated-role validation establish the
+configuration, not the installed native hierarchy or visual acceptance. Volume,
+brightness and language-picker rendering remain pending after installation.
+Reference: [pinned taskbar styler source](https://github.com/ramensoftware/windhawk-mods/blob/651e01908512da9fa4935a9ef2859741c7e69240/mods/windows-11-taskbar-styler.wh.cpp).

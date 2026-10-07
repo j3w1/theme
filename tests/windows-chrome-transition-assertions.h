@@ -2,6 +2,20 @@
 static void CheckChromeTransitions() {
  winrt::init_apartment(winrt::apartment_type::multi_threaded);
  {
+#if defined(J3W1_LEGACY_XAML) && J3W1_LEGACY_XAML
+ constexpr auto buttonType=L"Windows.UI.Xaml.Controls.Button",gridType=L"Windows.UI.Xaml.Controls.Grid";
+#else
+ constexpr auto buttonType=L"Microsoft.UI.Xaml.Controls.Button",gridType=L"Microsoft.UI.Xaml.Controls.Grid";
+#endif
+ assert(PaintSplitOuterAdmission(L"SelectionBorderOuter",true,true,buttonType,gridType,L"PaintUI.SelectableSplitButton"));
+ assert(!PaintSplitOuterAdmission(L"SelectionBorderInner",true,true,buttonType,gridType,L"PaintUI.SelectableSplitButton"));
+ assert(!PaintSplitOuterAdmission(L"SelectionBorderOuter",false,true,buttonType,gridType,L"PaintUI.SelectableSplitButton"));
+ assert(!PaintSplitOuterAdmission(L"SelectionBorderOuter",true,false,buttonType,gridType,L"PaintUI.SelectableSplitButton"));
+ for(auto type:{L"Microsoft.UI.Xaml.Controls.DropDownButton",L"PaintUI.ColorRadioButton",L"Microsoft.UI.Xaml.Controls.ButtonExtra"})
+  assert(!PaintSplitOuterAdmission(L"SelectionBorderOuter",true,true,type,gridType,L"PaintUI.SelectableSplitButton"));
+ assert(!PaintSplitOuterAdmission(L"SelectionBorderOuter",true,true,buttonType,L"Microsoft.UI.Xaml.Controls.Border",L"PaintUI.SelectableSplitButton"));
+ for(auto owner:{L"PaintUI.SelectableSplitButtonExtra",L"PaintUI.Canvas",L"NotepadXamlUI.Document",L""})
+  assert(!PaintSplitOuterAdmission(L"SelectionBorderOuter",true,true,buttonType,gridType,owner));
  assert(ChromeTransitionPartAdmission(L"ContentPresenter",true,false,false));
  assert(ChromeTransitionPartAdmission(L"RootGrid",false,true,false));
  assert(ChromeTransitionPartAdmission(L"RootGrid",false,false,true));

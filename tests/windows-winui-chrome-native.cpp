@@ -44,7 +44,41 @@ static void Stop() {
     assert(!discovery && !stopDiscovery && !uiState && channels.empty());
 }
 #include "windows-chrome-transition-assertions.h"
+static void CheckPaintSplitEdges() {
+ const Color top{24,255,255,255},bottom{18,255,255,255},theme{255,80,10,10},app{255,17,19,21};
+ assert(PaintSplitEdgeAdmission(true,false,2,double(0.33f),1,top,bottom));
+ assert(!PaintSplitEdgeAdmission(false,false,2,double(0.33f),1,top,bottom));
+ assert(!PaintSplitEdgeAdmission(true,true,2,double(0.33f),1,top,bottom));
+ for(auto count:{0u,1u,3u})assert(!PaintSplitEdgeAdmission(true,false,count,double(0.33f),1,top,bottom));
+ for(auto offset:{0.33,0.0,1.0})assert(!PaintSplitEdgeAdmission(true,false,2,offset,1,top,bottom));
+ assert(!PaintSplitEdgeAdmission(true,false,2,double(0.33f),0.999,top,bottom));
+ assert(!PaintSplitEdgeAdmission(true,false,2,double(0.33f),1,bottom,top));
+ assert(!PaintSplitEdgeAdmission(true,false,2,double(0.33f),1,theme,bottom));
+ bool mapped=false;for(auto const& rule:rules)if(wcscmp(rule.key,L"ButtonBorderBrushPointerOver")==0)mapped=true;assert(mapped);
+ std::array<Color,2> current{top,bottom};std::array<OwnedNativeBrush,2> values{};unsigned writes=0;
+ auto read=[&](unsigned i){return current[i];};auto write=[&](unsigned i,Color c){++writes;current[i]=c;};
+ assert(UpdatePaintSplitEdge(values,theme,true,read,write)&&writes==2&&Same(current[0],theme)&&Same(current[1],theme));
+ assert(UpdatePaintSplitEdge(values,theme,true,read,write)&&writes==2);
+ assert(UpdatePaintSplitEdge(values,{},false,read,write)&&writes==4&&Same(current[0],top)&&Same(current[1],bottom));
+ assert(UpdatePaintSplitEdge(values,theme,true,read,write));current[0]=app;
+ assert(UpdatePaintSplitEdge(values,theme,true,read,write)&&values[0].changed&&!values[0].owned&&Same(current[0],app));
+ assert(UpdatePaintSplitEdge(values,{},false,read,write)&&Same(current[0],app)&&Same(current[1],bottom));
+ current[0]=top;assert(UpdatePaintSplitEdge(values,theme,true,read,write)&&Same(current[0],top));
+ assert(UpdatePaintSplitEdge(values,{},false,read,write));
+ current={top,bottom};values={};writes=0;
+ auto partial=[&](unsigned i,Color c){write(i,c);if(i==0)throw hresult_error(E_FAIL);};
+ assert(!UpdatePaintSplitEdge(values,theme,true,read,partial)&&values[0].owned&&values[1].owned&&writes==2);
+ auto denied=[&](unsigned i,Color c){if(i==0)throw hresult_access_denied();write(i,c);};
+ assert(!UpdatePaintSplitEdge(values,{},false,read,denied)&&values[0].owned&&!values[1].owned&&Same(current[1],bottom));
+ assert(UpdatePaintSplitEdge(values,{},false,read,write)&&Same(current[0],top)&&Same(current[1],bottom));
+ current={top,bottom};values={};writes=0;
+ auto unavailable=[&](unsigned i)->Color{if(i==0)throw hresult_error(E_FAIL);return current[i];};
+ assert(!UpdatePaintSplitEdge(values,theme,true,unavailable,write)&&!values[0].owned&&values[1].owned&&writes==1);
+ assert(UpdatePaintSplitEdge(values,{},false,read,write)&&Same(current[0],top)&&Same(current[1],bottom));
+ puts("PASS: exact Paint split-edge shape and protected-data refusal; paired ownership, app-write preservation, partial failure and exact retry restoration");
+}
 int main(int argc, char** argv) {
+ if(argc>1&&strcmp(argv[1],"paint-split-edge-ownership")==0){CheckPaintSplitEdges();return 0;}
  if(argc>1&&strcmp(argv[1],"background-transition-ownership")==0){CheckChromeTransitions();return 0;}
  if(argc>1&&strcmp(argv[1],"hover-state-palette")==0){CheckChromeHoverStates();return 0;}
  if(argc>1&&strcmp(argv[1],"split-parent-bindings")==0) {
