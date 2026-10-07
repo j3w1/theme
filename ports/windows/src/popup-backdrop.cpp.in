@@ -1,0 +1,41 @@
+// The recorded Paint menu presenter has a DesktopAcrylicBackdrop behind
+// its already-themed brushes, including before its first layout. Use only
+// the public presenter property. Never infer a popup HWND or modify artwork.
+struct PopupBacking { weak_ref<MenuFlyoutPresenter> element; OwnedCompositionBrush value; };
+static void ApplyPopupBacking(Root& root,FrameworkElement const& element);
+// IMPLEMENTATION
+static bool PopupBackingAdmission(std::wstring_view type,bool active,bool uiThread,bool loaded,bool sameRoot) noexcept {
+ return type==L"Microsoft.UI.Xaml.Controls.MenuFlyoutPresenter"&&active&&uiThread&&loaded&&sameRoot;
+}
+static bool RestorePopupBackings(std::vector<PopupBacking>& entries) noexcept {
+ bool restored=true;
+ for(auto& entry:entries)try {
+  if(auto element=entry.element.get())
+   restored=UpdateCompositionBrush(entry.value,false,[&]{return element.SystemBackdrop();},
+    [&](auto const& value){element.SystemBackdrop(value?value.template as<SystemBackdrop>():nullptr);})&&restored;
+  else entry.value.owned=false;
+ }catch(...){restored=false;}
+ if(restored)entries.clear();
+ return restored;
+}
+static void ApplyPopupBacking(Root& root,FrameworkElement const& element) {
+ auto owner=root.element.get();
+ if(!uiState||!owner||!element||!PopupBackingAdmission(std::wstring_view{get_class_name(element)},
+  enabled.load()&&!HighContrast(),ChromeUiThread(element),element.IsLoaded(),Identity(owner.XamlRoot(),element.XamlRoot())))return;
+ auto presenter=element.try_as<MenuFlyoutPresenter>();if(!presenter)return;
+ auto& entries=uiState->popupBackings;
+ for(auto it=entries.begin();it!=entries.end();)if(!it->element.get())it=entries.erase(it);else ++it;
+ for(auto& entry:entries)if(Identity(entry.element.get(),presenter)) {
+  if(!UpdateCompositionBrush(entry.value,true,[&]{return presenter.SystemBackdrop();},
+   [&](auto const& value){presenter.SystemBackdrop(value?value.template as<SystemBackdrop>():nullptr);}))throw hresult_error(E_FAIL);
+  return;
+ }
+ auto native=presenter.SystemBackdrop();
+ // Unknown or custom backdrop implementations retain host ownership.
+ if(!native||get_class_name(native)!=L"Microsoft.UI.Xaml.Media.DesktopAcrylicBackdrop")return;
+ if(entries.size()>=1024)throw hresult_error(E_BOUNDS);
+ entries.push_back({make_weak(presenter),{native,nullptr}});
+ auto& entry=entries.back();
+ if(!UpdateCompositionBrush(entry.value,true,[&]{return presenter.SystemBackdrop();},
+  [&](auto const& value){presenter.SystemBackdrop(value?value.template as<SystemBackdrop>():nullptr);}))throw hresult_error(E_FAIL);
+}

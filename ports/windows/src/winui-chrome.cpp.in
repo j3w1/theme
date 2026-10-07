@@ -373,13 +373,13 @@ static bool ApplyPaintSplitEdge(std::deque<PaintSplitEdgeReceipt>& entries,Depen
   [&](unsigned i,Color value){stops[i].Color(value);}))throw hresult_error(E_FAIL);
  return true;
 }
-@WINDOW_BACKING_DECLARATIONS@
+@WINDOW_BACKING_DECLARATIONS@@POPUP_BACKING_DECLARATIONS@
 
 @PUBLIC_CAPTION_DECLARATIONS@struct ThreadState {
 @PUBLIC_CAPTION_STATE@
 #if !J3W1_LEGACY_XAML
  std::vector<std::unique_ptr<WindowBacking>> windowBackings;
-#endif
+@POPUP_BACKING_STATE@#endif
  ControlResources keyTips; std::deque<ChromeAnimationChange> animations; std::deque<ChromeSetterChange> setters; std::deque<ChromeBaseChange> bases; std::deque<ChromeTransitionChange> transitions; HWND channel=nullptr; WNDPROC original=nullptr; std::deque<Root> roots; std::vector<OwnedNativeBrush> nativeBrushes; std::deque<PaintSplitEdgeReceipt> paintSplitEdges; std::vector<PendingRoot> pending; bool busy=false,queued=false,cleaning=false; unsigned ticks=0; };
 static thread_local ThreadState* uiState=nullptr;
 static bool EnsureChannel();
@@ -938,7 +938,7 @@ static void Bridge(Root& root,FrameworkElement const& popup=nullptr) {
  while(!stack.empty()&&count++<4096) {
   auto object=stack.back();stack.pop_back();if(DataSubtree(object))continue;
   RefreshChromeControl(root,object);
-  if(uiState)ApplyChromeAnimationPalette(object,uiState->animations,uiState->setters,uiState->bases,uiState->transitions);
+@POPUP_BACKING_APPLY@  if(uiState)ApplyChromeAnimationPalette(object,uiState->animations,uiState->setters,uiState->bases,uiState->transitions);
   if(object.try_as<Control>()) {
    apply(object,Control::BackgroundProperty(),Kind::Background);apply(object,Control::ForegroundProperty(),Kind::Foreground);apply(object,Control::BorderBrushProperty(),Kind::Border);
   }
@@ -964,12 +964,12 @@ static bool RootCandidateClass(std::wstring_view name);
 static void Track(UIElement const& content,DesktopWindowXamlSource const& source,Window const& window=nullptr);
 
 @PUBLIC_CAPTION_IMPLEMENTATION@
-@WINDOW_BACKING_IMPLEMENTATION@
+@WINDOW_BACKING_IMPLEMENTATION@@POPUP_BACKING_IMPLEMENTATION@
 static void Refresh(ThreadState& state) noexcept {
  if(state.busy)return;state.busy=true;state.queued=false;
 @PUBLIC_CAPTION_REFRESH@ const bool active=enabled.load()&&!HighContrast();
  if(!RefreshWindowBackings(state,active))Log(237);
- if(!active){RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);RestoreChromeBases(state.bases);RestoreChromeTransitions(state.transitions);RestoreKeyTips(state);RestoreNativeBrushes(state.nativeBrushes);if(!RestorePaintSplitEdges(state.paintSplitEdges))Log(238);}
+@POPUP_BACKING_INACTIVE@ if(!active){RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);RestoreChromeBases(state.bases);RestoreChromeTransitions(state.transitions);RestoreKeyTips(state);RestoreNativeBrushes(state.nativeBrushes);if(!RestorePaintSplitEdges(state.paintSplitEdges))Log(238);}
  else if(!state.roots.empty())ApplyKeyTips(state);
  for(auto it=state.pending.begin();it!=state.pending.end();) {
   bool finished=!enabled.load()||HighContrast();
@@ -988,8 +988,8 @@ static void Refresh(ThreadState& state) noexcept {
     &&ChromeUiThread(element)&&Prepare(root)) {
    ApplyBackdrop(root);ApplyRootBackground(root);Bridge(root);
   }
- }catch(hresult_error const& error){Log(98,static_cast<unsigned>(error.code().value));RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);RestoreChromeBases(state.bases);RestoreChromeTransitions(state.transitions);if(!RestorePaintSplitEdges(state.paintSplitEdges))Log(238);Restore(state.roots[at]);}
- catch(...){Log(97);RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);RestoreChromeBases(state.bases);RestoreChromeTransitions(state.transitions);if(!RestorePaintSplitEdges(state.paintSplitEdges))Log(238);Restore(state.roots[at]);}
+ }catch(hresult_error const& error){Log(98,static_cast<unsigned>(error.code().value));RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);RestoreChromeBases(state.bases);RestoreChromeTransitions(state.transitions);if(!RestorePaintSplitEdges(state.paintSplitEdges))Log(238);@POPUP_BACKING_FAILURE@Restore(state.roots[at]);}
+ catch(...){Log(97);RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);RestoreChromeBases(state.bases);RestoreChromeTransitions(state.transitions);if(!RestorePaintSplitEdges(state.paintSplitEdges))Log(238);@POPUP_BACKING_FAILURE@Restore(state.roots[at]);}
  for(auto it=state.roots.begin();it!=state.roots.end();) {
   if(!it->element.get()&&Restore(*it))it=state.roots.erase(it);else ++it;
  }
@@ -1005,7 +1005,7 @@ static void Schedule() {
 static bool RestoreThreadState(ThreadState& state) noexcept {
 @PUBLIC_CAPTION_RESTORE@ bool restored=RestoreKeyTips(state)@PUBLIC_CAPTION_RESTORE_RESULT@;
  restored=RefreshWindowBackings(state,false)&&restored;
- restored=RestoreNativeBrushes(state.nativeBrushes)&&restored;
+@POPUP_BACKING_RESTORE@ restored=RestoreNativeBrushes(state.nativeBrushes)&&restored;
  restored=RestorePaintSplitEdges(state.paintSplitEdges)&&restored;
  restored=RestoreChromeAnimations(state.animations)&&restored;
  restored=RestoreChromeSetters(state.setters)&&restored;
@@ -1120,7 +1120,7 @@ static void ObservePopupChrome(FrameworkElement const& element) {
     RestoreChromeAnimations(uiState->animations);RestoreChromeSetters(uiState->setters);
     RestoreChromeBases(uiState->bases);RestoreChromeTransitions(uiState->transitions);
     if(!RestorePaintSplitEdges(uiState->paintSplitEdges))Log(238);
-    Restore(root);
+@POPUP_BACKING_DISCOVERY_FAILURE@    Restore(root);
    }
    Schedule();return;
   }

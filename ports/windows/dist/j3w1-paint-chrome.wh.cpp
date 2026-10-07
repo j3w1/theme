@@ -2,7 +2,7 @@
 // @id j3w1-paint-chrome
 // @name j3w1 Paint chrome
 // @description Exact-package Paint chrome resources; document and artwork colors remain native
-// @version 1.0.23
+// @version 1.0.24
 // @author j3w1
 // @include mspaint.exe
 // @architecture x86-64
@@ -1224,6 +1224,11 @@ static bool RestoreWindowBackings(std::vector<std::unique_ptr<WindowBacking>>& e
  return complete;
 }
 #endif
+// The recorded Paint menu presenter has a DesktopAcrylicBackdrop behind
+// its already-themed brushes, including before its first layout. Use only
+// the public presenter property. Never infer a popup HWND or modify artwork.
+struct PopupBacking { weak_ref<MenuFlyoutPresenter> element; OwnedCompositionBrush value; };
+static void ApplyPopupBacking(Root& root,FrameworkElement const& element);
 
 
 // Paint owns an admitted native title. Notepad owns custom tabs and declines
@@ -1330,6 +1335,7 @@ struct ThreadState {
 std::vector<std::unique_ptr<PublicCaption>> publicCaptions;
 #if !J3W1_LEGACY_XAML
  std::vector<std::unique_ptr<WindowBacking>> windowBackings;
+ std::vector<PopupBacking> popupBackings;
 #endif
  ControlResources keyTips; std::deque<ChromeAnimationChange> animations; std::deque<ChromeSetterChange> setters; std::deque<ChromeBaseChange> bases; std::deque<ChromeTransitionChange> transitions; HWND channel=nullptr; WNDPROC original=nullptr; std::deque<Root> roots; std::vector<OwnedNativeBrush> nativeBrushes; std::deque<PaintSplitEdgeReceipt> paintSplitEdges; std::vector<PendingRoot> pending; bool busy=false,queued=false,cleaning=false; unsigned ticks=0; };
 static thread_local ThreadState* uiState=nullptr;
@@ -1889,6 +1895,7 @@ static void Bridge(Root& root,FrameworkElement const& popup=nullptr) {
  while(!stack.empty()&&count++<4096) {
   auto object=stack.back();stack.pop_back();if(DataSubtree(object))continue;
   RefreshChromeControl(root,object);
+  if(auto element=object.try_as<FrameworkElement>())ApplyPopupBacking(root,element);
   if(uiState)ApplyChromeAnimationPalette(object,uiState->animations,uiState->setters,uiState->bases,uiState->transitions);
   if(object.try_as<Control>()) {
    apply(object,Control::BackgroundProperty(),Kind::Background);apply(object,Control::ForegroundProperty(),Kind::Foreground);apply(object,Control::BorderBrushProperty(),Kind::Border);
@@ -2022,11 +2029,48 @@ static bool RefreshWindowBackings(ThreadState& state,bool active) noexcept {
 #endif
 }
 
+static bool PopupBackingAdmission(std::wstring_view type,bool active,bool uiThread,bool loaded,bool sameRoot) noexcept {
+ return type==L"Microsoft.UI.Xaml.Controls.MenuFlyoutPresenter"&&active&&uiThread&&loaded&&sameRoot;
+}
+static bool RestorePopupBackings(std::vector<PopupBacking>& entries) noexcept {
+ bool restored=true;
+ for(auto& entry:entries)try {
+  if(auto element=entry.element.get())
+   restored=UpdateCompositionBrush(entry.value,false,[&]{return element.SystemBackdrop();},
+    [&](auto const& value){element.SystemBackdrop(value?value.template as<SystemBackdrop>():nullptr);})&&restored;
+  else entry.value.owned=false;
+ }catch(...){restored=false;}
+ if(restored)entries.clear();
+ return restored;
+}
+static void ApplyPopupBacking(Root& root,FrameworkElement const& element) {
+ auto owner=root.element.get();
+ if(!uiState||!owner||!element||!PopupBackingAdmission(std::wstring_view{get_class_name(element)},
+  enabled.load()&&!HighContrast(),ChromeUiThread(element),element.IsLoaded(),Identity(owner.XamlRoot(),element.XamlRoot())))return;
+ auto presenter=element.try_as<MenuFlyoutPresenter>();if(!presenter)return;
+ auto& entries=uiState->popupBackings;
+ for(auto it=entries.begin();it!=entries.end();)if(!it->element.get())it=entries.erase(it);else ++it;
+ for(auto& entry:entries)if(Identity(entry.element.get(),presenter)) {
+  if(!UpdateCompositionBrush(entry.value,true,[&]{return presenter.SystemBackdrop();},
+   [&](auto const& value){presenter.SystemBackdrop(value?value.template as<SystemBackdrop>():nullptr);}))throw hresult_error(E_FAIL);
+  return;
+ }
+ auto native=presenter.SystemBackdrop();
+ // Unknown or custom backdrop implementations retain host ownership.
+ if(!native||get_class_name(native)!=L"Microsoft.UI.Xaml.Media.DesktopAcrylicBackdrop")return;
+ if(entries.size()>=1024)throw hresult_error(E_BOUNDS);
+ entries.push_back({make_weak(presenter),{native,nullptr}});
+ auto& entry=entries.back();
+ if(!UpdateCompositionBrush(entry.value,true,[&]{return presenter.SystemBackdrop();},
+  [&](auto const& value){presenter.SystemBackdrop(value?value.template as<SystemBackdrop>():nullptr);}))throw hresult_error(E_FAIL);
+}
+
 static void Refresh(ThreadState& state) noexcept {
  if(state.busy)return;state.busy=true;state.queued=false;
  ApplyPublicCaptions(state);
  const bool active=enabled.load()&&!HighContrast();
  if(!RefreshWindowBackings(state,active))Log(237);
+ if(!active&&!RestorePopupBackings(state.popupBackings))Log(239);
  if(!active){RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);RestoreChromeBases(state.bases);RestoreChromeTransitions(state.transitions);RestoreKeyTips(state);RestoreNativeBrushes(state.nativeBrushes);if(!RestorePaintSplitEdges(state.paintSplitEdges))Log(238);}
  else if(!state.roots.empty())ApplyKeyTips(state);
  for(auto it=state.pending.begin();it!=state.pending.end();) {
@@ -2046,8 +2090,8 @@ static void Refresh(ThreadState& state) noexcept {
     &&ChromeUiThread(element)&&Prepare(root)) {
    ApplyBackdrop(root);ApplyRootBackground(root);Bridge(root);
   }
- }catch(hresult_error const& error){Log(98,static_cast<unsigned>(error.code().value));RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);RestoreChromeBases(state.bases);RestoreChromeTransitions(state.transitions);if(!RestorePaintSplitEdges(state.paintSplitEdges))Log(238);Restore(state.roots[at]);}
- catch(...){Log(97);RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);RestoreChromeBases(state.bases);RestoreChromeTransitions(state.transitions);if(!RestorePaintSplitEdges(state.paintSplitEdges))Log(238);Restore(state.roots[at]);}
+ }catch(hresult_error const& error){Log(98,static_cast<unsigned>(error.code().value));RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);RestoreChromeBases(state.bases);RestoreChromeTransitions(state.transitions);if(!RestorePaintSplitEdges(state.paintSplitEdges))Log(238);if(!RestorePopupBackings(state.popupBackings))Log(239);Restore(state.roots[at]);}
+ catch(...){Log(97);RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);RestoreChromeBases(state.bases);RestoreChromeTransitions(state.transitions);if(!RestorePaintSplitEdges(state.paintSplitEdges))Log(238);if(!RestorePopupBackings(state.popupBackings))Log(239);Restore(state.roots[at]);}
  for(auto it=state.roots.begin();it!=state.roots.end();) {
   if(!it->element.get()&&Restore(*it))it=state.roots.erase(it);else ++it;
  }
@@ -2064,6 +2108,7 @@ static bool RestoreThreadState(ThreadState& state) noexcept {
  bool publicRestored=RestorePublicCaptions(state);
  bool restored=RestoreKeyTips(state)&&publicRestored;
  restored=RefreshWindowBackings(state,false)&&restored;
+ restored=RestorePopupBackings(state.popupBackings)&&restored;
  restored=RestoreNativeBrushes(state.nativeBrushes)&&restored;
  restored=RestorePaintSplitEdges(state.paintSplitEdges)&&restored;
  restored=RestoreChromeAnimations(state.animations)&&restored;
@@ -2179,6 +2224,7 @@ static void ObservePopupChrome(FrameworkElement const& element) {
     RestoreChromeAnimations(uiState->animations);RestoreChromeSetters(uiState->setters);
     RestoreChromeBases(uiState->bases);RestoreChromeTransitions(uiState->transitions);
     if(!RestorePaintSplitEdges(uiState->paintSplitEdges))Log(238);
+    if(!RestorePopupBackings(uiState->popupBackings))Log(239);
     Restore(root);
    }
    Schedule();return;

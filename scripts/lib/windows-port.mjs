@@ -259,6 +259,14 @@ export function windowsArtifacts({manifest,host,resolved}){
   publicSubs.PUBLIC_CAPTION_STATE=publicSubs.PUBLIC_CAPTION_STATE.trimEnd();
   const chromeSubs={LEGACY_XAML:legacy?'1':'0',XAML_MODULE:legacy?'Windows.UI.Xaml.dll':'Microsoft.UI.Xaml.dll',CHROME_COLOR_STATE:readFileSync(path.join(repoRoot,'ports/windows/src/chrome-color-state.cpp.in'),'utf8'),...publicSubs,ADAPTER_ID:chromeId,APP_LABEL:label,APP_EXE:exe,NATIVE_CLASS:nativeClass,ROOT_CLASSES:rootClasses.map(c=>'L"'+c+'"').join(','),ROOT_DISCOVERY:rootDiscovery,VERSION:chrome.version,PACKAGE_FULL_NAME:chrome.packageFullName,RUNTIME_PACKAGE:chrome.runtimePackage??'',RUNTIME_SHA256:chrome.runtimeSha256,RESOURCE_RULES:chromeRules};
   Object.assign(chromeSubs,{CONTROLS_PACKAGE:chrome.controlsPackage??'',CONTROLS_SHA256:chrome.controlsSha256??'',WINDOW_BACKING_DECLARATIONS:backingDeclarations,WINDOW_BACKING_IMPLEMENTATION:backingImplementation});
+  let popupDeclarations='',popupImplementation='';
+  const popupBacking=chromeId==='j3w1-paint-chrome';
+  if(popupBacking){
+   const popupSource=readFileSync(path.join(repoRoot,'ports/windows/src/popup-backdrop.cpp.in'),'utf8');
+   [popupDeclarations,popupImplementation]=popupSource.split('// IMPLEMENTATION');
+   if(!popupDeclarations||!popupImplementation||/@[A-Z0-9_]+@/.test(popupSource))throw Error('Invalid Paint popup backing template');
+  }
+  Object.assign(chromeSubs,{POPUP_BACKING_DECLARATIONS:popupDeclarations,POPUP_BACKING_IMPLEMENTATION:popupImplementation,POPUP_BACKING_STATE:popupBacking?' std::vector<PopupBacking> popupBackings;\n':'',POPUP_BACKING_APPLY:popupBacking?'  if(auto element=object.try_as<FrameworkElement>())ApplyPopupBacking(root,element);\n':'',POPUP_BACKING_INACTIVE:popupBacking?' if(!active&&!RestorePopupBackings(state.popupBackings))Log(239);\n':'',POPUP_BACKING_RESTORE:popupBacking?' restored=RestorePopupBackings(state.popupBackings)&&restored;\n':'',POPUP_BACKING_FAILURE:popupBacking?'if(!RestorePopupBackings(state.popupBackings))Log(239);':'',POPUP_BACKING_DISCOVERY_FAILURE:popupBacking?'    if(!RestorePopupBackings(uiState->popupBackings))Log(239);\n':''});
   let chromeSource=readFileSync(path.join(repoRoot,'ports/windows/src/winui-chrome.cpp.in'),'utf8').replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in chromeSubs))throw Error('Unknown WinUI chrome source placeholder '+key);return chromeSubs[key];});
   if(legacy)chromeSource=chromeSource.replaceAll('Microsoft::UI::Xaml','Windows::UI::Xaml').replaceAll('L"Microsoft.UI.Xaml.','L"Windows.UI.Xaml.');
   if(legacy)chromeSource=chromeSource.replace('type==L"Windows.UI.Xaml.Controls.SplitButton"||type==L"Windows.UI.Xaml.Controls.SplitButton"','type==L"Microsoft.UI.Xaml.Controls.SplitButton"||type==L"Windows.UI.Xaml.Controls.SplitButton"');

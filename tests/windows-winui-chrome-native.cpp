@@ -119,6 +119,31 @@ int main(int argc, char** argv) {
   assert(!UpdateCompositionBrush(entry,false,read,fail)&&entry.owned);
   assert(UpdateCompositionBrush(entry,false,read,write)&&Identity(current,native));
   }
+#if J3W1_TEST_PAINT
+  assert(PopupBackingAdmission(L"Microsoft.UI.Xaml.Controls.MenuFlyoutPresenter",true,true,true,true));
+  for(auto type:{L"Microsoft.UI.Xaml.Controls.FlyoutPresenter",L"Microsoft.UI.Xaml.Controls.Grid",L"PaintUI.D2DSwapChainPanel"})
+   assert(!PopupBackingAdmission(type,true,true,true,true));
+  assert(!PopupBackingAdmission(L"Microsoft.UI.Xaml.Controls.MenuFlyoutPresenter",false,true,true,true));
+  assert(!PopupBackingAdmission(L"Microsoft.UI.Xaml.Controls.MenuFlyoutPresenter",true,false,true,true));
+  assert(!PopupBackingAdmission(L"Microsoft.UI.Xaml.Controls.MenuFlyoutPresenter",true,true,false,true));
+  assert(!PopupBackingAdmission(L"Microsoft.UI.Xaml.Controls.MenuFlyoutPresenter",true,true,true,false));
+  {
+   auto native=box_value(2),app=box_value(3);ProjectedObject current=native;
+   auto read=[&]{return current;};auto write=[&](auto const& value){current=value;};
+   OwnedCompositionBrush entry{native,nullptr};
+   assert(UpdateCompositionBrush(entry,true,read,write)&&entry.owned&&!current);
+   assert(UpdateCompositionBrush(entry,true,read,write)&&entry.owned&&!current);
+   assert(UpdateCompositionBrush(entry,false,read,write)&&Identity(current,native));
+   entry={native,nullptr};assert(UpdateCompositionBrush(entry,true,read,write));current=app;
+   assert(UpdateCompositionBrush(entry,false,read,write)&&entry.changed&&Identity(current,app));
+   assert(UpdateCompositionBrush(entry,true,read,write)&&Identity(current,app));
+   current=native;entry={native,nullptr};auto partial=[&](auto const& value){current=value;throw hresult_error(E_FAIL);};
+   assert(!UpdateCompositionBrush(entry,true,read,partial)&&entry.owned&&!current);
+   auto fail=[](auto const&){throw hresult_error(E_FAIL);};
+   assert(!UpdateCompositionBrush(entry,false,read,fail)&&entry.owned);
+   assert(UpdateCompositionBrush(entry,false,read,write)&&Identity(current,native));
+  }
+#endif
   uninit_apartment();puts("PASS: nullable composition baseline, exact object restore, later app changes, partial writes and retry");return 0;
  }
     assert(argc == 2);

@@ -1635,3 +1635,22 @@ resolution; installed state rendering remains a separate acceptance check.
 Public contracts: [Windows list presenter](https://learn.microsoft.com/en-us/uwp/api/windows.ui.xaml.controls.primitives.listviewitempresenter),
 [WinUI list presenter](https://learn.microsoft.com/en-us/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.controls.primitives.listviewitempresenter),
 [WinUI grid presenter](https://learn.microsoft.com/en-us/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.controls.primitives.gridviewitempresenter).
+
+### Paint menu acrylic backing
+
+The recorded exact-package Paint View menu uses a DesktopAcrylicBackdrop behind
+its already-themed presenter and template brushes. A bounded observer read this
+public property before first layout and after layout; the native acrylic object
+remained present in both samples. The opening gray strip is a transient failure,
+not a steady-state width defect.
+
+The Paint adapter now clears only this known MenuFlyoutPresenter backdrop in an
+admitted, loaded, same-root chrome subtree on its UI thread. It retains the exact
+original object and restores it on disable, high contrast or unload while its
+null remains owned. Later application replacements win; unknown custom backdrops
+are untouched. No popup HWND, drawing surface, layout or menu command is changed.
+The single public installer journals this adapter update and its rollback.
+Native tests cover null applied values, object restoration, later replacements,
+partial writes, retry and refused control/root/thread boundaries. Installed
+first-frame rendering remains a separate acceptance check.
+Reference: [Microsoft MenuFlyoutPresenter.SystemBackdrop documentation](https://learn.microsoft.com/en-us/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.controls.menuflyoutpresenter.systembackdrop).

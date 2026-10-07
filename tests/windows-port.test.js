@@ -875,3 +875,17 @@ test('native item presenters require the correct primitive namespace before gene
   }
  }
 });
+
+test('Paint menu acrylic backing has a bounded public-property owner and all cleanup paths',async()=>{
+ const paint=fs.readFileSync(path.join(source,'dist/j3w1-paint-chrome.wh.cpp'),'utf8');
+ for(const id of ['notepad','terminal'])assert.ok(!fs.readFileSync(path.join(source,'dist/j3w1-'+id+'-chrome.wh.cpp'),'utf8').includes('struct PopupBacking'));
+ assert.match(paint,/PopupBackingAdmission[\s\S]*MenuFlyoutPresenter[\s\S]*active&&uiThread&&loaded&&sameRoot/);
+ const apply=paint.slice(paint.indexOf('static void ApplyPopupBacking(Root& root,FrameworkElement const& element) {'),paint.indexOf('static void Refresh(ThreadState& state) noexcept'));
+ assert.match(apply,/Identity\(owner.XamlRoot\(\),element.XamlRoot\(\)\)/);
+ assert.match(apply,/get_class_name\(native\)!=L"Microsoft.UI.Xaml.Media.DesktopAcrylicBackdrop"/);
+ assert.match(apply,/UpdateCompositionBrush[\s\S]*SystemBackdrop\(/);
+ assert.match(paint,/if\(!active&&!RestorePopupBackings\(state.popupBackings\)\)/);
+ assert.match(paint,/restored=RestorePopupBackings\(state.popupBackings\)&&restored/);
+ assert.match(paint,/RestorePopupBackings\(uiState->popupBackings\)/);
+ assert.equal((paint.match(/if\(!RestorePopupBackings\(state.popupBackings\)\)Log\(239\);Restore\(state.roots\[at\]\);/g)??[]).length,2);
+});
