@@ -870,3 +870,29 @@ Paint hover and pointer-exit acceptance remains required. Notepad's first-window
 header and Paint's drawing surround remain separate unresolved surfaces.
 
 Reference: [Microsoft SplitButton parent TemplateBindings and native states](https://github.com/microsoft/microsoft-ui-xaml/blob/v2.8.7/dev/SplitButton/SplitButton.xaml).
+
+### Retained transition proof for transparent button bases
+
+Owner readback failed after the SplitButton-parent candidate: Paint Selection
+and Brushes still showed gray. A read-only exact-package toolbar trace found
+standard DropDownButton controls with a direct named ContentPresenter, four
+CommonStates, an empty Normal state and three zero-time brush animations in
+each remaining state. Their inherited backgrounds retained transparent white
+RGB, while their BackgroundTransition had already become the adapter's private
+zero-duration replacement. No SplitButton was found in that toolbar trace.
+
+The shared helper applied transition removal before base normalization, but
+base admission still required the current transition to have its original
+83ms duration. It therefore rejected the template after its own earlier write.
+Base normalization now accepts the exact original 83ms transition retained in
+an active ownership receipt for the same presenter and current applied object.
+An arbitrary zero-duration transition, unreadable original, later replacement,
+different presenter or modified applied duration grants no admission. The
+existing template/state, local-expression and data boundaries are unchanged.
+
+The original background/local value and native transition still use their
+existing restoration receipts; no additional state or ownership mechanism is
+created. Synthetic regressions exercise admission after replacement and refusal
+for missing/stale receipts, target/object mismatches and changed durations in
+all four generated app adapters. The trace establishes the helper interaction;
+post-update Paint rendering remains an acceptance requirement.

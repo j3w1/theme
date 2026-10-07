@@ -144,11 +144,14 @@ static bool ChromeTransparentBaseStateAdmission(unsigned state,bool empty,bool c
  if(state==2||state==3)return colorOnly&&background;
  return state==4&&colorOnly;
 }
-static bool ChromeTransparentBaseTemplate(Control const& control,FrameworkElement const& element,VisualStateGroup const& group) {
+struct OwnedChromeTransition {ProjectedObject before{nullptr},applied{nullptr};bool owned=false,replaced=false;};
+struct ChromeTransitionChange {weak_ref<FrameworkElement> presenter;OwnedChromeTransition value;};
+static bool ChromeBaseTransitionProof(ContentPresenter const& presenter,std::deque<ChromeTransitionChange> const& transitions);
+static bool ChromeTransparentBaseTemplate(Control const& control,FrameworkElement const& element,VisualStateGroup const& group,std::deque<ChromeTransitionChange> const& transitions) {
  return InspectChromeState([&] {
   auto presenter=element.try_as<ContentPresenter>();
   if(!presenter||!Identity(VisualTreeHelper::GetParent(presenter),control)||presenter.Name()!=L"ContentPresenter"||group.Name()!=L"CommonStates"||group.States().Size()!=4)return false;
-  auto transition=presenter.BackgroundTransition();if(!transition||transition.Duration().count()!=830000)return false;
+  if(!ChromeBaseTransitionProof(presenter,transitions))return false;
   unsigned seen=0;
   for(auto const& state:group.States()) {
    unsigned id=ChromeColorState(std::wstring_view{state.Name()});if(!id||seen&(1u<<id))return false;seen|=1u<<id;
@@ -186,7 +189,7 @@ static bool RestoreChromeBases(std::deque<ChromeBaseChange>& entries) noexcept {
  }catch(...){complete=false;}
  return complete;
 }
-static void ApplyChromeBase(Control const& control,FrameworkElement const& element,VisualStateGroup const& group,std::deque<ChromeBaseChange>& entries) {
+static void ApplyChromeBase(Control const& control,FrameworkElement const& element,VisualStateGroup const& group,std::deque<ChromeBaseChange>& entries,std::deque<ChromeTransitionChange> const& transitions) {
  for(auto it=entries.begin();it!=entries.end();)if(!it->control.get())it=entries.erase(it);else ++it;
  for(auto& entry:entries)if(Identity(entry.control.get(),control)) {
   if(!UpdateChromeBase(entry.base,true,[&]{return ChromeFrameValue{true,control.ReadLocalValue(Control::BackgroundProperty())};},
@@ -197,7 +200,7 @@ static void ApplyChromeBase(Control const& control,FrameworkElement const& eleme
  bool admitted=InspectChromeState([&]{
   local=control.ReadLocalValue(property);brush=control.GetValue(property).try_as<SolidColorBrush>();
   bool readable=local&&(Identity(local,DependencyProperty::UnsetValue())||local.try_as<Brush>());
-  return brush&&ChromeTransparentBaseAdmission(brush.Color(),readable,ChromeTransparentBaseTemplate(control,element,group));
+  return brush&&ChromeTransparentBaseAdmission(brush.Color(),readable,ChromeTransparentBaseTemplate(control,element,group,transitions));
  });
  if(!admitted)return;
  auto color=ChromeStateColor(L"Background",1,false);color.A=brush.Color().A;
@@ -211,7 +214,6 @@ static void ApplyChromeBase(Control const& control,FrameworkElement const& eleme
 // after their destination brushes are themed. Replace only their cosmetic
 // 83ms background interpolation with a private, immediate transition. Retain
 // the exact original property value; never mutate a shared native transition.
-struct OwnedChromeTransition {ProjectedObject before{nullptr},applied{nullptr};bool owned=false,replaced=false;};
 template<class Read,class Write> static bool UpdateChromeTransition(OwnedChromeTransition& entry,bool active,Read read,Write write) noexcept {
  try {
   auto current=read();
@@ -246,7 +248,25 @@ static void ChromeBackgroundTransition(FrameworkElement const& element,Projected
  if(auto border=element.try_as<Border>()){border.BackgroundTransition(transition);return;}
  throw hresult_error(E_INVALIDARG);
 }
-struct ChromeTransitionChange {weak_ref<FrameworkElement> presenter;OwnedChromeTransition value;};
+// Transition removal runs before template-base normalization. The retained
+// original establishes the same 83ms contract after our private zero-duration
+// replacement; an unrelated zero-duration transition grants no admission.
+static bool ChromeBaseCapturedTransitionAdmission(long long current,long long before,bool sameTarget,bool sameApplied,bool owned,bool replaced) noexcept {
+ return current==0&&before==830000&&sameTarget&&sameApplied&&owned&&!replaced;
+}
+static bool ChromeBaseTransitionProof(ContentPresenter const& presenter,std::deque<ChromeTransitionChange> const& transitions) {
+ auto current=presenter.BackgroundTransition();if(!current)return false;
+ auto duration=current.Duration().count();
+ for(auto const& entry:transitions) {
+  if(!Identity(entry.presenter.get(),presenter))continue;
+  // Check ownership/identity before reading the saved native object. Once a
+  // presenter has a receipt, a later native-looking duration cannot bypass it.
+  if(!entry.value.owned||entry.value.replaced||!Identity(current,entry.value.applied))return false;
+  auto before=entry.value.before.try_as<BrushTransition>();if(!before)return false;
+  return ChromeBaseCapturedTransitionAdmission(duration,before.Duration().count(),true,true,entry.value.owned,entry.value.replaced);
+ }
+ return duration==830000;
+}
 static bool RestoreChromeTransitions(std::deque<ChromeTransitionChange>& entries) noexcept {
  bool restored=true;
  for(auto& entry:entries)try {
@@ -381,7 +401,7 @@ static void ApplyChromeAnimationPalette(DependencyObject const& object,std::dequ
   ApplyChromeTransition(control,node,transitions);
   if(auto element=node.try_as<FrameworkElement>())for(auto const& group:VisualStateManager::GetVisualStateGroups(element)) {
    if(group.Name()!=L"CommonStates")continue;
-   ApplyChromeBase(control,element,group,bases);
+   ApplyChromeBase(control,element,group,bases,transitions);
    ApplyChromeSetters(control,group,setters);
    std::vector<ChromeStateRefresh> refresh;
    try {

@@ -17,6 +17,14 @@ static void CheckChromeTransitions() {
  auto read=[&]{return current;};auto write=[&](auto const& value){current=value;};
  OwnedChromeTransition entry{native,theme};
  assert(UpdateChromeTransition(entry,true,read,write)&&entry.owned&&Identity(current,theme));
+ // The immediate replacement must not erase proof of the native template.
+ assert(ChromeBaseCapturedTransitionAdmission(0,830000,true,Identity(current,entry.applied),entry.owned,entry.replaced));
+ assert(!ChromeBaseCapturedTransitionAdmission(0,830000,false,true,true,false));
+ assert(!ChromeBaseCapturedTransitionAdmission(0,830000,true,false,true,false));
+ assert(!ChromeBaseCapturedTransitionAdmission(0,830000,true,true,false,false));
+ assert(!ChromeBaseCapturedTransitionAdmission(0,830000,true,true,true,true));
+ for(auto before:{0ll,829999ll,830001ll,1000000ll})assert(!ChromeBaseCapturedTransitionAdmission(0,before,true,true,true,false));
+ for(auto duration:{1ll,829999ll,830000ll,1000000ll})assert(!ChromeBaseCapturedTransitionAdmission(duration,830000,true,true,true,false));
  assert(UpdateChromeTransition(entry,false,read,write)&&!entry.owned&&Identity(current,native));
  assert(UpdateChromeTransition(entry,true,read,write)&&entry.owned);
  current=app;

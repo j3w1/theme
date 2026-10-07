@@ -2,6 +2,10 @@
 
 ## [4.0.0] - 2026-09-28
 
+- Windows: retain the original transition contract when normalizing transparent
+  button backgrounds after the owned hover-transition replacement, avoiding
+  interference between the two corrections while preserving native recovery.
+
 - Windows: refresh stable SplitButton parent brush bindings through the existing
   owned chrome-property lifecycle, preserving native hover states and exact
   local-value recovery rather than painting over each inner button.
