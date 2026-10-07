@@ -95,6 +95,33 @@
         "PointerOverForeground=#e99499",
         "SelectedForeground=#f4eeee"
       ]
+    },
+    {
+      "target": "WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher",
+      "styles": [
+        "Background=#000000",
+        "BorderBrush=#e53935",
+        "BorderThickness=1",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid > Border",
+      "styles": [
+        "Background=#000000",
+        "BorderBrush=#e53935",
+        "BorderThickness=1",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Windows.UI.Xaml.Controls.Primitives.Popup > Border#InputSwitcherPopupBorder",
+      "styles": [
+        "Background=#000000",
+        "BorderBrush=#e53935",
+        "BorderThickness=1",
+        "CornerRadius=0"
+      ]
     }
   ],
   "themeResourceVariables": [

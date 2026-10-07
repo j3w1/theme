@@ -37750,7 +37750,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-BO+CiFLhkKzgd61uCCEJSTST2Mh5JOLtJC/ekCfIYkE=",
+      "subjectDigest": "sha256-0zxr7BPZh8ZvdtpyowYvv1/06889mDSI3RkNUnbfNqo=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37807,7 +37807,7 @@
           "path": "dist/windows-11-taskbar-styler.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-11-taskbar-styler.json",
-          "digest": "sha256-GJq71InjiUdz3iS4HjkA+OIX8H1q9Q4cG62haeNRBCI="
+          "digest": "sha256-C2EpGo5nhxww9aorI4RaKKFemDZS8jIIjufDIIDbJnY="
         },
         {
           "path": "dist/windows-11-start-menu-styler.json",
@@ -37957,7 +37957,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-bkrWyoBpKLR/SzOrw+cO218n2CkdFGKwOC1L3K/NUg4="
+          "digest": "sha256-d7JzLNFH+vDgtnZK0r3liMKSM1v9pgUgw1WVWih+UN4="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
@@ -38098,7 +38098,10 @@
             "windows-11-start-menu-styler | web .suggestion, .suggContainer | border-width",
             "windows-11-start-menu-styler | web :focus-visible | outline-width",
             "windows-11-taskbar-styler | Grid#ConfirmatorMainGrid | BorderThickness",
-            "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid | BorderThickness"
+            "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid | BorderThickness",
+            "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher | BorderThickness",
+            "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid > Border | BorderThickness",
+            "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.Popup > Border#InputSwitcherPopupBorder | BorderThickness"
           ],
           "value": "1px",
           "eligibility": {
@@ -39010,7 +39013,10 @@
             "windows-11-settings-styler.resource.ToolTipBorderBrush",
             "windows-11-settings-styler | ToolTip | BorderBrush",
             "windows-11-taskbar-styler | Grid#ConfirmatorMainGrid | BorderBrush",
-            "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid | BorderBrush"
+            "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid | BorderBrush",
+            "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher | BorderBrush",
+            "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid > Border | BorderBrush",
+            "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.Popup > Border#InputSwitcherPopupBorder | BorderBrush"
           ],
           "value": "#e53935",
           "eligibility": {
@@ -42562,7 +42568,10 @@
             "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid | Background",
             "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid > Grid | Background",
             "windows-11-taskbar-styler | ListViewItem | Background",
-            "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | Background"
+            "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | Background",
+            "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher | Background",
+            "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid > Border | Background",
+            "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.Popup > Border#InputSwitcherPopupBorder | Background"
           ],
           "value": "#000000",
           "eligibility": {
@@ -44765,7 +44774,10 @@
             "windows-11-taskbar-styler | Grid#VolumeConfirmator, Grid#BrightnessConfirmator | CornerRadius",
             "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid | CornerRadius",
             "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid > Grid | CornerRadius",
-            "windows-11-taskbar-styler | ListViewItem | CornerRadius"
+            "windows-11-taskbar-styler | ListViewItem | CornerRadius",
+            "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher | CornerRadius",
+            "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid > Border | CornerRadius",
+            "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.Popup > Border#InputSwitcherPopupBorder | CornerRadius"
           ],
           "value": "0px",
           "eligibility": {

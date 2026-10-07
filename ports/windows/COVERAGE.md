@@ -1006,3 +1006,19 @@ Native tests cover null applied values, object restoration, later replacements,
 partial writes, retry and refused control/root/thread boundaries. Installed
 first-frame rendering remains a separate acceptance check.
 Reference: [Microsoft MenuFlyoutPresenter.SystemBackdrop documentation](https://learn.microsoft.com/en-us/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.controls.menuflyoutpresenter.systembackdrop).
+
+### Input-language picker outer layers
+
+The picker has independent Control and popup-border surfaces outside the
+previously mapped content Grids. The pinned taskbar adapter source includes
+the exact InputSwitcher class, its direct content Border and the named
+InputSwitcherPopupBorder. Those outer surfaces now receive the same canvas,
+overlay border and square-corner roles through the existing settings journal.
+The popup selector uses Windows.UI.Xaml.Controls.Primitives.Popup explicitly:
+the upstream bare-class expansion defaults to Controls and cannot identify
+a Popup through that alias. No dimensions, selection commands, input-language
+settings or new diagnostics consumer are changed.
+
+Upstream selectors establish the configuration defect; the currently installed
+native hierarchy and rendered acceptance remain separate evidence. This change
+does not establish a correction for the hardware volume popup.

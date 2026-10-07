@@ -2,6 +2,9 @@
 
 ## [4.0.0] - 2026-09-28
 
+- Windows: map the input-language picker outer control and popup border through
+  the existing pinned taskbar adapter and single installer journal.
+
 - Windows: map hardware volume/brightness flyout backgrounds and tracks and
   input-language picker backgrounds and native list states through the existing
   pinned taskbar adapter and single installer journal.

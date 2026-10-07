@@ -253,6 +253,33 @@
             "PointerOverForeground": "color.text.default",
             "SelectedForeground": "color.interaction.selection.text"
           }
+        },
+        {
+          "target": "WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher",
+          "styles": {
+            "Background": "color.surface.canvas",
+            "BorderBrush": "color.border.overlay",
+            "BorderThickness": "border.width.default",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid > Border",
+          "styles": {
+            "Background": "color.surface.canvas",
+            "BorderBrush": "color.border.overlay",
+            "BorderThickness": "border.width.default",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Windows.UI.Xaml.Controls.Primitives.Popup > Border#InputSwitcherPopupBorder",
+          "styles": {
+            "Background": "color.surface.canvas",
+            "BorderBrush": "color.border.overlay",
+            "BorderThickness": "border.width.default",
+            "CornerRadius": "radius.none"
+          }
         }
       ]
     },
