@@ -170,7 +170,7 @@ test('native Startup link preserves long explicit guard arguments without writin
  assert.equal(serialized.readUInt32LE(20)&0x2000,0,'RunAsUser must remain disabled');
  fs.writeFileSync(link,Buffer.from(data.value,'base64'));
  const inspection=path.join(folder,'inspect.ps1');
- fs.writeFileSync(inspection,`$r=[Console]::In.ReadToEnd()|ConvertFrom-Json; $s=New-Object -ComObject WScript.Shell; $l=$s.CreateShortcut($r.link); @{target=$l.TargetPath;arguments=$l.Arguments;working=$l.WorkingDirectory;windowStyle=$l.WindowStyle}|ConvertTo-Json -Compress`);
+ fs.writeFileSync(inspection,`$r=[Console]::In.ReadToEnd()|ConvertFrom-Json; $s=New-Object -ComObject WScript.Shell; $l=$s.CreateShortcut($r.link); @{target=$l.TargetPath;arguments=$l.Arguments;working=$l.WorkingDirectory;windowStyle=$l.WindowStyle;description=$l.Description}|ConvertTo-Json -Compress`);
  const shown=spawnSync(pwsh,['-NoProfile','-File',inspection],{input:JSON.stringify({link}),encoding:'utf8',windowsHide:true,timeout:15000});
  assert.equal(shown.status,0,shown.stderr);
  const metadata=JSON.parse(shown.stdout);assert.equal(metadata.target.toLowerCase(),target.toLowerCase());
@@ -178,5 +178,17 @@ test('native Startup link preserves long explicit guard arguments without writin
  for(const bad of [{...request,arguments:args+'\n'}, {...request,target:path.join(folder,'unapproved.exe')}])assert.notEqual(invoke(bad).status,0);
  const junction=path.join(folder,'runtime-junction');fs.symlinkSync(path.dirname(target),junction,'junction');
  assert.notEqual(invoke({...request,target:path.join(junction,path.basename(target))}).status,0);
+ // On an installed host, exercise reuse without writing its managed link.
+ // CI without an existing link still exercises fresh native serialization.
+ if(before!==null){
+  const existing=spawnSync(pwsh,['-NoProfile','-File',inspection],{input:JSON.stringify({link:destination}),encoding:'utf8',windowsHide:true,timeout:15000});
+  assert.equal(existing.status,0,existing.stderr);
+  const owner=JSON.parse(existing.stdout);
+  if(owner.description==='j3w1 theme compatibility guard'&&owner.windowStyle===7){
+   const reused=invoke({operation:'startupShortcut',target:owner.target,arguments:owner.arguments,workingDirectory:owner.working,expectedShortcut:{path:destination,value:before.toString('base64')}});
+   assert.equal(reused.status,0,reused.stderr);
+   assert.equal(JSON.parse(reused.stdout).value,before.toString('base64'),'Exact journal bytes must be reused');
+  }
+ }
  assert.deepEqual(fs.existsSync(destination)?fs.readFileSync(destination):null,before,'Serialization must never write Startup');
 });

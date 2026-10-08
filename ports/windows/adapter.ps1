@@ -94,7 +94,7 @@ public static class J3w1StartLayoutProbe {
     $description='j3w1 theme compatibility guard'
     # Only reuse exact journal-owned bytes. Visible fields alone omit hidden
     # shell-link flags such as RunAsUser; a user edit must reach conflict checks.
-    $trusted=if($request.PSObject.Properties['expectedShortcut']){$request.expectedShortcut}else{$null}
+    $trusted=if($request.ContainsKey('expectedShortcut')){$request.expectedShortcut}else{$null}
     if($null -ne $trusted -and [StringComparer]::OrdinalIgnoreCase.Equals([string]$trusted.path,$destination) -and [IO.File]::Exists($destination) -and (Get-Item -LiteralPath $destination).Length -le 131072){
       $bytes=[IO.File]::ReadAllBytes($destination)
       $value=[Convert]::ToBase64String($bytes)
