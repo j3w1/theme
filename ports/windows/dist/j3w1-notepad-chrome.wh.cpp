@@ -2,7 +2,7 @@
 // @id j3w1-notepad-chrome
 // @name j3w1 Notepad chrome
 // @description Exact-package Notepad chrome resources; document and artwork colors remain native
-// @version 1.2.25
+// @version 1.2.26
 // @author j3w1
 // @include Notepad.exe
 // @architecture x86-64
@@ -38,6 +38,7 @@
 #else
 #include <winrt/Microsoft.UI.Xaml.h>
 #include <winrt/Microsoft.UI.Windowing.h>
+#include <winrt/Microsoft.UI.Content.h>
 #include <winrt/Microsoft.UI.Dispatching.h>
 #include <winrt/Microsoft.UI.Xaml.Hosting.h>
 #include <winrt/Microsoft.UI.Xaml.Controls.h>
@@ -1205,9 +1206,25 @@ template<class Read,class Write> static bool UpdateCompositionBrush(OwnedComposi
 struct NativeXamlWindow : ::IUnknown {virtual HRESULT STDMETHODCALLTYPE get_WindowHandle(HWND*)=0;};
 static constexpr GUID nativeXamlWindowId={0x45d64a29,0xa63e,0x4cb6,{0xb4,0x98,0x57,0x81,0xd2,0x98,0xcb,0x4f}};
 struct WindowBacking {
- HWND window=nullptr;Microsoft::UI::Composition::ICompositionSupportsSystemBackdrop target{nullptr};OwnedCompositionBrush brush;
+ HWND window=nullptr;Microsoft::UI::Composition::ICompositionSupportsSystemBackdrop target{nullptr};OwnedCompositionBrush brush; weak_ref<Microsoft::UI::Content::ContentIsland> island;bool islandTarget=false;
 };
 static constexpr PCWSTR windowBackingProperty=L"j3w1-notepad-chrome-composition-backing";
+// The observed TabsBar uses a ContentIsland whose nullable system backing
+// is outside the app-owned XAML brush tree. Reuse the window-backing receipt;
+// do not access AppWindow.TitleBar or the separate native caption surface.
+static bool TabIslandAdmission(std::wstring_view type,bool thread,bool loaded,bool connected,bool nativeWindow,bool nullBacking) noexcept {
+ return type==L"NotepadXamlUI.TabsBar"&&thread&&loaded&&connected&&nativeWindow&&nullBacking;
+}
+static unsigned CompositionTargetState(bool closed,bool connected) noexcept {return closed?0:connected?1:2;}
+static unsigned TabIslandState(WindowBacking const& entry) noexcept {
+ if(!entry.islandTarget)return 1;
+ try {
+  auto island=entry.island.get();if(!island)return 0;
+  if(island.IsClosed())return 0;
+  return CompositionTargetState(false,island.IsConnected());
+ }catch(...){return 2;} // Unknown/detached targets retain receipts for retry.
+}
+static void ObserveTabIslandBacking(FrameworkElement const& element) noexcept;
 static bool OwnsWindowBacking(WindowBacking const& entry) {
  DWORD process=0;auto thread=GetWindowThreadProcessId(entry.window,&process);
  return thread==GetCurrentThreadId()&&process==GetCurrentProcessId()&&GetPropW(entry.window,windowBackingProperty)==&entry;
@@ -1216,8 +1233,8 @@ static bool RestoreWindowBackings(std::vector<std::unique_ptr<WindowBacking>>& e
  bool complete=true;
  for(auto it=entries.begin();it!=entries.end();) {
   auto& entry=**it;
-  if(OwnsWindowBacking(entry)&&!UpdateCompositionBrush(entry.brush,false,[&]{return entry.target.SystemBackdrop();},
-    [&](auto const& brush){entry.target.SystemBackdrop(brush?brush.template as<Windows::UI::Composition::CompositionBrush>():Windows::UI::Composition::CompositionBrush{nullptr});})) {complete=false;++it;continue;}
+  if(OwnsWindowBacking(entry)&&TabIslandState(entry)!=0&&(TabIslandState(entry)!=1||!UpdateCompositionBrush(entry.brush,false,[&]{return entry.target.SystemBackdrop();},
+    [&](auto const& brush){entry.target.SystemBackdrop(brush?brush.template as<Windows::UI::Composition::CompositionBrush>():Windows::UI::Composition::CompositionBrush{nullptr});}))) {complete=false;++it;continue;}
   if(OwnsWindowBacking(entry))RemovePropW(entry.window,windowBackingProperty);
   it=entries.erase(it);
  }
@@ -1516,6 +1533,7 @@ static bool NotepadSettingsBackingAdmission(std::wstring_view owner,std::wstring
 }
 static void ApplyRootBackground(Root& root) {
  auto element=root.element.get();if(!element)return;
+ ObserveTabIslandBacking(element);
  // Select the app's rendered backing before walking outward into scroll
  // wrappers. Paint's outer ScrollViewer does not consume its own Background.
  bool paintBacking=false;
@@ -2004,6 +2022,40 @@ static void ObserveWindowBacking(Window const& window) noexcept {
  }catch(...){/* Unknown/closed targets retain their native backing. */}
 #endif
 }
+
+static void ObserveTabIslandBacking(FrameworkElement const& element) noexcept {
+ if(!element||!uiState||!enabled.load()||HighContrast()||!ReviewedRuntime())return;
+ try {
+  if(!TabIslandAdmission(std::wstring_view{get_class_name(element)},element.DispatcherQueue().HasThreadAccess(),element.IsLoaded(),true,true,true))return;
+  auto xaml=element.XamlRoot();if(!xaml)return;
+  auto island=xaml.ContentIsland();if(!island||island.IsClosed()||!island.IsConnected()||!island.DispatcherQueue().HasThreadAccess())return;
+  auto id=island.Environment().AppWindowId();if(!id.Value)return;
+  // Same public WindowId conversion used by the existing caption adapter.
+  // Enumerate this UI thread only; never materialize AppWindow or its title bar.
+  using Convert=HRESULT(WINAPI*)(HWND,Microsoft::UI::WindowId*);
+  auto module=GetModuleHandleW(L"Microsoft.Internal.FrameworkUdk.dll");
+  auto convert=module?reinterpret_cast<Convert>(GetProcAddress(module,"Windowing_GetWindowIdFromWindow")):nullptr;
+  if(!convert)return;
+  struct Search {Convert convert;Microsoft::UI::WindowId id;HWND result=nullptr;unsigned matches=0;} search{convert,id};
+  EnumThreadWindows(GetCurrentThreadId(),[](HWND window,LPARAM parameter)->BOOL {
+   auto& search=*reinterpret_cast<Search*>(parameter);
+   if(!PublicCaptionWindow(window))return TRUE;
+   Microsoft::UI::WindowId id{};
+   if(SUCCEEDED(search.convert(window,&id))&&id.Value==search.id.Value){search.result=window;++search.matches;}
+   return TRUE;
+  },reinterpret_cast<LPARAM>(&search));
+  if(search.matches!=1||GetPropW(search.result,windowBackingProperty)||uiState->windowBackings.size()>=256)return;
+  auto target=island.try_as<Microsoft::UI::Composition::ICompositionSupportsSystemBackdrop>();if(!target)return;
+  if(!TabIslandAdmission(std::wstring_view{get_class_name(element)},true,true,true,true,!target.SystemBackdrop()))return;
+  auto entry=std::make_unique<WindowBacking>();entry->window=search.result;entry->target=target;
+  entry->island=make_weak(island);entry->islandTarget=true;
+  // ContentIsland expects a Windows composition brush, not a lifted WinUI brush.
+  entry->brush.applied=Windows::UI::Composition::Compositor().CreateColorBrush(CanvasColor());
+  if(!SetPropW(entry->window,windowBackingProperty,entry.get()))return;
+  try{uiState->windowBackings.push_back(std::move(entry));}catch(...){RemovePropW(search.result,windowBackingProperty);throw;}
+  Schedule();
+ }catch(...){Log(268);}
+}
 static bool RefreshWindowBackings(ThreadState& state,bool active) noexcept {
 #if !J3W1_LEGACY_XAML
  if(!active)return RestoreWindowBackings(state.windowBackings);
@@ -2012,6 +2064,7 @@ static bool RefreshWindowBackings(ThreadState& state,bool active) noexcept {
   auto& entry=**it;
   // Destroyed/reused HWNDs must never lead to a disposed compositor getter.
   if(!OwnsWindowBacking(entry)){it=state.windowBackings.erase(it);continue;}
+  if(entry.islandTarget){auto targetState=TabIslandState(entry);if(targetState==0){RemovePropW(entry.window,windowBackingProperty);it=state.windowBackings.erase(it);continue;}if(targetState!=1){complete=false;++it;continue;}}
   complete=UpdateCompositionBrush(entry.brush,true,[&]{return entry.target.SystemBackdrop();},
     [&](auto const& brush){entry.target.SystemBackdrop(brush?brush.template as<Windows::UI::Composition::CompositionBrush>():Windows::UI::Composition::CompositionBrush{nullptr});})&&complete;
   ++it;

@@ -564,7 +564,7 @@ static bool NotepadSettingsBackingAdmission(std::wstring_view owner,std::wstring
   &&name==L"RootScrollViewer"&&count==1&&sameRoot;
 }
 static void ApplyRootBackground(Root& root) {
- auto element=root.element.get();if(!element)return;
+ auto element=root.element.get();if(!element)return;@TAB_ISLAND_OBSERVE@
  // Select the app's rendered backing before walking outward into scroll
  // wrappers. Paint's outer ScrollViewer does not consume its own Background.
  bool paintBacking=false;

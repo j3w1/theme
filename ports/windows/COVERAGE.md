@@ -1022,3 +1022,22 @@ settings or new diagnostics consumer are changed.
 Upstream selectors establish the configuration defect; the currently installed
 native hierarchy and rendered acceptance remain separate evidence. This change
 does not establish a correction for the hardware volume popup.
+
+### Notepad tab-island composition backing
+
+A bounded exact-package comparison set the TabsBar ContentIsland's public
+SystemBackdrop to a solid canvas brush. It made the backing behind the tab and
+add-tab control black and restored the captured null on removal. The separate
+gray native strip to the right remained; this is a tab-backing correction only.
+
+The production adapter reuses its existing composition-brush ownership and
+cleanup receipts. Admission requires the loaded exact TabsBar root, its UI
+thread, a connected open ContentIsland, the matching native Notepad WindowId
+and a readable null backing. An ordinary Windows composition brush satisfies
+the public interface; no restricted composition-engine feature is enabled.
+Detached or unreadable targets retain recovery for retry, closed targets are
+discarded without backdrop access, and later app replacements remain native.
+No title bar is materialized, no HWND geometry changes, and document/editor
+content remains untouched. Native ownership tests and installer checks do not
+replace production rendering acceptance.
+Reference: [Microsoft ContentIsland documentation](https://learn.microsoft.com/en-us/windows/windows-app-sdk/api/winrt/microsoft.ui.content.contentisland).

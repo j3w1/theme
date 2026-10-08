@@ -100,6 +100,14 @@ int main(int argc, char** argv) {
  assert(NativeScrollbarChrome(L"Windows.UI.Xaml.Controls.Primitives.ScrollBar"));
  for(auto type:{L"PaintUI.Canvas",L"PaintUI.D2DSwapChainPanel",L"Microsoft.UI.Xaml.Controls.ScrollViewer",L"Microsoft.UI.Xaml.Controls.Slider",L"NotepadXamlUI.ScrollBar",L"Microsoft.UI.Xaml.Controls.Primitives.ScrollBarExtra"})assert(!NativeScrollbarChrome(type));
  if(argc>1&&strcmp(argv[1],"window-backing-ownership")==0) {
+#if !J3W1_TEST_PAINT
+  assert(TabIslandAdmission(L"NotepadXamlUI.TabsBar",true,true,true,true,true));
+  for(auto type:{L"NotepadXamlUI.MainMenuBar",L"NotepadXamlUI.StatusBar",L"PaintUI.Canvas",L"Microsoft.UI.Xaml.Controls.Grid"})
+   assert(!TabIslandAdmission(type,true,true,true,true,true));
+  for(unsigned flag=0;flag<5;++flag)assert(!TabIslandAdmission(L"NotepadXamlUI.TabsBar",flag!=0,flag!=1,flag!=2,flag!=3,flag!=4));
+  assert(CompositionTargetState(true,true)==0&&CompositionTargetState(true,false)==0);
+  assert(CompositionTargetState(false,true)==1&&CompositionTargetState(false,false)==2);
+#endif
   init_apartment(apartment_type::multi_threaded);
   {
   auto theme=box_value(1),native=box_value(2),app=box_value(3);ProjectedObject current{nullptr};

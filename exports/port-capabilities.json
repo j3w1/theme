@@ -37750,7 +37750,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-0zxr7BPZh8ZvdtpyowYvv1/06889mDSI3RkNUnbfNqo=",
+      "subjectDigest": "sha256-rwHe6XJqVmvE6SUZi/yG5GNsAMgYfpsM5CKVgACcz/8=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37783,7 +37783,7 @@
           "path": "dist/windows-settings.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-settings.json",
-          "digest": "sha256-rtoOvgr7Pk5hF/LJ94zBma/TIDG8sQgXgnOs/XlSEBA="
+          "digest": "sha256-jzPFnURyHh1Z8PHjhB0JQhOSTfS35pI/Loe05tJ58SQ="
         },
         {
           "path": "dist/terminal-fragment.json",
@@ -37957,7 +37957,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-d7JzLNFH+vDgtnZK0r3liMKSM1v9pgUgw1WVWih+UN4="
+          "digest": "sha256-AUkCFt0pvnLXJAbXIWTRdsryHmFO2XtMX+ytGKgWhaQ="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
@@ -38041,7 +38041,7 @@
           "path": "dist/j3w1-notepad-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-notepad-chrome.wh.cpp",
-          "digest": "sha256-XZPEFx5EVKf14uJ5z/Lsl6VFwxsPol2c5QEegPfzNok="
+          "digest": "sha256-r3ENrK4VAWCAkl9TIAi4diRnsi+UzT/VJ8Xk0RW+M1A="
         },
         {
           "path": "dist/j3w1-notepad-chrome.json",

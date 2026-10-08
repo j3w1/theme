@@ -2,6 +2,10 @@
 
 ## [4.0.0] - 2026-09-28
 
+- Windows: theme the observed Notepad tab ContentIsland backing through its
+  public composition property, reusing exact brush ownership and recovery.
+  The separate first-window native caption strip remains unresolved.
+
 - Windows: map the input-language picker outer control and popup border through
   the existing pinned taskbar adapter and single installer journal.
 
