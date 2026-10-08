@@ -1197,7 +1197,11 @@ gets an explicit reset-to-Windows-default receipt. On disable, high contrast or
 rollback, a prior custom caption override could be lost for that window. A
 genuine captured original remains exact, and later successful application
 requests replace a default-reset receipt with their real restore baseline.
-First-window production appearance acceptance is pending. The readable exact
+After Update, Test, Latest Restore, baseline verification and reapply, the
+owner confirmed the existing first header is black, with unobstructed tabs and
+all three native window buttons visible. The supplied screenshot confirms this
+bounded acceptance; it does not establish every startup or accessibility state.
+The readable exact
 system-backdrop value is retained separately for admitted caption owners. Later application requests
 update the restore baseline; an unexpected external backdrop change is preserved.
 Failed reads or writes retain recovery ownership for retry. High contrast and

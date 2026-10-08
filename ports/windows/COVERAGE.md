@@ -9,8 +9,10 @@ This is the current implementation inventory, not a visual acceptance record.
 Fresh Settings startup was corrected after a trace proved its main CoreWindow
 was missed by the pinned upstream lookup. A controlled comparison showed black
 page surfaces, rose text and a themed calendar. Whole-app state acceptance is
-still open. Current native failures include Notepad's first-window gray strip
-and Paint's gray drawing workspace. Paint's viewport scrollbar now has native
+still open. The owner accepted the corrected existing first Notepad header
+after installation and rollback/reapply: black, with unobstructed tabs and all
+three native window buttons visible. Paint's gray drawing workspace remains
+unresolved. Paint's viewport scrollbar now has native
 state mappings and a bounded installed scroll/recovery observation; full
 transition and accessibility acceptance remain open.
 Exact shell compatibility and historical observations remain in
@@ -518,11 +520,15 @@ The receipt explicitly resets that unknown caption to Windows' default on
 disable, high contrast or rollback; a prior custom override could be lost. A
 genuine captured original, including a later application request, restores
 exactly. Its readable DWM system-backdrop value is captured separately and
-restored with ownership checks. First-window production acceptance is pending. A separate empty-window
+restored with ownership checks. After Update, Test, Latest Restore, baseline
+verification and reapply, the owner confirmed the existing first header is
+black with unobstructed tabs and all three native window buttons visible. This
+bounded acceptance does not cover every launch route or accessibility state. A separate empty-window
 comparison showed black with visible tabs/buttons and restored gray on disable;
 production later-window checks showed black in active, inactive, maximized and
-restored states. The fresh-process first window still showed gray outside its
-tab island, so first startup remains unresolved. A readable-backdrop-only
+restored states. Before the existing-caption correction, the fresh-process
+first window showed gray outside its tab island; retain that failed startup
+observation as history. A readable-backdrop-only
 comparison made that strip accent red and was rejected; it supplies no caption
 restore value for an unknown window. Accessibility acceptance remains separate.
 

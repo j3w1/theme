@@ -142,7 +142,9 @@ adapter. If its original caption color is unknown, rollback resets that caption
 to Windows' default under the owner-approved Notepad-only policy; a previous
 custom caption override could be lost. Captured originals still restore exactly.
 The public caption API remains excluded because it covered the custom tabs on
-the recorded host. First-window appearance acceptance is pending. Paint's surrounding drawing workspace is still gray; an opaque viewport
+the recorded host. After Update, Test, Latest Restore, baseline verification
+and reapply, the owner confirmed the existing first header is black, with
+unobstructed tabs and all three native window buttons visible. Paint's surrounding drawing workspace is still gray; an opaque viewport
 background is not an acceptable fix because it can cover the artwork.
 
 Other app states, notification action buttons, fresh native preview startup,
