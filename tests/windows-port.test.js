@@ -76,7 +76,13 @@ function fixture(t) {
  const terminal=path.join(state,'fixture/terminal/settings.json');
  const before='\uFEFF{\n // keep this comment\n "profiles": {"list": [{"guid":"one","commandline":"keep-one","font":{"size":17},"colorScheme":"j3w1zsh"},{"guid":"two","commandline":"keep-two"}]},\n "keybindings": [{"command":"paste","keys":"ctrl+v"}],\n}\n';
  write(terminal,before);
- const run=(action,extra={})=>spawnSync(process.execPath,[runtime],{input:JSON.stringify({action,source,state,fixture:true,mode:'Native',revision:'1'.repeat(40),...extra}),encoding:'utf8',timeout:30000});
+ const run=(action,extra={})=>{
+  const result=spawnSync(process.execPath,[runtime],{input:JSON.stringify({action,source,state,fixture:true,mode:'Native',revision:'1'.repeat(40),...extra}),encoding:'utf8',timeout:30000});
+  // A killed child cannot establish an expected lifecycle rejection or rollback.
+  assert.ifError(result.error);
+  assert.equal(result.signal,null,`${action}: lifecycle child terminated by ${result.signal}`);
+  return result;
+ };
  const ok=(action,extra={})=>{const r=run(action,extra);assert.equal(r.status,0,`${action}: ${r.stdout}\n${r.stderr}`);return r;};
  return {state,terminal,before,run,ok,journal:()=>read(path.join(state,'journal.json'))};
 }

@@ -37,6 +37,15 @@ partial dependency installation and incompatible shell inputs. Native Windows
 CI runs the PowerShell wrapper and generated-port tests against isolated state.
 They do not change the CI runner's live theme.
 
+Windows CI runs the lifecycle fixture files sequentially with
+`--test-concurrency=1`. They each spawn CLI and PowerShell children; running
+the files together can exhaust a child's fixed deadline during a complete
+Full-mode rollback. Sequential scheduling preserves every selected file, all
+nine adapters in the startup-failure case, its restoration assertions, and
+the unchanged 30-second child limit. Child launch errors and termination
+signals are reported before any expected-rejection assertion. These fixture
+checks remain separate from installed rendering acceptance.
+
 The 2026-09-29 development session imported all five pinned mods disabled and
 read their generated settings back through the actual Windhawk CLI. It restored
 the original disabled Taskbar Styler and removed the other temporary mods.
