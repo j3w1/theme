@@ -2,6 +2,10 @@
 
 ## [4.0.0] - 2026-09-28
 
+- Windows: retain Notepad's tab ContentIsland as a strong COM peer; the observed
+  object does not support weak references. Preserve closed-target and recovery
+  guards, and cover non-weak-reference lifetime in the native regression.
+
 - Windows: theme the observed Notepad tab ContentIsland backing through its
   public composition property, reusing exact brush ownership and recovery.
   The separate first-window native caption strip remains unresolved.

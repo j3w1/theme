@@ -1041,3 +1041,18 @@ No title bar is materialized, no HWND geometry changes, and document/editor
 content remains untouched. Native ownership tests and installer checks do not
 replace production rendering acceptance.
 Reference: [Microsoft ContentIsland documentation](https://learn.microsoft.com/en-us/windows/windows-app-sdk/api/winrt/microsoft.ui.content.contentisland).
+
+### Notepad tab-island reference lifetime
+
+The first production tab-backing candidate failed a fresh Notepad launch.
+Its fault was in weak-reference construction: the observed ContentIsland does
+not supply IWeakReferenceSource. The production adapter now retains the island
+as an ordinary strong COM peer. It releases that peer after closure, native
+window destruction or completed restoration, and keeps unreadable or detached
+targets for the existing recovery retry. The closed-target guard still runs
+before any backdrop getter. No AppWindow title bar or document API is accessed.
+
+The native regression uses the production storage with an object that explicitly
+refuses weak references and checks retention and final release. The earlier
+startup failure remains rejected evidence; synthetic checks do not substitute
+for a fresh installed Notepad startup and rendered acceptance.

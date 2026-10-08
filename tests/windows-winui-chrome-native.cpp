@@ -43,6 +43,16 @@ static void Stop() {
     Wh_ModUninit();
     assert(!discovery && !stopDiscovery && !uiState && channels.empty());
 }
+#if !J3W1_TEST_PAINT
+// The observed ContentIsland has no IWeakReferenceSource. Exercise the same
+// production storage with a peer that explicitly refuses weak references.
+struct NoWeakBackingPeer : implements<NoWeakBackingPeer,Windows::Foundation::IStringable,no_weak_ref> {
+ bool* destroyed;
+ explicit NoWeakBackingPeer(bool* value):destroyed(value){}
+ ~NoWeakBackingPeer(){*destroyed=true;}
+ hstring ToString(){return {};}
+};
+#endif
 #include "windows-chrome-transition-assertions.h"
 static void CheckPaintSplitEdges() {
  const Color top{24,255,255,255},bottom{18,255,255,255},theme{255,80,10,10},app{255,17,19,21};
@@ -101,6 +111,17 @@ int main(int argc, char** argv) {
  for(auto type:{L"PaintUI.Canvas",L"PaintUI.D2DSwapChainPanel",L"Microsoft.UI.Xaml.Controls.ScrollViewer",L"Microsoft.UI.Xaml.Controls.Slider",L"NotepadXamlUI.ScrollBar",L"Microsoft.UI.Xaml.Controls.Primitives.ScrollBarExtra"})assert(!NativeScrollbarChrome(type));
  if(argc>1&&strcmp(argv[1],"window-backing-ownership")==0) {
 #if !J3W1_TEST_PAINT
+  {
+   bool destroyed=false;
+   WindowBacking retained;
+   auto peer=make<NoWeakBackingPeer>(&destroyed).as<ProjectedObject>();
+   assert(!peer.try_as<impl::IWeakReferenceSource>());
+   retained.island=peer;
+   peer=nullptr;
+   assert(!destroyed&&retained.island);
+   retained.island=nullptr;
+   assert(destroyed);
+  }
   assert(TabIslandAdmission(L"NotepadXamlUI.TabsBar",true,true,true,true,true));
   for(auto type:{L"NotepadXamlUI.MainMenuBar",L"NotepadXamlUI.StatusBar",L"PaintUI.Canvas",L"Microsoft.UI.Xaml.Controls.Grid"})
    assert(!TabIslandAdmission(type,true,true,true,true,true));

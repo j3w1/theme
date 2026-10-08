@@ -2,7 +2,7 @@
 // @id j3w1-notepad-chrome
 // @name j3w1 Notepad chrome
 // @description Exact-package Notepad chrome resources; document and artwork colors remain native
-// @version 1.2.26
+// @version 1.2.27
 // @author j3w1
 // @include Notepad.exe
 // @architecture x86-64
@@ -1206,7 +1206,7 @@ template<class Read,class Write> static bool UpdateCompositionBrush(OwnedComposi
 struct NativeXamlWindow : ::IUnknown {virtual HRESULT STDMETHODCALLTYPE get_WindowHandle(HWND*)=0;};
 static constexpr GUID nativeXamlWindowId={0x45d64a29,0xa63e,0x4cb6,{0xb4,0x98,0x57,0x81,0xd2,0x98,0xcb,0x4f}};
 struct WindowBacking {
- HWND window=nullptr;Microsoft::UI::Composition::ICompositionSupportsSystemBackdrop target{nullptr};OwnedCompositionBrush brush; weak_ref<Microsoft::UI::Content::ContentIsland> island;bool islandTarget=false;
+ HWND window=nullptr;Microsoft::UI::Composition::ICompositionSupportsSystemBackdrop target{nullptr};OwnedCompositionBrush brush; ProjectedObject island{nullptr};bool islandTarget=false;
 };
 static constexpr PCWSTR windowBackingProperty=L"j3w1-notepad-chrome-composition-backing";
 // The observed TabsBar uses a ContentIsland whose nullable system backing
@@ -1219,7 +1219,8 @@ static unsigned CompositionTargetState(bool closed,bool connected) noexcept {ret
 static unsigned TabIslandState(WindowBacking const& entry) noexcept {
  if(!entry.islandTarget)return 1;
  try {
-  auto island=entry.island.get();if(!island)return 0;
+  if(!entry.island)return 0;
+  auto island=entry.island.as<Microsoft::UI::Content::ContentIsland>();
   if(island.IsClosed())return 0;
   return CompositionTargetState(false,island.IsConnected());
  }catch(...){return 2;} // Unknown/detached targets retain receipts for retry.
@@ -2048,7 +2049,9 @@ static void ObserveTabIslandBacking(FrameworkElement const& element) noexcept {
   auto target=island.try_as<Microsoft::UI::Composition::ICompositionSupportsSystemBackdrop>();if(!target)return;
   if(!TabIslandAdmission(std::wstring_view{get_class_name(element)},true,true,true,true,!target.SystemBackdrop()))return;
   auto entry=std::make_unique<WindowBacking>();entry->window=search.result;entry->target=target;
-  entry->island=make_weak(island);entry->islandTarget=true;
+  // The observed ContentIsland does not implement IWeakReferenceSource.
+  // Retain its COM identity until closed, HWND destruction or completed recovery.
+  entry->island=island;entry->islandTarget=true;
   // ContentIsland expects a Windows composition brush, not a lifted WinUI brush.
   entry->brush.applied=Windows::UI::Composition::Compositor().CreateColorBrush(CanvasColor());
   if(!SetPropW(entry->window,windowBackingProperty,entry.get()))return;
