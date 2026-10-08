@@ -17,6 +17,12 @@ Exact shell compatibility and historical observations remain in
 [COMPATIBILITY.md](COMPATIBILITY.md). All ports remain experimental until their
 own import evidence meets the port contract.
 
+The owner confirmed the permanent Paint Selection and Brushes correction: their
+main buttons and dropdown arrows stay black/red/rose on hover and pointer exit.
+The installed input-language picker and hardware volume popup were also
+accepted. These are bounded state confirmations; Paint's drawing surround,
+brightness, other popup states and the remaining acceptance checks stay open.
+
 Search result rows own their rest, hover and selected backgrounds. Their icon,
 label and detail containers inherit the row fill, avoiding separate overlapping
 rectangles. The selected row uses the approved dark-red selection role and the
@@ -44,6 +50,7 @@ rose border. Other Search states and accessibility acceptance remain open.
 | Start and Search | Pinned Start styler with separate layout selectors, Search XAML frame and WebView CSS palette | Owner confirmed one dark-red fill across selected result icons and labels and correct hover exit. Recent searches, categories, preview actions and runtime accessibility acceptance remain open |
 | Taskbar | Pinned taskbar styler, including mapped top divider | Top-edge visual acceptance remains open |
 | Notifications, calendar, Quick Settings and toast variants | Pinned notification styler | Notification sidebar and loading controls have owner feedback; not every toast or Quick Settings state has been observed |
+| Hardware volume/brightness popup and input-language picker | Pinned taskbar styler with separate panel, frame, slider and item-state mappings | Owner accepted the installed volume popup and language picker. Brightness, additional item states and accessibility acceptance remain open |
 | Windows Settings | Pinned Windows.UI.Xaml Settings styler | Bounded native observation only; not a universal application adapter |
 | Explorer chrome, native caption buttons and modern context menus | Pinned Explorer XAML styler with a transparent caption composition layer; exact-host native DWM caption adapter | Owner confirmed a black header and all three visible native white button symbols and accepted those symbols. Additional windows, maximized/inactive states and menu interaction coverage remain open |
 | Explorer native file list, navigation, Home, selection and scrollbars | Exact-version native theme/GDI adapter | Millisecond scrollbar flashes, DPI variants and runtime high-contrast switching remain open |
@@ -51,11 +58,11 @@ rose border. Other Search states and accessibility acceptance remain open.
 | Explorer drag-selection rectangle | Symbol-identified UIMarqueeSelector rooted at the actual Explorer UIItemsView; scoped cached-system-brush substitution, canonical red fill at 12% and themed border | Owner accepted the live red selection area with rose borders. Native solid border is a geometry deviation; other DPI and accessibility cases remain open |
 | Explorer filename selection and selected-row outline | Scoped Edit selection and native ListView border color mappings | Border pixel regression passes; corrected live rename outline still needs acceptance |
 | PowerToys plain-text/code preview and loading controls | Exact-version, hash-checked Monaco template adapter and native loading palette | Owner confirmed loaded preview and loading control; this does not cover Markdown |
-| PowerToys Markdown preview | Digest-pinned WebView2 HTML-boundary adapter and token-derived reading CSS for normal and large-file routes | Synthetic native preservation/rejection/recovery tests and bounded live sample checks; owner accepted heading size, spacing, code, quotation and table formatting. Other DPI and runtime accessibility cases remain open |
+| PowerToys Markdown preview | Digest-pinned WebView2 HTML-boundary adapter and token-derived reading CSS for normal and large-file routes | Owner accepted completed small and large previews after installer rollback/reapply, with black backgrounds and improved rose formatting; earlier typography acceptance covered headings, spacing, code, quotations and tables. Transient startup frames, other DPI and runtime accessibility cases remain open |
 | Explorer classic “Show more options” menu | Scoped exact-host Win32 popup palette | Confirmed owner/paint trace and native regressions; live normal, hot, disabled and submenu appearance still need verification |
 | Notepad | Bundled exact-package WinUI chrome resource adapter plus the RichEdit-binary editor adapter | A fresh sample window showed black/rose, native gray/white on disable, and the same unmodified character count. Native regressions cover ordinary glyph paint, color emoji, background restoration, high contrast and worker shutdown. Fresh-window chrome checks showed black tabs/toolbar/status regions, rose labels, a dark-red popup and red/rose keyboard focus. Existing chrome is discovered through the exact-runtime diagnostics bridge; full hover, startup and accessibility acceptance remain open |
 | Calculator | Bundled package-gated Windows.UI.Xaml brush adapter for the recorded 11.2607.0.0 package | Bounded Scientific-mode black/rose and disable/reapply were observed. Native worker shutdown and a deliberate post-apply restoration fault passed. Other modes, final installer startup and live accessibility acceptance remain open; graph-series brushes are excluded |
-| Paint | Exact-package WinUI chrome adapter sharing Notepad ownership and existing-root discovery | Named ribbon, toolbar and layer roots use token-derived resources; drawing controls, artwork and swatches remain excluded. Live behavior and restoration acceptance remain open |
+| Paint | Exact-package WinUI chrome adapter sharing Notepad ownership and existing-root discovery | Owner accepted permanent Selection/Brushes main-button and dropdown-arrow hover and pointer-exit colors. The drawing surround remains gray; other controls, popup transitions and accessibility acceptance remain open. Drawing controls, artwork and swatches retain native ownership |
 | Terminal | Native generated scheme, font and opaque chrome, plus an exact-package legacy-XAML tab/menu adapter | Owner confirmed the earlier general appearance; the new native-menu path needs rendered acceptance. Command output can intentionally choose other colors |
 | PowerToys utilities | Configurable FancyZones, Always On Top and Command Palette appearance | Command Palette exposes tint, not every text role |
 | Obsidian | Separate j3w1 CSS/manifest port | Installed pair readback is separate from Windows installation; third-party plugin surfaces may override it |

@@ -127,6 +127,16 @@ recompiling unchanged adapters; it preserves reported settings conflicts.
 
 ## Remaining limits
 
+The owner confirmed that Paint's Selection and Brushes buttons, including their
+dropdown arrows, keep black/red/rose hover and pointer-exit colors with the
+permanent correction installed. The installed hardware volume popup and
+input-language picker were also accepted. These confirmations cover those
+recorded states; they do not establish complete Windows-wide appearance.
+
+The owner also confirmed completed small and large Markdown previews after
+rollback/reapply: both retain black backgrounds and the improved rose reading
+formatting. Preview startup frames remain a separate acceptance check.
+
 The first Notepad window can still show a gray native header strip. Its public
 caption API remains excluded because it covered the custom tabs on the recorded
 host. Paint's surrounding drawing workspace is still gray; an opaque viewport

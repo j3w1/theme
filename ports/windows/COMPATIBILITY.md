@@ -1722,3 +1722,35 @@ storage. Identical offsets in an earlier build do not authorize other versions:
 the complete module digest must match. The PowerToys host/template identities,
 document handling and unknown-runtime refusal remain unchanged. This refresh
 does not establish no-gray startup, DPI or accessibility acceptance.
+
+
+### Permanent Paint and shell-popup appearance confirmation
+
+The owner confirmed that the installed Paint Selection and Brushes main buttons
+and dropdown arrows stay black/red/rose on hover and pointer exit. This accepts
+the permanent split-button correction in Paint chrome adapter 1.0.24, beyond
+the earlier temporary comparison. Prior failed gradient-only comparisons and
+the separately gray drawing surround remain historical and unresolved evidence,
+respectively. The confirmation does not cover other Paint controls, first popup
+frames, DPI variants or accessibility switching.
+
+The owner also accepted the installed input-language picker and hardware volume
+popup. The accompanying screenshots show black panels and red frames; the
+language selection uses the dark-red fill and the volume track/value are themed.
+Those two surfaces no longer need proof of their previously recorded gray
+failure. Brightness and other popup states remain separate open checks. The
+prepared follow-up shell interface diagnostic was not activated because these
+acceptance results made it unnecessary. No new adapter or injection target was
+introduced for this confirmation.
+
+
+### Completed Markdown previews after rollback and reapply
+
+After the public installer completed Update, Test, Restore Latest, baseline
+Test and Reapply for Markdown adapter 1.4.1, the owner selected both harmless
+small and large Markdown samples and confirmed that both completed previews
+retain black backgrounds and the improved rose formatting. This assesses the
+installed normal and large-file routes with WebView2 154.0.4258.62 after
+restoration and reapplication. It does not accept transient preview startup
+frames, other file types, DPI variants or accessibility switching. Earlier
+gray-runtime rejection and incomplete captures remain historical evidence.
