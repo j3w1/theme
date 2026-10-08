@@ -694,6 +694,27 @@ test('tampered saved adapter export refuses offline import and keeps recoverable
  fs.writeFileSync(mod.backup,backup);f.ok('Restore',{...f.args,latest:true});f.ok('Test',f.args);
 });
 
+test('existing caption default-reset policy is confined to the exact Notepad native adapter',async()=>{
+ const host=await readJson('ports/windows/host.json');
+ assert.equal(host.notepadChrome.existingCaptionRollback,'windows-default');
+ for(const [name,key]of [['notepad','notepadChrome'],['paint','paintChrome'],['terminal','terminalChrome']]){
+  const emitted=fs.readFileSync(path.join(source,'dist/j3w1-'+name+'-chrome.wh.cpp'),'utf8');
+  if(name==='notepad'){
+   assert.ok(emitted.includes('bool resetToDefault=false;'));
+   assert.ok(emitted.includes('CaptureCaption(window,DWMWA_COLOR_DEFAULT)'));
+   assert.ok(emitted.includes('state->resetToDefault=true;'));
+   assert.ok(emitted.includes('state->before=requested;state->resetToDefault=false;'));
+   assert.ok(emitted.includes('if(!package||!runtime||!enabled.load()||HighContrast())return;'));
+   assert.ok(emitted.includes('EnumWindows(ExistingCaptionVisitor,0)'));
+   assert.ok(emitted.includes('void Wh_ModAfterInit(){DiscoverExistingCaptions();'));
+  }else{
+   assert.equal(host[key].existingCaptionRollback,undefined);
+   assert.ok(!emitted.includes('DiscoverExistingCaptions'));
+   assert.ok(!emitted.includes('resetToDefault'));
+  }
+ }
+});
+
 test('app caption contracts preserve Notepad tabs and Paint native-title ownership',async()=>{
  const host=await readJson('ports/windows/host.json'),mapping=await readJson('ports/windows/mapping.json');
  for(const [name,key]of [['paint','paintChrome'],['notepad','notepadChrome']]){

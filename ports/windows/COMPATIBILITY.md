@@ -1189,10 +1189,16 @@ showed black across that strip, visible custom tabs and all three native buttons
 Disabling the comparison restored the gray strip. This comparison is separate
 from final production acceptance.
 
-The Notepad adapter now colors only native windows created after its hooks are
-installed, or windows whose own caption-color request supplies a restore value.
-Existing unknown caption colors remain untouched. It reads and retains the exact
-system-backdrop value only for these captured owners. Later application requests
+The earlier capture-only adapter colored native windows created after its hooks
+were installed, or windows whose own caption request supplied a restore value.
+That left the first existing caption gray. The owner-approved correction admits
+existing roots only in the pinned Notepad package/runtime: an unknown caption
+gets an explicit reset-to-Windows-default receipt. On disable, high contrast or
+rollback, a prior custom caption override could be lost for that window. A
+genuine captured original remains exact, and later successful application
+requests replace a default-reset receipt with their real restore baseline.
+First-window production appearance acceptance is pending. The readable exact
+system-backdrop value is retained separately for admitted caption owners. Later application requests
 update the restore baseline; an unexpected external backdrop change is preserved.
 Failed reads or writes retain recovery ownership for retry. High contrast and
 disable restore the captured values. Public AppWindow/title-bar APIs remain
@@ -1200,14 +1206,15 @@ entirely refused, and no window mode, style, geometry or document is changed.
 Paint retains its existing native-backdrop passthrough. Save desired documents
 before reopening an older Notepad window; setup does not close applications.
 
-The production later-window check showed black in active, inactive, maximized
+Before the existing-caption correction, the production later-window check
+showed black in active, inactive, maximized
 and restored states with visible custom tabs and native buttons. After closing
 all verified-empty agent test windows and confirming the process exited, the
 first window of a fresh production process still showed a gray native strip
 outside its tab island. This is a failed first-startup appearance check, not a
 complete startup correction. A separate readable-backdrop-only comparison
 turned that strip accent red, not black, and was rejected. Unknown write-only
-caption colors remain untouched; changing only the readable backdrop does not
+caption colors were left untouched; changing only the readable backdrop did not
 meet the black-header requirement. The production adapters were restored.
 
 ### Cached native button states

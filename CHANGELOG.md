@@ -2,6 +2,11 @@
 
 ## [4.0.0] - 2026-09-28
 
+- Windows: admit the first existing native Notepad caption without touching its
+  public title API, tabs, geometry or window buttons. Under the owner-approved
+  Notepad-only policy, an unknown original caption resets to Windows' default
+  on rollback; known originals and later app requests keep exact restoration.
+
 - Windows: admit the measured WebView2 154.0.4258.62 public rendering boundaries
   after its runtime update left Markdown previews in native gray. Preserve full
   module identity checks, document bytes and existing background restoration.

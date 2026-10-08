@@ -12,6 +12,12 @@ static unsigned failEventAt=0,eventCalls=0;static bool failWorker=false;static H
 static HANDLE WINAPI TestCreateEvent(LPSECURITY_ATTRIBUTES security,BOOL manual,BOOL initial,LPCWSTR name){if(failEventAt&&++eventCalls==failEventAt)return nullptr;return ::CreateEventW(security,manual,initial,name);}
 static HANDLE WINAPI TestCreateThread(LPSECURITY_ATTRIBUTES security,SIZE_T stack,LPTHREAD_START_ROUTINE entry,LPVOID data,DWORD flags,LPDWORD id){if(failWorker)return nullptr;return ::CreateThread(security,stack,entry,data,flags,id);}
 static DWORD WINAPI TestWait(HANDLE handle,DWORD timeout){if(failWaitHandle&&handle==failWaitHandle){failWaitHandle=nullptr;return WAIT_TIMEOUT;}return ::WaitForSingleObject(handle,timeout);}
+static bool testHighContrast=false;
+static BOOL WINAPI TestSystemParametersInfo(UINT action,UINT param,PVOID value,UINT flags) {
+ if(action==SPI_GETHIGHCONTRAST){static_cast<HIGHCONTRASTW*>(value)->dwFlags=testHighContrast?HCF_HIGHCONTRASTON:0;return TRUE;}
+ return ::SystemParametersInfoW(action,param,value,flags);
+}
+#define SystemParametersInfoW TestSystemParametersInfo
 #define CreateEventW TestCreateEvent
 #define CreateThread TestCreateThread
 #define WaitForSingleObject TestWait
@@ -428,6 +434,69 @@ int main(int argc, char** argv) {
         puts("PASS: exact native backdrop baseline, high-contrast restoration, later edits, unknown values, failures and cleanup retry");return 0;
     }
 
+#if !J3W1_TEST_PAINT
+    if(strcmp(argv[1],"existing-caption-default-reset") == 0) {
+        WNDCLASSW type{};type.lpfnWndProc=DefWindowProcW;type.hInstance=GetModuleHandleW(nullptr);
+        type.lpszClassName=L"Notepad";assert(RegisterClassW(&type));
+        auto create=[&](DWORD style=WS_POPUP,HWND parent=nullptr){return CreateWindowExW(0,type.lpszClassName,L"",style,0,0,20,20,parent,nullptr,type.hInstance,nullptr);};
+        HWND window=create();assert(window);
+        static DWORD caption=RGB(1,2,3),backdrop=DWMSBT_TABBEDWINDOW;
+        static bool failCaption=false,failRead=false,failBackdrop=false;static unsigned writes=0;
+        nativeDwmGet=+[](HWND,DWORD attribute,PVOID value,DWORD size)->HRESULT {
+            assert(attribute==DWMWA_SYSTEMBACKDROP_TYPE&&size==sizeof(DWORD));
+            if(failRead)return E_FAIL;memcpy(value,&backdrop,size);return S_OK;
+        };
+        originalDwmSet=+[](HWND,DWORD attribute,LPCVOID value,DWORD size)->HRESULT {
+            assert(size==sizeof(DWORD));++writes;
+            if(attribute==DWMWA_CAPTION_COLOR){if(failCaption)return E_FAIL;memcpy(&caption,value,size);}
+            else {assert(attribute==DWMWA_SYSTEMBACKDROP_TYPE);if(failBackdrop)return E_FAIL;memcpy(&backdrop,value,size);}return S_OK;
+        };
+        enabled=true;
+        DiscoverExistingCaptions(false,true);DiscoverExistingCaptions(true,false);
+        assert(writes==0&&!OwnedCaption(window));
+        enabled=false;DiscoverExistingCaptions(true,true);assert(!CaptureExistingCaption(window)&&writes==0);
+        enabled=true;testHighContrast=true;DiscoverExistingCaptions(true,true);assert(!CaptureExistingCaption(window)&&writes==0);
+        testHighContrast=false;
+        assert(!CaptureExistingCaption(GetDesktopWindow()));
+        HWND wrong=CreateWindowExW(0,L"STATIC",L"",WS_POPUP,0,0,20,20,nullptr,nullptr,type.hInstance,nullptr);assert(wrong);
+        HWND child=create(WS_CHILD,window);assert(child);
+        assert(!CaptureExistingCaption(wrong)&&!CaptureExistingCaption(child)&&writes==0);
+        auto cookie=reinterpret_cast<HANDLE>(ULONG_PTR(1));assert(SetPropW(window,captionProperty,cookie));
+        assert(!CaptureExistingCaption(window)&&GetPropW(window,captionProperty)==cookie&&writes==0);RemovePropW(window,captionProperty);
+        failCaption=true;assert(!CaptureExistingCaption(window)&&!OwnedCaption(window)&&captions.empty());
+        failCaption=false;DiscoverExistingCaptions(true,true);
+        auto state=OwnedCaption(window);assert(state&&state->resetToDefault&&state->before==DWMWA_COLOR_DEFAULT&&state->applied);
+        assert(caption==RGB(0,0,0)&&backdrop==DWMSBT_NONE&&state->backdrop.before==DWMSBT_TABBEDWINDOW);
+        assert(!OwnedCaption(wrong)&&!OwnedCaption(child));
+        auto count=captions.size();assert(CaptureExistingCaption(window)&&captions.size()==count);
+        testHighContrast=true;RefreshCaptions();assert(caption==DWMWA_COLOR_DEFAULT&&backdrop==DWMSBT_TABBEDWINDOW&&!state->applied);
+        testHighContrast=false;RefreshCaptions();assert(caption==RGB(0,0,0)&&backdrop==DWMSBT_NONE);
+        failCaption=true;assert(!ForgetCaption(state,true)&&OwnedCaption(window)==state&&state->applied);
+        failCaption=false;failBackdrop=true;assert(!ForgetCaption(state,true)&&OwnedCaption(window)==state&&!state->applied&&state->backdrop.owned);
+        failBackdrop=false;assert(ForgetCaption(state,true)&&caption==DWMWA_COLOR_DEFAULT&&backdrop==DWMSBT_TABBEDWINDOW&&!OwnedCaption(window));
+        assert(CaptureExistingCaption(window));state=OwnedCaption(window);
+        COLORREF genuine=RGB(31,33,35);failCaption=true;assert(FAILED(DwmCaptionHook(window,DWMWA_CAPTION_COLOR,&genuine,sizeof(genuine)))&&state->resetToDefault&&state->before==DWMWA_COLOR_DEFAULT);failCaption=false;assert(SUCCEEDED(DwmCaptionHook(window,DWMWA_CAPTION_COLOR,&genuine,sizeof(genuine))));
+        assert(state->before==genuine&&!state->resetToDefault);
+        assert(CaptureExistingCaption(window)&&state->before==genuine&&!state->resetToDefault);
+        enabled=false;RefreshCaptions();assert(caption==genuine&&backdrop==DWMSBT_TABBEDWINDOW);
+        enabled=true;RefreshCaptions();assert(ForgetCaption(state,true)&&caption==genuine);
+        // A genuine receipt captured before discovery must also remain exact.
+        state=CaptureCaption(window,genuine);assert(state&&!state->resetToDefault);
+        assert(CaptureExistingCaption(window)&&state->before==genuine&&!state->resetToDefault);RefreshCaptions();
+        backdrop=DWMSBT_MAINWINDOW;assert(ForgetCaption(state,true)&&caption==genuine&&backdrop==DWMSBT_MAINWINDOW);
+        failRead=true;assert(CaptureExistingCaption(window));state=OwnedCaption(window);assert(!state->backdrop.owned);
+        failRead=false;RefreshCaptions();assert(state->backdrop.owned);assert(ForgetCaption(state,true));
+        assert(CaptureExistingCaption(window));state=OwnedCaption(window);
+        assert(DestroyWindow(window));RefreshCaptions();assert(captions.empty());
+        window=create();assert(window&&!OwnedCaption(window)&&!GetPropW(window,captionProperty));
+        assert(CaptureExistingCaption(window));state=OwnedCaption(window);
+        RemovePropW(window,captionProperty);assert(SetPropW(window,captionProperty,cookie));
+        auto before=writes;RefreshCaptions();assert(captions.empty()&&GetPropW(window,captionProperty)==cookie&&writes==before);
+        RemovePropW(window,captionProperty);assert(DestroyWindow(window)&&DestroyWindow(wrong));
+        assert(UnregisterClassW(type.lpszClassName,type.hInstance));
+        puts("PASS: approved existing Notepad default reset; exact genuine receipts, package/runtime/HC/child/foreign refusal, collision, HWND reuse and recovery");return 0;
+    }
+#endif
     if(strcmp(argv[1],"native-caption-capture") == 0) {
         WNDCLASSW type{};type.lpfnWndProc=DefWindowProcW;type.hInstance=GetModuleHandleW(nullptr);
         type.lpszClassName=J3W1_TEST_PAINT?L"MSPaintApp":L"Notepad";assert(RegisterClassW(&type));

@@ -511,11 +511,14 @@ rollback are checked separately from the admission and ownership regressions.
 
 ### Notepad native header capture
 
-The public title API remains refused to preserve custom tabs. Only a new native
-window or the application's observed caption-color request grants native header
-ownership. Its readable DWM system-backdrop value is captured separately and
-restored with ownership checks. An older unknown caption remains native until
-reopened or an application request supplies a baseline. A separate empty-window
+The public title API remains refused to preserve custom tabs. The owner approved
+a Notepad-only existing-window caption policy: exact package/runtime and native
+root admission may apply black even without a readable original caption color.
+The receipt explicitly resets that unknown caption to Windows' default on
+disable, high contrast or rollback; a prior custom override could be lost. A
+genuine captured original, including a later application request, restores
+exactly. Its readable DWM system-backdrop value is captured separately and
+restored with ownership checks. First-window production acceptance is pending. A separate empty-window
 comparison showed black with visible tabs/buttons and restored gray on disable;
 production later-window checks showed black in active, inactive, maximized and
 restored states. The fresh-process first window still showed gray outside its

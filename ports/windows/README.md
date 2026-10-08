@@ -137,9 +137,12 @@ The owner also confirmed completed small and large Markdown previews after
 rollback/reapply: both retain black backgrounds and the improved rose reading
 formatting. Preview startup frames remain a separate acceptance check.
 
-The first Notepad window can still show a gray native header strip. Its public
-caption API remains excluded because it covered the custom tabs on the recorded
-host. Paint's surrounding drawing workspace is still gray; an opaque viewport
+Notepad now admits an existing native header through its exact package/runtime
+adapter. If its original caption color is unknown, rollback resets that caption
+to Windows' default under the owner-approved Notepad-only policy; a previous
+custom caption override could be lost. Captured originals still restore exactly.
+The public caption API remains excluded because it covered the custom tabs on
+the recorded host. First-window appearance acceptance is pending. Paint's surrounding drawing workspace is still gray; an opaque viewport
 background is not an acceptable fix because it can cover the artwork.
 
 Other app states, notification action buttons, fresh native preview startup,

@@ -965,9 +965,9 @@ static void Track(UIElement const& content,DesktopWindowXamlSource const& source
 
 @PUBLIC_CAPTION_IMPLEMENTATION@
 @WINDOW_BACKING_IMPLEMENTATION@@POPUP_BACKING_IMPLEMENTATION@
-static void Refresh(ThreadState& state) noexcept {
+@NATIVE_CAPTION_FORWARD@static void Refresh(ThreadState& state) noexcept {
  if(state.busy)return;state.busy=true;state.queued=false;
-@PUBLIC_CAPTION_REFRESH@ const bool active=enabled.load()&&!HighContrast();
+@PUBLIC_CAPTION_REFRESH@@NATIVE_CAPTION_REFRESH@ const bool active=enabled.load()&&!HighContrast();
  if(!RefreshWindowBackings(state,active))Log(237);
 @POPUP_BACKING_INACTIVE@ if(!active){RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);RestoreChromeBases(state.bases);RestoreChromeTransitions(state.transitions);RestoreKeyTips(state);RestoreNativeBrushes(state.nativeBrushes);if(!RestorePaintSplitEdges(state.paintSplitEdges))Log(238);}
  else if(!state.roots.empty())ApplyKeyTips(state);
@@ -1253,11 +1253,7 @@ template<unsigned N> static HRESULT STDMETHODCALLTYPE ActivationHook(void* self,
  return result;
 }
 
-// Caption colors are write-only. Existing windows with unknown state are not
-// recolored until an application request supplies a baseline. Windows created
-// after hook installation have a known default baseline; creation-time requests
-// are captured by the same hook before CreateWindowEx returns.
-
+@NATIVE_CAPTION_CONTRACT@
 // Only captured caption owners may request an opaque native backing. Public
 // Notepad title APIs remain refused; preexisting unknown caption colors are
 // never inferred. Paint keeps its native backdrop and public caption contract.
@@ -1276,7 +1272,7 @@ template<class Read,class Write> static bool UpdateNativeBackdrop(NativeBackdrop
   return true;
  }catch(...){return false;}
 }
-struct Caption { HWND window; COLORREF before=DWMWA_COLOR_DEFAULT; bool applied=false; NativeBackdrop backdrop; };
+struct Caption { HWND window; COLORREF before=DWMWA_COLOR_DEFAULT; bool applied=false; NativeBackdrop backdrop;@NATIVE_CAPTION_RESET_STATE@ };
 static constexpr PCWSTR captionProperty=L"@ADAPTER_ID@-caption-owner";
 [[clang::no_destroy]] static std::vector<Caption*> captions;
 [[clang::no_destroy]] static std::mutex captionsMutex;
@@ -1332,7 +1328,7 @@ static void RefreshCaptions() {
  }
 }
 
-// Paint and unowned Notepad windows preserve native backdrop requests. A known
+@NATIVE_CAPTION_DISCOVERY@// Paint and unowned Notepad windows preserve native backdrop requests. A known
 // Notepad caption owner keeps the application's latest readable backdrop as
 // its restore baseline. No AppWindow access, title mode or geometry changes.
 
@@ -1355,7 +1351,7 @@ static HRESULT WINAPI DwmCaptionHook(HWND window,DWORD attribute,LPCVOID value,D
  if(!state&&active)state=CaptureCaption(window,requested);
  COLORREF color=state&&active?([]{auto c=CanvasColor();return RGB(c.R,c.G,c.B);}()):requested;
  HRESULT result=originalDwmSet(window,attribute,&color,size);
- if(SUCCEEDED(result)&&state){state->before=requested;state->applied=active;if(!RefreshCapturedBackdrop(*state,active))Log(236);}
+ if(SUCCEEDED(result)&&state){state->before=requested;@NATIVE_CAPTION_RESET_CAPTURE@state->applied=active;if(!RefreshCapturedBackdrop(*state,active))Log(236);}
  else if(FAILED(result)&&state&&captured)ForgetCaption(state,false);
  return result;
 }
@@ -1478,16 +1474,16 @@ static bool StartHooks() {
  return admitted;
 }
 BOOL Wh_ModInit(){bool ready=ReviewedPackage()&&StartHooks();Log(253,ready,enabled.load());return ready;}
-void Wh_ModAfterInit(){StartRootDiscovery();Admit();discovery=CreateThread(nullptr,0,[](LPVOID)->DWORD{
+void Wh_ModAfterInit(){@NATIVE_CAPTION_DISCOVER@StartRootDiscovery();Admit();discovery=CreateThread(nullptr,0,[](LPVOID)->DWORD{
  // An unsupported process has no factories to admit. Avoid initializing
  // COM and its process-wide handle cache until the exact runtime is present.
  bool apartment=false;
  try{for(unsigned i=0;i<50&&!factoryReady.load()&&WaitForSingleObject(stopDiscovery,100)==WAIT_TIMEOUT;i++){
   if(!ReviewedRuntime())continue;
-  if(!apartment){init_apartment(apartment_type::multi_threaded);apartment=true;}
+@NATIVE_CAPTION_WORKER_DISCOVER@  if(!apartment){init_apartment(apartment_type::multi_threaded);apartment=true;}
   Admit();
  }}catch(hresult_error const& error){Log(7,static_cast<unsigned>(error.code().value));}catch(...){}
  if(apartment)uninit_apartment();return 0;
  },nullptr,0,nullptr);}
 void Wh_ModUninit(){enabled=false;StopRootDiscovery();RestoreCaptions();SetEvent(stopDiscovery);if(discovery){WaitForSingleObject(discovery,INFINITE);CloseHandle(discovery);discovery=nullptr;}std::vector<HWND> copy;{std::lock_guard guard(channelMutex);copy=channels;}for(HWND window:copy)if(IsWindow(window))SendMessageW(window,dispatchMessage,1,0);CloseHandle(stopDiscovery);stopDiscovery=nullptr;for(auto& value:factoryIdentity)value=nullptr;for(auto& value:activationIdentity)value=nullptr;}
-void Wh_ModSettingsChanged(){enabled=Wh_GetIntSetting(L"enabled")!=0;if(enabled.load())RefreshRootDiscovery();RefreshCaptions();std::vector<HWND> copy;{std::lock_guard guard(channelMutex);copy=channels;}for(HWND window:copy)if(IsWindow(window))SendMessageW(window,dispatchMessage,0,0);}
+void Wh_ModSettingsChanged(){enabled=Wh_GetIntSetting(L"enabled")!=0;if(enabled.load())RefreshRootDiscovery();@NATIVE_CAPTION_DISCOVER@RefreshCaptions();std::vector<HWND> copy;{std::lock_guard guard(channelMutex);copy=channels;}for(HWND window:copy)if(IsWindow(window))SendMessageW(window,dispatchMessage,0,0);}

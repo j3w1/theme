@@ -2,7 +2,7 @@
 // @id j3w1-notepad-chrome
 // @name j3w1 Notepad chrome
 // @description Exact-package Notepad chrome resources; document and artwork colors remain native
-// @version 1.2.28
+// @version 1.2.29
 // @author j3w1
 // @include Notepad.exe
 // @architecture x86-64
@@ -2082,9 +2082,11 @@ static bool RefreshWindowBackings(ThreadState& state,bool active) noexcept {
 #endif
 }
 
+static void RefreshCaptions();
 static void Refresh(ThreadState& state) noexcept {
  if(state.busy)return;state.busy=true;state.queued=false;
  ApplyPublicCaptions(state);
+ RefreshCaptions();
  const bool active=enabled.load()&&!HighContrast();
  if(!RefreshWindowBackings(state,active))Log(237);
  if(!active){RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);RestoreChromeBases(state.bases);RestoreChromeTransitions(state.transitions);RestoreKeyTips(state);RestoreNativeBrushes(state.nativeBrushes);if(!RestorePaintSplitEdges(state.paintSplitEdges))Log(238);}
@@ -2571,10 +2573,9 @@ template<unsigned N> static HRESULT STDMETHODCALLTYPE ActivationHook(void* self,
  return result;
 }
 
-// Caption colors are write-only. Existing windows with unknown state are not
-// recolored until an application request supplies a baseline. Windows created
-// after hook installation have a known default baseline; creation-time requests
-// are captured by the same hook before CreateWindowEx returns.
+// Caption colors are write-only. Known creation/application baselines restore
+// exactly; existing unowned Notepad roots use the explicit owner-approved
+// Windows-default reset policy below. No original caption read is claimed.
 
 // Only captured caption owners may request an opaque native backing. Public
 // Notepad title APIs remain refused; preexisting unknown caption colors are
@@ -2594,7 +2595,7 @@ template<class Read,class Write> static bool UpdateNativeBackdrop(NativeBackdrop
   return true;
  }catch(...){return false;}
 }
-struct Caption { HWND window; COLORREF before=DWMWA_COLOR_DEFAULT; bool applied=false; NativeBackdrop backdrop; };
+struct Caption { HWND window; COLORREF before=DWMWA_COLOR_DEFAULT; bool applied=false; NativeBackdrop backdrop; bool resetToDefault=false; };
 static constexpr PCWSTR captionProperty=L"j3w1-notepad-chrome-caption-owner";
 [[clang::no_destroy]] static std::vector<Caption*> captions;
 [[clang::no_destroy]] static std::mutex captionsMutex;
@@ -2650,6 +2651,32 @@ static void RefreshCaptions() {
  }
 }
 
+// Owner-approved Notepad-only policy for an existing native caption whose
+// original color is unavailable. This receipt deliberately restores Windows'
+// default, not an inferred original. Captured application requests supersede it.
+static bool CaptureExistingCaption(HWND window) {
+ std::lock_guard guard(captionsMutex);
+ if(!enabled.load()||HighContrast()||!CaptionWindow(window))return false;
+ if(OwnedCaption(window))return true; // Preserve every genuine capture.
+ auto state=CaptureCaption(window,DWMWA_COLOR_DEFAULT);if(!state)return false;
+ state->resetToDefault=true;
+ auto canvas=CanvasColor();COLORREF color=RGB(canvas.R,canvas.G,canvas.B);
+ if(FAILED(originalDwmSet(window,DWMWA_CAPTION_COLOR,&color,sizeof(color)))) {
+  ForgetCaption(state,false);return false;
+ }
+ state->applied=true;
+ if(!RefreshCapturedBackdrop(*state,true))Log(236);
+ return true;
+}
+static BOOL CALLBACK ExistingCaptionVisitor(HWND window,LPARAM) noexcept {
+ try {CaptureExistingCaption(window);}catch(...){Log(256);}
+ return TRUE;
+}
+static void DiscoverExistingCaptions(bool package=ReviewedPackage(),bool runtime=ReviewedRuntime()) {
+ if(!package||!runtime||!enabled.load()||HighContrast())return;
+ EnumWindows(ExistingCaptionVisitor,0);
+ RefreshCaptions();
+}
 // Paint and unowned Notepad windows preserve native backdrop requests. A known
 // Notepad caption owner keeps the application's latest readable backdrop as
 // its restore baseline. No AppWindow access, title mode or geometry changes.
@@ -2673,7 +2700,7 @@ static HRESULT WINAPI DwmCaptionHook(HWND window,DWORD attribute,LPCVOID value,D
  if(!state&&active)state=CaptureCaption(window,requested);
  COLORREF color=state&&active?([]{auto c=CanvasColor();return RGB(c.R,c.G,c.B);}()):requested;
  HRESULT result=originalDwmSet(window,attribute,&color,size);
- if(SUCCEEDED(result)&&state){state->before=requested;state->applied=active;if(!RefreshCapturedBackdrop(*state,active))Log(236);}
+ if(SUCCEEDED(result)&&state){state->before=requested;state->resetToDefault=false;state->applied=active;if(!RefreshCapturedBackdrop(*state,active))Log(236);}
  else if(FAILED(result)&&state&&captured)ForgetCaption(state,false);
  return result;
 }
@@ -2796,16 +2823,17 @@ static bool StartHooks() {
  return admitted;
 }
 BOOL Wh_ModInit(){bool ready=ReviewedPackage()&&StartHooks();Log(253,ready,enabled.load());return ready;}
-void Wh_ModAfterInit(){StartRootDiscovery();Admit();discovery=CreateThread(nullptr,0,[](LPVOID)->DWORD{
+void Wh_ModAfterInit(){DiscoverExistingCaptions();StartRootDiscovery();Admit();discovery=CreateThread(nullptr,0,[](LPVOID)->DWORD{
  // An unsupported process has no factories to admit. Avoid initializing
  // COM and its process-wide handle cache until the exact runtime is present.
  bool apartment=false;
  try{for(unsigned i=0;i<50&&!factoryReady.load()&&WaitForSingleObject(stopDiscovery,100)==WAIT_TIMEOUT;i++){
   if(!ReviewedRuntime())continue;
+  DiscoverExistingCaptions();
   if(!apartment){init_apartment(apartment_type::multi_threaded);apartment=true;}
   Admit();
  }}catch(hresult_error const& error){Log(7,static_cast<unsigned>(error.code().value));}catch(...){}
  if(apartment)uninit_apartment();return 0;
  },nullptr,0,nullptr);}
 void Wh_ModUninit(){enabled=false;StopRootDiscovery();RestoreCaptions();SetEvent(stopDiscovery);if(discovery){WaitForSingleObject(discovery,INFINITE);CloseHandle(discovery);discovery=nullptr;}std::vector<HWND> copy;{std::lock_guard guard(channelMutex);copy=channels;}for(HWND window:copy)if(IsWindow(window))SendMessageW(window,dispatchMessage,1,0);CloseHandle(stopDiscovery);stopDiscovery=nullptr;for(auto& value:factoryIdentity)value=nullptr;for(auto& value:activationIdentity)value=nullptr;}
-void Wh_ModSettingsChanged(){enabled=Wh_GetIntSetting(L"enabled")!=0;if(enabled.load())RefreshRootDiscovery();RefreshCaptions();std::vector<HWND> copy;{std::lock_guard guard(channelMutex);copy=channels;}for(HWND window:copy)if(IsWindow(window))SendMessageW(window,dispatchMessage,0,0);}
+void Wh_ModSettingsChanged(){enabled=Wh_GetIntSetting(L"enabled")!=0;if(enabled.load())RefreshRootDiscovery();DiscoverExistingCaptions();RefreshCaptions();std::vector<HWND> copy;{std::lock_guard guard(channelMutex);copy=channels;}for(HWND window:copy)if(IsWindow(window))SendMessageW(window,dispatchMessage,0,0);}
