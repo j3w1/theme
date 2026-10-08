@@ -1134,3 +1134,30 @@ The exact package/runtime checks, existing restoration path and public installer
 are retained. Synthetic native checks exercise generic content, admitted parents,
 foreign roots and bounded cyclic ancestry. Installed menu rendering still needs
 acceptance; this source defect does not by itself explain every gray menu frame.
+
+
+### Explorer tooltip comparison and recovery limit
+
+A bounded numeric trace identified a WinUI toolbar ToolTip and its direct
+ContentPresenter#LayoutRoot backing with native non-solid backgrounds and a
+translucent black border. The text was already themed. The brush's exact class
+was not established; this is separate from the native file-details tooltip.
+
+An attempted mapping of both controls passed generated settings and preservation
+checks, but the live update was followed by an Explorer access violation in the
+pinned WinUI runtime and loss of its folder window. The exception establishes
+an installation failure, not its exact cause. The mappings were withdrawn;
+the tooltip backing remains an unresolved rendering defect.
+
+Public Latest Restore completed and the restored baseline passed Test. A private
+audit initially rejected the changed Explorer library filename. A separate
+audit verified the saved-source restoration receipt and compiled digest, with
+twelve other adapter identities preserved. That audit rejection is retained
+separately; no public installer or substantive check was relaxed.
+
+Two backing-only temporary comparisons cleaned up and preserved production
+identities, but captured no tooltip paint. Computer Use toolbar actions entered
+the address field instead of opening the intended control. Neither a startup
+marker nor absence of a second crash proves rendered acceptance. A fresh native
+tooltip paint and update/recovery stability assessment are still required before
+another mapping is admitted. No raw crash dump or document content was read.
