@@ -2,7 +2,7 @@
 // @id j3w1-powertoys-markdown
 // @name j3w1 Windows preview backing and PowerToys Markdown
 // @description Exact-version black and rose Markdown rendering adapter
-// @version 1.4.0
+// @version 1.4.1
 // @author j3w1
 // @include PowerToys.MarkdownPreviewHandler.exe
 // @include prevhost.exe
@@ -54,6 +54,7 @@ static constexpr BrowserPin browserPins[]={
  {"b08c60a6d316ad3e50c2a1d00f146d90fca3a8da08f22aef71722ac0ccebd6b7",0x896f0,0x89650,0x0,0x0,0x0}, // 154.0.4258.37
  {"89df7d69b27dd6c17228c7319e84e22a97076cb3d68271617490f38ab204ea3f",0x896f0,0x89650,0x0,0x0,0x0}, // 154.0.4258.48
  {"07b9416907225b99556c2a5242ecc6d16afd83d374b151285cfe41f164843c1c",0x8a290,0x8a1f0,0x58e50,0x58f10,0x57380}, // 154.0.4258.53
+ {"0cfcd55c5095aec1ab484f15af1ef24bb4dd87b2807557ef7feeb4535c70e0e7",0x8a290,0x8a1f0,0x58e50,0x58f10,0x57380}, // 154.0.4258.62
 };
 struct Boundary {HMODULE module=nullptr;bool attempted=false;std::atomic<bool> ready{false};NavigateFn originalString=nullptr,originalNavigate=nullptr;GetBackgroundFn getBackground=nullptr;SetBackgroundFn originalBackground=nullptr,publicBackground=nullptr;CloseControllerFn originalClose=nullptr;};
 static Boundary boundaries[std::size(browserPins)];
@@ -512,6 +513,7 @@ static bool InstallBoundary(HMODULE module){
   case 0:return HookBoundary<0>(module);
   case 1:return HookBoundary<1>(module);
   case 2:return HookBoundary<2>(module);
+  case 3:return HookBoundary<3>(module);
  }
  return false;
 }

@@ -2,6 +2,10 @@
 
 ## [4.0.0] - 2026-09-28
 
+- Windows: admit the measured WebView2 154.0.4258.62 public rendering boundaries
+  after its runtime update left Markdown previews in native gray. Preserve full
+  module identity checks, document bytes and existing background restoration.
+
 - Windows: attach Notepad's system-composition dependency to its existing WinUI
   dispatcher before creating the tab-island brush. WinUI owns queue shutdown;
   exact original backdrop restoration and native caption boundaries remain.

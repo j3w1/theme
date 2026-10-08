@@ -1704,3 +1704,21 @@ strip still needs an admissible baseline; it is not covered by this correction.
 
 References: [system dispatcher management](https://learn.microsoft.com/en-us/windows/apps/develop/dispatcherqueue#system-dispatcher-management)
 and [EnsureSystemDispatcherQueue](https://learn.microsoft.com/en-us/windows/windows-app-sdk/api/winrt/microsoft.ui.dispatching.dispatcherqueue.ensuresystemdispatcherqueue).
+
+
+### WebView2 154.0.4258.62 compatibility refresh
+
+An installed appearance check found completed Markdown previews using native
+gray rendering after the WebView2 runtime updated. The running handler loaded
+154.0.4258.62, whose complete binary digest was absent from the adapter's
+reviewed list. Unknown-runtime refusal correctly retained native rendering.
+
+An isolated empty controller created through the public WebView2 APIs measured
+NavigateToString at RVA 0x8a290, Navigate at 0x8a1f0, the background getter at
+0x58e50, setter at 0x58f10 and Close at 0x57380 in that exact module. Transparent
+white, opaque black and the original background all completed getter/setter
+round trips. Adapter 1.4.1 admits this measured binary with its own original-call
+storage. Identical offsets in an earlier build do not authorize other versions:
+the complete module digest must match. The PowerToys host/template identities,
+document handling and unknown-runtime refusal remain unchanged. This refresh
+does not establish no-gray startup, DPI or accessibility acceptance.
