@@ -2,6 +2,10 @@
 
 ## [4.0.0] - 2026-09-28
 
+- Windows: attach Notepad's system-composition dependency to its existing WinUI
+  dispatcher before creating the tab-island brush. WinUI owns queue shutdown;
+  exact original backdrop restoration and native caption boundaries remain.
+
 - Windows: retain Notepad's tab ContentIsland as a strong COM peer; the observed
   object does not support weak references. Preserve closed-target and recovery
   guards, and cover non-weak-reference lifetime in the native regression.

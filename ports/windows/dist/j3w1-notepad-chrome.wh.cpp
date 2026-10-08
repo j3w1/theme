@@ -2,7 +2,7 @@
 // @id j3w1-notepad-chrome
 // @name j3w1 Notepad chrome
 // @description Exact-package Notepad chrome resources; document and artwork colors remain native
-// @version 1.2.27
+// @version 1.2.28
 // @author j3w1
 // @include Notepad.exe
 // @architecture x86-64
@@ -2053,6 +2053,10 @@ static void ObserveTabIslandBacking(FrameworkElement const& element) noexcept {
   // Retain its COM identity until closed, HWND destruction or completed recovery.
   entry->island=island;entry->islandTarget=true;
   // ContentIsland expects a Windows composition brush, not a lifted WinUI brush.
+  // The WinUI dispatcher and Windows system dispatcher are distinct.
+  // Attach the composition dependency to the existing WinUI queue so it owns
+  // system-queue shutdown. Never create a controller or another message loop.
+  island.DispatcherQueue().EnsureSystemDispatcherQueue();
   entry->brush.applied=Windows::UI::Composition::Compositor().CreateColorBrush(CanvasColor());
   if(!SetPropW(entry->window,windowBackingProperty,entry.get()))return;
   try{uiState->windowBackings.push_back(std::move(entry));}catch(...){RemovePropW(search.result,windowBackingProperty);throw;}

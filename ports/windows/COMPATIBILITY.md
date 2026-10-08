@@ -1685,3 +1685,22 @@ The native regression uses the production storage with an object that explicitly
 refuses weak references and checks retention and final release. The earlier
 startup failure remains rejected evidence; synthetic checks do not substitute
 for a fresh installed Notepad startup and rendered acceptance.
+
+### Notepad system-dispatcher dependency
+
+An admitted Notepad tab island can have a WinUI DispatcherQueue without a
+Windows.System.DispatcherQueue on the same UI thread. In that state the system
+Compositor constructor refuses creation, before CreateColorBrush runs. The
+adapter calls the documented EnsureSystemDispatcherQueue method on the
+island's existing WinUI dispatcher after the exact package, runtime, loaded
+island, native-root and null-backdrop checks. WinUI manages system-queue shutdown
+with its own dispatcher. The adapter creates no controller, thread or message
+loop and changes no security policy.
+
+The existing ownership receipt restores the nullable original brush on removal
+or compatibility suspension, preserving intervening application changes. This
+corrects the tab-island backing only. The separately rendered native caption
+strip still needs an admissible baseline; it is not covered by this correction.
+
+References: [system dispatcher management](https://learn.microsoft.com/en-us/windows/apps/develop/dispatcherqueue#system-dispatcher-management)
+and [EnsureSystemDispatcherQueue](https://learn.microsoft.com/en-us/windows/windows-app-sdk/api/winrt/microsoft.ui.dispatching.dispatcherqueue.ensuresystemdispatcherqueue).
