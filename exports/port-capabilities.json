@@ -37750,7 +37750,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-iCt4Uf53xNEY2cVYzWQMaCbifgnKLiPnJe9NDSjnUMk=",
+      "subjectDigest": "sha256-9QZXaWIbkgVEX7bBRqkeI7KjBXXmaI7xeSxUoWXqmT4=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37819,7 +37819,7 @@
           "path": "dist/windows-11-file-explorer-styler.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-11-file-explorer-styler.json",
-          "digest": "sha256-TweKCNhJ2IZ6uzR3c+nLzQJeRCDxP5gHV06/vCNFVCQ="
+          "digest": "sha256-Wjw+QghJ8F2Fuu3CVm1xaTOdUVUi4tTE9i5pTpefrO8="
         },
         {
           "path": "dist/windows-11-notification-center-styler.json",
@@ -37957,7 +37957,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-rur8YkMbaSZ7Rbe8FBJ9DbDIbiobvrGqmXqUP8oT5D4="
+          "digest": "sha256-mPlhd+yftuthC42I+8PwwG4JWwruqW/miqtynMK3e/I="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
@@ -38104,7 +38104,9 @@
             "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.Popup > Border#InputSwitcherPopupBorder | BorderThickness",
             "windows-11-notification-center-styler | ControlCenter.PaginatedToggleButton > ContentPresenter#ContentPresenter@CommonStates | BorderThickness",
             "windows-11-taskbar-styler | MenuFlyoutPresenter > Border | BorderThickness",
-            "windows-11-taskbar-styler | Grid#OverflowRootGrid > Border#OverflowFlyoutBackgroundBorder | BorderThickness"
+            "windows-11-taskbar-styler | Grid#OverflowRootGrid > Border#OverflowFlyoutBackgroundBorder | BorderThickness",
+            "windows-11-file-explorer-styler | ToolTip | BorderThickness",
+            "windows-11-file-explorer-styler | ToolTip > ContentPresenter#LayoutRoot | BorderThickness"
           ],
           "value": "1px",
           "eligibility": {
@@ -39104,7 +39106,9 @@
             "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.Popup > Border#InputSwitcherPopupBorder | BorderBrush",
             "windows-11-taskbar-styler | MenuFlyoutPresenter > Border | BorderBrush",
             "windows-11-taskbar-styler | Grid#OverflowRootGrid > Border#OverflowFlyoutBackgroundBorder | BorderBrush",
-            "windows-11-taskbar-styler.resource.MenuFlyoutPresenterBorderBrush"
+            "windows-11-taskbar-styler.resource.MenuFlyoutPresenterBorderBrush",
+            "windows-11-file-explorer-styler | ToolTip | BorderBrush",
+            "windows-11-file-explorer-styler | ToolTip > ContentPresenter#LayoutRoot | BorderBrush"
           ],
           "value": "#e53935",
           "eligibility": {
@@ -42971,7 +42975,9 @@
             "windows-11-taskbar-styler.resource.MenuFlyoutItemBackground",
             "windows-11-taskbar-styler.resource.MenuFlyoutItemBackgroundDisabled",
             "windows-11-taskbar-styler.resource.MenuFlyoutSubItemBackground",
-            "windows-11-taskbar-styler.resource.MenuFlyoutSubItemBackgroundDisabled"
+            "windows-11-taskbar-styler.resource.MenuFlyoutSubItemBackgroundDisabled",
+            "windows-11-file-explorer-styler | ToolTip | Background",
+            "windows-11-file-explorer-styler | ToolTip > ContentPresenter#LayoutRoot | Background"
           ],
           "value": "#160b0b",
           "eligibility": {
@@ -43735,7 +43741,9 @@
             "windows-11-taskbar-styler.resource.MenuFlyoutSubItemForeground",
             "windows-11-taskbar-styler.resource.MenuFlyoutSubItemForegroundSubMenuOpened",
             "windows-11-taskbar-styler.resource.MenuFlyoutSubItemForegroundPointerOver",
-            "windows-11-taskbar-styler.resource.MenuFlyoutSubItemForegroundPressed"
+            "windows-11-taskbar-styler.resource.MenuFlyoutSubItemForegroundPressed",
+            "windows-11-file-explorer-styler | ToolTip | Foreground",
+            "windows-11-file-explorer-styler | ToolTip > ContentPresenter#LayoutRoot | Foreground"
           ],
           "value": "#e99499",
           "eligibility": {
@@ -45011,7 +45019,9 @@
             "windows-11-taskbar-styler | MenuFlyoutSubItem | CornerRadius",
             "windows-11-taskbar-styler | MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates | CornerRadius",
             "windows-11-taskbar-styler | ToggleMenuFlyoutItem | CornerRadius",
-            "windows-11-taskbar-styler | ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates | CornerRadius"
+            "windows-11-taskbar-styler | ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates | CornerRadius",
+            "windows-11-file-explorer-styler | ToolTip | CornerRadius",
+            "windows-11-file-explorer-styler | ToolTip > ContentPresenter#LayoutRoot | CornerRadius"
           ],
           "value": "0px",
           "eligibility": {

@@ -257,6 +257,26 @@
       "styles": [
         "Fill@Disabled=#160b0b"
       ]
+    },
+    {
+      "target": "ToolTip",
+      "styles": [
+        "Background=#160b0b",
+        "Foreground=#e99499",
+        "BorderBrush=#e53935",
+        "CornerRadius=0",
+        "BorderThickness=1"
+      ]
+    },
+    {
+      "target": "ToolTip > ContentPresenter#LayoutRoot",
+      "styles": [
+        "Background=#160b0b",
+        "Foreground=#e99499",
+        "BorderBrush=#e53935",
+        "CornerRadius=0",
+        "BorderThickness=1"
+      ]
     }
   ],
   "themeResourceVariables": [

@@ -1808,3 +1808,24 @@ The exact package/runtime checks, existing restoration path and public installer
 are retained. Synthetic native checks exercise generic content, admitted parents,
 foreign roots and bounded cyclic ancestry. Installed menu rendering still needs
 acceptance; this source defect does not by itself explain every gray menu frame.
+
+
+### Explorer WinUI toolbar tooltip backing
+
+A bounded numeric trace of the pinned Explorer styler identified an actual
+WinUI ToolTip and its direct ContentPresenter#LayoutRoot child. Both retained
+a native non-solid background and translucent black border, while the child
+text was already rose. The trace does not identify the exact background brush
+class. The Explorer configuration had no tooltip backing selectors.
+
+The existing Explorer styler now maps these two observed layers to the raised
+surface, default text, overlay border, zero radius and default border width.
+These resolve from canonical roles; there is no additional resource dictionary,
+diagnostic module or installer. Content, placement, timing, visibility, focus,
+target sizes and accessibility remain host-owned. The same public install.ps1
+transaction updates and restores the selectors.
+
+Generated mapping and preservation checks are separate from installed rendering
+acceptance. This correction covers the WinUI toolbar tooltip; the distinct
+native file-details and clipped-name tooltip paint path remains unresolved.
+First-open, DPI and high-contrast appearance require their own observations.
